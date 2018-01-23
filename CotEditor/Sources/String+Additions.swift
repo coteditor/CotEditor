@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ extension String {
             .mapValues { try! NSRegularExpression(pattern: "(?<!\\\\)(?:\\\\\\\\)*(\\\\" + $0 + ")") }
             .reduce(self) { (string, entity) in
                 entity.value.matches(in: string, range: string.nsRange)
-                    .map { $0.rangeAt(1) }
+                    .map { $0.range(at: 1) }
                     .reversed()
                     .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: entity.key) }
             }
@@ -61,9 +61,9 @@ extension String {
     
     
     /// range of the line containing a given index
-    func lineRange(at index: Index) -> Range<Index> {
+    func lineRange(at index: Index, excludingLastLineEnding: Bool = false) -> Range<Index> {
         
-        return self.lineRange(for: index..<index)
+        return self.lineRange(for: index..<index, excludingLastLineEnding: excludingLastLineEnding)
     }
     
     
@@ -117,8 +117,7 @@ extension String {
     func isCharacterEscaped(at index: Index) -> Bool {
         
         let MaxEscapesCheckLength = 8
-        let startIndex = self.index(index, offsetBy: -MaxEscapesCheckLength, limitedBy: self.startIndex) ?? self.startIndex
-        let seekCharacters = self[startIndex..<index]
+        let seekCharacters = self[..<index].suffix(MaxEscapesCheckLength)
         
         let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
         

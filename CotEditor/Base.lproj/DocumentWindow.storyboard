@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,10 +19,10 @@
                         <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4" customClass="DocumentToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="64" height="24"/>
-                                    <size key="maxSize" width="66" height="26"/>
+                                    <size key="minSize" width="52" height="24"/>
+                                    <size key="maxSize" width="56" height="26"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="rSf-Ar-e7V">
-                                        <rect key="frame" x="4" y="14" width="66" height="24"/>
+                                        <rect key="frame" x="11" y="14" width="52" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="kY9-3e-rsd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -38,7 +39,7 @@
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="jwd-mj-L9c"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="CR / LF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
+                                                    <menuItem title="CRLF" tag="2" toolTip="Windows" id="Zo1-Cc-YBm">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="klO-m3-n5X" id="95s-4v-57Y"/>
                                                         </connections>
@@ -115,12 +116,12 @@
                                         <action selector="toggleComment:" target="klO-m3-n5X" id="YdZ-m0-PoD"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisibles" paletteLabel="Show / Hide Invisibles" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisibles" paletteLabel="Show/Hide Invisibles" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleInvisibleChars:" target="klO-m3-n5X" id="UVg-ZM-cYT"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show/Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="togglePageGuide:" target="klO-m3-n5X" id="iZD-jx-cOQ"/>
                                     </connections>
@@ -140,7 +141,7 @@
                                         <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="AOo-vA-XLq"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar panel" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="showGuessPanel:" target="klO-m3-n5X" id="7jm-Sv-aTP"/>
                                     </connections>
@@ -166,7 +167,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="share:" target="klO-m3-n5X" id="Tsr-qN-Ggm"/>
+                                            <action selector="showShareMenu:" target="klO-m3-n5X" id="UAj-a3-yXL"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
@@ -198,7 +199,6 @@
                     <connections>
                         <outlet property="encodingPopupButton" destination="nMw-zO-d1x" id="kTt-9A-udb"/>
                         <outlet property="lineEndingPopupButton" destination="rSf-Ar-e7V" id="3OJ-uo-Y2O"/>
-                        <outlet property="shareButton" destination="qhf-yr-4GF" id="KLH-01-h2d"/>
                         <outlet property="syntaxPopupButton" destination="RTF-Xf-Dgz" id="HSS-DU-DSY"/>
                         <outlet property="toolbar" destination="peS-bo-gb4" id="SXy-gP-BFW"/>
                     </connections>
@@ -222,10 +222,14 @@
                                 <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="O3C-zL-JF9" id="MxE-uZ-hjp"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="documentViewItem" destination="NAv-oU-Mey" id="lPe-qQ-5LB"/>
                         <outlet property="sidebarViewItem" destination="faM-S9-Ldc" id="txW-VA-3vb"/>
+                        <outlet property="splitView" destination="Xj1-1i-hd5" id="Pxt-ic-duH"/>
                         <segue destination="2gA-dj-5gh" kind="relationship" relationship="splitItems" id="49u-wK-kqV"/>
                         <segue destination="7te-2x-zAq" kind="relationship" relationship="splitItems" id="sB5-Yd-23U"/>
                     </connections>
@@ -238,17 +242,46 @@
         <scene sceneID="Z70-6I-Rpr">
             <objects>
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Document Inspector" image="DocumentTemplate" id="Kfj-q6-61N"/>
+                        <tabViewItem label="Incompatible Characters" image="ConflictsTemplate" id="JZo-ok-Dks"/>
+                    </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" misplaced="YES" type="noTabsNoBorder" id="wzn-c5-29x" customClass="InspectorTabView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="252" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
                         <tabViewItems/>
+                        <connections>
+                            <outlet property="delegate" destination="7te-2x-zAq" id="As3-Gf-aa6"/>
+                        </connections>
                     </tabView>
+                    <connections>
+                        <outlet property="documentInspectorTabViewItem" destination="Kfj-q6-61N" id="WFA-8N-DmT"/>
+                        <outlet property="incompatibleCharactersTabViewItem" destination="JZo-ok-Dks" id="QRQ-Sy-61p"/>
+                        <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
+                        <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
+                    </connections>
                 </tabViewController>
                 <customObject id="u7b-LP-b38" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="845" y="1128"/>
+        </scene>
+        <!--Document Inspector View Controller-->
+        <scene sceneID="eSh-Om-8dn">
+            <objects>
+                <controllerPlaceholder storyboardName="DocumentInspectorView" id="2Hh-Pq-vvo" userLabel="Document Inspector View Controller" sceneMemberID="viewController"/>
+                <customObject id="Eo9-v0-LrD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1178" y="1100"/>
+        </scene>
+        <!--Incompatible Characters View Controller-->
+        <scene sceneID="Wud-vX-9dR">
+            <objects>
+                <controllerPlaceholder storyboardName="IncompatibleCharactersView" id="ry4-rh-ZBT" userLabel="Incompatible Characters View Controller" sceneMemberID="viewController"/>
+                <customObject id="fzj-JB-SfU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1191" y="1157"/>
         </scene>
         <!--Document View Controller-->
         <scene sceneID="og9-Gf-wXr">
@@ -266,6 +299,9 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="2gA-dj-5gh" id="J8h-h6-rqd"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="splitViewItem" destination="tZe-bg-feG" id="WmM-B8-IB0"/>
@@ -282,6 +318,9 @@
         <scene sceneID="37M-iF-P9Z">
             <objects>
                 <splitViewController showSeguePresentationStyle="single" id="vcx-nD-eDH" customClass="SplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <splitViewItems>
+                        <splitViewItem holdingPriority="251" id="gyL-KP-Ao2"/>
+                    </splitViewItems>
                     <splitView key="splitView" dividerStyle="paneSplitter" id="erk-uh-Ad4" customClass="EditorSplitView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -290,7 +329,13 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="vcx-nD-eDH" id="iQE-L1-593"/>
+                        </connections>
                     </splitView>
+                    <connections>
+                        <segue destination="o9O-dN-yRS" kind="relationship" relationship="splitItems" id="umm-gh-Z4n"/>
+                    </connections>
                 </splitViewController>
                 <customObject id="BD5-7O-H8g" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -315,7 +360,7 @@
                                     </binding>
                                 </connections>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="smallSystem"/>
@@ -326,7 +371,7 @@
                                     <binding destination="NBJ-8W-V9X" name="value" keyPath="editorStatus" id="YJ0-hw-afY"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA">
                                 <rect key="frame" x="409" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="smallSystem"/>
@@ -353,11 +398,21 @@
             </objects>
             <point key="canvasLocation" x="695" y="1467"/>
         </scene>
+        <!--Editor View Controller-->
+        <scene sceneID="Nwn-QI-YAx">
+            <objects>
+                <controllerPlaceholder storyboardName="EditorView" id="o9O-dN-yRS" userLabel="Editor View Controller" sceneMemberID="viewController"/>
+                <customObject id="OXS-9n-Oj5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="601" y="1607"/>
+        </scene>
     </scenes>
     <resources>
         <image name="AutoTabExpand_On" width="24" height="24"/>
         <image name="BiggerFont" width="24" height="24"/>
         <image name="Comment" width="24" height="24"/>
+        <image name="ConflictsTemplate" width="15" height="15"/>
+        <image name="DocumentTemplate" width="15" height="15"/>
         <image name="EditColorCode" width="24" height="24"/>
         <image name="GetInfo" width="24" height="24"/>
         <image name="IncompatibleChars" width="24" height="24"/>

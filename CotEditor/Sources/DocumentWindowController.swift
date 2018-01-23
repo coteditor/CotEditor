@@ -70,7 +70,7 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        self.windowFrameAutosaveName = "document"
+        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "document")
         
         let window = self.window as! AlphaWindow
         
@@ -107,6 +107,16 @@ final class DocumentWindowController: NSWindowController {
                 window.contentView?.frame = window.contentRect(forFrameRect: NSRect(origin: .zero, size: window.frame.size))
             }
         }
+    }
+    
+    
+    
+    // MARK: Actions
+    
+    /// show editor opacity panel
+    @IBAction func showOpacityPanel(_ sender: Any?) {
+        
+        OpacityPanelController.shared.showWindow(sender)
     }
     
 }

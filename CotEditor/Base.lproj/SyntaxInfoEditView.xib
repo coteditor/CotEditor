@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11129.15" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11129.15"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSViewController">
@@ -210,18 +212,23 @@
                 <constraint firstItem="OBM-Yh-gb9" firstAttribute="baseline" secondItem="BI9-H4-gcs" secondAttribute="baseline" id="UHz-vE-b3e"/>
                 <constraint firstItem="sNf-iG-xYO" firstAttribute="top" secondItem="lhp-Zr-mnv" secondAttribute="top" id="UfF-js-6t3"/>
                 <constraint firstAttribute="trailing" secondItem="BI9-H4-gcs" secondAttribute="trailing" constant="12" id="Uuo-rN-A7I"/>
+                <constraint firstItem="b2C-7a-fvm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="W0w-Qg-zUz"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="baseline" secondItem="2Ku-D2-K5S" secondAttribute="baseline" id="WMZ-6U-bmb"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="trailing" secondItem="BI9-H4-gcs" secondAttribute="trailing" id="XFS-xe-Z69"/>
                 <constraint firstItem="o0U-5A-8FS" firstAttribute="trailing" secondItem="93A-h6-vCG" secondAttribute="trailing" id="bcm-Iw-LV5"/>
+                <constraint firstItem="2Ku-D2-K5S" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="e1b-MM-Wpa"/>
                 <constraint firstItem="b2C-7a-fvm" firstAttribute="top" secondItem="sNf-iG-xYO" secondAttribute="bottom" constant="8" symbolic="YES" id="iub-hv-UoM"/>
                 <constraint firstItem="KlI-NS-4x6" firstAttribute="centerY" secondItem="BI9-H4-gcs" secondAttribute="centerY" id="l6Z-q1-2U3"/>
+                <constraint firstItem="LkV-qO-uNb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="lMg-PD-PSa"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="BI9-H4-gcs" secondAttribute="leading" id="liP-fN-LlT"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="2Ku-D2-K5S" secondAttribute="trailing" constant="8" symbolic="YES" id="qJe-XJ-alt"/>
                 <constraint firstItem="sNf-iG-xYO" firstAttribute="leading" secondItem="lhp-Zr-mnv" secondAttribute="trailing" constant="8" symbolic="YES" id="rdO-nX-37a"/>
+                <constraint firstItem="lhp-Zr-mnv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="rkb-v6-Nvc"/>
                 <constraint firstAttribute="trailing" secondItem="b2C-7a-fvm" secondAttribute="trailing" constant="12" id="rnf-8u-Rx9"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="7aU-lg-CUg" secondAttribute="leading" id="tgq-Gp-9xZ"/>
                 <constraint firstItem="yqJ-k5-0CH" firstAttribute="leading" secondItem="LkV-qO-uNb" secondAttribute="trailing" constant="8" symbolic="YES" id="uPe-V6-Fbe"/>
                 <constraint firstItem="QlB-f2-NG3" firstAttribute="baseline" secondItem="o0U-5A-8FS" secondAttribute="baseline" id="x5I-Ql-4Xz"/>
+                <constraint firstItem="QlB-f2-NG3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="x7a-b3-nIC"/>
                 <constraint firstItem="yqJ-k5-0CH" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="xlf-Wr-12c"/>
                 <constraint firstItem="93A-h6-vCG" firstAttribute="leading" secondItem="o0U-5A-8FS" secondAttribute="leading" id="yjE-jt-QPB"/>
             </constraints>

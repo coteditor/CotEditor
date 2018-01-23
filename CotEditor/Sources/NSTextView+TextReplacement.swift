@@ -55,8 +55,8 @@ extension NSTextView {
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
         
         // register redo for text selection
-        if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
+        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges] target in
+            target.setSelectedRangesWithUndo(selectedRanges as! [NSRange])
         }
         
         // tell textEditor about beginning of the text processing
@@ -93,24 +93,18 @@ extension NSTextView {
         
         self.selectedRanges = ranges as [NSValue]
         
-        guard let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView else {
-            assertionFailure("failed preparing undo.")
-            return
+        self.undoManager?.registerUndo(withTarget: self) { target in
+            target.setSelectedRangesWithUndo(ranges)
         }
-        
-        undoClient.setSelectedRangesWithUndo(ranges as [NSRange])
     }
     
     
     /// trim all trailing whitespace with/without keeeping editing point
-    func trimTrailingWhitespace(keepingEditingPoint: Bool = false) {
+    func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
         assert(Thread.isMainThread)
-        
-        guard let string = self.string else { return }
-        
-        let regex = try! NSRegularExpression(pattern: "[ \\t]+$", options: .anchorsMatchLines)
-        let ranges = regex.matches(in: string, range: string.nsRange).map { $0.range }
+
+        let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
         
         // exclude editing line if needed
         let replacementRanges: [NSRange] = {
@@ -120,10 +114,26 @@ extension NSTextView {
             return ranges.filter { $0.upperBound != cursorLocation && !$0.contains(cursorLocation) }
         }()
         
+        guard !replacementRanges.isEmpty else { return }
+        
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
                      actionName: NSLocalizedString("Trim Trailing Whitespace", comment: ""))
+    }
+    
+}
+
+
+
+extension String {
+
+    func rangesOfTrailingWhitespace(ignoresEmptyLines: Bool) -> [NSRange] {
+        
+        let pattern = ignoresEmptyLines ? "(?<!^|[ \\t])[ \\t]+$" : "[ \\t]+$"
+        let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
+        
+        return regex.matches(in: self, range: self.nsRange).map { $0.range }
     }
     
 }

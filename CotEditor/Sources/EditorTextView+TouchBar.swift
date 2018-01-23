@@ -27,17 +27,19 @@
 
 import Cocoa
 
-private extension NSTouchBarCustomizationIdentifier {
+@available(macOS 10.12.2, *)
+private extension NSTouchBar.CustomizationIdentifier {
     
-    static let textView = NSTouchBarCustomizationIdentifier("com.coteditor.CotEditor.touchBar.textView")
+    static let textView = NSTouchBar.CustomizationIdentifier("com.coteditor.CotEditor.touchBar.textView")
 }
 
 
-extension NSTouchBarItemIdentifier {
+@available(macOS 10.12.2, *)
+extension NSTouchBarItem.Identifier {
     
-    static let shift = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.shift")
-    static let comment = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.comment")
-    static let textSize = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.textSize")
+    static let shift = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.shift")
+    static let comment = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.comment")
+    static let textSize = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.textSize")
 }
 
 
@@ -59,23 +61,23 @@ extension EditorTextView {
     }
     
     
-    override func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    override func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItemIdentifier.shift:
+        case .shift:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Shift", comment: "touch bar item")
             item.view = NSSegmentedControl(images: [#imageLiteral(resourceName: "ShiftLeftTemplate"), #imageLiteral(resourceName: "ShiftRightTemplate")], trackingMode: .momentary,
                                            target: self, action: #selector(shift(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.comment:
+        case .comment:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Comment", comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "CommentTemplate"), target: self, action: #selector(toggleComment(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.textSize:
+        case .textSize:
             let item = NSPopoverTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Text Size", comment: "touch bar item")
             item.collapsedRepresentationImage = #imageLiteral(resourceName: "TextSizeTemplate")
@@ -93,18 +95,38 @@ extension EditorTextView {
 
 
 @available(macOS 10.12.2, *)
+extension EditorTextView {
+    
+    // MARK: NSCandidateListTouchBarItemDelegate
+    
+    /// tell the delegate that a user has stopped touching candidates in the candidate list item.
+    override func candidateListTouchBarItem(_ anItem: NSCandidateListTouchBarItem<AnyObject>, endSelectingCandidateAt index: Int) {
+        
+        // insert candidate by ourselves to workaround the unwanted behavior about insertion point with a word that starts with a symbol character: e.g. "__init__" in Python (2017-12 macOS 10.13)
+        let range = self.rangeForUserCompletion
+        
+        guard
+            let candidate = anItem.candidates[index] as? String,
+            self.shouldChangeText(in: range, replacementString: candidate)
+            else { return super.candidateListTouchBarItem(anItem, endSelectingCandidateAt: index) }
+        
+        self.replaceCharacters(in: range, with: candidate)
+        self.didChangeText()
+    }
+    
+}
+    
+
+@available(macOS 10.12.2, *)
 extension EditorTextViewController {
+    
+    // MARK: NSTextViewDelegate
     
     /// suggest candidates for automatic text completion
     func textView(_ textView: NSTextView, candidatesForSelectedRange selectedRange: NSRange) -> [Any]? {
         
         var index = 0
-        guard
-            let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index)?
-                .filter({ $0.range(of: "^(\\W|_)", options: .regularExpression) == nil }),
-            !candidates.isEmpty
-            else { return nil }
-        // -> remove words start with non-alphabet to workaround a bug: e.g. "__init__" in Python (2017-10 macOS 10.13)
+        guard let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index), !candidates.isEmpty else { return nil }
         
         return candidates
     }

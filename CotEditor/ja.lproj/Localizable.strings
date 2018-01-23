@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,13 +34,12 @@
 
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認...";
-"What’s New in CotEditor %@" = "CotEditor %@ の新機能";  // %@ is version number
+"What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
 
 // Share menu
+"Share" = "共有";
 "No Document" = "書類なし";
-"File" = "ファイル";
-"Text" = "テキスト";
 
 
 
@@ -50,8 +49,8 @@
 "Re-Color All" = "再カラーリング";
 
 // Importing theme
-"“%@” is a CotEditor theme file." = "“%@”は CotEditor テーマファイルです。";
-"Do you want to install this theme?" = "テーマをインストールしますか？";
+"“%@” is a CotEditor theme file." = "“%@”はCotEditorテーマファイルです。";
+"Do you want to install this theme?" = "テーマをインストールしますか?";
 "Install" = "インストール";
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
@@ -67,10 +66,10 @@
 "Replace All" = "すべて置換";
 "Highlight" = "ハイライト";
 "Searching in text…" = "テキストを検索しています...";
-"%@ string found." = "%@ 件見つかりました。";
-"%@ strings found." = "%@ 件見つかりました。";
-"%@ string replaced." = "%@ 件置換しました。";
-"%@ strings replaced." = "%@ 件置換しました。";
+"%@ string found." = "%@件見つかりました。";
+"%@ strings found." = "%@件見つかりました。";
+"%@ string replaced." = "%@件置換しました。";
+"%@ strings replaced." = "%@件置換しました。";
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
 "Input text to find." = "検索するテキストを入力してください。";
@@ -80,16 +79,16 @@
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次のマッチを検索";
 "Replace the current selection with the replacement text." = "現在の選択内容を置換テキストで置き換え";
 "Not Found" = "見つかりません";
-"%@ found" = "%@ 件見つかりました";  // %@ is number of founds
+"%@ found" = "%@件見つかりました";  // %@ is number of founds
 "Not Replaced" = "見つかりません";
-"%@ replaced" = "%@ 件置換しました";  // %@ is number of replaced
+"%@ replaced" = "%@件置換しました";  // %@ is number of replaced
 
 
 /* MARK: FindPanelResultViewController */
 // Find result (“%@” is filename)
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
-"Found one string in “%@”." = "“%@”内に 1 件見つかりました。";
-"Found %@ strings in “%@”." = "“%2$@”内に %1$@ 件見つかりました。";
+"Found one string in “%@”." = "“%@”内に1件見つかりました。";
+"Found %@ strings in “%@”." = "“%2$@”内に%1$@件見つかりました。";
 
 
 
@@ -99,11 +98,11 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
-"The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか？";
+"The file is %@.\n\nDo you really want to open the file?" = "このファイルは%@です。\n\n本当にファイルを開きますか?";
 
 // Large file alert
-"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが %@ あります。";
-"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか？";
+"The file “%@” has a size of %@." = "ファイル“%@”はファイルサイズが%@あります。";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "巨大なファイルを開くと、アプリケーションの反応が遅くなる可能性があります。\n\n本当にファイルを開きますか?";
 "Open" = "開く";
 
 
@@ -115,25 +114,25 @@
 
 // Convert or reinterpret encoding alert
 "File encoding" = "エンコーディング";
-"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って変換または再解釈しますか？";
+"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って変換または再解釈しますか?";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
-"Do you want to continue processing?" = "保存作業を続けますか？";
+"Do you want to continue processing?" = "保存作業を続けますか?";
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Characters" = "非互換文字を表示";
 
 // Incompatible IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA 文字セット名は“%@”です。";
-"Do you want to continue processing?" = "保存作業を続けますか？";
+"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA文字セット名は“%@”です。";
+"Do you want to continue processing?" = "保存作業を続けますか?";
 "Do not show this warning for this document again" = "今後この書類ではこの警告を表示しない";
 "Continue Saving" = "保存を続行";
 
 // Encoding change with unsaved changes alert
 "The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか？";
+"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか?";
 "Discard Changes" = "変更内容を破棄";
 
 // Reinterpretation failed alert
@@ -143,22 +142,15 @@
 
 // incompatible characters alert
 "Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
-"Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか？";
+"Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
 // Modified by an external application alert
-"The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditor で加えた編集もまだ保存されていません。";
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "ファイルは別のアプリケーションによって変更されました。CotEditorで加えた編集もまだ保存されていません。";
 "The file has been modified by another application." = "ファイルは別のアプリケーションによって変更されました。";
-"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditor での編集内容を保持しますか、それとも変更された内容に更新しますか？";
-"Keep CotEditor’s Edition" = "CotEditor の編集内容を保持";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "CotEditorでの編集内容を保持しますか、それとも変更された内容に更新しますか?";
+"Keep CotEditor’s Edition" = "CotEditorの編集内容を保持";
 "Update" = "更新";
-
-
-
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "書類情報";
-"Incompatible Characters" = "非互換文字";
 
 
 
@@ -177,7 +169,7 @@
 
 /* MARK: PrintTextView */
 // header/footer
-"Printed on %@" = "プリント：%@";  // %@ is date
+"Printed on %@" = "プリント: %@";  // %@ is date
 
 
 
@@ -220,7 +212,7 @@
 // Undo action names
 "Replace Text" = "テキストを置換";
 "Insert Text" = "テキストを挿入";
-"Insert Custom Text" = "カスタムテキストを挿入";
+"Insert Snippet" = "スニペットを挿入";
 "Shift Right" = "右へシフト";
 "Shift Left" = "左へシフト";
 "Convert Indentation" = "インデントを変換";
@@ -235,11 +227,11 @@
 "NFKD" = "NFKD";
 "NFKC" = "NFKC";
 "NFKC Casefold" = "NFKC Casefold";
-"Modified NFC" = "修正 NFC";
-"Modified NFD" = "修正 NFD";
+"Modified NFC" = "修正NFC";
+"Modified NFD" = "修正NFD";
 "Inspect Character" = "文字情報を表示";
 "Move Line" = "行を移動";
-"Sort Lines" = "行をソート";
+"Sort Lines" = "行を並び替え";
 "Reverse Lines" = "行を反転";
 "Delete Duplicate Lines" = "重複行を削除";
 "Duplicate Line" = "行を複製";
@@ -256,23 +248,21 @@
 
 /* MARK: DocumentViewController */
 // Menu items
-"Hide Line Numbers" = "行番号を隠す";
+"Hide Line Numbers" = "行番号を非表示";
 "Show Line Numbers" = "行番号を表示";
-"Hide Status Bar" = "ステータスバーを隠す";
+"Hide Status Bar" = "ステータスバーを非表示";
 "Show Status Bar" = "ステータスバーを表示";
-"Hide Navigation Bar" = "ナビゲーションバーを隠す";
+"Hide Navigation Bar" = "ナビゲーションバーを非表示";
 "Show Navigation Bar" = "ナビゲーションバーを表示";
-"Hide Invisible Characters" = "不可視文字を隠す";
+"Hide Invisible Characters" = "不可視文字を非表示";
 "Show Invisible Characters" = "不可視文字を表示";
-"Hide Page Guide" = "ページガイドを隠す";
+"Hide Page Guide" = "ページガイドを非表示";
 "Show Page Guide" = "ページガイドを表示";
 "Unwrap Lines" = "行を折り返さない";
 "Wrap Lines" = "行を折り返す";
-"Use Vertical Orientation" = "縦書きで表示";
-"Use Horizontal Orientation" = "横書きで表示";
 
 // Tooltip for "Show Invisible Characters" menu item
-"Show or hide invisible characters in document" = "書類中の不可視文字を表示／隠す";
+"Show or hide invisible characters in document" = "書類中の不可視文字を表示/非表示";
 "To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
 
 
@@ -285,7 +275,7 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@：";
+"%@: " = "%@: ";
 "Lines" = "行数";
 "Characters" = "文字数";
 "Length" = "文字長";
@@ -298,7 +288,7 @@
 
 /* MARK: NavigationBarController */
 // Outline menu title
-"<Outline Menu>" = "<アウトラインメニュー>";
+"<Outline Menu>" = "＜アウトラインメニュー＞";
 "Jump to previous outline item" = "前の項目へ";
 "Jump to next outline item" = "次の項目へ";
 
@@ -334,7 +324,7 @@
 // General pane
 // Autosave setting update alert
 "The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
-"Do you want to restart CotEditor now?" = "CotEditor を今すぐ再起動しますか？";
+"Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";
 
@@ -344,9 +334,9 @@
 "Rename “%@”" = "“%@”を名称変更";
 "Duplicate “%@”" = "“%@”を複製";
 "Restore “%@”" = "“%@”を元に戻す";
-"Reveal “%@” in Finder" = "“%@”を Finder で表示";
+"Reveal “%@” in Finder" = "“%@”をFinderで表示";
 // Theme deletion alert
-"Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか？";
+"Are you sure you want to delete “%@” theme?" = "“%@”テーマを削除してもよろしいですか?";
 "This action cannot be undone." = "この操作は取り消せません。";
 
 // Swipe to delete (also used in the Format pane)
@@ -356,7 +346,7 @@
 
 // Format pane
 // Encoding menu alert
-"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか？";
+"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか?";
 "The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
 "Change to “%@”" = "“%@”へ変更";
 "Revert to “Auto-Detect”" = "“自動認識”へ戻す";
@@ -364,12 +354,12 @@
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製...";
 "Export “%@”…" = "“%@”を書き出し...";
-"Reveal “%@” in Finder" = "“%@”を Finder で表示";
+"Reveal “%@” in Finder" = "“%@”をFinderで表示";
 
 
 // File Drop pane
 // File drop setting deletion alert
-"Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか？";
+"Are you sure you want to delete the file drop setting for “%@”?" = "ファイルドロップ設定“%@”を削除してもよろしいですか?";
 "Deleted setting can’t be restored." = "削除した設定は元に戻せません。";
 
 
@@ -379,8 +369,8 @@
 
 // Integration pane
 // Warnings on Integration pane
-"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の 'cot' シンボリックリンクはこの CotEditor 以外に向けられています。";
-"The current 'cot' symbolic link may target an invalid path." = "現在の 'cot' シンボリックリンクは無効なパスに向けられています。";
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "現在の'cot'シンボリックリンクはこのCotEditor以外に向けられています。";
+"The current 'cot' symbolic link may target an invalid path." = "現在の'cot'シンボリックリンクは無効なパスに向けられています。";
 
 
 
@@ -405,7 +395,7 @@
 // Syntax style validation results
 "No error was found." = "エラーはありませんでした。";
 "An error was found!" = "エラーがありました！";
-"%i errors were found!" = "%i 個のエラーがありました！";
+"%i errors were found!" = "%i個のエラーがありました！";
 
 
 
@@ -414,7 +404,7 @@
 "“%@” couldn’t be imported." = "“%@”を読み込めませんでした。";
 "No original file for “%@” was found." = "“%@”のオリジナルファイルが見つかりませんでした。";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "別の名前を指定してください。";
 "Name can’t be empty." = "名前は空にできません。";
 "You can’t use a name that contains “/”." = "名前に“/”を含めることはできません。";
@@ -434,7 +424,7 @@
 "copy" = "コピー";
 
 // Delete syntax style alert
-"Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか？";
+"Are you sure you want to delete “%@” syntax style?" = "シンタックススタイル“%@”を削除してもよろしいですか?";
 "Deleted style can’t be restored." = "この操作は取り消せません。";
 "Delete" = "削除";
 "Replace" = "置換";
@@ -443,18 +433,18 @@
 "Import" = "読み込み";
 // Importing same name style alert
 "A new style named “%@” will be installed, but a custom style with the same name already exists." = "新しいスタイル“%@”のインストールを試みましたが、同名のカスタムスタイルがすでに存在しています。";
-"Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか？\n置き換えたスタイルは元に戻せません。";
+"Do you want to replace it?\nReplaced style can’t be restored." = "スタイルを置き換えますか?\n置き換えたスタイルは元に戻せません。";
 
 // Export syntax style file savePanel label
-"Export As:" = "書き出し：";
+"Export As:" = "書き出し:";
 
 // Syntax validation
 "Block comment needs both begin delimiter and end delimiter." = "ブロックコメントは開始文字と終了文字の両方を必要とします。";
 "Begin string" = "開始文字列";
 "End string" = "終了文字列";
 "Regular expression" = "正規表現";
-"multiple registered." = "重複して登録されています。";
-"Regex Error: " = "正規表現エラー：";
+"The same word is registered multiple times." = "重複して登録されています。";
+"Regular Expression Error: " = "正規表現エラー:";
 
 
 
@@ -465,13 +455,13 @@
 
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
-"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか？\n削除したテーマは元に戻せません。";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか?\n削除したテーマは元に戻せません。";
 
 
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "テキストを挿入 %@";
+"Insert Text %li" = "テキストを挿入%li";
 
 // Keyboard key name
 "Space" = "スペース";
@@ -491,7 +481,7 @@
 "Open Scripts Folder" = "スクリプトフォルダを開く";
 
 // Script menu item tooltips
-"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option + クリック”してください。";
+"“Option + click” to open script in editor." = "スクリプトをエディタで開くには、“Option+クリック”してください。";
 
 
 
@@ -535,4 +525,4 @@
 
 /* String extension */
 // Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
-"%@ with BOM" = "%@BOM 付き";
+"%@ with BOM" = "%@BOM付き";

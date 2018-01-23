@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ private extension NSColor {
 final class EncodingTableCellView: NSTableCellView {
     
     /// inverse text color of highlighted cell
-    override var backgroundStyle: NSBackgroundStyle {
+    override var backgroundStyle: NSView.BackgroundStyle {
         
         didSet {
             guard let textField = self.textField else { return }
@@ -51,7 +51,7 @@ final class EncodingTableCellView: NSTableCellView {
             let attrString = textField.attributedStringValue
             let mutableAttrString = attrString.mutableCopy() as! NSMutableAttributedString
             
-            attrString.enumerateAttribute(NSForegroundColorAttributeName, in: NSRange(location: 0, length: attrString.length))
+            attrString.enumerateAttribute(.foregroundColor, in: NSRange(location: 0, length: attrString.length))
             { (value: Any?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
                 
                 let color = value as? NSColor
@@ -70,9 +70,9 @@ final class EncodingTableCellView: NSTableCellView {
                 }
                 
                 if let newColor = newColor {
-                    mutableAttrString.addAttribute(NSForegroundColorAttributeName, value: newColor, range: range)
+                    mutableAttrString.addAttribute(.foregroundColor, value: newColor, range: range)
                 } else {
-                    mutableAttrString.removeAttribute(NSForegroundColorAttributeName, range: range)
+                    mutableAttrString.removeAttribute(.foregroundColor, range: range)
                 }
             }
             

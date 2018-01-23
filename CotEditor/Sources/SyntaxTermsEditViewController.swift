@@ -44,7 +44,7 @@ final class SyntaxTermsEditViewController: NSViewController {
         
         self.syntaxType = syntaxType
         
-        super.init(nibName: nil, bundle: nil)!
+        super.init(nibName: nil, bundle: nil)
     }
     
     
@@ -55,13 +55,13 @@ final class SyntaxTermsEditViewController: NSViewController {
     
     
     deinit {
-        self.termsController?.unbind(NSContentArrayBinding)
+        self.termsController?.unbind(.contentArray)
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "SyntaxTermsEditView"
+        return NSNib.Name("SyntaxTermsEditView")
     }
     
     
@@ -70,9 +70,10 @@ final class SyntaxTermsEditViewController: NSViewController {
     
     /// setup binding with desired key
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        self.termsController!.bind(NSContentArrayBinding,
+        self.termsController!.bind(.contentArray,
                                    to: self,
                                    withKeyPath: "representedObject." + self.syntaxType.rawValue)
     }

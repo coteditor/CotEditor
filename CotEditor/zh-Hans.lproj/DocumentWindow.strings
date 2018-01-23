@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,13 +26,26 @@
  
  */
 
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "文稿信息";
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "不兼容字符";
+
+
 /* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
 "9p6-Sj-QjF.label" = "行尾";  /* Line Endings */
 "9p6-Sj-QjF.paletteLabel" = "行尾";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "改变行尾";  /* Change line endings */
 
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
 "J48-tF-WBo.ibShadowedToolTip" = "Classic Mac OS";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
@@ -90,12 +103,12 @@
 
 /* Class = "NSToolbarItem"; label = "不可见字符"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可见字符";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "显示 / 隐藏不可见字符";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "显示/隐藏不可见字符";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "显示或隐藏文本中的不可见字符";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "页面指示";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "显示 / 隐藏页面指示";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "显示/隐藏页面指示";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "显示或隐藏页面指示";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
@@ -116,7 +129,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "拼写检查";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "拼写检查";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "显示拼写和语法面板";  /* Show spelling and grammar panel */
+"Ply-Nr-aOE.toolTip" = "显示拼写和语法";  /* Show spelling and grammar */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "颜色代码";  /* Color Code */

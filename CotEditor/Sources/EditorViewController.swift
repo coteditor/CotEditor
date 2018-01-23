@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -67,11 +67,6 @@ final class EditorViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersion.current < .macOS10_11 {
-            self.splitView.delegate = self
-        }
-        
         self.navigationBarController?.textView = self.textView
     }
     
@@ -87,9 +82,9 @@ final class EditorViewController: NSSplitViewController {
     
     
     /// validate actions
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
+        guard let action = item.action else { return false }
         
         switch action {
         case #selector(selectPrevItemOfOutlineMenu):
@@ -101,7 +96,7 @@ final class EditorViewController: NSSplitViewController {
         default: break
         }
         
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,22 +29,24 @@ import Cocoa
 
 final class EditorScrollView: NSScrollView {
     
-    // MARK: Lifecycle
+    // MARK: Private Properties
     
-    deinit {
-        if let documentView = self.documentView as? NSTextView {
-            documentView.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
-        }
-    }
+    private var layoutOrientationObserver: NSKeyValueObservation?
     
     
     
+    // MARK: -
     // MARK: Scroll View Methods
     
     /// use custom ruler view
-    override class func rulerViewClass() -> AnyClass {
-    
-        return LineNumberView.self
+    override class var rulerViewClass: AnyClass! {
+        
+        set {
+            super.rulerViewClass = LineNumberView.self
+        }
+        get {
+            return LineNumberView.self
+        }
     }
     
     
@@ -52,31 +54,21 @@ final class EditorScrollView: NSScrollView {
     override var documentView: NSView? {
         
         willSet {
-            if let documentView = newValue as? NSTextView {
-                documentView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
-            }
-        }
-    }
-
-    
-    
-    // MARK: KVO
-    
-    /// observed key value did update
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == #keyPath(NSTextView.layoutOrientation) {
-            switch self.layoutOrientation {
-            case .horizontal:
-                self.hasVerticalRuler = true
-                self.hasHorizontalRuler = false
-            case .vertical:
-                self.hasVerticalRuler = false
-                self.hasHorizontalRuler = true
-            }
+            guard let documentView = newValue as? NSTextView else { return }
             
-            // invalidate line number view background
-            self.window?.viewsNeedDisplay = true
+            self.layoutOrientationObserver = documentView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
+                switch textView.layoutOrientation {
+                case .horizontal:
+                    self.hasVerticalRuler = true
+                    self.hasHorizontalRuler = false
+                case .vertical:
+                    self.hasVerticalRuler = false
+                    self.hasHorizontalRuler = true
+                }
+                
+                // invalidate line number view background
+                self.window?.viewsNeedDisplay = true
+            }
         }
     }
     
@@ -94,7 +86,7 @@ final class EditorScrollView: NSScrollView {
     // MARK: Private Methods
     
     /// return layout orientation of document text view
-    private var layoutOrientation: NSTextLayoutOrientation {
+    private var layoutOrientation: NSLayoutManager.TextLayoutOrientation {
         
         guard let documentView = self.documentView as? NSTextView else {
             return .horizontal

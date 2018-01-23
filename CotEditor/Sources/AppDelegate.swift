@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2017 1024jp
+ © 2013-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,8 +28,14 @@
 
 import Cocoa
 
+private extension NSSound {
+    
+    static let glass = NSSound(named: NSSound.Name("Glass"))
+}
+
+
 @NSApplicationMain
-final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidations {
+final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Enums
     
@@ -45,12 +51,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     
     // MARK: Public Properties
     
-    dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
+    @objc dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
     
     
     // MARK: Private Properties
     
-    private var didFinishLaunching = false
     private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
@@ -74,10 +79,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         // register default setting values
         UserDefaults.standard.register(defaults: DefaultSettings.defaults)
-        NSUserDefaultsController.shared().initialValues = DefaultSettings.defaults
+        NSUserDefaultsController.shared.initialValues = DefaultSettings.defaults
         
         // instantiate DocumentController
-        _ = DocumentController.shared()
+        _ = DocumentController.shared
         
         // wake text finder up
         _ = TextFinder.shared
@@ -95,11 +100,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     }
     
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     override func awakeFromNib() {
         
         // store key bindings in MainMenu.xib before menu is modified
@@ -107,7 +107,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         // append the current version number to "What’s New" menu item
         let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
-        let shortVersion = AppInfo.shortVersion.substring(with: shortVersionRange)
+        let shortVersion = String(AppInfo.shortVersion[shortVersionRange])
         self.whatsNewMenuItem?.title = String(format: NSLocalizedString("What’s New in CotEditor %@", comment: ""), shortVersion)
         
         // build menus
@@ -116,21 +116,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         self.buildThemeMenu()
         ScriptManager.shared.buildScriptMenu()
         
+        // manually insert Share menu on macOS 10.12 and earlier
+        if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
+            (DocumentController.shared as? DocumentController)?.insertLegacyShareMenu()
+        }
+        
         // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: .SettingListDidUpdate, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: .SettingListDidUpdate, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: .SettingListDidUpdate, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
     }
     
     
     
     // MARK: Application Delegate
     
-    #if APPSTORE
-    #else
+    #if !APPSTORE
     /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {
-        
+    
         UpdaterManager.shared.setup()
     }
     #endif
@@ -149,27 +153,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         if #available(macOS 10.12.2, *) {
             NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
         }
-        
-        // raise didFinishLaunching flag
-        self.didFinishLaunching = true
     }
     
     
     /// store last version before termination
     func applicationWillTerminate(_ notification: Notification) {
         
-        // store latest version
-        //   -> The bundle version (build number) format was changed on CotEditor 2.2.0. due to the iTunes Connect versioning rule.
-        //       < 2.2.0 : The Semantic Versioning
-        //      >= 2.2.0 : Single Integer
+        // store the latest version
+        //   -> The bundle version (build number) must be Int.
         let thisVersion = AppInfo.bundleVersion
         let isLatest: Bool = {
-            guard let lastVersion = UserDefaults.standard[.lastVersion] else { return true }
+            guard
+                let lastVersionString = UserDefaults.standard[.lastVersion],
+                let lastVersion = Int(lastVersionString)
+                else { return true }
             
-            // if isDigit -> probably semver (semver must be older than 2.2.0)
-            let isDigit = (lastVersion.rangeOfCharacter(from: CharacterSet(charactersIn: "0123456789").inverted) == nil)
-            
-            return !isDigit || Int(thisVersion)! >= Int(lastVersion)!
+            return Int(thisVersion)! >= lastVersion
         }()
         if isLatest {
             UserDefaults.standard[.lastVersion] = thisVersion
@@ -180,11 +179,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        if self.didFinishLaunching {
-            return UserDefaults.standard[.reopenBlankWindow]
-        } else {
-            return UserDefaults.standard[.createNewAtStartup]
-        }
+        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+        
+        return behavior == .untitledDocument
     }
     
     
@@ -209,7 +206,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
             
             let url = URL(fileURLWithPath: filename)
             
-            DocumentController.shared().openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
+            DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
                 defer {
                     remainingDocumentCount -= 1
                 }
@@ -217,7 +214,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
                 if let error = error {
                     NSApp.presentError(error)
                     
-                    let cancelled = (error as? CocoaError)?.errorCode == CocoaError.userCancelled.rawValue
+                    let cancelled = (error as? CocoaError)?.code == .userCancelled
                     NSApp.reply(toOpenOrPrint: cancelled ? .cancel : .failure)
                 }
                 
@@ -259,7 +256,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         let returnCode = alert.runModal()
         
-        guard returnCode == NSAlertFirstButtonReturn else { return false }  // = Open as Text File
+        guard returnCode == .alertFirstButtonReturn else { return false }  // = Open as Text File
         
         // import theme
         do {
@@ -277,27 +274,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         let feedbackAlert = NSAlert()
         feedbackAlert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
         
-        NSSound(named: "Glass")?.play()
+        NSSound.glass?.play()
         feedbackAlert.runModal()
         
         return true
-    }
-    
-    
-    
-    // MARK: User Interface Validations
-    
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(showOpacityPanel):
-            return !NSApp.orderedDocuments.isEmpty
-            
-        default:
-            return true
-        }
     }
     
     
@@ -308,7 +288,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     @IBAction func newDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
-        NSDocumentController.shared().newDocument(sender)
+        NSDocumentController.shared.newDocument(sender)
     }
     
     
@@ -316,7 +296,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     @IBAction func openDocumentActivatingApplication(_ sender: Any?) {
         
         NSApp.activate(ignoringOtherApps: true)
-        NSDocumentController.shared().openDocument(sender)
+        NSDocumentController.shared.openDocument(sender)
+    }
+    
+    
+    /// show standard about panel
+    @IBAction func showAboutPanel(_ sender: Any?) {
+     
+        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
+        #if APPSTORE
+            // Remove Sparkle from 3rd party code list
+            if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
+                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
+                let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
+            {
+                attrString.replaceCharacters(in: NSRange(range, in: attrString.string), with: "")
+                let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
+                options[creditsKey] = attrString
+            }
+        #endif
+        
+        NSApplication.shared.orderFrontStandardAboutPanel(options: options)
     }
     
     
@@ -334,23 +334,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
     }
     
     
-    /// show color code editor panel
-    @IBAction func showColorCodePanel(_ sender: Any?) {
-        
-        ColorCodePanelController.shared.showWindow(sender)
-    }
-    
-    
-    /// show editor opacity panel
-    @IBAction func showOpacityPanel(_ sender: Any?) {
-        
-        OpacityPanelController.shared.showWindow(sender)
-    }
-    
-    
     /// show acknowlegements
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
+        #if APPSTORE
+            self.acknowledgmentsWindowController.userStyleSheet = ".non-appstore { display: none }"
+        #endif
         self.acknowledgmentsWindowController.showWindow(sender)
     }
     
@@ -360,8 +349,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         let appURL = Bundle.main.bundleURL
         
-        NSWorkspace.shared().open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
-                                  additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+        NSWorkspace.shared.open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
+                                additionalEventParamDescriptor: nil, launchIdentifiers: nil)
     }
     
     
@@ -370,21 +359,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        NSHelpManager.shared().openHelpAnchor(identifier, inBook: AppInfo.helpBookName)
+        let anchorName = NSHelpManager.AnchorName(identifier.rawValue)
+        let bookName = NSHelpManager.BookName(rawValue: AppInfo.helpBookName)
+        
+        NSHelpManager.shared.openHelpAnchor(anchorName, inBook: bookName)
     }
     
     
     /// open web site (coteditor.com) in default web browser
     @IBAction func openWebSite(_ sender: Any?) {
         
-        NSWorkspace.shared().open(AppWebURL.website.url)
+        NSWorkspace.shared.open(AppWebURL.website.url)
     }
     
     
     /// open bug report page in default web browser
     @IBAction func reportBug(_ sender: Any?) {
         
-        NSWorkspace.shared().open(AppWebURL.issueTracker.url)
+        NSWorkspace.shared.open(AppWebURL.issueTracker.url)
     }
     
     
@@ -402,7 +394,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSUserInterfaceValidat
             .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
-        guard let document = (try? NSDocumentController.shared().openUntitledDocumentAndDisplay(false)) as? Document else { return }
+        guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return }
         document.displayName = NSLocalizedString("Bug Report", comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
         document.setSyntaxStyle(name: "Markdown")

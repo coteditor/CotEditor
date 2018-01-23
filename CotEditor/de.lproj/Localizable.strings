@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -37,9 +37,8 @@
 
 
 // Share menu
+"Share" = "Bereitstellen";
 "No Document" = "Kein Dokument";
-"File" = "Datei";
-"Text" = "Text";
 
 
 
@@ -154,13 +153,6 @@
 
 
 
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "Dokument-Informationen";
-"Incompatible Characters" = "Inkompatible Zeichen";
-
-
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Unsichtbares";
@@ -219,7 +211,7 @@
 // Undo action names
 "Replace Text" = "Text ersetzen";
 "Insert Text" = "Text hinzufügen";
-"Insert Custom Text" = "Benutzerdefinierten Text hinzufügen";
+"Insert Snippet" = "Snippet hinzufügen";
 "Shift Right" = "Einrücken";
 "Shift Left" = "Ausrücken";
 "Convert Indentation" = "Einzug konvertieren";
@@ -267,8 +259,6 @@
 "Show Page Guide" = "Seitenhilfslinie einblenden";
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
-"Use Vertical Orientation" = "Layout vertikal ausrichten";
-"Use Horizontal Orientation" = "Layout horizontal ausrichten";
 
 // Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
@@ -413,7 +403,7 @@
 "“%@” couldn’t be imported." = "„%@“ konnte nicht importiert werden.";
 "No original file for “%@” was found." = "Keine Original-Datei für „%@“ wurde gefunden.";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "Bitte wähle einen anderen Namen.";
 "Name can’t be empty." = "Name darf nicht leer sein.";
 "You can’t use a name that contains “/”." = "Name darf kein „/“ enthalten.";
@@ -452,8 +442,8 @@
 "Begin string" = "Anfangszeichenkette";
 "End string" = "Endzeichenkette";
 "Regular expression" = "Regulärer Ausdruck";
-"multiple registered." = "Mehrfach registriert.";
-"Regex Error: " = "Regulärer Ausdruck Fehler: ";
+"The same word is registered multiple times." = "Mehrfach registriert.";
+"Regular Expression Error: " = "Regulärer Ausdruck Fehler: ";
 
 
 
@@ -470,7 +460,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "Text hinzufügen %@";
+"Insert Text %li" = "Text hinzufügen %li";
 
 // Keyboard key name
 "Space" = "Leertaste";

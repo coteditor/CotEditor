@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ final class GoToLineViewController: NSViewController {
     // MARK: Private Properties
     
     private let textView: NSTextView
-    private dynamic var location: String = ""
+    @objc private dynamic var location: String = ""
     
     
     
@@ -45,7 +45,7 @@ final class GoToLineViewController: NSViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        let string = self.textView.string ?? ""
+        let string = self.textView.string
         let lineNumber = string.lineNumber(at: textView.selectedRange.location)
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
         
@@ -62,9 +62,9 @@ final class GoToLineViewController: NSViewController {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "GoToLineView"
+        return NSNib.Name("GoToLineView")
     }
     
     
@@ -75,7 +75,7 @@ final class GoToLineViewController: NSViewController {
     @IBAction func ok(_ sender: Any?) {
         
         guard self.selectLocation() else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -94,7 +94,7 @@ final class GoToLineViewController: NSViewController {
         guard let location = Int(loclen[0]),
               let length = (loclen.count > 1) ? Int(loclen[1]) : 0 else { return false }
         
-        let string = self.textView.string ?? ""
+        let string = self.textView.string
         guard let range = string.rangeForLine(location: location, length: length) else { return false }
         
         self.textView.selectedRange = range

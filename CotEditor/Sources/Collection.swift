@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,26 +43,28 @@ extension Array where Element: Equatable {
 extension Collection {
 
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
-    public subscript(safe index: Index) -> Iterator.Element? {
+    public subscript(safe index: Index) -> Element? {
         
-        return (startIndex..<endIndex).contains(index) ? self[index] : nil
+        return indices.contains(index) ? self[index] : nil
     }
     
 }
 
 
-extension Sequence {
+
+extension Dictionary {
     
-    /// Build a dictionary from (key, value) tuple.
-    func flatDictionary<K, V>(transform: ((Iterator.Element) -> (K, V)?)) -> [K: V] {
+    /// Return a new dictionary containing the keys transformed by the given closure with the values of this dictionary.
+    ///
+    /// - Parameter transform: A closure that transforms a key. Every transformed key must be unique.
+    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
+    func mapKeys<T>(transform: (Key) throws -> T) rethrows -> [T: Value] {
         
-        var dict = [K: V]()
-        for element in self {
-            guard let tuple = transform(element) else { continue }
-            
-            dict[tuple.0] = tuple.1
+        let keysWithValues = try self.map { (key, value) -> (T, Value) in
+             (try transform(key), value)
         }
-        return dict
+        
+        return [T: Value](uniqueKeysWithValues: keysWithValues)
     }
     
 }
@@ -79,7 +81,7 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate.
-    func count(_ predicate: (Iterator.Element) -> Bool) -> Int {
+    func count(_ predicate: (Element) -> Bool) -> Int {
         
         var count = 0
         for element in self where predicate(element) {
@@ -95,7 +97,7 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
-    func countPrefix(while predicate: (Iterator.Element) -> Bool) -> Int {
+    func countPrefix(while predicate: (Element) -> Bool) -> Int {
         
         var count = 0
         for element in self {

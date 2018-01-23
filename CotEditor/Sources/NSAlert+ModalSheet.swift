@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,9 +30,9 @@ import AppKit
 extension NSAlert {
     
     /// display alert as a sheet attached to the specified window but wait until sheet close like normal `runModal()`
-    func runModal(for sheetWindow: NSWindow) -> NSModalResponse {
+    func runModal(for sheetWindow: NSWindow) -> NSApplication.ModalResponse {
         
-        self.beginSheetModal(for: sheetWindow) { (returnCode: NSModalResponse) in
+        self.beginSheetModal(for: sheetWindow) { (returnCode: NSApplication.ModalResponse) in
             NSApp.stopModal(withCode: returnCode)
         }
 

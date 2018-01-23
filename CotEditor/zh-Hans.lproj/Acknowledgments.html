@@ -15,15 +15,16 @@
         ul li { margin: 0 0 0.4em; list-style-type: circle }
         
         a:link,
-        a:visited      { color: hsl(90,45%,45%) }
-        a:not([href])  { color: #888 }
-        a:hover        { text-decoration: none }
+        a:visited       { color: hsl(90,45%,45%) }
+        a:not([href])   { color: #888 }
+        a:hover         { text-decoration: none }
         
-        section        { margin: 2em 0 3em; }
-        blockquote pre { font: 90%/1.3 -apple-system, sans-serif; color: #777;
-                         margin: 1em 0.5em; white-space: pre-wrap;
-                         border-left: 3px solid #eee; padding-left: 1em }
-        h3 span        { font-size: 90%; font-weight: normal; color: #777 }
+        section         { margin: 2em 0 1em; }
+        section+section { margin-top: 3em }
+        blockquote pre  { font: 90%/1.3 -apple-system, sans-serif; color: #777;
+                          margin: 1em 0.5em; white-space: pre-wrap;
+                          border-left: 3px solid #eee; padding-left: 1em }
+        h3 span         { font-size: 90%; font-weight: normal; color: #777 }
         
         #Libraries    h3::before { content: '📦 ' }
         #InfoSource   h2::before { content: '📚 ' }
@@ -39,7 +40,7 @@
 
 
 <section id="Libraries">
-<section>
+<section class="non-appstore">
 <h3>Sparkle <span>(only on non-AppStore ver.)</span></h3>
 <p><a href="https://sparkle-project.org">https://sparkle-project.org</a></p>
 <p>感谢 Andy Matuschak 等人的软件升级框架 Sparkle。Sparkle 是遵循如下 <em>MIT 许可证</em>发布的。</p>
@@ -50,7 +51,7 @@
 © 2011-2014 Kornel Lesiński
 © 2015-2017 Mayur Pawashe
 © 2014 C.W. Betts
-© 2014 Petroules Corporation, Sparkle Project contributors
+© 2014 Petroules Corporation
 © 2014 Big Nerd Ranch
 All rights reserved.
 
@@ -140,12 +141,8 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 <section id="InfoSource">
 <h2>其他信息</h2>
 <ul>
-    <li>感谢 James S. Derry &lt;<a href="http://www.balthisar.com">http://www.balthisar.com</a>&gt; 的 JSDTextView，CotEditor 的’行号显示是基于其开发的。JSDTextView 可以在<em>公共域名</em>上访问到。</li>
-    <li>感谢 Peter Borg &lt;<a href="http://smultron.sourceforge.net/">http://smultron.sourceforge.net</a>&gt; 的 Smultron，CotEditor 的某些功能，比如自定义 tab 宽度，显示不可见字符，选择括号内内容以及外部编辑器接口等，是基于其实现的。Smultron version 2.x 遵守 <em>BSD 许可证</em>。</li>
     <li>感谢 FUJIDANA &lt;<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>&gt; 的 FJDDetectEncoding，CotEditor 的’编码自动检测 (ISO 2022-JP, UTF-8, UTF-16) 是基于其开发的。FJDDetectEncoding  遵守 <em>BSD 许可证</em>。</li>
     <li>感谢 Daisuke Kamiyama &lt;<a href="http://www.mimikaki.net/">http://www.mimikaki.net</a>&gt; 的 mi，提供了 CotEditor's 文件拖拽功能用到的预格式化字符串。</li>
-    <li>感谢 hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt; 提供获取修饰键事件的方法 &lt;<a>http://hetima.com/pblog/article.php?id=48</a>&gt;.</li>
-    <li>感谢 Ivan Vasic 的 NSString+Sandboxing，它发布在 <a href="https://gist.github.com/ivasic/4702892">https://gist.github.com/ivasic/4702892</a>.</li>
 </ul>
 </section>
 
@@ -160,6 +157,8 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
             Wei Wang (onevcat) &lt;<a href="https://onevcat.com">https://onevcat.com</a>&gt;</li>
         <li>意大利文<br/>
             Agostino Maiello</li>
+        <li>葡萄牙语 (巴西)<br/>
+            BR Lingo &lt;<a href="https://brlingo.com">https://brlingo.com</a>&gt;</li>
     </ul></li>
     
     <li>语法风格文件:<ul>
@@ -181,7 +180,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 </ul>
 
 <section>
-<h3>Contributors on the original CotEditor (&gt;= 1.0)</h3>
+<h3>Contributors on the original CotEditor (≦ 1.0)</h3>
 <ul>
     <li>本地化：<ul>
         <li>英文 (文稿和帮助文件)<br/>

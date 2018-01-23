@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,9 +38,8 @@
 
 
 // Share menu
+"Share" = "共享";
 "No Document" = "无文稿";
-"File" = "文件";
-"Text" = "文本";
 
 
 
@@ -155,13 +154,6 @@
 
 
 
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "文稿信息";
-"Incompatible Characters" = "不兼容字符";
-
-
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可见字符";
@@ -220,7 +212,7 @@
 // Undo action names
 "Replace Text" = "替换文本";
 "Insert Text" = "插入文本";
-"Insert Custom Text" = "插入自定义文本";
+"Insert Snippet" = "插入片段";
 "Shift Right" = "右移";
 "Shift Left" = "左移";
 "Convert Indentation" = "转换缩进";
@@ -268,8 +260,6 @@
 "Show Page Guide" = "显示页面指示";
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
-"Use Vertical Orientation" = "纵向显示";
-"Use Horizontal Orientation" = "横向显示";
 
 // Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
@@ -414,7 +404,7 @@
 "“%@” couldn’t be imported." = "“%@”无法导入。";
 "No original file for “%@” was found." = "无法找到 “%@” 的源文件。";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "请输入其他名称。";
 "Name can’t be empty." = "名称不能为空。";
 "You can’t use a name that contains “/”." = "名称不能含有“/”。";
@@ -453,8 +443,8 @@
 "Begin string" = "开始字符串";
 "End string" = "结束字符串";
 "Regular expression" = "正则表达式";
-"multiple registered." = "重复注册。";
-"Regex Error: " = "正则表达式错误：";
+"The same word is registered multiple times." = "重复注册。";
+"Regular Expression Error: " = "正则表达式错误：";
 
 
 
@@ -471,7 +461,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "插入文本 %@";
+"Insert Text %li" = "插入文本 %li";
 
 // Keyboard key name
 "Space" = "空格键";

@@ -41,13 +41,16 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Private Properties
     
-    private dynamic var showsHiddenFiles = false  // binding
+    private let transientDocumentLock = NSLock()
+    private var deferredDocuments = [NSDocument]()
+    
+    @objc private dynamic var showsHiddenFiles = false  // binding
     
     @IBOutlet private var openPanelAccessoryView: NSView?
     @IBOutlet private weak var accessoryEncodingMenu: NSPopUpButton?
     @IBOutlet private weak var showHiddenFilesCheckbox: NSButton?
     
-    private dynamic var _accessorySelectedEncoding: UInt
+    @objc private dynamic var _accessorySelectedEncoding: UInt
     
     
     
@@ -77,19 +80,82 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// listen document open event of the ODB editor protocol
+    /// automatically insert Shre menu (on macOS 10.13 and later)
+    override var allowsAutomaticShareMenu: Bool {
+
+        return true
+    }
+    
+    
+    /// open document
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         
+        // listen document open event of the ODB editor protocol
         // -> Need to fetch AppleEvent at this moment.
         let openEvent = NSAppleEventManager.shared().currentAppleEvent
         
-        super.openDocument(withContentsOf: url, display: displayDocument) { (document, documentWasAlreadyOpen, error) in
+        // obtain transient document if exists
+        self.transientDocumentLock.lock()
+        let transientDocument = self.transientDocumentToReplace
+        if let transientDocument = transientDocument {
+            transientDocument.isTransient = false
+            self.deferredDocuments = []
+        }
+        self.transientDocumentLock.unlock()
+        
+        super.openDocument(withContentsOf: url, display: false) { (document, documentWasAlreadyOpen, error) in
+            
+            assert(Thread.isMainThread)
+            
+            if let transientDocument = transientDocument, let document = document as? Document {
+                self.replaceTransientDocument(transientDocument, with: document)
+                if displayDocument {
+                    document.makeWindowControllers()
+                    document.showWindows()
+                }
+                
+                // display all deferred documents since the transient document has been replaced
+                for deferredDocument in self.deferredDocuments {
+                    deferredDocument.makeWindowControllers()
+                    deferredDocument.showWindows()
+                }
+                self.deferredDocuments = []
+                
+            } else if displayDocument, let document = document {
+                if self.deferredDocuments.isEmpty {
+                    // display the document immediately, because the transient document has been replaced.
+                    document.makeWindowControllers()
+                    document.showWindows()
+                } else {
+                    // defer displaying this document, because the transient document has not yet been replaced.
+                    self.deferredDocuments.append(document)
+                }
+            }
+            
             completionHandler(document, documentWasAlreadyOpen, error)
             
             if let openEvent = openEvent {
                 (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
             }
         }
+    }
+    
+    
+    /// open untitled document
+    override func openUntitledDocumentAndDisplay(_ displayDocument: Bool) throws -> NSDocument {
+        
+        let document = try super.openUntitledDocumentAndDisplay(displayDocument)
+        
+        // make document transient when it is an open or reopen event
+        if self.documents.count == 1,
+            let event = NSAppleEventManager.shared().currentAppleEvent,
+            event.eventClass == kCoreEventClass,
+            (event.eventID == kAEReopenApplication || event.eventID == kAEOpenApplication)
+        {
+                (document as? Document)?.isTransient = true
+        }
+        
+        return document
     }
     
     
@@ -111,9 +177,7 @@ final class DocumentController: NSDocumentController {
         // make document
         let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
-        if let delegate = document as? AdditionalDocumentPreparing {
-            delegate.didMakeDocumentForExisitingFile(url: url)
-        }
+        (document as? AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
         
         // reset encoding menu
         self.resetAccessorySelectedEncoding()
@@ -122,44 +186,53 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    /// add document to documentController's list
+    override func addDocument(_ document: NSDocument) {
+        
+        // clear the first document's transient status when a second document is added
+        // -> This happens when the user selects "New" when a transient document already exists.
+        if self.documents.count == 1,
+            let firstDocument = self.documents.first as? Document,
+            firstDocument.isTransient {
+            firstDocument.isTransient = false
+        }
+        
+        super.addDocument(document)
+    }
+    
+    
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
         // initialize encoding menu and set the accessory view
         if self.openPanelAccessoryView == nil {
-            Bundle.main.loadNibNamed("OpenDocumentAccessory", owner: self, topLevelObjects: nil)
-            if #available(macOS 10.11, *) { } else {
-                // real time togging of hidden files visibility works only on El Capitan (and later?)
-                self.showHiddenFilesCheckbox?.removeFromSuperview()
-            }
+            Bundle.main.loadNibNamed(NSNib.Name("OpenDocumentAccessory"), owner: self, topLevelObjects: nil)
         }
         self.buildEncodingPopupButton()
         openPanel.accessoryView = self.openPanelAccessoryView
         
         // force accessory view visible
-        if #available(macOS 10.11, *) {
-            openPanel.isAccessoryViewDisclosed = true
-        }
+        openPanel.isAccessoryViewDisclosed = true
         
         // set visibility of hidden files in the panel
         openPanel.showsHiddenFiles = self.showsHiddenFiles
         openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
         // -> bind showsHiddenFiles flag with openPanel (for El capitan and leter)
-        openPanel.bind(#keyPath(NSOpenPanel.showsHiddenFiles), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-        openPanel.bind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         
         // run non-modal open panel
         super.beginOpenPanel(openPanel, forTypes: inTypes) { [weak self] (result: Int) in
             
             // reset encoding menu if cancelled
-            if result == NSModalResponseCancel {
+            if result == NSApplication.ModalResponse.cancel.rawValue {
                 self?.resetAccessorySelectedEncoding()
             }
             
             self?.showsHiddenFiles = false  // reset flag
             
-            openPanel.unbind(#keyPath(NSOpenPanel.showsHiddenFiles))
-            openPanel.unbind(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories))
+            openPanel.unbind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)))
+            openPanel.unbind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)))
             
             completionHandler(result)
         }
@@ -196,10 +269,30 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    /// insert hand-made Share menu to the File menu
+    func insertLegacyShareMenu() {
+        
+        let fileMenu = MainMenu.file.menu!
+        
+        // insert at the end of the group of Save/Close
+        var inSaveGroup = false
+        let index = fileMenu.items.enumerated().first { (_, item) in
+            if item.action == #selector(NSWindow.performClose) {
+                inSaveGroup = true
+            }
+            
+            return inSaveGroup && item.isSeparatorItem
+        }?.offset ?? fileMenu.numberOfItems
+        
+        fileMenu.insertItem(ShareMenuItem(), at: index)
+        fileMenu.insertItem(NSMenuItem.separator(), at: index)
+    }
+    
+    
     
     // MARK: Action Messages
     
-    /// reset selection of the encoding menu
+    /// open open panel by showing hidden files
     @IBAction func openHiddenDocument(_ sender: Any?) {
         
         self.showsHiddenFiles = true
@@ -245,7 +338,41 @@ final class DocumentController: NSDocumentController {
     }
     
     
+    
     // MARK: Private Methods
+    
+    /// transient document to be replaced or nil
+    var transientDocumentToReplace: Document? {
+        
+        guard
+            self.documents.count == 1,
+            let document = self.documents.first as? Document,
+            document.isTransient,
+            document.windowForSheet?.attachedSheet == nil
+            else { return nil }
+        
+        return document
+    }
+    
+    
+    /// replace window controllers in documents
+    private func replaceTransientDocument(_ transientDocument: Document, with document: Document) {
+        
+        assert(Thread.isMainThread)
+        
+        for controller in transientDocument.windowControllers {
+            document.addWindowController(controller)
+            transientDocument.removeWindowController(controller)
+        }
+        transientDocument.close()
+        
+        // notify accessibility clients about the value replacement of the transient document with opened document
+        document.textStorage.layoutManagers
+            .flatMap { $0.textContainers }
+            .flatMap { $0.textView }
+            .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
+    }
+    
     
     /// update encoding menu in the open panel
     private func buildEncodingPopupButton() {

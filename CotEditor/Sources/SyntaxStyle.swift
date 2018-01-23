@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     fileprivate let pairedQuoteTypes: [String: SyntaxType]
     fileprivate let outlineDefinitions: [OutlineDefinition]
     
-    fileprivate var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlighs
+    fileprivate var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
     
     fileprivate private(set) lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
     
@@ -117,33 +117,33 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.flatDictionary { (type) -> (SyntaxType, [HighlightDefinition])? in
-            guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return nil }
+        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
+            guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
             let definitions = wordDicts.flatMap { HighlightDefinition(definition: $0) }
             
-            guard !definitions.isEmpty else { return nil }
+            guard !definitions.isEmpty else { return }
             
-            return (type, definitions)
+            dict[type] = definitions
         }
         
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
         // also combine simple word definitions into single regex definition
         var quoteTypes = [String: SyntaxType]()
-        self.highlightDictionary = definitionDictionary.flatDictionary { (type, definitions) in
+        self.highlightDictionary = definitionDictionary.reduce(into: [:]) { (dict, item) in
             
             var highlightDefinitions = [HighlightDefinition]()
             var words = [String]()
             var caseInsensitiveWords = [String]()
             
-            for definition in definitions {
+            for definition in item.value {
                 // extract quotes
                 if !definition.isRegularExpression, definition.beginString == definition.endString,
                     definition.beginString.rangeOfCharacter(from: .alphanumerics) == nil,  // symbol
                     Set(definition.beginString).count == 1,  // consists of the same characters
                     !quoteTypes.keys.contains(definition.beginString)  // not registered yet
                 {
-                    quoteTypes[definition.beginString] = type
+                    quoteTypes[definition.beginString] = item.key
                     
                     // remove from the normal highlight definition list
                     continue
@@ -170,9 +170,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                 highlightDefinitions.append(HighlightDefinition(words: caseInsensitiveWords, ignoreCase: true))
             }
             
-            guard !highlightDefinitions.isEmpty else { return nil }
+            guard !highlightDefinitions.isEmpty else { return }
             
-            return (type, highlightDefinitions)
+            dict[item.key] = highlightDefinitions
         }
         self.pairedQuoteTypes = quoteTypes
         
@@ -382,21 +382,21 @@ extension SyntaxStyle {
             
             // expand highlight area if the character just before/after the highlighting area is the same color
             if let layoutManager = textStorage.layoutManagers.first {
-                var start = highlightRange.location
+                var start = highlightRange.lowerBound
                 var end = highlightRange.upperBound
                 var effectiveRange = NSRange.notFound
                 
                 if start <= bufferLength {
                     start = 0
                 } else {
-                    if layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
+                    if layoutManager.temporaryAttribute(.foregroundColor,
                                                         atCharacterIndex: start,
                                                         longestEffectiveRange: &effectiveRange,
                                                         in: wholeRange) != nil {
-                        start = effectiveRange.location
+                        start = effectiveRange.lowerBound
                     }
                 }
-                if layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
+                if layoutManager.temporaryAttribute(.foregroundColor,
                                                     atCharacterIndex: end,
                                                     longestEffectiveRange: &effectiveRange,
                                                     in: wholeRange) != nil {
@@ -466,7 +466,7 @@ extension SyntaxStyle {
         operation.completionBlock = { [weak self, weak operation] in
             guard let strongSelf = self, let operation = operation else {
                 DispatchQueue.main.async {
-                    indicator?.dismiss(self)
+                    indicator?.dismiss(nil)
                 }
                 return
             }
@@ -518,7 +518,7 @@ extension SyntaxStyle {
         assert(Thread.isMainThread)
         
         for layoutManager in storage.layoutManagers {
-            layoutManager.removeTemporaryAttribute(NSForegroundColorAttributeName, forCharacterRange: highlightRange)
+            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
             
@@ -528,7 +528,7 @@ extension SyntaxStyle {
                 let color = theme.syntaxColor(type: type) ?? theme.textColor
                 
                 for range in ranges {
-                    layoutManager.addTemporaryAttribute(NSForegroundColorAttributeName, value: color, forCharacterRange: range)
+                    layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
                 }
             }
         }

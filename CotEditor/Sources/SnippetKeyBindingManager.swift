@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -79,8 +79,9 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
+        let count = self.snippets(defaults: usesDefaults).count
         
-        return (0...30).map { index in
+        return (0..<count).map { index in
             let title = String(format: NSLocalizedString("Insert Text %li", comment: ""), index)
             let action = type(of: self).action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
@@ -95,7 +96,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// whether key bindings are not customized
     override var usesDefaultKeyBindings: Bool {
         
-        let usesDefaultSnippets = self.snippets(defaults: false) == self.defaultSnippets
+        let usesDefaultSnippets = self.snippets() == self.defaultSnippets
         
         return usesDefaultSnippets && super.usesDefaultKeyBindings
     }
@@ -117,7 +118,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     // MARK: Public Methods
     
     /// return snippet string for key binding if exists
-    func snippet(keyEquivalent: String?, modifierMask: NSEventModifierFlags) -> Snippet? {
+    func snippet(keyEquivalent: String?, modifierMask: NSEvent.ModifierFlags) -> Snippet? {
         
         guard let keyEquivalent = keyEquivalent else { return nil }
         guard !modifierMask.contains(.deviceIndependentFlagsMask) else { return nil }  // check modifier key is pressed  (just in case)
@@ -127,7 +128,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         guard let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }) else { return nil }
         
-        let snippets = self.snippets(defaults: false)
+        let snippets = self.snippets()
         
         guard
             let index = type(of: self).snippetIndex(for: keyBinding.action),
@@ -142,7 +143,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     /// return snippet texts to insert with key binding
     /// param: usesFactoryDefaults   YES for default setting and NO for the current setting
-    func snippets(defaults usesDefaults: Bool) -> [String] {
+    func snippets(defaults usesDefaults: Bool = false) -> [String] {
         
         if usesDefaults {
             return self.defaultSnippets
@@ -178,7 +179,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let regex = try! NSRegularExpression(pattern: "^insertCustomText_([0-9]{2}):$")
         let result = regex.firstMatch(in: selectorString, range: selectorString.nsRange)
         
-        guard let numberRange = result?.rangeAt(1), numberRange.location != NSNotFound else { return nil }
+        guard let numberRange = result?.range(at: 1), numberRange.location != NSNotFound else { return nil }
         
         return Int((selectorString as NSString).substring(with: numberRange))
     }
@@ -214,22 +215,17 @@ private extension SnippetKeyBindingManager {
         guard
             legacySettingsURL.isReachable,
             let legacyData = try? Data(contentsOf: legacySettingsURL),
-            let keyBindings = try? KeyBindingSerialization.keyBindings(migratingFrom: legacyData),
-            let data = try? KeyBindingSerialization.data(from: keyBindings)
+            let keyBindings = try? self.keyBindings(migratingFrom: legacyData),
+            let data = try? PropertyListEncoder().encode(keyBindings.sorted())
             else { return }
         
         // save new format file
         try? data.write(to: self.keyBindingSettingFileURL, options: .atomic)
     }
     
-}
-
-
-
-private extension KeyBindingSerialization {
     
     /// load legacy format (<= CotEditor 2) key bindings setting
-    static func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
+    private func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
         
         let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
         

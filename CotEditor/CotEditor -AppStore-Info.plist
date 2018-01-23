@@ -966,11 +966,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.2.8</string>
+	<string>3.3.0-beta</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>213</string>
+	<string>216</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>

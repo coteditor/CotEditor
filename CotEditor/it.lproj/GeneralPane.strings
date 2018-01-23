@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,13 +26,20 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "Apri nuovo documento:";
+/* Class = "NSTextFieldCell"; title = "On startup:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "All’avvio:";
 
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "All’avvio";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "Quando CotEditor viene avviato";
+/* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
+"QX9-BI-SIL.title" = "Riapri le finestre dall’ultima sessione";
+/* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
+"wmw-xg-bSt.title" = "Quando non c’è alcun documento aperto:";
+
+/* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
+"i4c-DG-ADS.title" = "Crea un nuovo documento";
+/* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
+"hIX-mh-cG4.title" = "Mostra la finestra di dialogo Apri";
+/* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
+"KgD-GV-alV.title" = "Nessuna azione";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
@@ -40,10 +47,12 @@
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "Abilita il salvataggio automatico delle versioni";
-/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
+/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "Questa funzione registra automaticamente i documenti durante la loro lavorazione. Anche se non è attiva, CotEditor crea comunque dei backup, in caso di blocco dell’applicazione.";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Rimuovi gli spazi bianchi a fine riga al salvataggio";
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "Includere le righe di solo spazio bianco";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -60,24 +69,22 @@
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "Programma:";
 
-/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "Condividi il testo trovato con altre applicazioni";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Conteggia ogni fine riga come un carattere";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "Collegamenti agli URL nel documento";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "Controlla ortografia durante la digitazione";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Evidenzia le parentesi “()” “[]” “{}” accoppiate";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "Evidenzia “<>”";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "Aggiornamento software:";
 
-/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
+/* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */
 "3423.title" = "Controlla automaticamente gli aggiornamenti";
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */

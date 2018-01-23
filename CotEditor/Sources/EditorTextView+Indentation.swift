@@ -34,9 +34,10 @@ extension EditorTextView {
     /// increase indent level
     @IBAction func shiftRight(_ sender: Any?) {
         
-        guard let string = self.string, self.tabWidth > 0 else { return }
+        guard self.tabWidth > 0 else { return }
         
         // get range to process
+        let string = self.string
         let selectedRange = self.selectedRange
         let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
@@ -73,9 +74,10 @@ extension EditorTextView {
     /// decrease indent level
     @IBAction func shiftLeft(_ sender: Any?) {
         
-        guard let string = self.string, self.tabWidth > 0 else { return }
+        guard self.tabWidth > 0 else { return }
         
         // get range to process
+        let string = self.string
         let selectedRange = self.selectedRange
         let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
         
@@ -98,11 +100,11 @@ extension EditorTextView {
             var isDeletingSpace = false
             for character in line {
                 if character == "\t" && !isDeletingSpace {
-                    newLine.remove(at: newLine.startIndex)
+                    newLine.removeFirst()
                     numberOfDeleted += 1
                     break
                 } else if character == " " {
-                    newLine.remove(at: newLine.startIndex)
+                    newLine.removeFirst()
                     numberOfDeleted += 1
                     isDeletingSpace = true
                 } else {
@@ -172,11 +174,11 @@ extension EditorTextView {
     /// standardize inentation of given ranges
     private func convertIndentation(style: IndentStyle) {
         
-        guard let string = self.string, !string.isEmpty else { return }
+        guard !self.string.isEmpty else { return }
         
         let ranges: [NSRange] = {
             if self.selectedRange.length == 0 {  // convert all if nothing selected
-                return [string.nsRange]
+                return [self.string.nsRange]
             }
             return self.selectedRanges as! [NSRange]
         }()
@@ -185,7 +187,7 @@ extension EditorTextView {
         var replacementStrings = [String]()
         
         for range in ranges {
-            let selectedString = (string as NSString).substring(with: range)
+            let selectedString = (self.string as NSString).substring(with: range)
             let convertedString = selectedString.standardizingIndent(to: style, tabWidth: self.tabWidth)
             
             guard convertedString != selectedString else { continue }  // no need to convert

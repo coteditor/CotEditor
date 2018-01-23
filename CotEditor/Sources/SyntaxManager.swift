@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,13 +28,6 @@
 
 import Foundation
 import YAML
-
-extension Notification.Name {
-    
-    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
-    static let SyntaxHistoryDidUpdate = Notification.Name("SyntaxHistoryDidUpdate")
-}
-
 
 @objc protocol SyntaxHolder: class {
     
@@ -59,13 +52,15 @@ final class SyntaxManager: SettingFileManager {
     typealias StyleDictionary = [String: Any]
     
     
+    // MARK: Notification Names
+    
+    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
+    static let didUpdateSyntaxHistoryNotification = Notification.Name("SyntaxManagerDidUpdateSyntaxHistory")
+    
+    
     // MARK: Public Properties
     
     static let shared = SyntaxManager()
-    
-    /// conflict error dicts
-    private(set) var extensionConflicts: [String: [SettingName]] = [:]
-    private(set) var filenameConflicts: [String: [SettingName]] = [:]
     
     
     // MARK: Private Properties
@@ -80,9 +75,9 @@ final class SyntaxManager: SettingFileManager {
     private let bundledStyleNames: [SettingName]
     private let bundledMap: [SettingName: [String: [String]]]
     
-    private var extensionToStyle: [String: SettingName] = [:]
-    private var filenameToStyle: [String: SettingName] = [:]
-    private var interpreterToStyle: [String: SettingName] = [:]
+    private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
+                                                                       .filenames: [:],
+                                                                       .interpreters: [:]]
     
     private let propertyAccessQueue = DispatchQueue(label: "com.coteditor.CotEditor.SyntaxManager.property")  // like @synchronized(self)
     
@@ -121,10 +116,10 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// path extension for user setting file
-    override var filePathExtension: String {
+    /// path extensions for user setting file
+    override var filePathExtensions: [String] {
         
-        return "yaml"
+        return ["yaml", "yml"]
     }
     
     
@@ -166,12 +161,14 @@ final class SyntaxManager: SettingFileManager {
         
         guard let fileName = fileName else { return nil }
         
-        if let styleName = self.propertyAccessQueue.sync(execute: { self.filenameToStyle })[fileName] {
+        let mappingTables = self.propertyAccessQueue.sync { self.mappingTables }
+        
+        if let styleName = mappingTables[.filenames]?[fileName]?.first {
             return styleName
         }
         
         if let pathExtension = fileName.components(separatedBy: ".").last,
-            let styleName = self.propertyAccessQueue.sync(execute: { self.extensionToStyle })[pathExtension] {
+            let styleName = mappingTables[.extensions]?[pathExtension]?.first {
             return styleName
         }
         
@@ -183,7 +180,7 @@ final class SyntaxManager: SettingFileManager {
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-            let styleName = self.propertyAccessQueue.sync(execute: { self.interpreterToStyle })[interpreter] {
+            let styleName = self.propertyAccessQueue.sync(execute: { self.mappingTables })[.interpreters]?[interpreter]?.first {
             return styleName
         }
         
@@ -225,7 +222,7 @@ final class SyntaxManager: SettingFileManager {
                 UserDefaults.standard[.recentStyleNames] = recentSettingNames  // set in the main thread in case
             }
             
-            NotificationCenter.default.post(name: .SyntaxHistoryDidUpdate, object: self)
+            NotificationCenter.default.post(name: SyntaxManager.didUpdateSyntaxHistoryNotification, object: self)
         }
         
         return style
@@ -322,8 +319,7 @@ final class SyntaxManager: SettingFileManager {
         try self.prepareUserSettingDirectory()
         
         // sanitize -> remove empty mapping dicts
-        let mappingKeys: [SyntaxKey] = [.extensions, .filenames, .interpreters]
-        for key in mappingKeys {
+        for key in SyntaxKey.mappingKeys {
             (settingDictionary[key.rawValue] as? NSMutableArray)?.remove([:])
         }
         
@@ -369,10 +365,10 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// return if mapping conflict exists
-    var existsMappingConflict: Bool {
+    /// conflicted maps
+    var mappingConflicts: [SyntaxKey: [String: [SyntaxManager.SettingName]]] {
         
-        return !self.extensionConflicts.isEmpty || !self.filenameConflicts.isEmpty
+        return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
     }
     
     
@@ -414,7 +410,7 @@ final class SyntaxManager: SettingFileManager {
         let yaml = try YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves)
         
         guard let styleDictionary = yaml as? StyleDictionary else {
-            throw CocoaError(.fileReadCorruptFile)
+            throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
         }
         
         return styleDictionary
@@ -443,37 +439,32 @@ final class SyntaxManager: SettingFileManager {
     /// load style files in user domain and re-build chache and mapping table
     private func loadUserStyles() {
         
-        var map = self.bundledMap
-        
         // load user styles if exists
-        if let enumerator = FileManager.default.enumerator(at: self.userSettingDirectoryURL,
-                                                           includingPropertiesForKeys: nil,
-                                                           options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]) {
-            for case let url as URL in enumerator {
-                guard [self.filePathExtension, "yml"].contains(url.pathExtension) else { continue }
-                guard let style = try? self.settingDictionary(fileURL: url) else { continue }
-                
+        if let urls = self.userSettingFileURLs {
+            let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls.reduce(into: [:]) { (dict, url) in
+                guard let style = try? self.settingDictionary(fileURL: url) else { return }
                 let styleName = self.settingName(from: url)
-                let keys: [SyntaxKey] = [.extensions, .filenames, .interpreters]
                 
-                map[styleName] = keys.flatDictionary { [style = style] (key) in
-                    // collect values which has "keyString" key in key section in style dictionary
-                    let dictionaries = (style[key.rawValue] as? [[String: String]]) ?? []
-                    let keyStrings = dictionaries.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] }
-                    
-                    return (key.rawValue, keyStrings)
-                }
-                
-                // cache style since it's already loaded
-                self.propertyAccessQueue.sync {
-                    self.cachedSettingDictionaries[styleName] = style
-                }
+                dict[styleName] = style
+            }
+            
+            // create file mapping data
+            let mappingKeys = SyntaxKey.mappingKeys.map { $0.rawValue }
+            let userMap = userStyles.mapValues { style -> [String: [String]] in
+                style.filter { mappingKeys.contains($0.key) }
+                    .mapValues { $0 as? [[String: String]] ?? [] }
+                    .mapValues { $0.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+            }
+            self.map = self.bundledMap.merging(userMap) { (_, new) in new }
+            
+            // cache style since loaded
+            self.propertyAccessQueue.sync {
+                self.cachedSettingDictionaries.merge(userStyles) { (_, new) in new }
             }
         }
-        self.map = map
         
         // sort styles alphabetically
-        self.styleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        self.styleNames = self.map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // remove deleted styles
         // -> don't care about style name change just for laziness
@@ -485,7 +476,7 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// update file mapping tables and mapping conflicts
+    /// update file mapping tables
     private func updateMappingTables() {
         
         var styleNames = self.styleNames
@@ -496,46 +487,19 @@ final class SyntaxManager: SettingFileManager {
             styleNames.append(name)
         }
         
-        func parseMappingSettings(key: SyntaxKey) -> (table: [String: SettingName], conflicts: [String: [SettingName]]) {
-            
-            var table = [String: SettingName]()
-            var conflicts = [String: [SettingName]]()
-            
-            for styleName in styleNames {
-                guard let items = self.map[styleName]?[key.rawValue] else { continue }
+        let result = SyntaxKey.mappingKeys.map { key in
+            styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
+                guard let items = self.map[styleName]?[key.rawValue] else { return }
                 
                 for item in items {
-                    guard let addedStyleName = table[item] else {
-                        // add to table if not yet registered
-                        table[item] = styleName
-                        continue
-                    }
-                    
-                    // register to conflict list
-                    var duplicatedStyles = conflicts[item] ?? []
-                    if !duplicatedStyles.contains(addedStyleName) {
-                        duplicatedStyles.append(addedStyleName)
-                    }
-                    duplicatedStyles.append(styleName)
-                    conflicts[item] = duplicatedStyles
+                    table[item, default: []].append(styleName)
                 }
             }
-            
-            return (table: table, conflicts: conflicts)
         }
-        
-        let extensionResult = parseMappingSettings(key: .extensions)
-        let filenameResult = parseMappingSettings(key: .filenames)
-        let interpreterResult = parseMappingSettings(key: .interpreters)
         
         self.propertyAccessQueue.sync {
-            self.extensionToStyle = extensionResult.table
-            self.filenameToStyle = filenameResult.table
-            self.interpreterToStyle = interpreterResult.table
+            self.mappingTables = Dictionary(uniqueKeysWithValues: zip(SyntaxKey.mappingKeys, result))
         }
-        
-        self.extensionConflicts = extensionResult.conflicts
-        self.filenameConflicts = filenameResult.conflicts
     }
     
 }

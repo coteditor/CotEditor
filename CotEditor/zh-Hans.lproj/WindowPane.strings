@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -88,6 +88,10 @@
 "Bj6-2A-Nxj.title" = "水平";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "垂直";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "D5G-Lc-5TC"; */
+"D5G-Lc-5TC.title" = "px";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "1ML-Pr-BCt"; */
+"1ML-Pr-BCt.title" = "px";
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "zIR-1y-lBC"; */

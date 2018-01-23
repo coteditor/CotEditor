@@ -58,28 +58,6 @@ extension String {
             .joined()
     }
     
-    
-    /// transform Japanese Katakana to Hiragana
-    var katakana: String {
-        
-        let string = NSMutableString(string: self)
-        
-        CFStringTransform(string, nil, kCFStringTransformHiraganaKatakana, false)
-        
-        return string as String
-    }
-    
-    
-    /// transform Japanese Hiragana to Katakana
-    var hiragana: String {
-        
-        let string = NSMutableString(string: self)
-        
-        CFStringTransform(string, nil, kCFStringTransformHiraganaKatakana, true)
-        
-        return string as String
-    }
-    
 }
 
 

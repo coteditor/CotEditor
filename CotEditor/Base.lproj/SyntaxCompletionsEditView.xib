@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -47,7 +48,7 @@
                                                 <rect key="frame" x="1" y="1" width="421" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="t3z-J1-uqF">
+                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3z-J1-uqF">
                                                         <rect key="frame" x="0.0" y="0.0" width="421" height="17"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="string" usesSingleLineMode="YES" id="1Xc-SV-RAk">
                                                             <font key="font" metaFont="system"/>
@@ -93,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-YV-QQ6" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-YV-QQ6">
                     <rect key="frame" x="10" y="314" width="430" height="14"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If no word, the completion list will be generated from coloring settings." id="fJg-PK-TBB">
                         <font key="font" metaFont="smallSystem"/>
@@ -148,6 +149,7 @@
                 <constraint firstItem="3F8-YV-QQ6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="Yvv-Ow-D2u"/>
                 <constraint firstAttribute="trailing" secondItem="hML-7o-Nlt" secondAttribute="trailing" constant="12" id="cI1-OU-di3"/>
                 <constraint firstItem="cti-PX-cUI" firstAttribute="height" secondItem="Wgl-Fa-zXY" secondAttribute="height" id="h8a-3z-E71"/>
+                <constraint firstItem="eST-UC-Ayr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wgl-Fa-zXY" secondAttribute="trailing" constant="12" symbolic="YES" id="hyx-8z-gjI"/>
                 <constraint firstAttribute="trailing" secondItem="eST-UC-Ayr" secondAttribute="trailing" constant="12" id="kN4-UY-PXx"/>
                 <constraint firstAttribute="trailing" secondItem="3F8-YV-QQ6" secondAttribute="trailing" constant="12" id="lAL-Th-gVR"/>
                 <constraint firstItem="hML-7o-Nlt" firstAttribute="top" secondItem="3F8-YV-QQ6" secondAttribute="bottom" constant="8" symbolic="YES" id="mUq-R8-eNx"/>

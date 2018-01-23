@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -91,9 +91,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     
     private let mode: SyntaxEditSheetMode
     private let originalStyleName: String
-    private dynamic var style: NSMutableDictionary
-    private dynamic var message: String?
-    private dynamic var isStyleNameValid = true
+    @objc private dynamic var style: NSMutableDictionary
+    @objc private dynamic var message: String?
+    @objc private dynamic var isStyleNameValid = true
     private let isBundledStyle: Bool
     private let isCustomized: Bool
     
@@ -148,9 +148,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "SyntaxEditView"
+        return NSNib.Name("SyntaxEditView")
     }
     
     
@@ -182,13 +182,13 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             if type == .comments { break }
             viewControllers.append(SyntaxTermsEditViewController(syntaxType: type))
         }
-        viewControllers.append(NSViewController(nibName: "SyntaxCommentsEditView", bundle: nil)!)
+        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxCommentsEditView"), bundle: nil))
         viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController(nibName: "SyntaxOutlineEditView", bundle: nil)!)
-        viewControllers.append(NSViewController(nibName: "SyntaxCompletionsEditView", bundle: nil)!)
-        viewControllers.append(NSViewController(nibName: "SyntaxFileMappingEditView", bundle: nil)!)
+        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxOutlineEditView"), bundle: nil))
+        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxCompletionsEditView"), bundle: nil))
+        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxFileMappingEditView"), bundle: nil))
         viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController(nibName: "SyntaxInfoEditView", bundle: nil)!)
+        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxInfoEditView"), bundle: nil))
         viewControllers.append(SyntaxValidationViewController())
         
         for viewController in viewControllers {
@@ -267,11 +267,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             let metadata = self.style[DictionaryKey.metadata.rawValue] as? [String: Any],
             let urlString = metadata[MetadataKey.distributionURL.rawValue] as? String,
             let url = URL(string: urlString) else {
-                NSBeep()
+                NSSound.beep()
                 return
         }
         
-        NSWorkspace.shared().open(url)
+        NSWorkspace.shared.open(url)
     }
     
     
@@ -289,7 +289,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // style name validation
         guard self.validate(styleName: styleName) else {
             self.view.window?.makeFirstResponder(self.styleNameField)
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -298,7 +298,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         guard validationController.didValidate || validationController.validateSyntax() else {
             // show "Validation" pane
             self.menuTableView?.selectRowIndexes(IndexSet(integer: PaneIndex.validation.rawValue), byExtendingSelection: false)
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -335,7 +335,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // MARK: Private Methods
     
     /// menu titles for binding
-    var menuTitles: [String] {
+    @objc var menuTitles: [String] {
         
         return (0...PaneIndex.validation.rawValue).map { index in
             let title = PaneIndex(rawValue: index)!.title

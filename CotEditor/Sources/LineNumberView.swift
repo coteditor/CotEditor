@@ -61,13 +61,13 @@ final class LineNumberView: NSRulerView {
     // MARK: -
     // MARK: Lifecycle
     
-    override init(scrollView: NSScrollView?, orientation: NSRulerOrientation) {
+    override init(scrollView: NSScrollView?, orientation: NSRulerView.Orientation) {
         
         super.init(scrollView: scrollView, orientation: orientation)
         
         // observe new textStorage change
         if let textView = scrollView?.documentView as? NSTextView {
-            NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: .NSTextDidChange, object: textView)
+            NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSText.didChangeNotification, object: textView)
         }
     }
     
@@ -75,11 +75,6 @@ final class LineNumberView: NSRulerView {
     required init(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -117,12 +112,12 @@ final class LineNumberView: NSRulerView {
         
         guard
             let textView = self.textView,
-            let string = textView.string,
             let layoutManager = textView.layoutManager,
             let textContainer = textView.textContainer,
-            let context = NSGraphicsContext.current()?.cgContext
+            let context = NSGraphicsContext.current?.cgContext
             else { return }
         
+        let string = textView.string
         let length = (string as NSString).length
         let scale = textView.scale
         
@@ -371,7 +366,7 @@ final class LineNumberView: NSRulerView {
         let textColor = self.textView?.textColor ?? .textColor
         
         let alpha: CGFloat = {
-            if NSWorkspace.shared().accessibilityDisplayShouldIncreaseContrast && strength != .stroke {
+            if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast && strength != .stroke {
                 return 1.0
             }
             return strength.rawValue
@@ -436,23 +431,18 @@ private enum LineNumberFont {
     /// system font for fallback
     private var systemFont: NSFont {
         
-        if #available(macOS 10.11, *) {
-            return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
-        } else {
-            return .paletteFont(ofSize: 0)
-        }
+        return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
     }
     
     
-    /// font weight for system font
-    @available(macOS 10.11, *)
-    private var weight: CGFloat {
+    /// font weight for system fonts
+    private var weight: NSFont.Weight {
         
         switch self {
         case .regular:
-            return NSFontWeightRegular
+            return .regular
         case .bold:
-            return NSFontWeightBold
+            return .bold
         }
     }
     
@@ -538,12 +528,12 @@ extension LineNumberView {
         
         guard
             let window = self.window,
-            let textView = self.textView,
-            let string = textView.string as NSString?
+            let textView = self.textView
             else { return }
         
+        let string = textView.string as NSString
         let draggingInfo = timer?.userInfo as? DraggingInfo
-        let point = NSEvent.mouseLocation()  // screen based point
+        let point = NSEvent.mouseLocation  // screen based point
         
         // scroll text view if needed
         let pointedRect = window.convertFromScreen(NSRect(origin: point, size: .zero))
@@ -560,7 +550,7 @@ extension LineNumberView {
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream
         
         // with Command key (add selection)
-        if NSEvent.modifierFlags().contains(.command) {
+        if NSEvent.modifierFlags.contains(.command) {
             let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as! [NSRange]
             var selectedRanges = [NSRange]()
             var intersects = false
@@ -595,7 +585,7 @@ extension LineNumberView {
         }
         
         // with Shift key (expand selection)
-        if NSEvent.modifierFlags().contains(.shift) {
+        if NSEvent.modifierFlags.contains(.shift) {
             let selectedRange = textView.selectedRange
             if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2

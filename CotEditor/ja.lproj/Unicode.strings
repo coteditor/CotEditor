@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,11 +35,11 @@
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";
 "Text Style" = "テキストスタイル";
-"Skin Tone I-II" = "スキントーン I-II";
-"Skin Tone III" = "スキントーン III";
-"Skin Tone IV" = "スキントーン IV";
-"Skin Tone V" = "スキントーン V";
-"Skin Tone VI" = "スキントーン VI";
+"Skin Tone I-II" = "スキントーンI-II";
+"Skin Tone III" = "スキントーンIII";
+"Skin Tone IV" = "スキントーンIV";
+"Skin Tone V" = "スキントーンV";
+"Skin Tone VI" = "スキントーンVI";
 "Variant" = "異体字";
 
 
@@ -47,22 +47,22 @@
 // -> auto-generated from CharacterPaletteIM.lg in Apple's glossaries
 "Cuneiform" = "楔形文字";
 "Variation Selectors" = "異体字選択符号";
-"Latin Extended-B" = "ラテン文字拡張 B";
+"Latin Extended-B" = "ラテン文字拡張B";
 "Brahmi" = "ブラーフミー文字";
 "Enclosed Alphanumerics" = "囲み英数文字";
-"Linear B Syllabary" = "線文字 B 音節文字";
+"Linear B Syllabary" = "線文字B音節文字";
 "Ugaritic" = "ウガリト文字";
 "Bamum Supplement" = "バムン文字補助";
 "Alphabetic Presentation Forms" = "アルファベット表示形";
 "Mongolian" = "モンゴル文字";
-"CJK Radicals Supplement" = "CJK 部首補助";
+"CJK Radicals Supplement" = "CJK部首補助";
 "Arabic" = "アラビア文字";
 "Control Pictures" = "制御機能用記号";
 "Inscriptional Parthian" = "碑文のパルティア文字";
 "Phaistos Disc" = "ファイストス円盤文字";
 "Geometric Shapes" = "幾何学的な図形";
 "Geometric Shapes Extended" = "幾何学的な図形拡張";  // added based on "Geometric Shapes"
-"CJK Unified Ideographs" = "CJK 統合漢字";
+"CJK Unified Ideographs" = "CJK統合漢字";
 "Greek and Coptic" = "ギリシャ文字とコプト文字";
 "Ancient Greek Musical Notation" = "古代ギリシャ記譜法";
 "Basic Latin" = "基本ラテン文字";
@@ -76,35 +76,35 @@
 "Miscellaneous Technical" = "そのほかの技術用記号";
 "Aegean Numbers" = "エーゲ文明数字";
 "General Punctuation" = "一般的な句読点";
-"Latin Extended-D" = "ラテン文字拡張 D";
-"Latin Extended-E" = "ラテン文字拡張 E";  // added based on "Latin Extended-D"
-"CJK Compatibility Ideographs" = "CJK 互換漢字";
+"Latin Extended-D" = "ラテン文字拡張D";
+"Latin Extended-E" = "ラテン文字拡張E";  // added based on "Latin Extended-D"
+"CJK Compatibility Ideographs" = "CJK互換漢字";
 "Bopomofo" = "注音字母";
 "Canadian Aboriginal Syllabics" = "カナダ先住民音節";
 "Buhid" = "ブヒッド文字";
 "Bengali" = "ベンガル文字";
 "New Tai Lue" = "新タイ・ルー文字";
-"Linear B Ideograms" = "線文字 B 象形文字";
-"Supp. Private Use Area-A" = "私用領域追加 A";
+"Linear B Ideograms" = "線文字B象形文字";
+"Supp. Private Use Area-A" = "私用領域追加A";
 "Ethiopic" = "エチオピア文字";
 "Vertical Forms" = "縦書き用句読点";
 "Block Elements" = "塗りつぶし、囲み用の記号";
 "Currency Symbols" = "通貨記号";
 "Bamum" = "バムン文字";
 "Superscripts and Subscripts" = "上付き文字と下付き文字";
-"Arabic Presentation Forms-A" = "アラビア文字表示形 A";
+"Arabic Presentation Forms-A" = "アラビア文字表示形A";
 "Shavian" = "バーナード・ショーの文字";
-"CJK Unified Ideographs Ext. B" = "CJK 統合漢字拡張 B";
-"Enclosed Ideographic Supplement" = "囲み CJK 文字追加";
+"CJK Unified Ideographs Ext. B" = "CJK統合漢字拡張B";
+"Enclosed Ideographic Supplement" = "囲みCJK文字追加";
 "Ancient Symbols" = "古代記号";
-"Cyrillic Extended-B" = "キリル文字拡張 B";
+"Cyrillic Extended-B" = "キリル文字拡張B";
 "Saurashtra" = "サウラーシュトラ文字";
 "Vedic Extensions" = "ヴェーダ文字拡張";
 "Cyrillic" = "キリル文字";
 "Arrows" = "矢印";
 "Thai" = "タイ文字";
-"Supplemental Arrows-B" = "矢印追加 B";
-"Supplemental Arrows-C" = "矢印追加 C";  // added
+"Supplemental Arrows-B" = "矢印追加B";
+"Supplemental Arrows-C" = "矢印追加C";  // added
 "Ancient Greek Numbers" = "古代ギリシャ数字";
 "Cham" = "チャム文字";
 "Tai Tham" = "タイ・タム文字";
@@ -119,7 +119,7 @@
 "Thaana" = "ターナ文字";
 "Telugu" = "テルグ文字";
 "Hiragana" = "ひらがな";
-"CJK Compatibility Ideographs Supplement" = "CJK 互換漢字追加";  // Supp. -> Supplement
+"CJK Compatibility Ideographs Supplement" = "CJK互換漢字追加";  // Supp. -> Supplement
 "Katakana" = "カタカナ";
 "Mathematical Operators" = "数学演算子";
 "Mahjong Tiles" = "麻雀牌";
@@ -128,7 +128,7 @@
 "Phonetic Extensions" = "ウラル発音記号拡張";
 "Malayalam" = "マラヤーラム文字";
 "Optical Character Recognition" = "光学的文字認識";
-"Hangul Jamo Extended-A" = "ハングル字母拡張 A";
+"Hangul Jamo Extended-A" = "ハングル字母拡張A";
 "Supplemental Math Operators" = "数学演算子追加";
 "Common Indic Number Forms" = "インド系共通数字";
 "Enclosed Alphanumeric Supplement" = "囲み英数文字追加";
@@ -138,10 +138,10 @@
 "Kayah Li" = "カヤー文字";
 "Tamil" = "タミール文字";
 "Small Form Variants" = "小字形";
-"CJK Unified Ideographs Ext. D" = "CJK 統合漢字拡張 D";
+"CJK Unified Ideographs Ext. D" = "CJK統合漢字拡張D";
 "Tifinagh" = "ティフナグ文字";
 "Miscellaneous Symbols and Pictographs" = "そのほかの記号と象形文字";  // And -> and
-"Miscellaneous Math Symbols-B" = "そのほかの数学記号 B";
+"Miscellaneous Math Symbols-B" = "そのほかの数学記号B";
 "Yi Radicals" = "彝（イ）文字部首";
 "Lydian" = "リディア文字";
 "Unified Canadian Aboriginal Syllabics" = "統合カナダ先住民音節";  // added based on "Unified Canadian Aboriginal Syllabics Extended"
@@ -150,7 +150,7 @@
 "Glagolitic" = "グラゴール文字";
 "Osmanya" = "ソマリ文字";
 "Yijing Hexagram Symbols" = "易経の大成卦";
-"Latin Extended-A" = "ラテン文字拡張 A";
+"Latin Extended-A" = "ラテン文字拡張A";
 "Cyrillic Supplement" = "キリル文字補助";
 "Box Drawing" = "罫線";
 "Letterlike Symbols" = "文字様記号";
@@ -161,17 +161,17 @@
 "Gurmukhi" = "グルムキー文字";
 "Gothic" = "ゴート文字";
 "Cherokee" = "チェロキー文字";
-"CJK Compatibility Forms" = "CJK 互換形";
-"Latin Extended-C" = "ラテン文字拡張 C";
+"CJK Compatibility Forms" = "CJK互換形";
+"Latin Extended-C" = "ラテン文字拡張C";
 "Old Turkic" = "突厥文字";
 "Domino Tiles" = "ドミノ牌";
 "Khmer Symbols" = "クメール記号";
 "Khmer" = "クメール文字";
 "Syloti Nagri" = "シロティ・ナグリ文字";
 "Runic" = "ルーン文字";
-"Enclosed CJK Letters and Months" = "囲み CJK 文字・月";
+"Enclosed CJK Letters and Months" = "囲みCJK文字・月";
 "Byzantine Musical Symbols" = "ビザンチン音楽記号";
-"CJK Strokes" = "CJK 字画";
+"CJK Strokes" = "CJK字画";
 "Miscellaneous Symbols" = "そのほかの記号";
 "Tai Le" = "タイ・ナ文字";
 "Katakana Phonetic Extensions" = "カタカナ追加";
@@ -181,7 +181,7 @@
 "Sundanese" = "スンダ文字";
 "Samaritan" = "サマリア文字";
 "Old Italic" = "古代イタリアの文字";
-"CJK Symbols and Punctuation" = "CJK 記号と句読点";
+"CJK Symbols and Punctuation" = "CJK記号と句読点";
 "Halfwidth and Fullwidth Forms" = "半角・全角形";  // Half-width -> halfwidth
 "Kangxi Radicals" = "康熙部首";
 "Buginese" = "ブギ文字";
@@ -193,7 +193,7 @@
 "Yi Syllables" = "彝（イ）文字表音文字";
 "Kannada" = "カンナダ文字";
 "Egyptian Hieroglyphs" = "エジプト聖刻文字";
-"Myanmar Extended-A" = "ミャンマー文字拡張 A";
+"Myanmar Extended-A" = "ミャンマー文字拡張A";
 "Rumi Numeral Symbols" = "ルーミー数字";
 "Hangul Jamo" = "ハングル字母";
 "Lepcha" = "レプチャ文字";
@@ -202,17 +202,17 @@
 "Arabic Supplement" = "アラビア文字追加";
 "Kanbun" = "漢文用記号";
 "Variation Selectors Supp." = "異体字選択符号追加";
-"Supp. Private Use Area-B" = "私用領域追加 B";
+"Supp. Private Use Area-B" = "私用領域追加B";
 "Combining Diacritical Marks" = "合成可能な発音区別記号";
 "Combining Diacritical Marks for Symbols" = "記号用の合成可能な発音区別記号";  // added based on "Combining Diacritical Marks"
-"Latin-1 Supplement" = "ラテン 1 補助";
+"Latin-1 Supplement" = "ラテン1補助";
 "Deseret" = "デザレット文字";
 "Hangul Compatibility Jamo" = "ハングル互換字母";
 "N'Ko" = "ンコ文字";
-"Arabic Presentation Forms-B" = "アラビア文字表示形 B";
+"Arabic Presentation Forms-B" = "アラビア文字表示形B";
 "Combining Marks for Symbols" = "記号用の合成可能なマーク";
-"CJK Unified Ideographs Ext. A" = "CJK 統合漢字拡張 A";
-"Cyrillic Extended-A" = "キリル文字拡張 A";
+"CJK Unified Ideographs Ext. A" = "CJK 統合漢字拡張A";
+"Cyrillic Extended-A" = "キリル文字拡張A";
 "Armenian" = "アルメニア文字";
 "Ethiopic Extended" = "エチオピア文字拡張";
 "Lycian" = "リキア文字";
@@ -222,8 +222,8 @@
 "Avestan" = "アヴェスタ文字";
 "Old Persian" = "古ペルシア文字";
 "Ogham" = "オガム文字";
-"Supplemental Arrows-A" = "矢印追加 A";
-"CJK Unified Ideographs Ext. C" = "CJK 統合漢字拡張 C";
+"Supplemental Arrows-A" = "矢印追加A";
+"CJK Unified Ideographs Ext. C" = "CJK統合漢字拡張C";
 "Ideographic Description Characters" = "漢字構成記述文字";  // Desc. -> Description
 "Rejang" = "ルジャン文字";
 "Alchemical Symbols" = "錬金術記号";
@@ -232,17 +232,17 @@
 "Balinese" = "バリ文字";
 "Myanmar" = "ミャンマー文字";
 "Musical Symbols" = "音楽記号";
-"Ethiopic Extended-A" = "エチオピア文字拡張 A";
+"Ethiopic Extended-A" = "エチオピア文字拡張A";
 "Mandaic" = "マンダ文字";
 "Spacing Modifier Letters" = "前進を伴う修飾文字";
 "Carian" = "カリア文字";
 "Number Forms" = "数字に準じるもの";
-"CJK Compatibility" = "CJK 互換用文字";
+"CJK Compatibility" = "CJK互換用文字";
 "Playing Cards" = "トランプ";
 "Miscellaneous Symbols and Arrows" = "そのほかの記号と矢印";
 "Transport and Map Symbols" = "交通記号と地図記号";  // And -> and
 "Lao" = "ラオ文字";
-"Hangul Jamo Extended-B" = "ハングル字母拡張 B";
+"Hangul Jamo Extended-B" = "ハングル字母拡張B";
 "Tibetan" = "チベット文字";
 "Georgian Supplement" = "グルジア文字追加";
 "Tai Viet" = "タイ・レ文字";
@@ -251,7 +251,7 @@
 "Oriya" = "オリヤー文字";
 "Latin Extended Additional" = "ラテン文字拡張追加";
 "Georgian" = "グルジア文字";
-"Miscellaneous Math Symbols-A" = "そのほかの数学記号 A";
+"Miscellaneous Math Symbols-A" = "そのほかの数学記号A";
 "Combining Half Marks" = "合成可能な半記号";
 "Counting Rod Numerals" = "算木";
 "Gujarati" = "グジャラート文字";

@@ -27,9 +27,9 @@
 
 import Cocoa
 
-/// type identifiers for dragging operation
-private enum PboardType {
-    static let rows = "rows"
+private extension NSPasteboard.PasteboardType {
+    
+    static let rows = NSPasteboard.PasteboardType("rows")
 }
 
 
@@ -41,22 +41,22 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard) -> Bool {
         
         // register dragged type
-        tableView.register(forDraggedTypes: [PboardType.rows])
-        pboard.declareTypes([PboardType.rows], owner: self)
+        tableView.registerForDraggedTypes([.rows])
+        pboard.declareTypes([.rows], owner: self)
         
         // select rows to drag
         tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
         
         // store row index info to pasteboard
         let rows = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
-        pboard.setData(rows, forType: PboardType.rows)
+        pboard.setData(rows, forType: .rows)
         
         return true
     }
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
         guard info.draggingSource() as? NSTableView == tableView else { return [] }
@@ -70,14 +70,14 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     
     
     /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
         guard info.draggingSource() as? NSTableView == tableView else { return false }
         
         // obtain original rows from paste board
         guard
-            let data = info.draggingPasteboard().data(forType: PboardType.rows),
+            let data = info.draggingPasteboard().data(forType: .rows),
             let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
         
         let draggingItems = (self.arrangedObjects as AnyObject).objects(at: sourceRows)

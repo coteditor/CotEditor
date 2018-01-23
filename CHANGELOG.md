@@ -2,6 +2,64 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### New Features
+
+- iCloud document.
+- Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
+- New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.
+- Add new setting option “Reopen windows from the last session on launch” in General pane.
+- Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.
+- Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.
+- More integrated Share feature:
+    - Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.
+    - Enable sharing a document that has not been saved yet.
+    - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).
+    - Other small improvements.
+- Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
+- Add Portuguese localization (thanks to BR Lingo!).
+- Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):
+    - Thai (Windows, DOS)
+    - Thai (ISO 8859-11)
+
+
+### Improvements
+
+- Change the system requirement to __OS X 10.11 El Capitan and later__.
+- Add clear button to the input fields in the find panel.
+- Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
+- Scroll console view after getting a new message to make it visible.
+- Display sharing window within the target document window.
+- Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.
+- Move the menu item changing the text orientation into Format > Writing Direction.
+- Display full encoding name in the status bar instead of the IANA charset name.
+- Add tooltips to the Unicode normalization forms in Text menu.
+- Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.
+- Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).
+- Remove “share find text with other applications” option.
+- Restore the last viewed preference pane when Preferences is opened.
+- Add an input field for the editor opacity setting.
+- Adjust scroll after toggling line wrap.
+- Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.
+- Update Python syntax style:
+    - Fix highlight of string and bytes literals.
+- Tweak acknowledgments window design.
+- Some minor UI improvements and fixes.
+- Update Japanese localization to conform with the modern macOS localization rules.
+- Update the internal source code to Swift 4.
+- [non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.
+    - This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.
+
+
+### Fixes
+
+- Fix an issue where the word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly, and, therefore, a workaround was added on CotEditor 3.2.3.
+- Fix some unlocalized text.
+
+
+
 3.2.8 (213)
 --------------------------
 
@@ -519,7 +577,7 @@ Change Log
 
 - Add “Complete” action to “Edit” menu.
 - On macOS Sierra, the default shortcut for completion action was changed to `⌥⎋`.
-- Move action items in the menu “Edit” > “Transformations” to “Text” >  “Transformations”.
+- Move action items in the menu “Edit” > “Transformations” to “Text” > “Transformations”.
 - Transform word contains the cursor if nothing is selected on transformation or Unicode normalization actions.
 
 
@@ -712,7 +770,7 @@ Change Log
 - Improve scrolling with line number view drag.
 - Better syntax highlighting while editing.
 - Enable activate “Show Invisibles” action even if all of the invisible characters were set as not shown when the document was opened.
-- Update build environment to macOS Sierra +  Xcode 8 (SDK macOS 10.12).
+- Update build environment to macOS Sierra + Xcode 8 (SDK macOS 10.12).
 
 
 ### Fixes
@@ -741,7 +799,7 @@ Change Log
 ### New Features
 
 - Add newly rewritten syntax styles for “C” and “C++”.
-    - From this change, previous  “C, C++, Objective-C” syntax style is deleted.
+    - From this change, previous “C, C++, Objective-C” syntax style is deleted.
 - Add syntax styles for “MATLAB” and “Verilog”.
 
 
@@ -750,7 +808,7 @@ Change Log
 - Update “Markdown” syntax style:
     - Support strikethrough with `~~` that is defined in the GitHub flavored Markdown.
     - Support emphasis with triple `*` and `_`.
-- Focus back on the find panel after performing “Find All”, “Replace All” and  “Highlight”.
+- Focus back on the find panel after performing “Find All”, “Replace All” and “Highlight”.
 - Change to use the body text color for line numbers on printing that was previously always black.
 - Improve scroll behavior with arrow keys.
 - Improve compatibility with macOS Sierra beta.
@@ -1456,7 +1514,7 @@ Change Log
 - Adjust highlight color for find panel.
 - Tweak some message terms.
 - Update documents.
-- Update build environment to OS X El Capitan +  Xcode 7 (SDK 10.11).
+- Update build environment to OS X El Capitan + Xcode 7 (SDK 10.11).
 - [non-AppStore ver.] Update Sparkle framework to version 1.11.0.
 - [beta][non-AppStore ver.] Change to not check pre-release versions on default.
     - New pre-releases are always subject to the update check no matter the user setting if the current running CotEditor is a pre-release version.

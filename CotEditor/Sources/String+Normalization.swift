@@ -73,9 +73,9 @@ extension String {
             
             guard let match = match else { return }
             
-            result += nsString.substring(with: match.rangeAt(1))
-            result += nsString.substring(with: match.rangeAt(2)).precomposedStringWithCanonicalMapping
-            result += nsString.substring(with: match.rangeAt(3))
+            result += nsString.substring(with: match.range(at: 1))
+            result += nsString.substring(with: match.range(at: 2)).precomposedStringWithCanonicalMapping
+            result += nsString.substring(with: match.range(at: 3))
         }
         
         guard !result.isEmpty else { return self }

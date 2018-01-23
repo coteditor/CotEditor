@@ -1,0 +1,64 @@
+//
+// AppearancePane.strings (Portuguese)
+// 
+// CotEditor
+// https://coteditor.com
+// 
+// Created by BR Lingo on 2018-01-15.
+// Localized by BR Lingo
+// 
+// ------------------------------------------------------------------------------
+// 
+// © 2018 CotEditor Project
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+// https://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
+"6.title" = "Preferências";
+
+/* Class = "NSToolbarItem"; label = "General"; ObjectID = "HlR-fr-Hwd"; */
+"HlR-fr-Hwd.label" = "Geral";
+"HlR-fr-Hwd.paletteLabel" = "Geral";
+
+/* Class = "NSToolbarItem"; label = "Window"; ObjectID = "agm-iM-Y3j"; */
+"agm-iM-Y3j.label" = "Janela";
+"agm-iM-Y3j.paletteLabel" = "Janela";
+
+/* Class = "NSToolbarItem"; label = "Appearance"; ObjectID = "TSL-LZ-a98"; */
+"TSL-LZ-a98.label" = "Aparência";
+"TSL-LZ-a98.paletteLabel" = "Aparência";
+
+/* Class = "NSToolbarItem"; label = "Edit"; ObjectID = "bYW-oU-kKx"; */
+"bYW-oU-kKx.label" = "Edição";
+"bYW-oU-kKx.paletteLabel" = "Edição";
+
+/* Class = "NSToolbarItem"; label = "Format"; ObjectID = "Pxf-UL-fD9"; */
+"Pxf-UL-fD9.label" = "Formato";
+"Pxf-UL-fD9.paletteLabel" = "Formato";
+
+/* Class = "NSToolbarItem"; label = "File Drop"; ObjectID = "0c4-Jh-Er6"; */
+"0c4-Jh-Er6.label" = "Arquivos Soltos";
+"0c4-Jh-Er6.paletteLabel" = "Arquivos Soltos";
+
+/* Class = "NSToolbarItem"; label = "Key Bindings"; ObjectID = "WSf-8J-dN6"; */
+"WSf-8J-dN6.label" = "Atalhos";
+"WSf-8J-dN6.paletteLabel" = "Atalhos";
+
+/* Class = "NSToolbarItem"; label = "Print"; ObjectID = "uTl-fL-Jcq"; */
+"uTl-fL-Jcq.label" = "Impressão";
+"uTl-fL-Jcq.paletteLabel" = "Impressão";
+
+/* Class = "NSToolbarItem"; label = "Integration"; ObjectID = "Bn7-e8-FVC"; */
+"Bn7-e8-FVC.label" = "Integração";
+"Bn7-e8-FVC.paletteLabel" = "Integração";

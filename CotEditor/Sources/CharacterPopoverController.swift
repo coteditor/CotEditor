@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,12 +31,12 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     
     // MARK: Private Properties
     
-    dynamic let glyph: String
-    dynamic let unicodeName: String?
-    dynamic let unicodeBlockName: String?
-    dynamic let unicode: String
+    @objc dynamic let glyph: String
+    @objc dynamic let unicodeName: String?
+    @objc dynamic let unicodeBlockName: String?
+    @objc dynamic let unicode: String
     
-    dynamic let characterColor: NSColor
+    @objc dynamic let characterColor: NSColor
     
     @IBOutlet private weak var unicodeBlockNameField: NSTextField?
     
@@ -84,9 +84,9 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "CharacterPopover"
+        return NSNib.Name("CharacterPopover")
     }
     
     
@@ -131,7 +131,7 @@ final class CharacterPopoverController: NSViewController, NSPopoverDelegate {
         // auto-close popover if selection is changed.
         if let textView = parentView as? NSTextView {
             weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: .NSTextViewDidChangeSelection,
+            observer = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification,
                                                               object: textView, queue: .main, using:
                 { (note: Notification) in
                     

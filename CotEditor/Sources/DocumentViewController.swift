@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,26 +41,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        
-        self.textStorage?.delegate = nil
-    }
-    
-    
-    
     // MARK: Split View Controller Methods
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersion.current < .macOS10_11 {
-            self.splitView.delegate = self
-        }
         
         // setup status bar
         let defaults = UserDefaults.standard
@@ -72,13 +57,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.showsPageGuide = defaults[.showPageGuide]
         
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: .SettingDidUpdate,
+                                               name: SettingFileManager.didUpdateSettingNotification,
                                                object: ThemeManager.shared)
     }
     
     
     /// keys to be restored from the last session
-    override class func restorableStateKeyPaths() -> [String] {
+    override class var restorableStateKeyPaths: [String] {
         
         return [#keyPath(isStatusBarShown),
                 #keyPath(showsNavigationBar),
@@ -122,7 +107,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             document.textStorage.delegate = self
             document.syntaxStyle.delegate = self
             
-            let editorViewController = self.createEditor(baseViewController: nil)
+            let editorViewController = self.editorViewControllers.first!
+            self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax highlights and outline menu
             if document.syntaxStyle.canParse {
@@ -150,7 +136,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             
             // observe syntax/theme change
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
-                                                   name: .DocumentDidChangeSyntaxStyle,
+                                                   name: Document.didChangeSyntaxStyleNotification,
                                                    object: document)
         }
     }
@@ -191,10 +177,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             let title = self.wrapsLines ? "Unwrap Lines" : "Wrap Lines"
             menuItem.title = NSLocalizedString(title, comment: "")
             
-        case #selector(toggleLayoutOrientation):
-            let title = self.verticalLayoutOrientation ? "Use Horizontal Orientation" : "Use Vertical Orientation"
-            menuItem.title = NSLocalizedString(title, comment: "")
-            
         case #selector(togglePageGuide):
             let title = self.showsPageGuide ? "Hide Page Guide" : "Show Page Guide"
             menuItem.title = NSLocalizedString(title, comment: "")
@@ -211,19 +193,33 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             }
             
         case #selector(toggleAutoTabExpand):
-            menuItem.state = self.isAutoTabExpandEnabled ? NSOnState : NSOffState
+            menuItem.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+        case #selector(makeLayoutOrientationHorizontal):
+            menuItem.state = self.verticalLayoutOrientation ? .off : .on
+            
+        case #selector(makeLayoutOrientationVertical):
+            menuItem.state = self.verticalLayoutOrientation ? .on : .off
+            
+        case #selector(makeWritingDirectionLeftToRight):
+            menuItem.state = (self.writingDirection == .leftToRight) ? .on : .off
+            return !self.verticalLayoutOrientation
+            
+        case #selector(makeWritingDirectionRightToLeft):
+            menuItem.state = (self.writingDirection == .rightToLeft) ? .on : .off
+            return !self.verticalLayoutOrientation
             
         case #selector(toggleAntialias):
-            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? NSOnState : NSOffState
+            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
             
         case #selector(changeTabWidth):
-            menuItem.state = (self.tabWidth == menuItem.tag) ? NSOnState : NSOffState
+            menuItem.state = (self.tabWidth == menuItem.tag) ? .on : .off
             
         case #selector(closeSplitTextView):
             return ((self.splitViewController?.splitViewItems.count ?? 0) > 1)
             
         case #selector(changeTheme):
-            menuItem.state = (self.theme?.name == menuItem.title) ? NSOnState : NSOffState
+            menuItem.state = (self.theme?.name == menuItem.title) ? .on : .off
             
         default: break
         }
@@ -248,16 +244,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         if let imageItem = item as? TogglableToolbarItem {
             switch action {
             case #selector(toggleLineWrap):
-                imageItem.state = self.wrapsLines ? NSOnState : NSOffState
+                imageItem.state = self.wrapsLines ? .on : .off
                 
             case #selector(toggleLayoutOrientation):
-                imageItem.state = self.verticalLayoutOrientation ? NSOnState : NSOffState
+                imageItem.state = self.verticalLayoutOrientation ? .on : .off
                 
             case #selector(togglePageGuide):
-                imageItem.state = self.showsPageGuide ? NSOnState : NSOffState
+                imageItem.state = self.showsPageGuide ? .on : .off
                 
             case #selector(toggleInvisibleChars):
-                imageItem.state = self.showsInvisibles ? NSOnState : NSOffState
+                imageItem.state = self.showsInvisibles ? .on : .off
                 
                 // disable button if item cannot be enabled
                 if self.canActivateShowInvisibles {
@@ -268,7 +264,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
                 }
                 
             case #selector(toggleAutoTabExpand):
-                imageItem.state = self.isAutoTabExpandEnabled ? NSOnState : NSOffState
+                imageItem.state = self.isAutoTabExpandEnabled ? .on : .off
                 
             default: break
             }
@@ -299,9 +295,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.syntaxStyle?.invalidateOutline()
         if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
-            let updateRange = textStorage.editedRange
+            let editedRange = textStorage.editedRange
             DispatchQueue.main.async {
-                syntaxStyle.highlight(around: updateRange)
+                syntaxStyle.highlight(around: editedRange)
             }
         }
         
@@ -395,7 +391,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// Whether status bar is visible
-    var isStatusBarShown: Bool {
+    @objc var isStatusBarShown: Bool {
         
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
@@ -408,7 +404,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of navigation bars
-    var showsNavigationBar = false {
+    @objc var showsNavigationBar = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -419,7 +415,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of line numbers view
-    var showsLineNumber = false {
+    @objc var showsLineNumber = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -441,7 +437,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of page guide lines in text view
-    var showsPageGuide = false {
+    @objc var showsPageGuide = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -452,7 +448,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// visibility of invisible characters
-    var showsInvisibles = false {
+    @objc var showsInvisibles = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -463,7 +459,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// if text orientation is vertical
-    var verticalLayoutOrientation: Bool {
+    @objc var verticalLayoutOrientation: Bool {
         
         get {
             return self.document?.isVerticalText ?? false
@@ -471,10 +467,23 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         set {
             self.document?.isVerticalText = newValue
             
-            let orientation: NSTextLayoutOrientation = verticalLayoutOrientation ? .vertical : .horizontal
+            let orientation: NSLayoutManager.TextLayoutOrientation = newValue ? .vertical : .horizontal
             
             for viewController in self.editorViewControllers {
                 viewController.textView?.setLayoutOrientation(orientation)
+            }
+        }
+    }
+    
+    
+    var writingDirection: NSWritingDirection {
+        
+        get {
+            return self.focusedTextView?.baseWritingDirection ?? .leftToRight
+        }
+        set {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.baseWritingDirection = newValue
             }
         }
     }
@@ -521,7 +530,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of status bar with fancy animation
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
-        NSAnimationContext.current().withAnimation {
+        NSAnimationContext.current.withAnimation {
             self.isStatusBarShown = !self.isStatusBarShown
         }
     }
@@ -537,7 +546,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// toggle visibility of navigation bar with fancy animation
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
-        NSAnimationContext.current().withAnimation {
+        NSAnimationContext.current.withAnimation {
             self.showsNavigationBar = !self.showsNavigationBar
         }
     }
@@ -554,6 +563,34 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func toggleLayoutOrientation(_ sender: Any?) {
         
         self.verticalLayoutOrientation = !self.verticalLayoutOrientation
+    }
+    
+    
+    /// make text layout orientation horizontal
+    @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = false
+    }
+    
+    
+    /// make text layout orientation vertical
+    @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = true
+    }
+    
+    
+    /// make entire writing direction LTR
+    @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
+        
+        self.writingDirection = .leftToRight
+    }
+    
+    
+    /// make entire writing direction RTL
+    @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
+        
+        self.writingDirection = .rightToLeft
     }
     
     
@@ -618,16 +655,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func openSplitTextView(_ sender: Any?) {
         
         guard (self.splitViewController?.splitViewItems.count ?? 0) < maximumNumberOfSplitEditors else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
         guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
         
         // end current editing
-        NSTextInputContext.current()?.discardMarkedText()
+        NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = self.createEditor(baseViewController: currentEditorViewController)
+        let newEditorViewController = self.createEditorViewController(relativeTo: currentEditorViewController)
+        self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxStyle?.outlineItems ?? []
         self.invalidateSyntaxHighlight()
@@ -651,7 +689,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             else { return }
         
         // end current editing
-        NSTextInputContext.current()?.discardMarkedText()
+        NSTextInputContext.current?.discardMarkedText()
         
         // move focus to the next text view if the view to close has a focus
         if splitViewController.focusedSubviewController == currentEditorViewController {
@@ -667,7 +705,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             splitViewController.removeSplitViewItem(splitViewItem)
         
             if let textView = currentEditorViewController.textView {
-                NotificationCenter.default.removeObserver(self, name: .NSTextViewDidChangeSelection, object: textView)
+                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
             }
         }
     }
@@ -695,15 +733,22 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
-    /// create and set-up new (split) editor view
-    private func createEditor(baseViewController: EditorViewController?) -> EditorViewController {
+    /// create new (split) editor view
+    private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
         
-        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
-        editorViewController.textStorage = self.textStorage
         
-        // instert new editorView just below the editorView that the pressed button belongs to or has focus
-        self.splitViewController?.addSubview(for: editorViewController, relativeTo: baseViewController)
+        self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
+        
+        return editorViewController
+    }
+    
+    
+    /// create and set-up new (split) editor view
+    private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
+        
+        editorViewController.textStorage = self.textStorage
         
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
@@ -721,14 +766,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
+            textView.baseWritingDirection = baseTextView.baseWritingDirection
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
-                                               name: .NSTextViewDidChangeSelection,
+                                               name: NSTextView.didChangeSelectionNotification,
                                                object: editorViewController.textView)
-        
-        return editorViewController
     }
     
     
@@ -778,7 +822,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         guard
             let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == "EditorView" })
+            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
             else { return nil }
         
         return self.splitViewController?.viewController(for: editorView)

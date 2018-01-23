@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "缩进：";
-/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "自动缩进";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "将 tab 转换为空格";
@@ -56,22 +56,22 @@
 "Cte-hW-0M3.title" = "在打开文档时检测缩进格式";
 
 
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "换行：";
+/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
+"3274.title" = "换行以适合编辑器宽度";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "自动换行缩进字符数：";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "个空格";
+
+
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
 "EDl-AJ-1dK.title" = "注释：";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "在注释符号后追加空格";
 /* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
 "Byi-E9-owf.title" = "使用从行首开始";
-
-
-/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "换行：";
-/* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
-"3274.title" = "自动换行";
-/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "自动换行缩进字符数：";
-/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "个空格";
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */

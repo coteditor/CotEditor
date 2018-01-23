@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,14 +28,16 @@
 extension Comparable {
     
     /**
-     Modify number to be within min/max values.
+     Return clamped value to min/max values.
      
      - parameter minimum: Condition which receiver should not smaller than.
      - parameter maximum: Condition which receiver should not larger than.
      
      - returns: Processed value.
      */
-    func within(min minimum: Self, max maximum: Self) -> Self {
+    func clamped(min minimum: Self, max maximum: Self) -> Self {
+        
+        assert(minimum <= maximum)
         
         return max(minimum, min(self, maximum))
     }

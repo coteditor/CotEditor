@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,7 +43,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
 "9bX-ei-1x8.title" = "Einzug:";
-/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "Automatischer Einzug";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "Tabulatoren zu Leerzeichen expandieren";
@@ -55,22 +55,22 @@
 "Cte-hW-0M3.title" = "Einzugsstil beim Öffnen ermitteln";
 
 
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "Zeilenumbruch:";
+/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
+"3274.title" = "Zeilen an Editorbreite anpasen";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = " Einzug hat Zeilen umbrochen um:";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "Leerzeichen";
+
+
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
 "EDl-AJ-1dK.title" = "Kommentar:";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "Leerzeichen zu Kommentartrennzeichen hinzufügen";
 /* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
 "Byi-E9-owf.title" = "Immer vom Zeilenanfang";
-
-
-/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "Zeilenumbruch:";
-/* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
-"3274.title" = "Zeilen weich umbrechen";
-/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = " Umgebrochene Zeilen einrücken um:";
-/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "Leerzeichen";
 
 
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */

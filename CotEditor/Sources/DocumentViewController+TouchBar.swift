@@ -27,16 +27,18 @@
 
 import Cocoa
 
-private extension NSTouchBarCustomizationIdentifier {
+@available(macOS 10.12.2, *)
+private extension NSTouchBar.CustomizationIdentifier {
     
-    static let documentView = NSTouchBarCustomizationIdentifier("com.coteditor.CotEditor.touchBar.documentView")
+    static let documentView = NSTouchBar.CustomizationIdentifier("com.coteditor.CotEditor.touchBar.documentView")
 }
 
-extension NSTouchBarItemIdentifier {
+@available(macOS 10.12.2, *)
+extension NSTouchBarItem.Identifier {
     
-    static let invisibles = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.invisibles")
-    static let wrapLines = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.wrapLines")
-    static let share = NSTouchBarItemIdentifier("com.coteditor.CotEditor.TouchBarItem.share")
+    static let invisibles = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.invisibles")
+    static let wrapLines = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.wrapLines")
+    static let share = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.share")
 }
 
 
@@ -64,27 +66,25 @@ extension DocumentViewController: NSTouchBarDelegate {
     
     // MARK: Touch Bar Delegate
     
-    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItemIdentifier) -> NSTouchBarItem? {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case NSTouchBarItemIdentifier.invisibles:
+        case .invisibles:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Invisibles", comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "InvisiblesTemplate"), target: self, action: #selector(toggleInvisibleCharsViaTouchBar(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.wrapLines:
+        case .wrapLines:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = NSLocalizedString("Wrap Lines", comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "WrapLinesTemplate"), target: self, action: #selector(toggleLineWrapViaTouchBar(_:)))
             return item
             
-        case NSTouchBarItemIdentifier.share:
+        case .share:
             guard let document = self.document else { return nil }
             let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
             item.delegate = document
-            item.bind("enabled", to: document, withKeyPath: #keyPath(NSDocument.fileURL),
-                      options: [NSValueTransformerNameBindingOption: NSValueTransformerName.isNotNilTransformerName])
             return item
             
         default:
@@ -128,10 +128,10 @@ extension DocumentViewController: TouchBarItemValidations {
         
         guard let isEnabled: Bool = {
             switch item.identifier {
-            case NSTouchBarItemIdentifier.invisibles:
+            case .invisibles:
                 return self.showsInvisibles
                 
-            case NSTouchBarItemIdentifier.wrapLines:
+            case .wrapLines:
                 return self.wrapsLines
                 
             default: return nil
@@ -156,9 +156,7 @@ extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {
         
-        guard let fileURL = self.fileURL else { return [] }
-        
-        return [fileURL]
+        return [self]
     }
 }
 

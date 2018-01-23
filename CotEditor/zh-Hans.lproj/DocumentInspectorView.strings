@@ -50,8 +50,6 @@
 "B5F-j1-X4E.title" = "编码";
 /* Class = "NSTextFieldCell"; title = "Line Endings"; ObjectID = "XBS-xa-s3p"; */
 "XBS-xa-s3p.title" = "行尾";
-/* Class = "NSTextFieldCell"; title = "Byte Length"; ObjectID = "aId-DL-y8T"; */
-"aId-DL-y8T.title" = "字节长度";
 
 
 /* Class = "NSTextFieldCell"; title = "Count"; ObjectID = "cbf-0f-9rd"; */

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,13 +31,12 @@ import AppKit.NSFont
 struct DefaultSettings {
     
     private static let settings: [DefaultKeys: Any] = [
-        .createNewAtStartup: true,
-        .reopenBlankWindow: true,
-        .windowTabbing: -1,  // = Respect System Setting
+        .quitAlwaysKeepsWindows: true,
+        .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
         .trimsTrailingWhitespaceOnSave: false,
+        .trimsWhitespaceOnlyLines: false,
         .documentConflictOption: DocumentConflictOption.revert.rawValue,
-        .syncFindPboard: false,
         .countLineEndingAsChar: true,
         .autoLinkDetection: false,
         .checkSpellingAsType: false,
@@ -45,6 +44,7 @@ struct DefaultSettings {
         .highlightLtGt: false,
         .checksUpdatesForBeta: false,
         
+        .windowTabbing: -1,  // = Respect System Setting
         .showNavigationBar: true,
         .showDocumentInspector: false,
         .showStatusBar: true,
@@ -67,7 +67,7 @@ struct DefaultSettings {
         .windowAlpha: 1.0,
         
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
-        .fontSize: NSFont.systemFontSize(),
+        .fontSize: NSFont.systemFontSize,
         .shouldAntialias: true,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
@@ -92,11 +92,11 @@ struct DefaultSettings {
         .tabWidth: 4,
         .autoExpandTab: false,
         .detectsIndentStyle: true,
-        .appendsCommentSpacer: true,
-        .commentsAtLineHead: true,
         .wrapLines: true,
         .enablesHangingIndent: true,
         .hangingIndentWidth: 0,
+        .appendsCommentSpacer: true,
+        .commentsAtLineHead: true,
         .completesDocumentWords: true,
         .completesSyntaxWords: true,
         .completesStandartWords: false,
@@ -136,7 +136,7 @@ struct DefaultSettings {
         
         .setPrintFont: false,
         .printFontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
-        .printFontSize: NSFont.systemFontSize(),
+        .printFontSize: NSFont.systemFontSize,
         .printColorIndex: PrintColorMode.blackWhite.rawValue,
         .printLineNumIndex: PrintLineNmuberMode.no.rawValue,
         .printInvisibleCharIndex: PrintInvisiblesMode.no.rawValue,
@@ -188,7 +188,7 @@ struct DefaultSettings {
         ]
     
     
-    static let defaults: [String: Any] = DefaultSettings.settings.flatDictionary { ($0.key.rawValue, $0.value) }
+    static let defaults: [String: Any] = DefaultSettings.settings.mapKeys { $0.rawValue }
     
     
     private init() { }

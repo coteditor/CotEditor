@@ -31,7 +31,7 @@ import Foundation
 enum AppInfo {
     
     /// application name
-    static let bundleName = Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as! String
+    static let bundleName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
     
     /// human-friendly version expression (semantic versioning)
     static let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String

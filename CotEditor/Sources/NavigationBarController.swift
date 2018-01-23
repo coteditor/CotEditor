@@ -41,15 +41,18 @@ final class NavigationBarController: NSViewController {
             self.updateTextOrientation(to: textView.layoutOrientation)
             
             // observe text selection change to update outline menu selection
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: .NSTextViewDidChangeSelection, object: textView)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
             
-            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .new, context: nil)
+            self.layoutOrientationObserver = textView.observe(\.layoutOrientation) { [unowned self] (textView, _) in
+                self.updateTextOrientation(to: textView.layoutOrientation)
+            }
         }
     }
     
     
     // MARK: Private Properties
     
+    private var layoutOrientationObserver: NSKeyValueObservation?
     private var isParsingOutline = false  // flag to control outline indicator
     
     private var prevButton: NSButton?
@@ -68,15 +71,6 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
@@ -92,17 +86,6 @@ final class NavigationBarController: NSViewController {
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == #keyPath(NSTextView.layoutOrientation), let orientation = self.textView?.layoutOrientation {
-            self.updateTextOrientation(to: orientation)
-        }
     }
     
     
@@ -128,8 +111,8 @@ final class NavigationBarController: NSViewController {
             
             let menu = self.outlineMenu!.menu!
             
-            let baseAttributes: [String: Any] = [NSFontAttributeName: menu.font,
-                                                 NSParagraphStyleAttributeName: self.menuItemParagraphStyle]
+            let baseAttributes: [NSAttributedStringKey: Any] = [.font: menu.font,
+                                                                .paragraphStyle: self.menuItemParagraphStyle]
             
             // add headding item
             let headdingItem = NSMenuItem(title: NSLocalizedString("<Outline Menu>", comment: ""), action: #selector(selectOutlineMenuItem), keyEquivalent: "")
@@ -153,7 +136,7 @@ final class NavigationBarController: NSViewController {
                 attrTitle.applyFontTraits([boldTrait, italicTrait], range: titleRange)
                 
                 if outlineItem.style.contains(.underline) {
-                    attrTitle.addAttribute(NSUnderlineStyleAttributeName, value: NSUnderlineStyle.styleSingle.rawValue, range: titleRange)
+                    attrTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: titleRange)
                 }
                 
                 let menuItem = NSMenuItem()
@@ -283,7 +266,7 @@ final class NavigationBarController: NSViewController {
     
     private lazy var menuItemParagraphStyle: NSParagraphStyle = {
         
-        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.tabStops = []
         paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.advancement(character: " ").width
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
@@ -318,7 +301,7 @@ final class NavigationBarController: NSViewController {
     
     
     /// update menu item arrows
-    private func updateTextOrientation(to orientation: NSTextLayoutOrientation) {
+    private func updateTextOrientation(to orientation: NSLayoutManager.TextLayoutOrientation) {
         
         switch orientation {
         case .horizontal:

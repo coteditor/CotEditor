@@ -23,15 +23,24 @@
 <p>The General preferences control various overall behaviors of CotEditor.</p>
 
 <dl>
-	<dt>Open a new document</dt>
-	<dd>You can set the timing to create a new document automatically.</dd>
+	<dt>On startup</dt>
+	<dd>You can set the CotEditor's behavior on launch.</dd>
 	<dd><dl>
+		<dt>Reopen windows from last session</dt>
+		<dd>With this option turned on, CotEditor automatically opens the documents that was opened when quitting last time on launch.</dd>
 		
-		<dt>On launch</dt>
-		<dd>With this option turned on, a new blank document will be opened when you launch CotEditor.</dd>
-		
-		<dt>When CotEditor becomes active</dt>
-		<dd>With this option turned on, a new blank document will be opened when you click CotEditor's icon in the Dock and you had no window already open.</dd>
+		<dt>When nothing else is open</dt>
+		<dd>Set the behavior when you launch (or relaunch) CotEditor and you had no window already open.</dd>
+		<dd><dl>
+			<dt>Create a New Document</dt>
+			<dd>Create a new blank document.</dd>
+			
+			<dt>Show Open Dialog</dt>
+			<dd>Show the open dialog to select a document to open.</dd>
+			
+			<dt>No Action</dt>
+			<dd>Just activate the application and do nothing.</dd>
+		</dl></dd>
 	</dl></dd>
 	
 	<dt>Document save</dt>
@@ -41,7 +50,11 @@
 		<dd>With this option turned on, document automatically saves changes to your file constantly while editing. This option also enables Versions, the modern system feature allowing you to go back to previous versions, as well as modifying document name or location from the window title bar.<br/>Even if it turned off, CotEditor creates backup covertly for unexpected crash.</dd>
 		
 		<dt>Trim trailing whitespace on save</dt>
-		<dd>With this option turned on, whitespaces at the end of lines are removed automatically every time when document will be saved.</dd>
+		<dd>With this option turned on, whitespaces at the end of lines are removed automatically every time when document will be saved.
+			<dl>
+				<dt>Including whitespace-only lines</dt>
+				<dd>With this option turned on, trimming ation removes all whitespaces in whitespace-only lines</dd>
+			</dl></dd>
 	</dl></dd>
 	
 	<dt>When document is modified by another application:</dt>
@@ -60,9 +73,6 @@
 	<dt>Application</dt>
 	<dd>You can set the general application behavior.</dd>
 	<dd><dl>
-		<dt>Share find text with other applications</dt>
-		<dd>With this option turned on, the Find panel automatically retrieves the latest Find string searched in another Cocoa application.</dd>
-		
 		<dt>Count each line ending as one character</dt>
 		<dd>With this option turned on, the character count displayed in the document inspector and the status bar includes line endings.</dd>
 		
@@ -83,7 +93,7 @@
 	<dt>Software Update <span class="note">(only on non-AppStore ver.)</span></dt>
 	<dd>You can set software updater behavior.</dd>
 	<dd><dl>
-		<dt>Automatically check for updates</dt>
+		<dt>Check for updates automatically</dt>
 		<dd>With this option turned on, CotEditor checks the existence of the new version via internet automatically on launch.  Then if the new one has been released, CotEditor notifies the information on a panel.</dd>
 		
 		<dt>Include pre-releases</dt>

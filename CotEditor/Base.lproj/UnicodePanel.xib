@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11173.2" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11173.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" customClass="UnicodeInputPanelController" customModule="CotEditor" customModuleProvider="target">
@@ -57,8 +59,8 @@ DQ
                             <binding destination="-2" name="enabled" keyPath="isValid" id="WL3-7G-6Zb"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1J-lea" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="43" y="50" width="179" height="14"/>
+                    <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="gA5-1J-lea">
+                        <rect key="frame" x="45" y="50" width="90" height="14"/>
                         <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" title="GRINNING FACE" id="uTL-Ct-HCw">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -78,7 +80,7 @@ DQ
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iYt-Yd-KXc">
-                        <rect key="frame" x="18" y="49" width="21" height="17"/>
+                        <rect key="frame" x="18" y="49" width="23" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="😀" id="Jmp-rG-pGZ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -94,7 +96,7 @@ DQ
                     </textField>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="gA5-1J-lea" secondAttribute="trailing" constant="20" symbolic="YES" id="0DL-Rv-VIU"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gA5-1J-lea" secondAttribute="trailing" constant="20" symbolic="YES" id="0DL-Rv-VIU"/>
                     <constraint firstItem="FdN-Wj-h7S" firstAttribute="leading" secondItem="yRX-Lf-Qnd" secondAttribute="trailing" constant="8" symbolic="YES" id="3dF-E5-zRL"/>
                     <constraint firstItem="gA5-1J-lea" firstAttribute="top" secondItem="rG5-Vo-Df3" secondAttribute="top" constant="14" id="Sr0-If-Ws4"/>
                     <constraint firstAttribute="trailing" secondItem="FdN-Wj-h7S" secondAttribute="trailing" constant="20" symbolic="YES" id="eBa-7Y-Ovu"/>

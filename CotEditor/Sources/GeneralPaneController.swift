@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,11 +31,6 @@ final class GeneralPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private dynamic var hasUpdater = false
-    private dynamic var prerelease = false
-    
-    @IBOutlet private weak var updaterConstraint: NSLayoutConstraint?
-    
     @IBOutlet private weak var ignoreConflictButton: NSButton?
     @IBOutlet private weak var notifyConflictButton: NSButton?
     @IBOutlet private weak var revertConflictButton: NSButton?
@@ -50,23 +45,17 @@ final class GeneralPaneController: NSViewController {
         
         super.viewDidLoad()
         
-        // remove updater option on AppStore ver.
+        // remove updater options on AppStore ver.
         #if APPSTORE
-            // cut down height for updater checkbox
-            self.view.frame.size.height -= 96
-            
-            // cut down x-position of visible labels
-            self.view.removeConstraint(self.updaterConstraint!)
-        #else
-            self.hasUpdater = true
-            
-            if AppInfo.isPrerelease {
-                self.prerelease = true
-            } else {
-                // cut down height for pre-release note
-                self.view.frame.size.height -= 32
+            for subview in self.view.subviews where subview.tag < 0 {
+                subview.removeFromSuperview()
             }
         #endif
+        if !AppInfo.isPrerelease {
+            for subview in self.view.subviews where subview.tag == -2 {
+                subview.removeFromSuperview()
+            }
+        }
     }
     
     
@@ -79,11 +68,11 @@ final class GeneralPaneController: NSViewController {
         let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
         switch conflictOption {
         case .ignore:
-            self.ignoreConflictButton?.state = NSOnState
+            self.ignoreConflictButton?.state = .on
         case .notify:
-            self.notifyConflictButton?.state = NSOnState
+            self.notifyConflictButton?.state = .on
         case .revert:
-            self.revertConflictButton?.state = NSOnState
+            self.revertConflictButton?.state = .on
         }
     }
     
@@ -94,11 +83,31 @@ final class GeneralPaneController: NSViewController {
     /// "Enable Auto Save and Versions" checkbox was clicked
     @IBAction func updateAutosaveSetting(_ sender: Any?) {
         
-        let currentSetting = Document.autosavesInPlace()
-        let newSetting = UserDefaults.standard[.enablesAutosaveInPlace]
-        
         // do nothing if the setting returned to the current one.
-        guard currentSetting != newSetting else { return }
+        guard UserDefaults.standard[.enablesAutosaveInPlace] != Document.autosavesInPlace else { return }
+        
+        self.askRelaunch(for: .enablesAutosaveInPlace)
+    }
+    
+    
+    /// "Restore last windows on launch" checkbox was clicked
+    @IBAction func updateWindowRestorationSetting(_ sender: Any?) {
+        
+        self.askRelaunch(for: .quitAlwaysKeepsWindows)
+    }
+    
+    
+    /// A radio button of documentConflictOption was clicked
+    @IBAction func updateDocumentConflictSetting(_ sender: NSControl) {
+        
+        UserDefaults.standard[.documentConflictOption] = sender.tag
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
         
         let alert = NSAlert()
         alert.messageText = NSLocalizedString("The change will be applied first at the next launch.", comment: "")
@@ -110,27 +119,16 @@ final class GeneralPaneController: NSViewController {
         alert.beginSheetModal(for: self.view.window!) { returnCode in
             
             switch returnCode {
-            case NSAlertFirstButtonReturn:  // = Restart Now
+            case .alertFirstButtonReturn:  // = Restart Now
                 NSApp.relaunch(delay: 2.0)
-                
-            case NSAlertSecondButtonReturn:  // = Later
+            case .alertSecondButtonReturn:  // = Later
                 break  // do nothing
-                
-            case NSAlertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[.enablesAutosaveInPlace] = !newSetting
-                
-            default: break
+            case .alertThirdButtonReturn:  // = Cancel
+                UserDefaults.standard[defaultKey] = !UserDefaults.standard[defaultKey]  // revert state
+            default:
+                preconditionFailure()
             }
         }
-    }
-    
-    
-    ///
-    @IBAction func updateDocumentConflictSetting(_ sender: AnyObject?) {
-        
-        guard let tag = sender?.tag else { return }
-        
-        UserDefaults.standard[.documentConflictOption] = tag
     }
     
 }

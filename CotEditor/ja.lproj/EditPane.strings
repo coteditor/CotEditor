@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
-"SqI-BC-ar9.title" = "自動置換：";
+"SqI-BC-ar9.title" = "自動置換:";
 /* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
-"3302.title" = "スマートコピー／ペースト";
+"3302.title" = "スマートコピー/ペースト";
 /* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
 "GRh-V2-hmW.title" = "括弧と引用符を自動的に閉じる";
 /* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
@@ -38,46 +38,46 @@
 /* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
 "Abx-fM-gyc.title" = "引用符";
 /* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
-"nr1-0X-aBY.title" = "ダッシュ記号";
+"nr1-0X-aBY.title" = "ダッシュ";
 
 
 /* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
-"9bX-ei-1x8.title" = "インデント：";
-/* Class = "NSButtonCell"; title = "Auto indent"; ObjectID = "3285"; */
+"9bX-ei-1x8.title" = "インデント:";
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
 "3285.title" = "自動インデント";
 /* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
 "3283.title" = "タブをスペースに自動的に展開";
 /* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
-"3287.title" = "インデント幅：";
+"3287.title" = "インデント幅:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
 "as9-us-CuG.title" = "スペース";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "書類を開くときにインデントスタイルを自動判定";
 
 
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "折り返し:";
+/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
+"3274.title" = "エディタの幅に合わせて行を折り返す";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "折り返した行のインデント:";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "スペース";
+
+
 /* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
-"EDl-AJ-1dK.title" = "コメント：";
+"EDl-AJ-1dK.title" = "コメント:";
 /* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
 "6Dw-5M-Gv0.title" = "コメント記号にスペースを追加";
 /* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
 "Byi-E9-owf.title" = "常に行頭からコメントアウト";
 
 
-/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
-"P1I-gs-RgX.title" = "折り返し：";
-/* Class = "NSButtonCell"; title = "Soft wrap lines"; ObjectID = "3274"; */
-"3274.title" = "行を折り返す";
-/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = "折り返した行をインデント：";
-/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
-"P9V-pV-PAX.title" = "スペース";
-
-
 /* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
-"gDN-SU-sZH.title" = "入力補完：";
+"gDN-SU-sZH.title" = "入力補完:";
 
 /* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
-"dLj-Kh-KtX.title" = "入力補完候補リストに含む単語：";
+"dLj-Kh-KtX.title" = "入力補完候補リストに含む単語:";
 /* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
 "EJZ-N6-54G.title" = "書類に含まれる単語";
 /* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */

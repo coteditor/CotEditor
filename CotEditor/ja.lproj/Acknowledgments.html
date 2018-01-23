@@ -15,15 +15,16 @@
         ul li { margin: 0 0 0.4em; list-style-type: circle }
         
         a:link,
-        a:visited      { color: hsl(90,45%,45%) }
-        a:not([href])  { color: #888 }
-        a:hover        { text-decoration: none }
+        a:visited       { color: hsl(90,45%,45%) }
+        a:not([href])   { color: #888 }
+        a:hover         { text-decoration: none }
         
-        section        { margin: 2em 0 3em; }
-        blockquote pre { font: 90%/1.3 -apple-system, sans-serif; color: #777;
-                         margin: 1em 0.5em; white-space: pre-wrap;
-                         border-left: 3px solid #eee; padding-left: 1em }
-        h3 span        { font-size: 90%; font-weight: normal; color: #777 }
+        section         { margin: 2em 0 1em; }
+        section+section { margin-top: 3em }
+        blockquote pre  { font: 90%/1.3 -apple-system, sans-serif; color: #777;
+                          margin: 1em 0.5em; white-space: pre-wrap;
+                          border-left: 3px solid #eee; padding-left: 1em }
+        h3 span         { font-size: 90%; font-weight: normal; color: #777 }
         
         #Libraries    h3::before { content: '📦 ' }
         #InfoSource   h2::before { content: '📚 ' }
@@ -35,14 +36,14 @@
 <body>
 <h1>謝辞</h1>
 
-<p>CotEditor には下記の素晴らしい技術が使われています。有益なソフトウェア／情報の公開と提供に深く感謝いたします。</p>
+<p>CotEditorには下記の素晴らしい技術が使われています。有益なソフトウェア/情報の公開と提供に深く感謝いたします。</p>
 
 
 <section id="Libraries">
-<section>
-<h3>Sparkle <span>(only on non-AppStore ver.)</span></h3>
+<section class="non-appstore">
+<h3>Sparkle <span>（non-AppStore版のみ）</span></h3>
 <p><a href="https://sparkle-project.org">https://sparkle-project.org</a></p>
-<p>ソフトウェアのアップデート通知に Andy Matuschak らによる Sparkle を使用させていただきました。Sparkle は <em>MIT ライセンス</em>で配布されています。</p>
+<p>ソフトウェアのアップデート通知にAndy MatuschakらによるSparkleを使用させていただきました。Sparkleは<em>MITライセンス</em>で配布されています。</p>
 
 <blockquote><pre>
 © 2006-2013 Andy Matuschak
@@ -50,7 +51,7 @@
 © 2011-2014 Kornel Lesiński
 © 2015-2017 Mayur Pawashe
 © 2014 C.W. Betts
-© 2014 Petroules Corporation, Sparkle Project contributors
+© 2014 Petroules Corporation
 © 2014 Big Nerd Ranch
 All rights reserved.
 
@@ -87,7 +88,7 @@ THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED WAR
 <section>
 <h3>YAML.framework</h3>
 <p><a href="https://github.com/mirek/YAML.framework">https://github.com/mirek/YAML.framework</a></p>
-<p>LibYAML の Objective-C ラッパーである Mirek Rusin による YAML.framework を一部 CotEditor 用に改変した上で使用させて頂きました。YAML.framework は <em>MIT ライセンス</em>で配布されています。</p>
+<p>LibYAMLのObjective-CラッパーであるMirek RusinによるYAML.frameworkを一部CotEditor用に改変した上で使用させて頂きました。YAML.frameworkは<em>MITライセンス</em>で配布されています。</p>
 
 <blockquote><pre>
 Copyright (c) 2010 Mirek Rusin (YAML.framework)
@@ -105,7 +106,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 <section>
 <h3>Solarized</h3>
 <p><a href="http://ethanschoonover.com/solarized">http://ethanschoonover.com/solarized</a></p>
-<p>CotEditor のプリセットテーマとして同梱されている “Solarized (Light)” と “Solarized (Dark)” の配色は、Ethan Schoonover による Solarized カラースキームをベースにさせていただきました。Solarized は <em>MIT ライセンス</em>で配布されています。</p>
+<p>CotEditorのプリセットテーマとして同梱されている“Solarized (Light)”と“Solarized (Dark)”の配色は、Ethan SchoonoverによるSolarizedカラースキームをベースにさせていただきました。Solarizedは<em>MITライセンス</em>で配布されています。</p>
 
 <blockquote><pre>
 Copyright (c) 2011 Ethan Schoonover
@@ -122,7 +123,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 <section>
 <h3>WFColorCode</h3>
 <p><a href="https://github.com/1024jp/WFColorCode">https://github.com/1024jp/WFColorCode</a></p>
-<p>WFColorCode は 1024jp によって作成され <em>MIT ライセンス</em>で配布されています。</p>
+<p>WFColorCodeは1024jpによって作成され<em>MITライセンス</em>で配布されています。</p>
 
 <blockquote><pre>
 © 2014-2017 1024jp
@@ -140,56 +141,54 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 <section id="InfoSource">
 <h2>その他の情報ソース</h2>
 <ul>
-    <li>行番号表示機能は James S. Derry による JSDTextView &lt;<a href="http://www.balthisar.com">http://www.balthisar.com</a>&gt; をベースに使わせていただきました。JSDTextView は<em>パブリックドメイン</em>で配布されています。</li>
-    <li>タブ幅の設定／カッコ内の選択／エンコーディング宣言の走査などは Peter Borg による Smultron 2 &lt;<a href="http://smultron.sourceforge.net/">http://smultron.sourceforge.net</a>&gt; を参考にさせていただきました。Smultron 2 は <em>BSD ライセンス</em>で配布されていました。</li>
-    <li>テキストエンコーディングの自動認識での ISO 2022-JP、UTF-8 および UTF-16 の判定コードは、藤棚工房別棟 －徒然－ &lt;<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>&gt; の記事「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました（<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>）」で公開されている FJDDetectEncoding を参考にさせていただきました。FJDDetectEncoding は <em>BSD ライセンス</em>で公開されていました。</li>
-    <li>ファイルドロップでの文字列挿入機能の、生成定義文字列は上山大輔による mi &lt;<a href="http://www.mimikaki.net/">http://www.mimikaki.net</a>&gt; の挿入文字列定義フォーマットを参考にさせていただいてます。</li>
-    <li>ヘチマコンピュータ &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt; で公開されていたメニュークリック時のモディファイアキー取得機能 &lt;<a>http://hetima.com/pblog/article.php?id=48</a>&gt; を使用させていただいてます。</li>
-    <li><a href="https://gist.github.com/ivasic/4702892">https://gist.github.com/ivasic/4702892</a> に掲載されている NSString+Sandboxing カテゴリのコードを使用させて頂きました。</li>
+    <li>テキストエンコーディングの自動認識でのISO 2022-JP、UTF-8およびUTF-16の判定コードは、藤棚工房別棟 －徒然－&lt;<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>&gt;の記事「Cocoaで文字エンコーディングの自動判別プログラムを書いてみました（<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>）」で公開されているFJDDetectEncodingを参考にさせていただきました。FJDDetectEncodingは<em>BSDライセンス</em>で公開されていました。</li>
+    <li>ファイルドロップでの文字列挿入機能の、生成定義文字列は上山大輔によるmi &lt;<a href="http://www.mimikaki.net/">http://www.mimikaki.net</a>&gt;の挿入文字列定義フォーマットを参考にさせていただいてます。</li>
 </ul>
 </section>
 
 
 <section id="Contributors">
 <h2>協力者</h2>
-<p>CotEditor は以下の方々から提供して頂いたソースを含んでいます。</p>
+<p>CotEditorは以下の方々から提供して頂いたソースを含んでいます。</p>
 
 <ul>
-    <li>ローカライズ：<ul>
+    <li>ローカライズ:<ul>
         <li>簡体中国語<br/>
             Wei Wang (onevcat) &lt;<a href="https://onevcat.com">https://onevcat.com</a>&gt;</li>
         <li>イタリア語<br/>
             Agostino Maiello</li>
+        <li>ポルトガル語（ブラジル）<br/>
+            BR Lingo &lt;<a href="https://brlingo.com">https://brlingo.com</a>&gt;</li>
     </ul></li>
     
-    <li>シンタックススタイル定義：<ul>
+    <li>シンタックススタイル定義:<ul>
         <li>METAFONT<br/>
             M.Daimon &lt;<a href="https://github.com/VoD">https://github.com/VoD</a>&gt;</li>
     </ul></li>
     
-    <li>Scripting Hook の実装：<ul>
+    <li>Scripting Hookの実装:<ul>
         <li>Kaito Udagawa &lt;<a href="https://github.com/umireon">https://github.com/umireon</a>&gt;</li>
     </ul></li>
     
-    <li>オートインデント機能の強化：<ul>
+    <li>オートインデント機能の強化:<ul>
         <li>Naotaka Morimoto &lt;<a href="http://www.naotaka.com/">http://www.naotaka.com</a>&gt;</li>
     </ul></li>
     
-    <li>文字情報インスペクタの強化、NFKC Casefold, 修正 NFC, 修正 NFD 正規形式の追加：<ul>
+    <li>文字情報インスペクタの強化、NFKC Casefold, 修正NFC, 修正NFD正規形式の追加:<ul>
         <li>Yusuke Terada &lt;<a href="http://doratex.hatenablog.jp/">http://doratex.hatenablog.jp</a>&gt;</li>
     </ul></li>
 </ul>
 
 <section>
-<h3>オリジナル CotEditor (&gt;= 1.0) の協力者</h3>
+<h3>オリジナルCotEditor (≦ 1.0) の協力者</h3>
 
 <ul>
-    <li>ローカライズ：<ul>
+    <li>ローカライズ:<ul>
         <li>英語 （ドキュメントとヘルプ）<br/>
             Y. Yamamoto</li>
     </ul></li>
     
-    <li>シンタックススタイル定義の提供：<ul>
+    <li>シンタックススタイル定義の提供:<ul>
         <li>PHP<br/>
             kaz &lt;<a href="https://github.com/kaz6120">https://github.com/kaz6120</a>&gt;</li>
         <li>LaTeX<br/>
@@ -202,15 +201,15 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
             nanasiya &lt;<a>http://mahonet.info/~nanasiya/</a>&gt;</li>
     </ul></li>
     
-    <li>アプリケーションのローカライズ作業について技術情報並びにベース日本語化辞書、日本語ヘルプファイル：<ul>
+    <li>アプリケーションのローカライズ作業について技術情報並びにベース日本語化辞書、日本語ヘルプファイル:<ul>
         <li>Hiroto Sakai &lt;<a href="http://www.fan.gr.jp/~sakai/">http://www.fan.gr.jp/~sakai/</a>&gt;</li>
     </ul></li>
     
-    <li>行番号表示機能の強化：<ul>
+    <li>行番号表示機能の強化:<ul>
         <li>Hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt;</li>
     </ul></li>
     
-    <li>入力補完機能の強化：<ul>
+    <li>入力補完機能の強化:<ul>
         <li>片岡ハルカ &lt;<a href="http://drumsoft.com/">http://drumsoft.com</a>&gt;</li>
     </ul></li>
 </ul>
@@ -219,8 +218,8 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 
 <section id="Project">
-<h2>CotEditor プロジェクト</h2>
-<p>CotEditor は nakamuxu &lt;<a href="http://www.aynimac.com">http://www.aynimac.com</a>&gt; によって生み出され、現在は 1024jp &lt;<a href="http://wolfrosch.com">http://wolfrosch.com</a>&gt; によって開発されています。</p>
+<h2>CotEditorプロジェクト</h2>
+<p>CotEditorはnakamuxu &lt;<a href="http://www.aynimac.com">http://www.aynimac.com</a>&gt;によって生み出され、現在は1024jp &lt;<a href="http://wolfrosch.com">http://wolfrosch.com</a>&gt;によって開発されています。</p>
 </section>
 </body>
 </html>

@@ -79,13 +79,15 @@ extension NSTextView {
 
 // cf. https://developer.apple.com/library/mac/qa/qa1346/_index.html
 
-extension Notification.Name {
-    
-    static let TextViewDidChangeScale = Notification.Name("TextViewDidChangeScale")
-}
-
-
 extension NSTextView {
+    
+    // MARK: Notification Names
+    
+    static let didChangeScaleNotification = Notification.Name("TextViewDidChangeScale")
+    
+    
+    
+    // MARK: Public Methods
     
     /// current zooming scale
     var scale: CGFloat {
@@ -103,7 +105,7 @@ extension NSTextView {
             let scale: CGFloat = {
                 guard let scrollView = self.enclosingScrollView else { return newValue }
                 
-                return newValue.within(min: scrollView.minMagnification, max: scrollView.maxMagnification)
+                return newValue.clamped(min: scrollView.minMagnification, max: scrollView.maxMagnification)
             }()
             
             // scale
@@ -126,7 +128,7 @@ extension NSTextView {
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-            NotificationCenter.default.post(name: .TextViewDidChangeScale, object: self)
+            NotificationCenter.default.post(name: NSTextView.didChangeScaleNotification, object: self)
         }
     }
     
@@ -181,7 +183,7 @@ extension NSTextView {
         get {
             guard let container = self.textContainer else { return false }
             
-            return (container.containerSize.width != CGFloat.greatestFiniteMagnitude)
+            return (container.size.width != .greatestFiniteMagnitude)
         }
         
         set (wrapsLines) {
@@ -194,13 +196,12 @@ extension NSTextView {
             textContainer.widthTracksTextView = wrapsLines
             if wrapsLines {
                 let contentSize = scrollView.contentSize
-                textContainer.containerSize = NSSize(width: contentSize.width.divided(by: self.scale).rounded(),
-                                                     height: CGFloat.greatestFiniteMagnitude)
+                textContainer.size.width = (contentSize.width / self.scale).rounded()
                 self.setConstrainedFrameSize(contentSize)
             } else {
-                textContainer.containerSize = .infinite
+                textContainer.size = .infinite
             }
-            self.autoresizingMask = wrapsLines ? (isVertical ? .viewHeightSizable : .viewWidthSizable) : .viewNotSizable
+            self.autoresizingMask = wrapsLines ? (isVertical ? .height : .width) : .none
             if isVertical {
                 scrollView.hasVerticalScroller = !wrapsLines
                 self.isVerticallyResizable = !wrapsLines
@@ -210,8 +211,10 @@ extension NSTextView {
             }
             self.sizeToFit()
             
-            if let visibleRange = visibleRange {
-                self.scrollRangeToVisible(visibleRange)
+            if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
+                visibleRect.size.width = 0
+                visibleRect = visibleRect.offset(by: -self.textContainerOrigin)
+                self.scrollToVisible(visibleRect)
             }
         }
     }

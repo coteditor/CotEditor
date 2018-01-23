@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,31 +25,40 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "新規書類を開く：";
+/* Class = "NSTextFieldCell"; title = "On startup:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "起動したとき:";
 
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "起動したとき";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "CotEditor がアクティブになるとき";
+/* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
+"QX9-BI-SIL.title" = "前回のウインドウを復帰";
+/* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
+"wmw-xg-bSt.title" = "何も開かれていなければ:";
+
+/* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
+"i4c-DG-ADS.title" = "新規書類を作成";
+/* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
+"hIX-mh-cG4.title" = "「開く」ダイアログを表示";
+/* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
+"KgD-GV-alV.title" = "何もしない";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
-"Ki4-3Y-AZL.title" = "書類の保存：";
+"Ki4-3Y-AZL.title" = "書類の保存:";
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "オートセーブとバージョンを有効にする";
-/* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
-"sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きする macOS の機能です。この機能を無効にした場合も、CotEditor は予期しないクラッシュに備えて裏でバックアップを作成します。";
+/* Class = "NSTextFieldCell"; title = "A system features that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
+"sOa-Ea-zt9.title" = "書類の編集中に自動でファイルを上書きするmacOSの機能です。この機能を無効にした場合も、CotEditorは予期しないクラッシュに備えて裏でバックアップを作成します。";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "保存時に行末の空白を削除";
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "空白のみの行を含める";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
-"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき：";
+"x4n-2n-I3p.title" = "書類がほかのアプリケーションによって変更されたとき:";
 
 /* Class = "NSButtonCell"; title = "Keep CotEditor’s edition"; ObjectID = "sBH-MX-cTd"; */
-"sBH-MX-cTd.title" = "CotEditor の編集内容を保持";
+"sBH-MX-cTd.title" = "CotEditorの編集内容を保持";
 /* Class = "NSButtonCell"; title = "Ask how to resolve"; ObjectID = "IkZ-EO-BSv"; */
 "IkZ-EO-BSv.title" = "解決方法を確認";
 /* Class = "NSButtonCell"; title = "Update to modified edition"; ObjectID = "rpa-Di-f4s"; */
@@ -57,30 +66,28 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "アプリケーション：";
+"lzy-Ei-xlT.title" = "アプリケーション:";
 
-/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "検索文字列をほかのアプリケーションと共有";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "改行コードを文字としてカウント";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
-"tPy-Ox-YpP.title" = "書類中の URL をリンク";
+"tPy-Ox-YpP.title" = "書類中のURLをリンク";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "入力中に自動スペルチェック";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "対応する括弧“( )” “[ ]” “{ }”をハイライト表示";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "“< >”をハイライト表示";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "対応する括弧“()” “[]” “{}”をハイライト表示";
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "“<>”をハイライト表示";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
-"geU-63-sAC.title" = "ソフトウェアアップデート：";
+"geU-63-sAC.title" = "ソフトウェアアップデート:";
 
-/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
+/* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */
 "3423.title" = "自動的にアップデートを確認";
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */
 "4aT-ka-sbv.title" = "プレリリース版を対象に含める";
 
 /* Class = "NSButtonCell"; title = "Regardless of this setting, new pre-releases are always included while using a pre-release."; ObjectID = "chR-VY-cuI"; */
-"chR-VY-cuI.title" = "この設定に関わらず、プレリリース版の使用中は必ず新しい\nプレリリースもアップデート対象に含まれます。";
+"chR-VY-cuI.title" = "この設定に関わらず、プレリリース版の使用中は必ず新しいプレリリースもアップデート対象に含まれます。";

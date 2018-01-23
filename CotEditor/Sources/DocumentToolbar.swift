@@ -37,7 +37,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
     
     // MARK: Toolbar Methods
     
-    override var sizeMode: NSToolbarSizeMode {
+    override var sizeMode: NSToolbar.SizeMode {
         
         get {
             return .regular
@@ -60,7 +60,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         
         guard
             let superview = self.window?.contentView?.superview,
-            let contextMenu = superview.menu ?? superview.subviews.last?.menu  // second one is for OS X 10.10 Yosemite
+            let contextMenu = superview.menu
             else { return }
         
         // find "Use Small Size" menu item
@@ -114,15 +114,15 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         
         guard let views = sheet.contentView?.subviews else { return }
         
-        let toggleButton: NSButton? = views.lazy
+        // From macOS 10.13, the button is placed inside of a NSStackView
+        let subviews = views.flatMap { $0.subviews }
+
+        let toggleButton: NSButton? = (views + subviews).lazy
             .flatMap { $0 as? NSButton }
-            .first { (button: NSButton) -> Bool in
-                guard
-                    let buttonTypeValue = button.cell?.value(forKey: "buttonType") as? UInt,
-                    let buttonType = NSButtonType(rawValue: buttonTypeValue)
-                    else { return false }
+            .first { button in
+                guard let action = button.action else { return false }
                 
-                return buttonType == .switch
+                return NSStringFromSelector(action) == "toggleUsingSmallToolbarIcons:"
             }
         
         toggleButton?.isHidden = true

@@ -46,7 +46,7 @@ extension NSImage {
             strongSelf.draw(in: dstRect)
             
             color.setFill()
-            NSRectFillUsingOperation(dstRect, .sourceIn)
+            dstRect.fill(using: .sourceIn)
             
             return true
         })

@@ -32,14 +32,14 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Private Properties
     
-    private dynamic var encodings: [NSNumber] {
+    @objc private dynamic var encodings: [CFStringEncoding] {
         didSet {
             // validate restorebility
             self.canRestore = (encodings != self.defaultEncodings)
         }
     }
-    private let defaultEncodings: [NSNumber]
-    private dynamic var canRestore: Bool  // enability of "Restore Default" button
+    private let defaultEncodings: [CFStringEncoding]
+    @objc private dynamic var canRestore: Bool  // enability of "Restore Default" button
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var deleteSeparatorButton: NSButton?
@@ -49,9 +49,9 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
-        self.defaultEncodings = NSUserDefaultsController.shared().initialValues?[DefaultKeys.encodingList.rawValue] as! [NSNumber]
+        self.defaultEncodings = (NSUserDefaultsController.shared.initialValues?[DefaultKeys.encodingList.rawValue] as! [UInt]).map { UInt32($0) }
         self.encodings = UserDefaults.standard[.encodingList]
         self.canRestore = (self.encodings != self.defaultEncodings)
         
@@ -65,9 +65,9 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "EncodingListView"
+        return NSNib.Name("EncodingListView")
     }
     
     
@@ -78,7 +78,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         guard let textField = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField else { return }
         
-        let cfEncoding = CFStringEncoding(self.encodings[row].uint32Value)
+        let cfEncoding = CFStringEncoding(self.encodings[row])
         
         // separator
         if cfEncoding == kCFStringEncodingInvalidId {
@@ -93,7 +93,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?) ?? "-"
         let attrIanaName = NSAttributedString(string: " : " + ianaName,
-                                              attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
+                                              attributes: [.foregroundColor: NSColor.disabledControlTextColor])
         
         textField.attributedStringValue = attrEncodingName + attrIanaName
     }
@@ -104,19 +104,18 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         // update enability of "Delete Separator" button
         self.deleteSeparatorButton?.isEnabled = self.tableView!.selectedRowIndexes.contains { index in
-            self.encodings[index].uint32Value == kCFStringEncodingInvalidId
+            self.encodings[index] == kCFStringEncodingInvalidId
         }
     }
     
     
-    @available(macOS 10.11, *)
     /// set action on swiping row
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         
         // only separater can be removed
-        guard self.encodings[row].uint32Value == kCFStringEncodingInvalidId else { return [] }
+        guard self.encodings[row] == kCFStringEncodingInvalidId else { return [] }
         
         // delete
         return [NSTableViewRowAction(style: .destructive,
@@ -187,8 +186,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
             tableView.insertRows(at: indexes, withAnimation: .effectGap)
         }, completionHandler: { [weak self] in
             // update data
-            let item = NSNumber(value: kCFStringEncodingInvalidId)
-            self?.encodings.insert(item, at: rowIndex)
+            self?.encodings.insert(kCFStringEncodingInvalidId, at: rowIndex)
             
             tableView.selectRowIndexes(indexes, byExtendingSelection: false)
         })
@@ -200,7 +198,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         // pick only separators up
         let toDeleteIndexes = rowIndexes.filteredIndexSet { index in
-            self.encodings[index].uint32Value == kCFStringEncodingInvalidId
+            self.encodings[index] == kCFStringEncodingInvalidId
         }
         
         guard !toDeleteIndexes.isEmpty else { return }

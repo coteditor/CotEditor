@@ -139,7 +139,7 @@ private struct QuoteCommentItem {
 
 // MARK: -
 
-final class SyntaxHighlightParseOperation: AsynchronousOperation {
+final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReporting {
     
     // MARK: Public Properties
     
@@ -424,11 +424,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
                 let range = NSRange(location: startLocation, length: endLocation - startLocation)
                 
-                if highlights[syntaxType] != nil {
-                    highlights[syntaxType]!.append(range)
-                } else {
-                    highlights[syntaxType] = [range]
-                }
+                highlights[syntaxType, default: []].append(range)
                 
                 searchingKind = nil
                 seekLocation = endLocation
@@ -440,11 +436,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
             let range = NSRange(location: startLocation, length: self.parseRange.upperBound - startLocation)
             
-            if highlights[syntaxType] != nil {
-                highlights[syntaxType]!.append(range)
-            } else {
-                highlights[syntaxType] = [range]
-            }
+            highlights[syntaxType, default: []].append(range)
         }
         
         return highlights
@@ -460,12 +452,11 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
             guard let definitions = self.definitions[syntaxType] else { continue }
             
             // update indicator sheet message
-            self.progress.becomeCurrent(withPendingUnitCount: 1)
             DispatchQueue.main.async { [weak progress = self.progress] in
                 progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
-            let childProgress = Progress(totalUnitCount: Int64(definitions.count))
+            let childProgress = Progress(totalUnitCount: Int64(definitions.count), parent: self.progress, pendingUnitCount: 1)
             
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
@@ -521,7 +512,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
                 guard let childProgress = childProgress else { return }
                 childProgress.completedUnitCount = childProgress.totalUnitCount
             }
-            self.progress.resignCurrent()
         }
         
         guard !self.isCancelled else { return [:] }
@@ -533,11 +523,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation {
         }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
         for (key, value) in commentAndQuoteRanges {
-            if highlights[key] != nil {
-                highlights[key]!.append(contentsOf: value)
-            } else {
-                highlights[key] = value
-            }
+            highlights[key, default: []].append(contentsOf: value)
         }
         
         guard !self.isCancelled else { return [:] }

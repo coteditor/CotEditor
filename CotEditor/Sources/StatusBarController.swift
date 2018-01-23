@@ -32,9 +32,9 @@ final class StatusBarController: NSViewController {
     // MARK: Private Properties
     
     private let byteCountFormatter = ByteCountFormatter()
-    private dynamic var editorStatus: NSAttributedString?
-    private dynamic var documentStatus: NSAttributedString?
-    private dynamic var showsReadOnly = false
+    @objc private dynamic var editorStatus: NSAttributedString?
+    @objc private dynamic var documentStatus: NSAttributedString?
+    @objc private dynamic var showsReadOnly = false
     
     
     
@@ -42,8 +42,6 @@ final class StatusBarController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
-        
         for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
@@ -61,10 +59,6 @@ final class StatusBarController: NSViewController {
         // set background color
         self.view.wantsLayer = true
         self.view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        
-        // -> needs additional constraint for Yosemite (2016-09 on macOS 10.12 SDK).
-        self.view.addConstraint(NSLayoutConstraint(item: self.view, attribute: .height, relatedBy: .lessThanOrEqual,
-                                                   toItem: nil, attribute: .height, multiplier: 1.0, constant: 19))
         
         self.byteCountFormatter.isAdaptive = false
         
@@ -115,18 +109,18 @@ final class StatusBarController: NSViewController {
             
             analyzer.needsUpdateStatusEditorInfo = false
             
-            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
-            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateFileInfo, object: analyzer)
-            NotificationCenter.default.removeObserver(self, name: .AnalyzerDidUpdateModeInfo, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
+            NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateModeInfoNotification, object: analyzer)
         }
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
             analyzer.needsUpdateStatusEditorInfo = !self.view.isHidden
             
-            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: .AnalyzerDidUpdateEditorInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .AnalyzerDidUpdateFileInfo, object: analyzer)
-            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: .AnalyzerDidUpdateModeInfo, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
+            NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateModeInfoNotification, object: analyzer)
             
             self.updateEditorStatus()
             self.updateDocumentStatus()
@@ -186,7 +180,7 @@ final class StatusBarController: NSViewController {
         // truncate tail
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        status.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: status.string.nsRange)
+        status.addAttribute(.paragraphStyle, value: paragraphStyle, range: status.string.nsRange)
         
         self.editorStatus = status
     }
@@ -202,7 +196,7 @@ final class StatusBarController: NSViewController {
         let status = NSMutableAttributedString()
         
         if defaults[.showStatusBarEncoding] {
-            status.appendFormattedState(value: info.charsetName, label: nil)
+            status.appendFormattedState(value: info.encoding, label: nil)
         }
         if defaults[.showStatusBarLineEndings] {
             status.appendFormattedState(value: info.lineEndings, label: nil)
@@ -235,7 +229,7 @@ private extension NSMutableAttributedString {
             let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
                                         NSLocalizedString(label, comment: ""))
             let attrLabel = NSAttributedString(string: localizedLabel,
-                                               attributes: [NSForegroundColorAttributeName: NSColor(white: 0.4, alpha: 1)])
+                                               attributes: [.foregroundColor: NSColor(white: 0.4, alpha: 1)])
             self.append(attrLabel)
         }
         
@@ -244,7 +238,7 @@ private extension NSMutableAttributedString {
                 return NSAttributedString(string: value)
             } else {
                 return NSAttributedString(string: "-",
-                                          attributes: [NSForegroundColorAttributeName: NSColor.disabledControlTextColor])
+                                          attributes: [.foregroundColor: NSColor.disabledControlTextColor])
             }
         }()
         

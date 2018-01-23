@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Unicode を入力";
+"Y41-ro-Xeo.title" = "Unicodeを入力";
 
 /* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
 "rfS-Rp-Al4.title" = "入力";

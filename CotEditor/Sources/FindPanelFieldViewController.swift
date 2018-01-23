@@ -31,19 +31,19 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private dynamic let textFinder = TextFinder.shared
+    @objc private dynamic let textFinder = TextFinder.shared
     
-    private dynamic var findResultMessage: String?  // binding
-    private dynamic var replacementResultMessage: String?  // binding
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
-    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)!
-    private lazy var preferencesViewController = NSViewController(nibName: "FindPreferencesView", bundle: nil)!
+    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
+    private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
     
     @IBOutlet private var findTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private var replacementTextView: NSTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
+    @IBOutlet private weak var findResultField: NSTextField?
+    @IBOutlet private weak var replacementResultField: NSTextField?
     
     
     
@@ -53,10 +53,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     deinit {
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue)
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue)
-        
-        NotificationCenter.default.removeObserver(self)
-        
-        self.findTextView?.delegate = nil
     }
     
     
@@ -198,7 +194,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfFound()
         
-        self.findResultMessage = {
+        let message: String? = {
             switch numberOfFound {
             case -1:
                 return nil
@@ -209,11 +205,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
+        self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
         
         // dismiss result either client text or find string did change
         self.currentResultMessageTarget = target.layoutManager
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: .NSWindowWillClose, object: target.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
+        NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSWindow.willCloseNotification, object: target.window)
     }
     
     
@@ -222,7 +219,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfReplaced()
         
-        self.replacementResultMessage = {
+        let message: String? = {
             switch numberOfReplaced {
             case -1:
                 return nil
@@ -233,6 +230,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
                               String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
+        self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
     }
 
     
@@ -266,7 +264,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         menu.insertItem(NSMenuItem.separator(), at: 2)  // the first item is invisible dummy
         
         for string in history {
-            let title = (string.count < 64) ? string : (String(string.prefix(64)) + "…")
+            let title = (string.count <= 64) ? string : (String(string.prefix(64)) + "…")
             let item = NSMenuItem(title: title, action: action, keyEquivalent: "")
             item.representedObject = string
             item.toolTip = string
@@ -279,12 +277,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// number of found in find string field becomes no more valid
     @objc private func clearNumberOfFound(_ notification: Notification? = nil) {
         
-        self.findResultMessage = nil
+        self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
         if let target = self.currentResultMessageTarget?.firstTextView {
-            NotificationCenter.default.removeObserver(self, name: .NSTextStorageDidProcessEditing, object: target.textStorage)
-            NotificationCenter.default.removeObserver(self, name: .NSWindowWillClose, object: target.window)
+            NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
+            NotificationCenter.default.removeObserver(self, name: NSWindow.willCloseNotification, object: target.window)
         }
     }
     
@@ -292,7 +290,19 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// number of replaced in replacement string field becomes no more valid
     @objc private func clearNumberOfReplaced(_ notification: Notification? = nil) {
         
-        self.replacementResultMessage = nil
+        self.applyResult(message: nil, textField: self.replacementResultField!, textView: self.replacementTextView!)
+    }
+    
+    
+    /// apply message to UI
+    private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
+    
+        textField.isHidden = (message != nil)
+        textField.stringValue = message ?? ""
+        textField.sizeToFit()
+        
+        // add extra scroll margin to the right side of the textView, so that entire input can be reead
+        textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
     }
     
 }

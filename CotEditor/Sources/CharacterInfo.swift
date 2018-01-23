@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -76,7 +76,7 @@ struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
     init?(string: String) {
         
         guard string.numberOfComposedCharacters == 1 || string == "\r\n" else { return nil }
-        // -> Number of String.characters.count and numberOfComposedCharacters are different.
+        // -> Number of String.count and numberOfComposedCharacters are different.
         
         let unicodes = string.unicodeScalars
         
@@ -120,7 +120,7 @@ struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
         self.isComplex = isComplex
         
         self.pictureString = {
-            guard unicodes.count == 1,  // ignore CR/LF
+            guard unicodes.count == 1,  // ignore CRLF
                 let pictureCharacter = unicodes.first?.pictureRepresentation else { return nil }
             
             return String(Character(pictureCharacter))

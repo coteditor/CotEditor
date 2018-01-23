@@ -22,8 +22,8 @@
  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  See the License for the specific language governing permissions and
  limitations under the License.
+ 
  */
-
 
 /* Class = "NSTextFieldCell"; title = "Regular expressions to extract outline menu items"; ObjectID = "cBA-MO-VzQ"; */
 "cBA-MO-VzQ.title" = "アウトライン項目検索用正規表現";

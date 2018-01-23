@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,15 +25,28 @@
  
  */
 
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "書類情報";
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "非互換文字";
+
+
 /* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
 "9p6-Sj-QjF.label" = "改行コード";  /* Line Endings */
 "9p6-Sj-QjF.paletteLabel" = "改行コード";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "改行コードを変更";  /* Change line endings */
 
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
-"J48-tF-WBo.ibShadowedToolTip" = "クラシック Mac OS";
+"J48-tF-WBo.ibShadowedToolTip" = "クラシックMac OS";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
 "Zo1-Cc-YBm.ibShadowedToolTip" = "Windows";
 
@@ -85,17 +98,17 @@
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "コメント";  /* Comment */
 "fW9-Xn-I9b.paletteLabel" = "コメントを切替";  /* Toggle Comment */
-"fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト／コメント解除";  /* Comment-out or uncomment selection */
+"fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト/コメント解除";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可視文字";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示／隠す";  /* Show / Hide Invisibles */
-"xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示／隠す";  /* Show or hide invisible characters in text */
+"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示/非表示";  /* Show/Hide Invisibles */
+"xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示/非表示";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "ページガイド";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "ページガイドを表示／隠す";  /* Show / Hide Page Guide */
-"GS6-aA-mgz.toolTip" = "ページガイドを表示／隠す";  /* Show or hide page guide line */
+"GS6-aA-mgz.paletteLabel" = "ページガイドを表示/非表示";  /* Show/Hide Page Guide */
+"GS6-aA-mgz.toolTip" = "ページガイドを表示/非表示";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
 "mGD-5P-MDq.label" = "行を折り返す";  /* Wrap Lines */
@@ -103,9 +116,9 @@
 "mGD-5P-MDq.toolTip" = "行の折り返しを切替";  /* Toggle wrap lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "縦書き／横書き";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "縦書き／横書きを切替";  /* Toggle Text Orientation */
-"1cW-FV-40L.toolTip" = "縦書き／横書きを切替";  /* Toggle text orientation */
+"1cW-FV-40L.label" = "縦書き/横書き";  /* Orientation */
+"1cW-FV-40L.paletteLabel" = "縦書き/横書きを切替";  /* Toggle Text Orientation */
+"1cW-FV-40L.toolTip" = "縦書き/横書きを切替";  /* Toggle text orientation */
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "タブを展開";  /* Expand Tabs */
@@ -115,7 +128,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "スペルチェック";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "スペルチェック";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "スペルと文法パネルを表示";  /* Show spelling and grammar panel */
+"Ply-Nr-aOE.toolTip" = "スペルと文法を表示";  /* Show spelling and grammar */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "カラーコード";  /* Color Code */

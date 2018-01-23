@@ -44,7 +44,7 @@ final class ConsolePanelController: NSWindowController {
     
     private let messageParagraphStyle: NSParagraphStyle = {
         // indent for message body
-        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.headIndent = consoleFontSize
         paragraphStyle.firstLineHeadIndent = consoleFontSize
         return paragraphStyle
@@ -64,9 +64,9 @@ final class ConsolePanelController: NSWindowController {
     // MARK: -
     // MARK: Lifecycle
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "ConsolePanel"
+        return NSNib.Name("ConsolePanel")
     }
     
     
@@ -91,6 +91,7 @@ final class ConsolePanelController: NSWindowController {
     /// append given message to the console
     func append(message: String, title: String?) {
         
+        let lastLocation = self.textView?.textStorage?.length ?? 0
         let date = self.dateFormatter.string(from: Date())
         var attrString = NSAttributedString(string: "[" + date + "]")
         
@@ -102,10 +103,13 @@ final class ConsolePanelController: NSWindowController {
         }
         
         // append indented message
-        let attrMessage = NSAttributedString(string: "\n" + message + "\n", attributes: [NSParagraphStyleAttributeName: self.messageParagraphStyle])
+        let attrMessage = NSAttributedString(string: "\n" + message + "\n", attributes: [.paragraphStyle: self.messageParagraphStyle])
         attrString += attrMessage
         
         self.textView?.textStorage?.append(attrString)
+        
+        // scroll to make message visible
+        self.textView?.scrollRangeToVisible(NSRange(location: lastLocation, length: attrString.length))
     }
     
     

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Prefer Tabs:"; ObjectID = "8zu-3V-Obg"; */
-"8zu-3V-Obg.title" = "タブで開く：";
+"8zu-3V-Obg.title" = "タブで開く:";
 
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "システム設定に従う";
@@ -38,11 +38,11 @@
 "o1f-vR-aFm.title" = "手動";  // The same as the popup menu selection in the System Preferences > "Dock"
 
 /* Class = "NSTextFieldCell"; title = "(Only on Sierra and later)"; ObjectID = "AaA-Nm-2CL"; */
-"AaA-Nm-2CL.title" = "（Sierra 以降のみ）";
+"AaA-Nm-2CL.title" = "（Sierra以降のみ）";
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
-"iw9-Ba-eD2.title" = "表示：";
+"iw9-Ba-eD2.title" = "表示:";
 /* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
 "3351.title" = "ナビゲーションバー";
 /* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
@@ -54,11 +54,11 @@
 /* Class = "NSButtonCell"; title = "Page Guide"; ObjectID = "3352"; */
 "3352.title" = "ページガイド";
 /* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */
-"3353.title" = "表示する列：";
+"3353.title" = "表示する列:";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
-"kjP-FS-fyd.title" = "ステータスバー表示：";
+"kjP-FS-fyd.title" = "ステータスバー表示:";
 /* Class = "NSButtonCell"; title = "Line Count"; ObjectID = "6jK-xX-8AH"; */
 "6jK-xX-8AH.title" = "行数";
 /* Class = "NSButtonCell"; title = "Character Count"; ObjectID = "sHZ-kO-Wvu"; */
@@ -82,21 +82,25 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
-"dug-hV-7hj.title" = "エディタの分割：";
+"dug-hV-7hj.title" = "エディタの分割:";
 /* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
 "Bj6-2A-Nxj.title" = "横";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "縦";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "D5G-Lc-5TC"; */
+"D5G-Lc-5TC.title" = "px";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "1ML-Pr-BCt"; */
+"1ML-Pr-BCt.title" = "px";
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "zIR-1y-lBC"; */
-"zIR-1y-lBC.title" = "ウインドウ幅：";
+"zIR-1y-lBC.title" = "ウインドウ幅:";
 /* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "3343"; */
-"3343.title" = "高さ：";
+"3343.title" = "高さ:";
 /* Class = "NSButtonCell"; title = "Get from Sample Window…"; ObjectID = "3346"; */
 "3346.title" = "ウインドウから取得...";
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
-"gSx-LA-TPc.title" = "エディタの不透明度：";
+"gSx-LA-TPc.title" = "エディタの不透明度:";
 /* Class = "NSTextFieldCell"; title = "Non-opaque editor can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */
 "gdC-8B-U5B.title" = "透過したエディタは巨大な書類で遅くなる可能性があります。";

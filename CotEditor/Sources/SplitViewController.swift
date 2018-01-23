@@ -37,14 +37,6 @@ final class SplitViewController: NSSplitViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: Split View Controller Methods
     
     /// setup view
@@ -52,16 +44,11 @@ final class SplitViewController: NSSplitViewController {
         
         super.viewDidLoad()
         
-        // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersion.current < .macOS10_11 {
-            self.splitView.delegate = self
-        }
-        
         self.splitView.isVertical = UserDefaults.standard[.splitViewVertical]
         self.invalidateOpenSplitEditorButtons()
         
         // observe focus change
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: .TextViewDidBecomeFirstResponder, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidBecomeFirstResponder), name: EditorTextView.didBecomeFirstResponderNotification, object: nil)
     }
     
     
@@ -82,14 +69,16 @@ final class SplitViewController: NSSplitViewController {
     
     
     /// apply current state to related menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
+        guard let action = item.action else { return false }
         
         switch action {
         case #selector(toggleSplitOrientation):
-            let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            if let item = item as? NSMenuItem {
+                let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
+                item.title = NSLocalizedString(title, comment: "")
+            }
             return self.splitViewItems.count > 1
             
         case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
@@ -98,7 +87,7 @@ final class SplitViewController: NSSplitViewController {
         default: break
         }
         
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     
@@ -127,7 +116,7 @@ final class SplitViewController: NSSplitViewController {
         
         let splitViewItem = NSSplitViewItem(viewController: editorViewController)
         
-        splitViewItem.holdingPriority = 251
+        splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
         
         if let otherEditorViewController = otherEditorViewController {
             guard let baseIndex = self.childViewControllers.index(of: otherEditorViewController) else {

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,6 +36,10 @@
 "3402.title" = "Ampiezza:";
 /* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
 "3403.title" = "Altezza:";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "ZN3-bX-0jB"; */
+"ZN3-bX-0jB.title" = "px";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "Uqw-EO-Xn7"; */
+"Uqw-EO-Xn7.title" = "px";
 
 /* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
 "3397.title" = "Imposta come default";

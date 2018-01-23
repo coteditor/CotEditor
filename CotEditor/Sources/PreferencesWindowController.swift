@@ -46,16 +46,18 @@ final class PreferencesWindowController: NSWindowController {
         "KeyBindingsPane",
         "PrintPane",
         "IntegrationPane",
-        ].map { (name: String) -> NSViewController in NSStoryboard(name: name, bundle: nil).instantiateInitialController() as! NSViewController }
+        ]
+        .map { NSStoryboard.Name($0) }
+        .map { NSStoryboard(name: $0, bundle: nil).instantiateInitialController() as! NSViewController }
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "PreferencesWindow"
+        return NSNib.Name("PreferencesWindow")
     }
     
     
@@ -67,10 +69,15 @@ final class PreferencesWindowController: NSWindowController {
         
         super.windowDidLoad()
         
-        guard let leftmostItem = self.window?.toolbar?.items.first else { return }
+        let lastItemIdentifier = NSToolbarItem.Identifier(UserDefaults.standard[.lastPreferencesPaneIdentifier] ?? "")
         
-        self.window?.toolbar?.selectedItemIdentifier = leftmostItem.itemIdentifier
-        self.switchView(leftmostItem)
+        guard
+            let items = self.window?.toolbar?.items,
+            let item = items.first(where: { $0.itemIdentifier == lastItemIdentifier }) ?? items.first
+            else { return }
+        
+        self.window?.toolbar?.selectedItemIdentifier = item.itemIdentifier
+        self.switchView(item)
         self.window?.center()
     }
     
@@ -81,10 +88,13 @@ final class PreferencesWindowController: NSWindowController {
     /// switch panes from toolbar
     @IBAction func switchView(_ toolbarItem: NSToolbarItem) {
         
-        guard let window = self.window else { return }
-        
         // detect clicked icon and select the view to switch
         let newController = self.viewControllers[toolbarItem.tag]
+        
+        guard
+            let window = self.window,
+            newController != window.contentViewController
+            else { return }
         
         // remove current view from the main view
         window.contentViewController = nil
@@ -100,6 +110,9 @@ final class PreferencesWindowController: NSWindowController {
         
         // add new view to the main view
         window.contentViewController = newController
+        
+        // save selected item for next open
+        UserDefaults.standard[.lastPreferencesPaneIdentifier] = toolbarItem.itemIdentifier.rawValue
     }
     
 }

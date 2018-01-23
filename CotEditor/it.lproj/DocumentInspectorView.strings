@@ -50,8 +50,6 @@
 "B5F-j1-X4E.title" = "Codifica";
 /* Class = "NSTextFieldCell"; title = "Line Endings"; ObjectID = "XBS-xa-s3p"; */
 "XBS-xa-s3p.title" = "Fine riga";
-/* Class = "NSTextFieldCell"; title = "Byte Length"; ObjectID = "aId-DL-y8T"; */
-"aId-DL-y8T.title" = "Lunghezza byte";
 
 
 /* Class = "NSTextFieldCell"; title = "Count"; ObjectID = "cbf-0f-9rd"; */

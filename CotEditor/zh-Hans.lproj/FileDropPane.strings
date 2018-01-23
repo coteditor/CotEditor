@@ -59,7 +59,3 @@
 
 /* Class = "IBBindingConnection"; ibShadowedNoSelectionPlaceholder = "No extension is selected."; ObjectID = "ib2-Zw-Ucy"; */
 "ib2-Zw-Ucy.ibShadowedNoSelectionPlaceholder" = "没有选中扩展名。";
-
-
-/* Class = "NSViewController"; title = "Glossary"; ObjectID = "La6-Dq-gq6"; */
-"La6-Dq-gq6.title" = "用法说明";

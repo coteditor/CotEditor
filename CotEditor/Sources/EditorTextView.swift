@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,18 +28,9 @@
 
 import Cocoa
 
-extension Notification.Name {
+private extension NSAttributedStringKey {
     
-    static let TextViewDidBecomeFirstResponder = Notification.Name("TextViewDidBecomeFirstResponder")
-}
-
-
-private struct AttributeName {
-    
-    static let autoBalancedClosingBracket = "autoBalancedClosingBracket"
-    
-    
-    private init() { }
+    static let autoBalancedClosingBracket = NSAttributedStringKey("autoBalancedClosingBracket")
 }
 
 
@@ -50,6 +41,11 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 // MARK: -
 
 final class EditorTextView: NSTextView, Themable {
+    
+    // MARK: Notification Names
+    
+    static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
+    
     
     // MARK: Public Properties
     
@@ -156,14 +152,15 @@ final class EditorTextView: NSTextView, Themable {
         self.textContainerInset = kTextContainerInset
         
         // set NSTextView behaviors
+        self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
         self.importsGraphics = false
         self.usesFindPanel = true
         self.acceptsGlyphInfo = true
-        self.linkTextAttributes = [NSCursorAttributeName: NSCursor.pointingHand(),
-                                   NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+        self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
+                                   .underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
         
         // setup behaviors
         self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
@@ -203,7 +200,7 @@ final class EditorTextView: NSTextView, Themable {
     // MARK: Text View Methods
     
     /// keys to be restored from the last session
-    override class func restorableStateKeyPaths() -> [String] {
+    override class var restorableStateKeyPaths: [String] {
         
         return [#keyPath(layoutOrientation),
                 #keyPath(font),
@@ -214,7 +211,7 @@ final class EditorTextView: NSTextView, Themable {
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
-        NotificationCenter.default.post(name: .TextViewDidBecomeFirstResponder, object: self)
+        NotificationCenter.default.post(name: EditorTextView.didBecomeFirstResponderNotification, object: self)
         
         return super.becomeFirstResponder()
     }
@@ -236,12 +233,12 @@ final class EditorTextView: NSTextView, Themable {
         
         // observe window opacity flag
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: .WindowDidChangeOpacity,
+                                               name: AlphaWindow.didChangeOpacityNotification,
                                                object: window)
         
         // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: .NSViewBoundsDidChange, object: scrollView.contentView)
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: NSView.boundsDidChangeNotification, object: scrollView.contentView)
         } else {
             assertionFailure("failed starting observing the visible rect change")
         }
@@ -256,16 +253,8 @@ final class EditorTextView: NSTextView, Themable {
             let snippet = SnippetKeyBindingManager.shared.snippet(keyEquivalent: event.charactersIgnoringModifiers,
                                                                   modifierMask: event.modifierFlags)
         {
-            let range = self.rangeForUserTextChange
-            if self.shouldChangeText(in: range, replacementString: snippet.string) {
-                self.replaceCharacters(in: range, with: snippet.string)
-                self.didChangeText()
-                if let selection = snippet.selection {
-                    self.selectedRange = NSRange(location: range.location + selection.location, length: selection.length)
-                }
-                self.undoManager?.setActionName(NSLocalizedString("Insert Custom Text", comment: "action name"))
-                self.centerSelectionInVisibleArea(self)
-            }
+            self.insert(snippet: snippet)
+            self.centerSelectionInVisibleArea(self)
             return
         }
         
@@ -279,16 +268,14 @@ final class EditorTextView: NSTextView, Themable {
         // do not use this method for programmatical insertion.
         
         // cast NSAttributedString to String in order to make sure input string is plain-text
-        guard
-            let wholeString = self.string,
-            let plainString: String = {
-                switch string {
-                case let attrString as NSAttributedString:
-                    return attrString.string
-                case let string as String:
-                    return string
-                default: return nil
-                }
+        guard let plainString: String = {
+            switch string {
+            case let attrString as NSAttributedString:
+                return attrString.string
+            case let string as String:
+                return string
+            default: return nil
+            }
             }() else { return super.insertText(string, replacementRange: replacementRange) }
         
         // swap '¥' with '\' if needed
@@ -322,7 +309,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
                 
                 // set flag
-                self.textStorage?.addAttribute(AttributeName.autoBalancedClosingBracket, value: true,
+                self.textStorage?.addAttribute(.autoBalancedClosingBracket, value: true,
                                                range: NSRange(location: self.selectedRange.location, length: 1))
                 
                 return
@@ -334,7 +321,7 @@ final class EditorTextView: NSTextView, Themable {
             let nextCharacter = self.characterAfterInsertion,
             let firstCharacter = plainString.first, firstCharacter == Character(nextCharacter),
             BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
-            self.textStorage?.attribute(AttributeName.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+            self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
         {
             self.selectedRange.location += 1
             return
@@ -343,8 +330,9 @@ final class EditorTextView: NSTextView, Themable {
         // smart outdent with '}' charcter
         if self.isAutomaticIndentEnabled && self.isSmartIndentEnabled &&
             replacementRange.length == 0 && plainString == "}",
-            let insretionIndex = String.UTF16Index(encodedOffset: self.selectedRange.upperBound).samePosition(in: wholeString)
+            let insretionIndex = Range(self.selectedRange, in: self.string)?.upperBound
         {
+            let wholeString = self.string
             let lineRange = wholeString.lineRange(at: insretionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
@@ -375,7 +363,8 @@ final class EditorTextView: NSTextView, Themable {
     /// insert tab & expand tab
     override func insertTab(_ sender: Any?) {
         
-        if self.isAutomaticTabExpansionEnabled, let string = self.string {
+        if self.isAutomaticTabExpansionEnabled {
+            let string = self.string
             let tabWidth = self.tabWidth
             let column = string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
             let length = tabWidth - (column % tabWidth)
@@ -391,13 +380,11 @@ final class EditorTextView: NSTextView, Themable {
     /// insert new line & perform auto-indent
     override func insertNewline(_ sender: Any?) {
         
-        guard
-            self.isAutomaticIndentEnabled,
-            let string = self.string
-            else {
-                return super.insertNewline(sender)
+        guard self.isAutomaticIndentEnabled else {
+            return super.insertNewline(sender)
         }
         
+        let string = self.string
         let indentRange = string.rangeOfIndent(at: self.selectedRange.location)
         
         // don't auto-indent if indent is selected (2008-12-13)
@@ -454,8 +441,9 @@ final class EditorTextView: NSTextView, Themable {
             super.deleteBackward(sender)
         }
         
-        guard let string = self.string, self.selectedRange.length == 0 else { return }
+        guard self.selectedRange.length == 0 else { return }
         
+        let string = self.string
         let location = self.selectedRange.location
         
         // delete tab
@@ -607,7 +595,10 @@ final class EditorTextView: NSTextView, Themable {
             let column = UserDefaults.standard[.pageGuideColumn]
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
-            let x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
+            var x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
+            if self.baseWritingDirection == .rightToLeft {
+                x = self.frame.width - x
+            }
             
             NSGraphicsContext.saveGraphicsState()
             
@@ -624,8 +615,8 @@ final class EditorTextView: NSTextView, Themable {
     override func scrollRangeToVisible(_ range: NSRange) {
         
         // scroll line by line if an arrow key is pressed
-        if NSEvent.modifierFlags().contains(.numericPad),
-            !NSEvent.modifierFlags().contains(.command),  // Command + Arrow is scroll to the end of contents
+        if NSEvent.modifierFlags.contains(.numericPad),
+            !NSEvent.modifierFlags.contains(.command),  // Command + Arrow is scroll to the end of contents
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
@@ -643,7 +634,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// change text layout orientation
-    override func setLayoutOrientation(_ orientation: NSTextLayoutOrientation) {
+    override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
         guard self.layoutOrientation != orientation else { return }
         
@@ -661,11 +652,16 @@ final class EditorTextView: NSTextView, Themable {
         if self.canUseNonContiguousLayout {
             self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
         }
+        
+        // reset writing direction
+        if orientation == .vertical {
+            self.baseWritingDirection = .leftToRight
+        }
     }
     
     
     /// read pasted/dropped item from NSPaseboard (involed in `performDragOperation(_:)`)
-    override func readSelection(from pboard: NSPasteboard, type: String) -> Bool {
+    override func readSelection(from pboard: NSPasteboard, type: NSPasteboard.PasteboardType) -> Bool {
         
         // apply link to pasted string
         defer {
@@ -673,11 +669,9 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // on file drop
-        if type == NSFilenamesPboardType,
-            let filePaths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String]
-        {
-            let definitions = UserDefaults.standard[.fileDropArray] as? [[String: String]]
-            let composer = FileDropComposer(definitions: definitions ?? [])
+        if let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL], !urls.isEmpty {
+            let definitions = UserDefaults.standard[.fileDropArray]
+            let composer = FileDropComposer(definitions: definitions)
             let documentURL = self.document?.fileURL
             let syntaxStyle: String? = {
                 guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
@@ -685,8 +679,7 @@ final class EditorTextView: NSTextView, Themable {
             }()
             var replacementString = ""
             
-            for path in filePaths {
-                let url = URL(fileURLWithPath: path)
+            for url in urls {
                 if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
                     replacementString += dropText
                     
@@ -696,7 +689,7 @@ final class EditorTextView: NSTextView, Themable {
                     if !replacementString.isEmpty {
                         replacementString += "\n"
                     }
-                    replacementString += path
+                    replacementString += url.path
                 }
             }
             
@@ -713,7 +706,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// convert line endings in pasteboard to document's line ending
-    override func writeSelection(to pboard: NSPasteboard, types: [String]) -> Bool {
+    override func writeSelection(to pboard: NSPasteboard, types: [NSPasteboard.PasteboardType]) -> Bool {
         
         let success = super.writeSelection(to: pboard, types: types)
         
@@ -729,6 +722,17 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    override var baseWritingDirection: NSWritingDirection {
+        
+        didSet {
+            // redraw page guide after changing writing direction
+            if self.showsPageGuide {
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            }
+        }
+    }
+    
+    
     /// update font panel to set current font
     override func updateFontPanel() {
         
@@ -737,7 +741,7 @@ final class EditorTextView: NSTextView, Themable {
         // それを断つために自分で渡す
         guard let font = self.font else { return }
         
-        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
+        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
     }
     
     
@@ -790,7 +794,7 @@ final class EditorTextView: NSTextView, Themable {
                 self.detectLinkIfNeeded()
             } else {
                 if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(NSLinkAttributeName, range: textStorage.string.nsRange)
+                    textStorage.removeAttribute(.link, range: textStorage.mutableString.range)
                 }
             }
             
@@ -811,12 +815,12 @@ final class EditorTextView: NSTextView, Themable {
             
         case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue:
             if let textStorage = self.textStorage {
-                let wholeRange = textStorage.string.nsRange
+                let wholeRange = textStorage.mutableString.range
                 if keyPath == DefaultKeys.enablesHangingIndent.rawValue && !(newValue as! Bool) {
                     if let paragraphStyle = self.defaultParagraphStyle {
-                        textStorage.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: wholeRange)
+                        textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
                     } else {
-                        textStorage.removeAttribute(NSParagraphStyleAttributeName, range: wholeRange)
+                        textStorage.removeAttribute(.paragraphStyle, range: wholeRange)
                     }
                 } else {
                     (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
@@ -880,7 +884,7 @@ final class EditorTextView: NSTextView, Themable {
     
     
     /// tab width in number of spaces
-    var tabWidth: Int {
+    @objc var tabWidth: Int {
         
         didSet {
             if tabWidth == 0 {
@@ -953,7 +957,7 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let textStorage = self.textStorage else { return }
         
-        let range = textStorage.string.nsRange
+        let range = textStorage.mutableString.range
         
         guard range.length > 0 else { return }
         
@@ -969,11 +973,12 @@ final class EditorTextView: NSTextView, Themable {
     /// copy selection with syntax highlight and font style
     @IBAction func copyWithStyle(_ sender: Any?) {
         
-        guard let string = self.string, self.selectedRange.length > 0 else {
-            NSBeep()
+        guard self.selectedRange.length > 0 else {
+            NSSound.beep()
             return
         }
         
+        let string = self.string
         var selections = [NSAttributedString]()
         var propertyList = [Int]()
         let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
@@ -989,7 +994,7 @@ final class EditorTextView: NSTextView, Themable {
                 var characterIndex = selectedRange.location
                 while characterIndex < selectedRange.upperBound {
                     var effectiveRange = NSRange.notFound
-                    guard let color = layoutManager.temporaryAttribute(NSForegroundColorAttributeName,
+                    guard let color = layoutManager.temporaryAttribute(.foregroundColor,
                                                                        atCharacterIndex: characterIndex,
                                                                        longestEffectiveRange: &effectiveRange,
                                                                        in: selectedRange)
@@ -999,7 +1004,7 @@ final class EditorTextView: NSTextView, Themable {
                     }
                     
                     let localRange = NSRange(location: effectiveRange.location - selectedRange.location, length: effectiveRange.length)
-                    styledText.addAttribute(NSForegroundColorAttributeName, value: color, range: localRange)
+                    styledText.addAttribute(.foregroundColor, value: color, range: localRange)
                     
                     characterIndex = effectiveRange.upperBound
                 }
@@ -1031,11 +1036,11 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // set to paste board
-        let pboard = NSPasteboard.general()
+        let pboard = NSPasteboard.general
         pboard.clearContents()
         pboard.declareTypes(self.writablePasteboardTypes, owner: nil)
-        if pboard.canReadItem(withDataConformingToTypes: [NSPasteboardTypeMultipleTextSelection]) {
-            pboard.setPropertyList(propertyList, forType: NSPasteboardTypeMultipleTextSelection)
+        if pboard.canReadItem(withDataConformingToTypes: [NSPasteboard.PasteboardType.multipleTextSelection.rawValue]) {
+            pboard.setPropertyList(propertyList, forType: .multipleTextSelection)
         }
         pboard.writeObjects([pasteboardString])
     }
@@ -1123,7 +1128,7 @@ final class EditorTextView: NSTextView, Themable {
         self.textColor = theme.textColor
         self.lineHighLightColor = theme.lineHighLightColor
         self.insertionPointColor = theme.insertionPointColor
-        self.selectedTextAttributes = [NSBackgroundColorAttributeName: theme.selectionColor]
+        self.selectedTextAttributes = [.backgroundColor: theme.selectionColor]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisiblesColor
         
@@ -1139,7 +1144,7 @@ final class EditorTextView: NSTextView, Themable {
         
         assert(Thread.isMainThread)
         
-        let paragraphStyle = NSParagraphStyle.default().mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         
         // set line height
         //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.
@@ -1155,11 +1160,13 @@ final class EditorTextView: NSTextView, Themable {
             paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.advancement(character: " ").width
         }
         
+        paragraphStyle.baseWritingDirection = self.baseWritingDirection
+        
         self.defaultParagraphStyle = paragraphStyle
         
         // add paragraph style also to the typing attributes
         //   -> textColor and font are added automatically.
-        self.typingAttributes[NSParagraphStyleAttributeName] = paragraphStyle
+        self.typingAttributes[.paragraphStyle] = paragraphStyle
         
         // tell line height also to scroll view so that scroll view can scroll line by line
         if let lineHeight = (self.layoutManager as? LayoutManager)?.lineHeight {
@@ -1207,27 +1214,23 @@ private extension NSTextView {
     /// character just before the insertion or 0
     var characterBeforeInsertion: UnicodeScalar? {
         
-        guard let string = self.string else { return nil }
-        
         let location = self.selectedRange.location - 1
         
         guard location >= 0 else { return nil }
         
-        guard let index = string.utf16.index(string.utf16.startIndex, offsetBy: location).samePosition(in: string.unicodeScalars) else { return nil }
+        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
         
-        return string.unicodeScalars[safe: index]
+        return self.string.unicodeScalars[safe: index]
     }
     
     
     /// character just after the insertion
     var characterAfterInsertion: UnicodeScalar? {
         
-        guard let string = self.string else { return nil }
-        
         let location = self.selectedRange.upperBound
-        guard let index = string.utf16.index(string.utf16.startIndex, offsetBy: location).samePosition(in: string.unicodeScalars) else { return nil }
+        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
         
-        return string.unicodeScalars[safe: index]
+        return self.string.unicodeScalars[safe: index]
     }
     
 }
@@ -1247,13 +1250,13 @@ extension EditorTextView {
         
         // expand range until hitting to a character that isn't in the word completion candidates
         guard
+            !self.string.isEmpty,
             let characterSet = self.firstSyntaxCompletionCharacterSet,
-            let string = self.string, !string.isEmpty,
-            let beginIndex = String.UTF16Index(encodedOffset: range.location).samePosition(in: string),
-            let index = string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: string.startIndex..<beginIndex)?.upperBound
+            let beginIndex = String.UTF16Index(encodedOffset: range.location).samePosition(in: self.string),
+            let index = self.string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: self.string.startIndex..<beginIndex)?.upperBound
             else { return range }
         
-        let location = index.samePosition(in: string.utf16)!.encodedOffset
+        let location = index.samePosition(in: self.string.utf16)!.encodedOffset
         
         return NSRange(location: location, length: range.upperBound - location)
     }
@@ -1264,8 +1267,6 @@ extension EditorTextView {
         
         self.completionTask.cancel()
         
-        guard let string = self.string else { return }
-        
         let event = self.window?.currentEvent
         var didComplete = false
         
@@ -1275,7 +1276,7 @@ extension EditorTextView {
         
         // store original string
         if self.particalCompletionWord == nil {
-            self.particalCompletionWord = (string as NSString).substring(with: charRange)
+            self.particalCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
@@ -1356,7 +1357,7 @@ extension EditorTextView {
         
         let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
         
-        guard let string = self.string, granularity == .selectByWord, string.utf16.count != proposedCharRange.location else {
+        guard granularity == .selectByWord, self.string.utf16.count != proposedCharRange.location else {
             return range
         }
         
@@ -1373,20 +1374,20 @@ extension EditorTextView {
         // settle result on expanding selection or if there is no possibility for clicking brackets
         guard proposedCharRange.length == 0 && wordRange.length == 1 else { return wordRange }
         
-        let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: string)!
-        let clickedCharacter = string[characterIndex]
+        let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: self.string)!
+        let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text by double-clicking
         if clickedCharacter == "\"" || clickedCharacter == "'" || clickedCharacter == "`" {
             var highlightRange = NSRange.notFound
-            _ = self.layoutManager?.temporaryAttribute(NSForegroundColorAttributeName, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: string.nsRange)
+            _ = self.layoutManager?.temporaryAttribute(.foregroundColor, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: self.string.nsRange)
             
-            let highlightCharacterRange = string.range(from: highlightRange)!
+            let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound
-            let lastHighlightIndex = string.index(before: highlightCharacterRange.upperBound)
+            let lastHighlightIndex = self.string.index(before: highlightCharacterRange.upperBound)
             
-            if (firstHighlightIndex == characterIndex && string[firstHighlightIndex] == clickedCharacter) ||  // smart quote
-                (lastHighlightIndex == characterIndex && string[lastHighlightIndex] == clickedCharacter)  // end quote
+            if (firstHighlightIndex == characterIndex && self.string[firstHighlightIndex] == clickedCharacter) ||  // smart quote
+                (lastHighlightIndex == characterIndex && self.string[lastHighlightIndex] == clickedCharacter)  // end quote
             {
                 return highlightRange
             }
@@ -1395,17 +1396,17 @@ extension EditorTextView {
         // select inside of brackets by double-clicking
         guard let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) else { return wordRange }
         if pair.end == clickedCharacter {
-            if let index = string.indexOfBeginBrace(for: pair, at: characterIndex) {
-                let location = index.samePosition(in: string.utf16)!.encodedOffset
+            if let index = self.string.indexOfBeginBrace(for: pair, at: characterIndex) {
+                let location = index.samePosition(in: self.string.utf16)!.encodedOffset
                 return NSRange(location: location, length: wordRange.location - location + 1)
             }
         } else {
-            if let index = string.indexOfEndBrace(for: pair, at: characterIndex) {
-                let location = index.samePosition(in: string.utf16)!.encodedOffset
+            if let index = self.string.indexOfEndBrace(for: pair, at: characterIndex) {
+                let location = index.samePosition(in: self.string.utf16)!.encodedOffset
                 return NSRange(location: wordRange.location, length: location - wordRange.location + 1)
             }
         }
-        NSBeep()
+        NSSound.beep()
         
         // If it has a found a "starting" brace but not found a match, a double-click should only select the "starting" brace and not what it usually would select at a double-click
         return super.selectionRange(forProposedRange: NSRange(location: proposedCharRange.location, length: 1), granularity: .selectByCharacter)
@@ -1420,13 +1421,13 @@ extension EditorTextView {
         
         let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
         
-        guard proposedWordRange.length > 1, let string = self.string,
-            let proposedRange = string.range(from: proposedWordRange),
-            let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: string) else { return proposedWordRange }
+        guard proposedWordRange.length > 1,
+            let proposedRange = Range(proposedWordRange, in: self.string),
+            let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self.string) else { return proposedWordRange }
         
-        let wordRange = string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange) ?? proposedRange
+        let wordRange = self.string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange) ?? proposedRange
         
-        return string.nsRange(from: wordRange)
+        return NSRange(wordRange, in: self.string)
     }
     
 }

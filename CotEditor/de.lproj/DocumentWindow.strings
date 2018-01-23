@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,13 +25,26 @@
  
  */
 
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "Dokument-Informationen";
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Inkompatible Zeichen";
+
+
 /* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
 "9p6-Sj-QjF.label" = "Zeilenenden";  /* Line Endings */
 "9p6-Sj-QjF.paletteLabel" = "Zeilenenden";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "Zeilenenden ändern";  /* Change line endings */
 
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
 "J48-tF-WBo.ibShadowedToolTip" = "Klassisches Mac OS";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
@@ -89,12 +102,12 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "Unsichtbares";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "Unsichtbares ein-/ausblenden";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Unsichtbares ein-/ausblenden";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "Unsichtbare Zeichen im Text ein-/ausblenden";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "Seitenhilfslinie";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "Seitenhilfslinie ein-/ausblenden";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "Seitenhilfslinie ein-/ausblenden";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "Seitenhilfslinie ein-/ausblenden";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
@@ -115,7 +128,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Rechtschreibprüfung";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammar panel */
+"Ply-Nr-aOE.toolTip" = "Rechtschreibung und Grammatik einblenden";  /* Show spelling and grammar */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "Farbcode";  /* Color Code */

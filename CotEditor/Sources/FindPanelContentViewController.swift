@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,11 +48,6 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         super.viewDidLoad()
         
-        // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersion.current < .macOS10_11 {
-            self.splitView.delegate = self
-        }
-        
         TextFinder.shared.delegate = self
     }
     
@@ -67,13 +62,9 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     
     /// collapse result view by dragging divider
-     override func splitViewDidResizeSubviews(_ notification: Notification) {
+    override func splitViewDidResizeSubviews(_ notification: Notification) {
         
-        // calling super's splitViewDidResizeSubviews() make app crash on Yosemite (2016-09 on macOS 10.12 SDK)
-        if #available(macOS 10.11, *) {
-            // -> Calling super's method crashes the app on Yosemite.
-            super.splitViewDidResizeSubviews(notification)
-        }
+        super.splitViewDidResizeSubviews(notification)
         
         guard !self.isUncollapsing else { return }
         

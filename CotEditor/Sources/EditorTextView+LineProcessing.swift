@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,15 +41,15 @@ extension EditorTextView {
         
         // cannot perform Move Line Up if one of the selections is already in the first line
         guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
         let selectedRanges = self.selectedRanges as! [NSRange]
         
         // register redo for text selection
-        if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
+        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges] target in
+            target.setSelectedRangesWithUndo(selectedRanges as! [NSRange])
         }
         
         var newSelectedRanges = [NSRange]()
@@ -108,15 +108,15 @@ extension EditorTextView {
         
         // cannot perform Move Line Down if one of the selections is already in the last line
         if lineRanges.last?.upperBound == textStorage.length {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
         let selectedRanges = self.selectedRanges as! [NSRange]
         
         // register redo for text selection
-        if let undoClient = self.undoManager?.prepare(withInvocationTarget: self) as? NSTextView {
-            undoClient.setSelectedRangesWithUndo(self.selectedRanges as! [NSRange])
+        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges] target in
+            target.setSelectedRangesWithUndo(selectedRanges as! [NSRange])
         }
         
         var newSelectedRanges = [NSRange]()
@@ -169,7 +169,7 @@ extension EditorTextView {
     /// sort selected lines (only in the first selection) ascending
     @IBAction func sortLinesAscending(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
+        let string = self.string as NSString
         
         // process whole document if no text selected
         if self.selectedRange.length == 0 {
@@ -195,10 +195,28 @@ extension EditorTextView {
     }
     
     
+    /// show pattern sort sheet
+    @IBAction func patternSort(_ sender: Any?) {
+        
+        let viewController = NSStoryboard(name: NSStoryboard.Name("PatternSortView"), bundle: nil).instantiateInitialController() as! PatternSortViewController
+        viewController.representedObject = self
+        
+        // sample the first line
+        let string = self.string
+        let range = Range(self.selectedRange, in: string)!
+        let location = range.isEmpty ? string.startIndex : range.lowerBound
+        let lineRange = string.lineRange(at: location, excludingLastLineEnding: true)
+        viewController.sampleLine = String(string[lineRange])
+        viewController.sampleFontName = (self.layoutManager as? LayoutManager)?.textFont?.fontName
+        
+        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
+    }
+    
+    
     /// reverse selected lines (only in the first selection)
     @IBAction func reverseLines(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
+        let string = self.string as NSString
         
         // process whole document if no text selected
         if self.selectedRange.length == 0 {
@@ -225,7 +243,7 @@ extension EditorTextView {
     /// delete duplicate lines in selection
     @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
+        let string = self.string as NSString
         
         // process whole document if no text selected
         if self.selectedRange.length == 0 {
@@ -268,11 +286,10 @@ extension EditorTextView {
     /// duplicate selected lines below
     @IBAction func duplicateLine(_ sender: Any?) {
         
-        guard let string = self.string as NSString? else { return }
-        
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()
         
+        let string = self.string as NSString
         let selectedRanges = self.selectedRanges as! [NSRange]
         
         // get lines to process
@@ -313,7 +330,33 @@ extension EditorTextView {
     /// trim all trailing whitespace
     @IBAction func trimTrailingWhitespace(_ sender: Any?) {
         
-        self.trimTrailingWhitespace()
+        let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
+        
+        self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
+    }
+    
+}
+
+
+extension NSTextView {
+    
+    func sortLines(pattern: SortPattern, options: SortOptions) {
+        
+        let string = self.string as NSString
+        
+        // process whole document if no text selected
+        if self.selectedRange.length == 0 {
+            self.selectedRange = string.range
+        }
+        
+        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
+        
+        guard lineRange.length > 0 else { return }
+        
+        let newString = pattern.sort(string.substring(with: lineRange), options: options)
+        
+        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
+                     actionName: NSLocalizedString("Sort Lines", comment: "action name"))
     }
     
 }
@@ -327,8 +370,7 @@ private extension NSTextView {
     /// extract line by line line ranges which selected ranges include
     var selectedLineRanges: [NSRange] {
         
-        guard let string = self.string as NSString? else { return [] }
-        
+        let string = self.string as NSString
         var lineRanges = OrderedSet<NSRange>()
         
         // get line ranges to process

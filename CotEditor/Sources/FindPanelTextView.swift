@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,6 +34,8 @@ final class FindPanelTextView: NSTextView {
     
     @IBInspectable var performsActionOnEnter: Bool = false
     
+    @objc dynamic var isEmpty: Bool = true
+    
     
     
     // MARK: -
@@ -51,7 +53,7 @@ final class FindPanelTextView: NSTextView {
         
         // avoid wrapping
         self.textContainer?.widthTracksTextView = false
-        self.textContainer?.containerSize = NSSize.infinite
+        self.textContainer?.size = .infinite
         self.isHorizontallyResizable = true
         
         // disable automatic text substitutions
@@ -74,7 +76,7 @@ final class FindPanelTextView: NSTextView {
     override func becomeFirstResponder() -> Bool {
         
         // select whole string on focus (standard NSTextField behavior)
-        self.selectedRange = self.string?.nsRange ?? .notFound
+        self.selectedRange = self.string.nsRange
         
         return super.becomeFirstResponder()
     }
@@ -87,6 +89,24 @@ final class FindPanelTextView: NSTextView {
         self.selectedRange = NSRange(location: 0, length: 0)
         
         return super.resignFirstResponder()
+    }
+    
+    
+    /// update value state
+    override func didChangeText() {
+        
+        super.didChangeText()
+        
+        self.isEmpty = self.string.isEmpty
+    }
+    
+    
+    /// string did udpate via binding
+    override var string: String {
+        
+        didSet {
+            self.isEmpty = self.string.isEmpty
+        }
     }
     
     
@@ -137,6 +157,20 @@ final class FindPanelTextView: NSTextView {
         }
         
         super.insertText(str, replacementRange: replacementRange)
+    }
+    
+    
+    
+    // MARK: Actions
+    
+    /// clear current text
+    @IBAction func clear(_ sender: Any?) {
+        
+        guard self.shouldChangeText(in: self.string.nsRange, replacementString: "") else { return }
+        
+        self.string = ""
+        
+        self.didChangeText()
     }
     
 }

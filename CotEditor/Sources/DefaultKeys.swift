@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,13 +30,12 @@ import Foundation
 extension DefaultKeys {
     
     // General
-    static let createNewAtStartup = DefaultKey<Bool>("createNewAtStartup")
-    static let reopenBlankWindow = DefaultKey<Bool>("reopenBlankWindow")
-    static let windowTabbing = DefaultKey<Int>("windowTabbing")
+    static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
+    static let noDocumentOnLaunchBehavior = DefaultKey<Int>("noDocumentOnLaunchBehavior")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
+    static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
     static let documentConflictOption = DefaultKey<Int>("documentConflictOption")
-    static let syncFindPboard = DefaultKey<Bool>("syncFindPboard")
     static let countLineEndingAsChar = DefaultKey<Bool>("countLineEndingAsChar")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
@@ -45,6 +44,7 @@ extension DefaultKeys {
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Window
+    static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
     static let showDocumentInspector = DefaultKey<Bool>("showDocumentInspector")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
@@ -94,11 +94,11 @@ extension DefaultKeys {
     static let tabWidth = DefaultKey<Int>("tabWidth")
     static let autoExpandTab = DefaultKey<Bool>("autoExpandTab")
     static let detectsIndentStyle = DefaultKey<Bool>("detectsIndentStyle")
-    static let appendsCommentSpacer = DefaultKey<Bool>("appendsCommentSpacer")
-    static let commentsAtLineHead = DefaultKey<Bool>("commentsAtLineHead")
     static let wrapLines = DefaultKey<Bool>("wrapLines")
     static let enablesHangingIndent = DefaultKey<Bool>("enableHangingIndent")
     static let hangingIndentWidth = DefaultKey<Int>("hangingIndentWidth")
+    static let appendsCommentSpacer = DefaultKey<Bool>("appendsCommentSpacer")
+    static let commentsAtLineHead = DefaultKey<Bool>("commentsAtLineHead")
     static let completesDocumentWords = DefaultKey<Bool>("completesDocumentWords")
     static let completesSyntaxWords = DefaultKey<Bool>("completesSyntaxWords")
     static let completesStandartWords = DefaultKey<Bool>("completesStandardWords")
@@ -106,7 +106,7 @@ extension DefaultKeys {
     
     // Format
     static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")
-    static let encodingList = DefaultKey<[NSNumber]>("encodingList")
+    static let encodingList = DefaultKey<[CFStringEncoding]>("encodingList")
     static let encodingInNew = DefaultKey<UInt>("encodingInNew")
     static let encodingInOpen = DefaultKey<UInt>("encodingInOpen")
     static let saveUTF8BOM = DefaultKey<Bool>("saveUTF8BOM")
@@ -115,7 +115,7 @@ extension DefaultKeys {
     static let syntaxStyle = DefaultKey<String>("defaultColoringStyleName")
     
     // File Drop
-    static let fileDropArray = DefaultKey<[Any]>("fileDropArray")
+    static let fileDropArray = DefaultKey<[[String: String]]>("fileDropArray")
     
     // Key Bindings
     static let insertCustomTextArray = DefaultKey<[String]>("insertCustomTextArray")
@@ -159,6 +159,7 @@ extension DefaultKeys {
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
     // settings that are not in preferences
+    static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")

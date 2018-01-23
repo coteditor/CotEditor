@@ -44,19 +44,12 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         
         super.viewDidLoad()
         
-        // workaround for OS X Yosemite (on macOS 10.12 SDK)
-        if NSAppKitVersion.current < .macOS10_11 {
-            self.splitView.delegate = self
-        }
-        
         // -> needs layer to mask rounded window corners
         //                to redraw line number view background by thickness increase
         self.view.wantsLayer = true
         
-        // set behavior to glow window size on sidebar toggling rather than opening sidebar indraw (only on El Capitan or later)
-        if #available(macOS 10.11, *) {
-            self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
-        }
+        // set behavior to glow window size on sidebar toggling rather than opening sidebar indraw
+        self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         
         if UserDefaults.standard[.sidebarWidth] >= 100 {
             self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
@@ -96,10 +89,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// divider position did change
     override func splitViewDidResizeSubviews(_ notification: Notification) {
         
-        if #available(macOS 10.11, *) {
-            // -> Calling super's method crashes the app on Yosemite.
-            super.splitViewDidResizeSubviews(notification)
-        }
+        super.splitViewDidResizeSubviews(notification)
         
         if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
             // store current sidebar width
@@ -111,7 +101,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     /// disable toggling sidebar in the tab overview mode
-    override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         guard let action = item.action else { return false }
         
@@ -127,7 +117,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         default: break
         }
         
-        return super.validateToolbarItem(item)
+        return super.validateUserInterfaceItem(item)
     }
     
     
@@ -205,37 +195,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             return !(self.sidebarViewItem?.isCollapsed ?? true)
         }
         set (shown) {
-            // workaround for OS X Yosemite (on macOS 10.12 SDK)
-            guard #available(macOS 10.11, *) else {
-                guard self.sidebarViewItem?.isCollapsed == shown,
-                    let window = self.view.window else { return }
-                
-                let maxPosition = self.splitView.maxPossiblePositionOfDivider(at: 0)
-                
-                NSAnimationContext.current().withAnimation(false) {
-                    self.sidebarViewItem?.isCollapsed = !shown
-                }
-                
-                guard !window.styleMask.contains(.fullScreen) else { return }
-                
-                // don't adjust window size on the initial setting
-                if window.isVisible {
-                    // update window size manually
-                    let sidebarThickness = self.sidebarThickness + self.splitView.dividerThickness
-                    var windowFrame = window.frame
-                    windowFrame.size.width += shown ? sidebarThickness : -sidebarThickness
-                    window.setFrame(windowFrame, display: false)
-                }
-                
-                if shown {
-                    let position = maxPosition - (window.isVisible ? 0 : self.sidebarThickness)
-                    self.splitView.setPosition(position, ofDividerAt: 0)
-                    self.splitView.adjustSubviews()
-                }
-                
-                return
-            }
-            
             // update current tab possibly with an animation
             self.sidebarViewItem?.isCollapsed = !shown
             
@@ -252,12 +211,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// set visibility and tab of sidebar
     private func setSidebarShown(_ shown: Bool, index: SidebarViewController.TabIndex? = nil, animate: Bool = false) {
         
-        guard NSAppKitVersion.current >= .macOS10_11 else {
-            self.isSidebarShown = shown
-            return
-        }
-        
-        NSAnimationContext.current().withAnimation(animate) {
+        NSAnimationContext.current.withAnimation(animate) {
             self.isSidebarShown = shown
         }
         

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,13 +26,20 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Open a new document:"; ObjectID = "zDW-aW-9G8"; */
-"zDW-aW-9G8.title" = "打开新文档：";
+/* Class = "NSTextFieldCell"; title = "On startup:"; ObjectID = "zDW-aW-9G8"; */
+"zDW-aW-9G8.title" = "启动时：";
 
-/* Class = "NSButtonCell"; title = "On launch"; ObjectID = "3298"; */
-"3298.title" = "启动时";
-/* Class = "NSButtonCell"; title = "When CotEditor becomes active"; ObjectID = "3299"; */
-"3299.title" = "当 CotEditor 被激活时";
+/* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
+"QX9-BI-SIL.title" = "重新打开上次会话的窗口";
+/* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
+"wmw-xg-bSt.title" = "当无项目可以打开时：";
+
+/* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
+"i4c-DG-ADS.title" = "创建新文档";
+/* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
+"hIX-mh-cG4.title" = "显示打开对话框";
+/* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
+"KgD-GV-alV.title" = "不执行任何操作";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
@@ -40,10 +47,12 @@
 
 /* Class = "NSButtonCell"; title = "Enable Auto Save with Versions"; ObjectID = "SGo-FL-Pax"; */
 "SGo-FL-Pax.title" = "开启带有版本的自动保存";
-/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it disabled, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
+/* Class = "NSTextFieldCell"; title = "A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash."; ObjectID = "sOa-Ea-zt9"; */
 "sOa-Ea-zt9.title" = "在您编辑文件时自动覆盖保存文件的系统特性。即使被禁用，CotEditor 也会在程序崩溃时为您自动保存备份。";
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "保存时移除行尾空白";
+/* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
+"Tma-Oh-F7v.title" = "包含只有空格的行";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -60,24 +69,22 @@
 /* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "应用选项：";
 
-/* Class = "NSButtonCell"; title = "Share find text with other applications"; ObjectID = "3307"; */
-"3307.title" = "与其他应用共享查找字符串";
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "统计行尾为一个字符";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "链接文档中的 URL";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
 "3300.title" = "键入时检查拼写";
-/* Class = "NSButtonCell"; title = "Highlight matching braces “( )” “[ ]” “{ }”"; ObjectID = "RrC-LL-hid"; */
-"RrC-LL-hid.title" = "高亮配对括号“( )” “[ ]” “{ }”";
-/* Class = "NSButtonCell"; title = "Highlight “< >”"; ObjectID = "al9-WE-Rqy"; */
-"al9-WE-Rqy.title" = "高亮“< >”";
+/* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
+"RrC-LL-hid.title" = "高亮配对括号“()” “[]” “{}”";
+/* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
+"al9-WE-Rqy.title" = "高亮“<>”";
 
 
 /* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "软件更新：";
 
-/* Class = "NSButtonCell"; title = "Automatically check for updates"; ObjectID = "3423"; */
+/* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */
 "3423.title" = "自动检查更新";
 
 /* Class = "NSButtonCell"; title = "Update to pre-releases when available"; ObjectID = "4aT-ka-sbv"; */

@@ -31,7 +31,7 @@ final class ThemeMetaDataViewController: NSViewController {
     
     // MARK: Public Properties
     
-    dynamic var isBundled = false
+    @objc dynamic var isBundled = false
     
     
     
@@ -45,11 +45,11 @@ final class ThemeMetaDataViewController: NSViewController {
             let address = theme[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
             let url = URL(string: address)
             else {
-                NSBeep()
+                NSSound.beep()
                 return
         }
         
-        NSWorkspace.shared().open(url)
+        NSWorkspace.shared.open(url)
     }
     
 }

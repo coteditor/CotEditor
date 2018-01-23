@@ -1,3 +1,3 @@
 github "coteditor/YAML.framework" "coteditor-mod"
-github "sparkle-project/Sparkle"
+github "sparkle-project/Sparkle" "ui-separation-and-xpc"
 github "1024jp/WFColorCode"

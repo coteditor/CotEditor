@@ -32,7 +32,7 @@ final class EditPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    private lazy dynamic var isValidCompletion: Bool = self.validateCompletionSetting()
+    @objc private lazy dynamic var isValidCompletion: Bool = self.validateCompletionSetting()
     
     
     

@@ -1,0 +1,45 @@
+//
+// SizeSettingWindow.strings (Portuguese)
+// 
+// CotEditor
+// https://coteditor.com
+// 
+// Created by BR Lingo on 2018-01-15.
+// Localized by BR Lingo
+// 
+// ------------------------------------------------------------------------------
+// 
+// © 2018 CotEditor Project
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+// https://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+/* Class = "NSWindow"; title = "Sample Window for Size"; ObjectID = "127"; */
+"127.title" = "Janela de Amostra";
+
+/* Class = "NSTextFieldCell"; title = "Resize this window.\nThe size of this window will be set as default."; ObjectID = "3399"; */
+"3399.title" = "Redimensione esta janela.\nO tamanho desta janela será definido como o padrão.";
+
+/* Class = "NSTextFieldCell"; title = "Width:"; ObjectID = "3402"; */
+"3402.title" = "Largura:";
+/* Class = "NSTextFieldCell"; title = "Height:"; ObjectID = "3403"; */
+"3403.title" = "Altura:";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "ZN3-bX-0jB"; */
+"ZN3-bX-0jB.title" = "px";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "Uqw-EO-Xn7"; */
+"Uqw-EO-Xn7.title" = "px";
+
+/* Class = "NSButtonCell"; title = "Set to Default"; ObjectID = "3397"; */
+"3397.title" = "Definir como Padrão";
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3398"; */
+"3398.title" = "Cancelar";

@@ -99,12 +99,10 @@ class StringExtensionsTests: XCTestCase {
     
     func testJapaneseTransform() {
         
-        let testString = "犬 イヌ いぬ Ｉｎｕ Dog"
+        let testString = "犬 イヌ いぬ Ｉｎｕ Dog 123 １２３"
         
-        XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ")
-        XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog")
-        XCTAssertEqual(testString.katakana, "犬 イヌ イヌ Ｉｎｕ Dog")
-        XCTAssertEqual(testString.hiragana, "犬 いぬ いぬ Ｉｎｕ Dog")
+        XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
+        XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog 123 123")
     }
     
     
@@ -158,9 +156,9 @@ class StringExtensionsTests: XCTestCase {
         let set = CharacterSet(charactersIn: "._").inverted
         let string = "abc.d🐕f_ghij"
         
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.startIndex)!), "abc")
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.index(string.startIndex, offsetBy: 4))!), "d🐕f")
-        XCTAssertEqual(string.substring(with: string.rangeOfCharacters(from: set, at: string.index(before: string.endIndex))!), "ghij")
+        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.startIndex)!], "abc")
+        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.index(string.startIndex, offsetBy: 4))!], "d🐕f")
+        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.index(before: string.endIndex))!], "ghij")
     }
     
     
@@ -171,5 +169,49 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping, "\u{1f71}")  // test single char
         XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping, "\u{03b1}\u{0301}")
     }
+    
+    
+    func testWhitespaceTriming() {
+        
+        let string = """
+            
+            abc def
+                \t
+            white space -> \t
+            abc
+            """
+        
+        let trimmed = string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: false))
+        let expectedTrimmed = """
+            
+            abc def
+            
+            white space ->
+            abc
+            """
+        XCTAssertEqual(trimmed, expectedTrimmed)
+        
+        let trimmedIgnoringEmptyLines = string.trim(ranges: string.rangesOfTrailingWhitespace(ignoresEmptyLines: true))
+        let expectedTrimmedIgnoringEmptyLines =  """
+            
+            abc def
+                \t
+            white space ->
+            abc
+            """
+        XCTAssertEqual(trimmedIgnoringEmptyLines, expectedTrimmedIgnoringEmptyLines)
+    }
 
+}
+
+
+
+private extension String {
+    
+    func trim(ranges: [NSRange]) -> String {
+        
+        return ranges.reversed()
+            .map { Range($0, in: self)! }
+            .reduce(self) { $0.replacingCharacters(in: $1, with: "") }
+    }
 }

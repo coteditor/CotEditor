@@ -28,44 +28,6 @@
 
 import Cocoa
 
-struct KeyBinding: Hashable, Comparable, CustomStringConvertible {
-    
-    let action: Selector
-    let shortcut: Shortcut?
-    
-    
-    var description: String {
-        if let shortcut = self.shortcut {
-        return "<KeyBinding: \(self.action) - \(shortcut)>"
-        } else {
-            return "<KeyBinding: \(self.action)>"
-        }
-    }
-    
-    
-    var hashValue: Int {
-        
-        return (self.shortcut?.hashValue ?? -1) ^ self.action.hashValue
-    }
-    
-    
-    static func == (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
-        
-        return lhs.shortcut == rhs.shortcut && lhs.action == rhs.action
-    }
-    
-    
-    static func < (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
-        
-        return lhs.action.description < rhs.action.description
-    }
-    
-}
-
-
-
-// MARK: Error
-
 struct InvalidKeySpecCharactersError: LocalizedError {
     
     enum ErrorKind {
@@ -127,17 +89,18 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         guard
             let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
-            let customKeyBindings = try? KeyBindingSerialization.keyBindings(from: data)
+            let customKeyBindings = try? PropertyListDecoder().decode([KeyBinding].self, from: data)
             else {
                 return self.defaultKeyBindings
         }
         
-        let customizedActions = customKeyBindings.map { $0.action }
-        let customizedShortcuts = customKeyBindings.flatMap { $0.shortcut }
+        let sortedKeyBindings = Set(customKeyBindings.filter({ $0.shortcut?.isValid ?? true })).sorted()
+        let customizedActions = sortedKeyBindings.map { $0.action }
+        let customizedShortcuts = sortedKeyBindings.flatMap { $0.shortcut }
         let defaultKeyBindings = self.defaultKeyBindings
             .filter { !customizedActions.contains($0.action) && !customizedShortcuts.contains($0.shortcut!) }
         
-        let keyBindings = (defaultKeyBindings + customKeyBindings).filter { $0.shortcut != nil }
+        let keyBindings = (defaultKeyBindings + sortedKeyBindings).filter { $0.shortcut != nil }
         
         return Set(keyBindings)
     }()
@@ -205,7 +168,9 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
                 try FileManager.default.removeItem(at: fileURL)
             }
         } else {
-            let data = try KeyBindingSerialization.data(from: diff)
+            let encoder = PropertyListEncoder()
+            encoder.outputFormat = .xml
+            let data = try encoder.encode(diff.sorted())
             try data.write(to: fileURL, options: .atomic)
         }
         
@@ -255,67 +220,6 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
             .flatMap { $0 }
         
         return Set(keyBindings)
-    }
-    
-}
-
-
-
-// MARK: -
-
-struct KeyBindingSerialization {
-    
-    private struct Key {
-        
-        static let action = "action"
-        static let shortcut = "shortcut"
-        
-        private init() { }
-    }
-    
-    
-    /// create a KeyBinding collection from a plist-based data
-    ///
-    /// - note: Invalid key combinations will be ignored.
-    static func keyBindings(from data: Data) throws -> [KeyBinding] {
-        
-        let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
-        
-        guard let plistDict = plist as? [[String: String]], !plistDict.isEmpty else {
-            throw CocoaError(.propertyListReadCorrupt)
-        }
-        
-        let keyBindings: [KeyBinding] = plistDict.flatMap { item in
-            guard let action = item[Key.action] else { return nil }
-            
-            let shortcut: Shortcut? = {
-                guard let keySpecChars = item[Key.shortcut] else { return nil }
-                
-                let shortcut = Shortcut(keySpecChars: keySpecChars)
-                
-                return shortcut.isValid ? shortcut : nil
-            }()
-            
-            return KeyBinding(action: Selector(action), shortcut: shortcut)
-        }
-        
-        return Set(keyBindings).sorted()
-    }
-    
-    
-    /// create a Data to store from a KeyBinding collection
-    static func data(from keyBindings: [KeyBinding]) throws -> Data {
-        
-        let plist: [[String: String]] = Set(keyBindings).sorted().map { keyBinding in
-            if let shortcut = keyBinding.shortcut {
-                return [Key.action: NSStringFromSelector(keyBinding.action),
-                        Key.shortcut: shortcut.keySpecChars]
-            } else {
-                return [Key.action: NSStringFromSelector(keyBinding.action)]
-            }
-        }
-        
-        return try PropertyListSerialization.data(fromPropertyList: plist, format: .xml, options: 0)
     }
     
 }

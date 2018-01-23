@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@
 
 // MARK: Dock Menu
 
-/* Class = "NSMenuItem"; title = "New"; ObjectID = "Dq1-kY-xVh"; */
-"Dq1-kY-xVh.title" = "新規";
-/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "d1B-5p-GZQ"; */
-"d1B-5p-GZQ.title" = "開く...";
+/* Class = "NSMenuItem"; title = "New"; ObjectID = "qTb-gl-0V3"; */
+"qTb-gl-0V3.title" = "新規";
+/* Class = "NSMenuItem"; title = "Open…"; ObjectID = "I1W-t0-8TD"; */
+"I1W-t0-8TD.title" = "開く...";
 
 
 
@@ -42,7 +42,7 @@
 "57.title" = "CotEditor";
 
 /* Class = "NSMenuItem"; title = "About CotEditor"; ObjectID = "58"; */
-"58.title" = "CotEditor について";
+"58.title" = "CotEditorについて";
 
 /* Class = "NSMenuItem"; title = "Preferences…"; ObjectID = "129"; */
 "129.title" = "環境設定...";
@@ -53,14 +53,14 @@
 "131.title" = "サービス";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "CotEditor を隠す";
+"134.title" = "CotEditorを隠す";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
 "145.title" = "ほかを隠す";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "すべてを表示";
 
 /* Class = "NSMenuItem"; title = "Quit CotEditor"; ObjectID = "136"; */
-"136.title" = "CotEditor を終了";
+"136.title" = "CotEditorを終了";
 
 
 
@@ -99,8 +99,6 @@
 "80.title" = "別名で保存...";
 /* Class = "NSMenuItem"; title = "Revert to Saved"; ObjectID = "112"; */
 "112.title" = "最後に保存した状態に戻す";
-/* Class = "NSMenuItem"; title = "Share"; ObjectID = "U5u-O7-0EX"; */
-"U5u-O7-0EX.title" = "共有";
 
 /* Class = "NSMenuItem"; title = "Page Setup…"; ObjectID = "77"; */
 "77.title" = "ページ設定...";
@@ -142,8 +140,8 @@
 "631.title" = "バックスラッシュを入力";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "半角円マークを入力";
-/* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "文字を Unicode 16 進数で入力...";
+/* Class = "NSMenuItem"; title = "Input in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Unicode 16進数で入力...";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "スペルと文法";
@@ -167,7 +165,7 @@
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
 "gqI-2M-XIx.title" = "自動変換を表示";
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
-"QKD-ue-EQp.title" = "スマートコピー／ペースト";
+"QKD-ue-EQp.title" = "スマートコピー/ペースト";
 /* Class = "NSMenuItem"; title = "Smart Quotes"; ObjectID = "sza-9T-f4h"; */
 "sza-9T-f4h.title" = "スマート引用符";
 /* Class = "NSMenuItem"; title = "Smart Dashes"; ObjectID = "cIp-rb-QPk"; */
@@ -186,47 +184,6 @@
 
 
 
-// MARK: View
-
-/* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
-"322.title" = "表示";
-/* Class = "NSMenu"; title = "View"; ObjectID = "324"; */
-"324.title" = "表示";
-
-/* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
-"612.title" = "ツールバーを隠す";
-/* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
-"613.title" = "ツールバーをカスタマイズ…";  // Use … for auto-adding "Customize Touchbar…" below
-
-/* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
-"681.title" = "ナビゲーションバーを表示";
-/* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
-"323.title" = "行番号を表示";
-/* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
-"325.title" = "ステータスバーを表示";
-
-/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
-"749.title" = "ページガイドを表示";
-
-/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
-"793.title" = "エディタを分割";
-/* Class = "NSMenuItem"; title = "Focus on Next Split Editor"; ObjectID = "794"; */
-"794.title" = "フォーカスを次の分割エディタへ";
-/* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
-"795.title" = "フォーカスを前の分割エディタへ";
-/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
-"u46-te-4c4.title" = "分割エディタを縦に配置";
-/* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
-"796.title" = "分割エディタを閉じる";
-
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "エディタの不透明度...";
-
-/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
-"4mh-0E-3RJ.title" = "フルスクリーンにする";
-
-
-
 // MARK: Format
 
 /* Class = "NSMenuItem"; title = "Format"; ObjectID = "247"; */
@@ -241,9 +198,9 @@
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "295"; */
 "295.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "297"; */
-"297.title" = "クラシック Mac OS (CR)";
-/* Class = "NSMenuItem"; title = "Windows (CR/LF)"; ObjectID = "298"; */
-"298.title" = "Windows (CR/LF)";
+"297.title" = "クラシックMac OS (CR)";
+/* Class = "NSMenuItem"; title = "Windows (CRLF)"; ObjectID = "298"; */
+"298.title" = "Windows (CRLF)";
 
 /* Class = "NSMenuItem"; title = "File Encoding"; ObjectID = "299"; */
 "299.title" = "エンコーディング";
@@ -283,15 +240,71 @@
 /* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
 "788.title" = "不可視文字を表示";
 
+/* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
+"mEh-BD-ZlV.title" = "文章の方向";
+/* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
+"hxr-2A-KYT.title" = "文章の方向";
+/* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
+"6eV-nI-heo.title" = "向き";
+/* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
+"jQ7-hG-AjA.title" = "縦書き";
+/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
+"bTd-nG-jjc.title" = "縦書き";
+/* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */
+"ICu-yD-nVi.title" = "方向";
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
+"7pw-5S-ekC.title" = "左から右";
+/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
+"clG-Ph-Iyz.title" = "右から左";
+
 /* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
 "286.title" = "行を折り返す";
-/* Class = "NSMenuItem"; title = "Use Vertical Orientation"; ObjectID = "bTd-nG-jjc"; */
-"bTd-nG-jjc.title" = "縦書きに変更";
 
 /* Class = "NSMenuItem"; title = "Theme"; ObjectID = "8z7-Jc-agP"; */
 "8z7-Jc-agP.title" = "テーマ";
 /* Class = "NSMenu"; title = "Theme"; ObjectID = "165-HJ-Xty"; */
 "165-HJ-Xty.title" = "テーマ";
+
+
+
+// MARK: View
+
+/* Class = "NSMenuItem"; title = "View"; ObjectID = "322"; */
+"322.title" = "表示";
+/* Class = "NSMenu"; title = "View"; ObjectID = "324"; */
+"324.title" = "表示";
+
+/* Class = "NSMenuItem"; title = "Hide Toolbar"; ObjectID = "612"; */
+"612.title" = "ツールバーを非表示";
+/* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
+"613.title" = "ツールバーをカスタマイズ…";  // Use … for auto-adding "Customize Touchbar…" below
+
+/* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
+"681.title" = "ナビゲーションバーを表示";
+/* Class = "NSMenuItem"; title = "Show Line Numbers"; ObjectID = "323"; */
+"323.title" = "行番号を表示";
+/* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
+"325.title" = "ステータスバーを表示";
+
+/* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
+"749.title" = "ページガイドを表示";
+
+/* Class = "NSMenuItem"; title = "Split Editor"; ObjectID = "793"; */
+"793.title" = "エディタを分割";
+/* Class = "NSMenuItem"; title = "Focus on Next Split Editor"; ObjectID = "794"; */
+"794.title" = "フォーカスを次の分割エディタへ";
+/* Class = "NSMenuItem"; title = "Focus on Previous Split Editor"; ObjectID = "795"; */
+"795.title" = "フォーカスを前の分割エディタへ";
+/* Class = "NSMenuItem"; title = "Stack Editors Vertically"; ObjectID = "u46-te-4c4"; */
+"u46-te-4c4.title" = "分割エディタを縦に配置";
+/* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
+"796.title" = "分割エディタを閉じる";
+
+/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "エディタの不透明度...";
+
+/* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
+"4mh-0E-3RJ.title" = "フルスクリーンにする";
 
 
 
@@ -307,7 +320,7 @@
 /* Class = "NSMenu"; title = "Comment"; ObjectID = "yph-qH-qNE"; */
 "yph-qH-qNE.title" = "コメント";
 /* Class = "NSMenuItem"; title = "Toggle Comment"; ObjectID = "LLy-Yx-tXI"; */
-"LLy-Yx-tXI.title" = "コメント状態をトグル";
+"LLy-Yx-tXI.title" = "コメント状態を変更";
 /* Class = "NSMenuItem"; title = "Inline Comment"; ObjectID = "F6P-7N-LSf"; */
 "F6P-7N-LSf.title" = "インラインコメントアウト";
 /* Class = "NSMenuItem"; title = "Block Comment"; ObjectID = "U5v-4k-2tq"; */
@@ -337,7 +350,9 @@
 /* Class = "NSMenuItem"; title = "Move Down"; ObjectID = "J59-OR-kzC"; */
 "J59-OR-kzC.title" = "下へ移動";
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
-"OQl-Uo-yfn.title" = "ソート";
+"OQl-Uo-yfn.title" = "並び替え";
+/* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
+"lNH-Mh-pIE.title" = "条件で並び替え...";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "反転";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
@@ -377,9 +392,13 @@
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
 "LC4-lg-eO0.title" = "語頭を大文字にする";
 
-/* Class = "NSMenuItem"; title = "ASCII to Fullwidth ASCII"; ObjectID = "586"; */
+/* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
+"dVK-1s-xJq.title" = "全角にする";
+/* Class = "NSMenuItem"; title = "Full-width to Half-width"; ObjectID = "Skr-vI-7VN"; */
+"Skr-vI-7VN.title" = "半角にする";
+/* Class = "NSMenuItem"; title = "ASCII to Full-width ASCII"; ObjectID = "586"; */
 "586.title" = "全角英数にする";
-/* Class = "NSMenuItem"; title = "Fullwidth ASCII to ASCII"; ObjectID = "588"; */
+/* Class = "NSMenuItem"; title = "Full-width ASCII to ASCII"; ObjectID = "588"; */
 "588.title" = "半角英数にする";
 
 /* Class = "NSMenuItem"; title = "Japanese Text"; ObjectID = "XWV-by-mnw"; */
@@ -390,29 +409,43 @@
 "594.title" = "カタカナをひらがなにする";
 
 /* Class = "NSMenu"; title = "Unicode Normalizations"; ObjectID = "600"; */
-"600.title" = "Unicode 正規化";
+"600.title" = "Unicode正規化";
 /* Class = "NSMenuItem"; title = "Unicode Normalizations"; ObjectID = "599"; */
-"599.title" = "Unicode 正規化";
+"599.title" = "Unicode正規化";
 
 /* Class = "NSMenuItem"; title = "NFD"; ObjectID = "601"; */
 "601.title" = "NFD";
+/* Class = "NSMenuItem"; title = "Canonical Decomposition"; ObjectID = "601"; */
+"601.ibShadowedToolTip" = "正準等価によって分解";
 /* Class = "NSMenuItem"; title = "NFC"; ObjectID = "602"; */
 "602.title" = "NFC";
+/* Class = "NSMenuItem"; title = "Canonical Decomposition, followed by Canonical Composition"; ObjectID = "602"; */
+"602.ibShadowedToolTip" = "正準等価によって分解し、正準等価によって合成";
 /* Class = "NSMenuItem"; title = "NFKD"; ObjectID = "603"; */
 "603.title" = "NFKD";
+/* Class = "NSMenuItem"; title = "Compatibility Decomposition"; ObjectID = "603"; */
+"603.ibShadowedToolTip" = "互換性等価によって分解";
 /* Class = "NSMenuItem"; title = "NFKC"; ObjectID = "598"; */
 "598.title" = "NFKC";
+/* Class = "NSMenuItem"; title = "Compatibility Decomposition, followed by Canonical Composition"; ObjectID = "598"; */
+"598.ibShadowedToolTip" = "互換性等価によって分解し、正準等価によって合成";
 /* Class = "NSMenuItem"; title = "NFKC Casefold"; ObjectID = "zuR-3K-9fs"; */
 "zuR-3K-9fs.title" = "NFKC Casefold";
+/* Class = "NSMenuItem"; title = "Applying NFKC, CaseFolding, and removal of default-ignorable code points"; ObjectID = "zuR-3K-9fs"; */
+"zuR-3K-9fs.ibShadowedToolTip" = "NFKCを適用しすべて小文字に変換したのち、デフォルトの無視できるコードポイントを削除";
 /* Class = "NSMenuItem"; title = "Modified NFD (HFS+)"; ObjectID = "NU7-EI-1Ct"; */
-"NU7-EI-1Ct.title" = "修正 NFD (HFS+)";
+"NU7-EI-1Ct.title" = "修正NFD (HFS+)";
+/* Class = "NSMenuItem"; title = "Unofficial NFD-based normalization form used in HFS+"; ObjectID = "NU7-EI-1Ct"; */
+"NU7-EI-1Ct.ibShadowedToolTip" = "HFS+で使用されているNFDを基にした非公式の正規化形式";
 /* Class = "NSMenuItem"; title = "Modified NFC (HFS+)"; ObjectID = "n6C-Km-BM9"; */
-"n6C-Km-BM9.title" = "修正 NFC (HFS+)";
+"n6C-Km-BM9.title" = "修正NFC (HFS+)";
+/* Class = "NSMenuItem"; title = "Unofficial NFC-based normalization form corresponding to Modified NFD"; ObjectID = "n6C-Km-BM9"; */
+"n6C-Km-BM9.ibShadowedToolTip" = "修正NFDに対応するNFCを基にした非公式の正規化形式";
 
-/* Class = "NSMenuItem"; title = "Insert IANA Charset Name"; ObjectID = "663"; */
-"663.title" = "IANA エンコーディング名を挿入";
+/* Class = "NSMenuItem"; title = "Insert Encoding Name"; ObjectID = "663"; */
+"663.title" = "エンコーディング名を挿入";
 /* Class = "NSMenuItem"; title = "Insert encoding name as IANA charset"; ObjectID = "663"; */
-"663.ibShadowedToolTip" = "エンコーディング名をIANA 文字コード名として挿入";
+"663.ibShadowedToolTip" = "エンコーディング名をIANA文字コード名として挿入";
 
 /* Class = "NSMenuItem"; title = "Inspect Character"; ObjectID = "ToR-yH-ahH"; */
 "ToR-yH-ahH.title" = "文字情報を表示";
@@ -478,19 +511,13 @@
 /* Class = "NSMenuItem"; title = "Minimize"; ObjectID = "23"; */
 "23.title" = "しまう";
 /* Class = "NSMenuItem"; title = "Zoom"; ObjectID = "203"; */
-"203.title" = "拡大／縮小";
+"203.title" = "拡大/縮小";
 
 /* Class = "NSMenuItem"; title = "Bring All to Front"; ObjectID = "5"; */
 "5.title" = "すべてを手前に移動";
 
-/* Class = "NSMenuItem"; title = "Panels"; ObjectID = "649"; */
-"649.title" = "パネル";
-/* Class = "NSMenu"; title = "Panels"; ObjectID = "650"; */
-"650.title" = "パネル";
-/* Class = "NSMenuItem"; title = "Console Panel"; ObjectID = "653"; */
-"653.title" = "コンソールパネル";
-/* Class = "NSMenuItem"; title = "Color Code Panel"; ObjectID = "651"; */
-"651.title" = "カラーコードパネル";
+/* Class = "NSMenuItem"; title = "Console"; ObjectID = "653"; */
+"653.title" = "コンソール";
 
 
 
@@ -511,27 +538,27 @@
 "106.title" = "ヘルプ";
 
 /* Class = "NSMenuItem"; title = "CotEditor Help"; ObjectID = "111"; */
-"111.title" = "CotEditor ヘルプ";
+"111.title" = "CotEditorヘルプ";
 
-/* Class = "NSMenuItem"; title = "CotEditor Scripting Manual"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "CotEditor スクリプトマニュアル";
-/* Class = "NSMenu"; title = "CotEditor Scripting Manual"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "CotEditor スクリプトマニュアル";
+/* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
+"M1N-Fg-Bo4.title" = "CotEditorスクリプトガイド";
+/* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
+"OLa-Mb-rXS.title" = "CotEditorスクリプトガイド";
 /* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "スクリプトについて";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
-"620.title" = "AppleScript 辞書";
+"620.title" = "AppleScript辞書";
 
 /* Class = "NSMenuItem"; title = "Release Notes"; ObjectID = "822"; */
 "822.title" = "リリースノート";
 /* Class = "NSMenuItem"; title = "What’s New in CotEditor"; ObjectID = "DCW-Ij-540"; */
-"DCW-Ij-540.title" = "CotEditor の新機能";
+"DCW-Ij-540.title" = "CotEditorの新機能";
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "謝辞";
 
-/* Class = "NSMenuItem"; title = "Create Bug Report…"; ObjectID = "iHn-Ed-A8u"; */
+/* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
 "iHn-Ed-A8u.title" = "不具合レポートを作成...";
-/* Class = "NSMenuItem"; title = "Report Bug"; ObjectID = "Bk3-xx-uft"; */
+/* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "不具合を報告";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
-"g34-YV-E6o.title" = "CotEditor Web サイト";
+"g34-YV-E6o.title" = "CotEditor Webサイト";

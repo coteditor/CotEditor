@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,24 +41,22 @@ final class ThemeViewController: NSViewController {
     
     // MARK: Public Properties
     
-    dynamic var theme: ThemeDictionary? {
+    @objc dynamic var theme: ThemeDictionary? {
         willSet {
             // remove current observing (in case when the theme is restored)
             self.endThemeObserving()
-            
-            // observe input theme
-            if let theme = newValue {
-                self.observe(theme: theme)
-            }
         }
         didSet {
+            // observe input theme
+            self.beginThemeObserving()
+            
             // add metadata's NSMutableDictionary beforehand for KVO by NSObjectController
             if self.theme?[DictionaryKey.metadata.rawValue] == nil {
                 self.theme?[DictionaryKey.metadata.rawValue] = NSMutableDictionary()
             }
         }
     }
-    dynamic var isBundled = false
+    @objc dynamic var isBundled = false
     
     weak var delegate: ThemeViewControllerDelegate?
     
@@ -89,7 +87,7 @@ final class ThemeViewController: NSViewController {
     }
     
     
-    /// send data to meta data popover
+    /// send data to metadata popover
     override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
         
         guard let destinationController = segue.destinationController as? ThemeMetaDataViewController else { return }
@@ -100,7 +98,7 @@ final class ThemeViewController: NSViewController {
     }
     
     
-    /// meta data popover closed
+    /// metadata popover closed
     override func dismissViewController(_ viewController: NSViewController) {
         
         if viewController is ThemeMetaDataViewController,
@@ -126,10 +124,10 @@ final class ThemeViewController: NSViewController {
     /// apply system highlight color to color well
     @IBAction func applySystemSelectionColor(_ button: NSButton) {
         
-        guard button.state == NSOnState else { return }
+        guard button.state == .on else { return }
         
         let color = NSColor.selectedTextBackgroundColor
-        let colorCode = color.usingColorSpaceName(NSCalibratedRGBColorSpace)?.colorCode(type: .hex)
+        let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
         
         self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
     }
@@ -152,22 +150,22 @@ final class ThemeViewController: NSViewController {
     }
     
     
-    /// start observing theme change
-    private func observe(theme: ThemeDictionary) {
+    /// begin observing theme change
+    private func beginThemeObserving() {
+        
+        guard let theme = self.theme else { return }
         
         for (key, subdict) in theme {
             guard key != DictionaryKey.metadata.rawValue else { continue }
             
-            for subkey in subdict.allKeys {
-                guard let keyPath = subkey as? String else { continue }
-                
+            for case let keyPath as String in subdict.allKeys {
                 subdict.addObserver(self, forKeyPath: keyPath, context: nil)
             }
         }
     }
     
     
-    /// end observingcurrent theme
+    /// end observing current theme
     private func endThemeObserving() {
         
         guard let theme = self.theme else { return }
@@ -175,9 +173,7 @@ final class ThemeViewController: NSViewController {
         for (key, subdict) in theme {
             guard key != DictionaryKey.metadata.rawValue else { continue }
             
-            for subkey in subdict.allKeys {
-                guard let keyPath = subkey as? String else { continue }
-                
+            for case let keyPath as String in subdict.allKeys {
                 subdict.removeObserver(self, forKeyPath: keyPath)
             }
         }

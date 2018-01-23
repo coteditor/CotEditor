@@ -30,11 +30,16 @@ import WebKit
 
 final class WebDocumentWindowController: NSWindowController, WKNavigationDelegate {
     
+    // MARK: Public Properties
+    
+    var userStyleSheet: String?
+    
+    
     // MARK: Private Properties
     
     private let fileURL: URL
     
-    private dynamic weak var webView: WKWebView?
+    @objc private dynamic weak var webView: WKWebView?
     
     
     
@@ -57,9 +62,9 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
     }
     
     
-    override var windowNibName: String? {
+    override var windowNibName: NSNib.Name? {
         
-        return "WebDocumentWindow"
+        return NSNib.Name("WebDocumentWindow")
     }
     
     
@@ -70,6 +75,8 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
     override func windowDidLoad() {
         
         super.windowDidLoad()
+        
+        self.window?.backgroundColor = .white
         
         // set webView programmically
         let webView = WKWebView(frame: .zero)
@@ -92,10 +99,31 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
         guard
             navigationAction.navigationType == .linkActivated,
             let url = navigationAction.request.url, url.host != nil,
-            NSWorkspace.shared().open(url)
+            NSWorkspace.shared.open(url)
             else { return decisionHandler(.allow) }
         
         decisionHandler(.cancel)
+    }
+    
+    
+    /// document was loaded
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        
+        if let style = self.userStyleSheet {
+            self.apply(styleSheet: style)
+        }
+    }
+    
+    
+    
+    // MARK: Private Method
+    
+    /// apply user style sheet to current page
+    private func apply(styleSheet: String) {
+        
+        let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
+        
+        self.webView?.evaluateJavaScript(js, completionHandler: nil)
     }
 
 }

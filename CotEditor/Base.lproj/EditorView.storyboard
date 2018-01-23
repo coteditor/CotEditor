@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +23,9 @@
                                 <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <connections>
+                            <outlet property="delegate" destination="sY9-RN-jMg" id="75b-iN-Dc5"/>
+                        </connections>
                     </splitView>
                     <connections>
                         <outlet property="navigationBarItem" destination="1jV-uy-ka5" id="zJG-DA-wzB"/>
@@ -97,7 +101,7 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <button toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
+                            <button hidden="YES" toolTip="Close split editor" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Bmo-XE-CCn">
                                 <rect key="frame" x="418" y="-2" width="17" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Bmo-XE-CCn" secondAttribute="height" multiplier="1:1" id="IhJ-DE-v24"/>
@@ -111,9 +115,9 @@
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
-                                <rect key="frame" x="60" y="-1" width="16" height="17"/>
+                                <rect key="frame" x="60" y="0.0" width="16" height="16"/>
                             </progressIndicator>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
                                 <rect key="frame" x="82" y="1" width="107" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
                                     <font key="font" metaFont="smallSystem"/>
@@ -170,7 +174,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textView identifier="coreTextView" importsGraphics="NO" richText="NO" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
+                                <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="450" height="284"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

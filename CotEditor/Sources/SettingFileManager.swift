@@ -35,18 +35,17 @@ enum SettingFileType {
 }
 
 
-extension Notification.Name {
-    
-    /// Posted when the line-up of setting files did update. The sender is a manager.
-    static let SettingListDidUpdate = Notification.Name("SettingListDidUpdate")
-    
-    /// Posted when a setting file is updated.  Information about new/previous setting names are in userInfo. The sender is a manager.
-    static let SettingDidUpdate = Notification.Name("SettingDidUpdate")
-}
-
-
 
 class SettingFileManager: SettingManager {
+    
+    // MARK: Notification Names
+    
+    /// Posted when the line-up of setting files did update. The sender is a manager.
+    static let didUpdateSettingListNotification = Notification.Name("SettingFileManagerDidUpdateSettingList")
+    
+    /// Posted when a setting file is updated. Information about new/previous setting names are in userInfo. The sender is a manager.
+    static let didUpdateSettingNotification = Notification.Name("SettingFileManagerDidUpdateSetting")
+    
     
     /// general notification's userInfo keys
     enum NotificationKey {
@@ -60,8 +59,8 @@ class SettingFileManager: SettingManager {
     // MARK: -
     // MARK: Abstract Methods
     
-    /// path extension for user setting file
-    var filePathExtension: String { preconditionFailure() }
+    /// path extensions for user setting file
+    var filePathExtensions: [String] { preconditionFailure() }
     
     /// setting file type
     var settingFileType: SettingFileType { preconditionFailure() }
@@ -79,6 +78,23 @@ class SettingFileManager: SettingManager {
     
     
     // MARK: Public Methods
+    
+    /// default path extension for user setting file
+    var filePathExtension: String {
+        
+        return self.filePathExtensions.first!
+    }
+    
+    
+    /// file urls for user settings
+    var userSettingFileURLs: [URL]? {
+        
+        return (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
+                                                             includingPropertiesForKeys: nil,
+                                                             options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
+            .filter { self.filePathExtensions.contains($0.pathExtension) }
+    }
+    
     
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {
@@ -131,7 +147,6 @@ class SettingFileManager: SettingManager {
     }
     
     
-    /// return setting name appending localized " Copy" + number suffix without extension
     /// return setting name appending number suffix without extension
     func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         
@@ -291,14 +306,14 @@ class SettingFileManager: SettingManager {
     /// notify about a line-up update of managed setting files.
     func notifySettingListUpdate() {
         
-        NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
+        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
     }
     
     
     /// notify about change of a managed setting
     func notifySettingUpdate(oldName: String, newName: String) {
         
-        NotificationCenter.default.post(name: .SettingDidUpdate, object: self,
+        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingNotification, object: self,
                                         userInfo: [SettingFileManager.NotificationKey.old: oldName,
                                                    SettingFileManager.NotificationKey.new: newName])
     }

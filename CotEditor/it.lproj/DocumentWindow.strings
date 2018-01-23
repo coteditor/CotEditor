@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,13 +26,26 @@
  
  */
 
+/* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
+"Kfj-q6-61N.label" = "Ispettore del documento";
+/* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
+"JZo-ok-Dks.label" = "Caratteri incompatibili";
+
+
 /* Class = "NSToolbarItem"; ObjectID = "9p6-Sj-QjF"; */
 "9p6-Sj-QjF.label" = "Fine riga";  /* Line Endings */
 "9p6-Sj-QjF.paletteLabel" = "Fine riga";  /* Line Endings */
 "9p6-Sj-QjF.toolTip" = "Modifica fine riga";  /* Change line endings */
 
-/* Class = "NSMenuItem"; ibShadowedToolTip = "Unix / macOS"; ObjectID = "YT7-vd-3ih"; */
-"YT7-vd-3ih.ibShadowedToolTip" = "Unix / macOS";
+/* Class = "NSMenuItem"; title = "LF"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.title" = "LF";
+/* Class = "NSMenuItem"; title = "CR"; ObjectID = "J48-tF-WBo"; */
+"J48-tF-WBo.title" = "CR";
+/* Class = "NSMenuItem"; title = "CRLF"; ObjectID = "Zo1-Cc-YBm"; */
+"Zo1-Cc-YBm.title" = "CRLF";
+
+/* Class = "NSMenuItem"; ibShadowedToolTip = "macOS / Unix"; ObjectID = "YT7-vd-3ih"; */
+"YT7-vd-3ih.ibShadowedToolTip" = "macOS / Unix";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Classic Mac OS"; ObjectID = "J48-tF-WBo"; */
 "J48-tF-WBo.ibShadowedToolTip" = "Mac OS classico";
 /* Class = "NSMenuItem"; ibShadowedToolTip = "Windows"; ObjectID = "Zo1-Cc-YBm"; */
@@ -90,12 +103,12 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "Caratteri invisibili";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "Mostra/Nasconde la guida in linea della pagina";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "Guida della pagina";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "Mostra/Nascondi la guida della pagina";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "Mostra/Nascondi la guida della pagina";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "Mostra/Nascondi la guida della pagina";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
@@ -116,7 +129,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Controllo ortografia";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Controllo ortografia";  /* Spell Check */
-"Ply-Nr-aOE.toolTip" = "Mostra il pannello per il controllo dell’ortografia e della grammatica";  /* Show spelling and grammar panel */
+"Ply-Nr-aOE.toolTip" = "Mostra il controllo dell’ortografia e della grammatica";  /* Show spelling and grammar */
 
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "Codice colore";  /* Color Code */

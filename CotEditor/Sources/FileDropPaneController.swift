@@ -46,14 +46,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.formatTextView?.delegate = nil
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
@@ -95,12 +87,10 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// extension field was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
-        guard control.identifier == FileDropComposer.SettingKey.extensions else { return true }
+        guard control.identifier?.rawValue == FileDropComposer.SettingKey.extensions else { return true }
         
         // sanitize
-        if let string = fieldEditor.string {
-            fieldEditor.string = type(of: self).sanitize(extensionsString: string)
-        }
+        fieldEditor.string = type(of: self).sanitize(extensionsString: fieldEditor.string)
         
         self.saveSetting()
         
@@ -145,8 +135,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     
     
     /// set action on swiping theme name
-    @available(macOS 10.11, *)
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         
@@ -218,7 +207,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         let defaultSetting = DefaultSettings.defaults[DefaultKeys.fileDropArray.rawValue] as! [[String: String]]
         if defaultSetting.count == sanitized.count,
             !zip(defaultSetting, sanitized).contains(where: { $0 != $1 }) {
-            UserDefaults.standard[.fileDropArray] = nil
+            UserDefaults.standard.restore(key: .fileDropArray)
             return
         }
         
@@ -235,10 +224,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // make data mutable for NSArrayController
         let content = NSMutableArray()
-        if let settings = UserDefaults.standard[.fileDropArray] as? [[String: String]] {
-            for setting in settings {
-                content.add(NSMutableDictionary(dictionary: setting))
-            }
+        for setting in UserDefaults.standard[.fileDropArray] {
+            content.add(NSMutableDictionary(dictionary: setting))
         }
         self.fileDropController?.content = content
     }
@@ -271,14 +258,12 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
-        alert.beginSheetModal(for: self.view.window!) { [weak self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: self.view.window!) { [weak self] (returnCode: NSApplication.ModalResponse) in
             guard let strongSelf = self else { return }
             
-            guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
+            guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                if #available(macOS 10.11, *) {
-                    strongSelf.tableView?.rowActionsVisible = false
-                }
+                strongSelf.tableView?.rowActionsVisible = false
                 return
             }
             

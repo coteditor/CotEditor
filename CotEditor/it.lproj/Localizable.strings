@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,9 +38,8 @@
 
 
 // Share menu
+"Share" = "Condividi";
 "No Document" = "Nessun documento";
-"File" = "File";
-"Text" = "Testo";
 
 
 
@@ -155,13 +154,6 @@
 
 
 
-/* MARK: Document Window */
-// Sidebar pane switcher tooltips
-"Document Inspector" = "Ispettore del documento";
-"Incompatible Characters" = "Caratteri incompatibili";
-
-
-
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisibili";
@@ -220,7 +212,7 @@
 // Undo action names
 "Replace Text" = "Sostituisci testo";
 "Insert Text" = "Inserisci testo";
-"Insert Custom Text" = "Inserisci testo personalizzato";
+"Insert Snippet" = "Inserisci snippet";
 "Shift Right" = "Scorri a destra";
 "Shift Left" = "Scorri a sinistra";
 "Convert Indentation" = "Converti rientro";
@@ -268,8 +260,6 @@
 "Show Page Guide" = "Mostra guida pagina";
 "Unwrap Lines" = "Rimuovi a capo automatico";
 "Wrap Lines" = "A capo automatico";
-"Use Vertical Orientation" = "Usa orientamento verticale";
-"Use Horizontal Orientation" = "Usa orientamento orizzontale";
 
 // Tooltip for "Show Invisible Characters" menu item
 "Show or hide invisible characters in document" = "Mostra o nascondi i caratteri invisibili nel documento";
@@ -414,7 +404,7 @@
 "“%@” couldn’t be imported." = "Non è stato possibile importare “%@”.";
 "No original file for “%@” was found." = "Nessun file originale trovato per “%@”.";
 
-// Setting file name warnings
+// Setting filename warnings
 "Please choose another name." = "Si prega di scegliere un altro nome.";
 "Name can’t be empty." = "Il nome non può essere vuoto.";
 "You can’t use a name that contains “/”." = "Il nome non può contenere il simbolo “/”.";
@@ -453,8 +443,8 @@
 "Begin string" = "Inizio stringa";
 "End string" = "Fine stringa";
 "Regular expression" = "Espressione regolare";
-"multiple registered." = "Termine registrato più volte.";
-"Regex Error: " = "Errore Regex: ";
+"The same word is registered multiple times." = "La stessa parola risulta registrata più volte.";
+"Regular Expression Error: " = "Errore nell’espressione regolare: ";
 
 
 
@@ -471,7 +461,7 @@
 
 /* MARK: KeyBindingManager */
 // Label for text menu keybindings action
-"Insert Text %@" = "Inserisci testo %@";
+"Insert Text %li" = "Inserisci testo %li";
 
 // Keyboard key name
 "Space" = "Spazio";

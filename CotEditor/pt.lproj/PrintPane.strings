@@ -1,0 +1,151 @@
+//
+// PrintPane.strings (Portuguese)
+// 
+// CotEditor
+// https://coteditor.com
+// 
+// Created by BR Lingo on 2018-01-15.
+// Localized by BR Lingo
+// 
+// ------------------------------------------------------------------------------
+// 
+// © 2018 CotEditor Project
+// 
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+// 
+// https://www.apache.org/licenses/LICENSE-2.0
+// 
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
+"C9y-bs-mE1.title" = "Fonte:";
+/* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
+"PfG-m4-gpq.title" = "Usar fonte do documento";
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
+"3385.title" = "Selecionar…";
+
+
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
+"3388.title" = "Cor:";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
+"1353.title" = "Preto e Branco";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
+"1354.title" = "Usar Ajustes do Documento";
+
+/* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
+"3380.title" = "Números das linhas:";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
+"946.title" = "Não Imprimir";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
+"947.title" = "Usar Ajustes do Documento";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "948"; */
+"948.title" = "Imprimir";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
+"3382.title" = "Invisíveis:";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
+"952.title" = "Não Imprimir";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
+"953.title" = "Usar Ajustes do Documento";
+/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
+"954.title" = "Imprimir Tudo";
+
+/* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
+"3368.title" = "Imprimir cabeçalho";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
+"3369.title" = "Primário:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
+"895.title" = "Nenhum";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "uuc-7D-Iot"; */
+"uuc-7D-Iot.title" = "Nome da Sintaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "896"; */
+"896.title" = "Nome do Documento";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "897"; */
+"897.title" = "Caminho do Arquivo";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "898"; */
+"898.title" = "Data da Impressão";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "893"; */
+"893.title" = "Número da Página";
+
+/* Class = "NSSegmentedCell"; Jap-f3-ehL.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Jap-f3-ehL"; */
+"Jap-f3-ehL.ibShadowedToolTips[0]" = "Alinhar à Esquerda";  /* Align Left */
+"Jap-f3-ehL.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
+"Jap-f3-ehL.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
+"3373.title" = "Secundário:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
+"906.title" = "Nenhum";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "plk-U5-NGA"; */
+"plk-U5-NGA.title" = "Nome da Sintaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "902"; */
+"902.title" = "Nome do Documento";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "903"; */
+"903.title" = "Caminho do Arquivo";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "904"; */
+"904.title" = "Data da Impressão";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "905"; */
+"905.title" = "Número da Página";
+
+/* Class = "NSSegmentedCell"; 90p-SJ-bXq.ibShadowedToolTips[0] = "Align Left"; ObjectID = "90p-SJ-bXq"; */
+"90p-SJ-bXq.ibShadowedToolTips[0]" = "Alinhar à Esquerda";  /* Align Left */
+"90p-SJ-bXq.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
+"90p-SJ-bXq.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
+
+
+
+/* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "3375"; */
+"3375.title" = "Imprimir rodapé";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
+"3379.title" = "Primário:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
+"941.title" = "Nenhum";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Mvg-wT-FTM"; */
+"Mvg-wT-FTM.title" = "Nome da Sintaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "937"; */
+"937.title" = "Nome do Documento";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "938"; */
+"938.title" = "Caminho do Arquivo";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "939"; */
+"939.title" = "Data da Impressão";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "940"; */
+"940.title" = "Número da Página";
+
+/* Class = "NSSegmentedCell"; Zgh-yF-xd2.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Zgh-yF-xd2"; */
+"Zgh-yF-xd2.ibShadowedToolTips[0]" = "Alinhar à Esquerda";  /* Align Left */
+"Zgh-yF-xd2.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
+"Zgh-yF-xd2.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
+"3377.title" = "Secundário:";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
+"927.title" = "Nenhum";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "ckJ-Cw-ccE"; */
+"ckJ-Cw-ccE.title" = "Nome da Sintaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "929"; */
+"929.title" = "Nome do Documento";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "930"; */
+"930.title" = "Caminho do Arquivo";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "931"; */
+"931.title" = "Data da Impressão";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "932"; */
+"932.title" = "Número da Página";
+
+/* Class = "NSSegmentedCell"; Pjk-d8-E4v.ibShadowedToolTips[0] = "Align Left"; ObjectID = "Pjk-d8-E4v"; */
+"Pjk-d8-E4v.ibShadowedToolTips[0]" = "Alinhar à Esquerda";  /* Align Left */
+"Pjk-d8-E4v.ibShadowedToolTips[1]" = "Centralizar";  /* Center */
+"Pjk-d8-E4v.ibShadowedToolTips[2]" = "Alinhar à Direita";  /* Align Right */

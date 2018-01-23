@@ -4,7 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Acknowledgments</title>
     <style>
-        *     { margin: 0 }
+        *     { margin: 0; padding: 0 }
         body  { font:12px/1.4 -apple-system, sans-serif; padding: 8px 16px }
         h1    { font-size: 18px; margin: 10px 0 }
         h2    { font-size: 14px; margin: 0 0 0.2em }
@@ -15,15 +15,16 @@
         ul li { margin: 0 0 0.4em; list-style-type: circle }
         
         a:link,
-        a:visited      { color: hsl(90,45%,45%) }
-        a:not([href])  { color: #888 }
-        a:hover        { text-decoration: none }
+        a:visited       { color: hsl(90,45%,45%) }
+        a:not([href])   { color: #888 }
+        a:hover         { text-decoration: none }
         
-        section        { margin: 2em 0 3em; }
-        blockquote pre { font: 90%/1.3 -apple-system, sans-serif; color: #777;
-                         margin: 1em 0.5em; white-space: pre-wrap;
-                         border-left: 3px solid #eee; padding-left: 1em }
-        h3 span        { font-size: 90%; font-weight: normal; color: #777 }
+        section         { margin: 2em 0 1em; }
+        section+section { margin-top: 3em }
+        blockquote pre  { font: 90%/1.3 -apple-system, sans-serif; color: #777;
+                          margin: 1em 0.5em; white-space: pre-wrap;
+                          border-left: 3px solid #eee; padding-left: 1em }
+        h3 span         { font-size: 90%; font-weight: normal; color: #777 }
         
         #Libraries    h3::before { content: '📦 ' }
         #InfoSource   h2::before { content: '📚 ' }
@@ -35,11 +36,11 @@
 <body>
 <h1>Acknowledgments</h1>
 
-<p>CotEditor is developed using the following nicely technologies. We are deeply grateful for those who let us use their valuable programs/information for making CotEditor.</p>
+<p>CotEditor is developed using the following awesome technologies. We are deeply grateful for those who let us use their valuable programs/information to develop CotEditor.</p>
 
 
 <section id="Libraries">
-<section>
+<section class="non-appstore">
 <h3>Sparkle <span>(only on non-AppStore ver.)</span></h3>
 <p><a href="https://sparkle-project.org">https://sparkle-project.org</a></p>
 <p>Thanks to Sparkle, the software update framework, by Andy Matuschak et al. Sparkle is distributed under the <em>MIT license</em>, as specified below.</p>
@@ -50,7 +51,7 @@
 © 2011-2014 Kornel Lesiński
 © 2015-2017 Mayur Pawashe
 © 2014 C.W. Betts
-© 2014 Petroules Corporation, Sparkle Project contributors
+© 2014 Petroules Corporation
 © 2014 Big Nerd Ranch
 All rights reserved.
 
@@ -140,12 +141,8 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 <section id="InfoSource">
 <h2>Other Information Sources</h2>
 <ul>
-    <li>Thanks to JSDTextView by James S. Derry &lt;<a href="http://www.balthisar.com">http://www.balthisar.com</a>&gt; on which CotEditor's line number display is based. JSDTextView has been distributed under the <em>public domain</em>.</li>
-    <li>Thanks to Smultron by Peter Borg &lt;<a href="http://smultron.sourceforge.net/">http://smultron.sourceforge.net</a>&gt; on which CotEditor's functions, such as customizing the tab width, selecting inside of the brackets, scanning the file encoding declaration, are based. Smultron version 2 was distributed under the <em>BSD license</em>.</li>
     <li>Thanks to FJDDetectEncoding by FUJIDANA &lt;<a>http://blogs.dion.ne.jp/fujidana/archives/4169016.html</a>&gt; on which CotEditor's encoding auto-detection (ISO 2022-JP, UTF-8, UTF-16) is based. FJDDetectEncoding has been released under the <em>BSD license</em>.</li>
     <li>Thanks to mi by Daisuke Kamiyama &lt;<a href="http://www.mimikaki.net/">http://www.mimikaki.net</a>&gt; on which the variables of CotEditor's File Drop function are based.</li>
-    <li>Thanks to hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt; for providing the method for getting modifier key presses &lt;<a>http://hetima.com/pblog/article.php?id=48</a>&gt;.</li>
-    <li>Thanks to NSString+Sandboxing category by Ivan Vasic, which is distributed on <a href="https://gist.github.com/ivasic/4702892">https://gist.github.com/ivasic/4702892</a>.</li>
 </ul>
 </section>
 
@@ -156,10 +153,12 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 
 <ul>
     <li>Localizations by:<ul>
-        <li>Chinese (simplified)<br/>
+        <li>Chinese (Simplified)<br/>
             Wei Wang (onevcat) &lt;<a href="https://onevcat.com">https://onevcat.com</a>&gt;</li>
         <li>Italian<br/>
             Agostino Maiello</li>
+        <li>Portuguese (Brasil)<br/>
+            BR Lingo &lt;<a href="https://brlingo.com">https://brlingo.com</a>&gt;</li>
     </ul></li>
     
     <li>Syntax Style definitions by:<ul>
@@ -181,7 +180,7 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
 </ul>
 
 <section>
-<h3>Contributors on the original CotEditor (&gt;= 1.0)</h3>
+<h3>Contributors on the original CotEditor (≦ 1.0)</h3>
 <ul>
     <li>Localizations by:<ul>
         <li>English (documents and help)<br/>
@@ -205,11 +204,11 @@ THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRES
         <li>Hetima &lt;<a href="http://hetima.com/">http://hetima.com</a>&gt;</li>
     </ul></li>
     
-    <li>More better &quot;Completion pop-up&quot; written by:<ul>
+    <li>More better “Completion list” written by:<ul>
         <li>Haruka Kataoka &lt;<a href="http://drumsoft.com/">http://drumsoft.com</a>&gt;</li>
     </ul></li>
 
-    <li>Localization technical assist, original Japanese localization dictionary and original Help files (ja) written by:<ul>
+    <li>Localization technical assist, original Japanese localization dictionary and the original help book (ja) written by:<ul>
         <li>Hiroto Sakai &lt;<a href="http://www.fan.gr.jp/~sakai/">http://www.fan.gr.jp/~sakai/</a>&gt;</li>
     </ul></li>
 </ul>

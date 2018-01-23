@@ -39,7 +39,7 @@ struct OrderedSet<Element: Hashable> {
     init() { }
     
     
-    init<S: Sequence>(_ elements: S) where S.Iterator.Element == Element {
+    init<S: Sequence>(_ elements: S) where S.Element == Element {
         
         self.append(contentsOf: elements)
     }
@@ -110,7 +110,7 @@ struct OrderedSet<Element: Hashable> {
     
     
     /// return a new set with the elements that are common to both this set and the given sequence.
-    func intersection<S: Sequence>(_ other: S) -> OrderedSet<Element> where S.Iterator.Element == Element {
+    func intersection<S: Sequence>(_ other: S) -> OrderedSet<Element> where S.Element == Element {
         
         return OrderedSet(self.elements.filter { other.contains($0) })
     }
@@ -129,7 +129,7 @@ struct OrderedSet<Element: Hashable> {
     
     
     /// insert the given elements in the set only which it is not already present.
-    mutating func append<S: Sequence>(contentsOf elements: S) where S.Iterator.Element == Element {
+    mutating func append<S: Sequence>(contentsOf elements: S) where S.Element == Element {
         
         for element in elements {
             self.append(element)
@@ -147,7 +147,7 @@ struct OrderedSet<Element: Hashable> {
     
     
     /// remove the elements of the set that aren’t also in the given sequence.
-    mutating func formIntersection<S: Sequence>(_ other: S) where S.Iterator.Element == Element {
+    mutating func formIntersection<S: Sequence>(_ other: S) where S.Element == Element {
         
         self = self.intersection(other)
     }

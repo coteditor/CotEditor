@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="sort, pattern sort"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Sort with specific pattern</title>
+</head>
+
+<body>
+<a name="howto_pattern_sort"></a>
+
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
+</ul></nav>
+
+<h1>Sort with specific pattern</h1>
+
+<p>From “Sort by pattern” command in the Text &gt; Lines menu, you can sort selected lines specifying the way to compare.</p>
+
+
+<p>The simple “Sort” command in the Text &gt; Lines menu is the same as sorting “entire line” with “ignore case” and “sort naturally” options on.</p>
+
+
+<section>
+<h2>Sample</h2>
+
+<p>In this field, you can check which part in a line will be used for sort comparison.</p>
+</section>
+
+<section>
+<h2>Sort key</h2>
+<p>Specify the part in lines to compare on sort.</p>
+
+<dl>
+	<dt>Column</dt>
+	<dd>Treat lines as CSV (character-separated values) format and use the specific column for comparison. Whitespace around the separator will just be ignored.</dd>
+	<dd><dl>
+		<dt>Delimiter</dt>
+		<dd>The character separating each column. You can use escape sequences such as <code>\t</code> for the tabular character. A comma will be used when this field is blank.</dd>
+		<dt>Position</dt>
+		<dd>The number of the column to use as the sort key. The column count starts at 1.</dd>
+	</dl></dd>
+	
+	<dt>Regular expression</dt>
+	<dd>Specify the part to compare with the regular expression.</dd>
+	<dd><dl>
+		<dt>Pattern</dt>
+		<dd>The regular expression pattern to extract the part to compare.</dd>
+		<dt>Ignore case</dt>
+		<dd>Whether ignore the character case by extracting the regular expression pattern. This option will be used only for the sort key extraction. To set case-insensitive state for the sort phase, set in the sort option bellow.</dd>
+		<dt>Use captured group</dt>
+		<dd>The part in matchs to use as the sort key. The entire match will be used when this checkbox is turned off.</dd>
+	</dl></dd>
+	
+	<dt>Entire line</dt>
+	<dd>Compare entire lines.</dd>
+</dl>
+</section>
+
+
+<section>
+<h2>Sort options</h2>
+<p>Options to control behavior on comparing sort keys.</p>
+
+<table>
+	<thead>
+		<tr><th>option</th><th>description</th></tr>
+	</thead>
+	<tbody>
+		<tr><td>Ignore case</td><td>Ignore character case on sort.</td></tr>
+		<tr><td>Respect language rules</td><td>Fuzzily sort respecting the current language setting. i.e.: ignoring trivial differences such as character widths or diacritic marks.</td></tr>
+		<tr><td>Treat numbers as numeric value</td><td>Numbers within the sort keys are compared as numeric value.（e.g.: file12 &gt; file5）</td></tr>
+		<tr><td>In decending order</td><td>Sort results in decending order.</td></tr>
+	</tbody>
+</table>
+</section>
+
+</body>
+</html>

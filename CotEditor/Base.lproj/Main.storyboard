@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -16,7 +17,7 @@
                                         <menuItem title="About CotEditor" id="58">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="42B-vI-A6l"/>
+                                                <action selector="showAboutPanel:" target="Ady-hI-5gd" id="u8D-Wn-gmq"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="202">
@@ -150,10 +151,6 @@
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="f6J-Sb-kOt"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Share" tag="1999" id="U5u-O7-0EX">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Share" id="6Ei-Iv-yMD" customClass="SharingMenu" customModule="CotEditor" customModuleProvider="target"/>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="74">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
@@ -234,7 +231,7 @@ Gw
                                         <menuItem isSeparatorItem="YES" id="630">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Input Backslash" keyEquivalent="¥" toolTip="Opt + ¥" id="631">
+                                        <menuItem title="Input Backslash" keyEquivalent="¥" id="631">
                                             <connections>
                                                 <action selector="inputBackSlash:" target="Ady-hI-5gd" id="PpN-Zj-7Zc"/>
                                             </connections>
@@ -244,7 +241,7 @@ Gw
                                                 <action selector="inputYenMark:" target="Ady-hI-5gd" id="4HI-qU-zlg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Input Char in Unicode Hex…" id="tWx-pj-3PL">
+                                        <menuItem title="Input in Unicode Hex…" id="tWx-pj-3PL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>
@@ -349,100 +346,6 @@ Gw
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="View" id="322">
-                                <menu key="submenu" title="View" id="324">
-                                    <items>
-                                        <menuItem title="Hide Toolbar" id="612">
-                                            <connections>
-                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Customize Toolbar…" id="613">
-                                            <connections>
-                                                <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
-                                        <menuItem title="Show Navigation Bar" id="681">
-                                            <connections>
-                                                <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Line Numbers" id="323">
-                                            <connections>
-                                                <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Status Bar" id="325">
-                                            <connections>
-                                                <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="366">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Show Page Guide" id="749">
-                                            <connections>
-                                                <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="792">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Split Editor" id="793">
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="focusNextSplitTextView:" target="Ady-hI-5gd" id="y2Q-eU-ZVD"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="focusPrevSplitTextView:" target="Ady-hI-5gd" id="DNq-8M-naF"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Close Split Editor" id="796">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="748">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Set Editor’s Opacity…" id="367">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="611">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="2da-fK-Nkg">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="FZv-xC-fG9"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
                             <menuItem title="Format" id="247">
                                 <menu key="submenu" title="Format" id="246">
                                     <items>
@@ -459,7 +362,7 @@ DQ
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="9Kc-CI-vbM"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Windows (CR/LF)" tag="2" id="298">
+                                                    <menuItem title="Windows (CRLF)" tag="2" id="298">
                                                         <connections>
                                                             <action selector="changeLineEnding:" target="Ady-hI-5gd" id="qZo-Oc-YV1"/>
                                                         </connections>
@@ -581,15 +484,142 @@ DQ
                                         <menuItem isSeparatorItem="YES" id="397">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
+                                        <menuItem title="Writing Direction" id="mEh-BD-ZlV">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Writing Direction" id="hxr-2A-KYT">
+                                                <items>
+                                                    <menuItem title="Orientation" enabled="NO" id="6eV-nI-heo">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Horizontal" state="on" indentationLevel="1" id="jQ7-hG-AjA">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeLayoutOrientationHorizontal:" target="Ady-hI-5gd" id="WVo-ax-oWO"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Vertical" indentationLevel="1" id="bTd-nG-jjc">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeLayoutOrientationVertical:" target="Ady-hI-5gd" id="540-j1-Xm4"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="GcI-ed-8Zi"/>
+                                                    <menuItem title="Direction" enabled="NO" id="ICu-yD-nVi">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                    </menuItem>
+                                                    <menuItem title="Left to Right" state="on" indentationLevel="1" id="7pw-5S-ekC">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeWritingDirectionLeftToRight:" target="Ady-hI-5gd" id="fgd-0N-MoV"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Right to Left" indentationLevel="1" id="clG-Ph-Iyz">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="makeWritingDirectionRightToLeft:" target="Ady-hI-5gd" id="a1M-Oj-Kf6"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Wrap Lines" id="286">
                                             <connections>
                                                 <action selector="toggleLineWrap:" target="Ady-hI-5gd" id="6Yy-Bp-Aq9"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Use Vertical Orientation" id="bTd-nG-jjc">
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="View" id="322">
+                                <menu key="submenu" title="View" id="324">
+                                    <items>
+                                        <menuItem title="Hide Toolbar" keyEquivalent="t" id="612">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="GPs-2m-wXS"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Customize Toolbar…" id="613">
+                                            <connections>
+                                                <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="TD8-6D-Wfe"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
+                                        <menuItem title="Show Navigation Bar" id="681">
+                                            <connections>
+                                                <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Line Numbers" id="323">
+                                            <connections>
+                                                <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show Status Bar" id="325">
+                                            <connections>
+                                                <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="366">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Show Page Guide" id="749">
+                                            <connections>
+                                                <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="792">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Split Editor" id="793">
+                                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="openSplitTextView:" target="Ady-hI-5gd" id="PUY-re-c9S"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Focus on Next Split Editor" keyEquivalent="" id="794">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="focusNextSplitTextView:" target="Ady-hI-5gd" id="y2Q-eU-ZVD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Focus on Previous Split Editor" keyEquivalent="" id="795">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="focusPrevSplitTextView:" target="Ady-hI-5gd" id="DNq-8M-naF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Stack Editors Vertically" id="u46-te-4c4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="toggleLayoutOrientation:" target="Ady-hI-5gd" id="WAe-DI-LSN"/>
+                                                <action selector="toggleSplitOrientation:" target="Ady-hI-5gd" id="pcm-6w-AoI"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Close Split Editor" id="796">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="748">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Set Editor’s Opacity…" id="367">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="611">
+                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                        </menuItem>
+                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="2da-fK-Nkg">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="FZv-xC-fG9"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -654,6 +684,12 @@ DQ
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="sortLinesAscending:" target="Ady-hI-5gd" id="TIS-6k-Eco"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Sort by Pattern…" id="lNH-Mh-pIE">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="patternSort:" target="Ady-hI-5gd" id="RKB-GW-fDT"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem title="Reverse" id="xhf-NR-D2Q">
@@ -781,13 +817,25 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
-                                                    <menuItem title="ASCII to Fullwidth ASCII" id="586">
+                                                    <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeFullwidth:" target="Ady-hI-5gd" id="Kzj-vP-XAT"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Full-width to Half-width" id="Skr-vI-7VN">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="exchangeHalfwidth:" target="Ady-hI-5gd" id="gsG-iw-ufU"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="ASCII to Full-width ASCII" id="586">
                                                         <attributedString key="attributedTitle"/>
                                                         <connections>
                                                             <action selector="exchangeFullwidthRoman:" target="Ady-hI-5gd" id="0zm-yg-bCm"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Fullwidth ASCII to ASCII" id="588">
+                                                    <menuItem title="Full-width ASCII to ASCII" id="588">
                                                         <attributedString key="attributedTitle"/>
                                                         <connections>
                                                             <action selector="exchangeHalfwidthRoman:" target="Ady-hI-5gd" id="U4C-sa-ALD"/>
@@ -815,37 +863,38 @@ CA
                                         <menuItem title="Unicode Normalizations" id="599">
                                             <menu key="submenu" title="Unicode Normalizations" id="600">
                                                 <items>
-                                                    <menuItem title="NFD" id="601">
+                                                    <menuItem title="NFD" toolTip="Canonical Decomposition" id="601">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFD:" target="Ady-hI-5gd" id="1bP-fy-Ixy"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFC" tag="1" id="602">
+                                                    <menuItem title="NFC" tag="1" toolTip="Canonical Decomposition, followed by Canonical Composition" id="602">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFC:" target="Ady-hI-5gd" id="pmf-yf-jYo"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFKD" tag="2" id="603">
+                                                    <menuItem title="NFKD" tag="2" toolTip="Compatibility Decomposition" id="603">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKD:" target="Ady-hI-5gd" id="O9c-JY-XaD"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFKC" tag="3" id="598">
+                                                    <menuItem title="NFKC" tag="3" toolTip="Compatibility Decomposition, followed by Canonical Composition" id="598">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKC:" target="Ady-hI-5gd" id="ltN-cG-DDT"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="NFKC Casefold" tag="4" id="zuR-3K-9fs">
+                                                    <menuItem title="NFKC Casefold" tag="4" toolTip="Applying NFKC, CaseFolding, and removal of default-ignorable code points" id="zuR-3K-9fs">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithNFKCCF:" target="Ady-hI-5gd" id="iSp-un-Dje"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Modified NFD (HFS+)" tag="4" id="NU7-EI-1Ct">
+                                                    <menuItem isSeparatorItem="YES" id="OlS-1E-EU6"/>
+                                                    <menuItem title="Modified NFD (HFS+)" tag="4" toolTip="Unofficial NFD-based normalization form used in HFS+" id="NU7-EI-1Ct">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithModifiedNFD:" target="Ady-hI-5gd" id="u6J-AC-xDH"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Modified NFC (HFS+)" tag="4" id="n6C-Km-BM9">
+                                                    <menuItem title="Modified NFC (HFS+)" tag="4" toolTip="Unofficial NFC-based normalization form corresponding to Modified NFD" id="n6C-Km-BM9">
                                                         <connections>
                                                             <action selector="normalizeUnicodeWithModifiedNFC:" target="Ady-hI-5gd" id="ZQc-l2-VW9"/>
                                                         </connections>
@@ -1009,21 +1058,10 @@ CA
                                         <menuItem isSeparatorItem="YES" id="622">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Panels" id="649">
-                                            <menu key="submenu" title="Panels" id="650">
-                                                <items>
-                                                    <menuItem title="Console Panel" keyEquivalent="1" id="653">
-                                                        <connections>
-                                                            <action selector="showConsolePanel:" target="Ady-hI-5gd" id="80V-8S-iOQ"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                    <menuItem title="Color Code Panel" keyEquivalent="2" id="651">
-                                                        <connections>
-                                                            <action selector="showColorCodePanel:" target="Ady-hI-5gd" id="F61-vc-aOj"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
+                                        <menuItem title="Console" keyEquivalent="1" id="653">
+                                            <connections>
+                                                <action selector="showConsolePanel:" target="Ady-hI-5gd" id="80V-8S-iOQ"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -1039,9 +1077,9 @@ CA
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="gQQ-iI-cNI"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="CotEditor Scripting Manual" id="M1N-Fg-Bo4">
+                                        <menuItem title="CotEditor Scripting Guide" id="M1N-Fg-Bo4">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="CotEditor Scripting Manual" id="OLa-Mb-rXS">
+                                            <menu key="submenu" title="CotEditor Scripting Guide" id="OLa-Mb-rXS">
                                                 <items>
                                                     <menuItem title="About Scripting" identifier="about_scripting" id="u2o-8v-WPL">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
@@ -1079,13 +1117,13 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                                        <menuItem title="Create Bug Report…" id="iHn-Ed-A8u">
+                                        <menuItem title="Create Issue Report…" id="iHn-Ed-A8u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="createBugReport:" target="Voe-Tx-rLC" id="eYU-u3-aNG"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Report Bug" alternate="YES" id="Bk3-xx-uft">
+                                        <menuItem title="Report Issue" alternate="YES" id="Bk3-xx-uft">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                             <connections>
                                                 <action selector="reportBug:" target="Voe-Tx-rLC" id="gsa-av-qLh"/>

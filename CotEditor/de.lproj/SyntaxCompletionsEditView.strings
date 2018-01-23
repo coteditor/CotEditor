@@ -25,7 +25,6 @@
  
  */
 
-
 /* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "fJg-PK-TBB"; */
 "fJg-PK-TBB.title" = "Wenn leer, wird die Vervollständigungsliste aus den Einstellungen für das Hervorheben erzeugt werden.";
 

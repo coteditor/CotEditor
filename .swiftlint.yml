@@ -20,19 +20,23 @@ opt_in_rules:
   - pattern_matching_keywords
   - private_outlet
   - quick_discouraged_call
+  - quick_discouraged_focused_test
+  - quick_discouraged_pending_test
   - redundant_nil_coalescing
+  - required_enum_case
+  - sorted_first_last
   - vertical_parameter_alignment_on_call
+  - yoda_condition
 
 disabled_rules:
   - block_based_kvo
   - for_where
   - force_cast
+  - force_try
   - nesting
   - opening_brace
   - trailing_comma
   - unused_closure_parameter
-  
-  - force_try
 
 trailing_whitespace:
   ignores_empty_lines: true

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,11 +31,33 @@ extension EditorTextView {
     
     // MARK: Action Messages (Transformations)
     
+    /// transform all full-width-available half-width characters in selection to full-width
+    @IBAction func exchangeFullwidth(_ sender: Any?) {
+        
+        let actionName = NSLocalizedString("To Fullwidth", comment: "")
+        self.transformSelection(actionName: actionName) {
+            $0.applyingTransform(.fullwidthToHalfwidth, reverse: true) ?? $0
+        }
+    }
+    
+    
+    /// transform all full-width characters in selection to half-width
+    @IBAction func exchangeHalfwidth(_ sender: Any?) {
+        
+        let actionName = NSLocalizedString("To Halfwidth", comment: "")
+        self.transformSelection(actionName: actionName) {
+            $0.applyingTransform(.fullwidthToHalfwidth, reverse: false) ?? $0
+        }
+    }
+    
+    
     /// transform half-width roman characters in selection to full-width
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
         let actionName = NSLocalizedString("To Fullwidth Roman", comment: "")
-        self.transformSelection(actionName: actionName) { $0.fullWidthRoman }
+        self.transformSelection(actionName: actionName) {
+            $0.fullWidthRoman
+        }
     }
     
     
@@ -43,7 +65,9 @@ extension EditorTextView {
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
         let actionName = NSLocalizedString("To Halfwidth Roman", comment: "")
-        self.transformSelection(actionName: actionName) { $0.halfWidthRoman }
+        self.transformSelection(actionName: actionName) {
+            $0.halfWidthRoman
+        }
     }
     
     
@@ -51,7 +75,9 @@ extension EditorTextView {
     @IBAction func exchangeKatakana(_ sender: Any?) {
         
         let actionName = NSLocalizedString("Hiragana to Katakana", comment: "")
-        self.transformSelection(actionName: actionName) { $0.katakana }
+        self.transformSelection(actionName: actionName) {
+            $0.applyingTransform(.hiraganaToKatakana, reverse: false) ?? $0
+        }
     }
     
     
@@ -59,7 +85,9 @@ extension EditorTextView {
     @IBAction func exchangeHiragana(_ sender: Any?) {
         
         let actionName = NSLocalizedString("Katakana to Hiragana", comment: "")
-        self.transformSelection(actionName: actionName) { $0.hiragana }
+        self.transformSelection(actionName: actionName) {
+            $0.applyingTransform(.hiraganaToKatakana, reverse: true) ?? $0
+        }
     }
     
     
@@ -97,7 +125,8 @@ extension EditorTextView {
     /// Unicode normalization (NFKC_Casefold)
     @IBAction func normalizeUnicodeWithNFKCCF(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFKC Casefold") { $0.precomposedStringWithCompatibilityMappingWithCasefold }
+        let actionName = NSLocalizedString("NFKC Casefold", comment: "name of an Uniocode normalization type")
+        self.transformSelection(actionName: actionName) { $0.precomposedStringWithCompatibilityMappingWithCasefold }
     }
     
     

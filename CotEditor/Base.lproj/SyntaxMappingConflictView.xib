@@ -33,7 +33,7 @@ DQ
                         <action selector="dismissController:" target="-2" id="mYA-zn-Ggy"/>
                     </connections>
                 </button>
-                <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="uq0-Da-KqH">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uq0-Da-KqH">
                     <rect key="frame" x="18" y="465" width="207" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Syntax Style Mapping Conflicts" usesSingleLineMode="YES" id="1022">
                         <font key="font" metaFont="systemBold"/>
@@ -41,7 +41,7 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4fC-Uf-FJM" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4fC-Uf-FJM">
                     <rect key="frame" x="18" y="429" width="364" height="28"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style." id="gnp-H7-p1W">
                         <font key="font" metaFont="smallSystem"/>
@@ -49,16 +49,16 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pR8-ZN-nzi" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
-                    <rect key="frame" x="18" y="174" width="364" height="14"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="pR8-ZN-nzi">
+                    <rect key="frame" x="18" y="174" width="299" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The following filenames are registered in multiple styles." id="4AH-1o-au2">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eg7-gt-FeR" customClass="WrappingTextField" customModule="CotEditor" customModuleProvider="target">
-                    <rect key="frame" x="18" y="382" width="364" height="14"/>
+                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Eg7-gt-FeR">
+                    <rect key="frame" x="18" y="382" width="305" height="14"/>
                     <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The following extensions are registered in multiple styles." id="XdB-k6-qyy">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -349,7 +349,7 @@ DQ
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
                                                         <connections>
-                                                            <binding destination="A0Q-cO-c1I" name="value" keyPath="objectValue.doubledStyles" id="Gs8-yR-WVB"/>
+                                                            <binding destination="A0Q-cO-c1I" name="value" keyPath="objectValue.doubledStyles" id="Gmh-fu-M1K"/>
                                                         </connections>
                                                     </textField>
                                                 </subviews>
@@ -385,7 +385,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="4ZL-1N-j4N">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4ZL-1N-j4N">
                     <rect key="frame" x="18" y="400" width="67" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Extension:" usesSingleLineMode="YES" id="31z-NP-PkW">
                         <font key="font" metaFont="system"/>
@@ -393,7 +393,7 @@ DQ
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="750" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="OKS-Jt-6Ds">
+                <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OKS-Jt-6Ds">
                     <rect key="frame" x="18" y="192" width="63" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Filename:" usesSingleLineMode="YES" id="Msi-ee-MNF">
                         <font key="font" metaFont="system"/>
@@ -420,7 +420,7 @@ DQ
                 <constraint firstItem="uq0-Da-KqH" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="Hpf-OQ-NMa"/>
                 <constraint firstItem="Sk5-3o-OJR" firstAttribute="height" secondItem="Rcl-6A-nLG" secondAttribute="height" multiplier="1.25" id="Hsw-eo-1wS"/>
                 <constraint firstItem="4fC-Uf-FJM" firstAttribute="top" secondItem="uq0-Da-KqH" secondAttribute="bottom" constant="8" symbolic="YES" id="IBM-Wd-3mV"/>
-                <constraint firstAttribute="trailing" secondItem="pR8-ZN-nzi" secondAttribute="trailing" constant="20" symbolic="YES" id="Iet-ND-5Hl"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pR8-ZN-nzi" secondAttribute="trailing" constant="20" symbolic="YES" id="Iet-ND-5Hl"/>
                 <constraint firstItem="Eg7-gt-FeR" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="NZM-iz-epf"/>
                 <constraint firstAttribute="trailing" secondItem="4fC-Uf-FJM" secondAttribute="trailing" constant="20" symbolic="YES" id="PKf-k3-UaW"/>
                 <constraint firstItem="Sk5-3o-OJR" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="PZj-e9-yuQ"/>
@@ -429,13 +429,17 @@ DQ
                 <constraint firstItem="uq0-Da-KqH" firstAttribute="top" secondItem="ZCl-cg-5Ai" secondAttribute="top" constant="20" symbolic="YES" id="az3-W7-zUf"/>
                 <constraint firstItem="pR8-ZN-nzi" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="ew2-kQ-GU0"/>
                 <constraint firstItem="4ZL-1N-j4N" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="f9n-oi-Yr6"/>
+                <constraint firstItem="1lj-uv-tp6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mgY-TR-oyo" secondAttribute="trailing" constant="254" id="gMq-b0-IVa"/>
                 <constraint firstItem="mgY-TR-oyo" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="gpN-EM-NU9"/>
                 <constraint firstItem="1lj-uv-tp6" firstAttribute="top" secondItem="Rcl-6A-nLG" secondAttribute="bottom" constant="8" symbolic="YES" id="h2Q-nz-x7m"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4ZL-1N-j4N" secondAttribute="trailing" constant="20" symbolic="YES" id="h8b-Xt-ADJ"/>
                 <constraint firstAttribute="trailing" secondItem="Rcl-6A-nLG" secondAttribute="trailing" constant="20" symbolic="YES" id="l04-M4-hSg"/>
                 <constraint firstItem="4ZL-1N-j4N" firstAttribute="top" secondItem="4fC-Uf-FJM" secondAttribute="bottom" constant="12" id="lVd-Fz-6wn"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uq0-Da-KqH" secondAttribute="trailing" constant="20" symbolic="YES" id="qty-BR-22g"/>
                 <constraint firstItem="OKS-Jt-6Ds" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="quY-He-fu0"/>
                 <constraint firstAttribute="trailing" secondItem="1lj-uv-tp6" secondAttribute="trailing" constant="20" symbolic="YES" id="rrw-nX-JAQ"/>
-                <constraint firstAttribute="trailing" secondItem="Eg7-gt-FeR" secondAttribute="trailing" constant="20" symbolic="YES" id="u2b-Pg-1UW"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OKS-Jt-6Ds" secondAttribute="trailing" constant="20" symbolic="YES" id="sed-0o-X7O"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Eg7-gt-FeR" secondAttribute="trailing" constant="20" symbolic="YES" id="u2b-Pg-1UW"/>
                 <constraint firstItem="4fC-Uf-FJM" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="uXR-kx-XuY"/>
                 <constraint firstItem="Rcl-6A-nLG" firstAttribute="leading" secondItem="ZCl-cg-5Ai" secondAttribute="leading" constant="20" symbolic="YES" id="vKK-6x-hv2"/>
                 <constraint firstItem="Rcl-6A-nLG" firstAttribute="top" secondItem="pR8-ZN-nzi" secondAttribute="bottom" constant="8" symbolic="YES" id="vPs-4X-I5x"/>
@@ -453,7 +457,7 @@ DQ
                 <binding destination="-2" name="contentArray" keyPath="extensionConflicts" id="t66-LI-bZu"/>
             </connections>
         </arrayController>
-        <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="lxi-wt-2lm" userLabel="File Name Conflicts Controller">
+        <arrayController objectClassName="MappingConflict" editable="NO" avoidsEmptySelection="NO" id="lxi-wt-2lm" userLabel="Filename Conflicts Controller">
             <declaredKeys>
                 <string>name</string>
                 <string>primaryStyle</string>

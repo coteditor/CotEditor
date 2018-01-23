@@ -26,21 +26,21 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "C9y-bs-mE1"; */
-"C9y-bs-mE1.title" = "フォント：";
+"C9y-bs-mE1.title" = "フォント:";
 /* Class = "NSButtonCell"; title = "Same as document’s font"; ObjectID = "PfG-m4-gpq"; */
 "PfG-m4-gpq.title" = "書類の設定と同じ";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3385"; */
 "3385.title" = "選択...";
 
 /* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "3388"; */
-"3388.title" = "カラー：";
+"3388.title" = "カラー:";
 /* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "1353"; */
 "1353.title" = "白黒";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "1354"; */
 "1354.title" = "書類の設定と同じ";
 
 /* Class = "NSTextFieldCell"; title = "Line numbers:"; ObjectID = "3380"; */
-"3380.title" = "行番号：";
+"3380.title" = "行番号:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "946"; */
 "946.title" = "プリントしない";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "947"; */
@@ -49,7 +49,7 @@
 "948.title" = "プリント";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
-"3382.title" = "不可視文字：";
+"3382.title" = "不可視文字:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "プリントしない";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
@@ -63,7 +63,7 @@
 "3368.title" = "ヘッダをプリント";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3369"; */
-"3369.title" = "主ヘッダ：";
+"3369.title" = "主ヘッダ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "895"; */
 "895.title" = "なし";
@@ -85,7 +85,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3373"; */
-"3373.title" = "副ヘッダ：";
+"3373.title" = "副ヘッダ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "906"; */
 "906.title" = "なし";
@@ -111,7 +111,7 @@
 "3375.title" = "フッタをプリント";
 
 /* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "3379"; */
-"3379.title" = "主フッタ：";
+"3379.title" = "主フッタ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "941"; */
 "941.title" = "なし";
@@ -133,7 +133,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "3377"; */
-"3377.title" = "副フッタ：";
+"3377.title" = "副フッタ:";
 
 /* Class = "NSMenuItem"; title = "None"; ObjectID = "927"; */
 "927.title" = "なし";

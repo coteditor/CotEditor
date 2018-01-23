@@ -33,14 +33,14 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     // MARK: Private Properties
     
-    private dynamic let invisibleSpaces: [String] = Invisible.spaces
-    private dynamic let invisibleTabs: [String] = Invisible.tabs
-    private dynamic let invisibleNewLines: [String] = Invisible.newLines
-    private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullWidthSpaces
+    @objc private dynamic let invisibleSpaces: [String] = Invisible.spaces
+    @objc private dynamic let invisibleTabs: [String] = Invisible.tabs
+    @objc private dynamic let invisibleNewLines: [String] = Invisible.newLines
+    @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullWidthSpaces
     
     private var themeViewController: ThemeViewController?
     private var themeNames = [String]()
-    private dynamic var isBundled = false
+    @objc private dynamic var isBundled = false
     
     @IBOutlet fileprivate private(set) weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
@@ -50,14 +50,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
@@ -66,13 +58,14 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         super.viewDidLoad()
         
         // register droppable types
-        self.themeTableView?.register(forDraggedTypes: [kUTTypeFileURL as String])
+        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
+        self.themeTableView?.registerForDraggedTypes([draggedType])
         
         self.themeNames = ThemeManager.shared.settingNames
         
         // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: .SettingListDidUpdate, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: .SettingDidUpdate, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: SettingFileManager.didUpdateSettingNotification, object: ThemeManager.shared)
     }
     
     
@@ -181,13 +174,13 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// validate when dragged items come to tableView
-    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableViewDropOperation) -> NSDragOperation {
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
         let pboard = info.draggingPasteboard()
         let objects = pboard.readObjects(forClasses: [NSURL.self],
-                                         options: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                   NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.theme.UTType]])
+                                         options: [.urlReadingFileURLsOnly: true,
+                                                   .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
         
         guard let urls = objects, !urls.isEmpty else { return [] }
         
@@ -202,11 +195,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// check acceptability of dragged items and insert them to table
-    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableViewDropOperation) -> Bool {
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
-                                    searchOptions: [NSPasteboardURLReadingFileURLsOnlyKey: true,
-                                                    NSPasteboardURLReadingContentsConformToTypesKey: [DocumentType.theme.UTType]])
+                                    searchOptions: [.urlReadingFileURLsOnly: true,
+                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
         { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
@@ -255,7 +248,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
-        let themeViewController = self.storyboard!.instantiateController(withIdentifier: "ThemeViewController") as! ThemeViewController
+        let themeViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("ThemeViewController")) as! ThemeViewController
         themeViewController.delegate = self
         themeViewController.theme = themeDict
         themeViewController.isBundled = isBundled
@@ -280,8 +273,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// set action on swiping theme name
-    @available(macOS 10.11, *)
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableRowActionEdge) -> [NSTableViewRowAction] {
+    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
         
@@ -321,8 +313,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// theme name was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
         
+        let newName = fieldEditor.string
+        
         // finish if empty (The original name will be restored automatically)
-        guard let newName = fieldEditor.string, !newName.isEmpty else { return true }
+        guard !newName.isEmpty else { return true }
         
         let oldName = self.selectedThemeName
         
@@ -408,8 +402,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         savePanel.nameFieldStringValue = themeName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: Int) in
-            guard result == NSFileHandlingPanelOKButton else { return }
+        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+            guard result == .OK else { return }
             
             try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
         }
@@ -426,8 +420,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: Int) in
-            guard result == NSFileHandlingPanelOKButton else { return }
+        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: NSApplication.ModalResponse) in
+            guard result == .OK else { return }
             
             self?.importTheme(fileURL: openPanel.url!)
         }
@@ -441,7 +435,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         guard let url = ThemeManager.shared.urlForUserSetting(name: themeName) else { return }
         
-        NSWorkspace.shared().activateFileViewerSelecting([url])
+        NSWorkspace.shared.activateFileViewerSelecting([url])
     }
     
     
@@ -455,7 +449,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     // MARK: Private Methods
     
     /// return theme name which is currently selected in the list table
-    private dynamic var selectedThemeName: String {
+    @objc private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
             return UserDefaults.standard[.theme]!
@@ -497,13 +491,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSModalResponse) in
+        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in
             
-            guard returnCode == NSAlertSecondButtonReturn else {  // cancelled
+            guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                if #available(macOS 10.11, *) {
-                    self?.themeTableView?.rowActionsVisible = false
-                }
+                self?.themeTableView?.rowActionsVisible = false
                 return
             }
             
@@ -512,7 +504,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
                 
             } catch {
                 alert.window.orderOut(nil)
-                NSBeep()
+                NSSound.beep()
                 NSAlert(error: error).beginSheetModal(for: window)
                 return
             }
@@ -572,8 +564,8 @@ extension AppearancePaneController {
         super.viewWillDisappear()
         
         // detach a possible font panel's target set in `showFonts()`
-        if NSFontManager.shared().target === self {
-            NSFontManager.shared().target = nil
+        if NSFontManager.shared.target === self {
+            NSFontManager.shared.target = nil
         }
     }
     
@@ -587,9 +579,9 @@ extension AppearancePaneController {
         guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
                                 size: UserDefaults.standard[.fontSize]) else { return }
         
-        NSFontManager.shared().setSelectedFont(font, isMultiple: false)
-        NSFontManager.shared().orderFrontFontPanel(sender)
-        NSFontManager.shared().target = self
+        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
+        NSFontManager.shared.orderFrontFontPanel(sender)
+        NSFontManager.shared.target = self
     }
     
     

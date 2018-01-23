@@ -26,12 +26,12 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Surround With:"; ObjectID = "rgF-DI-5tb"; */
-"rgF-DI-5tb.title" = "文字で囲む：";
+"rgF-DI-5tb.title" = "文字で囲む:";
 
 /* Class = "NSTextFieldCell"; title = "Begin:"; ObjectID = "Gyd-g5-olo"; */
-"Gyd-g5-olo.title" = "開始：";
+"Gyd-g5-olo.title" = "開始:";
 /* Class = "NSTextFieldCell"; title = "End:"; ObjectID = "I9c-rv-hHo"; */
-"I9c-rv-hHo.title" = "終了：";
+"I9c-rv-hHo.title" = "終了:";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "xm5-Ft-kfG"; */
 "xm5-Ft-kfG.title" = "キャンセル";

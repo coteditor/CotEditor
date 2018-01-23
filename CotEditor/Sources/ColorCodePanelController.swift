@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 1024jp
+ © 2014-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,6 +34,12 @@ import ColorCode
 }
 
 
+private extension NSColorList.Name {
+    
+    static let stylesheet = NSColorList.Name(NSLocalizedString("Stylesheet Keywords", comment: ""))
+}
+
+
 
 // MARK: -
 
@@ -43,26 +49,26 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     static let shared = ColorCodePanelController()
     
-    private(set) dynamic var colorCode: String?
+    @objc private(set) dynamic var colorCode: String?
     
     
     // MARK: Private Properties
     
     private weak var panel: NSColorPanel?
     private var stylesheetColorList: NSColorList
-    private dynamic var color: NSColor?
+    @objc private dynamic var color: NSColor?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override init?(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         
         // setup stylesheet color list
-        let colorList = NSColorList(name: NSLocalizedString("Stylesheet Keywords", comment: ""))
+        let colorList = NSColorList(name: .stylesheet)
         for (keyword, color) in NSColor.stylesheetKeywordColors {
-            colorList.setColor(color, forKey: keyword)
+            colorList.setColor(color, forKey: NSColor.Name(keyword))
         }
         self.stylesheetColorList = colorList
         
@@ -76,9 +82,9 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     }
     
     
-    override var nibName: String? {
+    override var nibName: NSNib.Name? {
         
-        return "ColorCodePanelAccessory"
+        return NSNib.Name("ColorCodePanelAccessory")
     }
     
     
@@ -120,7 +126,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     @IBAction func showWindow(_ sender: Any?) {
         
         // setup the shared color panel
-        let panel = NSColorPanel.shared()
+        let panel = NSColorPanel.shared
         panel.accessoryView = self.view
         panel.showsAlpha = true
         panel.isRestorable = false
@@ -152,7 +158,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         guard self.colorCode != nil else { return }
         
         guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode(_:))) as? ColorCodeReceiver else {
-            NSBeep()
+            NSSound.beep()
             return
         }
         
@@ -180,8 +186,8 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         let codeType = self.selectedCodeType
         let color: NSColor? = {
-            if let colorSpaceName = self.color?.colorSpaceName, ![NSCalibratedRGBColorSpace, NSDeviceRGBColorSpace].contains(colorSpaceName) {
-                return self.color?.usingColorSpaceName(NSCalibratedRGBColorSpace)
+            if let colorSpaceName = self.color?.colorSpaceName, ![.calibratedRGB, .deviceRGB].contains(colorSpaceName) {
+                return self.color?.usingColorSpaceName(.calibratedRGB)
             }
             return self.color
         }()

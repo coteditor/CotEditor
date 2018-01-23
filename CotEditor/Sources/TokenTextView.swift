@@ -27,7 +27,10 @@
 
 import AppKit
 
-private let tokenAttributeName = "tokenAttributeName"
+private extension NSAttributedStringKey {
+    
+    static let token = NSAttributedStringKey("token")
+}
 
 
 final class TokenTextView: NSTextView {
@@ -39,7 +42,7 @@ final class TokenTextView: NSTextView {
     
     // MARK: Text View Methods
     
-    override var string: String? {
+    override var string: String {
         
         didSet {
             self.invalidateTokens()
@@ -86,9 +89,9 @@ final class TokenTextView: NSTextView {
         self.tokenColor.withAlphaComponent(0.3).setFill()
         
         let containerOrigin = self.textContainerOrigin
-        let radius = (self.font?.pointSize ?? NSFont.systemFontSize()) / 3
+        let radius = (self.font?.pointSize ?? NSFont.systemFontSize) / 3
         
-        textStorage.enumerateAttribute(tokenAttributeName, in: textStorage.string.nsRange, options: []) { (token, range, _) in
+        textStorage.enumerateAttribute(.token, in: textStorage.string.nsRange, options: []) { (token, range, _) in
             
             guard token != nil else { return }
             
@@ -175,13 +178,13 @@ final class TokenTextView: NSTextView {
         let textColor = self.tokenColor.shadow(withLevel: 0.7)!
         let braketColor = self.tokenColor.shadow(withLevel: 0.3)!
         
-        textStorage.removeAttribute(tokenAttributeName, range: textStorage.string.nsRange)
-        textStorage.removeAttribute(NSForegroundColorAttributeName, range: textStorage.string.nsRange)
+        textStorage.removeAttribute(.token, range: textStorage.string.nsRange)
+        textStorage.removeAttribute(.foregroundColor, range: textStorage.string.nsRange)
         
         tokenizer.tokenize(textStorage.string) { (token, range, keywordRange) in
-            textStorage.addAttribute(tokenAttributeName, value: token, range: range)
-            textStorage.addAttribute(NSForegroundColorAttributeName, value: braketColor, range: range)
-            textStorage.addAttribute(NSForegroundColorAttributeName, value: textColor, range: keywordRange)
+            textStorage.addAttribute(.token, value: token, range: range)
+            textStorage.addAttribute(.foregroundColor, value: braketColor, range: range)
+            textStorage.addAttribute(.foregroundColor, value: textColor, range: keywordRange)
         }
         
         self.needsDisplay = true
@@ -199,7 +202,7 @@ private extension NSTextStorage {
         var effectiveRange = NSRange.notFound
         
         guard
-            self.attribute(tokenAttributeName, at: location, longestEffectiveRange: &effectiveRange, in: self.string.nsRange) != nil
+            self.attribute(.token, at: location, longestEffectiveRange: &effectiveRange, in: self.string.nsRange) != nil
             else { return nil }
         
         return effectiveRange
@@ -221,10 +224,10 @@ extension NSMenu {
         paragraphStyle.headIndent = 2 * fontSize
         
         for variable in variables {
-            let token = NSAttributedString(string: variable.token, attributes: [NSFontAttributeName: font])
-            let description = NSAttributedString(string: "\n" + variable.localizedDescription, attributes: [NSFontAttributeName: font,
-                                                                                                            NSForegroundColorAttributeName: NSColor.gray,
-                                                                                                            NSParagraphStyleAttributeName: paragraphStyle])
+            let token = NSAttributedString(string: variable.token, attributes: [.font: font])
+            let description = NSAttributedString(string: "\n" + variable.localizedDescription, attributes: [.font: font,
+                                                                                                            .foregroundColor: NSColor.gray,
+                                                                                                            .paragraphStyle: paragraphStyle])
             let item = NSMenuItem()
             item.target = target
             item.action = #selector(TokenTextView.insertVariable)

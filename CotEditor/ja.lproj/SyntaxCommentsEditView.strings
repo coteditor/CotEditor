@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,20 +27,20 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Inline comment:"; ObjectID = "b3O-ZW-iIp"; */
-"b3O-ZW-iIp.title" = "インラインコメント：";
+"b3O-ZW-iIp.title" = "インラインコメント:";
 /* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "xWF-yX-yz5"; */
-"xWF-yX-yz5.title" = "開始：";
+"xWF-yX-yz5.title" = "開始:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "4qu-tU-wgL"; */
 "4qu-tU-wgL.placeholderString" = "未定義";
 
 /* Class = "NSTextFieldCell"; title = "Block comment:"; ObjectID = "bUT-iW-c0x"; */
-"bUT-iW-c0x.title" = "ブロックコメント：";
+"bUT-iW-c0x.title" = "ブロックコメント:";
 /* Class = "NSTextFieldCell"; title = "Begin with:"; ObjectID = "508-hG-5PG"; */
-"508-hG-5PG.title" = "開始：";
+"508-hG-5PG.title" = "開始:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "TSS-rl-L2D"; */
 "TSS-rl-L2D.placeholderString" = "未定義";
 /* Class = "NSTextFieldCell"; title = "End with:"; ObjectID = "5bm-Fa-IZj"; */
-"5bm-Fa-IZj.title" = "終了：";
+"5bm-Fa-IZj.title" = "終了:";
 /* Class = "NSTextFieldCell"; placeholderString = "Not defined"; ObjectID = "lMx-HP-1U1"; */
 "lMx-HP-1U1.placeholderString" = "未定義";
 

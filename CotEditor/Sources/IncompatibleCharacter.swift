@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,10 +30,10 @@ import Foundation
 
 final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArrayController
     
-    let character: String
-    let convertedCharacter: String
-    let location: Int
-    let lineNumber: Int
+    @objc let character: String
+    @objc let convertedCharacter: String
+    @objc let location: Int
+    @objc let lineNumber: Int
     
     
     required init(character: Character, convertedCharacter: Character, location: Int, lineNumber: Int) {

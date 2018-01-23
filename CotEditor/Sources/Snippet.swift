@@ -65,7 +65,7 @@ struct Snippet {
         
         // cursor position
         if let range = string.range(of: Variable.cursor.token) {
-            let nsRange = string.nsRange(from: range)
+            let nsRange = NSRange(range, in: string)
             
             string = string.replacingCharacters(in: range, with: "")
             self.selection = NSRange(location: nsRange.location, length: 0)

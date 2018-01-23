@@ -71,26 +71,23 @@ final class ToolbarController: NSObject {
         willSet {
             guard let document = document else { return }
             
-            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeEncoding, object: document)
-            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeLineEnding, object: document)
-            NotificationCenter.default.removeObserver(self, name: .DocumentDidChangeSyntaxStyle, object: document)
-            document.removeObserver(self, forKeyPath: #keyPath(Document.fileURL))
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeEncodingNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeLineEndingNotification, object: document)
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
         }
         
         didSet {
             guard let document = document else { return }
             
-            self.invalidateShareButton()
             self.invalidateLineEndingSelection()
             self.invalidateEncodingSelection()
             self.invalidateSyntaxStyleSelection()
             self.toolbar?.validateVisibleItems()
             
             // observe document status change
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: .DocumentDidChangeEncoding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: .DocumentDidChangeLineEnding, object: document)
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: .DocumentDidChangeSyntaxStyle, object: document)
-            document.addObserver(self, forKeyPath: #keyPath(Document.fileURL), context: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateEncodingSelection), name: Document.didChangeEncodingNotification, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateLineEndingSelection), name: Document.didChangeLineEndingNotification, object: document)
+            NotificationCenter.default.addObserver(self, selector: #selector(invalidateSyntaxStyleSelection), name: Document.didChangeSyntaxStyleNotification, object: document)
         }
     }
     
@@ -101,54 +98,26 @@ final class ToolbarController: NSObject {
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
-    @IBOutlet private weak var shareButton: NSButton?
 
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        self.document?.removeObserver(self, forKeyPath: #keyPath(Document.fileURL))
-    }
-    
-    
-    
     // MARK: Object Methods
     
     override func awakeFromNib() {
-        
-        // setup share button
-        self.shareButton?.sendAction(on: .leftMouseDown)
         
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()
         
         // observe popup menu line-up change
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: .SettingListDidUpdate, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SettingListDidUpdate, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: .SyntaxHistoryDidUpdate, object: SyntaxManager.shared)
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == #keyPath(Document.fileURL) {
-            self.invalidateShareButton()
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.didUpdateSyntaxHistoryNotification, object: SyntaxManager.shared)
     }
     
     
     
     // MARK: Private Methods
-    
-    /// enable Share button only if document is saved
-    private func invalidateShareButton() {
-        
-        self.shareButton?.isEnabled = (self.document?.fileURL != nil)
-    }
-    
     
     /// select item in the encoding popup menu
     @objc private func invalidateLineEndingSelection() {

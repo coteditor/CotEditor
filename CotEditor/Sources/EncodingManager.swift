@@ -71,7 +71,7 @@ final class EncodingManager: NSObject {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             DispatchQueue.main.async { [weak self] in
-                NotificationCenter.default.post(name: .SettingListDidUpdate, object: self)
+                NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
             }
         }
     }
@@ -83,33 +83,24 @@ final class EncodingManager: NSObject {
     /// return user's encoding priority list
     var defaultEncodings: [String.Encoding?] {
         
-        let encodingNumbers = UserDefaults.standard[.encodingList]
+        let cfEncodings = UserDefaults.standard[.encodingList]
         
-        return encodingNumbers.map { encodingNumber in
-            let cfEncoding = encodingNumber.uint32Value
-            
+        return cfEncodings.map { cfEncoding in
             if cfEncoding == kCFStringEncodingInvalidId {
                 return nil
             }
-            
             return String.Encoding(cfEncoding: cfEncoding)
         }
     }
     
     
     /// returns corresponding NSStringEncoding from a encoding name
-    class func encoding(fromName encodingName: String) -> String.Encoding? {
+    class func encoding(name encodingName: String) -> String.Encoding? {
         
-        for cfEncoding in DefaultSettings.encodings {
-            guard cfEncoding != kCFStringEncodingInvalidId else { continue }  // = separator
-            
-            let encoding = String.Encoding(cfEncoding: cfEncoding)
-            if encodingName == String.localizedName(of: encoding) {
-                return encoding
-            }
-        }
-        
-        return nil
+        return DefaultSettings.encodings.lazy
+            .filter { $0 != kCFStringEncodingInvalidId }  // = separator
+            .map { String.Encoding(cfEncoding: $0) }
+            .first { encodingName == String.localizedName(of: $0) }
     }
     
     

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 CotEditor Project
+ © 2015-2017 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,9 +47,9 @@
 "8My-G5-daT.ibShadowedToolTip" = "検索に正規表現を使う場合に選択";
 
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "4wg-Cz-ozb"; */
-"4wg-Cz-ozb.title" = "大文字／小文字を無視";
+"4wg-Cz-ozb.title" = "大文字/小文字を無視";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to ignore character case on search."; ObjectID = "GvT-tD-Cbk"; */
-"GvT-tD-Cbk.ibShadowedToolTip" = "大文字／小文字を区別せずに検索する場合に選択";
+"GvT-tD-Cbk.ibShadowedToolTip" = "大文字/小文字を区別せずに検索する場合に選択";
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "9bc-9Q-fhd"; */
 "9bc-9Q-fhd.title" = "選択範囲のみ";
@@ -100,20 +100,9 @@
 "oC1-bN-UeN.ibShadowedToolTip" = "検索結果を閉じる";
 
 /* Class = "BindingConnection"; ibShadowedDisplayPattern = "Find String: %{value1}@"; ObjectID = "2MH-SD-x1y"; */
-"2MH-SD-x1y.ibShadowedDisplayPattern" = "検索文字列： %{value1}@";
+"2MH-SD-x1y.ibShadowedDisplayPattern" = "検索文字列: %{value1}@";
 
 /* Class = "NSTableColumn"; headerCell.title = "Line"; ObjectID = "CPd-0W-bKv"; */
 "CPd-0W-bKv.headerCell.title" = "行";
 /* Class = "NSTableColumn"; headerCell.title = "Found String"; ObjectID = "PJ8-wp-pdK"; */
 "PJ8-wp-pdK.headerCell.title" = "文字列";
-
-/* Class = "NSButtonCell"; title = "Live Update"; ObjectID = "pqE-XD-1Fq"; */
-"pqE-XD-1Fq.title" = "自動更新";
-/* Class = "NSButton"; ibShadowedToolTip = "Select to update find result when document is edited."; ObjectID = "PEV-3w-HeQ"; */
-"PEV-3w-HeQ.ibShadowedToolTip" = "選択すると、書類が編集されたときにリストを自動で更新";
-
-
-// Regex Quick Reference
-
-/* Class = "IBNSViewController"; title = "Quick Reference of Regular Expression"; ObjectID = "uMF-F8-Wjs"; */
-"uMF-F8-Wjs.title" = "正規表現クイックリファレンス";

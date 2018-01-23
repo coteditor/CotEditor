@@ -38,7 +38,7 @@ enum ModifierKey {
     static let all: [ModifierKey] = [.control, .option, .shift, .command]
     
     
-    var mask: NSEventModifierFlags {
+    var mask: NSEvent.ModifierFlags {
         
         switch self {
         case .control: return .control
@@ -78,13 +78,14 @@ enum ModifierKey {
 
 struct Shortcut: Hashable, CustomStringConvertible {
     
-    let modifierMask: NSEventModifierFlags
+    let modifierMask: NSEvent.ModifierFlags
     let keyEquivalent: String
+    
     
     static let none = Shortcut(modifierMask: [], keyEquivalent: "")
     
     
-    init(modifierMask: NSEventModifierFlags, keyEquivalent: String) {
+    init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
         self.modifierMask = {
             // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
@@ -102,20 +103,17 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     init(keySpecChars: String) {
         
-        guard !keySpecChars.isEmpty else {
+        guard let keyEquivalent = keySpecChars.last else {
             self.init(modifierMask: [], keyEquivalent: "")
             return
         }
         
-        let splitIndex = keySpecChars.index(before: keySpecChars.endIndex)
-        let modifierCharacters = keySpecChars.substring(to: splitIndex)
-        let keyEquivalent = keySpecChars.substring(from: splitIndex)
-        
+        let modifierCharacters = keySpecChars.dropLast()
         let modifierMask = ModifierKey.all
             .filter { key in modifierCharacters.contains(key.keySpecChar) }
-            .reduce(NSEventModifierFlags()) { (mask, key) in mask.union(key.mask) }
+            .reduce(NSEvent.ModifierFlags()) { (mask, key) in mask.union(key.mask) }
         
-        self.init(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
+        self.init(modifierMask: modifierMask, keyEquivalent: String(keyEquivalent))
     }
     
     
@@ -238,8 +236,27 @@ struct Shortcut: Hashable, CustomStringConvertible {
             0x1b: "⎋",  // = Escape
         ]
         
-        // cast key from Int to UnicodeScalar
-        return table.flatDictionary { (UnicodeScalar($0.key)!, $0.value) }
+        return table.mapKeys { UnicodeScalar($0)! }
     }()
+    
+}
+
+
+extension Shortcut: Codable {
+    
+    init(from decoder: Decoder) throws {
+        
+        let container = try decoder.singleValueContainer()
+        
+        self.init(keySpecChars: try container.decode(String.self))
+    }
+    
+    
+    func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.singleValueContainer()
+        
+        try container.encode(self.keySpecChars)
+    }
     
 }

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2017 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,13 +32,13 @@ final class ServicesProvider: NSObject {
     // MARK: Public Methods
     
     /// open new document with string via Services
-    func openSelection(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
+    @objc func openSelection(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
-        guard let selection = pboard.string(forType: NSPasteboardTypeString) else { return }
+        guard let selection = pboard.string(forType: .string) else { return }
         
         let document: NSDocument
         do {
-            document = try NSDocumentController.shared().openUntitledDocumentAndDisplay(false)
+            document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(false)
             
         } catch {
             NSApp.presentError(error)
@@ -54,14 +54,12 @@ final class ServicesProvider: NSObject {
     
     
     /// open files via Services
-    func openFile(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
+    @objc func openFile(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
-        guard let paths = pboard.propertyList(forType: NSFilenamesPboardType) as? [String] else { return }
+        guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return }
         
-        for path in paths {
-            let fileURL = URL(fileURLWithPath: path)
-            
-            NSDocumentController.shared().openDocument(withContentsOf: fileURL, display: true) { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
+        for fileURL in fileURLs {
+            NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in
                 if let error = error {
                     NSApp.presentError(error)
                 }

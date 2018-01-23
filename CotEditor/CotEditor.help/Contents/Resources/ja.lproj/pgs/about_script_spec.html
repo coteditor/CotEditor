@@ -8,24 +8,24 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>UNIX スクリプトとの連携</title>
+	<title>UNIXスクリプトとの連携</title>
 </head>
 
 <body>
 <nav><ul>
-	<li><a href="../CotEditorHelp.html">CotEditor ヘルプ</a></li>
+	<li><a href="../CotEditorHelp.html">CotEditorヘルプ</a></li>
 </ul></nav>
 
 
 <a name="about_unixscript"></a>
-<h1>UNIX スクリプトとの連携</h1>
+<h1>UNIXスクリプトとの連携</h1>
 
-<p>このページではスクリプトメニューから実行する UNIX スクリプトに CotEditor で編集中の書類の情報やテキストを渡したり、スクリプトの実行結果を書類に反映する方法を説明します。</p>
+<p>このページではスクリプトメニューから実行するUNIXスクリプトにCotEditorで編集中の書類の情報やテキストを渡したり、スクリプトの実行結果を書類に反映する方法を説明します。</p>
 
 <ul>
-	<li>スクリプトメニューに登録できるスクリプトの拡張子は .sh .pl .php .rb .py .js .swift です（言語は関係ありません）。</li>
+	<li>スクリプトメニューに登録できるスクリプトの拡張子は.sh .pl .php .rb .py .js .swiftです（言語は関係ありません）。</li>
 	<li>スクリプトには実行権限がなければなりません。</li>
-	<li>スクリプト内の改行コードは LF でなければなりません。</li>
+	<li>スクリプト内の改行コードはLFでなければなりません。</li>
 </ul>
 
 <h2>ファイルパスの受け取り</h2>
@@ -33,7 +33,7 @@
 
 <h2>スクリプトにテキストを渡す</h2>
 
-<p>スクリプトに CotEditor からデータを渡すには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXInput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け渡すデータを指定します。</p>
+<p>スクリプトにCotEditorからデータを渡すには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXInput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け渡すデータを指定します。</p>
 
 <table>
 	<tr><th><code>Selection</code></th><td>現在選択しているテキスト</td></tr>
@@ -43,13 +43,13 @@
 
 <ul style="margin-top: 1em;">
 	<li>コメントを記述しなかった場合、「None」となります。</li>
-	<li>CotEditor からのテキストは標準入力に渡されます。</li>
-	<li>スクリプトに渡されるテキストの文字エンコーディングは UTF-8 です。</li>
+	<li>CotEditorからのテキストは標準入力に渡されます。</li>
+	<li>スクリプトに渡されるテキストの文字エンコーディングはUTF-8です。</li>
 </ul>
 
 <h2>スクリプトの出力を受け取る</h2>
 
-<p>CotEditor でスクリプトの出力を受け取るには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXOutput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け取った後の処理を指定します。</p>
+<p>CotEditorでスクリプトの出力を受け取るには、スクリプトの冒頭にコメントを置き、固定文字列「<code>%%%{CotEditorXOutput=xxxx}%%%</code>」を埋め込みます。「<code>xxxx</code>」で、受け取った後の処理を指定します。</p>
 
 <table>
 	<tr><th><code>ReplaceSelection</code></th><td>現在選択しているテキストを出力内容で置き換えます。</td></tr>
@@ -63,12 +63,12 @@
 
 <ul>
 	<li>コメントを記述しなかった場合、「Discard」となります。</li>
-	<li>CotEditor に渡すテキストは、標準出力としてください。</li>
-	<li>CotEditor に返すテキストの文字エンコーディングは UTF-8 でなければなりません。</li>
+	<li>CotEditorに渡すテキストは、標準出力としてください。</li>
+	<li>CotEditorに返すテキストの文字エンコーディングはUTF-8でなければなりません。</li>
 </ul>
 
 <h2>例</h2>
-<p>以下の Python スクリプトは最前面書類の選択範囲内のすべての行の行頭に“&gt;”を追加します。</p>
+<p>以下のPythonスクリプトは最前面書類の選択範囲内のすべての行の行頭に“&gt;”を追加します。</p>
 
 <pre class="source"><code><span class="comment">#!/usr/bin/env python
 # %%%{CotEditorXInput=Selection}%%%
@@ -86,7 +86,7 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/about_scripting.html">CotEditor スクリプト</a></li>
+	<li><a href="../pgs/about_scripting.html">CotEditorスクリプト</a></li>
 </ul>
 </section>
 

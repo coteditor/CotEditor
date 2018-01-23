@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -61,10 +61,10 @@ final class SyntaxStyleValidator {
             
             switch self.kind {
             case .duplicated:
-                return NSLocalizedString("multiple registered.", comment: "")
+                return NSLocalizedString("The same word is registered multiple times.", comment: "")
                 
             case .regularExpression(let error):
-                return NSLocalizedString("Regex Error: ", comment: "") + error.localizedDescription
+                return NSLocalizedString("Regular Expression Error: ", comment: "") + error.localizedDescription
             
             case .blockComment:
                 return NSLocalizedString("Block comment needs both begin delimiter and end delimiter.", comment: "")

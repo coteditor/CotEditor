@@ -214,43 +214,22 @@ extension String {
         
         guard !self.isEmpty else { return nil }
         
-        // This method is based on Smultron's SMLTextPerformer.m by Peter Borg. (2005-08-10)
-        // Smultron 2 was distributed on <http://smultron.sourceforge.net> under the terms of the BSD license.
-        // Copyright (c) 2004-2006 Peter Borg
+        let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        let scanLength = min(self.utf16.endIndex.encodedOffset, maxLength)
         
-        let scanIndex = self.index(self.startIndex, offsetBy: maxLength, limitedBy: self.endIndex) ?? self.endIndex
+        guard
+            let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
+            let matchedRange = Range(match.range(at: 1), in: self)
+            else { return nil }
         
-        let stringToScan = self.substring(to: scanIndex)
-        let scanner = Scanner(string: stringToScan)  // scan only the beginning of string
-        let stopSet = CharacterSet(charactersIn: "\"\' </>\n\r")
-        let invalidDelimiterSet = CharacterSet.alphanumerics.subtracting(CharacterSet(charactersIn: "\"\' ")).inverted
-        var scannedString: NSString?
+        let ianaCharSetName = self[matchedRange]
         
-        scanner.charactersToBeSkipped = CharacterSet(charactersIn: "\"\' ")
-        
-        // find encoding with tag in order
-        for tag in tags {
-            scanner.scanLocation = 0
-            
-            while !scanner.isAtEnd {
-                scanner.scanUpTo(tag, into: nil)
-                if scanner.scanString(tag, into: nil),
-                    !scanner.scanCharacters(from: invalidDelimiterSet, into: nil),
-                    scanner.scanUpToCharacters(from: stopSet, into: &scannedString) {
-                    break
-                }
-            }
-            
-            if scannedString != nil { break }
-        }
-        
-        guard let ianaCharSetName = scannedString else { return nil }
-                
         // convert IANA CharSet name to CFStringEncoding
         guard let cfEncoding: CFStringEncoding = {
             //　simply convert expect for "Shift_JIS"
-            if ianaCharSetName.uppercased != "SHIFT_JIS" {
-                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName)
+            if ianaCharSetName.uppercased() != "SHIFT_JIS" {
+                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
             }
             
             // "Shift_JIS" だったら、.shiftJIS と .shiftJIS_X0213 の優先順位の高いものを取得する
