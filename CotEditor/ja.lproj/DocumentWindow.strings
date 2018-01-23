@@ -102,12 +102,12 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可視文字";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示/非表示";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示/非表示";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示/非表示";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "ページガイド";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "ページガイドを表示/非表示";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "ページガイドを表示/非表示";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "ページガイドを表示/非表示";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */

@@ -103,12 +103,12 @@
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "Caratteri invisibili";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Mostra/Nascondi caratteri invisibili";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "Mostra/Nasconde la guida in linea della pagina";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "Guida della pagina";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "Mostra/Nascondi la guida della pagina";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "Mostra/Nascondi la guida della pagina";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "Mostra/Nascondi la guida della pagina";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */

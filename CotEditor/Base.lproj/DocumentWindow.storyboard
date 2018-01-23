@@ -116,12 +116,12 @@
                                         <action selector="toggleComment:" target="klO-m3-n5X" id="YdZ-m0-PoD"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisibles" paletteLabel="Show / Hide Invisibles" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisibles" paletteLabel="Show/Hide Invisibles" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleInvisibleChars:" target="klO-m3-n5X" id="UVg-ZM-cYT"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show / Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show/Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="togglePageGuide:" target="klO-m3-n5X" id="iZD-jx-cOQ"/>
                                     </connections>
