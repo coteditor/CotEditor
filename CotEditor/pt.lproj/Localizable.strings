@@ -212,7 +212,7 @@
 // Undo action names
 "Replace Text" = "Substituir Texto";
 "Insert Text" = "Inserir Texto";
-"Insert Snippet" = "Inserir Texto Personalizado";  // FIXME: updated
+"Insert Snippet" = "Inserir Fragmento";
 "Shift Right" = "Deslocar à Direita";
 "Shift Left" = "Deslocar à Esquerda";
 "Convert Indentation" = "Converter Recuo";
@@ -443,8 +443,8 @@
 "Begin string" = "String inicial";
 "End string" = "String final";
 "Regular expression" = "Expressão regular";
-"The same word is registered multiple times." = "The same word is registered multiple times.";  // FIXME: updated
-"Regular Expression Error: " = "Erro de Regex: ";  // FIXME: updated
+"The same word is registered multiple times." = "A mesma palavra está registrada várias vezes.";
+"Regular Expression Error: " = "Erro de Expressão Regular: ";
 
 
 

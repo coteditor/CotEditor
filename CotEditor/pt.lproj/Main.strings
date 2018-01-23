@@ -240,21 +240,21 @@
 "788.title" = "Mostrar Caracteres Invisíveis";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
-"mEh-BD-ZlV.title" = "Direção de escrita";
+"mEh-BD-ZlV.title" = "Direção da Escrita";
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
-"hxr-2A-KYT.title" = "Direção de escrita";
+"hxr-2A-KYT.title" = "Direção da Escrita";
 /* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
-"6eV-nI-heo.title" = "Orientation";  // FIXME: added
+"6eV-nI-heo.title" = "Orientação";
 /* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
-"jQ7-hG-AjA.title" = "Horizontal";  // FIXME: added
+"jQ7-hG-AjA.title" = "Horizontal";
 /* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
-"bTd-nG-jjc.title" = "Vertical";  // FIXME: added
+"bTd-nG-jjc.title" = "Vertical";
 /* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */
-"ICu-yD-nVi.title" = "Direction";  // FIXME: added
+"ICu-yD-nVi.title" = "Direção";
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "7pw-5S-ekC"; */
-"7pw-5S-ekC.title" = "Da esquerda para a direita";
+"7pw-5S-ekC.title" = "Da Esquerda para a Direita";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "clG-Ph-Iyz"; */
-"clG-Ph-Iyz.title" = "Da direita para a esquerda";
+"clG-Ph-Iyz.title" = "Da Direita para a Esquerda";
 
 /* Class = "NSMenuItem"; title = "Wrap Lines"; ObjectID = "286"; */
 "286.title" = "Ajustar Linhas";
@@ -348,7 +348,7 @@
 /* Class = "NSMenuItem"; title = "Sort"; ObjectID = "OQl-Uo-yfn"; */
 "OQl-Uo-yfn.title" = "Ordenar";
 /* Class = "NSMenuItem"; title = "Sort by Pattern…"; ObjectID = "lNH-Mh-pIE"; */
-"lNH-Mh-pIE.title" = "Sort by Pattern…";  // FIXME: added
+"lNH-Mh-pIE.title" = "Ordenar por Padrão…";
 /* Class = "NSMenuItem"; title = "Reverse"; ObjectID = "xhf-NR-D2Q"; */
 "xhf-NR-D2Q.title" = "Inverter";
 /* Class = "NSMenuItem"; title = "Delete Duplicates"; ObjectID = "bjv-m0-tZq"; */
@@ -537,9 +537,9 @@
 "111.title" = "Ajuda do CotEditor";
 
 /* Class = "NSMenuItem"; title = "CotEditor Scripting Guide"; ObjectID = "M1N-Fg-Bo4"; */
-"M1N-Fg-Bo4.title" = "Manual de Scripts do CotEditor";  // FIXME: "Manual" -> "Guide"
+"M1N-Fg-Bo4.title" = "Manual de Scripts do CotEditor";
 /* Class = "NSMenu"; title = "CotEditor Scripting Guide"; ObjectID = "OLa-Mb-rXS"; */
-"OLa-Mb-rXS.title" = "Manual de Scripts do CotEditor";  // FIXME: "Manual" -> "Guide"
+"OLa-Mb-rXS.title" = "Manual de Scripts do CotEditor";
 /* Class = "NSMenuItem"; title = "About Scripting"; ObjectID = "u2o-8v-WPL"; */
 "u2o-8v-WPL.title" = "Sobre Scripts";
 /* Class = "NSMenuItem"; title = "AppleScript Dictionary"; ObjectID = "620"; */
@@ -553,8 +553,8 @@
 "824.title" = "Reconhecimentos";
 
 /* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "Criar Relatório de Erro…";  // FIXME: changed "Bug" -> "Issue"
+"iHn-Ed-A8u.title" = "Criar Relatório de Problema…";
 /* Class = "NSMenuItem"; title = "Report Bug"; ObjectID = "Bk3-xx-uft"; */
-"Bk3-xx-uft.title" = "Comunicar Erro";  // FIXME: changed "Bug" -> "Issue"
+"Bk3-xx-uft.title" = "Comunicar Problema";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */
 "g34-YV-E6o.title" = "Site do CotEditor";
