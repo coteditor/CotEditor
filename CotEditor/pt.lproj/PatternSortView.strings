@@ -23,50 +23,50 @@
 //  limitations under the License.
 
 /* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
-"I06-xc-WQt.title" = "Sample:";  // FIXME: added
+"I06-xc-WQt.title" = "Amostra:";
 /* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
-"W2m-Jf-7Yj.ibShadowedToolTip" = "Sample line to check which part in a line will be used for sort comparison.";  // FIXME: added
+"W2m-Jf-7Yj.ibShadowedToolTip" = "Linha de amostra para verificar qual parte de uma linha será usada ao ordenar a comparação.";
 
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
-"bKb-oj-ekR.title" = "Sort key:";  // FIXME: added
+"bKb-oj-ekR.title" = "Ordenar por:";
 
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
-"pKE-GY-bD6.title" = "Column";  // FIXME: added
+"pKE-GY-bD6.title" = "Coluna";
 /* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
-"Ase-N7-QHB.title" = "Regular expression";  // FIXME: added
+"Ase-N7-QHB.title" = "Expressão regular";
 /* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
-"roe-rP-gfg.title" = "Entire line";  // FIXME: added
+"roe-rP-gfg.title" = "Toda a linha";
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
-"eio-Wb-V6q.title" = "Sort option:";  // FIXME: added
+"eio-Wb-V6q.title" = "Opções de ordenação:";
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
-"GS5-w5-IIt.title" = "Ignore Case";  // FIXME: added
+"GS5-w5-IIt.title" = "Ignorar Maiúsculas/Minúsculas";
 /* Class = "NSButtonCell"; title = "Respect language rules:"; ObjectID = "x72-Sd-pMB"; */
-"x72-Sd-pMB.title" = "Respect language rules:";  // FIXME: added
+"x72-Sd-pMB.title" = "Respeitar regras do idioma";
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
-"yXD-KA-8KI.title" = "Treat numbers as numeric value";  // FIXME: added
+"yXD-KA-8KI.title" = "Tratar números como valor numérico";
 /* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
-"h1K-Og-3x3.title" = "In decending order";  // FIXME: added
+"h1K-Og-3x3.title" = "Em ordem decrescente";
 
 
 /* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
-"CLj-6v-R1R.title" = "Delimiter:";  // FIXME: added
+"CLj-6v-R1R.title" = "Delimitador:";
 /* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
-"HE1-PS-8J3.title" = "Position:";  // FIXME: added
+"HE1-PS-8J3.title" = "Posição:";
 
 
 /* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
-"d12-uy-VE0.title" = "Pattern:";  // FIXME: added
+"d12-uy-VE0.title" = "Padrão:";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Dh1-dP-bGe"; */
-"Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "Regular Expression";  // FIXME: added
+"Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "Expressão Regular";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
-"Lr8-mD-svg.title" = "Ignore case";  // FIXME: added
+"Lr8-mD-svg.title" = "Ignorar maiúsculas/minúsculas";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
-"eys-fy-HVq.title" = "Use captured group:";  // FIXME: added
+"eys-fy-HVq.title" = "Usar grupo capturado:";
 
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
-"Lw7-xg-639.title" = "Cancel";  // FIXME: added
+"Lw7-xg-639.title" = "Cancelar";
 /* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
-"ara-FL-nKk.title" = "Sort";  // FIXME: added
+"ara-FL-nKk.title" = "Ordenar";

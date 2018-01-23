@@ -30,14 +30,14 @@
 /* Class = "NSButtonCell"; title = "Reopen windows from last session"; ObjectID = "QX9-BI-SIL"; */
 "QX9-BI-SIL.title" = "Reabrir janelas da última sessão";
 /* Class = "NSTextFieldCell"; title = "When nothing else is open:"; ObjectID = "wmw-xg-bSt"; */
-"wmw-xg-bSt.title" = "When nothing else is open:";  // FIXME: added
+"wmw-xg-bSt.title" = "Quando não houver nada aberto:";
 
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
-"i4c-DG-ADS.title" = "Create New Document";  // FIXME: added
+"i4c-DG-ADS.title" = "Criar Novo Documento";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
-"hIX-mh-cG4.title" = "Show Open Dialog";  // FIXME: added
+"hIX-mh-cG4.title" = "Mostrar Diálogo de Abertura";
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
-"KgD-GV-alV.title" = "Do Nothing";  // FIXME: added
+"KgD-GV-alV.title" = "Não Fazer Nada";
 
 
 /* Class = "NSTextFieldCell"; title = "Document save:"; ObjectID = "Ki4-3Y-AZL"; */
