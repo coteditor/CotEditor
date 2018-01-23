@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="Lgm-sL-YIF" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="8Od-1h-2eW" userLabel="Format Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="414"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button identifier="pref_format" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-4V-mYI">
-                                <rect key="frame" x="527" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="qkT-9V-g1o">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -257,10 +257,10 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-bI-CJS">
-                                <rect key="frame" x="20" y="221" width="520" height="5"/>
+                                <rect key="frame" x="20" y="221" width="510" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N1E-uH-II1">
-                                <rect key="frame" x="20" y="355" width="520" height="5"/>
+                                <rect key="frame" x="20" y="355" width="510" height="5"/>
                             </box>
                             <button toolTip="Add empty style" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
                                 <rect key="frame" x="166" y="19" width="24" height="23"/>

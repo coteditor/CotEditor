@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="6FT-QA-TTg" customClass="EditPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="4sX-tH-txQ" userLabel="Edit Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="513"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="513"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D3Q-hS-szA">
@@ -271,7 +271,7 @@
                                 </textFieldCell>
                             </textField>
                             <button identifier="pref_edit" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ks6-yt-k9q">
-                                <rect key="frame" x="527" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Rz-Ie-QiJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -301,7 +301,7 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DcX-sg-7bi">
-                                <rect key="frame" x="115" y="46" width="437" height="14"/>
+                                <rect key="frame" x="115" y="46" width="427" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="⚠️ Select at least one item to enable completion." id="dmb-pc-4M5">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>

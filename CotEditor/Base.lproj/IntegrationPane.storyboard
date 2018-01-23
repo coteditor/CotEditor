@@ -11,7 +11,7 @@
             <objects>
                 <viewController title="Integration" id="NGa-54-JV0" customClass="IntegrationPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" id="dua-kZ-3F1" userLabel="Integration Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="140"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="140"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <button identifier="about_cot" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lc8-C4-VWY">
@@ -56,7 +56,7 @@
                                 </connections>
                             </textField>
                             <button identifier="pref_integration" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rbP-cF-8do">
-                                <rect key="frame" x="527" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WCi-c2-3a5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hel-wg-HgL">
-                                <rect key="frame" x="146" y="64" width="406" height="28"/>
+                                <rect key="frame" x="146" y="64" width="396" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="With the 'cot' command-line tool, you can launch CotEditor and let it open files from the command line." id="c48-xK-Ag1">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

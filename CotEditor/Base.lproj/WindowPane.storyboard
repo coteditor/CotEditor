@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="Qki-Cn-AgK" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="uRF-iT-6pD">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="473"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="473"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="i96-vS-LF6">
@@ -180,13 +180,13 @@
                                 </connections>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="BXd-DT-jKh">
-                                <rect key="frame" x="20" y="162" width="530" height="5"/>
+                                <rect key="frame" x="20" y="162" width="520" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="fDR-J7-rvC">
-                                <rect key="frame" x="20" y="323" width="530" height="5"/>
+                                <rect key="frame" x="20" y="323" width="520" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="HPd-WR-pN4">
-                                <rect key="frame" x="20" y="210" width="530" height="5"/>
+                                <rect key="frame" x="20" y="210" width="520" height="5"/>
                             </box>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="W7e-Di-3ya">
                                 <rect key="frame" x="134" y="293" width="88" height="18"/>
@@ -405,7 +405,7 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="TQJ-IO-6BB">
-                                <rect key="frame" x="20" y="414" width="530" height="5"/>
+                                <rect key="frame" x="20" y="414" width="520" height="5"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rbS-x0-OwF">
                                 <rect key="frame" x="322" y="436" width="157" height="17"/>
@@ -438,7 +438,7 @@
                                 </connections>
                             </textField>
                             <button identifier="pref_window" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6S6-gu-D2C">
-                                <rect key="frame" x="527" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" state="on" borderStyle="border" inset="2" id="NSa-g8-oom">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>

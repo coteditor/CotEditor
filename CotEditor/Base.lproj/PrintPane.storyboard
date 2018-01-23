@@ -11,7 +11,7 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="4if-cg-44c" customClass="PrintPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="KkP-8S-iZE">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="411"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="411"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zj5-Gl-MJM">
@@ -384,7 +384,7 @@
                                 </connections>
                             </segmentedControl>
                             <button identifier="pref_print" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vgh-ld-DGW">
-                                <rect key="frame" x="527" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="vLp-x1-my1">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
