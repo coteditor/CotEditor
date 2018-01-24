@@ -7,7 +7,7 @@ develop
 
 ### improvements
 
-- Adjust layout of Integration pane.
+- Adjust layout of preferences panes.
 
 
 
