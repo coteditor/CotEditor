@@ -597,7 +597,7 @@ final class EditorTextView: NSTextView, Themable {
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
             var x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
             if self.baseWritingDirection == .rightToLeft {
-                x = self.frame.width - x
+                x = self.bounds.width - x
             }
             
             NSGraphicsContext.saveGraphicsState()

@@ -13,6 +13,7 @@ develop
 
 ### Fixes
 
+- [beta] Fix an issue where page guide was drawn at a wrong position if editor is scaled and the writing direction is RTL.
 - Fix scroll position in the help viewer on jumping to a help page.
 
 
