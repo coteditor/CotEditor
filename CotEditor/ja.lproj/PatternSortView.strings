@@ -43,7 +43,7 @@
 "eio-Wb-V6q.title" = "並び替えオプション:";
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
 "GS5-w5-IIt.title" = "大文字/小文字を無視";
-/* Class = "NSButtonCell"; title = "Respect language rules:"; ObjectID = "x72-Sd-pMB"; */
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
 "x72-Sd-pMB.title" = "言語ルールに従う";
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
 "yXD-KA-8KI.title" = "数字を数値として扱う";

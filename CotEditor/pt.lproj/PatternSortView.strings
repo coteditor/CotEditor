@@ -42,7 +42,7 @@
 "eio-Wb-V6q.title" = "Opções de ordenação:";
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
 "GS5-w5-IIt.title" = "Ignorar Maiúsculas/Minúsculas";
-/* Class = "NSButtonCell"; title = "Respect language rules:"; ObjectID = "x72-Sd-pMB"; */
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
 "x72-Sd-pMB.title" = "Respeitar regras do idioma";
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
 "yXD-KA-8KI.title" = "Tratar números como valor numérico";
