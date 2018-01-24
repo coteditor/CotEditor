@@ -121,6 +121,11 @@
 "1cW-FV-40L.paletteLabel" = "切换文字方向";  /* Toggle text orientation */
 "1cW-FV-40L.toolTip" = "切换文字方向";  /* Toggle text orientation */
 
+/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
+"1zL-0E-fZd.label" = "Writing Direction";  /* Writing Direction */  // FIXME: added
+"1zL-0E-fZd.paletteLabel" = "Toggle Writing Direction";  /* Toggle Writing Direction */  // FIXME: added
+"1zL-0E-fZd.toolTip" = "Toggle writing direction";  /* Toggle writing direction */  // FIXME: added
+
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "扩展 Tab";  /* Expand Tabs */
 "c9C-af-Zcg.paletteLabel" = "切换自动扩展 Tab";  /* Toggle Tab Auto-Expansion */

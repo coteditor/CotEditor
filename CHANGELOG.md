@@ -8,6 +8,7 @@ develop
 ### improvements
 
 - [beta] Add “Keep the first line at the top” option to the pattern sort.
+- [beta] Add toolbar item toggling writing direction.
 - [beta] Adjust layout of preferences panes.
 
 
