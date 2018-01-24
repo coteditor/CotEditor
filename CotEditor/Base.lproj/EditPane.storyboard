@@ -82,7 +82,7 @@
                                     <constraint firstAttribute="width" constant="40" id="2EE-jD-d5t"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="4" drawsBackground="YES" id="Hjz-Hk-xNk">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="nLF-LO-SYb">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="nLF-LO-SYb">
                                         <real key="minimum" value="1"/>
                                         <decimal key="maximum" value="99"/>
                                     </numberFormatter>
@@ -220,7 +220,7 @@
                                     <constraint firstAttribute="width" constant="40" id="WxU-c4-7Ko"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="4" drawsBackground="YES" id="i5d-VJ-TOP">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" localizesFormat="NO" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="hqm-WB-gYF">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="0" maximumIntegerDigits="42" id="hqm-WB-gYF">
                                         <real key="minimum" value="0.0"/>
                                         <decimal key="maximum" value="99"/>
                                     </numberFormatter>
