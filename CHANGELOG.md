@@ -11,6 +11,11 @@ develop
 - [beta] Adjust layout of preferences panes.
 
 
+### Fixes
+
+- Fix scroll position in the help viewer on jumping to a help page.
+
+
 
 3.3.0-beta (216)
 --------------------------
