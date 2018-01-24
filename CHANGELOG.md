@@ -15,6 +15,7 @@ develop
 ### Fixes
 
 - [beta] Fix an issue where page guide was drawn at a wrong position if editor is scaled and the writing direction is RTL.
+- [beta] Fix an issue where text did not changed to the RTL writing direction if lines are not wrapped.
 - Fix scroll position in the help viewer on jumping to a help page.
 
 

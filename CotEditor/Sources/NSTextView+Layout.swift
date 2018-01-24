@@ -183,7 +183,7 @@ extension NSTextView {
         get {
             guard let container = self.textContainer else { return false }
             
-            return (container.size.width != .greatestFiniteMagnitude)
+            return (container.size.width != self.infiniteSize.width)
         }
         
         set (wrapsLines) {
@@ -199,7 +199,7 @@ extension NSTextView {
                 textContainer.size.width = (contentSize.width / self.scale).rounded()
                 self.setConstrainedFrameSize(contentSize)
             } else {
-                textContainer.size = .infinite
+                textContainer.size = self.infiniteSize
             }
             self.autoresizingMask = wrapsLines ? (isVertical ? .height : .width) : .none
             if isVertical {
@@ -217,6 +217,14 @@ extension NSTextView {
                 self.scrollToVisible(visibleRect)
             }
         }
+    }
+    
+    
+    // return infinite size for textContainer considering writing orientation state
+    var infiniteSize: CGSize {
+        
+        // infinite size doesn't work with RTL (2018-01 macOS 10.13).
+        return (self.baseWritingDirection == .rightToLeft) ? CGSize(width: 9_999_999, height: 9_999_999) : .infinite
     }
     
 }

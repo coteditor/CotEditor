@@ -725,6 +725,11 @@ final class EditorTextView: NSTextView, Themable {
     override var baseWritingDirection: NSWritingDirection {
         
         didSet {
+            // update textContainer size (see comment in NSTextView.infiniteSize)
+            if !self.wrapsLines {
+                self.textContainer?.size = self.infiniteSize
+            }
+            
             // redraw page guide after changing writing direction
             if self.showsPageGuide {
                 self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
