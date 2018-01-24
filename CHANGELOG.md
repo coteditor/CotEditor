@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### improvements
+
+- Adjust layout of Integration pane.
+
+
+
+3.3.0-beta (216)
+--------------------------
+
 ### New Features
 
 - iCloud document.
