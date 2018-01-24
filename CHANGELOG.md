@@ -7,7 +7,8 @@ develop
 
 ### improvements
 
-- Adjust layout of preferences panes.
+- [beta] Add “Keep the first line at the top” option to the pattern sort.
+- [beta] Adjust layout of preferences panes.
 
 
 
