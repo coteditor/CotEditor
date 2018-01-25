@@ -81,9 +81,15 @@ extension NSString {
     ///
     /// - Parameter ranges: Ranges to include.
     /// - Returns: Array of ranges of each indivisual line.
-    func lineRanges(for ranges: [NSRange]) -> [NSRange] {
+    func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
         
         guard !ranges.isEmpty else { return [] }
+        
+        if includingLastEmptyLine,
+            ranges == [NSRange(location: self.length, length: 0)],
+            self.character(at: self.length - 1) == "\n".utf16.first! {
+            return ranges
+        }
         
         var lineRanges = OrderedSet<NSRange>()
         

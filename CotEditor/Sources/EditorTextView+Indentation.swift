@@ -45,16 +45,17 @@ extension EditorTextView {
         let indentLength = indent.utf16.count
         
         // create shifted string
-        let lineRanges = string.lineRanges(for: selectedRanges)
+        let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
         let newLines = lineRanges.map { indent + string.substring(with: $0) }
         
         // calculate new selection range
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let shift = lineRanges.countPrefix { $0.location <= selectedRange.location }
             let lineCount = lineRanges.count { selectedRange.intersection($0) != nil }
+            let lengthDiff = max(lineCount - 1, 0) * indentLength
             
             return NSRange(location: selectedRange.location + shift * indentLength,
-                           length: selectedRange.length + (lineCount - 1) * indentLength)
+                           length: selectedRange.length + lengthDiff)
         }
         
         // update textView and register action to undo manager
@@ -72,20 +73,23 @@ extension EditorTextView {
         let string = self.string as NSString
         let selectedRanges = self.selectedRanges as! [NSRange]
         
-        // create shifted string
+        // find ranges to remove
         let lineRanges = string.lineRanges(for: selectedRanges)
         let lines = lineRanges.map { string.substring(with: $0) }
         let dropCounts = lines.map { line -> Int in
             guard let firstCharacter = line.first else { return 0 }
             
             switch firstCharacter {
-            case "\t": return 1
-            case " ": return min(line.countPrefix(while: { $0 == " " }), self.tabWidth)
-            default: return 0
+            case "\t":
+                return 1
+            case " ":
+                return line.prefix(self.tabWidth).countPrefix { $0 == " " }
+            default:
+                return 0
             }
         }
         
-        // cancel if not shifted
+        // cancel if nothing to shift
         guard dropCounts.contains(where: { $0 > 0 }) else { return }
         
         // create shifted string
@@ -96,14 +100,14 @@ extension EditorTextView {
             .filter { $1 > 0 }
             .map { NSRange(location: $0.location, length: $1) }
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
-            let locationDiff = droppedRanges
+            let offset = droppedRanges
                 .prefix { $0.location < selectedRange.location }
                 .reduce(0) { $0 + (selectedRange.intersection($1) ?? $1).length }
             let lengthDiff = droppedRanges
                 .flatMap { selectedRange.intersection($0) }
                 .reduce(0) { $0 + $1.length }
             
-            return NSRange(location: selectedRange.location - locationDiff,
+            return NSRange(location: selectedRange.location - offset,
                            length: selectedRange.length - lengthDiff )
         }
         
@@ -122,7 +126,7 @@ extension EditorTextView {
         case 1:
             self.shiftRight(sender)
         default:
-            assertionFailure("Segmented shift button must have only 2 segments.")
+            assertionFailure("Segmented shift button must have 2 segments only.")
         }
     }
     
