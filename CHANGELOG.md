@@ -5,11 +5,12 @@ Change Log
 develop
 --------------------------
 
-### improvements
+### Improvements
 
 - Enable “shift right” and “shift left” commands to process multiple selections.
 - [beta] Add “Keep the first line at the top” option to the pattern sort.
 - [beta] Add toolbar item toggling writing direction.
+- [beta] Update alignment icons in print pane.
 - [beta] Adjust layout of preferences panes.
 
 
@@ -17,7 +18,7 @@ develop
 
 - [beta] Fix an issue where page guide was drawn at a wrong position if editor is scaled and the writing direction is RTL.
 - [beta] Fix an issue where text did not changed to the RTL writing direction if lines are not wrapped.
-- Fix scroll position in the help viewer on jumping to a help page.
+- Fix scroll position in the help viewer on jumping to a help page from CotEditor.
 
 
 
