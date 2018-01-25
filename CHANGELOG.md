@@ -7,6 +7,7 @@ develop
 
 ### improvements
 
+- Enable “shift right” and “shift left” commands to process multiple selections.
 - [beta] Add “Keep the first line at the top” option to the pattern sort.
 - [beta] Add toolbar item toggling writing direction.
 - [beta] Adjust layout of preferences panes.

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,37 +36,29 @@ extension EditorTextView {
         
         guard self.tabWidth > 0 else { return }
         
-        // get range to process
-        let string = self.string
-        let selectedRange = self.selectedRange
-        let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
+        // get indent target
+        let string = self.string as NSString
+        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // create indent string to prepend
         let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
         let indentLength = indent.utf16.count
         
         // create shifted string
-        let newLines: [String] = {
-            guard lineRange.length > 0 else { return [indent] }
-            
-            return (string as NSString).substring(with: lineRange).components(separatedBy: .newlines).map { indent + $0 }
-        }()
-        
-        let newString = newLines.joined(separator: "\n")
-        let numberOfLines = newLines.count
+        let lineRanges = string.lineRanges(for: selectedRanges)
+        let newLines = lineRanges.map { indent + string.substring(with: $0) }
         
         // calculate new selection range
-        var newSelectedRange = selectedRange
-        newSelectedRange.length += (numberOfLines - 1) * indentLength
-        if lineRange.location == selectedRange.location && selectedRange.length > 0 {
-            // keep selecting from the line head to the line end
-            newSelectedRange.length += indentLength
-        } else {
-            newSelectedRange.location += indentLength
+        let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
+            let shift = lineRanges.countPrefix { $0.location <= selectedRange.location }
+            let lineCount = lineRanges.count { selectedRange.intersection($0) != nil }
+            
+            return NSRange(location: selectedRange.location + shift * indentLength,
+                           length: selectedRange.length + (lineCount - 1) * indentLength)
         }
         
-        // perform replace and register to undo manager
-        self.replace(with: newString, range: lineRange, selectedRange: newSelectedRange,
+        // update textView and register action to undo manager
+        self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges,
                      actionName: NSLocalizedString("Shift Right", comment: "action name"))
     }
     
@@ -77,65 +69,46 @@ extension EditorTextView {
         guard self.tabWidth > 0 else { return }
         
         // get range to process
-        let string = self.string
-        let selectedRange = self.selectedRange
-        let lineRange = (string as NSString).lineRange(for: selectedRange, excludingLastLineEnding: true)
-        
-        guard lineRange.length > 0 else { return }  // do nothing with blank line
+        let string = self.string as NSString
+        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // create shifted string
-        var newLines = [String]()
-        let tabWidth = self.tabWidth
-        var newSelectedRange = selectedRange
-        var didShift = false
-        var scanningLineLocation = lineRange.location
-        var isFirstLine = true
-        
-        // scan selected lines and remove tab/spaces at the beginning of lines
-        (string as NSString).substring(with: lineRange).enumerateLines { (line, stop) in
-            var numberOfDeleted = 0
-            var newLine = line
+        let lineRanges = string.lineRanges(for: selectedRanges)
+        let lines = lineRanges.map { string.substring(with: $0) }
+        let dropCounts = lines.map { line -> Int in
+            guard let firstCharacter = line.first else { return 0 }
             
-            // count tab/spaces to delete
-            var isDeletingSpace = false
-            for character in line {
-                if character == "\t" && !isDeletingSpace {
-                    newLine.removeFirst()
-                    numberOfDeleted += 1
-                    break
-                } else if character == " " {
-                    newLine.removeFirst()
-                    numberOfDeleted += 1
-                    isDeletingSpace = true
-                } else {
-                    break
-                }
-                guard numberOfDeleted < tabWidth else { break }
+            switch firstCharacter {
+            case "\t": return 1
+            case " ": return min(line.countPrefix(while: { $0 == " " }), self.tabWidth)
+            default: return 0
             }
-            
-            // calculate new selection range
-            let deletedRange = NSRange(location: scanningLineLocation, length: numberOfDeleted)
-            newSelectedRange.length -= newSelectedRange.intersection(deletedRange)?.length ?? 0
-            if isFirstLine {
-                newSelectedRange.location = max(selectedRange.location - numberOfDeleted,
-                                                lineRange.location)
-                isFirstLine = false
-            }
-            
-            // append new line
-            newLines.append(newLine)
-            
-            didShift = didShift ? true : (numberOfDeleted > 0)
-            scanningLineLocation += newLine.utf16.count + 1  // +1 for line ending
         }
         
         // cancel if not shifted
-        guard didShift else { return }
+        guard dropCounts.contains(where: { $0 > 0 }) else { return }
         
-        let newString = newLines.joined(separator: "\n")
+        // create shifted string
+        let newLines = zip(lines, dropCounts).map { String($0.dropFirst($1)) }
         
-        // perform replace and register to undo manager
-        self.replace(with: newString, range: lineRange, selectedRange: newSelectedRange,
+        // calculate new selection range
+        let droppedRanges: [NSRange] = zip(lineRanges, dropCounts)
+            .filter { $1 > 0 }
+            .map { NSRange(location: $0.location, length: $1) }
+        let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
+            let locationDiff = droppedRanges
+                .prefix { $0.location < selectedRange.location }
+                .reduce(0) { $0 + (selectedRange.intersection($1) ?? $1).length }
+            let lengthDiff = droppedRanges
+                .flatMap { selectedRange.intersection($0) }
+                .reduce(0) { $0 + $1.length }
+            
+            return NSRange(location: selectedRange.location - locationDiff,
+                           length: selectedRange.length - lengthDiff )
+        }
+        
+        // update textView and register action to undo manager
+        self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges,
                      actionName: NSLocalizedString("Shift Left", comment: "action name"))
     }
     
