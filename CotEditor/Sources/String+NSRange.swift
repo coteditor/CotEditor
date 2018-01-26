@@ -79,7 +79,9 @@ extension NSString {
     
     /// Calculate line-by-line ranges that given ranges include.
     ///
-    /// - Parameter ranges: Ranges to include.
+    /// - Parameters:
+    ///   - ranges: Ranges to include.
+    ///   - includingLastEmptyLine: Whether the last empty line sould be included; otherwise, return value can be empty.
     /// - Returns: Array of ranges of each indivisual line.
     func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
         
@@ -87,7 +89,7 @@ extension NSString {
         
         if includingLastEmptyLine,
             ranges == [NSRange(location: self.length, length: 0)],
-            self.character(at: self.length - 1) == "\n".utf16.first! {
+            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first!) {
             return ranges
         }
         

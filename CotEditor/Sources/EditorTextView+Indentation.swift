@@ -34,7 +34,43 @@ extension EditorTextView {
     /// increase indent level
     @IBAction func shiftRight(_ sender: Any?) {
         
-        guard self.tabWidth > 0 else { return }
+        guard self.indent() else { return }
+        
+        self.undoManager?.setActionName(NSLocalizedString("Shift Right", comment: "action name"))
+    }
+    
+    
+    /// decrease indent level
+    @IBAction func shiftLeft(_ sender: Any?) {
+        
+        guard self.outdent() else { return }
+        
+        self.undoManager?.setActionName(NSLocalizedString("Shift Left", comment: "action name"))
+    }
+    
+    
+    /// shift selection from segmented control button
+    @IBAction func shift(_ sender: NSSegmentedControl) {
+        
+        switch sender.selectedSegment {
+        case 0:
+            self.shiftLeft(sender)
+        case 1:
+            self.shiftRight(sender)
+        default:
+            assertionFailure("Segmented shift button must have 2 segments only.")
+        }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// increase indent level
+    @discardableResult
+    private func indent() -> Bool {
+        
+        guard self.tabWidth > 0 else { return false }
         
         // get indent target
         let string = self.string as NSString
@@ -58,16 +94,16 @@ extension EditorTextView {
                            length: selectedRange.length + lengthDiff)
         }
         
-        // update textView and register action to undo manager
-        self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges,
-                     actionName: NSLocalizedString("Shift Right", comment: "action name"))
+        // apply to textView
+        return self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
     }
     
     
     /// decrease indent level
-    @IBAction func shiftLeft(_ sender: Any?) {
+    @discardableResult
+    private func outdent() -> Bool {
         
-        guard self.tabWidth > 0 else { return }
+        guard self.tabWidth > 0 else { return false }
         
         // get range to process
         let string = self.string as NSString
@@ -90,7 +126,7 @@ extension EditorTextView {
         }
         
         // cancel if nothing to shift
-        guard dropCounts.contains(where: { $0 > 0 }) else { return }
+        guard dropCounts.contains(where: { $0 > 0 }) else { return false }
         
         // create shifted string
         let newLines = zip(lines, dropCounts).map { String($0.dropFirst($1)) }
@@ -108,28 +144,22 @@ extension EditorTextView {
                 .reduce(0) { $0 + $1.length }
             
             return NSRange(location: selectedRange.location - offset,
-                           length: selectedRange.length - lengthDiff )
+                           length: selectedRange.length - lengthDiff)
         }
         
-        // update textView and register action to undo manager
-        self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges,
-                     actionName: NSLocalizedString("Shift Left", comment: "action name"))
+        // apply to textView
+        return self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
     }
     
+}
+
+
+
+// MARK: -
+
+extension EditorTextView {
     
-    /// shift selection from segmented control button
-    @IBAction func shift(_ sender: NSSegmentedControl) {
-        
-        switch sender.selectedSegment {
-        case 0:
-            self.shiftLeft(sender)
-        case 1:
-            self.shiftRight(sender)
-        default:
-            assertionFailure("Segmented shift button must have 2 segments only.")
-        }
-    }
-    
+    // MARK: Action Messages
     
     /// standardize inentation in selection to spaces
     @IBAction func convertIndentationToSpaces(_ sender: Any?) {
