@@ -113,12 +113,10 @@ extension EditorTextView {
         let lineRanges = string.lineRanges(for: selectedRanges)
         let lines = lineRanges.map { string.substring(with: $0) }
         let dropCounts = lines.map { line -> Int in
-            guard let firstCharacter = line.first else { return 0 }
-            
-            switch firstCharacter {
-            case "\t":
+            switch line.first {
+            case "\t"?:
                 return 1
-            case " ":
+            case " "?:
                 return line.prefix(self.tabWidth).countPrefix { $0 == " " }
             default:
                 return 0
