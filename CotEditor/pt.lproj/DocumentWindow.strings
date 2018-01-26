@@ -119,6 +119,11 @@
 "1cW-FV-40L.paletteLabel" = "Alternar Orientação do Texto";  /* Toggle Text Orientation */
 "1cW-FV-40L.toolTip" = "Alterne a orientação do texto";  /* Toggle text orientation */
 
+/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
+"1zL-0E-fZd.label" = "Writing Direction";  /* Writing Direction */  // FIXME: added
+"1zL-0E-fZd.paletteLabel" = "Toggle Writing Direction";  /* Toggle Writing Direction */  // FIXME: added
+"1zL-0E-fZd.toolTip" = "Toggle writing direction";  /* Toggle writing direction */  // FIXME: added
+
 /* Class = "NSToolbarItem"; label = "Expand Tabs"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "Expandir Tabulações";  /* Expand Tabs */
 "c9C-af-Zcg.paletteLabel" = "Ativar/Desativar Expansão de Tabulações Automática";  /* Toggle Tab Auto-Expansion */

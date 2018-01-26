@@ -46,6 +46,9 @@ extension SortPattern {
         let compareOptions = options.compareOptions
         
         var lines = string.components(separatedBy: .newlines)
+        let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
+            
+        lines = lines
             .map { line -> (line: String, key: String?) in
                 (line: line, key: self.sortKey(for: line))
             }
@@ -63,6 +66,10 @@ extension SortPattern {
         
         if options.decending {
             lines.reverse()
+        }
+        
+        if let firstLine = firstLine {
+            lines.insert(firstLine, at: 0)
         }
         
         return lines.joined(separator: "\n")
@@ -217,6 +224,7 @@ final class SortOptions: NSObject {
     @objc dynamic var numeric: Bool = true
     
     @objc dynamic var localized: Bool = true
+    @objc dynamic var keepsFirstLine: Bool = false
     @objc dynamic var decending: Bool = false
     
     

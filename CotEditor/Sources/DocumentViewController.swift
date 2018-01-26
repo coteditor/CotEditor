@@ -249,6 +249,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             case #selector(toggleLayoutOrientation):
                 imageItem.state = self.verticalLayoutOrientation ? .on : .off
                 
+            case #selector(toggleWritingDirection):
+                imageItem.state = (self.writingDirection == .rightToLeft) ? .on : .off
+                return !self.verticalLayoutOrientation
+                
             case #selector(togglePageGuide):
                 imageItem.state = self.showsPageGuide ? .on : .off
                 
@@ -577,6 +581,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
         
         self.verticalLayoutOrientation = true
+    }
+    
+    
+    /// toggle writing direction (LTR/RTL)
+    @IBAction func toggleWritingDirection(_ sender: Any?) {
+        
+        self.writingDirection = (self.writingDirection == .leftToRight) ? .rightToLeft : .leftToRight
     }
     
     

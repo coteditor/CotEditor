@@ -107,7 +107,7 @@ extension EditorTextView {
         let lineRanges = self.selectedLineRanges
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        if lineRanges.last?.upperBound == textStorage.length {
+        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != textStorage.length else {
             NSSound.beep()
             return
         }
@@ -370,21 +370,7 @@ private extension NSTextView {
     /// extract line by line line ranges which selected ranges include
     var selectedLineRanges: [NSRange] {
         
-        let string = self.string as NSString
-        var lineRanges = OrderedSet<NSRange>()
-        
-        // get line ranges to process
-        for selectedRange in self.selectedRanges as! [NSRange] {
-            let linesRange = string.lineRange(for: selectedRange)
-            
-            // store each line to process
-            string.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { (substring: String?, substringRange, enclosingRange, stop) in
-                
-                lineRanges.append(enclosingRange)
-            }
-        }
-        
-        return lineRanges.array
+        return (self.string as NSString).lineRanges(for: self.selectedRanges as! [NSRange])
     }
     
 }

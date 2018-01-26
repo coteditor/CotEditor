@@ -136,6 +136,11 @@
                                         <action selector="toggleLayoutOrientation:" target="klO-m3-n5X" id="1ee-vK-XVD"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="A1D9A68E-D321-4D02-BEB8-DE95A7AF3357" explicitItemIdentifier="writingDirectionItemID" label="Writing Direction" paletteLabel="Toggle Writing Direction" toolTip="Toggle writing direction" tag="25" image="RTL_On" id="1zL-0E-fZd" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <connections>
+                                        <action selector="toggleWritingDirection:" target="klO-m3-n5X" id="QMS-gh-egs"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="B182CA80-1500-4D59-A0C6-DE9C691FA947" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Tab Auto-Expansion" toolTip="Toggle tab auto-expansion" tag="13" image="AutoTabExpand_On" id="c9C-af-Zcg" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <connections>
                                         <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="AOo-vA-XLq"/>
@@ -420,6 +425,7 @@
         <image name="LockedTemplate" width="16" height="16"/>
         <image name="PageGuide_On" width="24" height="24"/>
         <image name="Print" width="24" height="24"/>
+        <image name="RTL_On" width="128" height="128"/>
         <image name="RecolorAll" width="24" height="24"/>
         <image name="Share" width="24" height="24"/>
         <image name="ShiftLeft" width="24" height="24"/>

@@ -597,7 +597,7 @@ final class EditorTextView: NSTextView, Themable {
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
             var x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
             if self.baseWritingDirection == .rightToLeft {
-                x = self.frame.width - x
+                x = self.bounds.width - x
             }
             
             NSGraphicsContext.saveGraphicsState()
@@ -725,6 +725,11 @@ final class EditorTextView: NSTextView, Themable {
     override var baseWritingDirection: NSWritingDirection {
         
         didSet {
+            // update textContainer size (see comment in NSTextView.infiniteSize)
+            if !self.wrapsLines {
+                self.textContainer?.size = self.infiniteSize
+            }
+            
             // redraw page guide after changing writing direction
             if self.showsPageGuide {
                 self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)

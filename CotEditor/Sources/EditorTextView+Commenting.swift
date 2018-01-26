@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,18 +27,19 @@
 
 import Cocoa
 
-extension EditorTextView {
+extension EditorTextView: Commenting {
     
-    // MARK: Options
+    // MARK: Commenting Protocol
     
-    struct CommentTypes: OptionSet {
+    var appendsCommentSpacer: Bool {
         
-        let rawValue: Int
+        return UserDefaults.standard[.appendsCommentSpacer]
+    }
+    
+    
+    var commentsAtLineHead: Bool {
         
-        static let inline = CommentTypes(rawValue: 1 << 0)
-        static let block = CommentTypes(rawValue: 1 << 1)
-        
-        static let both: CommentTypes = [.inline, .block]
+        return UserDefaults.standard[.commentsAtLineHead]
     }
     
     
@@ -49,9 +50,9 @@ extension EditorTextView {
     @IBAction func toggleComment(_ sender: Any?) {
         
         if self.canUncomment(range: self.selectedRange, partly: false) {
-            self.uncomment(types: .both, fromLineHead: UserDefaults.standard[.commentsAtLineHead])
+            self.uncomment(types: .both, fromLineHead: self.commentsAtLineHead)
         } else {
-            self.commentOut(types: .both, fromLineHead: UserDefaults.standard[.commentsAtLineHead])
+            self.commentOut(types: .both, fromLineHead: self.commentsAtLineHead)
         }
     }
     
@@ -83,7 +84,34 @@ extension EditorTextView {
         self.uncomment(types: .both, fromLineHead: false)
     }
     
+}
+
+
+
+// MARK: - Protocol
+
+struct CommentTypes: OptionSet {
     
+    let rawValue: Int
+    
+    static let inline = CommentTypes(rawValue: 1 << 0)
+    static let block = CommentTypes(rawValue: 1 << 1)
+    
+    static let both: CommentTypes = [.inline, .block]
+}
+
+
+protocol Commenting: class {
+    
+    var inlineCommentDelimiter: String? { get }
+    var blockCommentDelimiters: BlockDelimiters? { get }
+    
+    var appendsCommentSpacer: Bool { get }
+    var commentsAtLineHead: Bool { get }
+}
+
+
+extension Commenting where Self: NSTextView {
     
     // MARK: Public Methods
     
@@ -99,7 +127,7 @@ extension EditorTextView {
             let targetRange = self.commentingRange(fromLineHead: fromLineHead)
             else { return }
         
-        let spacer = UserDefaults.standard[.appendsCommentSpacer] ? " " : ""
+        let spacer = self.appendsCommentSpacer ? " " : ""
         var new: (String, NSRange)?
         
         // insert delimiters
@@ -129,7 +157,7 @@ extension EditorTextView {
             let targetRange = self.commentingRange(fromLineHead: fromLineHead),
             !targetRange.isEmpty else { return }
         
-        let spacer = UserDefaults.standard[.appendsCommentSpacer] ? " " : ""
+        let spacer = self.appendsCommentSpacer ? " " : ""
         var new: (String, NSRange)?
         
         if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
@@ -152,7 +180,7 @@ extension EditorTextView {
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }
         
         guard
-            let targetRange = self.commentingRange(fromLineHead: UserDefaults.standard[.commentsAtLineHead]),
+            let targetRange = self.commentingRange(fromLineHead: self.commentsAtLineHead),
             !targetRange.isEmpty else { return false }
         
         let target = self.string[targetRange]

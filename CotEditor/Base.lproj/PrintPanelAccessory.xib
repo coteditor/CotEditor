@@ -165,13 +165,13 @@
                     </textFieldCell>
                 </textField>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
-                    <rect key="frame" x="272" y="139" width="79" height="24"/>
+                    <rect key="frame" x="272" y="139" width="76" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="CenterAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="RightAlignTemplate" width="24">
+                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                            <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -190,13 +190,13 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
-                    <rect key="frame" x="272" y="49" width="79" height="24"/>
+                    <rect key="frame" x="272" y="49" width="76" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="CenterAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="RightAlignTemplate" width="24">
+                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                            <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -215,13 +215,13 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
-                    <rect key="frame" x="272" y="108" width="79" height="24"/>
+                    <rect key="frame" x="272" y="108" width="76" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="CenterAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="RightAlignTemplate" width="24">
+                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                            <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -240,13 +240,13 @@
                     </connections>
                 </segmentedControl>
                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
-                    <rect key="frame" x="272" y="18" width="79" height="24"/>
+                    <rect key="frame" x="272" y="18" width="76" height="24"/>
                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
                         <font key="font" metaFont="system"/>
                         <segments>
-                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="24"/>
-                            <segment toolTip="Center" image="CenterAlignTemplate" width="24" selected="YES" tag="1"/>
-                            <segment toolTip="Align Right" image="RightAlignTemplate" width="24">
+                            <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                            <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                            <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
                                 <nil key="label"/>
                             </segment>
                         </segments>
@@ -414,8 +414,8 @@
         </customView>
     </objects>
     <resources>
-        <image name="CenterAlignTemplate" width="16" height="16"/>
-        <image name="LeftAlignTemplate" width="16" height="16"/>
-        <image name="RightAlignTemplate" width="16" height="16"/>
+        <image name="CenterAlignTemplate" width="15" height="15"/>
+        <image name="LeftAlignTemplate" width="15" height="15"/>
+        <image name="RightAlignTemplate" width="15" height="15"/>
     </resources>
 </document>
