@@ -34,7 +34,11 @@ extension EditorTextView {
     /// increase indent level
     @IBAction func shiftRight(_ sender: Any?) {
         
-        guard self.indent() else { return }
+        if self.baseWritingDirection == .rightToLeft {
+            guard self.outdent() else { return }
+        } else {
+            guard self.indent() else { return }
+        }
         
         self.undoManager?.setActionName(NSLocalizedString("Shift Right", comment: "action name"))
     }
@@ -43,7 +47,11 @@ extension EditorTextView {
     /// decrease indent level
     @IBAction func shiftLeft(_ sender: Any?) {
         
-        guard self.outdent() else { return }
+        if self.baseWritingDirection == .rightToLeft {
+            guard self.indent() else { return }
+        } else {
+            guard self.outdent() else { return }
+        }
         
         self.undoManager?.setActionName(NSLocalizedString("Shift Left", comment: "action name"))
     }
