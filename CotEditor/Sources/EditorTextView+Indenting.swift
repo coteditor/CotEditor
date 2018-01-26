@@ -1,6 +1,6 @@
 /*
  
- EditorTextView+Indentation.swift
+ EditorTextView+Indenting
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Cocoa
 
-extension EditorTextView {
+extension EditorTextView: Indenting {
     
     // MARK: Action Messages
     
@@ -71,12 +71,37 @@ extension EditorTextView {
     }
     
     
+    /// standardize inentation in selection to spaces
+    @IBAction func convertIndentationToSpaces(_ sender: Any?) {
+        
+        self.convertIndentation(style: .space)
+    }
     
-    // MARK: Private Methods
+    
+    /// standardize inentation in selection to tabs
+    @IBAction func convertIndentationToTabs(_ sender: Any?) {
+        
+        self.convertIndentation(style: .tab)
+    }
+    
+}
+
+
+
+// MARK: - Protocol
+
+protocol Indenting: class {
+    
+    var tabWidth: Int { get }
+    var isAutomaticTabExpansionEnabled: Bool { get }
+}
+
+
+extension Indenting where Self: NSTextView {
     
     /// increase indent level
     @discardableResult
-    private func indent() -> Bool {
+    func indent() -> Bool {
         
         guard self.tabWidth > 0 else { return false }
         
@@ -109,7 +134,7 @@ extension EditorTextView {
     
     /// decrease indent level
     @discardableResult
-    private func outdent() -> Bool {
+    func outdent() -> Bool {
         
         guard self.tabWidth > 0 else { return false }
         
@@ -157,35 +182,9 @@ extension EditorTextView {
         return self.replace(with: newLines, ranges: lineRanges, selectedRanges: newSelectedRanges)
     }
     
-}
-
-
-
-// MARK: -
-
-extension EditorTextView {
-    
-    // MARK: Action Messages
-    
-    /// standardize inentation in selection to spaces
-    @IBAction func convertIndentationToSpaces(_ sender: Any?) {
-        
-        self.convertIndentation(style: .space)
-    }
-    
-    
-    /// standardize inentation in selection to tabs
-    @IBAction func convertIndentationToTabs(_ sender: Any?) {
-        
-        self.convertIndentation(style: .tab)
-    }
-    
-    
-    
-    // MARK: Private Methods
     
     /// standardize inentation of given ranges
-    private func convertIndentation(style: IndentStyle) {
+    func convertIndentation(style: IndentStyle) {
         
         guard !self.string.isEmpty else { return }
         
