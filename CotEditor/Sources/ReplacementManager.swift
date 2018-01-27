@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -142,15 +142,15 @@ final class ReplacementManager: SettingFileManager {
         let decoder = JSONDecoder()
         
         // load settings if exists
-        self.settings = self.userSettingFileURLs?.flatDictionary { (url) in
+        self.settings = self.userSettingFileURLs?.reduce(into: [:]) { (settings, url) in
             guard
                 let data = try? Data(contentsOf: url),
                 let setting = try? decoder.decode(BatchReplacement.self, from: data)
-                else { return nil }
+                else { return }
             
             let name = self.settingName(from: url)
             
-            return (name, setting)
+            settings?[name] = setting
         } ?? [:]
     }
     
