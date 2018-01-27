@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -356,6 +356,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard var rect = textView.boundingRect(for: lineRange) else { return }
         
+        rect.origin.x = textContainer.lineFragmentPadding
         rect.size.width = textContainer.size.width - 2 * textContainer.lineFragmentPadding
         
         guard textView.lineHighlightRect != rect else { return }

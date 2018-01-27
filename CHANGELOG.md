@@ -2,6 +2,14 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+### Fixes
+
+- [beta] Fix an issue where the current line highlight started at a wrong place on the RTL writing mode.
+
+
+
 3.3.0-beta.2 (218)
 --------------------------
 
