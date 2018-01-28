@@ -4,6 +4,12 @@ Change Log
 
 develop
 --------------------------
+
+### Improvements
+
+- [beta] Tweak the layout of the “Sort by Pattern” dialog.
+
+
 ### Fixes
 
 - [beta] Fix an issue where the views containing an encoding menu could display nothing under a specific setting condition.

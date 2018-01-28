@@ -31,12 +31,12 @@
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Criterio di ordinamento:";
 
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Intera riga";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
 "pKE-GY-bD6.title" = "Colonna";
 /* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
 "Ase-N7-QHB.title" = "Espressione regolare";
-/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
-"roe-rP-gfg.title" = "Intera riga";
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
