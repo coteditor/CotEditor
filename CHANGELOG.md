@@ -6,6 +6,7 @@ develop
 --------------------------
 ### Fixes
 
+- [beta] Fix an issue where the views containing an encoding menu could display nothing under a specific setting condition.
 - [beta] Fix an issue where the current line highlight started at a wrong place on the RTL writing mode.
 
 
