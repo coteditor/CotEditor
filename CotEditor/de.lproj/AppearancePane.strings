@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
 "Z85-S9-uID.title" = "Schrift:";
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "Auswählen …";
-/* Class = "NSButtonCell"; title = "Anti-Aliasing"; ObjectID = "3290"; */
+/* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
 "3290.title" = "Text glätten";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
@@ -53,7 +53,7 @@
 "XSb-uU-5QP.title" = "Tabulator";
 /* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "Ont-7L-Uf5"; */
 "Ont-7L-Uf5.title" = "Zeilenumbruch";
-/* Class = "NSButtonCell"; title = "Fullwidth-Space"; ObjectID = "Bf2-rS-2zu"; */
+/* Class = "NSButtonCell"; title = "Full-width Space"; ObjectID = "Bf2-rS-2zu"; */
 "Bf2-rS-2zu.title" = "Vollbreite Leerzeichen";
 /* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Andere unsichtbare Zeichen";

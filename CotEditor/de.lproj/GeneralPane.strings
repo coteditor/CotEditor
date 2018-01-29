@@ -80,7 +80,7 @@
 "al9-WE-Rqy.title" = "„<>“ hervorheben";
 
 
-/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
+/* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "Softwareupdate:";
 
 /* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */

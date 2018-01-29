@@ -39,7 +39,7 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "默认文本编码：";
 
-/* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
+/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
 "3277.title" = "打开文件：";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "编辑列表…";

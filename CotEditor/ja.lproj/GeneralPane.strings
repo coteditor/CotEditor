@@ -80,7 +80,7 @@
 "al9-WE-Rqy.title" = "“<>”をハイライト表示";
 
 
-/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
+/* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "ソフトウェアアップデート:";
 
 /* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */
