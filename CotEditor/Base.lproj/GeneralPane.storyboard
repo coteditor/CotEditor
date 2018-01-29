@@ -10,8 +10,8 @@
         <scene sceneID="eDf-Cn-NDW">
             <objects>
                 <viewController id="JG1-NR-KT5" customClass="GeneralPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" misplaced="YES" id="T5J-Ml-0Oc">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="566"/>
+                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="T5J-Ml-0Oc">
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="580"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-ng-N5P">
