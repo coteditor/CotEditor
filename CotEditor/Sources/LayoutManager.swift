@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -217,6 +217,7 @@ final class LayoutManager: NSLayoutManager {
             let string = self.textStorage?.string
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
+            let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
             let isOpaque = self.firstTextView?.isOpaque ?? true
             
             if !isOpaque {
@@ -273,6 +274,9 @@ final class LayoutManager: NSLayoutManager {
                     // [note] Probably not a good solution but better than doing nothing (2016-05-25).
                     let pathBounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
                     point.y += pathBounds.height / 2
+                }
+                if isRTL, codeUnit == "\n".utf16.first! {
+                    point.x -= CTLineGetBoundsWithOptions(line, []).width
                 }
                 
                 // draw character

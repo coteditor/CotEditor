@@ -7,6 +7,7 @@ develop
 
 ### Improvements
 
+- [beta] Adjust position of invisible line ending character on the RTL writing mode.
 - [beta] Tweak the layout of the “Sort by Pattern” dialog.
 
 
