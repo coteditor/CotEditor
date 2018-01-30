@@ -272,11 +272,10 @@ final class LayoutManager: NSLayoutManager {
                                                                    dy: self.defaultBaselineOffset)
                 if isVertical {
                     // [note] Probably not a good solution but better than doing nothing (2016-05-25).
-                    let pathBounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
-                    point.y += pathBounds.height / 2
+                    point.y += line.bounds(options: .useGlyphPathBounds).height / 2
                 }
                 if isRTL, codeUnit == "\n".utf16.first! {
-                    point.x -= CTLineGetBoundsWithOptions(line, []).width
+                    point.x -= line.bounds().width
                 }
                 
                 // draw character
@@ -436,4 +435,12 @@ private extension CTLine {
         
         return CTLineCreateWithAttributedString(attrString)
     }
+    
+    
+    /// get bounds in a objective way.
+    func bounds(options: CTLineBoundsOptions = []) -> CGRect {
+        
+        return CTLineGetBoundsWithOptions(self, options)
+    }
+    
 }
