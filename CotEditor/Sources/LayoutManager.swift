@@ -114,7 +114,7 @@ final class LayoutManager: NSLayoutManager {
         let space: CTLine
         let tab: CTLine
         let newLine: CTLine
-        let fullWidthSpace: CTLine
+        let fullwidthSpace: CTLine
         let verticalTab: CTLine
         let replacement: CTLine
     }
@@ -236,24 +236,24 @@ final class LayoutManager: NSLayoutManager {
                 let codeUnit = string.utf16[utf16Index]
                 
                 let line: CTLine
-                switch codeUnit {
-                case " ".utf16.first!, 0x00A0:  // SPACE, NO_BREAK SPACE
+                switch Invisible(codeUnit: codeUnit) {
+                case .space?:
                     guard self.showsSpace else { continue }
                     line = self.invisibleLines.space
                     
-                case "\t".utf16.first!:  // HORIZONTAL TABULATION
+                case .tab?:
                     guard self.showsTab else { continue }
                     line = self.invisibleLines.tab
                     
-                case "\n".utf16.first!:
+                case .newLine?:
                     guard self.showsNewLine else { continue }
                     line = self.invisibleLines.newLine
                     
-                case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. fullwidth-space (JP)
+                case .fullwidthSpace?:
                     guard self.showsFullwidthSpace else { continue }
-                    line = self.invisibleLines.fullWidthSpace
+                    line = self.invisibleLines.fullwidthSpace
                     
-                case 0x000B:  // LINE TABULATION a.k.a. vertical tab
+                case .verticalTab?:
                     guard self.showsOtherInvisibles else { continue }  // Vertical tab belongs to the other invisibles.
                     line = self.invisibleLines.verticalTab
                     
@@ -405,18 +405,24 @@ final class LayoutManager: NSLayoutManager {
     /// cache CTLines for invisible characters drawing
     private func generateInvisibleLines() -> InvisibleLines {
         
-        let color = self.invisiblesColor
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let spaceFont = self.textFont ?? font
         let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        return InvisibleLines(space: CTLine.create(string: Invisible.userSpace, color: color, font: spaceFont),
-                              tab: CTLine.create(string: Invisible.userTab, color: color, font: font),
-                              newLine: CTLine.create(string: Invisible.userNewLine, color: color, font: font),
-                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: color, font: fullWidthFont),
-                              verticalTab: CTLine.create(string: Invisible.verticalTab, color: color, font: fullWidthFont),
-                              replacement: CTLine.create(string: Invisible.replacement, color: color, font: fullWidthFont))
+        return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
+                              tab: self.invisibleLine(.tab, font: font),
+                              newLine: self.invisibleLine(.newLine, font: font),
+                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
+                              verticalTab: self.invisibleLine(.verticalTab, font: fullWidthFont),
+                              replacement: self.invisibleLine(.replacement, font: fullWidthFont))
+    }
+    
+    
+    /// create CTLine for given invisible type
+    private func invisibleLine(_ invisible: Invisible, font: NSFont) -> CTLine {
+        
+        return CTLine.create(string: invisible.usedSymbol, color: self.invisiblesColor, font: font)
     }
     
 }
