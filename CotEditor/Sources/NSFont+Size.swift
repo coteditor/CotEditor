@@ -54,7 +54,10 @@ extension NSFont {
             let runs = CTLineGetGlyphRuns(line) as? [CTRun],
             let run = runs.first,
             CTRunGetGlyphCount(run) > 0
-            else { return .zero }
+            else {
+                assertionFailure("No glyph was created.")
+                return .zero
+            }
         
         var size = CGSize()
         CTRunGetAdvances(run, CFRange(location: 0, length: 1), &size)
