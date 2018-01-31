@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ final class TextSelection: NSObject {
     // MARK: AppleScript Accessors
     
     /// string of the selection (Unicode text)
-    var contents: Any? {
+    @objc var contents: Any? {
         
         get {
             guard let string = self.document?.selectedString else { return nil }
@@ -130,7 +130,7 @@ final class TextSelection: NSObject {
     
     
     /// character range (location and length) of the selection
-    var range: [Int]? {
+    @objc var range: [Int]? {
         
         get {
             guard let range = self.document?.selectedRange else { return nil }
@@ -155,7 +155,7 @@ final class TextSelection: NSObject {
     
     
     /// line range (location and length) of the selection (list type)
-    var lineRange: Any? {
+    @objc var lineRange: Any? {
         
         get {
             guard
@@ -196,70 +196,70 @@ final class TextSelection: NSObject {
     // MARK: AppleScript Handlers
     
     /// shift the selection to right
-    func handleShiftRight(_ command: NSScriptCommand) {
+    @objc func handleShiftRight(_ command: NSScriptCommand) {
         
         self.textView?.shiftRight(command)
     }
     
     
     /// shift the selection to left
-    func handleShiftLeft(_ command: NSScriptCommand) {
+    @objc func handleShiftLeft(_ command: NSScriptCommand) {
         
         self.textView?.shiftLeft(command)
     }
     
     
     /// swap selected lines with the line just above
-    func handleMoveLineUp(_ command: NSScriptCommand) {
+    @objc func handleMoveLineUp(_ command: NSScriptCommand) {
         
         self.textView?.moveLineUp(command)
     }
     
     
     /// swap selected lines with the line just below
-    func handleMoveLineDown(_ command: NSScriptCommand) {
+    @objc func handleMoveLineDown(_ command: NSScriptCommand) {
         
         self.textView?.moveLineDown(command)
     }
     
     
     /// sort selected lines ascending
-    func handleSortLinesAscending(_ command: NSScriptCommand) {
+    @objc func handleSortLinesAscending(_ command: NSScriptCommand) {
         
         self.textView?.sortLinesAscending(command)
     }
     
     
     /// reverse selected lines
-    func handleReverseLines(_ command: NSScriptCommand) {
+    @objc func handleReverseLines(_ command: NSScriptCommand) {
         
         self.textView?.reverseLines(command)
     }
     
     
     /// delete duplicate lines in selection
-    func handleDeleteDuplicateLine(_ command: NSScriptCommand) {
+    @objc func handleDeleteDuplicateLine(_ command: NSScriptCommand) {
         
         self.textView?.deleteDuplicateLine(command)
     }
     
     
     /// uncomment the selection
-    func handleCommentOut(_ command: NSScriptCommand) {
+    @objc func handleCommentOut(_ command: NSScriptCommand) {
         
         self.textView?.commentOut(types: .both, fromLineHead: false)
     }
     
     
     /// swap selected lines with the line just below
-    func handleUncomment(_ command: NSScriptCommand) {
+    @objc func handleUncomment(_ command: NSScriptCommand) {
         
         self.textView?.uncomment(types: .both, fromLineHead: false)
     }
     
     
     /// convert letters in the selection to lowercase, uppercase or capitalized
-    func handleChangeCase(_ command: NSScriptCommand) {
+    @objc func handleChangeCase(_ command: NSScriptCommand) {
         
         guard
             let argument = command.evaluatedArguments?["caseType"] as? UInt32,
@@ -279,7 +279,7 @@ final class TextSelection: NSObject {
     
     
     /// convert half-width roman in the selection to full-width roman or vice versa
-    func handleChangeWidthRoman(_ command: NSScriptCommand) {
+    @objc func handleChangeWidthRoman(_ command: NSScriptCommand) {
         
         guard
             let argument = command.evaluatedArguments?["widthType"] as? UInt32,
@@ -297,7 +297,7 @@ final class TextSelection: NSObject {
     
     
     /// convert Japanese Hiragana in the selection to Katakana or vice versa
-    func handleChangeKanaScript(_ command: NSScriptCommand) {
+    @objc func handleChangeKanaScript(_ command: NSScriptCommand) {
         
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,
@@ -315,7 +315,7 @@ final class TextSelection: NSObject {
     
     
     /// Unicode normalization
-    func handleNormalizeUnicode(_ command: NSScriptCommand) {
+    @objc func handleNormalizeUnicode(_ command: NSScriptCommand) {
         
         guard
             let argument = command.evaluatedArguments?["unfType"] as? UInt32,
