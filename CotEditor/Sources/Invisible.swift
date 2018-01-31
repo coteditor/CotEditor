@@ -55,6 +55,19 @@ enum Invisible {
         }
     }
     
+    
+    var rtlCandidates: [String] {
+        
+        switch self {
+        case .tab:
+            return ["¬", "⇤", "◂", "◃"]
+        case .newLine:
+            return ["¶", "↪", "↳", "⏎"]
+        default:
+            return self.candidates
+        }
+    }
+    
 }
 
 
@@ -66,11 +79,11 @@ extension Invisible {
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
         switch codeUnit {
-        case " ".utf16.first!, 0x00A0:
+        case 0x0020, 0x00A0:  // SPACE, NO-BREAK SPACE
             self = .space
-        case "\t".utf16.first!:  // HORIZONTAL TABULATION
+        case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
             self = .tab
-        case "\n".utf16.first!:
+        case 0x000A:  // LINE FEED a.k.a. \n
             self = .newLine
         case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. full-width space (JP)
             self = .fullwidthSpace

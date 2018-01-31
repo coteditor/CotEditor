@@ -87,9 +87,10 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
                 let utf16Index = String.UTF16Index(encodedOffset: charIndex)
                 let codeUnit = string.utf16[utf16Index]
+                let invisible = Invisible(codeUnit: codeUnit)
                 
                 let glyphString: NSAttributedString
-                switch Invisible(codeUnit: codeUnit) {
+                switch invisible {
                 case .space?:
                     guard showsSpace else { continue }
                     glyphString = space

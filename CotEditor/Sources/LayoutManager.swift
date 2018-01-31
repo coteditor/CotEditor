@@ -234,9 +234,10 @@ final class LayoutManager: NSLayoutManager {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
                 let utf16Index = String.UTF16Index(encodedOffset: charIndex)
                 let codeUnit = string.utf16[utf16Index]
+                let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine
-                switch Invisible(codeUnit: codeUnit) {
+                switch invisible {
                 case .space?:
                     guard self.showsSpace else { continue }
                     line = self.invisibleLines.space
@@ -258,7 +259,8 @@ final class LayoutManager: NSLayoutManager {
                     line = self.invisibleLines.verticalTab
                     
                 default:
-                    guard self.showsOtherInvisibles && self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
+                    guard self.showsOtherInvisibles else { continue }
+                    guard self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
                     // skip the second glyph if character is a surrogate-pair
                     guard (charIndex == 0) || !(UTF16.isTrailSurrogate(codeUnit) &&
                         UTF16.isLeadSurrogate(string.utf16[string.utf16.index(before: utf16Index)])) else { continue }
@@ -274,7 +276,7 @@ final class LayoutManager: NSLayoutManager {
                     // [note] Probably not a good solution but better than doing nothing (2016-05-25).
                     point.y += line.bounds(options: .useGlyphPathBounds).height / 2
                 }
-                if isRTL, codeUnit == "\n".utf16.first! {
+                if isRTL, invisible == .newLine {
                     point.x -= line.bounds().width
                 }
                 
