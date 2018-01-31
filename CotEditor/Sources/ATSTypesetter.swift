@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,25 +53,23 @@ final class ATSTypesetter: NSATSTypesetter {
     /// customize behavior by control glyph
     override func actionForControlCharacter(at charIndex: Int) -> NSTypesetterControlCharacterAction {
         
-        let result = super.actionForControlCharacter(at: charIndex)
+        let action = super.actionForControlCharacter(at: charIndex)
         
-        if result.contains(.zeroAdvancementAction), charIndex > 0 {
-            guard let string = self.attributedString?.string as NSString? else { return result }
-            
-            let isLowSurrogate = CFStringIsSurrogateLowCharacter(string.character(at: charIndex)) && CFStringIsSurrogateHighCharacter(string.character(at: charIndex - 1))
-            if !isLowSurrogate {
-                return .whitespaceAction  // -> Then, the glyph width can be modified on `boundingBox(forControlGlyphAt:...)`.
-            }
+        if action.contains(.zeroAdvancementAction),
+            let character = (self.attributedString?.string as NSString?)?.character(at: charIndex),
+            !UTF16.isTrailSurrogate(character)  // ignore one of surrogate
+        {
+            return .whitespaceAction  // -> Then, the glyph width can be modified on `boundingBox(forControlGlyphAt:...)`.
         }
         
-        return result
+        return action
     }
     
     
     /// return bounding box for control glyph
     override func boundingBox(forControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        guard let manager = self.layoutManager as? LayoutManager, manager.showsOtherInvisibles && manager.showsInvisibles else {
+        guard let manager = self.layoutManager as? LayoutManager, manager.showsOtherInvisibles, manager.showsInvisibles else {
             // DON'T invoke super method here. If invoked, it can not continue drawing remaining lines any more on Mountain Lion (and possible other versions except El Capitan).
             // Just passing zero rect is enough if you don't need to draw it.
             return .zero

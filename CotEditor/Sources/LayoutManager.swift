@@ -262,8 +262,7 @@ final class LayoutManager: NSLayoutManager {
                     guard self.showsOtherInvisibles else { continue }
                     guard self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
                     // skip the second glyph if character is a surrogate-pair
-                    guard (charIndex == 0) || !(UTF16.isTrailSurrogate(codeUnit) &&
-                        UTF16.isLeadSurrogate(string.utf16[string.utf16.index(before: utf16Index)])) else { continue }
+                    guard !UTF16.isTrailSurrogate(codeUnit) else { continue }
                     line = self.invisibleLines.replacement
                 }
                 
