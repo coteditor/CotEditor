@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,14 +32,14 @@ extension UnicodeScalar {
     /// alternate picture caracter for invisible control character
     var pictureRepresentation: UnicodeScalar? {
         
-        if ControlCharacter.C0Range.contains(self.value) {
+        switch self.value {
+        case ControlCharacter.C0Range:
             return UnicodeScalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
-        }
-        if self.value == ControlCharacter.deleteCharacter {  // DELETE character
+        case ControlCharacter.deleteCharacter:
             return UnicodeScalar(0x2421)  // SYMBOL FOR DELETE character
+        default:
+            return nil
         }
-        
-        return nil
     }
     
 }
@@ -51,19 +51,18 @@ extension UTF32Char {
     /// unicode name if receiver is a control character
     var controlCharacterName: String? {
         
-        if ControlCharacter.C0Range.contains(self) {
+        switch self {
+        case ControlCharacter.C0Range:
             let index = Int(self)
             return ControlCharacter.C0Names[index]
-        }
-        if self == ControlCharacter.deleteCharacter {
-            return ControlCharacter.deleteName
-        }
-        if ControlCharacter.C1Range.contains(self) {
+        case ControlCharacter.C1Range:
             let index = Int(self - ControlCharacter.C1Range.lowerBound)  // shift to 0-based array index
             return ControlCharacter.C1Names[index]
+        case ControlCharacter.deleteCharacter:
+            return ControlCharacter.deleteName
+        default:
+            return nil
         }
-        
-        return nil
     }
     
 }
