@@ -53,7 +53,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     }
     
     
-    /// show invisible characters
+    /// draw invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if UserDefaults.standard[.showInvisibles] {
@@ -112,9 +112,11 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     glyphString = verticalTab
                     
                 default:
-                    guard self.showsInvisibleCharacters && self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
-                    
-                    guard self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil else { continue }
+                    guard showsOtherInvisibles else { continue }
+                    guard
+                        self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph),
+                        self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
+                        else { continue }
                     
                     let replaceFont = NSFont(name: "Lucida Grande", size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
                     let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)
