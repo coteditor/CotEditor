@@ -1162,7 +1162,7 @@ final class EditorTextView: NSTextView, Themable {
         // calculate tab interval
         if let font = self.font {
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.advancement(character: " ").width
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
         }
         
         paragraphStyle.baseWritingDirection = self.baseWritingDirection

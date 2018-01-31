@@ -59,7 +59,7 @@ final class LayoutManager: NSLayoutManager {
                 self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
                 
                 // cache width of space char for hanging indent width calculation
-                self.spaceWidth = textFont.advancement(character: " ").width
+                self.spaceWidth = textFont.spaceWidth
                 
                 // cache replacement glyph width for ATS Typesetter
                 let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
