@@ -201,6 +201,7 @@ dd + dd dl {
 }
 
 table {
+	font-size: 100%;
 	border-collapse: collapse;
 	empty-cells: show;
 	margin: 1em 0;
