@@ -6,22 +6,27 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2014 CotEditor Project
+ © 2006-2018 CotEditor Project
 */
 
 
+html {
+	-webkit-text-size-adjust: 100%;
+	font: 10pt/1.5 -apple-system, -apple-system-font, 'Helvetica Neue', sans-serif;
+}
 body {
-	font: 300 10pt/1.5 -apple-system-font, 'Helvetica Neue', sans-serif;
-	color: hsla(0, 0%, 0%, 0.8);
-	margin: 0;
-	padding: 1.5em;
+	color: hsla(0, 0%, 0%, 0.7);
+	margin: 1em auto;
+	padding: 0 1em;
+	max-width: 7in;
+	font-weight: 300;
 }
 
 a {
 	text-decoration: none;
 }
-a:link {
-	color: hsl(206, 50%, 50%);
+a:link, a:visited {
+	color: hsl(211, 67%, 50%);
 }
 a:hover {
 	text-decoration: underline;
@@ -44,7 +49,7 @@ section#rightbox {
 
 #leftbox h1 {
 	font-size: 180%;
-	font-weight: 200;
+	font-weight: 300;
 	margin: 0.5em 0;
 }
 
