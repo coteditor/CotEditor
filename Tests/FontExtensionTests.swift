@@ -33,9 +33,9 @@ class FontExtensionTests: XCTestCase {
     
     func testFontSize() {
         
-        let font = NSFont(name: "Menlo-Regular", size: 11)?.screen
+        let font = NSFont(name: "Menlo-Regular", size: 11)
         
-        XCTAssertEqual(font?.spaceWidth, 7)
+        XCTAssertEqual(font?.spaceWidth, 6.62255859375)
     }
     
 }
