@@ -120,13 +120,3 @@ struct Theme {
     }
     
 }
-
-
-extension Theme: CustomStringConvertible {
-    
-    var description: String {
-        
-        return "<Theme: \(self.name)>"
-    }
-    
-}
