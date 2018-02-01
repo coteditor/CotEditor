@@ -295,19 +295,17 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard
-            UserDefaults.standard[.highlightBraces],
-            !textView.string.isEmpty,
-            textView.selectedRange.length == 0
-            else { return }
+        guard UserDefaults.standard[.highlightBraces] else { return }
         
         let string = textView.string
-        let cursorLocation = textView.selectedRange.location
+        let selectedRange = textView.selectedRange
         
         guard
-            cursorLocation != NSNotFound,
-            cursorLocation > 0,
-            let cursorIndex = String.UTF16Index(encodedOffset: cursorLocation).samePosition(in: string)
+            !string.isEmpty,
+            selectedRange.length == 0,
+            selectedRange.location != NSNotFound,
+            selectedRange.location > 0,
+            let cursorIndex = Range(selectedRange, in: string)?.lowerBound
             else { return }
         
         // check the character just before the cursor

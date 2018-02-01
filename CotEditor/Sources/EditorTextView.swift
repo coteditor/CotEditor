@@ -1399,22 +1399,23 @@ extension EditorTextView {
         }
         
         // select inside of brackets by double-clicking
-        guard let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) else { return wordRange }
-        if pair.end == clickedCharacter {
-            if let index = self.string.indexOfBeginBrace(for: pair, at: characterIndex) {
-                let location = index.samePosition(in: self.string.utf16)!.encodedOffset
-                return NSRange(location: location, length: wordRange.location - location + 1)
+        if let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) {
+            if pair.end == clickedCharacter {
+                if let beginIndex = self.string.indexOfBeginBrace(for: pair, at: characterIndex) {
+                    return NSRange(beginIndex...characterIndex, in: self.string)
+                }
+            } else {
+                if let endIndex = self.string.indexOfEndBrace(for: pair, at: characterIndex) {
+                    return NSRange(characterIndex...endIndex, in: self.string)
+                }
             }
-        } else {
-            if let index = self.string.indexOfEndBrace(for: pair, at: characterIndex) {
-                let location = index.samePosition(in: self.string.utf16)!.encodedOffset
-                return NSRange(location: wordRange.location, length: location - wordRange.location + 1)
-            }
+            
+            // If it has a found a "begin" brace but not found a match, a double-click should only select the "begin" brace and not what it usually would select at a double-click
+            NSSound.beep()
+            return NSRange(location: proposedCharRange.location, length: 1)
         }
-        NSSound.beep()
         
-        // If it has a found a "starting" brace but not found a match, a double-click should only select the "starting" brace and not what it usually would select at a double-click
-        return super.selectionRange(forProposedRange: NSRange(location: proposedCharRange.location, length: 1), granularity: .selectByCharacter)
+        return wordRange
     }
     
     

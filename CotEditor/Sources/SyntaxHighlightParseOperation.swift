@@ -33,7 +33,7 @@ struct BlockDelimiters: Equatable {
     let begin: String
     let end: String
     
-
+    
     static func == (lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
         
         return lhs.begin == rhs.begin && lhs.end == rhs.end
