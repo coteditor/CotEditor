@@ -669,36 +669,11 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // on file drop
-        if let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL], !urls.isEmpty {
-            let definitions = UserDefaults.standard[.fileDropArray]
-            let composer = FileDropComposer(definitions: definitions)
-            let documentURL = self.document?.fileURL
-            let syntaxStyle: String? = {
-                guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
-                return style.styleName
-            }()
-            var replacementString = ""
-            
-            for url in urls {
-                if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
-                    replacementString += dropText
-                    
-                } else {
-                    // jsut insert the absolute path if no specific setting for the file type was found
-                    // -> This is the default behavior of NSTextView by file dropping.
-                    if !replacementString.isEmpty {
-                        replacementString += "\n"
-                    }
-                    replacementString += url.path
-                }
-            }
-            
-            // insert drop text to view
-            if self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) {
-                self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
-                self.didChangeText()
-                return true
-            }
+        if pboard.name == .dragPboard,
+            let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
+            self.insertDroppedFiles(urls)
+        {
+            return true
         }
         
         return super.readSelection(from: pboard, type: type)
@@ -1198,6 +1173,42 @@ final class EditorTextView: NSTextView, Themable {
         self.enabledTextCheckingTypes = currentCheckingType
         
         self.undoManager?.enableUndoRegistration()
+    }
+    
+    
+    /// insert string representation of dropped files applying user setting
+    private func insertDroppedFiles(_ urls: [URL]) -> Bool {
+        
+        guard !urls.isEmpty else { return false }
+        
+        let composer = FileDropComposer(definitions: UserDefaults.standard[.fileDropArray])
+        let documentURL = self.document?.fileURL
+        let syntaxStyle: String? = {
+            guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
+            return style.styleName
+        }()
+        
+        let replacementString = urls.reduce(into: "") { (string, url) in
+            if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
+                string += dropText
+                return
+            }
+            
+            // jsut insert the absolute path if no specific setting for the file type was found
+            // -> This is the default behavior of NSTextView by file dropping.
+            if !string.isEmpty {
+                string += "\n"
+            }
+            string += url.path
+        }
+        
+        // insert drop text to view
+        guard self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) else { return false }
+        
+        self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
+        self.didChangeText()
+        
+        return true
     }
     
     

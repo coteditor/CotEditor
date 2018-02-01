@@ -17,6 +17,7 @@ develop
 - Fix an issue where invisible symbols for control characters were not drawn in input fields in find panel.
 - [beta] Fix an issue where AppleScript (and JXA) could not communicate with some APIs.
 - [beta] Fix an issue where the views containing an encoding menu could display nothing under a specific setting condition.
+- [beta] Fix an issue where pasted URLs from specific applications missed the domain part.
 - [beta] Fix an issue where the current line highlight started at a wrong place on the RTL writing mode.
 - Fix some unwanted title case in the preferences.
 
