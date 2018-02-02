@@ -312,7 +312,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let lastIndex = string.index(before: cursorIndex)
         let lastCharacter = string[lastIndex]
         
-        let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
+        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
         
         guard
             let pair = bracePairs.first(where: { $0.begin == lastCharacter || $0.end == lastCharacter }),

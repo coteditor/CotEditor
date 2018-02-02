@@ -44,17 +44,17 @@ extension String {
     /// find character index of matched opening brace before a given index.
     func indexOfBeginBrace(for pair: BracePair, at index: Index) -> Index? {
         
-        var skippedBraceCount = 0
+        var nestDepth = 0
         let subsequence = self[..<index]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
             switch character {
-            case pair.begin where skippedBraceCount == 0:
+            case pair.begin where nestDepth == 0:
                 return index
             case pair.begin:
-                skippedBraceCount -= 1
+                nestDepth -= 1
             case pair.end:
-                skippedBraceCount += 1
+                nestDepth += 1
             default: break
             }
         }
@@ -66,17 +66,17 @@ extension String {
     /// find character index of matched closing brace after a given index.
     func indexOfEndBrace(for pair: BracePair, at index: Index) -> Index? {
         
-        var skippedBraceCount = 0
+        var nestDepth = 0
         let subsequence = self[self.index(after: index)...]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
             switch character {
-            case pair.end where skippedBraceCount == 0:
+            case pair.end where nestDepth == 0:
                 return index
             case pair.end:
-                skippedBraceCount -= 1
+                nestDepth -= 1
             case pair.begin:
-                skippedBraceCount += 1
+                nestDepth += 1
             default: break
             }
         }
