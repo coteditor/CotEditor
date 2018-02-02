@@ -15,6 +15,7 @@ develop
 ### Fixes
 
 - Fix an issue where invisible symbols for control characters were not drawn in input fields in find panel.
+- Fix an issue where character inspector could expand vertically too much with some specific characters.
 - [beta] Fix an issue where AppleScript (and JXA) could not communicate with some APIs.
 - [beta] Fix an issue where the views containing an encoding menu could display nothing under a specific setting condition.
 - [beta] Fix an issue where pasted URLs from specific applications missed the domain part.
