@@ -101,12 +101,12 @@
 
 /* Class = "NSToolbarItem"; label = "Invisibles"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "Invisíveis";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "Mostrar/Ocultar Invisíveis";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Mostrar/Ocultar Invisíveis";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "Mostre ou oculte os caracteres invisíveis do texto";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; label = "Page Guide"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "Guia da Página";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "Mostrar/Ocultar Guia da Página";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "Mostrar/Ocultar Guia da Página";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "Mostre ou oculte a linha de guia da página";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; label = "Wrap Lines"; ObjectID = "mGD-5P-MDq"; */
@@ -118,6 +118,11 @@
 "1cW-FV-40L.label" = "Orientação";  /* Orientation */
 "1cW-FV-40L.paletteLabel" = "Alternar Orientação do Texto";  /* Toggle Text Orientation */
 "1cW-FV-40L.toolTip" = "Alterne a orientação do texto";  /* Toggle text orientation */
+
+/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
+"1zL-0E-fZd.label" = "Direção da Escrita";  /* Writing Direction */
+"1zL-0E-fZd.paletteLabel" = "Alternar Direção da Escrita";  /* Toggle Writing Direction */
+"1zL-0E-fZd.toolTip" = "Alterne a direção da escrita";  /* Toggle writing direction */
 
 /* Class = "NSToolbarItem"; label = "Expand Tabs"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "Expandir Tabulações";  /* Expand Tabs */

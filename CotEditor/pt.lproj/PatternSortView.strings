@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2018-01-05.
+//  Localized by BR Lingo
 //
 //  ------------------------------------------------------------------------------
 //
@@ -30,22 +31,36 @@
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Ordenar por:";
 
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Toda a linha";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
 "pKE-GY-bD6.title" = "Coluna";
 /* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
 "Ase-N7-QHB.title" = "Expressão regular";
+<<<<<<< HEAD
 /* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
 "roe-rP-gfg.title" = "Toda a linha";
+=======
+>>>>>>> 2b603695bf7d4ef31e10934630d847c38c8f36fb
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
 "eio-Wb-V6q.title" = "Opções de ordenação:";
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
 "GS5-w5-IIt.title" = "Ignorar Maiúsculas/Minúsculas";
+<<<<<<< HEAD
 /* Class = "NSButtonCell"; title = "Respect language rules:"; ObjectID = "x72-Sd-pMB"; */
 "x72-Sd-pMB.title" = "Respeitar regras do idioma";
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
 "yXD-KA-8KI.title" = "Tratar números como valor numérico";
+=======
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
+"x72-Sd-pMB.title" = "Respeitar regras do idioma";
+/* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
+"yXD-KA-8KI.title" = "Tratar números como valor numérico";
+/* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
+"uUe-tD-Z8s.title" = "Manter primeira linha no topo";
+>>>>>>> 2b603695bf7d4ef31e10934630d847c38c8f36fb
 /* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
 "h1K-Og-3x3.title" = "Em ordem decrescente";
 
