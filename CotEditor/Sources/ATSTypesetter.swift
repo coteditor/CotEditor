@@ -96,10 +96,10 @@ final class ATSTypesetter: NSATSTypesetter {
         // check if the character is the first non-whitespace character after indent
         for character in string[..<index].reversed() {
             switch character {
-            case "\n":  // the line ended before hitting to any indent characters
-                return false
             case " ", "\t":
                 continue
+            case "\n":  // the line ended before hitting to any indent characters
+                return false
             default:  // hit to non-indent character
                 return true
             }
