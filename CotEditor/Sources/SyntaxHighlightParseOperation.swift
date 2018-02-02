@@ -449,11 +449,11 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
             
-            DispatchQueue.concurrentPerform(iterations: definitions.count) { (i: Int) in
+            DispatchQueue.concurrentPerform(iterations: definitions.count) { (index: Int) in
                 guard !self.isCancelled else { return }
                 
                 let extractedRanges: [NSRange] = {
-                    let definition = definitions[i]
+                    let definition = definitions[index]
                     
                     if definition.isRegularExpression {
                         if let endString = definition.endString {

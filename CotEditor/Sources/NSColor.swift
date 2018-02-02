@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,17 +30,17 @@ import AppKit.NSColor
 extension NSColor {
     
     /// create desired number of colors from itself
-    func decomposite(into n: Int) -> [NSColor] {
+    func decomposite(into number: Int) -> [NSColor] {
         
-        guard n > 0 else { return [] }
+        guard number > 0 else { return [] }
         
         let baseHue = self.hueComponent
         let saturation = self.saturationComponent
         let brightness = self.brightnessComponent
         let alpha = self.alphaComponent
         
-        return (0..<n).map { index in
-            let advance = CGFloat(index) / CGFloat(n)
+        return (0..<number).map { index in
+            let advance = CGFloat(index) / CGFloat(number)
             let (_, hue) = modf(baseHue + advance)
             
             return NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha)

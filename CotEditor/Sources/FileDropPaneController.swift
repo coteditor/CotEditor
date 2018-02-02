@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -250,10 +250,10 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         guard let objects = self.fileDropController?.arrangedObjects as? [[String: String]] else { return }
         
         // obtain extension to delete for display
-        let extension_ = objects[row][FileDropComposer.SettingKey.extensions] ?? ""
+        let fileExtension = objects[row][FileDropComposer.SettingKey.extensions] ?? ""
         
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete the file drop setting for “%@”?", comment: ""), extension_)
+        alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete the file drop setting for “%@”?", comment: ""), fileExtension)
         alert.informativeText = NSLocalizedString("Deleted setting can’t be restored.", comment: "")
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
