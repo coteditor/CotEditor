@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,14 +47,14 @@ extension String {
         
         let newLocation = (location < 0) ? (wholeLength + location) : location
         var newLength = (length < 0) ? (wholeLength - newLocation + length) : length
-        if newLocation < wholeLength && (newLocation + newLength) > wholeLength {
+        if newLocation < wholeLength, (newLocation + newLength) > wholeLength {
             newLength = wholeLength - newLocation
         }
-        if length < 0 && newLength < 0 {
+        if length < 0, newLength < 0 {
             newLength = 0
         }
         
-        guard newLength >= 0 && newLength >= 0 else { return NSRange() }
+        guard newLength >= 0, newLength >= 0 else { return NSRange() }
         
         return NSRange(location: newLocation, length: newLength)
     }
@@ -95,14 +95,14 @@ extension String {
         } else {
             newLength = length
         }
-        if newLocation < count && (newLocation + newLength - 1) > count {
+        if newLocation < count, (newLocation + newLength - 1) > count {
             newLength = count - newLength + 1
         }
-        if length < 0 && newLength < 0 {
+        if length < 0, newLength < 0 {
             newLength = 1
         }
         
-        guard newLocation > 0 && newLength > 0 else { return nil }
+        guard newLocation > 0, newLength > 0 else { return nil }
         
         let match = matches[newLocation - 1]
         var range = match.range

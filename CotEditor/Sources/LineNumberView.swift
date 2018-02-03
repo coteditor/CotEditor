@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -286,7 +286,7 @@ final class LineNumberView: NSRulerView {
                 lastLineNumber = lineNumber
                 glyphCount = range.upperBound
                 
-                if isVerticalText && isWrappedLine { continue }
+                if isVerticalText, isWrappedLine { continue }
                 
                 let y = scale * -lineRect.minY
                 
@@ -366,7 +366,7 @@ final class LineNumberView: NSRulerView {
         let textColor = self.textView?.textColor ?? .textColor
         
         let alpha: CGFloat = {
-            if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast && strength != .stroke {
+            if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
                 return 1.0
             }
             return strength.rawValue
@@ -556,7 +556,7 @@ extension LineNumberView {
             var intersects = false
             
             for selectedRange in originalSelectedRanges {
-                if selectedRange.location <= range.location && range.upperBound <= selectedRange.upperBound {  // exclude
+                if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
                     let range1 = NSRange(location: selectedRange.location, length: range.location - selectedRange.location)
                     let range2 = NSRange(location: range.upperBound, length: selectedRange.upperBound - range.upperBound)
                     

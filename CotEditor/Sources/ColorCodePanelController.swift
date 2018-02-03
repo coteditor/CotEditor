@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -195,7 +195,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         var code = color?.colorCode(type: codeType)
         
         // keep lettercase if current Hex code is uppercase
-        if (codeType == .hex || codeType == .shortHex) && self.colorCode?.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {
+        if (codeType == .hex || codeType == .shortHex), self.colorCode?.range(of: "^#[0-9A-F]{1,6}$", options: .regularExpression) != nil {
             code = code?.uppercased()
         }
         

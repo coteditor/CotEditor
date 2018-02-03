@@ -328,8 +328,8 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // smart outdent with '}' charcter
-        if self.isAutomaticIndentEnabled && self.isSmartIndentEnabled &&
-            replacementRange.length == 0 && plainString == "}",
+        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled,
+            replacementRange.length == 0, plainString == "}",
             let insretionIndex = Range(self.selectedRange, in: self.string)?.upperBound
         {
             let wholeString = self.string
@@ -796,7 +796,7 @@ final class EditorTextView: NSTextView, Themable {
         case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue:
             if let textStorage = self.textStorage {
                 let wholeRange = textStorage.mutableString.range
-                if keyPath == DefaultKeys.enablesHangingIndent.rawValue && !(newValue as! Bool) {
+                if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(newValue as! Bool) {
                     if let paragraphStyle = self.defaultParagraphStyle {
                         textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
                     } else {
@@ -1047,7 +1047,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // apply document's line ending
         if let documentLineEnding = self.documentLineEnding,
-            documentLineEnding != .LF && selectedString.detectedLineEnding == .LF
+            documentLineEnding != .LF, selectedString.detectedLineEnding == .LF
         {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
@@ -1297,12 +1297,12 @@ extension EditorTextView {
         
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
         //   -> The flag will be used in EditorTextViewController > `textDidChange`
-        if flag, let event = event, event.type == .keyDown && !event.modifierFlags.contains(.command) {
+        if flag, let event = event, event.type == .keyDown, !event.modifierFlags.contains(.command) {
             let inputChar = event.charactersIgnoringModifiers
             
             if inputChar == event.characters {  // exclude key-bindings
                 // fix that underscore is treated as the right arrow key
-                if inputChar == "_" && movement == NSRightTextMovement {
+                if inputChar == "_", movement == NSRightTextMovement {
                     newMovement = NSIllegalTextMovement
                     newFlag = false
                 }
@@ -1388,7 +1388,7 @@ extension EditorTextView {
         }
         
         // settle result on expanding selection or if there is no possibility for clicking brackets
-        guard proposedCharRange.length == 0 && wordRange.length == 1 else { return wordRange }
+        guard proposedCharRange.length == 0, wordRange.length == 1 else { return wordRange }
         
         let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: self.string)!
         let clickedCharacter = self.string[characterIndex]

@@ -146,7 +146,11 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
         guard !self.definitions.isEmpty else { return }
         
         let parseRange = self.parseRange
-        guard let string = self.string, !string.isEmpty && parseRange.location != NSNotFound else { return }
+        guard
+            let string = self.string,
+            !string.isEmpty,
+            parseRange.location != NSNotFound
+            else { return }
         
         var outlineItems = [OutlineItem]()
         

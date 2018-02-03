@@ -109,7 +109,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             }
             if let beginDelimiter = delimiters[DelimiterKey.beginDelimiter.rawValue],
                 let endDelimiter = delimiters[DelimiterKey.endDelimiter.rawValue],
-                !beginDelimiter.isEmpty && !endDelimiter.isEmpty
+                !beginDelimiter.isEmpty, !endDelimiter.isEmpty
             {
                 blockCommentDelimiters = BlockDelimiters(begin: beginDelimiter, end: endDelimiter)
             }
@@ -192,7 +192,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
                 // create from normal highlighting words
                 for definitions in definitionDictionary.values {
                     for definition in definitions {
-                        guard definition.endString == nil && !definition.isRegularExpression else { continue }
+                        guard definition.endString == nil, !definition.isRegularExpression else { continue }
                         
                         let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
                         

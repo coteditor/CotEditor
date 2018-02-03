@@ -284,14 +284,14 @@ private extension String {
         
         let target = self[range]
         
-        guard target.hasPrefix(delimiters.begin) && target.hasSuffix(delimiters.end) else { return nil }
+        guard target.hasPrefix(delimiters.begin), target.hasSuffix(delimiters.end) else { return nil }
         
         let trimFrom = target.index(target.startIndex, offsetBy: delimiters.begin.count)
         let trimTo = target.index(target.endIndex, offsetBy: -delimiters.end.count)
         var substring = target[trimFrom..<trimTo]
         var cursorOffset = -delimiters.begin.count
         
-        if !spacer.isEmpty && substring.hasPrefix(spacer) && substring.hasSuffix(spacer) {
+        if !spacer.isEmpty, substring.hasPrefix(spacer), substring.hasSuffix(spacer) {
             let trimFrom = substring.index(substring.startIndex, offsetBy: spacer.count)
             let trimTo = substring.index(substring.endIndex, offsetBy: -spacer.count)
             substring = substring[trimFrom..<trimTo]

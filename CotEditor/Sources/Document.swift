@@ -315,7 +315,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.shouldSaveXattr = (xattrEncoding != nil)
         
         // check file metadata for text orientation
-        if UserDefaults.standard[.savesTextOrientation] && (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
+        if UserDefaults.standard[.savesTextOrientation], (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
             // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
             self.isVerticalText = true
         }

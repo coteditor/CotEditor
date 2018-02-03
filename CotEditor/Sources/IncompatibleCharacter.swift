@@ -83,7 +83,7 @@ extension String {
             guard character != convertedCharacter else { continue }
             
             let sanitizedConvertedCharacter: Character = {
-                if isInvalidYenEncoding && character == "¥" {
+                if isInvalidYenEncoding, character == "¥" {
                     return "\\"
                 }
                 return convertedCharacter
