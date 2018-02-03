@@ -218,8 +218,8 @@
 "Convert Indentation" = "Converter Recuo";
 "Comment Out" = "Adicionar Comentário";
 "Uncomment" = "Remover Comentário";
-"To Full-width" = "To Full-width";  // FIXME: added
-"To Half-width" = "To Half-width";  // FIXME: added
+"To Full-width" = "para Largura Completa";
+"To Half-width" = "para Meia Largura";
 "To Full-width Roman" = "para Latino de Largura Completa";
 "To Half-width Roman" = "para Latino de Meia Largura";
 "Hiragana to Katakana" = "Hiragana para Katakana";
