@@ -6,32 +6,25 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2014 CotEditor Project
+ © 2006-2018 CotEditor Project
 */
 
 
 .topic {
-	padding: 0;
+	padding: 1em;
 	min-height: 200px;
 	border: solid 1px hsl(0,0%,80%);
-	margin-bottom: 1.5em;
+	margin-bottom: 2em;
 	border-radius: 3px;
 }
 
 .topic h2 {
-	margin: 0;
-	padding: 0.2em 0.5em;
-	background-color: hsl(206,25%,92%);
-}
-.topic p {
-	margin-top: 0.5em;
-	margin-left: 0.5em;
-	margin-right: 0.5em;
+	margin-top: 0;
 }
 
 .topic img.snapshot {
 	width: 200px;
-	border: 1px solid hsla(0,0%,0%,.25);
+	border: 0.5px solid hsla(0,0%,0%,.4);
 	border-radius: 3px;
 }
 
@@ -43,4 +36,8 @@
 	clear: none;
 	background: none;
 	border: none;
+}
+
+.topic dl dt {
+	font-weight: 600;
 }

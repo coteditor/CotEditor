@@ -217,8 +217,10 @@
 "Convert Indentation" = "Einzug konvertieren";
 "Comment Out" = "Auskommentieren";
 "Uncomment" = "Unkommentieren";
-"To Fullwidth Roman" = "Zu vollbreiten Zeichen";
-"To Halfwidth Roman" = "Zu halbbreiten Zeichen";
+"To Full-width" = "Zu vollbreiten Zeichen";
+"To Half-width" = "Zu halbbreiten Zeichen";
+"To Full-width Roman" = "Zu vollbreiten Zeichen";
+"To Half-width Roman" = "Zu halbbreiten Zeichen";
 "Hiragana to Katakana" = "Hiragana zu Katakana";
 "Katakana to Hiragana" = "Katakana zu Hiragana";
 "NFD" = "NFD";

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,7 +53,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     }
     
     
-    /// show invisible characters
+    /// draw invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if UserDefaults.standard[.showInvisibles] {
@@ -73,48 +73,50 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let showsSpace = defaults[.showInvisibleSpace]
             let showsTab = defaults[.showInvisibleTab]
             let showsNewLine = defaults[.showInvisibleNewLine]
-            let showsFullWidthSpace = defaults[.showInvisibleFullwidthSpace]
+            let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
             let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
             
-            let space = NSAttributedString(string: Invisible.userSpace, attributes: attributes)
-            let tab = NSAttributedString(string: Invisible.userTab, attributes: attributes)
-            let newLine = NSAttributedString(string: Invisible.userNewLine, attributes: attributes)
-            let fullWidthSpace = NSAttributedString(string: Invisible.userFullWidthSpace, attributes: fullwidthAttributes)
-            let verticalTab = NSAttributedString(string: Invisible.verticalTab, attributes: attributes)
+            let space = NSAttributedString(string: Invisible.space.usedSymbol, attributes: attributes)
+            let tab = NSAttributedString(string: Invisible.tab.usedSymbol, attributes: attributes)
+            let newLine = NSAttributedString(string: Invisible.newLine.usedSymbol, attributes: attributes)
+            let fullwidthSpace = NSAttributedString(string: Invisible.fullwidthSpace.usedSymbol, attributes: fullwidthAttributes)
+            let verticalTab = NSAttributedString(string: Invisible.verticalTab.usedSymbol, attributes: attributes)
             
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                
-                let utfChar = string.utf16[String.UTF16Index(encodedOffset: charIndex)]
-                let character = String(utf16CodeUnits: [utfChar], count: 1)
+                let utf16Index = String.UTF16Index(encodedOffset: charIndex)
+                let codeUnit = string.utf16[utf16Index]
+                let invisible = Invisible(codeUnit: codeUnit)
                 
                 let glyphString: NSAttributedString
-                switch character {
-                case " ", "\u{A0}":
+                switch invisible {
+                case .space?:
                     guard showsSpace else { continue }
                     glyphString = space
                     
-                case "\t":
+                case .tab?:
                     guard showsTab else { continue }
                     glyphString = tab
                     
-                case "\n":
+                case .newLine?:
                     guard showsNewLine else { continue }
                     glyphString = newLine
                     
-                case "\u{3000}":  // fullwidth-space (JP)
-                    guard showsFullWidthSpace else { continue }
-                    glyphString = fullWidthSpace
+                case .fullwidthSpace?:
+                    guard showsFullwidthSpace else { continue }
+                    glyphString = fullwidthSpace
                     
-                case "\u{b}":
+                case .verticalTab?:
                     guard showsOtherInvisibles else { continue }
                     glyphString = verticalTab
                     
                 default:
-                    guard self.showsInvisibleCharacters && self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
-                    
-                    guard self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil else { continue }
+                    guard showsOtherInvisibles else { continue }
+                    guard
+                        self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph),
+                        self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
+                        else { continue }
                     
                     let replaceFont = NSFont(name: "Lucida Grande", size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
                     let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,6 +54,12 @@ final class EncodingManager: NSObject {
     override private init() {
         
         super.init()
+        
+        // UserDefaults.standard[.encodingList] can be empty if the user's list contains negative values.
+        //   -> It seems to be possible if the setting was made long time ago (2018-01 CotEditor 3.3.0)
+        if UserDefaults.standard[.encodingList].isEmpty {
+            self.sanitizeEncodingListSetting()
+        }
         
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue, context: nil)
     }
@@ -140,6 +146,24 @@ final class EncodingManager: NSObject {
                 menu.addItem(bomItem)
             }
         }
+    }
+    
+    
+    // MARK: Private Methods
+    
+    
+    /// convert invalid encoding values (-1) to `kCFStringEncodingInvalidId`
+    private func sanitizeEncodingListSetting() {
+        
+        guard
+            let list = UserDefaults.standard.array(forKey: DefaultKeys.encodingList.rawValue) as? [Int],
+            !list.isEmpty else {
+                // just restore to default if failed
+                UserDefaults.standard.restore(key: .encodingList)
+                return
+            }
+        
+        UserDefaults.standard[.encodingList] = list.map { CFStringEncoding(exactly: $0) ?? kCFStringEncodingInvalidId }
     }
     
 }

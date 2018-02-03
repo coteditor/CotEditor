@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,18 +28,12 @@
 
 import Foundation
 
-struct BlockDelimiters: Equatable, CustomDebugStringConvertible {
+struct BlockDelimiters: Equatable {
     
     let begin: String
     let end: String
     
     
-    var debugDescription: String {
-        
-        return "<\(BlockDelimiters.self) begin: \(self.begin)  end: \(self.end)>"
-    }
-    
-
     static func == (lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
         
         return lhs.begin == rhs.begin && lhs.end == rhs.end
@@ -49,7 +43,7 @@ struct BlockDelimiters: Equatable, CustomDebugStringConvertible {
 
 
 
-struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
+struct HighlightDefinition: Equatable {
     
     let beginString: String
     let endString: String?
@@ -72,12 +66,6 @@ struct HighlightDefinition: Equatable, CustomDebugStringConvertible {
         }
         self.isRegularExpression = (definition[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
         self.ignoreCase = (definition[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
-    }
-    
-    
-    var debugDescription: String {
-        
-        return "<\(HighlightDefinition.self) begin: \(self.beginString)  end: \(self.endString ?? "nil")>"
     }
     
     

@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2018-01-05.
+//  Localized by onevcat
 //
 //  ------------------------------------------------------------------------------
 //
@@ -23,50 +24,52 @@
 //  limitations under the License.
 
 /* Class = "NSTextFieldCell"; title = "Sample:"; ObjectID = "I06-xc-WQt"; */
-"I06-xc-WQt.title" = "Sample:";  // FIXME: added
+"I06-xc-WQt.title" = "示例:";
 /* Class = "NSTextField"; ibShadowedToolTip = "Sample line to check which part in a line will be used for sort comparison."; ObjectID = "W2m-Jf-7Yj"; */
-"W2m-Jf-7Yj.ibShadowedToolTip" = "Sample line to check which part in a line will be used for sort comparison.";  // FIXME: added
+"W2m-Jf-7Yj.ibShadowedToolTip" = "检查行中哪个部分将被用于比较排序的示例行。";
 
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
-"bKb-oj-ekR.title" = "Sort key:";  // FIXME: added
+"bKb-oj-ekR.title" = "排序键:";
 
-/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
-"pKE-GY-bD6.title" = "Column";  // FIXME: added
-/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
-"Ase-N7-QHB.title" = "Regular expression";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
-"roe-rP-gfg.title" = "Entire line";  // FIXME: added
+"roe-rP-gfg.title" = "整行";
+/* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
+"pKE-GY-bD6.title" = "列";
+/* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
+"Ase-N7-QHB.title" = "正则表达式";
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
-"eio-Wb-V6q.title" = "Sort option:";  // FIXME: added
+"eio-Wb-V6q.title" = "排序选项:";
 /* Class = "NSButtonCell"; title = "Ignore Case"; ObjectID = "GS5-w5-IIt"; */
-"GS5-w5-IIt.title" = "Ignore Case";  // FIXME: added
-/* Class = "NSButtonCell"; title = "Respect language rules:"; ObjectID = "x72-Sd-pMB"; */
-"x72-Sd-pMB.title" = "Respect language rules:";  // FIXME: added
+"GS5-w5-IIt.title" = "忽略大小写";
+/* Class = "NSButtonCell"; title = "Respect language rules"; ObjectID = "x72-Sd-pMB"; */
+"x72-Sd-pMB.title" = "遵守语言规则";
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
-"yXD-KA-8KI.title" = "Treat numbers as numeric value";  // FIXME: added
+"yXD-KA-8KI.title" = "将数组视为数值";
+/* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
+"uUe-tD-Z8s.title" = "首行置顶";
 /* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
-"h1K-Og-3x3.title" = "In decending order";  // FIXME: added
+"h1K-Og-3x3.title" = "降序";
 
 
 /* Class = "NSTextFieldCell"; title = "Delimiter:"; ObjectID = "CLj-6v-R1R"; */
-"CLj-6v-R1R.title" = "Delimiter:";  // FIXME: added
+"CLj-6v-R1R.title" = "分界符:";
 /* Class = "NSTextFieldCell"; title = "Position:"; ObjectID = "HE1-PS-8J3"; */
-"HE1-PS-8J3.title" = "Position:";  // FIXME: added
+"HE1-PS-8J3.title" = "位置:";
 
 
 /* Class = "NSTextFieldCell"; title = "Pattern:"; ObjectID = "d12-uy-VE0"; */
-"d12-uy-VE0.title" = "Pattern:";  // FIXME: added
+"d12-uy-VE0.title" = "模式:";
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Regular Expression"; ObjectID = "Dh1-dP-bGe"; */
-"Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "Regular Expression";  // FIXME: added
+"Dh1-dP-bGe.ibShadowedIsNilPlaceholder" = "正则表达式";
 /* Class = "NSButtonCell"; title = "Ignore case"; ObjectID = "Lr8-mD-svg"; */
-"Lr8-mD-svg.title" = "Ignore case";  // FIXME: added
+"Lr8-mD-svg.title" = "忽略大小写";
 /* Class = "NSButtonCell"; title = "Use captured group:"; ObjectID = "eys-fy-HVq"; */
-"eys-fy-HVq.title" = "Use captured group:";  // FIXME: added
+"eys-fy-HVq.title" = "使用捕获组:";
 
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "Lw7-xg-639"; */
-"Lw7-xg-639.title" = "Cancel";  // FIXME: added
+"Lw7-xg-639.title" = "取消";
 /* Class = "NSButtonCell"; title = "Sort"; ObjectID = "ara-FL-nKk"; */
-"ara-FL-nKk.title" = "Sort";  // FIXME: added
+"ara-FL-nKk.title" = "排序";

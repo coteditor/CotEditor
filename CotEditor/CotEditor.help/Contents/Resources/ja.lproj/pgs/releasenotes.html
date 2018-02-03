@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html>
-<html lang="ja" xml:lang="ja">
+<html lang="ja">
 
 <head>
 	<meta charset="UTF-8"/>
@@ -25,8 +23,8 @@
 
 <article>
 <header>
-	<h1>CotEditor 3.3.3</h1>
-	<p>リリース: <time>2018-01</time></p>
+	<h1>CotEditor 3.3.0</h1>
+	<p>リリース: <time>2018-02</time></p>
 </header>
 
 
@@ -34,67 +32,72 @@
 <h2>新機能</h2>
 
 <ul>
-	<li>iCloud document.</li>
-	<li>Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.</li>
-	<li>New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.</li>
-	<li>Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.</li>
-	<li>Add new setting option “Reopen windows from the last session on launch” in General pane.</li>
-	<li>Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.</li>
-	<li>Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.</li>
-	<li>More integrated Share feature:<ul>
-		<li>Share documents with other people through iCloud drive with “Add People” command in the File > Share menu.</li>
-		<li>Enable sharing a document that has not been saved yet.</li>
-		<li>Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).</li>
-		<li>Other small improvements.</li>
+	<li>iCloudドキュメントに対応</li>
+	<li>起動時やリオープンイベントで自動的に開かれた空のウインドウがあれば、ユーザが明示的に開いた書類をそのウインドウの中に開くように</li>
+	<li>指定列や正規表現などの特殊な条件で選択した範囲の行をソートできる“条件で並び替え”機能をテキスト &gt; 行メニューに追加</li>
+	<li>新しい設定オプション“前回のウインドウを復帰”を一般ペインに追加</li>
+	<li>新しい設定オプション“空白のみの行を含める”を一般ペインの“保存時に行末の空白を削除”オプションに追加</li>
+	<li>右から左の記法に対応し、フォーマット &gt; 文章の方向メニューを追加</li>
+	<li>さらに統合された共有機能:<ul>
+		<li>共有の“人を追加”に対応し、iCloudドライブから書類を他の人と共有できるように</li>
+		<li>未保存の書類も共有できるできるように</li>
+		<li>ファイル &gt; 共有メニューから書類のテキストを共有する機能を削除（選択範囲のテキストはコンテキストメニューから共有できます）</li>
+		<li>ほか細々とした改良</li>
 	</ul></li>
-	<li>Add Portuguese localization (thanks to BR Lingo!).</li>
-	<li>Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):<ul>
-		<li>Thai (Windows, DOS)</li>
-		<li>Thai (ISO 8859-11)</li>
-	</ul></li>
-</ul>
-</section>
-
-
-<section>
-<h3>改良</h3>
-
-<ul>
-	<li><strong>OS X 10.10 Yosemite</strong>をサポート対象外とする</li>
-	<li>Add clear button to the input fields in the find panel.</li>
-	<li>Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.</li>
-	<li>Scroll console view after getting a new message to make it visible.</li>
-	<li>Display sharing window within the target document window.</li>
-	<li>Swap position of “View” with “Format” menu to conform to the Apple's Human Interface Guidelines.</li>
-	<li>Move the menu item changing the text orientation into Format > Writing Direction.</li>
-	<li>Display full encoding name in the status bar instead of the IANA charset name.</li>
-	<li>Add tooltips to the Unicode normalization forms in Text menu.</li>
-	<li>Append “Option-Command-T” shortcut to “Show/Hide Toolbar” menu item.</li>
-	<li>Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).</li>
-	<li>Remove “share find text with other applications” option.</li>
-	<li>Restore the last viewed preference pane when Preferences is opened.</li>
-	<li>Add an input field for window opacity setting.</li>
-	<li>Adjust scroll after toggling line wrap.</li>
-	<li>Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.</li>
-	<li>Update Python syntax style:<ul>
-		<li>Fix highlight of string and bytes literals.</li>
-	</ul></li>
-	<li>Tweak acknowledgments window design.</li>
-	<li>Some minor UI improvements and fixes.</li>
-	<li>Update Japanese localization to conform with the modern macOS localization rules.</li>
-	<li>Update the internal source code to Swift 4.</li>
-	<li>[non-AppStore ver.] Now, the application updater (Sparkle) can download and update CotEditor automatically, as like before CotEditor was Sandboxed.<ul>
-		<li>This feature can actually be used first updating CotEditor 3.3.0 to CotEditor 3.3.1 or later.</li>
+	<li>テキスト &gt; 変換に“半角に”と“全角に”コマンドを追加</li>
+	<li>ポルトガル語（ブラジル）ローカライズを追加（BR Lingoに感謝!）</li>
+	<li>以下のファイルエンコーディングをエンコーディングリストに追加（新しいエンコーディングを有効にするには、環境設定 &gt; フォーマット &gt; リスト編集 から一旦設定をデフォルトに戻してください）<ul>
+		<li>タイ語（Windows, DOS）</li>
+		<li>タイ語（ISO 8859-11）</li>
 	</ul></li>
 </ul>
 </section>
 
 
 <section>
-<h3>修正</h3>
+<h2>改良</h2>
 
 <ul>
-	<li>Fix an issue where the word suggestion in the Touch Bar cannot insert a word starts with a symbol correctly, and, therefore, a workaround was added on CotEditor 3.2.3.</li>
+	<li>システム要件を<strong>OS X 10.11 El Capitan以上</strong>に変更</li>
+	<li>検索パネルの入力フィールドに削除ボタンを追加</li>
+	<li>“新規書類を開く”の設定オプション2つを1つにまとめ、“起動したとき何も開かれていなければ”設定オプションを新設</li>
+	<li>“右にシフト”と“左にシフト”コマンドを複数選択範囲に対応</li>
+	<li>コンソールに出力が追加されたとき、新しいメッセージが見えるように自動でスクロール</li>
+	<li>共有ウインドウを対象となる書類ウインドウの中に表示</li>
+	<li>AppleのHuman Interface Guidelinesに合わせ、表示メニューとフォーマットメニューの位置を交換</li>
+	<li>縦書き/横書きを切り替えるメニュー項目をフォーマット &gt; 文章の方向メニューに移動</li>
+	<li>ステータスバーに表示するエンコーディング名をIANA charset名ではなくフル名称に</li>
+	<li>テキストメニューのUnicode正規化メニュー項目に解説のツールチップを追加</li>
+	<li>“ツールバーを表示/隠す”メニュー項目にショートカット<kbd>Option</kbd>+<kbd>Cmd</kbd>+<kbd>T</kbd>を付与</li>
+	<li>“カラーコードパネル”コマンドをウインドウメニューから削除（代わりにテキストメニューの“カラーコードを編集...”コマンドを使用してください）</li>
+	<li>設定オプション“検索文字列をほかのアプリケーションと共有”を削除</li>
+	<li>環境設定を開いたとき最後に表示したペインを表示するように</li>
+	<li>エディタの不透明度設定に数値入力フィールドを追加</li>
+	<li>行の折り返し設定を変更したあとのスクロール位置をより自然に調整</li>
+	<li>検索パネルの入力欄に検索/置換結果が表示されているときもすべての入力値が見えるように入力欄右側に動的にスクロールマージンを追加</li>
+	<li>Pythonシンタックス定義を更新<ul>
+		<li>文字列およびバイトリテラルのハイライトを修正</li>
+	</ul></li>
+	<li>謝辞ウインドウのデザインを改良</li>
+	<li>ヘルプのスタイルを更新</li>
+	<li>ユーザインターフェイスに関する微細な改良</li>
+	<li>日本語ローカライズを近年のモダンなmacOSの表現に合わせるために更新</li>
+	<li>内部コードをSwift 4に更新</li>
+	<li><span class="label">非AppStore版のみ</span>: CotEditorがSandbox化される前のように、アプリケーションアップデート機能(Sparkle) が再び自動でCotEditorを更新できるように<ul>
+		<li>この機能は実際にはCotEditor 3.3.0から3.3.1へのアップデートから使用できるようになります。</li>
+	</ul></li>
+</ul>
+</section>
+
+
+<section>
+<h2>修正</h2>
+
+<ul>
+	<li>タッチバーの入力補助で記号から始まるキーワードの入力がうまくいかず、そのためCotEditor 3.2.3で迂回策がとられていた不具合を解決</li>
+	<li>特定の文字で文字情報インスペクタのサイズが縦方向に広がりすぎることがあった不具合を修正</li>
+	<li>検索パネルの入力フィールドで制御文字の不可視文字が描画されていなかった不具合を修正</li>
+	<li>CotEditorからヘルプビューアに飛んだときのスクロール位置を修正</li>
 	<li>ローカライズされていなかったテキストを修正</li>
 </ul>
 </section>
@@ -110,7 +113,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>スクリプトメニューからUNIXスクリプトを実行したときに、標準入力が空になることがあった不具合を修正</li>
@@ -139,7 +142,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>長い検索文字列で「すべて検索」をした時に不要に検索パネルが広がった具合を修正</li>
@@ -160,7 +163,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>置換文字列内のバックスラッシュが正しく解釈できていなかった不具合を修正</li>
@@ -190,7 +193,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>縦書き書類の印刷でレイアウトが崩れた不具合を修正</li>
@@ -226,7 +229,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li><span class="label">High Sierra</span>: エディタが書類の末尾までスクロールできないことがあった High Sierra でのシステムの不具合を回避
@@ -267,7 +270,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>UNIX スクリプトが書類本文を取得し損ねることがあった不具合を修正</li>
@@ -320,7 +323,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>macOS 10.13 High Sierra で、キーバインド設定ペインの設定一覧表示が空になっていた不具合を修正</li>
@@ -358,7 +361,7 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>ファイルドロップの設定が保存されなかった不具合を修正</li>
@@ -369,6 +372,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -454,14 +458,14 @@
 <h2>改良</h2>
 
 <ul>
-	<li>“.swift” 拡張子を CotEditor スクリプトとして扱うファイルタイプに追加</li>
+	<li>“.swift”拡張子を CotEditor スクリプトとして扱うファイルタイプに追加</li>
 	<li><span class="label">非 AppStore 版のみ</span>: Sparkle フレームワークを 1.17.0 に更新</li>
 </ul>
 </section>
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li><code>cot</code> コマンドラインツールを更新：
@@ -474,6 +478,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 3.1.7</h1>
@@ -482,13 +487,14 @@
 
 
 <section>
-<h3>修正</h3>
+<h2>修正</h2>
 
 <ul>
 	<li>Touch Bar の付いた MacBook Pro で起動直後にアプリケーションがクラッシュする不具合を修正</li>
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -522,6 +528,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 3.1.5</h1>
@@ -537,6 +544,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -571,6 +579,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -617,6 +626,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -685,6 +695,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 3.1.1</h1>
@@ -700,6 +711,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -748,6 +760,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 3.0.5</h1>
@@ -766,6 +779,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -795,6 +809,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -848,6 +863,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 3.0.2</h1>
@@ -871,6 +887,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -1025,6 +1042,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 2.5.7</h1>
@@ -1045,6 +1063,7 @@
 </ul>
 </section>
 </article>
+
 
 
 <article>
@@ -1123,7 +1142,7 @@
 <h2>新機能</h2>
 
 <ul>
-	<li>“Git” シンタックススタイルを追加</li>
+	<li>“Git”シンタックススタイルを追加</li>
 </ul>
 </section>
 
@@ -1132,7 +1151,7 @@
 <h2>改良</h2>
 
 <ul>
-	<li>“Julia” と “Swift” シンタックススタイルを更新</li>
+	<li>“Julia”と“Swift”シンタックススタイルを更新</li>
 	<li>行高とタブ幅の変更をすべての分割されたエディタに適用させるように変更</li>
 	<li>テキストレンダリングのパフォーマンスを若干向上</li>
 </ul>
@@ -1156,7 +1175,7 @@
 	<li>エディタを分割すると URL のリンクが消える不具合を修正</li>
 	<li>フォントパネルからフォントを変更したとき、フォーカスのない分割エディタのレイアウトが崩れる不具合を修正</li>
 	<li>サービス経由で他アプリケーションでの選択範囲を書類として開いたときに、選択範囲の挿入がアンドゥ履歴に登録されていた不具合を修正</li>
-	<li>シンタックススタイルのラインナップが更新されると “再カラーリング” のキーバインディングがデフォルトの <code>⌘⌥R</code> に強制的に戻ってしまう不具合を修正</li>
+	<li>シンタックススタイルのラインナップが更新されると“再カラーリング”のキーバインディングがデフォルトの <code>⌘⌥R</code> に強制的に戻ってしまう不具合を修正</li>
 </ul>
 </section>
 </article>
@@ -1278,7 +1297,7 @@
 	<li>JavaScript シンタックス定義を更新
 	<ul>
 		<li>アウトライン抽出で ECMAScript 6 で導入された class シンタックスシュガーに対応</li>
-		<li>“get” および “set” のカラーリング精度の向上</li>
+		<li>“get”および“set”のカラーリング精度の向上</li>
 	</ul></li>
 </ul>
 </section>
@@ -1682,28 +1701,28 @@
 <ul>
 	<li>シフトキーを押しながらアプリケーションを起動するとウインドウの復帰をしない機能を追加</li>
 	<li>「文字を Unicode 16 進数で入力」パネルを改良：
-    <ul>
+	<ul>
 		<li>入力候補文字の情報を表示</li>
 		<li>1〜3 桁のコードでも入力可能に</li>
 		<li>文字を挿入したあと自動的にパネルを閉じないように挙動を変更</li>
-    </ul></li>
+	</ul></li>
 	<li>文字情報ポップオーバーを改良：
-    <ul>
+	<ul>
 		<li>制御文字の名前をよりその実態を表した名称に （例：<code>&lt;control-0000&gt;</code> を <code>NULL</code> に）</li>
 		<li>C0 制御文字では拡大文字エリアに代替のシンボルを表示</li>
-    </ul></li>
+	</ul></li>
 	<li>環境設定内のインストール済みスタイル一覧の改良：
-    <ul>
+	<ul>
 		<li>そのスタイルがカスタマイズされているかを示すドットマークをスタイル名の前に追加</li>
 		<li>シンタックススタイル編集シートを表示しなくても一覧から直接スタイルを元に戻せる機能を追加</li>
-    </ul></li>
+	</ul></li>
 	<li>現在の行番号を太字で表示するようにし、また縦書き時は常に現在の行番号は描画できるように改良</li>
 	<li>シンタックスカラーリングされ引用符で囲まれた文字列の引用符をダブルクリックしたときには、その引用符を含む囲われたすべての文字列を選択</li>
 	<li>カラーコードパネルから色を挿入したあと、挿入した文字列を選択</li>
 	<li>シンタックススタイルのアウトライン定義にも「説明」項目を追加
-    <ul>
+	<ul>
 		<li>これにともない、バンドルされているほぼすべてのシンタックススタイルを更新</li>
-    </ul></li>
+	</ul></li>
 	<li>シンタックススタイル編集シートのシンタックス情報「配布 URL」欄にその URL にジャンプできるボタンを追加</li>
 	<li>「その他の不可視文字」の描画を改良</li>
 	<li>「置換」および「すべて置換」アクション時の振る舞いを改善</li>
@@ -1798,7 +1817,7 @@
 
 <ul>
 	<li>ウインドウリサイズ中テキストビューが歪むことがあった不具合を修正</li>
-	<li>書類が改行コードから始まっていた時に、改行コードの判別が正しくできていなかった不具合を修正 </li>
+	<li>書類が改行コードから始まっていた時に、改行コードの判別が正しくできていなかった不具合を修正</li>
 	<li>実際の改行コードが LF 以外の時でも、文字情報ポップオーバーが改行コードは常に <code>U+000A</code> (LF) と誤って解釈していた不具合を修正</li>
 	<li>単体の Regional Indicator Symbol Letter の字数カウント方法が誤っていた不具合を修正</li>
 	<li>エンコーディング変更をスクリプトから行った時のアンドゥ名が誤っていた不具合を修正</li>
@@ -1955,7 +1974,7 @@
 <ul>
 	<li>“JSON”シンタックス定義を更新
 	<ul>
-		<li>拡張子に “geojson” を追加</li>
+		<li>拡張子に“geojson”を追加</li>
 	</ul></li>
 </ul>
 </section>
@@ -2014,7 +2033,7 @@
 	</ul></li>
 	<li>外部プロセスによる書類更新時の挙動を変更できる設定項目を追加（環境設定の一般ペイン）</li>
 	<li>ツールバーに共有ボタンを追加（使用するためにはツールバーをカスタマイズしてください）</li>
-	<li>新しいテーマ “Anura” と “Note” を追加</li>
+	<li>新しいテーマ“Anura”と“Note”を追加</li>
 	<li>縦書き時の行番号表示</li>
 	<li>縦書き印刷</li>
 	<li>縦書きの状態をファイル自身に保存し、ファイルオープン時にそれを復帰
@@ -2053,7 +2072,7 @@
 		<li>編集中のシンタックス解析精度を向上</li>
 		<li>編集中にフォーカスのない分割ビューのカラーリングも更新</li>
 	</ul></li>
-	<li>サンドボックス化にともない、スクリプトフォルダの場所を  <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更
+	<li>サンドボックス化にともない、スクリプトフォルダの場所を <code>~/Library/Application Support/CotEditor/ScriptMenu/</code> から <code>~/Library/Application Scripts/com.coteditor.CotEditor/</code> に変更
 	<ul>
 	<li>ユーザはすでにあるスクリプトを手動で移動する必要があります。</li>
 	</ul></li>
@@ -2069,8 +2088,8 @@
 		<li>スタイルシートのキーワードのカラーリストをエディタパネルに追加</li>
 		<li>パネルをリサイズ可能に</li>
 	</ul></li>
-	<li>ファイルオープン時、適切なシンタックススタイルが見つからなかったけどファイル内容が XML 宣言から始まっていた場合、自動的に “XML” がシンタックススタイルに設定されるように改良</li>
-	<li>“Swift” シンタックススタイルの更新
+	<li>ファイルオープン時、適切なシンタックススタイルが見つからなかったけどファイル内容が XML 宣言から始まっていた場合、自動的に“XML”がシンタックススタイルに設定されるように改良</li>
+	<li>“Swift”シンタックススタイルの更新
 	<ul>
 		<li>Swift 2.0 で追加された語句の追加</li>
 	</ul></li>
@@ -2335,8 +2354,8 @@
 	</ul></li>
 	<li>AppleScript の document オブジェクトに <code>tab width</code> プロパティを追加</li>
 	<li>CotEditor スクリプトが最前面書類の絶対パスを引数として受け取るように</li>
-	<li>OS X のサービス機能 “選択範囲を含む新規書類を CotEditor で開く” と “ファイルを CotEditor で開く” を追加</li>
-	<li>“Erlang”と “Julia” シンタックス定義を追加</li>
+	<li>OS X のサービス機能“選択範囲を含む新規書類を CotEditor で開く”と“ファイルを CotEditor で開く”を追加</li>
+	<li>“Erlang”と“Julia”シンタックス定義を追加</li>
 </ul>
 </section>
 
@@ -2420,6 +2439,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 2.0.3</h1>
@@ -2484,6 +2504,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 2.0.2</h1>
@@ -2502,6 +2523,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 2.0.1</h1>
@@ -2514,12 +2536,12 @@
 
 <ul>
 	<li>新しい AppleScript コマンド <code>comment out</code> と <code>uncomment</code> を selection オブジェクトに追加</li>
-	<li>拡張子 “js“ を CotEditor スクリプトとして実行できるファイルタイプに追加
+	<li>拡張子“js“ を CotEditor スクリプトとして実行できるファイルタイプに追加
 		<ul>
 		<li><strong>ヒント</strong>: Yosemite の JavaScript for Automation として実行させるには <code>#!/usr/bin/osascript -l JavaScript</code> をシェバン (shebang) として使用します。</li>
 	</ul></li>
-	<li>ヘルプメニューに不具合報告のテンプレートを作成する “不具合レポートを作成…” を追加</li>
-	<li>“BibTeX” シンタックス定義を追加</li>
+	<li>ヘルプメニューに不具合報告のテンプレートを作成する“不具合レポートを作成…”を追加</li>
+	<li>“BibTeX”シンタックス定義を追加</li>
 </ul>
 </section>
 
@@ -2529,7 +2551,7 @@
 
 <ul>
 	<li>開こうとしているファイルが 100MB 以上の時に警告を出す機能を追加</li>
-	<li> “常に行頭からコメントアウト”設定のデフォルト値をオンに変更</li>
+	<li>“常に行頭からコメントアウト”設定のデフォルト値をオンに変更</li>
 	<li>改行コードのラベルを変更</li>
 	<li>“Python”シンタックス定義を更新
 	<ul>
@@ -2549,7 +2571,7 @@
 	</ul></li>
 	<li>ドキュメント「AppleScript でのスクリプト作成」を更新</li>
 	<li>サンプルスクリプトを更新</li>
-	<li>“eRuby” シンタックス定義を削除</li>
+	<li>“eRuby”シンタックス定義を削除</li>
 </ul>
 </section>
 
@@ -2577,6 +2599,7 @@
 </article>
 
 
+
 <article>
 <header>
 	<h1>CotEditor 2.0.0</h1>
@@ -2591,7 +2614,7 @@
 <ul>
 	<li>テーマ機能</li>
 	<li>コメントアウト/コメント解除機能</li>
-	<li>シンタックス定義に新しい色 “タイプ”, “属性”, “変数” を追加</li>
+	<li>シンタックス定義に新しい色“タイプ”, “属性”, “変数”を追加</li>
 	<li>シンタックス定義にファイル名の設定を追加
 	<ul>
 		<li>これにともない、シンタックス編集シートでの表記を「拡張子」から「ファイル関連付け」に変更</li>
@@ -2602,14 +2625,14 @@
 		<li>シンタックス定義内の拡張子リストの最上位にある拡張子が使用されます。</li>
 		<li>これにともない、以前まであった「ファイル保存時に拡張子“txt”をつける」オプションは廃止になりました。
 		<ul>
-			<li>引き続き拡張子 “txt” を自動的に追加したい場合は、環境設定 > フォーマットのデフォルトシンタックススタイルを “Plain Text” にすることで同様の効果を得られます。</li>
+			<li>引き続き拡張子“txt”を自動的に追加したい場合は、環境設定 &gt; フォーマットのデフォルトシンタックススタイルを“Plain Text”にすることで同様の効果を得られます。</li>
 		</ul></li>
 	</ul></li>
 	<li>横書き／縦書き切り替えボタンをツールバーに追加</li>
 	<li>エディタを縦に分割するオプション</li>
 	<li>行番号をクリック／ドラッグして行を選択</li>
 	<li>「編集」に「行を選択」コマンドを追加</li>
-	<li>“AppleScript”, “C#”, “Go”, “Lisp”, “Lua”, “R”, “Scheme”, “SQL”, “SVG”, “Rust”, “Swift”, “Tcl” シンタックス定義を追加</li>
+	<li>“AppleScript”, “C#”, “Go”, “Lisp”, “Lua”, “R”, “Scheme”, “SQL”, “SVG”, “Rust”, “Swift”, “Tcl”シンタックス定義を追加</li>
 	<li>自動補完機能を追加（実験的実装, デフォルトはオフ）</li>
 </ul>
 </section>
@@ -2634,13 +2657,13 @@
 		<li>現在行をハイライトしているときのファイルオープンおよびカーソル移動のパフォーマンスを大幅に改善</li>
 		<li>不可視文字描画のパフォーマンスを大幅に改善 (約4倍)</li>
 		<li>行番号表示のパフォーマンスを大幅に改善 (約6倍)</li>
-		<li>Mountain Lion 以降でのスクロールのもたつきを改善 </li>
+		<li>Mountain Lion 以降でのスクロールのもたつきを改善</li>
 		<li>ファイルオープンの高速化のため、エンコーディング宣言の走査を文書前方2,000文字のみに制限</li>
 	</ul></li>
 	<li>シンタックス定義ファイルのフォーマットを plist (XML) から YAML に変更
 		<ul>
 		<li>ユーザのカスタム定義の移行は、初回 CotEditor 2.0 起動時に自動で行なわれます。</li>
-		<li>新しい形式の定義ファイルは <code>~/Library/Application Support/CotEditor/Syntaxes/</code> に保存されます。以前の plist 形式の定義ファイルは <code>SyntaxColorings/</code> ファイルに残されたままになりますが CotEditor 2.0 はこれを使用しないので、必要なければ削除しても構いません。 </li>
+		<li>新しい形式の定義ファイルは <code>~/Library/Application Support/CotEditor/Syntaxes/</code> に保存されます。以前の plist 形式の定義ファイルは <code>SyntaxColorings/</code> ファイルに残されたままになりますが CotEditor 2.0 はこれを使用しないので、必要なければ削除しても構いません。</li>
 	</ul></li>
 	<li>シンタックス定義で RE (正規表現) を無効にしていても IC (大文字小文字を無視) を有効にできるように変更</li>
 	<li>アウトライン抽出に用いる正規表現ライブラリを OniGmo (OgreKit) から ICU (NSRegularExpression) に変更
@@ -2668,32 +2691,32 @@
 		<li>これにともない、「ユーティリティ」メニュー内の「大文字に」、「小文字に」、「先頭の文字を大文字に」を削除</li>
 	</ul></li>
 	<li>シンタックス定義フォーマットの変更に対応するための、すべてのバンドル版シンタックス定義の更新</li>
-	<li>“CSS” シンタックス定義の更新
+	<li>“CSS”シンタックス定義の更新
 		<ul>
 		<li>CSS3 に対応</li>
 	</ul></li>
-	<li>“Perl” シンタックス定義の更新
+	<li>“Perl”シンタックス定義の更新
 		<ul>
 		<li>いくつかのキーワードを追加</li>
 		<li><code>=pod</code>, <code>=cut</code> をコメントカラーリングに追加</li>
-		<li>拡張子に “pm” を追加</li>
+		<li>拡張子に“pm”を追加</li>
 	</ul></li>
-	<li>“JSON” シンタックス定義の更新
+	<li>“JSON”シンタックス定義の更新
 		<ul>
-		<li>拡張子に “cottheme” を追加</li>
+		<li>拡張子に“cottheme”を追加</li>
 	</ul></li>
-	<li>“LaTeX” シンタックス定義の更新
+	<li>“LaTeX”シンタックス定義の更新
 		<ul>
-		<li>拡張子に “cls”, “sty” を追加</li>
+		<li>拡張子に“cls”, “sty”を追加</li>
 		<li>アウトラインメニューの階層表示スタイルを変更</li>
 	</ul></li>
-	<li>“YAML” シンタックス定義の更新
+	<li>“YAML”シンタックス定義の更新
 		<ul>
 		<li>YAML 1.2 に対応</li>
 		<li>アウトラインの抽出ルールを変更</li>
 		<li>ほか、いくつかの修正</li>
 	</ul></li>
-	<li>“Ruby” シンタックス定義の更新
+	<li>“Ruby”シンタックス定義の更新
 		<ul>
 		<li>%記法に対応</li>
 		<li>特殊変数を追加</li>
@@ -2701,28 +2724,28 @@
 		<li>ヒアドキュメントに対応</li>
 		<li>ほか、いくつかの修正</li>
 	</ul></li>
-	<li>“Java” シンタックス定義の更新
+	<li>“Java”シンタックス定義の更新
 		<ul>
 		<li>数値の抽出条件を改良</li>
 		<li>アノテーションに対応</li>
 		<li>ほか、いくつかの修正</li>
 	</ul></li>
-	<li>“JavaScript” シンタックス定義の更新
+	<li>“JavaScript”シンタックス定義の更新
 		<ul>
 		<li>リライト</li>
 	</ul></li>
-	<li>“Haskell” シンタックス定義の更新
+	<li>“Haskell”シンタックス定義の更新
 		<ul>
 		<li>数値の抽出条件を改良</li>
 		<li>エスケープ文字を追加</li>
 	</ul></li>
-	<li>“Apache” シンタックス定義の更新
+	<li>“Apache”シンタックス定義の更新
 		<ul>
 		<li>アウトラインをインデントで階層化</li>
 	</ul></li>
-	<li>“DTD” (文書型定義) シンタックス定義 を “XML” シンタックス定義から分離
+	<li>“DTD”（文書型定義）シンタックス定義を“XML”シンタックス定義から分離
 		<ul>
-		<li>これにより、“XML” シンタックス定義のカラーリングパフォーマンスを改善</li>
+		<li>これにより、“XML”シンタックス定義のカラーリングパフォーマンスを改善</li>
 	</ul></li>
 	<li>AppleScript 対応に関する変更：
 		<ul>
@@ -2740,7 +2763,7 @@
 		<li>従来の文字数カウントは愚直にUTF-16 (= OS Xでの文字列内部表現) での length を表示するのに対して、新しいカウント法は表示される文字単位でカウントを行なう（例えば、絵文字などのサロゲートペアは文字数:1, 文字長:2となる）</li>
 		<li>過去の「文字数」については「文字長」という名前に改名し「文字数」とは別に項目を設けた</li>
 	</ul></li>
-	<li>アウトラインの前後移動ボタンで最初の “&lt;アウトラインメニュー&gt;” 項目には遡らないように変更</li>
+	<li>アウトラインの前後移動ボタンで最初の“&lt;アウトラインメニュー&gt;”項目には遡らないように変更</li>
 	<li>「ファイル」メニューの隠しメニュー「非表示ファイルを開く…」と「すべてを閉じる」を表示するキーを Option に変更</li>
 	<li>ダブルクリックでの単語選択時の区切り文字に <code>.</code> と <code>:</code> を追加</li>
 	<li>文字情報ポップアップでのサロゲートペアおよび Variation Selector の扱いを改善 (doraTeX さんに感謝！)</li>
@@ -2771,7 +2794,7 @@
 	<li>エンコーディング編集シートの表示を改良</li>
 	<li>環境設定のウインドウサイズ入力欄をタブキーで移動できるように改良</li>
 	<li>UI のラベル文字列を一部変更</li>
-	<li>設定項目 “選択テキストをすぐにドラッグ開始” を廃止</li>
+	<li>設定項目“選択テキストをすぐにドラッグ開始”を廃止</li>
 	<li>CotEditor 0.7.2 で廃止され後方互換性のために残されていた、CotEditor スクリプトの出力タイプ指定キーワード <code>Pasteboard puts</code> を正式に廃止</li>
 	<li>デフォルト表示を縦書きにする隠し設定 <code>layoutTextVertical</code> を追加</li>
 	<li>隠し設定であるナビゲーションバーおよび行番号ビューのフォント設定を廃止</li>
@@ -2905,7 +2928,7 @@
 	<li>ファイルドロップで文字列が挿入されない不具合を修正</li>
 	<li>「フルスクリーンにする」のキーバインドが漏れていた不具合を修正
 	<ul>
-		<li>反映するには環境設定 > キーバインド > メニューキーバインドを編集して「出荷時に戻す」を実行する必要があります</li>
+		<li>反映するには環境設定 &gt; キーバインド &gt; メニューキーバインドを編集して「出荷時に戻す」を実行する必要があります</li>
 	</ul></li>
 </ul>
 </section>
@@ -2952,7 +2975,7 @@
 	<li>情報ドロワーに単語数、ファイルサイズおよびバイト数の表示を追加</li>
 	<li>メニューバーおよびツールバーから現在のウインドウにのみ有効なタブスペース設定が可能に</li>
 	<li>自動インデントが有効な状態で <code>{</code> と <code>}</code> の間、または <code>:</code> の直後に改行したときは、新しい行のインデントレベルを自動的にひとつ深くするように改良</li>
-	<li>“CoffeeScript” <a href="#v1.5.0fnote1"><sup>1</sup></a> および “Dart”, “Diff”, “INI” <a href="#v1.5.0fnote1"><sup>1</sup></a>, “JSON”, “Makefile”, “reStructuredText” <a href="#v1.5.0fnote1"><sup>1</sup></a>, “Textile” <a href="#v1.5.0fnote1"><sup>1</sup></a>, “YAML” シンタックス定義を追加</li>
+	<li>“CoffeeScript”<a href="#v1.5.0fnote1"><sup>1</sup></a>および“Dart”, “Diff”, “INI”<a href="#v1.5.0fnote1"><sup>1</sup></a>, “JSON”, “Makefile”, “reStructuredText”<a href="#v1.5.0fnote1"><sup>1</sup></a>, “Textile”<a href="#v1.5.0fnote1"><sup>1</sup></a>, “YAML”シンタックス定義を追加</li>
 	<li>アンダースコア（_）から始まるスクリプト／フォルダはスクリプトメニューに表示しない仕様を追加</li>
 	<li>[実験的実装]「フォーマット」メニューに「縦書きで表示」を追加し、縦書き適応時の表示も改善（縦書き時は行番号は常に非表示になります）</li>
 </ul>
@@ -2964,11 +2987,11 @@
 <ul>
 	<li>取り扱えるエンコーディングに「欧米 (ASCII)」および「中国語 (GB 18030)」を追加</li>
 	<li>ユーザインターフェイス上の表現・ローカライズの大幅な調整</li>
-	<li>“HTML” シンタックス定義の更新<ul>
+	<li>“HTML”シンタックス定義の更新<ul>
 		<li>HTML5 および HTML5.1 に対応</li>
 		<li>カラーリング精度の向上</li>
 	</ul></li>
-	<li>“Perl” シンタックス定義の更新<ul>
+	<li>“Perl”シンタックス定義の更新<ul>
 		<li>数値, 変数のカラーリング</li>
 		<li>いくつかのキーワードの追加</li>
 		<li>コメントカラーリングの改善</li>
@@ -3126,7 +3149,7 @@
 <section>
 <h2>修正</h2>
 <ul>
-	<li> 1.4でステータスバーおよびドロワーに表示される総行数がゼロになっていた不具合を修正</li>
+	<li>1.4でステータスバーおよびドロワーに表示される総行数がゼロになっていた不具合を修正</li>
 </ul>
 </section>
 </article>
@@ -3237,7 +3260,7 @@
 
 <ul>
 	<li>フルスクリーン対応（10.7のみ）</li>
-	<li>ファイル保存時に拡張子 “txt” をつけるオプションを追加</li>
+	<li>ファイル保存時に拡張子“txt”をつけるオプションを追加</li>
 </ul>
 </section>
 
@@ -3414,7 +3437,7 @@
 <h2>改良</h2>
 
 <ul>
-	<li>前バージョンで追加した「文章単語をダブルクリックで選択時に &quot;:&quot; も単語の区切りとして扱う」機能を廃止（選択後にShiftキー押下とマウスクリックで選択範囲を拡大するときの挙動を制御できないため）（<a href="http://d.hatena.ne.jp/mr_konn/" rel="external">はてな使ったら負けだと思っている</a> の konn さんに感謝！）</li>
+	<li>前バージョンで追加した「文章単語をダブルクリックで選択時に “:” も単語の区切りとして扱う」機能を廃止（選択後にShiftキー押下とマウスクリックで選択範囲を拡大するときの挙動を制御できないため）（<a href="http://d.hatena.ne.jp/mr_konn/" rel="external">はてな使ったら負けだと思っている</a> の konn さんに感謝！）</li>
 	<li>10.5以上で実行しているときの編集中のカラーリングの精度を向上（10.4以下では変化ありません）</li>
 	<li>RegexKitLite を 2.2 に更新</li>
 	<li>開発環境を更新</li>
@@ -3867,7 +3890,7 @@
 <h2>新機能</h2>
 
 <ul>
-	<li>CSS スタイルのエンコーディング表記（@charset）も解釈できるようにした（解釈の優先順位は &quot;charset=&quot; ＞ &quot;encoding=&quot; ＞ &quot;@charset&quot;）</li>
+	<li>CSS スタイルのエンコーディング表記（@charset）も解釈できるようにした（解釈の優先順位は “charset=” &gt; “encoding=” &gt; “@charset”）</li>
 	<li>開いているファイルが外部のプロセスで変更された時に通知する機能を追加（<a href="http://d.hatena.ne.jp/Tommy1/" rel="external">Tommy Heartbeat 2nd</a> の Y.Tokutomi さんに感謝！）</li>
 </ul>
 </section>

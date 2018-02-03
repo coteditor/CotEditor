@@ -218,8 +218,10 @@
 "Convert Indentation" = "转换缩进";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
-"To Fullwidth Roman" = "转为全角";
-"To Halfwidth Roman" = "转为半角";
+"To Full-width" = "转为全角";
+"To Half-width" = "转为半角";
+"To Full-width Roman" = "转为全角罗马字";
+"To Half-width Roman" = "转为半角罗马字";
 "Hiragana to Katakana" = "平假名到片假名";
 "Katakana to Hiragana" = "片假名到平假名";
 "NFD" = "NFD";

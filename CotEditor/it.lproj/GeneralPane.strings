@@ -81,7 +81,7 @@
 "al9-WE-Rqy.title" = "Evidenzia “<>”";
 
 
-/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
+/* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "Aggiornamento software:";
 
 /* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */

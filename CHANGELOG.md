@@ -5,12 +5,55 @@ Change Log
 develop
 --------------------------
 
+### Improvements
+
+- [beta] Adjust position of invisible line ending character on the RTL writing mode.
+- [beta] Tweak the layout of the “Sort by Pattern” dialog.
+- Update Help contents style.
+
+
+### Fixes
+
+- Fix an issue where invisible symbols for control characters were not drawn in input fields in find panel.
+- Fix an issue where character inspector could expand vertically too much with some specific characters.
+- [beta] Fix an issue where AppleScript (and JXA) could not communicate with some APIs.
+- [beta] Fix an issue where the views containing an encoding menu could display nothing under a specific setting condition.
+- [beta] Fix an issue where pasted URLs from specific applications missed the domain part.
+- [beta] Fix an issue where the current line highlight started at a wrong place on the RTL writing mode.
+- Fix some unwanted title case in the preferences.
+
+
+
+3.3.0-beta.2 (218)
+--------------------------
+
+### Improvements
+
+- Enable “shift right” and “shift left” commands to process multiple selections.
+- [beta] Swap actions for “shift right” and “shift left” in the RTL writing mode so that the indentation direction matchs to the command name.
+- [beta] Add “Keep the first line at the top” option to the pattern sort.
+- [beta] Add toolbar item toggling writing direction.
+- [beta] Update alignment icons in print pane.
+- [beta] Adjust layout of preferences panes.
+
+
+### Fixes
+
+- [beta] Fix an issue where syntax style list became empty.
+- [beta] Fix an issue where page guide was drawn at a wrong position if editor is scaled and the writing direction is RTL.
+- [beta] Fix an issue where text did not changed to the RTL writing direction if lines are not wrapped.
+- Fix scroll position in the help viewer on jumping to a help page from CotEditor.
+
+
+
+3.3.0-beta (216)
+--------------------------
+
 ### New Features
 
 - iCloud document.
 - Open a document in the existing Untitled window that was created automatically on an open/reopen event, if exists.
 - New feature “Sort by pattern,” which enables sort selected lines by specific column or fully freely using the regular expression.
-- Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add new setting option “Reopen windows from the last session on launch” in General pane.
 - Add new setting option “including whitespace-only lines” for “trim trailing whitespace” command in General pane.
 - Introduce “Right to Left” writing direction by changing the direction from Format > Writing Direction menu.
@@ -19,6 +62,7 @@ develop
     - Enable sharing a document that has not been saved yet.
     - Remove the feature that shares document content text from the File menu (You can still share selected text from the context menu).
     - Other small improvements.
+- Add new commands “Half-width to Full-width” and “Full-width to Half-width” to Text > Transformations menu.
 - Add Portuguese localization (thanks to BR Lingo!).
 - Add the following encodings to the encoding list (To activate new encodings, restore default once in Preferences > Format > Edit List.):
     - Thai (Windows, DOS)
@@ -27,7 +71,7 @@ develop
 
 ### Improvements
 
-- Drop support for __OS X 10.10 Yosemite__.
+- Change the system requirement to __OS X 10.11 El Capitan and later__.
 - Add clear button to the input fields in the find panel.
 - Gather the “open a new document” “on launch” and “when CotEditor becomes active” options and create new “When nothing else is open:” option.
 - Scroll console view after getting a new message to make it visible.
@@ -40,7 +84,7 @@ develop
 - Remove “Color Code Panel” command from the “Window” menu (use “Edit Color Code...” command in “Text” menu instead).
 - Remove “share find text with other applications” option.
 - Restore the last viewed preference pane when Preferences is opened.
-- Add an input field for window opacity setting.
+- Add an input field for the editor opacity setting.
 - Adjust scroll after toggling line wrap.
 - Add scroll margin to the right side of find panel fields dynamically, so that entire inputs can be seen even when find/replacement result is shown.
 - Update Python syntax style:

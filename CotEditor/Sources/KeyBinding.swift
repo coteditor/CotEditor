@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -55,20 +55,6 @@ extension KeyBinding: Comparable {
     static func < (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
         
         return lhs.action.description < rhs.action.description
-    }
-    
-}
-
-
-extension KeyBinding: CustomStringConvertible {
-    
-    var description: String {
-        
-        if let shortcut = self.shortcut {
-            return "<KeyBinding: \(self.action) - \(shortcut)>"
-        } else {
-            return "<KeyBinding: \(self.action)>"
-        }
     }
     
 }

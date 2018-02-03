@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -268,7 +268,7 @@ final class NavigationBarController: NSViewController {
         
         let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
         paragraphStyle.tabStops = []
-        paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.advancement(character: " ").width
+        paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.spaceWidth
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.tighteningFactorForTruncation = 0  // don't tighten
         

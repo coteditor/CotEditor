@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,32 +26,43 @@
  */
 
 import AppKit
+import CoreText
 
 extension NSFont {
     
+    /// width of SPACE character
+    var spaceWidth: CGFloat {
+        
+        return self.advancement(character: " ").width
+    }
+    
+    
     /**
-     Calculate advancement of a character using NSLayoutManager.
+     Calculate advancement of a character using CoreText.
      
      - parameters:
         - character: Character to calculate advancement.
      
      - returns: Advancement of passed-in character.
-     
-     - note: This method is not light-weigt since it creates new NSTextStorage and NSLayoutManager every time it's called. You should store the result somewhere to use it repeatedly.
      */
-    func advancement(character: Character) -> NSSize {
+    private func advancement(character: Character) -> NSSize {
         
-        let textStorage = NSTextStorage(string: String(character))
-        textStorage.font = self
-        let layoutManager = NSLayoutManager()
-        layoutManager.textStorage = textStorage
+        let attributedString = NSAttributedString(string: String(character), attributes: [.font: self])
+        let line = CTLineCreateWithAttributedString(attributedString)
         
-        var isValid: ObjCBool = false
-        let glyph = layoutManager.glyph(at: 0, isValidIndex: &isValid)
+        guard
+            let runs = CTLineGetGlyphRuns(line) as? [CTRun],
+            let run = runs.first,
+            CTRunGetGlyphCount(run) > 0
+            else {
+                assertionFailure("No glyph was created.")
+                return .zero
+            }
         
-        guard isValid.boolValue else { return .zero }
+        var size = CGSize()
+        CTRunGetAdvances(run, CFRange(location: 0, length: 1), &size)
         
-        return self.advancement(forGlyph: glyph)
+        return size
     }
     
 }

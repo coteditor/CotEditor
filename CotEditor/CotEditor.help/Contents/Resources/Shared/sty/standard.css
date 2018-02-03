@@ -6,22 +6,26 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2016 CotEditor Project
+ © 2006-2018 CotEditor Project
 */
 
 
+html {
+	-webkit-text-size-adjust: 100%;
+	font: 10pt/1.5 -apple-system, -apple-system-font, 'Helvetica Neue', sans-serif;
+}
 body {
-	font: 10pt/1.5 -apple-system-font, 'Helvetica Neue', sans-serif;
-	color: hsla(0, 0%, 0%, 0.8);
-	margin: 0;
-	padding: 1.5em;
+	color: hsla(0, 0%, 0%, 0.7);
+	margin: 1em auto;
+	padding: 0 1em;
+	max-width: 7in;
 }
 
 a {
 	text-decoration: none;
 }
-a:link {
-	color: hsl(206, 50%, 50%);
+a:link, a:visited {
+	color: hsl(211, 67%, 50%);
 }
 a:hover {
 	text-decoration: underline;
@@ -36,10 +40,10 @@ hr {
 }
 
 :not(h1) > code {
-	font-family: 'menlo', monospace;
+	font-family: 'Menlo', monospace;
 	font-size: 90%;
 	background: hsla(201, 30%, 50%, .02);
-	border: 1px solid hsla(201, 40%, 50%, .3);
+	border: 1px solid hsla(201, 40%, 50%, .15);
 	border-radius: 2px;
 	padding: 0 0.2em;
 }
@@ -53,7 +57,7 @@ pre code {
 
 body > h1 {
 	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w2', sans-serif;
-	font-size: 160%;
+	font-size: 1.71rem;
 	line-height: 1.0;
 	font-weight: 300;
 	margin: 0 0 1.5em;
@@ -65,17 +69,17 @@ body > h1::before {
 	display: inline-block;
 	width: 32px;
 	height: 32px;
-	vertical-align: -6px;
-	margin-right: 12px;
+	vertical-align: -8px;
+	margin-right: 8px;
 }
 h2 {
 	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w5', sans-serif;
-	font-size: 110%;
-	font-weight: 500;
+	font-size: 1.41rem;
+	font-weight: 400;
 	line-height: 1.1;
 	font-weight: 500;
 	margin-top: 2.5em;
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
 	clear: both;
 }
 h3 {
@@ -112,7 +116,7 @@ pre.source {
 }
 
 ul {
-	list-style-type: square;
+	list-style-type: disc;
 }
 
 li {
@@ -160,8 +164,8 @@ p.point {
 	background-color: hsl(213, 25%, 96%);
 }
 
-em {
-	font-weight: bold;
+em, strong {
+	font-weight: 600;
 	font-style: normal;
 }
 
@@ -180,7 +184,7 @@ img.snapshot {
 }
 
 dt {
-    font-weight: bold;
+    font-weight: 600;
     margin-left: 0.5em;
 }
 dd {
@@ -197,6 +201,7 @@ dd + dd dl {
 }
 
 table {
+	font-size: 100%;
 	border-collapse: collapse;
 	empty-cells: show;
 	margin: 1em 0;
@@ -214,13 +219,12 @@ table thead tr:last-child > * {
 
 th,
 td {
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
 	margin: 0;
-	padding: 3px 0.5em;
+	padding: 0.4em 0.5em;
 }
 th {
-	background-color: hsl(213, 25%, 96%);
 	font-weight: normal;
 	white-space: nowrap;
 }
@@ -231,7 +235,7 @@ th code {
 th.lh,
 tbody th:first-child {
 	text-align: left;
-	border-right: 1px solid #ccc;
+	vertical-align: top;
 }
 
 tt,

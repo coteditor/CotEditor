@@ -12,11 +12,11 @@
             <objects>
                 <viewController id="WBM-EY-ENr" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="LgU-un-VaX" userLabel="Appearance Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="570" height="593"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="593"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button identifier="pref_appearance" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-5s-cbB">
-                                <rect key="frame" x="527" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="17" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" inset="2" id="sFb-B9-3cy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -41,8 +41,8 @@
                                 </connections>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="I9r-vj-2gy">
-                                <rect key="frame" x="101" y="527" width="100" height="18"/>
-                                <buttonCell key="cell" type="check" title="Anti-Aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
+                                <rect key="frame" x="101" y="527" width="98" height="18"/>
+                                <buttonCell key="cell" type="check" title="Anti-aliasing" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3290">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -242,9 +242,9 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <box autoresizesSubviews="NO" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="nMR-L3-OOw">
-                                <rect key="frame" x="188" y="53" width="362" height="291"/>
+                                <rect key="frame" x="188" y="53" width="352" height="291"/>
                                 <view key="contentView" id="XwV-Se-xeY">
-                                    <rect key="frame" x="1" y="1" width="360" height="289"/>
+                                    <rect key="frame" x="1" y="1" width="350" height="289"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
@@ -410,7 +410,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="112-i3-na3">
-                                <rect key="frame" x="388" y="403" width="55" height="26"/>
+                                <rect key="frame" x="391" y="403" width="55" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="24l-rZ-Cgd">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -435,7 +435,7 @@
                                 </connections>
                             </popUpButton>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1sU-kn-r4s">
-                                <rect key="frame" x="388" y="381" width="55" height="26"/>
+                                <rect key="frame" x="391" y="381" width="55" height="26"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="j3x-qJ-uW6">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="13" name="HiraKakuProN-W3"/>
@@ -460,8 +460,8 @@
                                 </connections>
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="iqn-kw-8py">
-                                <rect key="frame" x="263" y="385" width="121" height="18"/>
-                                <buttonCell key="cell" type="check" title="Fullwidth-Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bf2-rS-2zu">
+                                <rect key="frame" x="263" y="385" width="124" height="18"/>
+                                <buttonCell key="cell" type="check" title="Full-width Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bf2-rS-2zu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>

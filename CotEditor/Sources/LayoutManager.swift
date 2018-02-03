@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ final class LayoutManager: NSLayoutManager {
                 self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
                 
                 // cache width of space char for hanging indent width calculation
-                self.spaceWidth = textFont.advancement(character: " ").width
+                self.spaceWidth = textFont.spaceWidth
                 
                 // cache replacement glyph width for ATS Typesetter
                 let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
@@ -114,7 +114,7 @@ final class LayoutManager: NSLayoutManager {
         let space: CTLine
         let tab: CTLine
         let newLine: CTLine
-        let fullWidthSpace: CTLine
+        let fullwidthSpace: CTLine
         let verticalTab: CTLine
         let replacement: CTLine
     }
@@ -217,6 +217,7 @@ final class LayoutManager: NSLayoutManager {
             let string = self.textStorage?.string
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
+            let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
             let isOpaque = self.firstTextView?.isOpaque ?? true
             
             if !isOpaque {
@@ -233,34 +234,35 @@ final class LayoutManager: NSLayoutManager {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
                 let utf16Index = String.UTF16Index(encodedOffset: charIndex)
                 let codeUnit = string.utf16[utf16Index]
+                let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine
-                switch codeUnit {
-                case " ".utf16.first!, 0x00A0:  // SPACE, NO_BREAK SPACE
+                switch invisible {
+                case .space?:
                     guard self.showsSpace else { continue }
                     line = self.invisibleLines.space
                     
-                case "\t".utf16.first!:  // HORIZONTAL TABULATION
+                case .tab?:
                     guard self.showsTab else { continue }
                     line = self.invisibleLines.tab
                     
-                case "\n".utf16.first!:
+                case .newLine?:
                     guard self.showsNewLine else { continue }
                     line = self.invisibleLines.newLine
                     
-                case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. fullwidth-space (JP)
+                case .fullwidthSpace?:
                     guard self.showsFullwidthSpace else { continue }
-                    line = self.invisibleLines.fullWidthSpace
+                    line = self.invisibleLines.fullwidthSpace
                     
-                case 0x000B:  // LINE TABULATION a.k.a. vertical tab
+                case .verticalTab?:
                     guard self.showsOtherInvisibles else { continue }  // Vertical tab belongs to the other invisibles.
                     line = self.invisibleLines.verticalTab
                     
                 default:
-                    guard self.showsOtherInvisibles && self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
+                    guard self.showsOtherInvisibles else { continue }
+                    guard self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
                     // skip the second glyph if character is a surrogate-pair
-                    guard (charIndex == 0) || !(UTF16.isTrailSurrogate(codeUnit) &&
-                        UTF16.isLeadSurrogate(string.utf16[string.utf16.index(before: utf16Index)])) else { continue }
+                    guard !UTF16.isTrailSurrogate(codeUnit) else { continue }
                     line = self.invisibleLines.replacement
                 }
                 
@@ -271,8 +273,10 @@ final class LayoutManager: NSLayoutManager {
                                                                    dy: self.defaultBaselineOffset)
                 if isVertical {
                     // [note] Probably not a good solution but better than doing nothing (2016-05-25).
-                    let pathBounds = CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
-                    point.y += pathBounds.height / 2
+                    point.y += line.bounds(options: .useGlyphPathBounds).height / 2
+                }
+                if isRTL, invisible == .newLine {
+                    point.x -= line.bounds().width
                 }
                 
                 // draw character
@@ -294,12 +298,12 @@ final class LayoutManager: NSLayoutManager {
     /// textStorage did update
     override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
-        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
-        
         // invalidate wrapping line indent in editRange if needed
         if editMask.contains(.editedCharacters) {
             self.invalidateIndent(in: newCharRange)
         }
+        
+        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
     }
     
     
@@ -402,18 +406,24 @@ final class LayoutManager: NSLayoutManager {
     /// cache CTLines for invisible characters drawing
     private func generateInvisibleLines() -> InvisibleLines {
         
-        let color = self.invisiblesColor
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let spaceFont = self.textFont ?? font
         let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
         
-        return InvisibleLines(space: CTLine.create(string: Invisible.userSpace, color: color, font: spaceFont),
-                              tab: CTLine.create(string: Invisible.userTab, color: color, font: font),
-                              newLine: CTLine.create(string: Invisible.userNewLine, color: color, font: font),
-                              fullWidthSpace: CTLine.create(string: Invisible.userFullWidthSpace, color: color, font: fullWidthFont),
-                              verticalTab: CTLine.create(string: Invisible.verticalTab, color: color, font: fullWidthFont),
-                              replacement: CTLine.create(string: Invisible.replacement, color: color, font: fullWidthFont))
+        return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
+                              tab: self.invisibleLine(.tab, font: font),
+                              newLine: self.invisibleLine(.newLine, font: font),
+                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
+                              verticalTab: self.invisibleLine(.verticalTab, font: fullWidthFont),
+                              replacement: self.invisibleLine(.replacement, font: fullWidthFont))
+    }
+    
+    
+    /// create CTLine for given invisible type
+    private func invisibleLine(_ invisible: Invisible, font: NSFont) -> CTLine {
+        
+        return CTLine.create(string: invisible.usedSymbol, color: self.invisiblesColor, font: font)
     }
     
 }
@@ -432,4 +442,12 @@ private extension CTLine {
         
         return CTLineCreateWithAttributedString(attrString)
     }
+    
+    
+    /// get bounds in a objective way.
+    func bounds(options: CTLineBoundsOptions = []) -> CGRect {
+        
+        return CTLineGetBoundsWithOptions(self, options)
+    }
+    
 }

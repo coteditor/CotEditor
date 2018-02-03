@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -75,4 +75,38 @@ extension NSString {
         
         return lineRange
     }
+    
+    
+    /// Calculate line-by-line ranges that given ranges include.
+    ///
+    /// - Parameters:
+    ///   - ranges: Ranges to include.
+    ///   - includingLastEmptyLine: Whether the last empty line sould be included; otherwise, return value can be empty.
+    /// - Returns: Array of ranges of each indivisual line.
+    func lineRanges(for ranges: [NSRange], includingLastEmptyLine: Bool = false) -> [NSRange] {
+        
+        guard !ranges.isEmpty else { return [] }
+        
+        if includingLastEmptyLine,
+            ranges == [NSRange(location: self.length, length: 0)],
+            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first!) {
+            return ranges
+        }
+        
+        var lineRanges = OrderedSet<NSRange>()
+        
+        // get line ranges to process
+        for range in ranges {
+            let linesRange = self.lineRange(for: range)
+            
+            // store each line to process
+            self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { (_, _, enclosingRange, _) in
+                
+                lineRanges.append(enclosingRange)
+            }
+        }
+        
+        return lineRanges.array
+    }
+    
 }

@@ -461,6 +461,8 @@ final class SyntaxManager: SettingFileManager {
             self.propertyAccessQueue.sync {
                 self.cachedSettingDictionaries.merge(userStyles) { (_, new) in new }
             }
+        } else {
+            self.map = self.bundledMap
         }
         
         // sort styles alphabetically

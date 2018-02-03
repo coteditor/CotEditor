@@ -103,12 +103,12 @@
 
 /* Class = "NSToolbarItem"; label = "不可见字符"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可见字符";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "显示 / 隐藏不可见字符";  /* Show / Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "显示/隐藏不可见字符";  /* Show/Hide Invisibles */
 "xbD-Up-YfQ.toolTip" = "显示或隐藏文本中的不可见字符";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "页面指示";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "显示 / 隐藏页面指示";  /* Show / Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "显示/隐藏页面指示";  /* Show/Hide Page Guide */
 "GS6-aA-mgz.toolTip" = "显示或隐藏页面指示";  /* Show or hide page guide line */
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
@@ -120,6 +120,11 @@
 "1cW-FV-40L.label" = "方向";  /* Orientation */
 "1cW-FV-40L.paletteLabel" = "切换文字方向";  /* Toggle text orientation */
 "1cW-FV-40L.toolTip" = "切换文字方向";  /* Toggle text orientation */
+
+/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
+"1zL-0E-fZd.label" = "书写方向";  /* Writing Direction */
+"1zL-0E-fZd.paletteLabel" = "切换书写方向";  /* Toggle Writing Direction */
+"1zL-0E-fZd.toolTip" = "切换书写方向";  /* Toggle writing direction */
 
 /* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
 "c9C-af-Zcg.label" = "扩展 Tab";  /* Expand Tabs */
