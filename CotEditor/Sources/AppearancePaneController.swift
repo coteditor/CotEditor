@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     // MARK: Private Properties
     
-    @objc private dynamic let invisibleSpaces: [String] = Invisible.spaces
-    @objc private dynamic let invisibleTabs: [String] = Invisible.tabs
-    @objc private dynamic let invisibleNewLines: [String] = Invisible.newLines
-    @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullWidthSpaces
+    @objc private dynamic let invisibleSpaces: [String] = Invisible.space.candidates
+    @objc private dynamic let invisibleTabs: [String] = Invisible.tab.candidates
+    @objc private dynamic let invisibleNewLines: [String] = Invisible.newLine.candidates
+    @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
     
     private var themeViewController: ThemeViewController?
     private var themeNames = [String]()

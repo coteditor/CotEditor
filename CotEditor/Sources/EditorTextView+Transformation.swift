@@ -34,7 +34,7 @@ extension EditorTextView {
     /// transform all full-width-available half-width characters in selection to full-width
     @IBAction func exchangeFullwidth(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Fullwidth", comment: "")
+        let actionName = NSLocalizedString("To Full-width", comment: "")
         self.transformSelection(actionName: actionName) {
             $0.applyingTransform(.fullwidthToHalfwidth, reverse: true) ?? $0
         }
@@ -44,7 +44,7 @@ extension EditorTextView {
     /// transform all full-width characters in selection to half-width
     @IBAction func exchangeHalfwidth(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Halfwidth", comment: "")
+        let actionName = NSLocalizedString("To Half-width", comment: "")
         self.transformSelection(actionName: actionName) {
             $0.applyingTransform(.fullwidthToHalfwidth, reverse: false) ?? $0
         }
@@ -54,7 +54,7 @@ extension EditorTextView {
     /// transform half-width roman characters in selection to full-width
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Fullwidth Roman", comment: "")
+        let actionName = NSLocalizedString("To Full-width Roman", comment: "")
         self.transformSelection(actionName: actionName) {
             $0.fullWidthRoman
         }
@@ -64,7 +64,7 @@ extension EditorTextView {
     /// transform full-width roman characters in selection to half-width
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Halfwidth Roman", comment: "")
+        let actionName = NSLocalizedString("To Half-width Roman", comment: "")
         self.transformSelection(actionName: actionName) {
             $0.halfWidthRoman
         }

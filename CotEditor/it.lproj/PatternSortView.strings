@@ -5,6 +5,7 @@
 //  https://coteditor.com
 //
 //  Created by 1024jp on 2018-01-05.
+//  Localized by Agostino Maiello
 //
 //  ------------------------------------------------------------------------------
 //
@@ -30,12 +31,12 @@
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Criterio di ordinamento:";
 
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Intera riga";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
 "pKE-GY-bD6.title" = "Colonna";
 /* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
 "Ase-N7-QHB.title" = "Espressione regolare";
-/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
-"roe-rP-gfg.title" = "Intera riga";
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */
@@ -47,7 +48,7 @@
 /* Class = "NSButtonCell"; title = "Treat numbers as numeric value"; ObjectID = "yXD-KA-8KI"; */
 "yXD-KA-8KI.title" = "Tratta i numeri come valori numerici";
 /* Class = "NSButtonCell"; title = "Keep the first line at the top"; ObjectID = "uUe-tD-Z8s"; */
-"uUe-tD-Z8s.title" = "Keep the first line at the top";  // FIXME: added
+"uUe-tD-Z8s.title" = "Mantieni la prima riga in cima";
 /* Class = "NSButtonCell"; title = "In decending order"; ObjectID = "h1K-Og-3x3"; */
 "h1K-Og-3x3.title" = "In ordine discendente";
 

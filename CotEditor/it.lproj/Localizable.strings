@@ -218,8 +218,10 @@
 "Convert Indentation" = "Converti rientro";
 "Comment Out" = "Trasforma in commento";
 "Uncomment" = "De-commenta";
-"To Fullwidth Roman" = "Caratteri Romani a tutta ampiezza";
-"To Halfwidth Roman" = "Caratteri Romani a mezza ampiezza";
+"To Full-width" = "A tutta larghezza";
+"To Half-width" = "A mezza larghezza";
+"To Full-width Roman" = "Caratteri Romani a tutta ampiezza";
+"To Half-width Roman" = "Caratteri Romani a mezza ampiezza";
 "Hiragana to Katakana" = "Da Hiragana a Katakana";
 "Katakana to Hiragana" = "Da Katakana a Hiragana";
 "NFD" = "NFD";

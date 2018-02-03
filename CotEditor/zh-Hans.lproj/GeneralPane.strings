@@ -81,7 +81,7 @@
 "al9-WE-Rqy.title" = "高亮“<>”";
 
 
-/* Class = "NSTextFieldCell"; title = "Software Update:"; ObjectID = "geU-63-sAC"; */
+/* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */
 "geU-63-sAC.title" = "软件更新：";
 
 /* Class = "NSButtonCell"; title = "Check for updates automatically"; ObjectID = "3423"; */

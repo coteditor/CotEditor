@@ -6,23 +6,20 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2015 CotEditor Project
+ © 2006-2018 CotEditor Project
 */
 
 
-h1::before {
+body > h1::before {
 	display: none;
 }
 
 ul {
-	margin: 1em 0;
 	padding: 0;
-	background: none;
-	border: none;
 	list-style-type: none;
 }
 
 body > ul li {
-	border-bottom: 1px solid hsl(0,0%,80%);
-	padding: 2px 0;
+	border-bottom: 1px solid hsl(0,0%,85%);
+	padding: 0.3em 0;
 }

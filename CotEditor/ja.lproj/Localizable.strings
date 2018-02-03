@@ -218,8 +218,10 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
-"To Fullwidth Roman" = "全角英数に";
-"To Halfwidth Roman" = "半角英数に";
+"To Full-width" = "全角に";
+"To Half-width" = "半角に";
+"To Full-width Roman" = "全角英数に";
+"To Half-width Roman" = "半角英数に";
 "Hiragana to Katakana" = "ひらがなをカタカナに";
 "Katakana to Hiragana" = "カタカナをひらがなに";
 "NFD" = "NFD";

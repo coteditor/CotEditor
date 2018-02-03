@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ extension Document {
     // MARK: AppleScript Accessors
     
     /// whole document string (text (NSTextStorage))
-    var scriptTextStorage: Any {
+    @objc var scriptTextStorage: Any {
         get {
             let textStorage = NSTextStorage(string: self.string)
             
@@ -67,7 +67,7 @@ extension Document {
     
     
     /// document string (text (NSTextStorage))
-    var contents: Any {
+    @objc var contents: Any {
         
         get {
             return self.scriptTextStorage
@@ -79,7 +79,7 @@ extension Document {
     
     
     /// selection-object (TextSelection)
-    var selectionObject: Any {
+    @objc var selectionObject: Any {
         
         get {
             return self.selection
@@ -93,14 +93,14 @@ extension Document {
     
     
     /// length of document (integer)
-    var length: Int {
+    @objc var length: Int {
         
         return self.string.utf16.count
     }
     
     
     /// new line code (enum type)
-    var lineEndingChar: FourCharCode {
+    @objc var lineEndingChar: FourCharCode {
         
         get {
             switch self.lineEnding {
@@ -133,21 +133,21 @@ extension Document {
     
     
     /// encoding name (Unicode text)
-    var encodingName: String {
+    @objc var encodingName: String {
         
         return String.localizedName(of: self.encoding)
     }
     
     
     /// encoding in IANA CharSet name (Unicode text)
-    var IANACharSetName: String {
+    @objc var IANACharSetName: String {
         
         return self.encoding.ianaCharSetName ?? ""
     }
     
     
     /// syntax style name (Unicode text)
-    var coloringStyle: String {
+    @objc var coloringStyle: String {
         
         get {
             return self.syntaxStyle.styleName
@@ -159,7 +159,7 @@ extension Document {
     
     
     /// state of text wrapping (bool)
-    var wrapsLines: Bool {
+    @objc var wrapsLines: Bool {
         
         get {
             return self.viewController?.wrapsLines ?? false
@@ -171,7 +171,7 @@ extension Document {
     
     
     /// tab width (integer)
-    var tabWidth: Int {
+    @objc var tabWidth: Int {
         
         get {
             return self.viewController?.tabWidth ?? 0
@@ -183,7 +183,7 @@ extension Document {
     
     
     /// whether replace tab with spaces
-    var expandsTab: Bool {
+    @objc var expandsTab: Bool {
         
         get {
             return self.viewController?.isAutoTabExpandEnabled ?? false
@@ -198,7 +198,7 @@ extension Document {
     // MARK: AppleScript Handler
     
     /// handle the Convert AppleScript by changing the text encoding and converting the text
-    func handleConvert(_ command: NSScriptCommand) -> NSNumber {
+    @objc func handleConvert(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
@@ -216,7 +216,7 @@ extension Document {
     
     
     /// handle the Convert AppleScript by changing the text encoding and reinterpreting the text
-    func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
+    @objc func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
@@ -234,7 +234,7 @@ extension Document {
     
     
     /// handle the Find AppleScript command
-    func handleFind(_ command: NSScriptCommand) -> NSNumber {
+    @objc func handleFind(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
@@ -260,7 +260,7 @@ extension Document {
     
     
     /// handle the Replace AppleScript command
-    func handleReplace(_ command: NSScriptCommand) -> NSNumber {
+    @objc func handleReplace(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
@@ -316,7 +316,7 @@ extension Document {
     
     
     /// handle the Scroll AppleScript command by scrolling the text tiew to make selection visible
-    func handleScroll(_ command: NSScriptCommand) {
+    @objc func handleScroll(_ command: NSScriptCommand) {
         
         self.textView?.centerSelectionInVisibleArea(nil)
     }

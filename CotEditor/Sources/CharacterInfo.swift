@@ -59,7 +59,7 @@ extension UnicodeScalar {
 
 // MARK: -
 
-struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
+struct CharacterInfo: CustomStringConvertible {
     
     // MARK: Public Properties
 
@@ -147,12 +147,6 @@ struct CharacterInfo: CustomStringConvertible, CustomDebugStringConvertible {
     var description: String {
         
         return "\(self.string)"
-    }
-    
-    
-    var debugDescription: String {
-        
-        return "<\(self): \(self.string) -\(self.localizedDescription)>"
     }
     
 }

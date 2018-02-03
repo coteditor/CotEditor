@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ import Cocoa
 extension NSWindow {
     
     /// opacity of the editor view for AppleScript (real type)
-    var viewOpacity: Double {
+    @objc var viewOpacity: Double {
         
         get {
             guard let alphaWindow = self as? AlphaWindow else { return 1.0 }

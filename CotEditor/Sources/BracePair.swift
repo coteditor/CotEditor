@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,24 +44,17 @@ extension String {
     /// find character index of matched opening brace before a given index.
     func indexOfBeginBrace(for pair: BracePair, at index: Index) -> Index? {
         
-        var skippedBraceCount = 0
-        var index = index
+        var nestDepth = 0
+        let subsequence = self[..<index]
         
-        while index > self.startIndex {
-            guard index != self.endIndex else { return nil }
-            
-            index = self.index(before: index)
-            
-            switch self[index] {
+        for (index, character) in zip(subsequence.indices, subsequence).reversed() {
+            switch character {
+            case pair.begin where nestDepth == 0:
+                return index
             case pair.begin:
-                if skippedBraceCount == 0 {
-                    return index
-                }
-                skippedBraceCount -= 1
-                
+                nestDepth -= 1
             case pair.end:
-                skippedBraceCount += 1
-                
+                nestDepth += 1
             default: break
             }
         }
@@ -73,24 +66,17 @@ extension String {
     /// find character index of matched closing brace after a given index.
     func indexOfEndBrace(for pair: BracePair, at index: Index) -> Index? {
         
-        var skippedBraceCount = 0
-        var index = index
+        var nestDepth = 0
+        let subsequence = self[self.index(after: index)...]
         
-        while index < self.endIndex {
-            index = self.index(after: index)
-            
-            guard index != self.endIndex else { return nil }
-            
-            switch self[index] {
+        for (index, character) in zip(subsequence.indices, subsequence) {
+            switch character {
+            case pair.end where nestDepth == 0:
+                return index
             case pair.end:
-                if skippedBraceCount == 0 {
-                    return index
-                }
-                skippedBraceCount -= 1
-                
+                nestDepth -= 1
             case pair.begin:
-                skippedBraceCount += 1
-                
+                nestDepth += 1
             default: break
             }
         }

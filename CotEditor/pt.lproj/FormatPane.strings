@@ -35,7 +35,7 @@
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Codificação padrão:";
-/* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
+/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
 "3277.title" = "Ao abrir arquivos:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Editar Lista…";

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -295,26 +295,24 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// find the matching brace and highlight it
     private func highlightMatchingBrace(in textView: NSTextView) {
         
-        guard
-            UserDefaults.standard[.highlightBraces],
-            !textView.string.isEmpty,
-            textView.selectedRange.length == 0
-            else { return }
+        guard UserDefaults.standard[.highlightBraces] else { return }
         
         let string = textView.string
-        let cursorLocation = textView.selectedRange.location
+        let selectedRange = textView.selectedRange
         
         guard
-            cursorLocation != NSNotFound,
-            cursorLocation > 0,
-            let cursorIndex = String.UTF16Index(encodedOffset: cursorLocation).samePosition(in: string)
+            !string.isEmpty,
+            selectedRange.length == 0,
+            selectedRange.location != NSNotFound,
+            selectedRange.location > 0,
+            let cursorIndex = Range(selectedRange, in: string)?.lowerBound
             else { return }
         
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
         let lastCharacter = string[lastIndex]
         
-        let bracePairs: [BracePair] = UserDefaults.standard[.highlightLtGt] ? (BracePair.braces + [.ltgt]) : BracePair.braces
+        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
         
         guard
             let pair = bracePairs.first(where: { $0.begin == lastCharacter || $0.end == lastCharacter }),
@@ -356,6 +354,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard var rect = textView.boundingRect(for: lineRange) else { return }
         
+        rect.origin.x = textContainer.lineFragmentPadding
         rect.size.width = textContainer.size.width - 2 * textContainer.lineFragmentPadding
         
         guard textView.lineHighlightRect != rect else { return }

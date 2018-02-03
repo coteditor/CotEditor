@@ -669,36 +669,11 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // on file drop
-        if let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL], !urls.isEmpty {
-            let definitions = UserDefaults.standard[.fileDropArray]
-            let composer = FileDropComposer(definitions: definitions)
-            let documentURL = self.document?.fileURL
-            let syntaxStyle: String? = {
-                guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
-                return style.styleName
-            }()
-            var replacementString = ""
-            
-            for url in urls {
-                if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
-                    replacementString += dropText
-                    
-                } else {
-                    // jsut insert the absolute path if no specific setting for the file type was found
-                    // -> This is the default behavior of NSTextView by file dropping.
-                    if !replacementString.isEmpty {
-                        replacementString += "\n"
-                    }
-                    replacementString += url.path
-                }
-            }
-            
-            // insert drop text to view
-            if self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) {
-                self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
-                self.didChangeText()
-                return true
-            }
+        if pboard.name == .dragPboard,
+            let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
+            self.insertDroppedFiles(urls)
+        {
+            return true
         }
         
         return super.readSelection(from: pboard, type: type)
@@ -1162,7 +1137,7 @@ final class EditorTextView: NSTextView, Themable {
         // calculate tab interval
         if let font = self.font {
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.advancement(character: " ").width
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
         }
         
         paragraphStyle.baseWritingDirection = self.baseWritingDirection
@@ -1198,6 +1173,42 @@ final class EditorTextView: NSTextView, Themable {
         self.enabledTextCheckingTypes = currentCheckingType
         
         self.undoManager?.enableUndoRegistration()
+    }
+    
+    
+    /// insert string representation of dropped files applying user setting
+    private func insertDroppedFiles(_ urls: [URL]) -> Bool {
+        
+        guard !urls.isEmpty else { return false }
+        
+        let composer = FileDropComposer(definitions: UserDefaults.standard[.fileDropArray])
+        let documentURL = self.document?.fileURL
+        let syntaxStyle: String? = {
+            guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
+            return style.styleName
+        }()
+        
+        let replacementString = urls.reduce(into: "") { (string, url) in
+            if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
+                string += dropText
+                return
+            }
+            
+            // jsut insert the absolute path if no specific setting for the file type was found
+            // -> This is the default behavior of NSTextView by file dropping.
+            if !string.isEmpty {
+                string += "\n"
+            }
+            string += url.path
+        }
+        
+        // insert drop text to view
+        guard self.shouldChangeText(in: self.rangeForUserTextChange, replacementString: replacementString) else { return false }
+        
+        self.replaceCharacters(in: self.rangeForUserTextChange, with: replacementString)
+        self.didChangeText()
+        
+        return true
     }
     
     
@@ -1399,22 +1410,23 @@ extension EditorTextView {
         }
         
         // select inside of brackets by double-clicking
-        guard let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) else { return wordRange }
-        if pair.end == clickedCharacter {
-            if let index = self.string.indexOfBeginBrace(for: pair, at: characterIndex) {
-                let location = index.samePosition(in: self.string.utf16)!.encodedOffset
-                return NSRange(location: location, length: wordRange.location - location + 1)
+        if let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) {
+            if pair.end == clickedCharacter {
+                if let beginIndex = self.string.indexOfBeginBrace(for: pair, at: characterIndex) {
+                    return NSRange(beginIndex...characterIndex, in: self.string)
+                }
+            } else {
+                if let endIndex = self.string.indexOfEndBrace(for: pair, at: characterIndex) {
+                    return NSRange(characterIndex...endIndex, in: self.string)
+                }
             }
-        } else {
-            if let index = self.string.indexOfEndBrace(for: pair, at: characterIndex) {
-                let location = index.samePosition(in: self.string.utf16)!.encodedOffset
-                return NSRange(location: wordRange.location, length: location - wordRange.location + 1)
-            }
+            
+            // If it has a found a "begin" brace but not found a match, a double-click should only select the "begin" brace and not what it usually would select at a double-click
+            NSSound.beep()
+            return NSRange(location: proposedCharRange.location, length: 1)
         }
-        NSSound.beep()
         
-        // If it has a found a "starting" brace but not found a match, a double-click should only select the "starting" brace and not what it usually would select at a double-click
-        return super.selectionRange(forProposedRange: NSRange(location: proposedCharRange.location, length: 1), granularity: .selectByCharacter)
+        return wordRange
     }
     
     

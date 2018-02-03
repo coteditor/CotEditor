@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -341,8 +341,10 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     /// build encodings menus
     @objc private func setupEncodingMenus() {
         
-        guard let inOpenMenu = self.inOpenEncodingMenu?.menu,
-            let inNewMenu = self.inNewEncodingMenu?.menu else { return }
+        guard
+            let inOpenMenu = self.inOpenEncodingMenu?.menu,
+            let inNewMenu = self.inNewEncodingMenu?.menu
+            else { return }
         
         let menuItems = EncodingManager.shared.createEncodingMenuItems()
         

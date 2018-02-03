@@ -30,12 +30,12 @@
 /* Class = "NSTextFieldCell"; title = "Sort key:"; ObjectID = "bKb-oj-ekR"; */
 "bKb-oj-ekR.title" = "Sortierschlüssel:";
 
+/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
+"roe-rP-gfg.title" = "Gesamte Linie";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "pKE-GY-bD6"; */
 "pKE-GY-bD6.title" = "Spalte";
 /* Class = "NSButtonCell"; title = "Regular expression"; ObjectID = "Ase-N7-QHB"; */
 "Ase-N7-QHB.title" = "Regulärer Ausdruck";
-/* Class = "NSButtonCell"; title = "Entire line"; ObjectID = "roe-rP-gfg"; */
-"roe-rP-gfg.title" = "Gesamte Linie";
 
 
 /* Class = "NSTextFieldCell"; title = "Sort option:"; ObjectID = "eio-Wb-V6q"; */

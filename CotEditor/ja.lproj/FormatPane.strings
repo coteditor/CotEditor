@@ -38,7 +38,7 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "エンコーディング:";
 
-/* Class = "NSTextFieldCell"; title = "Opening Files:"; ObjectID = "3277"; */
+/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
 "3277.title" = "ファイルを開くとき:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "リストを編集...";
