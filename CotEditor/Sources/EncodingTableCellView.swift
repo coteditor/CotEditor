@@ -57,15 +57,16 @@ final class EncodingTableCellView: NSTableCellView {
                 let color = value as? NSColor
                 var newColor: NSColor?
                 
-                if highlighted, color == nil {
+                switch (highlighted, color) {
+                case (true, nil):
                     newColor = .alternateSelectedControlTextColor
-                } else if highlighted, color == .disabledControlTextColor {
+                case (true, .disabledControlTextColor?):
                     newColor = .alternateDisabledControlTextColor
-                } else if !highlighted, color == .alternateSelectedControlTextColor {
+                case (false, .alternateSelectedControlTextColor?):
                     newColor = nil
-                } else if !highlighted, color == .alternateDisabledControlTextColor {
+                case (false, .alternateDisabledControlTextColor?):
                     newColor = .disabledControlTextColor
-                } else {
+                default:
                     return
                 }
                 

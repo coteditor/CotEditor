@@ -280,10 +280,12 @@ final class EditorTextView: NSTextView, Themable {
         
         // swap '¥' with '\' if needed
         if UserDefaults.standard[.swapYenAndBackSlash], plainString.count == 1 {
-            if plainString == "\\" {
+            switch plainString {
+            case "\\":
                 return super.insertText("¥", replacementRange: replacementRange)
-            } else if plainString == "¥" {
+            case "¥":
                 return super.insertText("\\", replacementRange: replacementRange)
+            default: break
             }
         }
         
