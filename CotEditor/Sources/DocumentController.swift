@@ -147,12 +147,8 @@ final class DocumentController: NSDocumentController {
         let document = try super.openUntitledDocumentAndDisplay(displayDocument)
         
         // make document transient when it is an open or reopen event
-        if self.documents.count == 1,
-            let event = NSAppleEventManager.shared().currentAppleEvent,
-            event.eventClass == kCoreEventClass,
-            (event.eventID == kAEReopenApplication || event.eventID == kAEOpenApplication)
-        {
-                (document as? Document)?.isTransient = true
+        if self.documents.count == 1, NSAppleEventManager.shared().isOpenEvent {
+            (document as? Document)?.isTransient = true
         }
         
         return document
