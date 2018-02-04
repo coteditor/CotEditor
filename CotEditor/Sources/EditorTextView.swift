@@ -366,9 +366,8 @@ final class EditorTextView: NSTextView, Themable {
     override func insertTab(_ sender: Any?) {
         
         if self.isAutomaticTabExpansionEnabled {
-            let string = self.string
             let tabWidth = self.tabWidth
-            let column = string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
+            let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
             let length = tabWidth - (column % tabWidth)
             let spaces = String(repeating: " ", count: length)
             
