@@ -7,7 +7,7 @@ develop
 
 ### Fixes
 
-- [Fix] Fix an issue iCloud document storage was not created.
+- [beta] Fix an issue iCloud document storage was not created.
 
 
 
