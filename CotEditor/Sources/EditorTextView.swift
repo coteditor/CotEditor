@@ -993,8 +993,8 @@ final class EditorTextView: NSTextView, Themable {
             
             // apply document's line ending
             if self.documentLineEnding != .LF {
-                for (characterIndex, character) in plainText.utf16.enumerated().reversed() where character == "\n".utf16.first! {  // process backwards
-                    let characterRange = NSRange(location: characterIndex, length: 1)
+                for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
+                    let characterRange = NSRange(index...index, in: plainText)
                     
                     styledText.replaceCharacters(in: characterRange, with: lineEnding)
                 }
