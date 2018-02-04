@@ -5,6 +5,15 @@ Change Log
 develop
 --------------------------
 
+### Fixes
+
+- [Fix] Fix an issue iCloud document storage was not created.
+
+
+
+3.3.0-beta.3 (220)
+--------------------------
+
 ### Improvements
 
 - [beta] Adjust position of invisible line ending character on the RTL writing mode.

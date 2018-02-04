@@ -192,12 +192,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// whether shows the iCloud open panel on launch
+    /// whether documents use iCloud storage
     override class var usesUbiquitousStorage: Bool {
         
-        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+        // pretend as if iCloud storage is off to let system give up opening the open panel on launch
+        if let event = NSAppleEventManager.shared().currentAppleEvent,
+            event.eventClass == kCoreEventClass,
+            (event.eventID == kAEOpenApplication || event.eventID == kAEReopenApplication) {
+            let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+            
+            return (behavior == .openPanel)
+        }
         
-        return behavior == .openPanel
+        return true
     }
     
     
