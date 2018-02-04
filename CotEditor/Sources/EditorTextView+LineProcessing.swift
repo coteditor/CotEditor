@@ -180,13 +180,12 @@ extension EditorTextView {
         
         guard lineRange.length > 0 else { return }
         
-        var lines = string.substring(with: lineRange).components(separatedBy: .newlines)
+        let lines = string
+            .substring(with: lineRange).components(separatedBy: .newlines)
+            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // do nothing with single line
         guard lines.count > 1 else { return }
-        
-        // sort alphabetically ignoring case
-        lines.sort { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         let newString = lines.joined(separator: "\n")
         

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -93,26 +93,20 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     /// text in text field was changed
     override func controlTextDidChange(_ obj: Notification) {
         
-        var isValid = false
-        var unicodeName: String? = nil
-        var characterString: String? = nil
-        
-        defer {
-            self.isValid = isValid
-            self.unicodeName = unicodeName
-            self.characterString = characterString
-        }
+        self.isValid = false
+        self.unicodeName = nil
+        self.characterString = nil
         
         guard
             let input = (obj.object as? NSTextField)?.stringValue,
             let longChar = UInt32(codePoint: input) else { return }
         
-        unicodeName = longChar.unicodeName
+        self.unicodeName = longChar.unicodeName
         
         guard let scalar = UnicodeScalar(longChar) else { return }
         
-        isValid = true
-        characterString = String(Character(scalar))
+        self.isValid = true
+        self.characterString = String(Character(scalar))
     }
     
     

@@ -103,11 +103,13 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         }
         
         let itemSelected = (representedSettingName != nil)
-        var isBundled = false
-        var isCustomized = false
+        let isBundled: Bool
+        let isCustomized: Bool
         if let representedSettingName = representedSettingName {
             isBundled = SyntaxManager.shared.isBundledSetting(name: representedSettingName)
             isCustomized = SyntaxManager.shared.isCustomizedBundledSetting(name: representedSettingName)
+        } else {
+            (isBundled, isCustomized) = (false, false)
         }
         
         guard let action = menuItem.action else { return false }

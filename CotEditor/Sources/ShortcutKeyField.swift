@@ -46,8 +46,10 @@ final class ShortcutKeyField: NSTextField {
         
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] (event: NSEvent) -> NSEvent? in
             
-            guard var charsIgnoringModifiers = event.charactersIgnoringModifiers else { return event }
-            guard !charsIgnoringModifiers.isEmpty else { return event }
+            guard
+                var charsIgnoringModifiers = event.charactersIgnoringModifiers,
+                !charsIgnoringModifiers.isEmpty
+                else { return event }
             
             var modifierMask = event.modifierFlags
             

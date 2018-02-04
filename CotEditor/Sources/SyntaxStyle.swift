@@ -178,29 +178,18 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         
         // create word-completion data set
         self.completionWords = {
-            var words = [String]()
+            let words: [String]
             if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
                 // create from completion definition
-                for dict in completionDicts {
-                    guard
-                        let word = dict[SyntaxDefinitionKey.keyString.rawValue] as? String,
-                        !word.isEmpty else { continue }
-                    
-                    words.append(word)
-                }
+                words = completionDicts
+                    .flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
+                    .filter { !$0.isEmpty }
             } else {
                 // create from normal highlighting words
-                for definitions in definitionDictionary.values {
-                    for definition in definitions {
-                        guard definition.endString == nil, !definition.isRegularExpression else { continue }
-                        
-                        let word = definition.beginString.trimmingCharacters(in: .whitespacesAndNewlines)
-                        
-                        guard !word.isEmpty else { continue }
-                        
-                        words.append(word)
-                    }
-                }
+                words = definitionDictionary.values.flatMap { $0 }
+                    .filter { $0.endString == nil && !$0.isRegularExpression }
+                    .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
+                    .filter { !$0.isEmpty }
             }
             
             return words.isEmpty ? nil : words.sorted()

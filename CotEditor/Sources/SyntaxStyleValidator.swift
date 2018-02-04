@@ -111,19 +111,19 @@ final class SyntaxStyleValidator {
         for key in syntaxDictKeys {
             guard let dictionaries = styleDictionary[key] as? [[String: Any]] else { continue }
             
-            var definitions = dictionaries.flatMap { HighlightDefinition(definition: $0) }
-            
-            // sort for duplication check
-            definitions.sort {
-                guard $0.beginString == $1.beginString else {
-                    return $0.beginString < $1.beginString
+            let definitions = dictionaries
+                .flatMap { HighlightDefinition(definition: $0) }
+                .sorted {
+                    // sort for duplication check
+                    guard $0.beginString == $1.beginString else {
+                        return $0.beginString < $1.beginString
+                    }
+                    guard
+                        let endString1 = $1.endString,
+                        let endString0 = $0.endString else { return true }
+                    
+                    return endString0 < endString1
                 }
-                guard
-                    let endString1 = $1.endString,
-                    let endString0 = $0.endString else { return true }
-                
-                return endString0 < endString1
-            }
             
             for definition in definitions {
                 defer {

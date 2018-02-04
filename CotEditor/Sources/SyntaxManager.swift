@@ -551,8 +551,6 @@ extension SyntaxManager {
         
         guard fileURL.pathExtension == "plist" else { return false }
         
-        let styleName = self.settingName(from: fileURL)
-        let destURL = self.preparedURLForUserSetting(name: styleName)
         let coordinator = NSFileCoordinator()
         
         var data: Data?
@@ -565,20 +563,15 @@ extension SyntaxManager {
             let plist = try? PropertyListSerialization.propertyList(from: plistData, format: nil),
             let style = plist as? [String: Any] else { return false }
         
-        var newStyle = [String: Any]()
-        
-        // format migration
-        for (key, value) in style {
-            // remove lagacy "styleName" key
-            guard key != "styleName" else { continue }
-            
-            // remove all `Array` suffix from dict keys
-            let newKey = key.replacingOccurrences(of: "Array", with: "")
-            newStyle[newKey] = value
-        }
+        // update style format
+        let newStyle: [String: Any] = style
+            .filter { $0.0 != "styleName" }   // remove lagacy "styleName" key
+            .mapKeys { $0.replacingOccurrences(of: "Array", with: "") }  // remove all `Array` suffix from dict keys
         
         guard let yamlData = try? YAMLSerialization.yamlData(with: newStyle, options: kYAMLWriteOptionSingleDocument) else { return false }
         
+        let styleName = self.settingName(from: fileURL)
+        let destURL = self.preparedURLForUserSetting(name: styleName)
         coordinator.coordinate(writingItemAt: destURL, error: nil) { (newWritingURL) in
             try? yamlData.write(to: newWritingURL, options: .atomic)
         }

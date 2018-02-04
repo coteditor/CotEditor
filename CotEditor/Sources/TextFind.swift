@@ -222,7 +222,7 @@ final class TextFind {
             var matches = [matchedRange]
             
             if let match = match {
-                matches += stride(from: 1, through: numberOfGroups, by: 1).map { match.range(at: $0) }
+                matches += (1...numberOfGroups).map { match.range(at: $0) }
             }
             
             block(matches, &stop)

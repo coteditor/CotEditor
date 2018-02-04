@@ -66,6 +66,8 @@ extension String {
     /// find character index of matched closing brace after a given index.
     func indexOfEndBrace(for pair: BracePair, at index: Index) -> Index? {
         
+        guard index != self.endIndex else { return nil }
+        
         var nestDepth = 0
         let subsequence = self[self.index(after: index)...]
         

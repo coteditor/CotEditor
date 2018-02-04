@@ -76,7 +76,7 @@ extension String {
         
         let wholeLength = self.utf16.count
         let regex = try! NSRegularExpression(pattern: "^", options: .anchorsMatchLines)
-        let matches = regex.matches(in: self as String, range: NSRange(location: 0, length: wholeLength))
+        let matches = regex.matches(in: self, range: NSRange(location: 0, length: wholeLength))
         let count = matches.count
         
         guard count > 0 else { return nil }
