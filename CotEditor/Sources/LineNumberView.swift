@@ -424,7 +424,7 @@ private enum LineNumberFont {
         case .regular:
             return .regular
         case .bold:
-            return .bold
+            return .semibold
         }
     }
     
