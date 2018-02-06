@@ -8,7 +8,7 @@ Change Log
 ### Fixes
 
 - [beta] Fix an issue where iCloud document storage was not created.
-- [beta] Fix an issue where find result mesage in the find panel fields was not shown.
+- [beta] Fix an issue where find result message in the find panel fields was not shown.
 
 
 
