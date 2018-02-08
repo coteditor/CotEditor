@@ -48,13 +48,13 @@ private extension UTF32 {
 }
 
 
-private let ISO2022JPEscapeSequences: [[UInt8]] = [
+private let ISO2022JPEscapeSequences: [Data] = [
     [0x1B, 0x28, 0x42],  // ASCII
     [0x1B, 0x28, 0x49],  // kana
     [0x1B, 0x24, 0x40],  // 1978
     [0x1B, 0x24, 0x42],  // 1983
     [0x1B, 0x24, 0x28, 0x44],  // JISX0212
-]
+    ].map { Data(bytes: $0) }
 
 
 private let maxDetectionLength = 1024 * 8
@@ -153,27 +153,20 @@ extension String {
                 }
             }
             
-            // text ISO-2022-JP
-            if data.prefix(maxDetectionLength).contains(0x1B) {
-                // check existance of typical escape sequences
-                // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
-                for escapeSequence in ISO2022JPEscapeSequences {
-                    let escapeSequenceData = Data(bytes: escapeSequence)
-                    if data.range(of: escapeSequenceData) != nil {
-                        if let string = String(data: data, encoding: .iso2022JP) {
-                            usedEncoding = .iso2022JP
-                            self = string
-                            return
-                        }
-                    }
-                }
+            // try ISO-2022-JP by checking existance of typical escape sequences
+            // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
+            if data.prefix(maxDetectionLength).contains(0x1B),
+                ISO2022JPEscapeSequences.contains(where: { data.range(of: $0) != nil }),
+                let string = String(data: data, encoding: .iso2022JP)
+            {
+                usedEncoding = .iso2022JP
+                self = string
+                return
             }
         }
         
         // try encodings in order from the top of the encoding list
         for cfEncoding: CFStringEncoding in suggestedCFEncodings {
-            guard cfEncoding != kCFStringEncodingInvalidId else { continue }
-            
             let encoding = String.Encoding(cfEncoding: cfEncoding)
             
             if let string = String(data: data, encoding: encoding) {
@@ -210,7 +203,7 @@ extension String {
 
     
     /// scan encoding declaration in string
-    func scanEncodingDeclaration(forTags tags: [String], upTo maxLength: Int, suggestedCFEncodings: [UInt32]) -> String.Encoding? {
+    func scanEncodingDeclaration(forTags tags: [String], upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
         
         guard !self.isEmpty else { return nil }
         
@@ -237,9 +230,7 @@ extension String {
             //     「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
             //      CFStringConvertEncodingToIANACharSetName() では .shiftJIS と .shiftJIS_X0213 がそれぞれ
             //     「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせるための処理
-            return suggestedCFEncodings.first { (encoding: CFStringEncoding) in
-                encoding == .shiftJIS || encoding == .shiftJIS_X0213
-            }
+            return suggestedCFEncodings.first { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }
             
             }(), cfEncoding != kCFStringEncodingInvalidId else { return nil }
         
