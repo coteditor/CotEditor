@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,13 +29,6 @@ import Cocoa
 
 final class EditorScrollView: NSScrollView {
     
-    // MARK: Private Properties
-    
-    private var layoutOrientationObserver: NSKeyValueObservation?
-    
-    
-    
-    // MARK: -
     // MARK: Scroll View Methods
     
     /// use custom ruler view
@@ -52,23 +45,32 @@ final class EditorScrollView: NSScrollView {
     
     /// set text view
     override var documentView: NSView? {
-        
+
         willSet {
-            guard let documentView = newValue as? NSTextView else { return }
-            
-            self.layoutOrientationObserver = documentView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
-                switch textView.layoutOrientation {
-                case .horizontal:
-                    self.hasVerticalRuler = true
-                    self.hasHorizontalRuler = false
-                case .vertical:
-                    self.hasVerticalRuler = false
-                    self.hasHorizontalRuler = true
-                }
-                
-                // invalidate line number view background
-                self.window?.viewsNeedDisplay = true
+            guard let textView = newValue as? NSTextView else { return }
+
+            // -> DO NOT use block-based KVO for NSTextView sublcass
+            //    since it casuse application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
+            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
+        }
+    }
+    
+    
+    /// observed key value did update
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == #keyPath(NSTextView.layoutOrientation) {
+            switch self.layoutOrientation {
+            case .horizontal:
+                self.hasVerticalRuler = true
+                self.hasHorizontalRuler = false
+            case .vertical:
+                self.hasVerticalRuler = false
+                self.hasHorizontalRuler = true
             }
+            
+            // invalidate line number view background
+            self.window?.viewsNeedDisplay = true
         }
     }
     
