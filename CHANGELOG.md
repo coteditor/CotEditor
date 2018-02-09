@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue the application crashed on launch under specific conditions.
+
+
+
 3.3.0 (224)
 --------------------------
 
