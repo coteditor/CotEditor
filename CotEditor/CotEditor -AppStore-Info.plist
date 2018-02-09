@@ -1030,7 +1030,7 @@
 	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
-		<key>iCloudiCloud.$(CFBundleIdentifier)</key>
+		<key>iCloud.com.coteditor.CotEditor</key>
 		<dict>
 			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
 			<true/>

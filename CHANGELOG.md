@@ -8,6 +8,7 @@ develop
 ### Fixes
 
 - Fix an issue the application crashed on launch under specific conditions.
+- Fix an issue where the iCloud storage was not enabled.
 
 
 
