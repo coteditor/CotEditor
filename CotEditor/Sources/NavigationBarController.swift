@@ -43,7 +43,6 @@ final class NavigationBarController: NSViewController {
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
             
-            self.layoutOrientationObserver?.invalidate()
             self.layoutOrientationObserver = textView.observe(\.layoutOrientation) { [unowned self] (textView, _) in
                 self.updateTextOrientation(to: textView.layoutOrientation)
             }
@@ -72,17 +71,6 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        // invalidate observation explicitly
-        // as it observes an NSTextView subclass, which cannot form weak reference,
-        // and it might cause crash on OS X 10.11. (2018-02 macOS 10.13)
-        self.layoutOrientationObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
