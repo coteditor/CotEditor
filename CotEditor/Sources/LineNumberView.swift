@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -119,6 +119,7 @@ final class LineNumberView: NSRulerView {
         
         let string = textView.string
         let length = (string as NSString).length
+        let isVerticalText = self.orientation == .horizontalRuler
         let scale = textView.scale
         
         // save graphics context
@@ -127,7 +128,6 @@ final class LineNumberView: NSRulerView {
         // setup font
         let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
         let masterFontSize = scale * masterFont.pointSize
-        let masterAscent = scale * masterFont.ascender
         let fontSize = min(round(self.fontSizeFactor * masterFontSize), masterFontSize)
         let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
         
@@ -136,24 +136,14 @@ final class LineNumberView: NSRulerView {
         context.setFillColor(self.textColor().cgColor)
         
         // prepare glyphs
-        var wrappedMarkGlyph = CGGlyph()
-        let dash: UniChar = "-".utf16.first!
-        CTFontGetGlyphsForCharacters(font, [dash], &wrappedMarkGlyph, 1)
+        let wrappedMarkGlyph: CGGlyph = font.glyph(for: "-".utf16.first!)
+        let digitGlyphs: [CGGlyph] = (0...9).map { font.glyph(for: String($0).utf16.first!) }
         
-        var digitGlyphs = [CGGlyph](repeating: 0, count: 10)
-        let numbers: [UniChar] = (0...9).map { String($0).utf16.first! }
-        CTFontGetGlyphsForCharacters(font, numbers, &digitGlyphs, 10)
-        
-        // calc character width as monospaced font
-        let charWidth: CGFloat = {
-            var advance = CGSize.zero
-            CTFontGetAdvancesForGlyphs(font, .horizontal, &digitGlyphs[8], &advance, 1)  // use '8' to get width
-            return advance.width
-        }()
+        // calculate character width assuming the font is monospace
+        let charWidth: CGFloat = font.advance(for: digitGlyphs[8]).width
         
         // prepare frame width
         let lineNumberPadding = round(scale * self.lineNumberPadding)
-        let isVerticalText = self.orientation == .horizontalRuler
         let tickLength = ceil(fontSize / 3)
         
         // adjust thickness
@@ -179,15 +169,16 @@ final class LineNumberView: NSRulerView {
         }
         
         // adjust text drawing coordinate
-        let relativePoint = self.convert(NSPoint.zero, from: textView)
-        let inset = textView.textContainerOrigin.scaled(to: scale)
-        var transform = CGAffineTransform(scaleX: 1.0, y: -1.0)  // flip
-        if isVerticalText {
-            transform = transform.translatedBy(x: round(relativePoint.x - inset.y - masterAscent), y: -ruleThickness)
-        } else {
-            transform = transform.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - masterAscent)
-        }
-        context.textMatrix = transform
+        context.textMatrix = {
+            let relativePoint = self.convert(NSPoint.zero, from: textView)
+            let inset = textView.textContainerOrigin.scaled(to: scale)
+            let masterAscent = scale * masterFont.ascender
+            let flip = CGAffineTransform(scaleX: 1.0, y: -1.0)
+            
+            return isVerticalText
+                ? flip.translatedBy(x: round(relativePoint.x - inset.y - masterAscent), y: -ruleThickness)
+                : flip.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - masterAscent)
+        }()
         
         // get multiple selections
         let selectedLineRanges: [NSRange] = textView.selectedRanges.map { (string as NSString).lineRange(for: $0.rangeValue) }
@@ -198,24 +189,16 @@ final class LineNumberView: NSRulerView {
             let digit = lineNumber.numberOfDigits
             
             // calculate base position
-            var position: CGPoint = {
-                if isVerticalText {
-                    return CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
-                } else {
-                    return CGPoint(x: ruleThickness, y: y)
-                }
-            }()
+            let basePosition: CGPoint = isVerticalText
+                ? CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
+                : CGPoint(x: ruleThickness, y: y)
             
             // get glyphs and positions
-            var glyphs = [CGGlyph]()
-            var positions = [CGPoint]()
-            for index in 0..<digit {
-                let num = lineNumber.number(at: index)
-                position.x -= charWidth
-                
-                positions.append(position)
-                glyphs.append(digitGlyphs[num])
-            }
+            let positions: [CGPoint] = (0..<digit)
+                .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * charWidth) }
+            let glyphs: [CGGlyph] = (0..<digit)
+                .map { lineNumber.number(at: $0) }
+                .map { digitGlyphs[$0] }
             
             if isBold {
                 context.setFillColor(self.textColor(.bold).cgColor)
@@ -226,7 +209,7 @@ final class LineNumberView: NSRulerView {
             context.showGlyphs(glyphs, at: positions)
             
             if isBold {
-                // back to the regular font
+                // restore the regular font
                 context.setFillColor(self.textColor().cgColor)
                 context.setFont(self.lineNumberFont)
             }
@@ -246,8 +229,7 @@ final class LineNumberView: NSRulerView {
             let x = round(y) + 0.5
             
             let tick = CGMutablePath()
-            tick.move(to: CGPoint(x: x, y: 1), transform: transform)
-            tick.addLine(to: CGPoint(x: x, y: tickLength), transform: transform)
+            tick.addLines(between: [CGPoint(x: x, y: 1), CGPoint(x: x, y: tickLength)], transform: context.textMatrix)
             context.addPath(tick)
         }
         
@@ -269,7 +251,7 @@ final class LineNumberView: NSRulerView {
                 lineNumber += 1
             }
             let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(at: charIndex)  // get NSRange
+            let lineRange = string.lineRange(at: charIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             glyphIndex = lineGlyphRange.upperBound
             
@@ -286,7 +268,7 @@ final class LineNumberView: NSRulerView {
                 lastLineNumber = lineNumber
                 glyphCount = range.upperBound
                 
-                if isVerticalText && isWrappedLine { continue }
+                if isVerticalText, isWrappedLine { continue }
                 
                 let y = scale * -lineRect.minY
                 
@@ -308,13 +290,13 @@ final class LineNumberView: NSRulerView {
         
         // draw the last "extra" line number
         if layoutManager.extraLineFragmentTextContainer != nil {
-            let lineRect = layoutManager.extraLineFragmentUsedRect
             let isSelected: Bool = {
                 if let lastSelectedRange = selectedLineRanges.last {
                     return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
                 }
                 return false
             }()
+            let lineRect = layoutManager.extraLineFragmentUsedRect
             let y = scale * -lineRect.minY
             
             if isVerticalText {
@@ -323,8 +305,8 @@ final class LineNumberView: NSRulerView {
             drawLineNumber(lineNumber, y: y, isBold: isSelected)
         }
         
-        // draw vertical text tics
-        if isVerticalText {
+        // draw vertical line ticks
+        if !context.isPathEmpty {
             context.setStrokeColor(self.textColor(.stroke).cgColor)
             context.strokePath()
         }
@@ -366,7 +348,7 @@ final class LineNumberView: NSRulerView {
         let textColor = self.textView?.textColor ?? .textColor
         
         let alpha: CGFloat = {
-            if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast && strength != .stroke {
+            if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
                 return 1.0
             }
             return strength.rawValue
@@ -442,7 +424,7 @@ private enum LineNumberFont {
         case .regular:
             return .regular
         case .bold:
-            return .bold
+            return .semibold
         }
     }
     
@@ -450,7 +432,7 @@ private enum LineNumberFont {
 
 
 
-// MARK: Private Int helpers
+// MARK: Private Helper Extensions
 
 private extension Int {
     
@@ -467,6 +449,26 @@ private extension Int {
     func number(at place: Int) -> Int {
         
         return ((self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
+    }
+    
+}
+
+
+private extension CTFont {
+    
+    func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
+        
+        var advance = CGSize.zero
+        CTFontGetAdvancesForGlyphs(self, orientation, [glyph], &advance, 1)  // use '8' to get width
+        return advance
+    }
+    
+    
+    func glyph(for uniChar: UniChar) -> CGGlyph {
+        
+        var glyph = CGGlyph()
+        CTFontGetGlyphsForCharacters(self, [uniChar], &glyph, 1)
+        return glyph
     }
     
 }
@@ -556,7 +558,7 @@ extension LineNumberView {
             var intersects = false
             
             for selectedRange in originalSelectedRanges {
-                if selectedRange.location <= range.location && range.upperBound <= selectedRange.upperBound {  // exclude
+                if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
                     let range1 = NSRange(location: selectedRange.location, length: range.location - selectedRange.location)
                     let range2 = NSRange(location: range.upperBound, length: selectedRange.upperBound - range.upperBound)
                     

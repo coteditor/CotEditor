@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,9 +47,9 @@ extension URL {
         let sameCount = zip(basePathComponents, pathComponents).countPrefix { $0.0 == $0.1 }
         let parentCount = basePathComponents.count - sameCount - 1
         let sameComponents = [String](repeating: "..", count: parentCount)
-        let diffComponents = pathComponents[sameCount..<pathComponents.count]
+        let diffComponents = pathComponents[sameCount...]
         
-        return NSURL.fileURL(withPathComponents: sameComponents + diffComponents)?.relativePath
+        return (sameComponents + diffComponents).joined(separator: "/")
     }
     
 }

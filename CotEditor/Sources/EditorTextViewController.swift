@@ -321,7 +321,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 : string.indexOfBeginBrace(for: pair, at: lastIndex)
             else { return }
         
-        let range = NSRange(index..<string.index(after: index), in: string)
+        let range = NSRange(index...index, in: string)
         
         textView.showFindIndicator(for: range)
     }

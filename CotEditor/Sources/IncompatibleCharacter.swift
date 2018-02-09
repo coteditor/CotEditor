@@ -74,30 +74,17 @@ extension String {
             let convertedString = String(data: data, encoding: encoding),
             convertedString.count == self.count else { return nil }
         
-        // list-up characters to be converted/deleted
-        var incompatibles = [IncompatibleCharacter]()
-        let isInvalidYenEncoding = encoding.canConvertYenSign
-        
-        for (index, (character, convertedCharacter)) in zip(self, convertedString).enumerated() {
-            
-            guard character != convertedCharacter else { continue }
-            
-            let sanitizedConvertedCharacter: Character = {
-                if isInvalidYenEncoding && character == "¥" {
-                    return "\\"
-                }
-                return convertedCharacter
-            }()
-            
-            let characterIndex = self.index(self.startIndex, offsetBy: index).samePosition(in: self.utf16)
-            let location = characterIndex!.encodedOffset
-            
-            incompatibles.append(IncompatibleCharacter(character: character,
-                                                       convertedCharacter: sanitizedConvertedCharacter,
-                                                       location: location,
-                                                       lineNumber: self.lineNumber(at: location)))
-        }
-        
-        return incompatibles
+        return zip(self.indices, zip(self, convertedString))
+            .filter { $1.0 != $1.1 }
+            .map { (index, characters) -> IncompatibleCharacter in
+                let (original, converted) = characters
+                let location = index.samePosition(in: self.utf16)!.encodedOffset
+                
+                return IncompatibleCharacter(character: original,
+                                             convertedCharacter: (original == "¥" && encoding.canConvertYenSign) ? "\\" : converted,
+                                             location: location,
+                                             lineNumber: self.lineNumber(at: location))
+            }
     }
+    
 }

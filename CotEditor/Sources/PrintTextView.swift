@@ -190,7 +190,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                     lastLineNumber = lineNumber
                     glyphCount = range.upperBound
                     
-                    if isVerticalText && isWrappedLine { continue }
+                    if isVerticalText, isWrappedLine { continue }
                     
                     var numberString = isWrappedLine ? "-" : String(lineNumber)
                     
@@ -414,10 +414,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         guard let primaryString = primaryString, let secondaryString = secondaryString else { fatalError() }
         
         // case: double-sided
-        if primaryAlignment == .left && secondaryAlignment == .right {
+        if primaryAlignment == .left, secondaryAlignment == .right {
             return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
         }
-        if primaryAlignment == .right && secondaryAlignment == .left {
+        if primaryAlignment == .right, secondaryAlignment == .left {
             return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
         }
         

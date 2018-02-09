@@ -85,7 +85,6 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private static let HiraginoSansName = NSFontManager.shared.availableFonts.contains(FontName.HiraginoSans) ? FontName.HiraginoSans : FontName.HiraKakuProN
     private static let observedDefaultKeys: [DefaultKeys] = [
         .invisibleSpace,
         .invisibleTab,
@@ -117,11 +116,6 @@ final class LayoutManager: NSLayoutManager {
         let fullwidthSpace: CTLine
         let verticalTab: CTLine
         let replacement: CTLine
-    }
-    
-    private enum FontName {
-        static let HiraginoSans = "HiraginoSans-W3"  // since OS X 10.11 (El Capitan)
-        static let HiraKakuProN = "HiraKakuProN-W3"
     }
     
     
@@ -409,7 +403,7 @@ final class LayoutManager: NSLayoutManager {
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let spaceFont = self.textFont ?? font
-        let fullWidthFont = NSFont(name: type(of: self).HiraginoSansName, size: fontSize) ?? font
+        let fullWidthFont = NSFont.hiraginoSans(ofSize: fontSize) ?? font
         
         return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
                               tab: self.invisibleLine(.tab, font: font),
@@ -431,6 +425,16 @@ final class LayoutManager: NSLayoutManager {
 
 
 // MARK: -
+
+private extension NSFont {
+    
+    class func hiraginoSans(ofSize size: CGFloat) -> NSFont? {
+        
+        return NSFont(name: "HiraginoSans-W3", size: size)
+    }
+    
+}
+
 
 private extension CTLine {
     

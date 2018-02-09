@@ -85,10 +85,7 @@ private extension NSAttributedString {
         
         let line = CTLineCreateWithAttributedString(self as CFAttributedString)
         
-        let bounds = CTLineGetBoundsWithOptions(line, [.excludeTypographicLeading])
-        let pathBounds = CTLineGetBoundsWithOptions(line, [.useGlyphPathBounds])
-        
-        return bounds.union(pathBounds)
+        return CTLineGetBoundsWithOptions(line, [.useGlyphPathBounds, .excludeTypographicLeading])
     }
     
 }

@@ -192,12 +192,17 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// whether shows the iCloud open panel on launch
+    /// whether documents use iCloud storage
     override class var usesUbiquitousStorage: Bool {
         
-        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+        // pretend as if iCloud storage is disabled to let system give up opening the open panel on launch (2018-02 macOS 10.13)
+        if NSAppleEventManager.shared().isOpenEvent {
+            let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+            
+            return (behavior == .openPanel)
+        }
         
-        return behavior == .openPanel
+        return true
     }
     
     
@@ -315,7 +320,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.shouldSaveXattr = (xattrEncoding != nil)
         
         // check file metadata for text orientation
-        if UserDefaults.standard[.savesTextOrientation] && (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
+        if UserDefaults.standard[.savesTextOrientation], (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
             // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
             self.isVerticalText = true
         }
@@ -883,7 +888,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if !self.string.canBeConverted(to: encoding) {
             if askLossy {
                 let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
-                self.presentErrorAsSheet(error)
+                self.presentErrorAsSheetSafely(error)
                 return false
                 
             } else if !lossy {
@@ -1054,7 +1059,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     try self.reinterpret(encoding: encoding)
                 } catch {
                     NSSound.beep()
-                    self.presentErrorAsSheet(error)
+                    self.presentErrorAsSheetSafely(error)
                 }
                 
             case .alertThirdButtonReturn:  // = Cancel
@@ -1191,7 +1196,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
             
         } catch {
-            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+            self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
             return
         }
         
@@ -1230,30 +1235,33 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // do nothing if alert is already shown
         guard !self.isExternalUpdateAlertShown else { return }
         
-        self.isExternalUpdateAlertShown = true
-        
-        let messageText = self.isDocumentEdited
-            ? "The file has been modified by another application. There are also unsaved changes in CotEditor."
-            : "The file has been modified by another application."
-        
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString(messageText, comment: "")
-        alert.informativeText = NSLocalizedString("Do you want to keep CotEditor’s edition or update to the modified edition?", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Keep CotEditor’s Edition", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Update", comment: ""))
-        
-        // mark the alert as critical in order to interpret other sheets already attached
-        if self.windowForSheet?.attachedSheet != nil {
-            alert.alertStyle = .critical
-        }
-        
-        alert.beginSheetModal(for: self.windowForSheet!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] activityCompletionHandler in
+            self.isExternalUpdateAlertShown = true
             
-            if returnCode == .alertSecondButtonReturn {  // == Revert
-                self.revertWithoutAsking()
+            let messageText = self.isDocumentEdited
+                ? "The file has been modified by another application. There are also unsaved changes in CotEditor."
+                : "The file has been modified by another application."
+            
+            let alert = NSAlert()
+            alert.messageText = NSLocalizedString(messageText, comment: "")
+            alert.informativeText = NSLocalizedString("Do you want to keep CotEditor’s edition or update to the modified edition?", comment: "")
+            alert.addButton(withTitle: NSLocalizedString("Keep CotEditor’s Edition", comment: ""))
+            alert.addButton(withTitle: NSLocalizedString("Update", comment: ""))
+            
+            // mark the alert as critical in order to interpret other sheets already attached
+            if self.windowForSheet?.attachedSheet != nil {
+                alert.alertStyle = .critical
             }
             
-            self.isExternalUpdateAlertShown = false
+            alert.beginSheetModal(for: self.windowForSheet!) { returnCode in
+                
+                if returnCode == .alertSecondButtonReturn {  // == Revert
+                    self.revertWithoutAsking()
+                }
+                
+                self.isExternalUpdateAlertShown = false
+                activityCompletionHandler()
+            }
         }
     }
     
@@ -1271,7 +1279,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         do {
             try self.revert(toContentsOf: fileURL, ofType: fileType)
         } catch {
-            self.presentErrorAsSheet(error)
+            self.presentErrorAsSheetSafely(error)
         }
     }
     

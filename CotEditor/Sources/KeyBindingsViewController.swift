@@ -56,7 +56,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Private Properties
     
-    private var outlineTree: [NSTreeNode] = [NSTreeNode]()
+    private var outlineTree: [NSTreeNode] = []
     @objc private dynamic var warningMessage: String?  // for binding
     @objc private dynamic var isRestoreble: Bool = false  // for binding
     

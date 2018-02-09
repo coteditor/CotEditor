@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -193,7 +193,7 @@ extension String {
     /// human-readable encoding name considering UTF-8 BOM
     static func localizedName(of encoding: String.Encoding, withUTF8BOM: Bool) -> String {
         
-        if encoding == .utf8 && withUTF8BOM {
+        if encoding == .utf8, withUTF8BOM {
             return self.localizedNameOfUTF8EncodingWithBOM
         }
         
@@ -250,7 +250,7 @@ extension String {
     /// convert Yen sign in consideration of the encoding
     func convertingYenSign(for encoding: String.Encoding) -> String {
         
-        guard !self.isEmpty && !encoding.canConvertYenSign else {
+        guard !self.isEmpty, !encoding.canConvertYenSign else {
             return self
         }
         

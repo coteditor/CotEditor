@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,8 +32,20 @@ extension NSDocument {
     typealias RecoveryHandler = ((_ didRecover: Bool) -> Void)
     
     
+    // present an error alert as document modal sheet but wrapping the command with `performActivity`
+    func presentErrorAsSheetSafely(_ error: Error, synchronousWaiting waitSynchronously: Bool = false, recoveryHandler: RecoveryHandler? = nil) {
+        
+        self.performActivity(withSynchronousWaiting: waitSynchronously) { [unowned self] activityCompletionHandler in
+            self.presentErrorAsSheet(error) { (didRecover) in
+                recoveryHandler?(didRecover)
+                activityCompletionHandler()
+            }
+        }
+    }
+    
+    
     /// present an error alert as document modal sheet
-    func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
+    private func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
         
         guard let window = self.windowForSheet else {
             let didRecover = self.presentError(error)

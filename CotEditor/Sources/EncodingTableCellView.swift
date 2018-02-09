@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -55,17 +55,18 @@ final class EncodingTableCellView: NSTableCellView {
             { (value: Any?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
                 
                 let color = value as? NSColor
-                var newColor: NSColor?
+                let newColor: NSColor?
                 
-                if highlighted && color == nil {
+                switch (highlighted, color) {
+                case (true, nil):
                     newColor = .alternateSelectedControlTextColor
-                } else if highlighted && color == .disabledControlTextColor {
+                case (true, .disabledControlTextColor?):
                     newColor = .alternateDisabledControlTextColor
-                } else if !highlighted && color == .alternateSelectedControlTextColor {
+                case (false, .alternateSelectedControlTextColor?):
                     newColor = nil
-                } else if !highlighted && color == .alternateDisabledControlTextColor {
+                case (false, .alternateDisabledControlTextColor?):
                     newColor = .disabledControlTextColor
-                } else {
+                default:
                     return
                 }
                 

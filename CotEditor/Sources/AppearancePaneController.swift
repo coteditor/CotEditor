@@ -99,11 +99,13 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         menuItem.representedObject = representedSettingName
         
         let itemSelected = (representedSettingName != nil)
-        var isBundled = false
-        var isCustomized = false
+        let isBundled: Bool
+        let isCustomized: Bool
         if let representedSettingName = representedSettingName {
             isBundled = ThemeManager.shared.isBundledSetting(name: representedSettingName)
             isCustomized = ThemeManager.shared.isCustomizedBundledSetting(name: representedSettingName)
+        } else {
+            (isBundled, isCustomized) = (false, false)
         }
         
         guard let action = menuItem.action else { return false }

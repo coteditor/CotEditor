@@ -108,7 +108,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             else {
                 assertionFailure()
                 return
-        }
+            }
         
         // reset attributed string for "All" item
         // -> Otherwise, the title isn't localized.
@@ -192,16 +192,9 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         guard let content = self.fileDropController?.content as? [[String: String]] else { return }
         
         // sanitize
-        let sanitized = content.flatMap { (item: [String: String]) -> [String: String]? in
-            var item = item
-            if let extensions = item[FileDropComposer.SettingKey.extensions], extensions.isEmpty {
-                item[FileDropComposer.SettingKey.extensions] = nil
-            }
-            
-            guard item[FileDropComposer.SettingKey.extensions] != nil || item[FileDropComposer.SettingKey.scope] != nil else { return nil }
-            
-            return item
-        }
+        let sanitized = content
+            .map { $0.filter { !($0.key == FileDropComposer.SettingKey.extensions && $0.value.isEmpty) } }
+            .filter { $0[FileDropComposer.SettingKey.extensions] != nil || $0[FileDropComposer.SettingKey.scope] != nil }
         
         // check if the new setting is different from the default
         let defaultSetting = DefaultSettings.defaults[DefaultKeys.fileDropArray.rawValue] as! [[String: String]]
@@ -234,10 +227,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     /// trim extension string format
     private static func sanitize(extensionsString: String) -> String {
         
-        let trimSet = CharacterSet.alphanumerics.inverted  // separator + typical invalid characters
-        
         return extensionsString
-            .components(separatedBy: trimSet)
+            .components(separatedBy: CharacterSet.alphanumerics.inverted)  // separator + typical invalid characters
             .filter { !$0.isEmpty }
             .map { $0.lowercased() }
             .joined(separator: ", ")
@@ -258,17 +249,16 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
-        alert.beginSheetModal(for: self.view.window!) { [weak self] (returnCode: NSApplication.ModalResponse) in
-            guard let strongSelf = self else { return }
+        alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             
             guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the theme name
-                strongSelf.tableView?.rowActionsVisible = false
+                self.tableView?.rowActionsVisible = false
                 return
             }
             
-            strongSelf.fileDropController?.remove(atArrangedObjectIndex: row)
-            strongSelf.saveSetting()
+            self.fileDropController?.remove(atArrangedObjectIndex: row)
+            self.saveSetting()
         }
     }
     

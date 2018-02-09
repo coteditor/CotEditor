@@ -296,8 +296,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     /// apply message to UI
     private func applyResult(message: String?, textField: NSTextField, textView: NSTextView) {
-    
-        textField.isHidden = (message != nil)
+        
+        textField.isHidden = (message == nil)
         textField.stringValue = message ?? ""
         textField.sizeToFit()
         
