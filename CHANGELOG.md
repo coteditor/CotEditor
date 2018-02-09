@@ -7,8 +7,9 @@ Change Log
 
 ### Fixes
 
-- Fix an issue the application crashed on launch under specific conditions.
+- Fix an issue where the application crashed on launch under specific conditions.
 - Fix an issue where the iCloud storage was not enabled.
+- Fix arrows in the navigation bar on the vertical text mode.
 
 
 
