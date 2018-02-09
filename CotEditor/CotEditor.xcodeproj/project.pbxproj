@@ -1120,7 +1120,7 @@
 		2AD488681A081DEE00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
 		2AD488721A085D8B00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AD616CB1D3E583D0016EFB6 /* DocumentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentController.swift; sourceTree = "<group>"; };
-		2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ODBEditorSuite.swift; path = ../ODBEditorSuite.swift; sourceTree = "<group>"; };
+		2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODBEditorSuite.swift; sourceTree = "<group>"; };
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
 		2AD69B871D3E4FCD00FBD998 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
