@@ -38,11 +38,11 @@ final class NavigationBarController: NSViewController {
         didSet {
             guard let textView = self.textView else { return }
           
-            // observe text selection change to update outline menu selection
             // -> DO NOT use block-based KVO for NSTextView sublcass
             //    since it causes application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
             textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
             
+            // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
         }
     }
@@ -159,14 +159,6 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// update enabilities of jump buttons
-    func updatePrevNextButtonEnabled() {
-        
-        self.prevButton!.isEnabled = self.canSelectPrevItem
-        self.nextButton!.isEnabled = self.canSelectNextItem
-    }
-    
-    
     /// can select prev item in outline menu?
     var canSelectPrevItem: Bool {
         
@@ -280,6 +272,14 @@ final class NavigationBarController: NSViewController {
         
         return paragraphStyle
     }()
+    
+    
+    /// update enabilities of jump buttons
+    private func updatePrevNextButtonEnabled() {
+        
+        self.prevButton!.isEnabled = self.canSelectPrevItem
+        self.nextButton!.isEnabled = self.canSelectNextItem
+    }
     
     
     /// set outline menu selection
