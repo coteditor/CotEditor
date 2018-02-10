@@ -442,10 +442,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 else { return url }
             
             let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
-            var baseFileName = fileURL.deletingPathExtension().lastPathComponent
-            if baseFileName.hasPrefix(".") {  // avoid file to be hidden
-                baseFileName.removeFirst()
-            }
+            let baseFileName = fileURL.deletingPathExtension().lastPathComponent
+                .replacingOccurrences(of: ".", with: "", options: .anchored, range: nil)  // avoid file to be hidden
+            
             // append a unique string to avoid overwriting another backup file with the same file name.
             let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
             
