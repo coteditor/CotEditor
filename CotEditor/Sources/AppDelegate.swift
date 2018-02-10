@@ -51,7 +51,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Public Properties
     
-    @objc dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
+    @objc dynamic let supportsWindowTabbing: Bool
     
     
     // MARK: Private Properties
