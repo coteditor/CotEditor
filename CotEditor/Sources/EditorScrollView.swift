@@ -50,7 +50,7 @@ final class EditorScrollView: NSScrollView {
             guard let textView = newValue as? NSTextView else { return }
 
             // -> DO NOT use block-based KVO for NSTextView sublcass
-            //    since it casuse application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
+            //    since it causes application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
             textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
         }
     }
