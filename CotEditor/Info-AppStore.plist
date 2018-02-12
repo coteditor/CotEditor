@@ -26,7 +26,7 @@
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -50,7 +50,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -88,7 +88,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -104,7 +104,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -126,7 +126,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -146,7 +146,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -170,7 +170,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -192,7 +192,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -208,7 +208,7 @@
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -228,7 +228,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -252,7 +252,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -268,7 +268,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -284,7 +284,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -302,7 +302,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -320,7 +320,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -341,7 +341,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -357,7 +357,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -374,7 +374,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -399,7 +399,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -415,7 +415,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -435,7 +435,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -459,7 +459,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -483,7 +483,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -499,7 +499,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -516,7 +516,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -536,7 +536,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -560,7 +560,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -586,7 +586,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -611,7 +611,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -636,7 +636,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -653,7 +653,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -677,7 +677,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -694,7 +694,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -718,7 +718,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -734,7 +734,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -751,7 +751,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -771,7 +771,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -793,7 +793,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -813,7 +813,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -831,7 +831,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -847,7 +847,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -863,7 +863,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -879,7 +879,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -929,7 +929,7 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -946,11 +946,11 @@
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
-			<string>${PRODUCT_MODULE_NAME}.Document</string>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>${EXECUTABLE_NAME}</string>
+	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>CotEditor.help</string>
 	<key>CFBundleHelpBookName</key>
@@ -962,19 +962,21 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>${PRODUCT_NAME}</string>
+	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3.0</string>
+	<string>3.3.1</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleVersion</key>
-	<string>224</string>
+	<string>228</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
-	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
@@ -996,7 +998,7 @@
 			<key>NSMessage</key>
 			<string>openSelection</string>
 			<key>NSPortName</key>
-			<string>${PRODUCT_NAME}</string>
+			<string>$(PRODUCT_NAME)</string>
 			<key>NSSendTypes</key>
 			<array>
 				<string>NSStringPboardType</string>
@@ -1011,7 +1013,7 @@
 			<key>NSMessage</key>
 			<string>openFile</string>
 			<key>NSPortName</key>
-			<string>${PRODUCT_NAME}</string>
+			<string>$(PRODUCT_NAME)</string>
 			<key>NSRequiredContext</key>
 			<dict>
 				<key>NSTextContent</key>
@@ -1028,7 +1030,7 @@
 	<true/>
 	<key>NSUbiquitousContainers</key>
 	<dict>
-		<key>iCloud.$(CFBundleIdentifier)</key>
+		<key>iCloud.com.coteditor.CotEditor</key>
 		<dict>
 			<key>NSUbiquitousContainerIsDocumentScopePublic</key>
 			<true/>
@@ -1039,11 +1041,7 @@
 		</dict>
 	</dict>
 	<key>OSAScriptingDefinition</key>
-	<string>${PRODUCT_NAME}.sdef</string>
-	<key>SUEnableJavaScript</key>
-	<true/>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
+	<string>$(PRODUCT_NAME).sdef</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

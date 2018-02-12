@@ -192,7 +192,10 @@ final class EditorTextView: NSTextView, Themable {
         for key in self.observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
-        NotificationCenter.default.removeObserver(self)
+        if self.window != nil {
+            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
+        }
     }
     
     

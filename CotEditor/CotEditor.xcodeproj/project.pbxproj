@@ -918,8 +918,8 @@
 		2A69077E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A6F0E081B5500E100C2D03C /* CotEditor -AppStore-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CotEditor -AppStore-Info.plist"; sourceTree = "<group>"; };
-		2A6F0E091B55043800C2D03C /* CotEditor -AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CotEditor -AppStore.entitlements"; sourceTree = "<group>"; };
+		2A6F0E081B5500E100C2D03C /* Info-AppStore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-AppStore.plist"; sourceTree = "<group>"; };
+		2A6F0E091B55043800C2D03C /* CotEditor-AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-AppStore.entitlements"; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
 		2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Indenting.swift"; sourceTree = "<group>"; };
 		2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSTypesetter.swift; sourceTree = "<group>"; };
@@ -1222,7 +1222,7 @@
 		57ED31771FFD892A00F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = pt; path = pt.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CotEditor-Info.plist"; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1534,8 +1534,9 @@
 			isa = PBXGroup;
 			children = (
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
-				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A3F187D202D8773002F1CA7 /* Supporting Files */,
+				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2AF0740B1D37DE5400770BA6 /* Modules */,
 				BEED9F89D1E364DD05CA42CB /* Frameworks */,
@@ -1567,26 +1568,20 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
-		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+		2A37F4AFFDCFA73011CA2CEA /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */,
 				2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */,
 				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
 			);
-			name = "Other Sources";
+			name = Scripts;
 			sourceTree = "<group>";
 		};
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				2A149DC91902BC3900A9D6EF /* Nibs */,
 				2A1EB5C319AD469500C1E37E /* Images.xcassets */,
-				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
-				8D15AC360486D014006FF6A4 /* CotEditor-Info.plist */,
-				2A6F0E081B5500E100C2D03C /* CotEditor -AppStore-Info.plist */,
-				2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */,
-				2A6F0E091B55043800C2D03C /* CotEditor -AppStore.entitlements */,
+				2A149DC91902BC3900A9D6EF /* Nibs */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
@@ -1594,12 +1589,10 @@
 				2A80C65C1CEE33C100AA664D /* Credits.html */,
 				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
-				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
-				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
-				2A94FC781BE2256F00B454A8 /* cot */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
+				2A94FC781BE2256F00B454A8 /* cot */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1619,6 +1612,20 @@
 			name = "Syntax Edit Sheet";
 			sourceTree = "<group>";
 		};
+		2A3F187D202D8773002F1CA7 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8D15AC360486D014006FF6A4 /* Info.plist */,
+				2A6F0E081B5500E100C2D03C /* Info-AppStore.plist */,
+				2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */,
+				2A6F0E091B55043800C2D03C /* CotEditor-AppStore.entitlements */,
+				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
+				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
+				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		2A41CB3A1C39068200F9122B /* Value Transformers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1634,6 +1641,7 @@
 				2AFB5AEA1D597AFC003895A7 /* Defaults */,
 				2A2792941D1DBDAC00F3FC5D /* Constants.swift */,
 				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
+				2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -3529,10 +3537,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
-				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
+				INFOPLIST_FILE = "Info-AppStore.plist";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -3543,10 +3551,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "CotEditor -AppStore.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
-				INFOPLIST_FILE = "CotEditor -AppStore-Info.plist";
+				INFOPLIST_FILE = "Info-AppStore.plist";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -3600,7 +3608,7 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
-				INFOPLIST_FILE = "CotEditor-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
@@ -3613,7 +3621,7 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
-				INFOPLIST_FILE = "CotEditor-Info.plist";
+				INFOPLIST_FILE = Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
