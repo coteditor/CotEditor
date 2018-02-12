@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+3.3.2 (229)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 3.3.1 where the application could crash on window close.
+- Fix an issue where application crashed when performing “Find All” with the regular expression and without grouping.
+
+
+
 3.3.1 (228)
 --------------------------
 
