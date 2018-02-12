@@ -191,6 +191,19 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(matches[1].count, 2)
         XCTAssertEqual(matches[1][0], NSRange(location: 9, length: 2))
         XCTAssertEqual(matches[1][1], NSRange(location: 10, length: 1))
+        
+        
+        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "ab", settings: settings)
+        
+        matches = [[NSRange]]()
+        textFind.findAll { (matchedRanges, stop) in
+            matches.append(matchedRanges)
+        }
+        XCTAssertEqual(matches.count, 2)
+        XCTAssertEqual(matches[0].count, 1)
+        XCTAssertEqual(matches[0][0], NSRange(location: 0, length: 2))
+        XCTAssertEqual(matches[1].count, 1)
+        XCTAssertEqual(matches[1][0], NSRange(location: 8, length: 2))
     }
     
     
