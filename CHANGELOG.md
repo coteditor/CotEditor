@@ -7,8 +7,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue on CotEditor 3.3.1 where application could crash on window close.
-- Fix an issue where application crashed when perfroming “Find All” with regular expression and widthout grouping.
+- Fix an issue on CotEditor 3.3.1 where the application could crash on window close.
+- Fix an issue where application crashed when performing “Find All” with the regular expression and without grouping.
 
 
 
