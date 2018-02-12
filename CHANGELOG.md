@@ -7,7 +7,8 @@ develop
 
 ### Fixes
 
-- Fix an issue where application could crash on window close.
+- Fix an issue on CotEditor 3.3.1 where application could crash on window close.
+- Fix an issue where application crashed when perfroming “Find All” with regular expression and widthout grouping.
 
 
 
