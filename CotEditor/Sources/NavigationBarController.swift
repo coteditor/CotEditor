@@ -68,6 +68,13 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
+    
+    deinit {
+        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
+    }
+    
+    
+    
     // MARK: View Controller Methods
     
     /// setup UI

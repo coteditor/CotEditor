@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+develop
+--------------------------
+
+### Fixes
+
+- Fix an issue where application could crash on window close.
+
+
+
 3.3.1 (228)
 --------------------------
 

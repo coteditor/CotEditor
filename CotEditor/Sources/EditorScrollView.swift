@@ -29,6 +29,14 @@ import Cocoa
 
 final class EditorScrollView: NSScrollView {
     
+    // MARK: Lifecycle
+    
+    deinit {
+        self.documentView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
+    }
+    
+    
+    
     // MARK: Scroll View Methods
     
     /// use custom ruler view
