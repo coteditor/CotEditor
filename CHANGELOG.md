@@ -16,7 +16,7 @@ unreleased
 ### Fixes
 
 - Fix an issue on CotEditor 3.3.1 where the application could crash on window close.
-- Fix an issue where application crashed when performing “Find All” with the regular expression and without grouping.
+- Fix an issue where application crashed when performing “Find All” with the regular expression and without grouping (Thanks to @akimach!).
 
 
 
