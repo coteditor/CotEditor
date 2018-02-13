@@ -28,26 +28,53 @@ import XCTest
 final class UITests: XCTestCase {
     
     override func setUp() {
-        super.setUp()
         
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         XCUIApplication().launch()
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
+    
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
         super.tearDown()
     }
     
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testTyping() {
+        
+        let app = XCUIApplication()
+        
+        // open new document
+        let menuBarsQuery = app.menuBars
+        menuBarsQuery.menuBarItems["File"].click()
+        menuBarsQuery.menuItems["New Window"].click()
+        
+        // type some words
+        let documentWindow = app.windows.firstMatch
+        let textView = documentWindow.textViews.firstMatch
+        textView.typeText("Test.\r")
+        XCTAssertEqual(textView.value as! String, "Test.\n")
+        
+        // wait a bit to let document autosave
+        sleep(1)
+        
+        // delete entire words
+        for _ in 1...6 {
+            textView.typeKey(.delete, modifierFlags:[])
+        }
+        
+        // close window without save
+        documentWindow.buttons[XCUIIdentifierCloseWindow].click()
+        if documentWindow.sheets.count > 0 {
+            // it actually depends on user settings and iCloud availability if save sheet appears...
+            documentWindow.sheets.firstMatch.children(matching: .button)["Delete"].click()
+        }
+        sleep(1)
+        XCTAssert(documentWindow.exists)
     }
     
 }
