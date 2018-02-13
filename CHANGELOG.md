@@ -5,6 +5,9 @@ Change Log
 unreleased
 --------------------------
 
+### Fixes
+
+- Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanase localization.
 
 
 3.3.2 (229)
