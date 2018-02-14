@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,47 +28,23 @@
 import Cocoa
 import WebKit
 
-final class WebDocumentWindowController: NSWindowController, WKNavigationDelegate {
+final class WebDocumentWindowController: NSWindowController {
     
     // MARK: Public Properties
     
-    var userStyleSheet: String?
-    
-    
-    // MARK: Private Properties
-    
-    private let fileURL: URL
-    
-    @objc private dynamic weak var webView: WKWebView?
+    var fileURL: URL? {
+        didSet {
+            guard let url = self.fileURL else { return }
+            
+            // send request
+            let request = URLRequest(url: url)
+            self.webView?.load(request)
+        }
+    }
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    required init?(documentName: String) {
-        
-        guard let fileURL = Bundle.main.url(forResource: documentName, withExtension: "html") else { return nil }
-        
-        self.fileURL = fileURL
-        
-        super.init(window: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var windowNibName: NSNib.Name? {
-        
-        return NSNib.Name("WebDocumentWindow")
-    }
-    
-    
-    
     // MARK: Window Controller Methods
     
     /// let webView load document file
@@ -80,16 +56,24 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
         
         // set webView programmically
         let webView = WKWebView(frame: .zero)
-        self.webView = webView
         self.window?.contentView = webView
         webView.navigationDelegate = self
-        
-        // send request
-        let request = URLRequest(url: self.fileURL)
-        webView.load(request)
     }
     
     
+    // MARK: Private Methods
+    
+    /// content web view
+    private var webView: WKWebView? {
+        
+        return self.window?.contentView as? WKWebView
+    }
+
+}
+
+
+
+extension WebDocumentWindowController: WKNavigationDelegate {
     
     // MARK: Navigation Delegate
     
@@ -106,24 +90,37 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
     }
     
     
+    /// receive web content
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        
+        #if APPSTORE
+            webView.apply(styleSheet: ".non-appstore { display: none }")
+        #endif
+    }
+    
+    
     /// document was loaded
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        if let style = self.userStyleSheet {
-            self.apply(styleSheet: style)
+        if let title = webView.title {
+            self.window?.title = title
         }
     }
     
-    
-    
-    // MARK: Private Method
+}
+
+
+
+// MARK: -
+
+private extension WKWebView {
     
     /// apply user style sheet to current page
-    private func apply(styleSheet: String) {
+    func apply(styleSheet: String) {
         
         let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
         
-        self.webView?.evaluateJavaScript(js, completionHandler: nil)
+        self.evaluateJavaScript(js, completionHandler: nil)
     }
-
+    
 }

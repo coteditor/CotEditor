@@ -56,7 +56,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Private Properties
     
-    private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
+    private lazy var acknowledgmentsWindowController: WebDocumentWindowController = {
+        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! WebDocumentWindowController
+        windowController.fileURL = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
+        return windowController
+    }()
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
@@ -337,9 +341,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show acknowlegements
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
-        #if APPSTORE
-            self.acknowledgmentsWindowController.userStyleSheet = ".non-appstore { display: none }"
-        #endif
         self.acknowledgmentsWindowController.showWindow(sender)
     }
     

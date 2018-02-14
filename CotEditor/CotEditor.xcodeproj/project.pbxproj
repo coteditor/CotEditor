@@ -332,8 +332,6 @@
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
 		2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
-		2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */; };
-		2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */; };
 		2A836F801D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
@@ -376,6 +374,8 @@
 		2A9247001FCD2D07008DBC30 /* org.sparkle-project.InstallerStatus.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
+		2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
+		2A9784A02034561B00482647 /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */; };
 		2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */; };
@@ -969,7 +969,6 @@
 		2A80C6671CEE540F00AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2A80C66A1CEE541400AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Acknowledgments.html; sourceTree = "<group>"; };
 		2A80C66B1CEE541600AA664D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Acknowledgments.html"; sourceTree = "<group>"; };
-		2A80C66D1CEE556600AA664D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/WebDocumentWindow.xib; sourceTree = "<group>"; };
 		2A836F7F1D572A5D0044E8EC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A836F891D5734810044E8EC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Main.strings; sourceTree = "<group>"; };
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -997,6 +996,7 @@
 		2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerConnection.xpc"; sourceTree = "<group>"; };
 		2A9247061FCD499D008DBC30 /* codesign_xpc */ = {isa = PBXFileReference; lastKnownFileType = text; path = codesign_xpc; sourceTree = "<group>"; };
 		2A94FC781BE2256F00B454A8 /* cot */ = {isa = PBXFileReference; explicitFileType = text.script.python; name = cot; path = ../cot/cot; sourceTree = SOURCE_ROOT; };
+		2A97849E2034561B00482647 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/WebDocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A9BF3B91D37EB0900E3D3E2 /* module.map */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		2A9BF3C21D3803B600E3D3E2 /* unicode */ = {isa = PBXFileReference; lastKnownFileType = folder; path = unicode; sourceTree = "<group>"; };
 		2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Transformation.swift"; sourceTree = "<group>"; };
@@ -1359,7 +1359,7 @@
 			isa = PBXGroup;
 			children = (
 				2A836F7E1D572A5D0044E8EC /* Main.storyboard */,
-				2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */,
+				2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */,
 				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
 				2AAEA6A01A4342A800A930CA /* Document Accessories */,
@@ -2299,7 +2299,6 @@
 				2A6F0D751B5500E100C2D03C /* SyntaxMappingConflictView.xib in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
 				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
-				2A80C66F1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */,
 				2A6F0D7E1B5500E100C2D03C /* EncodingListView.xib in Resources */,
 				2A10D1391E715E5B0027192A /* FormatPane.storyboard in Resources */,
@@ -2307,6 +2306,7 @@
 				2A5DBE5A1B5D2DB700F8CB13 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A1893A51FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */,
+				2A9784A02034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */,
 				2A4144BD201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 			);
@@ -2353,6 +2353,7 @@
 				25859EA7076D8EE80020F779 /* PreferencesWindow.xib in Resources */,
 				258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */,
 				2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */,
+				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
 				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
@@ -2376,7 +2377,6 @@
 				2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */,
 				2A607B101905F02F00F3A991 /* ColorCodePanelAccessory.xib in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
-				2A80C66E1CEE556600AA664D /* WebDocumentWindow.xib in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */,
 				2A15831718E3688300601026 /* EncodingListView.xib in Resources */,
@@ -3438,14 +3438,6 @@
 			name = Acknowledgments.html;
 			sourceTree = "<group>";
 		};
-		2A80C66C1CEE556600AA664D /* WebDocumentWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A80C66D1CEE556600AA664D /* Base */,
-			);
-			name = WebDocumentWindow.xib;
-			sourceTree = "<group>";
-		};
 		2A836F7E1D572A5D0044E8EC /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3457,6 +3449,14 @@
 				57ED314A1FFD892600F16CAD /* pt */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A97849E2034561B00482647 /* Base */,
+			);
+			name = WebDocumentWindow.storyboard;
 			sourceTree = "<group>";
 		};
 		2AA2E0111BFE12620087BDD6 /* Unicode.strings */ = {
