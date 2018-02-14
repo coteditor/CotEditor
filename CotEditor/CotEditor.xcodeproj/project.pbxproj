@@ -246,6 +246,8 @@
 		2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2471D26327C001B229F /* KeyBindingManager.swift */; };
 		2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F24A1D26615A001B229F /* KeyBindingItem.swift */; };
 		2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F24A1D26615A001B229F /* KeyBindingItem.swift */; };
+		2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */; };
+		2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */; };
 		2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602DB1D05D7C8003E8D87 /* GoToLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602D91D05D7C8003E8D87 /* GoToLineView.xib */; };
@@ -901,6 +903,7 @@
 		2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnippetKeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F2471D26327C001B229F /* KeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F24A1D26615A001B229F /* KeyBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingItem.swift; sourceTree = "<group>"; };
+		2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RawRepresentable+DefaultInitializable.swift"; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A6602D21D05BD84003E8D87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A6602D31D05BD86003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
@@ -1513,6 +1516,7 @@
 		2A359E011DAEA0FC00FEF7AA /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */,
 				2A885E321D5C3A1B00288723 /* Comparable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A3D63F31E75A33000F538E1 /* Equatable.swift */,
@@ -2691,6 +2695,7 @@
 				2AD616D01D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */,
 				2A7646E81D48EAF200350674 /* SettingManager.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
+				2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
@@ -2748,6 +2753,7 @@
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
+				2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
 				2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
