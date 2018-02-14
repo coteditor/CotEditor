@@ -335,9 +335,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // check whether print line numbers
         self.printsLineNumber = {
-            guard
-                let index = settings[.lineNumber] as? Int,
-                let mode = PrintLineNmuberMode(rawValue: index) else { return false }
+            let mode = PrintLineNmuberMode(settings[.lineNumber] as? Int)
             switch mode {
             case .no:
                 return false
@@ -353,9 +351,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            guard
-                let index = settings[.invisibles] as? Int,
-                let mode = PrintInvisiblesMode(rawValue: index) else { return false }
+            let mode = PrintInvisiblesMode(settings[.invisibles] as? Int)
             switch mode {
             case .no:
                 return false

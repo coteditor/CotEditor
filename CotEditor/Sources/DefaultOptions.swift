@@ -50,7 +50,9 @@ enum DocumentConflictOption: Int {
 }
 
 
-@objc enum PrintLineNmuberMode: Int {
+@objc enum PrintLineNmuberMode: Int, DefaultInitializable {
+    
+    static let defaultValue: PrintLineNmuberMode = .no
     
     case no
     case sameAsDocument
@@ -58,7 +60,9 @@ enum DocumentConflictOption: Int {
 }
 
 
-@objc enum PrintInvisiblesMode: Int {
+@objc enum PrintInvisiblesMode: Int, DefaultInitializable {
+    
+    static let defaultValue: PrintInvisiblesMode = .no
     
     case no
     case sameAsDocument
@@ -66,7 +70,9 @@ enum DocumentConflictOption: Int {
 }
 
 
-@objc enum PrintInfoType: Int {
+@objc enum PrintInfoType: Int, DefaultInitializable {
+    
+    static let defaultValue: PrintInfoType = .none
     
     case none
     case syntaxName
@@ -74,26 +80,16 @@ enum DocumentConflictOption: Int {
     case filePath
     case printDate
     case pageNumber
-    
-    
-    init(_ rawValue: Int?) {
-        
-        self = PrintInfoType(rawValue: rawValue ?? 0) ?? .none
-    }
 }
 
 
-@objc enum AlignmentType: Int {
+@objc enum AlignmentType: Int, DefaultInitializable {
+    
+    static let defaultValue: AlignmentType = .right
     
     case left
     case center
     case right
-    
-    
-    init(_ rawValue: Int?) {
-        
-        self = AlignmentType(rawValue: rawValue ?? 0) ?? .right
-    }
     
     
     var textAlignment: NSTextAlignment {

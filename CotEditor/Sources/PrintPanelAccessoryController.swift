@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -94,8 +94,8 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                 }
                 return defaults[.printTheme] ?? ThemeName.blackAndWhite
             }()
-            self.lineNumberMode = PrintLineNmuberMode(rawValue: defaults[.printLineNumIndex]) ?? .no
-            self.invisibleCharsMode = PrintInvisiblesMode(rawValue: defaults[.printInvisibleCharIndex]) ?? .no
+            self.lineNumberMode = PrintLineNmuberMode(defaults[.printLineNumIndex])
+            self.invisibleCharsMode = PrintInvisiblesMode(defaults[.printInvisibleCharIndex])
             
             self.printsHeader = defaults[.printHeader]
             self.primaryHeaderContent = PrintInfoType(defaults[.primaryHeaderContent])
@@ -238,7 +238,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var lineNumberMode: PrintLineNmuberMode {
         
         get {
-            return PrintLineNmuberMode(rawValue: (self.settingValue(forKey: .lineNumber) as? Int) ?? 0) ?? .no
+            return PrintLineNmuberMode(self.settingValue(forKey: .lineNumber) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .lineNumber)
@@ -250,7 +250,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     @objc dynamic var invisibleCharsMode: PrintInvisiblesMode {
         
         get {
-            return PrintInvisiblesMode(rawValue: (self.settingValue(forKey: .invisibles) as? Int) ?? 0) ?? .no
+            return PrintInvisiblesMode(self.settingValue(forKey: .invisibles) as? Int)
         }
         set {
             self.setSettingValue(newValue.rawValue, forKey: .invisibles)
