@@ -56,9 +56,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Private Properties
     
-    private lazy var acknowledgmentsWindowController: WebDocumentWindowController = {
-        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! WebDocumentWindowController
-        windowController.fileURL = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
+    private lazy var acknowledgmentsWindowController: NSWindowController = {
+        
+        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! NSWindowController
+        windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
         return windowController
     }()
     

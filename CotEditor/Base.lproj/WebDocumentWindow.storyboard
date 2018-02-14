@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="nh4-Et-dc3">
             <objects>
-                <windowController id="5Gs-pn-cY5" customClass="WebDocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="5Gs-pn-cY5" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="MlV-Mu-4n5">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-131" y="-145"/>
         </scene>
-        <!--View Controller-->
+        <!--Web Document View Controller-->
         <scene sceneID="FyM-fb-cdG">
             <objects>
-                <viewController id="iDU-pd-6ed" sceneMemberID="viewController">
+                <viewController id="iDU-pd-6ed" customClass="WebDocumentViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="IA1-Ab-Bg7">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>

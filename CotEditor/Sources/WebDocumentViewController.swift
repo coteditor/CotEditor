@@ -1,6 +1,6 @@
 /*
  
- WebDocumentWindowController.swift
+ WebDocumentViewController.swift
  
  CotEditor
  https://coteditor.com
@@ -28,37 +28,41 @@
 import Cocoa
 import WebKit
 
-final class WebDocumentWindowController: NSWindowController {
+final class WebDocumentViewController: NSViewController {
     
-    // MARK: Public Properties
+    // MARK: View Controller Methods
     
-    var fileURL: URL? {
+    override var representedObject: Any? {
+        
         didSet {
-            guard let url = self.fileURL else { return }
+            guard let url = self.representedObject as? URL else { return }
             
-            // send request
-            let request = URLRequest(url: url)
-            self.webView?.load(request)
+            self.webView?.loadFileURL(url, allowingReadAccessTo: url)
         }
     }
     
     
-    
-    // MARK: -
-    // MARK: Window Controller Methods
-    
     /// let webView load document file
-    override func windowDidLoad() {
+    override func viewDidLoad() {
         
-        super.windowDidLoad()
+        super.viewDidLoad()
         
-        self.window?.backgroundColor = .white
-        
-        // set webView programmically
-        let webView = WKWebView(frame: .zero)
-        self.window?.contentView = webView
+        // set webView programmatically
+        // -> WKWebView can be set in storyboard first on macOS 10.12
+        let webView = WKWebView(frame: self.view.frame)
+        self.view = webView
         webView.navigationDelegate = self
     }
+    
+    
+    /// set window background programmatically
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.view.window!.backgroundColor = .white
+    }
+    
     
     
     // MARK: Private Methods
@@ -66,14 +70,14 @@ final class WebDocumentWindowController: NSWindowController {
     /// content web view
     private var webView: WKWebView? {
         
-        return self.window?.contentView as? WKWebView
+        return self.view as? WKWebView
     }
 
 }
 
 
 
-extension WebDocumentWindowController: WKNavigationDelegate {
+extension WebDocumentViewController: WKNavigationDelegate {
     
     // MARK: Navigation Delegate
     
@@ -103,7 +107,7 @@ extension WebDocumentWindowController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
         if let title = webView.title {
-            self.window?.title = title
+            self.view.window?.title = title
         }
     }
     
@@ -115,7 +119,7 @@ extension WebDocumentWindowController: WKNavigationDelegate {
 
 private extension WKWebView {
     
-    /// apply user style sheet to current page
+    /// apply user style sheet to the current page
     func apply(styleSheet: String) {
         
         let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
