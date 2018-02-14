@@ -199,10 +199,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if NSAppleEventManager.shared().isOpenEvent {
             let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
             
-            return (behavior == .openPanel)
+            guard behavior == .openPanel else { return false }
         }
         
-        return true
+        return super.usesUbiquitousStorage
     }
     
     

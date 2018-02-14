@@ -5,6 +5,11 @@ Change Log
 unreleased
 --------------------------
 
+### Improvements
+
+- Display an open dialog on launch if so set even when iCloud storage is disabled.
+
+
 ### Fixes
 
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanase localization.
