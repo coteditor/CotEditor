@@ -547,6 +547,10 @@
 		2AE52F231D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
+		2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
+		2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
+		2AE73ECC2035223100D8903B /* Credits.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73ECA2035223100D8903B /* Credits.css */; };
+		2AE73ECD2035223100D8903B /* Credits.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73ECA2035223100D8903B /* Credits.css */; };
 		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
@@ -1163,6 +1167,8 @@
 		2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransformer.swift; sourceTree = "<group>"; };
 		2AE52F211D175A9400D60A32 /* SizeSettingWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SizeSettingWindowController.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
+		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
+		2AE73ECB2035223100D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Credits.css; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
@@ -1606,6 +1612,8 @@
 				2A80C65C1CEE33C100AA664D /* Credits.html */,
 				2A80C6661CEE540F00AA664D /* Acknowledgments.html */,
 				2A456C421A1EDCFC00395158 /* ReportTemplate.md */,
+				2AE73ECA2035223100D8903B /* Credits.css */,
+				2AE73EC6203520E000D8903B /* Acknowledgments.css */,
 				2A2179F51A07093B002C4AB1 /* SyntaxMap.json */,
 				2A3A758D19E77C84001DAB88 /* Syntaxes */,
 				2A7846DA18FE035E006BDF00 /* Themes */,
@@ -2279,6 +2287,7 @@
 				2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */,
 				2A5F7CA61D152589001D83BC /* EditorView.storyboard in Resources */,
 				2A5D13431D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
+				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
 				2A10D10B1E708CDF0027192A /* KeyBindingsPane.storyboard in Resources */,
 				2A6602DC1D05D7C8003E8D87 /* GoToLineView.xib in Resources */,
 				2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */,
@@ -2289,6 +2298,7 @@
 				2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */,
 				2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */,
 				2A6F0D611B5500E100C2D03C /* SizeSettingWindow.xib in Resources */,
+				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */,
 				2A10D1011E7088B00027192A /* WindowPane.storyboard in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
@@ -2364,9 +2374,11 @@
 				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
 				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
+				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
 				2A3A75A719E77E87001DAB88 /* SyntaxCompletionsEditView.xib in Resources */,
 				2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */,
+				2AE73ECC2035223100D8903B /* Credits.css in Resources */,
 				2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */,
 				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
 				2588E9CE07C4851C0060021D /* ProgressView.xib in Resources */,
@@ -3538,6 +3550,22 @@
 				57ED31571FFD892700F16CAD /* pt */,
 			);
 			name = CustomSurroundStringView.storyboard;
+			sourceTree = "<group>";
+		};
+		2AE73EC6203520E000D8903B /* Acknowledgments.css */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AE73EC7203520E000D8903B /* Base */,
+			);
+			name = Acknowledgments.css;
+			sourceTree = "<group>";
+		};
+		2AE73ECA2035223100D8903B /* Credits.css */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AE73ECB2035223100D8903B /* Base */,
+			);
+			name = Credits.css;
 			sourceTree = "<group>";
 		};
 		2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */ = {
