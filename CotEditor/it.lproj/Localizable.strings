@@ -131,8 +131,8 @@
 "Continue Saving" = "Continua il salvataggio";
 
 // Encoding change with unsaved changes alert
-"The file “%@” has unsaved changes." = "Il file “%@” ha delle modifiche non salvate.";
-"Do you want to discard the changes and reset the file encoding?" = "Si desidera annullare le modifiche e ripristinare la codifica del file?";
+"The document has unsaved changes." = "Il documento ha delle modifiche non salvate.";
+"Do you want to discard the changes and reopen the document using “%@”?" = "Si desidera annullare le modifiche e ripristinare la codifica del file?";  // %@ is an encoding name. FIXME: changed
 "Discard Changes" = "Annulla modifiche";
 
 // Reinterpretation failed alert

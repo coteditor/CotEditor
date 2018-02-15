@@ -850,7 +850,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func reinterpret(encoding: String.Encoding) throws {
         
         guard let fileURL = self.fileURL else {
-            self.readingEncoding = self.encoding
             throw ReinterpretationError(kind: .noFile, encoding: encoding)
         }
         
@@ -865,40 +864,30 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         } catch {
             self.readingEncoding = self.encoding
             
-            // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-            NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
-            
             throw ReinterpretationError(kind: .reinterpretationFailed(fileURL: fileURL), encoding: encoding)
         }
     }
     
     
-    /// change string encoding registering process to the undo manager
-    @discardableResult
-    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, askLossy: Bool, lossy: Bool) -> Bool {
+    /// change file encoding registering process to the undo manager
+    ///
+    /// `EncodingError` (Kind.lossyConversion) can be thorwn only if `lossy` flag is `true`.
+    func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
         
-        guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return true }
-        
-        let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
+        guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
         
         // check if conversion is lossy
-        if !self.string.canBeConverted(to: encoding) {
-            if askLossy {
-                let error = EncodingError(kind: .lossyEncodingConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
-                self.presentErrorAsSheetSafely(error)
-                return false
-                
-            } else if !lossy {
-                return false
-            }
+        guard lossy || self.string.canBeConverted(to: encoding) else {
+            throw EncodingError(kind: .lossyConversion, encoding: encoding, withUTF8BOM: withUTF8BOM, attempter: self)
         }
         
         // register undo
         if let undoManager = self.undoManager {
+            let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
             undoManager.registerUndo(withTarget: self) { [currentEncoding = self.encoding, currentHasUTF8BOM = self.hasUTF8BOM] target in
-                target.changeEncoding(to: currentEncoding, withUTF8BOM: currentHasUTF8BOM, askLossy: false, lossy: lossy)
+                try? target.changeEncoding(to: currentEncoding, withUTF8BOM: currentHasUTF8BOM, lossy: lossy)
             }
             undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
         }
@@ -913,13 +902,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update UI
         self.incompatibleCharacterScanner.scan()
         self.analyzer.invalidateModeInfo()
-        
-        return true
     }
     
     
     /// change line endings registering process to the undo manager
     func changeLineEnding(to lineEnding: LineEnding) {
+        
+        assert(Thread.isMainThread)
         
         guard lineEnding != self.lineEnding else { return }
         
@@ -1003,24 +992,34 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change document file encoding
     @IBAction func changeEncoding(_ sender: AnyObject?) {
         
-        guard
-            let tag = sender?.tag,
-            let encodingName = sender?.title else { return }
+        guard let tag = sender?.tag else { return }
         
         let encoding = String.Encoding(rawValue: UInt(abs(tag)))
         let withUTF8BOM = (tag == -Int(String.Encoding.utf8.rawValue))
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
         
+        let completionHandler = { [unowned self] (didChange: Bool) in
+            if !didChange {
+                // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+            }
+        }
+        
         // change encoding immediately if there is nothing to worry about
         if self.textStorage.string.isEmpty ||
             self.fileURL == nil ||
-            encoding == .utf8 && encoding == self.encoding {
-            self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+            (encoding == .utf8 && self.encoding == .utf8) {
+            do {
+                try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+            } catch {
+                self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
+            }
             return
         }
         
         // ask whether just change the encoding or reinterpret docuemnt file
+        let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
         let alert = NSAlert()
         alert.messageText = NSLocalizedString("File encoding", comment: "")
         alert.informativeText = String(format: NSLocalizedString("Do you want to convert or reinterpret this document using “%@”?", comment: ""), encodingName)
@@ -1032,14 +1031,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             switch returnCode {
             case .alertFirstButtonReturn:  // = Convert
-                self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, askLossy: true, lossy: false)
+                do {
+                    try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+                } catch {
+                    self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
+                }
                 
             case .alertSecondButtonReturn:  // = Reinterpret
                 // ask user if document is edited
-                if self.isDocumentEdited, let fileURL = self.fileURL {
+                if self.isDocumentEdited {
                     let alert = NSAlert()
-                    alert.messageText = String(format: NSLocalizedString("The file “%@” has unsaved changes.", comment: ""), fileURL.lastPathComponent)
-                    alert.informativeText = NSLocalizedString("Do you want to discard the changes and reset the file encoding?", comment: "")
+                    alert.messageText = NSLocalizedString("The document has unsaved changes.", comment: "")
+                    alert.informativeText = String(format: NSLocalizedString("Do you want to discard the changes and reopen the document using “%@”?", comment: ""), encodingName)
                     alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
                     alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
                     
@@ -1047,8 +1050,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                     
                     guard returnCode != .alertSecondButtonReturn else {  // = Cancel
-                        // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                        NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+                        completionHandler(false)
                         return
                     }
                 }
@@ -1058,12 +1060,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     try self.reinterpret(encoding: encoding)
                 } catch {
                     NSSound.beep()
-                    self.presentErrorAsSheetSafely(error)
+                    self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
                 }
                 
             case .alertThirdButtonReturn:  // = Cancel
-                // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+                completionHandler(false)
                 
             default: break
             }
@@ -1346,28 +1347,27 @@ private struct EncodingError: LocalizedError, RecoverableError {
     enum ErrorKind {
         case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
         case unconvertibleCharacters
-        case lossyEncodingConversion
+        case lossyConversion
     }
     
     let kind: ErrorKind
     let encoding: String.Encoding
     let withUTF8BOM: Bool
-    let attempter: Document  // attempter
+    let attempter: Document
     
     
     
     var errorDescription: String? {
         
+        let encodingName = String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
+        
         switch self.kind {
         case .ianaCharsetNameConflict(let ianaEncoding):
             return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
-                          self.encodingName, String.localizedName(of: ianaEncoding))
+                          encodingName, String.localizedName(of: ianaEncoding))
             
-        case .unconvertibleCharacters:
-            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
-            
-        case .lossyEncodingConversion:
-            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), self.encodingName)
+        case .unconvertibleCharacters, .lossyConversion:
+            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
         }
     }
     
@@ -1375,13 +1375,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .ianaCharsetNameConflict:
+        case .ianaCharsetNameConflict, .unconvertibleCharacters:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
             
-        case .unconvertibleCharacters:
-            return NSLocalizedString("Do you want to continue processing?", comment: "")
-            
-        case .lossyEncodingConversion:
+        case .lossyConversion:
             return NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'")
         }
     }
@@ -1399,7 +1396,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
             
-        case .lossyEncodingConversion:
+        case .lossyConversion:
             return [NSLocalizedString("Change Encoding", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
         }
@@ -1407,9 +1404,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
-        
-        let document = self.attempter
-        let windowContentController = document.windowControllers.first?.contentViewController as? WindowContentViewController
         
         switch self.kind {
         case .ianaCharsetNameConflict:
@@ -1419,51 +1413,43 @@ private struct EncodingError: LocalizedError, RecoverableError {
             case 1:  // == Cancel
                 return false
             default:
-                assertionFailure()
-                return false
+                preconditionFailure()
             }
             
         case .unconvertibleCharacters:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    windowContentController?.showSidebarPane(index: .incompatibleCharacters)
-                }
+                self.showIncompatibleCharacters()
                 return false
             case 1:  // == Save
                 return true
             case 2:  // == Cancel
                 return false
             default:
-                assertionFailure()
-                return false
+                preconditionFailure()
             }
             
-        case .lossyEncodingConversion:
-            assert(Thread.isMainThread)
-            
+        case .lossyConversion:
             switch recoveryOptionIndex {
             case 0:  // == Change Encoding
-                document.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, askLossy: false, lossy: true)
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    windowContentController?.showSidebarPane(index: .incompatibleCharacters)
-                }
+                try? self.attempter.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, lossy: true)
+                self.showIncompatibleCharacters()
                 return true
             case 1:  // == Cancel
-                // reset to force reverting toolbar selection
-                NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: document)
                 return false
             default:
-                assertionFailure()
-                return false
+                preconditionFailure()
             }
         }
     }
     
     
-    private var encodingName: String {
+    private func showIncompatibleCharacters() {
         
-        return String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
+        let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            windowContentController?.showSidebarPane(index: .incompatibleCharacters)
+        }
     }
     
 }

@@ -8,6 +8,8 @@ unreleased
 ### Improvements
 
 - Display an open dialog on launch if so set even when iCloud storage is disabled.
+- Refine dialog messages on text encoding update.
+
 
 
 ### Fixes

@@ -198,7 +198,7 @@ extension Document {
     // MARK: AppleScript Handler
     
     /// handle the Convert AppleScript by changing the text encoding and converting the text
-    @objc func handleConvert(_ command: NSScriptCommand) -> NSNumber {
+    @objc func handleConvert(_ command: NSScriptCommand) -> Bool {
         
         guard
             let arguments = command.evaluatedArguments,
@@ -211,12 +211,18 @@ extension Document {
         
         let lossy = (arguments["lossy"] as? Bool) ?? false
         
-        return self.changeEncoding(to: encoding, withUTF8BOM: false, askLossy: false, lossy: lossy) as NSNumber
+        do {
+            try self.changeEncoding(to: encoding, withUTF8BOM: false, lossy: lossy)
+        } catch {
+            return false
+        }
+        
+        return true
     }
     
     
     /// handle the Convert AppleScript by changing the text encoding and reinterpreting the text
-    @objc func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
+    @objc func handleReinterpret(_ command: NSScriptCommand) -> Bool {
         
         guard
             let arguments = command.evaluatedArguments,
