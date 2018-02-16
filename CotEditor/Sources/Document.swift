@@ -93,7 +93,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Private Properties
     
     private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
-    @IBOutlet private weak var savePanelAccessoryView: NSView?
+    private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: NSStoryboard.Name("SaveDocumentAccessory"), bundle: nil).instantiateInitialController() as! NSViewController
     
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var isExternalUpdateAlertShown = false
@@ -591,10 +591,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set accessory view
-        if self.savePanelAccessoryView == nil {
-            Bundle.main.loadNibNamed(NSNib.Name("SaveDocumentAccessory"), owner: self, topLevelObjects: nil)
-        }
-        savePanel.accessoryView = self.savePanelAccessoryView
+        self.savePanelAccessoryController.representedObject = self
+        savePanel.accessoryView = self.savePanelAccessoryController.view
         
         return super.prepareSavePanel(savePanel)
     }
