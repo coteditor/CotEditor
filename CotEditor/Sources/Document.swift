@@ -217,7 +217,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func canAsynchronouslyWrite(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) -> Bool {
         
         // -> Async-saving may cause an occasional crash. (2017-10 macOS 10.13 SDK)
-        return false
+        return UserDefaults.standard.bool(forKey: "enablesAsynchronousSaving")
     }
     
     
