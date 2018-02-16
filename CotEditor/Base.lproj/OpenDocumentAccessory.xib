@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="accessoryEncodingMenu" destination="oFH-0B-ozp" id="uFj-9r-2br"/>
                 <outlet property="openPanelAccessoryView" destination="c22-O7-iKe" id="eeT-Yj-FJ0"/>
-                <outlet property="showHiddenFilesCheckbox" destination="J1J-NI-48C" id="73K-Ds-xGe"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
