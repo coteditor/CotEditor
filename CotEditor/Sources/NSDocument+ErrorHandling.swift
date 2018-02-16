@@ -45,7 +45,7 @@ extension NSDocument {
     
     
     /// present an error alert as document modal sheet
-    private func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
+    func presentErrorAsSheet(_ error: Error, recoveryHandler: RecoveryHandler? = nil) {
         
         guard let window = self.windowForSheet else {
             let didRecover = self.presentError(error)

@@ -8,13 +8,14 @@ unreleased
 ### Improvements
 
 - Display an open dialog on launch if so set even when iCloud storage is disabled.
-- Refine dialog messages on text encoding update.
-
+- Improve stability on text encoding change
+- Refine dialog messages on text encoding change.
 
 
 ### Fixes
 
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanase localization.
+
 
 
 3.3.2 (229)

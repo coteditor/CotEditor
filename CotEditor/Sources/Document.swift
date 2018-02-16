@@ -999,74 +999,82 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
         
-        let completionHandler = { [unowned self] (didChange: Bool) in
-            if !didChange {
-                // reset toolbar selection for in case if the operation was invoked from the toolbar popup
-                NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+        // change encoding interactively
+        self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
+            
+            let completionHandler = { (didChange: Bool) in
+                if !didChange {
+                    // reset toolbar selection for in case if the operation was invoked from the toolbar popup
+                    NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
+                }
+                activityCompletionHandler()
             }
-        }
-        
-        // change encoding immediately if there is nothing to worry about
-        if self.textStorage.string.isEmpty ||
-            self.fileURL == nil ||
-            (encoding == .utf8 && self.encoding == .utf8) {
-            do {
-                try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
-            } catch {
-                self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
-            }
-            return
-        }
-        
-        // ask whether just change the encoding or reinterpret docuemnt file
-        let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
-        let alert = NSAlert()
-        alert.messageText = NSLocalizedString("File encoding", comment: "")
-        alert.informativeText = String(format: NSLocalizedString("Do you want to convert or reinterpret this document using “%@”?", comment: ""), encodingName)
-        alert.addButton(withTitle: NSLocalizedString("Convert", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Reinterpret", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-        
-        let documentWindow = self.windowForSheet!
-        alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
-            switch returnCode {
-            case .alertFirstButtonReturn:  // = Convert
+            
+            // change encoding immediately if there is nothing to worry about
+            if self.fileURL == nil ||
+                self.textStorage.string.isEmpty ||
+                (encoding == .utf8 && self.encoding == .utf8) {
                 do {
                     try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+                    completionHandler(true)
                 } catch {
-                    self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
+                    self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                 }
-                
-            case .alertSecondButtonReturn:  // = Reinterpret
-                // ask user if document is edited
-                if self.isDocumentEdited {
-                    let alert = NSAlert()
-                    alert.messageText = NSLocalizedString("The document has unsaved changes.", comment: "")
-                    alert.informativeText = String(format: NSLocalizedString("Do you want to discard the changes and reopen the document using “%@”?", comment: ""), encodingName)
-                    alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-                    alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
-                    
-                    documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
-                    let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
-                    
-                    guard returnCode != .alertSecondButtonReturn else {  // = Cancel
-                        completionHandler(false)
-                        return
+                return
+            }
+            
+            // ask whether just change the encoding or reinterpret docuemnt file
+            let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
+            let alert = NSAlert()
+            alert.messageText = NSLocalizedString("File encoding", comment: "")
+            alert.informativeText = String(format: NSLocalizedString("Do you want to convert or reinterpret this document using “%@”?", comment: ""), encodingName)
+            alert.addButton(withTitle: NSLocalizedString("Convert", comment: ""))
+            alert.addButton(withTitle: NSLocalizedString("Reinterpret", comment: ""))
+            alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
+            
+            let documentWindow = self.windowForSheet!
+            alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
+                switch returnCode {
+                case .alertFirstButtonReturn:  // = Convert
+                    do {
+                        try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+                        completionHandler(true)
+                    } catch {
+                        self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                     }
+                    
+                case .alertSecondButtonReturn:  // = Reinterpret
+                    // ask user if document is edited
+                    if self.isDocumentEdited {
+                        let alert = NSAlert()
+                        alert.messageText = NSLocalizedString("The document has unsaved changes.", comment: "")
+                        alert.informativeText = String(format: NSLocalizedString("Do you want to discard the changes and reopen the document using “%@”?", comment: ""), encodingName)
+                        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
+                        alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
+                        
+                        documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
+                        let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
+                        
+                        guard returnCode != .alertSecondButtonReturn else {  // = Cancel
+                            completionHandler(false)
+                            return
+                        }
+                    }
+                    
+                    // reinterpret
+                    do {
+                        try self.reinterpret(encoding: encoding)
+                        completionHandler(true)
+                    } catch {
+                        NSSound.beep()
+                        self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                    }
+                    
+                case .alertThirdButtonReturn:  // = Cancel
+                    completionHandler(false)
+                    
+                default: preconditionFailure()
                 }
-                
-                // reinterpret
-                do {
-                    try self.reinterpret(encoding: encoding)
-                } catch {
-                    NSSound.beep()
-                    self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
-                }
-                
-            case .alertThirdButtonReturn:  // = Cancel
-                completionHandler(false)
-                
-            default: break
             }
         }
     }
