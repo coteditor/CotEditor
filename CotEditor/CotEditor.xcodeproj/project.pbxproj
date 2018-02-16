@@ -338,6 +338,8 @@
 		2A836F811D572A5D0044E8EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A836F7E1D572A5D0044E8EC /* Main.storyboard */; };
 		2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
 		2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A83E2391BA1E65A0069CDFE /* libicucore.tbd */; };
+		2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
+		2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A86C47A20371DBE00B9357C /* FilePermissions.swift */; };
 		2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
 		2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A885E321D5C3A1B00288723 /* Comparable.swift */; };
 		2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
@@ -981,6 +983,7 @@
 		2A836F8A1D5734840044E8EC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		2A836F8B1D5734870044E8EC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		2A83E2391BA1E65A0069CDFE /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		2A86C47A20371DBE00B9357C /* FilePermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilePermissions.swift; sourceTree = "<group>"; };
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		2A88E7701E81A2C7000019C6 /* OrderedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
 		2A8961911DB76A3400E9E0EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
@@ -1761,6 +1764,7 @@
 				2A4682B11D2F6B580005410E /* FIleDropComposer.swift */,
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
+				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 			);
 			name = Models;
@@ -2569,6 +2573,7 @@
 				2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
+				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
@@ -2891,6 +2896,7 @@
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
+				2A86C47B20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,

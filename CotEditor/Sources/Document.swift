@@ -311,8 +311,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
             self.fileAttributes = attributes
-            let posixPermissions = (attributes[.posixPermissions] as? UInt16) ?? 0
-            self.isExecutable = (posixPermissions & S_IXUSR) != 0
+            let permissions = FilePermissions(mask: (attributes[.posixPermissions] as? UInt16) ?? 0)
+            self.isExecutable = permissions.user.contains(.execute)
         }
         
         // try reading the `com.apple.TextEncoding` extended attribute
