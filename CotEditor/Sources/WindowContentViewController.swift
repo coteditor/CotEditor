@@ -48,7 +48,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         //                to redraw line number view background by thickness increase
         self.view.wantsLayer = true
         
-        // set behavior to glow window size on sidebar toggling rather than opening sidebar indraw
+        // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
         self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         
         if UserDefaults.standard[.sidebarWidth] >= 100 {
@@ -195,6 +195,23 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             return !(self.sidebarViewItem?.isCollapsed ?? true)
         }
         set (shown) {
+            // close sidebar inward if it opened so (because of insufficient space to open outward)
+            let currentWidth = self.splitView.frame.width
+            NSAnimationContext.current.completionHandler = {
+                if shown {
+                    if self.splitView.frame.width == currentWidth {  // opened inward
+                        self.siblings.forEach {
+                            $0.sidebarViewItem?.collapseBehavior = .preferResizingSiblingsWithFixedSplitView
+                        }
+                    }
+                } else {
+                    // reset sidebar collapse behavior anyway
+                    self.siblings.forEach {
+                        $0.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
+                    }
+                }
+            }
+            
             // update current tab possibly with an animation
             self.sidebarViewItem?.isCollapsed = !shown
             
