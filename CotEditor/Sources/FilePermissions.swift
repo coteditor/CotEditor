@@ -42,8 +42,8 @@ struct FilePermissions {
         var humanReadable: String {
             
             return (self.contains(.read) ? "r" : "-") +
-                (self.contains(.write) ? "w" : "-") +
-                (self.contains(.execute) ? "x" : "-")
+                   (self.contains(.write) ? "w" : "-") +
+                   (self.contains(.execute) ? "x" : "-")
         }
     }
     
@@ -66,7 +66,7 @@ struct FilePermissions {
     }
     
     
-    /// human-readable permission expression like "-rwxr--r--"
+    /// human-readable permission expression like "rwxr--r--"
     var humanReadable: String {
         
         return self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
