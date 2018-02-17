@@ -14,6 +14,7 @@ unreleased
 
 ### Fixes
 
+- Fix an issue where key binding setting field sometimes ignored user input.
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanase localization.
 
 
