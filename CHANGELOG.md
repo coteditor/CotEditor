@@ -11,6 +11,7 @@ unreleased
 - Improve stability on text encoding change.
 - Refine dialog messages on text encoding change.
 - [trivial] Hide insertion point in shortcut input fields in Key Binding pane.
+- [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asyncronous saving.
 
 
 ### Fixes
