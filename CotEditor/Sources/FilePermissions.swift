@@ -69,7 +69,7 @@ struct FilePermissions {
     /// human-readable permission expression like "-rwxr--r--"
     var humanReadable: String {
         
-        return "-" + self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
+        return self.user.humanReadable + self.group.humanReadable + self.others.humanReadable
     }
     
 }

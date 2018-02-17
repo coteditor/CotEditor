@@ -1913,19 +1913,10 @@
 			name = "Document Accessories";
 			sourceTree = "<group>";
 		};
-		2ABFF6D51D02853E00BE2795 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				2A7135821CFFDC6600ADA555 /* FormattersTests.swift */,
-			);
-			name = Utils;
-			sourceTree = "<group>";
-		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				2ACC65301C9802D4000574DC /* Models */,
-				2ABFF6D51D02853E00BE2795 /* Utils */,
 				2ACC652F1C9802CB000574DC /* Extensions */,
 				2ACC65331C98055E000574DC /* Resources */,
 			);
@@ -1972,6 +1963,7 @@
 				2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */,
 				2AED46721E43942300751C45 /* TextFindTests.swift */,
 				2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */,
+				2A7135821CFFDC6600ADA555 /* FormattersTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";

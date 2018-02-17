@@ -38,7 +38,7 @@ final class FilePermissionsFormatter: Formatter {
         
         let permissions = FilePermissions(mask: mask)
         
-        return String(format: "%lo (%@)", mask, permissions.humanReadable)
+        return String(format: "%lo (-%@)", mask, permissions.humanReadable)
     }
     
     

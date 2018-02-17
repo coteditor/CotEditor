@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ class FormattersTests: XCTestCase {
         XCTAssertEqual(FilePermissions(mask: 0o777).mask, 0o777)
         XCTAssertEqual(FilePermissions(mask: 0o643).mask, 0o643)
         
-        XCTAssertEqual(FilePermissions(mask: 0o777).humanReadable, "-rwxrwxrwx")
-        XCTAssertEqual(FilePermissions(mask: 0o643).humanReadable, "-rw-r---wx")
+        XCTAssertEqual(FilePermissions(mask: 0o777).humanReadable, "rwxrwxrwx")
+        XCTAssertEqual(FilePermissions(mask: 0o643).humanReadable, "rw-r---wx")
     }
     
 
