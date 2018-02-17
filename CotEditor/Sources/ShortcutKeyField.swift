@@ -44,6 +44,9 @@ final class ShortcutKeyField: NSTextField {
         
         guard super.becomeFirstResponder() else { return false }
         
+        // hide insertion point
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .textBackgroundColor
+        
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] (event: NSEvent) -> NSEvent? in
             
             guard
@@ -89,6 +92,9 @@ final class ShortcutKeyField: NSTextField {
     
     /// end editing
     override func textDidEndEditing(_ notification: Notification) {
+        
+        // restore insertion point
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .controlTextColor
         
         // end monitoring key down event
         if let monitor = self.keyDownMonitor {

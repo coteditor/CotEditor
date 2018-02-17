@@ -8,8 +8,9 @@ unreleased
 ### Improvements
 
 - Display an open dialog on launch if so set even when iCloud storage is disabled.
-- Improve stability on text encoding change
+- Improve stability on text encoding change.
 - Refine dialog messages on text encoding change.
+- [trivial] Hide insertion point in shortcut input fields in Key Binding pane.
 
 
 ### Fixes
