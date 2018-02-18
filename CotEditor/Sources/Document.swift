@@ -524,8 +524,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
+        // -> According to the reference, the default implementation returns
+        //    a directory either empty or only with .extensionHidden. (2018-02 macOS 10.13 SDK)
+        assert(attributes.isEmpty || Array(attributes.keys) == [FileAttributeKey.extensionHidden.rawValue])
+        
         // set extended file attributes
-        var extendedAttributes: [String: Any] = (attributes[FileAttributeKey.extendedAttributes.rawValue] as? [String: Any]) ?? [:]
+        var extendedAttributes: [String: Any] = [:]
         // save encoding to the extended file attributes (com.apple.TextEncoding)
         if saveOperation == .autosaveElsewhereOperation || self.shouldSaveXattr {
             extendedAttributes[FileExtendedAttributeName.encoding] = self.encoding.xattrEncodingData
@@ -534,22 +538,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if UserDefaults.standard[.savesTextOrientation] {
             extendedAttributes[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
         }
-        if attributes[FileAttributeKey.extendedAttributes.rawValue] != nil || !extendedAttributes.isEmpty {
+        if !extendedAttributes.isEmpty {
             attributes[FileAttributeKey.extendedAttributes.rawValue] = extendedAttributes
         }
         
         // give the execute permission if user requested
-        if self.isExecutable, saveOperation != .autosaveElsewhereOperation {
-            var permissions = (attributes[FileAttributeKey.posixPermissions.rawValue] as? UInt16) ?? 0
-            if let originalURL = absoluteOriginalContentsURL, permissions == 0 {
-                let coordinator = NSFileCoordinator(filePresenter: self)
-                coordinator.coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
-                    permissions = ((try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16) ?? 0
+        if self.isExecutable, (saveOperation == .saveOperation || saveOperation == .saveAsOperation) {
+            var filePermissions: UInt16?
+            if let originalURL = absoluteOriginalContentsURL {
+                NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
+                    filePermissions = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16
                 }
             }
-            if permissions == 0 {
-                permissions = 0o644  // ???: Is the default permission really always 644?
-            }
+            var permissions: UInt16 = filePermissions ?? 0o644  // ???: Is the default permission really always 644?
             permissions |= S_IXUSR
             attributes[FileAttributeKey.posixPermissions.rawValue] = permissions
         }
