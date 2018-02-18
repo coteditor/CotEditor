@@ -25,7 +25,7 @@
  
  */
 
-import AppKit
+import Foundation
 
 enum NoDocumentOnLaunchBehavior: Int {
     
@@ -90,17 +90,4 @@ enum DocumentConflictOption: Int {
     case left
     case center
     case right
-    
-    
-    var textAlignment: NSTextAlignment {
-        
-        switch self {
-        case .left:
-            return .left
-        case .center:
-            return .center
-        case .right:
-            return .right
-        }
-    }
 }

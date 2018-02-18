@@ -504,3 +504,20 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
 }
+
+
+
+private extension AlignmentType {
+    
+    var textAlignment: NSTextAlignment {
+        
+        switch self {
+        case .left:
+            return .left
+        case .center:
+            return .center
+        case .right:
+            return .right
+        }
+    }
+}
