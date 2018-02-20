@@ -13,6 +13,7 @@ unreleased
 - Change sidebar behavior to close inward when it was opened inward because of insufficient space.
 - [trivial] Hide insertion point in shortcut input fields in Key Binding pane.
 - [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asyncronous saving.
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
