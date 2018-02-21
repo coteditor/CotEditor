@@ -482,6 +482,7 @@ final class EditorTextView: NSTextView, Themable {
         let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
         
         self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.scrollRangeToVisible(range)
     }
     
     
@@ -492,6 +493,7 @@ final class EditorTextView: NSTextView, Themable {
             .union(self.selectedRange)
         
         self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.scrollRangeToVisible(range)
     }
     
     
@@ -639,7 +641,6 @@ final class EditorTextView: NSTextView, Themable {
         
         // scroll line by line if an arrow key is pressed
         if NSEvent.modifierFlags.contains(.numericPad),
-            !NSEvent.modifierFlags.contains(.command),  // Command + Arrow is scroll to the end of contents
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
