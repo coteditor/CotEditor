@@ -7,6 +7,7 @@ unreleased
 
 ### Improvements
 
+- Change behavior of  `⌘←` so that the cursor moves first to the column right after indentation and then to the beggining of the line.
 - Display an open dialog on launch if so set even when iCloud storage is disabled.
 - Improve stability on text encoding change.
 - Refine dialog messages on text encoding change.

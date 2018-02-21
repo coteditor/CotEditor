@@ -553,6 +553,8 @@
 		2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
 		2AE73ECC2035223100D8903B /* Credits.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73ECA2035223100D8903B /* Credits.css */; };
 		2AE73ECD2035223100D8903B /* Credits.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73ECA2035223100D8903B /* Credits.css */; };
+		2AE73F40203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */; };
+		2AE73F41203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */; };
 		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
@@ -1173,6 +1175,7 @@
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
 		2AE73ECB2035223100D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Credits.css; sourceTree = "<group>"; };
+		2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+Range.swift"; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
@@ -1518,6 +1521,7 @@
 				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
 				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
+				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -2619,6 +2623,7 @@
 				2AAD61F11D2B0856008FE772 /* String+Range.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AF073EC1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
+				2AE73F41203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
 				2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
 				2A12C8001D1843B50069C60B /* SeparatorTextFieldCell.swift in Sources */,
 				2AB9B4691ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */,
@@ -2932,6 +2937,7 @@
 				2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
+				2AE73F40203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,

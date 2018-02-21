@@ -476,6 +476,25 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// move cursor to the beggining of the current visual line (⌘←)
+    override func moveToBeginningOfLine(_ sender: Any?) {
+        
+        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
+        
+        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+    }
+    
+    
+    /// expand selection to the beggining of the current visual line (⇧⌘←)
+    override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
+        
+        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
+            .union(self.selectedRange)
+        
+        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+    }
+    
+    
     /// customize context menu
     override func menu(for event: NSEvent) -> NSMenu? {
         
@@ -1177,6 +1196,29 @@ final class EditorTextView: NSTextView, Themable {
         self.enabledTextCheckingTypes = currentCheckingType
         
         self.undoManager?.enableUndoRegistration()
+    }
+    
+    
+    /// location of the beggining of the current visual line considering indent
+    private func locationOfBeginningOfLine() -> Int {
+        
+        let string = self.string as NSString
+        let currentLocation = self.selectedRange.location
+        let lineRange = string.lineRange(for: self.selectedRange)
+        
+        if let layoutManager = self.layoutManager {
+            // beggining of current visual line
+            let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
+            
+            if lineRange.location < visualLineLocation {
+                return visualLineLocation
+            }
+        }
+        
+        // column just after indent of paragraph line
+        let indentLocation = string.range(of: "^[\t ]*", options: .regularExpression, range: lineRange).upperBound
+        
+        return (indentLocation < currentLocation) ? indentLocation : lineRange.location
     }
     
     
