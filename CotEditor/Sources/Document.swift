@@ -499,6 +499,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
+    /// write file metadata to the new file (invoked in file saving proccess)
+    override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {
+        
+        // [caution] This method may be called from a background thread due to async-saving.
+        
+        // store current state here, since the main thread will already be unblocked after `data(ofType:)`
+        let encoding = self.encoding
+        let isVerticalText = self.isVerticalText
+        
+        try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
+        
+        // save document state to the extended file attributes
+        if self.shouldSaveXattr {
+            try url.setExtendedAttribute(data: encoding.xattrEncodingData,
+                                         for: FileExtendedAttributeName.encoding)
+        }
+        if UserDefaults.standard[.savesTextOrientation] {
+            try url.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil,
+                                         for: FileExtendedAttributeName.verticalText)
+        }
+    }
+    
+    
     /// write new data to file (invoked in file saving proccess)
     override func write(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws {
         
@@ -532,21 +555,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // -> According to the reference, the default implementation returns
         //    a directory either empty or only with .extensionHidden. (2018-02 macOS 10.13 SDK)
         assert(attributes.isEmpty || Array(attributes.keys) == [FileAttributeKey.extensionHidden.rawValue])
-        
-        // set extended file attributes
-        var extendedAttributes: [String: Data] = [:]
-        // save encoding to the extended file attributes (com.apple.TextEncoding)
-        if self.shouldSaveXattr {
-            extendedAttributes[FileExtendedAttributeName.encoding] = self.encoding.xattrEncodingData
-        }
-        // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
-        if UserDefaults.standard[.savesTextOrientation],
-            (self.isVerticalText || (self.fileAttributes?[.extendedAttributes] as? [String: Any])?[FileExtendedAttributeName.verticalText] != nil) {
-            extendedAttributes[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data(bytes: [1]) : Data()
-        }
-        if !extendedAttributes.isEmpty {
-            attributes[FileAttributeKey.extendedAttributes.rawValue] = extendedAttributes
-        }
         
         // give the execute permission if user requested
         if self.isExecutable, (saveOperation == .saveOperation || saveOperation == .saveAsOperation) {
