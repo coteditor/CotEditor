@@ -836,6 +836,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    
     // MARK: Protocol
     
     /// apply current state to related menu items and toolbar items
@@ -1200,29 +1201,6 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// location of the beggining of the current visual line considering indent
-    private func locationOfBeginningOfLine() -> Int {
-        
-        let string = self.string as NSString
-        let currentLocation = self.selectedRange.location
-        let lineRange = string.lineRange(for: self.selectedRange)
-        
-        if let layoutManager = self.layoutManager {
-            // beggining of current visual line
-            let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
-            
-            if lineRange.location < visualLineLocation {
-                return visualLineLocation
-            }
-        }
-        
-        // column just after indent of paragraph line
-        let indentLocation = string.range(of: "^[\t ]*", options: .regularExpression, range: lineRange).upperBound
-        
-        return (indentLocation < currentLocation) ? indentLocation : lineRange.location
-    }
-    
-    
     /// insert string representation of dropped files applying user setting
     private func insertDroppedFiles(_ urls: [URL]) -> Bool {
         
@@ -1294,6 +1272,29 @@ private extension NSTextView {
         guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
         
         return self.string.unicodeScalars[safe: index]
+    }
+    
+    
+    /// location of the beggining of the current visual line considering indent
+    func locationOfBeginningOfLine() -> Int {
+        
+        let string = self.string as NSString
+        let currentLocation = self.selectedRange.location
+        let lineRange = string.lineRange(for: self.selectedRange)
+        
+        if let layoutManager = self.layoutManager {
+            // beggining of current visual line
+            let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
+            
+            if lineRange.location < visualLineLocation {
+                return visualLineLocation
+            }
+        }
+        
+        // column just after indent of paragraph line
+        let indentLocation = string.range(of: "^[\t ]*", options: .regularExpression, range: lineRange).upperBound
+        
+        return (indentLocation < currentLocation) ? indentLocation : lineRange.location
     }
     
 }
