@@ -724,8 +724,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         var didChange = false
         var fileModificationDate: Date?
-        let coordinator = NSFileCoordinator(filePresenter: self)
-        coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [unowned self] (newURL) in  // FILE_READ
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [unowned self] (newURL) in  // FILE_READ
             // ignore if file's modificationDate is the same as document's modificationDate
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
             guard fileModificationDate != self.fileModificationDate else { return }
