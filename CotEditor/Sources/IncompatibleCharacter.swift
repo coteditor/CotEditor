@@ -69,10 +69,12 @@ extension String {
     /// list-up characters cannot be converted to the passed-in encoding
     func scanIncompatibleCharacters(for encoding: String.Encoding) -> [IncompatibleCharacter]? {
         
-        guard
-            let data = self.data(using: encoding, allowLossyConversion: true),
-            let convertedString = String(data: data, encoding: encoding),
-            convertedString.count == self.count else { return nil }
+        guard !self.canBeConverted(to: encoding) else { return [] }
+        
+        let data = self.data(using: encoding, allowLossyConversion: true)!  // lossy conversion must success
+        let convertedString = String(data: data, encoding: encoding)!
+        
+        guard convertedString.count == self.count else { return nil }
         
         return zip(self.indices, zip(self, convertedString))
             .filter { $1.0 != $1.1 }
