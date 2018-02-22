@@ -529,14 +529,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(attributes.isEmpty || Array(attributes.keys) == [FileAttributeKey.extensionHidden.rawValue])
         
         // set extended file attributes
-        var extendedAttributes: [String: Any] = [:]
+        var extendedAttributes: [String: Data] = [:]
         // save encoding to the extended file attributes (com.apple.TextEncoding)
         if self.shouldSaveXattr {
             extendedAttributes[FileExtendedAttributeName.encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
         if UserDefaults.standard[.savesTextOrientation] {
-            extendedAttributes[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data(bytes: [1]) : nil
+            extendedAttributes[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data(bytes: [1]) : Data()
         }
         if !extendedAttributes.isEmpty {
             attributes[FileAttributeKey.extendedAttributes.rawValue] = extendedAttributes
