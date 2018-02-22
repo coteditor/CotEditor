@@ -53,6 +53,8 @@
 "as9-us-CuG.title" = "スペース";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "書類を開くときにインデントスタイルを自動判定";
+/* Class = "NSButtonCell"; title = "Indent selection with tab key"; ObjectID = "aVn-PD-hen"; */
+"aVn-PD-hen.title" = "タブキーで選択範囲をインデント";
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */

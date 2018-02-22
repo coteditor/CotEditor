@@ -92,6 +92,7 @@ struct DefaultSettings {
         .tabWidth: 4,
         .autoExpandTab: false,
         .detectsIndentStyle: true,
+        .indentWithTabKey: false,
         .wrapLines: true,
         .enablesHangingIndent: true,
         .hangingIndentWidth: 0,

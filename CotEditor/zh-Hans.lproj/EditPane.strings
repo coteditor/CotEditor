@@ -54,6 +54,8 @@
 "as9-us-CuG.title" = "个空格缩进";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "在打开文档时检测缩进格式";
+/* Class = "NSButtonCell"; title = "Indent selection with tab key"; ObjectID = "aVn-PD-hen"; */
+"aVn-PD-hen.title" = "Indent selection with tab key";  // FIXME: added
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
