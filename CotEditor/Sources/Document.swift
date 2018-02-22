@@ -301,7 +301,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let data = try Data(contentsOf: url)  // FILE_READ
         let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-        let extendedAttributes = attributes[.extendedAttributes] as? [String: Any]
+        let extendedAttributes = attributes[.extendedAttributes] as? [String: Data]
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = data
@@ -316,12 +316,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // try reading the `com.apple.TextEncoding` extended attribute
-        let xattrEncoding = (extendedAttributes?[FileExtendedAttributeName.encoding] as? Data)?.decodingXattrEncoding
+        let xattrEncoding = extendedAttributes?[FileExtendedAttributeName.encoding]?.decodingXattrEncoding
         self.shouldSaveXattr = (xattrEncoding != nil)
         
         // check file metadata for text orientation
+        // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
         if UserDefaults.standard[.savesTextOrientation], (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
-            // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
             self.isVerticalText = true
         }
         
