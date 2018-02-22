@@ -527,7 +527,7 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if (self.string as NSString?)?.substring(with: self.selectedRange).numberOfComposedCharacters == 1 {
+        if (self.string as NSString).substring(with: self.selectedRange).numberOfComposedCharacters == 1 {
             menu.insertItem(withTitle: NSLocalizedString("Inspect Character", comment: ""),
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
@@ -868,8 +868,8 @@ final class EditorTextView: NSTextView, Themable {
             return self.selectedRange.length > 0
             
         case #selector(showSelectionInfo):
-            let selection = (self.string as NSString?)?.substring(with: self.selectedRange)
-            return selection?.numberOfComposedCharacters == 1
+            let selection = (self.string as NSString).substring(with: self.selectedRange)
+            return selection.numberOfComposedCharacters == 1
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {
@@ -1087,7 +1087,7 @@ final class EditorTextView: NSTextView, Themable {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
-        guard var selectedString = (self.string as NSString?)?.substring(with: self.selectedRange) else { return }
+        var selectedString = (self.string as NSString).substring(with: self.selectedRange)
         
         // apply document's line ending
         if let documentLineEnding = self.documentLineEnding,
@@ -1119,6 +1119,16 @@ final class EditorTextView: NSTextView, Themable {
         
         // redraw visible area
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+    }
+    
+    
+    /// visible rect did change
+    @objc private func didChangeVisibleRect(_ notification: Notification) {
+        
+        if !self.drawsBackground {
+            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
     }
     
     
@@ -1255,68 +1265,8 @@ final class EditorTextView: NSTextView, Themable {
         return true
     }
     
-    
-    /// visible rect did change
-    @objc private func didChangeVisibleRect(_ notification: Notification) {
-        
-        if !self.drawsBackground {
-            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-        }
-    }
-    
 }
 
-
-
-private extension NSTextView {
-    
-    /// character just before the insertion or 0
-    var characterBeforeInsertion: UnicodeScalar? {
-        
-        let location = self.selectedRange.location - 1
-        
-        guard location >= 0 else { return nil }
-        
-        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
-        
-        return self.string.unicodeScalars[safe: index]
-    }
-    
-    
-    /// character just after the insertion
-    var characterAfterInsertion: UnicodeScalar? {
-        
-        let location = self.selectedRange.upperBound
-        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
-        
-        return self.string.unicodeScalars[safe: index]
-    }
-    
-    
-    /// location of the beggining of the current visual line considering indent
-    func locationOfBeginningOfLine() -> Int {
-        
-        let string = self.string as NSString
-        let currentLocation = self.selectedRange.location
-        let lineRange = string.lineRange(for: self.selectedRange)
-        
-        if let layoutManager = self.layoutManager {
-            // beggining of current visual line
-            let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
-            
-            if lineRange.location < visualLineLocation {
-                return visualLineLocation
-            }
-        }
-        
-        // column just after indent of paragraph line
-        let indentLocation = string.range(of: "^[\t ]*", options: .regularExpression, range: lineRange).upperBound
-        
-        return (indentLocation < currentLocation) ? indentLocation : lineRange.location
-    }
-    
-}
 
 
 
@@ -1412,7 +1362,7 @@ extension EditorTextView {
     // MARK: Private Methods
     
     /// display word completion list
-    fileprivate func performCompletion() {
+    private func performCompletion() {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
