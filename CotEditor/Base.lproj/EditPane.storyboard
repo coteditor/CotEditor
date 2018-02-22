@@ -332,8 +332,8 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q35-Kk-wlB">
-                                <rect key="frame" x="115" y="303" width="196" height="18"/>
-                                <buttonCell key="cell" type="check" title="Indent selection with tab key" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aVn-PD-hen">
+                                <rect key="frame" x="115" y="303" width="198" height="18"/>
+                                <buttonCell key="cell" type="check" title="Indent selection with Tab key" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aVn-PD-hen">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
