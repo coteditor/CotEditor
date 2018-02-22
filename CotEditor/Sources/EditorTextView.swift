@@ -368,6 +368,12 @@ final class EditorTextView: NSTextView, Themable {
     /// insert tab & expand tab
     override func insertTab(_ sender: Any?) {
         
+        // indent with tab key
+        if UserDefaults.standard[.indentWithTabKey], self.selectedRange.length > 0 {
+            self.indent()
+            return
+        }
+        
         if self.isAutomaticTabExpansionEnabled {
             let tabWidth = self.tabWidth
             let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
@@ -378,6 +384,19 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         super.insertTab(sender)
+    }
+    
+    
+    /// shift + tab is pressed
+    override func insertBacktab(_ sender: Any?) {
+        
+        // outdent with tab key
+        if UserDefaults.standard[.indentWithTabKey], self.selectedRange.length > 0 {
+            self.outdent()
+            return
+        }
+        
+        return super.insertBacktab(sender)
     }
     
     

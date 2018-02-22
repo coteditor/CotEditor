@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="6FT-QA-TTg" customClass="EditPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="4sX-tH-txQ" userLabel="Edit Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="513"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="535"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="D3Q-hS-szA">
-                                <rect key="frame" x="115" y="431" width="156" height="18"/>
+                                <rect key="frame" x="115" y="453" width="156" height="18"/>
                                 <buttonCell key="cell" type="check" title="Swap “¥” and “\” keys" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3303">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Dj-HL-UJe">
-                                <rect key="frame" x="115" y="453" width="317" height="18"/>
+                                <rect key="frame" x="115" y="475" width="317" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatically insert closing brackets and quotes" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="GRh-V2-hmW">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqq-MP-8Cp">
-                                <rect key="frame" x="115" y="475" width="129" height="18"/>
+                                <rect key="frame" x="115" y="497" width="129" height="18"/>
                                 <buttonCell key="cell" type="check" title="Smart copy/paste" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3302">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -53,23 +53,15 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7o-7Q-Iec">
-                                <rect key="frame" x="30" y="476" width="81" height="17"/>
+                                <rect key="frame" x="30" y="498" width="81" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Substitution:" usesSingleLineMode="YES" id="SqI-BC-ar9">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCw-Sh-dDO">
-                                <rect key="frame" x="34" y="373" width="77" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Indentation:" usesSingleLineMode="YES" id="9bX-ei-1x8">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6o6-2H-ikQ">
-                                <rect key="frame" x="115" y="327" width="84" height="17"/>
+                                <rect key="frame" x="115" y="349" width="84" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Indent width:" usesSingleLineMode="YES" id="3287">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -77,7 +69,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-m9-FvG">
-                                <rect key="frame" x="205" y="324" width="40" height="22"/>
+                                <rect key="frame" x="205" y="346" width="40" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="2EE-jD-d5t"/>
                                 </constraints>
@@ -98,7 +90,7 @@
                                 </connections>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BfR-6w-bx7">
-                                <rect key="frame" x="115" y="350" width="160" height="18"/>
+                                <rect key="frame" x="115" y="372" width="160" height="18"/>
                                 <buttonCell key="cell" type="check" title="Expand tabs to spaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3283">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -108,14 +100,14 @@
                                 </connections>
                             </button>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fr0-Ug-Vp1">
-                                <rect key="frame" x="246" y="321" width="19" height="27"/>
+                                <rect key="frame" x="246" y="343" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="W2Q-vb-HQ5"/>
                                 <connections>
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.tabWidth" id="gzU-DM-P9h"/>
                                 </connections>
                             </stepper>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jwj-BA-jAE">
-                                <rect key="frame" x="115" y="372" width="125" height="18"/>
+                                <rect key="frame" x="115" y="394" width="125" height="18"/>
                                 <buttonCell key="cell" type="check" title="Automatic indent" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3285">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -186,7 +178,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DhT-LT-Lve">
-                                <rect key="frame" x="264" y="327" width="47" height="17"/>
+                                <rect key="frame" x="264" y="349" width="47" height="17"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="spaces" usesSingleLineMode="YES" id="as9-us-CuG">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -253,7 +245,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LUh-bR-BEp">
-                                <rect key="frame" x="115" y="303" width="273" height="18"/>
+                                <rect key="frame" x="115" y="325" width="273" height="18"/>
                                 <buttonCell key="cell" type="check" title="Detect indent style on document opening" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Cte-hW-0M3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -263,7 +255,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vs4-ce-gbZ">
-                                <rect key="frame" x="115" y="408" width="41" height="17"/>
+                                <rect key="frame" x="115" y="430" width="41" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Smart" id="6I3-dM-2QV">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -281,7 +273,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N1n-gE-ApS">
-                                <rect key="frame" x="230" y="407" width="67" height="18"/>
+                                <rect key="frame" x="230" y="429" width="67" height="18"/>
                                 <buttonCell key="cell" type="check" title="Dashes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="nr1-0X-aBY">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -291,7 +283,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a9Q-Qg-ppv">
-                                <rect key="frame" x="160" y="407" width="66" height="18"/>
+                                <rect key="frame" x="160" y="429" width="66" height="18"/>
                                 <buttonCell key="cell" type="check" title="Quotes" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Abx-fM-gyc">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -339,6 +331,24 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.commentsAtLineHead" id="tB3-eh-9R4"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="q35-Kk-wlB">
+                                <rect key="frame" x="115" y="303" width="196" height="18"/>
+                                <buttonCell key="cell" type="check" title="Indent selection with tab key" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aVn-PD-hen">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <connections>
+                                        <binding destination="TDG-Hm-YNe" name="value" keyPath="values.indentWithTabKey" id="jiQ-8A-P0W"/>
+                                    </connections>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PCw-Sh-dDO">
+                                <rect key="frame" x="34" y="395" width="77" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Indentation:" usesSingleLineMode="YES" id="9bX-ei-1x8">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="X2i-kL-uLT" firstAttribute="leading" secondItem="nqq-MP-8Cp" secondAttribute="leading" id="31s-ng-kiu"/>
@@ -378,10 +388,11 @@
                             <constraint firstItem="EiF-pk-Dua" firstAttribute="leading" secondItem="4sX-tH-txQ" secondAttribute="leading" priority="750" constant="20" symbolic="YES" id="Qz0-yv-pWC"/>
                             <constraint firstItem="LUh-bR-BEp" firstAttribute="top" secondItem="6o6-2H-ikQ" secondAttribute="bottom" constant="8" id="ROh-ro-AP5"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="D3Q-hS-szA" secondAttribute="trailing" constant="20" symbolic="YES" id="RP5-e5-GhT"/>
+                            <constraint firstItem="d0U-hp-rcZ" firstAttribute="top" secondItem="q35-Kk-wlB" secondAttribute="bottom" constant="20" id="RzV-f2-GXV"/>
                             <constraint firstItem="EiF-pk-Dua" firstAttribute="baseline" secondItem="d0U-hp-rcZ" secondAttribute="baseline" id="ScD-02-YLx"/>
-                            <constraint firstItem="d0U-hp-rcZ" firstAttribute="top" secondItem="LUh-bR-BEp" secondAttribute="bottom" constant="20" id="SjY-xb-7XI"/>
                             <constraint firstItem="DcM-VC-C52" firstAttribute="leading" secondItem="nqq-MP-8Cp" secondAttribute="leading" id="T85-i9-ap4"/>
                             <constraint firstItem="wCX-eB-XQx" firstAttribute="leading" secondItem="nqq-MP-8Cp" secondAttribute="leading" id="TH3-BM-VXj"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="q35-Kk-wlB" secondAttribute="trailing" constant="20" symbolic="YES" id="TNr-Gw-YTV"/>
                             <constraint firstItem="t2q-cV-mtM" firstAttribute="baseline" secondItem="I2h-Jb-whg" secondAttribute="baseline" id="Tds-cG-TXl"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jwj-BA-jAE" secondAttribute="trailing" constant="20" symbolic="YES" id="TvJ-6i-Oqn"/>
                             <constraint firstItem="Ks6-yt-k9q" firstAttribute="top" secondItem="DcX-sg-7bi" secondAttribute="bottom" constant="5" id="Tw1-i9-iSr"/>
@@ -402,12 +413,14 @@
                             <constraint firstItem="X2i-kL-uLT" firstAttribute="leading" secondItem="8WW-uf-bLm" secondAttribute="trailing" constant="8" symbolic="YES" id="fAi-bn-3Gx"/>
                             <constraint firstItem="Jwj-BA-jAE" firstAttribute="leading" secondItem="PCw-Sh-dDO" secondAttribute="trailing" constant="8" symbolic="YES" id="fIv-Za-rlA"/>
                             <constraint firstAttribute="trailing" secondItem="DcX-sg-7bi" secondAttribute="trailing" constant="20" symbolic="YES" id="g7s-w1-2h6"/>
+                            <constraint firstItem="q35-Kk-wlB" firstAttribute="leading" secondItem="PCw-Sh-dDO" secondAttribute="trailing" constant="8" symbolic="YES" id="gEZ-xD-I2R"/>
                             <constraint firstItem="fr0-Ug-Vp1" firstAttribute="leading" secondItem="J5U-m9-FvG" secondAttribute="trailing" constant="4" id="hs8-wO-0LS"/>
                             <constraint firstItem="8I5-Lh-Ofn" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4sX-tH-txQ" secondAttribute="leading" constant="20" symbolic="YES" id="i8X-JG-gbn"/>
                             <constraint firstItem="t2q-cV-mtM" firstAttribute="baseline" secondItem="LOl-E4-tE2" secondAttribute="baseline" id="iSk-jv-u9q"/>
                             <constraint firstItem="8WW-uf-bLm" firstAttribute="baseline" secondItem="X2i-kL-uLT" secondAttribute="baseline" id="iUi-6y-00V"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DcM-VC-C52" secondAttribute="trailing" constant="20" symbolic="YES" id="iik-PB-mFJ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="X2i-kL-uLT" secondAttribute="trailing" constant="20" symbolic="YES" id="irB-7n-e3C"/>
+                            <constraint firstItem="q35-Kk-wlB" firstAttribute="top" secondItem="LUh-bR-BEp" secondAttribute="bottom" constant="8" id="jTy-tn-8Ff"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="LOl-E4-tE2" secondAttribute="trailing" constant="20" symbolic="YES" id="kCy-zY-lBn"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N1n-gE-ApS" secondAttribute="trailing" constant="20" symbolic="YES" id="m5l-Vi-ZtF"/>
                             <constraint firstItem="a9Q-Qg-ppv" firstAttribute="baseline" secondItem="Vs4-ce-gbZ" secondAttribute="baseline" id="mu3-4Y-md4"/>

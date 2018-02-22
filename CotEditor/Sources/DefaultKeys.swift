@@ -94,6 +94,7 @@ extension DefaultKeys {
     static let tabWidth = DefaultKey<Int>("tabWidth")
     static let autoExpandTab = DefaultKey<Bool>("autoExpandTab")
     static let detectsIndentStyle = DefaultKey<Bool>("detectsIndentStyle")
+    static let indentWithTabKey = DefaultKey<Bool>("indentWithTabKey")
     static let wrapLines = DefaultKey<Bool>("wrapLines")
     static let enablesHangingIndent = DefaultKey<Bool>("enableHangingIndent")
     static let hangingIndentWidth = DefaultKey<Int>("hangingIndentWidth")

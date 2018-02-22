@@ -5,6 +5,11 @@ Change Log
 unreleased
 --------------------------
 
+### New Features
+
+- Add an option “Indent with tab key” to the Edit pane in pereferences.
+
+
 ### Improvements
 
 - Change behavior of  `⌘←` so that the cursor moves first to the column right after indentation and then to the beggining of the line.
