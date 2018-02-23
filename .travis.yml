@@ -4,7 +4,7 @@ language: objective-c
 osx_image: xcode9.2
 
 before_install:
-  - gem install xcpretty-travis-formatter
+  - gem install xcpretty
 
 script:
   set -o pipefail &&
@@ -14,4 +14,4 @@ script:
   -scheme CotEditor
   CODE_SIGN_IDENTITY=""
   CODE_SIGNING_REQUIRED=NO
-  | xcpretty -f `xcpretty-travis-formatter`
+  | xcpretty
