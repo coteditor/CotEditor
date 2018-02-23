@@ -7,7 +7,7 @@ unreleased
 
 ### New Features
 
-- Add an option “Indent with tab key” to the Edit pane in pereferences.
+- Add an option “Indent with Tab key” to the Edit pane in pereferences.
 
 
 ### Improvements
