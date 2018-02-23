@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ final class IncompatibleCharacterTests: XCTestCase {
         
         let string = "abc\\ \n ¥ \n ~"
         let encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
-        let incompatibles = string.scanIncompatibleCharacters(for: encoding)!
+        let incompatibles = string.scanIncompatibleCharacters(for: encoding)
         
         XCTAssertEqual(incompatibles.count, 2)
         
@@ -52,6 +52,25 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(tilde.convertedCharacter, "?")
         XCTAssertEqual(tilde.location, 11)
         XCTAssertEqual(tilde.lineNumber, 3)
+    }
+    
+    
+    func testIncompatibleCharacterScanUsingDiff() {
+        
+        let string = "family 👨‍👨‍👦 with 🐕"
+        let incompatibles = string.scanIncompatibleCharacters(for: .japaneseEUC)
+        
+        XCTAssertEqual(incompatibles.count, 2)
+        
+        XCTAssertEqual(incompatibles[0].character, "👨‍👨‍👦")
+        XCTAssertEqual(incompatibles[0].convertedCharacter, "????????")
+        XCTAssertEqual(incompatibles[0].location, 7)
+        XCTAssertEqual(incompatibles[0].lineNumber, 1)
+        
+        XCTAssertEqual(incompatibles[1].character, "🐕")
+        XCTAssertEqual(incompatibles[1].convertedCharacter, "??")
+        XCTAssertEqual(incompatibles[1].location, 21)
+        XCTAssertEqual(incompatibles[1].lineNumber, 1)
     }
 
 }
