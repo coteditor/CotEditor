@@ -437,6 +437,12 @@
 		2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
 		2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
 		2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
+		2AAC7490203FA2D200D91832 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; };
+		2AAC7491203FA2D200D91832 /* Differ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2AAC7492203FA2E200D91832 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; };
+		2AAC7493203FA2E200D91832 /* Differ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2AAC7495203FA37500D91832 /* Differ.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2AAC7494203FA35100D91832 /* Differ.framework.dSYM */; };
+		2AAC7496203FA38300D91832 /* Differ.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2AAC7494203FA35100D91832 /* Differ.framework.dSYM */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
@@ -664,6 +670,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
+				2AAC7495203FA37500D91832 /* Differ.framework.dSYM in Copy dSYM Files */,
 				2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 				2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */,
 			);
@@ -677,6 +684,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */,
+				2AAC7491203FA2D200D91832 /* Differ.framework in Embed Frameworks */,
 				2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */,
 				2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */,
 			);
@@ -690,6 +698,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2ACD68281D6B0F7300496B47 /* ColorCode.framework in Embed Frameworks */,
+				2AAC7493203FA2E200D91832 /* Differ.framework in Embed Frameworks */,
 				2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -702,6 +711,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				2ACD682D1D6B0F9400496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
+				2AAC7496203FA38300D91832 /* Differ.framework.dSYM in Copy dSYM Files */,
 				2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 			);
 			name = "Copy dSYM Files";
@@ -1058,6 +1068,8 @@
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
+		2AAC748F203FA2D100D91832 /* Differ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differ.framework; path = ../Carthage/Build/Mac/Differ.framework; sourceTree = "<group>"; };
+		2AAC7494203FA35100D91832 /* Differ.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Differ.framework.dSYM; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
@@ -1107,9 +1119,9 @@
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
 		2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMetaDataViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
-		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = ColorCode.framework.dSYM; path = ../Carthage/Build/Mac/ColorCode.framework.dSYM; sourceTree = "<group>"; };
-		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = YAML.framework.dSYM; path = ../Carthage/Build/Mac/YAML.framework.dSYM; sourceTree = "<group>"; };
-		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Sparkle.framework.dSYM; path = ../Carthage/Build/Mac/Sparkle.framework.dSYM; sourceTree = "<group>"; };
+		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ColorCode.framework.dSYM; sourceTree = "<group>"; };
+		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = YAML.framework.dSYM; sourceTree = "<group>"; };
+		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotImageView.swift; sourceTree = "<group>"; };
 		2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineMenuButtonCell.swift; sourceTree = "<group>"; };
@@ -1262,6 +1274,7 @@
 			files = (
 				2A83E23A1BA1E65A0069CDFE /* libicucore.tbd in Frameworks */,
 				2ACD68271D6B0F7300496B47 /* ColorCode.framework in Frameworks */,
+				2AAC7492203FA2E200D91832 /* Differ.framework in Frameworks */,
 				2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1272,6 +1285,7 @@
 			files = (
 				2A83E23B1BA1E6750069CDFE /* libicucore.tbd in Frameworks */,
 				2ACD68201D6B0F0100496B47 /* ColorCode.framework in Frameworks */,
+				2AAC7490203FA2D200D91832 /* Differ.framework in Frameworks */,
 				2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */,
 				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
 			);
@@ -1990,10 +2004,12 @@
 			isa = PBXGroup;
 			children = (
 				2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */,
+				2AAC7494203FA35100D91832 /* Differ.framework.dSYM */,
 				2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */,
 				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
 			);
 			name = dSYM;
+			path = ../Carthage/Build/Mac;
 			sourceTree = "<group>";
 		};
 		2ACFE5891D205CE90005233A /* View Controllers */ = {
@@ -2085,6 +2101,7 @@
 			children = (
 				2ACD681F1D6B0E5C00496B47 /* dSYM */,
 				2A4810391D4D1ADF00F7D34C /* ColorCode.framework */,
+				2AAC748F203FA2D100D91832 /* Differ.framework */,
 				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
 				2A9246F01FCD20EF008DBC30 /* XPC */,
@@ -3677,6 +3694,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "Info-AppStore.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -3690,6 +3708,7 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "Info-AppStore.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -3743,6 +3762,7 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
@@ -3755,6 +3775,7 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
