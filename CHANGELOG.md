@@ -19,6 +19,7 @@ unreleased
 - Change sidebar behavior to close inward when it was opened inward because of insufficient space.
 - Avoid requiring high power GPU use.
 - [trivial] Hide insertion point in shortcut input fields in Key Binding pane.
+- [trivial] Set spoken name of CotEditor.
 - [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asyncronous saving.
 - [non-AppStore ver.] Update Sparkle framework.
 
