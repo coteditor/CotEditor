@@ -535,7 +535,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             extendedAttributes[FileExtendedAttributeName.encoding] = self.encoding.xattrEncodingData
         }
         // save text orientation state to the extended file attributes (com.coteditor.VerticalText)
-        if UserDefaults.standard[.savesTextOrientation] {
+        if UserDefaults.standard[.savesTextOrientation],
+            (self.isVerticalText || (self.fileAttributes?[.extendedAttributes] as? [String: Any])?[FileExtendedAttributeName.verticalText] != nil) {
             extendedAttributes[FileExtendedAttributeName.verticalText] = self.isVerticalText ? Data(bytes: [1]) : Data()
         }
         if !extendedAttributes.isEmpty {
