@@ -7,29 +7,29 @@ unreleased
 
 ### New Features
 
-- Add an option “Indent with Tab key” to the Edit pane in pereferences.
+- Add an option “Indent with Tab key” to the Edit pane in preferences.
 
 
 ### Improvements
 
-- Change behavior of  `⌘←` so that the cursor moves first to the column right after indentation and then to the beggining of the line.
+- Change the behavior of  `⌘←` so that the cursor moves first to the column right after indentation and then to the beginning of the line.
 - Display an open dialog on launch if so set even when iCloud storage is disabled.
 - Improve stability on text encoding change.
 - Refine dialog messages on text encoding change.
 - Change sidebar behavior to close inward when it was opened inward because of insufficient space.
 - Avoid requiring high power GPU use.
-- [trivial] Hide insertion point in shortcut input fields in Key Binding pane.
-- [trivial] Set spoken name of CotEditor.
-- [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asyncronous saving.
+- [trivial] Hide insertion point in shortcut input fields in the Key Binding pane.
+- [trivial] Set a spoken name of CotEditor.
+- [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asynchronous saving.
 - [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
 
 - Fix a long-standing issue where incompatible characters could not be detected when the length of converted document text is changed.
-- Fix an issue where key binding setting field sometimes ignored user input.
-- FIx an issue where document files did not forget vertical orienation state when once set before.
-- Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanase localization.
+- Fix an issue where key-binding setting field sometimes ignored user input.
+- FIx an issue where document files did not forget vertical orientation state when once set before.
+- Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanese localization.
 
 
 
