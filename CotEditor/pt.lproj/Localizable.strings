@@ -132,7 +132,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "O documento tem alterações não salvas.";
-"Do you want to discard the changes and reopen the document using “%@”?" = "Deseja descartar as alterações e redefinir a codificação do arquivo?";  // %@ is an encoding name. FIXME: changed
+"Do you want to discard the changes and reopen the document using “%@”?" = "Deseja descartar as alterações e usar “%@” para reabrir o documento?";  // %@ is an encoding name.
 "Discard Changes" = "Descartar Alterações";
 
 // Reinterpretation failed alert
