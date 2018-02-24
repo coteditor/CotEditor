@@ -131,8 +131,8 @@
 "Continue Saving" = "Continuar Salvamento";
 
 // Encoding change with unsaved changes alert
-"The file “%@” has unsaved changes." = "O arquivo “%@” tem alterações não salvas.";
-"Do you want to discard the changes and reset the file encoding?" = "Deseja descartar as alterações e redefinir a codificação do arquivo?";
+"The document has unsaved changes." = "O documento tem alterações não salvas.";
+"Do you want to discard the changes and reopen the document using “%@”?" = "Deseja descartar as alterações e usar “%@” para reabrir o documento?";
 "Discard Changes" = "Descartar Alterações";
 
 // Reinterpretation failed alert
