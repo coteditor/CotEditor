@@ -101,6 +101,9 @@ final class DocumentController: NSDocumentController {
             
             assert(Thread.isMainThread)
             
+            // invalidate encoding that was set in the open panel
+            self.accessorySelectedEncoding = nil
+            
             if let transientDocument = transientDocument, let document = document as? Document {
                 self.replaceTransientDocument(transientDocument, with: document)
                 if displayDocument {
@@ -168,9 +171,6 @@ final class DocumentController: NSDocumentController {
         let document = try super.makeDocument(withContentsOf: url, ofType: typeName)
         
         (document as? AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
-        
-        // invalidate encoding that was set in the open panel
-        self.accessorySelectedEncoding = nil
         
         return document
     }
