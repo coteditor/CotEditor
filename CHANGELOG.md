@@ -28,7 +28,7 @@ unreleased
 
 - Fix a long-standing issue where incompatible characters could not be detected when the length of converted document text is changed.
 - Fix an issue where key-binding setting field sometimes ignored user input.
-- FIx an issue where document files did not forget vertical orientation state when once set before.
+- Fix an issue where document files did not forget vertical orientation state when once set before.
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanese localization.
 
 
