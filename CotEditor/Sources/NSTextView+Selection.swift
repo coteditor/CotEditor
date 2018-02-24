@@ -43,7 +43,8 @@ extension NSTextView {
     /// character just after the insertion
     var characterAfterInsertion: UnicodeScalar? {
         
-        let location = self.selectedRange.upperBound
+        let location = self.selectedRange.location
+        
         guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
         
         return self.string.unicodeScalars[safe: index]
@@ -61,8 +62,16 @@ extension NSTextView {
             // beginning of current visual line
             let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
             
-            if lineRange.location < visualLineLocation {
+            if currentLocation < visualLineLocation, lineRange.location < visualLineLocation {
                 return visualLineLocation
+            }
+            
+            if currentLocation > 0 {
+                // beginning of last visual line
+                let lastVisualLineLocation = layoutManager.lineFragmentRange(at: currentLocation - 1).location
+                if lineRange.location < lastVisualLineLocation {
+                    return lastVisualLineLocation
+                }
             }
         }
         
