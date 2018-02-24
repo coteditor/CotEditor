@@ -519,22 +519,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try url.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil,
                                          for: FileExtendedAttributeName.verticalText)
         }
-    }
-    
-    
-    /// write new data to file (invoked in file saving proccess)
-    override func write(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, originalContentsURL absoluteOriginalContentsURL: URL?) throws {
-        
-        // [caution] This method may be called from a background thread due to async-saving.
-        
-        // store current state here, since the main thread will already be unblocked after `data(ofType:)`
-        let encoding = self.encoding
-        
-        try super.write(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         if saveOperation != .autosaveElsewhereOperation {
             // get the latest file attributes
-            self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
+            self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             self.fileData = self.lastSavedData
@@ -552,21 +540,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
-        // -> According to the reference, the default implementation returns
-        //    a directory either empty or only with .extensionHidden. (2018-02 macOS 10.13 SDK)
-        assert(attributes.isEmpty || Array(attributes.keys) == [FileAttributeKey.extensionHidden.rawValue])
-        
         // give the execute permission if user requested
         if self.isExecutable, (saveOperation == .saveOperation || saveOperation == .saveAsOperation) {
-            var filePermissions: UInt16?
-            if let originalURL = absoluteOriginalContentsURL {
-                NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: originalURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
-                    filePermissions = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.posixPermissions] as? UInt16
-                }
-            }
-            var permissions: UInt16 = filePermissions ?? 0o644  // ???: Is the default permission really always 644?
-            permissions |= S_IXUSR
-            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions
+            let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
+            attributes[FileAttributeKey.posixPermissions.rawValue] = permissions | S_IXUSR
         }
         
         return attributes
