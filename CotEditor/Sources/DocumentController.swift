@@ -259,15 +259,6 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Action Messages
     
-    /// open open panel by showing hidden files
-    @IBAction func openHiddenDocument(_ sender: Any?) {
-        
-        self.openPanelAccessoryController.showsHiddenFiles = true
-        
-        self.openDocument(sender)
-    }
-    
-    
     /// open a new document as new window
     @available(macOS 10.12, *)
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
