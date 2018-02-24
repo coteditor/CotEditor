@@ -104,6 +104,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var suppressesIANACharsetConflictAlert = false
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
+    private var lastSavedData: Data?  // temporal data used only within saving process
+    
     
     
     // MARK: -
@@ -404,6 +406,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             data = data.addingUTF8BOM
         }
         
+        // keep to swap later with `fileData`, but only when succeed
+        self.lastSavedData = data
+        
         return data
     }
     
@@ -509,9 +514,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
-            if let data = try? Data(contentsOf: url) {  // FILE_READ
-                self.fileData = data
-            }
+            self.fileData = self.lastSavedData
             
             // store file encoding for revert
             self.readingEncoding = encoding
