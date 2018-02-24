@@ -126,10 +126,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.syntaxStyle.textStorage = self.textStorage
         self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
         
-        // set encoding to read file
-        // -> The value is either user setting or selection of open panel.
-        // -> This must be set before `readFromData:ofType:error:` is called.
-        self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding
+        // use the encoding user selected in open panel, if exists
+        if let accessorySelectedEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding {
+            self.readingEncoding = accessorySelectedEncoding
+        } else {
+            self.readingEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInOpen])
+        }
         
         super.init()
         
