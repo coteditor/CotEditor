@@ -288,7 +288,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
                                                                       includingPropertiesForKeys: [.fileResourceTypeKey],
-                                                                      options: [.skipsPackageDescendants, .skipsHiddenFiles])
+                                                                      options: [.skipsHiddenFiles])
             .sorted(by: { $0.lastPathComponent < $1.lastPathComponent })
             else { return }
         
