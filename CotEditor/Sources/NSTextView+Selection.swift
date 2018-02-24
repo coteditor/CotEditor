@@ -50,7 +50,7 @@ extension NSTextView {
     }
     
     
-    /// location of the beggining of the current visual line considering indent
+    /// location of the beginning of the current visual line considering indent
     func locationOfBeginningOfLine() -> Int {
         
         let string = self.string as NSString
@@ -58,7 +58,7 @@ extension NSTextView {
         let lineRange = string.lineRange(for: self.selectedRange)
         
         if let layoutManager = self.layoutManager {
-            // beggining of current visual line
+            // beginning of current visual line
             let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
             
             if lineRange.location < visualLineLocation {

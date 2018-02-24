@@ -495,7 +495,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// move cursor to the beggining of the current visual line (⌘←)
+    /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
         let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
@@ -505,7 +505,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// expand selection to the beggining of the current visual line (⇧⌘←)
+    /// expand selection to the beginning of the current visual line (⇧⌘←)
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
