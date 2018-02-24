@@ -27,25 +27,18 @@ import Cocoa
 
 final class OpenPanelAccessoryController: NSViewController {
     
+    weak var openPanel: NSOpenPanel?  // keep open panel for hidden file visivility toggle
+    
+    
     // MARK: Private Properties
     
     @IBOutlet private weak var encodingMenu: NSPopUpButton?
     
-    @objc private dynamic var showsHiddenFiles = false
     @objc private dynamic var _selectedEncoding: UInt = 0
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.openPanel?.unbind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)))
-        self.openPanel?.unbind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)))
-    }
-    
-    
-    
     // MARK: ViewController Methods
     
     override func viewDidLoad() {
@@ -71,16 +64,16 @@ final class OpenPanelAccessoryController: NSViewController {
     }
     
     
-    /// keep open panel for hidden file visivility toggle
-    weak var openPanel: NSOpenPanel? {
+    
+    // MARK: Action Messags
+    
+    /// toggle visivility of hidden files
+    @IBAction func toggleShowsHidenFiles(_ sender: NSButton) {
         
-        didSet {
-            guard let openPanel = self.openPanel else { return }
-            
-            // -> bind showsHiddenFiles flag with openPanel
-            openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-            openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-        }
+        let showsHiddenFiles = (sender.integerValue == 1)
+        
+        self.openPanel?.showsHiddenFiles = showsHiddenFiles
+        self.openPanel?.treatsFilePackagesAsDirectories = showsHiddenFiles
     }
     
     

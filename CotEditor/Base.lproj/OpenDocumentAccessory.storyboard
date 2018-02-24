@@ -35,12 +35,12 @@
                             </popUpButton>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="ODB-Ry-beC">
                                 <rect key="frame" x="87" y="8" width="129" height="18"/>
-                                <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qkm-VD-lQC">
+                                <buttonCell key="cell" type="check" title="Show hidden files" bezelStyle="regularSquare" imagePosition="left" inset="2" id="qkm-VD-lQC">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="vOM-aK-O2P" name="value" keyPath="showsHiddenFiles" id="3PX-xE-gPg"/>
+                                    <action selector="toggleShowsHidenFiles:" target="vOM-aK-O2P" id="mMa-7D-VwO"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lFu-5f-V7p">
