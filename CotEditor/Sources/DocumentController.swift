@@ -47,8 +47,6 @@ final class DocumentController: NSDocumentController {
     private let transientDocumentLock = NSLock()
     private var deferredDocuments = [NSDocument]()
     
-    private lazy var openPanelAccessoryController: OpenPanelAccessoryController = NSStoryboard(name: NSStoryboard.Name("OpenDocumentAccessory"), bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
-    
     
     
     // MARK: -
@@ -196,10 +194,11 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
+        let accessoryController = NSStoryboard(name: NSStoryboard.Name("OpenDocumentAccessory"), bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
+        
         // initialize encoding menu and set the accessory view
-        let accessoryController = self.openPanelAccessoryController
+        accessoryController.openPanel = openPanel
         openPanel.accessoryView = accessoryController.view
-        accessoryController.prepare(openPanel: openPanel)
         
         // force accessory view visible
         openPanel.isAccessoryViewDisclosed = true
@@ -210,8 +209,6 @@ final class DocumentController: NSDocumentController {
             if result == NSApplication.ModalResponse.OK.rawValue {
                 self.accessorySelectedEncoding = accessoryController.selectedEncoding
             }
-            
-            accessoryController.tearDown()
             
             completionHandler(result)
         }

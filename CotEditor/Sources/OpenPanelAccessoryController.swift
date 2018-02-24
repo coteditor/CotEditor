@@ -27,24 +27,39 @@ import Cocoa
 
 final class OpenPanelAccessoryController: NSViewController {
     
-    @objc dynamic var showsHiddenFiles = false  // binding
-    
-    
     // MARK: Private Properties
-    
-    private weak var openPanel: NSOpenPanel?
     
     @IBOutlet private weak var encodingMenu: NSPopUpButton?
     
+    @objc private dynamic var showsHiddenFiles = false
     @objc private dynamic var _selectedEncoding: UInt = 0
     
     
     
-    
     // MARK: -
+    // MARK: Lifecycle
+    
+    deinit {
+        self.openPanel?.unbind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)))
+        self.openPanel?.unbind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)))
+    }
+    
+    
+    
+    // MARK: ViewController Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.buildEncodingPopupButton()
+    }
+    
+    
+    
     // MARK: Public Methods
     
-    /// String.Encoding accessor for encoding user selected in open panel
+    /// encoding selected by user
     var selectedEncoding: String.Encoding {
         
         get {
@@ -56,37 +71,23 @@ final class OpenPanelAccessoryController: NSViewController {
     }
     
     
-    func prepare(openPanel: NSOpenPanel) {
+    /// keep open panel for hidden file visivility toggle
+    weak var openPanel: NSOpenPanel? {
         
-        self.buildEncodingPopupButton()
-        
-        openPanel.accessoryView = self.view
-        self.openPanel = openPanel
-        
-        // set visibility of hidden files in the panel
-        openPanel.showsHiddenFiles = self.showsHiddenFiles
-        openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
-        
-        // -> bind showsHiddenFiles flag with openPanel
-        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-    }
-    
-    
-    func tearDown() {
-        
-        self.showsHiddenFiles = false  // reset flag
-        
-        self.openPanel?.unbind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)))
-        self.openPanel?.unbind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)))
+        didSet {
+            guard let openPanel = self.openPanel else { return }
+            
+            // -> bind showsHiddenFiles flag with openPanel
+            openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+            openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
+        }
     }
     
     
     
     // MARK: Private Methods
     
-    
-    /// update encoding menu in the open panel
+    /// update encoding menu
     func buildEncodingPopupButton() {
         
         let menu = self.encodingMenu!.menu!
