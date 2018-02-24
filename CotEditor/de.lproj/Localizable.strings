@@ -130,8 +130,8 @@
 "Continue Saving" = "Speicherung fortsetzen";
 
 // Encoding change with unsaved changes alert
-"The file “%@” has unsaved changes." = "Die Datei „%@“ hat ungespeicherte Änderungen.";
-"Do you want to discard the changes and reset the file encoding?" = "Möchtest du die Änderungen verwerfen und die Dateicodierung zurücksetzen?";
+"The document has unsaved changes." = "Das Dokument hat ungespeicherte Änderungen.";
+"Do you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen verwerfen und das Dokument mithilfe der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretation failed alert

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2016 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -44,10 +44,15 @@ final class ShortcutKeyField: NSTextField {
         
         guard super.becomeFirstResponder() else { return false }
         
+        // hide insertion point
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .textBackgroundColor
+        
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] (event: NSEvent) -> NSEvent? in
             
-            guard var charsIgnoringModifiers = event.charactersIgnoringModifiers else { return event }
-            guard !charsIgnoringModifiers.isEmpty else { return event }
+            guard
+                var charsIgnoringModifiers = event.charactersIgnoringModifiers,
+                !charsIgnoringModifiers.isEmpty
+                else { return event }
             
             var modifierMask = event.modifierFlags
             
@@ -64,7 +69,7 @@ final class ShortcutKeyField: NSTextField {
             
             // remove unwanted Shift
             let ignoringShiftSet = CharacterSet(charactersIn: "`~!@#$%^&()_{}|\":<>?=/*-+.'")
-            if ignoringShiftSet.contains(charsIgnoringModifiers.unicodeScalars.first!) && modifierMask.contains(.shift) {
+            if ignoringShiftSet.contains(charsIgnoringModifiers.unicodeScalars.first!), modifierMask.contains(.shift) {
                 modifierMask.remove(.shift)
             }
             
@@ -87,6 +92,9 @@ final class ShortcutKeyField: NSTextField {
     
     /// end editing
     override func textDidEndEditing(_ notification: Notification) {
+        
+        // restore insertion point
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .controlTextColor
         
         // end monitoring key down event
         if let monitor = self.keyDownMonitor {

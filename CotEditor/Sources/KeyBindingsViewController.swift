@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     // MARK: Private Properties
     
-    private var outlineTree: [NSTreeNode] = [NSTreeNode]()
+    private var outlineTree: [NSTreeNode] = []
     @objc private dynamic var warningMessage: String?  // for binding
     @objc private dynamic var isRestoreble: Bool = false  // for binding
     
@@ -179,15 +179,15 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         // reset once warning
         self.warningMessage = nil
         
-        defer {
-            // reset text field display
-            textField.objectValue = oldShortcut?.description
-        }
-        
-        // treat esc key as cancel
-        guard input != "\u{1b}" else { return }  // = ESC key
-        
-        guard input != item.shortcut?.description else { return }  // not edited
+        // cancel input
+        guard
+            input != "\u{1b}",  // = ESC key  -> treat esc key as cancel
+            input != item.shortcut?.description  // not edited
+            else {
+                // reset text field display
+                textField.objectValue = oldShortcut?.description
+                return
+            }
         
         let shortcut = Shortcut(keySpecChars: input)
         
@@ -203,11 +203,15 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             DispatchQueue.main.async {
                 outlineView.editColumn(column, row: row, with: nil, select: true)
             }
+            // reset text field display
+            textField.objectValue = oldShortcut?.description
             return
+            
         } catch { assertionFailure("Caught unknown error.") }
         
         // successfully update data
         item.shortcut = shortcut
+        textField.objectValue = shortcut.description
         self.saveSettings()
         self.outlineView?.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
     }

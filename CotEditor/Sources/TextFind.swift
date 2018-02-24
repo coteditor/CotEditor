@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -221,8 +221,8 @@ final class TextFind {
             
             var matches = [matchedRange]
             
-            if let match = match {
-                matches += stride(from: 1, through: numberOfGroups, by: 1).map { match.range(at: $0) }
+            if let match = match, numberOfGroups > 0 {
+                matches += (1...numberOfGroups).map { match.range(at: $0) }
             }
             
             block(matches, &stop)
@@ -304,7 +304,7 @@ final class TextFind {
     /// unescape given string for replacement string only if needed
     private func replacementString(from string: String) -> String {
         
-        guard self.settings.usesRegularExpression && self.settings.unescapesReplacementString else {
+        guard self.settings.usesRegularExpression, self.settings.unescapesReplacementString else {
             return string
         }
         

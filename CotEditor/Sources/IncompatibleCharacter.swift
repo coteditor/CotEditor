@@ -27,19 +27,20 @@
  */
 
 import Foundation
+import Differ
 
 final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArrayController
     
     @objc let character: String
-    @objc let convertedCharacter: String
+    @objc let convertedCharacter: String?
     @objc let location: Int
     @objc let lineNumber: Int
     
     
-    required init(character: Character, convertedCharacter: Character, location: Int, lineNumber: Int) {
+    required init(character: Character, convertedCharacter: String?, location: Int, lineNumber: Int) {
         
         self.character = String(character)
-        self.convertedCharacter = String(convertedCharacter)
+        self.convertedCharacter = convertedCharacter
         self.location = location
         self.lineNumber = lineNumber
         
@@ -67,37 +68,50 @@ final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArra
 extension String {
     
     /// list-up characters cannot be converted to the passed-in encoding
-    func scanIncompatibleCharacters(for encoding: String.Encoding) -> [IncompatibleCharacter]? {
+    func scanIncompatibleCharacters(for encoding: String.Encoding) -> [IncompatibleCharacter] {
         
-        guard
-            let data = self.data(using: encoding, allowLossyConversion: true),
-            let convertedString = String(data: data, encoding: encoding),
-            convertedString.count == self.count else { return nil }
+        guard !self.canBeConverted(to: encoding) else { return [] }
         
-        // list-up characters to be converted/deleted
-        var incompatibles = [IncompatibleCharacter]()
-        let isInvalidYenEncoding = encoding.canConvertYenSign
+        let data = self.data(using: encoding, allowLossyConversion: true)!  // lossy conversion must success
+        let convertedString = String(data: data, encoding: encoding)!
         
-        for (index, (character, convertedCharacter)) in zip(self, convertedString).enumerated() {
-            
-            guard character != convertedCharacter else { continue }
-            
-            let sanitizedConvertedCharacter: Character = {
-                if isInvalidYenEncoding && character == "¥" {
-                    return "\\"
+        guard convertedString.count == self.count else {
+            // detect incompatible chars using Differ
+            return self.diff(convertedString)
+                .flatMap { (element) -> Int? in
+                    switch element {
+                    case .delete(at: let offset): return offset
+                    case .insert: return nil
+                    }
                 }
-                return convertedCharacter
-            }()
-            
-            let characterIndex = self.index(self.startIndex, offsetBy: index).samePosition(in: self.utf16)
-            let location = characterIndex!.encodedOffset
-            
-            incompatibles.append(IncompatibleCharacter(character: character,
-                                                       convertedCharacter: sanitizedConvertedCharacter,
-                                                       location: location,
-                                                       lineNumber: self.lineNumber(at: location)))
+                .map { (offset) in
+                    let index = self.index(self.startIndex, offsetBy: offset)
+                    let location = index.samePosition(in: self.utf16)!.encodedOffset
+                    let character = self[index]
+                    let converted: String? = {
+                        guard let data = String(character).data(using: encoding, allowLossyConversion: true) else { return nil }
+                        
+                        return String(data: data, encoding: encoding)
+                    }()
+                    
+                    return IncompatibleCharacter(character: character,
+                                                 convertedCharacter: converted,
+                                                 location: location,
+                                                 lineNumber: self.lineNumber(at: location))
+                }
         }
         
-        return incompatibles
+        return zip(self.indices, zip(self, convertedString))
+            .filter { $1.0 != $1.1 }
+            .map { (index, characters) -> IncompatibleCharacter in
+                let (original, converted) = characters
+                let location = index.samePosition(in: self.utf16)!.encodedOffset
+                
+                return IncompatibleCharacter(character: original,
+                                             convertedCharacter: (original == "¥" && encoding.canConvertYenSign) ? "\\" : String(converted),
+                                             location: location,
+                                             lineNumber: self.lineNumber(at: location))
+            }
     }
+    
 }

@@ -114,7 +114,7 @@
 
 // Convert or reinterpret encoding alert
 "File encoding" = "エンコーディング";
-"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って変換または再解釈しますか?";
+"Do you want to convert or reinterpret this document using “%@”?" = "“%@”を使って書類を変換または再解釈しますか?";
 "Convert" = "変換";
 "Reinterpret" = "再解釈";
 
@@ -131,8 +131,8 @@
 "Continue Saving" = "保存を続行";
 
 // Encoding change with unsaved changes alert
-"The file “%@” has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
-"Do you want to discard the changes and reset the file encoding?" = "変更内容を破棄してエンコーディングをリセットしてもよろしいですか?";
+"The document has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
+"Do you want to discard the changes and reopen the document using “%@”?" = "変更内容を破棄し、“%@”で書類を開き直してもよろしいですか?";
 "Discard Changes" = "変更内容を破棄";
 
 // Reinterpretation failed alert

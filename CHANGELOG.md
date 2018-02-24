@@ -2,7 +2,69 @@
 Change Log
 ==========================
 
-develop
+unreleased
+--------------------------
+
+### New Features
+
+- Add an option “Indent with Tab key” to the Edit pane in preferences.
+
+
+### Improvements
+
+- Change the behavior of  `⌘←` so that the cursor moves first to the beginning of the visual lines, then to the column right after indentation, and finally to the beginning of the line.
+- Display an open dialog on launch if so set even when iCloud storage is disabled.
+- Improve stability on text encoding change.
+- Refine dialog messages on text encoding change.
+- Change sidebar behavior to close inward when it was opened inward because of insufficient space.
+- Avoid requiring high power GPU use.
+- [trivial] Hide insertion point in shortcut input fields in the Key Binding pane.
+- [trivial] Set a spoken name of CotEditor.
+- [trivial] Add `enablesAsynchronousSaving` hidden default key that enables asynchronous saving.
+- [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- Fix a long-standing issue where incompatible characters could not be detected when the length of converted document text is changed.
+- Fix an issue where key-binding setting field sometimes ignored user input.
+- FIx an issue where document files did not forget vertical orientation state when once set before.
+- Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanese localization.
+
+
+
+3.3.2 (229)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 3.3.1 where the application could crash on window close.
+- Fix an issue where application crashed when performing “Find All” with the regular expression and without grouping (Thanks to @akimach!).
+
+
+
+3.3.1 (228)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the application crashed on launch under specific conditions.
+- Fix an issue where the iCloud storage was not enabled.
+- Fix arrows in the navigation bar on the vertical text mode.
+
+
+
+3.3.0 (224)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where iCloud document storage was not created.
+- [beta] Fix an issue where find result message in the find panel fields was not shown.
+
+
+
+3.3.0-beta.3 (220)
 --------------------------
 
 ### Improvements

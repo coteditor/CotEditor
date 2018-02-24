@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -361,12 +361,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @discardableResult
     private func validate(styleName: String) -> Bool {
         
-        if self.mode == .edit && self.isBundledStyle { return true }  // cannot edit style name
+        if self.mode == .edit, self.isBundledStyle { return true }  // cannot edit style name
         
         self.isStyleNameValid = true
         self.message = nil
         
-        if (self.mode == .edit) && (styleName.caseInsensitiveCompare(self.originalStyleName) == .orderedSame) { return true }
+        if (self.mode == .edit), (styleName.caseInsensitiveCompare(self.originalStyleName) == .orderedSame) { return true }
         
         do {
             try SyntaxManager.shared.validate(settingName: styleName, originalName: self.originalStyleName)

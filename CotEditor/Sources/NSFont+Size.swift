@@ -37,15 +37,15 @@ extension NSFont {
     }
     
     
-    /**
-     Calculate advancement of a character using CoreText.
-     
-     - parameters:
-        - character: Character to calculate advancement.
-     
-     - returns: Advancement of passed-in character.
-     */
+    /// Calculate advancement of a character using CoreText.
+    ///
+    /// - Parameter character: Character to calculate advancement.
+    /// - Returns: Advancement of passed-in character.
     private func advancement(character: Character) -> NSSize {
+        
+        if #available(macOS 10.13, *) {
+            return self.advancement(forCGGlyph: self.glyph(character: character))
+        }
         
         let attributedString = NSAttributedString(string: String(character), attributes: [.font: self])
         let line = CTLineCreateWithAttributedString(attributedString)
@@ -63,6 +63,22 @@ extension NSFont {
         CTRunGetAdvances(run, CFRange(location: 0, length: 1), &size)
         
         return size
+    }
+    
+    
+    /// Create CGGlyph from a character using CoreText.
+    ///
+    /// - Parameter character: A character to extract glhph.
+    /// - Returns: A CGGlyph for passed-in character based on the receiver font.
+    private func glyph(character: Character) -> CGGlyph {
+        
+        assert(String(character).utf16.count == 1)
+        
+        var glyph = CGGlyph()
+        let uniChar: UniChar = String(character).utf16.first!
+        CTFontGetGlyphsForCharacters(self as CTFont, [uniChar], &glyph, 1)
+        
+        return glyph
     }
     
 }

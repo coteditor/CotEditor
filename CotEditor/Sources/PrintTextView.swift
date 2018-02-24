@@ -190,7 +190,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                     lastLineNumber = lineNumber
                     glyphCount = range.upperBound
                     
-                    if isVerticalText && isWrappedLine { continue }
+                    if isVerticalText, isWrappedLine { continue }
                     
                     var numberString = isWrappedLine ? "-" : String(lineNumber)
                     
@@ -335,9 +335,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // check whether print line numbers
         self.printsLineNumber = {
-            guard
-                let index = settings[.lineNumber] as? Int,
-                let mode = PrintLineNmuberMode(rawValue: index) else { return false }
+            let mode = PrintLineNmuberMode(settings[.lineNumber] as? Int)
             switch mode {
             case .no:
                 return false
@@ -353,9 +351,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            guard
-                let index = settings[.invisibles] as? Int,
-                let mode = PrintInvisiblesMode(rawValue: index) else { return false }
+            let mode = PrintInvisiblesMode(settings[.invisibles] as? Int)
             switch mode {
             case .no:
                 return false
@@ -414,10 +410,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         guard let primaryString = primaryString, let secondaryString = secondaryString else { fatalError() }
         
         // case: double-sided
-        if primaryAlignment == .left && secondaryAlignment == .right {
+        if primaryAlignment == .left, secondaryAlignment == .right {
             return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
         }
-        if primaryAlignment == .right && secondaryAlignment == .left {
+        if primaryAlignment == .right, secondaryAlignment == .left {
             return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
         }
         
@@ -507,4 +503,21 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         return size
     }
     
+}
+
+
+
+private extension AlignmentType {
+    
+    var textAlignment: NSTextAlignment {
+        
+        switch self {
+        case .left:
+            return .left
+        case .center:
+            return .center
+        case .right:
+            return .right
+        }
+    }
 }

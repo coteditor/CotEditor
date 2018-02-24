@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -168,12 +168,9 @@ private extension NSTextView {
         var success = false
         var deltaLocation = 0
         
-        for range in selectedRanges {
-            guard range.length > 0 else { continue }
-            guard let substring = (self.string as NSString?)?.substring(with: range) else { continue }
-            
+        for range in selectedRanges where range.length > 0 {
+            let substring = (self.string as NSString).substring(with: range)
             let string = block(substring)
-            
             let newRange = NSRange(location: range.location - deltaLocation, length: string.utf16.count)
             
             strings.append(string)

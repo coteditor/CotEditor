@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -48,7 +48,6 @@ final class DocumentController: NSDocumentController {
     
     @IBOutlet private var openPanelAccessoryView: NSView?
     @IBOutlet private weak var accessoryEncodingMenu: NSPopUpButton?
-    @IBOutlet private weak var showHiddenFilesCheckbox: NSButton?
     
     @objc private dynamic var _accessorySelectedEncoding: UInt
     
@@ -147,12 +146,8 @@ final class DocumentController: NSDocumentController {
         let document = try super.openUntitledDocumentAndDisplay(displayDocument)
         
         // make document transient when it is an open or reopen event
-        if self.documents.count == 1,
-            let event = NSAppleEventManager.shared().currentAppleEvent,
-            event.eventClass == kCoreEventClass,
-            (event.eventID == kAEReopenApplication || event.eventID == kAEOpenApplication)
-        {
-                (document as? Document)?.isTransient = true
+        if self.documents.count == 1, NSAppleEventManager.shared().isOpenEvent {
+            (document as? Document)?.isTransient = true
         }
         
         return document
@@ -217,7 +212,7 @@ final class DocumentController: NSDocumentController {
         // set visibility of hidden files in the panel
         openPanel.showsHiddenFiles = self.showsHiddenFiles
         openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
-        // -> bind showsHiddenFiles flag with openPanel (for El capitan and leter)
+        // -> bind showsHiddenFiles flag with openPanel
         openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
         

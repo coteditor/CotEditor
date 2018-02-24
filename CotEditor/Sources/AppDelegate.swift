@@ -51,12 +51,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Public Properties
     
-    @objc dynamic let supportsWindowTabbing: Bool  // binded also in Window pref pane
+    @objc dynamic let supportsWindowTabbing: Bool
     
     
     // MARK: Private Properties
     
-    private lazy var acknowledgmentsWindowController = WebDocumentWindowController(documentName: "Acknowledgments")!
+    private lazy var acknowledgmentsWindowController: NSWindowController = {
+        
+        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! NSWindowController
+        windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
+        return windowController
+    }()
     
     @IBOutlet private weak var encodingsMenu: NSMenu?
     @IBOutlet private weak var syntaxStylesMenu: NSMenu?
@@ -179,9 +184,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
+        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior]) ?? .untitledDocument
         
-        return behavior == .untitledDocument
+        switch behavior {
+        case .untitledDocument:
+            return true
+        case .openPanel:
+            NSDocumentController.shared.openDocument(nil)
+            return false
+        case .none:
+            return false
+        }
     }
     
     
@@ -337,9 +350,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show acknowlegements
     @IBAction func showAcknowledgments(_ sender: Any?) {
         
-        #if APPSTORE
-            self.acknowledgmentsWindowController.userStyleSheet = ".non-appstore { display: none }"
-        #endif
         self.acknowledgmentsWindowController.showWindow(sender)
     }
     

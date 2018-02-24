@@ -1,0 +1,9 @@
+{
+  "commitish" : "1.0.3",
+  "Mac" : [
+    {
+      "name" : "Differ",
+      "hash" : "62a5be637cb0a715ddc94c95ef367d5dcee989c8efa0207351bec6cd7d1a7db4"
+    }
+  ]
+}

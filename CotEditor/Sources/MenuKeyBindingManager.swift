@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -97,7 +97,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         try super.validate(shortcut: shortcut, oldShortcut: oldShortcut)
         
         // command key existance check
-        if !shortcut.isEmpty && !shortcut.modifierMask.contains(.command) {
+        if !shortcut.isEmpty, !shortcut.modifierMask.contains(.command) {
             throw InvalidKeySpecCharactersError(kind: .lackingCommandKey, shortcut: shortcut)
         }
     }

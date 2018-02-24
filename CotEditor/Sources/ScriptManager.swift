@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -288,7 +288,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
                                                                       includingPropertiesForKeys: [.fileResourceTypeKey],
-                                                                      options: [.skipsPackageDescendants, .skipsHiddenFiles])
+                                                                      options: [.skipsHiddenFiles])
             .sorted(by: { $0.lastPathComponent < $1.lastPathComponent })
             else { return }
         
@@ -307,9 +307,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             
             if let script = descriptor.makeScript() {
                 for eventType in descriptor.eventTypes {
-                    var handlers = self.scriptHandlersTable[eventType] ?? []
-                    handlers.append(script)
-                    self.scriptHandlersTable[eventType] = handlers
+                    self.scriptHandlersTable[eventType, default: []].append(script)
                 }
                 
                 let shortcut = descriptor.shortcut

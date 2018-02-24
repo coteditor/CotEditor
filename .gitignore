@@ -30,7 +30,7 @@ xcuserdata/
 *.hmap
 *.ipa
 *.dSYM.zip
-*.dSYM
+# *.dSYM
 
 ## Playgrounds
 timeline.xctimeline

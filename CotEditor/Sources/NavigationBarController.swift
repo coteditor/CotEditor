@@ -37,26 +37,23 @@ final class NavigationBarController: NSViewController {
         
         didSet {
             guard let textView = self.textView else { return }
-            
-            self.updateTextOrientation(to: textView.layoutOrientation)
+          
+            // -> DO NOT use block-based KVO for NSTextView sublcass
+            //    since it causes application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
+            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
             
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
-            
-            self.layoutOrientationObserver = textView.observe(\.layoutOrientation) { [unowned self] (textView, _) in
-                self.updateTextOrientation(to: textView.layoutOrientation)
-            }
         }
     }
     
     
     // MARK: Private Properties
     
-    private var layoutOrientationObserver: NSKeyValueObservation?
     private var isParsingOutline = false  // flag to control outline indicator
     
-    private var prevButton: NSButton?
-    private var nextButton: NSButton?
+    private weak var prevButton: NSButton?
+    private weak var nextButton: NSButton?
     
     @IBOutlet private weak var outlineMenu: NSPopUpButton?
     @IBOutlet private weak var leftButton: NSButton?
@@ -71,6 +68,13 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
+    
+    deinit {
+        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
+    }
+    
+    
+    
     // MARK: View Controller Methods
     
     /// setup UI
@@ -86,6 +90,15 @@ final class NavigationBarController: NSViewController {
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
+    }
+    
+    
+    /// observed key value did update
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == #keyPath(NSTextView.layoutOrientation), let orientation = self.textView?.layoutOrientation {
+            self.updateTextOrientation(to: orientation)
+        }
     }
     
     
@@ -150,14 +163,6 @@ final class NavigationBarController: NSViewController {
             
             self.invalidateOutlineMenuSelection()
         }
-    }
-    
-    
-    /// update enabilities of jump buttons
-    func updatePrevNextButtonEnabled() {
-        
-        self.prevButton!.isEnabled = self.canSelectPrevItem
-        self.nextButton!.isEnabled = self.canSelectNextItem
     }
     
     
@@ -274,6 +279,14 @@ final class NavigationBarController: NSViewController {
         
         return paragraphStyle
     }()
+    
+    
+    /// update enabilities of jump buttons
+    private func updatePrevNextButtonEnabled() {
+        
+        self.prevButton!.isEnabled = self.canSelectPrevItem
+        self.nextButton!.isEnabled = self.canSelectNextItem
+    }
     
     
     /// set outline menu selection

@@ -27,6 +27,8 @@
 
 import Foundation
 
+private let kMaxEscapesCheckLength = 8
+
 extension String {
     
     /// return copied string to make sure the string is not a kind of NSMutableString.
@@ -116,8 +118,7 @@ extension String {
     /// check if character at the index is escaped with backslash
     func isCharacterEscaped(at index: Index) -> Bool {
         
-        let MaxEscapesCheckLength = 8
-        let seekCharacters = self[..<index].suffix(MaxEscapesCheckLength)
+        let seekCharacters = self[..<index].suffix(kMaxEscapesCheckLength)
         
         let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
         
