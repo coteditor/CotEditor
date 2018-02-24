@@ -13,6 +13,7 @@ unreleased
 ### Improvements
 
 - Change the behavior of  `⌘←` so that the cursor moves first to the beginning of the visual lines, then to the column right after indentation, and finally to the beginning of the line.
+- Remove “Open Hidden” command (Use “Show hidden files” option in the open dialog instead).
 - Display an open dialog on launch if so set even when iCloud storage is disabled.
 - Improve stability on text encoding change.
 - Refine dialog messages on text encoding change.
@@ -29,6 +30,7 @@ unreleased
 - Fix a long-standing issue where incompatible characters could not be detected when the length of converted document text is changed.
 - Fix an issue where key-binding setting field sometimes ignored user input.
 - Fix an issue where document files did not forget vertical orientation state when once set before.
+- Fix an issue where the encoding selected in the open dialog last time was unwantedly applied to the newly opened document when a document opened with the open dialog previously had already opened.
 - Fix an issue where menu item title for “Horizontal” (in Format > Writing Direction) was displayed as “Vertical” in Japanese localization.
 
 

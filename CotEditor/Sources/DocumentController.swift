@@ -39,17 +39,13 @@ final class DocumentController: NSDocumentController {
 
     let autosaveDirectoryURL: URL
     
+    private(set) var accessorySelectedEncoding: String.Encoding?
+    
+    
     // MARK: Private Properties
     
     private let transientDocumentLock = NSLock()
     private var deferredDocuments = [NSDocument]()
-    
-    @objc private dynamic var showsHiddenFiles = false  // binding
-    
-    @IBOutlet private var openPanelAccessoryView: NSView?
-    @IBOutlet private weak var accessoryEncodingMenu: NSPopUpButton?
-    
-    @objc private dynamic var _accessorySelectedEncoding: UInt
     
     
     
@@ -58,7 +54,6 @@ final class DocumentController: NSDocumentController {
     
     override init() {
         
-        self._accessorySelectedEncoding = UserDefaults.standard[.encodingInOpen]
         self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
                                                                  in: .userDomainMask,
                                                                  appropriateFor: nil,
@@ -105,6 +100,9 @@ final class DocumentController: NSDocumentController {
         super.openDocument(withContentsOf: url, display: false) { (document, documentWasAlreadyOpen, error) in
             
             assert(Thread.isMainThread)
+            
+            // invalidate encoding that was set in the open panel
+            self.accessorySelectedEncoding = nil
             
             if let transientDocument = transientDocument, let document = document as? Document {
                 self.replaceTransientDocument(transientDocument, with: document)
@@ -174,9 +172,6 @@ final class DocumentController: NSDocumentController {
         
         (document as? AdditionalDocumentPreparing)?.didMakeDocumentForExisitingFile(url: url)
         
-        // reset encoding menu
-        self.resetAccessorySelectedEncoding()
-        
         return document
     }
     
@@ -199,35 +194,21 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
+        let accessoryController = NSStoryboard(name: NSStoryboard.Name("OpenDocumentAccessory"), bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
+        
         // initialize encoding menu and set the accessory view
-        if self.openPanelAccessoryView == nil {
-            Bundle.main.loadNibNamed(NSNib.Name("OpenDocumentAccessory"), owner: self, topLevelObjects: nil)
-        }
-        self.buildEncodingPopupButton()
-        openPanel.accessoryView = self.openPanelAccessoryView
+        accessoryController.openPanel = openPanel
+        openPanel.accessoryView = accessoryController.view
         
         // force accessory view visible
         openPanel.isAccessoryViewDisclosed = true
         
-        // set visibility of hidden files in the panel
-        openPanel.showsHiddenFiles = self.showsHiddenFiles
-        openPanel.treatsFilePackagesAsDirectories = self.showsHiddenFiles
-        // -> bind showsHiddenFiles flag with openPanel
-        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-        openPanel.bind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)), to: self, withKeyPath: #keyPath(showsHiddenFiles))
-        
         // run non-modal open panel
-        super.beginOpenPanel(openPanel, forTypes: inTypes) { [weak self] (result: Int) in
+        super.beginOpenPanel(openPanel, forTypes: inTypes) { (result: Int) in
             
-            // reset encoding menu if cancelled
-            if result == NSApplication.ModalResponse.cancel.rawValue {
-                self?.resetAccessorySelectedEncoding()
+            if result == NSApplication.ModalResponse.OK.rawValue {
+                self.accessorySelectedEncoding = accessoryController.selectedEncoding
             }
-            
-            self?.showsHiddenFiles = false  // reset flag
-            
-            openPanel.unbind(NSBindingName(#keyPath(NSOpenPanel.showsHiddenFiles)))
-            openPanel.unbind(NSBindingName(#keyPath(NSOpenPanel.treatsFilePackagesAsDirectories)))
             
             completionHandler(result)
         }
@@ -252,18 +233,6 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Public Methods
     
-    /// String.Encoding accessor for encoding user selected in open panel
-    var accessorySelectedEncoding: String.Encoding {
-        
-        get {
-            return String.Encoding(rawValue: self._accessorySelectedEncoding)
-        }
-        set {
-            self._accessorySelectedEncoding = newValue.rawValue
-        }
-    }
-    
-    
     /// insert hand-made Share menu to the File menu
     func insertLegacyShareMenu() {
         
@@ -286,15 +255,6 @@ final class DocumentController: NSDocumentController {
     
     
     // MARK: Action Messages
-    
-    /// open open panel by showing hidden files
-    @IBAction func openHiddenDocument(_ sender: Any?) {
-        
-        self.showsHiddenFiles = true
-        
-        self.openDocument(sender)
-    }
-    
     
     /// open a new document as new window
     @available(macOS 10.12, *)
@@ -366,38 +326,6 @@ final class DocumentController: NSDocumentController {
             .flatMap { $0.textContainers }
             .flatMap { $0.textView }
             .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
-    }
-    
-    
-    /// update encoding menu in the open panel
-    private func buildEncodingPopupButton() {
-        
-        let menu = self.accessoryEncodingMenu!.menu!
-        
-        menu.removeAllItems()
-        
-        let autoDetectItem = NSMenuItem(title: NSLocalizedString("Auto-Detect", comment: ""), action: nil, keyEquivalent: "")
-        autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
-        menu.addItem(autoDetectItem)
-        menu.addItem(.separator())
-        
-        let items = EncodingManager.shared.createEncodingMenuItems()
-        for item in items {
-            menu.addItem(item)
-        }
-        
-        self.resetAccessorySelectedEncoding()
-    }
-    
-    
-    /// reset selection of the encoding menu
-    private func resetAccessorySelectedEncoding() {
-        
-        let defaultEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInOpen])
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.accessorySelectedEncoding = defaultEncoding
-        }
     }
     
     

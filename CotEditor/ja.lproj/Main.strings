@@ -79,8 +79,6 @@
 "WCp-4v-OPR.title" = "新規タブ";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "開く...";
-/* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
-"688.title" = "非表示ファイルを開く...";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "最近使った項目を開く";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */

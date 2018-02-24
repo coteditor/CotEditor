@@ -80,8 +80,6 @@
 "WCp-4v-OPR.title" = "Nuovo pannello";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "Apri…";
-/* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
-"688.title" = "Apri nascosto…";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "Apri recenti";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */

@@ -98,12 +98,6 @@
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="hxD-kB-kqu"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open Hidden…" alternate="YES" keyEquivalent="o" id="688">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
-                                            <connections>
-                                                <action selector="openHiddenDocument:" target="Ady-hI-5gd" id="LYf-tT-TIQ"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Open Recent" tag="2999" id="124">
                                             <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                                 <items>
