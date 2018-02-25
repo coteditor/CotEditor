@@ -6,6 +6,11 @@ Change Log
 unreleased
 --------------------------
 
+### Improvements
+
+- When “Indent with Tab key” is on, reduce indent level of the current line with Shift+Tab even when nothing is selected.
+
+
 ### Fixes
 
 - Fix an issue where lossy saving was failed.

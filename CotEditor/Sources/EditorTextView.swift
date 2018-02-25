@@ -387,11 +387,11 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// shift + tab is pressed
+    /// Shift + Tab is pressed
     override func insertBacktab(_ sender: Any?) {
         
         // outdent with tab key
-        if UserDefaults.standard[.indentWithTabKey], self.selectedRange.length > 0 {
+        if UserDefaults.standard[.indentWithTabKey] {
             self.outdent()
             return
         }
