@@ -1215,10 +1215,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// check if the content can be saved with the file encoding
     private func checkSavingSafetyForConverting(content: String) throws {
         
-        // convert yen if needed
-        let newString = content.convertingYenSign(for: self.encoding)
-        
-        guard newString.canBeConverted(to: self.encoding) else {
+        guard content.canBeConverted(to: self.encoding) else {
             throw EncodingError(kind: .lossySaving, encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }

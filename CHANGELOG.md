@@ -14,6 +14,7 @@ unreleased
 ### Fixes
 
 - Fix an issue where lossy saving was failed.
+- Fix an issue where no alart was raised on saving even when document contains lossy yen signs.
 
 
 
