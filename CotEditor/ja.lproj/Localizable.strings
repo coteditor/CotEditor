@@ -119,7 +119,7 @@
 "Reinterpret" = "再解釈";
 
 // Lossy encoding alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
 "Do you want to continue processing?" = "保存作業を続けますか?";
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Characters" = "非互換文字を表示";
@@ -141,7 +141,7 @@
 "The file may have been saved using a different text encoding, or it may not be a text file." = "このファイルは、別のテキストエンコーディングで保存されているか、テキストファイルでない可能性があります。";
 
 // incompatible characters alert
-"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存時に一部の文字を変更または削除する必要があります。";
+"Some characters would have to be changed or deleted in saving as “%@”." = "“%@”で保存をすると、書類で使われている一部の文字が変更または削除されます。";
 "Do you want to change encoding and show incompatible characters?" = "エンコーディングを変更し、非互換文字を表示しますか?";
 "Change Encoding" = "エンコーディングを変更";
 
