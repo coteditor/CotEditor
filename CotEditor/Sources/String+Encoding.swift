@@ -97,7 +97,7 @@ extension String.Encoding {
         
         if encoding == self { return true }
         
-        // -> Caution needed on Shift-JIS. See `scanEncodingDeclaration(forTags:upTo:suggestedCFEncodings:)` for details.
+        // -> Caution needed on Shift-JIS. See `scanEncodingDeclaration(upTo:suggestedCFEncodings:tags:)` for details.
         return (encoding == .shiftJIS && self == .shiftJIS_X0213) || (encoding == .shiftJIS_X0213 && self == .shiftJIS)
     }
     
@@ -203,10 +203,11 @@ extension String {
 
     
     /// scan encoding declaration in string
-    func scanEncodingDeclaration(forTags tags: [String], upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
+    func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
         
         guard !self.isEmpty else { return nil }
         
+        let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
         let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
         let regex = try! NSRegularExpression(pattern: pattern)
         let scanLength = min(self.utf16.endIndex.encodedOffset, maxLength)
@@ -219,20 +220,21 @@ extension String {
         let ianaCharSetName = self[matchedRange]
         
         // convert IANA CharSet name to CFStringEncoding
-        guard let cfEncoding: CFStringEncoding = {
-            //　simply convert expect for "Shift_JIS"
-            if ianaCharSetName.uppercased() != "SHIFT_JIS" {
-                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
+        let cfEncoding: CFStringEncoding = {
+            // pick user's preferred one for "Shift_JIS"
+            //   -> CFStringConvertIANACharSetNameToEncoding() converts "SHIFT_JIS" to .shiftJIS regardless of the letter case.
+            //      Although this behavior is theoretically correct since IANA is case insensitive,
+            //      we treat them with case by respecting user's priority.
+            //      FYI: CFStringConvertEncodingToIANACharSetName() converts .shiftJIS and .shiftJIS_X0213
+            //           to "shift_jis" and "Shift_JIS" respectively.
+            if ianaCharSetName.uppercased() == "SHIFT_JIS", let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }) {
+                return cfEncoding
             }
             
-            // "Shift_JIS" だったら、.shiftJIS と .shiftJIS_X0213 の優先順位の高いものを取得する
-            //   -> scannedString をそのまま CFStringConvertIANACharSetNameToEncoding() で変換すると、大文字小文字を問わず
-            //     「日本語（Shift JIS）」になってしまうため。IANA では大文字小文字を区別しないとしているのでこれはいいのだが、
-            //      CFStringConvertEncodingToIANACharSetName() では .shiftJIS と .shiftJIS_X0213 がそれぞれ
-            //     「SHIFT_JIS」「shift_JIS」と変換されるため、可逆性を持たせるための処理
-            return suggestedCFEncodings.first { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }
-            
-            }(), cfEncoding != kCFStringEncodingInvalidId else { return nil }
+            return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
+        }()
+        
+        guard cfEncoding != kCFStringEncodingInvalidId else { return nil }
         
         return String.Encoding(cfEncoding: cfEncoding)
     }

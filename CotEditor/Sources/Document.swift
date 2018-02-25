@@ -1149,9 +1149,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let suggestedCFEncodings = UserDefaults.standard[.encodingList]
         
-        return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
-                                               upTo: maxEncodingScanLength,
-                                               suggestedCFEncodings: suggestedCFEncodings)
+        return content.scanEncodingDeclaration(upTo: maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings)
     }
     
     
