@@ -53,6 +53,8 @@
 "as9-us-CuG.title" = "Leerzeichen";
 /* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
 "Cte-hW-0M3.title" = "Einzugsstil beim Öffnen ermitteln";
+/* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
+"aVn-PD-hen.title" = "Auswahl mit der Tablatortaste einrücken";
 
 
 /* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */

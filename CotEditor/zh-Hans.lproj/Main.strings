@@ -80,8 +80,6 @@
 "WCp-4v-OPR.title" = "新建标签";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "打开…";
-/* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
-"688.title" = "打开隐藏文件…";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "打开最近使用";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */

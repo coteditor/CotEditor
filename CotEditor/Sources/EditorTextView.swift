@@ -368,6 +368,12 @@ final class EditorTextView: NSTextView, Themable {
     /// insert tab & expand tab
     override func insertTab(_ sender: Any?) {
         
+        // indent with tab key
+        if UserDefaults.standard[.indentWithTabKey], self.selectedRange.length > 0 {
+            self.indent()
+            return
+        }
+        
         if self.isAutomaticTabExpansionEnabled {
             let tabWidth = self.tabWidth
             let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
@@ -378,6 +384,19 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         super.insertTab(sender)
+    }
+    
+    
+    /// shift + tab is pressed
+    override func insertBacktab(_ sender: Any?) {
+        
+        // outdent with tab key
+        if UserDefaults.standard[.indentWithTabKey], self.selectedRange.length > 0 {
+            self.outdent()
+            return
+        }
+        
+        return super.insertBacktab(sender)
     }
     
     
@@ -476,6 +495,27 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// move cursor to the beginning of the current visual line (⌘←)
+    override func moveToBeginningOfLine(_ sender: Any?) {
+        
+        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
+        
+        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.scrollRangeToVisible(range)
+    }
+    
+    
+    /// expand selection to the beginning of the current visual line (⇧⌘←)
+    override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
+        
+        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
+            .union(self.selectedRange)
+        
+        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.scrollRangeToVisible(range)
+    }
+    
+    
     /// customize context menu
     override func menu(for event: NSEvent) -> NSMenu? {
         
@@ -487,7 +527,7 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if (self.string as NSString?)?.substring(with: self.selectedRange).numberOfComposedCharacters == 1 {
+        if (self.string as NSString).substring(with: self.selectedRange).numberOfComposedCharacters == 1 {
             menu.insertItem(withTitle: NSLocalizedString("Inspect Character", comment: ""),
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
@@ -620,7 +660,6 @@ final class EditorTextView: NSTextView, Themable {
         
         // scroll line by line if an arrow key is pressed
         if NSEvent.modifierFlags.contains(.numericPad),
-            !NSEvent.modifierFlags.contains(.command),  // Command + Arrow is scroll to the end of contents
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
@@ -816,6 +855,7 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    
     // MARK: Protocol
     
     /// apply current state to related menu items and toolbar items
@@ -828,8 +868,8 @@ final class EditorTextView: NSTextView, Themable {
             return self.selectedRange.length > 0
             
         case #selector(showSelectionInfo):
-            let selection = (self.string as NSString?)?.substring(with: self.selectedRange)
-            return selection?.numberOfComposedCharacters == 1
+            let selection = (self.string as NSString).substring(with: self.selectedRange)
+            return selection.numberOfComposedCharacters == 1
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {
@@ -1047,7 +1087,7 @@ final class EditorTextView: NSTextView, Themable {
     /// display character information by popover
     @IBAction func showSelectionInfo(_ sender: Any?) {
         
-        guard var selectedString = (self.string as NSString?)?.substring(with: self.selectedRange) else { return }
+        var selectedString = (self.string as NSString).substring(with: self.selectedRange)
         
         // apply document's line ending
         if let documentLineEnding = self.documentLineEnding,
@@ -1079,6 +1119,16 @@ final class EditorTextView: NSTextView, Themable {
         
         // redraw visible area
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+    }
+    
+    
+    /// visible rect did change
+    @objc private func didChangeVisibleRect(_ notification: Notification) {
+        
+        if !self.drawsBackground {
+            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
     }
     
     
@@ -1215,45 +1265,8 @@ final class EditorTextView: NSTextView, Themable {
         return true
     }
     
-    
-    /// visible rect did change
-    @objc private func didChangeVisibleRect(_ notification: Notification) {
-        
-        if !self.drawsBackground {
-            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-        }
-    }
-    
 }
 
-
-
-private extension NSTextView {
-    
-    /// character just before the insertion or 0
-    var characterBeforeInsertion: UnicodeScalar? {
-        
-        let location = self.selectedRange.location - 1
-        
-        guard location >= 0 else { return nil }
-        
-        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
-        
-        return self.string.unicodeScalars[safe: index]
-    }
-    
-    
-    /// character just after the insertion
-    var characterAfterInsertion: UnicodeScalar? {
-        
-        let location = self.selectedRange.upperBound
-        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
-        
-        return self.string.unicodeScalars[safe: index]
-    }
-    
-}
 
 
 
@@ -1349,7 +1362,7 @@ extension EditorTextView {
     // MARK: Private Methods
     
     /// display word completion list
-    fileprivate func performCompletion() {
+    private func performCompletion() {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)

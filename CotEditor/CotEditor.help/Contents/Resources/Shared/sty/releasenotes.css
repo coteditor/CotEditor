@@ -8,7 +8,7 @@
  
  Created on 2014 by 1024jp
  
- © 2014-2016 CotEditor Project
+ © 2014-2018 CotEditor Project
 */
 
 
@@ -45,7 +45,7 @@ p.note strong {
 
 article+article {
 	margin-top: 4em;
-	padding-top: 1em;
+	padding-top: 2em;
 }
 
 article > header h1 {
@@ -60,17 +60,22 @@ article > header p {
 article h2 {
 	font-size: 105%;
 	font-weight: bold;
+	margin-bottom: 0.5em;
 }
 
 .none {
 	color: hsl(0, 0%, 50%);
 }
 
+.trivial,
 .label {
 	color: hsl(198, 40%, 45%);
 	border: 1px solid;
 	border-radius: 3px;
 	padding: 0 0.2em;
+}
+.trivial {
+	color: hsl(0, 0%, 60%);
 }
 p.important {
 	display: inline-block;

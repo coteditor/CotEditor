@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,13 +30,23 @@ import XCTest
 @testable import CotEditor
 
 class FormattersTests: XCTestCase {
+    
+    func testFilePermissions() {
+        
+        XCTAssertEqual(FilePermissions(mask: 0o777).mask, 0o777)
+        XCTAssertEqual(FilePermissions(mask: 0o643).mask, 0o643)
+        
+        XCTAssertEqual(FilePermissions(mask: 0o777).humanReadable, "rwxrwxrwx")
+        XCTAssertEqual(FilePermissions(mask: 0o643).humanReadable, "rw-r---wx")
+    }
+    
 
     func testFilePermissionsFormatter() {
         
         let formatter = FilePermissionsFormatter()
         
-        XCTAssertEqual(formatter.string(for: NSNumber(value: 0o777)), "777 (-rwxrwxrwx)")
-        XCTAssertEqual(formatter.string(for: NSNumber(value: 0o643)), "643 (-rw-r---wx)")
+        XCTAssertEqual(formatter.string(for: 0o777 as NSNumber), "777 (-rwxrwxrwx)")
+        XCTAssertEqual(formatter.string(for: 0o643 as NSNumber), "643 (-rw-r---wx)")
     }
 
 }

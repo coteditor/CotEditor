@@ -79,8 +79,6 @@
 "WCp-4v-OPR.title" = "新規タブ";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "開く...";
-/* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
-"688.title" = "非表示ファイルを開く...";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "最近使った項目を開く";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
@@ -247,7 +245,7 @@
 /* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
 "6eV-nI-heo.title" = "向き";
 /* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
-"jQ7-hG-AjA.title" = "縦書き";
+"jQ7-hG-AjA.title" = "横書き";
 /* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "bTd-nG-jjc"; */
 "bTd-nG-jjc.title" = "縦書き";
 /* Class = "NSMenuItem"; title = "Direction"; ObjectID = "ICu-yD-nVi"; */

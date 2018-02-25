@@ -1,6 +1,6 @@
 /*
  
- WebDocumentWindowController.swift
+ WebDocumentViewController.swift
  
  CotEditor
  https://coteditor.com
@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,68 +28,56 @@
 import Cocoa
 import WebKit
 
-final class WebDocumentWindowController: NSWindowController, WKNavigationDelegate {
+final class WebDocumentViewController: NSViewController {
     
-    // MARK: Public Properties
+    // MARK: View Controller Methods
     
-    var userStyleSheet: String?
-    
-    
-    // MARK: Private Properties
-    
-    private let fileURL: URL
-    
-    @objc private dynamic weak var webView: WKWebView?
-    
-    
-    
-    // MARK: -
-    // MARK: Lifecycle
-    
-    required init?(documentName: String) {
+    override var representedObject: Any? {
         
-        guard let fileURL = Bundle.main.url(forResource: documentName, withExtension: "html") else { return nil }
-        
-        self.fileURL = fileURL
-        
-        super.init(window: nil)
+        didSet {
+            guard let url = self.representedObject as? URL else { return }
+            
+            self.webView?.loadFileURL(url, allowingReadAccessTo: url)
+        }
     }
     
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var windowNibName: NSNib.Name? {
-        
-        return NSNib.Name("WebDocumentWindow")
-    }
-    
-    
-    
-    // MARK: Window Controller Methods
     
     /// let webView load document file
-    override func windowDidLoad() {
+    override func viewDidLoad() {
         
-        super.windowDidLoad()
+        super.viewDidLoad()
         
-        self.window?.backgroundColor = .white
-        
-        // set webView programmically
-        let webView = WKWebView(frame: .zero)
-        self.webView = webView
-        self.window?.contentView = webView
+        // set webView programmatically
+        // -> WKWebView can be set in storyboard first on macOS 10.12
+        let webView = WKWebView(frame: self.view.frame)
+        self.view = webView
         webView.navigationDelegate = self
-        
-        // send request
-        let request = URLRequest(url: self.fileURL)
-        webView.load(request)
     }
     
     
+    /// set window background programmatically
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.view.window!.backgroundColor = .white
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// content web view
+    private var webView: WKWebView? {
+        
+        return self.view as? WKWebView
+    }
+
+}
+
+
+
+extension WebDocumentViewController: WKNavigationDelegate {
     
     // MARK: Navigation Delegate
     
@@ -106,24 +94,37 @@ final class WebDocumentWindowController: NSWindowController, WKNavigationDelegat
     }
     
     
+    /// receive web content
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        
+        #if APPSTORE
+            webView.apply(styleSheet: ".non-appstore { display: none }")
+        #endif
+    }
+    
+    
     /// document was loaded
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         
-        if let style = self.userStyleSheet {
-            self.apply(styleSheet: style)
+        if let title = webView.title {
+            self.view.window?.title = title
         }
     }
     
+}
+
+
+
+// MARK: -
+
+private extension WKWebView {
     
-    
-    // MARK: Private Method
-    
-    /// apply user style sheet to current page
-    private func apply(styleSheet: String) {
+    /// apply user style sheet to the current page
+    func apply(styleSheet: String) {
         
         let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
         
-        self.webView?.evaluateJavaScript(js, completionHandler: nil)
+        self.evaluateJavaScript(js, completionHandler: nil)
     }
-
+    
 }

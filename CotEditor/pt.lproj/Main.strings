@@ -78,8 +78,6 @@
 "WCp-4v-OPR.title" = "Nova Aba";
 /* Class = "NSMenuItem"; title = "Open…"; ObjectID = "72"; */
 "72.title" = "Abrir…";
-/* Class = "NSMenuItem"; title = "Open Hidden…"; ObjectID = "688"; */
-"688.title" = "Abrir Oculto…";
 /* Class = "NSMenuItem"; title = "Open Recent"; ObjectID = "124"; */
 "124.title" = "Abrir Recentes";
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */

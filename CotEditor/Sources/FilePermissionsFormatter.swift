@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,9 +34,11 @@ final class FilePermissionsFormatter: Formatter {
     /// format permission number to human readable permission expression
     override func string(for obj: Any?) -> String? {
         
-        guard let permission = obj as? UInt else { return nil }
+        guard let mask = obj as? UInt16 else { return nil }
         
-        return String(format: "%lo (%@)", permission, humanReadable(permission: permission))
+        let permissions = FilePermissions(mask: mask)
+        
+        return String(format: "%lo (-%@)", mask, permissions.humanReadable)
     }
     
     
@@ -46,18 +48,4 @@ final class FilePermissionsFormatter: Formatter {
         return false
     }
     
-}
-
-
-
-// MARK: - Private Function
-
-/// create human-readable permission expression from integer
-private func humanReadable(permission: UInt) -> String {
-    
-    let units = ["---", "--x", "-w-", "-wx", "r--", "r-x", "rw-", "rwx"]
-    
-    return (0...2).reversed()
-        .map { (index: Int) -> Int in (Int(permission) >> (index * 3)) & 0x7 }
-        .reduce("-") { $0 + units[$1] }  // document is always file.
 }

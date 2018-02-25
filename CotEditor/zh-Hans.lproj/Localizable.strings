@@ -131,8 +131,8 @@
 "Continue Saving" = "继续保存";
 
 // Encoding change with unsaved changes alert
-"The file “%@” has unsaved changes." = "文件“%@”中有修改内容还没有保存。";
-"Do you want to discard the changes and reset the file encoding?" = "确定要放弃修改内容并且重置文件编码吗？";
+"The document has unsaved changes." = "该文档中有修改内容还没有保存。";  // FIXME: changed
+"Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文档吗？";  // %@ is an encoding name.
 "Discard Changes" = "放弃修改";
 
 // Reinterpretation failed alert
