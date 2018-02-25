@@ -1161,12 +1161,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(Thread.isMainThread)
         
         let content = self.string
-        let encoding = self.encoding
         
         // check encoding declaration in the document and alert if incompatible with saving encoding
         if !self.suppressesIANACharsetConflictAlert {
             do {
-                try self.checkSavingSafetyWithIANACharSetName(content: content, encoding: encoding)
+                try self.checkSavingSafetyWithIANACharSetName(content: content)
                 
             } catch {
                 // --> ask directly with a NSAlert for the suppression button
@@ -1183,20 +1182,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 
                 switch result {
                 case .alertSecondButtonReturn:  // == Cancel
-                    completionHandler(false)
-                    return
-                default: break  // == Continue Saving
+                    return completionHandler(false)
+                default:  // == Continue Saving
+                    break
                 }
             }
         }
         
         // check file encoding for conversion and ask user how to solve
         do {
-            try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
+            try self.checkSavingSafetyForConverting(content: content)
             
         } catch {
-            self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
-            return
+            return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
         }
         
         completionHandler(true)
@@ -1204,24 +1202,24 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// check compatibility of saving encoding with the encoding decralation in document
-    private func checkSavingSafetyWithIANACharSetName(content: String, encoding: String.Encoding) throws {
+    private func checkSavingSafetyWithIANACharSetName(content: String) throws {
         
         guard let ianaCharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
         
-        guard encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
-            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: encoding, withUTF8BOM: false, attempter: self)
+        guard self.encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
+            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }
     
     
     /// check if the content can be saved with the file encoding
-    private func checkSavingSafetyForConverting(content: String, encoding: String.Encoding) throws {
+    private func checkSavingSafetyForConverting(content: String) throws {
         
         // convert yen if needed
-        let newString = content.convertingYenSign(for: encoding)
+        let newString = content.convertingYenSign(for: self.encoding)
         
-        guard newString.canBeConverted(to: encoding) else {
-            throw EncodingError(kind: .unconvertibleCharacters, encoding: encoding, withUTF8BOM: false, attempter: self)
+        guard newString.canBeConverted(to: self.encoding) else {
+            throw EncodingError(kind: .lossySaving, encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }
     
@@ -1345,7 +1343,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
         case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
-        case unconvertibleCharacters
+        case lossySaving
         case lossyConversion
     }
     
@@ -1365,7 +1363,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
                           encodingName, String.localizedName(of: ianaEncoding))
             
-        case .unconvertibleCharacters, .lossyConversion:
+        case .lossySaving, .lossyConversion:
             return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
         }
     }
@@ -1374,7 +1372,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .ianaCharsetNameConflict, .unconvertibleCharacters:
+        case .ianaCharsetNameConflict, .lossySaving:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
             
         case .lossyConversion:
@@ -1390,7 +1388,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return [NSLocalizedString("Continue Saving", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
             
-        case .unconvertibleCharacters:
+        case .lossySaving:
             return [NSLocalizedString("Show Incompatible Characters", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
@@ -1415,7 +1413,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 preconditionFailure()
             }
             
-        case .unconvertibleCharacters:
+        case .lossySaving:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
                 self.showIncompatibleCharacters()
