@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+
+unreleased
+--------------------------
+
+### Fixes
+
+- Fix an issue where lossy saving was failed.
+
+
+
 3.3.3 (232)
 --------------------------
 
