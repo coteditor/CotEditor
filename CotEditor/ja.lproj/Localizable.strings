@@ -124,12 +124,6 @@
 "Save Available Strings" = "有効な文字列を保存";
 "Show Incompatible Characters" = "非互換文字を表示";
 
-// Incompatible IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "エンコーディングは“%@”ですが、IANA文字セット名は“%@”です。";
-"Do you want to continue processing?" = "保存作業を続けますか?";
-"Do not show this warning for this document again" = "今後この書類ではこの警告を表示しない";
-"Continue Saving" = "保存を続行";
-
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "ファイル“%@”の変更内容は保存されていません。";
 "Do you want to discard the changes and reopen the document using “%@”?" = "変更内容を破棄し、“%@”で書類を開き直してもよろしいですか?";

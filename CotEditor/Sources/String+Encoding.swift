@@ -92,16 +92,6 @@ extension String.Encoding {
     
     // MARK: Public Methods
     
-    /// check IANA charset compatibility considering SHIFT_JIS
-    func isCompatible(ianaCharSetEncoding encoding: String.Encoding) -> Bool {
-        
-        if encoding == self { return true }
-        
-        // -> Caution needed on Shift-JIS. See `scanEncodingDeclaration(upTo:suggestedCFEncodings:tags:)` for details.
-        return (encoding == .shiftJIS && self == .shiftJIS_X0213) || (encoding == .shiftJIS_X0213 && self == .shiftJIS)
-    }
-    
-    
     /// whether receiver can convert Yen sign (U+00A5)
     var canConvertYenSign: Bool {
         

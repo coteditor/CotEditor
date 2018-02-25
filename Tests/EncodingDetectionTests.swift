@@ -175,17 +175,6 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func testIANACharSetEncodingCompatibility() {
-        
-        XCTAssertTrue(String.Encoding.utf8.isCompatible(ianaCharSetEncoding: .utf8))
-        XCTAssertFalse(String.Encoding.utf8.isCompatible(ianaCharSetEncoding: .utf16))
-        
-        XCTAssertTrue(toNSEncoding(.shiftJIS).isCompatible(ianaCharSetEncoding: toNSEncoding(.shiftJIS)))
-        XCTAssertTrue(toNSEncoding(.shiftJIS).isCompatible(ianaCharSetEncoding: toNSEncoding(.shiftJIS_X0213)))
-        XCTAssertTrue(toNSEncoding(.shiftJIS_X0213).isCompatible(ianaCharSetEncoding: toNSEncoding(.shiftJIS)))
-    }
-    
-    
     func testXattrEncoding() {
         
         let utf8Data = "utf-8;134217984".data(using: String.Encoding.utf8)

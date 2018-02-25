@@ -124,12 +124,6 @@
 "Save Available Strings" = "Salvar Strings Disponíveis";
 "Show Incompatible Characters" = "Mostrar Caracteres Incompatíveis";
 
-// Incompatible IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "A codificação é “%@”, mas o nome de conjunto de caracteres IANA no texto é “%@”.";
-"Do you want to continue processing?" = "Deseja continuar o processamento?";
-"Do not show this warning for this document again" = "Não mostrar este aviso para este documento novamente";
-"Continue Saving" = "Continuar Salvamento";
-
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "O documento tem alterações não salvas.";
 "Do you want to discard the changes and reopen the document using “%@”?" = "Deseja descartar as alterações e usar “%@” para reabrir o documento?";  // %@ is an encoding name.

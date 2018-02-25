@@ -101,7 +101,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
-    private var suppressesIANACharsetConflictAlert = false
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -1114,10 +1113,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
         
         // try reading encoding declaration and take priority of it if it seems well
-        if let scannedEncoding = self.scanEncodingFromDeclaration(content: string), scannedEncoding != usedEncoding {
-            if let string = String(data: data, encoding: scannedEncoding) {
-                return (string, scannedEncoding)
-            }
+        if UserDefaults.standard[.referToEncodingTag],
+            let scannedEncoding = string.scanEncodingDeclaration(upTo: maxEncodingScanLength, suggestedCFEncodings: encodingList),
+            scannedEncoding != usedEncoding,
+            let string = String(data: data, encoding: scannedEncoding)
+        {
+            return (string, scannedEncoding)
         }
         
         guard let encoding = usedEncoding else {
@@ -1128,54 +1129,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// detect file encoding from encoding declaration like "charset=" or "encoding=" in file content
-    private func scanEncodingFromDeclaration(content: String) -> String.Encoding? {
-        
-        guard UserDefaults.standard[.referToEncodingTag] else { return nil }
-        
-        let suggestedCFEncodings = UserDefaults.standard[.encodingList]
-        
-        return content.scanEncodingDeclaration(upTo: maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings)
-    }
-    
-    
     /// check if can save safely with the current encoding and ask if not
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
         
-        let content = self.string
-        
-        // check encoding declaration in the document and alert if incompatible with saving encoding
-        if !self.suppressesIANACharsetConflictAlert {
-            do {
-                try self.checkSavingSafetyWithIANACharSetName(content: content)
-                
-            } catch {
-                // --> ask directly with a NSAlert for the suppression button
-                let alert = NSAlert(error: error)
-                alert.showsSuppressionButton = true
-                alert.suppressionButton?.title = NSLocalizedString("Do not show this warning for this document again", comment: "")
-                
-                let result = alert.runModal(for: self.windowForSheet!)
-                
-                // do not show the alert in this document again
-                if alert.suppressionButton?.state == .on {
-                    self.suppressesIANACharsetConflictAlert = true
-                }
-                
-                switch result {
-                case .alertSecondButtonReturn:  // == Cancel
-                    return completionHandler(false)
-                default:  // == Continue Saving
-                    break
-                }
-            }
-        }
-        
         // check file encoding for conversion and ask user how to solve
         do {
-            try self.checkSavingSafetyForConverting(content: content)
+            try self.checkSavingSafetyForConverting()
             
         } catch {
             return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
@@ -1185,21 +1146,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// check compatibility of saving encoding with the encoding decralation in document
-    private func checkSavingSafetyWithIANACharSetName(content: String) throws {
-        
-        guard let ianaCharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
-        
-        guard self.encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
-            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
-        }
-    }
-    
-    
     /// check if the content can be saved with the file encoding
-    private func checkSavingSafetyForConverting(content: String) throws {
+    private func checkSavingSafetyForConverting() throws {
         
-        guard content.canBeConverted(to: self.encoding) else {
+        guard self.string.canBeConverted(to: self.encoding) else {
             throw EncodingError(kind: .lossySaving, encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }
@@ -1323,7 +1273,6 @@ private struct ReinterpretationError: LocalizedError {
 private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
-        case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
         case lossySaving
         case lossyConversion
     }
@@ -1339,21 +1288,14 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         let encodingName = String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
         
-        switch self.kind {
-        case .ianaCharsetNameConflict(let ianaEncoding):
-            return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
-                          encodingName, String.localizedName(of: ianaEncoding))
-            
-        case .lossySaving, .lossyConversion:
-            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
-        }
+        return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
     }
     
     
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .ianaCharsetNameConflict, .lossySaving:
+        case .lossySaving:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
             
         case .lossyConversion:
@@ -1365,10 +1307,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoveryOptions: [String] {
         
         switch self.kind {
-        case .ianaCharsetNameConflict:
-            return [NSLocalizedString("Continue Saving", comment: ""),
-                    NSLocalizedString("Cancel", comment: "")]
-            
         case .lossySaving:
             return [NSLocalizedString("Show Incompatible Characters", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
@@ -1384,16 +1322,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         switch self.kind {
-        case .ianaCharsetNameConflict:
-            switch recoveryOptionIndex {
-            case 0:  // == Continue Saving
-                return true
-            case 1:  // == Cancel
-                return false
-            default:
-                preconditionFailure()
-            }
-            
         case .lossySaving:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
