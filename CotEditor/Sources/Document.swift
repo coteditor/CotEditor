@@ -646,6 +646,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printOperation.canSpawnSeparateThread = true  // display print progress panel as a sheet
         
         // setup print panel
+        self.printPanelAccessoryController.view.setContentHuggingPriority(.fittingSizeCompression, for: .horizontal)
         printOperation.printPanel.addAccessoryController(self.printPanelAccessoryController)
         printOperation.printPanel.options.formUnion([.showsPaperSize, .showsOrientation, .showsScaling])
         
