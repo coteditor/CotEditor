@@ -559,20 +559,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         savePanel.isExtensionHidden = false
         savePanel.canSelectHiddenExtension = false
         
-        // set default file extension in hacky way (2016-10 on macOS 10.12 SDK for macOS 10.10 - 10.12)
-        self.allowedFileTypes = nil
+        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.13)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let fileType = self.fileType,
            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
-            // bind allowedFileTypes flag with savePanel
-            // -> So that initial filename selection excludes file extension.
-            self.allowedFileTypes = [pathExtension]
-            savePanel.bind(NSBindingName(#keyPath(NSSavePanel.allowedFileTypes)), to: self, withKeyPath: #keyPath(allowedFileTypes))
+            // set once allowedFileTypes, so that initial filename selection excludes the file extension
+            savePanel.allowedFileTypes = [pathExtension]
             
-            // disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
-            DispatchQueue.main.async { [weak self] in
-                self?.allowedFileTypes = nil
-                savePanel.unbind(NSBindingName(#keyPath(NSSavePanel.allowedFileTypes)))
+            // disable immediately in the next runloop to allow set other extensions
+            DispatchQueue.main.async {
+                savePanel.allowedFileTypes = nil
             }
         }
         
@@ -583,8 +579,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         return super.prepareSavePanel(savePanel)
     }
-    
-    @objc private dynamic var allowedFileTypes: [String]?
     
     
     /// display dialogs about save before closing document
