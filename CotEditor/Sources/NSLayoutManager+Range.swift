@@ -33,7 +33,7 @@ extension NSLayoutManager {
         let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
         var lineGlyphRange: NSRange = .notFound
         
-        self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
+        self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange, withoutAdditionalLayout: true)
         
         return self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
     }
