@@ -577,6 +577,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // set accessory view
+        self.savePanelAccessoryController = NSStoryboard(name: NSStoryboard.Name("SaveDocumentAccessory"), bundle: nil).instantiateInitialController() as! NSViewController
         self.savePanelAccessoryController.representedObject = self
         savePanel.accessoryView = self.savePanelAccessoryController.view
         
