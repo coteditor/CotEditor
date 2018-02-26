@@ -421,17 +421,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
+            let textView = self.textStorage.layoutManagers.lazy
+                .flatMap { $0.textViewForBeginningOfSelection }
+                .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
             
-            for layoutManager in self.textStorage.layoutManagers {
-                guard
-                    let textView = layoutManager.textViewForBeginningOfSelection,
-                    let window = textView.window else { continue }
-                
-                if !keepsEditingPoint || layoutManager.layoutManagerOwnsFirstResponder(in: window) {
-                    textView.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines, keepingEditingPoint: keepsEditingPoint)
-                    break  // trimming once is enough
-                }
-            }
+            textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,
+                                             keepingEditingPoint: keepsEditingPoint)
         }
         
         // break undo grouping
@@ -442,7 +437,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // modify place to create backup file
         //   -> save backup file always in `~/Library/Autosaved Information/` directory
         //      (The default backup URL is the same directory as the fileURL.)
-        let newUrl: URL = {
+        let newURL: URL = {
             guard
                 saveOperation == .autosaveElsewhereOperation,
                 let fileURL = self.fileURL
@@ -450,7 +445,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                .replacingOccurrences(of: ".", with: "", options: .anchored, range: nil)  // avoid file to be hidden
+                .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
             
             // append a unique string to avoid overwriting another backup file with the same file name.
             let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
@@ -458,7 +453,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
         
-        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
+        super.save(to: newURL, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
             defer {
                 completionHandler(error)
             }
@@ -479,21 +474,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            if saveOperation != .autosaveElsewhereOperation, saveOperation != .autosaveAsOperation {
+            switch saveOperation {
+            case .saveOperation, .saveAsOperation, .saveToOperation:
                 // update file information
                 self.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
                 self.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
-            }
-            
-            switch saveOperation {
-            case .saveOperation,
-                 .saveAsOperation,
-                 .saveToOperation:
+                
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
-            default: break
+                
+            case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
     }
