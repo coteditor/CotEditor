@@ -1145,7 +1145,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// check if can save safety with the current encoding and ask if not
+    /// check if can save safely with the current encoding and ask if not
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
