@@ -30,12 +30,12 @@ extension NSLayoutManager {
     /// calcurate visual (wrapped) line range
     func lineFragmentRange(at charIndex: Int) -> NSRange {
         
-        let glyphRange = self.glyphIndexForCharacter(at: charIndex)
-        var range: NSRange = .notFound
+        let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
+        var lineGlyphRange: NSRange = .notFound
         
-        self.lineFragmentRect(forGlyphAt: glyphRange, effectiveRange: &range)
+        self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
         
-        return range
+        return self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
     }
     
 }
