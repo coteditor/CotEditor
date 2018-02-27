@@ -37,6 +37,9 @@ protocol SyntaxStyleDelegate: class {
 
 final class SyntaxStyle: Equatable, CustomStringConvertible {
     
+    static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
+    
+    
     // MARK: Public Properties
     
     var textStorage: NSTextStorage?
@@ -53,11 +56,12 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     fileprivate(set) var outlineItems: [OutlineItem] = [] {
         
         didSet {
-            // inform delegate about outline items update
+            // inform about outline items update
             DispatchQueue.main.async { [weak self, items = self.outlineItems] in
                 guard let strongSelf = self else { return }
                 
                 strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
+                NotificationCenter.default.post(name: SyntaxStyle.didUpdateOutlineNotification, object: strongSelf)
             }
         }
     }
