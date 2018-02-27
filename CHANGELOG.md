@@ -8,6 +8,7 @@ unreleased
 ### Improvements
 
 - When “Indent with Tab key” is on, reduce indent level of the current line with Shift+Tab even when nothing is selected.
+- Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 
 
 ### Fixes
