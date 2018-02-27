@@ -38,6 +38,7 @@ final class SidebarViewController: NSTabViewController {
     enum TabIndex: Int {
         
         case documentInspector
+        case outline
         case incompatibleCharacters
     }
     
@@ -51,6 +52,7 @@ final class SidebarViewController: NSTabViewController {
     // MARK: Private Properties
     
     @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
+    @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
     @IBOutlet private weak var incompatibleCharactersTabViewItem: NSTabViewItem?
     
     
@@ -77,6 +79,7 @@ final class SidebarViewController: NSTabViewController {
             guard let document = representedObject as? Document else { return }
             
             self.documentInspectorTabViewItem?.viewController?.representedObject = document.analyzer
+            self.outlineTabViewItem?.viewController?.representedObject = document
             self.incompatibleCharactersTabViewItem?.viewController?.representedObject = document.incompatibleCharacterScanner
         }
     }
