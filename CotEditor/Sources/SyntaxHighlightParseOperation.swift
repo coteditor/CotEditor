@@ -135,7 +135,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     var parseRange: NSRange = .notFound
     
     let progress: Progress
-    private(set) var results = [SyntaxType: [NSRange]]()
+    var highlightBlock: (([SyntaxType: [NSRange]]) -> Void)?
     
     
     // MARK: Private Properties
@@ -157,7 +157,9 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))  // +1 for extractCommentsWithQuotes()
+        // +1 for extractCommentsWithQuotes()
+        // +1 for highlighting
+        self.progress = Progress(totalUnitCount: Int64(definitions.count + 2))
         
         super.init()
         
@@ -186,7 +188,19 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             self.finish()
         }
         
-        self.results = self.extractHighlights()
+        let results = self.extractHighlights()
+        
+        guard !self.isCancelled else { return }
+        
+        DispatchQueue.main.async { [weak progress = self.progress] in
+            progress?.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+        }
+        
+        self.highlightBlock?(results)
+        
+        DispatchQueue.main.async { [weak progress = self.progress] in
+            progress?.completedUnitCount += 1
+        }
     }
     
     
@@ -484,6 +498,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                     }
                 }
                 
+                usleep(10000)
                 // progress indicator
                 DispatchQueue.main.async { [weak childProgress] in
                     childProgress?.completedUnitCount += 1

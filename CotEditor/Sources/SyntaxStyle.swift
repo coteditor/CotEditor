@@ -433,7 +433,6 @@ extension SyntaxStyle {
         operation.parseRange = highlightRange
         
         // show highlighting indicator for large string
-        var indicator: ProgressViewController?
         if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
             // wait for window becomes ready
             DispatchQueue.global(qos: .background).async {
@@ -449,47 +448,27 @@ extension SyntaxStyle {
                         let contentViewController = storage.layoutManagers.first?.firstTextView?.viewControllerForSheet
                         else { return }
                     
-                    indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""))
-                    contentViewController.presentViewControllerAsSheet(indicator!)
+                    let indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""), closesWhenFinished: true)
+                    contentViewController.presentViewControllerAsSheet(indicator)
                 }
             }
         }
         
-        operation.completionBlock = { [weak self, weak operation] in
-            guard let strongSelf = self, let operation = operation else {
-                DispatchQueue.main.async {
-                    indicator?.dismiss(nil)
-                }
-                return
-            }
-            
-            let highlights = operation.results
-            
-            // update progress message
-            DispatchQueue.main.async {
-                operation.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+        operation.highlightBlock = { [weak self] (highlights) in
+            // cache result if whole text was parsed
+            if highlightRange.length == string.utf16.count {
+                self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
             DispatchQueue.main.async {
-                if !operation.isCancelled {
-                    // cache result if whole text was parsed
-                    if highlightRange.length == string.utf16.count {
-                        strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
-                    }
-                    
-                    // apply color (or give up if the editor's string is changed from the analized string)
-                    if strongSelf.textStorage?.string == string {
-                        strongSelf.apply(highlights: highlights, range: highlightRange)
-                    }
-                }
+                // give up if the editor's string is changed from the analized string
+                guard self?.textStorage?.string == string else { return }
                 
-                // clean up indicator sheet
-                indicator?.dismiss(strongSelf)
-                
-                // do the rest things
-                completionHandler?()
+                self?.apply(highlights: highlights, range: highlightRange)
             }
         }
+            
+        operation.completionBlock = completionHandler
         
         self.syntaxHighlightParseOperationQueue.addOperation(operation)
     }
