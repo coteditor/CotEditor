@@ -462,6 +462,11 @@ extension SyntaxStyle {
             
             let highlights = operation.results
             
+            // update progress message
+            DispatchQueue.main.async {
+                operation.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+            }
+            
             DispatchQueue.main.async {
                 if !operation.isCancelled {
                     // cache result if whole text was parsed
@@ -471,8 +476,6 @@ extension SyntaxStyle {
                     
                     // apply color (or give up if the editor's string is changed from the analized string)
                     if strongSelf.textStorage?.string == string {
-                        // update indicator message
-                        operation.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
                         strongSelf.apply(highlights: highlights, range: highlightRange)
                     }
                 }
