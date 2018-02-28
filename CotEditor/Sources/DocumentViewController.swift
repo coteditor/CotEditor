@@ -35,12 +35,22 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     // MARK: Private Properties
     
+    private var occlusionStateObserver: NSKeyValueObservation?
+    
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
     
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    deinit {
+        self.occlusionStateObserver?.invalidate()
+    }
+    
+    
+    
     // MARK: Split View Controller Methods
     
     override func viewDidLoad() {
@@ -300,8 +310,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
-            DispatchQueue.main.async {
-                syntaxStyle.highlight(around: editedRange)
+            DispatchQueue.main.async { [weak self] in
+                guard let progress = syntaxStyle.highlight(around: editedRange) else { return }
+                
+                self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
             }
         }
         
@@ -740,7 +752,40 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// re-highlight whole content
     private func invalidateSyntaxHighlight() {
         
-        self.syntaxStyle?.highlightAll()
+        guard
+            let progress = self.syntaxStyle?.highlightAll(),
+            let length = self.syntaxStyle?.textStorage?.length
+            else { return }
+        
+        self.presentHighlightIndicator(progress: progress, highlightLength: length)
+    }
+    
+    
+    /// show highlighting indicator for large string
+    private func presentHighlightIndicator(progress: Progress, highlightLength: Int) {
+        
+        /// show indicator only for a large update
+        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
+        guard threshold > 0, highlightLength > threshold else { return }
+        
+        assert(self.view.window != nil)
+        self.occlusionStateObserver?.invalidate()
+        self.occlusionStateObserver = self.view.window?.observe(\.occlusionState, options: [.initial]) { [weak self, weak progress] (window, change) in
+            
+            guard window.occlusionState.contains(.visible) else { return }
+            
+            self?.occlusionStateObserver?.invalidate()
+            
+            guard
+                let progress = progress,
+                !progress.isFinished, !progress.isCancelled
+                else { return }
+            
+            let message = NSLocalizedString("Coloring text…", comment: "")
+            let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
+            
+            self?.presentViewControllerAsSheet(indicator)
+        }
     }
     
     
