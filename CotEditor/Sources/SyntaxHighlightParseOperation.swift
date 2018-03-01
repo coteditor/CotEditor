@@ -498,7 +498,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                     }
                 }
                 
-                usleep(10000)
                 // progress indicator
                 DispatchQueue.main.async { [weak childProgress] in
                     childProgress?.completedUnitCount += 1
