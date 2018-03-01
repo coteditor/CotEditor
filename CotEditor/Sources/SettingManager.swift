@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -46,11 +46,11 @@ class SettingManager: SettingManagerProtocol {
     // MARK: Public Properties/Methods
     
     /// user setting directory URL in Application Support
-    lazy var userSettingDirectoryURL: URL = type(of: self).supportDirectoryURL.appendingPathComponent(self.directoryName)
+    final lazy var userSettingDirectoryURL: URL = type(of: self).supportDirectoryURL.appendingPathComponent(self.directoryName)
     
     
     /// create user setting directory if not yet exist
-    func prepareUserSettingDirectory() throws {
+    final func prepareUserSettingDirectory() throws {
         
         let directoryURL = self.userSettingDirectoryURL
         let isDirectory = (try? directoryURL.resourceValues(forKeys: [.isDirectoryKey]).isDirectory ?? false) ?? false
