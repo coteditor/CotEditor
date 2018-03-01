@@ -8,7 +8,6 @@ unreleased
 ### New Features
 
 - Add outline menu to side bar.
-    - [ ] Outline trigger
     - [ ] menu item for outline view
 
 ### Improvements
