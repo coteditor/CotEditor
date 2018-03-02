@@ -911,10 +911,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change syntax style with style name
-    func setSyntaxStyle(name: String?) {
+    func setSyntaxStyle(name: String) {
         
         guard
-            let name = name, !name.isEmpty,
             let syntaxStyle = SyntaxManager.shared.style(name: name),
             syntaxStyle != self.syntaxStyle
             else { return }

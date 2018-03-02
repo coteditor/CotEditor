@@ -16,6 +16,7 @@ unreleased
 - Fix an issue where `⌘←` was ignored when the cursor locates at the end of the document.
 - Fix an issue where save dialog layout corrupted when toggling the visibility of the file browser.
 - Fix an issue where no alert was raised on saving even when a document contains lossy yen signs.
+- Fix an issue where document syntax was parsed twice on file open.
 - Fix a possible crash on print.
 
 
