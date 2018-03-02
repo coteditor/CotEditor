@@ -35,22 +35,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     // MARK: Private Properties
     
-    private var occlusionStateObserver: NSKeyValueObservation?
-    
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.occlusionStateObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: Split View Controller Methods
     
     override func viewDidLoad() {
@@ -768,14 +758,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
         guard threshold > 0, highlightLength > threshold else { return }
         
-        assert(self.view.window != nil)
-        self.occlusionStateObserver?.invalidate()
-        self.occlusionStateObserver = self.view.window?.observe(\.occlusionState, options: [.initial]) { [weak self, weak progress] (window, change) in
-            
-            guard window.occlusionState.contains(.visible) else { return }
-            
-            self?.occlusionStateObserver?.invalidate()
-            
+        guard let window = self.view.window else {
+            assertionFailure("Expeced window to be non-nil.")
+            return
+        }
+        
+        // display indicator first when window is visible
+        let presentBlock = { [weak self, weak progress] in
             guard
                 let progress = progress,
                 !progress.isFinished, !progress.isCancelled
@@ -785,6 +774,22 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
             
             self?.presentViewControllerAsSheet(indicator)
+        }
+        
+        if window.occlusionState.contains(.visible) {
+            presentBlock()
+        } else {
+            weak var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (_) in
+                
+                guard window.occlusionState.contains(.visible) else { return }
+                
+                if let observer = observer {
+                    NotificationCenter.default.removeObserver(observer)
+                }
+                
+                presentBlock()
+            }
         }
     }
     
