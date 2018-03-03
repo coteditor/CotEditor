@@ -309,12 +309,12 @@ extension SyntaxStyle {
 extension SyntaxStyle {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: (() -> Void)? = nil) {  // @escaping
+    func highlightAll(completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
         
         assert(Thread.isMainThread)
         
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
-        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
+        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return nil }
         
         let wholeRange = textStorage.string.nsRange
         
@@ -322,7 +322,7 @@ extension SyntaxStyle {
         if let cache = self.highlightCache, cache.hash == textStorage.string.md5 {
             self.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler?()
-            return
+            return nil
         }
         
         // make sure that string is immutable
@@ -332,19 +332,19 @@ extension SyntaxStyle {
         let string = textStorage.string.immutable
         
         // avoid parsing twice for the same string
-        guard (self.syntaxHighlightParseOperationQueue.operations.last as? SyntaxHighlightParseOperation)?.string != string else { return }
+        guard (self.syntaxHighlightParseOperationQueue.operations.last as? SyntaxHighlightParseOperation)?.string != string else { return nil }
         
-        self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
+        return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
     }
     
     
     /// update highlights around passed-in range
-    func highlight(around editedRange: NSRange) {
+    func highlight(around editedRange: NSRange) -> Progress? {
         
         assert(Thread.isMainThread)
         
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
-        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
+        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return nil }
         
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = textStorage.string.immutable
@@ -353,7 +353,7 @@ extension SyntaxStyle {
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
-        guard var highlightRange = editedRange.intersection(wholeRange) else { return }
+        guard var highlightRange = editedRange.intersection(wholeRange) else { return nil }
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -399,7 +399,7 @@ extension SyntaxStyle {
             }
         }
         
-        self.highlight(string: string, range: highlightRange)
+        return self.highlight(string: string, range: highlightRange)
     }
     
     
@@ -414,15 +414,15 @@ extension SyntaxStyle {
     
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) {  // @escaping
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
         
-        guard highlightRange.length > 0 else { return }
+        guard highlightRange.length > 0 else { return nil }
         
         // just clear current highlight and return if no coloring needs
         guard self.hasSyntaxHighlighting else {
             self.apply(highlights: [:], range: highlightRange)
             completionHandler?()
-            return
+            return nil
         }
         
         let operation = SyntaxHighlightParseOperation(definitions: self.highlightDictionary,
@@ -432,66 +432,25 @@ extension SyntaxStyle {
         operation.string = string
         operation.parseRange = highlightRange
         
-        // show highlighting indicator for large string
-        var indicator: ProgressViewController?
-        if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
-            // wait for window becomes ready
-            DispatchQueue.global(qos: .background).async {
-                while storage.layoutManagers.isEmpty {
-                    if operation.isFinished || operation.isCancelled { return }
-                    
-                    usleep(100)
-                }
-                
-                // attach the indicator as a sheet
-                DispatchQueue.main.sync {
-                    guard !operation.isFinished, !operation.isCancelled,
-                        let contentViewController = storage.layoutManagers.first?.firstTextView?.viewControllerForSheet
-                        else { return }
-                    
-                    indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""))
-                    contentViewController.presentViewControllerAsSheet(indicator!)
-                }
-            }
-        }
-        
-        operation.completionBlock = { [weak self, weak operation] in
-            guard let strongSelf = self, let operation = operation else {
-                DispatchQueue.main.async {
-                    indicator?.dismiss(nil)
-                }
-                return
-            }
-            
-            let highlights = operation.results
-            
-            // update progress message
-            DispatchQueue.main.async {
-                operation.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+        operation.highlightBlock = { [weak self] (highlights) in
+            // cache result if whole text was parsed
+            if highlightRange.length == string.utf16.count {
+                self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
             DispatchQueue.main.async {
-                if !operation.isCancelled {
-                    // cache result if whole text was parsed
-                    if highlightRange.length == string.utf16.count {
-                        strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
-                    }
-                    
-                    // apply color (or give up if the editor's string is changed from the analized string)
-                    if strongSelf.textStorage?.string == string {
-                        strongSelf.apply(highlights: highlights, range: highlightRange)
-                    }
-                }
+                // give up if the editor's string is changed from the analized string
+                guard self?.textStorage?.string == string else { return }
                 
-                // clean up indicator sheet
-                indicator?.dismiss(strongSelf)
-                
-                // do the rest things
-                completionHandler?()
+                self?.apply(highlights: highlights, range: highlightRange)
             }
         }
+            
+        operation.completionBlock = completionHandler
         
         self.syntaxHighlightParseOperationQueue.addOperation(operation)
+        
+        return operation.progress
     }
     
     
