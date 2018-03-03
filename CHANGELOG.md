@@ -2,18 +2,26 @@
 Change Log
 ==========================
 
-3.3.4 (234)
+unreleased
 --------------------------
 
 ### New Features
 
 - Add outline menu to side bar.
-    - [ ] menu item for outline view
+
+
+### Improvements
+
+- Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
+
+
+
+3.3.4 (234)
+--------------------------
 
 ### Improvements
 
 - When “Indent with Tab key” is on, reduce indent level of the current line with Shift+Tab even when nothing is selected.
-- Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 
 
 ### Fixes
