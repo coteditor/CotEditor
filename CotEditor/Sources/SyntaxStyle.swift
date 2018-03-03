@@ -53,7 +53,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     let completionWords: [String]?
     
-    fileprivate(set) var outlineItems: [OutlineItem] = [] {
+    private(set) var outlineItems: [OutlineItem] = [] {
         
         didSet {
             // inform about outline items update
@@ -69,16 +69,16 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     // MARK: Private Properties
     
-    fileprivate let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
-    fileprivate let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
+    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
+    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
     
-    fileprivate let highlightDictionary: [SyntaxType: [HighlightDefinition]]
-    fileprivate let pairedQuoteTypes: [String: SyntaxType]
-    fileprivate let outlineDefinitions: [OutlineDefinition]
+    private let highlightDictionary: [SyntaxType: [HighlightDefinition]]
+    private let pairedQuoteTypes: [String: SyntaxType]
+    private let outlineDefinitions: [OutlineDefinition]
     
-    fileprivate var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
+    private var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
     
-    fileprivate private(set) lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
+    private lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
     
     
     
@@ -284,7 +284,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    fileprivate func parseOutline() {
+    private func parseOutline() {
         
         guard let string = self.textStorage?.string, !string.isEmpty else {
             self.outlineItems = []

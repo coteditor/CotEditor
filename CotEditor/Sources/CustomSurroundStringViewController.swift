@@ -34,8 +34,8 @@ final class CustomSurroundStringViewController: NSViewController {
     @objc private dynamic var beginString: String = ""
     @objc private dynamic var endString: String = ""
     
-    @IBOutlet fileprivate weak var beginStringField: NSTextField?
-    @IBOutlet fileprivate weak var endStringField: NSTextField?
+    @IBOutlet private weak var beginStringField: NSTextField?
+    @IBOutlet private weak var endStringField: NSTextField?
     
     
     

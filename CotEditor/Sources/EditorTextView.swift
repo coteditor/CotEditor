@@ -78,7 +78,7 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    fileprivate var particalCompletionWord: String?
+    private var particalCompletionWord: String?
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,

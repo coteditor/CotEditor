@@ -54,7 +54,7 @@ final class LineNumberView: NSRulerView {
     private var totalNumberOfLines = 0
     private var needsRecountTotalNumberOfLines = true
     
-    fileprivate weak var draggingTimer: Timer?
+    private weak var draggingTimer: Timer?
     
     
     
@@ -336,7 +336,7 @@ final class LineNumberView: NSRulerView {
     // MARK: Private Methods
     
     /// return client view casting to textView
-    fileprivate var textView: NSTextView? {
+    private var textView: NSTextView? {
         
         return self.scrollView?.documentView as? NSTextView
     }

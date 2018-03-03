@@ -42,7 +42,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private var themeNames = [String]()
     @objc private dynamic var isBundled = false
     
-    @IBOutlet fileprivate private(set) weak var fontField: AntialiasingTextField?
+    @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private weak var box: NSBox?
     @IBOutlet private var themeTableMenu: NSMenu?
@@ -612,7 +612,7 @@ extension AppearancePaneController {
     // MARK: Private Methods
     
     /// display font name and size in the font field
-    fileprivate func setupFontFamilyNameAndSize() {
+    private func setupFontFamilyNameAndSize() {
         
         let name = UserDefaults.standard[.fontName]!
         let size = UserDefaults.standard[.fontSize]

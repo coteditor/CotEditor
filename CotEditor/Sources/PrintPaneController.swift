@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ final class PrintPaneController: NSViewController {
     
     // MARK: Private Properties
     
-    @IBOutlet fileprivate private(set) weak var fontField: NSTextField?
+    @IBOutlet private weak var fontField: NSTextField?
     @IBOutlet private weak var colorPopupButton: NSPopUpButton?
     
     
@@ -154,7 +154,7 @@ extension PrintPaneController {
     // MARK: Private Methods
     
     /// display font name and size in the font field
-    fileprivate func setupFontFamilyNameAndSize() {
+    private func setupFontFamilyNameAndSize() {
         
         let name = UserDefaults.standard[.printFontName]!
         let size = UserDefaults.standard[.printFontSize]
