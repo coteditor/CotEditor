@@ -1137,7 +1137,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // check file encoding for conversion and ask user how to solve
         do {
             try self.checkSavingSafetyForConverting()
-            
         } catch {
             return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
         }
