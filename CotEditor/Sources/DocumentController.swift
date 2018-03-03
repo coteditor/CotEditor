@@ -297,7 +297,7 @@ final class DocumentController: NSDocumentController {
     // MARK: Private Methods
     
     /// transient document to be replaced or nil
-    var transientDocumentToReplace: Document? {
+    private var transientDocumentToReplace: Document? {
         
         guard
             self.documents.count == 1,

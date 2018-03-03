@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -142,23 +142,22 @@ class EncodingDetectionTests: XCTestCase {
     func testEncodingDeclarationScan() {
         
         let string = "<meta charset=\"Shift_JIS\"/>"
-        let tags = ["encoding=", "charset="]
         let utf8Int = UInt32(CFStringBuiltInEncodings.UTF8.rawValue)
         let shiftJISInt = UInt32(CFStringEncodings.shiftJIS.rawValue)
         let shiftJISX0213Int = UInt32(CFStringEncodings.shiftJIS_X0213.rawValue)
         
-        XCTAssertNil(string.scanEncodingDeclaration(forTags: tags, upTo: 16,
+        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16,
                                                     suggestedCFEncodings: [utf8Int, shiftJISInt, shiftJISX0213Int]))
         
-        XCTAssertEqual(string.scanEncodingDeclaration(forTags: tags, upTo: 128,
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128,
                                                       suggestedCFEncodings: [utf8Int, shiftJISInt, shiftJISX0213Int]),
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS))
         
-        XCTAssertEqual(string.scanEncodingDeclaration(forTags: tags, upTo: 128,
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128,
                                                       suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213))
         
-        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(forTags: tags, upTo: 128,
+        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128,
                                                                            suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
                        String.Encoding.utf8)
     }

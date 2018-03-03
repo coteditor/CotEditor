@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -60,25 +60,25 @@ class AsynchronousOperation: Operation {
     // MARK: -
     // MARK: Operation Methods
     
-    override var isAsynchronous: Bool {
+    final override var isAsynchronous: Bool {
         
         return true
     }
     
     
-    override var isExecuting: Bool {
+    final override var isExecuting: Bool {
         
         return _executing
     }
     
     
-    override var isFinished: Bool {
+    final override var isFinished: Bool {
         
         return _finished
     }
     
     
-    override func start() {
+    final override func start() {
         
         self.isOperationStarted = true
         
@@ -97,7 +97,7 @@ class AsynchronousOperation: Operation {
     // MARK: Public Methods
     
     /// invoke this method when operation finished no matter if the operation succeeded or not
-    func finish() {
+    final func finish() {
         
         guard self.isOperationStarted else { return }
         

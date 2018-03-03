@@ -58,20 +58,12 @@ extension NSTextView {
         let currentLocation = self.selectedRange.location
         let lineRange = string.lineRange(for: self.selectedRange)
         
-        if let layoutManager = self.layoutManager {
+        if let layoutManager = self.layoutManager, currentLocation > 0 {
             // beginning of current visual line
-            let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation).location
+            let visualLineLocation = layoutManager.lineFragmentRange(at: currentLocation - 1).location
             
-            if currentLocation < visualLineLocation, lineRange.location < visualLineLocation {
+            if lineRange.location < visualLineLocation {
                 return visualLineLocation
-            }
-            
-            if currentLocation > 0 {
-                // beginning of last visual line
-                let lastVisualLineLocation = layoutManager.lineFragmentRange(at: currentLocation - 1).location
-                if lineRange.location < lastVisualLineLocation {
-                    return lastVisualLineLocation
-                }
             }
         }
         

@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+3.3.4 (234)
+--------------------------
+
+### Improvements
+
+- When “Indent with Tab key” is on, reduce indent level of the current line with Shift+Tab even when nothing is selected.
+
+
+### Fixes
+
+- Fix an issue where lossy saving was failed.
+- Fix an issue where `⌘←` was ignored when the cursor locates at the end of the document.
+- Fix an issue where save dialog layout corrupted when toggling the visibility of the file browser.
+- Fix an issue where no alert was raised on saving even when a document contains lossy yen signs.
+- Fix an issue where document syntax was parsed twice on file open.
+- Fix a possible crash on print.
+
+
+
 3.3.3 (232)
 --------------------------
 

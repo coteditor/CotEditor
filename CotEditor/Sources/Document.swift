@@ -421,17 +421,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
+            let textView = self.textStorage.layoutManagers.lazy
+                .flatMap { $0.textViewForBeginningOfSelection }
+                .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
             
-            for layoutManager in self.textStorage.layoutManagers {
-                guard
-                    let textView = layoutManager.textViewForBeginningOfSelection,
-                    let window = textView.window else { continue }
-                
-                if !keepsEditingPoint || layoutManager.layoutManagerOwnsFirstResponder(in: window) {
-                    textView.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines, keepingEditingPoint: keepsEditingPoint)
-                    break  // trimming once is enough
-                }
-            }
+            textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,
+                                             keepingEditingPoint: keepsEditingPoint)
         }
         
         // break undo grouping
@@ -442,7 +437,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // modify place to create backup file
         //   -> save backup file always in `~/Library/Autosaved Information/` directory
         //      (The default backup URL is the same directory as the fileURL.)
-        let newUrl: URL = {
+        let newURL: URL = {
             guard
                 saveOperation == .autosaveElsewhereOperation,
                 let fileURL = self.fileURL
@@ -450,7 +445,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             let autosaveDirectoryURL = (DocumentController.shared as! DocumentController).autosaveDirectoryURL
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
-                .replacingOccurrences(of: ".", with: "", options: .anchored, range: nil)  // avoid file to be hidden
+                .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
             
             // append a unique string to avoid overwriting another backup file with the same file name.
             let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
@@ -458,7 +453,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
         
-        super.save(to: newUrl, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
+        super.save(to: newURL, ofType: typeName, for: saveOperation) { [unowned self] (error: Error?) in
             defer {
                 completionHandler(error)
             }
@@ -479,21 +474,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            if saveOperation != .autosaveElsewhereOperation, saveOperation != .autosaveAsOperation {
+            switch saveOperation {
+            case .saveOperation, .saveAsOperation, .saveToOperation:
                 // update file information
                 self.analyzer.invalidateFileInfo()
                 
                 // send file update notification for the external editor protocol (ODB Editor Suite)
                 let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
                 self.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
-            }
-            
-            switch saveOperation {
-            case .saveOperation,
-                 .saveAsOperation,
-                 .saveToOperation:
+                
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
-            default: break
+                
+            case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
     }
@@ -567,31 +559,26 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         savePanel.isExtensionHidden = false
         savePanel.canSelectHiddenExtension = false
         
-        // set default file extension in hacky way (2016-10 on macOS 10.12 SDK for macOS 10.10 - 10.12)
-        self.allowedFileTypes = nil
+        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.13)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let fileType = self.fileType,
            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
-            // bind allowedFileTypes flag with savePanel
-            // -> So that initial filename selection excludes file extension.
-            self.allowedFileTypes = [pathExtension]
-            savePanel.bind(NSBindingName(#keyPath(NSSavePanel.allowedFileTypes)), to: self, withKeyPath: #keyPath(allowedFileTypes))
+            // set once allowedFileTypes, so that initial filename selection excludes the file extension
+            savePanel.allowedFileTypes = [pathExtension]
             
-            // disable and unbind `allowedFileTypes` immediately in the next runloop to allow set other extensions
-            DispatchQueue.main.async { [weak self] in
-                self?.allowedFileTypes = nil
-                savePanel.unbind(NSBindingName(#keyPath(NSSavePanel.allowedFileTypes)))
+            // disable immediately in the next runloop to allow set other extensions
+            DispatchQueue.main.async {
+                savePanel.allowedFileTypes = nil
             }
         }
         
         // set accessory view
+        self.savePanelAccessoryController = self.savePanelAccessoryController.storyboard!.instantiateInitialController() as! NSViewController
         self.savePanelAccessoryController.representedObject = self
         savePanel.accessoryView = self.savePanelAccessoryController.view
         
         return super.prepareSavePanel(savePanel)
     }
-    
-    @objc private dynamic var allowedFileTypes: [String]?
     
     
     /// display dialogs about save before closing document
@@ -924,10 +911,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change syntax style with style name
-    func setSyntaxStyle(name: String?) {
+    func setSyntaxStyle(name: String) {
         
         guard
-            let name = name, !name.isEmpty,
             let syntaxStyle = SyntaxManager.shared.style(name: name),
             syntaxStyle != self.syntaxStyle
             else { return }
@@ -1149,24 +1135,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let suggestedCFEncodings = UserDefaults.standard[.encodingList]
         
-        return content.scanEncodingDeclaration(forTags: ["charset=", "encoding=", "@charset", "encoding:", "coding:"],
-                                               upTo: maxEncodingScanLength,
-                                               suggestedCFEncodings: suggestedCFEncodings)
+        return content.scanEncodingDeclaration(upTo: maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings)
     }
     
     
-    /// check if can save safety with the current encoding and ask if not
+    /// check if can save safely with the current encoding and ask if not
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
         
         let content = self.string
-        let encoding = self.encoding
         
         // check encoding declaration in the document and alert if incompatible with saving encoding
         if !self.suppressesIANACharsetConflictAlert {
             do {
-                try self.checkSavingSafetyWithIANACharSetName(content: content, encoding: encoding)
+                try self.checkSavingSafetyWithIANACharSetName(content: content)
                 
             } catch {
                 // --> ask directly with a NSAlert for the suppression button
@@ -1183,20 +1166,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 
                 switch result {
                 case .alertSecondButtonReturn:  // == Cancel
-                    completionHandler(false)
-                    return
-                default: break  // == Continue Saving
+                    return completionHandler(false)
+                default:  // == Continue Saving
+                    break
                 }
             }
         }
         
         // check file encoding for conversion and ask user how to solve
         do {
-            try self.checkSavingSafetyForConverting(content: content, encoding: encoding)
+            try self.checkSavingSafetyForConverting(content: content)
             
         } catch {
-            self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
-            return
+            return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
         }
         
         completionHandler(true)
@@ -1204,24 +1186,21 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// check compatibility of saving encoding with the encoding decralation in document
-    private func checkSavingSafetyWithIANACharSetName(content: String, encoding: String.Encoding) throws {
+    private func checkSavingSafetyWithIANACharSetName(content: String) throws {
         
         guard let ianaCharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
         
-        guard encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
-            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: encoding, withUTF8BOM: false, attempter: self)
+        guard self.encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
+            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }
     
     
     /// check if the content can be saved with the file encoding
-    private func checkSavingSafetyForConverting(content: String, encoding: String.Encoding) throws {
+    private func checkSavingSafetyForConverting(content: String) throws {
         
-        // convert yen if needed
-        let newString = content.convertingYenSign(for: encoding)
-        
-        guard newString.canBeConverted(to: encoding) else {
-            throw EncodingError(kind: .unconvertibleCharacters, encoding: encoding, withUTF8BOM: false, attempter: self)
+        guard content.canBeConverted(to: self.encoding) else {
+            throw EncodingError(kind: .lossySaving, encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }
     
@@ -1345,7 +1324,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
         case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
-        case unconvertibleCharacters
+        case lossySaving
         case lossyConversion
     }
     
@@ -1365,7 +1344,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
                           encodingName, String.localizedName(of: ianaEncoding))
             
-        case .unconvertibleCharacters, .lossyConversion:
+        case .lossySaving, .lossyConversion:
             return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
         }
     }
@@ -1374,7 +1353,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .ianaCharsetNameConflict, .unconvertibleCharacters:
+        case .ianaCharsetNameConflict, .lossySaving:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
             
         case .lossyConversion:
@@ -1390,7 +1369,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
             return [NSLocalizedString("Continue Saving", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
             
-        case .unconvertibleCharacters:
+        case .lossySaving:
             return [NSLocalizedString("Show Incompatible Characters", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
                     NSLocalizedString("Cancel", comment: "")]
@@ -1415,7 +1394,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
                 preconditionFailure()
             }
             
-        case .unconvertibleCharacters:
+        case .lossySaving:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
                 self.showIncompatibleCharacters()

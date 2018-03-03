@@ -37,8 +37,8 @@ extension NSDocument {
         
         self.performActivity(withSynchronousWaiting: waitSynchronously) { [unowned self] activityCompletionHandler in
             self.presentErrorAsSheet(error) { (didRecover) in
-                recoveryHandler?(didRecover)
                 activityCompletionHandler()
+                recoveryHandler?(didRecover)
             }
         }
     }

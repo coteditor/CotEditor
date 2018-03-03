@@ -385,7 +385,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             }
             if let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
                 self.syntaxStyle?.highlightAll { [weak controller] in
-                    if let controller = controller, !controller.view.isHidden {
+                    DispatchQueue.main.async {
+                        guard let controller = controller, !controller.view.isHidden else { return }
+                        
                         controller.needsUpdatePreview = true
                     }
                 }
