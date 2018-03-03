@@ -55,7 +55,7 @@
                                                             <subviews>
                                                                 <textField identifier="title" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="F1F-V6-xxG">
                                                                     <rect key="frame" x="0.0" y="0.0" width="190" height="14"/>
-                                                                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Item Title" id="opH-Sc-iu8">
+                                                                    <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Item Title" id="opH-Sc-iu8" customClass="SeparatorTextFieldCell" customModule="CotEditor" customModuleProvider="target">
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

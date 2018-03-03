@@ -88,7 +88,10 @@ final class OutlineViewController: NSViewController {
     /// select current outline item in textView
     private func selectOutlineItem(at row: Int) {
         
-        guard let item = self.outlineItems[safe: row] else { return }
+        guard
+            let item = self.outlineItems[safe: row],
+            item.title != .separator
+            else { return }
         
         let range = item.range
         
@@ -147,6 +150,14 @@ extension OutlineViewController: NSOutlineViewDelegate {
         
         self.selectOutlineItem(at: outlineView.selectedRow)
     }
+    
+    
+    /// avoid selecting separator item
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        
+        return (item as? OutlineItem)?.title != .separator
+    }
+    
 }
 
 
