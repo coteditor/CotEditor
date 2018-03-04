@@ -60,6 +60,11 @@ extension EditorTextView {
             scale = 1.0
         }
         
+        // haptic feedback on scale == 100%
+        if self.scale != 1.0, scale == 1.0 {
+            NSHapticFeedbackManager.defaultPerformer.perform(.generic, performanceTime: .default)
+        }
+        
         self.setScale(scale, centeredAt: center)
     }
     

@@ -12,6 +12,7 @@ unreleased
 
 ### Improvements
 
+- Give a haptic feedback on pinch zoom when the scale becomes 100%.
 - Delete a feature alarting inconsistant encoding declaration in document on saving.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 
