@@ -156,10 +156,17 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// return style name corresponding to file name
-    func settingName(documentFileName fileName: String?) -> SettingName? {
+    /// return style name corresponding to given variables
+    func settingName(documentFileName fileName: String, content: String) -> SettingName {
         
-        guard let fileName = fileName else { return nil }
+        return self.settingName(documentFileName: fileName)
+            ?? self.settingName(documentContent: content)
+            ?? BundledStyleName.none
+    }
+    
+    
+    /// return style name corresponding to file name
+    func settingName(documentFileName fileName: String) -> SettingName? {
         
         let mappingTables = self.propertyAccessQueue.sync { self.mappingTables }
         

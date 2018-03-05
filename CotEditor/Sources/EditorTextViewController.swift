@@ -136,14 +136,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// text will be edited
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
-        // standardize line endings to LF (Key Typing, Script, Paste, Drop or Replace via Find Panel)
-        // (Line endings replacemement by other text modifications are processed in the following methods.)
-        //
-        // # Methods Standardizing Line Endings on Text Editing
-        //   - File Open:
-        //       - Document > read(from:ofType:)
-        //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
+        // standardize line endings to LF
+        // -> Line endings replacemement on file read is processed in `Document.read(from:ofType:)`
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
             !(textView.undoManager?.isUndoing ?? false),  // = undo

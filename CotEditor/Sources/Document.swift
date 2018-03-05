@@ -28,19 +28,6 @@
 
 import Cocoa
 
-extension FileAttributeKey {
-    
-    static let extendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
-}
-
-
-private struct FileExtendedAttributeName {
-    
-    static let encoding = "com.apple.TextEncoding"
-    static let verticalText = "com.coteditor.VerticalText"
-}
-
-
 private struct SerializationKey {
     
     static let readingEncoding = "readingEncoding"
@@ -52,9 +39,6 @@ private struct SerializationKey {
 
 
 private let uniqueFileIDLength = 13
-
-/// Maximal length to scan encoding declaration
-private let maxEncodingScanLength = 2000
 
 
 
@@ -302,53 +286,33 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let data = try Data(contentsOf: url)  // FILE_READ
-        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-        let extendedAttributes = attributes[.extendedAttributes] as? [String: Data]
+        let file = try DocumentFile(fileURL: url, readingEncoding: self.readingEncoding)  // FILE_READ
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
-        self.fileData = data
+        self.fileData = file.data
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
-            self.fileAttributes = attributes
-            let permissions = FilePermissions(mask: (attributes[.posixPermissions] as? UInt16) ?? 0)
+            self.fileAttributes = file.attributes
+            let permissions = FilePermissions(mask: (file.attributes[.posixPermissions] as? UInt16) ?? 0)
             self.isExecutable = permissions.user.contains(.execute)
         }
         
-        // try reading the `com.apple.TextEncoding` extended attribute
-        let xattrEncoding = extendedAttributes?[FileExtendedAttributeName.encoding]?.decodingXattrEncoding
-        self.shouldSaveXattr = (xattrEncoding != nil)
+        // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
+        self.shouldSaveXattr = (file.xattrEncoding != nil)
         
-        // check file metadata for text orientation
+        // set text orientation state
         // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
-        if UserDefaults.standard[.savesTextOrientation], (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
+        if UserDefaults.standard[.savesTextOrientation], file.isVerticalText {
             self.isVerticalText = true
         }
         
-        // decode Data to String
-        let content: String
-        let encoding: String.Encoding
-        if self.readingEncoding == .autoDetection {
-            (content, encoding) = try self.string(data: data, xattrEncoding: xattrEncoding)
-        } else {
-            encoding = self.readingEncoding
-            if !data.isEmpty {
-                content = try String(contentsOf: url, encoding: encoding)  // FILE_READ
-            } else {
-                content = ""
-            }
-        }
-        
         // set read values
-        self.encoding = encoding
-        self.hasUTF8BOM = (encoding == .utf8) && data.hasUTF8BOM
-        
-        if let lineEnding = content.detectedLineEnding {  // keep default if no line endings are found
-            self.lineEnding = lineEnding
-        }
+        self.encoding = file.encoding
+        self.hasUTF8BOM = file.hasUTF8BOM
+        self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // notify
         DispatchQueue.main.async { [weak self] in
@@ -356,25 +320,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         }
         
-        // standardize line endings to LF (File Open)
-        // (Line endings replacemement by other text modifications are processed in the following methods.)
-        //
-        // # Methods Standardizing Line Endings on Text Editing
-        //   - File Open:
-        //       - Document > read(from:ofType:)
-        //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
-        let string = content.replacingLineEndings(with: .LF)
+        // standardize line endings to LF
+        // -> Line endings replacemement by other text modifications is processed in
+        //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
+        let string = file.string.replacingLineEndings(with: .LF)
         
+        // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                ?? SyntaxManager.shared.settingName(documentContent: string)
-                ?? BundledStyleName.none
-            
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
             self.setSyntaxStyle(name: styleName)
         }
     }
@@ -1093,39 +1050,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // update view
         viewController.invalidateStyleInTextStorage()
         viewController.verticalLayoutOrientation = self.isVerticalText
-    }
-    
-    
-    /// read String from Dada detecting file encoding automatically
-    private func string(data: Data, xattrEncoding: String.Encoding?) throws -> (String, String.Encoding) {
-        
-        // try interpreting with xattr encoding
-        if let xattrEncoding = xattrEncoding {
-            // just trust xattr encoding if content is empty
-            if let string = data.isEmpty ? "" : String(data: data, encoding: xattrEncoding) {
-                return (string, xattrEncoding)
-            }
-        }
-        
-        // detect encoding from data
-        let encodingList = UserDefaults.standard[.encodingList]
-        var usedEncoding: String.Encoding?
-        let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
-        
-        // try reading encoding declaration and take priority of it if it seems well
-        if UserDefaults.standard[.referToEncodingTag],
-            let scannedEncoding = string.scanEncodingDeclaration(upTo: maxEncodingScanLength, suggestedCFEncodings: encodingList),
-            scannedEncoding != usedEncoding,
-            let string = String(data: data, encoding: scannedEncoding)
-        {
-            return (string, scannedEncoding)
-        }
-        
-        guard let encoding = usedEncoding else {
-            throw CocoaError(.fileReadUnknownStringEncoding)
-        }
-        
-        return (string, encoding)
     }
     
     
