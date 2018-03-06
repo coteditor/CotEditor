@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.3.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- Update YAML syntax style to fix outline extraction with a specific case.
+
+
+
 3.3.4 (234)
 --------------------------
 
