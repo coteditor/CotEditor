@@ -503,20 +503,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         try super.writeSafely(to: url, ofType: typeName, for: saveOperation)
         
         // save document state to the extended file attributes
-        NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: [.contentIndependentMetadataOnly], error: nil) { [unowned self] (newURL) in
-            if self.shouldSaveXattr {
-                try? newURL.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
-            }
-            if UserDefaults.standard[.savesTextOrientation] {
-                try? newURL.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil, for: FileExtendedAttributeName.verticalText)
-            }
+        if self.shouldSaveXattr {
+            try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
+        }
+        if UserDefaults.standard[.savesTextOrientation] {
+            try url.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil, for: FileExtendedAttributeName.verticalText)
         }
         
         if saveOperation != .autosaveElsewhereOperation {
             // get the latest file attributes
-            NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: url, options: [.withoutChanges], error: nil) { [unowned self] (newURL) in
-                self.fileAttributes = try? FileManager.default.attributesOfItem(atPath: newURL.path)  // FILE_READ
-            }
+            self.fileAttributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
             
             // store file data in order to check the file content identity in `presentedItemDidChange()`
             self.fileData = self.lastSavedData
