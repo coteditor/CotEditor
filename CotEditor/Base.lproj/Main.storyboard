@@ -112,19 +112,6 @@
                                         <menuItem isSeparatorItem="YES" id="79">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Get Info" keyEquivalent="i" id="564">
-                                            <connections>
-                                                <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Incompatible Characters" keyEquivalent="I" id="679">
-                                            <connections>
-                                                <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="335">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
                                         <menuItem title="Close" keyEquivalent="w" id="73">
                                             <connections>
                                                 <action selector="performClose:" target="Ady-hI-5gd" id="wbx-5J-ooi"/>
@@ -539,6 +526,30 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
+                                        <menuItem title="Inspector" id="sYa-2o-iPk">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Inspector" id="10j-rd-fWr">
+                                                <items>
+                                                    <menuItem title="Document Inspector" keyEquivalent="i" id="564">
+                                                        <connections>
+                                                            <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Outline" id="Gch-XD-tRl">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="toggleOutlineMenu:" target="Ady-hI-5gd" id="YG2-ee-mqD"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Incompatible Characters" id="679">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Show Navigation Bar" id="681">
                                             <connections>
                                                 <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>

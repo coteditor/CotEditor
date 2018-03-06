@@ -84,11 +84,6 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
 "125.title" = "最近使った項目を開く";
 
-/* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
-"564.title" = "情報を見る";
-/* Class = "NSMenuItem"; title = "Show Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "非互換文字を表示";
-
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
 "73.title" = "閉じる";
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
@@ -276,6 +271,18 @@
 "612.title" = "ツールバーを非表示";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
 "613.title" = "ツールバーをカスタマイズ…";  // Use … for auto-adding "Customize Touchbar…" below
+
+
+/* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
+"sYa-2o-iPk.title" = "インスペクタ";
+/* Class = "NSMenu"; title = "Inspector"; ObjectID = "10j-rd-fWr"; */
+"10j-rd-fWr.title" = "インスペクタ";
+/* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
+"564.title" = "書類情報";
+/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "679"; */
+"679.title" = "アウトライン";
+/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
+"679.title" = "非互換文字";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "ナビゲーションバーを表示";

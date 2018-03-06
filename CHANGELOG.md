@@ -13,6 +13,7 @@ unreleased
 ### Improvements
 
 - Give a haptic feedback on pinch zoom when the scale becomes 100%.
+- Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
 - Delete a feature alarting inconsistant encoding declaration in document on saving.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 

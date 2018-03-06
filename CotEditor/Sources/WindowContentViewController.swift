@@ -106,13 +106,17 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         guard let action = item.action else { return false }
         
         switch action {
-        case #selector(getInfo), #selector(toggleIncompatibleCharList):
-            if #available(macOS 10.13, *),
-                let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
-                let tabGroup = window.tabGroup {
-                return !tabGroup.isOverviewVisible
-            }
-            return true
+        case #selector(getInfo):
+            (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
+            return self.canToggleSidebar
+            
+        case #selector(toggleOutlineMenu):
+            (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
+            return self.canToggleSidebar
+            
+        case #selector(toggleIncompatibleCharList):
+            (item as? NSMenuItem)?.state = self.isSidebarShown(index: .incompatibleCharacters) ? .on : .off
+            return self.canToggleSidebar
             
         default: break
         }
@@ -156,6 +160,13 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     @IBAction func getInfo(_ sender: Any?) {
         
         self.toggleVisibilityOfSidebarTabItem(index: .documentInspector)
+    }
+    
+    
+    /// toggle visibility of outline menu view
+    @IBAction func toggleOutlineMenu(_ sender: Any?) {
+        
+        self.toggleVisibilityOfSidebarTabItem(index: .outline)
     }
     
     
@@ -240,12 +251,31 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     }
     
     
+    /// whether the given pane in the sidebar is currently shown
+    private func isSidebarShown(index: SidebarViewController.TabIndex) -> Bool {
+        
+        return self.isSidebarShown && (self.sidebarViewController?.selectedTabViewItemIndex == index.rawValue)
+    }
+    
+    
     /// toggle visibility of pane in sidebar
     private func toggleVisibilityOfSidebarTabItem(index: SidebarViewController.TabIndex) {
         
-        let shown = !self.isSidebarShown || (index.rawValue != self.sidebarViewController!.selectedTabViewItemIndex)
+        self.setSidebarShown(!self.isSidebarShown(index: index), index: index, animate: true)
+    }
+    
+    
+    /// whether sidebar state can be toggled
+    private var canToggleSidebar: Bool {
         
-        self.setSidebarShown(shown, index: index, animate: true)
+        // cannot toggle in the tab overview mode
+        if #available(macOS 10.13, *),
+            let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
+            let tabGroup = window.tabGroup {
+            return !tabGroup.isOverviewVisible
+        }
+        
+        return true
     }
     
     

@@ -83,11 +83,6 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
 "125.title" = "Abrir Recentes";
 
-/* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
-"564.title" = "Obter Informações";
-/* Class = "NSMenuItem"; title = "Show Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "Mostrar Caracteres Incompatíveis";
-
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
 "73.title" = "Fechar";
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
@@ -275,6 +270,18 @@
 "612.title" = "Ocultar Barra de Ferramentas";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
 "613.title" = "Personalizar Barra de Ferramentas…";
+
+
+/* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
+"sYa-2o-iPk.title" = "Inspetor";
+/* Class = "NSMenu"; title = "Inspector"; ObjectID = "10j-rd-fWr"; */
+"10j-rd-fWr.title" = "Inspetor";
+/* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
+"564.title" = "Inspetor do Documento";
+/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "679"; */
+"679.title" = "Outline";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
+"679.title" = "Caracteres Incompatíveis";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostrar Barra de Navegação";

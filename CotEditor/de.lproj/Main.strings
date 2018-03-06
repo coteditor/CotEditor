@@ -84,11 +84,6 @@
 /* Class = "NSMenu"; title = "Open Recent"; ObjectID = "125"; */
 "125.title" = "Benutzte Dokumente";
 
-/* Class = "NSMenuItem"; title = "Get Info"; ObjectID = "564"; */
-"564.title" = "Informationen einblenden";
-/* Class = "NSMenuItem"; title = "Show Incompatible Characters"; ObjectID = "679"; */
-"679.title" = "Inkompatible Zeichen einblenden";
-
 /* Class = "NSMenuItem"; title = "Close"; ObjectID = "73"; */
 "73.title" = "Fenster schließen";
 /* Class = "NSMenuItem"; title = "Save"; ObjectID = "75"; */
@@ -276,6 +271,18 @@
 "612.title" = "Symbolleiste ausblenden";
 /* Class = "NSMenuItem"; title = "Customize Toolbar…"; ObjectID = "613"; */
 "613.title" = "Symbolleiste anpassen …";
+
+
+/* Class = "NSMenuItem"; title = "Inspector"; ObjectID = "sYa-2o-iPk"; */
+"sYa-2o-iPk.title" = "Infofenster";
+/* Class = "NSMenu"; title = "Inspector"; ObjectID = "10j-rd-fWr"; */
+"10j-rd-fWr.title" = "Infofenster";
+/* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
+"564.title" = "Dokument-Informationen";
+/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "679"; */
+"679.title" = "Gliederung";
+/* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
+"679.title" = "Inkompatible Zeichen";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Navigationsleiste einblenden";
