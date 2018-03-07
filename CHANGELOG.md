@@ -5,6 +5,11 @@ Change Log
 3.3.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update “Swift” syntax style for Swift 4.1.
+
+
 ### Fixes
 
 - Fix an issue where application could rarely crash under specific environment on saving.
