@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2013-2017 1024jp
+ © 2013-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -50,12 +50,8 @@ final class DocumentWindowController: NSWindowController {
     /// apply user defaults change
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        guard let keyPath = keyPath else { return }
-        
         if keyPath == DefaultKeys.windowAlpha.rawValue {
-            if let window = self.window as? AlphaWindow {
-                window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
-            }
+            (self.window as? AlphaWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
         }
     }
     
