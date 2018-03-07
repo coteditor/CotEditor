@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where application could rarely crash under specific environment on saving.
 - Update YAML syntax style to fix outline extraction with a specific case.
 
 
