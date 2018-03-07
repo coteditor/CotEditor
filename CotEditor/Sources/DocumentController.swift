@@ -36,8 +36,11 @@ protocol AdditionalDocumentPreparing: class {
 
 
 final class DocumentController: NSDocumentController {
-
-    let autosaveDirectoryURL: URL
+    
+    private(set) lazy var autosaveDirectoryURL: URL =  try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                                    in: .userDomainMask,
+                                                                                    appropriateFor: nil,
+                                                                                    create: true)
     
     private(set) var accessorySelectedEncoding: String.Encoding?
     
@@ -53,11 +56,6 @@ final class DocumentController: NSDocumentController {
     // MARK: Lifecycle
     
     override init() {
-        
-        self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                 in: .userDomainMask,
-                                                                 appropriateFor: nil,
-                                                                 create: true)
         
         super.init()
         
