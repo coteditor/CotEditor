@@ -1253,7 +1253,8 @@ final class EditorTextView: NSTextView, Themable {
             if !string.isEmpty {
                 string += "\n"
             }
-            string += url.path
+            
+            string += url.isFileURL ? url.path : url.absoluteString
         }
         
         // insert drop text to view

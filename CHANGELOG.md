@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where application could rarely crash under specific environment on saving.
+- Fix an issue where the domain part was ignored when a favicon was dropped from Safari to editor.
 - Update YAML syntax style to fix outline extraction with a specific case.
 
 
