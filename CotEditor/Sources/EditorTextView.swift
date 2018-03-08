@@ -101,18 +101,6 @@ final class EditorTextView: NSTextView, Themable {
         ]
     
     
-    /// check if the current environment is safe for non-contiguous layout
-    let canUseNonContiguousLayout: Bool = {
-        
-        // -> Workaround a bug where NSScrollView cannot scroll to the end of the content (2017-11 macOS 10.13.1)
-        
-        // no problem on macOS 10.12 or lower...
-        guard #available(macOS 10.13, *) else { return true }
-        
-        return UserDefaults.standard.bool(forKey: "enableNonContiguousLayoutOnHighSierra")
-    }()
-    
-    
     
     // MARK: -
     // MARK: Lifecycle
@@ -141,7 +129,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
-        layoutManager.allowsNonContiguousLayout = self.canUseNonContiguousLayout
+        layoutManager.allowsNonContiguousLayout = true
         self.textContainer!.replaceLayoutManager(layoutManager)
         
         // set layout values
@@ -692,9 +680,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
-        if self.canUseNonContiguousLayout {
-            self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
-        }
+        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
         
         // reset writing direction
         if orientation == .vertical {
