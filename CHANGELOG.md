@@ -8,6 +8,7 @@ unreleased
 ### New Features
 
 - Add outline menu to side bar.
+- Select tabbed window with `⌘+number`.
 
 
 ### Improvements
