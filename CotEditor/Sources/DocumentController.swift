@@ -41,7 +41,6 @@ final class DocumentController: NSDocumentController {
                                                                                     in: .userDomainMask,
                                                                                     appropriateFor: nil,
                                                                                     create: true)
-    
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
