@@ -16,6 +16,7 @@ unreleased
 - Give a haptic feedback on pinch zoom when the scale becomes 100%.
 - Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
 - Delete a feature alarting inconsistant encoding declaration in document on saving.
+- Remove `⌘1` shortcut for Console from default key-binding settings.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 - Remove the workaround for a issue about editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
 
