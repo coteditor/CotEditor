@@ -1063,7 +1063,8 @@ CA
                                         <menuItem isSeparatorItem="YES" id="622">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Console" keyEquivalent="1" id="653">
+                                        <menuItem title="Console" id="653">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showConsolePanel:" target="Ady-hI-5gd" id="80V-8S-iOQ"/>
                                             </connections>

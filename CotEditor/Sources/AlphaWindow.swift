@@ -122,16 +122,17 @@ final class AlphaWindow: NSWindow {
 
 // MARK: Window Tabbing
 
-@available(macOS 10.12, *)
 extension AlphaWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
+    @available(macOS 10.12, *)
     static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
     
     // MARK: Window Methods
     
+    @available(macOS 10.12, *)
     override class var userTabbingPreference: NSWindow.UserTabbingPreference {
         
         if let tabbingPreference = self.tabbingPreference {
@@ -143,6 +144,31 @@ extension AlphaWindow {
         }
         
         return super.userTabbingPreference
+    }
+    
+    
+    /// process user's shortcut input
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        
+        guard !super.performKeyEquivalent(with: event) else { return true }
+        
+        // select tabbed window with `⌘+number`
+        // -> select last tab with `⌘0`
+        guard
+            #available(macOS 10.12, *),
+            event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
+            let characters = event.charactersIgnoringModifiers,
+            let number = Int(characters),
+            let windows = self.tabbedWindows,
+            let window = (number == 0) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
+            else { return false }
+        
+        // prefer existing shortcut that user might define
+        guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
+        
+        window.orderFront(nil)
+        
+        return true
     }
     
 }
