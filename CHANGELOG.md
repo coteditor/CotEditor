@@ -2,6 +2,22 @@
 Change Log
 ==========================
 
+3.3.5 (237)
+--------------------------
+
+### Improvements
+
+- Update “Swift” syntax style for Swift 4.1.
+
+
+### Fixes
+
+- Fix an issue where application could rarely crash under specific environment on saving.
+- Fix an issue where the domain part was ignored when a favicon was dropped from Safari to editor.
+- Update “YAML” syntax style to fix outline extraction with a specific case.
+
+
+
 3.3.4 (234)
 --------------------------
 
