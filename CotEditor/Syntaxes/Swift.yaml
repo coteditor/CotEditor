@@ -3,10 +3,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "3.0.1"
-  description: "Based on Swift 3.0."
+  version: "4.0.0"
+  description: "Based on Swift 4.1"
   license: "Same as CotEditor"
-  lastModified: "2016-10-19"
+  lastModified: "2018-03-07"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
@@ -108,6 +108,7 @@ commands:
 types:
 - beginString: "_Incrementable"
 - beginString: "AbsoluteValuable"
+- beginString: "Any"
 - beginString: "AnyBidirectionalCollection"
 - beginString: "AnyBidirectionalIndex"
 - beginString: "AnyCollectionType"
@@ -228,6 +229,7 @@ types:
 - beginString: "ReverseIndexType"
 - beginString: "ReverseRandomAccessCollection"
 - beginString: "ReverseRandomAccessIndex"
+- beginString: "Self"
 - beginString: "SequenceType"
 - beginString: "Set"
 - beginString: "SetAlgebraType"
@@ -255,6 +257,7 @@ types:
 - beginString: "String.UTF8View.Index"
 - beginString: "StringInterpolationConvertible"
 - beginString: "StringLiteralConvertible"
+- beginString: "Substring"
 - beginString: "UInt"
 - beginString: "UInt16"
 - beginString: "UInt32"
@@ -278,7 +281,7 @@ types:
 - beginString: "Zip2Generator"
 - beginString: "Zip2Sequence"
 numbers:
-- beginString: "(?<![0-9a-z_])[-+]?([0-9][0-9._]*|\\.[0-9][0-9_]*)(e-?[0-9._]+)?\\b"
+- beginString: "(?<![0-9a-z_$])[-+]?([0-9][0-9._]*|\\.[0-9][0-9_]*)(e-?[0-9._]+)?\\b"
   ignoreCase: true
   regularExpression: true
 - beginString: "\\b0b[01][01_]*\\b"
@@ -307,7 +310,6 @@ keywords:
 - beginString: "#line"
 - beginString: "#selector"
 - beginString: "#sourceLocation"
-- beginString: "Any"
 - beginString: "as"
 - beginString: "assignment"
 - beginString: "associatedtype"
@@ -335,6 +337,7 @@ keywords:
 - beginString: "func"
 - beginString: "get"
 - beginString: "guard"
+- beginString: "higherThan­"
 - beginString: "if"
 - beginString: "import"
 - beginString: "in"
@@ -347,6 +350,7 @@ keywords:
 - beginString: "lazy"
 - beginString: "left"
 - beginString: "let"
+- beginString: "lowerThan­"
 - beginString: "mutating"
 - beginString: "none"
 - beginString: "nonmutating"
@@ -355,6 +359,7 @@ keywords:
 - beginString: "optional"
 - beginString: "override"
 - beginString: "postfix"
+- beginString: "precedence"
 - beginString: "precedencegroup"
 - beginString: "prefix"
 - beginString: "private"
@@ -367,7 +372,6 @@ keywords:
 - beginString: "return"
 - beginString: "right"
 - beginString: "safe"
-- beginString: "Self"
 - beginString: "set"
 - beginString: "static"
 - beginString: "struct"
@@ -385,7 +389,7 @@ keywords:
 - beginString: "while"
 - beginString: "willSet"
 variables:
-- beginString: "$\\d\\b"
+- beginString: "\\$[0-9]\\b"
   regularExpression: true
 - beginString: "newValue"
 - beginString: "oldValue"
