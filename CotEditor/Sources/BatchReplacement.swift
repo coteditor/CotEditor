@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ extension BatchReplacement {
     ///   - block: The block enumerates the matches.
     ///   - count: The number of replaces so far.
     ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
-    /// - Returns: The found ranges.
+    /// - Returns: The found ranges. This method will return first all search finished.
     func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ count: Int, _ stop: inout Bool) -> Void) -> [NSRange] {
         
         var result = [NSRange]()
@@ -151,7 +151,7 @@ extension BatchReplacement {
     ///   - block: The block enumerates the matches.
     ///   - count: The number of replaces so far.
     ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
-    /// - Returns: The result of the replacement.
+    /// - Returns: The result of the replacement. This method will return first all replacement finished.
     func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ count: Int, _ stop: inout Bool) -> Void) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
