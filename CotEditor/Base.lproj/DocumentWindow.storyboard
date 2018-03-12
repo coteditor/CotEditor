@@ -264,8 +264,8 @@
                     </tabView>
                     <connections>
                         <outlet property="documentInspectorTabViewItem" destination="Kfj-q6-61N" id="WFA-8N-DmT"/>
-                        <outlet property="outlineTabViewItem" destination="hyM-2j-hen" id="EFV-Ay-pkJ"/>
                         <outlet property="incompatibleCharactersTabViewItem" destination="JZo-ok-Dks" id="QRQ-Sy-61p"/>
+                        <outlet property="outlineTabViewItem" destination="hyM-2j-hen" id="EFV-Ay-pkJ"/>
                         <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
                         <segue destination="US1-1U-VH8" kind="relationship" relationship="tabItems" id="4Zo-YO-63m"/>
                         <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
@@ -361,7 +361,7 @@
         <scene sceneID="uT8-5A-k2A">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="JZo-9i-3gf">
+                    <view key="view" id="JZo-9i-3gf" customClass="BackgroundView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="19"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

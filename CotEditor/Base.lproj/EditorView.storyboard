@@ -42,7 +42,7 @@
         <scene sceneID="JxK-9F-xcJ">
             <objects>
                 <viewController id="KjS-UJ-AjC" customClass="NavigationBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" verticalCompressionResistancePriority="249" id="Fb7-9r-keA">
+                    <view key="view" verticalCompressionResistancePriority="249" id="Fb7-9r-keA" customClass="BackgroundView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
