@@ -1100,8 +1100,14 @@ final class EditorTextView: NSTextView, Themable {
     /// window's opacity did change
     @objc private func didWindowOpacityChange(_ notification: Notification?) {
         
+        let isOpaque = self.window?.isOpaque ?? true
+        
         // let text view have own background if possible
-        self.drawsBackground = self.window?.isOpaque ?? true
+        self.drawsBackground = isOpaque
+        
+        // make the current line highlight a bit transparent
+        let highlightAlpha: CGFloat = isOpaque ? 1.0 : 0.7
+        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(highlightAlpha)
         
         // redraw visible area
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)

@@ -14,6 +14,7 @@ unreleased
 ### Improvements
 
 - Give a haptic feedback on pinch zoom when the scale becomes 100%.
+- Make the current line highlight semi-transparent if editor opacity is not 100%.
 - Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
 - Delete a feature alarting inconsistant encoding declaration in document on saving.
 - Remove `⌘1` shortcut for Console from default key-binding settings.
