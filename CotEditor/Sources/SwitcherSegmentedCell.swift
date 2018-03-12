@@ -46,13 +46,15 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
         //   -> From a universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one.
         //      Some of users may hard to distinguish the selected state just by the color.
         if self.isSelected(forSegment: segment) {
+            let isKey = self.controlView?.window?.isKeyWindow ?? false
+            
             // load "selected" icon template
             guard
                 let iconName = self.image(forSegment: segment)?.name(),
-                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))?.tinted(color: .alternateSelectedControlColor)
+                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))?.tinted(for: .blueControlTint, isKey: isKey)
                 else {
                     fatalError("No selected icon template for inspector tab view was found.")
-            }
+                }
             
             // calculate area to draw
             var imageRect = self.imageRect(forBounds: frame)

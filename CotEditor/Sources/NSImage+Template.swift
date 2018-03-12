@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,13 +29,24 @@ import Cocoa
 
 extension NSImage {
     
-    /**
-     Return a copy of the image tinted with the color.
-     
-     - parameter color: The color to tint the image.
-     
-     - returns: A tinted image.
-     */
+     /// Return a copy of the image tinted based on controlTint type.
+     ///
+     /// - parameter controlTint: The tint type to tint the image.
+     ///
+     /// - returns: A tinted image.
+    func tinted(for controlTint: NSControlTint = .defaultControlTint, isKey: Bool) -> NSImage {
+        
+        let tintColor = isKey ? NSColor(for: .blueControlTint).highlighted : NSColor(for: .blueControlTint)
+        
+        return self.tinted(color: tintColor)
+    }
+    
+    
+    /// Return a copy of the image tinted with the color.
+    ///
+    ///  - parameter color: The color to tint the image.
+    ///
+    ///  - returns: A tinted image.
     func tinted(color: NSColor) -> NSImage {
         
         assert(self.isTemplate, "A image to tint should be a template image.")
@@ -50,6 +61,18 @@ extension NSImage {
             
             return true
         })
+    }
+    
+}
+
+
+
+private extension NSColor {
+    
+    var highlighted: NSColor {
+        
+        return NSColor(deviceHue: self.usingColorSpace(.deviceRGB)!.hueComponent,
+                       saturation: 0.91, brightness: 0.96, alpha: 1.0)
     }
     
 }
