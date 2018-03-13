@@ -29,19 +29,6 @@ import Cocoa
 
 extension NSImage {
     
-     /// Return a copy of the image tinted based on controlTint type.
-     ///
-     /// - parameter controlTint: The tint type to tint the image.
-     ///
-     /// - returns: A tinted image.
-    func tinted(for controlTint: NSControlTint = .defaultControlTint, isKey: Bool) -> NSImage {
-        
-        let tintColor = isKey ? NSColor(for: .blueControlTint).highlighted : NSColor(for: .blueControlTint)
-        
-        return self.tinted(color: tintColor)
-    }
-    
-    
     /// Return a copy of the image tinted with the color.
     ///
     ///  - parameter color: The color to tint the image.
@@ -67,12 +54,27 @@ extension NSImage {
 
 
 
-private extension NSColor {
+extension NSColor {
     
-    var highlighted: NSColor {
+    /// Provide a color similar (as possible) to one used for template images in highlighted buttons
+    /// by taking window state into consideration.
+    ///
+    /// - Parameter view: The view the returned color will be drawn to.
+    /// - Returns: A color for highlight.
+    static func highlightColor(for view: NSView) -> NSColor {
         
-        return NSColor(deviceHue: self.usingColorSpace(.deviceRGB)!.hueComponent,
-                       saturation: 0.91, brightness: 0.96, alpha: 1.0)
+        assert(view.window?.colorSpace != nil)
+        
+        let controlTintColor = self.init(for: .blueControlTint)
+        
+        guard
+            let window = view.window,
+            let color = controlTintColor.usingColorSpace(window.colorSpace ?? .deviceRGB)
+            else { return controlTintColor }
+        
+        return window.isKeyWindow
+            ? NSColor(deviceHue: color.hueComponent, saturation: 1, brightness: 1, alpha: 1)
+            : color
     }
     
 }

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -46,23 +46,25 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
         //   -> From a universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one.
         //      Some of users may hard to distinguish the selected state just by the color.
         if self.isSelected(forSegment: segment) {
-            let isKey = self.controlView?.window?.isKeyWindow ?? false
-            
             // load "selected" icon template
             guard
                 let iconName = self.image(forSegment: segment)?.name(),
-                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))?.tinted(for: .blueControlTint, isKey: isKey)
+                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))
                 else {
                     fatalError("No selected icon template for inspector tab view was found.")
                 }
             
+            // tint icon
+            let tintColor = NSColor.highlightColor(for: controlView)
+            let tintedIcon = selectedIcon.tinted(color: tintColor)
+            
             // calculate area to draw
             var imageRect = self.imageRect(forBounds: frame)
-            imageRect.origin.y += floor((imageRect.height - selectedIcon.size.height) / 2)
-            imageRect.size = selectedIcon.size
+            imageRect.origin.y += floor((imageRect.height - tintedIcon.size.height) / 2)
+            imageRect.size = tintedIcon.size
             
             // draw icon template
-            selectedIcon.draw(in: imageRect)
+            tintedIcon.draw(in: imageRect)
             
         } else {
             super.drawSegment(segment, inFrame: frame, with: controlView)
