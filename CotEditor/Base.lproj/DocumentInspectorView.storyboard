@@ -185,7 +185,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="8SU-kN-20v"/>
                                             </constraints>
                                             <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                         </box>
                                         <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="Eds-vr-C30">
                                             <rect key="frame" x="28" y="258" width="53" height="14"/>
@@ -235,7 +235,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="kTs-wF-SgA"/>
                                             </constraints>
                                             <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                         </box>
                                         <box autoresizesSubviews="NO" boxType="custom" borderType="none" borderWidth="0.0" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zbj-Aq-8Y2" userLabel="Horizontal Line">
                                             <rect key="frame" x="8" y="46" width="204" height="1"/>
@@ -247,7 +247,7 @@
                                                 <constraint firstAttribute="height" constant="1" id="ImM-uS-Rd3"/>
                                             </constraints>
                                             <color key="borderColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="fillColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="fillColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                         </box>
                                         <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="100" translatesAutoresizingMaskIntoConstraints="NO" id="FtE-QH-05o">
                                             <rect key="frame" x="49" y="189" width="32" height="14"/>

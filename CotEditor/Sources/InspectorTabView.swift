@@ -36,6 +36,8 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
+    private static let darkBackground: NSColor = NSColor(calibratedWhite: 0.16, alpha: 1)
+    
     private let controlHeight: CGFloat = 28.0
     
     
@@ -85,9 +87,16 @@ final class InspectorTabView: NSTabView {
     /// draw border below control
     override func draw(_ dirtyRect: NSRect) {
         
-        super.draw(dirtyRect)
-        
         NSGraphicsContext.saveGraphicsState()
+        
+        // draw background
+        if self.effectiveAppearance.name == .vibrantDark {
+            InspectorTabView.darkBackground.setFill()
+            dirtyRect.fill()
+            
+        } else {
+            super.draw(dirtyRect)
+        }
         
         NSColor.gridColor.setStroke()
         NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.controlHeight + 0.5),
