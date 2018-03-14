@@ -75,11 +75,6 @@ final class ProgressViewController: NSViewController {
     }
     
     
-    deinit {
-        self.progressObserver?.invalidate()
-    }
-    
-    
     override var nibName: NSNib.Name? {
         
         return NSNib.Name("ProgressView")
