@@ -9,6 +9,7 @@ unreleased
 
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
+- Add a new theme “Resinifictrix”.
 
 
 ### Improvements
