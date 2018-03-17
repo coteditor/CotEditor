@@ -208,3 +208,24 @@ extension BatchReplacement {
     }
     
 }
+
+
+
+// MARK: - Validation
+
+extension BatchReplacement {
+    
+    /// current errors in replacement definitions
+    var errors: [TextFindError] {
+        
+        return self.replacements.flatMap {
+            do {
+                try $0.validate()
+            } catch {
+                return error as? TextFindError
+            }
+            return nil
+        }
+    }
+    
+}

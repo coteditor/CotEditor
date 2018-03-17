@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -41,7 +41,6 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     // MARK: Private Properties
     
     @objc private dynamic var hasInvalidSetting = false
-    @objc private dynamic var canPerform = true
     @objc private dynamic var resultMessage: String?
     
     @IBOutlet private weak var tableView: NSTableView?
@@ -105,7 +104,6 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.resultMessage = nil
         
         guard
-            self.canPerform,
             let textView = TextFinder.shared.client, textView.isEditable
             else {
                 NSSound.beep()
@@ -184,7 +182,6 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.resultMessage = nil
         
         guard
-            self.canPerform,
             let textView = TextFinder.shared.client, textView.isEditable
             else {
                 NSSound.beep()
@@ -262,10 +259,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     @objc private func validateObject() {
         
-        guard let batchReplacement = self.batchReplacement else { return }
-        
-        self.hasInvalidSetting = batchReplacement.replacements.contains { $0.localizedError != nil }
-        self.canPerform = batchReplacement.replacements.contains { $0.localizedError == nil }
+        self.hasInvalidSetting = !(self.batchReplacement?.errors.isEmpty ?? true)
     }
     
 }
