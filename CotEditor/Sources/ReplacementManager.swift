@@ -125,7 +125,7 @@ final class ReplacementManager: SettingFileManager {
     func createUntitledSetting(completionHandler: ((String) -> Void)? = nil) throws {  // @escaping
         
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
-        let batchReplacement = BatchReplacement(replacements: [Replacement()])
+        let batchReplacement = BatchReplacement()
         
         try self.save(replacement: batchReplacement, name: name) {
             completionHandler?(name)

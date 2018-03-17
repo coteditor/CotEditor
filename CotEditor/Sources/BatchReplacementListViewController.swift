@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -283,6 +283,11 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
             }
             
             AudioServicesPlaySystemSound(.moveToTrash)
+            
+            // add new blank setting to avoid empty list
+            if ReplacementManager.shared.settings.isEmpty {
+                self.addSetting(nil)
+            }
         }
     }
     
@@ -317,12 +322,9 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
     
     
     /// save current setting
-    private func saveSetting() {
+    private func saveSetting(batchReplacement: BatchReplacement) {
         
-        guard
-            let name = self.selectedSettingName,
-            let batchReplacement = self.mainViewController?.representedObject as? BatchReplacement
-            else { return }
+        guard let name = self.selectedSettingName else { return }
         
         do {
             try ReplacementManager.shared.save(replacement: batchReplacement, name: name)
@@ -342,7 +344,7 @@ extension BatchReplacementListViewController: BatchReplacementViewControllerDele
     /// current batch replacement being edited in the main view did update
     func didUpdate(batchReplacement: BatchReplacement) {
         
-        self.saveSetting()
+        self.saveSetting(batchReplacement: batchReplacement)
     }
     
 }
@@ -420,7 +422,7 @@ extension BatchReplacementListViewController: NSTableViewDelegate {
             let setting = ReplacementManager.shared.settings[settingName]
             else { return }
         
-        self.mainViewController?.representedObject = setting
+        self.mainViewController?.change(batchReplacement: setting)
     }
     
 }

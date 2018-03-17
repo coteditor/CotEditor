@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -77,7 +77,7 @@ extension Replacement: Codable {
     }
     
     
-    convenience init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
@@ -85,7 +85,7 @@ extension Replacement: Codable {
                   replacementString: try container.decode(String.self, forKey: .replacementString),
                   usesRegularExpression: try container.decodeIfPresent(Bool.self, forKey: .usesRegularExpression) ?? false,
                   ignoresCase: try container.decodeIfPresent(Bool.self, forKey: .ignoresCase) ?? false,
-                  comment: try container.decodeIfPresent(String.self, forKey: .description),
+                  description: try container.decodeIfPresent(String.self, forKey: .description),
                   isEnabled: try container.decodeIfPresent(Bool.self, forKey: .isEnabled)
             )
     }
@@ -107,8 +107,8 @@ extension Replacement: Codable {
         if !self.isEnabled {
             try container.encode(false, forKey: .isEnabled)
         }
-        if let comment = self.comment {
-            try container.encode(comment, forKey: .description)
+        if let description = self.description {
+            try container.encode(description, forKey: .description)
         }
     }
     

@@ -27,9 +27,9 @@
 
 import Foundation
 
-final class BatchReplacement: NSObject, Codable {
+struct BatchReplacement: Codable {
     
-    struct Settings {
+    struct Settings: Equatable {
         
         var textualOptions: NSString.CompareOptions
         var regexOptions: NSRegularExpression.Options
@@ -42,27 +42,24 @@ final class BatchReplacement: NSObject, Codable {
             self.regexOptions = regexOptions
             self.unescapesReplacementString = unescapesReplacementString
         }
+        
+        
+        static func == (lhs: Settings, rhs: Settings) -> Bool {
+            
+            return lhs.textualOptions == rhs.textualOptions && lhs.regexOptions == rhs.regexOptions && lhs.unescapesReplacementString == rhs.unescapesReplacementString
+        }
     }
     
     
     
-    @objc dynamic var replacements: [Replacement]
+    var replacements: [Replacement]
     var settings: Settings
     
     
-    
-    override convenience init() {
-        
-        self.init(replacements: [])
-    }
-    
-    
-    init(replacements: [Replacement], settings: Settings = Settings()) {
+    init(replacements: [Replacement] = [], settings: Settings = Settings()) {
         
         self.replacements = replacements
         self.settings = settings
-        
-        super.init()
     }
     
 }
@@ -110,11 +107,13 @@ extension BatchReplacement {
         for replacement in self.replacements {
             guard replacement.isEnabled else { continue }
             
+            let textualOptions = self.settings.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
+            let regexOptions = self.settings.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
             let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
                                              isWrap: false,
                                              inSelection: inSelection,
-                                             textualOptions: self.settings.textualOptions,
-                                             regexOptions: self.settings.regexOptions,
+                                             textualOptions: textualOptions,
+                                             regexOptions: regexOptions,
                                              unescapesReplacementString: self.settings.unescapesReplacementString)
             
             // -> Invalid replacement sets will be just ignored.
@@ -161,11 +160,13 @@ extension BatchReplacement {
         for replacement in self.replacements {
             guard replacement.isEnabled else { continue }
             
+            let textualOptions = self.settings.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
+            let regexOptions = self.settings.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
             let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
                                              isWrap: false,
                                              inSelection: inSelection,
-                                             textualOptions: self.settings.textualOptions,
-                                             regexOptions: self.settings.regexOptions,
+                                             textualOptions: textualOptions,
+                                             regexOptions: regexOptions,
                                              unescapesReplacementString: self.settings.unescapesReplacementString)
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             

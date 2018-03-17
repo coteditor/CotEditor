@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,23 +27,23 @@
 
 import Foundation
 
-final class Replacement: NSObject {
+struct Replacement {
     
-    @objc dynamic var findString: String
-    @objc dynamic var replacementString: String
-    @objc dynamic var usesRegularExpression: Bool
-    @objc dynamic var ignoresCase: Bool
-    @objc dynamic var isEnabled = true
-    @objc dynamic var comment: String?
+    var findString: String
+    var replacementString: String
+    var usesRegularExpression: Bool
+    var ignoresCase: Bool
+    var isEnabled = true
+    var description: String?
     
     
-    init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, comment: String? = nil, isEnabled: Bool? = true) {
+    init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, description: String? = nil, isEnabled: Bool? = true) {
         
         self.findString = findString
         self.replacementString = replacementString
         self.ignoresCase = ignoresCase
         self.usesRegularExpression = usesRegularExpression
-        self.comment = comment
+        self.description = description
         
         if let isEnabled = isEnabled {
             self.isEnabled = isEnabled
@@ -51,7 +51,7 @@ final class Replacement: NSObject {
     }
     
     
-    override init() {
+    init() {
         
         self.findString = ""
         self.replacementString = ""
@@ -71,7 +71,7 @@ extension Replacement {
             lhs.replacementString == rhs.replacementString &&
             lhs.usesRegularExpression == rhs.usesRegularExpression &&
             lhs.ignoresCase == rhs.ignoresCase &&
-            lhs.comment == rhs.comment &&
+            lhs.description == rhs.description &&
             lhs.isEnabled == rhs.isEnabled
     }
     
@@ -82,28 +82,6 @@ extension Replacement {
 // MARK: Validation
 
 extension Replacement {
-    
-    /// key paths affecting localizedError property
-    class func keyPathsForValuesAffectingLocalizedError() -> Set<String> {
-        
-        return [#keyPath(findString), #keyPath(usesRegularExpression)]
-    }
-    
-    
-    /// localized error message
-    @objc dynamic var localizedError: String? {
-        
-        do {
-            try self.validate()
-        } catch {
-            guard let suggestion = (error as? LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
-            
-            return "[" + error.localizedDescription + "] " + suggestion
-        }
-        
-        return nil
-    }
-    
     
     /// check if replacement definition is valid
     ///

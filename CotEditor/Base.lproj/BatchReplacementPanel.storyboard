@@ -73,8 +73,8 @@
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="3rD-MR-fUM"/>
-                                                                        <binding destination="CUv-XJ-HRY" name="value" keyPath="objectValue.isEnabled" id="V0B-ie-vbl"/>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="ui9-r1-Q3A"/>
+                                                                        <binding destination="CUv-XJ-HRY" name="value" keyPath="objectValue" id="26a-U9-asA"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -104,18 +104,6 @@
                                                             <rect key="frame" x="24" y="1" width="110" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="FocusTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
-                                                                        <font key="font" metaFont="system"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                    <connections>
-                                                                        <binding destination="Rqz-SK-mda" name="value" keyPath="objectValue.findString" id="UeY-0m-ETr"/>
-                                                                        <binding destination="Rqz-SK-mda" name="enabled" keyPath="objectValue.isEnabled" id="GWu-ze-FXR"/>
-                                                                    </connections>
-                                                                </textField>
                                                                 <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iAj-ma-bo2">
                                                                     <rect key="frame" x="92" y="1" width="16" height="16"/>
                                                                     <constraints>
@@ -123,23 +111,19 @@
                                                                         <constraint firstAttribute="width" secondItem="iAj-ma-bo2" secondAttribute="height" multiplier="1:1" id="bPQ-kY-hnR"/>
                                                                     </constraints>
                                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSCaution" id="G1j-rT-ITB"/>
-                                                                    <connections>
-                                                                        <binding destination="Rqz-SK-mda" name="toolTip" keyPath="objectValue.localizedError" id="0ch-BU-0iX"/>
-                                                                        <binding destination="Rqz-SK-mda" name="hidden" keyPath="objectValue.localizedError" id="Y4z-0U-VCy">
-                                                                            <dictionary key="options">
-                                                                                <string key="NSValueTransformerName">NSIsNil</string>
-                                                                            </dictionary>
-                                                                        </binding>
-                                                                        <binding destination="Rqz-SK-mda" name="hidden2" keyPath="textField.editing" previousBinding="Y4z-0U-VCy" id="9Kd-dC-pME">
-                                                                            <dictionary key="options">
-                                                                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                                                <integer key="NSNullPlaceholder" value="-1"/>
-                                                                            </dictionary>
-                                                                        </binding>
-                                                                    </connections>
                                                                 </imageView>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="17"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="chh-jJ-eOd"/>
+                                                                        <binding destination="Rqz-SK-mda" name="value" keyPath="objectValue" id="c9c-V4-T3h"/>
+                                                                    </connections>
+                                                                </textField>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="34g-xE-Dei" firstAttribute="top" secondItem="Rqz-SK-mda" secondAttribute="top" id="2ky-3d-KCb"/>
@@ -150,12 +134,13 @@
                                                                 <constraint firstAttribute="trailing" secondItem="iAj-ma-bo2" secondAttribute="trailing" constant="2" id="yLE-BV-RMd"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="imageView" destination="iAj-ma-bo2" id="WmR-cp-Tzx"/>
                                                                 <outlet property="textField" destination="34g-xE-Dei" id="DJR-2b-i6Q"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" editable="NO" width="110" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
+                                                <tableColumn identifier="replacementString" editable="NO" width="110" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Replace With">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -180,8 +165,8 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="M9b-zX-U8A" name="enabled" keyPath="objectValue.isEnabled" id="wuy-Nd-9wZ"/>
-                                                                        <binding destination="M9b-zX-U8A" name="value" keyPath="objectValue.replacementString" id="ouq-FY-4Y1"/>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Xl4-dh-IBV"/>
+                                                                        <binding destination="M9b-zX-U8A" name="value" keyPath="objectValue" id="jGG-aO-K4v"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -221,9 +206,8 @@
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="oEy-Zq-AMV"/>
-                                                                        <binding destination="E0A-sg-252" name="value" keyPath="objectValue.ignoresCase" id="aEg-Wj-0IC"/>
-                                                                        <binding destination="E0A-sg-252" name="enabled" keyPath="objectValue.isEnabled" id="1of-5m-Zfx"/>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Esl-ow-Q2p"/>
+                                                                        <binding destination="E0A-sg-252" name="value" keyPath="objectValue" id="wA3-P4-Uca"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -260,9 +244,8 @@
                                                                         <font key="font" metaFont="smallSystem"/>
                                                                     </buttonCell>
                                                                     <connections>
-                                                                        <action selector="didCheckboxClicked:" target="ypL-2F-xTV" id="lAZ-Lx-iie"/>
-                                                                        <binding destination="gVj-CA-2D0" name="enabled" keyPath="objectValue.isEnabled" id="Qtw-re-Ijy"/>
-                                                                        <binding destination="gVj-CA-2D0" name="value" keyPath="objectValue.usesRegularExpression" id="FzQ-8G-hMr"/>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Yay-nw-NRV"/>
+                                                                        <binding destination="gVj-CA-2D0" name="value" keyPath="objectValue" id="h1P-qE-px9"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -275,7 +258,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="" width="74" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
+                                                <tableColumn identifier="description" width="74" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -300,8 +283,8 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="rOM-3j-LP8" name="value" keyPath="objectValue.comment" id="waK-af-LXI"/>
-                                                                        <binding destination="rOM-3j-LP8" name="enabled" keyPath="objectValue.isEnabled" id="ftt-x0-Pt9"/>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="mq5-Df-gud"/>
+                                                                        <binding destination="rOM-3j-LP8" name="value" keyPath="objectValue" id="Urj-zV-DH9"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -319,11 +302,8 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
-                                                <binding destination="0gs-fu-hhY" name="content" keyPath="arrangedObjects" id="xYx-TL-a3n"/>
-                                                <binding destination="0gs-fu-hhY" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="xYx-TL-a3n" id="MTZ-Lo-CKn"/>
-                                                <binding destination="0gs-fu-hhY" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="MTZ-Lo-CKn" id="sio-u3-tLu"/>
-                                                <outlet property="dataSource" destination="0gs-fu-hhY" id="QoV-8O-96d"/>
-                                                <outlet property="delegate" destination="ypL-2F-xTV" id="7IR-9T-XzB"/>
+                                                <outlet property="dataSource" destination="uzB-9o-Idl" id="yuj-ND-BDS"/>
+                                                <outlet property="delegate" destination="uzB-9o-Idl" id="tEl-2T-tHT"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -351,17 +331,8 @@
                                     <font key="font" metaFont="miniSystem"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="remove:" target="0gs-fu-hhY" id="Stz-8t-QkO"/>
-                                    <binding destination="0gs-fu-hhY" name="enabled2" keyPath="arrangedObjects.@count" previousBinding="RJu-n9-eeQ" id="u33-Wr-2AF">
-                                        <dictionary key="options">
-                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                            <integer key="NSNullPlaceholder" value="-1"/>
-                                            <string key="NSValueTransformerName">MoreThanOneTransformer</string>
-                                        </dictionary>
-                                    </binding>
-                                    <binding destination="0gs-fu-hhY" name="enabled" keyPath="canRemove" id="RJu-n9-eeQ"/>
+                                    <action selector="remove:" target="uzB-9o-Idl" id="VsZ-if-Ppz"/>
+                                    <binding destination="uzB-9o-Idl" name="enabled" keyPath="canRemove" id="6Hc-Nt-33F"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgJ-1f-1Af">
@@ -375,8 +346,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="add:" target="0gs-fu-hhY" id="wTA-Nb-uzj"/>
-                                    <binding destination="0gs-fu-hhY" name="enabled" keyPath="canAdd" id="aI9-8P-CDB"/>
+                                    <action selector="add:" target="uzB-9o-Idl" id="N6C-ID-dAo"/>
                                 </connections>
                             </button>
                             <button toolTip="Set advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i8z-Xa-PxI">
@@ -516,34 +486,6 @@
                         <outlet property="tableView" destination="gnf-Yi-u37" id="WCJ-yG-4AA"/>
                     </connections>
                 </viewController>
-                <objectController objectClassName="CotEditor.BatchReplacement" automaticallyPreparesContent="YES" id="tvC-n0-WUJ">
-                    <declaredKeys>
-                        <string>settings</string>
-                        <string>replacements</string>
-                    </declaredKeys>
-                    <connections>
-                        <binding destination="uzB-9o-Idl" name="contentObject" keyPath="representedObject" id="tVT-9j-vIo"/>
-                    </connections>
-                </objectController>
-                <arrayController objectClassName="CotEditor.Replacement" id="0gs-fu-hhY" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
-                    <declaredKeys>
-                        <string>findString</string>
-                        <string>replacementString</string>
-                        <string>usesRegularExpression</string>
-                        <string>ignoresCase</string>
-                        <string>enabled</string>
-                        <string>comment</string>
-                        <string>localizedError</string>
-                    </declaredKeys>
-                    <connections>
-                        <binding destination="tvC-n0-WUJ" name="contentArray" keyPath="selection.replacements" id="Qkc-32-WFd"/>
-                    </connections>
-                </arrayController>
-                <customObject id="ypL-2F-xTV" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="0gs-fu-hhY" id="OxD-Dq-HE1"/>
-                    </connections>
-                </customObject>
                 <customObject id="4B0-TX-5FP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="JZj-f6-1IH"/>
             </objects>
@@ -563,7 +505,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="110" height="277"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
                                             <rect key="frame" x="0.0" y="0.0" width="110" height="277"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
