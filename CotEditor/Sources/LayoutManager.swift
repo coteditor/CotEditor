@@ -301,6 +301,22 @@ final class LayoutManager: NSLayoutManager {
     }
     
     
+    /// fill background rectangles with a color
+    override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
+        
+        // modify selected highlight color when document is inactive
+        // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable in a dark theme.
+        if color == .secondarySelectedControlColor,  // check if inactive
+            let theme = (self.textViewForBeginningOfSelection as? Themable)?.theme,
+            let secondarySelectionColor = theme.secondarySelectionColor
+        {
+            secondarySelectionColor.setFill()
+        }
+    
+        super.fillBackgroundRectArray(rectArray, count: rectCount, forCharacterRange: charRange, color: color)
+    }
+    
+    
     
     // MARK: Public Methods
     

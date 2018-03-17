@@ -47,6 +47,7 @@ struct Theme {
     let backgroundColor: NSColor
     let invisiblesColor: NSColor
     var selectionColor: NSColor { return self.usesSystemSelectionColor ? .selectedTextBackgroundColor : _selectionColor }
+    let secondarySelectionColor: NSColor?
     let insertionPointColor: NSColor
     let lineHighLightColor: NSColor
     
@@ -93,6 +94,8 @@ struct Theme {
         self.name = name
         self.isValid = isValid
         
+        self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
+        
         self.textColor = colors[.text]!
         self.backgroundColor = colors[.background]!
         self.invisiblesColor = colors[.invisibles]!
@@ -100,12 +103,12 @@ struct Theme {
         self.insertionPointColor = colors[.insertionPoint]!
         self.lineHighLightColor = colors[.lineHighlight]!
         
+        self.secondarySelectionColor = self.usesSystemSelectionColor ? nil : NSColor(calibratedWhite: self._selectionColor.brightnessComponent, alpha: 1.0)
+        
         self.syntaxColors = ThemeKey.syntaxKeys.reduce(into: [:]) { (dict, item) in
             dict[SyntaxType(rawValue: item.rawValue)!] = colors[item]!  // The syntax key and theme keys must be the same.
-            
         }
         
-        self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
         self.isDarkTheme = self.backgroundColor.brightnessComponent < self.textColor.brightnessComponent
     }
     

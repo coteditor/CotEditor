@@ -18,6 +18,7 @@ unreleased
 - Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
 - Delete a feature alarting inconsistant encoding declaration in document on saving.
 - Remove `⌘1` shortcut for Console from default key-binding settings.
+- Adjust background color for selected range in inactive editor to avoid unreadable text, especially by a dark theme.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 - Update highlight style of icons in the side inspector.
 - Remove the workaround for a issue about editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
