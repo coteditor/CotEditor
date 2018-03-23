@@ -14,16 +14,16 @@ unreleased
 
 ### Improvements
 
-- Give a haptic feedback on pinch zoom when the scale becomes 100%.
+- Give haptic feedback on pinch zoom when the scale becomes 100%.
 - Make the current line highlight semi-transparent if editor opacity is not 100%.
 - Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
-- Delete a feature alarting inconsistant encoding declaration in document on saving.
+- Delete the feature alerting inconsistent encoding declaration in document on saving.
 - Remove `⌘1` shortcut for Console from default key-binding settings.
 - Adjust background color for selected range in inactive editor to avoid unreadable text, especially by a dark theme.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 - Update highlight style of icons in the side inspector.
-- Remove the workaround for a issue about editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
-- [trivial] Use monospce digits where suitable.
+- Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
+- [trivial] Use monospace digits where suitable.
 
 
 
