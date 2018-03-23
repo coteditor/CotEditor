@@ -363,7 +363,7 @@ Gw
                                     <binding destination="dZu-1R-AIV" name="value" keyPath="selection.column" id="2ml-ZO-Kio"/>
                                 </connections>
                             </stepper>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="199" y="8" width="32" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="AKY-UZ-q58"/>
@@ -448,7 +448,7 @@ Gw
                                     <binding destination="bCX-ZR-9aZ" name="value" keyPath="selection.ignoresCase" id="SqJ-6q-PcH"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vol-xC-ylG">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vol-xC-ylG" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="151" y="4" width="32" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="iIX-ng-qKl"/>

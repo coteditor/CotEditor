@@ -376,7 +376,7 @@
                                     </binding>
                                 </connections>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="smallSystem"/>

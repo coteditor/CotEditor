@@ -537,6 +537,8 @@
 		2AD69B891D3E4FCD00FBD998 /* Editable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD69B871D3E4FCD00FBD998 /* Editable.swift */; };
 		2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
+		2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
+		2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C021E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
@@ -1178,6 +1180,7 @@
 		2AD69B841D3E42F700FBD998 /* TextSelection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSelection.swift; sourceTree = "<group>"; };
 		2AD69B871D3E4FCD00FBD998 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
+		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		2ADF3C001E6D7345009125BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FileDropPane.storyboard; sourceTree = "<group>"; };
 		2ADF3C031E6D82E2009125BB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		2ADF3C041E6D82E4009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropPane.strings"; sourceTree = "<group>"; };
@@ -1463,6 +1466,7 @@
 				2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */,
 				2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */,
 				2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */,
+				2AD8D7492064AD83000BEFDB /* NumberTextField.swift */,
 				2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */,
 				2A10D1471E7477D30027192A /* ItalicButton.swift */,
 				2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */,
@@ -2687,6 +2691,7 @@
 				2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
 				2AA14D061FA594A800EAF586 /* Data.swift in Sources */,
+				2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2ACC21B61E52B8C50078241F /* DefaultKeys.swift in Sources */,
 				2A9BF3C51D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A9082EA1D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
@@ -2883,6 +2888,7 @@
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
+				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
 				2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,

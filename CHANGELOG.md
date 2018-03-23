@@ -23,6 +23,7 @@ unreleased
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 - Update highlight style of icons in the side inspector.
 - Remove the workaround for a issue about editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
+- [trivial] Use monospce digits where suitable.
 
 
 

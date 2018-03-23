@@ -68,7 +68,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-m9-FvG">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J5U-m9-FvG" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="205" y="346" width="40" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="2EE-jD-d5t"/>
@@ -206,7 +206,7 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.autoComplete" id="pux-Cf-ByC"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2h-Jb-whg">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I2h-Jb-whg" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="292" y="245" width="40" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="WxU-c4-7Ko"/>

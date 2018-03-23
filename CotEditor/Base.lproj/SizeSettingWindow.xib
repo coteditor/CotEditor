@@ -17,7 +17,7 @@
         <window title="Sample Window for Size" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="127" userLabel="Sample Window">
             <windowStyleMask key="styleMask" titled="YES" resizable="YES"/>
             <rect key="contentRect" x="192" y="280" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
             <value key="minSize" type="size" width="400" height="200"/>
             <view key="contentView" id="126">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
@@ -68,7 +68,7 @@ The size of this window will be set as default.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="138">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="138" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="68" y="261" width="48" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="dMw-Jt-sFh"/>
@@ -102,7 +102,7 @@ The size of this window will be set as default.</string>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="136" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="207" y="261" width="48" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="xWN-LC-Lew"/>

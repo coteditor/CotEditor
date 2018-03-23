@@ -257,7 +257,7 @@
                                     <binding destination="IE5-39-jAY" name="value" keyPath="values.lineHeight" id="cFx-Lt-8aa"/>
                                 </connections>
                             </stepper>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XW-Ju-Ix5">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5XW-Ju-Ix5" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="103" y="492" width="48" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="48" id="yke-nV-fMx"/>
