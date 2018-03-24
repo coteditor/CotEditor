@@ -26,6 +26,11 @@ unreleased
 - [trivial] Use monospace digits where suitable.
 
 
+### Fixes
+
+- Fix a possible crash with continuous find/replacement.
+
+
 
 3.3.5 (237)
 --------------------------
