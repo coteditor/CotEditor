@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
 "Text document" = "テキスト書類";
 "Plain text" = "プレーンテキスト";
 "CotEditor Theme" = "CotEditorテーマ";
-"CotEditor Batch Replacement Definition" = "CotEditor置換セット定義";
+"CotEditor Batch Replacement Definition" = "CotEditorバッチ置換定義";
 "BibTeX" = "BibTeX";
 "Configuration" = "Configuration";
 "C header" = "Cヘッダ";
