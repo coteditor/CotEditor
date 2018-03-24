@@ -145,7 +145,8 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.resultMessage = nil
         
         guard
-            let textView = TextFinder.shared.client, textView.isEditable
+            let textView = TextFinder.shared.client, textView.isEditable,
+            textView.window?.attachedSheet == nil
             else {
                 NSSound.beep()
                 return
@@ -221,7 +222,8 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.resultMessage = nil
         
         guard
-            let textView = TextFinder.shared.client, textView.isEditable
+            let textView = TextFinder.shared.client, textView.isEditable,
+            textView.window?.attachedSheet == nil
             else {
                 NSSound.beep()
                 return
