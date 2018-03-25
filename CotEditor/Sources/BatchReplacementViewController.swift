@@ -49,6 +49,8 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         }
     }
     
+    private lazy var updateNotificationTask: Debouncer = Debouncer(delay: 1.0) { [weak self] in self?.notifyUpdate() }
+    
     @objc private dynamic var canRemove: Bool = true
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
@@ -91,7 +93,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
             guard self.batchReplacement.settings != object.settings else { return }
             
             self.batchReplacement.settings = object.settings
-            self.delegate?.didUpdate(batchReplacement: self.batchReplacement)
+            self.updateNotificationTask.schedule()
         }
     }
     
@@ -304,6 +306,14 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Private Methods
     
+    /// notify update to delegate
+    private func notifyUpdate() {
+    
+        self.delegate?.didUpdate(batchReplacement: self.batchReplacement)
+    }
+    
+    
+    /// validate current setting
     @objc private func validateObject() {
         
         self.hasInvalidSetting = !self.batchReplacement.errors.isEmpty
@@ -445,7 +455,7 @@ extension BatchReplacementViewController: NSTableViewDelegate {
         let allColumnIndexes = IndexSet(integersIn: 0..<tableView.numberOfColumns)
         tableView.reloadData(forRowIndexes: updateRowIndexes, columnIndexes: allColumnIndexes)
         
-        self.delegate?.didUpdate(batchReplacement: self.batchReplacement)
+        self.updateNotificationTask.schedule()
     }
     
 }
