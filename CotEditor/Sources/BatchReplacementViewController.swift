@@ -291,9 +291,12 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Public Methods
     
+    /// set another batch replacement definition
     func change(batchReplacement: BatchReplacement) {
         
         self.batchReplacement = batchReplacement
+        self.hasInvalidSetting = false
+        self.resultMessage = nil
         
         self.tableView?.reloadData()
         
@@ -323,7 +326,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
 
 
 
-// MARK: - TableView Data Source
+// MARK: - TableView Data Source & Delegate
 
 private extension NSUserInterfaceItemIdentifier {
     
