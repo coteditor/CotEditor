@@ -27,7 +27,7 @@
 
 import Foundation
 
-struct BatchReplacement: Codable {
+final class BatchReplacement: Codable {
     
     struct Settings: Equatable {
         

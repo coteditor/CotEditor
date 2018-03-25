@@ -42,13 +42,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Private Properties
     
-    private var batchReplacement = BatchReplacement() {
-        
-        didSet {
-            self.canRemove = batchReplacement.replacements.count > 1
-        }
-    }
-    
+    private var batchReplacement = BatchReplacement()
     private lazy var updateNotificationTask: Debouncer = Debouncer(delay: 1.0) { [weak self] in self?.notifyUpdate() }
     
     @objc private dynamic var canRemove: Bool = true
@@ -119,6 +113,9 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         tableView.scrollRowToVisible(lastRow)
         tableView.insertRows(at: indexes, withAnimation: .effectGap)
         tableView.editColumn(column, row: lastRow, with: nil, select: true)  // start editing automatically
+        
+        // update remove button
+        self.canRemove = self.batchReplacement.replacements.count > 1
     }
     
     
@@ -136,6 +133,9 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         // update data
         self.batchReplacement.replacements.remove(in: indexes)
+        
+        // update remove button
+        self.canRemove = self.batchReplacement.replacements.count > 1
     }
     
     

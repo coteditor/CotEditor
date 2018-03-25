@@ -44,10 +44,7 @@ struct Replacement {
         self.ignoresCase = ignoresCase
         self.usesRegularExpression = usesRegularExpression
         self.description = description
-        
-        if let isEnabled = isEnabled {
-            self.isEnabled = isEnabled
-        }
+        self.isEnabled = isEnabled ?? true
     }
     
     
@@ -63,7 +60,7 @@ struct Replacement {
 
 
 
-extension Replacement {
+extension Replacement: Equatable {
     
     static func == (lhs: Replacement, rhs: Replacement) -> Bool {
         
