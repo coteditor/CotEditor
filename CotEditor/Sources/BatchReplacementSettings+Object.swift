@@ -29,7 +29,7 @@ import Foundation
 
 extension BatchReplacement.Settings {
     
-    /// KVO-compatible object for BatchReplacement.Settings to set it in a popover with checkboxes
+    /// KVO-compatible object for BatchReplacement.Settings to use with the Cocoa-binding in a popover with checkboxes
     final class Object: NSObject {
         
         @objc dynamic var textIsLiteralSearch: Bool
@@ -63,13 +63,13 @@ extension BatchReplacement.Settings {
         var settings: BatchReplacement.Settings {
             
             var textualOptions = NSString.CompareOptions()
-            if self.textIsLiteralSearch       { textualOptions.update(with: .literal) }
-            if self.textIgnoresDiacriticMarks { textualOptions.update(with: .diacriticInsensitive) }
-            if self.textIgnoresWidth          { textualOptions.update(with: .widthInsensitive) }
+            if self.textIsLiteralSearch        { textualOptions.update(with: .literal) }
+            if self.textIgnoresDiacriticMarks  { textualOptions.update(with: .diacriticInsensitive) }
+            if self.textIgnoresWidth           { textualOptions.update(with: .widthInsensitive) }
             
             var regexOptions = NSRegularExpression.Options()
-            if self.regexIsSingleline      { regexOptions.update(with: .dotMatchesLineSeparators) }
-            if self.regexIsMultiline       { regexOptions.update(with: .anchorsMatchLines) }
+            if self.regexIsSingleline          { regexOptions.update(with: .dotMatchesLineSeparators) }
+            if self.regexIsMultiline           { regexOptions.update(with: .anchorsMatchLines) }
             if self.regexUsesUnicodeBoundaries { regexOptions.update(with: .useUnicodeWordBoundaries) }
             
             return BatchReplacement.Settings(textualOptions: textualOptions,

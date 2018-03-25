@@ -123,8 +123,6 @@
 		2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */; };
 		2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */; };
 		2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */; };
-		2A3581951E597B3300762AA5 /* Replacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581941E597B3300762AA5 /* Replacement.swift */; };
-		2A3581961E597B3300762AA5 /* Replacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581941E597B3300762AA5 /* Replacement.swift */; };
 		2A3581981E597ECE00762AA5 /* BatchReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* BatchReplacement.swift */; };
 		2A3581991E597ECE00762AA5 /* BatchReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* BatchReplacement.swift */; };
 		2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
@@ -836,7 +834,6 @@
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxDictionary.swift; sourceTree = "<group>"; };
-		2A3581941E597B3300762AA5 /* Replacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Replacement.swift; sourceTree = "<group>"; };
 		2A3581971E597ECE00762AA5 /* BatchReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacement.swift; sourceTree = "<group>"; };
 		2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Responder.swift"; sourceTree = "<group>"; };
 		2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplacementManager.swift; sourceTree = "<group>"; };
@@ -1557,7 +1554,6 @@
 		2A231A2A1E7BD92F00C2A909 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2A3581941E597B3300762AA5 /* Replacement.swift */,
 				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
 				2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */,
 				2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */,
@@ -2816,7 +2812,6 @@
 				2A6FD9DA1D38F93100A59784 /* EditorTextView+Indenting.swift in Sources */,
 				2A6FD9E81D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */,
-				2A3581961E597B3300762AA5 /* Replacement.swift in Sources */,
 				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
@@ -3033,7 +3028,6 @@
 				2A1CD5541DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */,
 				2AD69B851D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2ABF0DC71D7D33880049B151 /* SmallToolbarItem.swift in Sources */,
-				2A3581951E597B3300762AA5 /* Replacement.swift in Sources */,
 				2AE52F221D175A9400D60A32 /* SizeSettingWindowController.swift in Sources */,
 				2AA375471D40BDCB0080C27C /* LineEnding.swift in Sources */,
 				2ACDC0A31D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,

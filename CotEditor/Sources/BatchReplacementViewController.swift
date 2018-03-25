@@ -101,7 +101,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.endEditing()
         
         // update data
-        self.batchReplacement.replacements.append(Replacement())
+        self.batchReplacement.replacements.append(BatchReplacement.Replacement())
         
         // update UI
         guard let tableView = self.tableView else { return }

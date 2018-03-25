@@ -27,44 +27,7 @@
 
 import Foundation
 
-extension BatchReplacement.Settings: Codable {
-    
-    private enum CodingKeys: String, CodingKey {
-        
-        case textualOptions
-        case regexOptions
-        case unescapesReplacementString
-    }
-    
-    
-    init(from decoder: Decoder) throws {
-        
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        let textualOptions = try container.decode(UInt.self, forKey: .textualOptions)
-        self.textualOptions = String.CompareOptions(rawValue: textualOptions)
-        
-        let regexOptions = try container.decode(UInt.self, forKey: .regexOptions)
-        self.regexOptions = NSRegularExpression.Options(rawValue: regexOptions)
-        
-        self.unescapesReplacementString = try container.decodeIfPresent(Bool.self, forKey: .unescapesReplacementString) ?? false
-    }
-    
-    
-    func encode(to encoder: Encoder) throws {
-        
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(self.textualOptions.rawValue, forKey: .textualOptions)
-        try container.encode(self.regexOptions.rawValue, forKey: .regexOptions)
-        try container.encode(self.unescapesReplacementString, forKey: .unescapesReplacementString)
-    }
-    
-}
-
-
-
-extension Replacement: Codable {
+extension BatchReplacement.Replacement: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -110,6 +73,43 @@ extension Replacement: Codable {
         if let description = self.description {
             try container.encode(description, forKey: .description)
         }
+    }
+    
+}
+
+
+
+extension BatchReplacement.Settings: Codable {
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case textualOptions
+        case regexOptions
+        case unescapesReplacementString
+    }
+    
+    
+    init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        let textualOptions = try container.decode(UInt.self, forKey: .textualOptions)
+        self.textualOptions = String.CompareOptions(rawValue: textualOptions)
+        
+        let regexOptions = try container.decode(UInt.self, forKey: .regexOptions)
+        self.regexOptions = NSRegularExpression.Options(rawValue: regexOptions)
+        
+        self.unescapesReplacementString = try container.decodeIfPresent(Bool.self, forKey: .unescapesReplacementString) ?? false
+    }
+    
+    
+    func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.textualOptions.rawValue, forKey: .textualOptions)
+        try container.encode(self.regexOptions.rawValue, forKey: .regexOptions)
+        try container.encode(self.unescapesReplacementString, forKey: .unescapesReplacementString)
     }
     
 }

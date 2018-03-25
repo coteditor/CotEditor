@@ -29,7 +29,38 @@ import Foundation
 
 final class BatchReplacement: Codable {
     
-    struct Settings: Equatable {
+    struct Replacement {
+        
+        var findString: String
+        var replacementString: String
+        var usesRegularExpression: Bool
+        var ignoresCase: Bool
+        var isEnabled = true
+        var description: String?
+        
+        
+        init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, description: String? = nil, isEnabled: Bool? = true) {
+            
+            self.findString = findString
+            self.replacementString = replacementString
+            self.ignoresCase = ignoresCase
+            self.usesRegularExpression = usesRegularExpression
+            self.description = description
+            self.isEnabled = isEnabled ?? true
+        }
+        
+        
+        init() {
+            
+            self.findString = ""
+            self.replacementString = ""
+            self.ignoresCase = false
+            self.usesRegularExpression = false
+        }
+    }
+    
+    
+    struct Settings {
         
         var textualOptions: NSString.CompareOptions
         var regexOptions: NSRegularExpression.Options
@@ -41,12 +72,6 @@ final class BatchReplacement: Codable {
             self.textualOptions = textualOptions
             self.regexOptions = regexOptions
             self.unescapesReplacementString = unescapesReplacementString
-        }
-        
-        
-        static func == (lhs: Settings, rhs: Settings) -> Bool {
-            
-            return lhs.textualOptions == rhs.textualOptions && lhs.regexOptions == rhs.regexOptions && lhs.unescapesReplacementString == rhs.unescapesReplacementString
         }
     }
     
@@ -62,6 +87,35 @@ final class BatchReplacement: Codable {
         self.settings = settings
     }
     
+}
+
+
+
+// MARK: - Equatable
+
+extension BatchReplacement.Replacement: Equatable {
+    
+    static func == (lhs: BatchReplacement.Replacement, rhs: BatchReplacement.Replacement) -> Bool {
+        
+        return lhs.findString == rhs.findString &&
+            lhs.replacementString == rhs.replacementString &&
+            lhs.usesRegularExpression == rhs.usesRegularExpression &&
+            lhs.ignoresCase == rhs.ignoresCase &&
+            lhs.description == rhs.description &&
+            lhs.isEnabled == rhs.isEnabled
+    }
+    
+}
+
+
+extension BatchReplacement.Settings: Equatable {
+    
+    static func == (lhs: BatchReplacement.Settings, rhs: BatchReplacement.Settings) -> Bool {
+        
+        return lhs.textualOptions == rhs.textualOptions &&
+            lhs.regexOptions == rhs.regexOptions &&
+            lhs.unescapesReplacementString == rhs.unescapesReplacementString
+    }
 }
 
 
@@ -213,6 +267,30 @@ extension BatchReplacement {
 
 
 // MARK: - Validation
+
+extension BatchReplacement.Replacement {
+    
+    /// check if replacement definition is valid
+    ///
+    /// - Throws: TextFindError
+    func validate(regexOptions: NSRegularExpression.Options = []) throws {
+        
+        guard !self.findString.isEmpty else {
+            throw TextFindError.emptyFindString
+        }
+        
+        if self.usesRegularExpression {
+            do {
+                _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
+            } catch {
+                let failureReason = error.localizedDescription
+                throw TextFindError.regularExpression(reason: failureReason)
+            }
+        }
+    }
+    
+}
+
 
 extension BatchReplacement {
     
