@@ -180,10 +180,6 @@ final class EditorTextView: NSTextView, Themable {
         for key in self.observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
-        if self.window != nil {
-            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
-        }
     }
     
     
@@ -214,7 +210,12 @@ final class EditorTextView: NSTextView, Themable {
         
         super.viewDidMoveToWindow()
         
-        guard let window = self.window else { return }  // do nothing if view was removed from the window
+        guard let window = self.window else {
+            // textView was removed from the window
+            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
+            return
+        }
         
         // apply theme to window
         self.applyTheme()
