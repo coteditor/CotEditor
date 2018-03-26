@@ -93,7 +93,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     
     
-    // MARK: Action Messages
+    // MARK: Actions
     
     /// add a new replacement definition
     @IBAction func add(_ sender: Any?) {
@@ -146,72 +146,10 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.validateObject()
         self.resultMessage = nil
         
-        guard
-            let textView = TextFinder.shared.client, textView.isEditable,
-            textView.window?.attachedSheet == nil
-            else {
-                NSSound.beep()
-                return
-            }
-        
-        let batchReplacement = self.batchReplacement
-        let string = textView.string.immutable
         let inSelection = UserDefaults.standard[.findInSelection]
-        let selectedRanges = textView.selectedRanges as! [NSRange]
-        
-        textView.isEditable = false
-        
-        // setup progress sheet
-        let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Batch Replace", comment: ""))
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
-        
-        DispatchQueue.global().async { [weak self] in
-            let result = batchReplacement.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
-                guard !progress.isCancelled else {
-                    stop = true
-                    return
-                }
-                
-                progress.needsUpdateDescription(count: count)
-            }
+        self.batchReplacement.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
             
-            DispatchQueue.main.async {
-                textView.isEditable = true
-                
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
-                
-                if result.count > 0 {
-                    // apply to the text view
-                    if let layoutManager = textView.layoutManager {
-                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
-                        let color = TextFinder.shared.highlightColor
-                        for range in result {
-                            layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
-                        }
-                    }
-                    
-                } else {
-                    NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
-                }
-                
-                self?.resultMessage = {
-                    guard result.count > 0 else { return NSLocalizedString("Not Found", comment: "") }
-                    
-                    return String(format: NSLocalizedString("%@ found", comment: ""),
-                                  String.localizedStringWithFormat("%li", result.count))
-                }()
-                
-                indicator.done()
-                
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                }
-            }
+            self?.resultMessage = resultMessage
         }
     }
     
@@ -223,67 +161,10 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.validateObject()
         self.resultMessage = nil
         
-        guard
-            let textView = TextFinder.shared.client, textView.isEditable,
-            textView.window?.attachedSheet == nil
-            else {
-                NSSound.beep()
-                return
-            }
-        
-        let batchReplacement = self.batchReplacement
-        let string = textView.string.immutable
         let inSelection = UserDefaults.standard[.findInSelection]
-        let selectedRanges = textView.selectedRanges as! [NSRange]
-        
-        textView.isEditable = false
-        
-        // setup progress sheet
-        let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Batch Replace", comment: ""))
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
-        
-        DispatchQueue.global().async { [weak self] in
-            let result = batchReplacement.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
-                guard !progress.isCancelled else {
-                    stop = true
-                    return
-                }
-                
-                progress.needsUpdateDescription(count: count)
-            }
+        self.batchReplacement.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
             
-            DispatchQueue.main.async {
-                textView.isEditable = true
-                
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
-                
-                if result.count > 0 {
-                    // apply to the text view
-                    textView.replace(with: [result.string], ranges: [string.nsRange],
-                                     selectedRanges: result.selectedRanges,
-                                     actionName: NSLocalizedString("Batch Replacement", comment: ""))
-                } else {
-                    NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
-                }
-                
-                self?.resultMessage = {
-                    guard result.count > 0 else { return NSLocalizedString("Not Replaced", comment: "") }
-                    
-                    return String(format: NSLocalizedString("%@ replaced", comment: ""),
-                                  String.localizedStringWithFormat("%li", result.count))
-                }()
-                
-                indicator.done()
-                
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                }
-            }
+            self?.resultMessage = resultMessage
         }
     }
     
@@ -490,7 +371,7 @@ extension BatchReplacementViewController: NSTableViewDataSource {
     }
     
     
-    /// validate when dragged items come to tableView
+    /// validate when dragged items come into tableView
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop

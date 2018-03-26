@@ -135,6 +135,8 @@
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
 		2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
+		2A3A19DF2068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */; };
+		2A3A19E02068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */; };
 		2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
@@ -840,6 +842,7 @@
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
 		2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTableViewDelegate.swift; sourceTree = "<group>"; };
+		2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BatchReplacement+TextView.swift"; sourceTree = "<group>"; };
 		2A3A1E751C45219800641CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HUDView.xib; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3A922A205638A600F9B5F3 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -1556,6 +1559,7 @@
 			children = (
 				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
 				2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */,
+				2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */,
 				2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */,
 			);
 			name = Models;
@@ -2688,6 +2692,7 @@
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
+				2A3A19E02068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */,
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2AA749C71D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
@@ -3035,6 +3040,7 @@
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 				2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */,
+				2A3A19DF2068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
