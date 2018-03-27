@@ -1,4 +1,4 @@
-﻿/*
+/*
  
  InfoPlist.strings (Italian)
  
@@ -30,7 +30,7 @@
 "Text document" = "Documento di testo";
 "Plain text" = "Testo semplice";
 "CotEditor Theme" = "Tema CotEditor";
-"CotEditor Batch Replacement Definition" = "CotEditor Batch Replacement Definition";  // FIXME: added
+"CotEditor Replacement Definition" = "CotEditor Replacement Definition";  // FIXME: added
 "BibTeX" = "BibTeX";
 "Configuration" = "Configurazione";
 "C header" = " Intestazione C";

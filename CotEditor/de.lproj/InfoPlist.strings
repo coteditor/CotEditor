@@ -29,7 +29,7 @@
 "Text document" = "Text-Dokument";
 "Plain text" = "Reiner Text";
 "CotEditor Theme" = "CotEditor-Thema";
-"CotEditor Batch Replacement Definition" = "CotEditor Batch Replacement Definition";  // FIXME: added
+"CotEditor Replacement Definition" = "CotEditor-Ersatzdefinition";
 "BibTeX" = "BibTeX";
 "Configuration" = "Konfiguration";
 "C header" = "C-Header-Code";

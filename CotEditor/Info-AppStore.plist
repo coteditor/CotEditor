@@ -77,14 +77,14 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>cotbr</string>
+				<string>cotrpl</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>ReplacementsIcon</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array/>
 			<key>CFBundleTypeName</key>
-			<string>CotEditor Batch Replacement Definition</string>
+			<string>CotEditor Replacement Definition</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSHandlerRank</key>
@@ -1099,7 +1099,7 @@
 				<string>public.json</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>CotEditor Batch Replacement Definition</string>
+			<string>CotEditor Replacement Definition</string>
 			<key>UTTypeIconFile</key>
 			<string>ReplacementsIcon</string>
 			<key>UTTypeIdentifier</key>
@@ -1108,7 +1108,7 @@
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>cotbr</string>
+					<string>cotrpl</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>

@@ -195,7 +195,7 @@ extension BatchReplacement {
     }
     
     
-    /// Batch-replace given string.
+    /// Batch-replace matches in given string.
     ///
     /// - Parameters:
     ///   - string: The string to replace.

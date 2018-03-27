@@ -452,7 +452,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             return String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), self.name)
             
         case .replacement:
-            return String(format: NSLocalizedString("A new batch replacement definition named “%@” will be installed, but a definition with the same name already exists.", comment: ""), self.name)
+            return String(format: NSLocalizedString("A new replacement definition named “%@” will be installed, but a definition with the same name already exists.", comment: ""), self.name)
         }
     }
     

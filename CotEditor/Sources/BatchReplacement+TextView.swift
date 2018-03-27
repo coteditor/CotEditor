@@ -28,7 +28,7 @@ import AppKit
 extension BatchReplacement {
     
     /// highlight all matches in the textView
-    func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> (Void)) {
+    func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
         guard
             let textView = TextFinder.shared.client, textView.isEditable,
@@ -103,7 +103,7 @@ extension BatchReplacement {
     
     
     /// replace all matches in the textView
-    func replaceAll(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> (Void)) {
+    func replaceAll(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
         guard
             let textView = TextFinder.shared.client, textView.isEditable,

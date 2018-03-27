@@ -464,7 +464,7 @@
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new batch replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Eine neue Definition des Batch-Ersatzes mit dem Namen „%@“ wird installiert, doch eine Einstellung mit dem selben Namen existiert bereits.";
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Eine neue Ersatzdefinition mit dem Namen „%@“ wird installiert, doch eine Definition mit dem selben Namen existiert bereits.";
 "Do you want to replace it?\nReplaced definition can’t be restored." = "Möchtest du sie ersetzen?\nErsetzte Definition kann nicht wiederhergestellt werden.";
 
 

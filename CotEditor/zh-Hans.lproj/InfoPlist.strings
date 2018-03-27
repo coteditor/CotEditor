@@ -30,7 +30,7 @@
 "Text document" = "文本文档";
 "Plain text" = "纯文本";
 "CotEditor Theme" = "CotEditor 主题";
-"CotEditor Batch Replacement Definition" = "CotEditor Batch Replacement Definition";  // FIXME: added
+"CotEditor Replacement Definition" = "CotEditor Replacement Definition";  // FIXME: added
 "BibTeX" = "BibTeX";
 "Configuration" = "配置文件";
 "C header" = "C 头文件";
