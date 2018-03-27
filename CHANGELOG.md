@@ -23,6 +23,7 @@ unreleased
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
 - Update highlight style of icons in the side inspector.
 - Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
+- Update “Java” syntax style by adding term `var` (Thanks to Marc Prud'hommeaux!)
 - [trivial] Use monospace digits where suitable.
 
 
