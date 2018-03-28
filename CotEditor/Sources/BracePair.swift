@@ -48,6 +48,8 @@ extension String {
         let subsequence = self[..<index]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
+            guard !self.isCharacterEscaped(at: index) else { continue }
+            
             switch character {
             case pair.begin where nestDepth == 0:
                 return index
@@ -72,6 +74,8 @@ extension String {
         let subsequence = self[self.index(after: index)...]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
+            guard !self.isCharacterEscaped(at: index) else { continue }
+            
             switch character {
             case pair.end where nestDepth == 0:
                 return index
