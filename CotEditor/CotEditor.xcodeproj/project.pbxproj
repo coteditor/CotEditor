@@ -123,6 +123,8 @@
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
 		2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
+		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
+		2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
 		2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
@@ -816,6 +818,7 @@
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
 		2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTableViewDelegate.swift; sourceTree = "<group>"; };
+		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A1E751C45219800641CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HUDView.xib; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3A922A205638A600F9B5F3 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
@@ -1751,6 +1754,7 @@
 				2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */,
 				2A9082E11D32456300228F50 /* NSTextView+Layout.swift */,
 				2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */,
+				2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
@@ -2591,6 +2595,7 @@
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
+				2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2AED46711E425CD200751C45 /* TextFind.swift in Sources */,
 				2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
@@ -2922,6 +2927,7 @@
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
+				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
