@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -114,6 +114,21 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.clearNumberOfReplaced()
         default:
             break
+        }
+    }
+    
+    
+    /// selected range did update
+    func textViewDidChangeSelection(_ notification: Notification) {
+        
+        guard let textView = notification.object as? NSTextView else { return }
+        
+        // highlight matching brace
+        if UserDefaults.standard[.findUsesRegularExpression] {
+            let pairs = [BracePair(begin: "(", end: ")"),
+                         BracePair(begin: "[", end: "]")]
+            
+            textView.highligtMatchingBrace(candidates: pairs)
         }
     }
     

@@ -9,6 +9,7 @@ unreleased
 
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
+- Highlight matching brace by moving cursor in find string field on regular expression mode.
 - Add a new theme “Resinifictrix”.
 
 
