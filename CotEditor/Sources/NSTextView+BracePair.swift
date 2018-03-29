@@ -25,14 +25,10 @@
 
 import Cocoa
 
-/// regular expression to extract characters inside brackets []
-private let bracketRegex = try! NSRegularExpression(pattern: "(?<=\\[).[^\\]]+(?=\\])")
-
-
 extension NSTextView {
     
     /// find the matching brace for the character before the cursor and highlight it
-    func highligtMatchingBrace(candidates: [BracePair]) {
+    func highligtMatchingBrace(candidates: [BracePair], ignoringRanges: [Range<String.Index>] = []) {
         
         let string = self.string
         let selectedRange = self.selectedRange
@@ -48,16 +44,13 @@ extension NSTextView {
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
         
-        let ignoringRanges = bracketRegex.matches(in: string, options: [], range: string.nsRange)
-            .map { Range($0.range, in: string)! }
-        
         guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates, ignoringRanges: ignoringRanges) else { return }
         
         switch pairIndex {
         case .begin(let index), .end(let index):
             let range = NSRange(index...index, in: string)
             self.showFindIndicator(for: range)
-        default: return
+        case .odd: return
         }
     }
     
