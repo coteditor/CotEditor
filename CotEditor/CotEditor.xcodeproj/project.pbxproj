@@ -392,8 +392,8 @@
 		2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */; };
 		2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */; };
 		2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */; };
-		2A9C370B1D66E99400774BA4 /* BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* BracePair.swift */; };
-		2A9C370C1D66E99400774BA4 /* BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* BracePair.swift */; };
+		2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* Pair.swift */; };
+		2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370A1D66E99400774BA4 /* Pair.swift */; };
 		2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */; };
 		2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */; };
 		2AA14CF91FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14CF71FA47E8900EAF586 /* ScriptDescriptor.swift */; };
@@ -1045,7 +1045,7 @@
 		2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+JapaneseTransformation.swift"; sourceTree = "<group>"; };
 		2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Normalization.swift"; sourceTree = "<group>"; };
 		2A9C07551CF9F982006D672D /* IncompatibleCharacterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterTests.swift; sourceTree = "<group>"; };
-		2A9C370A1D66E99400774BA4 /* BracePair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracePair.swift; sourceTree = "<group>"; };
+		2A9C370A1D66E99400774BA4 /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		2A9C370D1D672A1F00774BA4 /* BracePairTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BracePairTests.swift; sourceTree = "<group>"; };
 		2AA0AC5F1A2876930063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PrintPanelAccessory.strings"; sourceTree = "<group>"; };
 		2AA0AC601A28769C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressView.strings"; sourceTree = "<group>"; };
@@ -1817,7 +1817,7 @@
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
-				2A9C370A1D66E99400774BA4 /* BracePair.swift */,
+				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
 				2A4682B11D2F6B580005410E /* FIleDropComposer.swift */,
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
@@ -2761,7 +2761,7 @@
 				2AD616CD1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2A42579F1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
-				2A9C370C1D66E99400774BA4 /* BracePair.swift in Sources */,
+				2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2A6FD9F71D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
@@ -2828,7 +2828,7 @@
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
-				2A9C370B1D66E99400774BA4 /* BracePair.swift in Sources */,
+				2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */,
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
 				2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,

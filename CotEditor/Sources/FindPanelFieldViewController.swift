@@ -128,10 +128,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // highlight matching brace
         if UserDefaults.standard[.findUsesRegularExpression] {
-            let pairs = [BracePair(begin: "(", end: ")"),
-                         BracePair(begin: "[", end: "]")]
-            
-            textView.highligtMatchingBrace(candidates: pairs)
+            textView.highligtMatchingBrace(candidates: [BracePair("(", ")"),
+                                                        BracePair("[", "]")])
         }
     }
     

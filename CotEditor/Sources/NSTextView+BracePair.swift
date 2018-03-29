@@ -43,18 +43,15 @@ extension NSTextView {
         
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
-        let lastCharacter = string[lastIndex]
         
-        guard
-            let pair = candidates.first(where: { $0.begin == lastCharacter || $0.end == lastCharacter }),
-            let index = (pair.begin == lastCharacter)
-                ? string.indexOfEndBrace(for: pair, at: lastIndex)
-                : string.indexOfBeginBrace(for: pair, at: lastIndex)
-            else { return }
+        guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates) else { return }
         
-        let range = NSRange(index...index, in: string)
-        
-        self.showFindIndicator(for: range)
+        switch pairIndex {
+        case .begin(let index), .end(let index):
+            let range = NSRange(index...index, in: string)
+            self.showFindIndicator(for: range)
+        default: return
+        }
     }
     
 }
