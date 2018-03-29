@@ -121,7 +121,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// selected range did update
     func textViewDidChangeSelection(_ notification: Notification) {
         
-        guard let textView = notification.object as? NSTextView else { return }
+        guard
+            let textView = notification.object as? NSTextView,
+            textView == self.findTextView
+            else { return }
         
         // highlight matching brace
         if UserDefaults.standard[.findUsesRegularExpression] {
