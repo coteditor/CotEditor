@@ -283,7 +283,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
         
         return menu.items.lazy
             .filter(type(of: self).allowsModifying)
-            .flatMap { menuItem in
+            .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
                     let node = NamedTreeNode(name: menuItem.title)
                     let subtree = self.outlineTree(menu: submenu, defaults: usesDefaults)

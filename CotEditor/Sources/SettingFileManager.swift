@@ -242,20 +242,21 @@ class SettingFileManager: SettingManager {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
         
-        var error: NSError?
+        var coordinationError: NSError?
+        var writingError: NSError?
         NSFileCoordinator().coordinate(readingItemAt: sourceURL, options: .withoutChanges,
-                                       writingItemAt: fileURL, options: .forMoving, error: &error)
+                                       writingItemAt: fileURL, options: .forMoving, error: &coordinationError)
         { (newReadingURL, newWritingURL) in
             
             do {
                 try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
                 
-            } catch let writingError as NSError {
-                error = writingError
+            } catch {
+                writingError = error as NSError
             }
         }
         
-        if let error = error {
+        if let error = writingError ?? coordinationError {
             throw error
         }
     }
@@ -333,9 +334,10 @@ class SettingFileManager: SettingManager {
         try self.prepareUserSettingDirectory()
         
         // copy file
-        var error: NSError?
+        var coordinationError: NSError?
+        var writingError: NSError?
         NSFileCoordinator().coordinate(readingItemAt: fileURL, options: [.withoutChanges, .resolvesSymbolicLink],
-                                       writingItemAt: destURL, options: .forReplacing, error: &error)
+                                       writingItemAt: destURL, options: .forReplacing, error: &coordinationError)
         { (newReadingURL, newWritingURL) in
             
             do {
@@ -344,12 +346,12 @@ class SettingFileManager: SettingManager {
                 }
                 try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
                 
-            } catch let writingError as NSError {
-                error = writingError
+            } catch {
+                writingError = error as NSError
             }
         }
         
-        if let error = error {
+        if let error = writingError ?? coordinationError {
             throw SettingFileError(kind: .importFailed, name: name, error: error)
         }
         

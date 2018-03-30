@@ -43,7 +43,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.firstSyntaxCompletionCharacterSet = {
                 guard let words = syntaxStyle?.completionWords, !words.isEmpty else { return nil }
                 
-                let firstLetters = words.flatMap { $0.unicodeScalars.first }
+                let firstLetters = words.compactMap { $0.unicodeScalars.first }
                 
                 return CharacterSet(firstLetters)
             }()

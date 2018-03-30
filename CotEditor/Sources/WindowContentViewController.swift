@@ -283,7 +283,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     private var siblings: [WindowContentViewController] {
         
         if #available(macOS 10.12, *) {
-            return self.view.window?.tabbedWindows?.flatMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
+            return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
         } else {
             return [self]
         }

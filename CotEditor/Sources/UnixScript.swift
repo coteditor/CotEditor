@@ -108,7 +108,7 @@ final class UnixScript: Script {
         let outputType = OutputType(scanning: script)
         
         // prepare file path as argument if available
-        let arguments: [String] = [document?.fileURL?.path].flatMap { $0 }
+        let arguments: [String] = [document?.fileURL?.path].compactMap { $0 }
         
         // create task
         let task = try NSUserUnixTask(url: self.descriptor.url)
@@ -296,13 +296,10 @@ private enum ScriptError: Error {
 private protocol ScriptToken {
     
     static var token: String { get }
-    
-    init?(rawValue: String)
-    
 }
 
 
-private extension ScriptToken {
+private extension ScriptToken where Self: RawRepresentable, Self.RawValue == String {
     
     /// read type from script
     init?(scanning script: String) {
