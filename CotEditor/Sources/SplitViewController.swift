@@ -139,7 +139,7 @@ final class SplitViewController: NSSplitViewController {
     func viewController(for subview: NSView) -> EditorViewController? {
         
         return self.childViewControllers.lazy
-            .flatMap { (controller: NSViewController) in controller as? EditorViewController }
+            .compactMap { (controller: NSViewController) in controller as? EditorViewController }
             .first { $0.splitView == subview }
     }
     

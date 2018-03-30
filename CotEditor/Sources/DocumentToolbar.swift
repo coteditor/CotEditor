@@ -118,7 +118,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         let subviews = views.flatMap { $0.subviews }
 
         let toggleButton: NSButton? = (views + subviews).lazy
-            .flatMap { $0 as? NSButton }
+            .compactMap { $0 as? NSButton }
             .first { button in
                 guard let action = button.action else { return false }
                 
