@@ -39,22 +39,6 @@ struct Pair<T> {
 }
 
 
-extension Pair where T: Hashable {
-    
-    static func == (lhs: Pair, rhs: Pair) -> Bool {
-        
-        return lhs.begin == rhs.begin && lhs.end == rhs.end
-    }
-    
-    
-    var hashValue: Int {
-        
-        return self.begin.hashValue + self.end.hashValue
-    }
-    
-}
-
-
 
 // MARK: BracePair
 
