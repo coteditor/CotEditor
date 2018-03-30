@@ -297,7 +297,7 @@ extension BatchReplacement {
     /// current errors in replacement definitions
     var errors: [TextFindError] {
         
-        return self.replacements.flatMap {
+        return self.replacements.compactMap {
             do {
                 try $0.validate()
             } catch {
