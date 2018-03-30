@@ -8,6 +8,7 @@ opt_in_rules:
   - attributes
   - closure_end_indentation
   - closure_spacing
+  - discouraged_optional_boolean
   - explicit_init
   - extension_access_modifier
   - file_header
