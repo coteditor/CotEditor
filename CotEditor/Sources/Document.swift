@@ -378,7 +378,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             let textView = self.textStorage.layoutManagers.lazy
-                .flatMap { $0.textViewForBeginningOfSelection }
+                .compactMap { $0.textViewForBeginningOfSelection }
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
             
             textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,

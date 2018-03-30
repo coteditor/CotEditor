@@ -824,17 +824,15 @@ final class EditorTextView: NSTextView, Themable {
             self.centerSelectionInVisibleArea(self)
             
         case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue:
-            if let textStorage = self.textStorage {
-                let wholeRange = textStorage.mutableString.range
-                if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(newValue as! Bool) {
-                    if let paragraphStyle = self.defaultParagraphStyle {
-                        textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
-                    } else {
-                        textStorage.removeAttribute(.paragraphStyle, range: wholeRange)
-                    }
+            let wholeRange = self.string.nsRange
+            if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(newValue as! Bool) {
+                if let paragraphStyle = self.defaultParagraphStyle {
+                    self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
                 } else {
-                    (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
+                    self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
                 }
+            } else {
+                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
             
         default: break
