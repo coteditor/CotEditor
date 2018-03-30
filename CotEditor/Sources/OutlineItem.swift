@@ -27,7 +27,7 @@
 
 import Foundation
 
-struct OutlineItem: Equatable {
+struct OutlineItem {
     
     struct Style: OptionSet {
         
@@ -49,14 +49,6 @@ struct OutlineItem: Equatable {
         self.title = title
         self.range = range
         self.style = style
-    }
-  
-    
-    static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
-        
-        return lhs.range == rhs.range &&
-            lhs.style == rhs.style &&
-            lhs.title == rhs.title
     }
     
 }

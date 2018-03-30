@@ -43,7 +43,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.firstSyntaxCompletionCharacterSet = {
                 guard let words = syntaxStyle?.completionWords, !words.isEmpty else { return nil }
                 
-                let firstLetters = words.flatMap { $0.unicodeScalars.first }
+                let firstLetters = words.compactMap { $0.unicodeScalars.first }
                 
                 return CharacterSet(firstLetters)
             }()
@@ -247,7 +247,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.currentLineUpdateTask.run()
         
         // highlight matching brace
-        self.highlightMatchingBrace(in: textView)
+        if UserDefaults.standard[.highlightBraces] {
+            let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+            textView.highligtMatchingBrace(candidates: bracePairs)
+        }
     }
     
     
@@ -283,41 +286,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     private var scrollView: NSScrollView? {
         
         return self.view as? NSScrollView
-    }
-    
-    
-    /// find the matching brace and highlight it
-    private func highlightMatchingBrace(in textView: NSTextView) {
-        
-        guard UserDefaults.standard[.highlightBraces] else { return }
-        
-        let string = textView.string
-        let selectedRange = textView.selectedRange
-        
-        guard
-            !string.isEmpty,
-            selectedRange.length == 0,
-            selectedRange.location != NSNotFound,
-            selectedRange.location > 0,
-            let cursorIndex = Range(selectedRange, in: string)?.lowerBound
-            else { return }
-        
-        // check the character just before the cursor
-        let lastIndex = string.index(before: cursorIndex)
-        let lastCharacter = string[lastIndex]
-        
-        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-        
-        guard
-            let pair = bracePairs.first(where: { $0.begin == lastCharacter || $0.end == lastCharacter }),
-            let index = (pair.begin == lastCharacter)
-                ? string.indexOfEndBrace(for: pair, at: lastIndex)
-                : string.indexOfBeginBrace(for: pair, at: lastIndex)
-            else { return }
-        
-        let range = NSRange(index...index, in: string)
-        
-        textView.showFindIndicator(for: range)
     }
     
     

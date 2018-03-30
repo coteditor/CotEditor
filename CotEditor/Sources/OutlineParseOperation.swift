@@ -80,7 +80,8 @@ struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
 
     static func == (lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
         
-        return lhs.regex == rhs.regex &&
+        return lhs.regex.pattern == rhs.regex.pattern &&
+            lhs.regex.options == rhs.regex.options &&
             lhs.template == rhs.template &&
             lhs.style == rhs.style
     }

@@ -180,10 +180,6 @@ final class EditorTextView: NSTextView, Themable {
         for key in self.observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
-        if self.window != nil {
-            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
-        }
     }
     
     
@@ -214,7 +210,12 @@ final class EditorTextView: NSTextView, Themable {
         
         super.viewDidMoveToWindow()
         
-        guard let window = self.window else { return }  // do nothing if view was removed from the window
+        guard let window = self.window else {
+            // textView was removed from the window
+            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
+            return
+        }
         
         // apply theme to window
         self.applyTheme()
@@ -323,16 +324,16 @@ final class EditorTextView: NSTextView, Themable {
         // smart outdent with '}' charcter
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled,
             replacementRange.length == 0, plainString == "}",
-            let insretionIndex = Range(self.selectedRange, in: self.string)?.upperBound
+            let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound
         {
             let wholeString = self.string
-            let lineRange = wholeString.lineRange(at: insretionIndex)
+            let lineRange = wholeString.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
             if wholeString.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil,
-                let precedingIndex = wholeString.indexOfBeginBrace(for: BracePair(begin: "{", end: "}"), at: insretionIndex) {
+                let precedingIndex = wholeString.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
                 let desiredLevel = wholeString.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
-                let currentLevel = wholeString.indentLevel(at: insretionIndex, tabWidth: self.tabWidth)
+                let currentLevel = wholeString.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel
                 
                 if levelToReduce > 0 {
@@ -1383,9 +1384,10 @@ extension EditorTextView {
         
         let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
         
-        guard granularity == .selectByWord, self.string.utf16.count != proposedCharRange.location else {
-            return range
-        }
+        guard
+            granularity == .selectByWord,
+            self.string.utf16.count != proposedCharRange.location
+            else { return range }
         
         var wordRange = range
         
@@ -1420,20 +1422,17 @@ extension EditorTextView {
         }
         
         // select inside of brackets by double-clicking
-        if let pair = (BracePair.braces + [.ltgt]).first(where: { $0.begin == clickedCharacter || $0.end == clickedCharacter }) {
-            if pair.end == clickedCharacter {
-                if let beginIndex = self.string.indexOfBeginBrace(for: pair, at: characterIndex) {
-                    return NSRange(beginIndex...characterIndex, in: self.string)
-                }
-            } else {
-                if let endIndex = self.string.indexOfEndBrace(for: pair, at: characterIndex) {
-                    return NSRange(characterIndex...endIndex, in: self.string)
-                }
+        if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
+            switch pairIndex {
+            case .begin(let beginIndex):
+                return NSRange(beginIndex...characterIndex, in: self.string)
+            case .end(let endIndex):
+                return NSRange(characterIndex...endIndex, in: self.string)
+            case .odd:
+                // If it has a found a "begin" brace but not found a match, a double-click should only select the "begin" brace and not what it usually would select at a double-click
+                NSSound.beep()
+                return NSRange(location: proposedCharRange.location, length: 1)
             }
-            
-            // If it has a found a "begin" brace but not found a match, a double-click should only select the "begin" brace and not what it usually would select at a double-click
-            NSSound.beep()
-            return NSRange(location: proposedCharRange.location, length: 1)
         }
         
         return wordRange

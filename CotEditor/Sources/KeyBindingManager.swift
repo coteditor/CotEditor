@@ -96,7 +96,7 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
         
         let sortedKeyBindings = Set(customKeyBindings.filter({ $0.shortcut?.isValid ?? true })).sorted()
         let customizedActions = sortedKeyBindings.map { $0.action }
-        let customizedShortcuts = sortedKeyBindings.flatMap { $0.shortcut }
+        let customizedShortcuts = sortedKeyBindings.compactMap { $0.shortcut }
         let defaultKeyBindings = self.defaultKeyBindings
             .filter { !customizedActions.contains($0.action) && !customizedShortcuts.contains($0.shortcut!) }
         

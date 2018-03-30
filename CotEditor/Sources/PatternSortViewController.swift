@@ -53,7 +53,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
         self.tabViewController = tabViewController
         
         tabViewController.tabViewItems
-            .flatMap { $0.viewController as? SortPatternViewController }
+            .compactMap { $0.viewController as? SortPatternViewController }
             .forEach { $0.delegate = self }
     }
     

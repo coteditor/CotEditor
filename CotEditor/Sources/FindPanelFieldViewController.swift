@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 1024jp
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,6 +26,10 @@
  */
 
 import Cocoa
+
+/// regular expression to extract characters inside brackets []
+private let bracketRegex = try! NSRegularExpression(pattern: "(?<=\\[).[^\\]]+(?=\\])")
+
 
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
@@ -114,6 +118,27 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.clearNumberOfReplaced()
         default:
             break
+        }
+    }
+    
+    
+    /// selected range did update
+    func textViewDidChangeSelection(_ notification: Notification) {
+        
+        guard
+            let textView = notification.object as? NSTextView,
+            textView == self.findTextView
+            else { return }
+        
+        // highlight matching brace
+        if UserDefaults.standard[.findUsesRegularExpression] {
+            // ignore brace in []
+            let string = textView.string
+            let ignoringRanges = bracketRegex.matches(in: string, options: [], range: string.nsRange)
+                .map { Range($0.range, in: string)! }
+            
+            textView.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")],
+                                           ignoringRanges: ignoringRanges)
         }
     }
     

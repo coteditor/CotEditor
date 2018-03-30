@@ -78,7 +78,7 @@ extension String {
         guard convertedString.count == self.count else {
             // detect incompatible chars using Differ
             return self.diff(convertedString)
-                .flatMap { (element) -> Int? in
+                .compactMap { (element) -> Int? in
                     switch element {
                     case .delete(at: let offset): return offset
                     case .insert: return nil

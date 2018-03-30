@@ -460,7 +460,7 @@ final class SyntaxManager: SettingFileManager {
             let userMap = userStyles.mapValues { style -> [String: [String]] in
                 style.filter { mappingKeys.contains($0.key) }
                     .mapValues { $0 as? [[String: String]] ?? [] }
-                    .mapValues { $0.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+                    .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
             }
             self.map = self.bundledMap.merging(userMap) { (_, new) in new }
             

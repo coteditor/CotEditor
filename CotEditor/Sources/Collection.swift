@@ -40,10 +40,10 @@ extension Array where Element: Equatable {
 }
 
 
-extension Collection {
+public extension Collection {
 
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
-    public subscript(safe index: Index) -> Element? {
+    subscript(safe index: Index) -> Element? {
         
         return indices.contains(index) ? self[index] : nil
     }
@@ -128,7 +128,7 @@ extension Array {
     /// Return subset at IndexSet
     func elements(at indexes: IndexSet) -> [Element] {
         
-        return indexes.flatMap { index in
+        return indexes.compactMap { index in
             guard index < self.count else { return nil }
             
             return self[index]

@@ -124,7 +124,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
-            let definitions = wordDicts.flatMap { HighlightDefinition(definition: $0) }
+            let definitions = wordDicts.compactMap { HighlightDefinition(definition: $0) }
             
             guard !definitions.isEmpty else { return }
             
@@ -186,7 +186,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
                 // create from completion definition
                 words = completionDicts
-                    .flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
+                    .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
                     .filter { !$0.isEmpty }
             } else {
                 // create from normal highlighting words
@@ -203,7 +203,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.outlineDefinitions = {
             guard let definitionDictionaries = dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]] else { return [] }
             
-            return definitionDictionaries.flatMap { OutlineDefinition(definition: $0) }
+            return definitionDictionaries.compactMap { OutlineDefinition(definition: $0) }
         }()
     }
     

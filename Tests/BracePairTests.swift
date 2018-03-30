@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 1024jp
+ © 2016-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -34,26 +34,26 @@ class BracePairTests: XCTestCase {
     func testIndexFind() {
         
         let string = "if < foo < 🐕 > > else < >"
-        let pair = BracePair(begin: "<", end: ">")
+        let pair = BracePair("<", ">")
         let start = string.startIndex
         
-        XCTAssertEqual(string.indexOfBeginBrace(for: pair, at: string.index(start, offsetBy: 14)), string.index(start, offsetBy: 3))
-        XCTAssertEqual(string.indexOfEndBrace(for: pair, at: string.index(start, offsetBy: 4)), string.index(start, offsetBy: 15))
-        XCTAssertNil(string.indexOfBeginBrace(for: pair, at: string.index(start, offsetBy: 2)))
-        XCTAssertNil(string.indexOfEndBrace(for: .ltgt, at: string.index(start, offsetBy: 2)))
+        XCTAssertEqual(string.indexOfBracePair(endIndex: string.index(start, offsetBy: 14), pair: pair), string.index(start, offsetBy: 3))
+        XCTAssertEqual(string.indexOfBracePair(beginIndex: string.index(start, offsetBy: 4), pair: pair), string.index(start, offsetBy: 15))
+        XCTAssertNil(string.indexOfBracePair(endIndex: string.index(start, offsetBy: 2), pair: pair))
+        XCTAssertNil(string.indexOfBracePair(beginIndex: string.index(start, offsetBy: 2), pair: .ltgt))
     }
     
     
     func testSamePair() {
         
         let string = "if ' foo ' 🐕 ' ' else ' '"
-        let pair = BracePair(begin: "'", end: "'")
+        let pair = BracePair("'", "'")
         let start = string.startIndex
         
-        XCTAssertEqual(string.indexOfBeginBrace(for: pair, at: string.index(start, offsetBy: 14)), string.index(start, offsetBy: 13))
-        XCTAssertEqual(string.indexOfEndBrace(for: pair, at: string.index(start, offsetBy: 4)), string.index(start, offsetBy: 9))
-        XCTAssertNil(string.indexOfBeginBrace(for: pair, at: string.index(start, offsetBy: 2)))
-        XCTAssertEqual(string.indexOfEndBrace(for: pair, at: string.index(start, offsetBy: 2)), string.index(start, offsetBy: 3))
+        XCTAssertEqual(string.indexOfBracePair(endIndex: string.index(start, offsetBy: 14), pair: pair), string.index(start, offsetBy: 13))
+        XCTAssertEqual(string.indexOfBracePair(beginIndex: string.index(start, offsetBy: 4), pair: pair), string.index(start, offsetBy: 9))
+        XCTAssertNil(string.indexOfBracePair(endIndex: string.index(start, offsetBy: 2), pair: pair))
+        XCTAssertEqual(string.indexOfBracePair(beginIndex: string.index(start, offsetBy: 2), pair: pair), string.index(start, offsetBy: 3))
     }
     
 
