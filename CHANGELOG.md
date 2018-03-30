@@ -27,6 +27,7 @@ unreleased
 - Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
 - Update “Java” syntax style by adding term `var` (Thanks to Marc Prud'hommeaux!)
 - [trivial] Use monospace digits where suitable.
+- [dev] Update build environment to Xcode 9.3 (Swift 4.1).
 
 
 ### Fixes
