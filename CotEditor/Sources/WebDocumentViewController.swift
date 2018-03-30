@@ -97,8 +97,8 @@ extension WebDocumentViewController: WKNavigationDelegate {
     /// receive web content
     func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
         
-        #if APPSTORE
-            webView.apply(styleSheet: ".non-appstore { display: none }")
+        #if canImport(Sparkle)
+            webView.apply(styleSheet: ".Sparkle { display: none }")
         #endif
     }
     

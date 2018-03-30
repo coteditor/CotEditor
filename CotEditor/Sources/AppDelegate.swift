@@ -317,7 +317,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showAboutPanel(_ sender: Any?) {
      
         var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if APPSTORE
+        #if canImport(Sparkle)
             // Remove Sparkle from 3rd party code list
             if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
                 let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
