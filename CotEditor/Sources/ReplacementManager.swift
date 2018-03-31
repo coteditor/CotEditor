@@ -121,6 +121,17 @@ final class ReplacementManager: SettingFileManager {
     }
     
     
+    /// rename setting
+    override func renameSetting(name: String, to newName: String) throws {
+        
+        try super.renameSetting(name: name, to: newName)
+        
+        self.updateCache { [weak self] in
+            self?.notifySettingUpdate(oldName: name, newName: newName)
+        }
+    }
+    
+    
     /// create a new untitled setting
     func createUntitledSetting(completionHandler: ((String) -> Void)? = nil) throws {  // @escaping
         
