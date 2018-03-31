@@ -182,44 +182,6 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="ignoresCase" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Ignore Cases" id="d3o-yf-jB4">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
-                                                        <font key="font" metaFont="smallSystem"/>
-                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="K6l-q4-Yed">
-                                                        <font key="font" metaFont="system"/>
-                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
-                                                    <prototypeCellViews>
-                                                        <tableCellView id="E0A-sg-252">
-                                                            <rect key="frame" x="250" y="1" width="28" height="17"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                            <subviews>
-                                                                <button identifier="regularExpression" toolTip="Select to ignore character case on search." translatesAutoresizingMaskIntoConstraints="NO" id="I23-3I-yq5">
-                                                                    <rect key="frame" x="-1" y="-3" width="29" height="23"/>
-                                                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" controlSize="small" inset="2" id="0a8-wL-sx5">
-                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                        <font key="font" metaFont="smallSystem"/>
-                                                                    </buttonCell>
-                                                                    <connections>
-                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Esl-ow-Q2p"/>
-                                                                        <binding destination="E0A-sg-252" name="value" keyPath="objectValue" id="wA3-P4-Uca"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="I23-3I-yq5" firstAttribute="leading" secondItem="E0A-sg-252" secondAttribute="leading" constant="2" id="8V1-0F-KnI"/>
-                                                                <constraint firstAttribute="trailing" secondItem="I23-3I-yq5" secondAttribute="trailing" constant="2" id="jIT-CM-K1c"/>
-                                                                <constraint firstItem="I23-3I-yq5" firstAttribute="top" secondItem="E0A-sg-252" secondAttribute="top" id="jWW-WP-ttn"/>
-                                                                <constraint firstAttribute="bottom" secondItem="I23-3I-yq5" secondAttribute="bottom" id="wmr-Kd-46Y"/>
-                                                            </constraints>
-                                                        </tableCellView>
-                                                    </prototypeCellViews>
-                                                </tableColumn>
                                                 <tableColumn identifier="usesRegularExpression" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Regular Expression" id="VtR-Qz-MBf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                                         <font key="font" metaFont="smallSystem"/>
@@ -234,7 +196,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gVj-CA-2D0">
-                                                            <rect key="frame" x="281" y="1" width="28" height="17"/>
+                                                            <rect key="frame" x="250" y="1" width="28" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button identifier="regularExpression" toolTip="Select to search with regular expression." translatesAutoresizingMaskIntoConstraints="NO" id="Lk4-Ym-IrV">
@@ -254,6 +216,44 @@
                                                                 <constraint firstAttribute="trailing" secondItem="Lk4-Ym-IrV" secondAttribute="trailing" constant="2" id="A01-Og-CYl"/>
                                                                 <constraint firstAttribute="bottom" secondItem="Lk4-Ym-IrV" secondAttribute="bottom" id="bUU-OU-W4g"/>
                                                                 <constraint firstItem="Lk4-Ym-IrV" firstAttribute="leading" secondItem="gVj-CA-2D0" secondAttribute="leading" constant="2" id="iZc-Rb-Eua"/>
+                                                            </constraints>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn identifier="ignoresCase" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Ignore Cases" id="d3o-yf-jB4">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="K6l-q4-Yed">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="E0A-sg-252">
+                                                            <rect key="frame" x="281" y="1" width="28" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <button identifier="regularExpression" toolTip="Select to ignore character case on search." translatesAutoresizingMaskIntoConstraints="NO" id="I23-3I-yq5">
+                                                                    <rect key="frame" x="-1" y="-3" width="29" height="23"/>
+                                                                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" controlSize="small" inset="2" id="0a8-wL-sx5">
+                                                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Esl-ow-Q2p"/>
+                                                                        <binding destination="E0A-sg-252" name="value" keyPath="objectValue" id="wA3-P4-Uca"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="I23-3I-yq5" firstAttribute="leading" secondItem="E0A-sg-252" secondAttribute="leading" constant="2" id="8V1-0F-KnI"/>
+                                                                <constraint firstAttribute="trailing" secondItem="I23-3I-yq5" secondAttribute="trailing" constant="2" id="jIT-CM-K1c"/>
+                                                                <constraint firstItem="I23-3I-yq5" firstAttribute="top" secondItem="E0A-sg-252" secondAttribute="top" id="jWW-WP-ttn"/>
+                                                                <constraint firstAttribute="bottom" secondItem="I23-3I-yq5" secondAttribute="bottom" id="wmr-Kd-46Y"/>
                                                             </constraints>
                                                         </tableCellView>
                                                     </prototypeCellViews>

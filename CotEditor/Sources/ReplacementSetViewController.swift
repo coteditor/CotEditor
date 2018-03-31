@@ -227,8 +227,8 @@ private extension NSUserInterfaceItemIdentifier {
     static let isEnabled = NSUserInterfaceItemIdentifier("isEnabled")
     static let findString = NSUserInterfaceItemIdentifier("findString")
     static let replacementString = NSUserInterfaceItemIdentifier("replacementString")
-    static let ignoresCase = NSUserInterfaceItemIdentifier("ignoresCase")
     static let usesRegularExpression = NSUserInterfaceItemIdentifier("usesRegularExpression")
+    static let ignoresCase = NSUserInterfaceItemIdentifier("ignoresCase")
     static let description = NSUserInterfaceItemIdentifier("description")
 }
 

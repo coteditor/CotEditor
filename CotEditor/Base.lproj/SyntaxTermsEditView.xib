@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -31,42 +31,6 @@
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
-                                    <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="qJN-3P-dIu">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
-                                            <font key="font" metaFont="smallSystem"/>
-                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                        </tableHeaderCell>
-                                        <buttonCell key="dataCell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" inset="2" id="dm6-ya-Lqh">
-                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <prototypeCellViews>
-                                            <tableCellView id="r3l-zQ-NPi">
-                                                <rect key="frame" x="1" y="1" width="27" height="17"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <subviews>
-                                                    <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="5zh-Cr-Dts">
-                                                        <rect key="frame" x="-1" y="-3" width="28" height="23"/>
-                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="rMD-cy-taB">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="didCheckboxClicked:" target="Dlt-nc-ate" id="ajb-7a-dou"/>
-                                                            <binding destination="r3l-zQ-NPi" name="value" keyPath="objectValue.ignoreCase" id="zrD-em-buo"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="5zh-Cr-Dts" secondAttribute="trailing" constant="2" id="CfG-ze-y1a"/>
-                                                    <constraint firstItem="5zh-Cr-Dts" firstAttribute="leading" secondItem="r3l-zQ-NPi" secondAttribute="leading" constant="2" id="afq-FD-nP7"/>
-                                                    <constraint firstAttribute="bottom" secondItem="5zh-Cr-Dts" secondAttribute="bottom" id="jrc-tv-V21"/>
-                                                    <constraint firstItem="5zh-Cr-Dts" firstAttribute="top" secondItem="r3l-zQ-NPi" secondAttribute="top" id="nPQ-kt-Lt5"/>
-                                                </constraints>
-                                            </tableCellView>
-                                        </prototypeCellViews>
-                                    </tableColumn>
                                     <tableColumn identifier="regularExpression" width="27" minWidth="27" maxWidth="27" headerToolTip="Regular Expression" id="hjj-zA-Yr9">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
                                             <font key="font" metaFont="smallSystem"/>
@@ -79,7 +43,7 @@
                                         </buttonCell>
                                         <prototypeCellViews>
                                             <tableCellView id="0kb-dz-bqF">
-                                                <rect key="frame" x="31" y="1" width="27" height="17"/>
+                                                <rect key="frame" x="1" y="1" width="27" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <button identifier="regularExpression" translatesAutoresizingMaskIntoConstraints="NO" id="LEd-FP-rGd">
@@ -99,6 +63,42 @@
                                                     <constraint firstAttribute="bottom" secondItem="LEd-FP-rGd" secondAttribute="bottom" id="P2p-Hg-TpP"/>
                                                     <constraint firstItem="LEd-FP-rGd" firstAttribute="leading" secondItem="0kb-dz-bqF" secondAttribute="leading" constant="2" id="lmc-eB-iAM"/>
                                                     <constraint firstAttribute="trailing" secondItem="LEd-FP-rGd" secondAttribute="trailing" constant="2" id="zUX-rn-qYa"/>
+                                                </constraints>
+                                            </tableCellView>
+                                        </prototypeCellViews>
+                                    </tableColumn>
+                                    <tableColumn identifier="ignoreCase" editable="NO" width="27" minWidth="27" maxWidth="27" headerToolTip="Ignore Case (case-insensitive)" id="qJN-3P-dIu">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
+                                            <font key="font" metaFont="smallSystem"/>
+                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                        </tableHeaderCell>
+                                        <buttonCell key="dataCell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="only" inset="2" id="dm6-ya-Lqh">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <prototypeCellViews>
+                                            <tableCellView id="r3l-zQ-NPi">
+                                                <rect key="frame" x="31" y="1" width="27" height="17"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <subviews>
+                                                    <button identifier="ignoreCase" translatesAutoresizingMaskIntoConstraints="NO" id="5zh-Cr-Dts">
+                                                        <rect key="frame" x="-1" y="-3" width="28" height="23"/>
+                                                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="rMD-cy-taB">
+                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                            <font key="font" metaFont="smallSystem"/>
+                                                        </buttonCell>
+                                                        <connections>
+                                                            <action selector="didCheckboxClicked:" target="Dlt-nc-ate" id="ajb-7a-dou"/>
+                                                            <binding destination="r3l-zQ-NPi" name="value" keyPath="objectValue.ignoreCase" id="zrD-em-buo"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="5zh-Cr-Dts" secondAttribute="trailing" constant="2" id="CfG-ze-y1a"/>
+                                                    <constraint firstItem="5zh-Cr-Dts" firstAttribute="leading" secondItem="r3l-zQ-NPi" secondAttribute="leading" constant="2" id="afq-FD-nP7"/>
+                                                    <constraint firstAttribute="bottom" secondItem="5zh-Cr-Dts" secondAttribute="bottom" id="jrc-tv-V21"/>
+                                                    <constraint firstItem="5zh-Cr-Dts" firstAttribute="top" secondItem="r3l-zQ-NPi" secondAttribute="top" id="nPQ-kt-Lt5"/>
                                                 </constraints>
                                             </tableCellView>
                                         </prototypeCellViews>
