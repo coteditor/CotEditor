@@ -1443,7 +1443,7 @@
 			name = Panels;
 			sourceTree = "<group>";
 		};
-		2A149DC91902BC3900A9D6EF /* Nibs */ = {
+		2A149DC91902BC3900A9D6EF /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
 				2A836F7E1D572A5D0044E8EC /* Main.storyboard */,
@@ -1454,7 +1454,7 @@
 				2A149DAE19016AC500A9D6EF /* Preferences */,
 				2A149DC81902BC2B00A9D6EF /* Panels */,
 			);
-			name = Nibs;
+			name = Storyboards;
 			sourceTree = "<group>";
 		};
 		2A15832A18E3A1EC00601026 /* Managers */ = {
@@ -1718,7 +1718,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1EB5C319AD469500C1E37E /* Images.xcassets */,
-				2A149DC91902BC3900A9D6EF /* Nibs */,
+				2A149DC91902BC3900A9D6EF /* Storyboards */,
 				259C2316077678DE00BA61C5 /* Localizable.strings */,
 				2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */,
 				2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */,
