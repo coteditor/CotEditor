@@ -87,7 +87,7 @@ final class TextFinder: NSResponder {
     // MARK: Private Properties
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var batchReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("BatchReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var replacementSetPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("ReplacementSetPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     
@@ -189,10 +189,10 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// activate batch replacement panel
-    @IBAction func showBatchReplacementPanel(_ sender: AnyObject?) {
+    /// activate replacement set panel
+    @IBAction func showReplacementSetPanel(_ sender: AnyObject?) {
         
-        self.batchReplacementPanelController.showWindow(sender)
+        self.replacementSetPanelController.showWindow(sender)
     }
     
     

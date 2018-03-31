@@ -33,7 +33,7 @@ final class ReplacementManager: SettingFileManager {
     
     static let shared = ReplacementManager()
     
-    private(set) var settings = [String: BatchReplacement]()
+    private(set) var settings = [String: ReplacementSet]()
     
     
     
@@ -99,7 +99,7 @@ final class ReplacementManager: SettingFileManager {
     
     
     /// save
-    func save(replacement: BatchReplacement, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
+    func save(replacement: ReplacementSet, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -125,9 +125,9 @@ final class ReplacementManager: SettingFileManager {
     func createUntitledSetting(completionHandler: ((String) -> Void)? = nil) throws {  // @escaping
         
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
-        let batchReplacement = BatchReplacement()
+        let replacementSet = ReplacementSet()
         
-        try self.save(replacement: batchReplacement, name: name) {
+        try self.save(replacement: replacementSet, name: name) {
             completionHandler?(name)
         }
     }
@@ -145,7 +145,7 @@ final class ReplacementManager: SettingFileManager {
         self.settings = self.userSettingFileURLs?.reduce(into: [:]) { (settings, url) in
             guard
                 let data = try? Data(contentsOf: url),
-                let setting = try? decoder.decode(BatchReplacement.self, from: data)
+                let setting = try? decoder.decode(ReplacementSet.self, from: data)
                 else { return }
             
             let name = self.settingName(from: url)

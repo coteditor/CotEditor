@@ -1,6 +1,6 @@
 /*
  
- BatchReplacementListViewController.swift
+ ReplacementSetListViewController.swift
  
  CotEditor
  https://coteditor.com
@@ -28,7 +28,7 @@
 import Cocoa
 import AudioToolbox
 
-final class BatchReplacementListViewController: NSViewController, BatchReplacementPanelViewControlling {
+final class ReplacementSetListViewController: NSViewController, ReplacementSetPanelViewControlling {
     
     // MARK: Private Properties
     
@@ -322,12 +322,12 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
     
     
     /// save current setting
-    private func saveSetting(batchReplacement: BatchReplacement) {
+    private func saveSetting(replacementSet: ReplacementSet) {
         
         guard let name = self.selectedSettingName else { return }
         
         do {
-            try ReplacementManager.shared.save(replacement: batchReplacement, name: name)
+            try ReplacementManager.shared.save(replacement: replacementSet, name: name)
         } catch {
             print(error.localizedDescription)
         }
@@ -337,14 +337,14 @@ final class BatchReplacementListViewController: NSViewController, BatchReplaceme
 
 
 
-// MARK: - BatchReplacementViewController Delegate
+// MARK: - ReplacementSetViewController Delegate
 
-extension BatchReplacementListViewController: BatchReplacementViewControllerDelegate {
+extension ReplacementSetListViewController: ReplacementSetViewControllerDelegate {
     
-    /// current batch replacement being edited in the main view did update
-    func didUpdate(batchReplacement: BatchReplacement) {
+    /// replacement definition being edited in the main view did update
+    func didUpdate(replacementSet: ReplacementSet) {
         
-        self.saveSetting(batchReplacement: batchReplacement)
+        self.saveSetting(replacementSet: replacementSet)
     }
     
 }
@@ -353,7 +353,7 @@ extension BatchReplacementListViewController: BatchReplacementViewControllerDele
 
 // MARK: - TableView Data Source
 
-extension BatchReplacementListViewController: NSTableViewDataSource {
+extension ReplacementSetListViewController: NSTableViewDataSource {
     
     /// number of settings
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -412,7 +412,7 @@ extension BatchReplacementListViewController: NSTableViewDataSource {
 
 // MARK: - TableView Delegate
 
-extension BatchReplacementListViewController: NSTableViewDelegate {
+extension ReplacementSetListViewController: NSTableViewDelegate {
     
     /// selection of setting table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -422,7 +422,7 @@ extension BatchReplacementListViewController: NSTableViewDelegate {
             let setting = ReplacementManager.shared.settings[settingName]
             else { return }
         
-        self.mainViewController?.change(batchReplacement: setting)
+        self.mainViewController?.change(replacementSet: setting)
     }
     
 }
@@ -431,7 +431,7 @@ extension BatchReplacementListViewController: NSTableViewDelegate {
 
 // MARK: - TextField Delegate
 
-extension BatchReplacementListViewController: NSTextFieldDelegate {
+extension ReplacementSetListViewController: NSTextFieldDelegate {
     
     /// setting name was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {

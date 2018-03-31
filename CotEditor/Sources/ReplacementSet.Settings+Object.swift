@@ -1,6 +1,6 @@
 /*
  
- BatchReplacementSettings+Object.swift
+ ReplacementSet.Settings+Object.swift
  
  CotEditor
  https://coteditor.com
@@ -27,9 +27,9 @@
 
 import Foundation
 
-extension BatchReplacement.Settings {
+extension ReplacementSet.Settings {
     
-    /// KVO-compatible object for BatchReplacement.Settings to use with the Cocoa-binding in a popover with checkboxes
+    /// KVO-compatible object for ReplacementSet.Settings to use with the Cocoa-binding in a popover with checkboxes
     final class Object: NSObject {
         
         @objc dynamic var textIsLiteralSearch: Bool
@@ -46,7 +46,7 @@ extension BatchReplacement.Settings {
         
         // MARK: - Lifecycle
         
-        init(settings: BatchReplacement.Settings) {
+        init(settings: ReplacementSet.Settings) {
             
             self.textIsLiteralSearch = settings.textualOptions.contains(.literal)
             self.textIgnoresDiacriticMarks = settings.textualOptions.contains(.diacriticInsensitive)
@@ -60,7 +60,7 @@ extension BatchReplacement.Settings {
         }
         
         
-        var settings: BatchReplacement.Settings {
+        var settings: ReplacementSet.Settings {
             
             var textualOptions = NSString.CompareOptions()
             if self.textIsLiteralSearch        { textualOptions.update(with: .literal) }
@@ -72,9 +72,9 @@ extension BatchReplacement.Settings {
             if self.regexIsMultiline           { regexOptions.update(with: .anchorsMatchLines) }
             if self.regexUsesUnicodeBoundaries { regexOptions.update(with: .useUnicodeWordBoundaries) }
             
-            return BatchReplacement.Settings(textualOptions: textualOptions,
-                                             regexOptions: regexOptions,
-                                             unescapesReplacementString: self.regexUnescapesReplacementString)
+            return ReplacementSet.Settings(textualOptions: textualOptions,
+                                           regexOptions: regexOptions,
+                                           unescapesReplacementString: self.regexUnescapesReplacementString)
         }
         
     }

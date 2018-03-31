@@ -1,6 +1,6 @@
 /*
  
- BatchReplacement+Codable.swift
+ ReplacementSet+Codable.swift
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Foundation
 
-extension BatchReplacement.Replacement: Codable {
+extension ReplacementSet.Replacement: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -79,7 +79,7 @@ extension BatchReplacement.Replacement: Codable {
 
 
 
-extension BatchReplacement.Settings: Codable {
+extension ReplacementSet.Settings: Codable {
     
     private enum CodingKeys: String, CodingKey {
         

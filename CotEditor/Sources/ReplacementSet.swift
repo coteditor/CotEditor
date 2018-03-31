@@ -1,6 +1,6 @@
 /*
  
- BatchReplacement.swift
+ ReplacementSet.swift
  
  CotEditor
  https://coteditor.com
@@ -27,7 +27,7 @@
 
 import Foundation
 
-final class BatchReplacement: Codable {
+final class ReplacementSet: Codable {
     
     struct Replacement {
         
@@ -93,9 +93,9 @@ final class BatchReplacement: Codable {
 
 // MARK: - Equatable
 
-extension BatchReplacement.Replacement: Equatable {
+extension ReplacementSet.Replacement: Equatable {
     
-    static func == (lhs: BatchReplacement.Replacement, rhs: BatchReplacement.Replacement) -> Bool {
+    static func == (lhs: ReplacementSet.Replacement, rhs: ReplacementSet.Replacement) -> Bool {
         
         return lhs.findString == rhs.findString &&
             lhs.replacementString == rhs.replacementString &&
@@ -108,9 +108,9 @@ extension BatchReplacement.Replacement: Equatable {
 }
 
 
-extension BatchReplacement.Settings: Equatable {
+extension ReplacementSet.Settings: Equatable {
     
-    static func == (lhs: BatchReplacement.Settings, rhs: BatchReplacement.Settings) -> Bool {
+    static func == (lhs: ReplacementSet.Settings, rhs: ReplacementSet.Settings) -> Bool {
         
         return lhs.textualOptions == rhs.textualOptions &&
             lhs.regexOptions == rhs.regexOptions &&
@@ -122,7 +122,7 @@ extension BatchReplacement.Settings: Equatable {
 
 // MARK: - Replacement
 
-extension BatchReplacement {
+extension ReplacementSet {
     
     struct Result {
         
@@ -268,7 +268,7 @@ extension BatchReplacement {
 
 // MARK: - Validation
 
-extension BatchReplacement.Replacement {
+extension ReplacementSet.Replacement {
     
     /// check if replacement definition is valid
     ///
@@ -292,7 +292,7 @@ extension BatchReplacement.Replacement {
 }
 
 
-extension BatchReplacement {
+extension ReplacementSet {
     
     /// current errors in replacement definitions
     var errors: [TextFindError] {
