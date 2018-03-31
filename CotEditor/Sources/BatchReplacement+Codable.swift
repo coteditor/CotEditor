@@ -49,7 +49,7 @@ extension BatchReplacement.Replacement: Codable {
                   usesRegularExpression: try container.decodeIfPresent(Bool.self, forKey: .usesRegularExpression) ?? false,
                   ignoresCase: try container.decodeIfPresent(Bool.self, forKey: .ignoresCase) ?? false,
                   description: try container.decodeIfPresent(String.self, forKey: .description),
-                  isEnabled: try container.decodeIfPresent(Bool.self, forKey: .isEnabled)
+                  isEnabled: try container.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true
             )
     }
     

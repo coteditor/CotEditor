@@ -39,14 +39,14 @@ final class BatchReplacement: Codable {
         var description: String?
         
         
-        init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, description: String? = nil, isEnabled: Bool? = true) {
+        init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, description: String? = nil, isEnabled: Bool = true) {
             
             self.findString = findString
             self.replacementString = replacementString
             self.ignoresCase = ignoresCase
             self.usesRegularExpression = usesRegularExpression
             self.description = description
-            self.isEnabled = isEnabled ?? true
+            self.isEnabled = isEnabled
         }
         
         
