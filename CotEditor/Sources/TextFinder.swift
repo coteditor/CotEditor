@@ -71,6 +71,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Public Properties
     
+    let highlightColor: NSColor
+    
     @objc dynamic var findString = "" {
         
         didSet {
@@ -85,7 +87,7 @@ final class TextFinder: NSResponder {
     // MARK: Private Properties
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private let highlightColor: NSColor
+    private lazy var batchReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("BatchReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     
@@ -159,6 +161,18 @@ final class TextFinder: NSResponder {
     
     
     
+    // MARK: Public Methods
+    
+    /// target text view
+    var client: NSTextView? {
+        
+        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
+        
+        return provider.textFinderClient()
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// jump to selection in client
@@ -172,6 +186,13 @@ final class TextFinder: NSResponder {
     @IBAction func showFindPanel(_ sender: Any?) {
         
         self.findPanelController.showWindow(sender)
+    }
+    
+    
+    /// activate batch replacement panel
+    @IBAction func showBatchReplacementPanel(_ sender: AnyObject?) {
+        
+        self.batchReplacementPanelController.showWindow(sender)
     }
     
     
@@ -507,15 +528,6 @@ final class TextFinder: NSResponder {
     
     
     // MARK: Private Methods
-    
-    /// target text view
-    private var client: NSTextView? {
-        
-        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
-        
-        return provider.textFinderClient()
-    }
-    
     
     /// selected string in the current tareget
     private var selectedString: String? {

@@ -999,6 +999,12 @@ CA
                                                 <action selector="replaceAll:" target="Ady-hI-5gd" id="TsH-hC-9Nj"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Batch Replace..." id="o7K-sI-KJA">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showBatchReplacementPanel:" target="Ady-hI-5gd" id="rNx-iz-WPE"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>

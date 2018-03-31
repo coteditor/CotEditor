@@ -106,7 +106,7 @@ final class TextFind {
             do {
                 self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: settings.regexOptions)
             } catch {
-                let failureReason: String? = (error as? LocalizedError)?.failureReason
+                let failureReason = error.localizedDescription
                 throw TextFindError.regularExpression(reason: failureReason)
             }
         } else {
@@ -388,7 +388,7 @@ final class TextFind {
 
 enum TextFindError: LocalizedError {
     
-    case regularExpression(reason: String?)
+    case regularExpression(reason: String)
     case emptyFindString
     
     

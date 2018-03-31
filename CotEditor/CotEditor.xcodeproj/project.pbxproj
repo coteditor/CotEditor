@@ -95,8 +95,16 @@
 		2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */ = {isa = PBXBuildFile; fileRef = 2A2179F51A07093B002C4AB1 /* SyntaxMap.json */; };
+		2A231A251E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */; };
+		2A231A261E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */; };
+		2A231A281E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */; };
+		2A231A291E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */; };
 		2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
 		2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */; };
+		2A231A361E7C30F000C2A909 /* BatchReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* BatchReplacementSplitViewController.swift */; };
+		2A231A371E7C30F000C2A909 /* BatchReplacementSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A351E7C30F000C2A909 /* BatchReplacementSplitViewController.swift */; };
+		2A231A391E7C31F400C2A909 /* BatchReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* BatchReplacementListViewController.swift */; };
+		2A231A3A1E7C31F400C2A909 /* BatchReplacementListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A231A381E7C31F400C2A909 /* BatchReplacementListViewController.swift */; };
 		2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
@@ -115,14 +123,20 @@
 		2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */; };
 		2A33D0871D1C9148005977B9 /* SyntaxDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */; };
 		2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */; };
+		2A3581981E597ECE00762AA5 /* BatchReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* BatchReplacement.swift */; };
+		2A3581991E597ECE00762AA5 /* BatchReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3581971E597ECE00762AA5 /* BatchReplacement.swift */; };
 		2A359DFE1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
 		2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */; };
+		2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */; };
+		2A3643E71E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */; };
 		2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */; };
 		2A36CE7D1FF654C000020702 /* NSTextView+Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */; };
 		2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */; };
 		2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
 		2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */; };
+		2A3A19DF2068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */; };
+		2A3A19E02068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */; };
 		2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
 		2A3A19E3206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */; };
 		2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
@@ -137,6 +151,8 @@
 		2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A419E77E87001DAB88 /* SyntaxValidationView.xib */; };
 		2A3A922B205638A600F9B5F3 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A922A205638A600F9B5F3 /* BackgroundView.swift */; };
 		2A3A922C205638A600F9B5F3 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A922A205638A600F9B5F3 /* BackgroundView.swift */; };
+		2A3D63FB1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */; };
+		2A3D63FC1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */; };
 		2A3DEAF21CEB23F0007B7621 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2A3F18FA203270BE002F1CA7 /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3F18F9203270BE002F1CA7 /* UITests.swift */; };
 		2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */; };
@@ -485,10 +501,14 @@
 		2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
 		2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
+		2AC8A5F41E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8A5F31E7D113700A4E323 /* MoreThanOneTransformer.swift */; };
+		2AC8A5F51E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC8A5F31E7D113700A4E323 /* MoreThanOneTransformer.swift */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
 		2ACC21B61E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
+		2ACC5E411E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */; };
+		2ACC5E421E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */; };
 		2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
@@ -798,7 +818,11 @@
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
+		2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacement+Codable.swift"; sourceTree = "<group>"; };
+		2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BatchReplacementSettings+Object.swift"; sourceTree = "<group>"; };
 		2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFindProgress.swift; sourceTree = "<group>"; };
+		2A231A351E7C30F000C2A909 /* BatchReplacementSplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacementSplitViewController.swift; sourceTree = "<group>"; };
+		2A231A381E7C31F400C2A909 /* BatchReplacementListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacementListViewController.swift; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -812,14 +836,18 @@
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0861D1C9148005977B9 /* SyntaxDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxDictionary.swift; sourceTree = "<group>"; };
+		2A3581971E597ECE00762AA5 /* BatchReplacement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacement.swift; sourceTree = "<group>"; };
 		2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+Responder.swift"; sourceTree = "<group>"; };
+		2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplacementManager.swift; sourceTree = "<group>"; };
 		2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Snippet.swift"; sourceTree = "<group>"; };
 		2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DraggableArrayController.swift; sourceTree = "<group>"; };
 		2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefinitionTableViewDelegate.swift; sourceTree = "<group>"; };
+		2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BatchReplacement+TextView.swift"; sourceTree = "<group>"; };
 		2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+BracePair.swift"; sourceTree = "<group>"; };
 		2A3A1E751C45219800641CE0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HUDView.xib; sourceTree = "<group>"; };
 		2A3A758D19E77C84001DAB88 /* Syntaxes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Syntaxes; sourceTree = "<group>"; };
 		2A3A922A205638A600F9B5F3 /* BackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		2A3D63FA1E769DDF00F538E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/BatchReplacementPanel.storyboard; sourceTree = "<group>"; };
 		2A3E84821D07331900070A54 /* updateHelpindex.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = updateHelpindex.sh; sourceTree = "<group>"; };
 		2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UI Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A3F18F9203270BE002F1CA7 /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
@@ -1118,6 +1146,7 @@
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2AC8A5F31E7D113700A4E323 /* MoreThanOneTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreThanOneTransformer.swift; sourceTree = "<group>"; };
 		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -1137,6 +1166,7 @@
 		2ACB53AD1A3E043E0040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxValidationView.xib; sourceTree = "<group>"; };
 		2ACC21B11E52B7920078241F /* DefaultOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultOptions.swift; sourceTree = "<group>"; };
 		2ACC21B41E52B8C50078241F /* DefaultKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKeys.swift; sourceTree = "<group>"; };
+		2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatchReplacementViewController.swift; sourceTree = "<group>"; };
 		2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMetaDataViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
 		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ColorCode.framework.dSYM; sourceTree = "<group>"; };
@@ -1434,6 +1464,7 @@
 				2A4257A61D22E0660086DAAD /* EncodingManager.swift */,
 				2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */,
 				2A9082F11D32A9B500228F50 /* ThemeManager.swift */,
+				2A3643E51E7C3D2400EA3CE8 /* ReplacementManager.swift */,
 				2AACB1DA1D19B1440073775B /* Key Binding Managers */,
 				2A8DA9431D286C53003D0C4B /* ScriptManager.swift */,
 			);
@@ -1523,12 +1554,34 @@
 			name = "Document View";
 			sourceTree = "<group>";
 		};
+		2A231A2A1E7BD92F00C2A909 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2A3581971E597ECE00762AA5 /* BatchReplacement.swift */,
+				2A231A241E7B4EDC00C2A909 /* BatchReplacement+Codable.swift */,
+				2A3A19DE2068A76600516DE4 /* BatchReplacement+TextView.swift */,
+				2A231A271E7BD82700C2A909 /* BatchReplacementSettings+Object.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		2A231A2B1E7BD93600C2A909 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				2A231A351E7C30F000C2A909 /* BatchReplacementSplitViewController.swift */,
+				2A231A381E7C31F400C2A909 /* BatchReplacementListViewController.swift */,
+				2ACC5E401E7B08D300109ABC /* BatchReplacementViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		2A2D6C1A1A602D7E002451FF /* Text Finder */ = {
 			isa = PBXGroup;
 			children = (
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
 				2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */,
 				2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */,
+				2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -1552,6 +1605,15 @@
 				2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */,
 			);
 			name = "Keybindings Edit Pane";
+			sourceTree = "<group>";
+		};
+		2A3581931E597AFE00762AA5 /* Batch Replacement */ = {
+			isa = PBXGroup;
+			children = (
+				2A231A2A1E7BD92F00C2A909 /* Models */,
+				2A231A2B1E7BD93600C2A909 /* View Controllers */,
+			);
+			name = "Batch Replacement";
 			sourceTree = "<group>";
 		};
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
@@ -1718,6 +1780,7 @@
 			children = (
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
 				2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */,
+				2AC8A5F31E7D113700A4E323 /* MoreThanOneTransformer.swift */,
 			);
 			name = "Value Transformers";
 			sourceTree = "<group>";
@@ -1866,6 +1929,7 @@
 				2A231A2C1E7BE8B700C2A909 /* TextFindProgress.swift */,
 				2ACFE5891D205CE90005233A /* View Controllers */,
 				2A009ADB1A5AB96F00C3D542 /* Text View */,
+				2A3581931E597AFE00762AA5 /* Batch Replacement */,
 			);
 			name = "Text Finder";
 			sourceTree = "<group>";
@@ -2324,6 +2388,7 @@
 			files = (
 				2A6F0D551B5500E100C2D03C /* Images.xcassets in Resources */,
 				2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */,
+				2A3D63FC1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */,
 				2A6F0D571B5500E100C2D03C /* Themes in Resources */,
 				2A6F0D591B5500E100C2D03C /* CotEditor.sdef in Resources */,
 				2ADF3C021E6D7345009125BB /* FileDropPane.storyboard in Resources */,
@@ -2426,6 +2491,7 @@
 				258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */,
 				2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
+				2A3D63FB1E769DDF00F538E1 /* BatchReplacementPanel.storyboard in Resources */,
 				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
 				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
@@ -2583,11 +2649,14 @@
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
 				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
+				2A3643E71E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
 				2AF073E71D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
+				2AC8A5F51E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */,
 				2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */,
+				2A231A291E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */,
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A5D13331D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
@@ -2615,6 +2684,7 @@
 				2A8C338D1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */,
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
+				2A231A371E7C30F000C2A909 /* BatchReplacementSplitViewController.swift in Sources */,
 				2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A5D13261D1F9D4100D38E6A /* TogglableToolbarItem.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
@@ -2623,6 +2693,7 @@
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
+				2A3A19E02068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */,
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2AA749C71D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
@@ -2634,6 +2705,7 @@
 				2A33D0851D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
+				2A231A261E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
@@ -2643,6 +2715,7 @@
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */,
 				2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */,
+				2A231A3A1E7C31F400C2A909 /* BatchReplacementListViewController.swift in Sources */,
 				2A91C3191D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
 				2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 				2ACDC0A41D173250009B72D6 /* SwitcherSegmentedCell.swift in Sources */,
@@ -2724,6 +2797,7 @@
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
+				2ACC5E421E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
 				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
@@ -2758,6 +2832,7 @@
 				2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
+				2A3581991E597ECE00762AA5 /* BatchReplacement.swift in Sources */,
 				2A6FD9F71D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
@@ -2831,8 +2906,10 @@
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
+				2AC8A5F41E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */,
 				2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */,
+				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2A9082E91D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
 				2AA14D021FA4999200EAF586 /* PersistentOSAScript.swift in Sources */,
@@ -2891,6 +2968,8 @@
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
+				2A231A361E7C30F000C2A909 /* BatchReplacementSplitViewController.swift in Sources */,
+				2A231A251E7B4EDC00C2A909 /* BatchReplacement+Codable.swift in Sources */,
 				2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,
@@ -2911,6 +2990,7 @@
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AA45A4E1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
+				2A231A391E7C31F400C2A909 /* BatchReplacementListViewController.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,
 				2A5ADE881D216D4900F6CE26 /* NSColor.swift in Sources */,
@@ -2921,9 +3001,11 @@
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
+				2A231A281E7BD82700C2A909 /* BatchReplacementSettings+Object.swift in Sources */,
 				2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2A3A19E2206C9A0700516DE4 /* NSTextView+BracePair.swift in Sources */,
 				2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */,
+				2ACC5E411E7B08D300109ABC /* BatchReplacementViewController.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
@@ -2958,6 +3040,7 @@
 				2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
 				2AEE84B21E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */,
 				2A48103E1D4D210300F7D34C /* Crypto.swift in Sources */,
+				2A3A19DF2068A76600516DE4 /* BatchReplacement+TextView.swift in Sources */,
 				2A8DA9441D286C53003D0C4B /* ScriptManager.swift in Sources */,
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
@@ -3011,6 +3094,7 @@
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
+				2A3581981E597ECE00762AA5 /* BatchReplacement.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
@@ -3339,6 +3423,14 @@
 				57ED31691FFD892800F16CAD /* pt */,
 			);
 			name = SyntaxValidationView.xib;
+			sourceTree = "<group>";
+		};
+		2A3D63F91E769DDF00F538E1 /* BatchReplacementPanel.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A3D63FA1E769DDF00F538E1 /* Base */,
+			);
+			name = BatchReplacementPanel.storyboard;
 			sourceTree = "<group>";
 		};
 		2A4144B6201397150061F653 /* IncompatibleCharactersView.storyboard */ = {

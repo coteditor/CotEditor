@@ -135,4 +135,13 @@ extension Array {
         }
     }
     
+    
+    /// Insert elements at indexes
+    mutating func insert(_ elements: [Element], at indexes: IndexSet) {
+        
+        for (index, element) in zip(indexes, elements).reversed() {
+            self.insert(element, at: index)
+        }
+    }
+    
 }

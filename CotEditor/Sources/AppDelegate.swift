@@ -94,6 +94,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // register transformers
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: HexColorTransformer.name)
+        ValueTransformer.setValueTransformer(MoreThanOneTransformer(), forName: MoreThanOneTransformer.name)
         
         super.init()
     }

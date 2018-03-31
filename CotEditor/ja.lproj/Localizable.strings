@@ -92,6 +92,14 @@
 
 
 
+/* MARK: Batch Replacement */
+"Batch Replace" = "Batch Replace";  // FIXME: added
+
+// Undo action names
+"Batch Replacement" = "Batch Replacement";  // FIXME: added
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Auto-Detect" = "自動認識";
@@ -452,6 +460,13 @@
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "新しいテーマ“%@”のインストールを試みましたが、同名のカスタムテーマがすでに存在しています。";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "テーマを置き換えますか?\n削除したテーマは元に戻せません。";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "新しい置換定義“%@”のインストールを試みましたが、同名の定義がすでに存在しています。";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "定義を置き換えますか？\n削除した定義は元に戻せません。";
 
 
 
