@@ -92,11 +92,6 @@
 
 
 
-/* MARK: Batch Replacement */
-"Batch Replace" = "Batch Replace";  // FIXME: added
-
-
-
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Auto-Detect" = "自動認識";

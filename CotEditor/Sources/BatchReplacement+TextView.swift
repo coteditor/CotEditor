@@ -45,7 +45,7 @@ extension BatchReplacement {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Batch Replace", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
@@ -120,7 +120,7 @@ extension BatchReplacement {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Batch Replace", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
