@@ -93,21 +93,6 @@ final class ReplacementSet: Codable {
 
 // MARK: - Equatable
 
-extension ReplacementSet.Replacement: Equatable {
-    
-    static func == (lhs: ReplacementSet.Replacement, rhs: ReplacementSet.Replacement) -> Bool {
-        
-        return lhs.findString == rhs.findString &&
-            lhs.replacementString == rhs.replacementString &&
-            lhs.usesRegularExpression == rhs.usesRegularExpression &&
-            lhs.ignoresCase == rhs.ignoresCase &&
-            lhs.description == rhs.description &&
-            lhs.isEnabled == rhs.isEnabled
-    }
-    
-}
-
-
 extension ReplacementSet.Settings: Equatable {
     
     static func == (lhs: ReplacementSet.Settings, rhs: ReplacementSet.Settings) -> Bool {
