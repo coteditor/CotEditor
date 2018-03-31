@@ -376,7 +376,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// replace matched string in selection with replacementStirng
+    /// replace matched string in selection with replacementString
     @IBAction func replace(_ sender: Any?) {
         
         if self.replace() {
@@ -390,7 +390,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// replace matched string with replacementStirng and select the next match
+    /// replace matched string with replacementString and select the next match
     @IBAction func replaceAndFind(_ sender: Any?) {
         
         self.replace()
@@ -602,7 +602,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// replace matched string in selection with replacementStirng
+    /// replace matched string in selection with replacementString
     @discardableResult
     private func replace() -> Bool {
         

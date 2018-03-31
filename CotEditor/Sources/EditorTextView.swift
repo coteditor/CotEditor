@@ -321,7 +321,7 @@ final class EditorTextView: NSTextView, Themable {
             return
         }
         
-        // smart outdent with '}' charcter
+        // smart outdent with '}'
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled,
             replacementRange.length == 0, plainString == "}",
             let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound

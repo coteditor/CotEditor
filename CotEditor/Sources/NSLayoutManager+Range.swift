@@ -27,7 +27,7 @@ import AppKit
 
 extension NSLayoutManager {
     
-    /// calcurate visual (wrapped) line range
+    /// calculate visual (wrapped) line range
     func lineFragmentRange(at charIndex: Int) -> NSRange {
         
         let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
