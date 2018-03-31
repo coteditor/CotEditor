@@ -1,6 +1,6 @@
 /*
  
- BatchReplacementSplitViewController.swift
+ ReplacementSetSplitViewController.swift
  
  CotEditor
  https://coteditor.com
@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2017 1024jp
+ © 2017-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,27 +27,27 @@
 
 import Cocoa
 
-protocol BatchReplacementPanelViewControlling: class { }
+protocol ReplacementSetPanelViewControlling: class { }
 
-extension BatchReplacementPanelViewControlling where Self: NSViewController {
+extension ReplacementSetPanelViewControlling where Self: NSViewController {
     
-    var contentListViewController: BatchReplacementListViewController? {
+    var contentListViewController: ReplacementSetListViewController? {
         
-        return self.parentSplitViewController?.contentListSplitViewItem?.viewController as? BatchReplacementListViewController
+        return self.parentSplitViewController?.contentListSplitViewItem?.viewController as? ReplacementSetListViewController
     }
     
     
-    var mainViewController: BatchReplacementViewController? {
+    var mainViewController: ReplacementSetViewController? {
         
-        return self.parentSplitViewController?.mainSplitViewItem?.viewController as? BatchReplacementViewController
+        return self.parentSplitViewController?.mainSplitViewItem?.viewController as? ReplacementSetViewController
     }
     
     
     // MARK: Private Methods
     
-    private var parentSplitViewController: BatchReplacementSplitViewController? {
+    private var parentSplitViewController: ReplacementSetSplitViewController? {
         
-        return self.parent as? BatchReplacementSplitViewController
+        return self.parent as? ReplacementSetSplitViewController
     }
     
 }
@@ -56,7 +56,7 @@ extension BatchReplacementPanelViewControlling where Self: NSViewController {
 
 // MARK: -
 
-final class BatchReplacementSplitViewController: NSSplitViewController {
+final class ReplacementSetSplitViewController: NSSplitViewController {
     
     @IBOutlet fileprivate weak var contentListSplitViewItem: NSSplitViewItem?
     @IBOutlet fileprivate weak var mainSplitViewItem: NSSplitViewItem?

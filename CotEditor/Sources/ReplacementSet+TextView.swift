@@ -1,5 +1,5 @@
 //
-//  BatchReplacement+TextView.swift
+//  ReplacementSet+TextView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import AppKit
 
-extension BatchReplacement {
+extension ReplacementSet {
     
     /// highlight all matches in the textView
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {

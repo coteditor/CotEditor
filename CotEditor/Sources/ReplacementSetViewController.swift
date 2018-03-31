@@ -1,6 +1,6 @@
 /*
  
- BatchReplacementViewController.swift
+ ReplacementSetViewController.swift
  
  CotEditor
  https://coteditor.com
@@ -27,22 +27,22 @@
 
 import Cocoa
 
-protocol BatchReplacementViewControllerDelegate: class {
+protocol ReplacementSetViewControllerDelegate: class {
     
-    func didUpdate(batchReplacement: BatchReplacement)
+    func didUpdate(replacementSet: ReplacementSet)
 }
 
 
-final class BatchReplacementViewController: NSViewController, BatchReplacementPanelViewControlling {
+final class ReplacementSetViewController: NSViewController, ReplacementSetPanelViewControlling {
     
     // MARK: Public Properties
     
-    weak var delegate: BatchReplacementViewControllerDelegate?
+    weak var delegate: ReplacementSetViewControllerDelegate?
     
     
     // MARK: Private Properties
     
-    private var batchReplacement = BatchReplacement()
+    private var replacementSet = ReplacementSet()
     private lazy var updateNotificationTask: Debouncer = Debouncer(delay: 1.0) { [weak self] in self?.notifyUpdate() }
     
     @objc private dynamic var canRemove: Bool = true
@@ -73,7 +73,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         if segue.identifier == NSStoryboardSegue.Identifier("OptionsSegue"),
             let destinationController = segue.destinationController as? NSViewController
         {
-            destinationController.representedObject = BatchReplacement.Settings.Object(settings: self.batchReplacement.settings)
+            destinationController.representedObject = ReplacementSet.Settings.Object(settings: self.replacementSet.settings)
         }
     }
     
@@ -83,10 +83,10 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         
         super.dismissViewController(viewController)
         
-        if let object = viewController.representedObject as? BatchReplacement.Settings.Object {
-            guard self.batchReplacement.settings != object.settings else { return }
+        if let object = viewController.representedObject as? ReplacementSet.Settings.Object {
+            guard self.replacementSet.settings != object.settings else { return }
             
-            self.batchReplacement.settings = object.settings
+            self.replacementSet.settings = object.settings
             self.updateNotificationTask.schedule()
         }
     }
@@ -101,12 +101,12 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.endEditing()
         
         // update data
-        self.batchReplacement.replacements.append(BatchReplacement.Replacement())
+        self.replacementSet.replacements.append(ReplacementSet.Replacement())
         
         // update UI
         guard let tableView = self.tableView else { return }
         
-        let lastRow = self.batchReplacement.replacements.count - 1
+        let lastRow = self.replacementSet.replacements.count - 1
         let indexes = IndexSet(integer: lastRow)
         let column = tableView.column(withIdentifier: .findString)
         
@@ -115,7 +115,7 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         tableView.editColumn(column, row: lastRow, with: nil, select: true)  // start editing automatically
         
         // update remove button
-        self.canRemove = self.batchReplacement.replacements.count > 1
+        self.canRemove = self.replacementSet.replacements.count > 1
     }
     
     
@@ -132,10 +132,10 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         tableView.removeRows(at: indexes, withAnimation: .effectGap)
         
         // update data
-        self.batchReplacement.replacements.remove(in: indexes)
+        self.replacementSet.replacements.remove(in: indexes)
         
         // update remove button
-        self.canRemove = self.batchReplacement.replacements.count > 1
+        self.canRemove = self.replacementSet.replacements.count > 1
     }
     
     
@@ -147,22 +147,22 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
         self.resultMessage = nil
         
         let inSelection = UserDefaults.standard[.findInSelection]
-        self.batchReplacement.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
+        self.replacementSet.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
             
             self?.resultMessage = resultMessage
         }
     }
     
     
-    /// perform batch replacement
-    @IBAction func batchReplace(_ sender: Any?) {
+    /// perform replacement with current set
+    @IBAction func batchReplaceAll(_ sender: Any?) {
         
         self.endEditing()
         self.validateObject()
         self.resultMessage = nil
         
         let inSelection = UserDefaults.standard[.findInSelection]
-        self.batchReplacement.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
+        self.replacementSet.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
             
             self?.resultMessage = resultMessage
         }
@@ -172,16 +172,16 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     
     // MARK: Public Methods
     
-    /// set another batch replacement definition
-    func change(batchReplacement: BatchReplacement) {
+    /// set another replacement definition
+    func change(replacementSet: ReplacementSet) {
         
-        self.batchReplacement = batchReplacement
+        self.replacementSet = replacementSet
         self.hasInvalidSetting = false
         self.resultMessage = nil
         
         self.tableView?.reloadData()
         
-        if batchReplacement.replacements.isEmpty {
+        if replacementSet.replacements.isEmpty {
             self.add(self)
         }
     }
@@ -193,14 +193,14 @@ final class BatchReplacementViewController: NSViewController, BatchReplacementPa
     /// notify update to delegate
     private func notifyUpdate() {
     
-        self.delegate?.didUpdate(batchReplacement: self.batchReplacement)
+        self.delegate?.didUpdate(replacementSet: self.replacementSet)
     }
     
     
     /// validate current setting
     @objc private func validateObject() {
         
-        self.hasInvalidSetting = !self.batchReplacement.errors.isEmpty
+        self.hasInvalidSetting = !self.replacementSet.errors.isEmpty
     }
     
 }
@@ -226,13 +226,13 @@ private extension NSPasteboard.PasteboardType {
 }
 
 
-extension BatchReplacementViewController: NSTableViewDelegate {
+extension ReplacementSetViewController: NSTableViewDelegate {
     
     /// make table cell view
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         guard
-            let replacement = self.batchReplacement.replacements[safe: row],
+            let replacement = self.replacementSet.replacements[safe: row],
             let identifier = tableColumn?.identifier,
             let cellView = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
             else { return nil }
@@ -304,11 +304,11 @@ extension BatchReplacementViewController: NSTableViewDelegate {
             let value = textField.stringValue
             switch identifier {
             case .findString:
-                self.batchReplacement.replacements[row].findString = value
+                self.replacementSet.replacements[row].findString = value
             case .replacementString:
-                self.batchReplacement.replacements[row].replacementString = value
+                self.replacementSet.replacements[row].replacementString = value
             case .description:
-                self.batchReplacement.replacements[row].description = (value.isEmpty) ? nil : value
+                self.replacementSet.replacements[row].description = (value.isEmpty) ? nil : value
             default:
                 preconditionFailure()
             }
@@ -322,11 +322,11 @@ extension BatchReplacementViewController: NSTableViewDelegate {
             for index in updateRowIndexes {
                 switch identifier {
                 case .isEnabled:
-                    self.batchReplacement.replacements[index].isEnabled = value
+                    self.replacementSet.replacements[index].isEnabled = value
                 case .ignoresCase:
-                    self.batchReplacement.replacements[index].ignoresCase = value
+                    self.replacementSet.replacements[index].ignoresCase = value
                 case .usesRegularExpression:
-                    self.batchReplacement.replacements[index].usesRegularExpression = value
+                    self.replacementSet.replacements[index].usesRegularExpression = value
                 default:
                     preconditionFailure()
                 }
@@ -345,11 +345,11 @@ extension BatchReplacementViewController: NSTableViewDelegate {
 }
 
 
-extension BatchReplacementViewController: NSTableViewDataSource {
+extension ReplacementSetViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return self.batchReplacement.replacements.count
+        return self.replacementSet.replacements.count
     }
     
     
@@ -400,9 +400,9 @@ extension BatchReplacementViewController: NSTableViewDataSource {
         let destinationRows = IndexSet(destinationRow..<(destinationRow + sourceRows.count))
         
         // update data
-        let draggingItems = self.batchReplacement.replacements.elements(at: sourceRows)
-        self.batchReplacement.replacements.remove(in: sourceRows)
-        self.batchReplacement.replacements.insert(draggingItems, at: destinationRows)
+        let draggingItems = self.replacementSet.replacements.elements(at: sourceRows)
+        self.replacementSet.replacements.remove(in: sourceRows)
+        self.replacementSet.replacements.insert(draggingItems, at: destinationRows)
         
         // update UI
         tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,7 +11,7 @@
         <scene sceneID="WvZ-bY-kAi">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" sceneMemberID="viewController">
-                    <window key="window" title="Batch Replacement" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
+                    <window key="window" title="Replacement Set" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="520" height="300"/>
@@ -28,10 +28,10 @@
             </objects>
             <point key="canvasLocation" x="126" y="-168"/>
         </scene>
-        <!--Batch Replacement View Controller-->
+        <!--Replacement Set View Controller-->
         <scene sceneID="7ic-e2-LjN">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="BatchReplacementViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="ReplacementSetViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8CD-v6-nsP">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -369,7 +369,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="batchReplace:" target="uzB-9o-Idl" id="bSd-p5-2X1"/>
+                                    <action selector="batchReplaceAll:" target="uzB-9o-Idl" id="Qhy-mF-dY5"/>
                                 </connections>
                             </button>
                             <button toolTip="Select to replace text only in selection." translatesAutoresizingMaskIntoConstraints="NO" id="pfM-xk-MrN">
@@ -488,10 +488,10 @@
             </objects>
             <point key="canvasLocation" x="234" y="734"/>
         </scene>
-        <!--Batch Replacement List View Controller-->
+        <!--Replacement Set List View Controller-->
         <scene sceneID="tHa-Ef-d3P">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="BatchReplacementListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="ReplacementSetListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" id="sT1-Cd-M1e">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -717,10 +717,10 @@
             </objects>
             <point key="canvasLocation" x="-64" y="734"/>
         </scene>
-        <!--Batch Replacement Split View Controller-->
+        <!--Replacement Set Split View Controller-->
         <scene sceneID="aEk-uG-3UA">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="BatchReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="ReplacementSetSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem holdingPriority="251" id="t6n-9g-dQO"/>
                         <splitViewItem id="RVu-VR-TJq"/>
@@ -882,7 +882,7 @@
                     </view>
                 </viewController>
                 <customObject id="7XB-QV-M9w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="CotEditor.BatchReplacement.Settings.Object" id="SKd-Jw-BKV">
+                <objectController objectClassName="CotEditor.ReplacementSet.Settings.Object" id="SKd-Jw-BKV">
                     <connections>
                         <binding destination="AcD-dT-Fbp" name="contentObject" keyPath="representedObject" id="WAo-aQ-4In"/>
                     </connections>
