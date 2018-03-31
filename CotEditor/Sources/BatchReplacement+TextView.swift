@@ -147,7 +147,7 @@ extension BatchReplacement {
                     // apply to the text view
                     textView.replace(with: [result.string], ranges: [string.nsRange],
                                      selectedRanges: result.selectedRanges,
-                                     actionName: NSLocalizedString("Batch Replacement", comment: ""))
+                                     actionName: NSLocalizedString("Replace All", comment: ""))
                 } else {
                     NSSound.beep()
                     progress.localizedDescription = NSLocalizedString("Not Found", comment: "")

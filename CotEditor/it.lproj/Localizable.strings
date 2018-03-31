@@ -92,11 +92,8 @@
 
 
 
-/* MARK: Batch Replacement */
+/* MARK: Set Replacement */
 "Batch Replace" = "Batch Replace";  // FIXME: added
-
-// Undo action names
-"Batch Replacement" = "Batch Replacement";  // FIXME: added
 
 
 

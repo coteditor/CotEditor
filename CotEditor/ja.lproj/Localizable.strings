@@ -95,9 +95,6 @@
 /* MARK: Batch Replacement */
 "Batch Replace" = "Batch Replace";  // FIXME: added
 
-// Undo action names
-"Batch Replacement" = "Batch Replacement";  // FIXME: added
-
 
 
 /* MARK: Document Controller */
