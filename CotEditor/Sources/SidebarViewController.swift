@@ -72,6 +72,13 @@ final class SidebarViewController: NSTabViewController {
     }
     
     
+    /// restore last state
+    override class var restorableStateKeyPaths: [String] {
+        
+        return super.restorableStateKeyPaths + [#keyPath(selectedTabViewItemIndex)]
+    }
+    
+    
     /// deliver passed-in document instance to child view controllers
     override var representedObject: Any? {
         
