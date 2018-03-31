@@ -414,6 +414,16 @@ extension ReplacementSetListViewController: NSTableViewDataSource {
 
 extension ReplacementSetListViewController: NSTableViewDelegate {
     
+    /// selection of setting table will change
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        
+        // save the unsaved change before the selection changed
+        _ = self.mainViewController?.commitEditing()
+        
+        return true
+    }
+    
+    
     /// selection of setting table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         

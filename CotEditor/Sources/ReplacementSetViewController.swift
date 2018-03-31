@@ -61,6 +61,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         
         super.viewDidDisappear()
         
+        self.updateNotificationTask.fireNow()
         self.resultMessage = nil
     }
     
@@ -166,6 +167,18 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
             
             self?.resultMessage = resultMessage
         }
+    }
+    
+    
+    /// commit unsaved changes
+    override func commitEditing() -> Bool {
+        
+        super.commitEditing()
+        
+        self.endEditing()
+        self.updateNotificationTask.fireNow()
+        
+        return true
     }
     
     
