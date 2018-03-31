@@ -7,6 +7,7 @@ unreleased
 
 ### New Features
 
+- Replace matches with preset replacement definition (Find > Replace with Set).
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
 - Highlight matching brace by moving cursor in find string field on regular expression mode.
