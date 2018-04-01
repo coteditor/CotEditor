@@ -10,9 +10,9 @@
         <!--Window Controller-->
         <scene sceneID="WvZ-bY-kAi">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" sceneMemberID="viewController">
-                    <window key="window" title="Replacement Set" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
+                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" customClass="ReplacementSetPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Replacement Set" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="520" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>

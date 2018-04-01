@@ -190,6 +190,8 @@
 		2A4CB9931D79F38A000D6ADA /* DocumentToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CB9911D79F38A000D6ADA /* DocumentToolbar.swift */; };
 		2A4CCBB41D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
+		2A4D47BF2070D42500AB1E7E /* ReplacementSetPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */; };
+		2A4D47C02070D42500AB1E7E /* ReplacementSetPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */; };
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
@@ -923,6 +925,7 @@
 		2A48103D1D4D210300F7D34C /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		2A4CB9911D79F38A000D6ADA /* DocumentToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentToolbar.swift; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
+		2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplacementSetPanelController.swift; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
@@ -1571,6 +1574,7 @@
 		2A231A2B1E7BD93600C2A909 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */,
 				2A231A351E7C30F000C2A909 /* ReplacementSetSplitViewController.swift */,
 				2A231A381E7C31F400C2A909 /* ReplacementSetListViewController.swift */,
 				2ACC5E401E7B08D300109ABC /* ReplacementSetViewController.swift */,
@@ -2865,6 +2869,7 @@
 				2A9BF3C81D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
 				2A5ADE891D216D4900F6CE26 /* NSColor.swift in Sources */,
 				2AAD61F91D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
+				2A4D47C02070D42500AB1E7E /* ReplacementSetPanelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2910,6 +2915,7 @@
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
+				2A4D47BF2070D42500AB1E7E /* ReplacementSetPanelController.swift in Sources */,
 				2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
 				2AC8A5F41E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */,
 				2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */,
