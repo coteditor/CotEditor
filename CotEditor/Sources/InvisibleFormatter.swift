@@ -48,7 +48,7 @@ final class InvisibleFormatter: Formatter {
         
         guard let string = self.string(for: obj) else { return nil }
         
-        let attributedString = NSMutableAttributedString(string: string)
+        let attributedString = NSMutableAttributedString(string: string, attributes: attrs)
         let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: NSColor.tertiaryLabelColor]
         
         for (index, codeUnit) in string.utf16.enumerated() {
