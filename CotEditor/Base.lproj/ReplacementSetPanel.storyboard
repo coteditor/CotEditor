@@ -122,6 +122,7 @@
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="chh-jJ-eOd"/>
                                                                         <binding destination="Rqz-SK-mda" name="value" keyPath="objectValue" id="c9c-V4-T3h"/>
+                                                                        <outlet property="formatter" destination="Low-7d-dvK" id="0xU-T9-Tmh"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -167,6 +168,7 @@
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Xl4-dh-IBV"/>
                                                                         <binding destination="M9b-zX-U8A" name="value" keyPath="objectValue" id="jGG-aO-K4v"/>
+                                                                        <outlet property="formatter" destination="Low-7d-dvK" id="V2B-la-D1y"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -485,6 +487,7 @@
                 </viewController>
                 <customObject id="4B0-TX-5FP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="JZj-f6-1IH"/>
+                <customFormatter id="Low-7d-dvK" customClass="InvisibleFormatter" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="234" y="734"/>
         </scene>
