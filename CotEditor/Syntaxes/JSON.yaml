@@ -2,15 +2,16 @@ extensions:
 - keyString: "json"
 - keyString: "geojson"
 - keyString: "cottheme"
+- keyString: "cotrpl"
 outlineMenu: []
 completions: []
 commands: []
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.1"
+  version: "1.2.2"
   license: "Same as CotEditor"
-  lastModified: "2016-02-06"
+  lastModified: "2018-04-01"
 characters: []
 comments: []
 values:
