@@ -30,7 +30,7 @@ final class FindPanelTextClipView: NSClipView {
     // MARK: Private Properties
     
     private let leadingPadding: CGFloat = 28.0  // for history button
-    private let tailingPadding: CGFloat = 22.0  // for clear buttton
+    private let tailingPadding: CGFloat = 22.0  // for clear button
     
     
     
@@ -52,6 +52,7 @@ final class FindPanelTextClipView: NSClipView {
     
     /// add paddings
     override var frame: NSRect {
+        
         didSet {
             guard frame.minX < self.leadingPadding else { return }  // avoid infinity loop
             
