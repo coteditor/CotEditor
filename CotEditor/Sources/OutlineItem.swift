@@ -50,3 +50,15 @@ struct OutlineItem {
     }
     
 }
+
+
+extension OutlineItem: Equatable {
+    
+    static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
+        
+        return lhs.range == rhs.range &&
+            lhs.style == rhs.style &&
+            lhs.title == rhs.title
+    }
+    
+}

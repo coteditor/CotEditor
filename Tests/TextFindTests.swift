@@ -249,11 +249,11 @@ private extension TextFind.Settings {
     /// omittable initializer
     init(usesRegularExpression: Bool = false, isWrap: Bool = false, inSelection: Bool = false, textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [], unescapesReplacementString: Bool = false) {
         
-        self.usesRegularExpression = usesRegularExpression
-        self.isWrap = isWrap
-        self.inSelection = inSelection
-        self.textualOptions = textualOptions
-        self.regexOptions = regexOptions
-        self.unescapesReplacementString = unescapesReplacementString
+        self = TextFind.Settings(usesRegularExpression: usesRegularExpression,
+                                 isWrap: isWrap,
+                                 inSelection: inSelection,
+                                 textualOptions: textualOptions,
+                                 regexOptions: regexOptions,
+                                 unescapesReplacementString: unescapesReplacementString)
     }
 }
