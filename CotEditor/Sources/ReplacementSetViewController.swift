@@ -286,7 +286,7 @@ extension ReplacementSetViewController: NSTableViewDelegate {
         // disable controls if needed
         if identifier != .isEnabled {
             cellView.subviews.lazy
-                .flatMap { $0 as? NSControl }
+                .compactMap { $0 as? NSControl }
                 .forEach { $0.isEnabled = replacement.isEnabled }
         }
         
