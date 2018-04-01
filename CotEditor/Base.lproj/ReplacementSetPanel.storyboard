@@ -37,13 +37,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="99" width="390" height="181"/>
+                                <rect key="frame" x="20" y="99" width="390" height="166"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="0.0" width="388" height="180"/>
+                                    <rect key="frame" x="1" y="0.0" width="388" height="165"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="157"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -314,7 +314,7 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="A2J-mQ-AKK"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1Ol-X7-w6C">
-                                    <rect key="frame" x="1" y="164" width="378" height="16"/>
+                                    <rect key="frame" x="1" y="149" width="388" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="7r7-tr-Dft">
@@ -445,6 +445,14 @@
                                     <action selector="highlight:" target="uzB-9o-Idl" id="cLP-X8-4hu"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
+                                <rect key="frame" x="18" y="273" width="262" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Replace terms below at once from the top:" id="5Ey-vx-5Sm">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="width" secondItem="rgJ-1f-1Af" secondAttribute="width" id="3lN-G3-5Vs"/>
@@ -452,6 +460,7 @@
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="leading" secondItem="6DU-wH-q4e" secondAttribute="trailing" constant="4" id="5cg-Rm-27o"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="baseline" secondItem="pfM-xk-MrN" secondAttribute="baseline" id="8kF-cK-yp4"/>
                             <constraint firstItem="6DU-wH-q4e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Mv-wi-Ogp" secondAttribute="trailing" constant="8" symbolic="YES" id="APG-lW-dal"/>
+                            <constraint firstItem="4Jd-Pz-IbU" firstAttribute="top" secondItem="XGd-UY-MQC" secondAttribute="bottom" constant="8" symbolic="YES" id="BKV-rQ-5gb"/>
                             <constraint firstAttribute="trailing" secondItem="gG4-IL-p7b" secondAttribute="trailing" id="BPc-bU-6Wd"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="top" secondItem="gG4-IL-p7b" secondAttribute="bottom" constant="12" id="CGp-TQ-Zx0"/>
                             <constraint firstAttribute="trailing" secondItem="4Jd-Pz-IbU" secondAttribute="trailing" constant="20" symbolic="YES" id="DVc-ev-msh"/>
@@ -468,17 +477,19 @@
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" secondItem="8Tz-Kb-8Ck" secondAttribute="trailing" constant="8" symbolic="YES" id="WyX-Fp-Ueg"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="ZSu-w6-KSf"/>
                             <constraint firstAttribute="bottom" secondItem="QdJ-Fc-QBG" secondAttribute="bottom" constant="20" symbolic="YES" id="Zhf-F2-dja"/>
-                            <constraint firstItem="4Jd-Pz-IbU" firstAttribute="top" secondItem="8CD-v6-nsP" secondAttribute="top" constant="20" symbolic="YES" id="a5d-U2-jPa"/>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="centerY" secondItem="rgJ-1f-1Af" secondAttribute="centerY" id="b83-cI-bu8"/>
+                            <constraint firstItem="XGd-UY-MQC" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="cv8-rl-RNM"/>
                             <constraint firstItem="rgJ-1f-1Af" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="fii-Rc-xFB"/>
                             <constraint firstItem="QdJ-Fc-QBG" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="kUl-yd-UmO"/>
                             <constraint firstAttribute="trailing" secondItem="Nth-za-4Ad" secondAttribute="trailing" constant="20" symbolic="YES" id="ldS-e8-eGW"/>
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="centerY" secondItem="6DU-wH-q4e" secondAttribute="centerY" constant="1" id="njv-rv-rJ2"/>
+                            <constraint firstItem="XGd-UY-MQC" firstAttribute="top" secondItem="8CD-v6-nsP" secondAttribute="top" constant="10" id="q77-Ef-hVd"/>
                             <constraint firstItem="8Tz-Kb-8Ck" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QdJ-Fc-QBG" secondAttribute="trailing" constant="12" symbolic="YES" id="rVa-RU-h6f"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="leading" secondItem="99C-Bz-ySi" secondAttribute="trailing" constant="12" symbolic="YES" id="tBY-XH-H8L"/>
                             <constraint firstItem="99C-Bz-ySi" firstAttribute="leading" secondItem="pfM-xk-MrN" secondAttribute="trailing" constant="8" symbolic="YES" id="tnN-Ie-Jtb"/>
                             <constraint firstItem="8Mv-wi-Ogp" firstAttribute="leading" secondItem="rgJ-1f-1Af" secondAttribute="trailing" constant="-1" id="vxs-6T-UOb"/>
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QdJ-Fc-QBG" secondAttribute="trailing" constant="12" symbolic="YES" id="wbr-RJ-Msd"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XGd-UY-MQC" secondAttribute="trailing" constant="20" symbolic="YES" id="xss-j9-fGs"/>
                         </constraints>
                     </view>
                     <connections>
