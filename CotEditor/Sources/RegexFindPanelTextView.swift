@@ -29,12 +29,25 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
-    var isRegularExpressionMode: Bool = false
-    
+    var isRegularExpressionMode: Bool = false {
+        
+        didSet {
+            self.invalidateRegularExpression()
+        }
+    }
     
     
     // MARK: -
     // MARK: Text View Methods
+    
+    /// content string did update
+    override func didChangeText() {
+        
+        super.didChangeText()
+        
+        self.invalidateRegularExpression()
+    }
+    
     
     /// adjust word selection range
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
@@ -74,6 +87,46 @@ final class RegexFindPanelTextView: FindPanelTextView {
         guard self.isRegularExpressionMode, !stillSelectingFlag else { return }
         
         self.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// highlight string as regular expression pattern
+    private func invalidateRegularExpression() {
+        
+        guard let layoutManager = self.layoutManager else { return }
+        
+        // clear the last highlight anyway
+        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
+        
+        guard
+            self.isRegularExpressionMode,
+            (try? NSRegularExpression(pattern: self.string)) != nil  // check if pattern is valid
+            else { return }
+        
+        for type in RegularExpressionSyntaxType.priority.reversed() {
+            for range in type.ranges(in: self.string) {
+                layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
+            }
+        }
+    }
+    
+}
+
+
+private extension RegularExpressionSyntaxType {
+    
+    var color: NSColor {
+        
+        switch self {
+        case .character: return #colorLiteral(red: 0.1176470596, green: 0.4011936392, blue: 0.5, alpha: 1)
+        case .backReference: return #colorLiteral(red: 0.7471567648, green: 0.07381642141, blue: 0.5326599043, alpha: 1)
+        case .symbol: return #colorLiteral(red: 0.3934386824, green: 0.5045222784, blue: 0.1255275325, alpha: 1)
+        case .quantifier: return #colorLiteral(red: 0.4634826636, green: 0, blue: 0.6518557685, alpha: 1)
+        case .anchor: return #colorLiteral(red: 0.7450980544, green: 0.1236130619, blue: 0.07450980693, alpha: 1)
+        }
     }
     
 }

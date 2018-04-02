@@ -37,6 +37,8 @@
 		258EF2FA077FEDD000011E52 /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		2A07202E18E0E421006F3A43 /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
+		2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
+		2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
 		2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
 		2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
 		2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */; };
@@ -761,6 +763,7 @@
 
 /* Begin PBXFileReference section */
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
+		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
 		2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTouchBar.swift; sourceTree = "<group>"; };
 		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
@@ -1377,6 +1380,7 @@
 				2A5D13341D1FC87900D38E6A /* FindPanelTextClipView.swift */,
 				2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */,
 				2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */,
+				2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -2847,6 +2851,7 @@
 				2A9C370C1D66E99400774BA4 /* Pair.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2A3581991E597ECE00762AA5 /* ReplacementSet.swift in Sources */,
+				2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A6FD9F71D3AE29E00A59784 /* SyntaxStyle.swift in Sources */,
 				2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */,
 				2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
@@ -2958,6 +2963,7 @@
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
 				2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
+				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
 				2A6FD9DD1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
 				2AE12E001E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* AppInfo.swift in Sources */,

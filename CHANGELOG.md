@@ -11,6 +11,7 @@ unreleased
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
 - Parse regular expression pattern in find string field on regular expression mode:
+    - Syntax highlight.
     - Highlight matching brace by moving cursor.
     - Select the range surrounded with a brace pair when a brace was double-clicked.
 - Add a new theme “Resinifictrix”.
