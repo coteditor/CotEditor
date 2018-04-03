@@ -175,18 +175,28 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// set selected history string to find field
     @IBAction func selectFindHistory(_ sender: NSMenuItem?) {
         
-        guard let string = sender?.representedObject as? String else { return }
+        guard
+            let string = sender?.representedObject as? String,
+            let textView = self.findTextView,
+            textView.shouldChangeText(in: textView.string.nsRange, replacementString: string)
+            else { return }
         
-        TextFinder.shared.findString = string
+        textView.string = string
+        textView.didChangeText()
     }
     
     
     /// set selected history string to replacement field
     @IBAction func selectReplaceHistory(_ sender: NSMenuItem?) {
         
-        guard let string = sender?.representedObject as? String else { return }
+        guard
+            let string = sender?.representedObject as? String,
+            let textView = self.replacementTextView,
+            textView.shouldChangeText(in: textView.string.nsRange, replacementString: string)
+            else { return }
         
-        TextFinder.shared.replacementString = string
+        textView.string = string
+        textView.didChangeText()
     }
     
     

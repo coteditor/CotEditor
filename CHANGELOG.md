@@ -36,6 +36,7 @@ unreleased
 ### Fixes
 
 - Fix a possible crash with continuous find/replacement.
+- Fix an issue where the find result in the input field of the find panel did not cleared when a new find string was set from the find history menu.
 
 
 
