@@ -28,7 +28,7 @@ import Cocoa
 extension NSTextView {
     
     /// find the matching brace for the character before the cursor and highlight it
-    func highligtMatchingBrace(candidates: [BracePair], ignoringRanges: [Range<String.Index>] = []) {
+    func highligtMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
         
         let string = self.string
         let selectedRange = self.selectedRange
@@ -44,7 +44,7 @@ extension NSTextView {
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
         
-        guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates, ignoringRanges: ignoringRanges) else { return }
+        guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates, ignoring: pairToIgnore) else { return }
         
         switch pairIndex {
         case .begin(let index), .end(let index):

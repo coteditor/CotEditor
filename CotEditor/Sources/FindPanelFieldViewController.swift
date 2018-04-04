@@ -25,10 +25,6 @@
 
 import Cocoa
 
-/// regular expression to extract characters inside brackets []
-private let bracketRegex = try! NSRegularExpression(pattern: "(?<=\\[).[^\\]]+(?=\\])")
-
-
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
@@ -130,13 +126,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // highlight matching brace
         if UserDefaults.standard[.findUsesRegularExpression] {
-            // ignore brace in []
-            let string = textView.string
-            let ignoringRanges = bracketRegex.matches(in: string, options: [], range: string.nsRange)
-                .map { Range($0.range, in: string)! }
-            
             textView.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")],
-                                           ignoringRanges: ignoringRanges)
+                                           ignoring: BracePair("[", "]"))
         }
     }
     

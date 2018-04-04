@@ -37,6 +37,16 @@ struct Pair<T> {
 }
 
 
+extension Pair: Equatable where T: Equatable {
+    
+    static func == (lhs: Pair<T>, rhs: Pair<T>) -> Bool {
+        
+        return lhs.begin == rhs.begin && lhs.end == rhs.end
+    }
+    
+}
+
+
 
 // MARK: BracePair
 
@@ -65,7 +75,9 @@ extension Pair where T == Character {
 extension String {
     
     ///
-    func indexOfBracePair(at index: Index, candidates: [BracePair], ignoringRanges: [Range<Index>] = []) -> BracePair.PairIndex? {
+    func indexOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
+        
+        guard !self.isCharacterEscaped(at: index) else { return nil }
         
         let character = self[index]
         
@@ -73,11 +85,11 @@ extension String {
         
         switch character {
         case pair.begin:
-            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, ignoringRanges: ignoringRanges) else { return .odd }
+            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, ignoring: pairToIgnore) else { return .odd }
             return .end(endIndex)
             
         case pair.end:
-            guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, ignoringRanges: ignoringRanges) else { return .odd }
+            guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, ignoring: pairToIgnore) else { return .odd }
             return .begin(beginIndex)
             
         default: preconditionFailure()
@@ -86,24 +98,25 @@ extension String {
     
     
     /// find character index of matched opening brace before a given index.
-    func indexOfBracePair(endIndex: Index, pair: BracePair, ignoringRanges: [Range<Index>] = []) -> Index? {
+    func indexOfBracePair(endIndex: Index, pair: BracePair, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
         var nestDepth = 0
+        var ignoredNestDepth = 0
         let subsequence = self[..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
-            guard
-                !self.isCharacterEscaped(at: index),
-                !ignoringRanges.contains(where: { $0.contains(index) })
-                else { continue }
+            guard !self.isCharacterEscaped(at: index) else { continue }
             
             switch character {
-            case pair.begin where nestDepth == 0:
-                return index
-            case pair.begin:
+            case pair.begin where ignoredNestDepth == 0:
+                if nestDepth == 0 { return index }  // found
                 nestDepth -= 1
-            case pair.end:
+            case pair.end where ignoredNestDepth == 0:
                 nestDepth += 1
+            case pairToIgnore?.begin:
+                ignoredNestDepth -= 1
+            case pairToIgnore?.end:
+                ignoredNestDepth += 1
             default: break
             }
         }
@@ -113,26 +126,27 @@ extension String {
     
     
     /// find character index of matched closing brace after a given index.
-    func indexOfBracePair(beginIndex: Index, pair: BracePair, ignoringRanges: [Range<Index>] = []) -> Index? {
+    func indexOfBracePair(beginIndex: Index, pair: BracePair, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
         guard beginIndex != self.endIndex else { return nil }
         
         var nestDepth = 0
+        var ignoredNestDepth = 0
         let subsequence = self[self.index(after: beginIndex)...]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
-            guard
-                !self.isCharacterEscaped(at: index),
-                !ignoringRanges.contains(where: { $0.contains(index) })
-                else { continue }
+            guard !self.isCharacterEscaped(at: index) else { continue }
             
             switch character {
-            case pair.end where nestDepth == 0:
-                return index
-            case pair.end:
+            case pair.end where ignoredNestDepth == 0:
+                if nestDepth == 0 { return index }  // found
                 nestDepth -= 1
-            case pair.begin:
+            case pair.begin where ignoredNestDepth == 0:
                 nestDepth += 1
+            case pairToIgnore?.end:
+                ignoredNestDepth -= 1
+            case pairToIgnore?.begin:
+                ignoredNestDepth += 1
             default: break
             }
         }
