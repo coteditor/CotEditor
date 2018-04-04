@@ -26,12 +26,7 @@
 import Cocoa
 
 /// text view that behaves like a NSTextField
-final class FindPanelTextView: NSTextView {
-    
-    // MARK: Public Properties
-    
-    var isRegularExpressionMode: Bool = false
-    
+class FindPanelTextView: NSTextView {
     
     // MARK: Private Properties
     
@@ -174,54 +169,6 @@ final class FindPanelTextView: NSTextView {
         self.string = ""
         
         self.didChangeText()
-    }
-    
-}
-
-
-
-// MARK: Regular Expression
-
-extension FindPanelTextView {
-    
-    /// adjust word selection range
-    override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
-        
-        let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
-        
-        guard self.isRegularExpressionMode else { return range }
-        
-        guard granularity == .selectByWord else { return range }
-        
-        // settle result on expanding selection or if there is no possibility for clicking a bracket
-        guard proposedCharRange.length == 0, range.length == 1 else { return range }
-        
-        let characterIndex = Range(range, in: self.string)!.lowerBound
-        
-        // select inside of brackets
-        if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]")) {
-            switch pairIndex {
-            case .begin(let beginIndex):
-                return NSRange(beginIndex...characterIndex, in: self.string)
-            case .end(let endIndex):
-                return NSRange(characterIndex...endIndex, in: self.string)
-            case .odd:
-                return NSRange(characterIndex...characterIndex, in: self.string)
-            }
-        }
-        
-        return range
-    }
-    
-    
-    /// selection did change
-    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
-        
-        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
-        
-        guard self.isRegularExpressionMode, !stillSelectingFlag else { return }
-        
-        self.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
     }
     
 }
