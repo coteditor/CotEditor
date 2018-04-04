@@ -243,12 +243,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
         //    in order to provide a quick feedback of change to users.
         self.currentLineUpdateTask.run()
-        
-        // highlight matching brace
-        if UserDefaults.standard[.highlightBraces] {
-            let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-            textView.highligtMatchingBrace(candidates: bracePairs)
-        }
     }
     
     

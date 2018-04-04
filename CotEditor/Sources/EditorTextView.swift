@@ -444,6 +444,19 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// selection did change
+    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
+        
+        // highlight matching brace
+        if UserDefaults.standard[.highlightBraces], !stillSelectingFlag {
+            let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+            self.highligtMatchingBrace(candidates: bracePairs)
+        }
+    }
+    
+    
     /// delete & adjust indent
     override func deleteBackward(_ sender: Any?) {
         
