@@ -10,7 +10,9 @@ unreleased
 - Replace matches with preset replacement definition (Find > Replace with Set).
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
-- Highlight matching brace by moving cursor in find string field on regular expression mode.
+- Parse regular expression pattern in find string field on regular expression mode:
+    - Highlight matching brace by moving cursor.
+    - Select the range surrounded with a brace pair when a brace was clicked.
 - Add a new theme “Resinifictrix”.
 
 
