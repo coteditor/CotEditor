@@ -36,8 +36,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
     private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
     
-    @IBOutlet private var findTextView: NSTextView?  // NSTextView cannot be weak
-    @IBOutlet private var replacementTextView: NSTextView?  // NSTextView cannot be weak
+    @IBOutlet private var findTextView: FindPanelTextView?  // NSTextView cannot be weak
+    @IBOutlet private var replacementTextView: FindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
@@ -65,9 +65,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         self.updateFindHistoryMenu()
         self.updateReplaceHistoryMenu()
         
+        self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
+        
         // observe default change for the history menus
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, context: nil)
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, context: nil)
+        
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, context: nil)
     }
     
     
@@ -91,6 +95,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.updateFindHistoryMenu()
         case DefaultKeys.replaceHistory.rawValue:
             self.updateReplaceHistoryMenu()
+        case DefaultKeys.findUsesRegularExpression.rawValue:
+            self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
         default: break
         }
     }
@@ -112,22 +118,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.clearNumberOfReplaced()
         default:
             break
-        }
-    }
-    
-    
-    /// selected range did update
-    func textViewDidChangeSelection(_ notification: Notification) {
-        
-        guard
-            let textView = notification.object as? NSTextView,
-            textView == self.findTextView
-            else { return }
-        
-        // highlight matching brace
-        if UserDefaults.standard[.findUsesRegularExpression] {
-            textView.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")],
-                                           ignoring: BracePair("[", "]"))
         }
     }
     

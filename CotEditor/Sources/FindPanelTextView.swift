@@ -28,11 +28,16 @@ import Cocoa
 /// text view that behaves like a NSTextField
 final class FindPanelTextView: NSTextView {
     
+    // MARK: Public Properties
+    
+    var isRegularExpressionMode: Bool = false
+    
+    
     // MARK: Private Properties
     
-    @IBInspectable var performsActionOnEnter: Bool = false
+    @IBInspectable private var performsActionOnEnter: Bool = false
     
-    @objc dynamic var isEmpty: Bool = true
+    @objc private dynamic var isEmpty: Bool = true
     
     
     
@@ -175,6 +180,8 @@ final class FindPanelTextView: NSTextView {
 
 
 
+// MARK: Regular Expression
+
 extension FindPanelTextView {
     
     /// adjust word selection range
@@ -182,7 +189,7 @@ extension FindPanelTextView {
         
         let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
         
-        guard UserDefaults.standard[.findUsesRegularExpression] else { return range }
+        guard self.isRegularExpressionMode else { return range }
         
         guard granularity == .selectByWord else { return range }
         
@@ -204,6 +211,17 @@ extension FindPanelTextView {
         }
         
         return range
+    }
+    
+    
+    /// selection did change
+    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
+        
+        guard self.isRegularExpressionMode, !stillSelectingFlag else { return }
+        
+        self.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
     }
     
 }
