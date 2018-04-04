@@ -1275,13 +1275,11 @@ extension EditorTextView {
         guard
             !self.string.isEmpty,
             let characterSet = self.firstSyntaxCompletionCharacterSet,
-            let beginIndex = String.UTF16Index(encodedOffset: range.location).samePosition(in: self.string),
-            let index = self.string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: self.string.startIndex..<beginIndex)?.upperBound
+            let characterRange = Range(range, in: self.string),
+            let index = self.string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
             else { return range }
         
-        let location = index.samePosition(in: self.string.utf16)!.encodedOffset
-        
-        return NSRange(location: location, length: range.upperBound - location)
+        return NSRange(index..<characterRange.upperBound, in: self.string)
     }
     
     
@@ -1378,46 +1376,41 @@ extension EditorTextView {
     /// adjust word selection range
     override func selectionRange(forProposedRange proposedCharRange: NSRange, granularity: NSSelectionGranularity) -> NSRange {
         
-        let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
+        var range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
         
-        guard
-            granularity == .selectByWord,
-            self.string.utf16.count != proposedCharRange.location
-            else { return range }
-        
-        var wordRange = range
+        guard granularity == .selectByWord else { return range }
         
         // treat additional specific characters as separator (see `wordRange(at:)` for details)
-        if wordRange.length > 0 {
-            wordRange = self.wordRange(at: proposedCharRange.location)
+        if range.length > 0 {
+            range = self.wordRange(at: proposedCharRange.location)
             if proposedCharRange.length > 1 {
-                wordRange.formUnion(self.wordRange(at: proposedCharRange.upperBound - 1))
+                range.formUnion(self.wordRange(at: proposedCharRange.upperBound - 1))
             }
         }
         
-        // settle result on expanding selection or if there is no possibility for clicking brackets
-        guard proposedCharRange.length == 0, wordRange.length == 1 else { return wordRange }
+        // settle result on expanding selection or if there is no possibility for clicking a bracket
+        guard proposedCharRange.length == 0, range.length == 1 else { return range }
         
-        let characterIndex = String.UTF16Index(encodedOffset: wordRange.location).samePosition(in: self.string)!
+        let characterIndex = Range(range, in: self.string)!.lowerBound
         let clickedCharacter = self.string[characterIndex]
         
-        // select (syntax-highlighted) quoted text by double-clicking
-        if clickedCharacter == "\"" || clickedCharacter == "'" || clickedCharacter == "`" {
+        // select (syntax-highlighted) quoted text
+        if ["\"", "'", "`"].contains(clickedCharacter), let layoutManager = self.layoutManager {
             var highlightRange = NSRange.notFound
-            _ = self.layoutManager?.temporaryAttribute(.foregroundColor, atCharacterIndex: wordRange.location, longestEffectiveRange: &highlightRange, in: self.string.nsRange)
+            _ = layoutManager.temporaryAttribute(.foregroundColor, atCharacterIndex: range.location, longestEffectiveRange: &highlightRange, in: self.string.nsRange)
             
             let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound
             let lastHighlightIndex = self.string.index(before: highlightCharacterRange.upperBound)
             
-            if (firstHighlightIndex == characterIndex && self.string[firstHighlightIndex] == clickedCharacter) ||  // smart quote
+            if (firstHighlightIndex == characterIndex && self.string[firstHighlightIndex] == clickedCharacter) ||  // begin quote
                 (lastHighlightIndex == characterIndex && self.string[lastHighlightIndex] == clickedCharacter)  // end quote
             {
                 return highlightRange
             }
         }
         
-        // select inside of brackets by double-clicking
+        // select inside of brackets
         if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
             switch pairIndex {
             case .begin(let beginIndex):
@@ -1425,29 +1418,28 @@ extension EditorTextView {
             case .end(let endIndex):
                 return NSRange(characterIndex...endIndex, in: self.string)
             case .odd:
-                // If it has a found a "begin" brace but not found a match, a double-click should only select the "begin" brace and not what it usually would select at a double-click
                 NSSound.beep()
-                return NSRange(location: proposedCharRange.location, length: 1)
+                return NSRange(characterIndex...characterIndex, in: self.string)  // If a odd brace was double-clicked, only the clicked brace should be selected
             }
         }
         
-        return wordRange
+        return range
     }
     
     
     
     // MARK: Private Methods
     
-    /// word range includes location
+    /// word range that includes location
     private func wordRange(at location: Int) -> NSRange {
         
         let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
         
         guard proposedWordRange.length > 1,
             let proposedRange = Range(proposedWordRange, in: self.string),
-            let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self.string) else { return proposedWordRange }
-        
-        let wordRange = self.string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange) ?? proposedRange
+            let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self.string),
+            let wordRange = self.string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange)
+            else { return proposedWordRange }
         
         return NSRange(wordRange, in: self.string)
     }
