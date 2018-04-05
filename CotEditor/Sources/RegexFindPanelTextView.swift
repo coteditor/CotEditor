@@ -113,10 +113,14 @@ final class RegexFindPanelTextView: FindPanelTextView {
         // clear the last highlight anyway
         layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
         
-        guard
-            self.isRegularExpressionMode,
-            (try? NSRegularExpression(pattern: self.string)) != nil  // check if pattern is valid
-            else { return }
+        guard self.isRegularExpressionMode else { return }
+        
+        switch self.mode {
+        case .search:
+            guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }  // check if pattern is valid
+        case .replacement:
+            break
+        }
         
         for type in RegularExpressionSyntaxType.priority.reversed() {
             for range in type.ranges(in: self.string, mode: self.mode) {

@@ -128,7 +128,7 @@ enum RegularExpressionSyntaxType {
         case .replacement(let unescapes):
             switch self {
             case .character:
-                return unescapes ? ["\\\\[0tnr\"']"] : []
+                return unescapes ? [escapeIgnorer + "\\\\[0tnr\"'\\\\]"] : []
             case .backReference:
                 return ["\\$[0-9]"]
             default: return []
