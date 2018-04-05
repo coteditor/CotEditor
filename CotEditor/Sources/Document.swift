@@ -887,9 +887,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @IBAction override func save(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
-            if continuesSaving {
-                super.save(sender)
-            }
+            guard continuesSaving else { return }
+            
+            super.save(sender)
         }
     }
     
@@ -898,9 +898,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @IBAction override func saveAs(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
-            if continuesSaving {
-                super.saveAs(sender)
-            }
+            guard continuesSaving else { return }
+            
+            super.saveAs(sender)
         }
     }
     
