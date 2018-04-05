@@ -29,6 +29,13 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
+    var mode: RegularExpressionParseMode = .search {
+        
+        didSet {
+            self.invalidateRegularExpression()
+        }
+    }
+    
     var isRegularExpressionMode: Bool = false {
         
         didSet {
@@ -56,6 +63,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         guard
             self.isRegularExpressionMode,
+            case .search = self.mode,
             granularity == .selectByWord,
             proposedCharRange.length == 0,  // not on expanding selection
             range.length == 1  // clicked character can be a brace
@@ -86,6 +94,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         guard
             self.isRegularExpressionMode,
+            case .search = self.mode,
             !stillSelectingFlag
             else { return }
         
@@ -110,7 +119,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
             else { return }
         
         for type in RegularExpressionSyntaxType.priority.reversed() {
-            for range in type.ranges(in: self.string) {
+            for range in type.ranges(in: self.string, mode: self.mode) {
                 layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
             }
         }

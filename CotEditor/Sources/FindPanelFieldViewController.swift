@@ -37,7 +37,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
     
     @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
-    @IBOutlet private var replacementTextView: FindPanelTextView?  // NSTextView cannot be weak
+    @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
@@ -68,6 +68,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // sync text view states with user default
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, options: .initial, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findRegexUnescapesReplacementString.rawValue, options: .initial, context: nil)
     }
     
     
@@ -93,6 +94,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.updateReplaceHistoryMenu()
         case DefaultKeys.findUsesRegularExpression.rawValue:
             self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
+            self.replacementTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
+        case DefaultKeys.findRegexUnescapesReplacementString.rawValue:
+            self.replacementTextView?.mode = .replacement(escapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
         default: break
         }
     }

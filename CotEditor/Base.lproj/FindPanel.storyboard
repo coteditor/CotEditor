@@ -117,7 +117,7 @@
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="FindPanelTextView" customModule="CotEditor" customModuleProvider="target">
+                                        <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="RegexFindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -610,7 +610,7 @@
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
-        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+        <image name="NSStopProgressFreestandingTemplate" width="11" height="11"/>
         <image name="ReplaceTemplate" width="20" height="13"/>
     </resources>
 </document>

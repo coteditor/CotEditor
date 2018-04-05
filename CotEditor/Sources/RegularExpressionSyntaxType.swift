@@ -28,6 +28,14 @@ import Foundation
 /// regex pattern to avoid matching escaped character
 private let escapeIgnorer = "(?<!\\\\)(?:\\\\\\\\)*"
 
+
+enum RegularExpressionParseMode {
+    
+    case search
+    case replacement(unescapes: Bool)
+}
+
+
 enum RegularExpressionSyntaxType {
     
     case character
@@ -48,14 +56,14 @@ enum RegularExpressionSyntaxType {
     
     // MARK: Public Methods
     
-    func ranges(in string: String) -> [NSRange] {
+    func ranges(in string: String, mode: RegularExpressionParseMode) -> [NSRange] {
         
-        var ranges = self.patterns
+        var ranges = self.patterns(for: mode)
             .map { try! NSRegularExpression(pattern: $0) }
             .flatMap { $0.matches(in: string, range: string.nsRange) }
             .map { $0.range }
         
-        if self == .character {
+        if self == .character, case .search = mode {
             ranges += string.ranges(bracePair: BracePair("[", "]"))
                 .map { (string[$0.lowerBound] == "^") ? string.index(after: $0.lowerBound)..<$0.upperBound : $0 }
                 .map { NSRange($0, in: string) }
@@ -68,51 +76,63 @@ enum RegularExpressionSyntaxType {
     
     // MARK: Private Methods
     
-    private var patterns: [String] {
+    private func patterns(for mode: RegularExpressionParseMode) -> [String] {
         
-        switch self {
-        case .character:
-            // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
-            return [
-                escapeIgnorer + "\\.",  // .
-                escapeIgnorer + "\\\\" + "[^AbGZzQE1-9]",  // all escaped characters
-                escapeIgnorer + "\\\\" + "[sdDefnrsStwWX]",  // \s, \d, ...
-                escapeIgnorer + "\\\\" + "v",  // \v
-                escapeIgnorer + "\\\\" + "\\\\",  // \\
-                escapeIgnorer + "\\\\" + "c[a-z]",  // \cX (control)
-                escapeIgnorer + "\\\\" + "N\\{[a-zA-Z0-9 ]+\\}",  // \N{UNICODE CHARACTER NAME}
-                escapeIgnorer + "\\\\" + "[pP]\\{[a-zA-Z0-9 ]+\\}",  // \p{UNICODE PROPERTY NAME}
-                escapeIgnorer + "\\\\" + "u[0-9a-f]{4}",  // \uhhhh (h: hex)
-                escapeIgnorer + "\\\\" + "U[0-9a-f]{8}",  // \Uhhhhhhhh (h: hex)
-                escapeIgnorer + "\\\\" + "x\\{[0-9a-f]{4}\\}",  // \x{hhhh} (h: hex)
-                escapeIgnorer + "\\\\" + "x[0-9a-f]{2}",  // \xhh (h: hex)
-                escapeIgnorer + "\\\\" + "0[0-7]{3}",  // \0ooo (o: octal)
-            ]
-        case .backReference:
-            return [
-                escapeIgnorer + "\\$[0-9]",  // $0
-                escapeIgnorer + "\\\\[1-9]",  // \1
-            ]
-        case .symbol:
-            return [
-                escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?)",  // (?...
-                escapeIgnorer + "[()|]",  // () |
-                escapeIgnorer + "(\\[\\^?|\\])",  // [^ ]
-                escapeIgnorer + "\\\\[QE]",  // \Q ... \E
-            ]
-        case .quantifier:
-            // -> `?` is also used for .symbol.
-            return [
-                escapeIgnorer + "[*+?]",  // * + ?
-                escapeIgnorer + "\\{[0-9]+(,[0-9]*)?\\}",  // {n,m}
-            ]
-        case .anchor:
-            // -> `^` is also used for [^abc].
-            // -> `$` is also used for .backReference.
-            return [
-                escapeIgnorer + "[$^]",  // ^ $
-                escapeIgnorer + "\\\\[AbGZz]",  // \A, \b, ...
-            ]
+        switch mode {
+        case .search:
+            switch self {
+            case .character:
+                // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
+                return [
+                    escapeIgnorer + "\\.",  // .
+                    escapeIgnorer + "\\\\" + "[^AbGZzQE1-9]",  // all escaped characters
+                    escapeIgnorer + "\\\\" + "[sdDefnrsStwWX]",  // \s, \d, ...
+                    escapeIgnorer + "\\\\" + "v",  // \v
+                    escapeIgnorer + "\\\\" + "\\\\",  // \\
+                    escapeIgnorer + "\\\\" + "c[a-z]",  // \cX (control)
+                    escapeIgnorer + "\\\\" + "N\\{[a-zA-Z0-9 ]+\\}",  // \N{UNICODE CHARACTER NAME}
+                    escapeIgnorer + "\\\\" + "[pP]\\{[a-zA-Z0-9 ]+\\}",  // \p{UNICODE PROPERTY NAME}
+                    escapeIgnorer + "\\\\" + "u[0-9a-f]{4}",  // \uhhhh (h: hex)
+                    escapeIgnorer + "\\\\" + "U[0-9a-f]{8}",  // \Uhhhhhhhh (h: hex)
+                    escapeIgnorer + "\\\\" + "x\\{[0-9a-f]{4}\\}",  // \x{hhhh} (h: hex)
+                    escapeIgnorer + "\\\\" + "x[0-9a-f]{2}",  // \xhh (h: hex)
+                    escapeIgnorer + "\\\\" + "0[0-7]{3}",  // \0ooo (o: octal)
+                ]
+            case .backReference:
+                return [
+                    escapeIgnorer + "\\$[0-9]",  // $0
+                    escapeIgnorer + "\\\\[1-9]",  // \1
+                ]
+            case .symbol:
+                return [
+                    escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?)",  // (?...
+                    escapeIgnorer + "[()|]",  // () |
+                    escapeIgnorer + "(\\[\\^?|\\])",  // [^ ]
+                    escapeIgnorer + "\\\\[QE]",  // \Q ... \E
+                ]
+            case .quantifier:
+                // -> `?` is also used for .symbol.
+                return [
+                    escapeIgnorer + "[*+?]",  // * + ?
+                    escapeIgnorer + "\\{[0-9]+(,[0-9]*)?\\}",  // {n,m}
+                ]
+            case .anchor:
+                // -> `^` is also used for [^abc].
+                // -> `$` is also used for .backReference.
+                return [
+                    escapeIgnorer + "[$^]",  // ^ $
+                    escapeIgnorer + "\\\\[AbGZz]",  // \A, \b, ...
+                ]
+            }
+            
+        case .replacement(let unescapes):
+            switch self {
+            case .character:
+                return unescapes ? ["\\\\[0tnr\"']"] : []
+            case .backReference:
+                return ["\\$[0-9]"]
+            default: return []
+            }
         }
     }
     
