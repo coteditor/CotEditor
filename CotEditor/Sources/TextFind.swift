@@ -35,13 +35,10 @@ struct ReplacementItem {
 
 final class TextFind {
     
-    struct Settings {
+    enum Mode {
         
-        let usesRegularExpression: Bool
-        let inSelection: Bool
-        let textualOptions: NSString.CompareOptions  // don't include .backwards
-        let regexOptions: NSRegularExpression.Options
-        let unescapesReplacementString: Bool
+        case textual(options: String.CompareOptions)  // don't include .backwards to options
+        case regularExpression(options: NSRegularExpression.Options, unescapesReplacement: Bool)
     }
     
     
@@ -56,10 +53,11 @@ final class TextFind {
     
     // MARK: Public Properties
     
-    let settings: TextFind.Settings
+    let mode: TextFind.Mode
     let findString: String
     let string: String
     let selectedRanges: [NSRange]
+    let inSelection: Bool
     
     
     // MARK: Private Properties
@@ -77,19 +75,25 @@ final class TextFind {
     /// - Parameters:
     ///   - string: The string to search.
     ///   - findString: The string for which to search.
-    ///   - settings: The settable options for the text search.
-    ///   - selectedRanges: selected ranges in the text view.
+    ///   - mode: The settable options for the text search.
+    ///   - inSelection: Whether find string only in selectedRanges.
+    ///   - selectedRanges: The selected ranges in the text view.
     /// - Throws: TextFindError
-    init(for string: String, findString: String, settings: TextFind.Settings, selectedRanges: [NSRange] = [NSRange()]) throws {
+    init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws {
         
         assert(!selectedRanges.isEmpty)
-        assert(!settings.textualOptions.contains(.backwards))
         
         guard !findString.isEmpty else {
             throw TextFindError.emptyFindString
         }
         
-        if settings.usesRegularExpression {
+        switch mode {
+        case .textual(let options):
+            assert(!options.contains(.backwards))
+            
+            self.regex = nil
+            
+        case .regularExpression(let options, _):
             let sanitizedFindString: String = {
                 // replace `\v` with `\u000b`
                 //   -> Because NSRegularExpression cannot handle `\v` correctly. (2017-07 on macOS 10.12)
@@ -101,20 +105,18 @@ final class TextFind {
             }()
             
             do {
-                self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: settings.regexOptions)
+                self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: options)
             } catch {
-                let failureReason = error.localizedDescription
-                throw TextFindError.regularExpression(reason: failureReason)
+                throw TextFindError.regularExpression(reason: error.localizedDescription)
             }
-        } else {
-            self.regex = nil
         }
         
-        self.settings = settings
+        self.mode = mode
         self.string = string
         self.selectedRanges = selectedRanges
         self.findString = findString
-        self.scopeRanges = settings.inSelection ? selectedRanges : [string.nsRange]
+        self.inSelection = inSelection
+        self.scopeRanges = inSelection ? selectedRanges : [string.nsRange]
     }
     
     
@@ -186,7 +188,14 @@ final class TextFind {
         let string = self.string
         let selectedRange = self.selectedRanges.first!
         
-        if self.settings.usesRegularExpression {
+        switch self.mode {
+        case .textual(let options):
+            let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
+            guard matchedRange.location != NSNotFound else { return nil }
+            
+            return ReplacementItem(string: replacementString, range: matchedRange)
+            
+        case .regularExpression:
             let regex = self.regex!
             guard let match = regex.firstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: selectedRange) else { return nil }
             
@@ -195,12 +204,6 @@ final class TextFind {
             let replacedString = regex.replacementString(for: match, in: string, offset: 0, template: template)
             
             return ReplacementItem(string: replacedString, range: match.range)
-            
-        } else {
-            let matchedRange = (string as NSString).range(of: self.findString, options: self.settings.textualOptions, range: selectedRange)
-            guard matchedRange.location != NSNotFound else { return nil }
-            
-            return ReplacementItem(string: replacementString, range: matchedRange)
         }
     }
     
@@ -289,7 +292,7 @@ final class TextFind {
             items.removeAll()
         })
         
-        return (replacementItems, self.settings.inSelection ? selectedRanges : nil)
+        return (replacementItems, self.inSelection ? selectedRanges : nil)
     }
     
     
@@ -302,21 +305,24 @@ final class TextFind {
     /// unescape given string for replacement string only if needed
     private func replacementString(from string: String) -> String {
         
-        guard self.settings.usesRegularExpression, self.settings.unescapesReplacementString else {
+        switch self.mode {
+        case .regularExpression(_, let unescapes) where unescapes:
+            return string.unescaped
+        default:
             return string
         }
-        
-        return string.unescaped
     }
     
     
     /// enumerate matchs in string using current settings
     private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
-        if self.settings.usesRegularExpression {
-            self.enumerateRegularExpressionMatchs(in: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
-        } else {
+        switch self.mode {
+        case .textual:
             self.enumerateTextualMatchs(in: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
+            
+        case .regularExpression:
+            self.enumerateRegularExpressionMatchs(in: ranges, using: block, scopeCompletionHandler: scopeCompletionHandler)
         }
     }
     
@@ -326,6 +332,8 @@ final class TextFind {
         
         guard !self.string.isEmpty else { return }
         
+        guard case .textual(let options) = self.mode else { return assertionFailure() }
+        
         let string = self.string as NSString
         
         for scopeRange in ranges {
@@ -333,7 +341,7 @@ final class TextFind {
             
             while searchRange.location != NSNotFound {
                 searchRange.length = string.length - searchRange.location
-                let foundRange = string.range(of: self.findString, options: self.settings.textualOptions, range: searchRange)
+                let foundRange = string.range(of: self.findString, options: options, range: searchRange)
                 
                 guard foundRange.upperBound <= scopeRange.upperBound else { break }
                 

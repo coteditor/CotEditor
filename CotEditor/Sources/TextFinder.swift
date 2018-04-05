@@ -562,10 +562,11 @@ final class TextFinder: NSResponder {
         }
         
         let string = textView.string.immutable
-        let settings = TextFind.Settings(defaults: UserDefaults.standard)
+        let mode = TextFind.Mode(defaults: UserDefaults.standard)
+        let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as! [NSRange])
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
             case TextFindError.regularExpression:
@@ -660,27 +661,28 @@ private extension UserDefaults {
 }
 
 
-private extension TextFind.Settings {
+private extension TextFind.Mode {
     
     init(defaults: UserDefaults) {
         
-        var textualOptions = NSString.CompareOptions()
-        if defaults[.findIgnoresCase]               { textualOptions.update(with: .caseInsensitive) }
-        if defaults[.findTextIsLiteralSearch]       { textualOptions.update(with: .literal) }
-        if defaults[.findTextIgnoresDiacriticMarks] { textualOptions.update(with: .diacriticInsensitive) }
-        if defaults[.findTextIgnoresWidth]          { textualOptions.update(with: .widthInsensitive) }
-        
-        var regexOptions = NSRegularExpression.Options()
-        if defaults[.findIgnoresCase]                { regexOptions.update(with: .caseInsensitive) }
-        if defaults[.findRegexIsSingleline]          { regexOptions.update(with: .dotMatchesLineSeparators) }
-        if defaults[.findRegexIsMultiline]           { regexOptions.update(with: .anchorsMatchLines) }
-        if defaults[.findRegexUsesUnicodeBoundaries] { regexOptions.update(with: .useUnicodeWordBoundaries) }
-        
-        self.init(usesRegularExpression: defaults[.findUsesRegularExpression],
-                  inSelection: defaults[.findInSelection],
-                  textualOptions: textualOptions,
-                  regexOptions: regexOptions,
-                  unescapesReplacementString: defaults[.findRegexUnescapesReplacementString])
+        if defaults[.findUsesRegularExpression] {
+            var options = NSRegularExpression.Options()
+            if defaults[.findIgnoresCase]                { options.update(with: .caseInsensitive) }
+            if defaults[.findRegexIsSingleline]          { options.update(with: .dotMatchesLineSeparators) }
+            if defaults[.findRegexIsMultiline]           { options.update(with: .anchorsMatchLines) }
+            if defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
+            
+            self = .regularExpression(options: options, unescapesReplacement: defaults[.findRegexUnescapesReplacementString])
+            
+        } else {
+            var options = NSString.CompareOptions()
+            if defaults[.findIgnoresCase]               { options.update(with: .caseInsensitive) }
+            if defaults[.findTextIsLiteralSearch]       { options.update(with: .literal) }
+            if defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
+            if defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
+            
+            self = .textual(options: options)
+        }
     }
 }
 

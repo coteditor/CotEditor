@@ -31,19 +31,19 @@ class TextFindTests: XCTestCase {
     
     func testCaptureGroupCount() {
         
-        var settings: TextFind.Settings
+        var mode: TextFind.Mode
         var textFind: TextFind
         
-        settings = TextFind.Settings(usesRegularExpression: true)
+        mode = .regularExpression(options: [], unescapesReplacement: false)
         
-        textFind = try! TextFind(for: "", findString: "a", settings: settings)
+        textFind = try! TextFind(for: "", findString: "a", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
         
-        textFind = try! TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", settings: settings)
+        textFind = try! TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 2)
         
-        settings = TextFind.Settings(usesRegularExpression: false)
-        textFind = try! TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", settings: settings)
+        mode = .textual(options: [])
+        textFind = try! TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
     }
     
@@ -53,12 +53,10 @@ class TextFindTests: XCTestCase {
         let text = "abcdefg abcdefg ABCDEFG"
         let findString = "abc"
         
-        var settings: TextFind.Settings
         var textFind: TextFind
         var result: (range: NSRange?, count: Int, wrapped: Bool)
         
-        settings = TextFind.Settings()
-        textFind = try! TextFind(for: text, findString: findString, settings: settings)
+        textFind = try! TextFind(for: text, findString: findString, mode: .textual(options: []))
         
         result = textFind.find(forward: true, isWrap: false)
         XCTAssertEqual(result.count, 2)
@@ -71,8 +69,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, false)
         
         
-        settings = TextFind.Settings()
-        textFind = try! TextFind(for: text, findString: findString, settings: settings, selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try! TextFind(for: text, findString: findString, mode: .textual(options: []), selectedRanges: [NSRange(location: 1, length: 0)])
         
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 2)
@@ -85,8 +82,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, true)
         
         
-        settings = TextFind.Settings(textualOptions: [.caseInsensitive])
-        textFind = try! TextFind(for: text, findString: findString, settings: settings, selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try! TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive), selectedRanges: [NSRange(location: 1, length: 0)])
         
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 3)
@@ -99,12 +95,9 @@ class TextFindTests: XCTestCase {
         
         let text = "\u{b}000\\v000\n"
         let findString = "\\v"
+        let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
         
-        let settings = TextFind.Settings(usesRegularExpression: true,
-                                         regexOptions: [.caseInsensitive],
-                                         unescapesReplacementString: true)
-        
-        let textFind = try! TextFind(for: text, findString: findString, settings: settings)
+        let textFind = try! TextFind(for: text, findString: findString, mode: mode)
         let result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 1)
         
@@ -118,18 +111,14 @@ class TextFindTests: XCTestCase {
     func testSingleRegexFindAndReplacement() {
         
         let findString = "(?!=a)b(c)(?=d)"
+        let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
         
-        var settings: TextFind.Settings
         var textFind: TextFind
         var result: (range: NSRange?, count: Int, wrapped: Bool)
         var replacementResult: ReplacementItem?
         
-        settings = TextFind.Settings(usesRegularExpression: true,
-                                     regexOptions: [.caseInsensitive],
-                                     unescapesReplacementString: true)
         
-        
-        textFind = try! TextFind(for: "abcdefg abcdefg ABCDEFG", findString: findString, settings: settings, selectedRanges: [NSRange(location: 1, length: 1)])
+        textFind = try! TextFind(for: "abcdefg abcdefg ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
         
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 3)
@@ -142,7 +131,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, true)
         
         
-        textFind = try! TextFind(for: "ABCDEFG", findString: findString, settings: settings, selectedRanges: [NSRange(location: 1, length: 1)])
+        textFind = try! TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
         
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 1)
@@ -158,7 +147,7 @@ class TextFindTests: XCTestCase {
         XCTAssertNil(replacementResult)
         
         
-        textFind = try! TextFind(for: "ABCDEFG", findString: findString, settings: settings, selectedRanges: [NSRange(location: 1, length: 2)])
+        textFind = try! TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 2)])
         
         replacementResult = textFind.replace(with: "$1\\t")
         XCTAssertEqual(replacementResult!.string, "C\t")
@@ -168,12 +157,10 @@ class TextFindTests: XCTestCase {
     
     func testFindAll() {
         
-        var settings: TextFind.Settings
+        let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: false)
         var textFind: TextFind
         
-        settings = TextFind.Settings(usesRegularExpression: true,
-                                     regexOptions: [.caseInsensitive])
-        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", settings: settings)
+        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", mode: mode)
         
         var matches = [[NSRange]]()
         textFind.findAll { (matchedRanges, stop) in
@@ -188,7 +175,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(matches[1][1], NSRange(location: 10, length: 1))
         
         
-        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "ab", settings: settings)
+        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "ab", mode: mode)
         
         matches = [[NSRange]]()
         textFind.findAll { (matchedRanges, stop) in
@@ -204,14 +191,12 @@ class TextFindTests: XCTestCase {
     
     func testReplaceAll() {
         
-        var settings: TextFind.Settings
         var textFind: TextFind
         var replacementItems: [ReplacementItem]
         var selectedRanges: [NSRange]?
         
-        settings = TextFind.Settings(usesRegularExpression: true,
-                                     regexOptions: [.caseInsensitive])
-        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)", settings: settings)
+        textFind = try! TextFind(for: "abcdefg ABCDEFG", findString: "(?!=a)b(c)(?=d)",
+                                 mode: .regularExpression(options: .caseInsensitive, unescapesReplacement: false))
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "$1\\\\t") { (_, _)  in }
         XCTAssertEqual(replacementItems.count, 1)
@@ -220,10 +205,11 @@ class TextFindTests: XCTestCase {
         XCTAssertNil(selectedRanges)
         
         
-        settings = TextFind.Settings(usesRegularExpression: true,
-                                     inSelection: true)
-        textFind = try! TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc", settings: settings, selectedRanges: [NSRange(location: 1, length: 14),
-                                                                                                                         NSRange(location: 16, length: 7)])
+        textFind = try! TextFind(for: "abcdefg abcdefg abcdefg", findString: "abc",
+                                 mode: .regularExpression(options: [], unescapesReplacement: false),
+                                 inSelection: true,
+                                 selectedRanges: [NSRange(location: 1, length: 14),
+                                                  NSRange(location: 16, length: 7)])
         
         (replacementItems, selectedRanges) = textFind.replaceAll(with: "_") { (_, _)  in }
         XCTAssertEqual(replacementItems.count, 2)
@@ -235,21 +221,4 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(selectedRanges![1], NSRange(location: 14, length: 5))
     }
     
-}
-
-
-
-// MARK: - Helper Extension
-
-private extension TextFind.Settings {
-    
-    /// omittable initializer
-    init(usesRegularExpression: Bool = false, inSelection: Bool = false, textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [], unescapesReplacementString: Bool = false) {
-        
-        self = TextFind.Settings(usesRegularExpression: usesRegularExpression,
-                                 inSelection: inSelection,
-                                 textualOptions: textualOptions,
-                                 regexOptions: regexOptions,
-                                 unescapesReplacementString: unescapesReplacementString)
-    }
 }

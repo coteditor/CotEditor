@@ -142,12 +142,12 @@ extension ReplacementSet {
         guard !string.isEmpty else { return result }
         
         for replacement in self.replacements where replacement.isEnabled {
-            let settings = self.settings.textFindSettings(for: replacement, inSelection: inSelection)
+            let mode = replacement.mode(settings: self.settings)
             
             // -> Invalid replacement sets will just be ignored.
             let textFind: TextFind
             do {
-                textFind = try TextFind(for: string, findString: replacement.findString, settings: settings, selectedRanges: ranges)
+                textFind = try TextFind(for: string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: ranges)
             } catch {
                 print(error.localizedDescription)
                 continue
@@ -186,13 +186,13 @@ extension ReplacementSet {
         guard !string.isEmpty else { return result }
         
         for replacement in self.replacements where replacement.isEnabled {
-            let settings = self.settings.textFindSettings(for: replacement, inSelection: inSelection)
+            let mode = replacement.mode(settings: self.settings)
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
             // -> Invalid replacement sets will be just ignored.
             let textFind: TextFind
             do {
-                textFind = try TextFind(for: result.string, findString: replacement.findString, settings: settings, selectedRanges: findRanges)
+                textFind = try TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges)
             } catch {
                 print(error.localizedDescription)
                 continue
@@ -230,19 +230,21 @@ extension ReplacementSet {
 }
 
 
-private extension ReplacementSet.Settings {
+private extension ReplacementSet.Replacement {
     
-    /// create TextFind.Settings from Replacement
-    func textFindSettings(for replacement: ReplacementSet.Replacement, inSelection: Bool) -> TextFind.Settings {
+    /// create TextFind.Mode with Replacement
+    func mode(settings: ReplacementSet.Settings) -> TextFind.Mode {
         
-        let textualOptions = self.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
-        let regexOptions = self.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
-        
-        return TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
-                                 inSelection: inSelection,
-                                 textualOptions: textualOptions,
-                                 regexOptions: regexOptions,
-                                 unescapesReplacementString: self.unescapesReplacementString)
+        if self.usesRegularExpression {
+            let options = settings.regexOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
+            
+            return .regularExpression(options: options, unescapesReplacement: settings.unescapesReplacementString)
+            
+        } else {
+            let options = settings.textualOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
+            
+            return .textual(options: options)
+        }
     }
     
 }
