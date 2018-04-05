@@ -56,7 +56,9 @@ enum RegularExpressionSyntaxType {
             .map { $0.range }
         
         if self == .character {
-            ranges += string.ranges(bracePair: BracePair("[", "]")).map { NSRange($0, in: string) }
+            ranges += string.ranges(bracePair: BracePair("[", "]"))
+                .map { (string[$0.lowerBound] == "^") ? string.index(after: $0.lowerBound)..<$0.upperBound : $0 }
+                .map { NSRange($0, in: string) }
         }
         
         return ranges
@@ -95,6 +97,7 @@ enum RegularExpressionSyntaxType {
             return [
                 escapeIgnorer + "\\(\\?(:|>|#|=|!|<=|<!|-?[ismwx]+:?)",  // (?...
                 escapeIgnorer + "[()|]",  // () |
+                escapeIgnorer + "(\\[\\^?|\\])",  // [^ ]
                 escapeIgnorer + "\\\\[QE]",  // \Q ... \E
             ]
         case .quantifier:
@@ -117,11 +120,11 @@ enum RegularExpressionSyntaxType {
 
 private extension String {
     
-    /// ranges of most outer pairs of brace
-    func ranges(bracePair: BracePair) -> [ClosedRange<Index>] {
+    /// ranges of inside most outer pairs of brace
+    func ranges(bracePair: BracePair) -> [Range<Index>] {
         
         var index = self.startIndex
-        var braceRanges: [ClosedRange<Index>] = []
+        var braceRanges: [Range<Index>] = []
         
         while index != self.endIndex {
             guard self[index] == bracePair.begin, !self.isCharacterEscaped(at: index) else {
@@ -131,7 +134,7 @@ private extension String {
             
             guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: bracePair) else { break }
             
-            braceRanges.append(index...endIndex)
+            braceRanges.append(self.index(after: index)..<endIndex)
             index = self.index(after: endIndex)
         }
         
