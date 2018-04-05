@@ -147,7 +147,6 @@ extension ReplacementSet {
             let textualOptions = self.settings.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
             let regexOptions = self.settings.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
             let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
-                                             isWrap: false,
                                              inSelection: inSelection,
                                              textualOptions: textualOptions,
                                              regexOptions: regexOptions,
@@ -200,7 +199,6 @@ extension ReplacementSet {
             let textualOptions = self.settings.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
             let regexOptions = self.settings.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
             let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
-                                             isWrap: false,
                                              inSelection: inSelection,
                                              textualOptions: textualOptions,
                                              regexOptions: regexOptions,

@@ -38,7 +38,6 @@ final class TextFind {
     struct Settings {
         
         let usesRegularExpression: Bool
-        let isWrap: Bool
         let inSelection: Bool
         let textualOptions: NSString.CompareOptions  // don't include .backwards
         let regexOptions: NSRegularExpression.Options
@@ -133,11 +132,12 @@ final class TextFind {
     ///
     /// - Parameter:
     ///   - forward: Whether search forward from the insertion.
+    ///   - isWrap: Whetehr search wrap search around.
     /// - Returns:
     ///   - range: The range of matched or nil if not found.
     ///   - count: The total number of matches in the scopes.
     ///   - wrapped: Whether the search was wrapped to find the result.
-    func find(forward: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
+    func find(forward: Bool, isWrap: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
         
         let selectedRange = self.selectedRanges.first!
         let startLocation = forward ? selectedRange.upperBound : selectedRange.location
@@ -165,7 +165,7 @@ final class TextFind {
         var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
-        let isWrapped = (foundRange == nil && self.settings.isWrap)
+        let isWrapped = (foundRange == nil && isWrap)
         if isWrapped {
             foundRange = forward ? (wrappedMatches + intersectionMatches).first : (intersectionMatches + forwardMatches).last
         }

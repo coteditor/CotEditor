@@ -587,7 +587,8 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return 0 }
         
-        let result = textFind.find(forward: forward)
+        let result = textFind.find(forward: forward,
+                                   isWrap: UserDefaults.standard[.findIsWrap])
         
         // found feedback
         if let range = result.range {
@@ -676,7 +677,6 @@ private extension TextFind.Settings {
         if defaults[.findRegexUsesUnicodeBoundaries] { regexOptions.update(with: .useUnicodeWordBoundaries) }
         
         self.init(usesRegularExpression: defaults[.findUsesRegularExpression],
-                  isWrap: defaults[.findIsWrap],
                   inSelection: defaults[.findInSelection],
                   textualOptions: textualOptions,
                   regexOptions: regexOptions,
