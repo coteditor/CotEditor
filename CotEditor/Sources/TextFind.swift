@@ -306,7 +306,7 @@ final class TextFind {
     private func replacementString(from string: String) -> String {
         
         switch self.mode {
-        case .regularExpression(_, let unescapes) where unescapes:
+        case .regularExpression(let unescapes) where unescapes:
             return string.unescaped
         default:
             return string
