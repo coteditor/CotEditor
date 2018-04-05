@@ -130,7 +130,7 @@ enum RegularExpressionSyntaxType {
             case .character where unescapes:
                 return [escapeIgnorer + "\\\\[0tnr\"'\\\\]"]
             case .backReference:
-                return ["\\$[0-9]"]
+                return [escapeIgnorer + "\\$[0-9]"]
             default:
                 return []
             }
