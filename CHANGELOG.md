@@ -10,10 +10,10 @@ unreleased
 - Replace matches with preset replacement definition (Find > Replace with Set).
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
-- Parse regular expression pattern in find string field on regular expression mode:
+- Parse regular expression pattern in find string field in regular expression mode:
     - Syntax highlight.
     - Highlight matching brace by moving cursor.
-    - Select the range surrounded with a brace pair when a brace was double-clicked.
+    - Select the range surrounded by a brace pair by double-clicking a brace.
 - Add a new theme “Resinifictrix”.
 
 
@@ -39,7 +39,13 @@ unreleased
 ### Fixes
 
 - Fix a possible crash with continuous find/replacement.
-- Fix an issue where the find result in the input field of the find panel did not cleared when a new find string was set from the find history menu.
+- Fix an issue where the find result in the input field of the find panel did not clear when a new find string was set from the find history menu.
+
+
+### Todo
+
+- Update help contents.
+- Localize added strings.
 
 
 
