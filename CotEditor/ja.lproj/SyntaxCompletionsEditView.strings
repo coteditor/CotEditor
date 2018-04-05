@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "If no word, the completion list will be generated from coloring settings."; ObjectID = "fJg-PK-TBB"; */
-"fJg-PK-TBB.title" = "設定がない時はカラーリング設定から補完リストが生成されます。";
+"fJg-PK-TBB.title" = "設定がないときはカラーリング設定から補完リストが生成されます。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Completions"; ObjectID = "uGV-wD-V9T"; */
 "uGV-wD-V9T.headerCell.title" = "入力補完";
