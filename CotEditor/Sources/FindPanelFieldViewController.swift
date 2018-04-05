@@ -62,16 +62,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        self.updateFindHistoryMenu()
-        self.updateReplaceHistoryMenu()
+        // sync history menus with user default
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, options: .initial, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, options: .initial, context: nil)
         
-        self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
-        
-        // observe default change for the history menus
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, context: nil)
-        
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, context: nil)
+        // sync text view states with user default
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, options: .initial, context: nil)
     }
     
     

@@ -75,7 +75,7 @@ enum RegularExpressionSyntaxType {
             // -> [abc] will be extracted in ranges(in:) since regex cannot parse nested []
             return [
                 escapeIgnorer + "\\.",  // .
-                escapeIgnorer + "\\\\" + "[^AbGZzQE0-9]",  // all escaped characters
+                escapeIgnorer + "\\\\" + "[^AbGZzQE1-9]",  // all escaped characters
                 escapeIgnorer + "\\\\" + "[sdDefnrsStwWX]",  // \s, \d, ...
                 escapeIgnorer + "\\\\" + "v",  // \v
                 escapeIgnorer + "\\\\" + "\\\\",  // \\
