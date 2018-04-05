@@ -141,18 +141,10 @@ extension ReplacementSet {
         
         guard !string.isEmpty else { return result }
         
-        for replacement in self.replacements {
-            guard replacement.isEnabled else { continue }
+        for replacement in self.replacements where replacement.isEnabled {
+            let settings = self.settings.textFindSettings(for: replacement, inSelection: inSelection)
             
-            let textualOptions = self.settings.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
-            let regexOptions = self.settings.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
-            let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
-                                             inSelection: inSelection,
-                                             textualOptions: textualOptions,
-                                             regexOptions: regexOptions,
-                                             unescapesReplacementString: self.settings.unescapesReplacementString)
-            
-            // -> Invalid replacement sets will be just ignored.
+            // -> Invalid replacement sets will just be ignored.
             let textFind: TextFind
             do {
                 textFind = try TextFind(for: string, findString: replacement.findString, settings: settings, selectedRanges: ranges)
@@ -193,16 +185,8 @@ extension ReplacementSet {
         
         guard !string.isEmpty else { return result }
         
-        for replacement in self.replacements {
-            guard replacement.isEnabled else { continue }
-            
-            let textualOptions = self.settings.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
-            let regexOptions = self.settings.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
-            let settings = TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
-                                             inSelection: inSelection,
-                                             textualOptions: textualOptions,
-                                             regexOptions: regexOptions,
-                                             unescapesReplacementString: self.settings.unescapesReplacementString)
+        for replacement in self.replacements where replacement.isEnabled {
+            let settings = self.settings.textFindSettings(for: replacement, inSelection: inSelection)
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
             // -> Invalid replacement sets will be just ignored.
@@ -241,6 +225,24 @@ extension ReplacementSet {
         }
         
         return result
+    }
+    
+}
+
+
+private extension ReplacementSet.Settings {
+    
+    /// create TextFind.Settings from Replacement
+    func textFindSettings(for replacement: ReplacementSet.Replacement, inSelection: Bool) -> TextFind.Settings {
+        
+        let textualOptions = self.textualOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
+        let regexOptions = self.regexOptions.union(replacement.ignoresCase ? [.caseInsensitive] : [])
+        
+        return TextFind.Settings(usesRegularExpression: replacement.usesRegularExpression,
+                                 inSelection: inSelection,
+                                 textualOptions: textualOptions,
+                                 regexOptions: regexOptions,
+                                 unescapesReplacementString: self.unescapesReplacementString)
     }
     
 }
