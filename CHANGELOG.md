@@ -12,7 +12,7 @@ unreleased
 - Select tabbed window with `⌘+number`.
 - Parse regular expression pattern in find string field on regular expression mode:
     - Highlight matching brace by moving cursor.
-    - Select the range surrounded with a brace pair when a brace was clicked.
+    - Select the range surrounded with a brace pair when a brace was double-clicked.
 - Add a new theme “Resinifictrix”.
 
 
