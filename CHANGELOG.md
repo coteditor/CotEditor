@@ -7,7 +7,7 @@ unreleased
 
 ### New Features
 
-- Replace matches with preset replacement definition (Find > Replace with Set).
+- Replace matches with preset replacement definition (Find > Show Replacement Set).
 - Add outline menu to side bar.
 - Select tabbed window with `⌘+number`.
 - Parse regular expression pattern in find string field in regular expression mode:
@@ -20,15 +20,15 @@ unreleased
 ### Improvements
 
 - Give haptic feedback on pinch zoom when the scale becomes 100%.
+- Adjust background color for selected range in inactive editor to avoid unreadable text, especially by a dark theme.
 - Make the current line highlight semi-transparent if editor opacity is not 100%.
+- Ignore brackets escaped with `\\` on bracket pair highlight.
 - Restore selected inspector pane on window restoration.
 - Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
+- Update highlight style of icons in the side inspector.
 - Delete the feature alerting inconsistent encoding declaration in document on saving.
 - Remove `⌘1` shortcut for Console from default key-binding settings.
-- Adjust background color for selected range in inactive editor to avoid unreadable text, especially by a dark theme.
 - Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
-- Update highlight style of icons in the side inspector.
-- Ignore brackets escaped with `\\` on bracket pair highlight.
 - Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
 - Update “Java” syntax style by adding term `var` (Thanks to Marc Prud'hommeaux!)
 - [trivial] Use monospace digits where suitable.
