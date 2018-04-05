@@ -90,7 +90,7 @@ class FindPanelTextView: NSTextView {
     }
     
     
-    /// update value state
+    /// content string did update
     override func didChangeText() {
         
         super.didChangeText()

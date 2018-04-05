@@ -1401,8 +1401,10 @@ extension EditorTextView {
             }
         }
         
-        // settle result on expanding selection or if there is no possibility for clicking a bracket
-        guard proposedCharRange.length == 0, range.length == 1 else { return range }
+        guard
+            proposedCharRange.length == 0,  // not on expanding selection
+            range.length == 1  // clicked character can be a brace
+            else { return range }
         
         let characterIndex = Range(range, in: self.string)!.lowerBound
         let clickedCharacter = self.string[characterIndex]

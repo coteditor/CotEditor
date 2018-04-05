@@ -54,12 +54,12 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         let range = super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity)
         
-        guard self.isRegularExpressionMode else { return range }
-        
-        guard granularity == .selectByWord else { return range }
-        
-        // settle result on expanding selection or if there is no possibility for clicking a bracket
-        guard proposedCharRange.length == 0, range.length == 1 else { return range }
+        guard
+            self.isRegularExpressionMode,
+            granularity == .selectByWord,
+            proposedCharRange.length == 0,  // not on expanding selection
+            range.length == 1  // clicked character can be a brace
+            else { return range }
         
         let characterIndex = Range(range, in: self.string)!.lowerBound
         
@@ -84,7 +84,10 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
         
-        guard self.isRegularExpressionMode, !stillSelectingFlag else { return }
+        guard
+            self.isRegularExpressionMode,
+            !stillSelectingFlag
+            else { return }
         
         self.highligtMatchingBrace(candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]"))
     }
