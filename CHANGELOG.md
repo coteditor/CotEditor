@@ -39,6 +39,7 @@ unreleased
 ### Fixes
 
 - Fix a possible crash with continuous find/replacement.
+- Fix an issue where the font settings cannot be changed on macOS 10.12.
 - Fix an issue where the find result in the input field of the find panel did not clear when a new find string was set from the find history menu.
 
 

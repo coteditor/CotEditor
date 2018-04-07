@@ -125,8 +125,9 @@ extension PrintPaneController {
     /// show font panel
     @IBAction func showFonts(_ sender: Any?) {
         
-        guard let font = NSFont(name: UserDefaults.standard[.printFontName]!,
-                                size: UserDefaults.standard[.printFontSize]) else { return }
+        let name = UserDefaults.standard[.printFontName]
+        let size = UserDefaults.standard[.printFontSize]
+        let font = NSFont(name: name ?? "", size: size) ?? NSFont.userFont(ofSize: size)!
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
         NSFontManager.shared.orderFrontFontPanel(sender)

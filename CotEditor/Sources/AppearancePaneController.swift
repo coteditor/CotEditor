@@ -576,8 +576,9 @@ extension AppearancePaneController {
     /// show font panel
     @IBAction func showFonts(_ sender: Any?) {
         
-        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
-                                size: UserDefaults.standard[.fontSize]) else { return }
+        let name = UserDefaults.standard[.fontName]
+        let size = UserDefaults.standard[.fontSize]
+        let font = NSFont(name: name ?? "", size: size) ?? NSFont.userFont(ofSize: size)!
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
         NSFontManager.shared.orderFrontFontPanel(sender)
