@@ -1,29 +1,27 @@
-/*
- 
- FindPanelFieldViewController.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2016-06-26.
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2017 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  FindPanelFieldViewController.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2016-06-26.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -38,8 +36,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
     private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
     
-    @IBOutlet private var findTextView: NSTextView?  // NSTextView cannot be weak
-    @IBOutlet private var replacementTextView: NSTextView?  // NSTextView cannot be weak
+    @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
+    @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
@@ -64,12 +62,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        self.updateFindHistoryMenu()
-        self.updateReplaceHistoryMenu()
+        // sync history menus with user default
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, options: .initial, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, options: .initial, context: nil)
         
-        // observe default change for the history menus
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, context: nil)
+        // sync text view states with user default
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, options: .initial, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findRegexUnescapesReplacementString.rawValue, options: .initial, context: nil)
     }
     
     
@@ -93,6 +92,11 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.updateFindHistoryMenu()
         case DefaultKeys.replaceHistory.rawValue:
             self.updateReplaceHistoryMenu()
+        case DefaultKeys.findUsesRegularExpression.rawValue:
+            self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
+            self.replacementTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
+        case DefaultKeys.findRegexUnescapesReplacementString.rawValue:
+            self.replacementTextView?.mode = .replacement(unescapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
         default: break
         }
     }
@@ -152,18 +156,28 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// set selected history string to find field
     @IBAction func selectFindHistory(_ sender: NSMenuItem?) {
         
-        guard let string = sender?.representedObject as? String else { return }
+        guard
+            let string = sender?.representedObject as? String,
+            let textView = self.findTextView,
+            textView.shouldChangeText(in: textView.string.nsRange, replacementString: string)
+            else { return }
         
-        TextFinder.shared.findString = string
+        textView.string = string
+        textView.didChangeText()
     }
     
     
     /// set selected history string to replacement field
     @IBAction func selectReplaceHistory(_ sender: NSMenuItem?) {
         
-        guard let string = sender?.representedObject as? String else { return }
+        guard
+            let string = sender?.representedObject as? String,
+            let textView = self.replacementTextView,
+            textView.shouldChangeText(in: textView.string.nsRange, replacementString: string)
+            else { return }
         
-        TextFinder.shared.replacementString = string
+        textView.string = string
+        textView.didChangeText()
     }
     
     

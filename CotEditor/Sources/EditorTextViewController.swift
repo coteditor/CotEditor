@@ -1,30 +1,28 @@
-/*
- 
- EditorTextViewController.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2016-06-18.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  EditorTextViewController.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2016-06-18.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -43,7 +41,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             textView.firstSyntaxCompletionCharacterSet = {
                 guard let words = syntaxStyle?.completionWords, !words.isEmpty else { return nil }
                 
-                let firstLetters = words.flatMap { $0.unicodeScalars.first }
+                let firstLetters = words.compactMap { $0.unicodeScalars.first }
                 
                 return CharacterSet(firstLetters)
             }()
@@ -136,14 +134,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// text will be edited
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
-        // standardize line endings to LF (Key Typing, Script, Paste, Drop or Replace via Find Panel)
-        // (Line endings replacemement by other text modifications are processed in the following methods.)
-        //
-        // # Methods Standardizing Line Endings on Text Editing
-        //   - File Open:
-        //       - Document > read(from:ofType:)
-        //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
+        // standardize line endings to LF
+        // -> Line endings replacemement on file read is processed in `Document.read(from:ofType:)`
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
             !(textView.undoManager?.isUndoing ?? false),  // = undo
@@ -251,9 +243,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
         //    in order to provide a quick feedback of change to users.
         self.currentLineUpdateTask.run()
-        
-        // highlight matching brace
-        self.highlightMatchingBrace(in: textView)
     }
     
     
@@ -289,41 +278,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     private var scrollView: NSScrollView? {
         
         return self.view as? NSScrollView
-    }
-    
-    
-    /// find the matching brace and highlight it
-    private func highlightMatchingBrace(in textView: NSTextView) {
-        
-        guard UserDefaults.standard[.highlightBraces] else { return }
-        
-        let string = textView.string
-        let selectedRange = textView.selectedRange
-        
-        guard
-            !string.isEmpty,
-            selectedRange.length == 0,
-            selectedRange.location != NSNotFound,
-            selectedRange.location > 0,
-            let cursorIndex = Range(selectedRange, in: string)?.lowerBound
-            else { return }
-        
-        // check the character just before the cursor
-        let lastIndex = string.index(before: cursorIndex)
-        let lastCharacter = string[lastIndex]
-        
-        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-        
-        guard
-            let pair = bracePairs.first(where: { $0.begin == lastCharacter || $0.end == lastCharacter }),
-            let index = (pair.begin == lastCharacter)
-                ? string.indexOfEndBrace(for: pair, at: lastIndex)
-                : string.indexOfBeginBrace(for: pair, at: lastIndex)
-            else { return }
-        
-        let range = NSRange(index...index, in: string)
-        
-        textView.showFindIndicator(for: range)
     }
     
     

@@ -1,30 +1,28 @@
-/*
- 
- SyntaxStyle.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by nakamuxu on 2004-12-22.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  SyntaxStyle.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by nakamuxu on 2004-12-22.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -36,6 +34,9 @@ protocol SyntaxStyleDelegate: class {
 
 
 final class SyntaxStyle: Equatable, CustomStringConvertible {
+    
+    static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
+    
     
     // MARK: Public Properties
     
@@ -50,14 +51,15 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     let completionWords: [String]?
     
-    fileprivate(set) var outlineItems: [OutlineItem] = [] {
+    private(set) var outlineItems: [OutlineItem] = [] {
         
         didSet {
-            // inform delegate about outline items update
+            // inform about outline items update
             DispatchQueue.main.async { [weak self, items = self.outlineItems] in
                 guard let strongSelf = self else { return }
                 
                 strongSelf.delegate?.syntaxStyle(strongSelf, didParseOutline: items)
+                NotificationCenter.default.post(name: SyntaxStyle.didUpdateOutlineNotification, object: strongSelf)
             }
         }
     }
@@ -65,16 +67,16 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     // MARK: Private Properties
     
-    fileprivate let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
-    fileprivate let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
+    private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
+    private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
     
-    fileprivate let highlightDictionary: [SyntaxType: [HighlightDefinition]]
-    fileprivate let pairedQuoteTypes: [String: SyntaxType]
-    fileprivate let outlineDefinitions: [OutlineDefinition]
+    private let highlightDictionary: [SyntaxType: [HighlightDefinition]]
+    private let pairedQuoteTypes: [String: SyntaxType]
+    private let outlineDefinitions: [OutlineDefinition]
     
-    fileprivate var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
+    private var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
     
-    fileprivate private(set) lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
+    private lazy var outlineUpdateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.parseOutline() }
     
     
     
@@ -120,7 +122,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
-            let definitions = wordDicts.flatMap { HighlightDefinition(definition: $0) }
+            let definitions = wordDicts.compactMap { HighlightDefinition(definition: $0) }
             
             guard !definitions.isEmpty else { return }
             
@@ -182,7 +184,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
                 // create from completion definition
                 words = completionDicts
-                    .flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
+                    .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
                     .filter { !$0.isEmpty }
             } else {
                 // create from normal highlighting words
@@ -199,7 +201,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         self.outlineDefinitions = {
             guard let definitionDictionaries = dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]] else { return [] }
             
-            return definitionDictionaries.flatMap { OutlineDefinition(definition: $0) }
+            return definitionDictionaries.compactMap { OutlineDefinition(definition: $0) }
         }()
     }
     
@@ -280,7 +282,7 @@ extension SyntaxStyle {
     // MARK: Private Methods
     
     /// parse outline
-    fileprivate func parseOutline() {
+    private func parseOutline() {
         
         guard let string = self.textStorage?.string, !string.isEmpty else {
             self.outlineItems = []
@@ -309,12 +311,12 @@ extension SyntaxStyle {
 extension SyntaxStyle {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: (() -> Void)? = nil) {  // @escaping
+    func highlightAll(completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
         
         assert(Thread.isMainThread)
         
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
-        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
+        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return nil }
         
         let wholeRange = textStorage.string.nsRange
         
@@ -322,7 +324,7 @@ extension SyntaxStyle {
         if let cache = self.highlightCache, cache.hash == textStorage.string.md5 {
             self.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler?()
-            return
+            return nil
         }
         
         // make sure that string is immutable
@@ -332,19 +334,19 @@ extension SyntaxStyle {
         let string = textStorage.string.immutable
         
         // avoid parsing twice for the same string
-        guard (self.syntaxHighlightParseOperationQueue.operations.last as? SyntaxHighlightParseOperation)?.string != string else { return }
+        guard (self.syntaxHighlightParseOperationQueue.operations.last as? SyntaxHighlightParseOperation)?.string != string else { return nil }
         
-        self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
+        return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
     }
     
     
     /// update highlights around passed-in range
-    func highlight(around editedRange: NSRange) {
+    func highlight(around editedRange: NSRange) -> Progress? {
         
         assert(Thread.isMainThread)
         
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return }
-        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return }
+        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
+        guard let textStorage = self.textStorage, !textStorage.string.isEmpty else { return nil }
         
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = textStorage.string.immutable
@@ -353,7 +355,7 @@ extension SyntaxStyle {
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
-        guard var highlightRange = editedRange.intersection(wholeRange) else { return }
+        guard var highlightRange = editedRange.intersection(wholeRange) else { return nil }
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -399,7 +401,7 @@ extension SyntaxStyle {
             }
         }
         
-        self.highlight(string: string, range: highlightRange)
+        return self.highlight(string: string, range: highlightRange)
     }
     
     
@@ -414,15 +416,15 @@ extension SyntaxStyle {
     
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) {  // @escaping
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
         
-        guard highlightRange.length > 0 else { return }
+        guard highlightRange.length > 0 else { return nil }
         
         // just clear current highlight and return if no coloring needs
         guard self.hasSyntaxHighlighting else {
             self.apply(highlights: [:], range: highlightRange)
             completionHandler?()
-            return
+            return nil
         }
         
         let operation = SyntaxHighlightParseOperation(definitions: self.highlightDictionary,
@@ -432,66 +434,25 @@ extension SyntaxStyle {
         operation.string = string
         operation.parseRange = highlightRange
         
-        // show highlighting indicator for large string
-        var indicator: ProgressViewController?
-        if let storage = self.textStorage, self.shouldShowIndicator(for: highlightRange.length) {
-            // wait for window becomes ready
-            DispatchQueue.global(qos: .background).async {
-                while storage.layoutManagers.isEmpty {
-                    if operation.isFinished || operation.isCancelled { return }
-                    
-                    usleep(100)
-                }
-                
-                // attach the indicator as a sheet
-                DispatchQueue.main.sync {
-                    guard !operation.isFinished, !operation.isCancelled,
-                        let contentViewController = storage.layoutManagers.first?.firstTextView?.viewControllerForSheet
-                        else { return }
-                    
-                    indicator = ProgressViewController(progress: operation.progress, message: NSLocalizedString("Coloring text…", comment: ""))
-                    contentViewController.presentViewControllerAsSheet(indicator!)
-                }
-            }
-        }
-        
-        operation.completionBlock = { [weak self, weak operation] in
-            guard let strongSelf = self, let operation = operation else {
-                DispatchQueue.main.async {
-                    indicator?.dismiss(nil)
-                }
-                return
-            }
-            
-            let highlights = operation.results
-            
-            // update progress message
-            DispatchQueue.main.async {
-                operation.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+        operation.highlightBlock = { [weak self] (highlights) in
+            // cache result if whole text was parsed
+            if highlightRange.length == string.utf16.count {
+                self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
             DispatchQueue.main.async {
-                if !operation.isCancelled {
-                    // cache result if whole text was parsed
-                    if highlightRange.length == string.utf16.count {
-                        strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
-                    }
-                    
-                    // apply color (or give up if the editor's string is changed from the analized string)
-                    if strongSelf.textStorage?.string == string {
-                        strongSelf.apply(highlights: highlights, range: highlightRange)
-                    }
-                }
+                // give up if the editor's string is changed from the analized string
+                guard self?.textStorage?.string == string else { return }
                 
-                // clean up indicator sheet
-                indicator?.dismiss(strongSelf)
-                
-                // do the rest things
-                completionHandler?()
+                self?.apply(highlights: highlights, range: highlightRange)
             }
         }
+            
+        operation.completionBlock = completionHandler
         
         self.syntaxHighlightParseOperationQueue.addOperation(operation)
+        
+        return operation.progress
     }
     
     

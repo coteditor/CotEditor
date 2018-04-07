@@ -124,12 +124,6 @@
 "Save Available Strings" = "Salva le stringhe disponibili";
 "Show Incompatible Characters" = "Mostra caratteri incompatibili";
 
-// Incompatible IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "La codifica è “%@”, ma il set di caratteri IANA nel testo è “%@”.";
-"Do you want to continue processing?" = "Si desidera continuare l’elaborazione?";
-"Do not show this warning for this document again" = "Non mostrare più questo avviso per questo documento";
-"Continue Saving" = "Continua il salvataggio";
-
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Il documento ha delle modifiche non salvate.";
 "Do you want to discard the changes and reopen the document using “%@”?" = "Si desidera annullare le modifiche e riaprire il documento usando “%@”?";  // %@ is an encoding name.
@@ -458,6 +452,13 @@
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nuovo tema dal nome “%@” sarà installato, ma esiste già un tema personalizzato con lo stesso nome.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Si desidera sostituirlo?\nI temi sostituiti non possono essere recuperati.";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.";  // FIXME: added
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: added
 
 
 

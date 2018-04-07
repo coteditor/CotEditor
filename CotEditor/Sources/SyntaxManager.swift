@@ -1,30 +1,28 @@
-/*
- 
- SyntaxManager.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by nakamuxu on 2004-12-24.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  SyntaxManager.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by nakamuxu on 2004-12-24.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Foundation
 import YAML
@@ -156,10 +154,17 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// return style name corresponding to file name
-    func settingName(documentFileName fileName: String?) -> SettingName? {
+    /// return style name corresponding to given variables
+    func settingName(documentFileName fileName: String, content: String) -> SettingName {
         
-        guard let fileName = fileName else { return nil }
+        return self.settingName(documentFileName: fileName)
+            ?? self.settingName(documentContent: content)
+            ?? BundledStyleName.none
+    }
+    
+    
+    /// return style name corresponding to file name
+    func settingName(documentFileName fileName: String) -> SettingName? {
         
         let mappingTables = self.propertyAccessQueue.sync { self.mappingTables }
         
@@ -453,7 +458,7 @@ final class SyntaxManager: SettingFileManager {
             let userMap = userStyles.mapValues { style -> [String: [String]] in
                 style.filter { mappingKeys.contains($0.key) }
                     .mapValues { $0 as? [[String: String]] ?? [] }
-                    .mapValues { $0.flatMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+                    .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
             }
             self.map = self.bundledMap.merging(userMap) { (_, new) in new }
             

@@ -1,29 +1,27 @@
-/*
- 
- StatusBarController.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2014-07-11.
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2017 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  StatusBarController.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-07-11.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -55,10 +53,6 @@ final class StatusBarController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // set background color
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         
         self.byteCountFormatter.isAdaptive = false
         
@@ -152,29 +146,30 @@ final class StatusBarController: NSViewController {
         guard !self.view.isHidden else { return }
         guard let info = self.documentAnalyzer?.info else { return }
         
+        let appearance = self.view.effectiveAppearance
         let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()
         
         if defaults[.showStatusBarLines] {
-            status.appendFormattedState(value: info.lines, label: "Lines")
+            status.appendFormattedState(value: info.lines, label: "Lines", appearance: appearance)
         }
         if defaults[.showStatusBarChars] {
-            status.appendFormattedState(value: info.chars, label: "Characters")
+            status.appendFormattedState(value: info.chars, label: "Characters", appearance: appearance)
         }
         if defaults[.showStatusBarLength] {
-            status.appendFormattedState(value: info.length, label: "Length")
+            status.appendFormattedState(value: info.length, label: "Length", appearance: appearance)
         }
         if defaults[.showStatusBarWords] {
-            status.appendFormattedState(value: info.words, label: "Words")
+            status.appendFormattedState(value: info.words, label: "Words", appearance: appearance)
         }
         if defaults[.showStatusBarLocation] {
-            status.appendFormattedState(value: info.location, label: "Location")
+            status.appendFormattedState(value: info.location, label: "Location", appearance: appearance)
         }
         if defaults[.showStatusBarLine] {
-            status.appendFormattedState(value: info.line, label: "Line")
+            status.appendFormattedState(value: info.line, label: "Line", appearance: appearance)
         }
         if defaults[.showStatusBarColumn] {
-            status.appendFormattedState(value: info.column, label: "Column")
+            status.appendFormattedState(value: info.column, label: "Column", appearance: appearance)
         }
         
         // truncate tail
@@ -219,7 +214,7 @@ final class StatusBarController: NSViewController {
 private extension NSMutableAttributedString {
     
     /// append formatted state
-    func appendFormattedState(value: String?, label: String?) {
+    func appendFormattedState(value: String?, label: String?, appearance: NSAppearance? = nil) {
         
         if !self.string.isEmpty {
             self.append(NSAttributedString(string: "   "))
@@ -228,8 +223,9 @@ private extension NSMutableAttributedString {
         if let label = label {
             let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
                                         NSLocalizedString(label, comment: ""))
+            let white: CGFloat = (appearance?.name == .vibrantDark) ? 0.7 : 0.4
             let attrLabel = NSAttributedString(string: localizedLabel,
-                                               attributes: [.foregroundColor: NSColor(white: 0.4, alpha: 1)])
+                                               attributes: [.foregroundColor: NSColor(white: white, alpha: 1)])
             self.append(attrLabel)
         }
         

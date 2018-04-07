@@ -1,30 +1,28 @@
-/*
- 
- AppDelegate.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by nakamuxu on 2004-12-13.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2013-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  AppDelegate.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by nakamuxu on 2004-12-13.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2013-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -94,6 +92,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // register transformers
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: HexColorTransformer.name)
+        ValueTransformer.setValueTransformer(MoreThanOneTransformer(), forName: MoreThanOneTransformer.name)
         
         super.init()
     }
@@ -317,7 +316,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showAboutPanel(_ sender: Any?) {
      
         var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if APPSTORE
+        #if canImport(Sparkle)
             // Remove Sparkle from 3rd party code list
             if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
                 let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),

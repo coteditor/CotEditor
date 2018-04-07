@@ -1,29 +1,27 @@
-/*
- 
- Theme.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2014-04-12.
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Theme.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-04-12.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Foundation
 import AppKit.NSColor
@@ -47,6 +45,7 @@ struct Theme {
     let backgroundColor: NSColor
     let invisiblesColor: NSColor
     var selectionColor: NSColor { return self.usesSystemSelectionColor ? .selectedTextBackgroundColor : _selectionColor }
+    let secondarySelectionColor: NSColor?
     let insertionPointColor: NSColor
     let lineHighLightColor: NSColor
     
@@ -93,6 +92,8 @@ struct Theme {
         self.name = name
         self.isValid = isValid
         
+        self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
+        
         self.textColor = colors[.text]!
         self.backgroundColor = colors[.background]!
         self.invisiblesColor = colors[.invisibles]!
@@ -100,12 +101,12 @@ struct Theme {
         self.insertionPointColor = colors[.insertionPoint]!
         self.lineHighLightColor = colors[.lineHighlight]!
         
+        self.secondarySelectionColor = self.usesSystemSelectionColor ? nil : NSColor(calibratedWhite: self._selectionColor.brightnessComponent, alpha: 1.0)
+        
         self.syntaxColors = ThemeKey.syntaxKeys.reduce(into: [:]) { (dict, item) in
             dict[SyntaxType(rawValue: item.rawValue)!] = colors[item]!  // The syntax key and theme keys must be the same.
-            
         }
         
-        self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
         self.isDarkTheme = self.backgroundColor.brightnessComponent < self.textColor.brightnessComponent
     }
     

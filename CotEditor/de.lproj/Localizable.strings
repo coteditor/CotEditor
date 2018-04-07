@@ -123,12 +123,6 @@
 "Save Available Strings" = " Verfügbare Zeichenkette speichern";
 "Show Incompatible Characters" = "Inkompatible Zeichen einblenden";
 
-// Incompatible IANA charset name alert
-"The encoding is “%@”, but the IANA charset name in text is “%@”." = "Die Codierung ist „%@“, doch der IANA-Zeichensatzname ist „%@“.";
-"Do you want to continue processing?" = "Möchtest du mit der Bearbeitung fortfahren?";
-"Do not show this warning for this document again" = "Diese Warnung für dieses Dokument nicht erneut anzeigen";
-"Continue Saving" = "Speicherung fortsetzen";
-
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Das Dokument hat ungespeicherte Änderungen.";
 "Do you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen verwerfen und das Dokument mithilfe der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
@@ -457,6 +451,13 @@
 // Theme import duplicated alert
 "A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Ein neues Thema mit dem Namen „%@“ wird installiert, doch ein benutzerdefiniertes Thema mit dem selben Namen existiert bereits.";
 "Do you want to replace it?\nReplaced theme can’t be restored." = "Möchtest du es ersetzen?\nErsetztes Thema kann nicht wiederhergestellt werden.";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Eine neue Ersatzdefinition mit dem Namen „%@“ wird installiert, doch eine Definition mit dem selben Namen existiert bereits.";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Möchtest du sie ersetzen?\nErsetzte Definition kann nicht wiederhergestellt werden.";
 
 
 

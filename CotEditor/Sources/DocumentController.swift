@@ -1,30 +1,28 @@
-/*
- 
- DocumentController.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by nakamuxu on 2004-12-14.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  DocumentController.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by nakamuxu on 2004-12-14.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -36,9 +34,11 @@ protocol AdditionalDocumentPreparing: class {
 
 
 final class DocumentController: NSDocumentController {
-
-    let autosaveDirectoryURL: URL
     
+    private(set) lazy var autosaveDirectoryURL: URL =  try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                                    in: .userDomainMask,
+                                                                                    appropriateFor: nil,
+                                                                                    create: true)
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
@@ -53,11 +53,6 @@ final class DocumentController: NSDocumentController {
     // MARK: Lifecycle
     
     override init() {
-        
-        self.autosaveDirectoryURL = try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                 in: .userDomainMask,
-                                                                 appropriateFor: nil,
-                                                                 create: true)
         
         super.init()
         
@@ -324,7 +319,7 @@ final class DocumentController: NSDocumentController {
         // notify accessibility clients about the value replacement of the transient document with opened document
         document.textStorage.layoutManagers
             .flatMap { $0.textContainers }
-            .flatMap { $0.textView }
+            .compactMap { $0.textView }
             .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
     }
     

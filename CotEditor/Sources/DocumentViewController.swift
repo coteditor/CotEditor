@@ -1,30 +1,28 @@
-/*
- 
- DocumentViewController.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2016-06-05.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  DocumentViewController.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2016-06-05.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -300,8 +298,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
-            DispatchQueue.main.async {
-                syntaxStyle.highlight(around: editedRange)
+            DispatchQueue.main.async { [weak self] in
+                guard let progress = syntaxStyle.highlight(around: editedRange) else { return }
+                
+                self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
             }
         }
         
@@ -740,7 +740,55 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// re-highlight whole content
     private func invalidateSyntaxHighlight() {
         
-        self.syntaxStyle?.highlightAll()
+        guard
+            let progress = self.syntaxStyle?.highlightAll(),
+            let length = self.syntaxStyle?.textStorage?.length
+            else { return }
+        
+        self.presentHighlightIndicator(progress: progress, highlightLength: length)
+    }
+    
+    
+    /// show highlighting indicator for large string
+    private func presentHighlightIndicator(progress: Progress, highlightLength: Int) {
+        
+        /// show indicator only for a large update
+        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
+        guard threshold > 0, highlightLength > threshold else { return }
+        
+        guard let window = self.view.window else {
+            assertionFailure("Expeced window to be non-nil.")
+            return
+        }
+        
+        // display indicator first when window is visible
+        let presentBlock = { [weak self, weak progress] in
+            guard
+                let progress = progress,
+                !progress.isFinished, !progress.isCancelled
+                else { return }
+            
+            let message = NSLocalizedString("Coloring text…", comment: "")
+            let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
+            
+            self?.presentViewControllerAsSheet(indicator)
+        }
+        
+        if window.occlusionState.contains(.visible) {
+            presentBlock()
+        } else {
+            weak var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (_) in
+                
+                guard window.occlusionState.contains(.visible) else { return }
+                
+                if let observer = observer {
+                    NotificationCenter.default.removeObserver(observer)
+                }
+                
+                presentBlock()
+            }
+        }
     }
     
     

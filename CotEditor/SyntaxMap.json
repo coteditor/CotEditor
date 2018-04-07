@@ -265,7 +265,8 @@
     "extensions": [
       "json",
       "geojson",
-      "cottheme"
+      "cottheme",
+      "cotrpl"
     ],
     "filenames": [
 

@@ -1,29 +1,27 @@
-/*
- 
- AlphaWindow.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2014-10-31.
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2017 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  AlphaWindow.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-10-31.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -122,16 +120,17 @@ final class AlphaWindow: NSWindow {
 
 // MARK: Window Tabbing
 
-@available(macOS 10.12, *)
 extension AlphaWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
+    @available(macOS 10.12, *)
     static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
     
     // MARK: Window Methods
     
+    @available(macOS 10.12, *)
     override class var userTabbingPreference: NSWindow.UserTabbingPreference {
         
         if let tabbingPreference = self.tabbingPreference {
@@ -143,6 +142,31 @@ extension AlphaWindow {
         }
         
         return super.userTabbingPreference
+    }
+    
+    
+    /// process user's shortcut input
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        
+        guard !super.performKeyEquivalent(with: event) else { return true }
+        
+        // select tabbed window with `⌘+number`
+        // -> select last tab with `⌘0`
+        guard
+            #available(macOS 10.12, *),
+            event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
+            let characters = event.charactersIgnoringModifiers,
+            let number = Int(characters), number > 0,
+            let windows = self.tabbedWindows,
+            let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
+            else { return false }
+        
+        // prefer existing shortcut that user might define
+        guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
+        
+        window.orderFront(nil)
+        
+        return true
     }
     
 }

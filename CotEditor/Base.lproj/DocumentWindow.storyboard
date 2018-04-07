@@ -249,6 +249,7 @@
                 <tabViewController showSeguePresentationStyle="single" tabStyle="unspecified" id="7te-2x-zAq" customClass="SidebarViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Document Inspector" image="DocumentTemplate" id="Kfj-q6-61N"/>
+                        <tabViewItem label="Outline" image="OutlineTemplate" id="hyM-2j-hen"/>
                         <tabViewItem label="Incompatible Characters" image="ConflictsTemplate" id="JZo-ok-Dks"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
@@ -264,7 +265,9 @@
                     <connections>
                         <outlet property="documentInspectorTabViewItem" destination="Kfj-q6-61N" id="WFA-8N-DmT"/>
                         <outlet property="incompatibleCharactersTabViewItem" destination="JZo-ok-Dks" id="QRQ-Sy-61p"/>
+                        <outlet property="outlineTabViewItem" destination="hyM-2j-hen" id="EFV-Ay-pkJ"/>
                         <segue destination="2Hh-Pq-vvo" kind="relationship" relationship="tabItems" id="dgq-BX-Slv"/>
+                        <segue destination="US1-1U-VH8" kind="relationship" relationship="tabItems" id="4Zo-YO-63m"/>
                         <segue destination="ry4-rh-ZBT" kind="relationship" relationship="tabItems" id="XUT-Cm-0nR"/>
                     </connections>
                 </tabViewController>
@@ -278,7 +281,7 @@
                 <controllerPlaceholder storyboardName="DocumentInspectorView" id="2Hh-Pq-vvo" userLabel="Document Inspector View Controller" sceneMemberID="viewController"/>
                 <customObject id="Eo9-v0-LrD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1178" y="1100"/>
+            <point key="canvasLocation" x="1178" y="1067"/>
         </scene>
         <!--Incompatible Characters View Controller-->
         <scene sceneID="Wud-vX-9dR">
@@ -286,7 +289,15 @@
                 <controllerPlaceholder storyboardName="IncompatibleCharactersView" id="ry4-rh-ZBT" userLabel="Incompatible Characters View Controller" sceneMemberID="viewController"/>
                 <customObject id="fzj-JB-SfU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1191" y="1157"/>
+            <point key="canvasLocation" x="1191" y="1192"/>
+        </scene>
+        <!--Outline View Controller-->
+        <scene sceneID="0hV-Dj-Fqy">
+            <objects>
+                <controllerPlaceholder storyboardName="OutlineView" id="US1-1U-VH8" userLabel="Outline View Controller" sceneMemberID="viewController"/>
+                <customObject id="muC-U5-1Gw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1139" y="1128"/>
         </scene>
         <!--Document View Controller-->
         <scene sceneID="og9-Gf-wXr">
@@ -350,7 +361,7 @@
         <scene sceneID="uT8-5A-k2A">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="JZo-9i-3gf">
+                    <view key="view" id="JZo-9i-3gf" customClass="BackgroundView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="19"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -365,7 +376,7 @@
                                     </binding>
                                 </connections>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="smallSystem"/>
@@ -423,9 +434,10 @@
         <image name="IncompatibleChars" width="24" height="24"/>
         <image name="InvisibleChars_On" width="24" height="24"/>
         <image name="LockedTemplate" width="16" height="16"/>
+        <image name="OutlineTemplate" width="15" height="15"/>
         <image name="PageGuide_On" width="24" height="24"/>
         <image name="Print" width="24" height="24"/>
-        <image name="RTL_On" width="128" height="128"/>
+        <image name="RTL_On" width="24" height="24"/>
         <image name="RecolorAll" width="24" height="24"/>
         <image name="Share" width="24" height="24"/>
         <image name="ShiftLeft" width="24" height="24"/>

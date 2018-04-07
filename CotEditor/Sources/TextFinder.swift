@@ -1,29 +1,27 @@
-/*
- 
- TextFinder.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2015-01-03.
- 
- ------------------------------------------------------------------------------
- 
- © 2015-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  TextFinder.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-01-03.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2015-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -71,6 +69,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Public Properties
     
+    let highlightColor: NSColor
+    
     @objc dynamic var findString = "" {
         
         didSet {
@@ -85,7 +85,7 @@ final class TextFinder: NSResponder {
     // MARK: Private Properties
     
     private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private let highlightColor: NSColor
+    private lazy var replacementSetPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("ReplacementSetPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     
@@ -159,6 +159,18 @@ final class TextFinder: NSResponder {
     
     
     
+    // MARK: Public Methods
+    
+    /// target text view
+    var client: NSTextView? {
+        
+        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
+        
+        return provider.textFinderClient()
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// jump to selection in client
@@ -172,6 +184,13 @@ final class TextFinder: NSResponder {
     @IBAction func showFindPanel(_ sender: Any?) {
         
         self.findPanelController.showWindow(sender)
+    }
+    
+    
+    /// activate replacement set panel
+    @IBAction func showReplacementSetPanel(_ sender: AnyObject?) {
+        
+        self.replacementSetPanelController.showWindow(sender)
     }
     
     
@@ -376,7 +395,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// replace matched string in selection with replacementStirng
+    /// replace matched string in selection with replacementString
     @IBAction func replace(_ sender: Any?) {
         
         if self.replace() {
@@ -390,7 +409,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// replace matched string with replacementStirng and select the next match
+    /// replace matched string with replacementString and select the next match
     @IBAction func replaceAndFind(_ sender: Any?) {
         
         self.replace()
@@ -508,15 +527,6 @@ final class TextFinder: NSResponder {
     
     // MARK: Private Methods
     
-    /// target text view
-    private var client: NSTextView? {
-        
-        guard let provider = NSApp.target(forAction: #selector(TextFinderClientProvider.textFinderClient)) as? TextFinderClientProvider else { return nil }
-        
-        return provider.textFinderClient()
-    }
-    
-    
     /// selected string in the current tareget
     private var selectedString: String? {
         
@@ -552,10 +562,11 @@ final class TextFinder: NSResponder {
         }
         
         let string = textView.string.immutable
-        let settings = TextFind.Settings(defaults: UserDefaults.standard)
+        let mode = TextFind.Mode(defaults: UserDefaults.standard)
+        let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, settings: settings, selectedRanges: textView.selectedRanges as! [NSRange])
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
             case TextFindError.regularExpression:
@@ -577,7 +588,8 @@ final class TextFinder: NSResponder {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return 0 }
         
-        let result = textFind.find(forward: forward)
+        let result = textFind.find(forward: forward,
+                                   isWrap: UserDefaults.standard[.findIsWrap])
         
         // found feedback
         if let range = result.range {
@@ -602,7 +614,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// replace matched string in selection with replacementStirng
+    /// replace matched string in selection with replacementString
     @discardableResult
     private func replace() -> Bool {
         
@@ -649,28 +661,28 @@ private extension UserDefaults {
 }
 
 
-private extension TextFind.Settings {
+private extension TextFind.Mode {
     
     init(defaults: UserDefaults) {
         
-        var textualOptions = NSString.CompareOptions()
-        if defaults[.findIgnoresCase]               { textualOptions.update(with: .caseInsensitive) }
-        if defaults[.findTextIsLiteralSearch]       { textualOptions.update(with: .literal) }
-        if defaults[.findTextIgnoresDiacriticMarks] { textualOptions.update(with: .diacriticInsensitive) }
-        if defaults[.findTextIgnoresWidth]          { textualOptions.update(with: .widthInsensitive) }
-        
-        var regexOptions = NSRegularExpression.Options()
-        if defaults[.findIgnoresCase]                { regexOptions.update(with: .caseInsensitive) }
-        if defaults[.findRegexIsSingleline]          { regexOptions.update(with: .dotMatchesLineSeparators) }
-        if defaults[.findRegexIsMultiline]           { regexOptions.update(with: .anchorsMatchLines) }
-        if defaults[.findRegexUsesUnicodeBoundaries] { regexOptions.update(with: .useUnicodeWordBoundaries) }
-        
-        self.init(usesRegularExpression: defaults[.findUsesRegularExpression],
-                  isWrap: defaults[.findIsWrap],
-                  inSelection: defaults[.findInSelection],
-                  textualOptions: textualOptions,
-                  regexOptions: regexOptions,
-                  unescapesReplacementString: defaults[.findRegexUnescapesReplacementString])
+        if defaults[.findUsesRegularExpression] {
+            var options = NSRegularExpression.Options()
+            if defaults[.findIgnoresCase]                { options.update(with: .caseInsensitive) }
+            if defaults[.findRegexIsSingleline]          { options.update(with: .dotMatchesLineSeparators) }
+            if defaults[.findRegexIsMultiline]           { options.update(with: .anchorsMatchLines) }
+            if defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
+            
+            self = .regularExpression(options: options, unescapesReplacement: defaults[.findRegexUnescapesReplacementString])
+            
+        } else {
+            var options = NSString.CompareOptions()
+            if defaults[.findIgnoresCase]               { options.update(with: .caseInsensitive) }
+            if defaults[.findTextIsLiteralSearch]       { options.update(with: .literal) }
+            if defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
+            if defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
+            
+            self = .textual(options: options)
+        }
     }
 }
 

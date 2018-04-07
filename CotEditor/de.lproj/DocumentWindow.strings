@@ -27,6 +27,8 @@
 
 /* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
 "Kfj-q6-61N.label" = "Dokument-Informationen";
+/* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
+"hyM-2j-hen.label" = "Gliederung";
 /* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
 "JZo-ok-Dks.label" = "Inkompatible Zeichen";
 

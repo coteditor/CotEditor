@@ -1,29 +1,27 @@
-/*
- 
- SwitcherSegmentedCell.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2015-09-17.
- 
- ------------------------------------------------------------------------------
- 
- © 2015-2016 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  SwitcherSegmentedCell.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-09-17.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2015-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -49,18 +47,22 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             // load "selected" icon template
             guard
                 let iconName = self.image(forSegment: segment)?.name(),
-                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))?.tinted(color: .alternateSelectedControlColor)
+                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))
                 else {
                     fatalError("No selected icon template for inspector tab view was found.")
-            }
+                }
+            
+            // tint icon
+            let tintColor = NSColor.highlightColor(for: controlView)
+            let tintedIcon = selectedIcon.tinted(color: tintColor)
             
             // calculate area to draw
             var imageRect = self.imageRect(forBounds: frame)
-            imageRect.origin.y += floor((imageRect.height - selectedIcon.size.height) / 2)
-            imageRect.size = selectedIcon.size
+            imageRect.origin.y += floor((imageRect.height - tintedIcon.size.height) / 2)
+            imageRect.size = tintedIcon.size
             
             // draw icon template
-            selectedIcon.draw(in: imageRect)
+            tintedIcon.draw(in: imageRect)
             
         } else {
             super.drawSegment(segment, inFrame: frame, with: controlView)

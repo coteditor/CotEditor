@@ -77,6 +77,28 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>cotrpl</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>ReplacementsIcon</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array/>
+			<key>CFBundleTypeName</key>
+			<string>CotEditor Replacement Definition</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>com.coteditor.CotEditor.replacement</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>bib</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
@@ -966,13 +988,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3.5</string>
+	<string>3.4.0-beta</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleSpokenName</key>
 	<string>Cot editor</string>
 	<key>CFBundleVersion</key>
-	<string>237</string>
+	<string>241</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
@@ -1068,6 +1090,29 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>cottheme</string>
+				</array>
+				<key>public.mime-type</key>
+				<array>
+					<string>application/json</string>
+				</array>
+			</dict>
+		</dict>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>CotEditor Replacement Definition</string>
+			<key>UTTypeIconFile</key>
+			<string>ReplacementsIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>com.coteditor.CotEditor.replacement</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>cotrpl</string>
 				</array>
 				<key>public.mime-type</key>
 				<array>

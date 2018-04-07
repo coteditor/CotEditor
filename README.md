@@ -24,8 +24,8 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 ### Development Environment
 
 - macOS 10.13 High Sierra
-- Xcode 9.2
-- Swift 4.0.2
+- Xcode 9.3
+- Swift 4.1
 - Sandbox enabled
 
 

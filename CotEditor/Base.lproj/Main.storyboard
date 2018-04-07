@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -110,19 +110,6 @@
                                             </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="79">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Get Info" keyEquivalent="i" id="564">
-                                            <connections>
-                                                <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Show Incompatible Characters" keyEquivalent="I" id="679">
-                                            <connections>
-                                                <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="335">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
                                         <menuItem title="Close" keyEquivalent="w" id="73">
@@ -539,6 +526,30 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="93A-bv-3Qn"/>
+                                        <menuItem title="Inspector" id="sYa-2o-iPk">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Inspector" id="10j-rd-fWr">
+                                                <items>
+                                                    <menuItem title="Document Inspector" keyEquivalent="i" id="564">
+                                                        <connections>
+                                                            <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Outline" id="Gch-XD-tRl">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="toggleOutlineMenu:" target="Ady-hI-5gd" id="YG2-ee-mqD"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Incompatible Characters" id="679">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Show Navigation Bar" id="681">
                                             <connections>
                                                 <action selector="toggleNavigationBar:" target="Ady-hI-5gd" id="iX7-bD-yP3"/>
@@ -899,7 +910,7 @@ CA
                                         <menuItem isSeparatorItem="YES" id="597">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Insert Encoding Name" toolTip="Inesrt encoding name as IANA charset name" id="663">
+                                        <menuItem title="Insert Encoding Name" toolTip="Insert encoding name as IANA charset name" id="663">
                                             <connections>
                                                 <action selector="insertIANACharSetName:" target="Ady-hI-5gd" id="0Sd-vf-sc8"/>
                                             </connections>
@@ -988,6 +999,12 @@ CA
                                                 <action selector="replaceAll:" target="Ady-hI-5gd" id="TsH-hC-9Nj"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Show Replacement Set…" id="o7K-sI-KJA">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showReplacementSetPanel:" target="Ady-hI-5gd" id="YVK-ev-cBB"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
@@ -1052,7 +1069,8 @@ CA
                                         <menuItem isSeparatorItem="YES" id="622">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
-                                        <menuItem title="Console" keyEquivalent="1" id="653">
+                                        <menuItem title="Console" id="653">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showConsolePanel:" target="Ady-hI-5gd" id="80V-8S-iOQ"/>
                                             </connections>

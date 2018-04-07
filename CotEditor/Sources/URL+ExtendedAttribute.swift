@@ -40,7 +40,7 @@ extension URL {
             // get xattr data
             var data = Data(count: length)
             let size = data.withUnsafeMutableBytes {
-                getxattr(fileSystemPath, name, $0, data.count, 0, XATTR_NOFOLLOW)
+                getxattr(fileSystemPath, name, $0, length, 0, XATTR_NOFOLLOW)
             }
             guard size >= 0 else { throw POSIXError(err: errno) }
             

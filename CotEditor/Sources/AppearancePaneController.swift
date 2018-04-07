@@ -1,30 +1,28 @@
-/*
- 
- AppearancePaneController.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2014-04-18.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  AppearancePaneController.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2014-04-18.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 import AudioToolbox
@@ -42,7 +40,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private var themeNames = [String]()
     @objc private dynamic var isBundled = false
     
-    @IBOutlet fileprivate private(set) weak var fontField: AntialiasingTextField?
+    @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private weak var box: NSBox?
     @IBOutlet private var themeTableMenu: NSMenu?
@@ -578,8 +576,9 @@ extension AppearancePaneController {
     /// show font panel
     @IBAction func showFonts(_ sender: Any?) {
         
-        guard let font = NSFont(name: UserDefaults.standard[.fontName]!,
-                                size: UserDefaults.standard[.fontSize]) else { return }
+        let name = UserDefaults.standard[.fontName]
+        let size = UserDefaults.standard[.fontSize]
+        let font = NSFont(name: name ?? "", size: size) ?? NSFont.userFont(ofSize: size)!
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
         NSFontManager.shared.orderFrontFontPanel(sender)
@@ -612,7 +611,7 @@ extension AppearancePaneController {
     // MARK: Private Methods
     
     /// display font name and size in the font field
-    fileprivate func setupFontFamilyNameAndSize() {
+    private func setupFontFamilyNameAndSize() {
         
         let name = UserDefaults.standard[.fontName]!
         let size = UserDefaults.standard[.fontSize]

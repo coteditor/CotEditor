@@ -1,29 +1,27 @@
-/*
- 
- EditorTextView+Indenting
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2016-01-10.
- 
- ------------------------------------------------------------------------------
- 
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  EditorTextView+Indenting.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2016-01-10.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
 
@@ -171,7 +169,7 @@ extension Indenting where Self: NSTextView {
                 .prefix { $0.location < selectedRange.location }
                 .reduce(0) { $0 + (selectedRange.intersection($1) ?? $1).length }
             let lengthDiff = droppedRanges
-                .flatMap { selectedRange.intersection($0) }
+                .compactMap { selectedRange.intersection($0) }
                 .reduce(0) { $0 + $1.length }
             
             return NSRange(location: selectedRange.location - offset,

@@ -59,6 +59,7 @@ types:
 - beginString: "short"
 - beginString: "String"
 - beginString: "void"
+- beginString: "var"
 numbers:
 - beginString: "\\b((\\d+\\.\\d*)|(\\.\\d+))(e[-+]?\\d+)?([lfud]|ul)?\\b"
   ignoreCase: true

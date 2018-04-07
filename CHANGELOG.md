@@ -2,6 +2,54 @@
 Change Log
 ==========================
 
+unreleased
+--------------------------
+
+### New Features
+
+- Replace matches with preset replacement definition (Find > Show Replacement Set).
+- Add outline menu to side bar.
+- Select tabbed window with `⌘+number`.
+- Parse regular expression pattern in find string field in regular expression mode:
+    - Syntax highlight.
+    - Highlight matching brace by moving cursor.
+    - Select the range surrounded by a brace pair by double-clicking a brace.
+- Add a new theme “Resinifictrix”.
+
+
+### Improvements
+
+- Give haptic feedback on pinch zoom when the scale becomes 100%.
+- Adjust background color for selected range in inactive editor to avoid unreadable text, especially by a dark theme.
+- Make the current line highlight semi-transparent if editor opacity is not 100%.
+- Ignore brackets escaped with `\\` on bracket pair highlight.
+- Restore selected inspector pane on window restoration.
+- Move “Get Info” and “Show Incompatible Characters” menu items into newly added View > Inspector submenu.
+- Update highlight style of icons in the side inspector.
+- Delete the feature alerting inconsistent encoding declaration in document on saving.
+- Remove `⌘1` shortcut for Console from default key-binding settings.
+- Avoid switching to inactive tabbed window only to show a syntax highlighting indicator.
+- Remove the workaround for the issue of editor scrolling on early macOS High Sierra that was introduced on CotEditor 3.2.4.
+- Update “Java” syntax style by adding term `var` (Thanks to Marc Prud'hommeaux!)
+- [trivial] Use monospace digits where suitable.
+- [trivial][non-AppStore ver.] Update Sparkle framework.
+- [dev] Update build environment to Xcode 9.3 (Swift 4.1).
+
+
+### Fixes
+
+- Fix a possible crash with continuous find/replacement.
+- Fix an issue where the font settings cannot be changed on macOS 10.12.
+- Fix an issue where the find result in the input field of the find panel did not clear when a new find string was set from the find history menu.
+
+
+### Todo
+
+- Update help contents.
+- Localize added strings.
+
+
+
 3.3.5 (237)
 --------------------------
 
@@ -13,7 +61,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where application could rarely crash under specific environment on saving.
-- Fix an issue where the domain part was ignored when a favicon was dropped from Safari to editor.
+- Fix an issue where the domain part of URL was ignored when a favicon was dropped from Safari to editor.
 - Update “YAML” syntax style to fix outline extraction with a specific case.
 
 

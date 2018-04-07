@@ -24,7 +24,7 @@
                                     <binding destination="NU0-2h-SUe" name="value" keyPath="values.showDocumentInspector" id="Vkm-vm-Q1L"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-kf-A2E">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WVD-kf-A2E" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="446" y="338" width="36" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="36" id="lNd-bS-xpa"/>
@@ -130,7 +130,7 @@
                                     <action selector="openSizeSampleWindow:" target="Qki-Cn-AgK" id="Rr0-RZ-DNc"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Myv-aG-epQ">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Myv-aG-epQ" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="258" y="126" width="44" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="800" drawsBackground="YES" id="FoX-HM-1k7">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="0.0" negativeFormat="-0" usesGroupingSeparator="NO" groupingSize="0" minimumIntegerDigits="1" maximumIntegerDigits="309" groupingSeparator="," id="rNe-c6-KeX">
@@ -157,7 +157,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-PT-iMg">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WTC-PT-iMg" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="136" y="126" width="44" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="42V-pO-wz0"/>
@@ -418,7 +418,7 @@
                                     <binding destination="Qki-Cn-AgK" name="hidden" keyPath="supportsWindowTabbing" id="r8Y-7h-xBG"/>
                                 </connections>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hqW-e1-Q8a">
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hqW-e1-Q8a" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="344" y="91" width="44" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="44" id="kWm-Nn-j3V"/>

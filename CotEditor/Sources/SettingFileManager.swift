@@ -1,29 +1,27 @@
-/*
- 
- SettingFileManager.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2016-06-11.
- 
- ------------------------------------------------------------------------------
- 
- © 2016-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  SettingFileManager.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2016-06-11.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2016-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Foundation
 import AppKit.NSApplication
@@ -32,6 +30,7 @@ enum SettingFileType {
     
     case syntaxStyle
     case theme
+    case replacement
 }
 
 
@@ -242,20 +241,21 @@ class SettingFileManager: SettingManager {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
         
-        var error: NSError?
+        var coordinationError: NSError?
+        var writingError: NSError?
         NSFileCoordinator().coordinate(readingItemAt: sourceURL, options: .withoutChanges,
-                                       writingItemAt: fileURL, options: .forMoving, error: &error)
+                                       writingItemAt: fileURL, options: .forMoving, error: &coordinationError)
         { (newReadingURL, newWritingURL) in
             
             do {
                 try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
                 
-            } catch let writingError as NSError {
-                error = writingError
+            } catch {
+                writingError = error as NSError
             }
         }
         
-        if let error = error {
+        if let error = writingError ?? coordinationError {
             throw error
         }
     }
@@ -333,9 +333,10 @@ class SettingFileManager: SettingManager {
         try self.prepareUserSettingDirectory()
         
         // copy file
-        var error: NSError?
+        var coordinationError: NSError?
+        var writingError: NSError?
         NSFileCoordinator().coordinate(readingItemAt: fileURL, options: [.withoutChanges, .resolvesSymbolicLink],
-                                       writingItemAt: destURL, options: .forReplacing, error: &error)
+                                       writingItemAt: destURL, options: .forReplacing, error: &coordinationError)
         { (newReadingURL, newWritingURL) in
             
             do {
@@ -344,12 +345,12 @@ class SettingFileManager: SettingManager {
                 }
                 try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
                 
-            } catch let writingError as NSError {
-                error = writingError
+            } catch {
+                writingError = error as NSError
             }
         }
         
-        if let error = error {
+        if let error = writingError ?? coordinationError {
             throw SettingFileError(kind: .importFailed, name: name, error: error)
         }
         
@@ -449,6 +450,9 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             
         case .theme:
             return String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), self.name)
+            
+        case .replacement:
+            return String(format: NSLocalizedString("A new replacement definition named “%@” will be installed, but a definition with the same name already exists.", comment: ""), self.name)
         }
     }
     
@@ -461,6 +465,9 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             
         case .theme:
             return NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
+            
+        case .replacement:
+            return NSLocalizedString("Do you want to replace it?\nReplaced definition can’t be restored.", comment: "")
         }
     }
     

@@ -1,45 +1,30 @@
-/*
- 
- Document.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by nakamuxu on 2004-12-08.
- 
- ------------------------------------------------------------------------------
- 
- © 2004-2007 nakamuxu
- © 2014-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  Document.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by nakamuxu on 2004-12-08.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2004-2007 nakamuxu
+//  © 2014-2018 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Cocoa
-
-extension FileAttributeKey {
-    
-    static let extendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
-}
-
-
-private struct FileExtendedAttributeName {
-    
-    static let encoding = "com.apple.TextEncoding"
-    static let verticalText = "com.coteditor.VerticalText"
-}
-
 
 private struct SerializationKey {
     
@@ -52,9 +37,6 @@ private struct SerializationKey {
 
 
 private let uniqueFileIDLength = 13
-
-/// Maximal length to scan encoding declaration
-private let maxEncodingScanLength = 2000
 
 
 
@@ -101,7 +83,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
-    private var suppressesIANACharsetConflictAlert = false
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -303,53 +284,33 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
         
-        let data = try Data(contentsOf: url)  // FILE_READ
-        let attributes = try FileManager.default.attributesOfItem(atPath: url.path)  // FILE_READ
-        let extendedAttributes = attributes[.extendedAttributes] as? [String: Data]
+        let file = try DocumentFile(fileURL: url, readingEncoding: self.readingEncoding)  // FILE_READ
         
         // store file data in order to check the file content identity in `presentedItemDidChange()`
-        self.fileData = data
+        self.fileData = file.data
         
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
         if self.fileURL != nil {
-            self.fileAttributes = attributes
-            let permissions = FilePermissions(mask: (attributes[.posixPermissions] as? UInt16) ?? 0)
+            self.fileAttributes = file.attributes
+            let permissions = FilePermissions(mask: (file.attributes[.posixPermissions] as? UInt16) ?? 0)
             self.isExecutable = permissions.user.contains(.execute)
         }
         
-        // try reading the `com.apple.TextEncoding` extended attribute
-        let xattrEncoding = extendedAttributes?[FileExtendedAttributeName.encoding]?.decodingXattrEncoding
-        self.shouldSaveXattr = (xattrEncoding != nil)
+        // do not save `com.apple.TextEncoding` extended attribute if it doesn't exists
+        self.shouldSaveXattr = (file.xattrEncoding != nil)
         
-        // check file metadata for text orientation
+        // set text orientation state
         // -> Ignore if no metadata found to avoid restoring to the horizontal layout while editing unwantedly.
-        if UserDefaults.standard[.savesTextOrientation], (extendedAttributes?[FileExtendedAttributeName.verticalText] != nil) {
+        if UserDefaults.standard[.savesTextOrientation], file.isVerticalText {
             self.isVerticalText = true
         }
         
-        // decode Data to String
-        let content: String
-        let encoding: String.Encoding
-        if self.readingEncoding == .autoDetection {
-            (content, encoding) = try self.string(data: data, xattrEncoding: xattrEncoding)
-        } else {
-            encoding = self.readingEncoding
-            if !data.isEmpty {
-                content = try String(contentsOf: url, encoding: encoding)  // FILE_READ
-            } else {
-                content = ""
-            }
-        }
-        
         // set read values
-        self.encoding = encoding
-        self.hasUTF8BOM = (encoding == .utf8) && data.hasUTF8BOM
-        
-        if let lineEnding = content.detectedLineEnding {  // keep default if no line endings are found
-            self.lineEnding = lineEnding
-        }
+        self.encoding = file.encoding
+        self.hasUTF8BOM = file.hasUTF8BOM
+        self.lineEnding = file.lineEnding ?? self.lineEnding  // keep default if no line endings are found
         
         // notify
         DispatchQueue.main.async { [weak self] in
@@ -357,25 +318,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         }
         
-        // standardize line endings to LF (File Open)
-        // (Line endings replacemement by other text modifications are processed in the following methods.)
-        //
-        // # Methods Standardizing Line Endings on Text Editing
-        //   - File Open:
-        //       - Document > read(from:ofType:)
-        //   - Key Typing, Script, Paste, Drop or Replace via Find Panel:
-        //       - EditorTextViewController > textView(_:shouldChangeTextInRange:replacementString:)
-        let string = content.replacingLineEndings(with: .LF)
+        // standardize line endings to LF
+        // -> Line endings replacemement by other text modifications is processed in
+        //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
+        let string = file.string.replacingLineEndings(with: .LF)
         
+        // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
         self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
-                ?? SyntaxManager.shared.settingName(documentContent: string)
-                ?? BundledStyleName.none
-            
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
             self.setSyntaxStyle(name: styleName)
         }
     }
@@ -422,7 +376,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
             let textView = self.textStorage.layoutManagers.lazy
-                .flatMap { $0.textViewForBeginningOfSelection }
+                .compactMap { $0.textViewForBeginningOfSelection }
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
             
             textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,
@@ -933,9 +887,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @IBAction override func save(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
-            if continuesSaving {
-                super.save(sender)
-            }
+            guard continuesSaving else { return }
+            
+            super.save(sender)
         }
     }
     
@@ -944,9 +898,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @IBAction override func saveAs(_ sender: Any?) {
         
         self.askSavingSafety { (continuesSaving: Bool) in
-            if continuesSaving {
-                super.saveAs(sender)
-            }
+            guard continuesSaving else { return }
+            
+            super.saveAs(sender)
         }
     }
     
@@ -1093,86 +1047,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// read String from Dada detecting file encoding automatically
-    private func string(data: Data, xattrEncoding: String.Encoding?) throws -> (String, String.Encoding) {
-        
-        // try interpreting with xattr encoding
-        if let xattrEncoding = xattrEncoding {
-            // just trust xattr encoding if content is empty
-            if let string = data.isEmpty ? "" : String(data: data, encoding: xattrEncoding) {
-                return (string, xattrEncoding)
-            }
-        }
-        
-        // detect encoding from data
-        let encodingList = UserDefaults.standard[.encodingList]
-        var usedEncoding: String.Encoding?
-        let string = try String(data: data, suggestedCFEncodings: encodingList, usedEncoding: &usedEncoding)
-        
-        // try reading encoding declaration and take priority of it if it seems well
-        if let scannedEncoding = self.scanEncodingFromDeclaration(content: string), scannedEncoding != usedEncoding {
-            if let string = String(data: data, encoding: scannedEncoding) {
-                return (string, scannedEncoding)
-            }
-        }
-        
-        guard let encoding = usedEncoding else {
-            throw CocoaError(.fileReadUnknownStringEncoding)
-        }
-        
-        return (string, encoding)
-    }
-    
-    
-    /// detect file encoding from encoding declaration like "charset=" or "encoding=" in file content
-    private func scanEncodingFromDeclaration(content: String) -> String.Encoding? {
-        
-        guard UserDefaults.standard[.referToEncodingTag] else { return nil }
-        
-        let suggestedCFEncodings = UserDefaults.standard[.encodingList]
-        
-        return content.scanEncodingDeclaration(upTo: maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings)
-    }
-    
-    
     /// check if can save safely with the current encoding and ask if not
     private func askSavingSafety(completionHandler: @escaping (Bool) -> Void) {
         
         assert(Thread.isMainThread)
         
-        let content = self.string
-        
-        // check encoding declaration in the document and alert if incompatible with saving encoding
-        if !self.suppressesIANACharsetConflictAlert {
-            do {
-                try self.checkSavingSafetyWithIANACharSetName(content: content)
-                
-            } catch {
-                // --> ask directly with a NSAlert for the suppression button
-                let alert = NSAlert(error: error)
-                alert.showsSuppressionButton = true
-                alert.suppressionButton?.title = NSLocalizedString("Do not show this warning for this document again", comment: "")
-                
-                let result = alert.runModal(for: self.windowForSheet!)
-                
-                // do not show the alert in this document again
-                if alert.suppressionButton?.state == .on {
-                    self.suppressesIANACharsetConflictAlert = true
-                }
-                
-                switch result {
-                case .alertSecondButtonReturn:  // == Cancel
-                    return completionHandler(false)
-                default:  // == Continue Saving
-                    break
-                }
-            }
-        }
-        
         // check file encoding for conversion and ask user how to solve
         do {
-            try self.checkSavingSafetyForConverting(content: content)
-            
+            try self.checkSavingSafetyForConverting()
         } catch {
             return self.presentErrorAsSheetSafely(error, recoveryHandler: completionHandler)
         }
@@ -1181,21 +1063,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// check compatibility of saving encoding with the encoding decralation in document
-    private func checkSavingSafetyWithIANACharSetName(content: String) throws {
-        
-        guard let ianaCharSetEncoding = self.scanEncodingFromDeclaration(content: content) else { return }
-        
-        guard self.encoding.isCompatible(ianaCharSetEncoding: ianaCharSetEncoding) else {
-            throw EncodingError(kind: .ianaCharsetNameConflict(ianaEncoding: ianaCharSetEncoding), encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
-        }
-    }
-    
-    
     /// check if the content can be saved with the file encoding
-    private func checkSavingSafetyForConverting(content: String) throws {
+    private func checkSavingSafetyForConverting() throws {
         
-        guard content.canBeConverted(to: self.encoding) else {
+        guard self.string.canBeConverted(to: self.encoding) else {
             throw EncodingError(kind: .lossySaving, encoding: self.encoding, withUTF8BOM: self.hasUTF8BOM, attempter: self)
         }
     }
@@ -1319,7 +1190,6 @@ private struct ReinterpretationError: LocalizedError {
 private struct EncodingError: LocalizedError, RecoverableError {
     
     enum ErrorKind {
-        case ianaCharsetNameConflict(ianaEncoding: String.Encoding)
         case lossySaving
         case lossyConversion
     }
@@ -1335,21 +1205,14 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         let encodingName = String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
         
-        switch self.kind {
-        case .ianaCharsetNameConflict(let ianaEncoding):
-            return String(format: NSLocalizedString("The encoding is “%@”, but the IANA charset name in text is “%@”.", comment: ""),
-                          encodingName, String.localizedName(of: ianaEncoding))
-            
-        case .lossySaving, .lossyConversion:
-            return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
-        }
+        return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
     }
     
     
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .ianaCharsetNameConflict, .lossySaving:
+        case .lossySaving:
             return NSLocalizedString("Do you want to continue processing?", comment: "")
             
         case .lossyConversion:
@@ -1361,10 +1224,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoveryOptions: [String] {
         
         switch self.kind {
-        case .ianaCharsetNameConflict:
-            return [NSLocalizedString("Continue Saving", comment: ""),
-                    NSLocalizedString("Cancel", comment: "")]
-            
         case .lossySaving:
             return [NSLocalizedString("Show Incompatible Characters", comment: ""),
                     NSLocalizedString("Save Available Strings", comment: ""),
@@ -1380,16 +1239,6 @@ private struct EncodingError: LocalizedError, RecoverableError {
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         switch self.kind {
-        case .ianaCharsetNameConflict:
-            switch recoveryOptionIndex {
-            case 0:  // == Continue Saving
-                return true
-            case 1:  // == Cancel
-                return false
-            default:
-                preconditionFailure()
-            }
-            
         case .lossySaving:
             switch recoveryOptionIndex {
             case 0:  // == Show Incompatible Characters
