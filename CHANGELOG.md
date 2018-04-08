@@ -5,6 +5,11 @@ Change Log
 unreleased
 --------------------------
 
+
+
+3.4.0-beta (241)
+--------------------------
+
 ### New Features
 
 - Replace matches with preset replacement definition (Find > Show Replacement Set).
