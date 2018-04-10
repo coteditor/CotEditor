@@ -39,6 +39,8 @@ final class OutlineViewController: NSViewController {
     
     private var documentObserver: NSObjectProtocol?
     private var syntaxStyleObserver: NSObjectProtocol?
+    private var selectionObserver: NSObjectProtocol?
+    private var isOwnSelectionChanging = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
     
@@ -54,6 +56,35 @@ final class OutlineViewController: NSViewController {
             self.observeSyntaxStyle()
             
             self.outlineView?.reloadData()
+        }
+    }
+    
+    
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        if let textView = self.document?.textView {
+            self.invalidateCurrentLocation(textView: textView)
+        }
+        
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
+            guard
+                let textView = notification.object as? NSTextView,
+                textView.window == self.view.window
+                else { return }
+            
+            self.invalidateCurrentLocation(textView: textView)
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
@@ -137,6 +168,21 @@ final class OutlineViewController: NSViewController {
         }
     }
     
+    
+    ///
+    private func invalidateCurrentLocation(textView: NSTextView) {
+        
+        guard let outlineView = self.outlineView else { return }
+        
+        guard
+            let row = self.outlineItems.indexOfItem(for: textView.selectedRange, allowsSeparator: false),
+            outlineView.numberOfRows > row
+            else { return outlineView.deselectAll(nil) }
+        
+        self.isOwnSelectionChanging = true
+        outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+    }
+    
 }
 
 
@@ -146,7 +192,14 @@ extension OutlineViewController: NSOutlineViewDelegate {
     /// selection changed
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        guard let outlineView = notification.object as? NSOutlineView else { return }
+        defer {
+            self.isOwnSelectionChanging = false
+        }
+        
+        guard
+            !self.isOwnSelectionChanging,
+            let outlineView = notification.object as? NSOutlineView
+            else { return }
         
         self.selectOutlineItem(at: outlineView.selectedRow)
     }
