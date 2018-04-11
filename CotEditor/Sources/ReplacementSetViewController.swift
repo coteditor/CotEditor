@@ -43,7 +43,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     private var replacementSet = ReplacementSet()
     private lazy var updateNotificationTask: Debouncer = Debouncer(delay: 1.0) { [weak self] in self?.notifyUpdate() }
     
-    @objc private dynamic var canRemove: Bool = true
+    @objc private dynamic var canRemove: Bool = false
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
     
@@ -236,6 +236,16 @@ private extension NSPasteboard.PasteboardType {
 
 
 extension ReplacementSetViewController: NSTableViewDelegate {
+    
+    /// selection did change
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        guard let tableView = self.tableView else { return }
+        
+        // update
+        self.canRemove = tableView.selectedRow >= 0
+    }
+    
     
     /// make table cell view
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
