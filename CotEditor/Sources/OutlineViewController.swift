@@ -40,7 +40,7 @@ final class OutlineViewController: NSViewController {
     private var documentObserver: NSObjectProtocol?
     private var syntaxStyleObserver: NSObjectProtocol?
     private var selectionObserver: NSObjectProtocol?
-    private var isOwnSelectionChanging = false
+    private var isOwnSelectionChange = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
     
@@ -182,7 +182,7 @@ final class OutlineViewController: NSViewController {
             outlineView.numberOfRows > row
             else { return outlineView.deselectAll(nil) }
         
-        self.isOwnSelectionChanging = true
+        self.isOwnSelectionChange = true
         outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
@@ -196,11 +196,11 @@ extension OutlineViewController: NSOutlineViewDelegate {
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
         defer {
-            self.isOwnSelectionChanging = false
+            self.isOwnSelectionChange = false
         }
         
         guard
-            !self.isOwnSelectionChanging,
+            !self.isOwnSelectionChange,
             let outlineView = notification.object as? NSOutlineView
             else { return }
         
