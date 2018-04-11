@@ -261,29 +261,3 @@ extension OutlineViewController: NSOutlineViewDataSource {
     }
     
 }
-
-
-
-// MARK: -
-
-private extension OutlineItem {
-    
-    func attributedTitle(for baseFont: NSFont) -> NSAttributedString {
-        
-        var font = baseFont
-        var attributes: [NSAttributedStringKey: Any] = [:]
-        if self.style.contains(.bold) {
-            font = NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask)
-        }
-        if self.style.contains(.italic) {
-            font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
-        }
-        if self.style.contains(.underline) {
-            attributes[.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
-        }
-        attributes[.font] = font
-        
-        return NSAttributedString(string: self.title, attributes: attributes)
-    }
-    
-}
