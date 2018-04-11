@@ -9,6 +9,7 @@ opt_in_rules:
   - closure_end_indentation
   - closure_spacing
   - discouraged_optional_boolean
+  - empty_string
   - explicit_init
   - extension_access_modifier
   - file_header
