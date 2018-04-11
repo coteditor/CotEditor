@@ -66,12 +66,12 @@ extension OutlineItem: Equatable {
 
 extension Collection where Element == OutlineItem {
     
-    func indexOfItem(for range: NSRange, allowsSeparator: Bool = true) -> Index? {
+    func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
         
         return self.indices.reversed().first {
             let item = self[$0]
             
-            return item.range.location <= range.location && (allowsSeparator || item.title != .separator)
+            return item.range.location <= characterRange.location && (allowsSeparator || item.title != .separator)
         }
     }
     

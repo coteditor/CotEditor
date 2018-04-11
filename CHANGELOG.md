@@ -5,6 +5,10 @@ Change Log
 unreleased
 --------------------------
 
+### Improvements
+
+- [beta] Synchronize the selection in the outline inspector with the current cursor position in the focused editor.
+
 
 
 3.4.0-beta (241)

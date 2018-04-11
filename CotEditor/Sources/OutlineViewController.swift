@@ -64,9 +64,7 @@ final class OutlineViewController: NSViewController {
         
         super.viewDidAppear()
         
-        if let textView = self.document?.textView {
-            self.invalidateCurrentLocation(textView: textView)
-        }
+        self.invalidateCurrentLocation()
         
         self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
             guard
@@ -147,9 +145,11 @@ final class OutlineViewController: NSViewController {
         
         guard let document = self.document else { return }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] (notification) in
-            self?.observeSyntaxStyle()
-            self?.outlineView?.reloadData()
+        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [unowned self] _ in
+            self.observeSyntaxStyle()
+            self.outlineView?.reloadData()
+            
+            self.invalidateCurrentLocation()
         }
     }
     
@@ -163,18 +163,21 @@ final class OutlineViewController: NSViewController {
         
         guard let syntaxStyle = self.document?.syntaxStyle else { return }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxStyle.didUpdateOutlineNotification, object: syntaxStyle, queue: .main) { [weak self] (notification) in
-            self?.outlineView?.reloadData()
+        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxStyle.didUpdateOutlineNotification, object: syntaxStyle, queue: .main) { [unowned self] _ in
+            self.outlineView?.reloadData()
+            
+            self.invalidateCurrentLocation()
         }
     }
     
     
-    ///
-    private func invalidateCurrentLocation(textView: NSTextView) {
+    /// update row selection to synchronize with editor's cursor location
+    private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
         guard let outlineView = self.outlineView else { return }
         
         guard
+            let textView = textView ?? self.document?.textView,
             let row = self.outlineItems.indexOfItem(for: textView.selectedRange, allowsSeparator: false),
             outlineView.numberOfRows > row
             else { return outlineView.deselectAll(nil) }
