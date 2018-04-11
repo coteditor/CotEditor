@@ -8,6 +8,7 @@ unreleased
 ### Improvements
 
 - [beta] Synchronize the selection in the outline inspector with the current cursor position in the focused editor.
+- [beta] Replace with new one when the last replacement definition row was removed, instead of desabling the remove button.
 
 
 

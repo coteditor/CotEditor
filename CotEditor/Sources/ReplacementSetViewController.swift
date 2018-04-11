@@ -112,9 +112,6 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         tableView.scrollRowToVisible(lastRow)
         tableView.insertRows(at: indexes, withAnimation: .effectGap)
         tableView.editColumn(column, row: lastRow, with: nil, select: true)  // start editing automatically
-        
-        // update remove button
-        self.canRemove = self.replacementSet.replacements.count > 1
     }
     
     
@@ -133,8 +130,9 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         // update data
         self.replacementSet.replacements.remove(in: indexes)
         
-        // update remove button
-        self.canRemove = self.replacementSet.replacements.count > 1
+        if self.replacementSet.replacements.isEmpty {
+            self.add(nil)
+        }
     }
     
     
