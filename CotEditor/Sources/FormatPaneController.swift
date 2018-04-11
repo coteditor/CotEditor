@@ -304,7 +304,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     @IBAction func importSyntaxStyle(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = NSLocalizedString("", comment: "")
+        openPanel.prompt = NSLocalizedString("Import", comment: "")
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false

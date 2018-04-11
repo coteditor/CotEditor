@@ -12,6 +12,11 @@ unreleased
 - [beta] Disable the remove button in replacement set panel when nothing is selected.
 
 
+### Fixes
+
+- [trivial] Fix “Import” button label in the syntax import dialog.
+
+
 
 3.4.0-beta (241)
 --------------------------
