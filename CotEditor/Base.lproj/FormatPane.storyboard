@@ -347,7 +347,7 @@
                                                 </connections>
                                             </menuItem>
                                             <menuItem isSeparatorItem="YES" id="VuU-mF-pIB"/>
-                                            <menuItem title="Show File Mapping Conflicts…" id="hyN-4W-57i">
+                                            <menuItem title="Show File Mapping Conflicts" id="hyN-4W-57i">
                                                 <connections>
                                                     <action selector="openSyntaxMappingConflictSheet:" target="Lgm-sL-YIF" id="ZIS-dI-QoQ"/>
                                                 </connections>

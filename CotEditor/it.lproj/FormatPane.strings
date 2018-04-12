@@ -73,8 +73,8 @@
 "1lj-x8-ouD.title" = "Importa…";
 /* Class = "NSButtonCell"; title = "Reload All Styles"; ObjectID = "FhP-Hj-cWE"; */
 "FhP-Hj-cWE.title" = "Ricarica tutti gli Stili";
-/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts…"; ObjectID = "hyN-4W-57i"; */
-"hyN-4W-57i.title" = "Mostra i conflitti di mappatura file…";
+/* Class = "NSMenuItem"; title = "Show File Mapping Conflicts"; ObjectID = "hyN-4W-57i"; */
+"hyN-4W-57i.title" = "Mostra i conflitti di mappatura file";
 
 
 /* contextual menu */
