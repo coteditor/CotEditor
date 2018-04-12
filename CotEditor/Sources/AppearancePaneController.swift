@@ -416,14 +416,16 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let openPanel = NSOpenPanel()
         openPanel.prompt = NSLocalizedString("Import", comment: "")
         openPanel.resolvesAliases = true
-        openPanel.allowsMultipleSelection = false
+        openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
         openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            self.importTheme(fileURL: openPanel.url!)
+            for url in openPanel.urls {
+                self.importTheme(fileURL: url)
+            }
         }
     }
     

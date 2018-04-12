@@ -350,14 +350,16 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         let openPanel = NSOpenPanel()
         openPanel.prompt = NSLocalizedString("Import", comment: "")
         openPanel.resolvesAliases = true
-        openPanel.allowsMultipleSelection = false
+        openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension, "plist"]
         
         openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            self.importSyntaxStyle(fileURL: openPanel.url!)
+            for url in openPanel.urls {
+                self.importSyntaxStyle(fileURL: url)
+            }
         }
     }
     
