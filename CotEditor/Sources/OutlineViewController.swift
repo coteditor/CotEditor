@@ -114,6 +114,16 @@ final class OutlineViewController: NSViewController {
     }
     
     
+    /// paragraph style for outline items
+    private var itemParagraphStyle: NSParagraphStyle = {
+        
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        
+        return paragraphStyle
+    }()
+    
+    
     /// select current outline item in textView
     private func selectOutlineItem(at row: Int) {
         
@@ -254,10 +264,10 @@ extension OutlineViewController: NSOutlineViewDataSource {
         case .title:
             let font: NSFont = outlineView.font ?? .systemFont(ofSize: NSFont.smallSystemFontSize)
             
-            return outlineItem.attributedTitle(for: font)
+            return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
             
         default:
-            return nil
+            preconditionFailure()
         }
     }
     
