@@ -187,7 +187,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // highlight text view itself
         tableView.setDropRow(-1, dropOperation: .on)
         
-        // show number of theme files
+        // show number of acceptable files
         info.numberOfValidItemsForDrop = urls.count
         
         return .copy
@@ -200,11 +200,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
                                     searchOptions: [.urlReadingFileURLsOnly: true,
                                                     .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
-        { [weak self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+        { [unowned self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
             
             guard let fileURL = draggingItem.item as? URL else { return }
             
-            self?.importTheme(fileURL: fileURL)
+            self.importTheme(fileURL: fileURL)
         }
         
         return true
@@ -420,10 +420,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: NSApplication.ModalResponse) in
+        openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            self?.importTheme(fileURL: openPanel.url!)
+            self.importTheme(fileURL: openPanel.url!)
         }
     }
     

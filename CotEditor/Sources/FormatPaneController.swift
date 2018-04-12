@@ -36,7 +36,7 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSTableViewDelegate {
+final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
 
     // MARK: Private Properties
     
@@ -61,6 +61,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         
         self.syntaxTableView?.doubleAction = #selector(openSyntaxEditSheet)
         self.syntaxTableView?.target = self
+        
+        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
+        self.syntaxTableView?.registerForDraggedTypes([draggedType])
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
@@ -155,7 +158,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
     
     
     
-    // MARK: Delegate
+    // MARK: Delegate & Data Source
     
     /// selected syntax style in "Installed styles" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -201,6 +204,47 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
                                             self?.deleteSyntaxStyle(name: styleName)
                 })]
         }
+    }
+    
+    
+    /// validate when dragged items come to tableView
+    func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
+        
+        // get file URLs from pasteboard
+        let pboard = info.draggingPasteboard()
+        let urls = pboard.readObjects(forClasses: [NSURL.self],
+                                      options: [.urlReadingFileURLsOnly: true])?
+            .compactMap { $0 as? URL }
+            .filter { SyntaxManager.shared.filePathExtensions.contains($0.pathExtension) } ?? []
+        
+        guard !urls.isEmpty else { return [] }
+        
+        // highlight text view itself
+        tableView.setDropRow(-1, dropOperation: .on)
+        
+        // show number of acceptable files
+        info.numberOfValidItemsForDrop = urls.count
+        
+        return .copy
+    }
+    
+    
+    /// check acceptability of dragged items and insert them to table
+    func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
+        
+        info.enumerateDraggingItems(for: tableView, classes: [NSURL.self],
+                                    searchOptions: [.urlReadingFileURLsOnly: true])
+        { [unowned self] (draggingItem: NSDraggingItem, idx: Int, stop: UnsafeMutablePointer<ObjCBool>) in
+            
+            guard
+                let fileURL = draggingItem.item as? URL,
+                SyntaxManager.shared.filePathExtensions.contains(fileURL.pathExtension)
+                else { return }
+            
+            self.importSyntaxStyle(fileURL: fileURL)
+        }
+        
+        return true
     }
     
     
@@ -310,10 +354,10 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         openPanel.canChooseDirectories = false
         openPanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension, "plist"]
         
-        openPanel.beginSheetModal(for: self.view.window!) { [weak self] (result: NSApplication.ModalResponse) in
+        openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            self?.importSyntaxStyle(fileURL: openPanel.url!)
+            self.importSyntaxStyle(fileURL: openPanel.url!)
         }
     }
     
@@ -460,11 +504,11 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate {
         alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in
+        alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             
             guard returnCode == .alertSecondButtonReturn else {  // cancelled
                 // flush swipe action for in case if this deletion was invoked by swiping the style name
-                self?.syntaxTableView?.rowActionsVisible = false
+                self.syntaxTableView?.rowActionsVisible = false
                 return
             }
             
