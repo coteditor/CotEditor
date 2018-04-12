@@ -28,7 +28,8 @@ import AudioToolbox
 // labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
 extension SystemSoundID {
     
-    static let moveToTrash = SystemSoundID(0x10)
+    static let volumeMount = SystemSoundID(1)
+    static let moveToTrash = SystemSoundID(16)
 }
 
 

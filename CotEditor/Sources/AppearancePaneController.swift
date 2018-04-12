@@ -207,6 +207,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             self.importTheme(fileURL: fileURL)
         }
         
+        AudioServicesPlaySystemSound(.volumeMount)
+        
         return true
     }
     

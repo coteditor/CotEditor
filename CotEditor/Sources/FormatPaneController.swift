@@ -244,6 +244,8 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
             self.importSyntaxStyle(fileURL: fileURL)
         }
         
+        AudioServicesPlaySystemSound(.volumeMount)
+        
         return true
     }
     
