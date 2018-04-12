@@ -644,13 +644,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let option = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption]) ?? .notify
         
-        // do nothing
-        if option == .ignore { return }
-        
-        // don't check twice if already notified
-        guard !self.isExternalUpdateAlertShown else { return }
-        
-        guard let fileURL = self.fileURL else { return }
+        guard
+            option != .ignore,
+            !self.isExternalUpdateAlertShown,  // don't check twice if already notified
+            let fileURL = self.fileURL
+            else { return }
         
         var didChange = false
         var fileModificationDate: Date?
@@ -659,11 +657,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
             guard fileModificationDate != self.fileModificationDate else { return }
             
-            // ignore if file contents is the same as the stored file data
+            // check if file contents was changed from the stored file data
             let data = try? Data(contentsOf: newURL)
-            guard data != self.fileData else { return }
-            
-            didChange = true
+            didChange = (data != self.fileData)
         }
         
         guard didChange else {
