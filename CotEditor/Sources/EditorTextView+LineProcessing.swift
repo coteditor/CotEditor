@@ -82,7 +82,7 @@ extension EditorTextView {
                     newSelectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
                                                      length: intersectionRange.length))
                     
-                } else if editRange.contains(selectedRange.location) {
+                } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
                     newSelectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
                                                      length: selectedRange.length))
                 }

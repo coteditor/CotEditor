@@ -16,6 +16,7 @@ unreleased
 
 ### Fixes
 
+- Fix an issue where the cursor position did not follow the line when Move Up command was performed at the end of the document.
 - [trivial] Fix “Import” button label in the syntax import dialog.
 
 
