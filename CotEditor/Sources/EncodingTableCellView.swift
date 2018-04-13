@@ -27,9 +27,7 @@ import Cocoa
 
 private extension NSColor {
     
-    class var alternateDisabledControlTextColor: NSColor {
-        return NSColor(white: 1.0, alpha: 0.75)
-    }
+    static var alternateDisabledControlTextColor = NSColor(white: 1.0, alpha: 0.75)
 }
 
 
