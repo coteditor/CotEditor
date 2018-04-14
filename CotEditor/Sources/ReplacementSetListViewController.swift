@@ -325,7 +325,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         guard let name = self.selectedSettingName else { return }
         
         do {
-            try ReplacementManager.shared.save(replacement: replacementSet, name: name)
+            try ReplacementManager.shared.save(replacementSet: replacementSet, name: name)
         } catch {
             print(error.localizedDescription)
         }

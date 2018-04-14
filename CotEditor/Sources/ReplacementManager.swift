@@ -97,7 +97,7 @@ final class ReplacementManager: SettingFileManager {
     
     
     /// save
-    func save(replacement: ReplacementSet, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
+    func save(replacementSet: ReplacementSet, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -108,7 +108,7 @@ final class ReplacementManager: SettingFileManager {
             encoder.outputFormatting.formUnion(.sortedKeys)
         }
         
-        let data = try encoder.encode(replacement)
+        let data = try encoder.encode(replacementSet)
         let fileURL = self.preparedURLForUserSetting(name: settingName)
         
         try data.write(to: fileURL, options: .atomic)
@@ -136,7 +136,7 @@ final class ReplacementManager: SettingFileManager {
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
         let replacementSet = ReplacementSet()
         
-        try self.save(replacement: replacementSet, name: name) {
+        try self.save(replacementSet: replacementSet, name: name) {
             completionHandler?(name)
         }
     }
