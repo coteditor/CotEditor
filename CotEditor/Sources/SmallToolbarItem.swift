@@ -34,6 +34,7 @@ class SmallToolbarItem: NSToolbarItem {
         get {
             return NSSize(width: 24, height: 24)
         }
+        
         set {
             super.minSize = newValue
         }

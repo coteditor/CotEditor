@@ -37,6 +37,7 @@ class AsynchronousOperation: Operation {
         willSet {
             self.willChangeValue(forKey: #keyPath(isExecuting))
         }
+        
         didSet {
             self.didChangeValue(forKey: #keyPath(isExecuting))
         }
@@ -48,6 +49,7 @@ class AsynchronousOperation: Operation {
         willSet {
             self.willChangeValue(forKey: #keyPath(isFinished))
         }
+        
         didSet {
             self.didChangeValue(forKey: #keyPath(isFinished))
         }

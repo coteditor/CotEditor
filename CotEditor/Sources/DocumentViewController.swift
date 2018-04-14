@@ -400,6 +400,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
         }
+        
         set {
             assert(self.statusBarItem != nil)
             self.statusBarItem?.isCollapsed = !newValue
@@ -468,6 +469,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.document?.isVerticalText ?? false
         }
+        
         set {
             self.document?.isVerticalText = newValue
             
@@ -485,6 +487,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.focusedTextView?.baseWritingDirection ?? .leftToRight
         }
+        
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.baseWritingDirection = newValue
@@ -499,6 +502,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.focusedTextView?.tabWidth ?? 0
         }
+        
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.tabWidth = newValue
@@ -513,6 +517,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
         }
+        
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.isAutomaticTabExpansionEnabled = newValue

@@ -58,6 +58,7 @@ final class OpenPanelAccessoryController: NSViewController {
         get {
             return String.Encoding(rawValue: self._selectedEncoding)
         }
+        
         set {
             self._selectedEncoding = newValue.rawValue
         }

@@ -40,11 +40,12 @@ final class EditorScrollView: NSScrollView {
     /// use custom ruler view
     override class var rulerViewClass: AnyClass! {
         
-        set {
-            super.rulerViewClass = LineNumberView.self
-        }
         get {
             return LineNumberView.self
+        }
+        
+        set {
+            super.rulerViewClass = LineNumberView.self
         }
     }
     

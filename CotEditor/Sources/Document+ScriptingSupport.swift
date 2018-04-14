@@ -41,6 +41,7 @@ extension Document {
     
     /// whole document string (text (NSTextStorage))
     @objc var scriptTextStorage: Any {
+        
         get {
             let textStorage = NSTextStorage(string: self.string)
             
@@ -50,6 +51,7 @@ extension Document {
             
             return textStorage
         }
+        
         set {
             switch newValue {
             case let textStorage as NSTextStorage:
@@ -58,7 +60,8 @@ extension Document {
             case let string as String:
                 self.replaceAllString(with: string)
                 
-            default: break
+            default:
+                assertionFailure()
             }
         }
     }
@@ -70,6 +73,7 @@ extension Document {
         get {
             return self.scriptTextStorage
         }
+        
         set {
             self.scriptTextStorage = newValue
         }
@@ -82,10 +86,11 @@ extension Document {
         get {
             return self.selection
         }
+        
         set {
-            if let string = newValue as? String {
-                self.selection.contents = string
-            }
+            guard let string = newValue as? String else { return }
+            
+            self.selection.contents = string
         }
     }
     
@@ -112,6 +117,7 @@ extension Document {
                 return OSALineEnding.LF
             }
         }
+        
         set {
             let type: LineEnding = {
                 switch newValue {
@@ -150,6 +156,7 @@ extension Document {
         get {
             return self.syntaxStyle.styleName
         }
+        
         set {
             self.setSyntaxStyle(name: newValue)
         }
@@ -162,6 +169,7 @@ extension Document {
         get {
             return self.viewController?.wrapsLines ?? false
         }
+        
         set {
             self.viewController?.wrapsLines = newValue
         }
@@ -174,6 +182,7 @@ extension Document {
         get {
             return self.viewController?.tabWidth ?? 0
         }
+        
         set {
             self.viewController?.tabWidth = newValue
         }
@@ -186,6 +195,7 @@ extension Document {
         get {
             return self.viewController?.isAutoTabExpandEnabled ?? false
         }
+        
         set {
             self.viewController?.isAutoTabExpandEnabled = newValue
         }
@@ -201,7 +211,8 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.encoding(name: encodingName) else { return false }
+            let encoding = EncodingManager.encoding(name: encodingName)
+            else { return false }
         
         if encoding == self.encoding {
             return true

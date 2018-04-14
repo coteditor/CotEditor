@@ -40,10 +40,12 @@ final class ThemeViewController: NSViewController {
     // MARK: Public Properties
     
     @objc dynamic var theme: ThemeDictionary? {
+        
         willSet {
             // remove current observing (in case when the theme is restored)
             self.endThemeObserving()
         }
+        
         didSet {
             // observe input theme
             self.beginThemeObserving()
@@ -54,6 +56,7 @@ final class ThemeViewController: NSViewController {
             }
         }
     }
+    
     @objc dynamic var isBundled = false
     
     weak var delegate: ThemeViewControllerDelegate?

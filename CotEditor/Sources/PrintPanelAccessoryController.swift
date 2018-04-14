@@ -226,6 +226,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return self.settingValue(forKey: .theme) as? String ?? ThemeName.blackAndWhite
         }
+        
         set {
             self.setSettingValue(newValue, forKey: .theme)
         }
@@ -238,6 +239,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return PrintLineNmuberMode(self.settingValue(forKey: .lineNumber) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .lineNumber)
         }
@@ -250,6 +252,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return PrintInvisiblesMode(self.settingValue(forKey: .invisibles) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .invisibles)
         }
@@ -262,6 +265,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return (self.settingValue(forKey: .printsHeader) as? Bool) ?? false
         }
+        
         set {
             self.setSettingValue(newValue, forKey: .printsHeader)
         }
@@ -274,6 +278,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return PrintInfoType(self.settingValue(forKey: .primaryHeaderContent) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderContent)
         }
@@ -286,6 +291,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return AlignmentType(self.settingValue(forKey: .primaryHeaderAlignment) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderAlignment)
         }
@@ -298,6 +304,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return PrintInfoType(self.settingValue(forKey: .secondaryHeaderContent) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderContent)
         }
@@ -310,6 +317,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return AlignmentType(self.settingValue(forKey: .secondaryHeaderAlignment) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderAlignment)
         }
@@ -322,6 +330,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return (self.settingValue(forKey: .printsFooter) as? Bool) ?? false
         }
+        
         set {
             self.setSettingValue(newValue, forKey: .printsFooter)
         }
@@ -334,6 +343,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return PrintInfoType(self.settingValue(forKey: .primaryFooterContent) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryFooterContent)
         }
@@ -346,6 +356,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return AlignmentType(self.settingValue(forKey: .primaryFooterAlignment) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .primaryFooterAlignment)
         }
@@ -358,6 +369,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return PrintInfoType(self.settingValue(forKey: .secondaryFooterContent) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterContent)
         }
@@ -370,6 +382,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         get {
             return AlignmentType(self.settingValue(forKey: .secondaryFooterAlignment) as? Int)
         }
+        
         set {
             self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterAlignment)
         }
@@ -389,6 +402,7 @@ private func localizedSummaryItem(name: String, description: String) -> [NSPrint
 private extension PrintLineNmuberMode {
     
     var description: String {
+        
         switch self {
         case .no:
             return "Don’t Print"
@@ -404,6 +418,7 @@ private extension PrintLineNmuberMode {
 private extension PrintInvisiblesMode {
     
     var description: String {
+        
         switch self {
         case .no:
             return "Don’t Print"
@@ -441,6 +456,7 @@ private extension PrintInfoType {
 private extension AlignmentType {
     
     var description: String {
+        
         switch self {
         case .left:
             return "Left"

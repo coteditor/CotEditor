@@ -54,6 +54,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         get {
             return self.scrollView?.rulersVisible ?? false
         }
+        
         set {
             self.scrollView?.rulersVisible = newValue
         }

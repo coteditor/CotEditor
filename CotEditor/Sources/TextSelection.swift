@@ -111,6 +111,7 @@ final class TextSelection: NSObject {
             
             return textStorage
         }
+        
         set {
             guard let string: String = {
                 switch newValue {
@@ -135,6 +136,7 @@ final class TextSelection: NSObject {
             
             return [range.location, range.length]
         }
+        
         set {
             guard
                 newValue?.count == 2,
@@ -166,6 +168,7 @@ final class TextSelection: NSObject {
             return [startLine,
                     endLine - startLine + 1]
         }
+        
         set {
             let location: Int
             let length: Int

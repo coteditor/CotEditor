@@ -41,6 +41,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         get {
             return .regular
         }
+        
         set {
             super.sizeMode = .regular
         }

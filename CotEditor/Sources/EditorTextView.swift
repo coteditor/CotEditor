@@ -948,6 +948,7 @@ final class EditorTextView: NSTextView, Themable {
         get {
             return (self.layoutManager as? LayoutManager)?.usesAntialias ?? true
         }
+        
         set {
             (self.layoutManager as? LayoutManager)?.usesAntialias = newValue
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
@@ -961,6 +962,7 @@ final class EditorTextView: NSTextView, Themable {
         get {
             return (self.layoutManager as? LayoutManager)?.showsInvisibles ?? false
         }
+        
         set {
             (self.layoutManager as? LayoutManager)?.showsInvisibles = newValue
         }
