@@ -196,8 +196,6 @@
 		2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */; };
 		2A4D47BF2070D42500AB1E7E /* ReplacementSetPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */; };
 		2A4D47C02070D42500AB1E7E /* ReplacementSetPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */; };
-		2A4D47C82081A02600AB1E7E /* NSMenuItem+Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47C72081A02600AB1E7E /* NSMenuItem+Separator.swift */; };
-		2A4D47C92081A02600AB1E7E /* NSMenuItem+Separator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47C72081A02600AB1E7E /* NSMenuItem+Separator.swift */; };
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
 		2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
@@ -934,7 +932,6 @@
 		2A4CB9911D79F38A000D6ADA /* DocumentToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentToolbar.swift; sourceTree = "<group>"; };
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4D47BE2070D42500AB1E7E /* ReplacementSetPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplacementSetPanelController.swift; sourceTree = "<group>"; };
-		2A4D47C72081A02600AB1E7E /* NSMenuItem+Separator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMenuItem+Separator.swift"; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
@@ -1647,7 +1644,6 @@
 				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
-				2A4D47C72081A02600AB1E7E /* NSMenuItem+Separator.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -2869,7 +2865,6 @@
 				2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */,
 				2AD616D01D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */,
 				2A7646E81D48EAF200350674 /* SettingManager.swift in Sources */,
-				2A4D47C92081A02600AB1E7E /* NSMenuItem+Separator.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
@@ -3009,7 +3004,6 @@
 				2AAD61F01D2B0856008FE772 /* String+Range.swift in Sources */,
 				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
-				2A4D47C82081A02600AB1E7E /* NSMenuItem+Separator.swift in Sources */,
 				2AD616CF1D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */,
 				2A6FD9DB1D38F93300A59784 /* EditorTextView+Indenting.swift in Sources */,
 				2AE7A8D920450FE600830830 /* OutlineViewController.swift in Sources */,

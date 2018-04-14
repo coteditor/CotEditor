@@ -128,7 +128,12 @@ final class NavigationBarController: NSViewController {
             for outlineItem in self.outlineItems {
                 switch outlineItem.title {
                 case .separator:
-                    menu.addItem(.seriesableSeparator())
+                    menu.addItem(.separator())
+                    
+                    // add a dummy item to avoid merging series separators to a single separator
+                    let menuItem = NSMenuItem()
+                    menuItem.view = NSView()
+                    menu.addItem(menuItem)
                     
                 default:
                     let menuItem = NSMenuItem()
@@ -159,7 +164,7 @@ final class NavigationBarController: NSViewController {
         
         let nextRange = (menu.indexOfSelectedItem + 1)..<menu.numberOfItems
         
-        return menu.itemArray[nextRange].contains { $0.isEnabled }
+        return menu.itemArray[nextRange].contains { $0.representedObject != nil }
     }
     
     
@@ -223,7 +228,7 @@ final class NavigationBarController: NSViewController {
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
         let index = stride(from: popUp.indexOfSelectedItem - 1, to: 0, by: -1)
-            .first { popUp.item(at: $0)!.isEnabled } ?? 0
+            .first { popUp.item(at: $0)!.representedObject != nil } ?? 0
         
         popUp.menu!.performActionForItem(at: index)
     }
@@ -235,7 +240,7 @@ final class NavigationBarController: NSViewController {
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
         let index = stride(from: popUp.indexOfSelectedItem + 1, to: popUp.numberOfItems, by: 1)
-            .first { popUp.item(at: $0)!.isEnabled }
+            .first { popUp.item(at: $0)!.representedObject != nil }
         
         if let index = index {
             popUp.menu!.performActionForItem(at: index)
@@ -283,7 +288,7 @@ final class NavigationBarController: NSViewController {
                 else { return false }
             
             return itemRange.location <= location
-            } ?? firstItem
+        } ?? firstItem
         
         popUp.select(selectedItem)
         self.updatePrevNextButtonEnabled()
