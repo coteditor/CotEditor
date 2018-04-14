@@ -116,8 +116,8 @@ class ThemeTests: XCTestCase {
     
     func loadThemeWithURL(_ url: URL) -> Theme? {
         
-        let data = try? Data(contentsOf: url)
-        let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! ThemeDictionary
+        let data = try! Data(contentsOf: url)
+        let jsonDict = try! JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! ThemeDictionary
         let themeName = url.deletingPathExtension().lastPathComponent
         
         XCTAssertNotNil(jsonDict)
