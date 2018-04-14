@@ -50,6 +50,12 @@ struct OutlineItem {
         self.style = style
     }
     
+    
+    var isSeparator: Bool {
+        
+        return self.title == .separator
+    }
+    
 }
 
 
@@ -96,7 +102,7 @@ extension Collection where Element == OutlineItem {
         return self.indices.reversed().first {
             let item = self[$0]
             
-            return item.range.location <= characterRange.location && (allowsSeparator || item.title != .separator)
+            return item.range.location <= characterRange.location && (allowsSeparator || !item.isSeparator )
         }
     }
     
