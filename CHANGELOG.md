@@ -11,7 +11,7 @@ unreleased
 - Import syntax style files via drag and drop to the Installed Syntax Styles area.
 - Avoid merging multiple separators next to each other in the navigation menu into a single separator.
 - [beta] Synchronize the selection in the outline inspector with the current cursor position in the focused editor.
-- [beta] Replace with new one when the last replacement definition row was removed, instead of desabling the remove button.
+- [beta] Replace with a new one when the last replacement definition row was removed, instead of disabling the remove button.
 - [beta] Disable the remove button in replacement set panel when nothing is selected.
 - [beta][trivial] Adjust outline inspector layout.
 
