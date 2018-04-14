@@ -999,7 +999,7 @@ CA
                                                 <action selector="replaceAll:" target="Ady-hI-5gd" id="TsH-hC-9Nj"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Replacement Set…" id="o7K-sI-KJA">
+                                        <menuItem title="Replace with Set…" id="o7K-sI-KJA">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showReplacementSetPanel:" target="Ady-hI-5gd" id="YVK-ev-cBB"/>

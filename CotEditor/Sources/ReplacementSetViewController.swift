@@ -94,7 +94,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     
     // MARK: Actions
     
-    /// add a new replacement definition
+    /// add a new replacement rule
     @IBAction func add(_ sender: Any?) {
         
         self.endEditing()
@@ -115,7 +115,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     }
     
     
-    /// remove selected replacement definitions
+    /// remove selected replacement rules
     @IBAction func remove(_ sender: Any?) {
         
         self.endEditing()
