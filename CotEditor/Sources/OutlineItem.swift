@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import AppKit.NSFont
 
 struct OutlineItem {
     
@@ -49,6 +50,12 @@ struct OutlineItem {
         self.style = style
     }
     
+    
+    var isSeparator: Bool {
+        
+        return self.title == .separator
+    }
+    
 }
 
 
@@ -59,6 +66,44 @@ extension OutlineItem: Equatable {
         return lhs.range == rhs.range &&
             lhs.style == rhs.style &&
             lhs.title == rhs.title
+    }
+    
+}
+
+
+extension OutlineItem {
+    
+    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedStringKey: Any] = [:]) -> NSAttributedString {
+        
+        var font = baseFont
+        var attributes = attributes
+        
+        if self.style.contains(.bold) {
+            font = NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask)
+        }
+        if self.style.contains(.italic) {
+            font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
+        }
+        if self.style.contains(.underline) {
+            attributes[.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
+        }
+        attributes[.font] = font
+        
+        return NSAttributedString(string: self.title, attributes: attributes)
+    }
+    
+}
+
+
+extension Collection where Element == OutlineItem {
+    
+    func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
+        
+        return self.indices.reversed().first {
+            let item = self[$0]
+            
+            return item.range.location <= characterRange.location && (allowsSeparator || !item.isSeparator )
+        }
     }
     
 }

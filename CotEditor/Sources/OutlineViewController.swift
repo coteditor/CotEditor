@@ -39,6 +39,8 @@ final class OutlineViewController: NSViewController {
     
     private var documentObserver: NSObjectProtocol?
     private var syntaxStyleObserver: NSObjectProtocol?
+    private var selectionObserver: NSObjectProtocol?
+    private var isOwnSelectionChange = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
     
@@ -54,6 +56,33 @@ final class OutlineViewController: NSViewController {
             self.observeSyntaxStyle()
             
             self.outlineView?.reloadData()
+        }
+    }
+    
+    
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        self.invalidateCurrentLocation()
+        
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
+            guard
+                let textView = notification.object as? NSTextView,
+                textView.window == self.view.window
+                else { return }
+            
+            self.invalidateCurrentLocation(textView: textView)
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
     
@@ -83,6 +112,16 @@ final class OutlineViewController: NSViewController {
         
         return self.representedObject as? Document
     }
+    
+    
+    /// paragraph style for outline items
+    private var itemParagraphStyle: NSParagraphStyle = {
+        
+        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        
+        return paragraphStyle
+    }()
     
     
     /// select current outline item in textView
@@ -116,9 +155,11 @@ final class OutlineViewController: NSViewController {
         
         guard let document = self.document else { return }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] (notification) in
-            self?.observeSyntaxStyle()
-            self?.outlineView?.reloadData()
+        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [unowned self] _ in
+            self.observeSyntaxStyle()
+            self.outlineView?.reloadData()
+            
+            self.invalidateCurrentLocation()
         }
     }
     
@@ -132,9 +173,28 @@ final class OutlineViewController: NSViewController {
         
         guard let syntaxStyle = self.document?.syntaxStyle else { return }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxStyle.didUpdateOutlineNotification, object: syntaxStyle, queue: .main) { [weak self] (notification) in
-            self?.outlineView?.reloadData()
+        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxStyle.didUpdateOutlineNotification, object: syntaxStyle, queue: .main) { [unowned self] _ in
+            self.outlineView?.reloadData()
+            
+            self.invalidateCurrentLocation()
         }
+    }
+    
+    
+    /// update row selection to synchronize with editor's cursor location
+    private func invalidateCurrentLocation(textView: NSTextView? = nil) {
+        
+        guard let outlineView = self.outlineView else { return }
+        
+        guard
+            let textView = textView ?? self.document?.textView,
+            let row = self.outlineItems.indexOfItem(for: textView.selectedRange, allowsSeparator: false),
+            outlineView.numberOfRows > row
+            else { return outlineView.deselectAll(nil) }
+        
+        self.isOwnSelectionChange = true
+        outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        outlineView.scrollRowToVisible(row)
     }
     
 }
@@ -146,7 +206,14 @@ extension OutlineViewController: NSOutlineViewDelegate {
     /// selection changed
     func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        guard let outlineView = notification.object as? NSOutlineView else { return }
+        defer {
+            self.isOwnSelectionChange = false
+        }
+        
+        guard
+            !self.isOwnSelectionChange,
+            let outlineView = notification.object as? NSOutlineView
+            else { return }
         
         self.selectOutlineItem(at: outlineView.selectedRow)
     }
@@ -197,37 +264,11 @@ extension OutlineViewController: NSOutlineViewDataSource {
         case .title:
             let font: NSFont = outlineView.font ?? .systemFont(ofSize: NSFont.smallSystemFontSize)
             
-            return outlineItem.attributedTitle(for: font)
+            return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
             
         default:
-            return nil
+            preconditionFailure()
         }
-    }
-    
-}
-
-
-
-// MARK: -
-
-private extension OutlineItem {
-    
-    func attributedTitle(for baseFont: NSFont) -> NSAttributedString {
-        
-        var font = baseFont
-        var attributes: [NSAttributedStringKey: Any] = [:]
-        if self.style.contains(.bold) {
-            font = NSFontManager.shared.convert(font, toHaveTrait: .boldFontMask)
-        }
-        if self.style.contains(.italic) {
-            font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
-        }
-        if self.style.contains(.underline) {
-            attributes[.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
-        }
-        attributes[.font] = font
-        
-        return NSAttributedString(string: self.title, attributes: attributes)
     }
     
 }

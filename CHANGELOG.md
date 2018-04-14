@@ -2,7 +2,28 @@
 Change Log
 ==========================
 
-unreleased
+3.4.0-beta.2 (243)
+--------------------------
+
+### Improvements
+
+- Enable importing multiple syntax/theme setting files at once.
+- Import syntax style files via drag and drop to the Installed Syntax Styles area.
+- Avoid merging multiple separators next to each other in the navigation menu into a single separator.
+- [beta] Synchronize the selection in the outline inspector with the current cursor position in the focused editor.
+- [beta] Replace with a new one when the last replacement definition row was removed, instead of disabling the remove button.
+- [beta] Disable the remove button in replacement set panel when nothing is selected.
+- [beta][trivial] Adjust outline inspector layout.
+
+
+### Fixes
+
+- Fix an issue where the cursor position did not follow the line when Move Up command was performed at the end of the document.
+- [trivial] Fix some UI text.
+
+
+
+3.4.0-beta (241)
 --------------------------
 
 ### New Features

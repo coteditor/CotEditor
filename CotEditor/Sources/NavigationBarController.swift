@@ -118,41 +118,29 @@ final class NavigationBarController: NSViewController {
             
             let menu = self.outlineMenu!.menu!
             
-            let baseAttributes: [NSAttributedStringKey: Any] = [.font: menu.font,
-                                                                .paragraphStyle: self.menuItemParagraphStyle]
-            
             // add headding item
-            let headdingItem = NSMenuItem(title: NSLocalizedString("<Outline Menu>", comment: ""), action: #selector(selectOutlineMenuItem), keyEquivalent: "")
-            headdingItem.target = self
+            let headdingItem = NSMenuItem()
+            headdingItem.title = NSLocalizedString("<Outline Menu>", comment: "")
             headdingItem.representedObject = NSRange(location: 0, length: 0)
             menu.addItem(headdingItem)
             
             // add outline items
-            for outlineItem in outlineItems {
-                // separator
-                if outlineItem.title == String.separator {
+            for outlineItem in self.outlineItems {
+                switch outlineItem.title {
+                case .separator:
                     menu.addItem(.separator())
-                    continue
+                    
+                    // add a dummy item to avoid merging series separators to a single separator
+                    let menuItem = NSMenuItem()
+                    menuItem.view = NSView()
+                    menu.addItem(menuItem)
+                    
+                default:
+                    let menuItem = NSMenuItem()
+                    menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
+                    menuItem.representedObject = outlineItem.range
+                    menu.addItem(menuItem)
                 }
-                
-                let titleRange = outlineItem.title.nsRange
-                let attrTitle = NSMutableAttributedString(string: outlineItem.title, attributes: baseAttributes)
-                
-                let boldTrait: NSFontTraitMask = outlineItem.style.contains(.bold) ? .boldFontMask : []
-                let italicTrait: NSFontTraitMask = outlineItem.style.contains(.italic) ? .italicFontMask : []
-                attrTitle.applyFontTraits([boldTrait, italicTrait], range: titleRange)
-                
-                if outlineItem.style.contains(.underline) {
-                    attrTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: titleRange)
-                }
-                
-                let menuItem = NSMenuItem()
-                menuItem.attributedTitle = attrTitle
-                menuItem.action = #selector(selectOutlineMenuItem)
-                menuItem.target = self
-                menuItem.representedObject = outlineItem.range
-                
-                menu.addItem(menuItem)
             }
             
             self.invalidateOutlineMenuSelection()
@@ -176,7 +164,7 @@ final class NavigationBarController: NSViewController {
         
         let nextRange = (menu.indexOfSelectedItem + 1)..<menu.numberOfItems
         
-        return menu.itemArray[nextRange].contains { !$0.isSeparatorItem }
+        return menu.itemArray[nextRange].contains { $0.representedObject != nil }
     }
     
     
@@ -240,7 +228,7 @@ final class NavigationBarController: NSViewController {
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
         let index = stride(from: popUp.indexOfSelectedItem - 1, to: 0, by: -1)
-            .first { !popUp.item(at: $0)!.isSeparatorItem } ?? 0
+            .first { popUp.item(at: $0)!.representedObject != nil } ?? 0
         
         popUp.menu!.performActionForItem(at: index)
     }
@@ -252,7 +240,7 @@ final class NavigationBarController: NSViewController {
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
         let index = stride(from: popUp.indexOfSelectedItem + 1, to: popUp.numberOfItems, by: 1)
-            .first { !popUp.item(at: $0)!.isSeparatorItem }
+            .first { popUp.item(at: $0)!.representedObject != nil }
         
         if let index = index {
             popUp.menu!.performActionForItem(at: index)
@@ -295,7 +283,7 @@ final class NavigationBarController: NSViewController {
         let location = self.textView!.selectedRange.location
         let selectedItem = items.reversed().first { menuItem in
             guard
-                !menuItem.isSeparatorItem,
+                menuItem.isEnabled,
                 let itemRange = menuItem.representedObject as? NSRange
                 else { return false }
             

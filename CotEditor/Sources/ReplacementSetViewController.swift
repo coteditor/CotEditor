@@ -43,7 +43,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     private var replacementSet = ReplacementSet()
     private lazy var updateNotificationTask: Debouncer = Debouncer(delay: 1.0) { [weak self] in self?.notifyUpdate() }
     
-    @objc private dynamic var canRemove: Bool = true
+    @objc private dynamic var canRemove: Bool = false
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
     
@@ -94,7 +94,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     
     // MARK: Actions
     
-    /// add a new replacement definition
+    /// add a new replacement rule
     @IBAction func add(_ sender: Any?) {
         
         self.endEditing()
@@ -112,13 +112,10 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         tableView.scrollRowToVisible(lastRow)
         tableView.insertRows(at: indexes, withAnimation: .effectGap)
         tableView.editColumn(column, row: lastRow, with: nil, select: true)  // start editing automatically
-        
-        // update remove button
-        self.canRemove = self.replacementSet.replacements.count > 1
     }
     
     
-    /// remove selected replacement definitions
+    /// remove selected replacement rules
     @IBAction func remove(_ sender: Any?) {
         
         self.endEditing()
@@ -133,8 +130,9 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         // update data
         self.replacementSet.replacements.remove(in: indexes)
         
-        // update remove button
-        self.canRemove = self.replacementSet.replacements.count > 1
+        if self.replacementSet.replacements.isEmpty {
+            self.add(nil)
+        }
     }
     
     
@@ -238,6 +236,16 @@ private extension NSPasteboard.PasteboardType {
 
 
 extension ReplacementSetViewController: NSTableViewDelegate {
+    
+    /// selection did change
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        
+        guard let tableView = self.tableView else { return }
+        
+        // update
+        self.canRemove = tableView.selectedRow >= 0
+    }
+    
     
     /// make table cell view
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

@@ -1,5 +1,5 @@
 //
-//  SeparatorTextFieldCell.swift
+//  SeparatorTextField.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,34 +25,45 @@
 
 import Cocoa
 
-final class SeparatorTextFieldCell: NSTextFieldCell {
+final class SeparatorTextField: NSTextField {
     
-    // MARK: Private Properties
+    // MARK: Text Field Methods
     
-    /// whether it is a separator item
-    var isSeparator: Bool {
+    override var intrinsicContentSize: NSSize {
         
-        return self.stringValue == String.separator
+        var size = super.intrinsicContentSize
+        
+        if self.isSeparator {
+            size.height = ceil(size.height / 2)
+        }
+        
+        return size
     }
     
     
-    
-    // MARK: Menu Item Cell Methods
-    
-    /// draw cell
-    override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+    override func draw(_ dirtyRect: NSRect) {
         
         guard self.isSeparator else {
-            return super.drawInterior(withFrame: cellFrame, in: controlView)
+            return super.draw(dirtyRect)
         }
         
         NSGraphicsContext.saveGraphicsState()
         
         NSColor.gridColor.setStroke()
-        NSBezierPath.strokeLine(from: NSPoint(x: cellFrame.minX, y: floor(cellFrame.midY) + 0.5),
-                                to: NSPoint(x: cellFrame.maxX, y: floor(cellFrame.midY) + 0.5))
+        NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: floor(self.frame.midY) + 0.5),
+                                to: NSPoint(x: dirtyRect.maxX, y: floor(self.frame.midY) + 0.5))
         
         NSGraphicsContext.restoreGraphicsState()
+    }
+    
+    
+    
+    // MARK: Private Properties
+    
+    /// whether it is a separator item
+    private var isSeparator: Bool {
+        
+        return self.stringValue == .separator
     }
     
 }
