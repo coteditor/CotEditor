@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+unreleased
+--------------------------
+
+### Fixes
+
+- Fix an issue where the sidebar inspector did close inward when the pane was switched after opening the sidebar outward.
+
+
+
 3.4.0-beta.2 (243)
 --------------------------
 
