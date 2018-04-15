@@ -8,6 +8,7 @@ unreleased
 ### Fixes
 
 - Fix an issue where the sidebar inspector did close inward when the pane was switched after opening the sidebar outward.
+- [beta][non-AppStore ver.] Fix an issue where options for the application update check in General preferences pane disappeared.
 
 
 

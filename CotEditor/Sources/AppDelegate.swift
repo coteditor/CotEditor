@@ -316,10 +316,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showAboutPanel(_ sender: Any?) {
      
         var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if canImport(Sparkle)
+        #if !canImport(Sparkle)
             // Remove Sparkle from 3rd party code list
             if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
+                let attrString = try? NSMutableAttributedString(url: creditsURL, documentAttributes: nil),
                 let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
             {
                 attrString.replaceCharacters(in: NSRange(range, in: attrString.string), with: "")
