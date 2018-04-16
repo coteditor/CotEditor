@@ -89,7 +89,7 @@ final class TokenTextView: NSTextView {
         let containerOrigin = self.textContainerOrigin
         let radius = (self.font?.pointSize ?? NSFont.systemFontSize) / 3
         
-        textStorage.enumerateAttribute(.token, in: textStorage.string.nsRange, options: []) { (token, range, _) in
+        textStorage.enumerateAttribute(.token, in: textStorage.string.nsRange) { (token, range, _) in
             
             guard token != nil else { return }
             
