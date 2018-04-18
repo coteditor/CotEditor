@@ -211,7 +211,7 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.encoding(name: encodingName)
+            let encoding = EncodingManager.shared.encoding(name: encodingName)
             else { return false }
         
         if encoding == self.encoding {
@@ -236,7 +236,7 @@ extension Document {
         guard
             let arguments = command.evaluatedArguments,
             let encodingName = arguments["newEncoding"] as? String,
-            let encoding = EncodingManager.encoding(name: encodingName) else { return false }
+            let encoding = EncodingManager.shared.encoding(name: encodingName) else { return false }
         
         do {
             try self.reinterpret(encoding: encoding)
