@@ -99,28 +99,28 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// create setting name from a URL (don't care if it exists)
-    func settingName(from fileURL: URL) -> String {
+    final func settingName(from fileURL: URL) -> String {
         
         return fileURL.deletingPathExtension().lastPathComponent
     }
     
     
     /// return a valid setting file URL for the setting name or nil if not exists
-    func urlForUsedSetting(name: String) -> URL? {
+    final func urlForUsedSetting(name: String) -> URL? {
         
         return self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
     }
     
     
     /// return a setting file URL in the application's Resources domain or nil if not exists
-    func urlForBundledSetting(name: String) -> URL? {
+    final func urlForBundledSetting(name: String) -> URL? {
         
         return Bundle.main.url(forResource: name, withExtension: self.filePathExtension, subdirectory: self.directoryName)
     }
     
     
     /// return a setting file URL in the user's Application Support domain or nil if not exists
-    func urlForUserSetting(name: String) -> URL? {
+    final func urlForUserSetting(name: String) -> URL? {
         
         let url = self.preparedURLForUserSetting(name: name)
         
@@ -129,28 +129,28 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// return a setting file URL in the user's Application Support domain (don't care if it exists)
-    func preparedURLForUserSetting(name: String) -> URL {
+    final func preparedURLForUserSetting(name: String) -> URL {
         
         return self.userSettingDirectoryURL.appendingPathComponent(name).appendingPathExtension(self.filePathExtension)
     }
     
     
     /// whether the setting name is one of the bundled settings
-    func isBundledSetting(name: String) -> Bool {
+    final func isBundledSetting(name: String) -> Bool {
         
         return self.bundledSettingNames.contains(name)
     }
     
     
     /// whether the setting name is one of the bundled settings that is customized by user
-    func isCustomizedBundledSetting(name: String) -> Bool {
+    final func isCustomizedBundledSetting(name: String) -> Bool {
         
         return self.isBundledSetting(name: name) && (self.urlForUserSetting(name: name) != nil)
     }
     
     
     /// return setting name appending number suffix without extension
-    func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
+    final func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         
         let suffix = appendCopySuffix ? NSLocalizedString("copy", comment: "copied file suffix") : nil
         
@@ -159,7 +159,7 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// validate whether the setting name is valid (for a file name) and throw an error if not
-    func validate(settingName: String, originalName: String) throws {
+    final func validate(settingName: String, originalName: String) throws {
         
         // just case difference is OK
         guard settingName.caseInsensitiveCompare(originalName) != .orderedSame else { return }
@@ -209,7 +209,7 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// duplicate the setting with name
-    func duplicateSetting(name: String) throws {
+    final func duplicateSetting(name: String) throws {
         
         let newName = self.savableSettingName(for: name, appendCopySuffix: true)
         
@@ -240,7 +240,7 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// export setting file to passed-in URL
-    func exportSetting(name: String, to fileURL: URL) throws {
+    final func exportSetting(name: String, to fileURL: URL) throws {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
         
@@ -284,37 +284,33 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// update internal cache data
-    func updateCache(completionHandler: (() -> Void)? = nil) {  // @escaping
+    final func updateCache(completionHandler: @escaping (() -> Void) = {}) {
         
-        let previousSettingNames = self.settingNames
-        
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+        DispatchQueue.global().async { [weak self, previousSettingNames = self.settingNames] in
+            self?.loadUserSettings()
             
-            strongSelf.loadUserSettings()
-            
-            let didUpdateList = strongSelf.settingNames != previousSettingNames
+            let didUpdateList = self?.settingNames != previousSettingNames
             
             DispatchQueue.main.sync {
                 if didUpdateList {
-                    strongSelf.notifySettingListUpdate()
+                    self?.notifySettingListUpdate()
                 }
                 
-                completionHandler?()
+                completionHandler()
             }
         }
     }
     
     
     /// notify about a line-up update of managed setting files.
-    func notifySettingListUpdate() {
+    final func notifySettingListUpdate() {
         
         NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
     }
     
     
     /// notify about change of a managed setting
-    func notifySettingUpdate(oldName: String, newName: String) {
+    final func notifySettingUpdate(oldName: String, newName: String) {
         
         NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingNotification, object: self,
                                         userInfo: [SettingFileManager.NotificationKey.old: oldName,
