@@ -79,7 +79,7 @@ protocol KeyBindingManagerProtocol: class {
 
 
 
-class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
+class KeyBindingManager: SettingFileManaging, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     
@@ -105,13 +105,10 @@ class KeyBindingManager: SettingManager, KeyBindingManagerProtocol {
     
     
     
-    // MARK: Setting Manager Methods
+    // MARK: Setting File Managing Protocol
     
     /// directory name in both Application Support and bundled Resources
-    override var directoryName: String {
-        
-        return "KeyBindings"
-    }
+    let directoryName: String = "KeyBindings"
     
     
     

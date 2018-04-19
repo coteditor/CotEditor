@@ -35,7 +35,7 @@ enum SettingFileType {
 
 
 
-class SettingFileManager: SettingManager {
+class SettingFileManager: SettingFileManaging {
     
     // MARK: Notification Names
     
@@ -57,6 +57,9 @@ class SettingFileManager: SettingManager {
     
     // MARK: -
     // MARK: Abstract Methods
+    
+    /// directory name in both Application Support and bundled Resources
+    var directoryName: String { preconditionFailure() }
     
     /// path extensions for user setting file
     var filePathExtensions: [String] { preconditionFailure() }
