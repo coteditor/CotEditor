@@ -151,7 +151,7 @@ final class ReplacementManager: SettingFileManager {
         let decoder = JSONDecoder()
         
         // load settings if exists
-        self.settings = self.userSettingFileURLs?.reduce(into: [:]) { (settings, url) in
+        self.settings = self.userSettingFileURLs.reduce(into: [:]) { (settings, url) in
             guard
                 let data = try? Data(contentsOf: url),
                 let setting = try? decoder.decode(ReplacementSet.self, from: data)
@@ -159,8 +159,8 @@ final class ReplacementManager: SettingFileManager {
             
             let name = self.settingName(from: url)
             
-            settings?[name] = setting
-        } ?? [:]
+            settings[name] = setting
+        }
     }
     
 }

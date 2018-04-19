@@ -445,7 +445,8 @@ final class SyntaxManager: SettingFileManager {
     private func loadUserStyles() {
         
         // load user styles if exists
-        if let urls = self.userSettingFileURLs {
+        let urls = self.userSettingFileURLs
+        if !urls.isEmpty {
             let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls.reduce(into: [:]) { (dict, url) in
                 guard let style = try? self.settingDictionary(fileURL: url) else { return }
                 let styleName = self.settingName(from: url)

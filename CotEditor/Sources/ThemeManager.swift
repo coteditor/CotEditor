@@ -248,10 +248,8 @@ final class ThemeManager: SettingFileManager {
         var themeNameSet = OrderedSet(self.bundledThemeNames)
         
         // load user themes if exists
-        if let urls = self.userSettingFileURLs {
-            let userThemeNames = urls.map { self.settingName(from: $0) }
-            themeNameSet.append(contentsOf: userThemeNames)
-        }
+        let userThemeNames = self.userSettingFileURLs.map { self.settingName(from: $0) }
+        themeNameSet.append(contentsOf: userThemeNames)
         
         self.themeNames = themeNameSet.array
         

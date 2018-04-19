@@ -86,12 +86,12 @@ class SettingFileManager: SettingManager {
     
     
     /// file urls for user settings
-    final var userSettingFileURLs: [URL]? {
+    final var userSettingFileURLs: [URL] {
         
         return (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
                                                              includingPropertiesForKeys: nil,
                                                              options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles]))?
-            .filter { self.filePathExtensions.contains($0.pathExtension) }
+            .filter { self.filePathExtensions.contains($0.pathExtension) } ?? []
     }
     
     
