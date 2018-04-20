@@ -134,7 +134,7 @@ final class ThemeManager: SettingFileManager {
         
         guard
             let themeURL = self.urlForUsedSetting(name: name),
-            let themeDictionary = try? self.settingDictionary(fileURL: themeURL)
+            let themeDictionary = try? self.loadSettingDictionary(at: themeURL)
             else { return nil }
         
         return themeDictionary
@@ -225,11 +225,11 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// Return ThemeDictionary from a file at the URL.
+    /// Load ThemeDictionary from a file at the URL.
     ///
     /// - parameter fileURL: URL to a setting file.
     /// - throws: CocoaError
-    private func settingDictionary(fileURL: URL) throws -> ThemeDictionary {
+    private func loadSettingDictionary(at fileURL: URL) throws -> ThemeDictionary {
         
         let data = try Data(contentsOf: fileURL)
         let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
@@ -266,7 +266,7 @@ final class ThemeManager: SettingFileManager {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
         
-        return try! self.settingDictionary(fileURL: url)
+        return try! self.loadSettingDictionary(at: url)
     }
     
 }

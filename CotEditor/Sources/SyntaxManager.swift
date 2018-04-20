@@ -250,7 +250,7 @@ final class SyntaxManager: SettingFileManager {
         // load from file
         guard
             let url = self.urlForUsedSetting(name: name),
-            let style = try? self.settingDictionary(fileURL: url)
+            let style = try? self.loadSettingDictionary(at: url)
             else { return nil }
         
         // store newly loaded style
@@ -267,7 +267,7 @@ final class SyntaxManager: SettingFileManager {
         
         guard let url = self.urlForBundledSetting(name: name) else { return nil }
         
-        return try? self.settingDictionary(fileURL: url)
+        return try? self.loadSettingDictionary(at: url)
     }
     
     
@@ -315,8 +315,6 @@ final class SyntaxManager: SettingFileManager {
     
     /// save setting file
     func save(settingDictionary: StyleDictionary, name: SettingName, oldName: SettingName?) throws {
-        
-        guard !name.isEmpty else { return }
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -403,11 +401,11 @@ final class SyntaxManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// Return StyleDictionary at file URL.
+    /// Load StyleDictionary at file URL.
     ///
     /// - parameter fileURL: URL to a setting file.
     /// - throws: CocoaError
-    private func settingDictionary(fileURL: URL) throws -> StyleDictionary {
+    private func loadSettingDictionary(at fileURL: URL) throws -> StyleDictionary {
         
         let data = try Data(contentsOf: fileURL)
         let yaml = try YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves)
@@ -423,9 +421,7 @@ final class SyntaxManager: SettingFileManager {
     /// return whether contents of given highlight definition is the same as bundled one
     private func isEqualToBundledSetting(_ style: StyleDictionary, name: SettingName) -> Bool {
         
-        guard self.isBundledSetting(name: name) else { return false }
-        
-        let bundledStyle = self.bundledSettingDictionary(name: name)
+        guard let bundledStyle = self.bundledSettingDictionary(name: name) else { return false }
         
         return NSDictionary(dictionary: style).isEqual(to: bundledStyle)
     }
@@ -446,7 +442,7 @@ final class SyntaxManager: SettingFileManager {
         let urls = self.userSettingFileURLs
         if !urls.isEmpty {
             let userStyles: [SyntaxManager.SettingName: StyleDictionary] = urls.reduce(into: [:]) { (dict, url) in
-                guard let style = try? self.settingDictionary(fileURL: url) else { return }
+                guard let style = try? self.loadSettingDictionary(at: url) else { return }
                 let styleName = self.settingName(from: url)
                 
                 dict[styleName] = style

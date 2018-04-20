@@ -283,7 +283,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
             AudioServicesPlaySystemSound(.moveToTrash)
             
             // add new blank setting to avoid empty list
-            if ReplacementManager.shared.settings.isEmpty {
+            if ReplacementManager.shared.settingNames.isEmpty {
                 self.addSetting(nil)
             }
         }
@@ -325,7 +325,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         guard let name = self.selectedSettingName else { return }
         
         do {
-            try ReplacementManager.shared.save(replacementSet: replacementSet, name: name)
+            try ReplacementManager.shared.save(setting: replacementSet, name: name)
         } catch {
             print(error.localizedDescription)
         }
@@ -427,7 +427,7 @@ extension ReplacementSetListViewController: NSTableViewDelegate {
         
         guard
             let settingName = self.selectedSettingName,
-            let setting = ReplacementManager.shared.settings[settingName]
+            let setting = ReplacementManager.shared.setting(name: settingName)
             else { return }
         
         self.mainViewController?.change(replacementSet: setting)
