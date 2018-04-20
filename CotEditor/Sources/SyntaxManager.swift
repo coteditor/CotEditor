@@ -303,10 +303,8 @@ final class SyntaxManager: SettingFileManager {
         
         try super.restoreSetting(name: name)
         
-        // update internal cache
-        let dictionary = self.bundledSettingDictionary(name: name)
         self.propertyAccessQueue.sync {
-            self.cachedSettingDictionaries[name] = dictionary
+            self.cachedSettingDictionaries[name] = nil
         }
         
         self.updateCache { [weak self] in
