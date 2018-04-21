@@ -47,7 +47,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         _defaultKeyBindings = [KeyBinding(action: SnippetKeyBindingManager.action(index: 0),
                                           shortcut: Shortcut(modifierMask: .shift, keyEquivalent: "\r"))]
-        self.defaultSnippets = UserDefaults.standard[.insertCustomTextArray] ?? []
+        self.defaultSnippets = UserDefaults.standard.registeredValue(for: .insertCustomTextArray)
         
         super.init()
         

@@ -68,6 +68,13 @@ extension UserDefaults {
     }
     
     
+    /// return the initial value for key registered on `register(defaults:)`
+    func registeredValue<T>(for key: DefaultKey<T>) -> T {
+        
+        return UserDefaults.standard.volatileDomain(forName: "NSRegistrationDomain")[key.rawValue] as! T
+    }
+    
+    
     subscript(key: DefaultKey<Bool>) -> Bool {
         
         get { return self.bool(forKey: key.rawValue) }
