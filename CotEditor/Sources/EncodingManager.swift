@@ -147,8 +147,8 @@ final class EncodingManager: NSObject {
     }
     
     
-    // MARK: Private Methods
     
+    // MARK: Private Methods
     
     /// convert invalid encoding values (-1) to `kCFStringEncodingInvalidId`
     private func sanitizeEncodingListSetting() {
