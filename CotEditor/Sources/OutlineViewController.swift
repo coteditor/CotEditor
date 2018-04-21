@@ -47,7 +47,17 @@ final class OutlineViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        if let observer = self.documentObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        if let observer = self.syntaxStyleObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
     
     override var representedObject: Any? {
         
