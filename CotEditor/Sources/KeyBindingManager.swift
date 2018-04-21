@@ -83,24 +83,18 @@ class KeyBindingManager: SettingFileManaging, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     
-    private(set) lazy var keyBindings: Set<KeyBinding> = {
+    final private(set) lazy var keyBindings: Set<KeyBinding> = {
         
         guard
             let data = try? Data(contentsOf: self.keyBindingSettingFileURL),
             let customKeyBindings = try? PropertyListDecoder().decode([KeyBinding].self, from: data)
-            else {
-                return self.defaultKeyBindings
-        }
+            else { return self.defaultKeyBindings }
         
-        let sortedKeyBindings = Set(customKeyBindings.filter({ $0.shortcut?.isValid ?? true })).sorted()
-        let customizedActions = sortedKeyBindings.map { $0.action }
-        let customizedShortcuts = sortedKeyBindings.compactMap { $0.shortcut }
+        let keyBindings = customKeyBindings.filter { $0.shortcut?.isValid ?? true }
         let defaultKeyBindings = self.defaultKeyBindings
-            .filter { !customizedActions.contains($0.action) && !customizedShortcuts.contains($0.shortcut!) }
+            .filter { kb in !keyBindings.contains { $0.action == kb.action || $0.shortcut == kb.shortcut } }
         
-        let keyBindings = (defaultKeyBindings + sortedKeyBindings).filter { $0.shortcut != nil }
-        
-        return Set(keyBindings)
+        return Set(defaultKeyBindings + keyBindings).filter { $0.shortcut != nil }
     }()
     
     
@@ -130,7 +124,7 @@ class KeyBindingManager: SettingFileManaging, KeyBindingManagerProtocol {
     // MARK: Public Methods
     
     /// file URL to save custom key bindings file
-    var keyBindingSettingFileURL: URL {
+    final var keyBindingSettingFileURL: URL {
         
         return self.userSettingDirectoryURL.appendingPathComponent(self.settingFileName).appendingPathExtension("plist")
     }
@@ -149,7 +143,7 @@ class KeyBindingManager: SettingFileManaging, KeyBindingManagerProtocol {
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
-        let keyBindings = self.keyBindings(from: outlineTree)
+        let keyBindings = outlineTree.keyBindings
         let fileURL = self.keyBindingSettingFileURL
         
         let defaultExistsAction = self.defaultKeyBindings.map { $0.action }
@@ -192,27 +186,26 @@ class KeyBindingManager: SettingFileManaging, KeyBindingManagerProtocol {
         }
     }
     
+}
+
+
+
+private extension Collection where Element == NSTreeNode {
     
-    
-    // MARK: Private Methods
-    
-    /// create a plist-compatible collection to save from outlineView data
-    private func keyBindings(from outlineTree: [NSTreeNode]) -> Set<KeyBinding> {
+    var keyBindings: Set<KeyBinding> {
         
-        let keyBindings: [KeyBinding] = outlineTree
-            .map { node -> [KeyBinding] in
-                if let children = node.children, !children.isEmpty {
-                    return self.keyBindings(from: children).sorted()
-                }
-                
-                guard
-                    let keyItem = node.representedObject as? KeyBindingItem,
-                    let shortcut = keyItem.shortcut
-                    else { return [] }
-                
-                return [KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
+        let keyBindings: [KeyBinding] = self.flatMap { node -> [KeyBinding] in
+            if let children = node.children, !children.isEmpty {
+                return children.keyBindings.sorted()
             }
-            .flatMap { $0 }
+            
+            guard
+                let keyItem = node.representedObject as? KeyBindingItem,
+                let shortcut = keyItem.shortcut
+                else { return [] }
+            
+            return [KeyBinding(action: keyItem.action, shortcut: shortcut.isValid ? shortcut : nil)]
+        }
         
         return Set(keyBindings)
     }

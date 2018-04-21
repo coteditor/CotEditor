@@ -32,10 +32,11 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     static let shared = SnippetKeyBindingManager()
     
+    let defaultSnippets: [String]
+    
     
     // MARK: Private Properties
     
-    private let defaultSnippets: [String]
     private let _defaultKeyBindings: Set<KeyBinding>
     
     
@@ -77,7 +78,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         let keyBindings = usesDefaults ? self.defaultKeyBindings : self.keyBindings
-        let count = self.snippets(defaults: usesDefaults).count
+        let count = (usesDefaults ? self.defaultSnippets : self.snippets).count
         
         return (0..<count).map { index in
             let title = String(format: NSLocalizedString("Insert Text %li", comment: ""), index)
@@ -94,7 +95,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// whether key bindings are not customized
     override var usesDefaultKeyBindings: Bool {
         
-        let usesDefaultSnippets = self.snippets() == self.defaultSnippets
+        let usesDefaultSnippets = self.snippets == self.defaultSnippets
         
         return usesDefaultSnippets && super.usesDefaultKeyBindings
     }
@@ -124,16 +125,11 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         // selector string for the key press
         let shortcut = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
         
-        guard let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }) else { return nil }
-        
-        let snippets = self.snippets()
-        
         guard
+            let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }),
             let index = type(of: self).snippetIndex(for: keyBinding.action),
-            index < snippets.count
+            let snippetString = self.snippets[safe: index]
             else { return nil }
-        
-        let snippetString = snippets[index]
         
         return Snippet(snippetString)
     }
@@ -141,13 +137,9 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     /// return snippet texts to insert with key binding
     /// param: usesFactoryDefaults   YES for default setting and NO for the current setting
-    func snippets(defaults usesDefaults: Bool = false) -> [String] {
+    var snippets: [String] {
         
-        if usesDefaults {
-            return self.defaultSnippets
-        } else {
-            return UserDefaults.standard[.insertCustomTextArray] ?? []
-        }
+        return UserDefaults.standard[.insertCustomTextArray] ?? []
     }
     
     
