@@ -1,5 +1,5 @@
 //
-//  Constants.swift
+//  String+Constants.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,16 +23,6 @@
 //  limitations under the License.
 //
 
-import AudioToolbox
-
-// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
-extension SystemSoundID {
-    
-    static let volumeMount = SystemSoundID(1)
-    static let moveToTrash = SystemSoundID(16)
-}
-
-
 extension String {
     
     /// constant string representing a separator
@@ -44,10 +34,4 @@ extension String.Encoding {
     
     /// original special encoding type
     static let autoDetection = String.Encoding(rawValue: 0)
-}
-
-
-enum BundleIdentifier {
-    
-    static let ScriptEditor = "com.apple.ScriptEditor2"
 }

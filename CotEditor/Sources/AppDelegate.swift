@@ -32,6 +32,13 @@ private extension NSSound {
 }
 
 
+private enum BundleIdentifier {
+    
+    static let ScriptEditor = "com.apple.ScriptEditor2"
+}
+
+
+
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
     

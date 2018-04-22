@@ -113,8 +113,8 @@
 		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
-		2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* Constants.swift */; };
-		2A2792961D1DBDAC00F3FC5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* Constants.swift */; };
+		2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */; };
+		2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */; };
 		2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2A6A2B1D4D2D9400C3363E /* CryptoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2A6A2A1D4D2D9400C3363E /* CryptoTests.swift */; };
@@ -490,6 +490,8 @@
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
 		2ABF0DC71D7D33880049B151 /* SmallToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF0DC61D7D33880049B151 /* SmallToolbarItem.swift */; };
 		2ABF0DC81D7D33880049B151 /* SmallToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF0DC61D7D33880049B151 /* SmallToolbarItem.swift */; };
+		2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
+		2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */; };
 		2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
 		2AC186DB1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */; };
@@ -835,7 +837,7 @@
 		2A231A381E7C31F400C2A909 /* ReplacementSetListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplacementSetListViewController.swift; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
-		2A2792941D1DBDAC00F3FC5D /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
 		2A2A6A291D4D2BB400C3363E /* CommonCrypto */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CommonCrypto; sourceTree = "<group>"; };
 		2A2A6A2A1D4D2D9400C3363E /* CryptoTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoTests.swift; sourceTree = "<group>"; };
@@ -1141,6 +1143,7 @@
 		2ABD9F6F1A3E0A2D00BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCompletionsEditView.xib; sourceTree = "<group>"; };
 		2ABD9F701A3E0A3900BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCommentsEditView.xib; sourceTree = "<group>"; };
 		2ABF0DC61D7D33880049B151 /* SmallToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallToolbarItem.swift; sourceTree = "<group>"; };
+		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
 		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
 		2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDocument+ErrorHandling.swift"; sourceTree = "<group>"; };
 		2AC186DC1E2F4264002F4D27 /* Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -1659,6 +1662,7 @@
 				2AA14D041FA594A800EAF586 /* Data.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
+				2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
 				2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */,
 				2AA761341D45634400031AAF /* String+Counting.swift */,
@@ -1805,7 +1809,6 @@
 			isa = PBXGroup;
 			children = (
 				2AFB5AEA1D597AFC003895A7 /* Defaults */,
-				2A2792941D1DBDAC00F3FC5D /* Constants.swift */,
 				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
 				2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */,
 			);
@@ -1908,6 +1911,7 @@
 			children = (
 				2A359E011DAEA0FC00FEF7AA /* Foundation */,
 				2A359E001DAEA0EE00FEF7AA /* AppKit */,
+				2ABF86BF208C3CB90082D52B /* Others */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2045,6 +2049,14 @@
 				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 			);
 			name = "Document Accessories";
+			sourceTree = "<group>";
+		};
+		2ABF86BF208C3CB90082D52B /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
+			);
+			name = Others;
 			sourceTree = "<group>";
 		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
@@ -2691,6 +2703,7 @@
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A3A922C205638A600F9B5F3 /* BackgroundView.swift in Sources */,
+				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2A78BFAB1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
 				2A48103F1D4D210300F7D34C /* Crypto.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
@@ -2769,7 +2782,7 @@
 				2A38FAFE1D1C67050032231A /* DraggableArrayController.swift in Sources */,
 				2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */,
 				2ABF0DC81D7D33880049B151 /* SmallToolbarItem.swift in Sources */,
-				2A2792961D1DBDAC00F3FC5D /* Constants.swift in Sources */,
+				2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2AAD61F11D2B0856008FE772 /* String+Range.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
@@ -2930,7 +2943,7 @@
 				2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
 				2AC8A5F41E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */,
 				2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */,
-				2A2792951D1DBDAC00F3FC5D /* Constants.swift in Sources */,
+				2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,
 				2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */,
 				2A9082E91D32539A00228F50 /* EditorTextView+Scaling.swift in Sources */,
@@ -3021,6 +3034,7 @@
 				2AA7613A1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
 				2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
+				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,
 				2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */,
 				2AC186DA1E2F414D002F4D27 /* NSDocument+ErrorHandling.swift in Sources */,
