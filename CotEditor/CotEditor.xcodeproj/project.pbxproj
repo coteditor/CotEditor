@@ -1706,17 +1706,12 @@
 			children = (
 				2A15832F18E3A4AB00601026 /* Application */,
 				2A15832A18E3A1EC00601026 /* Managers */,
-				2A7CF2441A5747F400D09249 /* Text Finder */,
-				2AFFB72E18D8E87900118477 /* Panel Controllers */,
 				2A15832D18E3A3E000601026 /* Preferences */,
+				2A7CF2441A5747F400D09249 /* Text Finder */,
 				2A42825318FCC22100386899 /* Document */,
 				2A42825418FCC23400386899 /* Document Window */,
-				2ACC65261C97FDB8000574DC /* Theme */,
-				2A89847C1C3CE1CE006290FF /* Syntax */,
-				2AA14CFA1FA47E9000EAF586 /* Script */,
-				2A0E160B18E7240C00AAD872 /* Print */,
-				2A476CAF1D09CA640088E37A /* Models */,
 				2A15832C18E3A29A00601026 /* Views */,
+				2A476CAF1D09CA640088E37A /* Models */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				2A5ADE861D21690300F6CE26 /* Extensions */,
 				2A41CB431C391ACE00F9122B /* Constants */,
@@ -1873,6 +1868,8 @@
 				2AD2861919856F3100C9342F /* Editor Controller */,
 				2A42825218FCC1C100386899 /* Text View */,
 				2A6602EB1D05E04E003E8D87 /* Accessory Views */,
+				2AFFB72E18D8E87900118477 /* Panels */,
+				2A0E160B18E7240C00AAD872 /* Print */,
 			);
 			name = "Document Window";
 			sourceTree = "<group>";
@@ -1892,6 +1889,9 @@
 		2A476CAF1D09CA640088E37A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2A89847C1C3CE1CE006290FF /* Syntax */,
+				2ACC65261C97FDB8000574DC /* Theme */,
+				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
@@ -2210,7 +2210,7 @@
 			name = Defaults;
 			sourceTree = "<group>";
 		};
-		2AFFB72E18D8E87900118477 /* Panel Controllers */ = {
+		2AFFB72E18D8E87900118477 /* Panels */ = {
 			isa = PBXGroup;
 			children = (
 				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
@@ -2218,7 +2218,7 @@
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
 				2A4257B51D23153B0086DAAD /* UnicodeInputPanelController.swift */,
 			);
-			name = "Panel Controllers";
+			name = Panels;
 			sourceTree = "<group>";
 		};
 		BEED9F89D1E364DD05CA42CB /* Frameworks */ = {
