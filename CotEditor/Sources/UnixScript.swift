@@ -140,7 +140,7 @@ final class UnixScript: Script {
         // read output asynchronously for safe with huge output
         if let outputType = outputType {
             weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: nil) { (note: Notification) in
+            observer = NotificationCenter.default.addObserver(forName: .NSFileHandleReadToEndOfFileCompletion, object: outPipe.fileHandleForReading, queue: .main) { (note: Notification) in
                 NotificationCenter.default.removeObserver(observer!)
                 
                 guard
