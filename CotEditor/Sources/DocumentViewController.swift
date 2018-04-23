@@ -871,7 +871,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// apply theme
     private func setTheme(name: String) {
         
-        guard let theme = ThemeManager.shared.theme(name: name) else { return }
+        guard let theme = ThemeManager.shared.setting(name: name) else { return }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme

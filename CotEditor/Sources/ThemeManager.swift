@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2017 1024jp
+//  © 2014-2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,6 +38,9 @@ import ColorCode
 
 final class ThemeManager: SettingFileManager {
     
+    typealias Setting = Theme
+    
+    
     // MARK: Public Properties
     
     static let shared = ThemeManager()
@@ -47,7 +50,7 @@ final class ThemeManager: SettingFileManager {
     
     private var themeNames = [String]()
     private var bundledThemeNames = [String]()
-    private var cachedThemes = [String: Theme]()
+    private var cachedSettings = [String: Theme]()
     
     
     
@@ -112,10 +115,10 @@ final class ThemeManager: SettingFileManager {
     // MARK: Public Methods
     
     /// create Theme instance from theme name
-    func theme(name: String) -> Theme? {
+    func setting(name: String) -> Setting? {
         
         // use cache if exists
-        if let theme = self.cachedThemes[name] {
+        if let theme = self.cachedSettings[name] {
             return theme
         }
         
@@ -123,7 +126,7 @@ final class ThemeManager: SettingFileManager {
         
         let theme = Theme(dictionary: themeDictionary, name: name)
         
-        self.cachedThemes[name] = theme
+        self.cachedSettings[name] = theme
         
         return theme
     }
@@ -153,7 +156,7 @@ final class ThemeManager: SettingFileManager {
         try data.write(to: fileURL, options: .atomic)
         
         // invalidate current cache
-        self.cachedThemes[name] = nil
+        self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -168,8 +171,8 @@ final class ThemeManager: SettingFileManager {
         
         try super.renameSetting(name: name, to: newName)
         
-        self.cachedThemes[name] = nil
-        self.cachedThemes[newName] = nil
+        self.cachedSettings[name] = nil
+        self.cachedSettings[newName] = nil
         
         if UserDefaults.standard[.theme] == name {
             UserDefaults.standard[.theme] = newName
@@ -186,7 +189,7 @@ final class ThemeManager: SettingFileManager {
         
         try super.removeSetting(name: name)
         
-        self.cachedThemes[name] = nil
+        self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
@@ -202,7 +205,7 @@ final class ThemeManager: SettingFileManager {
         
         try super.restoreSetting(name: name)
         
-        self.cachedThemes[name] = nil
+        self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -211,7 +214,7 @@ final class ThemeManager: SettingFileManager {
     
     
     /// create a new untitled theme
-    func createUntitledTheme(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
+    func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
         // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))

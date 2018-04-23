@@ -346,7 +346,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         guard let tableView = self.themeTableView else { return }
         
-        try? ThemeManager.shared.createUntitledTheme { themeName in
+        try? ThemeManager.shared.createUntitledSetting { themeName in
             let themeNames = ThemeManager.shared.settingNames
             let row = themeNames.index(of: themeName) ?? 0
             

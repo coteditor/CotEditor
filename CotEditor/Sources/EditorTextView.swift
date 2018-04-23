@@ -116,7 +116,7 @@ final class EditorTextView: NSTextView, Themable {
         self.lineHeight = defaults[.lineHeight]
         self.tabWidth = defaults[.tabWidth]
         
-        self.theme = ThemeManager.shared.theme(name: defaults[.theme]!)
+        self.theme = ThemeManager.shared.setting(name: defaults[.theme]!)
         // -> will be applied first in `viewDidMoveToWindow()`
         
         super.init(coder: coder)
