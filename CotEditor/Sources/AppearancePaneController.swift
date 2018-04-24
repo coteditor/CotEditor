@@ -36,13 +36,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @objc private dynamic let invisibleNewLines: [String] = Invisible.newLine.candidates
     @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
     
-    private var themeViewController: ThemeViewController?
     private var themeNames = [String]()
     @objc private dynamic var isBundled = false
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
-    @IBOutlet private weak var box: NSBox?
     @IBOutlet private var themeTableMenu: NSMenu?
     
     
@@ -77,6 +75,15 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let themeName = UserDefaults.standard[.theme]!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+    }
+    
+    
+    /// set delegate to ThemeViewController
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+        
+        if let destinationController = segue.destinationController as? ThemeViewController {
+            destinationController.delegate = self
+        }
     }
     
     
@@ -250,12 +257,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
-        let themeViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("ThemeViewController")) as! ThemeViewController
-        themeViewController.delegate = self
-        themeViewController.theme = themeDict
-        themeViewController.isBundled = isBundled
-        self.themeViewController = themeViewController
-        self.box?.contentView = themeViewController.view
+        self.themeViewController?.theme = themeDict
+        self.themeViewController?.isBundled = isBundled
         
         self.isBundled = isBundled
     }
@@ -451,6 +454,13 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     // MARK: Private Methods
+    
+    /// view controller for theme editor
+    private var themeViewController: ThemeViewController? {
+        
+        return self.childViewControllers.lazy.compactMap { $0 as? ThemeViewController }.first
+    }
+    
     
     /// return theme name which is currently selected in the list table
     @objc private dynamic var selectedThemeName: String {

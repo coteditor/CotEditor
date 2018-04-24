@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -246,6 +246,20 @@
                                 <view key="contentView" id="XwV-Se-xeY">
                                     <rect key="frame" x="1" y="1" width="350" height="289"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dYL-uv-dDf">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="289"/>
+                                            <connections>
+                                                <segue destination="z57-dm-qGO" kind="embed" id="ouj-s5-x4q"/>
+                                            </connections>
+                                        </containerView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="dYL-uv-dDf" firstAttribute="leading" secondItem="XwV-Se-xeY" secondAttribute="leading" id="2fH-9V-9Sq"/>
+                                        <constraint firstAttribute="bottom" secondItem="dYL-uv-dDf" secondAttribute="bottom" id="AM9-C7-eda"/>
+                                        <constraint firstAttribute="trailing" secondItem="dYL-uv-dDf" secondAttribute="trailing" id="oFw-FY-CXI"/>
+                                        <constraint firstItem="dYL-uv-dDf" firstAttribute="top" secondItem="XwV-Se-xeY" secondAttribute="top" id="ypL-YA-Ckm"/>
+                                    </constraints>
                                 </view>
                                 <color key="borderColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -563,7 +577,6 @@
                         </constraints>
                     </customView>
                     <connections>
-                        <outlet property="box" destination="nMR-L3-OOw" id="70I-1c-CLm"/>
                         <outlet property="fontField" destination="wT1-jD-6aC" id="bP0-VX-1Yp"/>
                         <outlet property="themeTableMenu" destination="M4k-Ev-Myg" id="fHl-oM-EJc"/>
                         <outlet property="themeTableView" destination="8ed-Dt-hO9" id="00r-aw-jk5"/>
