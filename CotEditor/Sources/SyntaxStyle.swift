@@ -481,7 +481,7 @@ extension SyntaxStyle {
             for type in SyntaxType.all {
                 guard let ranges = highlights[type], !ranges.isEmpty else { continue }
                 
-                let color = theme.syntaxColor(type: type) ?? theme.textColor
+                let color = theme.style(for: type)?.color ?? theme.text.color
                 
                 for range in ranges {
                     layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)

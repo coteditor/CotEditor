@@ -49,15 +49,15 @@ class ThemeTests: XCTestCase {
         let theme = self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
-        XCTAssertEqual(theme.textColor, NSColor.black.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.insertionPointColor, NSColor.black.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.invisiblesColor.brightnessComponent, 0.72, accuracy: 0.01)
-        XCTAssertEqual(theme.backgroundColor, NSColor.white.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.lineHighLightColor.brightnessComponent, 0.94, accuracy: 0.01)
-        XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor)
+        XCTAssertEqual(theme.text.color, NSColor.black.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.insertionPoint.color, NSColor.black.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.invisibles.color.brightnessComponent, 0.72, accuracy: 0.01)
+        XCTAssertEqual(theme.background.color, NSColor.white.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.lineHighLight.color.brightnessComponent, 0.94, accuracy: 0.01)
+        XCTAssertEqual(theme.selection.color, NSColor.selectedTextBackgroundColor)
         
         for type in SyntaxType.all {
-            XCTAssertGreaterThan(theme.syntaxColor(type: type)!.hueComponent, 0)
+            XCTAssertGreaterThan(theme.style(for: type)!.color.hueComponent, 0)
         }
         
         XCTAssertFalse(theme.isDarkTheme)
@@ -76,14 +76,10 @@ class ThemeTests: XCTestCase {
     
     func testFail() {
         
-        // zero-length theme name is invalid
-        XCTAssertNil(Theme(dictionary: [:], name: ""))
-        
-        let theme = Theme(dictionary: [:], name: "Broken Theme")
+        let theme = Theme(dictionary: [:])
         
         XCTAssertNotNil(theme)  // Theme can be created from a lacking dictionary
-        XCTAssertFalse(theme!.isValid)  // but flagged as invalid
-        XCTAssertEqual(theme!.textColor, NSColor.gray.usingColorSpaceName(.calibratedRGB))  // and unavailable colors are substituted with frayColor().
+        XCTAssertEqual(theme!.text.color, NSColor.gray.usingColorSpaceName(.calibratedRGB))  // and unavailable colors are substituted with frayColor().
     }
     
     
@@ -99,7 +95,6 @@ class ThemeTests: XCTestCase {
             let theme = self.loadThemeWithURL(url)
             
             XCTAssertNotNil(theme)
-            XCTAssert(theme!.isValid)
         }
     }
     
@@ -123,7 +118,7 @@ class ThemeTests: XCTestCase {
         XCTAssertNotNil(jsonDict)
         XCTAssertNotNil(themeName)
         
-        return Theme(dictionary: jsonDict, name: themeName)
+        return Theme(dictionary: jsonDict)
     }
 
 }

@@ -1547,6 +1547,8 @@
 				2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */,
 				2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */,
 				2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */,
+				2AFB5AEA1D597AFC003895A7 /* Defaults */,
+				2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */,
 			);
 			name = Application;
 			sourceTree = "<group>";
@@ -1714,7 +1716,6 @@
 				2A476CAF1D09CA640088E37A /* Models */,
 				2A15832B18E3A25C00601026 /* Utilities */,
 				2A5ADE861D21690300F6CE26 /* Extensions */,
-				2A41CB431C391ACE00F9122B /* Constants */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1798,16 +1799,6 @@
 				2AC8A5F31E7D113700A4E323 /* MoreThanOneTransformer.swift */,
 			);
 			name = "Value Transformers";
-			sourceTree = "<group>";
-		};
-		2A41CB431C391ACE00F9122B /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				2AFB5AEA1D597AFC003895A7 /* Defaults */,
-				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
-				2AD616CE1D3E67160016EFB6 /* ODBEditorSuite.swift */,
-			);
-			name = Constants;
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
@@ -1901,6 +1892,7 @@
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
 				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
+				2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */,
 				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 			);
 			name = Models;

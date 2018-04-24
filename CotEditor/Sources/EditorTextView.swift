@@ -1160,15 +1160,15 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let theme = self.theme else { return }
         
-        self.window?.backgroundColor = theme.backgroundColor
+        self.window?.backgroundColor = theme.background.color
         
-        self.backgroundColor = theme.backgroundColor
-        self.textColor = theme.textColor
-        self.lineHighLightColor = theme.lineHighLightColor
-        self.insertionPointColor = theme.insertionPointColor
-        self.selectedTextAttributes = [.backgroundColor: theme.selectionColor]
+        self.backgroundColor = theme.background.color
+        self.textColor = theme.text.color
+        self.lineHighLightColor = theme.lineHighlight.color
+        self.insertionPointColor = theme.insertionPoint.color
+        self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
-        (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisiblesColor
+        (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
         // set scroller color considering background color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default

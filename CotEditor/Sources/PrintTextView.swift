@@ -371,9 +371,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         } else {
             if let theme = ThemeManager.shared.theme(name: themeName) {
                 self.theme = theme
-                self.textColor = theme.textColor
-                self.backgroundColor = theme.backgroundColor
-                layoutManager.invisiblesColor = theme.invisiblesColor
+                self.textColor = theme.text.color
+                self.backgroundColor = theme.background.color
+                layoutManager.invisiblesColor = theme.invisibles.color
             }
             
             // perform syntax coloring

@@ -35,89 +35,121 @@ protocol Themable: class {
 
 struct Theme {
     
+    struct Style {
+        
+        var color: NSColor
+        var usesSystemSetting: Bool = false
+    }
+    
+    
     // MARK: Public Properties
     
     /// name of the theme
-    let name: String
+    var name: String?
     
     // basic colors
-    let textColor: NSColor
-    let backgroundColor: NSColor
-    let invisiblesColor: NSColor
-    var selectionColor: NSColor { return self.usesSystemSelectionColor ? .selectedTextBackgroundColor : _selectionColor }
-    let secondarySelectionColor: NSColor?
-    let insertionPointColor: NSColor
-    let lineHighLightColor: NSColor
+    var text: Style
+    var background: Style
+    var invisibles: Style
+    var selection: Style
+    var insertionPoint: Style
+    var lineHighlight: Style
     
-    /// Is background color dark?
-    let isDarkTheme: Bool
-    
-    /// Is created from a valid theme dict? (Theme itself can be used even invalid since NSColor.gray are substituted for invalid colors.)
-    let isValid: Bool
+    var keywords: Style
+    var commands: Style
+    var types: Style
+    var attributes: Style
+    var variables: Style
+    var values: Style
+    var numbers: Style
+    var strings: Style
+    var characters: Style
+    var comments: Style
     
     
     // MARK: Private Properties
     
     private static let invalidColor = NSColor.gray.usingColorSpaceName(.calibratedRGB)!
     
-    private let syntaxColors: [SyntaxType: NSColor]
-    private let usesSystemSelectionColor: Bool
-    private let _selectionColor: NSColor
-    
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init?(dictionary: ThemeDictionary, name: String) {
-        
-        guard !name.isEmpty else { return nil }
+    init(dictionary: ThemeDictionary, name: String? = nil) {
         
         // unarchive colors
-        var isValid = true
-        let colors: [ThemeKey: NSColor] = ThemeKey.colorKeys.reduce(into: [:]) { (dict, key) in
-            guard
-                let colorCode = dictionary[key.rawValue]?[ThemeKey.Sub.color.rawValue] as? String,
-                let color = NSColor(colorCode: colorCode)
-                else {
-                    isValid = false
-                    dict[key] = Theme.invalidColor
-                    return
-            }
+        let styles: [ThemeKey: Style] = ThemeKey.colorKeys.reduce(into: [:]) { (dict, key) in
+            let color: NSColor = {
+                guard
+                    let colorCode = dictionary[key.rawValue]?[ThemeKey.Sub.color.rawValue] as? String,
+                    let color = NSColor(colorCode: colorCode)
+                    else { return Theme.invalidColor }
+                
+                return color
+            }()
             
-            dict[key] = color
+            let usesSystemSetting = dictionary[key.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool
+            
+            dict[key] = Style(color: color, usesSystemSetting: usesSystemSetting ?? false)
         }
         
         // set properties
         self.name = name
-        self.isValid = isValid
         
-        self.usesSystemSelectionColor = dictionary[ThemeKey.selection.rawValue]?[ThemeKey.Sub.usesSystemSetting.rawValue] as? Bool ?? false
+        self.text = styles[.text]!
+        self.background = styles[.background]!
+        self.invisibles = styles[.invisibles]!
+        self.selection = styles[.selection]!
+        self.insertionPoint = styles[.insertionPoint]!
+        self.lineHighlight = styles[.lineHighlight]!
         
-        self.textColor = colors[.text]!
-        self.backgroundColor = colors[.background]!
-        self.invisiblesColor = colors[.invisibles]!
-        self._selectionColor = colors[.selection]!
-        self.insertionPointColor = colors[.insertionPoint]!
-        self.lineHighLightColor = colors[.lineHighlight]!
-        
-        self.secondarySelectionColor = self.usesSystemSelectionColor ? nil : NSColor(calibratedWhite: self._selectionColor.brightnessComponent, alpha: 1.0)
-        
-        self.syntaxColors = ThemeKey.syntaxKeys.reduce(into: [:]) { (dict, item) in
-            dict[SyntaxType(rawValue: item.rawValue)!] = colors[item]!  // The syntax key and theme keys must be the same.
-        }
-        
-        self.isDarkTheme = self.backgroundColor.brightnessComponent < self.textColor.brightnessComponent
+        self.keywords = styles[.keywords]!
+        self.commands = styles[.commands]!
+        self.types = styles[.types]!
+        self.attributes = styles[.attributes]!
+        self.variables = styles[.variables]!
+        self.values = styles[.values]!
+        self.numbers = styles[.numbers]!
+        self.strings = styles[.strings]!
+        self.characters = styles[.characters]!
+        self.comments = styles[.comments]!
     }
     
     
     
     // MARK: Public Methods
     
-    /// color for syntax type defined in theme
-    func syntaxColor(type: SyntaxType) -> NSColor? {
+    /// Is background color dark?
+    var isDarkTheme: Bool {
         
-        return self.syntaxColors[type]
+        return self.background.color.brightnessComponent < self.text.color.brightnessComponent
+    }
+    
+    
+    /// selection color for inactive text view
+    var secondarySelectionColor: NSColor? {
+        
+        return self.selection.usesSystemSetting ? nil : NSColor(calibratedWhite: self.selection.color.brightnessComponent, alpha: 1.0)
+    }
+    
+    
+    /// color for syntax type defined in theme
+    func style(for type: SyntaxType) -> Style? {
+        
+        // The syntax key and theme keys must be the same.
+        switch type {
+        case .keywords: return self.keywords
+        case .commands: return self.commands
+        case .types: return self.types
+        case .attributes: return self.attributes
+        case .variables: return self.variables
+        case .values: return self.values
+        case .numbers: return self.numbers
+        case .strings: return self.strings
+        case .characters: return self.characters
+        case .comments: return self.comments
+        }
     }
     
 }
