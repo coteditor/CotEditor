@@ -33,7 +33,7 @@ protocol Themable: class {
 }
 
 
-struct Theme: Decodable {
+struct Theme: Codable {
     
     struct Style {
         
@@ -157,7 +157,7 @@ struct Theme: Decodable {
 
 // MARK: - Codable
 
-extension Theme.Style: Decodable {
+extension Theme.Style: Codable {
     
     fileprivate static let invalidColor = NSColor.gray.usingColorSpaceName(.calibratedRGB)!
     
@@ -175,11 +175,19 @@ extension Theme.Style: Decodable {
         self.color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
     }
     
+    
+    func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.color.colorCode(type: .hex), forKey: .color)
+    }
+    
 }
 
 
 
-extension Theme.SelectionStyle: Decodable {
+extension Theme.SelectionStyle: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -196,6 +204,15 @@ extension Theme.SelectionStyle: Decodable {
         self.color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
         
         self.usesSystemSetting = try container.decodeIfPresent(Bool.self, forKey: .usesSystemSetting) ?? false
+    }
+    
+    
+    func encode(to encoder: Encoder) throws {
+        
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(self.color.colorCode(type: .hex), forKey: .color)
+        try container.encode(true, forKey: .usesSystemSetting)
     }
     
 }
