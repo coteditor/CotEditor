@@ -50,7 +50,7 @@ final class ThemeManager: SettingFileManager {
     
     private var themeNames = [String]()
     private var bundledThemeNames = [String]()
-    private var cachedSettings = [String: Theme]()
+    private var cachedSettings = [String: Setting]()
     
     
     
