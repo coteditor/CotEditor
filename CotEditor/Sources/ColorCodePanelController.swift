@@ -94,10 +94,10 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         guard let sanitizedCode = code?.trimmingCharacters(in: .whitespacesAndNewlines), !sanitizedCode.isEmpty else { return }
         
-        var codeType: ColorCodeType = .invalid
+        var codeType: ColorCodeType?
         guard let color = NSColor(colorCode: sanitizedCode, type: &codeType) else { return }
         
-        self.selectedCodeType = codeType
+        self.selectedCodeType = codeType ?? .hex
         self.panel?.color = color
     }
     
