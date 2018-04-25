@@ -133,7 +133,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         panel.setAction(#selector(selectColor(_:)))
         panel.setTarget(self)
         
-        // make positoin of accessory view center
+        // make position of accessory view center
         if let superview = panel.accessoryView?.superview {
             superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[accessory]|",
                                                                     metrics: nil,

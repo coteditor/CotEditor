@@ -95,7 +95,7 @@ final class IntegrationPaneController: NSViewController {
         
         // display warning for invalid link
         if linkDestinationURL.isReachable {
-            // link destinaiton is not running CotEditor
+            // link destination is not running CotEditor
             self.warning = NSLocalizedString("The current 'cot' symbolic link doesn’t target the running CotEditor.", comment: "")
         } else {
             // link destination is unreachable
