@@ -122,10 +122,9 @@ final class ThemeManager: SettingFileManager {
             return theme
         }
         
-        guard let themeDictionary = self.settingDictionary(name: name) else { return nil }
+        guard let themeURL = self.urlForUsedSetting(name: name) else { return nil }
         
-        let theme = Theme(dictionary: themeDictionary, name: name)
-        
+        let theme = try? self.loadSetting(at: themeURL)
         self.cachedSettings[name] = theme
         
         return theme
@@ -261,6 +260,13 @@ final class ThemeManager: SettingFileManager {
         if !themeNameSet.contains(defaultThemeName) {
             UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
         }
+    }
+    
+    
+    /// load setting from the file at given URL
+    private func loadSetting(at fileURL: URL) throws -> Setting {
+        
+        return try Theme(contentsOf: fileURL)
     }
     
     
