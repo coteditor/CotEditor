@@ -130,7 +130,8 @@ final class ThemeViewController: NSViewController {
         let color = NSColor.selectedTextBackgroundColor
         let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
         
-        self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
+        
+        self.theme?[Theme.CodingKeys.selection.rawValue]?[Theme.SelectionStyle.CodingKeys.color.rawValue] = colorCode
     }
     
     

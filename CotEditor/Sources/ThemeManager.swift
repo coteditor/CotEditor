@@ -33,6 +33,9 @@ import ColorCode
 }
 
 
+typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
+
+
 
 // MARK: -
 

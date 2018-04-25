@@ -49,7 +49,7 @@ struct Theme: Codable {
     
     
     
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case text
         case background
@@ -189,7 +189,7 @@ extension Theme.Style: Codable {
 
 extension Theme.SelectionStyle: Codable {
     
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case color
         case usesSystemSetting

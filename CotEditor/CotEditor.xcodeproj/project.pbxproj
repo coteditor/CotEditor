@@ -623,8 +623,6 @@
 		2AEE84B31E8158D700BA7982 /* WriteToConsoleCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */; };
 		2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
 		2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E21D33C3AB00770BA6 /* Theme.swift */; };
-		2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */; };
-		2AF073E71D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */; };
 		2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */; };
 		2AF073EC1D33F17100770BA6 /* DictionaryKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */; };
 		2AF073F41D34076A00770BA6 /* CharacterPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */; };
@@ -1274,7 +1272,6 @@
 		2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Authopen.swift"; sourceTree = "<group>"; };
 		2AEE84B11E8158D700BA7982 /* WriteToConsoleCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WriteToConsoleCommand.swift; sourceTree = "<group>"; };
 		2AF073E21D33C3AB00770BA6 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeDictionary.swift; sourceTree = "<group>"; };
 		2AF073EA1D33F17100770BA6 /* DictionaryKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DictionaryKey.swift; sourceTree = "<group>"; };
 		2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterPopoverController.swift; sourceTree = "<group>"; };
 		2AF073FA1D34587500770BA6 /* CharacterInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterInfo.swift; sourceTree = "<group>"; };
@@ -1884,10 +1881,10 @@
 			isa = PBXGroup;
 			children = (
 				2A89847C1C3CE1CE006290FF /* Syntax */,
-				2ACC65261C97FDB8000574DC /* Theme */,
 				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2AA375461D40BDCB0080C27C /* LineEnding.swift */,
 				2A4257BB1D239F850086DAAD /* Invisible.swift */,
+				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
@@ -2065,15 +2062,6 @@
 			name = Tests;
 			path = ../Tests;
 			sourceTree = SOURCE_ROOT;
-		};
-		2ACC65261C97FDB8000574DC /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-				2AF073E21D33C3AB00770BA6 /* Theme.swift */,
-				2AF073E51D33CB6F00770BA6 /* ThemeDictionary.swift */,
-			);
-			name = Theme;
-			sourceTree = "<group>";
 		};
 		2ACC652F1C9802CB000574DC /* Extensions */ = {
 			isa = PBXGroup;
@@ -2677,7 +2665,6 @@
 				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
-				2AF073E71D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2AC8A5F51E7D113700A4E323 /* MoreThanOneTransformer.swift in Sources */,
 				2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* ReplacementSet.Settings+Object.swift in Sources */,
@@ -2966,7 +2953,6 @@
 				2A71BC7B1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
-				2AF073E61D33CB6F00770BA6 /* ThemeDictionary.swift in Sources */,
 				2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,
