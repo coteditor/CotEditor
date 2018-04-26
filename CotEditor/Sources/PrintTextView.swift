@@ -377,8 +377,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             }
             
             // perform syntax coloring
-            if self.syntaxStyle == nil {
-                self.syntaxStyle = SyntaxManager.shared.style(name: self.syntaxName)
+            if self.syntaxStyle == nil, let syntaxName = self.syntaxName {
+                self.syntaxStyle = SyntaxManager.shared.style(name: syntaxName)
                 self.syntaxStyle?.textStorage = self.textStorage
             }
             if let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {

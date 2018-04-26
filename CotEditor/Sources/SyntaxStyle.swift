@@ -83,23 +83,23 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     // MARK: -
     // MARK: Lifecycle
     
-    required init(dictionary: [String: Any]?, name: String) {
+    init() {
+        self.styleName = BundledStyleName.none
+        self.isNone = true
+        
+        self.inlineCommentDelimiter = nil
+        self.blockCommentDelimiters = nil
+        self.completionWords = nil
+        
+        self.highlightDictionary = [:]
+        self.pairedQuoteTypes = [:]
+        self.outlineDefinitions = []
+    }
+    
+    
+    required init(dictionary: [String: Any], name: String) {
         
         self.styleName = name
-        
-        guard let dictionary = dictionary else {
-            self.isNone = true
-            self.inlineCommentDelimiter = nil
-            self.blockCommentDelimiters = nil
-            self.completionWords = nil
-            
-            self.highlightDictionary = [:]
-            self.pairedQuoteTypes = [:]
-            self.outlineDefinitions = []
-            
-            return
-        }
-        
         self.isNone = false
         
         // set comment delimiters
@@ -203,12 +203,6 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
             
             return definitionDictionaries.compactMap { OutlineDefinition(definition: $0) }
         }()
-    }
-    
-    
-    convenience init() {
-        
-        self.init(dictionary: nil, name: BundledStyleName.none)
     }
     
     

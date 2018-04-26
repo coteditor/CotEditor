@@ -206,15 +206,14 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// create SyntaxStyle instance from theme name
-    func style(name: SettingName?) -> SyntaxStyle? {
+    func style(name: SettingName) -> SyntaxStyle? {
         
-        guard let name = name, name != BundledStyleName.none else {
-            return SyntaxStyle(dictionary: nil, name: BundledStyleName.none)
+        if name == BundledStyleName.none {
+            return SyntaxStyle()
         }
         
-        guard self.styleNames.contains(name) else { return nil }
+        guard let dictionary = self.settingDictionary(name: name) else { return nil }
         
-        let dictionary = self.settingDictionary(name: name)
         let style = SyntaxStyle(dictionary: dictionary, name: name)
         
         self.propertyAccessQueue.sync {
@@ -238,7 +237,7 @@ final class SyntaxManager: SettingFileManager {
     func settingDictionary(name: SettingName) -> StyleDictionary? {
         
         // None style
-        guard name != BundledStyleName.none else {
+        if name == BundledStyleName.none {
             return self.blankSettingDictionary
         }
         
@@ -473,7 +472,6 @@ final class SyntaxManager: SettingFileManager {
         self.propertyAccessQueue.sync {
             self.recentStyleNameSet.formIntersection(self.styleNames)
         }
-        
         UserDefaults.standard[.recentStyleNames] = self.recentSettingNames
     }
     
@@ -481,13 +479,8 @@ final class SyntaxManager: SettingFileManager {
     /// update file mapping tables
     private func updateMappingTables() {
         
-        var styleNames = self.styleNames
-        
         // postpone bundled styles
-        for name in self.bundledStyleNames {
-            styleNames.remove(name)
-            styleNames.append(name)
-        }
+        let styleNames = self.bundledStyleNames + self.styleNames.filter { !self.bundledSettingNames.contains($0) }
         
         let result = SyntaxKey.mappingKeys.map { key in
             styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
