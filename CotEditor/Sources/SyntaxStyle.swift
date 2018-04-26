@@ -51,6 +51,8 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     
     let completionWords: [String]?
     
+    let extensions: [String]
+    
     private(set) var outlineItems: [OutlineItem] = [] {
         
         didSet {
@@ -86,6 +88,7 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
     init() {
         self.styleName = BundledStyleName.none
         self.isNone = true
+        self.extensions = []
         
         self.inlineCommentDelimiter = nil
         self.blockCommentDelimiters = nil
@@ -101,6 +104,9 @@ final class SyntaxStyle: Equatable, CustomStringConvertible {
         
         self.styleName = name
         self.isNone = false
+        self.extensions = (dictionary[SyntaxKey.extensions.rawValue] as? [[String: String]])?
+            .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } ?? []
+        
         
         // set comment delimiters
         var inlineCommentDelimiter: String?

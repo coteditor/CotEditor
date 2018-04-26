@@ -243,10 +243,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return pathExtension
         }
         
-        let styleName = self.syntaxStyle.styleName
-        let extensions = SyntaxManager.shared.extensions(name: styleName)
-        
-        return extensions.first
+        return self.syntaxStyle.extensions.first
     }
     
     

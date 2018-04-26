@@ -71,7 +71,6 @@ final class SyntaxManager: SettingFileManager {
     private let bundledStyleNames: [SettingName]
     private let bundledMap: [SettingName: [String: [String]]]
     
-    private var styleExtensions: [SettingName: [String]] = [:]
     private var cachedSettings: [SettingName: Setting] = [:]
     
     private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
@@ -196,13 +195,6 @@ final class SyntaxManager: SettingFileManager {
         }
         
         return nil
-    }
-    
-    
-    /// file extension list corresponding to style name
-    func extensions(name: SettingName) -> [String] {
-        
-        return self.styleExtensions[name] ?? []
     }
     
     
@@ -442,8 +434,6 @@ final class SyntaxManager: SettingFileManager {
         
         // sort styles alphabetically
         self.styleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-        
-        self.styleExtensions = map.mapValues { $0[SyntaxKey.extensions.rawValue] ?? [] }
         
         // remove deleted styles
         // -> don't care about style name change just for laziness
