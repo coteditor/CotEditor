@@ -51,12 +51,6 @@ final class SyntaxManager: SettingFileManager {
     typealias StyleDictionary = [String: Any]
     
     
-    // MARK: Notification Names
-    
-    /// Posted when the recently used style list is updated.  This will be used for syntax style menu in toolbar.
-    static let didUpdateSyntaxHistoryNotification = Notification.Name("SyntaxManagerDidUpdateSyntaxHistory")
-    
-    
     // MARK: Public Properties
     
     static let shared = SyntaxManager()
@@ -65,8 +59,6 @@ final class SyntaxManager: SettingFileManager {
     // MARK: Private Properties
     
     private var styleNames: [SettingName] = []
-    private var recentStyleNameSet: OrderedSet<SettingName>
-    private let maximumRecentStyleNameCount: Int
     
     private let bundledStyleNames: [SettingName]
     private let bundledMap: [SettingName: [String: [String]]]
@@ -85,9 +77,6 @@ final class SyntaxManager: SettingFileManager {
     // MARK: Lifecycle
     
     override private init() {
-        
-        self.recentStyleNameSet = OrderedSet(UserDefaults.standard[.recentStyleNames] ?? [])
-        self.maximumRecentStyleNameCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
         
         // load bundled style list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
@@ -144,15 +133,6 @@ final class SyntaxManager: SettingFileManager {
     
     
     // MARK: Public Methods
-    
-    /// return recently used style history as an array
-    var recentSettingNames: [SettingName] {
-        
-        let styleNames: [SettingName] = self.propertyAccessQueue.sync { self.recentStyleNameSet.array }
-        
-        return Array(styleNames.prefix(self.maximumRecentStyleNameCount))
-    }
-    
     
     /// return style name corresponding to given variables
     func settingName(documentFileName fileName: String, content: String) -> SettingName {
@@ -221,17 +201,15 @@ final class SyntaxManager: SettingFileManager {
             return style
             }() else { return nil }
         
-        self.propertyAccessQueue.sync {
-            self.recentStyleNameSet.remove(name)
-            self.recentStyleNameSet.insert(name, at: 0)
-        }
+        // add to recent styles list
+        let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
+        var recentStyleNames = UserDefaults.standard[.recentStyleNames]!
+        recentStyleNames.remove(name)
+        recentStyleNames.insert(name, at: 0)
+        recentStyleNames = Array(recentStyleNames.prefix(maximumRecentStyleCount))
         
-        DispatchQueue.main.async { [weak self] in
-            if let recentSettingNames = self?.recentSettingNames {
-                UserDefaults.standard[.recentStyleNames] = recentSettingNames  // set in the main thread in case
-            }
-            
-            NotificationCenter.default.post(name: SyntaxManager.didUpdateSyntaxHistoryNotification, object: self)
+        DispatchQueue.main.async {
+            UserDefaults.standard[.recentStyleNames] = recentStyleNames  // set in the main thread in case
         }
         
         return style
@@ -435,12 +413,8 @@ final class SyntaxManager: SettingFileManager {
         // sort styles alphabetically
         self.styleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
-        // remove deleted styles
-        // -> don't care about style name change just for laziness
-        self.propertyAccessQueue.sync {
-            self.recentStyleNameSet.formIntersection(self.styleNames)
-        }
-        UserDefaults.standard[.recentStyleNames] = self.recentSettingNames
+        // remove styles not exist
+        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.styleNames.contains($0) }
         
         // update file mapping tables
         let styleNames = self.bundledStyleNames + self.styleNames.filter { !self.bundledSettingNames.contains($0) }  // postpone bundled styles

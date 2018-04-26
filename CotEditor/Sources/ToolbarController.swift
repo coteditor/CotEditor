@@ -100,6 +100,14 @@ final class ToolbarController: NSObject {
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    deinit {
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.recentStyleNames.rawValue)
+    }
+    
+    
+    
     // MARK: Object Methods
     
     override func awakeFromNib() {
@@ -110,7 +118,15 @@ final class ToolbarController: NSObject {
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: SyntaxManager.didUpdateSyntaxHistoryNotification, object: SyntaxManager.shared)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.recentStyleNames.rawValue, options: [], context: nil)
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == DefaultKeys.recentStyleNames.rawValue {
+            self.buildSyntaxPopupButton()
+        }
     }
     
     
@@ -170,7 +186,7 @@ final class ToolbarController: NSObject {
         guard let menu = self.syntaxPopupButton?.menu else { return }
         
         let styleNames = SyntaxManager.shared.settingNames
-        let recentStyleNames = SyntaxManager.shared.recentSettingNames
+        let recentStyleNames = UserDefaults.standard[.recentStyleNames]!
         let action = #selector(Document.changeSyntaxStyle(_:))
         
         menu.removeAllItems()
