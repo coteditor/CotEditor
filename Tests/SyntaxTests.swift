@@ -49,9 +49,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         // load XML style
         let styleURL = bundle.url(forResource: "HTML", withExtension: styleExtension, subdirectory: styleDirectoryName)
-        let data = try? Data(contentsOf: styleURL!)
-        let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: Any]
-        self.htmlStyle = SyntaxStyle(dictionary: dict!, name: "HTML")
+        let data = try! Data(contentsOf: styleURL!)
+        let dict = try! YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
+        self.htmlStyle = SyntaxStyle(dictionary: dict, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
         
@@ -71,9 +71,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
     func testNoneSytle() {
         
-        let style = SyntaxStyle(dictionary: nil, name: "foo")
+        let style = SyntaxStyle()
         
-        XCTAssertEqual(style.styleName, "foo")
+        XCTAssertEqual(style.styleName, "None")
         XCTAssert(style.isNone)
         XCTAssertFalse(style.canParse)
         XCTAssertNil(style.inlineCommentDelimiter)

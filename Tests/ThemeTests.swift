@@ -54,7 +54,7 @@ class ThemeTests: XCTestCase {
         XCTAssertEqual(theme.invisibles.color.brightnessComponent, 0.72, accuracy: 0.01)
         XCTAssertEqual(theme.background.color, NSColor.white.usingColorSpaceName(.calibratedRGB))
         XCTAssertEqual(theme.lineHighlight.color.brightnessComponent, 0.94, accuracy: 0.01)
-        XCTAssertEqual(theme.selection.color, NSColor.selectedTextBackgroundColor)
+        XCTAssertNil(theme.secondarySelectionColor)
         
         for type in SyntaxType.all {
             XCTAssertGreaterThan(theme.style(for: type)!.color.hueComponent, 0)
