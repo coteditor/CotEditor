@@ -65,8 +65,7 @@ final class ThemeManager: SettingFileManager {
         super.init()
         
         // cache bundled theme names
-        let themeURLs = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName) ?? []
-        self.bundledThemeNames = themeURLs.lazy
+        self.bundledThemeNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
@@ -137,12 +136,9 @@ final class ThemeManager: SettingFileManager {
     /// load theme dict in which objects are property list ready.
     func settingDictionary(name: String) -> ThemeDictionary? {
         
-        guard
-            let themeURL = self.urlForUsedSetting(name: name),
-            let themeDictionary = try? self.loadSettingDictionary(at: themeURL)
-            else { return nil }
+        guard let themeURL = self.urlForUsedSetting(name: name) else { return nil }
         
-        return themeDictionary
+        return try? self.loadSettingDictionary(at: themeURL)
     }
     
     
@@ -195,9 +191,7 @@ final class ThemeManager: SettingFileManager {
         
         self.updateCache { [weak self] in
             // restore theme of opened documents to default
-            let defaultThemeName = UserDefaults.standard[.theme]!
-            
-            self?.notifySettingUpdate(oldName: name, newName: defaultThemeName)
+            self?.notifySettingUpdate(oldName: name, newName: UserDefaults.standard[.theme]!)
         }
     }
     
@@ -250,18 +244,14 @@ final class ThemeManager: SettingFileManager {
     /// load theme names in user domain
     override func loadUserSettings() {
         
-        var themeNameSet = OrderedSet(self.bundledThemeNames)
-        
         // load user themes if exists
         let userThemeNames = self.userSettingFileURLs.map { self.settingName(from: $0) }
-        themeNameSet.append(contentsOf: userThemeNames)
         
-        self.themeNames = themeNameSet.array
+        self.themeNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
         
         // reset user default if not found
-        let defaultThemeName = UserDefaults.standard[.theme]!
-        if !themeNameSet.contains(defaultThemeName) {
-            UserDefaults.standard.removeObject(forKey: DefaultKeys.theme.rawValue)
+        if !self.themeNames.contains(UserDefaults.standard[.theme]!) {
+            UserDefaults.standard.restore(key: .theme)
         }
     }
     
