@@ -105,7 +105,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
         }
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
-        self.syntaxStyle = SyntaxManager.shared.style(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
+        self.syntaxStyle = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
         self.syntaxStyle.textStorage = self.textStorage
         self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
         
@@ -860,7 +860,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func setSyntaxStyle(name: String) {
         
         guard
-            let syntaxStyle = SyntaxManager.shared.style(name: name),
+            let syntaxStyle = SyntaxManager.shared.setting(name: name),
             syntaxStyle != self.syntaxStyle
             else { return }
         
