@@ -397,7 +397,7 @@ extension SyntaxStyle {
                     end = effectiveRange.upperBound
                 }
                 
-                highlightRange = NSRange(location: start, length: end - start)
+                highlightRange = NSRange(start..<end)
             }
         }
         

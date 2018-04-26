@@ -393,7 +393,7 @@ private extension NSString {
             if options.contains(.backwards), !options.contains(.regularExpression) {
                 return NSRange(location: 0, length: selectedRange.location)
             }
-            return NSRange(location: selectedRange.upperBound, length: self.length - selectedRange.upperBound)
+            return NSRange(selectedRange.upperBound..<self.length)
         }()
         
         var foundRange = self.range(of: searchString, options: options, range: targetRange)

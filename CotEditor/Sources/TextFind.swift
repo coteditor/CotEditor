@@ -145,7 +145,7 @@ final class TextFind {
         let startLocation = forward ? selectedRange.upperBound : selectedRange.location
         
         var forwardMatches = [NSRange]()  // matches after the start location
-        let forwardRange = NSRange(location: startLocation, length: string.utf16.count - startLocation)
+        let forwardRange = NSRange(startLocation..<string.utf16.count)
         self.enumerateMatchs(in: [forwardRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             forwardMatches.append(matchedRange)
         })

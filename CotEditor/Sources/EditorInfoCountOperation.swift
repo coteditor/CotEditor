@@ -175,8 +175,7 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         // calculate current column
         if self.requiredInfo.contains(.column) {
             let lineRange = nsString.lineRange(for: self.selectedRange)
-            let columnLength = self.selectedRange.location - lineRange.location  // as length
-            self.result.column = nsString.substring(with: NSRange(location: lineRange.location, length: columnLength)).numberOfComposedCharacters
+            self.result.column = nsString.substring(with: NSRange(lineRange.location..<self.selectedRange.location)).numberOfComposedCharacters
         }
         
         // unicode

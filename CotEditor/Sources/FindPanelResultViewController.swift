@@ -108,11 +108,10 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             // trim
             if result.lineRange.location > maxLeftMargin {
                 let diff = result.lineRange.location - maxLeftMargin
-                lineAttrString.replaceCharacters(in: NSRange(location: 0, length: diff), with: "…")
+                lineAttrString.replaceCharacters(in: NSRange(0..<diff), with: "…")
             }
             if lineAttrString.length > maxMatchedStringLength {
-                let extra = lineAttrString.length - maxMatchedStringLength
-                lineAttrString.replaceCharacters(in: NSRange(location: maxMatchedStringLength, length: extra), with: "…")
+                lineAttrString.replaceCharacters(in: NSRange(maxMatchedStringLength..<lineAttrString.length), with: "…")
             }
             
             // truncate tail

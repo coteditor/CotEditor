@@ -252,7 +252,7 @@ final class TextFinder: NSResponder {
                 let matchedRange = matches[0]
                 
                 // calculate line number
-                let diffRange = NSRange(location: lineCountedLocation, length: matchedRange.location - lineCountedLocation)
+                let diffRange = NSRange(lineCountedLocation..<matchedRange.location)
                 lineNumber += lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
                 lineCountedLocation = matchedRange.location
                 

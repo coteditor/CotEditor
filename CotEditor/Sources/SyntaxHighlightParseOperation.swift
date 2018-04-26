@@ -217,8 +217,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         var location = self.parseRange.location
         while location != NSNotFound {
             let range = (string as NSString).range(of: searchString, options: options,
-                                                   range: NSRange(location: location,
-                                                                  length: self.parseRange.upperBound - location))
+                                                   range: NSRange(location..<self.parseRange.upperBound))
             location = range.upperBound
             
             guard range.location != NSNotFound else { break }
@@ -263,8 +262,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 
                 guard !self.string!.isCharacterEscaped(at: endLocation - endLength) else { continue }
                 
-                let range = NSRange(location: startLocation, length: endLocation - startLocation)
-                ranges.append(range)
+                ranges.append(NSRange(startLocation..<endLocation))
                 
                 break
             }
@@ -344,8 +342,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             guard let beginRange = result?.range else { return }
             
             let endRange = endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
-                                                      range: NSRange(location: beginRange.upperBound,
-                                                                     length: parseRange.upperBound - beginRange.upperBound))
+                                                      range: NSRange(beginRange.upperBound..<parseRange.upperBound))
             
             if endRange.location != NSNotFound {
                 ranges.append(beginRange.union(endRange))
@@ -422,7 +419,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             if position.role.contains(.end), position.kind == kind {
                 let endLocation = position.range.upperBound
                 let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
-                let range = NSRange(location: startLocation, length: endLocation - startLocation)
+                let range = NSRange(startLocation..<endLocation)
                 
                 highlights[syntaxType, default: []].append(range)
                 
@@ -434,7 +431,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         // highlight until the end if not closed
         if let searchingKind = searchingKind, startLocation < self.parseRange.upperBound {
             let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
-            let range = NSRange(location: startLocation, length: self.parseRange.upperBound - startLocation)
+            let range = NSRange(startLocation..<self.parseRange.upperBound)
             
             highlights[syntaxType, default: []].append(range)
         }
