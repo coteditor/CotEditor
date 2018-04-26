@@ -139,6 +139,8 @@ struct SyntaxStyle {
     let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
     let outlineExtractors: [OutlineExtractor]
     
+    private(set) lazy var highlightExtractors: [SyntaxType: [HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor() } }
+    
     
     
     // MARK: -
