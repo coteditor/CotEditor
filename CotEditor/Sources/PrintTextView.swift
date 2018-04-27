@@ -43,8 +43,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     var filePath: String?
     var documentName: String?
-    var syntaxName: String?
     var theme: Theme?
+    private(set) lazy var syntaxParser: SyntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
     
     // settings on current window to be set by Document.
@@ -58,7 +58,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private var lineHeight: CGFloat
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
-    private var syntaxStyle: SyntaxStyle?
     private let dateFormatter: DateFormatter
     
     
@@ -376,13 +375,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 layoutManager.invisiblesColor = theme.invisibles.color
             }
             
-            // perform syntax coloring
-            if self.syntaxStyle == nil, let syntaxName = self.syntaxName {
-                self.syntaxStyle = SyntaxManager.shared.setting(name: syntaxName)
-                self.syntaxStyle?.textStorage = self.textStorage
-            }
+            // perform syntax highlighting
             if let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
-                _ = self.syntaxStyle?.highlightAll { [weak controller] in
+                _ = self.syntaxParser.highlightAll { [weak controller] in
                     DispatchQueue.main.async {
                         guard let controller = controller, !controller.view.isHidden else { return }
                         
@@ -461,7 +456,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             return self.documentName
             
         case .syntaxName:
-            return self.syntaxName
+            return self.syntaxParser.style.name
             
         case .filePath:
             guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet

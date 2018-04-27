@@ -30,7 +30,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     
-    weak var syntaxStyle: SyntaxStyle? {
+    var syntaxStyle: SyntaxStyle? {
         
         didSet {
             guard let textView = self.textView else { return }

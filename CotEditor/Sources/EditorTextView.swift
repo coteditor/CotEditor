@@ -1242,8 +1242,8 @@ final class EditorTextView: NSTextView, Themable {
         let composer = FileDropComposer(definitions: UserDefaults.standard[.fileDropArray])
         let documentURL = self.document?.fileURL
         let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
-            return style.styleName
+            guard let style = self.document?.syntaxParser.style, !style.isNone else { return nil }
+            return style.name
         }()
         
         let replacementString = urls.reduce(into: "") { (string, url) in

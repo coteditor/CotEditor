@@ -154,7 +154,7 @@ extension Document {
     @objc var coloringStyle: String {
         
         get {
-            return self.syntaxStyle.styleName
+            return self.syntaxParser.style.name
         }
         
         set {

@@ -29,7 +29,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
@@ -103,16 +103,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
             document.textStorage.delegate = self
-            document.syntaxStyle.delegate = self
+            document.syntaxParser.delegate = self
             
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax highlights and outline menu
-            if document.syntaxStyle.canParse {
+            if document.syntaxParser.canParse {
                 editorViewController.navigationBarController?.showOutlineIndicator()
             }
-            document.syntaxStyle.invalidateOutline()
+            document.syntaxParser.invalidateOutline()
             self.invalidateSyntaxHighlight()
             
             // detect indent style
@@ -161,7 +161,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             menuItem.title = NSLocalizedString(title, comment: "")
             
         case #selector(recolorAll):
-            return self.syntaxStyle?.canParse ?? false
+            return self.syntaxParser?.canParse ?? false
             
         case #selector(toggleLineNumber):
             let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
@@ -233,7 +233,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         switch action {
         case #selector(recolorAll):
-            return self.syntaxStyle?.canParse ?? false
+            return self.syntaxParser?.canParse ?? false
             
         default: break
         }
@@ -294,12 +294,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.document?.analyzer.invalidateEditorInfo()
         
         // parse syntax
-        self.syntaxStyle?.invalidateOutline()
-        if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
+        self.syntaxParser?.invalidateOutline()
+        if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                guard let progress = syntaxStyle.highlight(around: editedRange) else { return }
+                guard let progress = syntaxParser.highlight(around: editedRange) else { return }
                 
                 self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
             }
@@ -311,7 +311,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// update outline menu in navigation bar
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]) {
+    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
         
         for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineItems = outlineItems
@@ -334,19 +334,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// document updated syntax style
     @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
         
-        guard let syntaxStyle = self.syntaxStyle else { return }
+        guard let syntaxParser = self.syntaxParser else { return }
         
-        syntaxStyle.delegate = self
+        syntaxParser.delegate = self
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxStyle)
-            if syntaxStyle.canParse {
+            viewController.apply(syntax: syntaxParser.style)
+            if syntaxParser.canParse {
                 viewController.navigationBarController?.outlineItems = []
                 viewController.navigationBarController?.showOutlineIndicator()
             }
         }
         
-        syntaxStyle.invalidateOutline()
+        syntaxParser.invalidateOutline()
         self.invalidateSyntaxHighlight()
     }
     
@@ -683,7 +683,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         let newEditorViewController = self.createEditorViewController(relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
-        newEditorViewController.navigationBarController?.outlineItems = self.syntaxStyle?.outlineItems ?? []
+        newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
         self.invalidateSyntaxHighlight()
         
         // adjust visible areas
@@ -746,8 +746,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     private func invalidateSyntaxHighlight() {
         
         guard
-            let progress = self.syntaxStyle?.highlightAll(),
-            let length = self.syntaxStyle?.textStorage?.length
+            let progress = self.syntaxParser?.highlightAll(),
+            let length = self.syntaxParser?.textStorage.length
             else { return }
         
         self.presentHighlightIndicator(progress: progress, highlightLength: length)
@@ -821,7 +821,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
-        if let syntaxStyle = self.syntaxStyle {
+        if let syntaxStyle = self.syntaxParser?.style {
             editorViewController.apply(syntax: syntaxStyle)
         }
         
@@ -854,10 +854,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
-    /// document's syntax style
-    private var syntaxStyle: SyntaxStyle? {
+    /// document's syntax parser
+    private var syntaxParser: SyntaxParser? {
         
-        return self.document?.syntaxStyle
+        return self.document?.syntaxParser
     }
     
     

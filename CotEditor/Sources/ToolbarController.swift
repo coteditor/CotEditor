@@ -160,7 +160,7 @@ final class ToolbarController: NSObject {
     @objc private func invalidateSyntaxStyleSelection() {
         
         guard let popUpButton = self.syntaxPopupButton else { return }
-        guard let styleName = self.document?.syntaxStyle.styleName else { return }
+        guard let styleName = self.document?.syntaxParser.style.name else { return }
         
         popUpButton.selectItem(withTitle: styleName)
         if popUpButton.selectedItem == nil {

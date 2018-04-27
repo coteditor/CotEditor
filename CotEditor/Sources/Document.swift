@@ -61,11 +61,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Readonly Properties
     
     let textStorage = NSTextStorage()
+    let syntaxParser: SyntaxParser
     private(set) var encoding: String.Encoding
     private(set) var hasUTF8BOM = false
     private(set) var lineEnding: LineEnding
     private(set) var fileAttributes: [FileAttributeKey: Any]?
-    private(set) var syntaxStyle: SyntaxStyle
     
     private(set) lazy var selection: TextSelection = TextSelection(document: self)
     private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
@@ -105,8 +105,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
         }
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
-        self.syntaxStyle = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
-        self.syntaxStyle.textStorage = self.textStorage
+        self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
+        self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
         self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
         
         // use the encoding user selected in open panel, if exists
@@ -130,7 +130,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
         coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
-        coder.encode(self.syntaxStyle.styleName, forKey: SerializationKey.syntaxStyle)
+        coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
         coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
         coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
         
@@ -243,7 +243,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             return pathExtension
         }
         
-        return self.syntaxStyle.extensions.first
+        return self.syntaxParser.style.extensions.first
     }
     
     
@@ -266,7 +266,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let document = try super.duplicate() as! Document
         
-        document.setSyntaxStyle(name: self.syntaxStyle.styleName)
+        document.setSyntaxStyle(name: self.syntaxParser.style.name)
         document.lineEnding = self.lineEnding
         document.encoding = self.encoding
         document.hasUTF8BOM = self.hasUTF8BOM
@@ -543,7 +543,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// close document
     override func close() {
         
-        self.syntaxStyle.cancelAllParses()
+        self.syntaxParser.cancelAllParses()
         
         // send file close notification for the external editor protocol (ODB Editor Suite)
         if let fileURL = self.fileURL {
@@ -565,7 +565,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.theme = viewController.theme
         printView.documentName = self.displayName
         printView.filePath = self.fileURL?.path
-        printView.syntaxName = self.syntaxStyle.styleName
+        printView.syntaxParser.style = self.syntaxParser.style
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber
         
@@ -702,7 +702,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
         case #selector(changeSyntaxStyle(_:)):
-            let name = self.syntaxStyle.styleName
+            let name = self.syntaxParser.style.name
             menuItem.state = (menuItem.title == name) ? .on : .off
             
         default: break
@@ -738,7 +738,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         guard
             let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
             let newName = notification.userInfo?[SettingFileManager.NotificationKey.new] as? String,
-            oldName == self.syntaxStyle.styleName else { return }
+            oldName == self.syntaxParser.style.name else { return }
         
         self.setSyntaxStyle(name: newName)
     }
@@ -858,14 +858,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard
             let syntaxStyle = SyntaxManager.shared.setting(name: name),
-            syntaxStyle != self.syntaxStyle
+            syntaxStyle != self.syntaxParser.style
             else { return }
         
-        self.syntaxStyle.cancelAllParses()
-        
         // update
-        syntaxStyle.textStorage = self.textStorage
-        self.syntaxStyle = syntaxStyle
+        self.syntaxParser.style = syntaxStyle
         
         DispatchQueue.main.async { [weak self] in
             NotificationCenter.default.post(name: Document.didChangeSyntaxStyleNotification, object: self)
@@ -1003,7 +1000,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// change syntax style
     @IBAction func changeSyntaxStyle(_ sender: AnyObject?) {
         
-        guard let name = sender?.title, name != self.syntaxStyle.styleName else { return }
+        guard let name = sender?.title, name != self.syntaxParser.style.name else { return }
         
         self.setSyntaxStyle(name: name)
     }

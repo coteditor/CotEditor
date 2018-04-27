@@ -32,7 +32,7 @@ let styleDirectoryName = "Syntaxes"
 let styleExtension = "yaml"
 
 
-class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
+class SyntaxTests: XCTestCase, SyntaxParserDelegate {
     
     var htmlStyle: SyntaxStyle?
     var htmlSource: String?
@@ -73,9 +73,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         let style = SyntaxStyle()
         
-        XCTAssertEqual(style.styleName, "None")
+        XCTAssertEqual(style.name, "None")
         XCTAssert(style.isNone)
-        XCTAssertFalse(style.canParse)
+        XCTAssertFalse(style.hasHighlightDefinition)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertNil(style.blockCommentDelimiters)
     }
@@ -85,9 +85,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         guard let style = self.htmlStyle else { return }
         
-        XCTAssertEqual(style.styleName, "HTML")
+        XCTAssertEqual(style.name, "HTML")
         XCTAssertFalse(style.isNone)
-        XCTAssert(style.canParse)
+        XCTAssert(style.hasHighlightDefinition)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertEqual(style.blockCommentDelimiters?.begin, "<!--")
         XCTAssertEqual(style.blockCommentDelimiters?.end, "-->")
@@ -102,23 +102,23 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         let textView = NSTextView()
         textView.string = source
         
-        style.textStorage = textView.textStorage
-        style.delegate = self
+        let parser = SyntaxParser(textStorage: textView.textStorage!, style: style)
+        parser.delegate = self
         
         // test outline parsing with delegate
         self.outlineParseExpectation = self.expectation(description: "didParseOutline")
-        style.invalidateOutline()
+        parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
     }
     
     
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]) {
+    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
         
         self.outlineParseExpectation?.fulfill()
         
         XCTAssertEqual(outlineItems.count, 3)
         
-        XCTAssertEqual(syntaxStyle.outlineItems, outlineItems)
+        XCTAssertEqual(syntaxParser.outlineItems, outlineItems)
         
         let item = outlineItems[1]
         XCTAssertEqual(item.title, "   h2: 🐕🐄")
