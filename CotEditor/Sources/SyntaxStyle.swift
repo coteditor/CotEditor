@@ -39,7 +39,7 @@ struct SyntaxStyle {
     let completionWords: [String]?
     
     let pairedQuoteTypes: [String: SyntaxType]
-    let highlightDictionary: [SyntaxType: [HighlightDefinition]]
+    let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
     let outlineDefinitions: [OutlineDefinition]
     
     
@@ -57,7 +57,7 @@ struct SyntaxStyle {
         self.completionWords = nil
         
         self.pairedQuoteTypes = [:]
-        self.highlightDictionary = [:]
+        self.highlightDefinitions = [:]
         self.outlineDefinitions = []
     }
     
@@ -100,7 +100,7 @@ struct SyntaxStyle {
         // pick quote definitions up to parse quoted text separately with comments in `extractCommentsWithQuotes`
         // also combine simple word definitions into single regex definition
         var quoteTypes = [String: SyntaxType]()
-        self.highlightDictionary = definitionDictionary.reduce(into: [:]) { (dict, item) in
+        self.highlightDefinitions = definitionDictionary.reduce(into: [:]) { (dict, item) in
             
             var highlightDefinitions = [HighlightDefinition]()
             var words = [String]()
@@ -177,7 +177,7 @@ struct SyntaxStyle {
     /// whether receiver has any syntax highlight defintion
     var hasHighlightDefinition: Bool {
         
-        return (!self.highlightDictionary.isEmpty || !self.pairedQuoteTypes.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
+        return (!self.highlightDefinitions.isEmpty || !self.pairedQuoteTypes.isEmpty || self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil)
     }
     
 }
@@ -194,7 +194,7 @@ extension SyntaxStyle: Equatable {
             lhs.blockCommentDelimiters == rhs.blockCommentDelimiters &&
             lhs.pairedQuoteTypes == rhs.pairedQuoteTypes &&
             lhs.outlineDefinitions == rhs.outlineDefinitions &&
-            lhs.highlightDictionary == rhs.highlightDictionary
+            lhs.highlightDefinitions == rhs.highlightDefinitions
     }
     
 }

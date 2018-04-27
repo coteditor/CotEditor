@@ -276,7 +276,7 @@ extension SyntaxParser {
             return nil
         }
         
-        let operation = SyntaxHighlightParseOperation(definitions: self.style.highlightDictionary,
+        let operation = SyntaxHighlightParseOperation(definitions: self.style.highlightDefinitions,
                                                       pairedQuoteTypes: self.style.pairedQuoteTypes,
                                                       inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                       blockCommentDelimiters: self.style.blockCommentDelimiters)
