@@ -217,13 +217,11 @@ private extension SnippetKeyBindingManager {
     /// load legacy format (<= CotEditor 2) key bindings setting
     private func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
         
-        let plist = try PropertyListSerialization.propertyList(from: data, format: nil)
+        let plist = try PropertyListDecoder().decode([String: String].self, from: data)
         
-        guard let plistDict = plist as? [String: String], !plistDict.isEmpty else {
-            throw CocoaError(.propertyListReadCorrupt)
-        }
+        guard !plist.isEmpty else { throw CocoaError(.propertyListReadCorrupt) }
         
-        let keyBindings = plistDict.map { KeyBinding(action: Selector($0.value), shortcut: Shortcut(keySpecChars: $0.key)) }
+        let keyBindings = plist.map { KeyBinding(action: Selector($0.value), shortcut: Shortcut(keySpecChars: $0.key)) }
         
         return Set(keyBindings).sorted()
     }

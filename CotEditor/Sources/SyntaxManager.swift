@@ -81,7 +81,7 @@ final class SyntaxManager: SettingFileManager {
         // load bundled style list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
-        let map = try! JSONSerialization.jsonObject(with: data) as! [SettingName: [String: [String]]]
+        let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
         
         self.bundledMap = map
         self.bundledStyleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
@@ -334,7 +334,7 @@ final class SyntaxManager: SettingFileManager {
     
     
     /// conflicted maps
-    var mappingConflicts: [SyntaxKey: [String: [SyntaxManager.SettingName]]] {
+    var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
         
         return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
     }
@@ -399,7 +399,7 @@ final class SyntaxManager: SettingFileManager {
         
         // load mapping definitions from style files in user domain
         let mappingKeys = SyntaxKey.mappingKeys.map { $0.rawValue }
-        let userMap: [SyntaxManager.SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
+        let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
             guard let style = try? self.loadSettingDictionary(at: url) else { return }
             let styleName = self.settingName(from: url)
             
