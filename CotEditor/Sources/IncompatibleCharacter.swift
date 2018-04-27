@@ -41,8 +41,6 @@ final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArra
         self.convertedCharacter = convertedCharacter
         self.location = location
         self.lineNumber = lineNumber
-        
-        super.init()
     }
     
     
