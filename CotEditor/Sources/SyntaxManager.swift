@@ -417,7 +417,7 @@ final class SyntaxManager: SettingFileManager {
         UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.styleNames.contains($0) }
         
         // update file mapping tables
-        let styleNames = self.bundledStyleNames + self.styleNames.filter { !self.bundledSettingNames.contains($0) }  // postpone bundled styles
+        let styleNames = OrderedSet(self.bundledStyleNames + self.styleNames).array  // postpone bundled styles
         let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
                 guard let items = map[styleName]?[key.rawValue] else { return }
