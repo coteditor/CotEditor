@@ -52,7 +52,7 @@ final class EditorTextView: NSTextView, Themable {
     var lineHighlightRect: NSRect?
     
     var inlineCommentDelimiter: String?
-    var blockCommentDelimiters: BlockDelimiters?
+    var blockCommentDelimiters: Pair<String>?
     
     var firstSyntaxCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
     var needsRecompletion = false

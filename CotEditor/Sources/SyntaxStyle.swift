@@ -35,7 +35,7 @@ struct SyntaxStyle {
     let extensions: [String]
     
     let inlineCommentDelimiter: String?
-    let blockCommentDelimiters: BlockDelimiters?
+    let blockCommentDelimiters: Pair<String>?
     let completionWords: [String]?
     
     let pairedQuoteTypes: [String: SyntaxType]
@@ -72,7 +72,7 @@ struct SyntaxStyle {
         
         // set comment delimiters
         var inlineCommentDelimiter: String?
-        var blockCommentDelimiters: BlockDelimiters?
+        var blockCommentDelimiters: Pair<String>?
         if let delimiters = dictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
             if let delimiter = delimiters[DelimiterKey.inlineDelimiter.rawValue], !delimiter.isEmpty {
                 inlineCommentDelimiter = delimiter
@@ -81,7 +81,7 @@ struct SyntaxStyle {
                 let endDelimiter = delimiters[DelimiterKey.endDelimiter.rawValue],
                 !beginDelimiter.isEmpty, !endDelimiter.isEmpty
             {
-                blockCommentDelimiters = BlockDelimiters(begin: beginDelimiter, end: endDelimiter)
+                blockCommentDelimiters = Pair<String>(beginDelimiter, endDelimiter)
             }
         }
         self.inlineCommentDelimiter = inlineCommentDelimiter

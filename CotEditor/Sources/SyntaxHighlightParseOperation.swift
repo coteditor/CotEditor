@@ -26,21 +26,6 @@
 
 import Foundation
 
-struct BlockDelimiters: Equatable {
-    
-    let begin: String
-    let end: String
-    
-    
-    static func == (lhs: BlockDelimiters, rhs: BlockDelimiters) -> Bool {
-        
-        return lhs.begin == rhs.begin && lhs.end == rhs.end
-    }
-    
-}
-
-
-
 struct HighlightDefinition: Equatable {
     
     let beginString: String
@@ -141,14 +126,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     private let definitions: [SyntaxType: [HighlightDefinition]]
     private let pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
     private let inlineCommentDelimiter: String?
-    private let blockCommentDelimiters: BlockDelimiters?
+    private let blockCommentDelimiters: Pair<String>?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definitions: [SyntaxType: [HighlightDefinition]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: BlockDelimiters?) {
+    required init(definitions: [SyntaxType: [HighlightDefinition]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: Pair<String>?) {
         
         self.definitions = definitions
         self.pairedQuoteTypes = pairedQuoteTypes
