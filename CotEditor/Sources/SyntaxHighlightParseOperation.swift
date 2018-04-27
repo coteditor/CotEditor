@@ -69,7 +69,7 @@ extension HighlightDefinition {
     init(words: [String], ignoreCase: Bool) {
         
         let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
-        let rawBoundary = (words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").unique
+        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"))
             .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
         let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
         let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
@@ -524,17 +524,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
 
 
 // MARK: Private Functions
-
-private extension String {
-    
-    /// String consists with unique characters in the receiver.
-    var unique: String {
-        
-        return String(Set(self).sorted())
-    }
-    
-}
-
 
 /** Remove duplicated coloring ranges.
  
