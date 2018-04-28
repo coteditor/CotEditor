@@ -82,7 +82,6 @@ final class SyntaxManager: SettingFileManager {
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
-        
         self.bundledMap = map
         self.bundledStyleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
@@ -417,7 +416,7 @@ final class SyntaxManager: SettingFileManager {
         UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.styleNames.contains($0) }
         
         // update file mapping tables
-        let styleNames = OrderedSet(self.bundledStyleNames + self.styleNames).array  // postpone bundled styles
+        let styleNames = self.styleNames.filter { !self.bundledStyleNames.contains($0) } + self.bundledStyleNames  // postpone bundled styles
         let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
                 guard let items = map[styleName]?[key.rawValue] else { return }
