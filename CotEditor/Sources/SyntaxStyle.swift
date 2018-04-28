@@ -36,7 +36,7 @@ struct SyntaxStyle {
     
     let inlineCommentDelimiter: String?
     let blockCommentDelimiters: Pair<String>?
-    let completionWords: [String]?
+    let completionWords: [String]
     
     let pairedQuoteTypes: [String: SyntaxType]
     let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
@@ -54,7 +54,7 @@ struct SyntaxStyle {
         
         self.inlineCommentDelimiter = nil
         self.blockCommentDelimiters = nil
-        self.completionWords = nil
+        self.completionWords = []
         
         self.pairedQuoteTypes = [:]
         self.highlightDefinitions = [:]
@@ -148,21 +148,18 @@ struct SyntaxStyle {
         
         // create word-completion data set
         self.completionWords = {
-            let words: [String]
             if let completionDicts = dictionary[SyntaxKey.completions.rawValue] as? [[String: Any]], !completionDicts.isEmpty {
                 // create from completion definition
-                words = completionDicts
+                return completionDicts
                     .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
-                    .filter { !$0.isEmpty }
+                    .filter { !$0.isEmpty }.sorted()
             } else {
                 // create from normal highlighting words
-                words = definitionDictionary.values.flatMap { $0 }
+                return definitionDictionary.values.flatMap { $0 }
                     .filter { $0.endString == nil && !$0.isRegularExpression }
                     .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
-                    .filter { !$0.isEmpty }
+                    .filter { !$0.isEmpty }.sorted()
             }
-            
-            return words.isEmpty ? nil : words.sorted()
         }()
         
         // parse outline definitions

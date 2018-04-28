@@ -33,18 +33,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     var syntaxStyle: SyntaxStyle? {
         
         didSet {
-            guard let textView = self.textView else { return }
+            guard let textView = self.textView, let syntaxStyle = syntaxStyle else { return }
             
-            textView.inlineCommentDelimiter = syntaxStyle?.inlineCommentDelimiter
-            textView.blockCommentDelimiters = syntaxStyle?.blockCommentDelimiters
+            textView.inlineCommentDelimiter = syntaxStyle.inlineCommentDelimiter
+            textView.blockCommentDelimiters = syntaxStyle.blockCommentDelimiters
             
-            textView.firstSyntaxCompletionCharacterSet = {
-                guard let words = syntaxStyle?.completionWords, !words.isEmpty else { return nil }
-                
-                let firstLetters = words.compactMap { $0.unicodeScalars.first }
-                
-                return CharacterSet(firstLetters)
-            }()
+            let firstLetters = syntaxStyle.completionWords.compactMap { $0.unicodeScalars.first }
+            textView.completionInitialSet = CharacterSet(firstLetters)
         }
     }
     
@@ -176,7 +171,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy words defined in syntax style
-        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
+        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords, !syntaxCandidateWords.isEmpty {
             let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.append(contentsOf: syntaxWords)
         }

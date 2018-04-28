@@ -54,7 +54,7 @@ final class EditorTextView: NSTextView, Themable {
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
     
-    var firstSyntaxCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
+    var completionInitialSet = CharacterSet()  // set of the first characters of the completion words
     var needsRecompletion = false
     
     // for Scaling extension
@@ -1288,10 +1288,9 @@ extension EditorTextView {
         
         // expand range until hitting to a character that isn't in the word completion candidates
         guard
-            !self.string.isEmpty,
-            let characterSet = self.firstSyntaxCompletionCharacterSet,
+            !self.string.isEmpty, !self.completionInitialSet.isEmpty,
             let characterRange = Range(range, in: self.string),
-            let index = self.string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
+            let index = self.string.rangeOfCharacter(from: self.completionInitialSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
             else { return range }
         
         return NSRange(index..<characterRange.upperBound, in: self.string)
