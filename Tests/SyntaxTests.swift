@@ -98,17 +98,21 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
         
         guard let style = self.htmlStyle, let source = self.htmlSource else { return }
         
-        // create dummy textView
-        let textView = NSTextView()
-        textView.string = source
-        
-        let parser = SyntaxParser(textStorage: textView.textStorage!, style: style)
-        parser.delegate = self
+        let textStorage = NSTextStorage(string: source)
+        let parser = SyntaxParser(textStorage: textStorage, style: style)
         
         // test outline parsing with delegate
+        parser.delegate = self
         self.outlineParseExpectation = self.expectation(description: "didParseOutline")
         parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
+    }
+    
+    
+    // MARK: Syntax Parser Delegate
+    
+    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
+        
     }
     
     

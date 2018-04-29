@@ -863,6 +863,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
+        self.syntaxParser.cancelAllParses()
         self.syntaxParser.style = syntaxStyle
         
         DispatchQueue.main.async { [weak self] in

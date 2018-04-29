@@ -43,13 +43,7 @@ final class SyntaxParser {
     
     let textStorage: NSTextStorage
     
-    var style: SyntaxStyle {
-        
-        willSet {
-            self.cancelAllParses()
-            self.outlineItems = []
-        }
-    }
+    var style: SyntaxStyle
     
     weak var delegate: SyntaxParserDelegate?
     
