@@ -156,7 +156,7 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
                 guard endRange.location != NSNotFound else { return nil }
                 
                 return beginRange.union(endRange)
-        }
+            }
     }
     
 }
