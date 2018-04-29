@@ -376,13 +376,10 @@ enum InvalidNameError: LocalizedError {
         switch self {
         case .empty:
             return NSLocalizedString("Name can’t be empty.", comment: "")
-            
         case .containSlash:
             return NSLocalizedString("You can’t use a name that contains “/”.", comment: "")
-            
         case .startWithDot:
             return NSLocalizedString("You can’t use a name that begins with a dot “.”.", comment: "")
-            
         case .duplicated(let name):
             return String(format: NSLocalizedString("The name “%@” is already taken.", comment: ""), name)
         }
@@ -401,14 +398,15 @@ enum InvalidNameError: LocalizedError {
 struct SettingFileError: LocalizedError {
     
     enum ErrorKind {
+        
         case deletionFailed
         case importFailed
         case noSourceFile
     }
     
-    let kind: ErrorKind
-    let name: String
-    let error: NSError?
+    var kind: ErrorKind
+    var name: String
+    var error: NSError?
     
     
     var errorDescription: String? {
@@ -435,10 +433,10 @@ struct SettingFileError: LocalizedError {
 
 struct ImportDuplicationError: LocalizedError, RecoverableError {
     
-    let name: String
-    let url: URL
-    let type: SettingFileType
-    let attempter: SettingFileManager
+    var name: String
+    var url: URL
+    var type: SettingFileType
+    var attempter: SettingFileManager
     
     
     var errorDescription: String? {
@@ -446,10 +444,8 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         switch self.type {
         case .syntaxStyle:
             return String(format: NSLocalizedString("A new style named “%@” will be installed, but a custom style with the same name already exists.", comment: ""), self.name)
-            
         case .theme:
             return String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), self.name)
-            
         case .replacement:
             return String(format: NSLocalizedString("A new replacement definition named “%@” will be installed, but a definition with the same name already exists.", comment: ""), self.name)
         }
@@ -461,10 +457,8 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         switch self.type {
         case .syntaxStyle:
             return NSLocalizedString("Do you want to replace it?\nReplaced style can’t be restored.", comment: "")
-            
         case .theme:
             return NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
-            
         case .replacement:
             return NSLocalizedString("Do you want to replace it?\nReplaced definition can’t be restored.", comment: "")
         }
@@ -494,7 +488,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             return true
             
         default:
-            return false
+            preconditionFailure()
         }
     }
     
