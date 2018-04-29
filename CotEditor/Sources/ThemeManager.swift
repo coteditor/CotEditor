@@ -51,9 +51,9 @@ final class ThemeManager: SettingFileManager {
     
     // MARK: Private Properties
     
-    private var themeNames = [String]()
-    private var bundledThemeNames = [String]()
-    private var cachedSettings = [String: Setting]()
+    private var _settingNames: [String] = []
+    private var _bundledSettingNames: [String] = []
+    private var cachedSettings: [String: Setting] = [:]
     
     
     
@@ -65,7 +65,7 @@ final class ThemeManager: SettingFileManager {
         super.init()
         
         // cache bundled theme names
-        self.bundledThemeNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName)!
+        self._bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
@@ -102,14 +102,14 @@ final class ThemeManager: SettingFileManager {
     /// list of names of setting file name (without extension)
     override var settingNames: [String] {
         
-        return self.themeNames
+        return self._settingNames
     }
     
     
     /// list of names of setting file name which are bundled (without extension)
     override var bundledSettingNames: [String] {
         
-        return self.bundledThemeNames
+        return self._bundledSettingNames
     }
     
     
@@ -247,10 +247,10 @@ final class ThemeManager: SettingFileManager {
         // load user themes if exists
         let userThemeNames = self.userSettingFileURLs.map { self.settingName(from: $0) }
         
-        self.themeNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
+        self._settingNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
         
         // reset user default if not found
-        if !self.themeNames.contains(UserDefaults.standard[.theme]!) {
+        if !self.settingNames.contains(UserDefaults.standard[.theme]!) {
             UserDefaults.standard.restore(key: .theme)
         }
     }

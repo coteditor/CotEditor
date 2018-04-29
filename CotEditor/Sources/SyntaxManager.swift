@@ -58,13 +58,11 @@ final class SyntaxManager: SettingFileManager {
     
     // MARK: Private Properties
     
-    private var styleNames: [SettingName] = []
-    
-    private let bundledStyleNames: [SettingName]
-    private let bundledMap: [SettingName: [String: [String]]]
-    
+    private var _settingNames: [SettingName] = []
+    private let _bundledSettingNames: [SettingName]
     private var cachedSettings: [SettingName: Setting] = [:]
     
+    private let bundledMap: [SettingName: [String: [String]]]
     private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
                                                                        .filenames: [:],
                                                                        .interpreters: [:]]
@@ -83,7 +81,7 @@ final class SyntaxManager: SettingFileManager {
         let data = try! Data(contentsOf: url)
         let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
         self.bundledMap = map
-        self.bundledStyleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        self._bundledSettingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         super.init()
         
@@ -119,14 +117,14 @@ final class SyntaxManager: SettingFileManager {
     /// list of names of setting file name (without extension)
     override var settingNames: [SettingName] {
         
-        return self.styleNames
+        return self._settingNames
     }
     
     
     /// list of names of setting file name which are bundled (without extension)
     override var bundledSettingNames: [SettingName] {
         
-        return self.bundledStyleNames
+        return self._bundledSettingNames
     }
     
     
@@ -399,13 +397,13 @@ final class SyntaxManager: SettingFileManager {
         let map = self.bundledMap.merging(userMap) { (_, new) in new }
         
         // sort styles alphabetically
-        self.styleNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        self._settingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // remove styles not exist
-        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.styleNames.contains($0) }
+        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.settingNames.contains($0) }
         
         // update file mapping tables
-        let styleNames = self.styleNames.filter { !self.bundledStyleNames.contains($0) } + self.bundledStyleNames  // postpone bundled styles
+        let styleNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
         let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
             tables[key] = styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
                 guard let items = map[styleName]?[key.rawValue] else { return }
