@@ -24,8 +24,6 @@
 //
 
 import Foundation
-import AppKit.NSColor
-import ColorCode
 
 @objc protocol ThemeHolder: class {
     
