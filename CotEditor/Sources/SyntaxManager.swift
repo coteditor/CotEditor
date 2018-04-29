@@ -199,12 +199,17 @@ final class SyntaxManager: SettingFileManaging {
         if self.isEqualToBundledSetting(settingDictionary, name: name) {
             if saveURL.isReachable {
                 try FileManager.default.removeItem(at: saveURL)
-                self.cachedSettings[name] = nil
             }
         } else {
             // save file to user domain
             let yamlData = try YAMLSerialization.yamlData(with: settingDictionary, options: kYAMLWriteOptionSingleDocument)
             try yamlData.write(to: saveURL, options: .atomic)
+        }
+        
+        // invalidate current cache
+        self.cachedSettings[name] = nil
+        if let oldName = oldName {
+            self.cachedSettings[oldName] = nil
         }
         
         // update internal cache
