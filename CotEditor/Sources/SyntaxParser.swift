@@ -29,6 +29,7 @@ import Cocoa
 protocol SyntaxParserDelegate: class {
     
     func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem])
+    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress)
 }
 
 
@@ -156,6 +157,8 @@ extension SyntaxParser {
         }
         
         self.outlineParseOperationQueue.addOperation(operation)
+        
+        self.delegate?.syntaxParser(self, didStartParsingOutline: operation.progress)
     }
     
 }

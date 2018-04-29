@@ -126,9 +126,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax highlights and outline menu
-            if document.syntaxParser.canParse {
-                editorViewController.navigationBarController?.showOutlineIndicator()
-            }
             document.syntaxParser.invalidateOutline()
             self.invalidateSyntaxHighlight()
             
@@ -311,8 +308,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.document?.analyzer.invalidateEditorInfo()
         
         // parse syntax
-        self.syntaxParser?.invalidateOutline()
         if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
+            syntaxParser.invalidateOutline()
+            
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
@@ -331,8 +329,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
         
         for viewController in self.editorViewControllers {
+            viewController.navigationBarController?.outlineProgress = nil
             viewController.navigationBarController?.outlineItems = outlineItems
             // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need invoke it (2008-05-16)
+        }
+    }
+    
+    
+    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
+        
+        for viewController in self.editorViewControllers {
+            viewController.navigationBarController?.outlineProgress = progress
         }
     }
     
@@ -357,10 +364,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         for viewController in self.editorViewControllers {
             viewController.apply(syntax: syntaxParser.style)
-            if syntaxParser.canParse {
-                viewController.navigationBarController?.outlineItems = []
-                viewController.navigationBarController?.showOutlineIndicator()
-            }
+            viewController.navigationBarController?.outlineItems = []
+            viewController.navigationBarController?.outlineProgress = nil
         }
         
         syntaxParser.invalidateOutline()

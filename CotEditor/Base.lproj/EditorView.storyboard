@@ -117,8 +117,21 @@
                                     <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
-                                <rect key="frame" x="60" y="0.0" width="16" height="16"/>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
+                                <rect key="frame" x="60" y="2" width="16" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="11" id="WnS-2Z-odB"/>
+                                </constraints>
+                                <connections>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="outlineProgress" id="pyE-wh-0zH">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="KjS-UJ-AjC" name="isIndeterminate" keyPath="outlineProgress.indeterminate" id="jeE-BF-4Mp"/>
+                                    <binding destination="KjS-UJ-AjC" name="maxValue" keyPath="outlineProgress.totalUnitCount" id="hSu-OX-BE2"/>
+                                    <binding destination="KjS-UJ-AjC" name="value" keyPath="outlineProgress.completedUnitCount" previousBinding="hSu-OX-BE2" id="K0g-Ey-WCn"/>
+                                </connections>
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
                                 <rect key="frame" x="82" y="1" width="107" height="14"/>
@@ -127,6 +140,13 @@
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <binding destination="KjS-UJ-AjC" name="hidden" keyPath="outlineProgress" id="AM2-Fs-dLv">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSIsNil</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
                             </textField>
                         </subviews>
                         <constraints>
@@ -156,8 +176,6 @@
                         <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
                         <outlet property="leftButton" destination="BUj-TD-scp" id="UPE-Vg-sYz"/>
                         <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
-                        <outlet property="outlineIndicator" destination="htM-ug-ofP" id="9bf-eJ-GwB"/>
-                        <outlet property="outlineLoadingMessage" destination="Svt-vI-TEc" id="dqn-f5-EZW"/>
                         <outlet property="outlineMenu" destination="uo6-wO-fJZ" id="E2p-BI-hLI"/>
                         <outlet property="rightButton" destination="MlW-Dz-FOk" id="rRE-Sr-4yx"/>
                     </connections>
