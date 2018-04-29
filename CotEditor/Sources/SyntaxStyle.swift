@@ -82,7 +82,9 @@ extension HighlightDefinition {
     
 }
 
-struct OutlineDefinition {
+
+
+struct OutlineDefinition: Equatable {
     
     var pattern: String
     var template: String
@@ -119,9 +121,23 @@ struct OutlineDefinition {
         self.underline = dictionary[CodingKeys.underline.rawValue]as? Bool ?? false
     }
     
+    
+    static func == (lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
+        
+        return lhs.pattern == rhs.pattern &&
+            lhs.template == rhs.template &&
+            lhs.ignoreCase == rhs.ignoreCase &&
+            lhs.bold == rhs.bold &&
+            lhs.italic == rhs.italic &&
+            lhs.underline == rhs.underline
+    }
+    
 }
 
 
+
+
+// MARK: -
 
 struct SyntaxStyle {
     
@@ -136,8 +152,11 @@ struct SyntaxStyle {
     let completionWords: [String]
     
     let pairedQuoteTypes: [String: SyntaxType]
-    let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
-    let outlineExtractors: [OutlineExtractor]
+    private let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
+    private let outlineDefinitions: [OutlineDefinition]
+    
+    private(set) lazy var outlineExtractors: [OutlineExtractor] = self.outlineDefinitions.compactMap { try? OutlineExtractor(definition: $0) }
+    private(set) lazy var highlightExtractors: [SyntaxType: [HighlightExtractable]] = self.highlightDefinitions.mapValues { $0.compactMap { try? $0.extractor() } }
     
     
     
@@ -155,7 +174,7 @@ struct SyntaxStyle {
         
         self.pairedQuoteTypes = [:]
         self.highlightDefinitions = [:]
-        self.outlineExtractors = []
+        self.outlineDefinitions = []
     }
     
     
@@ -260,9 +279,8 @@ struct SyntaxStyle {
         }()
         
         // parse outline definitions
-        self.outlineExtractors = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?.lazy
-            .compactMap { OutlineDefinition(dictionary: $0) }
-            .compactMap { try? OutlineExtractor(definition: $0) } ?? []
+        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?.lazy
+            .compactMap { OutlineDefinition(dictionary: $0) } ?? []
     }
     
     
@@ -288,7 +306,7 @@ extension SyntaxStyle: Equatable {
             lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
             lhs.blockCommentDelimiters == rhs.blockCommentDelimiters &&
             lhs.pairedQuoteTypes == rhs.pairedQuoteTypes &&
-            lhs.outlineExtractors == rhs.outlineExtractors &&
+            lhs.outlineDefinitions == rhs.outlineDefinitions &&
             lhs.highlightDefinitions == rhs.highlightDefinitions
     }
     

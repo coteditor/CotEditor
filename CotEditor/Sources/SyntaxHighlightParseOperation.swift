@@ -65,7 +65,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     
     // MARK: Private Properties
     
-    private let definitions: [SyntaxType: [HighlightDefinition]]
+    private let extractors: [SyntaxType: [HighlightExtractable]]
     private let pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
     private let inlineCommentDelimiter: String?
     private let blockCommentDelimiters: Pair<String>?
@@ -75,16 +75,16 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definitions: [SyntaxType: [HighlightDefinition]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: Pair<String>?) {
+    required init(extractors: [SyntaxType: [HighlightExtractable]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: Pair<String>?) {
         
-        self.definitions = definitions
+        self.extractors = extractors
         self.pairedQuoteTypes = pairedQuoteTypes
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
         // +1 for extractCommentsWithQuotes()
         // +1 for highlighting
-        self.progress = Progress(totalUnitCount: Int64(definitions.count + 2))
+        self.progress = Progress(totalUnitCount: Int64(extractors.count + 2))
         
         super.init()
         
@@ -151,129 +151,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             guard !string.isCharacterEscaped(at: range.location) else { continue }
             
             ranges.append(range)
-        }
-        
-        return ranges
-    }
-    
-    
-    /// extract ranges with a begin/end string pair
-    private func ranges(beginString: String, endString: String, ignoreCase: Bool) -> [NSRange] {
-        
-        guard !beginString.isEmpty else { return [] }
-        
-        var ranges = [NSRange]()
-        let endLength = endString.utf16.count
-        
-        let scanner = Scanner(string: self.string!)
-        scanner.charactersToBeSkipped = nil
-        scanner.caseSensitive = !ignoreCase
-        scanner.scanLocation = self.parseRange.location
-        
-        while !scanner.isAtEnd && (scanner.scanLocation < self.parseRange.upperBound) {
-            guard !self.isCancelled else { return [] }
-            
-            scanner.scanUpTo(beginString, into: nil)
-            let startLocation = scanner.scanLocation
-            
-            guard scanner.scanString(beginString, into: nil) else { break }
-            guard !self.string!.isCharacterEscaped(at: startLocation) else { continue }
-            
-            // find end string
-            while !scanner.isAtEnd && (scanner.scanLocation < self.parseRange.upperBound) {
-                
-                scanner.scanUpTo(endString, into: nil)
-                guard scanner.scanString(endString, into: nil) else { break }
-                
-                let endLocation = scanner.scanLocation
-                
-                guard !self.string!.isCharacterEscaped(at: endLocation - endLength) else { continue }
-                
-                ranges.append(NSRange(startLocation..<endLocation))
-                
-                break
-            }
-        }
-        
-        return ranges
-    }
-    
-    
-    /// extract ranges with regular expression
-    private func ranges(regularExpressionString regexString: String, ignoreCase: Bool) -> [NSRange] {
-        
-        guard !regexString.isEmpty else { return [] }
-        
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
-        
-        let regex: NSRegularExpression
-        do {
-            try regex = NSRegularExpression(pattern: regexString, options: options)
-        } catch {
-            print("Regex Syntax Error in " + #function + ": ", error)
-            return []
-        }
-        
-        var ranges = [NSRange]()
-        
-        regex.enumerateMatches(in: self.string!, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange)
-        { (result: NSTextCheckingResult?, flags, stop) in
-            guard !self.isCancelled else {
-                stop.pointee = true
-                return
-            }
-            
-            guard let range = result?.range else { return }
-            
-            ranges.append(range)
-        }
-        
-        return ranges
-    }
-    
-    
-    /// extract ranges with pair of begin/end regular expressions
-    private func ranges(regularExpressionBeginString beginString: String, endString: String, ignoreCase: Bool) -> [NSRange] {
-        
-        guard !beginString.isEmpty else { return [] }
-        
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
-        
-        let beginRegex: NSRegularExpression
-        let endRegex: NSRegularExpression
-        do {
-            try beginRegex = NSRegularExpression(pattern: beginString, options: options)
-            try endRegex = NSRegularExpression(pattern: endString, options: options)
-        } catch {
-            print("Regex Syntax Error in " + #function + ": ", error)
-            return []
-        }
-        
-        var ranges = [NSRange]()
-        let string = self.string!
-        let parseRange = self.parseRange
-        
-        beginRegex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange)
-        { (result: NSTextCheckingResult?, flags, stop) in
-            guard !self.isCancelled else {
-                stop.pointee = true
-                return
-            }
-            
-            guard let beginRange = result?.range else { return }
-            
-            let endRange = endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
-                                                      range: NSRange(beginRange.upperBound..<parseRange.upperBound))
-            
-            if endRange.location != NSNotFound {
-                ranges.append(beginRange.union(endRange))
-            }
         }
         
         return ranges
@@ -373,46 +250,22 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         var highlights = [SyntaxType: [NSRange]]()
         
         for syntaxType in SyntaxType.all {
-            guard let definitions = self.definitions[syntaxType] else { continue }
+            guard let extractors = self.extractors[syntaxType] else { continue }
             
             // update indicator sheet message
             DispatchQueue.main.async { [weak progress = self.progress] in
                 progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             }
             
-            let childProgress = Progress(totalUnitCount: Int64(definitions.count), parent: self.progress, pendingUnitCount: 1)
+            let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
             
             var ranges = [NSRange]()
             let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
             
-            DispatchQueue.concurrentPerform(iterations: definitions.count) { (index: Int) in
+            DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !self.isCancelled else { return }
                 
-                let extractedRanges: [NSRange] = {
-                    let definition = definitions[index]
-                    
-                    if definition.isRegularExpression {
-                        if let endString = definition.endString {
-                            return self.ranges(regularExpressionBeginString: definition.beginString,
-                                               endString: endString,
-                                               ignoreCase: definition.ignoreCase)
-                        } else {
-                            return self.ranges(regularExpressionString: definition.beginString,
-                                               ignoreCase: definition.ignoreCase)
-                        }
-                        
-                    } else {
-                        if let endString = definition.endString {
-                            return self.ranges(beginString: definition.beginString,
-                                               endString: endString,
-                                               ignoreCase: definition.ignoreCase)
-                        } else {
-                            assertionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
-                            return self.ranges(string: definition.beginString,
-                                               ignoreCase: definition.ignoreCase)
-                        }
-                    }
-                }()
+                let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
                 
                 if !extractedRanges.isEmpty {
                     rangesQueue.sync {
