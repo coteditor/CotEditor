@@ -60,8 +60,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         self.themeNames = ThemeManager.shared.settingNames
         
         // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: SettingFileManager.didUpdateSettingNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
     }
     
     
@@ -226,7 +226,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     // ThemeViewControllerDelegate
     
     /// theme did update
-    func didUpdate(theme: ThemeDictionary) {
+    func didUpdate(theme: ThemeManager.ThemeDictionary) {
         
         // save
         do {
@@ -251,10 +251,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // update default theme setting
         if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
             UserDefaults.standard[.theme] = themeName
-            
-            // update theme of the current document windows
-            //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
         self.themeViewController?.theme = themeDict
@@ -337,6 +333,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             return false
         }
         
+        if UserDefaults.standard[.theme] == oldName {
+            UserDefaults.standard[.theme] = newName
+        }
+        
         return true
     }
     
@@ -350,8 +350,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         guard let tableView = self.themeTableView else { return }
         
         try? ThemeManager.shared.createUntitledSetting { themeName in
-            let themeNames = ThemeManager.shared.settingNames
-            let row = themeNames.index(of: themeName) ?? 0
+            let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }

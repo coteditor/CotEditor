@@ -121,7 +121,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.hasUndoManager = true
         
         // observe sytnax style update
-        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: SettingFileManager.didUpdateSettingNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(syntaxDidUpdate), name: didUpdateSettingNotification, object: SyntaxManager.shared)
     }
     
     
@@ -736,9 +736,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     @objc private func syntaxDidUpdate(_ notification: Notification) {
         
         guard
-            let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
-            let newName = notification.userInfo?[SettingFileManager.NotificationKey.new] as? String,
+            let oldName = notification.userInfo?[Notification.UserInfoKey.old] as? String,
             oldName == self.syntaxParser.style.name else { return }
+        
+        let newName = (notification.userInfo?[Notification.UserInfoKey.new] as? String) ?? BundledStyleName.none
         
         self.setSyntaxStyle(name: newName)
     }

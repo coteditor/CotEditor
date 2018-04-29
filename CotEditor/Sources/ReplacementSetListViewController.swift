@@ -62,7 +62,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         self.tableView?.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
         
         // observe replacement setting list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: SettingFileManager.didUpdateSettingListNotification, object: ReplacementManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
     }
     
     
@@ -139,8 +139,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         guard let tableView = self.tableView else { return }
         
         try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
-            let settingNames = ReplacementManager.shared.settingNames
-            let row = settingNames.index(of: settingName) ?? 0
+            let row = ReplacementManager.shared.settingNames.index(of: settingName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
