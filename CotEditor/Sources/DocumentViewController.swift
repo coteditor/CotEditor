@@ -373,8 +373,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard
             let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
-            let newName = notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String,
             oldName == self.theme?.name else { return }
+        
+        let newName = (notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String) ?? UserDefaults.standard[.theme]!
         
         self.setTheme(name: newName)
     }

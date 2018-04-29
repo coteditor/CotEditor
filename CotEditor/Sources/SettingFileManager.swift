@@ -310,11 +310,12 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// notify about change of a managed setting
-    final func notifySettingUpdate(oldName: String, newName: String) {
+    final func notifySettingUpdate(oldName: String, newName: String?) {
         
-        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingNotification, object: self,
-                                        userInfo: [SettingFileManager.NotificationKey.old: oldName,
-                                                   SettingFileManager.NotificationKey.new: newName])
+        var userInfo = [SettingFileManager.NotificationKey.old: oldName]
+        userInfo[SettingFileManager.NotificationKey.new] = newName
+        
+        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingNotification, object: self, userInfo: userInfo)
     }
     
     

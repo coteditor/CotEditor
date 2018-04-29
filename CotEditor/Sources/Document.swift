@@ -737,8 +737,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard
             let oldName = notification.userInfo?[SettingFileManager.NotificationKey.old] as? String,
-            let newName = notification.userInfo?[SettingFileManager.NotificationKey.new] as? String,
             oldName == self.syntaxParser.style.name else { return }
+        
+        let newName = (notification.userInfo?[SettingFileManager.NotificationKey.new] as? String) ?? BundledStyleName.none
         
         self.setSyntaxStyle(name: newName)
     }

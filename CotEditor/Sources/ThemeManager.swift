@@ -190,8 +190,7 @@ final class ThemeManager: SettingFileManager {
         self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
-            // restore theme of opened documents to default
-            self?.notifySettingUpdate(oldName: name, newName: UserDefaults.standard[.theme]!)
+            self?.notifySettingUpdate(oldName: name, newName: nil)
         }
     }
     

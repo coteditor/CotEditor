@@ -246,7 +246,7 @@ final class SyntaxManager: SettingFileManager {
         }
         
         self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: BundledStyleName.none)
+            self?.notifySettingUpdate(oldName: name, newName: nil)
         }
     }
     
