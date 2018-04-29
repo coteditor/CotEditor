@@ -41,6 +41,21 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     // MARK: -
     // MARK: Split View Controller Methods
     
+    deinit {
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == DefaultKeys.theme.rawValue, let name = change?[.newKey] as? String {
+            DispatchQueue.main.async { [weak self] in
+                self?.setTheme(name: name)
+            }
+        }
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -54,9 +69,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
         
+        // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: SettingFileManager.didUpdateSettingNotification,
                                                object: ThemeManager.shared)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
     }
     
     
@@ -870,6 +887,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     /// apply theme
     private func setTheme(name: String) {
+        
+        assert(Thread.isMainThread)
         
         guard let theme = ThemeManager.shared.setting(name: name) else { return }
         

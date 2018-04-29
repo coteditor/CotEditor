@@ -251,10 +251,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // update default theme setting
         if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
             UserDefaults.standard[.theme] = themeName
-            
-            // update theme of the current document windows
-            //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
         self.themeViewController?.theme = themeDict
