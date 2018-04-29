@@ -40,7 +40,7 @@ struct SyntaxStyle {
     
     let pairedQuoteTypes: [String: SyntaxType]
     let highlightDefinitions: [SyntaxType: [HighlightDefinition]]
-    let outlineDefinitions: [OutlineDefinition]
+    let outlineExtractors: [OutlineExtractor]
     
     
     
@@ -58,7 +58,7 @@ struct SyntaxStyle {
         
         self.pairedQuoteTypes = [:]
         self.highlightDefinitions = [:]
-        self.outlineDefinitions = []
+        self.outlineExtractors = []
     }
     
     
@@ -163,8 +163,8 @@ struct SyntaxStyle {
         }()
         
         // parse outline definitions
-        self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?
-            .compactMap { OutlineDefinition(definition: $0) } ?? []
+        self.outlineExtractors = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?
+            .compactMap { OutlineExtractor(dictionary: $0) } ?? []
     }
     
     
@@ -190,7 +190,7 @@ extension SyntaxStyle: Equatable {
             lhs.inlineCommentDelimiter == rhs.inlineCommentDelimiter &&
             lhs.blockCommentDelimiters == rhs.blockCommentDelimiters &&
             lhs.pairedQuoteTypes == rhs.pairedQuoteTypes &&
-            lhs.outlineDefinitions == rhs.outlineDefinitions &&
+            lhs.outlineExtractors == rhs.outlineExtractors &&
             lhs.highlightDefinitions == rhs.highlightDefinitions
     }
     
