@@ -235,37 +235,6 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// delete user’s file for the setting name
-    override func removeSetting(name: SettingName) throws {
-        
-        try super.removeSetting(name: name)
-        
-        // update internal cache
-        self.propertyAccessQueue.sync {
-            self.cachedSettings[name] = nil
-        }
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: nil)
-        }
-    }
-    
-    
-    /// restore the setting with name
-    override func restoreSetting(name: SettingName) throws {
-        
-        try super.restoreSetting(name: name)
-        
-        self.propertyAccessQueue.sync {
-            self.cachedSettings[name] = nil
-        }
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: name)
-        }
-    }
-    
-    
     /// save setting file
     func save(settingDictionary: StyleDictionary, name: SettingName, oldName: SettingName?) throws {
         
@@ -300,9 +269,7 @@ final class SyntaxManager: SettingFileManager {
         if self.isEqualToBundledSetting(settingDictionary, name: name) {
             if saveURL.isReachable {
                 try FileManager.default.removeItem(at: saveURL)
-                self.propertyAccessQueue.sync {
-                    self.cachedSettings[name] = nil
-                }
+                self.removeCache(name: name)
             }
         } else {
             // save file to user domain
@@ -377,6 +344,15 @@ final class SyntaxManager: SettingFileManager {
         guard let bundledStyle = self.bundledSettingDictionary(name: name) else { return false }
         
         return NSDictionary(dictionary: style).isEqual(to: bundledStyle)
+    }
+    
+    
+    /// remove stored setting cache of given setting name (optional)
+    override func removeCache(name: String) {
+        
+        self.propertyAccessQueue.sync {
+            self.cachedSettings[name] = nil
+        }
     }
     
     

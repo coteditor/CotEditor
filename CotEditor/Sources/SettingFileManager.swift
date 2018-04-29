@@ -74,6 +74,9 @@ class SettingFileManager: SettingFileManaging {
     var bundledSettingNames: [String] { preconditionFailure() }
     
     
+    /// remove stored setting cache of given setting name (optional)
+    func removeCache(name: String) { }
+    
     /// load settings in the user domain
     func loadUserSettings() { preconditionFailure() }
     
@@ -184,7 +187,7 @@ class SettingFileManager: SettingFileManaging {
     
     /// delete user's setting file for the setting name
     /// - throws: SettingFileError
-    func removeSetting(name: String) throws {
+    final func removeSetting(name: String) throws {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
         
@@ -194,17 +197,29 @@ class SettingFileManager: SettingFileManaging {
         } catch let error as NSError {
             throw SettingFileError(kind: .deletionFailed, name: name, error: error)
         }
+        
+        self.removeCache(name: name)
+        
+        self.updateCache { [weak self] in
+            self?.notifySettingUpdate(oldName: name, newName: nil)
+        }
     }
     
     
     /// restore the setting with name
-    func restoreSetting(name: String) throws {
+    final func restoreSetting(name: String) throws {
         
         guard self.isBundledSetting(name: name) else { return }  // only bundled setting can be restored
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
         
         try FileManager.default.removeItem(at: url)
+        
+        self.removeCache(name: name)
+        
+        self.updateCache { [weak self] in
+            self?.notifySettingUpdate(oldName: name, newName: name)
+        }
     }
     
     
@@ -228,7 +243,7 @@ class SettingFileManager: SettingFileManaging {
     
     
     /// rename the setting with name
-    func renameSetting(name: String, to newName: String) throws {
+    final func renameSetting(name: String, to newName: String) throws {
         
         let sanitizedNewName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -236,6 +251,13 @@ class SettingFileManager: SettingFileManaging {
         
         try FileManager.default.moveItem(at: self.preparedURLForUserSetting(name: name),
                                          to: self.preparedURLForUserSetting(name: sanitizedNewName))
+        
+        self.removeCache(name: name)
+        self.removeCache(name: newName)
+        
+        self.updateCache { [weak self] in
+            self?.notifySettingUpdate(oldName: name, newName: newName)
+        }
     }
     
     

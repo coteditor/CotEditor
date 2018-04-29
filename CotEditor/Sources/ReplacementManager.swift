@@ -101,15 +101,6 @@ final class ReplacementManager: SettingFileManager {
     }
     
     
-    /// delete theme file corresponding to the theme name
-    override func removeSetting(name settingName: String) throws {
-        
-        try super.removeSetting(name: settingName)
-        
-        self.updateCache()
-    }
-    
-    
     /// save
     func save(setting: Setting, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
         
@@ -129,17 +120,6 @@ final class ReplacementManager: SettingFileManager {
         
         self.updateCache {
             completionHandler?()
-        }
-    }
-    
-    
-    /// rename setting
-    override func renameSetting(name: String, to newName: String) throws {
-        
-        try super.renameSetting(name: name, to: newName)
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: newName)
         }
     }
     

@@ -333,6 +333,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             return false
         }
         
+        if UserDefaults.standard[.theme] == oldName {
+            UserDefaults.standard[.theme] = newName
+        }
+        
         return true
     }
     

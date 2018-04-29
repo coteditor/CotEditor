@@ -154,56 +154,12 @@ final class ThemeManager: SettingFileManager {
         try data.write(to: fileURL, options: .atomic)
         
         // invalidate current cache
-        self.cachedSettings[name] = nil
+        self.removeCache(name: name)
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
             
             completionHandler?()
-        }
-    }
-    
-    
-    /// rename theme
-    override func renameSetting(name: String, to newName: String) throws {
-        
-        try super.renameSetting(name: name, to: newName)
-        
-        self.cachedSettings[name] = nil
-        self.cachedSettings[newName] = nil
-        
-        if UserDefaults.standard[.theme] == name {
-            UserDefaults.standard[.theme] = newName
-        }
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: newName)
-        }
-    }
-    
-    
-    /// delete theme file corresponding to the theme name
-    override func removeSetting(name: String) throws {
-        
-        try super.removeSetting(name: name)
-        
-        self.cachedSettings[name] = nil
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: nil)
-        }
-    }
-    
-    
-    /// restore customized bundled theme to original one
-    override func restoreSetting(name: String) throws {
-        
-        try super.restoreSetting(name: name)
-        
-        self.cachedSettings[name] = nil
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: name)
         }
     }
     
@@ -237,6 +193,13 @@ final class ThemeManager: SettingFileManager {
         }
         
         return themeDictionry
+    }
+    
+    
+    /// remove stored setting cache of given setting name (optional)
+    override func removeCache(name: String) {
+        
+        self.cachedSettings[name] = nil
     }
     
     
