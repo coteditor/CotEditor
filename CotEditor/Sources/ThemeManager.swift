@@ -245,7 +245,9 @@ final class ThemeManager: SettingFileManager {
     override func loadUserSettings() {
         
         // load user themes if exists
-        let userThemeNames = self.userSettingFileURLs.map { self.settingName(from: $0) }
+        let userThemeNames = self.userSettingFileURLs
+            .map { self.settingName(from: $0) }
+            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         self._settingNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
         
