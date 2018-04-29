@@ -37,7 +37,8 @@ final class ReplacementManager: SettingFileManager {
     
     // MARK: Private Properties
     
-    private var settings = [String: Setting]()
+    private var _settingNames: [String] = []
+    private var settings: [String: Setting] = [:]
     
     
     
@@ -79,7 +80,7 @@ final class ReplacementManager: SettingFileManager {
     /// list of names of setting file name (without extension)
     override var settingNames: [String] {
         
-        return self.settings.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        return self._settingNames
     }
     
     
@@ -166,6 +167,7 @@ final class ReplacementManager: SettingFileManager {
             
             settings[name] = try? self.loadSetting(at: url)
         }
+        self._settingNames = self.settings.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
     }
     
     
