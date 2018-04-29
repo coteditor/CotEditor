@@ -39,7 +39,7 @@ final class ThemeMetaDataViewController: NSViewController {
     @IBAction func jumpToURL(_ sender: Any?) {
         
         guard
-            let theme = self.representedObject as? ThemeDictionary,
+            let theme = self.representedObject as? ThemeManager.ThemeDictionary,
             let address = theme[DictionaryKey.metadata.rawValue]?[MetadataKey.distributionURL.rawValue] as? String,
             let url = URL(string: address)
             else {

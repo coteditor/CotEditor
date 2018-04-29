@@ -28,7 +28,7 @@ import Foundation
 protocol SettingManaging: class {
     
     /// directory name in both Application Support and bundled Resources
-    var directoryName: String { get }
+    static var directoryName: String { get }
 }
 
 
@@ -38,7 +38,7 @@ extension SettingManaging {
     /// user setting directory URL in Application Support
     var userSettingDirectoryURL: URL {
         
-        return supportDirectoryURL.appendingPathComponent(self.directoryName)
+        return supportDirectoryURL.appendingPathComponent(Self.directoryName)
     }
     
     

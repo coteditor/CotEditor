@@ -44,9 +44,10 @@ enum BundledStyleName {
 
 // MARK: -
 
-final class SyntaxManager: SettingFileManager {
+final class SyntaxManager: SettingFileManaging {
     
     typealias Setting = SyntaxStyle
+    
     typealias SettingName = String
     typealias StyleDictionary = [String: Any]
     
@@ -56,11 +57,17 @@ final class SyntaxManager: SettingFileManager {
     static let shared = SyntaxManager()
     
     
-    // MARK: Private Properties
+    // MARK: Setting File Managing Properties
     
-    private var _settingNames: [SettingName] = []
-    private let _bundledSettingNames: [SettingName]
-    private var cachedSettings: [SettingName: Setting] = [:]
+    static let directoryName: String = "Syntaxes"
+    let filePathExtensions: [String] = ["yaml", "yml"]
+    let settingFileType: SettingFileType = .syntaxStyle
+    
+    private(set) var settingNames: [SettingName] = []
+    let bundledSettingNames: [SettingName]
+    
+    
+    // MARK: Private Properties
     
     private let bundledMap: [SettingName: [String: [String]]]
     private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
@@ -74,57 +81,17 @@ final class SyntaxManager: SettingFileManager {
     // MARK: -
     // MARK: Lifecycle
     
-    override private init() {
+    private init() {
         
         // load bundled style list
         let url = Bundle.main.url(forResource: "SyntaxMap", withExtension: "json")!
         let data = try! Data(contentsOf: url)
         let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
         self.bundledMap = map
-        self._bundledSettingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-        
-        super.init()
+        self.bundledSettingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // cache user styles
-        self.loadUserSettings()
-    }
-    
-    
-    
-    // MARK: Setting File Manager Methods
-    
-    /// directory name in both Application Support and bundled Resources
-    override var directoryName: String {
-        
-        return "Syntaxes"
-    }
-    
-    
-    /// path extensions for user setting file
-    override var filePathExtensions: [String] {
-        
-        return ["yaml", "yml"]
-    }
-    
-    
-    /// name of setting file type
-    override var settingFileType: SettingFileType {
-        
-        return .syntaxStyle
-    }
-    
-    
-    /// list of names of setting file name (without extension)
-    override var settingNames: [SettingName] {
-        
-        return self._settingNames
-    }
-    
-    
-    /// list of names of setting file name which are bundled (without extension)
-    override var bundledSettingNames: [SettingName] {
-        
-        return self._bundledSettingNames
+        self.checkUserSettings()
     }
     
     
@@ -172,44 +139,6 @@ final class SyntaxManager: SettingFileManager {
         }
         
         return nil
-    }
-    
-    
-    /// create SyntaxStyle instance from theme name
-    func setting(name: SettingName) -> Setting? {
-        
-        if name == BundledStyleName.none {
-            return SyntaxStyle()
-        }
-        
-        guard let style: SyntaxStyle = {
-            if let cachedStyle = self.propertyAccessQueue.sync(execute: { self.cachedSettings[name] }) {
-                return cachedStyle
-            }
-            
-            guard let dictionary = self.settingDictionary(name: name) else { return nil }
-            
-            let style = SyntaxStyle(dictionary: dictionary, name: name)
-            
-            // store newly loaded style
-            self.propertyAccessQueue.sync {
-                self.cachedSettings[name] = style
-            }
-            return style
-            }() else { return nil }
-        
-        // add to recent styles list
-        let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
-        var recentStyleNames = UserDefaults.standard[.recentStyleNames]!
-        recentStyleNames.remove(name)
-        recentStyleNames.insert(name, at: 0)
-        recentStyleNames = Array(recentStyleNames.prefix(maximumRecentStyleCount))
-        
-        DispatchQueue.main.async {
-            UserDefaults.standard[.recentStyleNames] = recentStyleNames  // set in the main thread in case
-        }
-        
-        return style
     }
     
     
@@ -269,7 +198,7 @@ final class SyntaxManager: SettingFileManager {
         if self.isEqualToBundledSetting(settingDictionary, name: name) {
             if saveURL.isReachable {
                 try FileManager.default.removeItem(at: saveURL)
-                self.removeCache(name: name)
+                self.cachedSettings[name] = nil
             }
         } else {
             // save file to user domain
@@ -319,6 +248,105 @@ final class SyntaxManager: SettingFileManager {
     
     
     
+    // MARK: Setting File Managing
+    
+    /// return setting instance corresponding to the given setting name
+    func setting(name: SettingName) -> Setting? {
+        
+        if name == BundledStyleName.none {
+            return SyntaxStyle()
+        }
+        
+        guard let setting: Setting = {
+            if let setting = self.cachedSettings[name] {
+                return setting
+            }
+            
+            guard let url = self.urlForUsedSetting(name: name) else { return nil }
+            
+            let setting = try? self.loadSetting(at: url)
+            self.cachedSettings[name] = setting
+            
+            return setting
+            }() else { return nil }
+        
+        // add to recent styles list
+        let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
+        var recentStyleNames = UserDefaults.standard[.recentStyleNames]!
+        recentStyleNames.remove(name)
+        recentStyleNames.insert(name, at: 0)
+        recentStyleNames = Array(recentStyleNames.prefix(maximumRecentStyleCount))
+        DispatchQueue.main.async {
+            UserDefaults.standard[.recentStyleNames] = recentStyleNames  // set in the main thread in case
+        }
+        
+        return setting
+    }
+    
+    
+    var cachedSettings: [SettingName: Setting] {
+        
+        get {
+            return self.propertyAccessQueue.sync { self._cachedSettings }
+        }
+        
+        set {
+            self.propertyAccessQueue.sync { self._cachedSettings = newValue }
+        }
+    }
+    private var _cachedSettings: [SettingName: Setting] = [:]
+    
+    
+    /// load setting from the file at given URL
+    func loadSetting(at fileURL: URL) throws -> Setting {
+        
+        let dictionary = try self.loadSettingDictionary(at: fileURL)
+        let name = self.settingName(from: fileURL)
+        
+        return SyntaxStyle(dictionary: dictionary, name: name)
+    }
+    
+    
+    /// load settings in the user domain
+    func checkUserSettings() {
+        
+        // load mapping definitions from style files in user domain
+        let mappingKeys = SyntaxKey.mappingKeys.map { $0.rawValue }
+        let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
+            guard let style = try? self.loadSettingDictionary(at: url) else { return }
+            let styleName = self.settingName(from: url)
+            
+            // create file mapping data
+            dict[styleName] = style.filter { mappingKeys.contains($0.key) }
+                .mapValues { $0 as? [[String: String]] ?? [] }
+                .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
+        }
+        let map = self.bundledMap.merging(userMap) { (_, new) in new }
+        
+        // sort styles alphabetically
+        self.settingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        
+        // remove styles not exist
+        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.settingNames.contains($0) }
+        
+        // update file mapping tables
+        let styleNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
+        let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
+            tables[key] = styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
+                guard let items = map[styleName]?[key.rawValue] else { return }
+                
+                for item in items {
+                    table[item, default: []].append(styleName)
+                }
+            }
+        }
+        self.propertyAccessQueue.sync {
+            self.mappingTables = tables
+        }
+    }
+    
+    
+    
     // MARK: Private Methods
     
     /// Load StyleDictionary at file URL.
@@ -344,54 +372,6 @@ final class SyntaxManager: SettingFileManager {
         guard let bundledStyle = self.bundledSettingDictionary(name: name) else { return false }
         
         return NSDictionary(dictionary: style).isEqual(to: bundledStyle)
-    }
-    
-    
-    /// remove stored setting cache of given setting name (optional)
-    override func removeCache(name: String) {
-        
-        self.propertyAccessQueue.sync {
-            self.cachedSettings[name] = nil
-        }
-    }
-    
-    
-    /// load settings in the user domain
-    override func loadUserSettings() {
-        
-        // load mapping definitions from style files in user domain
-        let mappingKeys = SyntaxKey.mappingKeys.map { $0.rawValue }
-        let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
-            guard let style = try? self.loadSettingDictionary(at: url) else { return }
-            let styleName = self.settingName(from: url)
-            
-            // create file mapping data
-            dict[styleName] = style.filter { mappingKeys.contains($0.key) }
-                .mapValues { $0 as? [[String: String]] ?? [] }
-                .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
-        }
-        let map = self.bundledMap.merging(userMap) { (_, new) in new }
-        
-        // sort styles alphabetically
-        self._settingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-        
-        // remove styles not exist
-        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.settingNames.contains($0) }
-        
-        // update file mapping tables
-        let styleNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
-        let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
-            tables[key] = styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
-                guard let items = map[styleName]?[key.rawValue] else { return }
-                
-                for item in items {
-                    table[item, default: []].append(styleName)
-                }
-            }
-        }
-        self.propertyAccessQueue.sync {
-            self.mappingTables = tables
-        }
     }
     
 }

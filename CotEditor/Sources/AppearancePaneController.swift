@@ -226,7 +226,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     // ThemeViewControllerDelegate
     
     /// theme did update
-    func didUpdate(theme: ThemeDictionary) {
+    func didUpdate(theme: ThemeManager.ThemeDictionary) {
         
         // save
         do {
@@ -350,8 +350,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         guard let tableView = self.themeTableView else { return }
         
         try? ThemeManager.shared.createUntitledSetting { themeName in
-            let themeNames = ThemeManager.shared.settingNames
-            let row = themeNames.index(of: themeName) ?? 0
+            let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }

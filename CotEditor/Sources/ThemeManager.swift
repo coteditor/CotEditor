@@ -33,15 +33,14 @@ import ColorCode
 }
 
 
-typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
-
-
 
 // MARK: -
 
-final class ThemeManager: SettingFileManager {
+final class ThemeManager: SettingFileManaging {
     
     typealias Setting = Theme
+    
+    typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
     
     
     // MARK: Public Properties
@@ -49,89 +48,36 @@ final class ThemeManager: SettingFileManager {
     static let shared = ThemeManager()
     
     
-    // MARK: Private Properties
+    // MARK: Setting File Managing Properties
     
-    private var _settingNames: [String] = []
-    private var _bundledSettingNames: [String] = []
-    private var cachedSettings: [String: Setting] = [:]
+    static let directoryName: String = "Themes"
+    let filePathExtensions: [String] = DocumentType.theme.extensions
+    let settingFileType: SettingFileType = .theme
+    
+    private(set) var settingNames: [String] = []
+    private(set) var bundledSettingNames: [String] = []
+    var cachedSettings: [String: Setting] = [:]
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override private init() {
-        
-        super.init()
+    private init() {
         
         // cache bundled theme names
-        self._bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: self.directoryName)!
+        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: ThemeManager.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // cache user theme names
-        self.loadUserSettings()
-    }
-    
-    
-    
-    // MARK: Setting File Manager Methods
-    
-    /// directory name in both Application Support and bundled Resources
-    override var directoryName: String {
-        
-        return "Themes"
-    }
-    
-    
-    /// path extensions for user setting file
-    override var filePathExtensions: [String] {
-        
-        return DocumentType.theme.extensions
-    }
-    
-    
-    /// name of setting file type
-    override var settingFileType: SettingFileType {
-        
-        return .theme
-    }
-    
-    
-    /// list of names of setting file name (without extension)
-    override var settingNames: [String] {
-        
-        return self._settingNames
-    }
-    
-    
-    /// list of names of setting file name which are bundled (without extension)
-    override var bundledSettingNames: [String] {
-        
-        return self._bundledSettingNames
+        self.checkUserSettings()
     }
     
     
     
     // MARK: Public Methods
-    
-    /// create Theme instance from theme name
-    func setting(name: String) -> Setting? {
-        
-        // use cache if exists
-        if let theme = self.cachedSettings[name] {
-            return theme
-        }
-        
-        guard let themeURL = self.urlForUsedSetting(name: name) else { return nil }
-        
-        let theme = try? self.loadSetting(at: themeURL)
-        self.cachedSettings[name] = theme
-        
-        return theme
-    }
-    
     
     /// load theme dict in which objects are property list ready.
     func settingDictionary(name: String) -> ThemeDictionary? {
@@ -154,7 +100,7 @@ final class ThemeManager: SettingFileManager {
         try data.write(to: fileURL, options: .atomic)
         
         // invalidate current cache
-        self.removeCache(name: name)
+        self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -177,6 +123,33 @@ final class ThemeManager: SettingFileManager {
     
     
     
+    // MARK: Setting File Managing
+    
+    /// load setting from the file at given URL
+    func loadSetting(at fileURL: URL) throws -> Setting {
+        
+        return try Theme(contentsOf: fileURL)
+    }
+    
+    
+    /// load settings in the user domain
+    func checkUserSettings() {
+        
+        // get user setting names if exists
+        let userThemeNames = self.userSettingFileURLs
+            .map { self.settingName(from: $0) }
+            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        
+        self.settingNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
+        
+        // reset user default if not found
+        if !self.settingNames.contains(UserDefaults.standard[.theme]!) {
+            UserDefaults.standard.restore(key: .theme)
+        }
+    }
+    
+    
+    
     // MARK: Private Methods
     
     /// Load ThemeDictionary from a file at the URL.
@@ -193,37 +166,6 @@ final class ThemeManager: SettingFileManager {
         }
         
         return themeDictionry
-    }
-    
-    
-    /// remove stored setting cache of given setting name (optional)
-    override func removeCache(name: String) {
-        
-        self.cachedSettings[name] = nil
-    }
-    
-    
-    /// load settings in the user domain
-    override func loadUserSettings() {
-        
-        // load user themes if exists
-        let userThemeNames = self.userSettingFileURLs
-            .map { self.settingName(from: $0) }
-            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-        
-        self._settingNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
-        
-        // reset user default if not found
-        if !self.settingNames.contains(UserDefaults.standard[.theme]!) {
-            UserDefaults.standard.restore(key: .theme)
-        }
-    }
-    
-    
-    /// load setting from the file at given URL
-    private func loadSetting(at fileURL: URL) throws -> Setting {
-        
-        return try Theme(contentsOf: fileURL)
     }
     
     

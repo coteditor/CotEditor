@@ -28,7 +28,7 @@ import ColorCode
 
 protocol ThemeViewControllerDelegate: class {
     
-    func didUpdate(theme: ThemeDictionary)
+    func didUpdate(theme: ThemeManager.ThemeDictionary)
 }
 
 
@@ -39,7 +39,7 @@ final class ThemeViewController: NSViewController {
     
     // MARK: Public Properties
     
-    @objc dynamic var theme: ThemeDictionary? {
+    @objc dynamic var theme: ThemeManager.ThemeDictionary? {
         
         willSet {
             // remove current observing (in case when the theme is restored)

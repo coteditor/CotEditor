@@ -139,8 +139,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         guard let tableView = self.tableView else { return }
         
         try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
-            let settingNames = ReplacementManager.shared.settingNames
-            let row = settingNames.index(of: settingName) ?? 0
+            let row = ReplacementManager.shared.settingNames.index(of: settingName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }

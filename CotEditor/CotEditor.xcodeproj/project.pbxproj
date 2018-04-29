@@ -336,8 +336,8 @@
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
 		2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
-		2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManager.swift */; };
-		2A7646ED1D49035500350674 /* SettingFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManager.swift */; };
+		2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
+		2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManaging.swift */; };
 		2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
 		2A7725651D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
 		2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */; };
@@ -1024,7 +1024,7 @@
 		2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+Information.swift"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7646E61D48EAF200350674 /* SettingManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManaging.swift; sourceTree = "<group>"; };
-		2A7646E91D48ECD100350674 /* SettingFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManager.swift; sourceTree = "<group>"; };
+		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
 		2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyleValidator.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
 		2A78BF9E1D1AF82A00A583D2 /* IntegrationPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntegrationPaneController.swift; sourceTree = "<group>"; };
@@ -1480,7 +1480,7 @@
 		2A15832A18E3A1EC00601026 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				2AD49C251D0BEF0400FF4CC9 /* Abstract Classes */,
+				2AD49C251D0BEF0400FF4CC9 /* Protocols */,
 				2A4257A61D22E0660086DAAD /* EncodingManager.swift */,
 				2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */,
 				2A9082F11D32A9B500228F50 /* ThemeManager.swift */,
@@ -2149,13 +2149,13 @@
 			name = "Editor Controller";
 			sourceTree = "<group>";
 		};
-		2AD49C251D0BEF0400FF4CC9 /* Abstract Classes */ = {
+		2AD49C251D0BEF0400FF4CC9 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				2A7646E61D48EAF200350674 /* SettingManaging.swift */,
-				2A7646E91D48ECD100350674 /* SettingFileManager.swift */,
+				2A7646E91D48ECD100350674 /* SettingFileManaging.swift */,
 			);
-			name = "Abstract Classes";
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 		2ADD36941CFCAD4200F3175D /* Sidebar */ = {
@@ -2757,7 +2757,7 @@
 				2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
-				2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */,
+				2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */,
 				2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */,
 				2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */,
 				2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */,
@@ -3089,7 +3089,7 @@
 				2A5D13451D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */,
-				2A7646ED1D49035500350674 /* SettingFileManager.swift in Sources */,
+				2A7646ED1D49035500350674 /* SettingFileManaging.swift in Sources */,
 				2AA22A4F1FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */,
 				2A33D0841D1C7B46005977B9 /* SyntaxEditViewController.swift in Sources */,
 				2AA14D051FA594A800EAF586 /* Data.swift in Sources */,

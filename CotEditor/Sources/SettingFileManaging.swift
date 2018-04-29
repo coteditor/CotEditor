@@ -1,5 +1,5 @@
 //
-//  SettingFileManager.swift
+//  SettingFileManaging.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -56,45 +56,75 @@ extension Notification {
 
 // MARK: -
 
-class SettingFileManager: SettingManaging {
+protocol SettingFileManaging: SettingManaging {
     
-    // MARK: Abstract Methods
+    associatedtype Setting
+    
     
     /// directory name in both Application Support and bundled Resources
-    var directoryName: String { preconditionFailure() }
+    static var directoryName: String { get }
     
     /// path extensions for user setting file
-    var filePathExtensions: [String] { preconditionFailure() }
+    var filePathExtensions: [String] { get }
     
     /// setting file type
-    var settingFileType: SettingFileType { preconditionFailure() }
+    var settingFileType: SettingFileType { get }
     
     /// list of names of setting file name (without extension)
-    var settingNames: [String] { preconditionFailure() }
+    var settingNames: [String] { get }
     
     /// list of names of setting file name which are bundled (without extension)
-    var bundledSettingNames: [String] { preconditionFailure() }
+    var bundledSettingNames: [String] { get }
+    
+    /// stored settings to avoid loading frequently-used setting files multiple times
+    var cachedSettings: [String: Setting] { get set }
     
     
-    /// remove stored setting cache of given setting name (optional)
-    func removeCache(name: String) { }
+    /// return setting instance corresponding to the given setting name
+    func setting(name: String) -> Setting?
     
     /// load settings in the user domain
-    func loadUserSettings() { preconditionFailure() }
+    func loadSetting(at fileURL: URL) throws -> Setting
+    
+    /// load settings in the user domain
+    func checkUserSettings()
+    
+}
+
+
+
+extension SettingFileManaging {
+    
+    // MARK: Default implementation
+    
+    /// return setting instance corresponding to the given setting name
+    func setting(name: String) -> Setting? {
+        
+        if let setting = self.cachedSettings[name] {
+            return setting
+        }
+        
+        guard let url = self.urlForUsedSetting(name: name) else { return nil }
+        
+        let setting = try? self.loadSetting(at: url)
+        self.cachedSettings[name] = setting
+        
+        return setting
+    }
     
     
     
     // MARK: Public Methods
     
     /// default path extension for user setting file
-    final var filePathExtension: String {
+    var filePathExtension: String {
         
         return self.filePathExtensions.first!
     }
     
     
     /// file urls for user settings
-    final var userSettingFileURLs: [URL] {
+    var userSettingFileURLs: [URL] {
         
         return (try? FileManager.default.contentsOfDirectory(at: self.userSettingDirectoryURL,
                                                              includingPropertiesForKeys: nil,
@@ -104,28 +134,28 @@ class SettingFileManager: SettingManaging {
     
     
     /// create setting name from a URL (don't care if it exists)
-    final func settingName(from fileURL: URL) -> String {
+    func settingName(from fileURL: URL) -> String {
         
         return fileURL.deletingPathExtension().lastPathComponent
     }
     
     
     /// return a valid setting file URL for the setting name or nil if not exists
-    final func urlForUsedSetting(name: String) -> URL? {
+    func urlForUsedSetting(name: String) -> URL? {
         
         return self.urlForUserSetting(name: name) ?? self.urlForBundledSetting(name: name)
     }
     
     
     /// return a setting file URL in the application's Resources domain or nil if not exists
-    final func urlForBundledSetting(name: String) -> URL? {
+    func urlForBundledSetting(name: String) -> URL? {
         
-        return Bundle.main.url(forResource: name, withExtension: self.filePathExtension, subdirectory: self.directoryName)
+        return Bundle.main.url(forResource: name, withExtension: self.filePathExtension, subdirectory: Self.directoryName)
     }
     
     
     /// return a setting file URL in the user's Application Support domain or nil if not exists
-    final func urlForUserSetting(name: String) -> URL? {
+    func urlForUserSetting(name: String) -> URL? {
         
         let url = self.preparedURLForUserSetting(name: name)
         
@@ -134,28 +164,28 @@ class SettingFileManager: SettingManaging {
     
     
     /// return a setting file URL in the user's Application Support domain (don't care if it exists)
-    final func preparedURLForUserSetting(name: String) -> URL {
+    func preparedURLForUserSetting(name: String) -> URL {
         
         return self.userSettingDirectoryURL.appendingPathComponent(name).appendingPathExtension(self.filePathExtension)
     }
     
     
     /// whether the setting name is one of the bundled settings
-    final func isBundledSetting(name: String) -> Bool {
+    func isBundledSetting(name: String) -> Bool {
         
         return self.bundledSettingNames.contains(name)
     }
     
     
     /// whether the setting name is one of the bundled settings that is customized by user
-    final func isCustomizedBundledSetting(name: String) -> Bool {
+    func isCustomizedBundledSetting(name: String) -> Bool {
         
         return self.isBundledSetting(name: name) && (self.urlForUserSetting(name: name) != nil)
     }
     
     
     /// return setting name appending number suffix without extension
-    final func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
+    func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         
         let suffix = appendCopySuffix ? NSLocalizedString("copy", comment: "copied file suffix") : nil
         
@@ -164,7 +194,7 @@ class SettingFileManager: SettingManaging {
     
     
     /// validate whether the setting name is valid (for a file name) and throw an error if not
-    final func validate(settingName: String, originalName: String) throws {
+    func validate(settingName: String, originalName: String) throws {
         
         // just case difference is OK
         guard settingName.caseInsensitiveCompare(originalName) != .orderedSame else { return }
@@ -189,7 +219,7 @@ class SettingFileManager: SettingManaging {
     
     /// delete user's setting file for the setting name
     /// - throws: SettingFileError
-    final func removeSetting(name: String) throws {
+    func removeSetting(name: String) throws {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
         
@@ -200,7 +230,7 @@ class SettingFileManager: SettingManaging {
             throw SettingFileError(kind: .deletionFailed, name: name, error: error)
         }
         
-        self.removeCache(name: name)
+        self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: nil)
@@ -209,7 +239,7 @@ class SettingFileManager: SettingManaging {
     
     
     /// restore the setting with name
-    final func restoreSetting(name: String) throws {
+    func restoreSetting(name: String) throws {
         
         guard self.isBundledSetting(name: name) else { return }  // only bundled setting can be restored
         
@@ -217,7 +247,7 @@ class SettingFileManager: SettingManaging {
         
         try FileManager.default.removeItem(at: url)
         
-        self.removeCache(name: name)
+        self.cachedSettings[name] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -226,7 +256,7 @@ class SettingFileManager: SettingManaging {
     
     
     /// duplicate the setting with name
-    final func duplicateSetting(name: String) throws {
+    func duplicateSetting(name: String) throws {
         
         let newName = self.savableSettingName(for: name, appendCopySuffix: true)
         
@@ -245,7 +275,7 @@ class SettingFileManager: SettingManaging {
     
     
     /// rename the setting with name
-    final func renameSetting(name: String, to newName: String) throws {
+    func renameSetting(name: String, to newName: String) throws {
         
         let sanitizedNewName = newName.trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -254,8 +284,8 @@ class SettingFileManager: SettingManaging {
         try FileManager.default.moveItem(at: self.preparedURLForUserSetting(name: name),
                                          to: self.preparedURLForUserSetting(name: sanitizedNewName))
         
-        self.removeCache(name: name)
-        self.removeCache(name: newName)
+        self.cachedSettings[name] = nil
+        self.cachedSettings[newName] = nil
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: newName)
@@ -264,7 +294,7 @@ class SettingFileManager: SettingManaging {
     
     
     /// export setting file to passed-in URL
-    final func exportSetting(name: String, to fileURL: URL) throws {
+    func exportSetting(name: String, to fileURL: URL) throws {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
         
@@ -290,7 +320,7 @@ class SettingFileManager: SettingManaging {
     
     /// import setting at passed-in URL
     /// - throws: SettingFileError
-    final func importSetting(fileURL: URL) throws {
+    func importSetting(fileURL: URL) throws {
         
         let importName = self.settingName(from: fileURL)
         
@@ -299,7 +329,9 @@ class SettingFileManager: SettingManaging {
             guard name.caseInsensitiveCompare(importName) == .orderedSame else { continue }
             
             guard self.urlForUserSetting(name: name) == nil else {  // duplicated
-                throw ImportDuplicationError(name: name, url: fileURL, type: self.settingFileType, attempter: self)
+                throw ImportDuplicationError(name: name, type: self.settingFileType, replacingClosure: { [unowned self] in
+                    try self.overwriteSetting(fileURL: fileURL)
+                })
             }
         }
         
@@ -308,10 +340,10 @@ class SettingFileManager: SettingManaging {
     
     
     /// update internal cache data
-    final func updateCache(completionHandler: @escaping (() -> Void) = {}) {
+    func updateCache(completionHandler: @escaping (() -> Void) = {}) {
         
         DispatchQueue.global().async { [weak self, previousSettingNames = self.settingNames] in
-            self?.loadUserSettings()
+            self?.checkUserSettings()
             
             let didUpdateList = self?.settingNames != previousSettingNames
             
@@ -327,14 +359,14 @@ class SettingFileManager: SettingManaging {
     
     
     /// notify about a line-up update of managed setting files.
-    final func notifySettingListUpdate() {
+    func notifySettingListUpdate() {
         
         NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
     }
     
     
     /// notify about change of a managed setting
-    final func notifySettingUpdate(oldName: String, newName: String?) {
+    func notifySettingUpdate(oldName: String, newName: String?) {
         
         var userInfo = [Notification.UserInfoKey.old: oldName]
         userInfo[Notification.UserInfoKey.new] = newName
@@ -348,7 +380,7 @@ class SettingFileManager: SettingManaging {
     
     /// force import setting at passed-in URL
     /// - throws: SettingFileError
-    fileprivate func overwriteSetting(fileURL: URL) throws {
+    private func overwriteSetting(fileURL: URL) throws {
         
         let name = self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: name)
@@ -386,7 +418,7 @@ class SettingFileManager: SettingManaging {
 
 
 
-// MARK: - Error
+// MARK: - Errors
 
 enum InvalidNameError: LocalizedError {
     
@@ -459,9 +491,8 @@ struct SettingFileError: LocalizedError {
 struct ImportDuplicationError: LocalizedError, RecoverableError {
     
     var name: String
-    var url: URL
     var type: SettingFileType
-    var attempter: SettingFileManager
+    var replacingClosure: (() throws -> Void)
     
     
     var errorDescription: String? {
@@ -505,7 +536,7 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
             
         case 1:  // == Replace
             do {
-                try self.attempter.overwriteSetting(fileURL: self.url)
+                try self.replacingClosure()
             } catch {
                 NSApp.presentError(error)
                 return false
