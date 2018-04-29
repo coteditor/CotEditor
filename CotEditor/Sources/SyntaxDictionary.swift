@@ -88,11 +88,3 @@ enum DelimiterKey: String {
     case beginDelimiter
     case endDelimiter
 }
-
-
-enum OutlineStyleKey: String {
-    
-    case bold
-    case underline
-    case italic
-}

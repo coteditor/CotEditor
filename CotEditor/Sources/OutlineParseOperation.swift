@@ -33,35 +33,25 @@ struct OutlineExtractor {
     var style: OutlineItem.Style
     
     
-    init?(dictionary: [String: Any]) {
-        
-        guard let pattern = dictionary[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
-        
-        let ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
+    init(definition: OutlineDefinition) throws {
         
         // compile to regex object
-        do {
-            self.regex = try NSRegularExpression(pattern: pattern, options: options)
-            
-        } catch {
-            print("Error on outline regex: " + error.localizedDescription)
-            return nil
+        var options: NSRegularExpression.Options = .anchorsMatchLines
+        if definition.ignoreCase {
+            options.update(with: .caseInsensitive)
         }
+        self.regex = try NSRegularExpression(pattern: definition.pattern, options: options)
         
-        self.template = (dictionary[SyntaxDefinitionKey.keyString.rawValue] as? String) ?? ""
+        self.template = definition.template
         
         var style = OutlineItem.Style()
-        if (dictionary[OutlineStyleKey.bold.rawValue] as? Bool) ?? false {
+        if definition.bold {
             style.update(with: .bold)
         }
-        if (dictionary[OutlineStyleKey.italic.rawValue] as? Bool) ?? false {
+        if definition.italic {
             style.update(with: .italic)
         }
-        if (dictionary[OutlineStyleKey.underline.rawValue] as? Bool) ?? false {
+        if definition.underline {
             style.update(with: .underline)
         }
         self.style = style
@@ -118,13 +108,7 @@ struct OutlineExtractor {
 }
 
 
-extension OutlineExtractor: Equatable, CustomDebugStringConvertible {
-    
-    var debugDescription: String {
-        
-        return "<\(type(of: self)): \(self.regex.pattern) template: \(self.template)>"
-    }
-    
+extension OutlineExtractor: Equatable {
     
     static func == (lhs: OutlineExtractor, rhs: OutlineExtractor) -> Bool {
         

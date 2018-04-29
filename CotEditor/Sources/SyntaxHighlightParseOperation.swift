@@ -26,64 +26,6 @@
 
 import Foundation
 
-struct HighlightDefinition: Equatable {
-    
-    let beginString: String
-    let endString: String?
-    
-    let isRegularExpression: Bool
-    let ignoreCase: Bool
-    
-    
-    // MARK: Lifecycle
-    
-    init?(definition: [String: Any]) {
-        
-        guard let beginString = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
-        
-        self.beginString = beginString
-        if let endString = definition[SyntaxDefinitionKey.endString.rawValue] as? String, !endString.isEmpty {
-            self.endString = endString
-        } else {
-            self.endString = nil
-        }
-        self.isRegularExpression = (definition[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
-        self.ignoreCase = (definition[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
-    }
-    
-    
-    static func == (lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
-        
-        return lhs.beginString == rhs.beginString &&
-            lhs.endString == rhs.endString &&
-            lhs.isRegularExpression == rhs.isRegularExpression &&
-            lhs.ignoreCase == rhs.ignoreCase
-    }
-    
-}
-
-
-extension HighlightDefinition {
-    
-    /// create a regex type definition from simple words by considering non-word characters around words
-    init(words: [String], ignoreCase: Bool) {
-        
-        let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
-        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"))
-            .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
-        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
-        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
-        
-        self.beginString = pattern
-        self.endString = nil
-        self.isRegularExpression = true
-        self.ignoreCase = ignoreCase
-    }
-    
-}
-
-
-
 private struct QuoteCommentItem {
     
     let kind: String

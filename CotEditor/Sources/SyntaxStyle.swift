@@ -26,6 +26,103 @@
 
 import Foundation
 
+struct HighlightDefinition: Equatable {
+    
+    var beginString: String
+    var endString: String?
+    var isRegularExpression: Bool
+    var ignoreCase: Bool
+    
+    var description: String?
+    
+    
+    
+    init?(dictionary: [String: Any]) {
+        
+        guard let beginString = dictionary[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
+        
+        self.beginString = beginString
+        if let endString = dictionary[SyntaxDefinitionKey.endString.rawValue] as? String, !endString.isEmpty {
+            self.endString = endString
+        } else {
+            self.endString = nil
+        }
+        self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
+        self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
+    }
+    
+    
+    static func == (lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
+        
+        return lhs.beginString == rhs.beginString &&
+            lhs.endString == rhs.endString &&
+            lhs.isRegularExpression == rhs.isRegularExpression &&
+            lhs.ignoreCase == rhs.ignoreCase
+    }
+    
+}
+
+
+extension HighlightDefinition {
+    
+    /// create a regex type definition from simple words by considering non-word characters around words
+    init(words: [String], ignoreCase: Bool) {
+        
+        let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
+        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"))
+            .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
+        let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
+        let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
+        
+        self.beginString = pattern
+        self.endString = nil
+        self.isRegularExpression = true
+        self.ignoreCase = ignoreCase
+    }
+    
+}
+
+struct OutlineDefinition {
+    
+    var pattern: String
+    var template: String
+    var ignoreCase: Bool
+    var bold: Bool
+    var italic: Bool
+    var underline: Bool
+    
+    var description: String?
+    
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case pattern = "beginString"
+        case template = "keyString"
+        case ignoreCase
+        case bold
+        case italic
+        case underline
+        case description
+    }
+    
+    
+    
+    init?(dictionary: [String: Any]) {
+        
+        guard let pattern = dictionary[CodingKeys.pattern.rawValue] as? String else { return nil }
+        
+        self.pattern = pattern
+        self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
+        self.ignoreCase = dictionary[CodingKeys.ignoreCase.rawValue] as? Bool ?? false
+        self.bold = dictionary[CodingKeys.bold.rawValue]as? Bool ?? false
+        self.italic = dictionary[CodingKeys.italic.rawValue]as? Bool ?? false
+        self.underline = dictionary[CodingKeys.underline.rawValue]as? Bool ?? false
+    }
+    
+}
+
+
+
 struct SyntaxStyle {
     
     // MARK: Public Properties
@@ -90,7 +187,7 @@ struct SyntaxStyle {
         let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
-            let definitions = wordDicts.compactMap { HighlightDefinition(definition: $0) }
+            let definitions = wordDicts.compactMap { HighlightDefinition(dictionary: $0) }
             
             guard !definitions.isEmpty else { return }
             
@@ -163,8 +260,9 @@ struct SyntaxStyle {
         }()
         
         // parse outline definitions
-        self.outlineExtractors = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?
-            .compactMap { OutlineExtractor(dictionary: $0) } ?? []
+        self.outlineExtractors = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?.lazy
+            .compactMap { OutlineDefinition(dictionary: $0) }
+            .compactMap { try? OutlineExtractor(definition: $0) } ?? []
     }
     
     

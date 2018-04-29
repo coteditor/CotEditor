@@ -124,7 +124,7 @@ extension SyntaxParser {
         
         guard
             self.canParse,
-            !self.style.outlineDefinitions.isEmpty
+            !self.style.outlineExtractors.isEmpty
             else {
                 self.outlineItems = []
                 return
@@ -146,7 +146,7 @@ extension SyntaxParser {
             return
         }
         
-        let operation = OutlineParseOperation(definitions: self.style.outlineDefinitions)
+        let operation = OutlineParseOperation(extractors: self.style.outlineExtractors)
         operation.string = string.immutable  // make sure being immutable
         operation.parseRange = string.nsRange
         
