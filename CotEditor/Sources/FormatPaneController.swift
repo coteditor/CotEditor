@@ -65,9 +65,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
         self.syntaxTableView?.registerForDraggedTypes([draggedType])
         
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: SettingFileManager.didUpdateSettingNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
     }
     
     

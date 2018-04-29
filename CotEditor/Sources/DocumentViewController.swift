@@ -71,7 +71,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: SettingFileManager.didUpdateSettingNotification,
+                                               name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
     }
@@ -372,10 +372,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @objc private func didUpdateTheme(_ notification: Notification?) {
         
         guard
-            let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
+            let oldName = notification?.userInfo?[Notification.UserInfoKey.old] as? String,
             oldName == self.theme?.name else { return }
         
-        let newName = (notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String) ?? UserDefaults.standard[.theme]!
+        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? UserDefaults.standard[.theme]!
         
         self.setTheme(name: newName)
     }

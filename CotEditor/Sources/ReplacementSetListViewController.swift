@@ -62,7 +62,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         self.tableView?.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
         
         // observe replacement setting list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: SettingFileManager.didUpdateSettingListNotification, object: ReplacementManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
     }
     
     

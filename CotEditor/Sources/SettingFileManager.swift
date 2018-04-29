@@ -34,28 +34,30 @@ enum SettingFileType {
 }
 
 
+// MARK: Notifications
 
-class SettingFileManager: SettingFileManaging {
-    
-    // MARK: Notification Names
-    
-    /// Posted when the line-up of setting files did update. The sender is a manager.
-    static let didUpdateSettingListNotification = Notification.Name("SettingFileManagerDidUpdateSettingList")
-    
-    /// Posted when a setting file is updated. Information about new/previous setting names are in userInfo. The sender is a manager.
-    static let didUpdateSettingNotification = Notification.Name("SettingFileManagerDidUpdateSetting")
-    
+/// Posted when the line-up of setting files did update. The sender is a manager.
+let didUpdateSettingListNotification = Notification.Name("SettingFileManagerDidUpdateSettingList")
+
+/// Posted when a setting file is updated. Information about new/previous setting names are in userInfo. The sender is a manager.
+let didUpdateSettingNotification = Notification.Name("SettingFileManagerDidUpdateSetting")
+
+extension Notification {
     
     /// general notification's userInfo keys
-    enum NotificationKey {
+    enum UserInfoKey {
         
         static let old = "OldNameKey"
         static let new = "NewNameKey"
     }
+}
+
+
+
+// MARK: -
+
+class SettingFileManager: SettingFileManaging {
     
-    
-    
-    // MARK: -
     // MARK: Abstract Methods
     
     /// directory name in both Application Support and bundled Resources
@@ -327,17 +329,17 @@ class SettingFileManager: SettingFileManaging {
     /// notify about a line-up update of managed setting files.
     final func notifySettingListUpdate() {
         
-        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
+        NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
     }
     
     
     /// notify about change of a managed setting
     final func notifySettingUpdate(oldName: String, newName: String?) {
         
-        var userInfo = [SettingFileManager.NotificationKey.old: oldName]
-        userInfo[SettingFileManager.NotificationKey.new] = newName
+        var userInfo = [Notification.UserInfoKey.old: oldName]
+        userInfo[Notification.UserInfoKey.new] = newName
         
-        NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingNotification, object: self, userInfo: userInfo)
+        NotificationCenter.default.post(name: didUpdateSettingNotification, object: self, userInfo: userInfo)
     }
     
     
