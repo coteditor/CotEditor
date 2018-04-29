@@ -266,7 +266,7 @@ class SettingFileManager: SettingFileManaging {
     
     /// import setting at passed-in URL
     /// - throws: SettingFileError
-    func importSetting(fileURL: URL) throws {
+    final func importSetting(fileURL: URL) throws {
         
         let importName = self.settingName(from: fileURL)
         

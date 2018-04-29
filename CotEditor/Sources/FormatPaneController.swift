@@ -546,7 +546,11 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     private func importSyntaxStyle(fileURL: URL) {
         
         do {
-            try SyntaxManager.shared.importSetting(fileURL: fileURL)
+            if fileURL.pathExtension == "plist" {
+                try SyntaxManager.shared.importLegacyStyle(fileURL: fileURL)
+            } else {
+                try SyntaxManager.shared.importSetting(fileURL: fileURL)
+            }
         } catch {
             // ask for overwriting if a setting with the same name already exists
             self.presentError(error)

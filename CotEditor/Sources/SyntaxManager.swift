@@ -237,17 +237,6 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// import setting at passed-in URL
-    override func importSetting(fileURL: URL) throws {
-        
-        if fileURL.pathExtension == "plist" {
-            self.importLegacyStyle(fileURL: fileURL)  // ignore succession
-        }
-        
-        try super.importSetting(fileURL: fileURL)
-    }
-    
-    
     /// delete user’s file for the setting name
     override func removeSetting(name: SettingName) throws {
         
@@ -473,10 +462,9 @@ private extension String {
 extension SyntaxManager {
     
     /// convert CotEditor 1.x format (plist) syntax style definition to CotEditor 2.0 format (yaml) and save to user domain
-    @discardableResult
-    func importLegacyStyle(fileURL: URL) -> Bool {
+    func importLegacyStyle(fileURL: URL) throws {
         
-        guard fileURL.pathExtension == "plist" else { return false }
+        assert(fileURL.pathExtension == "plist")
         
         let coordinator = NSFileCoordinator()
         
@@ -484,26 +472,24 @@ extension SyntaxManager {
         coordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newReadingURL) in
             data = try? Data(contentsOf: newReadingURL)
         }
+        guard let plistData = data else { throw CocoaError.error(.fileReadUnknown, url: fileURL) }
         
-        guard
-            let plistData = data,
-            let plist = try? PropertyListSerialization.propertyList(from: plistData, format: nil),
-            let style = plist as? [String: Any] else { return false }
+        let plist = try PropertyListSerialization.propertyList(from: plistData, format: nil)
+        
+        guard let style = plist as? [String: Any] else { throw CocoaError.error(.fileReadUnsupportedScheme, url: fileURL) }
         
         // update style format
         let newStyle: [String: Any] = style
             .filter { $0.0 != "styleName" }   // remove lagacy "styleName" key
             .mapKeys { $0.replacingOccurrences(of: "Array", with: "") }  // remove all `Array` suffix from dict keys
         
-        guard let yamlData = try? YAMLSerialization.yamlData(with: newStyle, options: kYAMLWriteOptionSingleDocument) else { return false }
+        let yamlData = try YAMLSerialization.yamlData(with: newStyle, options: kYAMLWriteOptionSingleDocument)
         
         let styleName = self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: styleName)
         coordinator.coordinate(writingItemAt: destURL, error: nil) { (newWritingURL) in
             try? yamlData.write(to: newWritingURL, options: .atomic)
         }
-        
-        return true
     }
     
 }
