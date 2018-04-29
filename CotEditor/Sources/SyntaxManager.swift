@@ -380,7 +380,7 @@ final class SyntaxManager: SettingFileManager {
     }
     
     
-    /// update internal cache data
+    /// load settings in the user domain
     override func loadUserSettings() {
         
         // load mapping definitions from style files in user domain

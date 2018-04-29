@@ -241,7 +241,7 @@ final class ThemeManager: SettingFileManager {
     }
     
     
-    /// load theme names in user domain
+    /// load settings in the user domain
     override func loadUserSettings() {
         
         // load user themes if exists

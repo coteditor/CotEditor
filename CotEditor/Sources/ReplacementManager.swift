@@ -157,7 +157,7 @@ final class ReplacementManager: SettingFileManager {
     
     // MARK: Private Methods
     
-    /// update internal cache data
+    /// load settings in the user domain
     override func loadUserSettings() {
         
         // load settings if exists
