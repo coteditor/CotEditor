@@ -334,8 +334,8 @@
 		2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
 		2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
-		2A7646E71D48EAF200350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingFileManaging.swift */; };
-		2A7646E81D48EAF200350674 /* SettingFileManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingFileManaging.swift */; };
+		2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
+		2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
 		2A7646EC1D49035500350674 /* SettingFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManager.swift */; };
 		2A7646ED1D49035500350674 /* SettingFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E91D48ECD100350674 /* SettingFileManager.swift */; };
 		2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */; };
@@ -1023,7 +1023,7 @@
 		2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+ControlCharacter.swift"; sourceTree = "<group>"; };
 		2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+Information.swift"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
-		2A7646E61D48EAF200350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
+		2A7646E61D48EAF200350674 /* SettingManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManaging.swift; sourceTree = "<group>"; };
 		2A7646E91D48ECD100350674 /* SettingFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManager.swift; sourceTree = "<group>"; };
 		2A7725631D50401300A53C09 /* SyntaxStyleValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyleValidator.swift; sourceTree = "<group>"; };
 		2A7846DA18FE035E006BDF00 /* Themes */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Themes; sourceTree = "<group>"; };
@@ -2152,7 +2152,7 @@
 		2AD49C251D0BEF0400FF4CC9 /* Abstract Classes */ = {
 			isa = PBXGroup;
 			children = (
-				2A7646E61D48EAF200350674 /* SettingFileManaging.swift */,
+				2A7646E61D48EAF200350674 /* SettingManaging.swift */,
 				2A7646E91D48ECD100350674 /* SettingFileManager.swift */,
 			);
 			name = "Abstract Classes";
@@ -2866,7 +2866,7 @@
 				2A17A3141D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */,
 				2AD616D01D3E67160016EFB6 /* ODBEditorSuite.swift in Sources */,
-				2A7646E81D48EAF200350674 /* SettingFileManaging.swift in Sources */,
+				2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
@@ -3010,7 +3010,7 @@
 				2A6FD9DB1D38F93300A59784 /* EditorTextView+Indenting.swift in Sources */,
 				2AE7A8D920450FE600830830 /* OutlineViewController.swift in Sources */,
 				2AF073F41D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
-				2A7646E71D48EAF200350674 /* SettingFileManaging.swift in Sources */,
+				2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
 				2AA45A4E1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,

@@ -56,7 +56,7 @@ extension Notification {
 
 // MARK: -
 
-class SettingFileManager: SettingFileManaging {
+class SettingFileManager: SettingManaging {
     
     // MARK: Abstract Methods
     

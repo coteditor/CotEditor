@@ -79,7 +79,7 @@ protocol KeyBindingManagerProtocol: class {
 
 
 
-class KeyBindingManager: SettingFileManaging, KeyBindingManagerProtocol {
+class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
     
     // MARK: Public Properties
     

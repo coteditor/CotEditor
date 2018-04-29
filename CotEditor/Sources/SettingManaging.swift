@@ -1,5 +1,5 @@
 //
-//  SettingFileManaging.swift
+//  SettingManaging.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Foundation
 
-protocol SettingFileManaging: class {
+protocol SettingManaging: class {
     
     /// directory name in both Application Support and bundled Resources
     var directoryName: String { get }
@@ -33,7 +33,7 @@ protocol SettingFileManaging: class {
 
 
 
-extension SettingFileManaging {
+extension SettingManaging {
     
     /// user setting directory URL in Application Support
     var userSettingDirectoryURL: URL {
