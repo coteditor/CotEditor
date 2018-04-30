@@ -132,47 +132,22 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     
     // MARK: Private Methods
     
-    /// simply extract ranges of passed-in string
-    private func ranges(string searchString: String, ignoreCase: Bool = false) -> [NSRange] {
-        
-        guard !searchString.isEmpty else { return [] }
-        
-        var ranges = [NSRange]()
-        let string = self.string!
-        let options: NSString.CompareOptions = ignoreCase ? [.literal, .caseInsensitive] : .literal
-        
-        var location = self.parseRange.location
-        while location != NSNotFound {
-            let range = (string as NSString).range(of: searchString, options: options,
-                                                   range: NSRange(location..<self.parseRange.upperBound))
-            location = range.upperBound
-            
-            guard range.location != NSNotFound else { break }
-            guard !string.isCharacterEscaped(at: range.location) else { continue }
-            
-            ranges.append(range)
-        }
-        
-        return ranges
-    }
-    
-    
     /// extract ranges of quoted texts as well as comments in the parse range
     private func extractCommentsWithQuotes() -> [SyntaxType: [NSRange]] {
         
         var positions = [QuoteCommentItem]()
         
         if let delimiters = self.blockCommentDelimiters {
-            for range in self.ranges(string: delimiters.begin) {
+            for range in self.string!.ranges(of: delimiters.begin, range: self.parseRange) {
                 positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .begin, range: range))
             }
-            for range in self.ranges(string: delimiters.end) {
+            for range in self.string!.ranges(of: delimiters.end, range: self.parseRange) {
                 positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .end, range: range))
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            for range in self.ranges(string: delimiter) {
+            for range in self.string!.ranges(of: delimiter, range: self.parseRange) {
                 let lineRange = (self.string! as NSString).lineRange(for: range)
                 let endRange = NSRange(location: lineRange.upperBound, length: 0)
                 
@@ -182,7 +157,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         }
         
         for quote in self.pairedQuoteTypes.keys {
-            for range in self.ranges(string: quote) {
+            for range in self.string!.ranges(of: quote, range: self.parseRange) {
                 positions.append(QuoteCommentItem(kind: quote, role: [.begin, .end], range: range))
             }
         }
@@ -320,12 +295,36 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
 
 // MARK: Private Functions
 
-/** Remove duplicated coloring ranges.
- 
- This sanitization will reduce performance time of `applyHighlights:highlights:layoutManager:` significantly.
- Adding temporary attribute to a layoutManager is quite sluggish,
- so we want to remove useless highlighting ranges as many as possible beforehand.
- */
+private extension String {
+    
+    /// find and return ranges of passed-in substring with the given range of receiver.
+    func ranges(of substring: String, range searchRange: NSRange) -> [NSRange] {
+        
+        var ranges = [NSRange]()
+        
+        var location = searchRange.location
+        while location != NSNotFound {
+            let range = (self as NSString).range(of: substring, options: .literal, range: NSRange(location..<searchRange.upperBound))
+            location = range.upperBound
+            
+            guard range.location != NSNotFound else { break }
+            guard !self.isCharacterEscaped(at: range.location) else { continue }
+            
+            ranges.append(range)
+        }
+        
+        return ranges
+    }
+    
+}
+
+
+
+/// Remove duplicated coloring ranges.
+///
+/// This sanitization will reduce performance time of `applyHighlights:highlights:layoutManager:` significantly.
+/// Adding temporary attribute to a layoutManager is quite sluggish,
+/// so we want to remove useless highlighting ranges as many as possible beforehand.
 private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRange]] {
     
     var sanitizedHighlights = [SyntaxType: [NSRange]]()
@@ -336,15 +335,15 @@ private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRa
         var sanitizedRanges = [NSRange]()
         
         for range in ranges {
-            if !highlightedIndexes.contains(in: range) {
-                sanitizedRanges.append(range)
-                highlightedIndexes.add(in: range)
-            }
+            guard !highlightedIndexes.contains(in: range) else { continue }
+            
+            sanitizedRanges.append(range)
+            highlightedIndexes.add(in: range)
         }
         
-        if !sanitizedRanges.isEmpty {
-            sanitizedHighlights[type] = sanitizedRanges
-        }
+        guard !sanitizedRanges.isEmpty else { continue }
+        
+        sanitizedHighlights[type] = sanitizedRanges
     }
     
     return sanitizedHighlights
