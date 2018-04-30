@@ -46,7 +46,7 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     
     // MARK: Private Properties
     
-    private lazy var updateTask: Debouncer = Debouncer(delay: 0.4) { [weak self] in self?.scan() }
+    private lazy var updateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.scan() }
     
     
     

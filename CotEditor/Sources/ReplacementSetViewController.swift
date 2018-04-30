@@ -41,7 +41,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     // MARK: Private Properties
     
     private var replacementSet = ReplacementSet()
-    private lazy var updateNotificationTask: Debouncer = Debouncer(delay: 1.0) { [weak self] in self?.notifyUpdate() }
+    private lazy var updateNotificationTask = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
     
     @objc private dynamic var canRemove: Bool = false
     @objc private dynamic var hasInvalidSetting = false
