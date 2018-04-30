@@ -24,7 +24,8 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
+import AppKit.NSTextStorage
 
 protocol SyntaxParserDelegate: class {
     
