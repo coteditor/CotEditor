@@ -281,10 +281,7 @@ final class SyntaxManager: SettingFileManaging {
         var recentStyleNames = UserDefaults.standard[.recentStyleNames]!
         recentStyleNames.remove(name)
         recentStyleNames.insert(name, at: 0)
-        recentStyleNames = Array(recentStyleNames.prefix(maximumRecentStyleCount))
-        DispatchQueue.main.async {
-            UserDefaults.standard[.recentStyleNames] = recentStyleNames  // set in the main thread in case
-        }
+        UserDefaults.standard[.recentStyleNames] = Array(recentStyleNames.prefix(maximumRecentStyleCount))
         
         return setting
     }

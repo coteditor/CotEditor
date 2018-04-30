@@ -125,7 +125,9 @@ final class ToolbarController: NSObject {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.recentStyleNames.rawValue {
-            self.buildSyntaxPopupButton()
+            DispatchQueue.main.async { [weak self] in
+                self?.buildSyntaxPopupButton()
+            }
         }
     }
     
