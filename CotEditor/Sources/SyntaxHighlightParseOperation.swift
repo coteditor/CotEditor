@@ -133,10 +133,10 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         var highlights = [SyntaxType: [NSRange]]()
         
+        // extract standard highlight ranges
         for syntaxType in SyntaxType.all {
             guard let extractors = self.extractors[syntaxType] else { continue }
             
-            // update indicator sheet message
             self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
@@ -148,18 +148,18 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 guard !self.isCancelled else { return }
                 
                 let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
-                if !extractedRanges.isEmpty {
-                    rangesQueue.sync {
-                        ranges += extractedRanges
-                    }
-                }
                 
                 childProgress.completedUnitCount += 1
+                
+                guard !extractedRanges.isEmpty else { return }
+                
+                rangesQueue.sync {
+                    ranges += extractedRanges
+                }
             }
             
             guard !self.isCancelled else { return [:] }
             
-            // store range array
             highlights[syntaxType] = ranges
             
             childProgress.completedUnitCount = childProgress.totalUnitCount
@@ -167,13 +167,10 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         guard !self.isCancelled else { return [:] }
         
-        // comments and quoted text
+        // extract comments and quoted text
         self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
                                                     NSLocalizedString("comments and quoted texts", comment: ""))
-        let commentAndQuoteRanges = self.extractCommentsWithQuotes()
-        for (key, value) in commentAndQuoteRanges {
-            highlights[key, default: []].append(contentsOf: value)
-        }
+        highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
         
         guard !self.isCancelled else { return [:] }
         
@@ -249,14 +246,13 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             
             // search corresponding end delimiter
             if position.role.contains(.end), position.kind == kind {
-                let endLocation = position.range.upperBound
                 let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
-                let range = NSRange(startLocation..<endLocation)
+                let range = NSRange(startLocation..<position.range.upperBound)
                 
                 highlights[syntaxType, default: []].append(range)
                 
                 searchingKind = nil
-                seekLocation = endLocation
+                seekLocation = range.lowerBound
             }
         }
         
