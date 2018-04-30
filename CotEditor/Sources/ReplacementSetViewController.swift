@@ -133,6 +133,9 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         if self.replacementSet.replacements.isEmpty {
             self.add(nil)
         }
+        
+        // notify modification
+        self.updateNotificationTask.schedule()
     }
     
     
