@@ -44,7 +44,11 @@ final class ProgressViewController: NSViewController {
     @objc private dynamic let message: String
     
     private var progressObserver: NSKeyValueObservation?
+    private var descriptionObserver: NSKeyValueObservation?
+    private var finishObserver: NSKeyValueObservation?
     
+    @IBOutlet private weak var indicator: NSProgressIndicator?
+    @IBOutlet private weak var descriptionField: NSTextField?
     @IBOutlet private weak var button: NSButton?
     
     
@@ -59,10 +63,26 @@ final class ProgressViewController: NSViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.progressObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
+        self.progressObserver = progress.observe(\.completedUnitCount, options: .initial) { [weak self] (progress, _) in
+            guard progress.completedUnitCount % 100 == 0 else { return }
+            
+            DispatchQueue.main.async {
+                self?.indicator?.doubleValue = Double(progress.completedUnitCount)
+            }
+        }
+        
+        self.descriptionObserver = progress.observe(\.localizedDescription, options: .initial) { [weak self] (progress, _) in
+            DispatchQueue.main.async {
+                self?.descriptionField?.stringValue = progress.localizedDescription
+            }
+        }
+        
+        self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
             guard closesWhenFinished, progress.isFinished else { return }
             
-            self?.dismiss(nil)
+            DispatchQueue.main.async {
+                self?.dismiss(nil)
+            }
         }
     }
     
@@ -75,6 +95,8 @@ final class ProgressViewController: NSViewController {
     
     deinit {
         self.progressObserver?.invalidate()
+        self.descriptionObserver?.invalidate()
+        self.finishObserver?.invalidate()
     }
     
     

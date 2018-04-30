@@ -59,7 +59,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     var string: String?
     var parseRange: NSRange = .notFound
     
-    let progress: Progress
+    let progress: Progress  // can be updated from a background thread
     var highlightBlock: (([SyntaxType: [NSRange]]) -> Void)?
     
     
@@ -117,15 +117,11 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         guard !self.isCancelled else { return }
         
-        DispatchQueue.main.async { [weak progress = self.progress] in
-            progress?.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
-        }
+        self.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
         
         self.highlightBlock?(results)
         
-        DispatchQueue.main.async { [weak progress = self.progress] in
-            progress?.completedUnitCount += 1
-        }
+        self.progress.completedUnitCount += 1
     }
     
     
@@ -228,9 +224,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             guard let extractors = self.extractors[syntaxType] else { continue }
             
             // update indicator sheet message
-            DispatchQueue.main.async { [weak progress = self.progress] in
-                progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
-            }
+            self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
             
@@ -241,17 +235,13 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 guard !self.isCancelled else { return }
                 
                 let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
-                
                 if !extractedRanges.isEmpty {
                     rangesQueue.sync {
                         ranges += extractedRanges
                     }
                 }
                 
-                // progress indicator
-                DispatchQueue.main.async { [weak childProgress] in
-                    childProgress?.completedUnitCount += 1
-                }
+                childProgress.completedUnitCount += 1
             }
             
             guard !self.isCancelled else { return [:] }
@@ -259,20 +249,14 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             // store range array
             highlights[syntaxType] = ranges
             
-            // progress indicator
-            DispatchQueue.main.async { [weak childProgress] in
-                guard let childProgress = childProgress else { return }
-                childProgress.completedUnitCount = childProgress.totalUnitCount
-            }
+            childProgress.completedUnitCount = childProgress.totalUnitCount
         }
         
         guard !self.isCancelled else { return [:] }
         
         // comments and quoted text
-        DispatchQueue.main.async { [weak progress = self.progress] in
-            progress?.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
+        self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
                                                     NSLocalizedString("comments and quoted texts", comment: ""))
-        }
         let commentAndQuoteRanges = self.extractCommentsWithQuotes()
         for (key, value) in commentAndQuoteRanges {
             highlights[key, default: []].append(contentsOf: value)
@@ -282,9 +266,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         let sanitized = sanitize(highlights: highlights)
         
-        DispatchQueue.main.async { [weak progress = self.progress] in
-            progress?.completedUnitCount += 1
-        }
+        self.progress.completedUnitCount += 1
         
         return sanitized
     }
