@@ -102,7 +102,7 @@ struct CommentTypes: OptionSet {
 protocol Commenting: class {
     
     var inlineCommentDelimiter: String? { get }
-    var blockCommentDelimiters: BlockDelimiters? { get }
+    var blockCommentDelimiters: Pair<String>? { get }
     
     var appendsCommentSpacer: Bool { get }
     var commentsAtLineHead: Bool { get }
@@ -237,7 +237,7 @@ private extension String {
     
     
     /// append block style comment delimiters in range inserting spacer between string and delimiters and return commented-out string and new selected range
-    func blockCommentOut(delimiters: BlockDelimiters, spacer: String, range: Range<Index>, selectedRange: Range<Index>) -> (String, NSRange) {
+    func blockCommentOut(delimiters: Pair<String>, spacer: String, range: Range<Index>, selectedRange: Range<Index>) -> (String, NSRange) {
         
         let target = self[range]
         
@@ -278,7 +278,7 @@ private extension String {
     
     
     /// remove block style comment delimiters in range removing also spacers between string and delimiter and return uncommented string and new selected range
-    func blockUncomment(delimiters: BlockDelimiters, spacer: String, range: Range<Index>, selectedRange: Range<Index>) -> (String, NSRange)? {
+    func blockUncomment(delimiters: Pair<String>, spacer: String, range: Range<Index>, selectedRange: Range<Index>) -> (String, NSRange)? {
         
         let target = self[range]
         

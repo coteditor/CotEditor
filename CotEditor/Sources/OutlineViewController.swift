@@ -47,7 +47,17 @@ final class OutlineViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        if let observer = self.documentObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        if let observer = self.syntaxStyleObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+    }
+    
     
     override var representedObject: Any? {
         
@@ -103,7 +113,7 @@ final class OutlineViewController: NSViewController {
     /// current outline items
     private var outlineItems: [OutlineItem] {
         
-        return self.document?.syntaxStyle.outlineItems ?? []
+        return self.document?.syntaxParser.outlineItems ?? []
     }
     
     
@@ -171,9 +181,9 @@ final class OutlineViewController: NSViewController {
             NotificationCenter.default.removeObserver(observer)
         }
         
-        guard let syntaxStyle = self.document?.syntaxStyle else { return }
+        guard let syntaxParser = self.document?.syntaxParser else { return }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxStyle.didUpdateOutlineNotification, object: syntaxStyle, queue: .main) { [unowned self] _ in
+        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [unowned self] _ in
             self.outlineView?.reloadData()
             
             self.invalidateCurrentLocation()

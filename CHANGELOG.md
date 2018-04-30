@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+3.4.0-beta.3 (245)
+--------------------------
+
+### Improvements
+
+- Optimize syntax highlighting performance.
+
+
+### Fixes
+
+- Fix an issue where the sidebar inspector did close inward when the pane was switched after opening the sidebar outward.
+- Fix an issue where snippet keybindings could not be restored to the default correctly.
+- Fix an issue where progress spinner for outline menu displayed unwantedly on document opening.
+- [beta] Fix an issue where deletion of replacement set items was not saved.
+- [beta] Fix a possible crash on window closing.
+- [beta][non-AppStore ver.] Fix an issue where options for the application update check in General preferences pane disappeared.
+
+
+
 3.4.0-beta.2 (243)
 --------------------------
 

@@ -28,7 +28,7 @@ import ColorCode
 
 protocol ThemeViewControllerDelegate: class {
     
-    func didUpdate(theme: ThemeDictionary)
+    func didUpdate(theme: ThemeManager.ThemeDictionary)
 }
 
 
@@ -39,11 +39,13 @@ final class ThemeViewController: NSViewController {
     
     // MARK: Public Properties
     
-    @objc dynamic var theme: ThemeDictionary? {
+    @objc dynamic var theme: ThemeManager.ThemeDictionary? {
+        
         willSet {
             // remove current observing (in case when the theme is restored)
             self.endThemeObserving()
         }
+        
         didSet {
             // observe input theme
             self.beginThemeObserving()
@@ -54,6 +56,7 @@ final class ThemeViewController: NSViewController {
             }
         }
     }
+    
     @objc dynamic var isBundled = false
     
     weak var delegate: ThemeViewControllerDelegate?
@@ -127,7 +130,8 @@ final class ThemeViewController: NSViewController {
         let color = NSColor.selectedTextBackgroundColor
         let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
         
-        self.theme?[ThemeKey.selection.rawValue]?[ThemeKey.Sub.color.rawValue] = colorCode
+        
+        self.theme?[Theme.CodingKeys.selection.rawValue]?[Theme.SelectionStyle.CodingKeys.color.rawValue] = colorCode
     }
     
     

@@ -62,7 +62,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         self.tableView?.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
         
         // observe replacement setting list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: SettingFileManager.didUpdateSettingListNotification, object: ReplacementManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
     }
     
     
@@ -139,8 +139,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         guard let tableView = self.tableView else { return }
         
         try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
-            let settingNames = ReplacementManager.shared.settingNames
-            let row = settingNames.index(of: settingName) ?? 0
+            let row = ReplacementManager.shared.settingNames.index(of: settingName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
@@ -283,7 +282,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
             AudioServicesPlaySystemSound(.moveToTrash)
             
             // add new blank setting to avoid empty list
-            if ReplacementManager.shared.settings.isEmpty {
+            if ReplacementManager.shared.settingNames.isEmpty {
                 self.addSetting(nil)
             }
         }
@@ -325,7 +324,7 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
         guard let name = self.selectedSettingName else { return }
         
         do {
-            try ReplacementManager.shared.save(replacement: replacementSet, name: name)
+            try ReplacementManager.shared.save(setting: replacementSet, name: name)
         } catch {
             print(error.localizedDescription)
         }
@@ -427,7 +426,7 @@ extension ReplacementSetListViewController: NSTableViewDelegate {
         
         guard
             let settingName = self.selectedSettingName,
-            let setting = ReplacementManager.shared.settings[settingName]
+            let setting = ReplacementManager.shared.setting(name: settingName)
             else { return }
         
         self.mainViewController?.change(replacementSet: setting)

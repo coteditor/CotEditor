@@ -557,8 +557,8 @@ extension LineNumberView {
             
             for selectedRange in originalSelectedRanges {
                 if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
-                    let range1 = NSRange(location: selectedRange.location, length: range.location - selectedRange.location)
-                    let range2 = NSRange(location: range.upperBound, length: selectedRange.upperBound - range.upperBound)
+                    let range1 = NSRange(selectedRange.location..<range.location)
+                    let range2 = NSRange(range.upperBound..<selectedRange.upperBound)
                     
                     if range1.length > 0 {
                         selectedRanges.append(range1)
@@ -590,7 +590,7 @@ extension LineNumberView {
             if selectedRange.contains(currentIndex) {  // reduce
                 let inUpperSelection = (currentIndex - selectedRange.location) < selectedRange.length / 2
                 if inUpperSelection {  // clicked upper half section of selected range
-                    range = NSRange(location: currentIndex, length: selectedRange.upperBound - currentIndex)
+                    range = NSRange(currentIndex..<selectedRange.upperBound)
                 } else {
                     range = selectedRange
                     range.length -= selectedRange.upperBound - currentLineRange.upperBound

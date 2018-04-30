@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Dispatch
 
 /// Object invoking the registered block when a specific time interval is passed after the last call.
 final class Debouncer {
@@ -31,9 +31,10 @@ final class Debouncer {
     // MARK: Private Properties
     
     private let action: () -> Void
-    private let delay: TimeInterval
-    private let tolerance: Double
-    private weak var timer: Timer?
+    private let queue: DispatchQueue
+    private let defaultDelay: DispatchTimeInterval
+    
+    private var currentWorkItem: DispatchWorkItem?
     
     
     
@@ -44,69 +45,64 @@ final class Debouncer {
     ///
     /// - Parameters:
     ///   - delay: The default time to wait since last call.
-    ///   - tolerance: The rate of the timer tolerance to the delay interval.
+    ///   - queue: The dispatch queue to perform action.
     ///   - action: The action to debounce.
-    init(delay: TimeInterval = 0, tolerance: Double = 0.2, action: @escaping () -> Void) {
+    init(delay: DispatchTimeInterval, queue: DispatchQueue = .main, action: @escaping () -> Void) {
         
         self.action = action
-        self.delay = delay
-        self.tolerance = tolerance
+        self.queue = queue
+        self.defaultDelay = delay
     }
     
     
     deinit {
-        self.timer?.invalidate()
+        self.cancel()
     }
     
     
     
     // MARK: Public Methods
     
-    /// Invoke the action after when `delay` seconds have passed since last call.
+    /// Invoke the action after when `delay` time have passed since last call.
     ///
     /// - Parameters:
-    ///   - delay: The time to wait since last call. If nil, receiver's default delay is used.
-    func schedule(delay: TimeInterval? = nil) {
+    ///   - delay: The time to wait for fire. If nil, receiver's default delay is used.
+    func schedule(delay: DispatchTimeInterval? = nil) {
         
-        let delay = delay ?? self.delay
-        
-        guard delay > 0 else {
-            return self.run()
+        let delay = delay ?? self.defaultDelay
+        let workItem = DispatchWorkItem { [weak self] in
+            self?.action()
+            self?.currentWorkItem = nil
         }
         
-        if let timer = self.timer {
-            timer.fireDate = Date(timeIntervalSinceNow: delay)
-        } else {
-            self.timer = Timer.scheduledTimer(timeInterval: delay,
-                                              target: self, selector: #selector(run),
-                                              userInfo: nil, repeats: false)
-        }
-        self.timer?.tolerance = self.tolerance * delay
+        self.cancel()
+        self.currentWorkItem = workItem
+        
+        self.queue.asyncAfter(deadline: .now() + delay, execute: workItem)
+        
     }
     
     
-    /// Run the action immediately.
-    @objc func run() {
+    /// Perform the action immediately.
+    func perform() {
         
-        self.timer?.invalidate()
-        self.action()
+        self.currentWorkItem?.cancel()
+        self.queue.async(execute: self.action)
     }
     
     
-    /// Run the action immediately if scheduled.
+    /// Perform the action immediately if scheduled.
     func fireNow() {
         
-        guard let timer = self.timer else { return }
-        
-        timer.invalidate()
-        self.action()
+        self.currentWorkItem?.perform()
     }
     
     
     /// Cancel the action if scheduled.
     func cancel() {
         
-        self.timer?.invalidate()
+        self.currentWorkItem?.cancel()
+        self.currentWorkItem = nil
     }
     
 }

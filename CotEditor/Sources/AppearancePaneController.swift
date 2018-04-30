@@ -36,13 +36,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @objc private dynamic let invisibleNewLines: [String] = Invisible.newLine.candidates
     @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
     
-    private var themeViewController: ThemeViewController?
     private var themeNames = [String]()
     @objc private dynamic var isBundled = false
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
-    @IBOutlet private weak var box: NSBox?
     @IBOutlet private var themeTableMenu: NSMenu?
     
     
@@ -62,8 +60,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         self.themeNames = ThemeManager.shared.settingNames
         
         // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: SettingFileManager.didUpdateSettingNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
     }
     
     
@@ -77,6 +75,15 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let themeName = UserDefaults.standard[.theme]!
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+    }
+    
+    
+    /// set delegate to ThemeViewController
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+        
+        if let destinationController = segue.destinationController as? ThemeViewController {
+            destinationController.delegate = self
+        }
     }
     
     
@@ -219,7 +226,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     // ThemeViewControllerDelegate
     
     /// theme did update
-    func didUpdate(theme: ThemeDictionary) {
+    func didUpdate(theme: ThemeManager.ThemeDictionary) {
         
         // save
         do {
@@ -244,18 +251,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         // update default theme setting
         if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
             UserDefaults.standard[.theme] = themeName
-            
-            // update theme of the current document windows
-            //   -> [caution] The theme list of the theme manager can not be updated yet at this point.
-            ThemeManager.shared.notifySettingUpdate(oldName: oldThemeName, newName: themeName)
         }
         
-        let themeViewController = self.storyboard!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("ThemeViewController")) as! ThemeViewController
-        themeViewController.delegate = self
-        themeViewController.theme = themeDict
-        themeViewController.isBundled = isBundled
-        self.themeViewController = themeViewController
-        self.box?.contentView = themeViewController.view
+        self.themeViewController?.theme = themeDict
+        self.themeViewController?.isBundled = isBundled
         
         self.isBundled = isBundled
     }
@@ -334,6 +333,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             return false
         }
         
+        if UserDefaults.standard[.theme] == oldName {
+            UserDefaults.standard[.theme] = newName
+        }
+        
         return true
     }
     
@@ -346,9 +349,8 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         guard let tableView = self.themeTableView else { return }
         
-        try? ThemeManager.shared.createUntitledTheme { themeName in
-            let themeNames = ThemeManager.shared.settingNames
-            let row = themeNames.index(of: themeName) ?? 0
+        try? ThemeManager.shared.createUntitledSetting { themeName in
+            let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
@@ -451,6 +453,13 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     // MARK: Private Methods
+    
+    /// view controller for theme editor
+    private var themeViewController: ThemeViewController? {
+        
+        return self.childViewControllers.lazy.compactMap { $0 as? ThemeViewController }.first
+    }
+    
     
     /// return theme name which is currently selected in the list table
     @objc private dynamic var selectedThemeName: String {

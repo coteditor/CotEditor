@@ -1,10 +1,10 @@
 //
-//  SmallToolbarItem.swift
+//  AudioToolbox.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-09-05.
+//  Created by 1024jp on 2018-04-22.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -23,21 +23,11 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AudioToolbox
 
-class SmallToolbarItem: NSToolbarItem {
+// labels for system sound ID on AudioToolbox (No constants are provided by Apple)
+extension SystemSoundID {
     
-    // MARK: Toolbar Item Properties
-    
-    override var minSize: NSSize {
-        
-        get {
-            return NSSize(width: 24, height: 24)
-        }
-        
-        set {
-            super.minSize = newValue
-        }
-    }
-    
+    static let volumeMount = SystemSoundID(1)
+    static let moveToTrash = SystemSoundID(16)
 }

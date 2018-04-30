@@ -26,70 +26,6 @@
 
 import Foundation
 
-struct OutlineDefinition: Equatable, CustomDebugStringConvertible {
-    
-    let regex: NSRegularExpression
-    let template: String
-    let isSeparator: Bool
-    let style: OutlineItem.Style
-    
-    
-    init?(definition: [String: Any]) {
-        
-        guard let pattern = definition[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
-        
-        let ignoreCase = (definition[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
-        var options: NSRegularExpression.Options = .anchorsMatchLines
-        if ignoreCase {
-            options.update(with: .caseInsensitive)
-        }
-        
-        // compile to regex object
-        do {
-            self.regex = try NSRegularExpression(pattern: pattern, options: options)
-            
-        } catch {
-            print("Error on outline regex: " + error.localizedDescription)
-            return nil
-        }
-        
-        self.template = (definition[SyntaxDefinitionKey.keyString.rawValue] as? String) ?? ""
-        self.isSeparator = (self.template == String.separator)
-        
-        var style = OutlineItem.Style()
-        if (definition[OutlineStyleKey.bold.rawValue] as? Bool) ?? false {
-            style.update(with: .bold)
-        }
-        if (definition[OutlineStyleKey.italic.rawValue] as? Bool) ?? false {
-            style.update(with: .italic)
-        }
-        if (definition[OutlineStyleKey.underline.rawValue] as? Bool) ?? false {
-            style.update(with: .underline)
-        }
-        self.style = style
-    }
-    
-    
-    var debugDescription: String {
-        
-        return "<\(type(of: self)): \(self.regex.pattern) template: \(self.template)>"
-    }
-   
-
-    static func == (lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
-        
-        return lhs.regex.pattern == rhs.regex.pattern &&
-            lhs.regex.options == rhs.regex.options &&
-            lhs.template == rhs.template &&
-            lhs.style == rhs.style
-    }
-    
-}
-
-
-
-// MARK: -
-
 final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
     
     // MARK: Public Properties
@@ -103,17 +39,17 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
     
     // MARK: Private Properties
     
-    private let definitions: [OutlineDefinition]
+    private let extractors: [OutlineExtractor]
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definitions: [OutlineDefinition]) {
+    required init(extractors: [OutlineExtractor]) {
         
-        self.definitions = definitions
-        self.progress = Progress(totalUnitCount: Int64(definitions.count + 1))
+        self.extractors = extractors
+        self.progress = Progress(totalUnitCount: Int64(extractors.count + 1))
         
         super.init()
         
@@ -142,82 +78,33 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
             self.finish()
         }
         
-        guard !self.definitions.isEmpty else { return }
+        guard !self.extractors.isEmpty else { return }
         
-        let parseRange = self.parseRange
         guard
             let string = self.string,
             !string.isEmpty,
-            parseRange.location != NSNotFound
+            self.parseRange.location != NSNotFound
             else { return }
         
         var outlineItems = [OutlineItem]()
         
-        for definition in self.definitions {
-            definition.regex.enumerateMatches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange) { (result: NSTextCheckingResult?, flags, stop) in
-                
-                guard !self.isCancelled else {
-                    stop.pointee = true
-                    return
-                }
-                guard let result = result else { return }
-                
-                let range = result.range
-                
-                // separator item
-                if definition.isSeparator {
-                    let item = OutlineItem(title: definition.template, range: range)
-                    outlineItems.append(item)
-                    return
-                }
-                
-                // menu item title
-                var title: String
-                
-                if definition.template.isEmpty {
-                    // no pattern definition
-                    title = (string as NSString).substring(with: range)
-                    
-                } else {
-                    // replace matched string with template
-                    title = definition.regex.replacementString(for: result, in: string, offset: 0, template: definition.template)
-                    
-                    // replace $LN with line number of the beginning of the matched range
-                    if title.contains("$LN") {
-                        let lineNumber = string.lineNumber(at: range.location)
-                        
-                        title = title.replacingOccurrences(of: "(?<!\\\\)\\$LN",
-                                                           with: String(lineNumber),
-                                                           options: .regularExpression)
-                    }
-                }
-                
-                // replace whitespaces
-                title = title.replacingOccurrences(of: "\n", with: " ")
-                
-                let item = OutlineItem(title: title, range: range, style: definition.style)
-                
-                // append outline item
-                outlineItems.append(item)
-            }
+        for extractor in self.extractors {
+            guard !self.isCancelled else { return }
             
-            DispatchQueue.main.async { [weak self] in
-                self?.progress.completedUnitCount += 1
-            }
+            outlineItems += extractor.items(in: string, range: self.parseRange)
+            
+            self.progress.completedUnitCount += 1
         }
         
         guard !self.isCancelled else { return }
         
-        // sort by location
         outlineItems.sort {
             $0.range.location < $1.range.location
         }
         
         self.results = outlineItems
         
-        DispatchQueue.main.async { [weak self] in
-            self?.progress.completedUnitCount += 1
-        }
+        self.progress.completedUnitCount += 1
     }
     
 }

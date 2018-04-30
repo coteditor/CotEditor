@@ -1,14 +1,14 @@
 //
-//  Constants.swift
+//  Metadata.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-06-25.
+//  Created by 1024jp on 2018-04-23.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,31 +23,27 @@
 //  limitations under the License.
 //
 
-import AudioToolbox
+import Foundation
 
-// labels for system sound ID on AudioToolbox (There are no constants provided by Apple)
-extension SystemSoundID {
+final class Metadata: NSObject, Codable {
     
-    static let volumeMount = SystemSoundID(1)
-    static let moveToTrash = SystemSoundID(16)
-}
-
-
-extension String {
+    @objc dynamic var author: String?
+    @objc dynamic var distributionURL: String?
+    @objc dynamic var license: String?
+    @objc dynamic var comment: String?
     
-    /// constant string representing a separator
-    static let separator = "-"
-}
-
-
-extension String.Encoding {
     
-    /// original special encoding type
-    static let autoDetection = String.Encoding(rawValue: 0)
-}
-
-
-enum BundleIdentifier {
+    var isEmpty: Bool {
+        
+        return self.author == nil && self.distributionURL == nil && self.license == nil && self.comment == nil
+    }
     
-    static let ScriptEditor = "com.apple.ScriptEditor2"
+    
+    private enum CodingKeys: String, CodingKey {
+        
+        case author
+        case distributionURL
+        case license
+        case comment = "description"  // `description` conflicts with NSObject's method.
+    }
 }

@@ -75,7 +75,7 @@ final class EncodingManager: NSObject {
         
         if keyPath == DefaultKeys.encodingList.rawValue {
             DispatchQueue.main.async { [weak self] in
-                NotificationCenter.default.post(name: SettingFileManager.didUpdateSettingListNotification, object: self)
+                NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
             }
         }
     }
@@ -99,7 +99,7 @@ final class EncodingManager: NSObject {
     
     
     /// returns corresponding NSStringEncoding from a encoding name
-    class func encoding(name encodingName: String) -> String.Encoding? {
+    func encoding(name encodingName: String) -> String.Encoding? {
         
         return DefaultSettings.encodings.lazy
             .filter { $0 != kCFStringEncodingInvalidId }  // = separator
@@ -113,7 +113,7 @@ final class EncodingManager: NSObject {
         
         return self.defaultEncodings.map { encoding in
             guard let encoding = encoding else {
-                return NSMenuItem.separator()
+                return .separator()
             }
             
             let item = NSMenuItem()
@@ -147,8 +147,8 @@ final class EncodingManager: NSObject {
     }
     
     
-    // MARK: Private Methods
     
+    // MARK: Private Methods
     
     /// convert invalid encoding values (-1) to `kCFStringEncodingInvalidId`
     private func sanitizeEncodingListSetting() {

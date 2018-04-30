@@ -90,14 +90,14 @@ class EncodingDetectionTests: XCTestCase {
     }
 
     
-    func testSuggestedCFEncoding() {
+    func testSuggestedCFEncoding() throws {
         
         let data = self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
         let invalidInt = UInt32(kCFStringEncodingInvalidId)
         let utf8Int = UInt32(CFStringBuiltInEncodings.UTF8.rawValue)
-        let string = try! String(data: data, suggestedCFEncodings: [invalidInt, utf8Int], usedEncoding: &encoding)
+        let string = try String(data: data, suggestedCFEncodings: [invalidInt, utf8Int], usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, String.Encoding.utf8)

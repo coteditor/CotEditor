@@ -52,16 +52,16 @@ final class EditorTextView: NSTextView, Themable {
     var lineHighlightRect: NSRect?
     
     var inlineCommentDelimiter: String?
-    var blockCommentDelimiters: BlockDelimiters?
+    var blockCommentDelimiters: Pair<String>?
     
-    var firstSyntaxCompletionCharacterSet: CharacterSet?  // set of the first characters of the completion words
+    var completionInitialSet = CharacterSet()  // set of the first characters of the completion words
     var needsRecompletion = false
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
-    private(set) lazy var completionTask: Debouncer = Debouncer { [weak container = self.textContainer] in  // NSTextView cannot be weak
+    private(set) lazy var completionTask = Debouncer(delay: .seconds(0)) { [weak container = self.textContainer] in  // NSTextView cannot be weak
         (container?.textView as? EditorTextView)?.performCompletion()
     }
     
@@ -116,7 +116,7 @@ final class EditorTextView: NSTextView, Themable {
         self.lineHeight = defaults[.lineHeight]
         self.tabWidth = defaults[.tabWidth]
         
-        self.theme = ThemeManager.shared.theme(name: defaults[.theme]!)
+        self.theme = ThemeManager.shared.setting(name: defaults[.theme]!)
         // -> will be applied first in `viewDidMoveToWindow()`
         
         super.init(coder: coder)
@@ -347,7 +347,7 @@ final class EditorTextView: NSTextView, Themable {
         // auto completion
         if UserDefaults.standard[.autoComplete] {
             let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
-            self.completionTask.schedule(delay: delay)
+            self.completionTask.schedule(delay: .milliseconds(Int(delay * 1000)))
         }
     }
     
@@ -948,6 +948,7 @@ final class EditorTextView: NSTextView, Themable {
         get {
             return (self.layoutManager as? LayoutManager)?.usesAntialias ?? true
         }
+        
         set {
             (self.layoutManager as? LayoutManager)?.usesAntialias = newValue
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
@@ -961,6 +962,7 @@ final class EditorTextView: NSTextView, Themable {
         get {
             return (self.layoutManager as? LayoutManager)?.showsInvisibles ?? false
         }
+        
         set {
             (self.layoutManager as? LayoutManager)?.showsInvisibles = newValue
         }
@@ -1158,15 +1160,15 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let theme = self.theme else { return }
         
-        self.window?.backgroundColor = theme.backgroundColor
+        self.window?.backgroundColor = theme.background.color
         
-        self.backgroundColor = theme.backgroundColor
-        self.textColor = theme.textColor
-        self.lineHighLightColor = theme.lineHighLightColor
-        self.insertionPointColor = theme.insertionPointColor
-        self.selectedTextAttributes = [.backgroundColor: theme.selectionColor]
+        self.backgroundColor = theme.background.color
+        self.textColor = theme.text.color
+        self.lineHighLightColor = theme.lineHighlight.color
+        self.insertionPointColor = theme.insertionPoint.color
+        self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
-        (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisiblesColor
+        (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
         // set scroller color considering background color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
@@ -1240,8 +1242,8 @@ final class EditorTextView: NSTextView, Themable {
         let composer = FileDropComposer(definitions: UserDefaults.standard[.fileDropArray])
         let documentURL = self.document?.fileURL
         let syntaxStyle: String? = {
-            guard let style = self.document?.syntaxStyle, !style.isNone else { return nil }
-            return style.styleName
+            guard let style = self.document?.syntaxParser.style, !style.isNone else { return nil }
+            return style.name
         }()
         
         let replacementString = urls.reduce(into: "") { (string, url) in
@@ -1286,10 +1288,9 @@ extension EditorTextView {
         
         // expand range until hitting to a character that isn't in the word completion candidates
         guard
-            !self.string.isEmpty,
-            let characterSet = self.firstSyntaxCompletionCharacterSet,
+            !self.string.isEmpty, !self.completionInitialSet.isEmpty,
             let characterRange = Range(range, in: self.string),
-            let index = self.string.rangeOfCharacter(from: characterSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
+            let index = self.string.rangeOfCharacter(from: self.completionInitialSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
             else { return range }
         
         return NSRange(index..<characterRange.upperBound, in: self.string)

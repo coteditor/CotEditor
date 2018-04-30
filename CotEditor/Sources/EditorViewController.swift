@@ -107,6 +107,7 @@ final class EditorViewController: NSSplitViewController {
         get {
             return self.textViewController?.showsLineNumber ?? false
         }
+        
         set {
             self.textViewController?.showsLineNumber = newValue
         }
@@ -119,6 +120,7 @@ final class EditorViewController: NSSplitViewController {
         get {
             return !(self.navigationBarItem?.isCollapsed ?? true)
         }
+        
         set {
             self.navigationBarItem?.isCollapsed = !newValue
         }

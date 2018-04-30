@@ -191,6 +191,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         get {
             return self.sidebarViewController?.view.frame.width ?? 0
         }
+        
         set {
             self.sidebarViewController?.view.frame.size.width = max(newValue, 0)  // avoid having a negative value
         }
@@ -203,7 +204,10 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         get {
             return !(self.sidebarViewItem?.isCollapsed ?? true)
         }
+        
         set (shown) {
+            guard shown != self.isSidebarShown else { return }
+            
             // close sidebar inward if it opened so (because of insufficient space to open outward)
             let currentWidth = self.splitView.frame.width
             NSAnimationContext.current.completionHandler = {

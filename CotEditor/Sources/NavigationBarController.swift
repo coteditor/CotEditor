@@ -46,9 +46,28 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    // MARK: Private Properties
+    weak var outlineProgress: Progress? {
+        
+        didSet {
+            assert(Thread.isMainThread)
+            
+            guard let progress = self.outlineProgress else {
+                self.outlineIndicator?.stopAnimation(nil)
+                self.outlineLoadingMessage?.isHidden = true
+                return
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) { [weak self] in
+                guard !progress.isFinished else { return }
+                
+                self?.outlineIndicator?.startAnimation(nil)
+                self?.outlineLoadingMessage?.isHidden = false
+            }
+        }
+    }
     
-    private var isParsingOutline = false  // flag to control outline indicator
+    
+    // MARK: Private Properties
     
     private weak var prevButton: NSButton?
     private weak var nextButton: NSButton?
@@ -103,11 +122,6 @@ final class NavigationBarController: NSViewController {
     var outlineItems: [OutlineItem] = [] {
         
         didSet {
-            // stop outline extracting indicator
-            self.isParsingOutline = false
-            self.outlineIndicator!.stopAnimation(self)
-            self.outlineLoadingMessage!.isHidden = true
-            
             self.outlineMenu!.removeAllItems()
             
             self.prevButton!.isHidden = outlineItems.isEmpty
@@ -165,26 +179,6 @@ final class NavigationBarController: NSViewController {
         let nextRange = (menu.indexOfSelectedItem + 1)..<menu.numberOfItems
         
         return menu.itemArray[nextRange].contains { $0.representedObject != nil }
-    }
-    
-    
-    /// start displaying outline indicator
-    func showOutlineIndicator() {
-        
-        guard self.outlineMenu!.isEnabled else {
-            self.isParsingOutline = false
-            return
-        }
-        
-        self.isParsingOutline = true
-        
-        // display only if it takes longer than 1 sec.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            guard self?.isParsingOutline ?? false else { return }
-            
-            self?.outlineIndicator!.startAnimation(self)
-            self?.outlineLoadingMessage!.isHidden = false
-        }
     }
     
     

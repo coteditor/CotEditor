@@ -117,7 +117,7 @@
                                     <action selector="closeSplitTextView:" target="OuY-Pd-2q9" id="JQI-M6-ZSI"/>
                                 </connections>
                             </button>
-                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="1" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="htM-ug-ofP">
                                 <rect key="frame" x="60" y="0.0" width="16" height="16"/>
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
@@ -156,8 +156,8 @@
                         <outlet property="closeSplitButton" destination="Bmo-XE-CCn" id="l36-HV-WaO"/>
                         <outlet property="leftButton" destination="BUj-TD-scp" id="UPE-Vg-sYz"/>
                         <outlet property="openSplitButton" destination="syK-XU-x2I" id="rpx-m0-Ia5"/>
-                        <outlet property="outlineIndicator" destination="htM-ug-ofP" id="9bf-eJ-GwB"/>
-                        <outlet property="outlineLoadingMessage" destination="Svt-vI-TEc" id="dqn-f5-EZW"/>
+                        <outlet property="outlineIndicator" destination="htM-ug-ofP" id="U7C-1C-d8L"/>
+                        <outlet property="outlineLoadingMessage" destination="Svt-vI-TEc" id="GOz-wI-mIO"/>
                         <outlet property="outlineMenu" destination="uo6-wO-fJZ" id="E2p-BI-hLI"/>
                         <outlet property="rightButton" destination="MlW-Dz-FOk" id="rRE-Sr-4yx"/>
                     </connections>

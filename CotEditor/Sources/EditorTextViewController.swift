@@ -30,21 +30,16 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     
-    weak var syntaxStyle: SyntaxStyle? {
+    var syntaxStyle: SyntaxStyle? {
         
         didSet {
-            guard let textView = self.textView else { return }
+            guard let textView = self.textView, let syntaxStyle = syntaxStyle else { return }
             
-            textView.inlineCommentDelimiter = syntaxStyle?.inlineCommentDelimiter
-            textView.blockCommentDelimiters = syntaxStyle?.blockCommentDelimiters
+            textView.inlineCommentDelimiter = syntaxStyle.inlineCommentDelimiter
+            textView.blockCommentDelimiters = syntaxStyle.blockCommentDelimiters
             
-            textView.firstSyntaxCompletionCharacterSet = {
-                guard let words = syntaxStyle?.completionWords, !words.isEmpty else { return nil }
-                
-                let firstLetters = words.compactMap { $0.unicodeScalars.first }
-                
-                return CharacterSet(firstLetters)
-            }()
+            let firstLetters = syntaxStyle.completionWords.compactMap { $0.unicodeScalars.first }
+            textView.completionInitialSet = CharacterSet(firstLetters)
         }
     }
     
@@ -54,6 +49,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         get {
             return self.scrollView?.rulersVisible ?? false
         }
+        
         set {
             self.scrollView?.rulersVisible = newValue
         }
@@ -69,7 +65,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private lazy var currentLineUpdateTask: Debouncer = Debouncer(delay: 0.01, tolerance: 0.5) { [weak self] in self?.updateCurrentLineRect() }
+    private lazy var currentLineUpdateTask = Debouncer(delay: .milliseconds(10)) { [weak self] in self?.updateCurrentLineRect() }
     
     private enum MenuItemTag: Int {
         case script = 800
@@ -175,7 +171,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         // copy words defined in syntax style
-        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords {
+        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords, !syntaxCandidateWords.isEmpty {
             let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
             candidateWords.append(contentsOf: syntaxWords)
         }
@@ -223,7 +219,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         //   -> Flag is set in EditorTextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
         if textView.needsRecompletion {
             textView.needsRecompletion = false
-            textView.completionTask.schedule(delay: 0.05)
+            textView.completionTask.schedule(delay: .milliseconds(50))
         }
     }
     
@@ -242,7 +238,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // highlight the current line
         // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
         //    in order to provide a quick feedback of change to users.
-        self.currentLineUpdateTask.run()
+        self.currentLineUpdateTask.perform()
     }
     
     

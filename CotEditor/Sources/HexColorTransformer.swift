@@ -57,7 +57,7 @@ final class HexColorTransformer: ValueTransformer {
         
         guard let code = value as? String else { return nil }
         
-        var type: ColorCodeType = .invalid
+        var type: ColorCodeType?
         let color = NSColor(colorCode: code, type: &type)
         
         guard type == .hex || type == .shortHex else { return nil }

@@ -25,79 +25,42 @@
 
 import Foundation
 
-final class ReplacementManager: SettingFileManager {
+final class ReplacementManager: SettingFileManaging {
+    
+    typealias Setting = ReplacementSet
+    
     
     // MARK: Public Properties
     
     static let shared = ReplacementManager()
     
-    private(set) var settings = [String: ReplacementSet]()
+    
+    // MARK: Setting File Managing Properties
+    
+    static let directoryName: String = "Replacements"
+    let filePathExtensions: [String] = DocumentType.replacement.extensions
+    let settingFileType: SettingFileType = .replacement
+    
+    private(set) var settingNames: [String] = []
+    let bundledSettingNames: [String] = []
+    var cachedSettings: [String: Setting] = [:]
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override private init() {
+    private init() {
         
-        super.init()
-        
-        self.loadUserSettings()
-    }
-    
-    
-    
-    // MARK: Setting File Manager Methods
-    
-    /// directory name in both Application Support and bundled Resources
-    override var directoryName: String {
-        
-        return "Replacements"
-    }
-    
-    
-    /// path extensions for user setting file
-    override var filePathExtensions: [String] {
-        
-        return DocumentType.replacement.extensions
-    }
-    
-    
-    /// name of setting file type
-    override var settingFileType: SettingFileType {
-        
-        return .replacement
-    }
-    
-    
-    /// list of names of setting file name (without extension)
-    override var settingNames: [String] {
-        
-        return self.settings.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-    }
-    
-    
-    /// list of names of setting file name which are bundled (without extension)
-    override var bundledSettingNames: [String] {
-        
-        return []
+        self.checkUserSettings()
     }
     
     
     
     // MARK: Public Methods
     
-    /// delete theme file corresponding to the theme name
-    override func removeSetting(name settingName: String) throws {
-        
-        try super.removeSetting(name: settingName)
-        
-        self.updateCache()
-    }
-    
-    
-    /// save
-    func save(replacement: ReplacementSet, name settingName: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
+    /// save setting file
+    func save(setting: Setting, name: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -108,59 +71,53 @@ final class ReplacementManager: SettingFileManager {
             encoder.outputFormatting.formUnion(.sortedKeys)
         }
         
-        let data = try encoder.encode(replacement)
-        let fileURL = self.preparedURLForUserSetting(name: settingName)
+        let data = try encoder.encode(setting)
+        let fileURL = self.preparedURLForUserSetting(name: name)
         
         try data.write(to: fileURL, options: .atomic)
         
-        self.updateCache {
+        self.cachedSettings[name] = setting
+        
+        self.updateCache { [weak self] in
+            self?.notifySettingUpdate(oldName: name, newName: name)
+            
             completionHandler?()
         }
     }
     
     
-    /// rename setting
-    override func renameSetting(name: String, to newName: String) throws {
-        
-        try super.renameSetting(name: name, to: newName)
-        
-        self.updateCache { [weak self] in
-            self?.notifySettingUpdate(oldName: name, newName: newName)
-        }
-    }
-    
-    
     /// create a new untitled setting
-    func createUntitledSetting(completionHandler: ((String) -> Void)? = nil) throws {  // @escaping
+    func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
-        let replacementSet = ReplacementSet()
         
-        try self.save(replacement: replacementSet, name: name) {
+        try self.save(setting: ReplacementSet(), name: name) {
             completionHandler?(name)
         }
     }
     
     
     
-    // MARK: Private Methods
+    // MARK: Setting File Managing
     
-    /// update internal cache data
-    override func loadUserSettings() {
+    /// load setting from the file at given URL
+    func loadSetting(at fileURL: URL) throws -> Setting {
         
         let decoder = JSONDecoder()
+        let data = try Data(contentsOf: fileURL)
         
-        // load settings if exists
-        self.settings = self.userSettingFileURLs?.reduce(into: [:]) { (settings, url) in
-            guard
-                let data = try? Data(contentsOf: url),
-                let setting = try? decoder.decode(ReplacementSet.self, from: data)
-                else { return }
-            
-            let name = self.settingName(from: url)
-            
-            settings?[name] = setting
-        } ?? [:]
+        return try decoder.decode(ReplacementSet.self, from: data)
+    }
+    
+    
+    /// load settings in the user domain
+    func checkUserSettings() {
+        
+        // get user setting names if exists
+        self.settingNames = self.userSettingFileURLs
+            .filter { (try? self.loadSetting(at: $0)) != nil }  // just try loading but not store
+            .map { self.settingName(from: $0) }
+            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
     }
     
 }

@@ -78,7 +78,7 @@ final class DocumentAnalyzer: NSObject {
     
     private weak var document: Document?  // weak to avoid cycle retain
     
-    private lazy var editorUpdateTask: Debouncer = Debouncer(delay: 0.2) { [weak self] in self?.updateEditorInfo() }
+    private lazy var editorUpdateTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
     private let editorInfoCountOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.EditorInfoCountOperationQueue",
                                                                qos: .userInitiated)
     

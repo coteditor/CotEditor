@@ -29,7 +29,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
@@ -40,6 +40,21 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     // MARK: -
     // MARK: Split View Controller Methods
+    
+    deinit {
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
+    }
+    
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+        
+        if keyPath == DefaultKeys.theme.rawValue, let name = change?[.newKey] as? String {
+            DispatchQueue.main.async { [weak self] in
+                self?.setTheme(name: name)
+            }
+        }
+    }
+    
     
     override func viewDidLoad() {
         
@@ -54,9 +69,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
         
+        // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
-                                               name: SettingFileManager.didUpdateSettingNotification,
+                                               name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
     }
     
     
@@ -103,16 +120,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
             document.textStorage.delegate = self
-            document.syntaxStyle.delegate = self
+            document.syntaxParser.delegate = self
             
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
             // start parcing syntax highlights and outline menu
-            if document.syntaxStyle.canParse {
-                editorViewController.navigationBarController?.showOutlineIndicator()
-            }
-            document.syntaxStyle.invalidateOutline()
+            document.syntaxParser.invalidateOutline()
             self.invalidateSyntaxHighlight()
             
             // detect indent style
@@ -161,7 +175,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
             menuItem.title = NSLocalizedString(title, comment: "")
             
         case #selector(recolorAll):
-            return self.syntaxStyle?.canParse ?? false
+            return self.syntaxParser?.canParse ?? false
             
         case #selector(toggleLineNumber):
             let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
@@ -233,7 +247,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         
         switch action {
         case #selector(recolorAll):
-            return self.syntaxStyle?.canParse ?? false
+            return self.syntaxParser?.canParse ?? false
             
         default: break
         }
@@ -294,12 +308,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         self.document?.analyzer.invalidateEditorInfo()
         
         // parse syntax
-        self.syntaxStyle?.invalidateOutline()
-        if let syntaxStyle = self.syntaxStyle, syntaxStyle.canParse {
+        if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
+            syntaxParser.invalidateOutline()
+            
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                guard let progress = syntaxStyle.highlight(around: editedRange) else { return }
+                guard let progress = syntaxParser.highlight(around: editedRange) else { return }
                 
                 self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
             }
@@ -311,11 +326,20 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     
     
     /// update outline menu in navigation bar
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]) {
+    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
         
         for viewController in self.editorViewControllers {
+            viewController.navigationBarController?.outlineProgress = nil
             viewController.navigationBarController?.outlineItems = outlineItems
             // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need invoke it (2008-05-16)
+        }
+    }
+    
+    
+    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
+        
+        for viewController in self.editorViewControllers {
+            viewController.navigationBarController?.outlineProgress = progress
         }
     }
     
@@ -334,19 +358,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// document updated syntax style
     @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
         
-        guard let syntaxStyle = self.syntaxStyle else { return }
+        guard let syntaxParser = self.syntaxParser else { return }
         
-        syntaxStyle.delegate = self
+        syntaxParser.delegate = self
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxStyle)
-            if syntaxStyle.canParse {
-                viewController.navigationBarController?.outlineItems = []
-                viewController.navigationBarController?.showOutlineIndicator()
-            }
+            viewController.apply(syntax: syntaxParser.style)
+            viewController.navigationBarController?.outlineItems = []
+            viewController.navigationBarController?.outlineProgress = nil
         }
         
-        syntaxStyle.invalidateOutline()
+        syntaxParser.invalidateOutline()
         self.invalidateSyntaxHighlight()
     }
     
@@ -355,9 +377,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     @objc private func didUpdateTheme(_ notification: Notification?) {
         
         guard
-            let oldName = notification?.userInfo?[SettingFileManager.NotificationKey.old] as? String,
-            let newName = notification?.userInfo?[SettingFileManager.NotificationKey.new] as? String,
+            let oldName = notification?.userInfo?[Notification.UserInfoKey.old] as? String,
             oldName == self.theme?.name else { return }
+        
+        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? UserDefaults.standard[.theme]!
         
         self.setTheme(name: newName)
     }
@@ -400,6 +423,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return !(self.statusBarItem?.isCollapsed ?? true)
         }
+        
         set {
             assert(self.statusBarItem != nil)
             self.statusBarItem?.isCollapsed = !newValue
@@ -468,6 +492,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.document?.isVerticalText ?? false
         }
+        
         set {
             self.document?.isVerticalText = newValue
             
@@ -485,6 +510,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.focusedTextView?.baseWritingDirection ?? .leftToRight
         }
+        
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.baseWritingDirection = newValue
@@ -499,6 +525,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.focusedTextView?.tabWidth ?? 0
         }
+        
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.tabWidth = newValue
@@ -513,6 +540,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         get {
             return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
         }
+        
         set {
             for viewController in self.editorViewControllers {
                 viewController.textView?.isAutomaticTabExpansionEnabled = newValue
@@ -678,7 +706,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         let newEditorViewController = self.createEditorViewController(relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
-        newEditorViewController.navigationBarController?.outlineItems = self.syntaxStyle?.outlineItems ?? []
+        newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
         self.invalidateSyntaxHighlight()
         
         // adjust visible areas
@@ -741,8 +769,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     private func invalidateSyntaxHighlight() {
         
         guard
-            let progress = self.syntaxStyle?.highlightAll(),
-            let length = self.syntaxStyle?.textStorage?.length
+            let progress = self.syntaxParser?.highlightAll(),
+            let length = self.syntaxParser?.textStorage.length
             else { return }
         
         self.presentHighlightIndicator(progress: progress, highlightLength: length)
@@ -816,7 +844,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
-        if let syntaxStyle = self.syntaxStyle {
+        if let syntaxStyle = self.syntaxParser?.style {
             editorViewController.apply(syntax: syntaxStyle)
         }
         
@@ -849,10 +877,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     }
     
     
-    /// document's syntax style
-    private var syntaxStyle: SyntaxStyle? {
+    /// document's syntax parser
+    private var syntaxParser: SyntaxParser? {
         
-        return self.document?.syntaxStyle
+        return self.document?.syntaxParser
     }
     
     
@@ -866,7 +894,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxStyleDelegate, 
     /// apply theme
     private func setTheme(name: String) {
         
-        guard let theme = ThemeManager.shared.theme(name: name) else { return }
+        assert(Thread.isMainThread)
+        
+        guard let theme = ThemeManager.shared.setting(name: name) else { return }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme

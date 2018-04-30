@@ -1,10 +1,10 @@
 //
-//  SmallToolbarItem.swift
+//  String+Constants.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-09-05.
+//  Created by 1024jp on 2016-06-25.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -23,21 +23,15 @@
 //  limitations under the License.
 //
 
-import Cocoa
+extension String {
+    
+    /// constant string representing a separator
+    static let separator = "-"
+}
 
-class SmallToolbarItem: NSToolbarItem {
+
+extension String.Encoding {
     
-    // MARK: Toolbar Item Properties
-    
-    override var minSize: NSSize {
-        
-        get {
-            return NSSize(width: 24, height: 24)
-        }
-        
-        set {
-            super.minSize = newValue
-        }
-    }
-    
+    /// original special encoding type
+    static let autoDetection = String.Encoding(rawValue: 0)
 }

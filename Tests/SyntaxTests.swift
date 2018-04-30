@@ -32,7 +32,7 @@ let styleDirectoryName = "Syntaxes"
 let styleExtension = "yaml"
 
 
-class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
+class SyntaxTests: XCTestCase, SyntaxParserDelegate {
     
     var htmlStyle: SyntaxStyle?
     var htmlSource: String?
@@ -49,9 +49,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         // load XML style
         let styleURL = bundle.url(forResource: "HTML", withExtension: styleExtension, subdirectory: styleDirectoryName)
-        let data = try? Data(contentsOf: styleURL!)
-        let dict = try? YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as? [String: Any]
-        self.htmlStyle = SyntaxStyle(dictionary: dict!, name: "HTML")
+        let data = try! Data(contentsOf: styleURL!)
+        let dict = try! YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
+        self.htmlStyle = SyntaxStyle(dictionary: dict, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
         
@@ -71,11 +71,11 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
     
     func testNoneSytle() {
         
-        let style = SyntaxStyle(dictionary: nil, name: "foo")
+        let style = SyntaxStyle()
         
-        XCTAssertEqual(style.styleName, "foo")
+        XCTAssertEqual(style.name, "None")
         XCTAssert(style.isNone)
-        XCTAssertFalse(style.canParse)
+        XCTAssertFalse(style.hasHighlightDefinition)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertNil(style.blockCommentDelimiters)
     }
@@ -85,9 +85,9 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         guard let style = self.htmlStyle else { return }
         
-        XCTAssertEqual(style.styleName, "HTML")
+        XCTAssertEqual(style.name, "HTML")
         XCTAssertFalse(style.isNone)
-        XCTAssert(style.canParse)
+        XCTAssert(style.hasHighlightDefinition)
         XCTAssertNil(style.inlineCommentDelimiter)
         XCTAssertEqual(style.blockCommentDelimiters?.begin, "<!--")
         XCTAssertEqual(style.blockCommentDelimiters?.end, "-->")
@@ -98,27 +98,31 @@ class SyntaxTests: XCTestCase, SyntaxStyleDelegate {
         
         guard let style = self.htmlStyle, let source = self.htmlSource else { return }
         
-        // create dummy textView
-        let textView = NSTextView()
-        textView.string = source
-        
-        style.textStorage = textView.textStorage
-        style.delegate = self
+        let textStorage = NSTextStorage(string: source)
+        let parser = SyntaxParser(textStorage: textStorage, style: style)
         
         // test outline parsing with delegate
+        parser.delegate = self
         self.outlineParseExpectation = self.expectation(description: "didParseOutline")
-        style.invalidateOutline()
+        parser.invalidateOutline()
         self.waitForExpectations(timeout: 1)
     }
     
     
-    func syntaxStyle(_ syntaxStyle: SyntaxStyle, didParseOutline outlineItems: [OutlineItem]) {
+    // MARK: Syntax Parser Delegate
+    
+    func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
+        
+    }
+    
+    
+    func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem]) {
         
         self.outlineParseExpectation?.fulfill()
         
         XCTAssertEqual(outlineItems.count, 3)
         
-        XCTAssertEqual(syntaxStyle.outlineItems, outlineItems)
+        XCTAssertEqual(syntaxParser.outlineItems, outlineItems)
         
         let item = outlineItems[1]
         XCTAssertEqual(item.title, "   h2: 🐕🐄")

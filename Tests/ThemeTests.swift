@@ -43,52 +43,39 @@ class ThemeTests: XCTestCase {
     }
     
 
-    func testDefaultTheme() {
+    func testDefaultTheme() throws {
         
         let themeName = "Dendrobates"
-        let theme = self.loadThemeWithName(themeName)!
+        let theme = try self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
-        XCTAssertEqual(theme.textColor, NSColor.black.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.insertionPointColor, NSColor.black.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.invisiblesColor.brightnessComponent, 0.72, accuracy: 0.01)
-        XCTAssertEqual(theme.backgroundColor, NSColor.white.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.lineHighLightColor.brightnessComponent, 0.94, accuracy: 0.01)
-        XCTAssertEqual(theme.selectionColor, NSColor.selectedTextBackgroundColor)
+        XCTAssertEqual(theme.text.color, NSColor.black.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.insertionPoint.color, NSColor.black.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.invisibles.color.brightnessComponent, 0.72, accuracy: 0.01)
+        XCTAssertEqual(theme.background.color, NSColor.white.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.lineHighlight.color.brightnessComponent, 0.94, accuracy: 0.01)
+        XCTAssertNil(theme.secondarySelectionColor)
         
         for type in SyntaxType.all {
-            XCTAssertGreaterThan(theme.syntaxColor(type: type)!.hueComponent, 0)
+            XCTAssertGreaterThan(theme.style(for: type)!.color.hueComponent, 0)
         }
         
         XCTAssertFalse(theme.isDarkTheme)
     }
     
     
-    func testDarkTheme() {
+    func testDarkTheme() throws {
         
         let themeName = "Solarized (Dark)"
-        let theme = self.loadThemeWithName(themeName)!
+        let theme = try self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
         XCTAssertTrue(theme.isDarkTheme)
     }
     
     
-    func testFail() {
-        
-        // zero-length theme name is invalid
-        XCTAssertNil(Theme(dictionary: [:], name: ""))
-        
-        let theme = Theme(dictionary: [:], name: "Broken Theme")
-        
-        XCTAssertNotNil(theme)  // Theme can be created from a lacking dictionary
-        XCTAssertFalse(theme!.isValid)  // but flagged as invalid
-        XCTAssertEqual(theme!.textColor, NSColor.gray.usingColorSpaceName(.calibratedRGB))  // and unavailable colors are substituted with frayColor().
-    }
-    
-    
     /// test if all of bundled themes are valid
-    func testBundledThemes() {
+    func testBundledThemes() throws {
         
         let themeDirectoryURL = self.bundle?.url(forResource: themeDirectoryName, withExtension: nil)!
         let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
@@ -96,34 +83,20 @@ class ThemeTests: XCTestCase {
         for case let url as URL in enumerator {
             guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
             
-            let theme = self.loadThemeWithURL(url)
+            let theme = try Theme(contentsOf: url)
             
             XCTAssertNotNil(theme)
-            XCTAssert(theme!.isValid)
         }
     }
     
     
     // MARK: Private Methods
     
-    func loadThemeWithName(_ name: String) -> Theme? {
+    func loadThemeWithName(_ name: String) throws -> Theme? {
         
         let url = self.bundle?.url(forResource: name, withExtension: DocumentType.theme.extensions[0], subdirectory: themeDirectoryName)
         
-        return self.loadThemeWithURL(url!)
-    }
-    
-    
-    func loadThemeWithURL(_ url: URL) -> Theme? {
-        
-        let data = try? Data(contentsOf: url)
-        let jsonDict = try! JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as! ThemeDictionary
-        let themeName = url.deletingPathExtension().lastPathComponent
-        
-        XCTAssertNotNil(jsonDict)
-        XCTAssertNotNil(themeName)
-        
-        return Theme(dictionary: jsonDict, name: themeName)
+        return try Theme(contentsOf: url!)
     }
 
 }

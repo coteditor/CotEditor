@@ -110,7 +110,7 @@ final class SyntaxStyleValidator {
             guard let dictionaries = styleDictionary[key] as? [[String: Any]] else { continue }
             
             let definitions = dictionaries
-                .compactMap { HighlightDefinition(definition: $0) }
+                .compactMap { HighlightDefinition(dictionary: $0) }
                 .sorted {
                     // sort for duplication check
                     guard $0.beginString == $1.beginString else {

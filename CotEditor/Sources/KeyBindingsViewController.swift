@@ -288,7 +288,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         super.viewDidLoad()
         
         self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
-        self.setup(snippets: SnippetKeyBindingManager.shared.snippets())
+        self.setup(snippets: SnippetKeyBindingManager.shared.snippets)
         
         // setup variable menu
         self.variableInsertionMenu!.menu!.addItems(for: Snippet.Variable.all, target: self.formatTextView)
@@ -319,7 +319,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     /// restore key binding setting to default
     @IBAction override func setToFactoryDefaults(_ sender: Any?) {
         
-        self.setup(snippets: SnippetKeyBindingManager.shared.snippets(defaults: true))
+        self.setup(snippets: SnippetKeyBindingManager.shared.defaultSnippets)
         
         super.setToFactoryDefaults(sender)
     }

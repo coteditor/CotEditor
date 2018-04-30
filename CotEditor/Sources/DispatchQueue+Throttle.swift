@@ -1,14 +1,14 @@
 //
-//  SmallToolbarItem.swift
+//  DispatchQueue+Throttle.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-09-05.
+//  Created by 1024jp on 2018-04-30.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,20 +23,25 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Dispatch
 
-class SmallToolbarItem: NSToolbarItem {
+extension DispatchQueue {
     
-    // MARK: Toolbar Item Properties
-    
-    override var minSize: NSSize {
+    /// perform action but never be called more than once each specified interval.
+    ///
+    /// - Parameters:
+    ///    - delay: The time interval.
+    func throttle(delay: DispatchTimeInterval) -> (_ action: @escaping () -> Void) -> Void {
         
-        get {
-            return NSSize(width: 24, height: 24)
-        }
+        var lastFireTime: DispatchTime = .now()
         
-        set {
-            super.minSize = newValue
+        return { [weak self, delay] action in
+            self?.asyncAfter(deadline: .now() + delay) { [delay] in
+                guard (lastFireTime + delay) <= .now() else { return }
+                
+                lastFireTime = .now()
+                action()
+            }
         }
     }
     

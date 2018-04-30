@@ -32,6 +32,13 @@ private extension NSSound {
 }
 
 
+private enum BundleIdentifier {
+    
+    static let ScriptEditor = "com.apple.ScriptEditor2"
+}
+
+
+
 @NSApplicationMain
 final class AppDelegate: NSObject, NSApplicationDelegate {
     
@@ -92,7 +99,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // register transformers
         ValueTransformer.setValueTransformer(HexColorTransformer(), forName: HexColorTransformer.name)
-        ValueTransformer.setValueTransformer(MoreThanOneTransformer(), forName: MoreThanOneTransformer.name)
         
         super.init()
     }
@@ -126,9 +132,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // observe setting list updates
-        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: SettingFileManager.didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: SettingFileManager.didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: SettingFileManager.didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(buildThemeMenu), name: didUpdateSettingListNotification, object: ThemeManager.shared)
     }
     
     
@@ -316,10 +322,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showAboutPanel(_ sender: Any?) {
      
         var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if canImport(Sparkle)
+        #if !canImport(Sparkle)
             // Remove Sparkle from 3rd party code list
             if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
+                let attrString = try? NSMutableAttributedString(url: creditsURL, documentAttributes: nil),
                 let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
             {
                 attrString.replaceCharacters(in: NSRange(range, in: attrString.string), with: "")
@@ -406,7 +412,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return }
         document.displayName = NSLocalizedString("Bug Report", comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
-        document.setSyntaxStyle(name: "Markdown")
+        document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()
     }
