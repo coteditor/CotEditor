@@ -45,7 +45,26 @@ final class NavigationBarController: NSViewController {
         }
     }
     
-    @objc dynamic weak var outlineProgress: Progress?
+    
+    weak var outlineProgress: Progress? {
+        
+        didSet {
+            assert(Thread.isMainThread)
+            
+            guard let progress = self.outlineProgress else {
+                self.outlineIndicator?.stopAnimation(nil)
+                self.outlineLoadingMessage?.isHidden = true
+                return
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) { [weak self] in
+                guard !progress.isFinished else { return }
+                
+                self?.outlineIndicator?.startAnimation(nil)
+                self?.outlineLoadingMessage?.isHidden = false
+            }
+        }
+    }
     
     
     // MARK: Private Properties
@@ -59,6 +78,9 @@ final class NavigationBarController: NSViewController {
     
     @IBOutlet private weak var openSplitButton: NSButton?
     @IBOutlet private weak var closeSplitButton: NSButton?
+    
+    @IBOutlet private weak var outlineIndicator: NSProgressIndicator?
+    @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     
     

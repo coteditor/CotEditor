@@ -93,9 +93,7 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
             
             outlineItems += extractor.items(in: string, range: self.parseRange)
             
-            DispatchQueue.main.async { [weak self] in
-                self?.progress.completedUnitCount += 1
-            }
+            self.progress.completedUnitCount += 1
         }
         
         guard !self.isCancelled else { return }
@@ -106,9 +104,7 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
         
         self.results = outlineItems
         
-        DispatchQueue.main.async { [weak self] in
-            self?.progress.completedUnitCount += 1
-        }
+        self.progress.completedUnitCount += 1
     }
     
 }
