@@ -58,37 +58,39 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     
     var beginString: String
     var endString: String
-    var ignoresCase: Bool
+    var options: String.CompareOptions
+    
+    
+    init(beginString: String, endString: String, ignoresCase: Bool) {
+        
+        self.beginString = beginString
+        self.endString = endString
+        self.options = ignoresCase ? [.literal, .caseInsensitive] : [.literal]
+    }
     
     
     func ranges(in string: String, range: NSRange) -> [NSRange] {
         
         var ranges = [NSRange]()
         
-        let scanner = Scanner(string: string)
-        scanner.charactersToBeSkipped = nil
-        scanner.caseSensitive = !self.ignoresCase
-        scanner.scanLocation = range.location
-        
-        let endLength = self.endString.utf16.count
-        
-        while !scanner.isAtEnd && (scanner.scanLocation < range.upperBound) {
-            scanner.scanUpTo(self.beginString, into: nil)
-            let startLocation = scanner.scanLocation
+        var location = range.lowerBound
+        while location != NSNotFound {
+            // find start string
+            let beginRange = (string as NSString).range(of: self.beginString, options: self.options, range: NSRange(location..<range.upperBound))
+            location = beginRange.upperBound
             
-            guard scanner.scanString(self.beginString, into: nil) else { break }
-            guard !string.isCharacterEscaped(at: startLocation) else { continue }
+            guard beginRange.location != NSNotFound else { break }
+            guard !string.isCharacterEscaped(at: beginRange.lowerBound) else { continue }
             
-            // find end string
-            while !scanner.isAtEnd && (scanner.scanLocation < range.upperBound) {
-                scanner.scanUpTo(self.endString, into: nil)
-                guard scanner.scanString(self.endString, into: nil) else { break }
+            while location != NSNotFound {
+                // find end string
+                let endRange = (string as NSString).range(of: self.endString, options: self.options, range: NSRange(location..<range.upperBound))
+                location = endRange.upperBound
                 
-                let endLocation = scanner.scanLocation
+                guard endRange.location != NSNotFound else { break }
+                guard !string.isCharacterEscaped(at: endRange.lowerBound) else { continue }
                 
-                guard !string.isCharacterEscaped(at: endLocation - endLength) else { continue }
-                
-                ranges.append(NSRange(startLocation..<endLocation))
+                ranges.append(NSRange(beginRange.lowerBound..<endRange.upperBound))
                 
                 break
             }
