@@ -46,6 +46,7 @@ final class ProgressViewController: NSViewController {
     private var progressObserver: NSKeyValueObservation?
     private var descriptionObserver: NSKeyValueObservation?
     private var finishObserver: NSKeyValueObservation?
+    private lazy var progressThrottle = DispatchQueue.main.throttle(delay: .milliseconds(100))
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var descriptionField: NSTextField?
@@ -66,7 +67,7 @@ final class ProgressViewController: NSViewController {
         self.progressObserver = progress.observe(\.fractionCompleted, options: .initial) { [weak self] (progress, _) in
             guard !progress.isIndeterminate else { return }
             
-            DispatchQueue.main.async {
+            self?.progressThrottle {
                 self?.indicator?.doubleValue = progress.fractionCompleted
             }
         }

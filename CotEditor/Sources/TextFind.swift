@@ -132,7 +132,7 @@ final class TextFind {
     
     /// Return the nearest match from the insertion point.
     ///
-    /// - Parameter:
+    /// - Parameters:
     ///   - forward: Whether search forward from the insertion.
     ///   - isWrap: Whetehr search wrap search around.
     /// - Returns:
