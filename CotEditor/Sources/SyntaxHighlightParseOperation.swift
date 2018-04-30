@@ -128,6 +128,63 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     
     // MARK: Private Methods
     
+    /// extract all highlight ranges in the parse range
+    private func extractHighlights() -> [SyntaxType: [NSRange]] {
+        
+        var highlights = [SyntaxType: [NSRange]]()
+        
+        for syntaxType in SyntaxType.all {
+            guard let extractors = self.extractors[syntaxType] else { continue }
+            
+            // update indicator sheet message
+            self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
+            
+            let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
+            
+            var ranges = [NSRange]()
+            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
+            
+            DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
+                guard !self.isCancelled else { return }
+                
+                let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
+                if !extractedRanges.isEmpty {
+                    rangesQueue.sync {
+                        ranges += extractedRanges
+                    }
+                }
+                
+                childProgress.completedUnitCount += 1
+            }
+            
+            guard !self.isCancelled else { return [:] }
+            
+            // store range array
+            highlights[syntaxType] = ranges
+            
+            childProgress.completedUnitCount = childProgress.totalUnitCount
+        }
+        
+        guard !self.isCancelled else { return [:] }
+        
+        // comments and quoted text
+        self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
+                                                    NSLocalizedString("comments and quoted texts", comment: ""))
+        let commentAndQuoteRanges = self.extractCommentsWithQuotes()
+        for (key, value) in commentAndQuoteRanges {
+            highlights[key, default: []].append(contentsOf: value)
+        }
+        
+        guard !self.isCancelled else { return [:] }
+        
+        let sanitized = sanitize(highlights: highlights)
+        
+        self.progress.completedUnitCount += 1
+        
+        return sanitized
+    }
+    
+    
     /// extract ranges of quoted texts as well as comments in the parse range
     private func extractCommentsWithQuotes() -> [SyntaxType: [NSRange]] {
         
@@ -212,63 +269,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         }
         
         return highlights
-    }
-    
-    
-    /// extract all highlight ranges in the parse range
-    private func extractHighlights() -> [SyntaxType: [NSRange]] {
-        
-        var highlights = [SyntaxType: [NSRange]]()
-        
-        for syntaxType in SyntaxType.all {
-            guard let extractors = self.extractors[syntaxType] else { continue }
-            
-            // update indicator sheet message
-            self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
-            
-            let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            
-            var ranges = [NSRange]()
-            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
-            
-            DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
-                guard !self.isCancelled else { return }
-                
-                let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
-                if !extractedRanges.isEmpty {
-                    rangesQueue.sync {
-                        ranges += extractedRanges
-                    }
-                }
-                
-                childProgress.completedUnitCount += 1
-            }
-            
-            guard !self.isCancelled else { return [:] }
-            
-            // store range array
-            highlights[syntaxType] = ranges
-            
-            childProgress.completedUnitCount = childProgress.totalUnitCount
-        }
-        
-        guard !self.isCancelled else { return [:] }
-        
-        // comments and quoted text
-        self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
-                                                    NSLocalizedString("comments and quoted texts", comment: ""))
-        let commentAndQuoteRanges = self.extractCommentsWithQuotes()
-        for (key, value) in commentAndQuoteRanges {
-            highlights[key, default: []].append(contentsOf: value)
-        }
-        
-        guard !self.isCancelled else { return [:] }
-        
-        let sanitized = sanitize(highlights: highlights)
-        
-        self.progress.completedUnitCount += 1
-        
-        return sanitized
     }
     
 }
