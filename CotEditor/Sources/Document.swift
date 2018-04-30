@@ -543,7 +543,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// close document
     override func close() {
         
-        self.syntaxParser.cancelAllParses()
+        self.syntaxParser.invalidateCurrentParce()
         
         // send file close notification for the external editor protocol (ODB Editor Suite)
         if let fileURL = self.fileURL {
@@ -863,7 +863,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
-        self.syntaxParser.cancelAllParses()
+        self.syntaxParser.invalidateCurrentParce()
         self.syntaxParser.style = syntaxStyle
         
         DispatchQueue.main.async { [weak self] in
