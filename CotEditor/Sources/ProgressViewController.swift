@@ -63,11 +63,11 @@ final class ProgressViewController: NSViewController {
         
         super.init(nibName: nil, bundle: nil)
         
-        self.progressObserver = progress.observe(\.completedUnitCount, options: .initial) { [weak self] (progress, _) in
-            guard progress.completedUnitCount % 100 == 0 else { return }
+        self.progressObserver = progress.observe(\.fractionCompleted, options: .initial) { [weak self] (progress, _) in
+            guard !progress.isIndeterminate else { return }
             
             DispatchQueue.main.async {
-                self?.indicator?.doubleValue = Double(progress.completedUnitCount)
+                self?.indicator?.doubleValue = progress.fractionCompleted
             }
         }
         

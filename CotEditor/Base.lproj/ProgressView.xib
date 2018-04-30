@@ -22,7 +22,6 @@
                     <rect key="frame" x="20" y="49" width="380" height="12"/>
                     <connections>
                         <binding destination="-2" name="isIndeterminate" keyPath="progress.indeterminate" id="zNb-ZJ-Fct"/>
-                        <binding destination="-2" name="maxValue" keyPath="progress.totalUnitCount" id="v6v-x5-gdD"/>
                     </connections>
                 </progressIndicator>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="17" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QRW-zP-YZ4">
