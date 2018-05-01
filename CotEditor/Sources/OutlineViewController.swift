@@ -79,13 +79,20 @@ final class OutlineViewController: NSViewController {
         
         self.invalidateCurrentLocation()
         
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [weak self] (notification) in
+        // make sure the last observer is invalidated before a new one is set to the property.
+        //   -> Although the previous observer must be invalidated in `viewDidDisappear()`,
+        //      it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
             guard
                 let textView = notification.object as? NSTextView,
-                textView.window == self?.view.window
+                textView.window == self.view.window
                 else { return }
             
-            self?.invalidateCurrentLocation(textView: textView)
+            self.invalidateCurrentLocation(textView: textView)
         }
     }
     
@@ -168,11 +175,11 @@ final class OutlineViewController: NSViewController {
         
         guard let document = self.document else { return }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] _ in
-            self?.observeSyntaxStyle()
-            self?.outlineView?.reloadData()
+        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [unowned self] _ in
+            self.observeSyntaxStyle()
+            self.outlineView?.reloadData()
             
-            self?.invalidateCurrentLocation()
+            self.invalidateCurrentLocation()
         }
     }
     
@@ -186,10 +193,10 @@ final class OutlineViewController: NSViewController {
         
         guard let syntaxParser = self.document?.syntaxParser else { return }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [weak self] _ in
-            self?.outlineView?.reloadData()
+        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [unowned self] _ in
+            self.outlineView?.reloadData()
             
-            self?.invalidateCurrentLocation()
+            self.invalidateCurrentLocation()
         }
     }
     
