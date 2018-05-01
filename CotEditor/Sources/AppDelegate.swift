@@ -287,7 +287,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             guard success else { return true }  // cancelled
         }
         
-        // feedback for succession
+        // feedback for success
         let themeName = ThemeManager.shared.settingName(from: url)
         let feedbackAlert = NSAlert()
         feedbackAlert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
