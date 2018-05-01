@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.4.0-beta.4 (246)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where application could crash on changing selection in editor view.
+
+
+
 3.4.0-beta.3 (245)
 --------------------------
 

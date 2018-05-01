@@ -56,6 +56,9 @@ final class OutlineViewController: NSViewController {
         if let observer = self.syntaxStyleObserver {
             NotificationCenter.default.removeObserver(observer)
         }
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
@@ -76,13 +79,13 @@ final class OutlineViewController: NSViewController {
         
         self.invalidateCurrentLocation()
         
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [weak self] (notification) in
             guard
                 let textView = notification.object as? NSTextView,
-                textView.window == self.view.window
+                textView.window == self?.view.window
                 else { return }
             
-            self.invalidateCurrentLocation(textView: textView)
+            self?.invalidateCurrentLocation(textView: textView)
         }
     }
     
@@ -165,11 +168,11 @@ final class OutlineViewController: NSViewController {
         
         guard let document = self.document else { return }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [unowned self] _ in
-            self.observeSyntaxStyle()
-            self.outlineView?.reloadData()
+        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] _ in
+            self?.observeSyntaxStyle()
+            self?.outlineView?.reloadData()
             
-            self.invalidateCurrentLocation()
+            self?.invalidateCurrentLocation()
         }
     }
     
@@ -183,10 +186,10 @@ final class OutlineViewController: NSViewController {
         
         guard let syntaxParser = self.document?.syntaxParser else { return }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [unowned self] _ in
-            self.outlineView?.reloadData()
+        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [weak self] _ in
+            self?.outlineView?.reloadData()
             
-            self.invalidateCurrentLocation()
+            self?.invalidateCurrentLocation()
         }
     }
     
