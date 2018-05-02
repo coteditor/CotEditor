@@ -303,9 +303,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // NSMutableDictonary to StyleDictionary
         let style = self.style
         var styleDictionary = SyntaxManager.StyleDictionary()
-        for (key, value) in style {
-            guard let key = key as? String else { continue }
-            
+        for case let (key as String, value) in style {
             styleDictionary[key] = value
         }
         
