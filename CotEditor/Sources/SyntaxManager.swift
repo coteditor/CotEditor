@@ -113,13 +113,13 @@ final class SyntaxManager: SettingFileManaging {
         
         let mappingTables = self.propertyAccessQueue.sync { self.mappingTables }
         
-        if let styleName = mappingTables[.filenames]?[fileName]?.first {
-            return styleName
+        if let settingName = mappingTables[.filenames]?[fileName]?.first {
+            return settingName
         }
         
         if let pathExtension = fileName.components(separatedBy: ".").last,
-            let styleName = mappingTables[.extensions]?[pathExtension]?.first {
-            return styleName
+            let settingName = mappingTables[.extensions]?[pathExtension]?.first {
+            return settingName
         }
         
         return nil
@@ -130,8 +130,8 @@ final class SyntaxManager: SettingFileManaging {
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-            let styleName = self.propertyAccessQueue.sync(execute: { self.mappingTables })[.interpreters]?[interpreter]?.first {
-            return styleName
+            let settingName = self.propertyAccessQueue.sync(execute: { self.mappingTables })[.interpreters]?[interpreter]?.first {
+            return settingName
         }
         
         // check XML declaration
@@ -317,10 +317,10 @@ final class SyntaxManager: SettingFileManaging {
         let mappingKeys = SyntaxKey.mappingKeys.map { $0.rawValue }
         let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
             guard let style = try? self.loadSettingDictionary(at: url) else { return }
-            let styleName = self.settingName(from: url)
+            let settingName = self.settingName(from: url)
             
             // create file mapping data
-            dict[styleName] = style.filter { mappingKeys.contains($0.key) }
+            dict[settingName] = style.filter { mappingKeys.contains($0.key) }
                 .mapValues { $0 as? [[String: String]] ?? [] }
                 .mapValues { $0.compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] } }
         }
@@ -333,13 +333,13 @@ final class SyntaxManager: SettingFileManaging {
         UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.settingNames.contains($0) }
         
         // update file mapping tables
-        let styleNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
+        let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
         let tables = SyntaxKey.mappingKeys.reduce(into: [:]) { (tables, key) in
-            tables[key] = styleNames.reduce(into: [String: [SettingName]]()) { (table, styleName) in
-                guard let items = map[styleName]?[key.rawValue] else { return }
+            tables[key] = settingNames.reduce(into: [String: [SettingName]]()) { (table, settingName) in
+                guard let items = map[settingName]?[key.rawValue] else { return }
                 
                 for item in items {
-                    table[item, default: []].append(styleName)
+                    table[item, default: []].append(settingName)
                 }
             }
         }

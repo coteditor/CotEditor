@@ -63,13 +63,13 @@ final class ThemeManager: SettingFileManaging {
     
     private init() {
         
-        // cache bundled theme names
+        // cache bundled setting names
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: ThemeManager.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
-        // cache user theme names
+        // cache user setting names
         self.checkUserSettings()
     }
     
@@ -108,7 +108,7 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// create a new untitled theme
+    /// create a new untitled setting
     func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
         // append number suffix if "Untitled" already exists
@@ -134,11 +134,11 @@ final class ThemeManager: SettingFileManaging {
     func checkUserSettings() {
         
         // get user setting names if exists
-        let userThemeNames = self.userSettingFileURLs
+        let userSettingNames = self.userSettingFileURLs
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
-        self.settingNames = OrderedSet(self.bundledSettingNames + userThemeNames).array
+        self.settingNames = OrderedSet(self.bundledSettingNames + userSettingNames).array
         
         // reset user default if not found
         if !self.settingNames.contains(UserDefaults.standard[.theme]!) {
@@ -167,7 +167,7 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// plain theme to be based on when creating a new theme
+    /// plain setting to be based on when creating a new one
     private var blankSettingDictionary: ThemeDictionary {
         
         let url = self.urlForBundledSetting(name: "_Plain")!
