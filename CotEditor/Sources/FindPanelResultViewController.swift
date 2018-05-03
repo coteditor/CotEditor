@@ -161,7 +161,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     
     
-    // MARK: Action Messsages
+    // MARK: Action Messages
     
     /// select matched string in text view
     @IBAction func selectMatch(_ tableView: NSTableView) {

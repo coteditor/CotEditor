@@ -7,7 +7,7 @@ Change Log
 
 ### Fixes
 
-- [beta] Fix an issue where application could crash on changing selection in editor view.
+- [beta.3] Fix an issue where application could crash on changing selection in editor view.
 
 
 
