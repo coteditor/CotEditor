@@ -28,12 +28,13 @@ import Foundation
 
 private struct QuoteCommentItem {
     
-    let kind: String
+    let type: SyntaxType
+    let token: String
     let role: Role
     let range: NSRange
     
     
-    enum Kind {
+    enum Token {
         static let inlineComment = "inlineComment"
         static let blockComment = "blockComment"
     }
@@ -134,6 +135,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         var highlights = [SyntaxType: [NSRange]]()
         
         // extract standard highlight ranges
+        let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
         for syntaxType in SyntaxType.all {
             guard let extractors = self.extractors[syntaxType] else { continue }
             
@@ -142,7 +144,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
             
             var ranges = [NSRange]()
-            let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges." + syntaxType.rawValue)
             
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !self.isCancelled else { return }
@@ -157,8 +158,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                     ranges += extractedRanges
                 }
             }
-            
-            guard !self.isCancelled else { return [:] }
             
             highlights[syntaxType] = ranges
             
@@ -185,34 +184,34 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     /// extract ranges of quoted texts as well as comments in the parse range
     private func extractCommentsWithQuotes() -> [SyntaxType: [NSRange]] {
         
+        let string = self.string! as NSString
         var positions = [QuoteCommentItem]()
         
         if let delimiters = self.blockCommentDelimiters {
-            for range in self.string!.ranges(of: delimiters.begin, range: self.parseRange) {
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .begin, range: range))
-            }
-            for range in self.string!.ranges(of: delimiters.end, range: self.parseRange) {
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.blockComment, role: .end, range: range))
-            }
+            positions += string.ranges(of: delimiters.begin, range: self.parseRange)
+                .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .begin, range: $0) }
+            positions += string.ranges(of: delimiters.end, range: self.parseRange)
+                .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .end, range: $0) }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            for range in self.string!.ranges(of: delimiter, range: self.parseRange) {
-                let lineRange = (self.string! as NSString).lineRange(for: range)
-                let endRange = NSRange(location: lineRange.upperBound, length: 0)
-                
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .begin, range: range))
-                positions.append(QuoteCommentItem(kind: QuoteCommentItem.Kind.inlineComment, role: .end, range: endRange))
-            }
+            positions += string.ranges(of: delimiter, range: self.parseRange)
+                .flatMap { range -> [QuoteCommentItem] in
+                    let lineRange = string.lineRange(for: range)
+                    let endRange = NSRange(location: lineRange.upperBound, length: 0)
+                    
+                    return [QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.inlineComment, role: .begin, range: range),
+                            QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.inlineComment, role: .end, range: endRange)]
+                }
         }
         
-        for quote in self.pairedQuoteTypes.keys {
-            for range in self.string!.ranges(of: quote, range: self.parseRange) {
-                positions.append(QuoteCommentItem(kind: quote, role: [.begin, .end], range: range))
-            }
+        for (quote, type) in self.pairedQuoteTypes {
+            positions += string.ranges(of: quote, range: self.parseRange)
+                .map { QuoteCommentItem(type: type, token: quote, role: [.begin, .end], range: $0) }
         }
         
-        guard !positions.isEmpty else { return [:] }
+        // filter escaped ones
+        positions = positions.filter { !self.string!.isCharacterEscaped(at: $0.range.location) }
         
         // sort by location
         positions.sort {
@@ -222,46 +221,42 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             if $0.range.length == 0 { return true }
             if $1.range.length == 0 { return false }
             
-            if $0.role.rawValue == $1.role.rawValue {
-                return $0.range.length > $1.range.length
+            guard $0.role.rawValue == $1.role.rawValue else {
+                return $0.role.rawValue > $1.role.rawValue
             }
-            return $0.role.rawValue > $1.role.rawValue
+            return $0.range.length > $1.range.length
         }
         
         // scan quoted strings and comments in the parse range
         var highlights = [SyntaxType: [NSRange]]()
         var seekLocation = self.parseRange.location
-        var startLocation = 0
-        var searchingKind: String?
+        var searchingItem: QuoteCommentItem?
         
         for position in positions {
             // search next begin delimiter
-            guard let kind = searchingKind else {
+            guard let item = searchingItem else {
                 if position.role.contains(.begin), position.range.location >= seekLocation {
-                    searchingKind = position.kind
-                    startLocation = position.range.location
+                    searchingItem = position
                 }
                 continue
             }
             
             // search corresponding end delimiter
-            if position.role.contains(.end), position.kind == kind {
-                let syntaxType = self.pairedQuoteTypes[kind] ?? SyntaxType.comments
-                let range = NSRange(startLocation..<position.range.upperBound)
+            if position.role.contains(.end), position.token == item.token {
+                let range = NSRange(item.range.lowerBound..<position.range.upperBound)
                 
-                highlights[syntaxType, default: []].append(range)
+                highlights[item.type, default: []].append(range)
                 
-                searchingKind = nil
-                seekLocation = range.lowerBound
+                searchingItem = nil
+                seekLocation = range.upperBound
             }
         }
         
         // highlight until the end if not closed
-        if let searchingKind = searchingKind, startLocation < self.parseRange.upperBound {
-            let syntaxType = self.pairedQuoteTypes[searchingKind] ?? SyntaxType.comments
-            let range = NSRange(startLocation..<self.parseRange.upperBound)
+        if let item = searchingItem {
+            let range = NSRange(item.range.lowerBound..<self.parseRange.upperBound)
             
-            highlights[syntaxType, default: []].append(range)
+            highlights[item.type, default: []].append(range)
         }
         
         return highlights
@@ -272,31 +267,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
 
 
 // MARK: Private Functions
-
-private extension String {
-    
-    /// find and return ranges of passed-in substring with the given range of receiver.
-    func ranges(of substring: String, range searchRange: NSRange) -> [NSRange] {
-        
-        var ranges = [NSRange]()
-        
-        var location = searchRange.location
-        while location != NSNotFound {
-            let range = (self as NSString).range(of: substring, options: .literal, range: NSRange(location..<searchRange.upperBound))
-            location = range.upperBound
-            
-            guard range.location != NSNotFound else { break }
-            guard !self.isCharacterEscaped(at: range.location) else { continue }
-            
-            ranges.append(range)
-        }
-        
-        return ranges
-    }
-    
-}
-
-
 
 /// Remove duplicated coloring ranges.
 ///

@@ -52,6 +52,31 @@ extension NSString {
     }
     
     
+    /// Find and return ranges of passed-in substring with the given range of receiver.
+    ///
+    /// - Parameters:
+    ///   - searchString: The string for which to search.
+    ///   - options: A mask specifying search options.
+    ///   - searchRange: The range with in the receiver for which to search for aString.
+    /// - Returns: An array of NSRange in the receiver of `searchString` within `searchRange`.
+    func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange) -> [NSRange] {
+        
+        var ranges = [NSRange]()
+        
+        var location = searchRange.location
+        while location != NSNotFound {
+            let range = self.range(of: searchString, options: options, range: NSRange(location..<searchRange.upperBound))
+            location = range.upperBound
+            
+            guard range.location != NSNotFound else { break }
+            
+            ranges.append(range)
+        }
+        
+        return ranges
+    }
+    
+    
     /// line range containing a given location
     func lineRange(at location: Int) -> NSRange {
         
