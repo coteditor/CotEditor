@@ -30,7 +30,7 @@ extension NSDocument {
     typealias RecoveryHandler = ((_ didRecover: Bool) -> Void)
     
     
-    // present an error alert as document modal sheet but wrapping the command with `performActivity`
+    /// present an error alert as document modal sheet but wrapping the command with `performActivity`
     func presentErrorAsSheetSafely(_ error: Error, synchronousWaiting waitSynchronously: Bool = false, recoveryHandler: RecoveryHandler? = nil) {
         
         self.performActivity(withSynchronousWaiting: waitSynchronously) { [unowned self] activityCompletionHandler in

@@ -1252,7 +1252,7 @@ final class EditorTextView: NSTextView, Themable {
                 return
             }
             
-            // jsut insert the absolute path if no specific setting for the file type was found
+            // just insert the absolute path if no specific setting for the file type was found
             // -> This is the default behavior of NSTextView by file dropping.
             if !string.isEmpty {
                 string += "\n"

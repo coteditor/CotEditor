@@ -780,7 +780,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// show highlighting indicator for large string
     private func presentHighlightIndicator(progress: Progress, highlightLength: Int) {
         
-        /// show indicator only for a large update
+        // show indicator only for a large update
         let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
         guard threshold > 0, highlightLength > threshold else { return }
         
