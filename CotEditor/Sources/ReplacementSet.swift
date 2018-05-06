@@ -189,7 +189,7 @@ extension ReplacementSet {
             let mode = replacement.mode(settings: self.settings)
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
-            // -> Invalid replacement sets will be just ignored.
+            // -> Invalid replacement conditions will just be ignored.
             let textFind: TextFind
             do {
                 textFind = try TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges)
@@ -255,7 +255,7 @@ private extension ReplacementSet.Replacement {
 
 extension ReplacementSet.Replacement {
     
-    /// check if replacement definition is valid
+    /// check if replacement condition is valid
     ///
     /// - Throws: TextFindError
     func validate(regexOptions: NSRegularExpression.Options = []) throws {
@@ -279,7 +279,7 @@ extension ReplacementSet.Replacement {
 
 extension ReplacementSet {
     
-    /// current errors in replacement definitions
+    /// current errors in replacement conditions.
     var errors: [TextFindError] {
         
         return self.replacements.compactMap {
