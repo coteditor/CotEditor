@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+unreleased
+--------------------------
+
+### Improvements
+
+- [beta] Add help page about the set replacement.
+
+
+
 3.4.0-beta.4 (246)
 --------------------------
 
@@ -94,7 +103,6 @@ Change Log
 
 ### Todo
 
-- Update help contents.
 - Localize added strings.
 
 
