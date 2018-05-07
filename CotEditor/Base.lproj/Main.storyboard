@@ -999,10 +999,10 @@ CA
                                                 <action selector="replaceAll:" target="Ady-hI-5gd" id="TsH-hC-9Nj"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Replace with Set…" id="o7K-sI-KJA">
+                                        <menuItem title="Multiple Replace…" id="o7K-sI-KJA">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="showReplacementSetPanel:" target="Ady-hI-5gd" id="YVK-ev-cBB"/>
+                                                <action selector="showMultipleReplacementPanel:" target="Ady-hI-5gd" id="xbE-mx-rZm"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="vue-8R-4Kg">

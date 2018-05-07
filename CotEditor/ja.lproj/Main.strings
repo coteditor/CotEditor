@@ -490,8 +490,8 @@
 "KrV-3z-r5B.title" = "置換して次を検索";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "すべて置換";
-/* Class = "NSMenuItem"; title = "Replace in Set…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "セット置換...";
+/* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
+"o7K-sI-KJA.title" = "複数置換...";
 
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "ハイライト";

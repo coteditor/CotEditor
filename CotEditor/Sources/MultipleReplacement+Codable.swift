@@ -1,5 +1,5 @@
 //
-//  ReplacementSet+Codable.swift
+//  MultipleReplacement+Codable.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension ReplacementSet.Replacement: Codable {
+extension MultipleReplacement.Replacement: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -77,7 +77,7 @@ extension ReplacementSet.Replacement: Codable {
 
 
 
-extension ReplacementSet.Settings: Codable {
+extension MultipleReplacement.Settings: Codable {
     
     private enum CodingKeys: String, CodingKey {
         

@@ -27,7 +27,7 @@ import Foundation
 
 final class ReplacementManager: SettingFileManaging {
     
-    typealias Setting = ReplacementSet
+    typealias Setting = MultipleReplacement
     
     
     // MARK: Public Properties
@@ -91,7 +91,7 @@ final class ReplacementManager: SettingFileManaging {
         
         let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
         
-        try self.save(setting: ReplacementSet(), name: name) {
+        try self.save(setting: MultipleReplacement(), name: name) {
             completionHandler?(name)
         }
     }
@@ -106,7 +106,7 @@ final class ReplacementManager: SettingFileManaging {
         let decoder = JSONDecoder()
         let data = try Data(contentsOf: fileURL)
         
-        return try decoder.decode(ReplacementSet.self, from: data)
+        return try decoder.decode(MultipleReplacement.self, from: data)
     }
     
     

@@ -1,5 +1,5 @@
 //
-//  ReplacementSet.Settings+Object.swift
+//  MultipleReplacement.Settings+Object.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,9 +25,9 @@
 
 import Foundation
 
-extension ReplacementSet.Settings {
+extension MultipleReplacement.Settings {
     
-    /// KVO-compatible object for ReplacementSet.Settings to use with the Cocoa-binding in a popover with checkboxes
+    /// KVO-compatible object for MultipleReplacement.Settings to use with the Cocoa-binding in a popover with checkboxes
     final class Object: NSObject {
         
         @objc dynamic var textIsLiteralSearch: Bool
@@ -44,7 +44,7 @@ extension ReplacementSet.Settings {
         
         // MARK: - Lifecycle
         
-        init(settings: ReplacementSet.Settings) {
+        init(settings: MultipleReplacement.Settings) {
             
             self.textIsLiteralSearch = settings.textualOptions.contains(.literal)
             self.textIgnoresDiacriticMarks = settings.textualOptions.contains(.diacriticInsensitive)
@@ -58,7 +58,7 @@ extension ReplacementSet.Settings {
         }
         
         
-        var settings: ReplacementSet.Settings {
+        var settings: MultipleReplacement.Settings {
             
             var textualOptions = NSString.CompareOptions()
             if self.textIsLiteralSearch        { textualOptions.update(with: .literal) }
@@ -70,9 +70,9 @@ extension ReplacementSet.Settings {
             if self.regexIsMultiline           { regexOptions.update(with: .anchorsMatchLines) }
             if self.regexUsesUnicodeBoundaries { regexOptions.update(with: .useUnicodeWordBoundaries) }
             
-            return ReplacementSet.Settings(textualOptions: textualOptions,
-                                           regexOptions: regexOptions,
-                                           unescapesReplacementString: self.regexUnescapesReplacementString)
+            return MultipleReplacement.Settings(textualOptions: textualOptions,
+                                                regexOptions: regexOptions,
+                                                unescapesReplacementString: self.regexUnescapesReplacementString)
         }
         
     }

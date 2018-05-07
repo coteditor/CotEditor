@@ -1,5 +1,5 @@
 //
-//  ReplacementSetSplitViewController.swift
+//  MultipleReplacementSplitViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,27 +25,27 @@
 
 import Cocoa
 
-protocol ReplacementSetPanelViewControlling: class { }
+protocol MultipleReplacementPanelViewControlling: class { }
 
-extension ReplacementSetPanelViewControlling where Self: NSViewController {
+extension MultipleReplacementPanelViewControlling where Self: NSViewController {
     
-    var contentListViewController: ReplacementSetListViewController? {
+    var contentListViewController: MultipleReplacementListViewController? {
         
-        return self.parentSplitViewController?.contentListSplitViewItem?.viewController as? ReplacementSetListViewController
+        return self.parentSplitViewController?.contentListSplitViewItem?.viewController as? MultipleReplacementListViewController
     }
     
     
-    var mainViewController: ReplacementSetViewController? {
+    var mainViewController: MultipleReplacementViewController? {
         
-        return self.parentSplitViewController?.mainSplitViewItem?.viewController as? ReplacementSetViewController
+        return self.parentSplitViewController?.mainSplitViewItem?.viewController as? MultipleReplacementViewController
     }
     
     
     // MARK: Private Methods
     
-    private var parentSplitViewController: ReplacementSetSplitViewController? {
+    private var parentSplitViewController: MultipleReplacementSplitViewController? {
         
-        return self.parent as? ReplacementSetSplitViewController
+        return self.parent as? MultipleReplacementSplitViewController
     }
     
 }
@@ -54,7 +54,7 @@ extension ReplacementSetPanelViewControlling where Self: NSViewController {
 
 // MARK: -
 
-final class ReplacementSetSplitViewController: NSSplitViewController {
+final class MultipleReplacementSplitViewController: NSSplitViewController {
     
     @IBOutlet fileprivate weak var contentListSplitViewItem: NSSplitViewItem?
     @IBOutlet fileprivate weak var mainSplitViewItem: NSSplitViewItem?

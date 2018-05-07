@@ -6,33 +6,33 @@
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Replacing with preset</title>
+	<title>Replacing with multiple rules</title>
 </head>
 
 <body>
-<a name="howto_setreplacement"></a>
+<a name="howto_multiple_replace"></a>
 
 <nav><ul>
 	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
 </ul></nav>
 
 
-<h1>Replacing with preset</h1>
+<h1>Replacing with multiple rules</h1>
 
-<p>Using <dfn>Replacement Set</dfn> feature, you can process multiple text replacements at once in succession. The replacement conditions can be stored as a named preset and reused when you need.</p>
+<p>Using <dfn>Multiple Replacement</dfn> feature, you can process multiple text replacements at once in succession. The replacement rules can be stored as a named preset and reused when you need.</p>
 
 
 
 <section>
-<h2>Use Replacement Set window</h2>
+<h2>Use Multiple Replace window</h2>
 
-<p>You can open the Replacement Set window to manage and process the set replacement in your document.</p>
+<p>You can open the Multiple Replace window to manage and process the multiple replacement in your document.</p>
 
 <ul>
-	<li>Choose Find &gt; Replace with Set (from the CotEditor menu at the top of your screen).</li>
+	<li>Choose Find &gt; Multiple Replace (from the CotEditor menu at the top of your screen).</li>
 </ul>
 
-<p><img src="../gfx/replacementset_panel@2x.png" width="593" alt=""/></p>
+<p><img src="../gfx/multiple_replace_panel@2x.png" width="593" alt=""/></p>
 </section>
 
 
@@ -66,11 +66,11 @@
 
 
 <section>
-<h2>Process set replacement</h2>
+<h2>Process multiple replacement</h2>
 
-<p>The replacement set selected in the list on the left is shown in the editor area on the right side. The replacement conditions the editor area will be performed row by row from top to bottom at once.</p>
+<p>The definition selected in the list on the left is shown in the editor area on the right side. The replacement rules the editor area will be performed row by row from top to bottom at once.</p>
 
-<p>Use the buttons at the bottom of the editor area to perform the set replacement.</p>
+<p>Use the buttons at the bottom of the editor area to perform the multiple replacement.</p>
 
 <ul>
 	<li><b>Replace All</b>: Perform the replacement for the frontmost document.</li>
@@ -83,34 +83,34 @@
 
 
 <section>
-<h2>Edit set replacement definition</h2>
+<h2>Edit replacement definition</h2>
 
-<p>You can create your own replacement definitions to process a set replacement.</p>
+<p>You can create your own replacement definitions to process a multiple replacement.</p>
 
 <section>
 <h3>Create new replacement definition</h3>
 
 <ol>
 	<li>Click the Add button + at the bottom of the list on the left side to create a new replacement definition.</li>
-	<li>Click the Add button + in the editor area on the right side to create a new replacement condition.</li>
-	<li>Input your desired replacement condition to the added row.</li>
+	<li>Click the Add button + in the editor area on the right side to create a new replacement rule.</li>
+	<li>Input your desired replacement rule to the added row.</li>
 </ol>
 
 <p>You don’t need to perform save after the modification because your changes will be saved automatically immediately during the edit.</p>
 
-<p>A row with an invalid replacement condition will just be skipped when the replacement is performed.</p>
+<p>A row with an invalid replacement rule will just be skipped when the replacement is performed.</p>
 </section>
 
 
 <section>
-<h3>Replacement condition options</h3>
+<h3>Replacement rule options</h3>
 
 <table>
 	<thead>
 		<tr><th>Option</th><th>Description</th></tr>
 	</thead>
 	<tbody>
-		<tr><th>(checkbox)</th><td>If the checkbox is turned off, the row will not be applied and just be skipped. You can use this option to keep a replacement condition that will optionally be used.</td></tr>
+		<tr><th>(checkbox)</th><td>If the checkbox is turned off, the row will not be applied and just be skipped. You can use this option to keep a replacement rule that will optionally be used.</td></tr>
 		<tr><th>Find</th><td>A string to search for. You cannot leave this field blank. When it is blank, the row will be ignored as it is invalid.</td></tr>
 		<tr><th>Replace With</th><td>A string to replace with. If you leave this field, the matches are just deleted.</td></tr>
 		<tr><td>RE</td><td>Search with regular expression (abbreviation of <u>R</u>egular <u>E</u>xpression).</td></tr>
@@ -126,7 +126,7 @@
 <section>
 <h2>Advanced find options</h2>
 
-<p>You can customize delicate find behavior during replacement from the advanced options panel. Those settings are also saved to your replacement definition and applied to all definitions in the same replacement definition. Click the gear button in the replacement set panel, then click checkboxes to change the behavior.</p>
+<p>You can customize delicate find behavior during replacement from the advanced options panel. Those settings are also saved to your replacement definition and applied to all definitions in the same replacement definition. Click the gear button in the Multiple Replace panel, then click checkboxes to change the behavior.</p>
 
 <p>To learn about details of each option item, see <a href="howto_findpanel.html">Find and Replace</a>.</p>
 </section>
