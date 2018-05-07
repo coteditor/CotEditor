@@ -37,13 +37,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="99" width="390" height="166"/>
+                                <rect key="frame" x="20" y="99" width="390" height="149"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="0.0" width="388" height="165"/>
+                                    <rect key="frame" x="1" y="0.0" width="388" height="148"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -449,8 +449,8 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
-                                <rect key="frame" x="18" y="273" width="333" height="17"/>
-                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Replace these terms in succession from the top down:" id="5Ey-vx-5Sm">
+                                <rect key="frame" x="18" y="256" width="383" height="34"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
