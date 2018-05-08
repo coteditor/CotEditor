@@ -12,6 +12,11 @@ unreleased
 - [beta] Add help page about the multiple replacement.
 
 
+### Fixes
+
+- [tirivial] Fix an issue on macOS 10.12 and earlier where the Japanese label of the menu item toggling toolbar visibility did not reflect the current visibility state.
+
+
 
 3.4.0-beta.4 (246)
 --------------------------
