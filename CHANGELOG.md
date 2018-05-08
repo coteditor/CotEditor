@@ -8,6 +8,7 @@ unreleased
 ### Improvements
 
 - [beta] Rename “Set Replacement” feature to “Multiple Replacement.”
+- [beta] Localize all text added in CotEditor 3.4.0.
 - [beta] Add help page about the multiple replacement.
 
 
