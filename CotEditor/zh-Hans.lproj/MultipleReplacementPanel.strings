@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSWindow"; title = "Multiple Replace"; ObjectID = "rFC-87-Fxd"; */
-"rFC-87-Fxd.title" = "Multiple Replace";  // FIXME: added
+"rFC-87-Fxd.title" = "多重替换";
 
 
 
@@ -42,10 +42,10 @@
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
 "iZn-Pw-tgJ.title" = "导出…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
-"0ca-Jy-pHT.title" = "Reload All Definitions";  // FIXME: added
+"0ca-Jy-pHT.title" = "重载全部定义";
 
 /* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
-"ah0-d7-MIb.title" = "New Definition";  // FIXME: added
+"ah0-d7-MIb.title" = "新建定义";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "zRC-iK-Noh"; */
 "zRC-iK-Noh.title" = "拷贝";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
@@ -64,19 +64,19 @@
 // MARK: Editor View
 
 /* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "Perform replacement using these rules in succession from the top down:";  // FIXME: added
+"5Ey-vx-5Sm.title" = "使用这些规则从上至下连续进行替换:";
 
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
-"KTe-1r-oHM.headerToolTip" = "Enable";  // FIXME: added
+"KTe-1r-oHM.headerToolTip" = "启用";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Select to enable this replacement rule.";  // FIXME: added
+"PuQ-No-wC1.ibShadowedToolTip" = "选择以启用该替换规则。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
-"zee-UW-TVR.headerCell.title" = "Find";  // FIXME: added
+"zee-UW-TVR.headerCell.title" = "查找";
 
 /* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
-"nRC-aM-NZ2.headerCell.title" = "Replace With";  // FIXME: added
+"nRC-aM-NZ2.headerCell.title" = "替换";
 
 /* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
 "VtR-Qz-MBf.headerCell.title" = "RE";
@@ -98,7 +98,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
-"gRf-KM-GZo.title" = "Invalid rules will be skipped.";  // FIXME: added
+"gRf-KM-GZo.title" = "无效的规则将被跳过。";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
 "i8z-Xa-PxI.ibShadowedToolTip" = "设置高级选项";
@@ -112,12 +112,12 @@
 /* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
 "kdu-Ni-M64.title" = "高亮";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "Highlight all matches of the replacement rules.";  // FIXME: added
+"99C-Bz-ySi.ibShadowedToolTip" = "高亮所有匹配替换规则的文本。";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
 "LI2-Hh-D6g.title" = "替换全部";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
-"Nth-za-4Ad.ibShadowedToolTip" = "Replace all matches according to the replacement rules.";  // FIXME: added
+"Nth-za-4Ad.ibShadowedToolTip" = "依据替换规则替换所有匹配文本。";
 
 
 
