@@ -125,7 +125,7 @@
 "Show Incompatible Characters" = "显示不兼容字符";
 
 // Encoding change with unsaved changes alert
-"The document has unsaved changes." = "该文档中有修改内容还没有保存。";  // FIXME: changed
+"The document has unsaved changes." = "该文档中含有未保存的修改。";
 "Do you want to discard the changes and reopen the document using “%@”?" = "你确认放弃更改，并使用“%@”重新打开文档吗？";  // %@ is an encoding name.
 "Discard Changes" = "放弃修改";
 
@@ -457,8 +457,8 @@
 
 /* MARK: ReplacementManager */
 // Replacements import duplicated alert
-"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.";  // FIXME: added
-"Do you want to replace it?\nReplaced definition can’t be restored." = "Do you want to replace it?\nReplaced definition can’t be restored.";  // FIXME: added
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "名称为 “%@” 的新替换定义将被安装，但是已经存在相同名称的定义。";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "你想要替换该定义吗？\n被替换的定义无法恢复。";
 
 
 

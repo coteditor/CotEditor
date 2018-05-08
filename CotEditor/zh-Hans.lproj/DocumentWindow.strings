@@ -29,7 +29,7 @@
 /* Class = "NSTabViewItem"; label = "Document Inspector"; ObjectID = "Kfj-q6-61N"; */
 "Kfj-q6-61N.label" = "文稿信息";
 /* Class = "NSTabViewItem"; label = "Outline"; ObjectID = "hyM-2j-hen"; */
-"hyM-2j-hen.label" = "Outline";  // FIXME: added
+"hyM-2j-hen.label" = "大纲";
 /* Class = "NSTabViewItem"; label = "Incompatible Characters"; ObjectID = "JZo-ok-Dks"; */
 "JZo-ok-Dks.label" = "不兼容字符";
 
