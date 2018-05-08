@@ -7,7 +7,7 @@ unreleased
 
 ### Improvements
 
-- [beta] Rename “Set Replacement” feature to “Multiple Replacement.” 
+- [beta] Rename “Set Replacement” feature to “Multiple Replacement.”
 - [beta] Add help page about the multiple replacement.
 
 
