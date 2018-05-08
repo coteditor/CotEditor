@@ -103,11 +103,6 @@ unreleased
 - Fix an issue where the find result in the input field of the find panel did not clear when a new find string was set from the find history menu.
 
 
-### Todo
-
-- Localize added strings.
-
-
 
 3.3.5 (237)
 --------------------------
