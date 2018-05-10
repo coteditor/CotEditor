@@ -2,12 +2,29 @@
 Change Log
 ==========================
 
+3.4.0-rc (249)
+--------------------------
+
+### Improvements
+
+- [beta] Rename “Set Replacement” feature to “Multiple Replacement.”
+- [beta] Localize all text added in CotEditor 3.4.0.
+- [beta] Add help page about the multiple replacement.
+
+
+### Fixes
+
+- [beta] Fix an issue the application could crash while typing.
+- [tirivial] Fix an issue on macOS 10.12 and earlier where the Japanese label of the menu item toggling toolbar visibility did not reflect the current visibility state.
+
+
+
 3.4.0-beta.4 (246)
 --------------------------
 
 ### Fixes
 
-- [beta] Fix an issue where application could crash on changing selection in editor view.
+- [beta.3] Fix an issue where application could crash on changing selection in editor view.
 
 
 
@@ -90,12 +107,6 @@ Change Log
 - Fix a possible crash with continuous find/replacement.
 - Fix an issue where the font settings cannot be changed on macOS 10.12.
 - Fix an issue where the find result in the input field of the find panel did not clear when a new find string was set from the find history menu.
-
-
-### Todo
-
-- Update help contents.
-- Localize added strings.
 
 
 

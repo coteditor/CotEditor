@@ -10,8 +10,8 @@
         <!--Window Controller-->
         <scene sceneID="WvZ-bY-kAi">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" customClass="ReplacementSetPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Replacement Set" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
+                <windowController showSeguePresentationStyle="single" id="QqU-9e-YIW" customClass="MultipleReplacementPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Multiple Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="rFC-87-Fxd" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="520" height="300"/>
@@ -28,22 +28,22 @@
             </objects>
             <point key="canvasLocation" x="126" y="-168"/>
         </scene>
-        <!--Replacement Set View Controller-->
+        <!--Multiple Replacement View Controller-->
         <scene sceneID="7ic-e2-LjN">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="ReplacementSetViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="MultipleReplacementViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8CD-v6-nsP">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="99" width="390" height="166"/>
+                                <rect key="frame" x="20" y="99" width="390" height="149"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="0.0" width="388" height="165"/>
+                                    <rect key="frame" x="1" y="0.0" width="388" height="148"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -364,7 +364,7 @@
                                     <segue destination="AcD-dT-Fbp" kind="popover" identifier="OptionsSegue" popoverAnchorView="i8z-Xa-PxI" popoverBehavior="t" preferredEdge="maxX" id="9ik-RW-SdA"/>
                                 </connections>
                             </button>
-                            <button toolTip="Replace all matches with terms in the list." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-za-4Ad">
+                            <button toolTip="Replace all matches according to the replacement rules." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nth-za-4Ad">
                                 <rect key="frame" x="309" y="13" width="107" height="32"/>
                                 <buttonCell key="cell" type="push" title="Replace All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LI2-Hh-D6g">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -387,16 +387,19 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gG4-IL-p7b">
                                 <rect key="frame" x="0.0" y="51" width="430" height="5"/>
                             </box>
-                            <button identifier="howto_setreplacement" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-Fc-QBG">
+                            <button identifier="howto_multiple_replacement" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-Fc-QBG">
                                 <rect key="frame" x="18" y="17" width="22" height="22"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XZH-Sq-MEz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="4B0-TX-5FP" id="Rt0-s9-mJn"/>
+                                </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
-                                <rect key="frame" x="198" y="74" width="168" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid settings will be skipped." id="gRf-KM-GZo">
+                                <rect key="frame" x="215" y="74" width="151" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid rules will be skipped." id="gRf-KM-GZo">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -410,7 +413,7 @@
                                 </connections>
                             </textField>
                             <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6DU-wH-q4e">
-                                <rect key="frame" x="180" y="74" width="16" height="16"/>
+                                <rect key="frame" x="197" y="74" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="2MS-D3-JNa"/>
                                     <constraint firstAttribute="width" secondItem="6DU-wH-q4e" secondAttribute="height" multiplier="1:1" id="qiO-b0-Yjf"/>
@@ -435,7 +438,7 @@
                                     <binding destination="uzB-9o-Idl" name="value" keyPath="resultMessage" id="KLp-gP-caX"/>
                                 </connections>
                             </textField>
-                            <button toolTip="Highlight all matches of terms in the list." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="99C-Bz-ySi">
+                            <button toolTip="Highlight all matches of the replacement rules." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="99C-Bz-ySi">
                                 <rect key="frame" x="214" y="13" width="95" height="32"/>
                                 <buttonCell key="cell" type="push" title="Highlight" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kdu-Ni-M64">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -445,9 +448,9 @@
                                     <action selector="highlight:" target="uzB-9o-Idl" id="cLP-X8-4hu"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
-                                <rect key="frame" x="18" y="273" width="298" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Replace terms below in succession from the top:" id="5Ey-vx-5Sm">
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
+                                <rect key="frame" x="18" y="256" width="383" height="34"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -502,10 +505,10 @@
             </objects>
             <point key="canvasLocation" x="234" y="734"/>
         </scene>
-        <!--Replacement Set List View Controller-->
+        <!--Multiple Replacement List View Controller-->
         <scene sceneID="tHa-Ef-d3P">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="ReplacementSetListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="MultipleReplacementListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" id="sT1-Cd-M1e">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -650,7 +653,7 @@
                                                     <action selector="importSetting:" target="y8N-kI-aI7" id="nVL-3S-Fsz"/>
                                                 </connections>
                                             </menuItem>
-                                            <menuItem title="Reload All Settings" alternate="YES" id="0ca-Jy-pHT">
+                                            <menuItem title="Reload All Definitions" alternate="YES" id="0ca-Jy-pHT">
                                                 <modifierMask key="keyEquivalentModifierMask" option="YES"/>
                                                 <connections>
                                                     <action selector="reloadAllSettings:" target="y8N-kI-aI7" id="fdq-vw-L3k"/>
@@ -683,7 +686,7 @@
                 <customObject id="P7x-3b-9Pa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="3B8-6q-gru">
                     <items>
-                        <menuItem title="New Setting" id="ah0-d7-MIb">
+                        <menuItem title="New Definition" id="ah0-d7-MIb">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="addSetting:" target="y8N-kI-aI7" id="uG1-Mw-0U9"/>
@@ -731,10 +734,10 @@
             </objects>
             <point key="canvasLocation" x="-64" y="734"/>
         </scene>
-        <!--Replacement Set Split View Controller-->
+        <!--Multiple Replacement Split View Controller-->
         <scene sceneID="aEk-uG-3UA">
             <objects>
-                <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="ReplacementSetSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController showSeguePresentationStyle="single" id="zRq-X3-mtS" customClass="MultipleReplacementSplitViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem holdingPriority="251" id="t6n-9g-dQO"/>
                         <splitViewItem id="RVu-VR-TJq"/>
@@ -896,7 +899,7 @@
                     </view>
                 </viewController>
                 <customObject id="7XB-QV-M9w" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController objectClassName="CotEditor.ReplacementSet.Settings.Object" id="SKd-Jw-BKV">
+                <objectController objectClassName="CotEditor.MultipleReplacement.Settings.Object" id="SKd-Jw-BKV">
                     <connections>
                         <binding destination="AcD-dT-Fbp" name="contentObject" keyPath="representedObject" id="WAo-aQ-4In"/>
                     </connections>

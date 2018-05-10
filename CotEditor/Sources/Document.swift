@@ -442,7 +442,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// write file metadata to the new file (invoked in file saving proccess)
+    /// write file metadata to the new file (invoked in file saving process)
     override func writeSafely(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType) throws {
         
         // [caution] This method may be called from a background thread due to async-saving.

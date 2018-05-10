@@ -59,7 +59,7 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
-    /// workaround for a crash on macOS Sierra (2016-09)
+    /// workaround for crash on macOS 10.12 (2016-09) and on macOS 10.13 (2018-05)
     override func splitView(_ splitView: NSSplitView, shouldHideDividerAt dividerIndex: Int) -> Bool {
         
         return false
@@ -97,12 +97,13 @@ final class SplitViewController: NSSplitViewController {
         
         guard let textView = notification.object as? EditorTextView else { return }
         
-        for viewController in self.childViewControllers as! [EditorViewController] {
-            if viewController.textView == textView {
-                self.focusedSubviewController = viewController
-                break
-            }
-        }
+        guard let viewController = {
+            self.childViewControllers.lazy
+                .compactMap { $0 as? EditorViewController }
+                .first { $0.textView == textView }
+            }() else { return }
+        
+        self.focusedSubviewController = viewController
     }
     
     
@@ -137,7 +138,7 @@ final class SplitViewController: NSSplitViewController {
     func viewController(for subview: NSView) -> EditorViewController? {
         
         return self.childViewControllers.lazy
-            .compactMap { (controller: NSViewController) in controller as? EditorViewController }
+            .compactMap { $0 as? EditorViewController }
             .first { $0.splitView == subview }
     }
     
@@ -200,7 +201,7 @@ final class SplitViewController: NSSplitViewController {
         
         let isVertical = self.splitView.isVertical
         
-        for viewController in self.childViewControllers as! [EditorViewController] {
+        for case let viewController as EditorViewController in self.childViewControllers {
             viewController.navigationBarController?.isSplitOrientationVertical = isVertical
         }
     }
@@ -211,7 +212,7 @@ final class SplitViewController: NSSplitViewController {
         
         let isEnabled = self.splitViewItems.count > 1
         
-        for viewController in self.childViewControllers as! [EditorViewController] {
+        for case let viewController as EditorViewController in self.childViewControllers {
             viewController.navigationBarController?.isCloseSplitButtonEnabled = isEnabled
         }
     }

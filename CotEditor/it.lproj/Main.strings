@@ -491,8 +491,8 @@
 "KrV-3z-r5B.title" = "Sostituisci e trova successivo";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "Sostituisci tutto";
-/* Class = "NSMenuItem"; title = "Replace with Set…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "Replace with Set…";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
+"o7K-sI-KJA.title" = "Multiple Replace…";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Evidenzia";

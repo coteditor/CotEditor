@@ -1,5 +1,5 @@
 //
-//  ReplacementSetListViewController.swift
+//  MultipleReplacementListViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 import Cocoa
 import AudioToolbox
 
-final class ReplacementSetListViewController: NSViewController, ReplacementSetPanelViewControlling {
+final class MultipleReplacementListViewController: NSViewController, MultipleReplacementPanelViewControlling {
     
     // MARK: Private Properties
     
@@ -319,12 +319,12 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
     
     
     /// save current setting
-    private func saveSetting(replacementSet: ReplacementSet) {
+    private func saveSetting(setting: MultipleReplacement) {
         
         guard let name = self.selectedSettingName else { return }
         
         do {
-            try ReplacementManager.shared.save(setting: replacementSet, name: name)
+            try ReplacementManager.shared.save(setting: setting, name: name)
         } catch {
             print(error.localizedDescription)
         }
@@ -334,14 +334,14 @@ final class ReplacementSetListViewController: NSViewController, ReplacementSetPa
 
 
 
-// MARK: - ReplacementSetViewController Delegate
+// MARK: - MultipleReplacementViewController Delegate
 
-extension ReplacementSetListViewController: ReplacementSetViewControllerDelegate {
+extension MultipleReplacementListViewController: MultipleReplacementViewControllerDelegate {
     
     /// replacement definition being edited in the main view did update
-    func didUpdate(replacementSet: ReplacementSet) {
+    func didUpdate(setting: MultipleReplacement) {
         
-        self.saveSetting(replacementSet: replacementSet)
+        self.saveSetting(setting: setting)
     }
     
 }
@@ -350,7 +350,7 @@ extension ReplacementSetListViewController: ReplacementSetViewControllerDelegate
 
 // MARK: - TableView Data Source
 
-extension ReplacementSetListViewController: NSTableViewDataSource {
+extension MultipleReplacementListViewController: NSTableViewDataSource {
     
     /// number of settings
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -409,12 +409,12 @@ extension ReplacementSetListViewController: NSTableViewDataSource {
 
 // MARK: - TableView Delegate
 
-extension ReplacementSetListViewController: NSTableViewDelegate {
+extension MultipleReplacementListViewController: NSTableViewDelegate {
     
     /// selection of setting table will change
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
-        // save the unsaved change before the selection changed
+        // save the unsaved change before the selection changes
         _ = self.mainViewController?.commitEditing()
         
         return true
@@ -429,7 +429,7 @@ extension ReplacementSetListViewController: NSTableViewDelegate {
             let setting = ReplacementManager.shared.setting(name: settingName)
             else { return }
         
-        self.mainViewController?.change(replacementSet: setting)
+        self.mainViewController?.change(setting: setting)
     }
     
 }
@@ -438,7 +438,7 @@ extension ReplacementSetListViewController: NSTableViewDelegate {
 
 // MARK: - TextField Delegate
 
-extension ReplacementSetListViewController: NSTextFieldDelegate {
+extension MultipleReplacementListViewController: NSTextFieldDelegate {
     
     /// setting name was edited
     func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {

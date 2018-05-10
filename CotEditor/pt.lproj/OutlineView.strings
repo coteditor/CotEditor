@@ -24,8 +24,8 @@
 //
 
 /* Class = "NSTableColumn"; headerCell.title = "Title"; ObjectID = "CSX-H0-nFf"; */
-"CSX-H0-nFf.headerCell.title" = "Title";  // FIXME: added
+"CSX-H0-nFf.headerCell.title" = "Título";
 
 /* Class = "NSTextFieldCell"; title = "Outline"; ObjectID = "RyV-wo-tpY"; */
-"RyV-wo-tpY.title" = "Outline";  // FIXME: added
+"RyV-wo-tpY.title" = "Plano";
 

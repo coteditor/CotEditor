@@ -1,5 +1,5 @@
 //
-//  ReplacementSetPanelController.swift
+//  MultipleReplacementPanelController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Cocoa
 
-final class ReplacementSetPanelController: NSWindowController {
+final class MultipleReplacementPanelController: NSWindowController {
     
     // MARK: Window Controller Methods
     
@@ -33,7 +33,7 @@ final class ReplacementSetPanelController: NSWindowController {
         
         super.windowDidLoad()
         
-        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("replacementSetPanel")
+        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("Multiple Replacement Panel")
     }
 
 }

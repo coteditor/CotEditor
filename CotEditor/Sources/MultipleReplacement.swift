@@ -1,5 +1,5 @@
 //
-//  ReplacementSet.swift
+//  MultipleReplacement.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Foundation
 
-final class ReplacementSet: Codable {
+final class MultipleReplacement: Codable {
     
     struct Replacement {
         
@@ -91,9 +91,9 @@ final class ReplacementSet: Codable {
 
 // MARK: - Equatable
 
-extension ReplacementSet.Settings: Equatable {
+extension MultipleReplacement.Settings: Equatable {
     
-    static func == (lhs: ReplacementSet.Settings, rhs: ReplacementSet.Settings) -> Bool {
+    static func == (lhs: MultipleReplacement.Settings, rhs: MultipleReplacement.Settings) -> Bool {
         
         return lhs.textualOptions == rhs.textualOptions &&
             lhs.regexOptions == rhs.regexOptions &&
@@ -105,7 +105,7 @@ extension ReplacementSet.Settings: Equatable {
 
 // MARK: - Replacement
 
-extension ReplacementSet {
+extension MultipleReplacement {
     
     struct Result {
         
@@ -144,7 +144,7 @@ extension ReplacementSet {
         for replacement in self.replacements where replacement.isEnabled {
             let mode = replacement.mode(settings: self.settings)
             
-            // -> Invalid replacement sets will just be ignored.
+            // -> Invalid replacement rules will just be ignored.
             let textFind: TextFind
             do {
                 textFind = try TextFind(for: string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: ranges)
@@ -189,7 +189,7 @@ extension ReplacementSet {
             let mode = replacement.mode(settings: self.settings)
             let findRanges = result.selectedRanges ?? [result.string.nsRange]
             
-            // -> Invalid replacement sets will be just ignored.
+            // -> Invalid replacement rules will just be ignored.
             let textFind: TextFind
             do {
                 textFind = try TextFind(for: result.string, findString: replacement.findString, mode: mode, inSelection: inSelection, selectedRanges: findRanges)
@@ -230,10 +230,10 @@ extension ReplacementSet {
 }
 
 
-private extension ReplacementSet.Replacement {
+private extension MultipleReplacement.Replacement {
     
     /// create TextFind.Mode with Replacement
-    func mode(settings: ReplacementSet.Settings) -> TextFind.Mode {
+    func mode(settings: MultipleReplacement.Settings) -> TextFind.Mode {
         
         if self.usesRegularExpression {
             let options = settings.regexOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
@@ -253,9 +253,9 @@ private extension ReplacementSet.Replacement {
 
 // MARK: - Validation
 
-extension ReplacementSet.Replacement {
+extension MultipleReplacement.Replacement {
     
-    /// check if replacement definition is valid
+    /// check if replacement rule is valid
     ///
     /// - Throws: TextFindError
     func validate(regexOptions: NSRegularExpression.Options = []) throws {
@@ -277,9 +277,9 @@ extension ReplacementSet.Replacement {
 }
 
 
-extension ReplacementSet {
+extension MultipleReplacement {
     
-    /// current errors in replacement definitions
+    /// current errors in replacement ruless.
     var errors: [TextFindError] {
         
         return self.replacements.compactMap {

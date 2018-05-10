@@ -1,5 +1,5 @@
 //
-//  ReplacementSetViewController.swift
+//  MultipleReplacementViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,22 +25,22 @@
 
 import Cocoa
 
-protocol ReplacementSetViewControllerDelegate: class {
+protocol MultipleReplacementViewControllerDelegate: class {
     
-    func didUpdate(replacementSet: ReplacementSet)
+    func didUpdate(setting: MultipleReplacement)
 }
 
 
-final class ReplacementSetViewController: NSViewController, ReplacementSetPanelViewControlling {
+final class MultipleReplacementViewController: NSViewController, MultipleReplacementPanelViewControlling {
     
     // MARK: Public Properties
     
-    weak var delegate: ReplacementSetViewControllerDelegate?
+    weak var delegate: MultipleReplacementViewControllerDelegate?
     
     
     // MARK: Private Properties
     
-    private var replacementSet = ReplacementSet()
+    private var definition = MultipleReplacement()
     private lazy var updateNotificationTask = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
     
     @objc private dynamic var canRemove: Bool = false
@@ -72,7 +72,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         if segue.identifier == NSStoryboardSegue.Identifier("OptionsSegue"),
             let destinationController = segue.destinationController as? NSViewController
         {
-            destinationController.representedObject = ReplacementSet.Settings.Object(settings: self.replacementSet.settings)
+            destinationController.representedObject = MultipleReplacement.Settings.Object(settings: self.definition.settings)
         }
     }
     
@@ -82,10 +82,10 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         
         super.dismissViewController(viewController)
         
-        if let object = viewController.representedObject as? ReplacementSet.Settings.Object {
-            guard self.replacementSet.settings != object.settings else { return }
+        if let object = viewController.representedObject as? MultipleReplacement.Settings.Object {
+            guard self.definition.settings != object.settings else { return }
             
-            self.replacementSet.settings = object.settings
+            self.definition.settings = object.settings
             self.updateNotificationTask.schedule()
         }
     }
@@ -100,12 +100,12 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         self.endEditing()
         
         // update data
-        self.replacementSet.replacements.append(ReplacementSet.Replacement())
+        self.definition.replacements.append(MultipleReplacement.Replacement())
         
         // update UI
         guard let tableView = self.tableView else { return }
         
-        let lastRow = self.replacementSet.replacements.count - 1
+        let lastRow = self.definition.replacements.count - 1
         let indexes = IndexSet(integer: lastRow)
         let column = tableView.column(withIdentifier: .findString)
         
@@ -128,9 +128,9 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         tableView.removeRows(at: indexes, withAnimation: .effectGap)
         
         // update data
-        self.replacementSet.replacements.remove(in: indexes)
+        self.definition.replacements.remove(in: indexes)
         
-        if self.replacementSet.replacements.isEmpty {
+        if self.definition.replacements.isEmpty {
             self.add(nil)
         }
         
@@ -147,7 +147,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         self.resultMessage = nil
         
         let inSelection = UserDefaults.standard[.findInSelection]
-        self.replacementSet.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
+        self.definition.highlight(inSelection: inSelection) { [weak self] (resultMessage) in
             
             self?.resultMessage = resultMessage
         }
@@ -162,7 +162,7 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
         self.resultMessage = nil
         
         let inSelection = UserDefaults.standard[.findInSelection]
-        self.replacementSet.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
+        self.definition.replaceAll(inSelection: inSelection) { [weak self] (resultMessage) in
             
             self?.resultMessage = resultMessage
         }
@@ -185,15 +185,15 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     // MARK: Public Methods
     
     /// set another replacement definition
-    func change(replacementSet: ReplacementSet) {
+    func change(setting: MultipleReplacement) {
         
-        self.replacementSet = replacementSet
+        self.definition = setting
         self.hasInvalidSetting = false
         self.resultMessage = nil
         
         self.tableView?.reloadData()
         
-        if replacementSet.replacements.isEmpty {
+        if setting.replacements.isEmpty {
             self.add(self)
         }
     }
@@ -205,14 +205,14 @@ final class ReplacementSetViewController: NSViewController, ReplacementSetPanelV
     /// notify update to delegate
     private func notifyUpdate() {
     
-        self.delegate?.didUpdate(replacementSet: self.replacementSet)
+        self.delegate?.didUpdate(setting: self.definition)
     }
     
     
     /// validate current setting
     @objc private func validateObject() {
         
-        self.hasInvalidSetting = !self.replacementSet.errors.isEmpty
+        self.hasInvalidSetting = !self.definition.errors.isEmpty
     }
     
 }
@@ -238,7 +238,7 @@ private extension NSPasteboard.PasteboardType {
 }
 
 
-extension ReplacementSetViewController: NSTableViewDelegate {
+extension MultipleReplacementViewController: NSTableViewDelegate {
     
     /// selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -254,7 +254,7 @@ extension ReplacementSetViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
         guard
-            let replacement = self.replacementSet.replacements[safe: row],
+            let replacement = self.definition.replacements[safe: row],
             let identifier = tableColumn?.identifier,
             let cellView = tableView.makeView(withIdentifier: identifier, owner: nil) as? NSTableCellView
             else { return nil }
@@ -326,11 +326,11 @@ extension ReplacementSetViewController: NSTableViewDelegate {
             let value = textField.stringValue
             switch identifier {
             case .findString:
-                self.replacementSet.replacements[row].findString = value
+                self.definition.replacements[row].findString = value
             case .replacementString:
-                self.replacementSet.replacements[row].replacementString = value
+                self.definition.replacements[row].replacementString = value
             case .description:
-                self.replacementSet.replacements[row].description = (value.isEmpty) ? nil : value
+                self.definition.replacements[row].description = (value.isEmpty) ? nil : value
             default:
                 preconditionFailure()
             }
@@ -344,11 +344,11 @@ extension ReplacementSetViewController: NSTableViewDelegate {
             for index in updateRowIndexes {
                 switch identifier {
                 case .isEnabled:
-                    self.replacementSet.replacements[index].isEnabled = value
+                    self.definition.replacements[index].isEnabled = value
                 case .ignoresCase:
-                    self.replacementSet.replacements[index].ignoresCase = value
+                    self.definition.replacements[index].ignoresCase = value
                 case .usesRegularExpression:
-                    self.replacementSet.replacements[index].usesRegularExpression = value
+                    self.definition.replacements[index].usesRegularExpression = value
                 default:
                     preconditionFailure()
                 }
@@ -367,11 +367,11 @@ extension ReplacementSetViewController: NSTableViewDelegate {
 }
 
 
-extension ReplacementSetViewController: NSTableViewDataSource {
+extension MultipleReplacementViewController: NSTableViewDataSource {
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         
-        return self.replacementSet.replacements.count
+        return self.definition.replacements.count
     }
     
     
@@ -422,9 +422,9 @@ extension ReplacementSetViewController: NSTableViewDataSource {
         let destinationRows = IndexSet(destinationRow..<(destinationRow + sourceRows.count))
         
         // update data
-        let draggingItems = self.replacementSet.replacements.elements(at: sourceRows)
-        self.replacementSet.replacements.remove(in: sourceRows)
-        self.replacementSet.replacements.insert(draggingItems, at: destinationRows)
+        let draggingItems = self.definition.replacements.elements(at: sourceRows)
+        self.definition.replacements.remove(in: sourceRows)
+        self.definition.replacements.insert(draggingItems, at: destinationRows)
         
         // update UI
         tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])

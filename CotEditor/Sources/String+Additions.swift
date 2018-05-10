@@ -117,7 +117,6 @@ extension String {
     func isCharacterEscaped(at index: Index) -> Bool {
         
         let seekCharacters = self[..<index].suffix(kMaxEscapesCheckLength)
-        
         let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
         
         return (numberOfEscapes % 2 == 1)

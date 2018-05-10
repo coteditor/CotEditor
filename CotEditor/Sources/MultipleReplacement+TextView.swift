@@ -1,5 +1,5 @@
 //
-//  ReplacementSet+TextView.swift
+//  MultipleReplacement+TextView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import AppKit
 
-extension ReplacementSet {
+extension MultipleReplacement {
     
     /// highlight all matches in the textView
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {

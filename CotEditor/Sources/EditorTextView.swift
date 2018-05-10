@@ -61,9 +61,7 @@ final class EditorTextView: NSTextView, Themable {
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
-    private(set) lazy var completionTask = Debouncer(delay: .seconds(0)) { [weak container = self.textContainer] in  // NSTextView cannot be weak
-        (container?.textView as? EditorTextView)?.performCompletion()
-    }
+    private(set) lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
     
     // MARK: Private Properties
@@ -1252,7 +1250,7 @@ final class EditorTextView: NSTextView, Themable {
                 return
             }
             
-            // jsut insert the absolute path if no specific setting for the file type was found
+            // just insert the absolute path if no specific setting for the file type was found
             // -> This is the default behavior of NSTextView by file dropping.
             if !string.isEmpty {
                 string += "\n"

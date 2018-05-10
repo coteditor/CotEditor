@@ -279,7 +279,7 @@
 /* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
 "564.title" = "Inspetor do Documento";
 /* Class = "NSMenuItem"; title = "Outline"; ObjectID = "679"; */
-"679.title" = "Outline";  // FIXME: added
+"679.title" = "Plano";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caracteres Incompatíveis";
 
@@ -487,8 +487,8 @@
 "KrV-3z-r5B.title" = "Substituir e Buscar Seguinte";
 /* Class = "NSMenuItem"; title = "Replace All"; ObjectID = "5HV-xo-NTK"; */
 "5HV-xo-NTK.title" = "Substituir Tudo";
-/* Class = "NSMenuItem"; title = "Replace with Set…"; ObjectID = "o7K-sI-KJA"; */
-"o7K-sI-KJA.title" = "Replace with Set…";  // FIXME: added
+/* Class = "NSMenuItem"; title = "Multiple Replace…"; ObjectID = "o7K-sI-KJA"; */
+"o7K-sI-KJA.title" = "Substituição Múltipla…";
 
 /* Class = "NSMenuItem"; title = "Highlight"; ObjectID = "JAO-3o-fRo"; */
 "JAO-3o-fRo.title" = "Adicionar Destaque";
