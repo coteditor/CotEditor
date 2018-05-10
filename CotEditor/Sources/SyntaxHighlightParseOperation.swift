@@ -154,12 +154,12 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 
                 guard !extractedRanges.isEmpty else { return }
                 
-                rangesQueue.sync {
+                rangesQueue.async(flags: .barrier) {
                     ranges += extractedRanges
                 }
             }
             
-            highlights[syntaxType] = ranges
+            highlights[syntaxType] = rangesQueue.sync { ranges }
             
             childProgress.completedUnitCount = childProgress.totalUnitCount
         }
