@@ -489,6 +489,8 @@
 		2AAD61FC1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61FB1D2BD102008FE772 /* String+Additions.swift */; };
 		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
+		2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
+		2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2AB9B4681ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */; };
 		2AB9B4691ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
@@ -1144,6 +1146,7 @@
 		2AAFA57C1FFFCE2600E15768 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PatternSortView.strings"; sourceTree = "<group>"; };
 		2AAFA57E1FFFCE2800E15768 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2AAFA5801FFFCE2900E15768 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PatternSortView.strings; sourceTree = "<group>"; };
+		2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ViewController.swift"; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinableButton.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -1663,6 +1666,7 @@
 				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
+				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -2816,6 +2820,7 @@
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */,
 				2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
+				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
@@ -2973,6 +2978,7 @@
 				2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A10C5FA1FD25D04002AB5AE /* Selector+Codable.swift in Sources */,
 				2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */,
+				2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */,
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
