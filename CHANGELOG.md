@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+unreleased
+--------------------------
+
+### Improvements
+
+- [beta] Link help buttons to the latest help pages.
+
+
+
 3.4.0-rc (249)
 --------------------------
 
