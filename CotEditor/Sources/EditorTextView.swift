@@ -1180,7 +1180,7 @@ final class EditorTextView: NSTextView, Themable {
         
         assert(Thread.isMainThread)
         
-        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutable
         
         // set line height
         //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.

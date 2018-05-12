@@ -1,14 +1,14 @@
 //
-//  UnderlinableButton.swift
+//  MutableCopying.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-05-22.
+//  Created by 1024jp on 2018-05-13.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,25 +23,36 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
+import AppKit.NSParagraphStyle
 
-@IBDesignable
-final class UnderlinableButton: NSButton {
-
-    @IBInspectable var underline: Bool = false {
-        
-        didSet {
-        let attributedTitle = self.attributedTitle.mutable
-        let range = NSRange(location: 0, length: attributedTitle.length)
-        
-        if self.underline {
-            attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.styleSingle.rawValue, range: range)
-        } else {
-            attributedTitle.removeAttribute(.underlineStyle, range: range)
-        }
-        
-        self.attributedTitle = attributedTitle
-        }
-    }
+protocol MutableCopying: class {
     
+    associatedtype MutableType
+    
+    var mutable: MutableType { get }
+}
+
+
+extension MutableCopying where Self: NSMutableCopying {
+    
+    var mutable: MutableType {
+        
+        return self.mutableCopy() as! MutableType
+    }
+}
+
+
+
+// MARK: - Implementations
+
+extension NSAttributedString: MutableCopying {
+    
+    typealias MutableType = NSMutableAttributedString
+}
+
+
+extension NSParagraphStyle: MutableCopying {
+    
+    typealias MutableType = NSMutableParagraphStyle
 }

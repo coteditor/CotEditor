@@ -103,7 +103,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             return result.lineNumber
             
         default:
-            let lineAttrString = result.attributedLineString.mutableCopy() as! NSMutableAttributedString
+            let lineAttrString = result.attributedLineString.mutable
             
             // trim
             if result.lineRange.location > maxLeftMargin {
