@@ -1001,7 +1001,7 @@ final class EditorTextView: NSTextView, Themable {
         let string = self.string
         var selections = [NSAttributedString]()
         var propertyList = [Int]()
-        let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
+        let lineEnding = self.documentLineEnding ?? .LF
         
         // substring all selected attributed strings
         let selectedRanges = self.selectedRanges as! [NSRange]
@@ -1031,11 +1031,11 @@ final class EditorTextView: NSTextView, Themable {
             }
             
             // apply document's line ending
-            if self.documentLineEnding != .LF {
+            if lineEnding != .LF {
                 for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
                     let characterRange = NSRange(index...index, in: plainText)
                     
-                    styledText.replaceCharacters(in: characterRange, with: lineEnding)
+                    styledText.replaceCharacters(in: characterRange, with: lineEnding.string)
                 }
             }
             
@@ -1046,7 +1046,7 @@ final class EditorTextView: NSTextView, Themable {
         var pasteboardString = NSAttributedString()
         
         // join attributed strings
-        let attrLineEnding = NSAttributedString(string: lineEnding)
+        let attrLineEnding = NSAttributedString(string: lineEnding.string)
         for selection in selections {
             // join with newline string
             if !pasteboardString.string.isEmpty {
