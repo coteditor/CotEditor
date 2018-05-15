@@ -25,7 +25,7 @@
 //
 
 /* Class = "NSWindow"; title = "Multiple Replace"; ObjectID = "rFC-87-Fxd"; */
-"rFC-87-Fxd.title" = "Multiple Replace";  // FIXME: added
+"rFC-87-Fxd.title" = "Sostituzione multipla";
 
 
 
@@ -42,10 +42,10 @@
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "iZn-Pw-tgJ"; */
 "iZn-Pw-tgJ.title" = "Importa…";
 /* Class = "NSMenuItem"; title = "Reload All Definitions"; ObjectID = "0ca-Jy-pHT"; */
-"0ca-Jy-pHT.title" = "Reload All Definitions";  // FIXME: added
+"0ca-Jy-pHT.title" = "Ricarica tutte le definizioni";
 
 /* Class = "NSMenuItem"; title = "New Definition"; ObjectID = "ah0-d7-MIb"; */
-"ah0-d7-MIb.title" = "New Definition";  // FIXME: added
+"ah0-d7-MIb.title" = "Nuova definizione";
 /* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "zRC-iK-Noh"; */
 "zRC-iK-Noh.title" = "Duplica";
 /* Class = "NSMenuItem"; title = "Rename"; ObjectID = "KGb-Yh-gXR"; */
@@ -64,19 +64,19 @@
 // MARK: Editor View
 
 /* Class = "NSTextFieldCell"; title = "Perform replacement using these rules in succession from the top down:"; ObjectID = "5Ey-vx-5Sm"; */
-"5Ey-vx-5Sm.title" = "Perform replacement using these rules in succession from the top down:";  // FIXME: added
+"5Ey-vx-5Sm.title" = "Effettua la sostituzione usando queste regole in sequenza partendo dall’alto:";
 
 
 /* Class = "NSTableColumn"; headerToolTip = "Enable"; ObjectID = "KTe-1r-oHM"; */
-"KTe-1r-oHM.headerToolTip" = "Enable";  // FIXME: added
+"KTe-1r-oHM.headerToolTip" = "Abilita";
 /* Class = "NSButton"; ibShadowedToolTip = "Select to enable this replacement rule."; ObjectID = "PuQ-No-wC1"; */
-"PuQ-No-wC1.ibShadowedToolTip" = "Select to enable this replacement rule.";  // FIXME: added
+"PuQ-No-wC1.ibShadowedToolTip" = "Selezionare per abilitare questa regola di sostituzione.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Find"; ObjectID = "zee-UW-TVR"; */
-"zee-UW-TVR.headerCell.title" = "Find";  // FIXME: added
+"zee-UW-TVR.headerCell.title" = "Trova";
 
 /* Class = "NSTableColumn"; headerCell.title = "Replace With"; ObjectID = "nRC-aM-NZ2"; */
-"nRC-aM-NZ2.headerCell.title" = "Replace With";  // FIXME: added
+"nRC-aM-NZ2.headerCell.title" = "Sostituisci con";
 
 /* Class = "NSTableColumn"; headerCell.title = "RE"; ObjectID = "VtR-Qz-MBf"; */
 "VtR-Qz-MBf.headerCell.title" = "RE";
@@ -98,7 +98,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Invalid rules will be skipped."; ObjectID = "gRf-KM-GZo"; */
-"gRf-KM-GZo.title" = "Invalid rules will be skipped.";  // FIXME: added
+"gRf-KM-GZo.title" = "Le regole non valide saranno ignorate.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
 "i8z-Xa-PxI.ibShadowedToolTip" = "Imposta opzioni avanzate";
@@ -112,12 +112,12 @@
 /* Class = "NSButtonCell"; title = "Highlight"; ObjectID = "kdu-Ni-M64"; */
 "kdu-Ni-M64.title" = "Evidenzia";
 /* Class = "NSButton"; ibShadowedToolTip = "Highlight all matches of the replacement rules."; ObjectID = "99C-Bz-ySi"; */
-"99C-Bz-ySi.ibShadowedToolTip" = "Highlight all matches of the replacement rules.";  // FIXME: added
+"99C-Bz-ySi.ibShadowedToolTip" = "Evidenzia tutti i risultati delle regole di sostituzione.";
 
 /* Class = "NSButtonCell"; title = "Replace All"; ObjectID = "LI2-Hh-D6g"; */
 "LI2-Hh-D6g.title" = "Sostituisci tutto";
 /* Class = "NSButton"; ibShadowedToolTip = "Replace all matches according to the replacement rules."; ObjectID = "Nth-za-4Ad"; */
-"Nth-za-4Ad.ibShadowedToolTip" = "Replace all matches according to the replacement rules.";  // FIXME: added
+"Nth-za-4Ad.ibShadowedToolTip" = "Sostituisci tutti i risultati delle regole di sostituzione.";
 
 
 

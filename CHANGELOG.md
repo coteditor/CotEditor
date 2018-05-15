@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+unreleased
+--------------------------
+
+### Improvements
+
+- [beta] Localize newly added strings in Italian.
+- [beta] Link help buttons to the latest help pages.
+
+
+
 3.4.0-rc (249)
 --------------------------
 

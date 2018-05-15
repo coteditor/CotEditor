@@ -153,16 +153,16 @@ extension MultipleReplacement {
                 continue
             }
             
-            // process replacement
-            var cancelled = false
+            // process find
+            var isCancelled = false
             textFind.findAll { (ranges, stop) in
                 block(result.count, &stop)
-                cancelled = stop
+                isCancelled = stop
                 
                 result.append(ranges.first!)
             }
             
-            guard !cancelled else { return [] }
+            guard !isCancelled else { return [] }
         }
         
         return result
@@ -199,7 +199,7 @@ extension MultipleReplacement {
             }
             
             // process replacement
-            var cancelled = false
+            var isCancelled = false
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, stop) in
                 
                 switch flag {
@@ -208,12 +208,12 @@ extension MultipleReplacement {
                 case .replacementProgress:
                     result.count += 1
                     block(result.count, &stop)
-                    cancelled = stop
+                    isCancelled = stop
                 }
             }
             
             // finish if cancelled
-            guard !cancelled else { return Result(string: string, selectedRanges: ranges) }
+            guard !isCancelled else { return Result(string: string, selectedRanges: ranges) }
             
             // update string
             for item in replacementItems.reversed() {
@@ -268,27 +268,8 @@ extension MultipleReplacement.Replacement {
             do {
                 _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
-                let failureReason = error.localizedDescription
-                throw TextFindError.regularExpression(reason: failureReason)
+                throw TextFindError.regularExpression(reason: error.localizedDescription)
             }
-        }
-    }
-    
-}
-
-
-extension MultipleReplacement {
-    
-    /// current errors in replacement ruless.
-    var errors: [TextFindError] {
-        
-        return self.replacements.compactMap {
-            do {
-                try $0.validate()
-            } catch {
-                return error as? TextFindError
-            }
-            return nil
         }
     }
     

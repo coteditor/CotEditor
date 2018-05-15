@@ -137,7 +137,7 @@ final class OutlineViewController: NSViewController {
     /// paragraph style for outline items
     private var itemParagraphStyle: NSParagraphStyle = {
         
-        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingTail
         
         return paragraphStyle
