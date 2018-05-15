@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+unreleased
+--------------------------
+
+### Fixes
+
+- [AppStore ver.] Fix an issue where the options for the software updator for the non AppStore were wrongly displayed in General preferences pane.
+
+
+
 3.4.0 (251)
 --------------------------
 
