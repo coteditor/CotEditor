@@ -726,7 +726,7 @@ final class EditorTextView: NSTextView, Themable {
         
         let success = super.writeSelection(to: pboard, types: types)
         
-        guard let lineEnding = self.documentLineEnding, lineEnding == .LF else { return success }
+        guard let lineEnding = self.document?.lineEnding, lineEnding == .LF else { return success }
         
         for type in types {
             guard let string = pboard.string(forType: type) else { continue }
@@ -1003,7 +1003,7 @@ final class EditorTextView: NSTextView, Themable {
         let string = self.string
         var selections = [NSAttributedString]()
         var propertyList = [Int]()
-        let lineEnding = self.documentLineEnding ?? .LF
+        let lineEnding = self.document?.lineEnding ?? .LF
         
         // substring all selected attributed strings
         let selectedRanges = self.selectedRanges as! [NSRange]
@@ -1088,7 +1088,7 @@ final class EditorTextView: NSTextView, Themable {
         var selectedString = (self.string as NSString).substring(with: self.selectedRange)
         
         // apply document's line ending
-        if let documentLineEnding = self.documentLineEnding,
+        if let documentLineEnding = self.document?.lineEnding,
             documentLineEnding != .LF, selectedString.detectedLineEnding == .LF
         {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
@@ -1143,13 +1143,6 @@ final class EditorTextView: NSTextView, Themable {
     private var document: Document? {
         
         return self.window?.windowController?.document as? Document
-    }
-    
-    
-    /// true new line type of document
-    private var documentLineEnding: LineEnding? {
-        
-        return self.document?.lineEnding
     }
     
     
