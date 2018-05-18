@@ -621,7 +621,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // minimize drawing area on non-opaque background
         // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
-        //    and it affects to the drawing performance on a large document critically.
+        //    and it affects to the drawing performance on a large document critically. (2017-03 macOS 10.12)
         var dirtyRect = dirtyRect
         if !self.drawsBackground {
             dirtyRect = self.visibleRect
@@ -631,22 +631,24 @@ final class EditorTextView: NSTextView, Themable {
         
         // draw page guide
         if self.showsPageGuide,
-            let textColor = self.textColor,
+            let guideColor = self.textColor?.withAlphaComponent(0.2),
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let column = UserDefaults.standard[.pageGuideColumn]
+            let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
-            var x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
-            if self.baseWritingDirection == .rightToLeft {
-                x = self.bounds.width - x
-            }
+            let x = spaceWidth * column + inset + linePadding + 2  // +2 px for an esthetic adjustment
+            let isRTL = (self.baseWritingDirection == .rightToLeft)
+            
+            let guideRect = NSRect(x: isRTL ? self.bounds.width - x : x,
+                                   y: dirtyRect.minY,
+                                   width: 1.0,
+                                   height: dirtyRect.height)
             
             NSGraphicsContext.saveGraphicsState()
             
-            textColor.withAlphaComponent(0.2).setStroke()
-            NSBezierPath.strokeLine(from: NSPoint(x: x, y: dirtyRect.minY),
-                                    to: NSPoint(x: x, y: dirtyRect.maxY))
+            guideColor.setFill()
+            self.centerScanRect(guideRect).fill()
             
             NSGraphicsContext.restoreGraphicsState()
         }
