@@ -205,6 +205,8 @@
 		2A4D47BF2070D42500AB1E7E /* MultipleReplacementPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* MultipleReplacementPanelController.swift */; };
 		2A4D47C02070D42500AB1E7E /* MultipleReplacementPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4D47BE2070D42500AB1E7E /* MultipleReplacementPanelController.swift */; };
 		2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */; };
+		2A4E638020ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift */; };
+		2A4E638120ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4E637F20ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift */; };
 		2A50AA62204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A50AA61204D513500D10A10 /* DocumentFile.swift */; };
 		2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */; };
@@ -456,6 +458,8 @@
 		2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */; };
 		2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
 		2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */; };
+		2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
+		2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */; };
 		2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C21D3C263300850802 /* DocumentWindowController.swift */; };
 		2AA749C61D3C2B4A00850802 /* ODBEventSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */; };
@@ -949,6 +953,7 @@
 		2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+LineProcessing.swift"; sourceTree = "<group>"; };
 		2A4D47BE2070D42500AB1E7E /* MultipleReplacementPanelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleReplacementPanelController.swift; sourceTree = "<group>"; };
 		2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Encoding.swift"; sourceTree = "<group>"; };
+		2A4E637F20ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+RoundedCorner.swift"; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
 		2A594C9E1D4BAF100076FEDC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
@@ -1129,6 +1134,7 @@
 		2AA45A501D2E938500A1A401 /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
+		2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+RoundedBackground.swift"; sourceTree = "<group>"; };
 		2AA749C21D3C263300850802 /* DocumentWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindowController.swift; sourceTree = "<group>"; };
 		2AA749C51D3C2B4A00850802 /* ODBEventSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ODBEventSender.swift; sourceTree = "<group>"; };
 		2AA761341D45634400031AAF /* String+Counting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Counting.swift"; sourceTree = "<group>"; };
@@ -1662,6 +1668,7 @@
 				2A5ADE871D216D4900F6CE26 /* NSColor.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */,
+				2A4E637F20ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift */,
 				2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */,
 				2A359DFD1DAE93EE00FEF7AA /* NSWindow+Responder.swift */,
 				2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */,
@@ -1840,6 +1847,7 @@
 				2A9082E11D32456300228F50 /* NSTextView+Layout.swift */,
 				2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */,
 				2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */,
+				2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
@@ -2690,6 +2698,7 @@
 				2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
 				2A10C5F81FD19237002AB5AE /* KeyBinding.swift in Sources */,
 				2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
+				2A4E638120ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift in Sources */,
 				2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
 				2AD69B861D3E42F700FBD998 /* TextSelection.swift in Sources */,
@@ -2827,6 +2836,7 @@
 				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
+				2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
@@ -2970,6 +2980,7 @@
 				2AC2462E1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
+				2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
@@ -3149,6 +3160,7 @@
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2AEDB41F1D462EAB0020AD15 /* String+Sandboxing.swift in Sources */,
+				2A4E638020ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A3581981E597ECE00762AA5 /* MultipleReplacement.swift in Sources */,
 				2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */,

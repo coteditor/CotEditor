@@ -75,45 +75,15 @@ final class TokenTextView: NSTextView {
         
         super.drawBackground(in: rect)
         
-        guard
-            let textStorage = self.textStorage,
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-            else { return }
+        guard let textStorage = self.textStorage else { return }
         
-        NSGraphicsContext.saveGraphicsState()
-        
-        self.tokenColor.setStroke()
-        self.tokenColor.withAlphaComponent(0.3).setFill()
-        
-        let containerOrigin = self.textContainerOrigin
-        let radius = (self.font?.pointSize ?? NSFont.systemFontSize) / 3
+        let fillColor = self.tokenColor.withAlphaComponent(0.3)
         
         textStorage.enumerateAttribute(.token, in: textStorage.string.nsRange) { (token, range, _) in
-            
             guard token != nil else { return }
             
-            let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-            
-            var glyphLocation = glyphRange.location
-            while glyphRange.contains(glyphLocation) {
-                var effectiveRange = NSRange.notFound
-                layoutManager.lineFragmentRect(forGlyphAt: glyphLocation, effectiveRange: &effectiveRange)
-                
-                guard let inlineRange = effectiveRange.intersection(glyphRange) else { continue }
-                
-                let boundingRect = layoutManager.boundingRect(forGlyphRange: inlineRange, in: textContainer)
-                let rect = boundingRect.offset(by: containerOrigin).insetBy(dx: 0.5, dy: 0.5)
-                
-                let bezier = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
-                bezier.fill()
-                bezier.stroke()
-                
-                glyphLocation = inlineRange.upperBound
-            }
+            self.drawRoundedBackground(for: range, color: fillColor)
         }
-        
-        NSGraphicsContext.restoreGraphicsState()
     }
     
     

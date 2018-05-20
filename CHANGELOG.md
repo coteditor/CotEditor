@@ -5,6 +5,11 @@ Change Log
 unreleased
 --------------------------
 
+### Improvements
+
+- [trivial] Improve drawing of capsules for variables in the insertion format setting field.
+
+
 ### Fixes
 
 - Fix an issue where the application could rearely crash while typing.
