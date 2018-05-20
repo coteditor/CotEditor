@@ -39,6 +39,8 @@ extension DefaultKeys {
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
     static let highlightBraces = DefaultKey<Bool>("highlightBraces")
     static let highlightLtGt = DefaultKey<Bool>("highlightLtGt")
+    static let highlightSelectionInstance = DefaultKey<Bool>("highlightSelectionInstance")
+    static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Window

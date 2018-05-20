@@ -71,7 +71,7 @@ final class EditorTextView: NSTextView, Themable {
     private var lineHighLightColor: NSColor?
     
     private let instanceHighlightColor: NSColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.2)
-    private lazy var instanceHighlightTask = Debouncer(delay: .milliseconds(500)) { [unowned self] in self.highlightInstance() }
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }
     
     private var needsRecompletion = false
     private var particalCompletionWord: String?
@@ -95,6 +95,7 @@ final class EditorTextView: NSTextView, Themable {
         .fontSize,
         .shouldAntialias,
         .lineHeight,
+        .highlightSelectionInstance,
         ]
     
     
@@ -504,8 +505,11 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // invalidate current instances highlight
-        self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-        self.instanceHighlightTask.schedule()
+        if UserDefaults.standard[.highlightSelectionInstance] {
+            let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+        }
     }
     
     
@@ -863,6 +867,9 @@ final class EditorTextView: NSTextView, Themable {
             } else {
                 (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
+            
+        case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             
         default: break
         }
