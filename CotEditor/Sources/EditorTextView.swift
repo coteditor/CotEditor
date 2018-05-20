@@ -1012,24 +1012,12 @@ final class EditorTextView: NSTextView, Themable {
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
             
             // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
-            if let layoutManager = self.layoutManager {
-                var characterIndex = selectedRange.location
-                while characterIndex < selectedRange.upperBound {
-                    var effectiveRange = NSRange.notFound
-                    guard let color = layoutManager.temporaryAttribute(.foregroundColor,
-                                                                       atCharacterIndex: characterIndex,
-                                                                       longestEffectiveRange: &effectiveRange,
-                                                                       in: selectedRange)
-                        else {
-                            characterIndex += 1
-                            continue
-                    }
-                    
-                    let localRange = NSRange(location: effectiveRange.location - selectedRange.location, length: effectiveRange.length)
-                    styledText.addAttribute(.foregroundColor, value: color, range: localRange)
-                    
-                    characterIndex = effectiveRange.upperBound
-                }
+            self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
+                guard let color = value as? NSColor else { return }
+                
+                let localRange = NSRange(location: range.location - selectedRange.location, length: range.length)
+                
+                styledText.addAttribute(.foregroundColor, value: color, range: localRange)
             }
             
             // apply document's line ending
@@ -1404,10 +1392,9 @@ extension EditorTextView {
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text
-        if ["\"", "'", "`"].contains(clickedCharacter), let layoutManager = self.layoutManager {
-            var highlightRange = NSRange.notFound
-            _ = layoutManager.temporaryAttribute(.foregroundColor, atCharacterIndex: range.location, longestEffectiveRange: &highlightRange, in: self.string.nsRange)
-            
+        if ["\"", "'", "`"].contains(clickedCharacter),
+            let highlightRange = self.layoutManager?.effectiveRange(of: .foregroundColor, at: range.location)
+        {
             let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound
             let lastHighlightIndex = self.string.index(before: highlightCharacterRange.upperBound)

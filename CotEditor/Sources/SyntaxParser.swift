@@ -233,22 +233,14 @@ extension SyntaxParser {
             if let layoutManager = self.textStorage.layoutManagers.first {
                 var start = highlightRange.lowerBound
                 var end = highlightRange.upperBound
-                var effectiveRange = NSRange.notFound
                 
                 if start <= bufferLength {
                     start = 0
-                } else {
-                    if layoutManager.temporaryAttribute(.foregroundColor,
-                                                        atCharacterIndex: start,
-                                                        longestEffectiveRange: &effectiveRange,
-                                                        in: wholeRange) != nil {
-                        start = effectiveRange.lowerBound
-                    }
+                } else if let effectiveRange = layoutManager.effectiveRange(of: .foregroundColor, at: start) {
+                    start = effectiveRange.lowerBound
                 }
-                if layoutManager.temporaryAttribute(.foregroundColor,
-                                                    atCharacterIndex: end,
-                                                    longestEffectiveRange: &effectiveRange,
-                                                    in: wholeRange) != nil {
+                
+                if let effectiveRange = layoutManager.effectiveRange(of: .foregroundColor, at: end) {
                     end = effectiveRange.upperBound
                 }
                 

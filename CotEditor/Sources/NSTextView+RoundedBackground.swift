@@ -25,12 +25,34 @@
 
 import Cocoa
 
+extension NSAttributedStringKey {
+    
+    static let roundedBackgroundColor = NSAttributedStringKey(rawValue: "roundedBackgroundColor")
+}
+
+
 extension NSTextView {
     
     // MARK: Public Methods
     
+    /// draw rects where the same as the selected word appear
+    func drawRoundedBackground(in dirtyRect: NSRect) {
+        
+        guard let dirtyRange = self.range(for: dirtyRect) else { return }
+        
+        self.layoutManager?.enumerateTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange) { (value, range, _) in
+            guard let color = value as? NSColor else { return }
+            
+            self.drawRoundedBackground(for: range, color: color)
+        }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
     /// draw background for given range with rounded corners
-    func drawRoundedBackground(for range: NSRange, color: NSColor) {
+    private func drawRoundedBackground(for range: NSRange, color: NSColor) {
         
         NSGraphicsContext.saveGraphicsState()
         
