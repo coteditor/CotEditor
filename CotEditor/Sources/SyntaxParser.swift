@@ -288,7 +288,7 @@ extension SyntaxParser {
                 self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.syncOnMain {
                 // give up if the editor's string is changed from the analized string
                 guard self?.textStorage.string == string else { return }
                 

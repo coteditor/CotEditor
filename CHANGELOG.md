@@ -7,6 +7,7 @@ unreleased
 
 ### Fixes
 
+- Fix an issue where the application could rearely crash while typing.
 - [AppStore ver.] Fix an issue where the options for the software updator for the non AppStore were wrongly displayed in General preferences pane.
 
 
