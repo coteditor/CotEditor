@@ -5,6 +5,11 @@ Change Log
 unreleased
 --------------------------
 
+### New Features
+
+- Highlight the same substrings of the selection.
+
+
 ### Improvements
 
 - Copy also the executability from the file permission of the original document when duplicating a document.
