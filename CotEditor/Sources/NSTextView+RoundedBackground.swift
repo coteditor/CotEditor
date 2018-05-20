@@ -35,31 +35,33 @@ extension NSTextView {
     
     // MARK: Public Methods
     
-    /// draw rects where the same as the selected word appear
+    /// draw rounded background rects for .roundedBackgroundColor temporary attributes in the layoutManager
     func drawRoundedBackground(in dirtyRect: NSRect) {
         
         guard let dirtyRange = self.range(for: dirtyRect) else { return }
         
+        NSGraphicsContext.saveGraphicsState()
+        
         self.layoutManager?.enumerateTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange) { (value, range, _) in
             guard let color = value as? NSColor else { return }
             
-            self.drawRoundedBackground(for: range, color: color)
+            color.setFill()
+            self.roundedRectPaths(for: range).forEach { $0.fill() }
         }
+        
+        NSGraphicsContext.restoreGraphicsState()
     }
     
     
     
     // MARK: Private Methods
     
-    /// draw background for given range with rounded corners
-    private func drawRoundedBackground(for range: NSRange, color: NSColor) {
-        
-        NSGraphicsContext.saveGraphicsState()
-        
-        color.setFill()
+    /// return fragment bezier paths of which a rounded rect for given range consists.
+    private func roundedRectPaths(for range: NSRange) -> [NSBezierPath] {
         
         let rects = self.boundingRects(for: range).map { self.centerScanRect($0) }
-        for rect in rects {
+        
+        return rects.map { rect in
             let corners: RectCorner = {
                 switch rect {
                 case _ where rects.count == 1: return .allCorners
@@ -70,10 +72,8 @@ extension NSTextView {
             }()
             let radius = rect.height / 4
             
-            NSBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadius: radius).fill()
+            return NSBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadius: radius)
         }
-        
-        NSGraphicsContext.restoreGraphicsState()
     }
     
 }
