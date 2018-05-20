@@ -7,7 +7,7 @@ unreleased
 
 ### New Features
 
-- Highlight the same substrings of the selection.
+- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
 
 
 ### Improvements
