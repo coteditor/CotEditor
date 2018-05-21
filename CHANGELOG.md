@@ -8,6 +8,7 @@ unreleased
 ### Improvements
 
 - [trivial] Improve drawing of capsules for variables in the insertion format setting field.
+- [trivial] Adjust preferences panes layout.
 
 
 ### Fixes
