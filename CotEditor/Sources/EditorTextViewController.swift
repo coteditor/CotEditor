@@ -62,14 +62,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    
     // MARK: Private Properties
     
     private lazy var currentLineUpdateTask = Debouncer(delay: .milliseconds(10)) { [weak self] in self?.updateCurrentLineRect() }
-    
-    private enum MenuItemTag: Int {
-        case script = 800
-    }
 
     
     
@@ -201,7 +196,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
             item.image = #imageLiteral(resourceName: "ScriptTemplate")
             item.toolTip = NSLocalizedString("Scripts", comment: "")
-            item.tag = MenuItemTag.script.rawValue
             item.submenu = scriptMenu
             menu.addItem(item)
         }
