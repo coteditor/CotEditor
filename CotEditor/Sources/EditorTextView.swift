@@ -49,13 +49,13 @@ final class EditorTextView: NSTextView, Themable {
     
     var isAutomaticTabExpansionEnabled = false
     
-    var lineHighlightRect: NSRect?
-    
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
     
     var completionInitialSet = CharacterSet()  // set of the first characters of the completion words
     var needsRecompletion = false
+    
+    var lineHighlightRect: NSRect?
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -226,7 +226,9 @@ final class EditorTextView: NSTextView, Themable {
         
         // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: NSView.boundsDidChangeNotification, object: scrollView.contentView)
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)),
+                                                   name: NSView.boundsDidChangeNotification,
+                                                   object: scrollView.contentView)
         } else {
             assertionFailure("failed starting observing the visible rect change")
         }
@@ -322,14 +324,13 @@ final class EditorTextView: NSTextView, Themable {
             replacementRange.length == 0, plainString == "}",
             let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound
         {
-            let wholeString = self.string
-            let lineRange = wholeString.lineRange(at: insertionIndex)
+            let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
-            if wholeString.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil,
-                let precedingIndex = wholeString.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
-                let desiredLevel = wholeString.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
-                let currentLevel = wholeString.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
+            if self.string.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil,
+                let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
+                let desiredLevel = self.string.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
+                let currentLevel = self.string.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel
                 
                 if levelToReduce > 0 {
@@ -360,9 +361,8 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         if self.isAutomaticTabExpansionEnabled {
-            let tabWidth = self.tabWidth
-            let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
-            let length = tabWidth - (column % tabWidth)
+            let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: self.tabWidth)
+            let length = self.tabWidth - (column % self.tabWidth)
             let spaces = String(repeating: " ", count: length)
             
             return super.insertText(spaces, replacementRange: self.rangeForUserTextChange)
@@ -392,8 +392,7 @@ final class EditorTextView: NSTextView, Themable {
             return super.insertNewline(sender)
         }
         
-        let string = self.string
-        let indentRange = string.rangeOfIndent(at: self.selectedRange.location)
+        let indentRange = self.string.rangeOfIndent(at: self.selectedRange.location)
         
         // don't auto-indent if indent is selected (2008-12-13)
         guard indentRange.length == 0 || indentRange != self.selectedRange else {
@@ -401,10 +400,10 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         let indent: String = {
-            guard let baseIndentRange = indentRange.intersection(NSRange(location: 0, length: self.selectedRange.location)) else {
+            guard let baseIndentRange = indentRange.intersection(NSRange(0..<self.selectedRange.location)) else {
                 return ""
             }
-            return (string as NSString).substring(with: baseIndentRange)
+            return (self.string as NSString).substring(with: baseIndentRange)
         }()
         
         // calculation for smart indent
@@ -451,20 +450,18 @@ final class EditorTextView: NSTextView, Themable {
         
         guard self.selectedRange.length == 0 else { return }
         
-        let string = self.string
         let location = self.selectedRange.location
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            string.rangeOfIndent(at: location).upperBound >= location
+            self.string.rangeOfIndent(at: location).upperBound >= location
         {
-            let tabWidth = self.tabWidth
-            let column = string.column(of: location, tabWidth: tabWidth)
-            let targetLength = tabWidth - (column % tabWidth)
-            let targetRange = NSRange(location: location - targetLength, length: targetLength)
+            let column = self.string.column(of: location, tabWidth: self.tabWidth)
+            let targetLength = self.tabWidth - (column % self.tabWidth)
+            let targetRange = NSRange((location - targetLength)..<location)
             
             if location >= targetLength,
-                (string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
+                (self.string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
                 self.selectedRange = targetRange
             }
         }
