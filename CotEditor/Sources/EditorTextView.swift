@@ -1351,14 +1351,12 @@ extension EditorTextView {
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
         //   -> The flag will be used in `didChangeText()`
         var movement = movement
-        var flag = flag
         if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
             event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
         {
             // fix that underscore is treated as the right arrow key
             if event.characters == "_", movement == NSRightTextMovement {
                 movement = NSIllegalTextMovement
-                flag = false
             }
             if movement == NSIllegalTextMovement,
                 let character = event.characters?.utf16.first,
