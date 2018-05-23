@@ -51,17 +51,13 @@ final class EditorTextView: NSTextView, Themable {
     
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
-    
-    var completionInitialSet = CharacterSet()  // set of the first characters of the completion words
-    var needsRecompletion = false
+    var syntaxCompletionWords: [String] = []
     
     var lineHighlightRect: NSRect?
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
-    
-    private(set) lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
     
     // MARK: Private Properties
@@ -74,7 +70,9 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
+    private var needsRecompletion = false
     private var particalCompletionWord: String?
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
@@ -249,6 +247,20 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         super.keyDown(with: event)
+    }
+    
+    
+    /// text did change
+    override func didChangeText() {
+        
+        super.didChangeText()
+        
+        // retry completion if needed
+        //   -> Flag is set in `insertCompletion:forPartialWordRange:movement:isFinal:`
+        if self.needsRecompletion {
+            self.needsRecompletion = false
+            self.completionTask.schedule(delay: .milliseconds(50))
+        }
     }
     
     
@@ -1264,14 +1276,65 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
+        guard !self.syntaxCompletionWords.isEmpty else { return range }
+        
+        let firstLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
+        
         // expand range until hitting to a character that isn't in the word completion candidates
         guard
-            !self.string.isEmpty, !self.completionInitialSet.isEmpty,
+            !self.string.isEmpty,
             let characterRange = Range(range, in: self.string),
-            let index = self.string.rangeOfCharacter(from: self.completionInitialSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
+            let index = self.string.rangeOfCharacter(from: CharacterSet(firstLetters).inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
             else { return range }
         
         return NSRange(index..<characterRange.upperBound, in: self.string)
+    }
+    
+    
+    /// build completion list
+    override func completions(forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String]? {
+        
+        // do nothing if completion is not suggested from the typed characters
+        guard charRange.length > 0 else { return nil }
+        
+        var candidateWords = OrderedSet<String>()
+        let particalWord = (self.string as NSString).substring(with: charRange)
+        
+        // add words in document
+        if UserDefaults.standard[.completesDocumentWords] {
+            let documentWords: [String] = {
+                // do nothing if the particle word is a symbol
+                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
+                
+                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
+                let regex = try! NSRegularExpression(pattern: pattern)
+                
+                return regex.matches(in: self.string, range: self.string.nsRange).map { (self.string as NSString).substring(with: $0.range) }
+            }()
+            candidateWords.append(contentsOf: documentWords)
+        }
+        
+        // add words defined in syntax style
+        if UserDefaults.standard[.completesSyntaxWords] {
+            let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
+            candidateWords.append(contentsOf: syntaxWords)
+        }
+        
+        // add the standard words from default completion words
+        if UserDefaults.standard[.completesStandartWords] {
+            let words = super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
+            candidateWords.append(contentsOf: words)
+        }
+        
+        // provide nothing if there is only a candidate which is same as input word
+        if let word = candidateWords.first,
+            candidateWords.count == 1,
+            word.caseInsensitiveCompare(particalWord) == .orderedSame
+        {
+            return []
+        }
+        
+        return candidateWords.array
     }
     
     
@@ -1280,44 +1343,42 @@ extension EditorTextView {
         
         self.completionTask.cancel()
         
-        let event = self.window?.currentEvent
-        var didComplete = false
-        
-        var newMovement = movement
-        var newFlag = flag
-        var newWord = word
-        
         // store original string
         if self.particalCompletionWord == nil {
             self.particalCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
-        //   -> The flag will be used in EditorTextViewController > `textDidChange`
-        if flag, let event = event, event.type == .keyDown, !event.modifierFlags.contains(.command) {
-            let inputChar = event.charactersIgnoringModifiers
-            
-            if inputChar == event.characters {  // exclude key-bindings
-                // fix that underscore is treated as the right arrow key
-                if inputChar == "_", movement == NSRightTextMovement {
-                    newMovement = NSIllegalTextMovement
-                    newFlag = false
-                }
-                if let character = inputChar?.utf16.first,
-                    (movement == NSIllegalTextMovement && character < 0xF700 && character != UInt16(NSDeleteCharacter)) {  // standard key-input
-                    self.needsRecompletion = true
-                }
+        //   -> The flag will be used in `didChangeText()`
+        var movement = movement
+        var flag = flag
+        if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
+            event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
+        {
+            // fix that underscore is treated as the right arrow key
+            if event.characters == "_", movement == NSRightTextMovement {
+                movement = NSIllegalTextMovement
+                flag = false
+            }
+            if movement == NSIllegalTextMovement,
+                let character = event.characters?.utf16.first,
+                character < 0xF700, character != UInt16(NSDeleteCharacter)
+            {  // standard key-input
+                self.needsRecompletion = true
             }
         }
         
-        if newFlag {
-            if newMovement == NSIllegalTextMovement || newMovement == NSRightTextMovement {  // treat as cancelled
+        var word = word
+        var didComplete = false
+        if flag {
+            switch movement {
+            case NSIllegalTextMovement, NSRightTextMovement:  // treat as cancelled
                 // restore original input
                 //   -> In case if the letter case is changed from the original.
                 if let originalWord = self.particalCompletionWord {
-                    newWord = originalWord
+                    word = originalWord
                 }
-            } else {
+            default:
                 didComplete = true
             }
             
@@ -1325,12 +1386,12 @@ extension EditorTextView {
             self.particalCompletionWord = nil
         }
         
-        super.insertCompletion(newWord, forPartialWordRange: charRange, movement: newMovement, isFinal: newFlag)
+        super.insertCompletion(word, forPartialWordRange: charRange, movement: movement, isFinal: flag)
         
         guard didComplete else { return }
         
-        // slect inside of "()" if completion word has ()
-        var rangeToSelect = (newWord as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
+        // select inside of "()" if completion word has ()
+        var rangeToSelect = (word as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
         if rangeToSelect.location != NSNotFound {
             rangeToSelect.location += charRange.location
             self.selectedRange = rangeToSelect

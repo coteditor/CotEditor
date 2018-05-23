@@ -37,9 +37,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             
             textView.inlineCommentDelimiter = syntaxStyle.inlineCommentDelimiter
             textView.blockCommentDelimiters = syntaxStyle.blockCommentDelimiters
-            
-            let firstLetters = syntaxStyle.completionWords.compactMap { $0.unicodeScalars.first }
-            textView.completionInitialSet = CharacterSet(firstLetters)
+            textView.syntaxCompletionWords = syntaxStyle.completionWords
         }
     }
     
@@ -141,53 +139,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// build completion list
-    func textView(_ textView: NSTextView, completions words: [String], forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>?) -> [String] {
-        
-        // do nothing if completion is not suggested from the typed characters
-        guard charRange.length > 0 else { return [] }
-        
-        let string = textView.string
-        var candidateWords = OrderedSet<String>()
-        let particalWord = (string as NSString).substring(with: charRange)
-        
-        // extract words in document and set to candidateWords
-        if UserDefaults.standard[.completesDocumentWords] {
-            let documentWords: [String] = {
-                // do nothing if the particle word is a symbol
-                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
-                
-                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
-                let regex = try! NSRegularExpression(pattern: pattern)
-                
-                return regex.matches(in: string, range: string.nsRange).map { (string as NSString).substring(with: $0.range) }
-            }()
-            candidateWords.append(contentsOf: documentWords)
-        }
-        
-        // copy words defined in syntax style
-        if UserDefaults.standard[.completesSyntaxWords], let syntaxCandidateWords = self.syntaxStyle?.completionWords, !syntaxCandidateWords.isEmpty {
-            let syntaxWords = syntaxCandidateWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
-            candidateWords.append(contentsOf: syntaxWords)
-        }
-        
-        // copy the standard words from default completion words
-        if UserDefaults.standard[.completesStandartWords] {
-            candidateWords.append(contentsOf: words)
-        }
-        
-        // provide nothing if there is only a candidate which is same as input word
-        if  let word = candidateWords.first,
-            candidateWords.count == 1,
-            word.caseInsensitiveCompare(particalWord) == .orderedSame
-        {
-            return []
-        }
-        
-        return candidateWords.array
-    }
-    
-    
     /// add script menu to context menu
     func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
         
@@ -201,20 +152,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         return menu
-    }
-    
-    
-    /// text was edited
-    func textDidChange(_ notification: Notification) {
-        
-        guard let textView = notification.object as? EditorTextView else { return }
-        
-        // retry completion if needed
-        //   -> Flag is set in EditorTextView > `insertCompletion:forPartialWordRange:movement:isFinal:`
-        if textView.needsRecompletion {
-            textView.needsRecompletion = false
-            textView.completionTask.schedule(delay: .milliseconds(50))
-        }
     }
     
     
