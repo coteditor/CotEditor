@@ -14,6 +14,7 @@ unreleased
 
 ### Fixes
 
+- Fix an issue under OS X 10.11 where the application could crash when an item in the outline inspector is clicked.
 - Fix an issue where the word completion of which word starts with double underscores (e.g. `__init__`) skipped the second underscores.
 - Fix an issue where the application could rearely crash while typing.
 - [AppStore ver.] Fix an issue where the options for the software updator for non AppStore versions were wrongly displayed in General preferences pane.
