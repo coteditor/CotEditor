@@ -271,6 +271,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         document.encoding = self.encoding
         document.hasUTF8BOM = self.hasUTF8BOM
         document.isVerticalText = self.isVerticalText
+        document.isExecutable = self.isExecutable
         
         return document
     }

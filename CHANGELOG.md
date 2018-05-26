@@ -7,6 +7,7 @@ unreleased
 
 ### Improvements
 
+- Copy also the executablility from the file permission of the original document when duplicate a document.
 - [trivial] Improve drawing of capsules for variables in the insertion format setting field.
 - [trivial] Adjust preferences panes layout.
 
