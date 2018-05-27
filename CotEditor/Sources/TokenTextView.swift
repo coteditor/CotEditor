@@ -62,7 +62,7 @@ final class TokenTextView: NSTextView {
         guard
             self.selectedRange.length == 0,
             self.selectedRange.location > 0,
-            let effectiveRange = self.textStorage?.effectiveTokenRange(at: self.selectedRange.location - 1),
+            let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: self.selectedRange.location - 1),
             effectiveRange.upperBound == self.selectedRange.location
             else { return super.deleteBackward(sender) }
         
@@ -75,45 +75,7 @@ final class TokenTextView: NSTextView {
         
         super.drawBackground(in: rect)
         
-        guard
-            let textStorage = self.textStorage,
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-            else { return }
-        
-        NSGraphicsContext.saveGraphicsState()
-        
-        self.tokenColor.setStroke()
-        self.tokenColor.withAlphaComponent(0.3).setFill()
-        
-        let containerOrigin = self.textContainerOrigin
-        let radius = (self.font?.pointSize ?? NSFont.systemFontSize) / 3
-        
-        textStorage.enumerateAttribute(.token, in: textStorage.string.nsRange) { (token, range, _) in
-            
-            guard token != nil else { return }
-            
-            let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-            
-            var glyphLocation = glyphRange.location
-            while glyphRange.contains(glyphLocation) {
-                var effectiveRange = NSRange.notFound
-                layoutManager.lineFragmentRect(forGlyphAt: glyphLocation, effectiveRange: &effectiveRange)
-                
-                guard let inlineRange = effectiveRange.intersection(glyphRange) else { continue }
-                
-                let boundingRect = layoutManager.boundingRect(forGlyphRange: inlineRange, in: textContainer)
-                let rect = boundingRect.offset(by: containerOrigin).insetBy(dx: 0.5, dy: 0.5)
-                
-                let bezier = NSBezierPath(roundedRect: rect, xRadius: radius, yRadius: radius)
-                bezier.fill()
-                bezier.stroke()
-                
-                glyphLocation = inlineRange.upperBound
-            }
-        }
-        
-        NSGraphicsContext.restoreGraphicsState()
+        self.drawRoundedBackground(in: rect)
     }
     
     
@@ -122,7 +84,7 @@ final class TokenTextView: NSTextView {
         
         guard
             granularity == .selectByWord,
-            let effectiveRange = self.textStorage?.effectiveTokenRange(at: proposedCharRange.location)
+            let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: proposedCharRange.location)
             else { return super.selectionRange(forProposedRange: proposedCharRange, granularity: granularity) }
         
         return effectiveRange
@@ -143,9 +105,7 @@ final class TokenTextView: NSTextView {
     
     // MARK: Actions
     
-    
     /// variable insertion menu was selected
-    
     @IBAction func insertVariable(_ sender: Any?) {
         
         guard
@@ -170,40 +130,23 @@ final class TokenTextView: NSTextView {
         
         guard
             let tokenizer = self.tokenizer,
-            let textStorage = self.textStorage
+            let layoutManager = self.layoutManager
             else { return }
         
         let textColor = self.tokenColor.shadow(withLevel: 0.7)!
         let braketColor = self.tokenColor.shadow(withLevel: 0.3)!
+        let backgroundColor = self.tokenColor.withAlphaComponent(0.3)
         
-        textStorage.removeAttribute(.token, range: textStorage.string.nsRange)
-        textStorage.removeAttribute(.foregroundColor, range: textStorage.string.nsRange)
+        layoutManager.removeTemporaryAttribute(.token, forCharacterRange: self.string.nsRange)
+        layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
         
-        tokenizer.tokenize(textStorage.string) { (token, range, keywordRange) in
-            textStorage.addAttribute(.token, value: token, range: range)
-            textStorage.addAttribute(.foregroundColor, value: braketColor, range: range)
-            textStorage.addAttribute(.foregroundColor, value: textColor, range: keywordRange)
+        tokenizer.tokenize(self.string) { (token, range, keywordRange) in
+            layoutManager.addTemporaryAttribute(.token, value: token, forCharacterRange: range)
+            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: backgroundColor, forCharacterRange: range)
+            layoutManager.addTemporaryAttribute(.foregroundColor, value: braketColor, forCharacterRange: range)
+            layoutManager.addTemporaryAttribute(.foregroundColor, value: textColor, forCharacterRange: keywordRange)
         }
-        
-        self.needsDisplay = true
-    }
-    
-}
-
-
-
-private extension NSTextStorage {
-    
-    /// return range of a token if the location is in a token, otherwise nil.
-    func effectiveTokenRange(at location: Int) -> NSRange? {
-        
-        var effectiveRange = NSRange.notFound
-        
-        guard
-            self.attribute(.token, at: location, longestEffectiveRange: &effectiveRange, in: self.string.nsRange) != nil
-            else { return nil }
-        
-        return effectiveRange
     }
     
 }

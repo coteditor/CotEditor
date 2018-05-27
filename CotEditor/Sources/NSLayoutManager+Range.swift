@@ -38,4 +38,34 @@ extension NSLayoutManager {
         return self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
     }
     
+    
+    /// return range of given attribute if the location is in it, otherwise nil.
+    func effectiveRange(of attrName: NSAttributedStringKey, at location: Int, in range: NSRange? = nil) -> NSRange? {
+        
+        let range = range ?? NSRange(location: 0, length: self.attributedString().length)
+        var effectiveRange = NSRange.notFound
+        
+        guard self.temporaryAttribute(attrName, atCharacterIndex: location, longestEffectiveRange: &effectiveRange, in: range) != nil else { return nil }
+        
+        return effectiveRange
+    }
+    
+    
+    /// enumerate range and value of given temporary attribute
+    func enumerateTemporaryAttribute(_ attrName: NSAttributedStringKey, in range: NSRange, using block: (Any?, NSRange, inout Bool) -> Void) {
+        
+        var characterIndex = range.location
+        while characterIndex < range.upperBound {
+            var effectiveRange: NSRange = .notFound
+            let value = self.temporaryAttribute(attrName, atCharacterIndex: characterIndex, longestEffectiveRange: &effectiveRange, in: range)
+            
+            var stop = false
+            block(value, effectiveRange, &stop)
+            
+            guard !stop else { return }
+            
+            characterIndex = effectiveRange.upperBound
+        }
+    }
+    
 }

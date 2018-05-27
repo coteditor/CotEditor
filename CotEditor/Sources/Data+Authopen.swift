@@ -27,8 +27,8 @@
 import Foundation
 
 // ------------------------------------------------------------------------------
-// This category is Sandbox incompatible.
-// They had been used until CotEditor 2.1.6 (2015-07) which is the last non-Sandboxed version.
+// These extension methods are Sandbox incompatible.
+// They had been used until CotEditor 2.1.6 (2015-07), the last non-Sandboxed version.
 // Currently not in use, and should not be used.
 // We keep this just for a record.
 // You can remove these if you feel it's really needless.
@@ -39,51 +39,61 @@ private let authopenPath = "/usr/libexec/authopen"
 extension Data {
     
     /// Try reading data at the URL using authopen (Sandobox incompatible)
-    @available(macOS, unavailable, message: "Sandbox incompatible")
-    init?(forceReadFromFileURL fileURL: URL) {
+    @available(*, unavailable, message: "Sandbox incompatible")
+    init(forceReadFromFileURL fileURL: URL) throws {
         
-        guard fileURL.isFileURL else { return nil }
+        assert(fileURL.isFileURL)
         
-        let task = Task()
-        task.launchPath = authopenPath
-        task.arguments = [fileURL.path]
-        task.standardOutput = Pipe()
+        let process = Process()
+        let stdOut = Pipe()
+        process.launchPath = authopenPath
+        process.arguments = [fileURL.path]
+        process.standardOutput = stdOut
         
-        task.launch()
-        guard let data = task.standardOutput?.fileHandleForReading.readDataToEndOfFile() else { return nil }
+        process.launch()
+        self = stdOut.fileHandleForReading.readDataToEndOfFile()
         
-        while task.isRunning {
+        while process.isRunning {
             usleep(200)
         }
         
-        self.init(referencing: data)
-        
-        guard task.terminationStatus == 0 else { return nil }
+        guard process.terminationStatus == 0 else {
+            throw AuthopenError.nonzeroTerminationStatus(process.terminationStatus)
+        }
     }
     
     
     /// Try writing data to the URL using authopen (Sandobox incompatible)
-    @available(macOS, unavailable, message: "Sandbox incompatible")
-    func forceWrite(to fileURL: URL) -> Bool {
+    @available(*, unavailable, message: "Sandbox incompatible")
+    func forceWrite(to fileURL: URL) throws {
         
-        guard fileURL.isFileURL else { return false }
+        assert(fileURL.isFileURL)
         
-        let task = Task()
-        task.launchPath = authopenPath
-        task.arguments = ["-c", "-c", fileURL.path]
-        task.standardOutput = Pipe()
+        let process = Process()
+        let stdOut = Pipe()
+        process.launchPath = authopenPath
+        process.arguments = ["-c", "-c", fileURL.path]
+        process.standardOutput = stdOut
         
-        task.launch()
-        task.standardInput?.fileHandleForWriting.write(self)
-        task.standardInput?.fileHandleForWriting.closeFile()
+        process.launch()
+        stdOut.fileHandleForWriting.write(self)
+        stdOut.fileHandleForWriting.closeFile()
         
-        // [caution] Do not use `[task waitUntilExit]` here,
+        // [caution] Do not use `process.waitUntilExit()` here,
         //           since it passes through the run-loop and other file access can interrupt.
-        while task.isRunning {
+        while process.isRunning {
             usleep(200)
         }
         
-        return (task.terminationStatus == 0)
+        guard process.terminationStatus == 0 else {
+            throw AuthopenError.nonzeroTerminationStatus(process.terminationStatus)
+        }
     }
     
+}
+
+
+enum AuthopenError: Error {
+    
+    case nonzeroTerminationStatus(Int32)
 }

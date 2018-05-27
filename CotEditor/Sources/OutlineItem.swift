@@ -26,7 +26,7 @@
 import Foundation
 import AppKit.NSFont
 
-struct OutlineItem {
+final class OutlineItem: NSObject {  // cannot be struct just because the outline inspector crashes under OS X 10.11
     
     struct Style: OptionSet {
         
@@ -59,7 +59,7 @@ struct OutlineItem {
 }
 
 
-extension OutlineItem: Equatable {
+extension OutlineItem {  // : Equatable
     
     static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
         

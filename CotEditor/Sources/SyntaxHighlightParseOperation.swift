@@ -150,11 +150,8 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 
                 let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
                 
-                childProgress.completedUnitCount += 1
-                
-                guard !extractedRanges.isEmpty else { return }
-                
                 rangesQueue.async(flags: .barrier) {
+                    childProgress.completedUnitCount += 1
                     ranges += extractedRanges
                 }
             }

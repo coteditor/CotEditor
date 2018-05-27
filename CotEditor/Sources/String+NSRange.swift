@@ -59,8 +59,9 @@ extension NSString {
     ///   - options: A mask specifying search options.
     ///   - searchRange: The range with in the receiver for which to search for aString.
     /// - Returns: An array of NSRange in the receiver of `searchString` within `searchRange`.
-    func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange) -> [NSRange] {
+    func ranges(of searchString: String, options: NSString.CompareOptions = .literal, range searchRange: NSRange? = nil) -> [NSRange] {
         
+        let searchRange = searchRange ?? self.range
         var ranges = [NSRange]()
         
         var location = searchRange.location
