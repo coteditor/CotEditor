@@ -216,6 +216,9 @@
 "Convert Indentation" = "转换缩进";
 "Comment Out" = "注释";
 "Uncomment" = "取消注释";
+"To Snake Case" = "To Snake Case";  // FIXME: Added
+"To Camel Case" = "To Camel Case";  // FIXME: Added
+"To Snake Case" = "To Pascal Case";  // FIXME: Added
 "To Full-width" = "转为全角";
 "To Half-width" = "转为半角";
 "To Full-width Roman" = "转为全角罗马字";
