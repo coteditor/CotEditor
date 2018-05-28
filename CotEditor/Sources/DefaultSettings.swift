@@ -40,6 +40,8 @@ struct DefaultSettings {
         .checkSpellingAsType: false,
         .highlightBraces: true,
         .highlightLtGt: false,
+        .highlightSelectionInstance: true,
+        .selectionInstanceHighlightDelay: 0.5,
         .checksUpdatesForBeta: false,
         
         .windowTabbing: -1,  // = Respect System Setting

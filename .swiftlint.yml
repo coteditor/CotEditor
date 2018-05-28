@@ -58,7 +58,7 @@ line_length:
   error: 2000
 
 type_body_length:
-  warning: 600
+  warning: 800
   error: 1000
 
 function_body_length:

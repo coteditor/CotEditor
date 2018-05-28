@@ -14,6 +14,11 @@ Unreleased
 3.4.1 (253)
 --------------------------
 
+### New Features
+
+- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
+
+
 ### Improvements
 
 - Copy also the executability from the file permission of the original document when duplicating a document.

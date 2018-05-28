@@ -70,6 +70,9 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
+    private let instanceHighlightColor: NSColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.2)
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }
+    
     private var needsRecompletion = false
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
@@ -92,6 +95,7 @@ final class EditorTextView: NSTextView, Themable {
         .fontSize,
         .shouldAntialias,
         .lineHeight,
+        .highlightSelectionInstance,
         ]
     
     
@@ -499,6 +503,13 @@ final class EditorTextView: NSTextView, Themable {
             let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
             self.highligtMatchingBrace(candidates: bracePairs)
         }
+        
+        // invalidate current instances highlight
+        if UserDefaults.standard[.highlightSelectionInstance] {
+            let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+        }
     }
     
     
@@ -622,6 +633,8 @@ final class EditorTextView: NSTextView, Themable {
             
             NSGraphicsContext.restoreGraphicsState()
         }
+        
+        self.drawRoundedBackground(in: rect)
     }
     
     
@@ -854,6 +867,9 @@ final class EditorTextView: NSTextView, Themable {
             } else {
                 (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
+            
+        case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             
         default: break
         }
@@ -1258,6 +1274,29 @@ final class EditorTextView: NSTextView, Themable {
         self.didChangeText()
         
         return true
+    }
+    
+    
+    /// highlight all instances of the selection
+    private func highlightInstance() {
+        
+        guard
+            self.selectedRanges.count == 1,
+            self.selectedRange.length > 0,
+            (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
+                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil,
+            let range = Range(self.selectedRange, in: self.string)
+            else { return }
+        
+        let substring = String(self.string[range])
+        let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        
+        regex.matches(in: self.string, range: self.string.nsRange)
+            .map { $0.range }
+            .forEach {
+                self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0)
+            }
     }
     
 }
