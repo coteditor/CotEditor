@@ -629,7 +629,7 @@ final class EditorTextView: NSTextView, Themable {
             NSGraphicsContext.saveGraphicsState()
             
             highlightColor.setFill()
-            NSBezierPath.fill(highlightRect)
+            highlightRect.fill()
             
             NSGraphicsContext.restoreGraphicsState()
         }

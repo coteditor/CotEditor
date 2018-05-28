@@ -86,7 +86,7 @@ final class LineNumberView: NSRulerView {
         
         // fill background
         self.backgroundColor.setFill()
-        NSBezierPath.fill(dirtyRect)
+        dirtyRect.fill()
         
         // draw frame border (1px)
         self.textColor(.stroke).setStroke()
