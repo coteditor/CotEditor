@@ -791,6 +791,8 @@ final class EditorTextView: NSTextView, Themable {
     /// let line number view update
     override func updateRuler() {
         
+        super.updateRuler()
+        
         (self.enclosingScrollView as? EditorScrollView)?.invalidateLineNumber()
     }
     
