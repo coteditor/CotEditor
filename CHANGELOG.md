@@ -5,6 +5,11 @@ Change Log
 Unreleased
 --------------------------
 
+### New Features
+
+- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
+
+
 ### Improvements
 
 - Select all matches by “Find All”.
@@ -13,11 +18,6 @@ Unreleased
 
 3.4.1 (253)
 --------------------------
-
-### New Features
-
-- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
-
 
 ### Improvements
 
