@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+Unreleased
+--------------------------
+
+### Improvements
+
+- Select all matches by “Find All”.
+
+
+
 3.4.1 (253)
 --------------------------
 

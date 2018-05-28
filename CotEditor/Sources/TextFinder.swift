@@ -239,6 +239,7 @@ final class TextFinder: NSResponder {
             
             var results = [TextFindResult]()
             var highlights = [HighlightItem]()
+            var selectedRanges = [NSRange]()
             
             var lineNumber = 1
             var lineCountedLocation = 0
@@ -264,6 +265,10 @@ final class TextFinder: NSResponder {
                 let attrLineString = NSMutableAttributedString(string: lineString)
                 
                 for (index, range) in matches.enumerated() {
+                    if index == 0 {
+                        selectedRanges.append(range)
+                    }
+                    
                     guard range.length > 0 else { continue }
                     
                     let color = highlightColors[index]
@@ -291,6 +296,9 @@ final class TextFinder: NSResponder {
                 for highlight in highlights {
                     textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
                 }
+                
+                // select all
+                textView.selectedRanges = selectedRanges as [NSValue]
                 
                 indicator.done()
                 
