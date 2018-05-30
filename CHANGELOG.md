@@ -13,6 +13,7 @@ Unreleased
 ### Improvements
 
 - Select all matches by “Find All”.
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 
