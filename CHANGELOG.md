@@ -5,6 +5,10 @@ Change Log
 unreleased
 --------------------------
 
+### Improvements
+
+- [non-AppStore ver.] Update Sparkle framework.
+
 ### Fixes
 
 - Fix general stability.
