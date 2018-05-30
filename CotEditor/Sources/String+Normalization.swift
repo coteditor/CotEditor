@@ -85,7 +85,7 @@ extension String {
 
 // MARK: Private Functions
 
-/// check succesion from UErrorCode
+/// check success from UErrorCode
 private func u_success(_ code: UErrorCode) -> Bool {
     
     return code.rawValue <= U_ZERO_ERROR.rawValue
