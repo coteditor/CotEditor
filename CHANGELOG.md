@@ -2,16 +2,18 @@
 Change Log
 ==========================
 
-unreleased
+3.4.2 (unreleased)
 --------------------------
 
 ### Improvements
 
+- Improve general stability.
 - [non-AppStore ver.] Update Sparkle framework.
+
 
 ### Fixes
 
-- Fix general stability.
+- Fix an issue under OS X 10.11 where the application crashed with the auto completion.
 
 
 
