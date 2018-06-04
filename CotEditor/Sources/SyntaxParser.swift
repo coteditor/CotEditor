@@ -275,16 +275,18 @@ extension SyntaxParser {
         operation.parseRange = highlightRange
         
         operation.highlightBlock = { [weak self] (highlights) in
+            guard let strongSelf = self else { return }
+            
             // cache result if whole text was parsed
             if highlightRange.length == string.utf16.count {
-                self?.highlightCache = (highlights: highlights, hash: string.md5)
+                strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
             DispatchQueue.syncOnMain {
                 // give up if the editor's string is changed from the analized string
-                guard self?.textStorage.string == string else { return }
+                guard strongSelf.textStorage.string == string else { return }
                 
-                self?.apply(highlights: highlights, range: highlightRange)
+                strongSelf.apply(highlights: highlights, range: highlightRange)
             }
         }
         

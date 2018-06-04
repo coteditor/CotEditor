@@ -72,7 +72,7 @@ final class EditorTextView: NSTextView, Themable {
     
     private var needsRecompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.performCompletion() }  // NSTextView cannot be weak
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
