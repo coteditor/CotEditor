@@ -13,7 +13,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue under OS X 10.11 where the application crashed with the auto completion.
+- Fix an issue under OS X 10.11 where the application crashed with the auto-completion.
+- Fix an issue where some syntax keywords were not highlighted correctly.
 - Improve general stability.
 - [trivial] Fix drawing of capsules for variables in the insertion format setting field.
 
