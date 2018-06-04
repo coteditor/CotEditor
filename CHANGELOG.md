@@ -7,13 +7,14 @@ Change Log
 
 ### Improvements
 
-- Improve general stability.
+- [trivial] Let input fields in preferences support dark mode (hidden option on the current systems).
 - [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
 
 - Fix an issue under OS X 10.11 where the application crashed with the auto completion.
+- Improve general stability.
 - [trivial] Fix drawing of capsules for variables in the insertion format setting field.
 
 
