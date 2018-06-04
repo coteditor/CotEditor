@@ -69,11 +69,12 @@ extension HighlightDefinition {
     init(words: [String], ignoreCase: Bool) {
         
         let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
-        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"))
+        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").sorted())
             .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
         let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
         let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
         
+        moof(rawBoundary)
         self.beginString = pattern
         self.endString = nil
         self.isRegularExpression = true
@@ -250,6 +251,7 @@ struct SyntaxStyle {
             
             // transform simple word highlights to single regex for performance reasons
             if !words.isEmpty {
+                moof(words.count)
                 highlightDefinitions.append(HighlightDefinition(words: words, ignoreCase: false))
             }
             if !caseInsensitiveWords.isEmpty {

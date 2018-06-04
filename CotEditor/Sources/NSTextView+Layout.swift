@@ -50,7 +50,7 @@ extension NSTextView {
             let textContainer = self.textContainer else { return nil }
         
         let visibleRect = rect.offset(by: -self.textContainerOrigin)
-        let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
+        let glyphRange = layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
         
         return layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
     }

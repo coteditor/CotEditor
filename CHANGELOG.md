@@ -13,7 +13,24 @@ Unreleased
 ### Improvements
 
 - Select all matches by “Find All”.
+
+
+
+3.4.2 (257)
+--------------------------
+
+### Improvements
+
+- [trivial] Let input fields in preferences support dark mode (hidden option on the current systems).
 - [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- Fix an issue under OS X 10.11 where the application crashed with the auto-completion.
+- Fix an issue where some syntax keywords were not highlighted correctly.
+- Improve general stability.
+- [trivial] Fix drawing of capsules for variables in the insertion format setting field.
 
 
 

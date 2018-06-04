@@ -97,6 +97,8 @@
 		2A1A8AFB207081D9004DFEBB /* InvisibleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */; };
 		2A1CD5541DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
+		2A1D953520C429960007D734 /* TextViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D953420C429960007D734 /* TextViewWrapper.swift */; };
+		2A1D953620C429960007D734 /* TextViewWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D953420C429960007D734 /* TextViewWrapper.swift */; };
 		2A1EB5C419AD469500C1E37E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Images.xcassets */; };
 		2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
 		2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */; };
@@ -841,6 +843,7 @@
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleFormatter.swift; sourceTree = "<group>"; };
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
+		2A1D953420C429960007D734 /* TextViewWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewWrapper.swift; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
 		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
@@ -1851,6 +1854,7 @@
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
+				2A1D953420C429960007D734 /* TextViewWrapper.swift */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -2833,6 +2837,7 @@
 				2AC2462F1D1BC70C00E46CFA /* AppDelegate.swift in Sources */,
 				2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */,
 				2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
+				2A1D953620C429960007D734 /* TextViewWrapper.swift in Sources */,
 				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
@@ -3075,6 +3080,7 @@
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A3A922B205638A600F9B5F3 /* BackgroundView.swift in Sources */,
+				2A1D953520C429960007D734 /* TextViewWrapper.swift in Sources */,
 				2A42579E1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
