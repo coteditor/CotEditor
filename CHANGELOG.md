@@ -14,6 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue under OS X 10.11 where the application crashed with the auto completion.
+- [trivial] Fix drawing of capsules for variables in the insertion format setting field.
 
 
 
