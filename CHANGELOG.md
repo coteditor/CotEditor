@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.4.3 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the help button in the muptiple replace window did not link to the suitable help page.
+
+
+
 3.4.2 (257)
 --------------------------
 
