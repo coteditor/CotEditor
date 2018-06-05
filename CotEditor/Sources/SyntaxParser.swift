@@ -318,7 +318,7 @@ extension SyntaxParser {
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
             
-            for type in SyntaxType.all {
+            for type in SyntaxType.allCases {
                 guard let ranges = highlights[type], !ranges.isEmpty else { continue }
                 
                 let color = theme.style(for: type)?.color ?? theme.text.color

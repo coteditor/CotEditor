@@ -136,7 +136,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         // extract standard highlight ranges
         let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
-        for syntaxType in SyntaxType.all {
+        for syntaxType in SyntaxType.allCases {
             guard let extractors = self.extractors[syntaxType] else { continue }
             
             self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
@@ -275,7 +275,7 @@ private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRa
     var sanitizedHighlights = [SyntaxType: [NSRange]]()
     let highlightedIndexes = NSMutableIndexSet()
     
-    for type in SyntaxType.all.reversed() {
+    for type in SyntaxType.allCases.reversed() {
         guard let ranges = highlights[type] else { continue }
         var sanitizedRanges = [NSRange]()
         
