@@ -62,8 +62,6 @@ struct DefaultSettings {
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
         .splitViewVertical: false,
-        .windowWidth: 600.0,
-        .windowHeight: 620.0,
         .windowAlpha: 1.0,
         
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
