@@ -46,6 +46,7 @@ final class TokenTextView: NSTextView {
         
         // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
         self.textColor = .controlTextColor
+        self.invalidateTokens()
     }
     
     
