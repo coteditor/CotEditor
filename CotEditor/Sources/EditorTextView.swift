@@ -193,6 +193,13 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// append inset only to the bottom for overscroll
+    override var textContainerOrigin: NSPoint {
+        
+        return NSPoint(x: super.textContainerOrigin.x, y: kTextContainerInset.height)
+    }
+    
+    
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
@@ -212,6 +219,7 @@ final class EditorTextView: NSTextView, Themable {
             // textView was removed from the window
             NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
             return
         }
         
@@ -226,10 +234,15 @@ final class EditorTextView: NSTextView, Themable {
                                                name: AlphaWindow.didChangeOpacityNotification,
                                                object: window)
         
-        // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
+            // observe scorolling to fix drawing area on non-opaque view
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)),
                                                    name: NSView.boundsDidChangeNotification,
+                                                   object: scrollView.contentView)
+            
+            // observe resizing for overscroll amount update
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRectSize(_:)),
+                                                   name: NSView.frameDidChangeNotification,
                                                    object: scrollView.contentView)
         } else {
             assertionFailure("failed starting observing the visible rect change")
@@ -1146,6 +1159,23 @@ final class EditorTextView: NSTextView, Themable {
             // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         }
+    }
+    
+    
+    /// visible rect did resize
+    @objc private func didChangeVisibleRectSize(_ notification: Notification) {
+        
+        // calculate overscrolling amount
+        guard
+            let scrollView = self.enclosingScrollView,
+            let layoutManager = self.layoutManager as? LayoutManager
+            else { return }
+        
+        let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
+        let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
+        
+        // halve inset since the input value will be add to the both top and bottom
+        self.textContainerInset.height = max(floor(inset / 2), kTextContainerInset.height)
     }
     
     

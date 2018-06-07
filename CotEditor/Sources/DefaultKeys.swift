@@ -60,6 +60,7 @@ extension DefaultKeys {
     static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
     static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
+    static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
     static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
     // Appearance

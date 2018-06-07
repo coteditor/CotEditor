@@ -285,19 +285,20 @@ final class LineNumberView: NSRulerView {
         }
         
         // draw the last "extra" line number
-        if layoutManager.extraLineFragmentTextContainer != nil {
+        let lineRect = layoutManager.extraLineFragmentUsedRect
+        if lineRect.intersects(textView.visibleRect) {
+            let lastLineNumber = string.lineNumber(at: length)
             let isSelected: Bool = {
                 guard let lastSelectedRange = selectedLineRanges.last else { return false }
                 
                 return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
             }()
-            let lineRect = layoutManager.extraLineFragmentUsedRect
             let y = scale * -lineRect.minY
             
             if isVerticalText {
                 drawTick(y: y)
             }
-            drawLineNumber(lineNumber, y: y, isBold: isSelected)
+            drawLineNumber(lastLineNumber, y: y, isBold: isSelected)
         }
         
         // draw vertical line ticks
