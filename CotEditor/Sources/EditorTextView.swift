@@ -70,7 +70,7 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    private let instanceHighlightColor: NSColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.2)
+    private let instanceHighlightColor: NSColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }
     
     private var needsRecompletion = false
