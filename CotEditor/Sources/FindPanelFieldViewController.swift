@@ -315,7 +315,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         textField.stringValue = message ?? ""
         textField.sizeToFit()
         
-        // add extra scroll margin to the right side of the textView, so that entire input can be reead
+        // add extra scroll margin to the right side of the textView, so that entire input can be read
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
     }
     
