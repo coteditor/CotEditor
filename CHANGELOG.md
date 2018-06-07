@@ -15,6 +15,7 @@ Change Log
 - Select all matches by “Find All”.
 - Remove window size setting option.
     - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
+- [trivial] Update editor opacity sample tip.
 
 
 ### Fixes
