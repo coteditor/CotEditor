@@ -8,7 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the help button in the muptiple replace window did not link to the suitable help page.
-
+- Fix an issue where unwanted debug log was printed in console.
 
 
 3.4.2 (257)
