@@ -31,8 +31,7 @@ final class UnderlinableButton: NSButton {
     @IBInspectable var underline: Bool = false {
         
         didSet {
-        guard let attributedTitle = self.attributedTitle.mutableCopy() as? NSMutableAttributedString else { return }
-        
+        let attributedTitle = self.attributedTitle.mutable
         let range = NSRange(location: 0, length: attributedTitle.length)
         
         if self.underline {

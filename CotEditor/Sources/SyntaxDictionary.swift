@@ -38,16 +38,16 @@ enum SyntaxType: String {
     case characters
     case comments
     
-    static let all: [SyntaxType] = [.keywords,
-                                    .commands,
-                                    .types,
-                                    .attributes,
-                                    .variables,
-                                    .values,
-                                    .numbers,
-                                    .strings,
-                                    .characters,
-                                    .comments]
+    static let allCases: [SyntaxType] = [.keywords,
+                                         .commands,
+                                         .types,
+                                         .attributes,
+                                         .variables,
+                                         .values,
+                                         .numbers,
+                                         .strings,
+                                         .characters,
+                                         .comments]
     
     var localizedName: String {
         return NSLocalizedString(self.rawValue, comment: "")

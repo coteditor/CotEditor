@@ -36,28 +36,12 @@ final class WindowPaneController: NSViewController {
     
     
     // MARK: -
-    // MARK: Action Messages
+    // MARK: Actionss
     
     /// opaque setting did update
-    @IBAction func changeEditorOpaque(_ sender: NSControl?) {
-        
-        guard let sender = sender else { return }
+    @IBAction func changeEditorOpaque(_ sender: NSControl) {
         
         self.editorOpaque = (sender.doubleValue == 1.0)
-    }
-    
-    
-    /// open sample window for window size setting
-    @IBAction func openSizeSampleWindow(_ sender: Any?) {
-        
-        let sampleWindowController = SizeSettingWindowController()
-        
-        // display modal
-        sampleWindowController.showWindow(sender)
-        NSApp.runModal(for: sampleWindowController.window!)
-        
-        // make preferences window the key window after closing sample window
-        self.view.window?.makeKeyAndOrderFront(self)
     }
     
 }

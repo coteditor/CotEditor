@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -387,7 +387,7 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="gG4-IL-p7b">
                                 <rect key="frame" x="0.0" y="51" width="430" height="5"/>
                             </box>
-                            <button identifier="howto_multiple_replacement" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-Fc-QBG">
+                            <button identifier="howto_multiple_replace" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QdJ-Fc-QBG">
                                 <rect key="frame" x="18" y="17" width="22" height="22"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XZH-Sq-MEz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -509,7 +509,7 @@
         <scene sceneID="tHa-Ef-d3P">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="MultipleReplacementListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" appearanceType="vibrantLight" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" id="sT1-Cd-M1e">
+                    <visualEffectView key="view" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" id="sT1-Cd-M1e">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="300"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>

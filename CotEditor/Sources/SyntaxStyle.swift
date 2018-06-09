@@ -69,7 +69,7 @@ extension HighlightDefinition {
     init(words: [String], ignoreCase: Bool) {
         
         let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
-        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_"))
+        let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").sorted())
             .replacingOccurrences(of: "\\s", with: "", options: .regularExpression)
         let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
         let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
@@ -203,7 +203,7 @@ struct SyntaxStyle {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
+        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
             let definitions = wordDicts.compactMap { HighlightDefinition(dictionary: $0) }

@@ -101,7 +101,7 @@ final class SyntaxStyleValidator {
         
         var results = [StyleError]()
         
-        let syntaxDictKeys = SyntaxType.all.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue]
+        let syntaxDictKeys = SyntaxType.allCases.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue]
         
         var lastBeginString: String?
         var lastEndString: String?

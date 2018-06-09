@@ -181,7 +181,7 @@ final class SyntaxManager: SettingFileManaging {
                                             selector: #selector(NSString.caseInsensitiveCompare)),
                            NSSortDescriptor(key: SyntaxDefinitionKey.keyString.rawValue, ascending: true,
                                             selector: #selector(NSString.caseInsensitiveCompare))]
-        let syntaxDictKeys = SyntaxType.all.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue, SyntaxKey.completions.rawValue]
+        let syntaxDictKeys = SyntaxType.allCases.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue, SyntaxKey.completions.rawValue]
         for key in syntaxDictKeys {
             (settingDictionary[key] as? NSMutableArray)?.sort(using: descriptors)
         }

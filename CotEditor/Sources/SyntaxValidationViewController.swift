@@ -33,6 +33,8 @@ final class SyntaxValidationViewController: NSViewController {
     
     @objc private dynamic var result: String?
     
+    @IBOutlet private var textView: NSTextView?
+    
     
     
     // MARK: -
@@ -41,6 +43,15 @@ final class SyntaxValidationViewController: NSViewController {
     override var nibName: NSNib.Name? {
         
         return NSNib.Name("SyntaxValidationView")
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
+        self.textView?.textColor = .controlTextColor
     }
     
     

@@ -44,7 +44,7 @@ final class GeneralPaneController: NSViewController {
         super.viewDidLoad()
         
         // remove updater options if no Sparkle provided
-        #if !canImport(Sparkle)
+        #if APPSTORE
             for subview in self.view.subviews where subview.tag < 0 {
                 subview.removeFromSuperview()
             }

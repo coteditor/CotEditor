@@ -94,13 +94,6 @@
 "1ML-Pr-BCt.title" = "px";
 
 
-/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "zIR-1y-lBC"; */
-"zIR-1y-lBC.title" = "窗口宽度：";
-/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "3343"; */
-"3343.title" = "高度：";
-/* Class = "NSButtonCell"; title = "Get from Sample Window…"; ObjectID = "3346"; */
-"3346.title" = "从窗口获取…";
-
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "编辑器透明度：";
 /* Class = "NSTextFieldCell"; title = "Non-opaque editor can slow down on a huge document."; ObjectID = "gdC-8B-U5B"; */

@@ -56,7 +56,7 @@ final class FileDropComposer {
         
         static let pathTokens: [Token] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
         static let imageTokens: [Token] = [.imageWidth, .imageHeight]
-        static let all = Token.pathTokens + Token.imageTokens
+        static let allCases = Token.pathTokens + Token.imageTokens
         
         
         var description: String {

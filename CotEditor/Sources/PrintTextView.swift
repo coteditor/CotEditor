@@ -289,7 +289,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         willSet {
             // set tab width
-            let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+            let paragraphStyle = NSParagraphStyle.default.mutable
             let tabWidth = UserDefaults.standard[.tabWidth]
             
             paragraphStyle.tabStops = []
@@ -423,7 +423,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return attributes for header/footer string
     private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedStringKey: Any] {
     
-        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutable
         
         // alignment for two lines
         paragraphStyle.alignment = alignment.textAlignment

@@ -45,7 +45,7 @@ final class EncodingTableCellView: NSTableCellView {
             
             let highlighted = (backgroundStyle == .dark)
             let attrString = textField.attributedStringValue
-            let mutableAttrString = attrString.mutableCopy() as! NSMutableAttributedString
+            let mutableAttrString = attrString.mutable
             
             attrString.enumerateAttribute(.foregroundColor, in: NSRange(location: 0, length: attrString.length))
             { (value: Any?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in

@@ -25,17 +25,6 @@
 
 import Cocoa
 
-extension NSView {
-    
-    var viewControllerForSheet: NSViewController? {
-        
-        return self.window?.windowController?.contentViewController
-    }
-
-}
-
-
-
 final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
@@ -46,7 +35,7 @@ final class ProgressViewController: NSViewController {
     private var progressObserver: NSKeyValueObservation?
     private var descriptionObserver: NSKeyValueObservation?
     private var finishObserver: NSKeyValueObservation?
-    private lazy var progressThrottle = DispatchQueue.main.throttle(delay: .milliseconds(100))
+    private lazy var progressThrottle = DispatchQueue.main.throttle(delay: .milliseconds(200))
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var descriptionField: NSTextField?
@@ -108,7 +97,7 @@ final class ProgressViewController: NSViewController {
     
     
     
-    // MARK: View Public Methods
+    // MARK: Public Methods
     
     /// change button to done
     func done() {
@@ -120,7 +109,7 @@ final class ProgressViewController: NSViewController {
     
     
     
-    // MARK: View Action Messages
+    // MARK: Actions
     
     /// cancel current process
     @IBAction func cancel(_ sender: Any?) {

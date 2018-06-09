@@ -66,15 +66,8 @@ final class DocumentWindowController: NSWindowController {
         self.shouldCascadeWindows = true
         self.windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "document")
         
-        let window = self.window as! AlphaWindow
-        
-        // set window size
-        let contentSize = NSSize(width: UserDefaults.standard[.windowWidth],
-                                 height: UserDefaults.standard[.windowHeight])
-        window.setContentSize(contentSize)
-        
-        // setup background
-        window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+        // set background alpha
+        (self.window as! AlphaWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)

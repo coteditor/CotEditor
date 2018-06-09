@@ -30,7 +30,7 @@
 "Text document" = "Documento di testo";
 "Plain text" = "Testo semplice";
 "CotEditor Theme" = "Tema CotEditor";
-"CotEditor Replacement Definition" = "CotEditor Replacement Definition";  // FIXME: added
+"CotEditor Replacement Definition" = "Definizione sostituzioni di CotEditor";
 "BibTeX" = "BibTeX";
 "Configuration" = "Configurazione";
 "C header" = " Intestazione C";

@@ -40,6 +40,8 @@ struct DefaultSettings {
         .checkSpellingAsType: false,
         .highlightBraces: true,
         .highlightLtGt: false,
+        .highlightSelectionInstance: true,
+        .selectionInstanceHighlightDelay: 0.5,
         .checksUpdatesForBeta: false,
         
         .windowTabbing: -1,  // = Respect System Setting
@@ -60,8 +62,6 @@ struct DefaultSettings {
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
         .splitViewVertical: false,
-        .windowWidth: 600.0,
-        .windowHeight: 620.0,
         .windowAlpha: 1.0,
         
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,

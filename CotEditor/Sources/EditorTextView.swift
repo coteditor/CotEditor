@@ -49,19 +49,15 @@ final class EditorTextView: NSTextView, Themable {
     
     var isAutomaticTabExpansionEnabled = false
     
-    var lineHighlightRect: NSRect?
-    
     var inlineCommentDelimiter: String?
     var blockCommentDelimiters: Pair<String>?
+    var syntaxCompletionWords: [String] = []
     
-    var completionInitialSet = CharacterSet()  // set of the first characters of the completion words
-    var needsRecompletion = false
+    var lineHighlightRect: NSRect?
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
-    
-    private(set) lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
     
     // MARK: Private Properties
@@ -74,7 +70,12 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
+    private let instanceHighlightColor: NSColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.3)
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }
+    
+    private var needsRecompletion = false
     private var particalCompletionWord: String?
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.performCompletion() }  // NSTextView cannot be weak
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
@@ -94,6 +95,7 @@ final class EditorTextView: NSTextView, Themable {
         .fontSize,
         .shouldAntialias,
         .lineHeight,
+        .highlightSelectionInstance,
         ]
     
     
@@ -226,7 +228,9 @@ final class EditorTextView: NSTextView, Themable {
         
         // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)), name: NSView.boundsDidChangeNotification, object: scrollView.contentView)
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)),
+                                                   name: NSView.boundsDidChangeNotification,
+                                                   object: scrollView.contentView)
         } else {
             assertionFailure("failed starting observing the visible rect change")
         }
@@ -247,6 +251,20 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         super.keyDown(with: event)
+    }
+    
+    
+    /// text did change
+    override func didChangeText() {
+        
+        super.didChangeText()
+        
+        // retry completion if needed
+        //   -> Flag is set in `insertCompletion:forPartialWordRange:movement:isFinal:`
+        if self.needsRecompletion {
+            self.needsRecompletion = false
+            self.completionTask.schedule(delay: .milliseconds(50))
+        }
     }
     
     
@@ -322,14 +340,13 @@ final class EditorTextView: NSTextView, Themable {
             replacementRange.length == 0, plainString == "}",
             let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound
         {
-            let wholeString = self.string
-            let lineRange = wholeString.lineRange(at: insertionIndex)
+            let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
-            if wholeString.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil,
-                let precedingIndex = wholeString.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
-                let desiredLevel = wholeString.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
-                let currentLevel = wholeString.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
+            if self.string.range(of: "^[ \\t]+\\n?$", options: .regularExpression, range: lineRange) != nil,
+                let precedingIndex = self.string.indexOfBracePair(endIndex: insertionIndex, pair: BracePair("{", "}")) {
+                let desiredLevel = self.string.indentLevel(at: precedingIndex, tabWidth: self.tabWidth)
+                let currentLevel = self.string.indentLevel(at: insertionIndex, tabWidth: self.tabWidth)
                 let levelToReduce = currentLevel - desiredLevel
                 
                 if levelToReduce > 0 {
@@ -360,9 +377,8 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         if self.isAutomaticTabExpansionEnabled {
-            let tabWidth = self.tabWidth
-            let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: tabWidth)
-            let length = tabWidth - (column % tabWidth)
+            let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: self.tabWidth)
+            let length = self.tabWidth - (column % self.tabWidth)
             let spaces = String(repeating: " ", count: length)
             
             return super.insertText(spaces, replacementRange: self.rangeForUserTextChange)
@@ -392,8 +408,7 @@ final class EditorTextView: NSTextView, Themable {
             return super.insertNewline(sender)
         }
         
-        let string = self.string
-        let indentRange = string.rangeOfIndent(at: self.selectedRange.location)
+        let indentRange = self.string.rangeOfIndent(at: self.selectedRange.location)
         
         // don't auto-indent if indent is selected (2008-12-13)
         guard indentRange.length == 0 || indentRange != self.selectedRange else {
@@ -401,10 +416,10 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         let indent: String = {
-            guard let baseIndentRange = indentRange.intersection(NSRange(location: 0, length: self.selectedRange.location)) else {
+            guard let baseIndentRange = indentRange.intersection(NSRange(0..<self.selectedRange.location)) else {
                 return ""
             }
-            return (string as NSString).substring(with: baseIndentRange)
+            return (self.string as NSString).substring(with: baseIndentRange)
         }()
         
         // calculation for smart indent
@@ -451,20 +466,18 @@ final class EditorTextView: NSTextView, Themable {
         
         guard self.selectedRange.length == 0 else { return }
         
-        let string = self.string
         let location = self.selectedRange.location
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            string.rangeOfIndent(at: location).upperBound >= location
+            self.string.rangeOfIndent(at: location).upperBound >= location
         {
-            let tabWidth = self.tabWidth
-            let column = string.column(of: location, tabWidth: tabWidth)
-            let targetLength = tabWidth - (column % tabWidth)
-            let targetRange = NSRange(location: location - targetLength, length: targetLength)
+            let column = self.string.column(of: location, tabWidth: self.tabWidth)
+            let targetLength = self.tabWidth - (column % self.tabWidth)
+            let targetRange = NSRange((location - targetLength)..<location)
             
             if location >= targetLength,
-                (string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
+                (self.string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
                 self.selectedRange = targetRange
             }
         }
@@ -489,6 +502,13 @@ final class EditorTextView: NSTextView, Themable {
         if UserDefaults.standard[.highlightBraces], !stillSelectingFlag {
             let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
             self.highligtMatchingBrace(candidates: bracePairs)
+        }
+        
+        // invalidate current instances highlight
+        if UserDefaults.standard[.highlightSelectionInstance] {
+            let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
         }
     }
     
@@ -609,10 +629,12 @@ final class EditorTextView: NSTextView, Themable {
             NSGraphicsContext.saveGraphicsState()
             
             highlightColor.setFill()
-            NSBezierPath.fill(highlightRect)
+            highlightRect.fill()
             
             NSGraphicsContext.restoreGraphicsState()
         }
+        
+        self.drawRoundedBackground(in: rect)
     }
     
     
@@ -621,7 +643,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // minimize drawing area on non-opaque background
         // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
-        //    and it affects to the drawing performance on a large document critically.
+        //    and it affects to the drawing performance on a large document critically. (2017-03 macOS 10.12)
         var dirtyRect = dirtyRect
         if !self.drawsBackground {
             dirtyRect = self.visibleRect
@@ -631,22 +653,24 @@ final class EditorTextView: NSTextView, Themable {
         
         // draw page guide
         if self.showsPageGuide,
-            let textColor = self.textColor,
+            let guideColor = self.textColor?.withAlphaComponent(0.2),
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
-            let column = UserDefaults.standard[.pageGuideColumn]
+            let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
-            var x = floor(spaceWidth * CGFloat(column) + inset + linePadding) + 2.5  // +2px for an esthetic adjustment
-            if self.baseWritingDirection == .rightToLeft {
-                x = self.bounds.width - x
-            }
+            let x = spaceWidth * column + inset + linePadding + 2  // +2 px for an esthetic adjustment
+            let isRTL = (self.baseWritingDirection == .rightToLeft)
+            
+            let guideRect = NSRect(x: isRTL ? self.bounds.width - x : x,
+                                   y: dirtyRect.minY,
+                                   width: 1.0,
+                                   height: dirtyRect.height)
             
             NSGraphicsContext.saveGraphicsState()
             
-            textColor.withAlphaComponent(0.2).setStroke()
-            NSBezierPath.strokeLine(from: NSPoint(x: x, y: dirtyRect.minY),
-                                    to: NSPoint(x: x, y: dirtyRect.maxY))
+            guideColor.setFill()
+            self.centerScanRect(guideRect).fill()
             
             NSGraphicsContext.restoreGraphicsState()
         }
@@ -724,7 +748,7 @@ final class EditorTextView: NSTextView, Themable {
         
         let success = super.writeSelection(to: pboard, types: types)
         
-        guard let lineEnding = self.documentLineEnding, lineEnding == .LF else { return success }
+        guard let lineEnding = self.document?.lineEnding, lineEnding == .LF else { return success }
         
         for type in types {
             guard let string = pboard.string(forType: type) else { continue }
@@ -843,6 +867,9 @@ final class EditorTextView: NSTextView, Themable {
             } else {
                 (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
+            
+        case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
+            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             
         default: break
         }
@@ -1001,7 +1028,7 @@ final class EditorTextView: NSTextView, Themable {
         let string = self.string
         var selections = [NSAttributedString]()
         var propertyList = [Int]()
-        let lineEnding = String((self.documentLineEnding ?? .LF).rawValue)
+        let lineEnding = self.document?.lineEnding ?? .LF
         
         // substring all selected attributed strings
         let selectedRanges = self.selectedRanges as! [NSRange]
@@ -1010,32 +1037,20 @@ final class EditorTextView: NSTextView, Themable {
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
             
             // apply syntax highlight that is set as temporary attributes in layout manager to attributed string
-            if let layoutManager = self.layoutManager {
-                var characterIndex = selectedRange.location
-                while characterIndex < selectedRange.upperBound {
-                    var effectiveRange = NSRange.notFound
-                    guard let color = layoutManager.temporaryAttribute(.foregroundColor,
-                                                                       atCharacterIndex: characterIndex,
-                                                                       longestEffectiveRange: &effectiveRange,
-                                                                       in: selectedRange)
-                        else {
-                            characterIndex += 1
-                            continue
-                    }
-                    
-                    let localRange = NSRange(location: effectiveRange.location - selectedRange.location, length: effectiveRange.length)
-                    styledText.addAttribute(.foregroundColor, value: color, range: localRange)
-                    
-                    characterIndex = effectiveRange.upperBound
-                }
+            self.layoutManager?.enumerateTemporaryAttribute(.foregroundColor, in: selectedRange) { (value, range, _) in
+                guard let color = value as? NSColor else { return }
+                
+                let localRange = NSRange(location: range.location - selectedRange.location, length: range.length)
+                
+                styledText.addAttribute(.foregroundColor, value: color, range: localRange)
             }
             
             // apply document's line ending
-            if self.documentLineEnding != .LF {
+            if lineEnding != .LF {
                 for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
                     let characterRange = NSRange(index...index, in: plainText)
                     
-                    styledText.replaceCharacters(in: characterRange, with: lineEnding)
+                    styledText.replaceCharacters(in: characterRange, with: lineEnding.string)
                 }
             }
             
@@ -1046,7 +1061,7 @@ final class EditorTextView: NSTextView, Themable {
         var pasteboardString = NSAttributedString()
         
         // join attributed strings
-        let attrLineEnding = NSAttributedString(string: lineEnding)
+        let attrLineEnding = NSAttributedString(string: lineEnding.string)
         for selection in selections {
             // join with newline string
             if !pasteboardString.string.isEmpty {
@@ -1086,7 +1101,7 @@ final class EditorTextView: NSTextView, Themable {
         var selectedString = (self.string as NSString).substring(with: self.selectedRange)
         
         // apply document's line ending
-        if let documentLineEnding = self.documentLineEnding,
+        if let documentLineEnding = self.document?.lineEnding,
             documentLineEnding != .LF, selectedString.detectedLineEnding == .LF
         {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
@@ -1144,13 +1159,6 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// true new line type of document
-    private var documentLineEnding: LineEnding? {
-        
-        return self.document?.lineEnding
-    }
-    
-    
     /// update coloring settings
     private func applyTheme() {
         
@@ -1180,7 +1188,7 @@ final class EditorTextView: NSTextView, Themable {
         
         assert(Thread.isMainThread)
         
-        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutable
         
         // set line height
         //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.
@@ -1268,6 +1276,29 @@ final class EditorTextView: NSTextView, Themable {
         return true
     }
     
+    
+    /// highlight all instances of the selection
+    private func highlightInstance() {
+        
+        guard
+            self.selectedRanges.count == 1,
+            self.selectedRange.length > 0,
+            (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
+                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil,
+            let range = Range(self.selectedRange, in: self.string)
+            else { return }
+        
+        let substring = String(self.string[range])
+        let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
+        let regex = try! NSRegularExpression(pattern: pattern)
+        
+        regex.matches(in: self.string, range: self.string.nsRange)
+            .map { $0.range }
+            .forEach {
+                self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0)
+            }
+    }
+    
 }
 
 
@@ -1284,14 +1315,65 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
+        guard !self.syntaxCompletionWords.isEmpty else { return range }
+        
+        let firstLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
+        
         // expand range until hitting to a character that isn't in the word completion candidates
         guard
-            !self.string.isEmpty, !self.completionInitialSet.isEmpty,
+            !self.string.isEmpty,
             let characterRange = Range(range, in: self.string),
-            let index = self.string.rangeOfCharacter(from: self.completionInitialSet.inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
+            let index = self.string.rangeOfCharacter(from: CharacterSet(firstLetters).inverted, options: .backwards, range: self.string.startIndex..<characterRange.upperBound)?.upperBound
             else { return range }
         
         return NSRange(index..<characterRange.upperBound, in: self.string)
+    }
+    
+    
+    /// build completion list
+    override func completions(forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String]? {
+        
+        // do nothing if completion is not suggested from the typed characters
+        guard charRange.length > 0 else { return nil }
+        
+        var candidateWords = OrderedSet<String>()
+        let particalWord = (self.string as NSString).substring(with: charRange)
+        
+        // add words in document
+        if UserDefaults.standard[.completesDocumentWords] {
+            let documentWords: [String] = {
+                // do nothing if the particle word is a symbol
+                guard charRange.length > 1 || CharacterSet.alphanumerics.contains(particalWord.unicodeScalars.first!) else { return [] }
+                
+                let pattern = "(?:^|\\b|(?<=\\W))" + NSRegularExpression.escapedPattern(for: particalWord) + "\\w+?(?:$|\\b)"
+                let regex = try! NSRegularExpression(pattern: pattern)
+                
+                return regex.matches(in: self.string, range: self.string.nsRange).map { (self.string as NSString).substring(with: $0.range) }
+            }()
+            candidateWords.append(contentsOf: documentWords)
+        }
+        
+        // add words defined in syntax style
+        if UserDefaults.standard[.completesSyntaxWords] {
+            let syntaxWords = self.syntaxCompletionWords.filter { $0.range(of: particalWord, options: [.caseInsensitive, .anchored]) != nil }
+            candidateWords.append(contentsOf: syntaxWords)
+        }
+        
+        // add the standard words from default completion words
+        if UserDefaults.standard[.completesStandartWords] {
+            let words = super.completions(forPartialWordRange: charRange, indexOfSelectedItem: index) ?? []
+            candidateWords.append(contentsOf: words)
+        }
+        
+        // provide nothing if there is only a candidate which is same as input word
+        if let word = candidateWords.first,
+            candidateWords.count == 1,
+            word.caseInsensitiveCompare(particalWord) == .orderedSame
+        {
+            return []
+        }
+        
+        return candidateWords.array
     }
     
     
@@ -1300,44 +1382,40 @@ extension EditorTextView {
         
         self.completionTask.cancel()
         
-        let event = self.window?.currentEvent
-        var didComplete = false
-        
-        var newMovement = movement
-        var newFlag = flag
-        var newWord = word
-        
         // store original string
         if self.particalCompletionWord == nil {
             self.particalCompletionWord = (self.string as NSString).substring(with: charRange)
         }
         
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
-        //   -> The flag will be used in EditorTextViewController > `textDidChange`
-        if flag, let event = event, event.type == .keyDown, !event.modifierFlags.contains(.command) {
-            let inputChar = event.charactersIgnoringModifiers
-            
-            if inputChar == event.characters {  // exclude key-bindings
-                // fix that underscore is treated as the right arrow key
-                if inputChar == "_", movement == NSRightTextMovement {
-                    newMovement = NSIllegalTextMovement
-                    newFlag = false
-                }
-                if let character = inputChar?.utf16.first,
-                    (movement == NSIllegalTextMovement && character < 0xF700 && character != UInt16(NSDeleteCharacter)) {  // standard key-input
-                    self.needsRecompletion = true
-                }
+        //   -> The flag will be used in `didChangeText()`
+        var movement = movement
+        if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
+            event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
+        {
+            // fix that underscore is treated as the right arrow key
+            if event.characters == "_", movement == NSRightTextMovement {
+                movement = NSIllegalTextMovement
+            }
+            if movement == NSIllegalTextMovement,
+                let character = event.characters?.utf16.first,
+                character < 0xF700, character != UInt16(NSDeleteCharacter)
+            {  // standard key-input
+                self.needsRecompletion = true
             }
         }
         
-        if newFlag {
-            if newMovement == NSIllegalTextMovement || newMovement == NSRightTextMovement {  // treat as cancelled
+        var word = word
+        var didComplete = false
+        if flag {
+            switch movement {
+            case NSIllegalTextMovement, NSRightTextMovement:  // treat as cancelled
                 // restore original input
                 //   -> In case if the letter case is changed from the original.
                 if let originalWord = self.particalCompletionWord {
-                    newWord = originalWord
+                    word = originalWord
                 }
-            } else {
+            default:
                 didComplete = true
             }
             
@@ -1345,12 +1423,12 @@ extension EditorTextView {
             self.particalCompletionWord = nil
         }
         
-        super.insertCompletion(newWord, forPartialWordRange: charRange, movement: newMovement, isFinal: newFlag)
+        super.insertCompletion(word, forPartialWordRange: charRange, movement: movement, isFinal: flag)
         
         guard didComplete else { return }
         
-        // slect inside of "()" if completion word has ()
-        var rangeToSelect = (newWord as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
+        // select inside of "()" if completion word has ()
+        var rangeToSelect = (word as NSString).range(of: "(?<=\\().*(?=\\))", options: .regularExpression)
         if rangeToSelect.location != NSNotFound {
             rangeToSelect.location += charRange.location
             self.selectedRange = rangeToSelect
@@ -1409,10 +1487,9 @@ extension EditorTextView {
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text
-        if ["\"", "'", "`"].contains(clickedCharacter), let layoutManager = self.layoutManager {
-            var highlightRange = NSRange.notFound
-            _ = layoutManager.temporaryAttribute(.foregroundColor, atCharacterIndex: range.location, longestEffectiveRange: &highlightRange, in: self.string.nsRange)
-            
+        if ["\"", "'", "`"].contains(clickedCharacter),
+            let highlightRange = self.layoutManager?.effectiveRange(of: .foregroundColor, at: range.location)
+        {
             let highlightCharacterRange = Range(highlightRange, in: self.string)!
             let firstHighlightIndex = highlightCharacterRange.lowerBound
             let lastHighlightIndex = self.string.index(before: highlightCharacterRange.upperBound)

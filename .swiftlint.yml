@@ -50,7 +50,7 @@ vertical_whitespace:
   max_empty_lines: 4
 
 file_length:
-  warning: 1500
+  warning: 1600
   error: 3000
 
 line_length:
@@ -58,7 +58,7 @@ line_length:
   error: 2000
 
 type_body_length:
-  warning: 600
+  warning: 800
   error: 1000
 
 function_body_length:

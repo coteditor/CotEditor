@@ -39,6 +39,8 @@ extension DefaultKeys {
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
     static let highlightBraces = DefaultKey<Bool>("highlightBraces")
     static let highlightLtGt = DefaultKey<Bool>("highlightLtGt")
+    static let highlightSelectionInstance = DefaultKey<Bool>("highlightSelectionInstance")
+    static let selectionInstanceHighlightDelay = DefaultKey<Double>("selectionInstanceHighlightDelay")
     static let checksUpdatesForBeta = DefaultKey<Bool>("checksUpdatesForBeta")
     
     // Window
@@ -60,8 +62,6 @@ extension DefaultKeys {
     static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
     static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
-    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
-    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
     static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
     // Appearance

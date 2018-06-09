@@ -38,12 +38,19 @@ extension NSTextView {
     /// calculate visible range
     var visibleRange: NSRange? {
         
+        return self.range(for: self.visibleRect)
+    }
+    
+    
+    /// calcurate range of characters in rect
+    func range(for rect: NSRect) -> NSRange? {
+        
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer else { return nil }
         
-        let visibleRect = self.visibleRect.offset(by: -self.textContainerOrigin)
-        let glyphRange = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
+        let visibleRect = rect.offset(by: -self.textContainerOrigin)
+        let glyphRange = layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
         
         return layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
     }
@@ -67,6 +74,24 @@ extension NSTextView {
         }
         
         return boundingRect.offset(by: self.textContainerOrigin)
+    }
+    
+    
+    /// return bounding rectangles (in text view coordinates) enclosing all the given character range
+    func boundingRects(for range: NSRange) -> [NSRect] {
+        
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer else { return [] }
+        
+        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        
+        var rects: [NSRect] = []
+        layoutManager.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: glyphRange, in: textContainer) { (rect, _) in
+            rects.append(rect)
+        }
+        
+        return rects.map { $0.offset(by: self.textContainerOrigin) }
     }
     
 }

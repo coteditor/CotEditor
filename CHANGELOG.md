@@ -2,7 +2,77 @@
 Change Log
 ==========================
 
-unreleased
+3.5.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
+
+
+### Improvements
+
+- Select all matches by “Find All”.
+- Remove window size setting option.
+    - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
+- [trivial] Update editor opacity sample tip.
+
+
+### Fixes
+
+- Fix an issue where the help button in the muptiple replace window did not link to the suitable help page.
+- Fix an issue where "Show Mapping Conflict" menu item was always aveilable even no conflict exists.
+
+
+
+3.4.2 (257)
+--------------------------
+
+### Improvements
+
+- [trivial] Let input fields in preferences support dark mode (hidden option on the current systems).
+- [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- Fix an issue under OS X 10.11 where the application crashed with the auto-completion.
+- Fix an issue where some syntax keywords were not highlighted correctly.
+- Improve general stability.
+- [trivial] Fix drawing of capsules for variables in the insertion format setting field.
+
+
+
+3.4.1 (253)
+--------------------------
+
+### Improvements
+
+- Copy also the executability from the file permission of the original document when duplicating a document.
+- [trivial] Improve drawing of capsules for variables in the insertion format setting field.
+- [trivial] Adjust preferences panes layout.
+
+
+### Fixes
+
+- Fix an issue under OS X 10.11 where the application could crash when an item in the outline inspector is clicked.
+- Fix an issue where the word completion of which word starts with double underscores (e.g. `__init__`) skipped the second underscore.
+- Fix an issue where the application could rarely crash while typing.
+- [AppStore ver.] Fix an issue where the options for the software updater for non-AppStore versions were wrongly displayed in the General preferences pane.
+
+
+
+3.4.0 (251)
+--------------------------
+
+### Improvements
+
+- [beta] Localize newly added strings in Italian.
+- [beta] Link help buttons to the latest help pages.
+
+
+
+3.4.0-rc (249)
 --------------------------
 
 ### Improvements
@@ -14,6 +84,7 @@ unreleased
 
 ### Fixes
 
+- [beta] Fix an issue the application could crash while typing.
 - [tirivial] Fix an issue on macOS 10.12 and earlier where the Japanese label of the menu item toggling toolbar visibility did not reflect the current visibility state.
 
 

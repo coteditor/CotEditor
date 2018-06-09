@@ -39,7 +39,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     // MARK: Private Properties
     
-    private let textView: NSTextView
+    private weak var textContainer: NSTextContainer?  // hold textContainer instead of textView, which cannot be weak
     
     
     
@@ -48,7 +48,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     init(textView: NSTextView, forPressAndHold: Bool = false) {
         
-        self.textView = textView
+        self.textContainer = textView.textContainer
         
         super.init()
         
@@ -80,10 +80,12 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
             return item
             
         case .textSizeSlider:
+            guard let textView = self.textView else { return nil }
+            
             let item = NSSliderTouchBarItem(identifier: identifier)
-            item.slider.doubleValue = Double(self.textView.scale)
-            item.slider.maxValue = Double(self.textView.enclosingScrollView?.maxMagnification ?? 5.0)
-            item.slider.minValue = Double(self.textView.enclosingScrollView?.minMagnification ?? 0.2)
+            item.slider.doubleValue = Double(textView.scale)
+            item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
+            item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
             item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
             item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
             item.target = self
@@ -110,7 +112,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         switch action {
         case #selector(resetTextSize(_:)):
-            return (self.textView.scale != 1.0)
+            return (self.textView?.scale != 1.0)
             
         default:
             return true
@@ -126,26 +128,31 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         let scale = CGFloat(sliderItem.slider.doubleValue)
         
-        self.textView.setScaleKeepingVisibleArea(scale)
+        self.textView?.setScaleKeepingVisibleArea(scale)
     }
     
     
     /// "Actaul Size" button was pressed
     @IBAction func resetTextSize(_ sender: Any?) {
         
-        self.textView.setScaleKeepingVisibleArea(1.0)
+        self.textView?.setScaleKeepingVisibleArea(1.0)
     }
     
     
     
     // MARK: Private Methods
     
+    private var textView: NSTextView? {
+        
+        return self.textContainer?.textView
+    }
+    
     /// validate text size slider in touch bar
     @objc private func invalidateSlider(_ notification: Notification) {
         
         guard let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return }
         
-        item.slider.doubleValue = Double(self.textView.scale)
+        item.slider.doubleValue = Double(self.textView?.scale ?? 1.0)
     }
     
 }

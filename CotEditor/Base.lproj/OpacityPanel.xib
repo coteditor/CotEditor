@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +17,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="1120" y="660" width="240" height="84"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="d79-sk-Pi2">
                 <rect key="frame" x="0.0" y="0.0" width="240" height="84"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -28,18 +29,53 @@
                             <binding destination="-2" name="value" keyPath="opacity" id="rJR-cF-d9N"/>
                         </connections>
                     </slider>
-                    <imageView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1lE-ga-X4A">
-                        <rect key="frame" x="23" y="20" width="195" height="15"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="OpacityGuide" id="dfu-e3-y0k"/>
-                    </imageView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="6Td-Vm-3pn" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="20" y="19" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="0Wo-Sz-tV5"/>
+                            <constraint firstAttribute="height" constant="16" id="69O-p2-2rk"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                <real key="value" value="0.20000000000000001"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="jbm-Yv-zi5" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="112" y="19" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="L4g-fI-bJO"/>
+                            <constraint firstAttribute="width" constant="16" id="jvg-z2-wWF"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                <real key="value" value="0.59999999999999998"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Ka3-rm-1xo" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                        <rect key="frame" x="204" y="19" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="5ej-uE-J0C"/>
+                            <constraint firstAttribute="height" constant="16" id="9Qo-S1-XVZ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="VZE-B6-BvY" firstAttribute="leading" secondItem="d79-sk-Pi2" secondAttribute="leading" constant="20" symbolic="YES" id="SNc-4a-vF6"/>
                     <constraint firstAttribute="trailing" secondItem="VZE-B6-BvY" secondAttribute="trailing" constant="20" symbolic="YES" id="XKp-br-hd9"/>
-                    <constraint firstAttribute="bottom" secondItem="1lE-ga-X4A" secondAttribute="bottom" constant="20" symbolic="YES" id="inR-Gr-BEQ"/>
+                    <constraint firstItem="jbm-Yv-zi5" firstAttribute="top" secondItem="VZE-B6-BvY" secondAttribute="bottom" constant="8" symbolic="YES" id="dB2-iG-3zP"/>
+                    <constraint firstItem="jbm-Yv-zi5" firstAttribute="centerX" secondItem="d79-sk-Pi2" secondAttribute="centerX" id="fWh-cW-nkP"/>
+                    <constraint firstAttribute="trailing" secondItem="Ka3-rm-1xo" secondAttribute="trailing" constant="20" symbolic="YES" id="iJN-2B-sOG"/>
                     <constraint firstItem="VZE-B6-BvY" firstAttribute="top" secondItem="d79-sk-Pi2" secondAttribute="top" constant="20" symbolic="YES" id="jl3-Li-XJv"/>
-                    <constraint firstItem="1lE-ga-X4A" firstAttribute="centerX" secondItem="VZE-B6-BvY" secondAttribute="centerX" id="pc9-7j-ngN"/>
-                    <constraint firstItem="1lE-ga-X4A" firstAttribute="top" secondItem="VZE-B6-BvY" secondAttribute="bottom" constant="8" symbolic="YES" id="wnV-E8-QcD"/>
+                    <constraint firstItem="6Td-Vm-3pn" firstAttribute="leading" secondItem="d79-sk-Pi2" secondAttribute="leading" constant="20" symbolic="YES" id="oqj-P2-YDS"/>
+                    <constraint firstItem="Ka3-rm-1xo" firstAttribute="top" secondItem="VZE-B6-BvY" secondAttribute="bottom" constant="8" symbolic="YES" id="yZE-e1-gxh"/>
+                    <constraint firstItem="6Td-Vm-3pn" firstAttribute="top" secondItem="VZE-B6-BvY" secondAttribute="bottom" constant="8" symbolic="YES" id="zVU-We-axc"/>
                 </constraints>
             </view>
             <connections>
@@ -48,7 +84,4 @@
             <point key="canvasLocation" x="351" y="523.5"/>
         </window>
     </objects>
-    <resources>
-        <image name="OpacityGuide" width="195" height="15"/>
-    </resources>
 </document>

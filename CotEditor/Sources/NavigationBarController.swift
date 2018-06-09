@@ -247,7 +247,7 @@ final class NavigationBarController: NSViewController {
     
     private lazy var menuItemParagraphStyle: NSParagraphStyle = {
         
-        let paragraphStyle = NSParagraphStyle.default.mutableCopy() as! NSMutableParagraphStyle
+        let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.tabStops = []
         paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.spaceWidth
         paragraphStyle.lineBreakMode = .byTruncatingMiddle

@@ -79,6 +79,12 @@
 "RrC-LL-hid.title" = "Evidenzia le parentesi “()” “[]” “{}” accoppiate";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "Evidenzia “<>”";
+/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
+"Rcq-1K-8nz.title" = "Highlight instances of selected text";  // FIXME: added
+/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
+"rOw-DD-kV5.title" = "Delay:";  // FIXME: added
+/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
+"ebJ-vk-RME.title" = "seconds";  // FIXME: added
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

@@ -33,12 +33,10 @@ final class OutlineMenuButtonCell: NSPopUpButtonCell {
     /// draw cell
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        NSGraphicsContext.saveGraphicsState()
-        
         // draw background
-        super.drawBezel(withFrame: cellFrame, in: controlView)
+        self.drawBezel(withFrame: cellFrame, in: controlView)
         
-        // draw popup arrow image
+        // draw popup arrow
         let arrowImage = #imageLiteral(resourceName: "PopUpButtonArrowTemplate")
         let imageFrame = NSRect(x: cellFrame.maxX - arrowImage.size.width - 5,
                                 y: cellFrame.minY,
@@ -46,14 +44,9 @@ final class OutlineMenuButtonCell: NSPopUpButtonCell {
                                 height: cellFrame.height)
         self.drawImage(arrowImage, withFrame: imageFrame, in: controlView)
         
-        // shift content 1px
-        var cellFrame = cellFrame
-        cellFrame.origin.y += 1.0
-        
         // draw text
-        super.drawInterior(withFrame: cellFrame, in: controlView)
-        
-        NSGraphicsContext.restoreGraphicsState()
+        let interiorFrame = cellFrame.offsetBy(dx: 0, dy: 1.0)
+        self.drawInterior(withFrame: interiorFrame, in: controlView)
     }
 
 }
