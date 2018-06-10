@@ -52,7 +52,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         if UserDefaults.standard[.sidebarWidth] >= 100 {
             self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
         }
-        self.isSidebarShown = UserDefaults.standard[.showDocumentInspector]
+        self.isSidebarShown = UserDefaults.standard[.showInspector]
         
         self.sidebarViewController?.delegate = self
     }
@@ -234,6 +234,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                     $0.sidebarViewItem?.isCollapsed = !shown
                     $0.sidebarThickness = self.sidebarThickness
                 }
+            
+            UserDefaults.standard[.showInspector] = shown
         }
     }
     

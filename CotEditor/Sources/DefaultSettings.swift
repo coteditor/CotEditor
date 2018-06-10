@@ -46,7 +46,6 @@ struct DefaultSettings {
         
         .windowTabbing: -1,  // = Respect System Setting
         .showNavigationBar: true,
-        .showDocumentInspector: false,
         .showStatusBar: true,
         .showLineNumbers: true,
         .showPageGuide: false,
@@ -171,6 +170,7 @@ struct DefaultSettings {
         .colorCodeType: 1,
         .sidebarWidth: 220,
         .recentStyleNames: [],
+        .showInspector: false,
         
         // ------ hidden settings ------
         .headerFooterDateFormat: "YYYY-MM-dd HH:mm",

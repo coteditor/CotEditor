@@ -44,8 +44,6 @@
 "iw9-Ba-eD2.title" = "Mostrar:";
 /* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
 "3351.title" = "Barra de Navegação";
-/* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
-"3348.title" = "Inspetor do Documento";
 /* Class = "NSButtonCell"; title = "Status Bar"; ObjectID = "3349"; */
 "3349.title" = "Barra de Estado";
 /* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "A9U-Sx-or3"; */
