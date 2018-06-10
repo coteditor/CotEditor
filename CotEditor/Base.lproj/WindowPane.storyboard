@@ -47,8 +47,8 @@
                                 </textFieldCell>
                             </textField>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="WD1-55-LD1">
-                                <rect key="frame" x="284" y="314" width="92" height="18"/>
-                                <buttonCell key="cell" type="check" title="Page Guide" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3352">
+                                <rect key="frame" x="284" y="314" width="90" height="18"/>
+                                <buttonCell key="cell" type="check" title="Page guide" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3352">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -57,8 +57,8 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="7w7-HA-vO7">
-                                <rect key="frame" x="134" y="336" width="111" height="18"/>
-                                <buttonCell key="cell" type="check" title="Navigation Bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3351">
+                                <rect key="frame" x="134" y="336" width="110" height="18"/>
+                                <buttonCell key="cell" type="check" title="Navigation bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3351">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -68,7 +68,7 @@
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="tNa-ag-PUj">
                                 <rect key="frame" x="134" y="314" width="85" height="18"/>
-                                <buttonCell key="cell" type="check" title="Status Bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3349">
+                                <buttonCell key="cell" type="check" title="Status bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3349">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -107,8 +107,8 @@
                                 <rect key="frame" x="20" y="161" width="520" height="5"/>
                             </box>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="W7e-Di-3ya">
-                                <rect key="frame" x="134" y="244" width="88" height="18"/>
-                                <buttonCell key="cell" type="check" title="Line Count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6jK-xX-8AH">
+                                <rect key="frame" x="134" y="244" width="86" height="18"/>
+                                <buttonCell key="cell" type="check" title="Line count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="6jK-xX-8AH">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -117,8 +117,8 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="4Hc-mj-n2O">
-                                <rect key="frame" x="134" y="222" width="123" height="18"/>
-                                <buttonCell key="cell" type="check" title="Character Count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sHZ-kO-Wvu">
+                                <rect key="frame" x="134" y="222" width="121" height="18"/>
+                                <buttonCell key="cell" type="check" title="Character count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="sHZ-kO-Wvu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -137,8 +137,8 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oLV-nM-Y3n">
-                                <rect key="frame" x="134" y="178" width="95" height="18"/>
-                                <buttonCell key="cell" type="check" title="Word Count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hRw-gK-ONt">
+                                <rect key="frame" x="134" y="178" width="93" height="18"/>
+                                <buttonCell key="cell" type="check" title="Word count" bezelStyle="regularSquare" imagePosition="left" inset="2" id="hRw-gK-ONt">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -157,8 +157,8 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="6wB-lm-God">
-                                <rect key="frame" x="264" y="222" width="97" height="18"/>
-                                <buttonCell key="cell" type="check" title="Current Line" bezelStyle="regularSquare" imagePosition="left" inset="2" id="JbR-gR-aiA">
+                                <rect key="frame" x="264" y="222" width="93" height="18"/>
+                                <buttonCell key="cell" type="check" title="Current line" bezelStyle="regularSquare" imagePosition="left" inset="2" id="JbR-gR-aiA">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -177,8 +177,8 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="Oek-xc-AnE">
-                                <rect key="frame" x="394" y="222" width="100" height="18"/>
-                                <buttonCell key="cell" type="check" title="Line Endings" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ief-Dy-mPR">
+                                <rect key="frame" x="394" y="222" width="99" height="18"/>
+                                <buttonCell key="cell" type="check" title="Line endings" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Ief-Dy-mPR">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -187,8 +187,8 @@
                                 </connections>
                             </button>
                             <button horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="O64-k1-YJA">
-                                <rect key="frame" x="394" y="200" width="73" height="18"/>
-                                <buttonCell key="cell" type="check" title="File Size" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ikB-dS-c4S">
+                                <rect key="frame" x="394" y="200" width="71" height="18"/>
+                                <buttonCell key="cell" type="check" title="File size" bezelStyle="regularSquare" imagePosition="left" inset="2" id="ikB-dS-c4S">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -257,8 +257,8 @@
                                 </connections>
                             </imageView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="dN2-g1-1rQ">
-                                <rect key="frame" x="284" y="336" width="106" height="18"/>
-                                <buttonCell key="cell" type="check" title="Line Numbers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A9U-Sx-or3">
+                                <rect key="frame" x="284" y="336" width="104" height="18"/>
+                                <buttonCell key="cell" type="check" title="Line numbers" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A9U-Sx-or3">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
