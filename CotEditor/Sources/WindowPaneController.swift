@@ -8,7 +8,6 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2004-2007 nakamuxu
 //  © 2014-2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,13 +29,27 @@ final class WindowPaneController: NSViewController {
     
     // MARK: Private Properties
     
+    @IBOutlet private weak var tabbingSupportCaution: NSTextField?
+    
     @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
-    @objc private dynamic var supportsWindowTabbing = (NSApp.delegate as! AppDelegate).supportsWindowTabbing
     
     
     
     // MARK: -
-    // MARK: Actionss
+    // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        if (NSApp.delegate as! AppDelegate).supportsWindowTabbing {
+            self.tabbingSupportCaution!.removeFromSuperview()
+        }
+    }
+    
+    
+    
+    // MARK: Actions
     
     /// opaque setting did update
     @IBAction func changeEditorOpaque(_ sender: NSControl) {
