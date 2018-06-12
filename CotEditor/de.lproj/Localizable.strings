@@ -30,6 +30,10 @@
 "Cancel" = "Abbrechen";
 
 
+// Appending words in parentheses
+" (%@)" = " (%@)";
+
+
 
 // Main menu item titles
 "Check for Updates…" = "Nach Updates suchen …";

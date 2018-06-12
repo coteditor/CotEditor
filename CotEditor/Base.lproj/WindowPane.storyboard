@@ -547,6 +547,7 @@
                         </constraints>
                     </customView>
                     <connections>
+                        <outlet property="tabbingOptionMenu" destination="bjF-G8-yrZ" id="wAy-fz-8OU"/>
                         <outlet property="tabbingSupportCaution" destination="rbS-x0-OwF" id="HYY-Lf-1Ke"/>
                     </connections>
                 </viewController>

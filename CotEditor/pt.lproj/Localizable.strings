@@ -31,6 +31,10 @@
 "Cancel" = "Cancelar";
 
 
+// Appending words in parentheses
+" (%@)" = " (%@)";
+
+
 
 // Main menu item titles
 "Check for Updates…" = "Buscar Atualizações…";

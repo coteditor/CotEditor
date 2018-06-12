@@ -31,6 +31,10 @@
 "Cancel" = "キャンセル";
 
 
+// Appending words in parentheses
+" (%@)" = "（%@）";
+
+
 
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認...";

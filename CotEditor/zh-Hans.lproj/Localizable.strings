@@ -31,6 +31,10 @@
 "Cancel" = "取消";
 
 
+// Appending words in parentheses
+" (%@)" = " (%@)";
+
+
 
 // Main menu item titles
 "Check for Updates…" = "检查更新…";
