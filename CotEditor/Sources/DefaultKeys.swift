@@ -52,7 +52,6 @@ extension DefaultKeys {
     static let pageGuideColumn = DefaultKey<Int>("pageGuideColumn")
     static let showStatusBarLines = DefaultKey<Bool>("showStatusBarLines")
     static let showStatusBarChars = DefaultKey<Bool>("showStatusBarChars")
-    static let showStatusBarLength = DefaultKey<Bool>("showStatusBarLength")
     static let showStatusBarWords = DefaultKey<Bool>("showStatusBarWords")
     static let showStatusBarLocation = DefaultKey<Bool>("showStatusBarLocation")
     static let showStatusBarLine = DefaultKey<Bool>("showStatusBarLine")

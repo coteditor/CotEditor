@@ -129,7 +129,6 @@ final class StatusBarController: NSViewController {
     /// default keys to observe update
     private static let observedDefaultKeys: [DefaultKeys] = [.showStatusBarLines,
                                                              .showStatusBarChars,
-                                                             .showStatusBarLength,
                                                              .showStatusBarWords,
                                                              .showStatusBarLocation,
                                                              .showStatusBarLine,
@@ -156,9 +155,6 @@ final class StatusBarController: NSViewController {
         }
         if defaults[.showStatusBarChars] {
             status.appendFormattedState(value: info.chars, label: "Characters", appearance: appearance)
-        }
-        if defaults[.showStatusBarLength] {
-            status.appendFormattedState(value: info.length, label: "Length", appearance: appearance)
         }
         if defaults[.showStatusBarWords] {
             status.appendFormattedState(value: info.words, label: "Words", appearance: appearance)

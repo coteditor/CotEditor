@@ -15,6 +15,7 @@ Change Log
 - Select all matches by “Find All”.
 - Remove the window size setting option.
     - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
+- Remove “length” display in status bar.
 - Remove the initlal document inspector visibility setting option.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane. 
 - [trivial] Update editor opacity sample tip.

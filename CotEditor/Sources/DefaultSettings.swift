@@ -52,7 +52,6 @@ struct DefaultSettings {
         .pageGuideColumn: 80,
         .showStatusBarLines: true,
         .showStatusBarChars: true,
-        .showStatusBarLength: false,
         .showStatusBarWords: false,
         .showStatusBarLocation: true,
         .showStatusBarLine: true,

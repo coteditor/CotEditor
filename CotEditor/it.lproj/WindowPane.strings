@@ -60,8 +60,6 @@
 "6jK-xX-8AH.title" = "N.ro righe";
 /* Class = "NSButtonCell"; title = "Character count"; ObjectID = "sHZ-kO-Wvu"; */
 "sHZ-kO-Wvu.title" = "N.ro caratteri";
-/* Class = "NSButtonCell"; title = "Length"; ObjectID = "YE8-hr-UbT"; */
-"YE8-hr-UbT.title" = "Lunghezza";
 /* Class = "NSButtonCell"; title = "Word count"; ObjectID = "hRw-gK-ONt"; */
 "hRw-gK-ONt.title" = "N.ro parole";
 /* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */

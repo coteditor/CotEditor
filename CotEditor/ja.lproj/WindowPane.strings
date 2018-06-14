@@ -59,8 +59,6 @@
 "6jK-xX-8AH.title" = "行数";
 /* Class = "NSButtonCell"; title = "Character count"; ObjectID = "sHZ-kO-Wvu"; */
 "sHZ-kO-Wvu.title" = "文字数";
-/* Class = "NSButtonCell"; title = "Length"; ObjectID = "YE8-hr-UbT"; */
-"YE8-hr-UbT.title" = "文字長";
 /* Class = "NSButtonCell"; title = "Word count"; ObjectID = "hRw-gK-ONt"; */
 "hRw-gK-ONt.title" = "単語数";
 /* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */

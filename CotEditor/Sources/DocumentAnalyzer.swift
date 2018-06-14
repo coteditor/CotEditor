@@ -46,7 +46,7 @@ final class DocumentInfo: NSObject {
     @objc dynamic var lines: String?
     @objc dynamic var chars: String?
     @objc dynamic var words: String?
-    @objc dynamic var length: String?
+    @objc dynamic var length: String?    // character length as UTF-16 string
     @objc dynamic var location: String?  // caret location from the beginning of document
     @objc dynamic var line: String?      // current line
     @objc dynamic var column: String?    // caret location from the beginning of line
@@ -165,7 +165,6 @@ final class DocumentAnalyzer: NSObject {
             if self.needsUpdateEditorInfo { return .all }
             
             var types = EditorInfoTypes()
-            if UserDefaults.standard[.showStatusBarLength]   { types.update(with: .length) }
             if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
             if UserDefaults.standard[.showStatusBarLines]    { types.update(with: .lines) }
             if UserDefaults.standard[.showStatusBarWords]    { types.update(with: .words) }
