@@ -15,16 +15,17 @@ Change Log
 - Select all matches by “Find All”.
 - Remove the window size setting option.
     - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
-- Remove “length” display in status bar.
-- Remove the initlal document inspector visibility setting option.
-- Display current user's system-wide setting for window tabbing in the menu on the Window pane. 
-- [trivial] Update editor opacity sample tip.
+- Remove “length” display in the status bar.
+- Remove the initial document inspector visibility setting option.
+- Display current user's system-wide setting for window tabbing in the menu on the Window pane.
+- [trivial] Update editor opacity sample tips.
 
 
 ### Fixes
 
-- Fix an issue where the help button in the muptiple replace window did not link to the suitable help page.
-- Fix an issue where "Show Mapping Conflict" menu item was always aveilable even no conflict exists.
+- Fix an issue where the help button in the multiple replace window did not link to the suitable help page.
+- Fix an issue where "Show Mapping Conflict" menu item was always available even no conflict exists.
+- Fix an issue where unwanted debug log was printed in the Console.
 
 
 
