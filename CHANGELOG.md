@@ -19,6 +19,7 @@ Change Log
 - Remove the initial document inspector visibility setting option.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.
 - [trivial] Update editor opacity sample tips.
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
