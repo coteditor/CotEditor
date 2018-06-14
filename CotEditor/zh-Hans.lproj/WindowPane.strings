@@ -82,10 +82,6 @@
 "Bj6-2A-Nxj.title" = "水平";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "垂直";
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "D5G-Lc-5TC"; */
-"D5G-Lc-5TC.title" = "px";
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "1ML-Pr-BCt"; */
-"1ML-Pr-BCt.title" = "px";
 
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
