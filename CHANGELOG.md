@@ -7,9 +7,9 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the help button in the muptiple replace window did not link to the suitable help page.
-- Fix an issue where "Show Mapping Conflict" menu item was always aveilable even no conflict exists.
-- Fix an issue where unwanted debug log was printed in console.
+- Fix an issue where the help button in the multiple replace window did not link to the suitable help page.
+- Fix an issue where "Show Mapping Conflict" menu item was always available even no conflict exists.
+- Fix an issue where unwanted debug log was printed in the Console.
 
 
 3.4.2 (257)
