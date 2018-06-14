@@ -50,14 +50,12 @@
 "3349.title" = "Barra di stato";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "Numeri riga";
-/* Class = "NSButtonCell"; title = "Page guide"; ObjectID = "3352"; */
-"3352.title" = "Guide pagina";
-/* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */
-"3353.title" = "Mostra alla colonna:";
+/* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
+"3352.title" = "Guide pagina alla colonna:";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
-"kjP-FS-fyd.title" = "Barra di stato mostra:";
+"kjP-FS-fyd.title" = "Barra di stato:";
 /* Class = "NSButtonCell"; title = "Line count"; ObjectID = "6jK-xX-8AH"; */
 "6jK-xX-8AH.title" = "N.ro righe";
 /* Class = "NSButtonCell"; title = "Character count"; ObjectID = "sHZ-kO-Wvu"; */

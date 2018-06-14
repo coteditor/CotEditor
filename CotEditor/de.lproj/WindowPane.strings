@@ -49,10 +49,8 @@
 "3349.title" = "Statusleiste";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "Zeilennummern";
-/* Class = "NSButtonCell"; title = "Page guide"; ObjectID = "3352"; */
-"3352.title" = "Seitenhilfslinie";
-/* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */
-"3353.title" = "Bei Spalte:";
+/* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
+"3352.title" = "Seitenhilfslinie bei Spalte:";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
