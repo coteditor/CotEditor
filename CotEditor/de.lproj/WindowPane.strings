@@ -83,7 +83,7 @@
 "sQC-O4-YON.title" = "Vertikal";
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "Overscroll:";  // FIXME: added
+"7Nz-lv-JZb.title" = "überscrollen:";
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Editor-Deckkraft:";
