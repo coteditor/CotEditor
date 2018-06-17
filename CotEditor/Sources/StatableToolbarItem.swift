@@ -1,5 +1,5 @@
 //
-//  ToggleToolbarItem.swift
+//  StatableToolbarItem.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,19 +25,21 @@
 
 import Cocoa
 
-final class TogglableToolbarItem: SmallToolbarItem {
+class StatableToolbarItem: ControlToolbarItem {
     
     // MARK: Public Properties
     
-    var state: NSControl.StateValue = .on {
+    final var state: NSControl.StateValue = .on {
         
         didSet {
+            guard state != oldValue else { return }
+            
             guard let base = self.image?.name()?.rawValue.components(separatedBy: "_").first else {
-                assertionFailure("TogglableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.")
+                assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.")
                 return
             }
             
-            let suffix = (state == .on) ? "On" : "Off"
+            let suffix = (self.state == .on) ? "On" : "Off"
             let name = NSImage.Name(base + "_" + suffix)
             if let image = NSImage(named: name) {
                 self.image = image

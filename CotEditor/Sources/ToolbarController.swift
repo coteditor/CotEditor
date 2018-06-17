@@ -96,6 +96,8 @@ final class ToolbarController: NSObject {
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
+    
+    @IBOutlet private weak var shareButton: NSButton?
 
     
     
@@ -114,6 +116,9 @@ final class ToolbarController: NSObject {
         
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()
+        
+        // share button action must be called on mouseDown
+        self.shareButton?.sendAction(on: .leftMouseDown)
         
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)

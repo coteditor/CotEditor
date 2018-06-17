@@ -63,74 +63,89 @@
 "rHo-eU-O5x.toolTip" = "Syntaxstil ändern";  /* Change syntax style */
 
 /* Class = "NSToolbarItem"; ObjectID = "uXf-pD-u6A"; */
-"uXf-pD-u6A.label" = "Informationen";  /* Get Info */
-"uXf-pD-u6A.paletteLabel" = "Informationen";  /* Get Info */
+"uXf-pD-u6A.label" = "Infofenster";  /* Inspector */
+"uXf-pD-u6A.paletteLabel" = "Infofenster";  /* Inspector */
 "uXf-pD-u6A.toolTip" = "Dokumentinformationen einblenden";  /* Show document information */
 
-/* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "Inkompatiblen";  /* Incompatibles */
-"xle-wq-mIH.paletteLabel" = "Inkompatible Zeichen einblenden";  /* Show Incompatible Characters */
-"xle-wq-mIH.toolTip" = "Inkompatible Zeichen für den ausgewählte Codierung einblenden";  /* Show incompatible characters for selected encoding */
+/* Class = "NSToolbarItem"; ObjectID = "ucH-DE-qQ1"; */
+"ucH-DE-qQ1.label" = "Schriftgröße";  /* Text Size */
+"ucH-DE-qQ1.paletteLabel" = "Schriftgröße";  /* Text Size */
+"ucH-DE-qQ1.toolTip" = "Schriftgröße wechseln";  /* Change text size */
+/* Class = "NSSegmentedCell"; ObjectID = "mkm-Gk-q7f"; */
+"mkm-Gk-q7f.ibShadowedToolTips[0]" = "Die Schriftgröße verkleinern";  // "Decrease text size"
+"mkm-Gk-q7f.ibShadowedToolTips[1]" = "Die Schriftgröße vergrößern";  // "Increase text size"
+/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "BA7-Sh-WYm"; */
+"BA7-Sh-WYm.title" = "Kleiner";
+/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "x2W-ye-BDw"; */
+"x2W-ye-BDw.title" = "Größer";
 
-/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
-"hbb-MD-j6g.label" = "Drucken";  /* Print */
-"hbb-MD-j6g.paletteLabel" = "Drucken";  /* Print */
-"hbb-MD-j6g.toolTip" = "Dokument drucken";  /* Print document */
+/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
+"1zL-0E-fZd.label" = "Richtung beim Schreiben";  /* Writing Direction */
+"1zL-0E-fZd.paletteLabel" = "Richtung beim Schreiben";  /* Writing Direction */
+"1zL-0E-fZd.toolTip" = "Richtung beim Schreiben wechseln";  /* Change writing direction */
+/* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
+"lad-Dh-atP.ibShadowedToolTips[0]" = "Von links nach rechts";  // "Left to Right"
+"lad-Dh-atP.ibShadowedToolTips[1]" = "Von rechts nach links";  // "Right to Left"
+"lad-Dh-atP.ibShadowedToolTips[2]" = "Vertikal";  // "Vertical"
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "Tul-RE-xpJ"; */
+"Tul-RE-xpJ.title" = "Von links nach rechts";
+/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "7iT-zZ-mIj"; */
+"7iT-zZ-mIj.title" = "Von rechts nach links";
+/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
+"5v4-ft-RRo.title" = "Vertikal";
 
-/* Class = "NSToolbarItem"; ObjectID = "yOr-Yw-6Of"; */
-"yOr-Yw-6Of.label" = "Größer";  /* Bigger */
-"yOr-Yw-6Of.paletteLabel" = "Größere Schrift";  /* Bigger Font */
-"yOr-Yw-6Of.toolTip" = "Die Schriftgröße vergrößern";  /* Increase font size */
+/* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
+"1cW-FV-40L.label" = "Textausrichtung";  /* Orientation */
+"1cW-FV-40L.paletteLabel" = "Textausrichtung";  /* Textausrichtung */
+"1cW-FV-40L.toolTip" = "Text vertikal/horizontal ausrichten";  /* Toggle text orientation */
+"rCh-26-3Xy.ibShadowedToolTips[0]" = "Horizontal";  // "Horizontal"
+"rCh-26-3Xy.ibShadowedToolTips[1]" = "Vertikal";  // "Vertical"
+/* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "ZGb-AB-qYS"; */
+"ZGb-AB-qYS.title" = "Horizontal";
+/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "mNA-TN-5ne"; */
+"mNA-TN-5ne.title" = "Vertikal";
 
-/* Class = "NSToolbarItem"; ObjectID = "IKo-gw-WgI"; */
-"IKo-gw-WgI.label" = "Kleiner";  /* Smaller */
-"IKo-gw-WgI.paletteLabel" = "Kleinere Schrift";  /* Smaller Font */
-"IKo-gw-WgI.toolTip" = "Die Schriftgröße verkleinern";  /* Decrease font size */
-
-/* Class = "NSToolbarItem"; ObjectID = "04y-0n-oxo"; */
-"04y-0n-oxo.label" = "Ausrücken";  /* Shift Left */
-"04y-0n-oxo.paletteLabel" = "Ausrücken";  /* Shift Left */
-"04y-0n-oxo.toolTip" = "Zeilen nach Links verschieben";  /* Shift lines to left */
-
-/* Class = "NSToolbarItem"; ObjectID = "4F2-cX-AQu"; */
-"4F2-cX-AQu.label" = "Einrücken";  /* Shift Right */
-"4F2-cX-AQu.paletteLabel" = "Einrücken";  /* Shift Right */
-"4F2-cX-AQu.toolTip" = "Zeilen nach Rechts verschieben";  /* Shift lines to right */
+/* Class = "NSToolbarItem"; ObjectID = "FZC-Iu-jGT"; */
+"FZC-Iu-jGT.label" = "Einziehen";  /* Indent */
+"FZC-Iu-jGT.paletteLabel" = "Einziehen";  /* Indent */
+"FZC-Iu-jGT.toolTip" = "Auswahl einziehen";  /* Indent selection */
+/* Class = "NSSegmentedCell"; ObjectID = "X5g-Bw-O4v"; */
+"X5g-Bw-O4v.ibShadowedToolTips[0]" = "Zeilen nach Links verschieben";  // "Shift lines to left"
+"X5g-Bw-O4v.ibShadowedToolTips[1]" = "Zeilen nach Rechts verschieben";  // "Shift lines to right"
+/* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "f0K-30-PBc"; */
+"f0K-30-PBc.title" = "Ausrücken";
+/* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "GEC-yY-cni"; */
+"GEC-yY-cni.title" = "Einrücken";
 
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "Kommentar";  /* Comment */
-"fW9-Xn-I9b.paletteLabel" = "Aus-/Unkommentieren";  /* Toggle Comment */
+"fW9-Xn-I9b.paletteLabel" = "Kommentar";  /* Comment */
 "fW9-Xn-I9b.toolTip" = "Auswahl aus-/unkommentieren";  /* Comment-out or uncomment selection */
+
+/* Class = "NSToolbarItem"; ObjectID = "PUK-pd-jWZ"; */
+"PUK-pd-jWZ.label" = "Tabulatorstil";  /* Tab Style */
+"PUK-pd-jWZ.paletteLabel" = "Tabulatorstil";  /* Tab Style */
+"PUK-pd-jWZ.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle tab auto-expansion */
+/* Class = "NSSegmentedCell"; ObjectID = "zn9-Cf-SiH"; */
+"zn9-Cf-SiH.ibShadowedToolTips[0]" = "Auto-Tabulatorexpandierung ein/aus";  // "Toggle tab auto-expansion"
+"zn9-Cf-SiH.ibShadowedToolTips[1]" = "Tabulatorbreite wechseln";  // "Change tab width"
+/* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "glT-ig-kuW"; */
+"glT-ig-kuW.title" = "Tabulatorbreite";
+
+/* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
+"mGD-5P-MDq.label" = "Zeilen umbrechen";  /* Wrap Lines */
+"mGD-5P-MDq.paletteLabel" = "Zeilen umbrechen";  /* Wrap Lines */
+"mGD-5P-MDq.toolTip" = "Zeilenumbruch ein/aus";  /* Toggle wrap lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "Unsichtbares";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "Unsichtbares ein-/ausblenden";  /* Show/Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Unsichtbares";  /* Invisibles */
 "xbD-Up-YfQ.toolTip" = "Unsichtbare Zeichen im Text ein-/ausblenden";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "Seitenhilfslinie";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "Seitenhilfslinie ein-/ausblenden";  /* Show/Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "Seitenhilfslinie";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Seitenhilfslinie ein-/ausblenden";  /* Show or hide page guide line */
-
-/* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
-"mGD-5P-MDq.label" = "Zeilen umbrechen";  /* Wrap Lines */
-"mGD-5P-MDq.paletteLabel" = "Zeilenumbruch ein/aus";  /* Toggle Wrap Lines */
-"mGD-5P-MDq.toolTip" = "Zeilenumbruch ein/aus";  /* Toggle wrap lines */
-
-/* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "Textausrichtung";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "Textausrichtung";  /* Toggle Text Orientation */
-"1cW-FV-40L.toolTip" = "Text vertikal/horizontal ausrichten";  /* Toggle text orientation */
-
-/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
-"1zL-0E-fZd.label" = "Richtung beim Schreiben";  /* Writing Direction */
-"1zL-0E-fZd.paletteLabel" = "Richtung beim Schreiben";  /* Toggle Writing Direction */
-"1zL-0E-fZd.toolTip" = "Richtung beim Schreiben";  /* Toggle writing direction */
-
-/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
-"c9C-af-Zcg.label" = "Tab. Expandieren";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle Tab Auto-Expansion */
-"c9C-af-Zcg.toolTip" = "Auto-Tabulatorexpandierung ein/aus";  /* Toggle tab auto-expansion */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */
@@ -142,15 +157,25 @@
 "Yx1-Tq-tfo.paletteLabel" = "Farbcode bearbeiten";  /* Edit Color Code */
 "Yx1-Tq-tfo.toolTip" = "Farbcode-Editor öffnen und die Auswahl als Farbcode einrichten";  /* Open Color Code Editor and set selection as color code */
 
-/* Class = "NSToolbarItem"; ObjectID = "7dM-wh-XeA"; */
-"7dM-wh-XeA.label" = "Umfärben";  /* Re-Color */
-"7dM-wh-XeA.paletteLabel" = "Alles umfärben";  /* Re-Color All */
-"7dM-wh-XeA.toolTip" = "Ganzes Dokument umfärben";  /* Re-color whole document */
+/* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
+"ACV-s4-QzY.label" = "Suchen";  /* Find */
+"ACV-s4-QzY.paletteLabel" = "Suchen";  /* Find */
+"ACV-s4-QzY.toolTip" = "Suchen & Ersetzen einblenden";  /* Show Find & Replace */
+
+/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
+"hbb-MD-j6g.label" = "Drucken";  /* Print */
+"hbb-MD-j6g.paletteLabel" = "Drucken";  /* Print */
+"hbb-MD-j6g.toolTip" = "Dokument drucken";  /* Print document */
 
 /* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
 "UZV-t9-t0E.label" = "Bereitstellen";  /* Share */
 "UZV-t9-t0E.paletteLabel" = "Bereitstellen";  /* Share */
 "UZV-t9-t0E.toolTip" = "Dokumentdatei bereitstellen";  /* Share document file */
+
+/* Class = "NSToolbarItem"; ObjectID = "vLf-la-9dL"; */
+"vLf-la-9dL.label" = "Schriften";  /* Fonts */
+"vLf-la-9dL.paletteLabel" = "Schriften";  /* Fonts */
+"vLf-la-9dL.toolTip" = "Schriftfenster anzeigen";  /* Show Font Panel */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */

@@ -7,6 +7,7 @@ Change Log
 
 ### New Features
 
+- New toolbar icons.
 - Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
 - New option to allow overscrolling (in Window pane).
 

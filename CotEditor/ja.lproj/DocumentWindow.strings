@@ -63,74 +63,89 @@
 "rHo-eU-O5x.toolTip" = "シンタックススタイルを変更";  /* Change syntax style */
 
 /* Class = "NSToolbarItem"; ObjectID = "uXf-pD-u6A"; */
-"uXf-pD-u6A.label" = "情報を見る";  /* Get Info */
-"uXf-pD-u6A.paletteLabel" = "情報を見る";  /* Get Info */
+"uXf-pD-u6A.label" = "インスペクタ";  /* Inspector */
+"uXf-pD-u6A.paletteLabel" = "インスペクタ";  /* Inspector */
 "uXf-pD-u6A.toolTip" = "書類情報を表示";  /* Show document information */
 
-/* Class = "NSToolbarItem"; ObjectID = "xle-wq-mIH"; */
-"xle-wq-mIH.label" = "非互換文字";  /* Incompatibles */
-"xle-wq-mIH.paletteLabel" = "非互換文字を表示";  /* Show Incompatible Characters */
-"xle-wq-mIH.toolTip" = "エンコーディングと非互換の文字を表示";  /* Show incompatible characters with selected encoding */
+/* Class = "NSToolbarItem"; ObjectID = "ucH-DE-qQ1"; */
+"ucH-DE-qQ1.label" = "文字サイズ";  /* Text Size */
+"ucH-DE-qQ1.paletteLabel" = "文字サイズ";  /* Text Size */
+"ucH-DE-qQ1.toolTip" = "文字サイズを変更";  /* Change text size */
+/* Class = "NSSegmentedCell"; ObjectID = "mkm-Gk-q7f"; */
+"mkm-Gk-q7f.ibShadowedToolTips[0]" = "文字を小さく";  // "Decrease text size"
+"mkm-Gk-q7f.ibShadowedToolTips[1]" = "文字を大きく";  // "Increase text size"
+/* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "BA7-Sh-WYm"; */
+"BA7-Sh-WYm.title" = "小さく";
+/* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "x2W-ye-BDw"; */
+"x2W-ye-BDw.title" = "大きく";
 
-/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
-"hbb-MD-j6g.label" = "プリント";  /* Print */
-"hbb-MD-j6g.paletteLabel" = "プリント";  /* Print */
-"hbb-MD-j6g.toolTip" = "書類をプリント";  /* Print document */
+/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
+"1zL-0E-fZd.label" = "文章の方向";  /* Writing Direction */
+"1zL-0E-fZd.paletteLabel" = "文章の方向";  /* Writing Direction */
+"1zL-0E-fZd.toolTip" = "文章の方向を切替";  /* Change writing direction */
+/* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
+"lad-Dh-atP.ibShadowedToolTips[0]" = "左から右";  // "Left to Right"
+"lad-Dh-atP.ibShadowedToolTips[1]" = "右から左";  // "Right to Left"
+"lad-Dh-atP.ibShadowedToolTips[2]" = "縦書き";  // "Vertical"
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "Tul-RE-xpJ"; */
+"Tul-RE-xpJ.title" = "左から右";
+/* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "7iT-zZ-mIj"; */
+"7iT-zZ-mIj.title" = "右から左";
+/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
+"5v4-ft-RRo.title" = "縦書き";
 
-/* Class = "NSToolbarItem"; ObjectID = "yOr-Yw-6Of"; */
-"yOr-Yw-6Of.label" = "大きく";  /* Bigger */
-"yOr-Yw-6Of.paletteLabel" = "文字を大きく";  /* Bigger Font */
-"yOr-Yw-6Of.toolTip" = "フォントサイズを大きく";  /* Increase font size */
+/* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
+"1cW-FV-40L.label" = "横書き/縦書き";  /* Orientation */
+"1cW-FV-40L.paletteLabel" = "横書き/縦書き";  /* Orientation */
+"1cW-FV-40L.toolTip" = "横書き/縦書きを切替";  /* Toggle text orientation */
+"rCh-26-3Xy.ibShadowedToolTips[0]" = "横書き";  // "Horizontal"
+"rCh-26-3Xy.ibShadowedToolTips[1]" = "縦書き";  // "Vertical"
+/* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "ZGb-AB-qYS"; */
+"ZGb-AB-qYS.title" = "横書き";
+/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "mNA-TN-5ne"; */
+"mNA-TN-5ne.title" = "縦書き";
 
-/* Class = "NSToolbarItem"; ObjectID = "IKo-gw-WgI"; */
-"IKo-gw-WgI.label" = "小さく";  /* Smaller */
-"IKo-gw-WgI.paletteLabel" = "文字を小さく";  /* Smaller Font */
-"IKo-gw-WgI.toolTip" = "フォントサイズを小さく";  /* Decrease font size */
-
-/* Class = "NSToolbarItem"; ObjectID = "04y-0n-oxo"; */
-"04y-0n-oxo.label" = "左へシフト";  /* Shift Left */
-"04y-0n-oxo.paletteLabel" = "左へシフト";  /* Shift Left */
-"04y-0n-oxo.toolTip" = "行を左へシフト";  /* Shift lines to left */
-
-/* Class = "NSToolbarItem"; ObjectID = "4F2-cX-AQu"; */
-"4F2-cX-AQu.label" = "右へシフト";  /* Shift Right */
-"4F2-cX-AQu.paletteLabel" = "右へシフト";  /* Shift Right */
-"4F2-cX-AQu.toolTip" = "行を右へシフト";  /* Shift lines to right */
+/* Class = "NSToolbarItem"; ObjectID = "FZC-Iu-jGT"; */
+"FZC-Iu-jGT.label" = "インデント";  /* Indent */
+"FZC-Iu-jGT.paletteLabel" = "インデント";  /* Indent */
+"FZC-Iu-jGT.toolTip" = "選択範囲をインデント";  /* Indent selection */
+/* Class = "NSSegmentedCell"; ObjectID = "X5g-Bw-O4v"; */
+"X5g-Bw-O4v.ibShadowedToolTips[0]" = "行を左へシフト";  // "Shift lines to left"
+"X5g-Bw-O4v.ibShadowedToolTips[1]" = "行を右へシフト";  // "Shift lines to right"
+/* Class = "NSMenuItem"; title = "Shift Left"; ObjectID = "f0K-30-PBc"; */
+"f0K-30-PBc.title" = "左へシフト";
+/* Class = "NSMenuItem"; title = "Shift Right"; ObjectID = "GEC-yY-cni"; */
+"GEC-yY-cni.title" = "右へシフト";
 
 /* Class = "NSToolbarItem"; ObjectID = "fW9-Xn-I9b"; */
 "fW9-Xn-I9b.label" = "コメント";  /* Comment */
-"fW9-Xn-I9b.paletteLabel" = "コメントを切替";  /* Toggle Comment */
+"fW9-Xn-I9b.paletteLabel" = "コメント";  /* Comment */
 "fW9-Xn-I9b.toolTip" = "選択範囲をコメントアウト/コメント解除";  /* Comment-out or uncomment selection */
+
+/* Class = "NSToolbarItem"; ObjectID = "PUK-pd-jWZ"; */
+"PUK-pd-jWZ.label" = "タブスタイル";  /* Tab Style */
+"PUK-pd-jWZ.paletteLabel" = "タブスタイル";  /* Tab Style */
+"PUK-pd-jWZ.toolTip" = "自動タブ展開を切替";  /* Toggle tab auto-expansion */
+/* Class = "NSSegmentedCell"; ObjectID = "zn9-Cf-SiH"; */
+"zn9-Cf-SiH.ibShadowedToolTips[0]" = "自動タブ展開を切替";  // "Toggle tab auto-expansion"
+"zn9-Cf-SiH.ibShadowedToolTips[1]" = "タブ幅を変更";  // "Change tab width"
+/* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "glT-ig-kuW"; */
+"glT-ig-kuW.title" = "タブ幅";
+
+/* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
+"mGD-5P-MDq.label" = "行を折り返す";  /* Wrap Lines */
+"mGD-5P-MDq.paletteLabel" = "行を折り返す";  /* Wrap Lines */
+"mGD-5P-MDq.toolTip" = "行の折り返しを切替";  /* Toggle wrap lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
 "xbD-Up-YfQ.label" = "不可視文字";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "不可視文字を表示/非表示";  /* Show/Hide Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "不可視文字";  /* Invisibles */
 "xbD-Up-YfQ.toolTip" = "テキスト中の不可視文字を表示/非表示";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "ページガイド";  /* Page Guide */
-"GS6-aA-mgz.paletteLabel" = "ページガイドを表示/非表示";  /* Show/Hide Page Guide */
+"GS6-aA-mgz.paletteLabel" = "ページガイド";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "ページガイドを表示/非表示";  /* Show or hide page guide line */
-
-/* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
-"mGD-5P-MDq.label" = "行を折り返す";  /* Wrap Lines */
-"mGD-5P-MDq.paletteLabel" = "行の折り返しを切替";  /* Toggle Wrap Lines */
-"mGD-5P-MDq.toolTip" = "行の折り返しを切替";  /* Toggle wrap lines */
-
-/* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "縦書き/横書き";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "縦書き/横書きを切替";  /* Toggle Text Orientation */
-"1cW-FV-40L.toolTip" = "縦書き/横書きを切替";  /* Toggle text orientation */
-
-/* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
-"1zL-0E-fZd.label" = "文章の方向";  /* Writing Direction */
-"1zL-0E-fZd.paletteLabel" = "文章の方向を切替";  /* Toggle Writing Direction */
-"1zL-0E-fZd.toolTip" = "文章の方向を切替";  /* Toggle writing direction */
-
-/* Class = "NSToolbarItem"; ObjectID = "c9C-af-Zcg"; */
-"c9C-af-Zcg.label" = "タブを展開";  /* Expand Tabs */
-"c9C-af-Zcg.paletteLabel" = "自動タブ展開を切替";  /* Toggle Tab Auto-Expansion */
-"c9C-af-Zcg.toolTip" = "自動タブ展開を切替";  /* Toggle tab auto-expansion */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "スペルチェック";  /* Spell Check */
@@ -142,15 +157,25 @@
 "Yx1-Tq-tfo.paletteLabel" = "カラーコードを編集";  /* Edit Color Code */
 "Yx1-Tq-tfo.toolTip" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";  /* Open Color Code Editor and set selection as color code */
 
-/* Class = "NSToolbarItem"; ObjectID = "7dM-wh-XeA"; */
-"7dM-wh-XeA.label" = "再カラーリング";  /* Re-Color */
-"7dM-wh-XeA.paletteLabel" = "再カラーリング";  /* Re-Color All */
-"7dM-wh-XeA.toolTip" = "書類全体を再カラーリング";  /* Re-color whole document */
+/* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
+"ACV-s4-QzY.label" = "検索";  /* Find */
+"ACV-s4-QzY.paletteLabel" = "検索";  /* Find */
+"ACV-s4-QzY.toolTip" = "“検索と置換”を表示";  /* Show Find & Replace */
+
+/* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
+"hbb-MD-j6g.label" = "プリント";  /* Print */
+"hbb-MD-j6g.paletteLabel" = "プリント";  /* Print */
+"hbb-MD-j6g.toolTip" = "書類をプリント";  /* Print document */
 
 /* Class = "NSToolbarItem"; ObjectID = "UZV-t9-t0E"; */
 "UZV-t9-t0E.label" = "共有";  /* Share */
 "UZV-t9-t0E.paletteLabel" = "共有";  /* Share */
 "UZV-t9-t0E.toolTip" = "書類ファイルを共有";  /* Share document file */
+
+/* Class = "NSToolbarItem"; ObjectID = "vLf-la-9dL"; */
+"vLf-la-9dL.label" = "フォント";  /* Fonts */
+"vLf-la-9dL.paletteLabel" = "フォント";  /* Fonts */
+"vLf-la-9dL.toolTip" = "フォントパネルを表示";  /* Show Font Panel */
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */

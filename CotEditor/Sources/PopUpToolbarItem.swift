@@ -29,19 +29,25 @@ final class PopUpToolbarItem: NSToolbarItem {
     
     // MARK: Toolbar Item Methods
     
-    /// setup popup menu for "Text Only" mode
     override func awakeFromNib() {
         
-        guard let popUpButton = self.view as? NSPopUpButton else {
-            print("%@'s view must be a kind of NSPopUpButton", self.className)
-            abort()
-        }
+        let popUpButton = self.popUpButton!
         
+        /// setup popup menu for "Text Only" mode
         let item = NSMenuItem()
         item.submenu = popUpButton.menu
         item.title = self.label
         
         self.menuFormRepresentation = item
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    var popUpButton: NSPopUpButton? {
+        
+        return self.view as? NSPopUpButton
     }
     
 }

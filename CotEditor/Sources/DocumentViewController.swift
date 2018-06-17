@@ -241,49 +241,55 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// apply current state to related toolbar items
-    override func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         guard let action = item.action else { return false }
         
-        switch action {
-        case #selector(recolorAll):
+        switch (action, item) {
+        case (#selector(recolorAll), _):
             return self.syntaxParser?.canParse ?? false
             
-        default: break
-        }
-        
-        // validate button image state
-        if let imageItem = item as? TogglableToolbarItem {
-            switch action {
-            case #selector(toggleLineWrap):
-                imageItem.state = self.wrapsLines ? .on : .off
-                
-            case #selector(toggleLayoutOrientation):
-                imageItem.state = self.verticalLayoutOrientation ? .on : .off
-                
-            case #selector(toggleWritingDirection):
-                imageItem.state = (self.writingDirection == .rightToLeft) ? .on : .off
-                return !self.verticalLayoutOrientation
-                
-            case #selector(togglePageGuide):
-                imageItem.state = self.showsPageGuide ? .on : .off
-                
-            case #selector(toggleInvisibleChars):
-                imageItem.state = self.showsInvisibles ? .on : .off
-                
-                // disable button if item cannot be enabled
-                if self.canActivateShowInvisibles {
-                    imageItem.toolTip = NSLocalizedString("Show or hide invisible characters in document", comment: "")
-                } else {
-                    imageItem.toolTip = NSLocalizedString("To show invisible characters, set them in Preferences", comment: "")
-                    return false
-                }
-                
-            case #selector(toggleAutoTabExpand):
-                imageItem.state = self.isAutoTabExpandEnabled ? .on : .off
-                
-            default: break
+        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
+            item.state = self.wrapsLines ? .on : .off
+            
+        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
+            item.state = self.wrapsLines ? .on : .off
+            
+        case (#selector(togglePageGuide), let item as StatableToolbarItem):
+            item.state = self.showsPageGuide ? .on : .off
+            
+        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
+            item.state = self.showsInvisibles ? .on : .off
+            
+            // disable button if item cannot be enabled
+            if self.canActivateShowInvisibles {
+                item.toolTip = NSLocalizedString("Show or hide invisible characters in document", comment: "")
+            } else {
+                item.toolTip = NSLocalizedString("To show invisible characters, set them in Preferences", comment: "")
+                return false
             }
+            
+        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
+            item.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
+            let tag: Int = {
+                switch (self.verticalLayoutOrientation, self.writingDirection) {
+                case (true, _):
+                    return 2
+                case (false, .rightToLeft):
+                    return 1
+                default:
+                    return 0
+                }
+            }()
+            item.segmentedControl?.selectSegment(withTag: tag)
+            
+        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
+            let tag = self.verticalLayoutOrientation ? 1 : 0
+            item.segmentedControl?.selectSegment(withTag: tag)
+            
+        default: break
         }
         
         return true
@@ -591,10 +597,36 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// toggle text layout orientation (vertical/horizontal)
-    @IBAction func toggleLayoutOrientation(_ sender: Any?) {
+    /// change writing direction from segmented control button
+    @IBAction func changeWritingDirection(_ sender: NSSegmentedControl) {
         
-        self.verticalLayoutOrientation = !self.verticalLayoutOrientation
+        switch sender.selectedSegment {
+        case 0:
+            self.makeLayoutOrientationHorizontal(nil)
+            self.makeWritingDirectionLeftToRight(nil)
+        case 1:
+            self.makeLayoutOrientationHorizontal(nil)
+            self.makeWritingDirectionRightToLeft(nil)
+        case 2:
+            self.makeWritingDirectionLeftToRight(nil)
+            self.makeLayoutOrientationVertical(nil)
+        default:
+            assertionFailure("Segmented writing direction button must have 3 segments only.")
+        }
+    }
+    
+    
+    /// change layout orientation from segmented control button
+    @IBAction func changeOrientation(_ sender: NSSegmentedControl) {
+        
+        switch sender.selectedSegment {
+        case 0:
+            self.makeLayoutOrientationHorizontal(nil)
+        case 1:
+            self.makeLayoutOrientationVertical(nil)
+        default:
+            assertionFailure("Segmented layout orientation button must have 2 segments only.")
+        }
     }
     
     
@@ -609,13 +641,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
         
         self.verticalLayoutOrientation = true
-    }
-    
-    
-    /// toggle writing direction (LTR/RTL)
-    @IBAction func toggleWritingDirection(_ sender: Any?) {
-        
-        self.writingDirection = (self.writingDirection == .leftToRight) ? .rightToLeft : .leftToRight
     }
     
     
