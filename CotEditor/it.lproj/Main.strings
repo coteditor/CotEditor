@@ -280,8 +280,8 @@
 "10j-rd-fWr.title" = "Inspector";
 /* Class = "NSMenuItem"; title = "Document Inspector"; ObjectID = "564"; */
 "564.title" = "Ispettore del documento";
-/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "679"; */
-"679.title" = "Outline";
+/* Class = "NSMenuItem"; title = "Outline"; ObjectID = "Gch-XD-tRl"; */
+"Gch-XD-tRl.title" = "Outline";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caratteri incompatibili";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
