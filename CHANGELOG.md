@@ -21,6 +21,7 @@ Change Log
 - Remove the initial document inspector visibility setting option.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.
 - Improve the editor's scrolling behavior to scroll along the predominant axis.
+- Optimize performance of character counting.
 - [trivial] Update editor opacity sample tips.
 - [non-AppStore ver.] Update Sparkle framework.
 
