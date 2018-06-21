@@ -153,6 +153,22 @@ final class DocumentAnalyzer: NSObject {
     
     // MARK: Private Methods
     
+    /// info types needed to be calculated
+    private var requiredInfoTypes: EditorInfoTypes {
+        
+        if self.needsUpdateEditorInfo { return .all }
+        
+        var types = EditorInfoTypes()
+        if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
+        if UserDefaults.standard[.showStatusBarLines]    { types.update(with: .lines) }
+        if UserDefaults.standard[.showStatusBarWords]    { types.update(with: .words) }
+        if UserDefaults.standard[.showStatusBarLocation] { types.update(with: .location) }
+        if UserDefaults.standard[.showStatusBarLine]     { types.update(with: .line) }
+        if UserDefaults.standard[.showStatusBarColumn]   { types.update(with: .column) }
+        return types
+    }
+    
+    
     /// update editor info (only if really needed)
     private func updateEditorInfo() {
         
@@ -161,23 +177,10 @@ final class DocumentAnalyzer: NSObject {
             let textView = document.viewController?.focusedTextView,
             !textView.hasMarkedText() else { return }
         
-        let requiredInfo: EditorInfoTypes = {
-            if self.needsUpdateEditorInfo { return .all }
-            
-            var types = EditorInfoTypes()
-            if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
-            if UserDefaults.standard[.showStatusBarLines]    { types.update(with: .lines) }
-            if UserDefaults.standard[.showStatusBarWords]    { types.update(with: .words) }
-            if UserDefaults.standard[.showStatusBarLocation] { types.update(with: .location) }
-            if UserDefaults.standard[.showStatusBarLine]     { types.update(with: .line) }
-            if UserDefaults.standard[.showStatusBarColumn]   { types.update(with: .column) }
-            return types
-        }()
-        
         let operation = EditorInfoCountOperation(string: document.textStorage.string.immutable,
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: textView.selectedRange,
-                                                 requiredInfo: requiredInfo,
+                                                 requiredInfo: self.requiredInfoTypes,
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
         
         operation.completionBlock = { [weak self, weak operation] in
