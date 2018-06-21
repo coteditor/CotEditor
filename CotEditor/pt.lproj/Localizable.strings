@@ -248,6 +248,8 @@
 
 /* MARK: DocumentViewController */
 // Menu items
+"Hide Inspector" = "Show Inspector";  // FIXME: added
+"Show Inspector" = "Hide Inspector";  // FIXME: added
 "Hide Line Numbers" = "Ocultar Números das Linhas";
 "Show Line Numbers" = "Mostrar Números das Linhas";
 "Hide Status Bar" = "Ocultar Barra de Estado";

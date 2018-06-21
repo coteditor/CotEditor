@@ -104,6 +104,11 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         guard let action = item.action else { return false }
         
         switch action {
+        case #selector(toggleInspector):
+            (item as? NSMenuItem)?.title = self.isSidebarShown
+                ? NSLocalizedString("Hide Inspector", comment: "")
+                : NSLocalizedString("Show Inspector", comment: "")
+            
         case #selector(getInfo):
             (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
             return self.canToggleSidebar
@@ -153,6 +158,15 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     // MARK: Action Messages
+    
+    /// toggle visibility of inspector
+    @IBAction func toggleInspector(_ sender: Any?) {
+        
+        NSAnimationContext.current.withAnimation(true) {
+            self.isSidebarShown = !self.isSidebarShown
+        }
+    }
+    
     
     /// toggle visibility of document inspector
     @IBAction func getInfo(_ sender: Any?) {

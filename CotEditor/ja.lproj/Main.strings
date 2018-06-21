@@ -283,6 +283,8 @@
 "679.title" = "アウトライン";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "非互換文字";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "インスペクタを表示";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "ナビゲーションバーを表示";

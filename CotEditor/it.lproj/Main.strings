@@ -284,6 +284,8 @@
 "679.title" = "Outline";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caratteri incompatibili";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "Show Inspector";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostra barra di navigazione";

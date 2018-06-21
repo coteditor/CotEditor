@@ -88,7 +88,7 @@
                                         </buttonCell>
                                     </button>
                                     <connections>
-                                        <action selector="getInfo:" target="klO-m3-n5X" id="9pN-7R-doc"/>
+                                        <action selector="toggleInspector:" target="klO-m3-n5X" id="BgT-Zy-sXi"/>
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="70B46C03-6CE7-4C61-A77B-001526E7BC49" label="Text Size" paletteLabel="Text Size" toolTip="Change text size" id="ucH-DE-qQ1" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">

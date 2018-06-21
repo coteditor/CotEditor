@@ -248,6 +248,8 @@
 
 /* MARK: DocumentViewController */
 // Menu items
+"Hide Inspector" = "Show Inspector";  // FIXME: added
+"Show Inspector" = "Hide Inspector";  // FIXME: added
 "Hide Line Numbers" = "隐藏行号";
 "Show Line Numbers" = "显示行号";
 "Hide Status Bar" = "隐藏状态栏";

@@ -283,6 +283,8 @@
 "679.title" = "Gliederung";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Inkompatible Zeichen";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "Infofenster einblenden";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Navigationsleiste einblenden";

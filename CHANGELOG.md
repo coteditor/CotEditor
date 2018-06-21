@@ -15,6 +15,7 @@ Change Log
 ### Improvements
 
 - Select all matches by “Find All”.
+- Add menu item to toggle visibility of the sidebar inspector.
 - Remove the window size setting option.
     - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
 - Remove “length” display in the status bar.

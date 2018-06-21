@@ -248,6 +248,8 @@
 
 /* MARK: DocumentViewController */
 // Menu items
+"Hide Inspector" = "インスペクタを非表示";
+"Show Inspector" = "インスペクタを表示";
 "Hide Line Numbers" = "行番号を非表示";
 "Show Line Numbers" = "行番号を表示";
 "Hide Status Bar" = "ステータスバーを非表示";
