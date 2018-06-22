@@ -286,7 +286,7 @@ final class LineNumberView: NSRulerView {
         
         // draw the last "extra" line number
         let lineRect = layoutManager.extraLineFragmentUsedRect
-        if lineRect.intersects(textView.visibleRect) {
+        if layoutManager.extraLineFragmentTextContainer != nil, lineRect.intersects(textView.visibleRect) {
             let lastLineNumber = string.lineNumber(at: length)
             let isSelected: Bool = {
                 guard let lastSelectedRange = selectedLineRanges.last else { return false }
