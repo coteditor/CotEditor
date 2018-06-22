@@ -530,7 +530,8 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Inspector" id="10j-rd-fWr">
                                                 <items>
-                                                    <menuItem title="Document Inspector" keyEquivalent="i" id="564">
+                                                    <menuItem title="Document Inspector" id="564">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
                                                         </connections>
