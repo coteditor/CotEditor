@@ -550,7 +550,6 @@ Gw
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>
                                                     <menuItem title="Show Inspector" keyEquivalent="i" id="I2p-KB-gxR">
-                                                        <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                                         <connections>
                                                             <action selector="toggleInspector:" target="Ady-hI-5gd" id="To3-Cv-XPF"/>
                                                         </connections>
