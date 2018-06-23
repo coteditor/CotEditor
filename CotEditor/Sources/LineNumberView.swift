@@ -314,7 +314,7 @@ final class LineNumberView: NSRulerView {
     /// make background transparent
     override var isOpaque: Bool {
         
-        return false
+        return self.textView?.isOpaque ?? true
     }
     
     
@@ -347,7 +347,7 @@ final class LineNumberView: NSRulerView {
             return textColor
         }
         
-        return textColor.withAlphaComponent(strength.rawValue)
+        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
     }
     
     
@@ -356,7 +356,12 @@ final class LineNumberView: NSRulerView {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
-        return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        if let textView = self.textView, textView.isOpaque {
+            let color = textView.backgroundColor
+            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
+        } else {
+            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        }
     }
     
     
