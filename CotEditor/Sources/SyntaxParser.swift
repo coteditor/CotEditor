@@ -267,14 +267,12 @@ extension SyntaxParser {
             return nil
         }
         
-        let operation = SyntaxHighlightParseOperation(extractors: self.style.highlightExtractors,
-                                                      pairedQuoteTypes: self.style.pairedQuoteTypes,
-                                                      inlineCommentDelimiter: self.style.inlineCommentDelimiter,
-                                                      blockCommentDelimiters: self.style.blockCommentDelimiters)
-        operation.string = string
-        operation.parseRange = highlightRange
+        let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
+                                                                       pairedQuoteTypes: self.style.pairedQuoteTypes,
+                                                                       inlineCommentDelimiter: self.style.inlineCommentDelimiter,
+                                                                       blockCommentDelimiters: self.style.blockCommentDelimiters)
         
-        operation.highlightBlock = { [weak self] (highlights) in
+        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange, highlightBlock: { [weak self] (highlights) in
             guard let strongSelf = self else { return }
             
             // cache result if whole text was parsed
@@ -288,7 +286,7 @@ extension SyntaxParser {
                 
                 strongSelf.apply(highlights: highlights, range: highlightRange)
             }
-        }
+        })
         
         operation.completionBlock = completionHandler
         
