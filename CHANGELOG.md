@@ -9,6 +9,7 @@ Change Log
 
 - Fix an issue where the help button in the multiple replace window did not link to the suitable help page.
 - Fix an issue where "Show Mapping Conflict" menu item was always available even no conflict exists.
+- Fix an issue where the current line highlight was opaque in split editors although the editor background is non-opaque.
 - Fix an issue where unwanted debug log was printed in the Console.
 - Fix an unlocalized label.
 
