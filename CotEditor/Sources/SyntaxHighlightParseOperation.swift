@@ -64,6 +64,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     }
     
     
+    
     // MARK: Public Properties
     
     let string: String
@@ -74,7 +75,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     
     private let definition: ParseDefinition
     private let parseRange: NSRange
-    private let highlightBlock: (([SyntaxType: [NSRange]]) -> Void)
+    private let highlightBlock: ([SyntaxType: [NSRange]]) -> Void
     
     
     
