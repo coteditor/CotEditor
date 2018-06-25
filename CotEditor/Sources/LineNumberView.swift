@@ -356,8 +356,7 @@ final class LineNumberView: NSRulerView {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
-        if let textView = self.textView, textView.isOpaque {
-            let color = textView.backgroundColor
+        if self.isOpaque, let color = self.textView?.backgroundColor {
             return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
         } else {
             return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
