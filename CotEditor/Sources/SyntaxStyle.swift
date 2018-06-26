@@ -74,7 +74,6 @@ extension HighlightDefinition {
         let boundary = NSRegularExpression.escapedPattern(for: rawBoundary)
         let pattern = "(?<![" + boundary + "])" + "(?:" + escapedWords.joined(separator: "|") + ")" + "(?![" + boundary + "])"
         
-        moof(rawBoundary)
         self.beginString = pattern
         self.endString = nil
         self.isRegularExpression = true
@@ -251,7 +250,6 @@ struct SyntaxStyle {
             
             // transform simple word highlights to single regex for performance reasons
             if !words.isEmpty {
-                moof(words.count)
                 highlightDefinitions.append(HighlightDefinition(words: words, ignoreCase: false))
             }
             if !caseInsensitiveWords.isEmpty {
