@@ -691,11 +691,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// change tab width from the main menu
-    @IBAction func changeTabWidth(_ sender: AnyObject?) {
+    @IBAction func changeTabWidth(_ sender: NSMenuItem) {
         
-        guard let tabWidth = sender?.tag else { return }
-        
-        self.tabWidth = tabWidth
+        self.tabWidth = sender.tag
     }
     
     

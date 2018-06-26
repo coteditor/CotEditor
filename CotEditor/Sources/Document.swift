@@ -899,23 +899,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change line ending with sender's tag
-    @IBAction func changeLineEnding(_ sender: AnyObject?) {
+    @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
-        guard
-            let tag = sender?.tag,
-            let lineEnding = LineEnding(index: tag) else { return }
+        guard let lineEnding = LineEnding(index: sender.tag) else { return }
         
         self.changeLineEnding(to: lineEnding)
     }
     
     
     /// change document file encoding
-    @IBAction func changeEncoding(_ sender: AnyObject?) {
+    @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
-        guard let tag = sender?.tag else { return }
-        
-        let encoding = String.Encoding(rawValue: UInt(abs(tag)))
-        let withUTF8BOM = (tag == -Int(String.Encoding.utf8.rawValue))
+        let encoding = String.Encoding(rawValue: UInt(abs(sender.tag)))
+        let withUTF8BOM = (sender.tag == -Int(String.Encoding.utf8.rawValue))
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
         
