@@ -55,37 +55,43 @@ private struct QuoteCommentItem {
 
 final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReporting {
     
+    struct ParseDefinition {
+        
+        var extractors: [SyntaxType: [HighlightExtractable]]
+        var pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
+        var inlineCommentDelimiter: String?
+        var blockCommentDelimiters: Pair<String>?
+    }
+    
+    
+    
     // MARK: Public Properties
     
-    var string: String?
-    var parseRange: NSRange = .notFound
-    
+    let string: String
     let progress: Progress  // can be updated from a background thread
-    var highlightBlock: (([SyntaxType: [NSRange]]) -> Void)?
     
     
     // MARK: Private Properties
     
-    private let extractors: [SyntaxType: [HighlightExtractable]]
-    private let pairedQuoteTypes: [String: SyntaxType]  // dict for quote pair to extract with comment
-    private let inlineCommentDelimiter: String?
-    private let blockCommentDelimiters: Pair<String>?
+    private let definition: ParseDefinition
+    private let parseRange: NSRange
+    private let highlightBlock: ([SyntaxType: [NSRange]]) -> Void
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(extractors: [SyntaxType: [HighlightExtractable]], pairedQuoteTypes: [String: SyntaxType], inlineCommentDelimiter: String?, blockCommentDelimiters: Pair<String>?) {
+    required init(definition: ParseDefinition, string: String, range parseRange: NSRange, highlightBlock: @escaping ([SyntaxType: [NSRange]]) -> Void = { _ in }) {
         
-        self.extractors = extractors
-        self.pairedQuoteTypes = pairedQuoteTypes
-        self.inlineCommentDelimiter = inlineCommentDelimiter
-        self.blockCommentDelimiters = blockCommentDelimiters
+        self.definition = definition
+        self.string = string
+        self.parseRange = parseRange
+        self.highlightBlock = highlightBlock
         
         // +1 for extractCommentsWithQuotes()
         // +1 for highlighting
-        self.progress = Progress(totalUnitCount: Int64(extractors.count + 2))
+        self.progress = Progress(totalUnitCount: Int64(definition.extractors.count + 2))
         
         super.init()
         
@@ -103,7 +109,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     /// is ready to run
     override var isReady: Bool {
         
-        return self.string != nil && self.parseRange.location != NSNotFound
+        return true
     }
     
     
@@ -120,7 +126,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         self.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
         
-        self.highlightBlock?(results)
+        self.highlightBlock(results)
         
         self.progress.completedUnitCount += 1
     }
@@ -137,7 +143,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         // extract standard highlight ranges
         let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
         for syntaxType in SyntaxType.allCases {
-            guard let extractors = self.extractors[syntaxType] else { continue }
+            guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
             self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
             
@@ -148,7 +154,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !self.isCancelled else { return }
                 
-                let extractedRanges = extractors[index].ranges(in: self.string!, range: self.parseRange)
+                let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange)
                 
                 rangesQueue.async(flags: .barrier) {
                     childProgress.completedUnitCount += 1
@@ -181,17 +187,17 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     /// extract ranges of quoted texts as well as comments in the parse range
     private func extractCommentsWithQuotes() -> [SyntaxType: [NSRange]] {
         
-        let string = self.string! as NSString
+        let string = self.string as NSString
         var positions = [QuoteCommentItem]()
         
-        if let delimiters = self.blockCommentDelimiters {
+        if let delimiters = self.definition.blockCommentDelimiters {
             positions += string.ranges(of: delimiters.begin, range: self.parseRange)
                 .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .begin, range: $0) }
             positions += string.ranges(of: delimiters.end, range: self.parseRange)
                 .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .end, range: $0) }
         }
         
-        if let delimiter = self.inlineCommentDelimiter {
+        if let delimiter = self.definition.inlineCommentDelimiter {
             positions += string.ranges(of: delimiter, range: self.parseRange)
                 .flatMap { range -> [QuoteCommentItem] in
                     let lineRange = string.lineRange(for: range)
@@ -202,13 +208,13 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
                 }
         }
         
-        for (quote, type) in self.pairedQuoteTypes {
+        for (quote, type) in self.definition.pairedQuoteTypes {
             positions += string.ranges(of: quote, range: self.parseRange)
                 .map { QuoteCommentItem(type: type, token: quote, role: [.begin, .end], range: $0) }
         }
         
         // filter escaped ones
-        positions = positions.filter { !self.string!.isCharacterEscaped(at: $0.range.location) }
+        positions = positions.filter { !self.string.isCharacterEscaped(at: $0.range.location) }
         
         // sort by location
         positions.sort {

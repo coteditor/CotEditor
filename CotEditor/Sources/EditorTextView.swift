@@ -1205,6 +1205,10 @@ final class EditorTextView: NSTextView, Themable {
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
+        if !self.isOpaque {
+            self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(0.7)
+        }
+        
         // set scroller color considering background color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
