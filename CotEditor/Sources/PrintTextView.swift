@@ -118,7 +118,11 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         super.beginDocument()
         
-        self.applyPrintSettings()
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return }
+        
+        self.applyPrintSettings(printInfo: printInfo)
+        self.resizeFrame(printInfo: printInfo)
+        
     }
     
     
@@ -267,24 +271,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
-    /// return whether do paganation by itself
-    override func knowsPageRange(_ range: NSRangePointer) -> Bool {
-        
-        // resize frame
-        self.frame.size = self.printSize
-        self.sizeToFit()
-        let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
-        switch self.layoutOrientation {
-        case .horizontal:
-            self.frame.size.height = usedHeight
-        case .vertical:
-            self.frame.size.width = usedHeight
-        }
-        
-        return super.knowsPageRange(range)  // = false
-    }
-    
-    
     /// set printing font
     override var font: NSFont? {
         
@@ -324,12 +310,11 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     // MARK: Private Methods
     
     /// parse current print settings in printInfo
-    private func applyPrintSettings() {
+    private func applyPrintSettings(printInfo: NSPrintInfo) {
         
-        guard
-            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            let layoutManager = self.layoutManager as? LayoutManager
-            else { return }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return }
+        
+        let settings = printInfo.dictionary() as! [NSPrintInfo.AttributeKey: Any]
         
         // check whether print line numbers
         self.printsLineNumber = {
@@ -385,6 +370,33 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 
                 controller.needsUpdatePreview = true
             }
+        }
+    }
+    
+    
+    /// resize frame considering layout orientation
+    private func resizeFrame(printInfo: NSPrintInfo) {
+        
+        // calculate view size for print considering text orientation
+        var printSize = printInfo.paperSize
+        switch self.layoutOrientation {
+        case .horizontal:
+            printSize.width -= printInfo.leftMargin + printInfo.rightMargin
+            printSize.width /= printInfo.scalingFactor
+        case .vertical:
+            printSize.height -= printInfo.leftMargin + printInfo.rightMargin
+            printSize.height /= printInfo.scalingFactor
+        }
+        
+        // adjust frame size
+        self.frame.size = printSize
+        self.sizeToFit()
+        let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
+        switch self.layoutOrientation {
+        case .horizontal:
+            self.frame.size.height = usedHeight
+        case .vertical:
+            self.frame.size.width = usedHeight
         }
     }
     
@@ -477,25 +489,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         case .none:
             return nil
         }
-    }
-    
-    
-    /// view size for print considering text orientation
-    private var printSize: NSSize {
-        
-        guard let printInfo = NSPrintOperation.current?.printInfo else { return .zero }
-        
-        var size = printInfo.paperSize
-        switch self.layoutOrientation {
-        case .horizontal:
-            size.width -= printInfo.leftMargin + printInfo.rightMargin
-            size.width /= printInfo.scalingFactor
-        case .vertical:
-            size.height -= printInfo.leftMargin + printInfo.rightMargin
-            size.height /= printInfo.scalingFactor
-        }
-        
-        return size
     }
     
 }
