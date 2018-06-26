@@ -61,6 +61,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let dateFormatter: DateFormatter
     
     
+    
     // MARK: -
     // MARK: Lifecycle
     
@@ -113,9 +114,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// prepare for drawing
-    override func viewWillDraw() {
+    override func beginDocument() {
         
-        super.viewWillDraw()
+        super.beginDocument()
         
         self.applyPrintSettings()
     }
@@ -358,8 +359,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }()
         
         // set theme
+        let lastThemeName = self.theme?.name
         let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
-        if let theme = ThemeManager.shared.setting(name: themeName) {
+        let theme = ThemeManager.shared.setting(name: themeName)
+        if let theme = theme {
             self.theme = theme
             self.textColor = theme.text.color
             self.backgroundColor = theme.background.color
@@ -371,6 +374,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             self.backgroundColor = .textBackgroundColor
             layoutManager.invisiblesColor = .secondaryLabelColor
         }
+        
+        guard lastThemeName != theme?.name else { return }
         
         // perform syntax highlight
         weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
