@@ -59,7 +59,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
         super.viewDidLoad()
         
-        self.syntaxTableView?.doubleAction = #selector(openSyntaxEditSheet)
+        self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
         
         let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
@@ -120,7 +120,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         case #selector(openSyntaxMappingConflictSheet(_:)):
             return SyntaxManager.shared.mappingConflicts.contains { !$0.value.isEmpty }
             
-        case #selector(openSyntaxEditSheet(_:)) where SyntaxEditSheetMode(rawValue: menuItem.tag) == .copy:
+        case #selector(duplicateSyntaxStyle(_:)):
             if let name = representedSettingName, !isContextualMenu {
                 menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
             }
@@ -297,12 +297,33 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     
     
     /// show syntax style edit sheet
-    @IBAction func openSyntaxEditSheet(_ sender: AnyObject?) {
+    @IBAction func editSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
-        let mode = SyntaxEditSheetMode(rawValue: sender?.tag ?? 0) ?? .edit
         
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: mode) else { return }
+        guard let viewController = SyntaxEditViewController(style: styleName, mode: .edit) else { return }
+        
+        self.presentViewControllerAsSheet(viewController)
+    }
+    
+    
+    /// show syntax style edit sheet in copy mode
+    @IBAction func duplicateSyntaxStyle(_ sender: Any?) {
+        
+        let styleName = self.targetStyleName(for: sender)
+        
+        guard let viewController = SyntaxEditViewController(style: styleName, mode: .copy) else { return }
+        
+        self.presentViewControllerAsSheet(viewController)
+    }
+    
+    
+    /// show syntax style edit sheet in new mode
+    @IBAction func createSyntaxStyle(_ sender: Any?) {
+        
+        let styleName = self.targetStyleName(for: sender)
+        
+        guard let viewController = SyntaxEditViewController(style: styleName, mode: .new) else { return }
         
         self.presentViewControllerAsSheet(viewController)
     }
