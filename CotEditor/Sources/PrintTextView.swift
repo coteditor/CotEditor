@@ -224,36 +224,14 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return page header attributed string
     override var pageHeader: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            (settings[.printsHeader] as? Bool) ?? false else { return NSAttributedString() }
-        
-        let primaryInfoType = PrintInfoType(settings[.primaryHeaderContent] as? Int)
-        let primaryAlignment = AlignmentType(settings[.primaryHeaderAlignment] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[.secondaryHeaderContent] as? Int)
-        let secondaryAlignment = AlignmentType(settings[.secondaryHeaderAlignment] as? Int)
-        
-        return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
-                                 primaryAlignment: primaryAlignment,
-                                 secondaryString: self.printInfoString(type: secondaryInfoType),
-                                 secondaryAlignment: secondaryAlignment)
+        return self.headerFooter(for: .header)
     }
     
     
     /// return page footer attributed string
     override var pageFooter: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            (settings[.printsFooter] as? Bool) ?? false else { return NSAttributedString() }
-        
-        let primaryInfoType = PrintInfoType(settings[.primaryFooterContent] as? Int)
-        let primaryAlignment = AlignmentType(settings[.primaryFooterAlignment] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[.secondaryFooterContent] as? Int)
-        let secondaryAlignment = AlignmentType(settings[.secondaryFooterAlignment] as? Int)
-        
-        return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
-                                 primaryAlignment: primaryAlignment,
-                                 secondaryString: self.printInfoString(type: secondaryInfoType),
-                                 secondaryAlignment: secondaryAlignment)
+        return self.headerFooter(for: .footer)
     }
     
     
@@ -402,33 +380,50 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributed string for header/footer
-    private func headerFooter(primaryString: String?, primaryAlignment: AlignmentType, secondaryString: String?, secondaryAlignment: AlignmentType) -> NSAttributedString {
+    private func headerFooter(for location: HeaderFooterLocation) -> NSAttributedString {
         
+        let keys = location.keys
+        
+        guard
+            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
+            (settings[keys.needsDraw] as? Bool) ?? false
+            else { return NSAttributedString() }
+        
+        let primaryInfoType = PrintInfoType(settings[keys.primaryContent] as? Int)
+        let primaryAlignment = AlignmentType(settings[keys.primaryAlignment] as? Int)
+        let secondaryInfoType = PrintInfoType(settings[keys.secondaryContent] as? Int)
+        let secondaryAlignment = AlignmentType(settings[keys.secondaryAlignment] as? Int)
+        
+        let primaryString = self.printInfoString(type: primaryInfoType)
+        let secondaryString = self.printInfoString(type: secondaryInfoType)
+        
+        switch (primaryString, secondaryString) {
         // case: empty
-        guard primaryString != nil || secondaryString != nil else { return NSAttributedString() }
-        
+        case (nil, nil):
+            return NSAttributedString()
+            
         // case: single content
-        if let string = primaryString, secondaryString == nil {
+        case let (.some(string), nil):
             return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        }
-        if let string = secondaryString, primaryString == nil {
+        case let (nil, .some(string)):
             return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+            
+        case let (.some(primaryString), .some(secondaryString)):
+            switch (primaryAlignment, secondaryAlignment) {
+            // case: double-sided
+            case (.left, .right):
+                return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+            case (.right, .left):
+                return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+                
+            // case: two lines
+            default:
+                let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
+                let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+                
+                return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
+            }
         }
-        guard let primaryString = primaryString, let secondaryString = secondaryString else { fatalError() }
-        
-        // case: double-sided
-        if primaryAlignment == .left, secondaryAlignment == .right {
-            return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
-        }
-        if primaryAlignment == .right, secondaryAlignment == .left {
-            return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
-        }
-        
-        // case: two lines
-        let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
-        
-        return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
     }
     
     
@@ -488,6 +483,47 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
         case .none:
             return nil
+        }
+    }
+    
+}
+
+
+
+// MARK: -
+
+private enum HeaderFooterLocation {
+    
+    case header
+    case footer
+    
+    
+    struct Keys {
+        
+        var needsDraw: NSPrintInfo.AttributeKey
+        var primaryContent: NSPrintInfo.AttributeKey
+        var primaryAlignment: NSPrintInfo.AttributeKey
+        var secondaryContent: NSPrintInfo.AttributeKey
+        var secondaryAlignment: NSPrintInfo.AttributeKey
+    }
+    
+    
+    var keys: Keys {
+        
+        switch self {
+        case .header:
+            return Keys(needsDraw: .printsHeader,
+                        primaryContent: .primaryHeaderContent,
+                        primaryAlignment: .primaryHeaderAlignment,
+                        secondaryContent: .secondaryHeaderContent,
+                        secondaryAlignment: .secondaryHeaderAlignment)
+            
+        case .footer:
+            return Keys(needsDraw: .printsFooter,
+                        primaryContent: .primaryFooterContent,
+                        primaryAlignment: .primaryFooterAlignment,
+                        secondaryContent: .secondaryFooterContent,
+                        secondaryAlignment: .secondaryFooterAlignment)
         }
     }
     
