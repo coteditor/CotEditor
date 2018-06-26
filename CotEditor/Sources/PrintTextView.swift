@@ -117,7 +117,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         super.viewWillDraw()
         
-        self.loadPrintSettings()
+        self.applyPrintSettings()
     }
     
     
@@ -323,17 +323,16 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     // MARK: Private Methods
     
     /// parse current print settings in printInfo
-    private func loadPrintSettings() {
+    private func applyPrintSettings() {
         
         guard
             let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let textStorage = self.textStorage else { return }
+            let layoutManager = self.layoutManager as? LayoutManager
+            else { return }
         
         // check whether print line numbers
         self.printsLineNumber = {
-            let mode = PrintLineNmuberMode(settings[.lineNumber] as? Int)
-            switch mode {
+            switch PrintLineNmuberMode(settings[.lineNumber] as? Int) {
             case .no:
                 return false
             case .sameAsDocument:
@@ -348,8 +347,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            let mode = PrintInvisiblesMode(settings[.invisibles] as? Int)
-            switch mode {
+            switch PrintInvisiblesMode(settings[.invisibles] as? Int) {
             case .no:
                 return false
             case .sameAsDocument:
@@ -359,31 +357,28 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             }
         }()
         
-        // setup syntax highlighting with theme
+        // set theme
         let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
-        if themeName == ThemeName.blackAndWhite {
-            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: textStorage.string.nsRange)
+        if let theme = ThemeManager.shared.setting(name: themeName) {
+            self.theme = theme
+            self.textColor = theme.text.color
+            self.backgroundColor = theme.background.color
+            layoutManager.invisiblesColor = theme.invisibles.color
+            
+        } else {  // black and white
+            self.theme = nil
             self.textColor = .textColor
-            self.backgroundColor = .white
-            layoutManager.invisiblesColor = .gray
-            
-        } else {
-            if let theme = ThemeManager.shared.setting(name: themeName) {
-                self.theme = theme
-                self.textColor = theme.text.color
-                self.backgroundColor = theme.background.color
-                layoutManager.invisiblesColor = theme.invisibles.color
-            }
-            
-            // perform syntax highlighting
-            if let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
-                _ = self.syntaxParser.highlightAll { [weak controller] in
-                    DispatchQueue.main.async {
-                        guard let controller = controller, !controller.view.isHidden else { return }
-                        
-                        controller.needsUpdatePreview = true
-                    }
-                }
+            self.backgroundColor = .textBackgroundColor
+            layoutManager.invisiblesColor = .secondaryLabelColor
+        }
+        
+        // perform syntax highlight
+        weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
+        _ = self.syntaxParser.highlightAll {
+            DispatchQueue.main.async {
+                guard let controller = controller, !controller.view.isHidden else { return }
+                
+                controller.needsUpdatePreview = true
             }
         }
     }
