@@ -79,6 +79,19 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Ruler View Methods
     
+    /// observe window opacity change
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
+        
+        guard let window = self.window else { return }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
+                                               name: AlphaWindow.didChangeOpacityNotification,
+                                               object: window)
+    }
+    
+    
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
@@ -368,6 +381,14 @@ final class LineNumberView: NSRulerView {
     @objc private func textDidChange(_ notification: Notification) {
         
         self.needsRecountNumberOfDigits = true
+    }
+    
+    
+    /// window's opacity did change
+    @objc private func didWindowOpacityChange(_ notification: Notification?) {
+        
+        // redraw visible area
+        self.setNeedsDisplay(self.visibleRect)
     }
     
 }
