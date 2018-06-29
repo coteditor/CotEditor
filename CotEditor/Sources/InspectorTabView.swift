@@ -34,8 +34,6 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
-    private static let darkBackground: NSColor = NSColor(calibratedWhite: 0.16, alpha: 1)
-    
     private let controlHeight: CGFloat = 28.0
     
     
@@ -89,7 +87,7 @@ final class InspectorTabView: NSTabView {
         
         // draw background
         if self.effectiveAppearance.name == .vibrantDark {
-            InspectorTabView.darkBackground.setFill()
+            NSColor.windowBackgroundColor.setFill()
             dirtyRect.fill()
             
         } else {
