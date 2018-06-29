@@ -59,7 +59,7 @@ extension NSColor {
     ///
     /// - Parameter view: The view the returned color will be drawn to.
     /// - Returns: A color for highlight.
-    static func highlightColor(for view: NSView) -> NSColor {
+    static func accentColor(for view: NSView) -> NSColor {
         
         assert(view.window?.colorSpace != nil)
         

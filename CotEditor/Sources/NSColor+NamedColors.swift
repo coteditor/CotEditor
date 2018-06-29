@@ -1,5 +1,5 @@
 //
-//  NSColor.swift
+//  NSColor+NamedColors.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,8 +27,25 @@ import AppKit.NSColor
 
 extension NSColor {
     
+    static let textHighlighterColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
+    static let alternateDisabledControlTextColor = NSColor(white: 1.0, alpha: 0.75)
+}
+    
+
+extension NSColor {
+    
+    /// return well distributed colors to highlight text
+    static func textHighlighterColors(count: Int) -> [NSColor] {
+        
+        return NSColor.textHighlighterColor.decomposite(into: count)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
     /// create desired number of colors from itself
-    func decomposite(into number: Int) -> [NSColor] {
+    private func decomposite(into number: Int) -> [NSColor] {
         
         guard number > 0 else { return [] }
         

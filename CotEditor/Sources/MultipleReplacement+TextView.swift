@@ -72,7 +72,7 @@ extension MultipleReplacement {
                     // apply to the text view
                     if let layoutManager = textView.layoutManager {
                         layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
-                        let color = TextFinder.shared.highlightColor
+                        let color = NSColor.textHighlighterColor
                         for range in result {
                             layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
                         }

@@ -160,11 +160,8 @@ extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
 
 
 
-@available(macOS 10.12.2, *)
 private extension NSColor {
     
     /// button bezel color for off state
-    class var offStateButtonBezelColor: NSColor {
-        return NSColor(white: 0.12, alpha: 1)
-    }
+    static let offStateButtonBezelColor = NSColor(white: 0.12, alpha: 1)
 }

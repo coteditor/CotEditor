@@ -69,8 +69,6 @@ final class TextFinder: NSResponder {
     
     // MARK: Public Properties
     
-    let highlightColor: NSColor
-    
     @objc dynamic var findString = "" {
         
         didSet {
@@ -93,11 +91,6 @@ final class TextFinder: NSResponder {
     // MARK: Lifecycle
     
     private override init() {
-        
-        self.highlightColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
-        // Highlight color is currently not customizable. (2015-01-04)
-        // It might better when it can be set in theme also for incompatible characters highlight.
-        // Just because I'm lazy.
         
         super.init()
         
@@ -226,7 +219,7 @@ final class TextFinder: NSResponder {
         
         textView.isEditable = false
         
-        let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
         let lineRegex = try! NSRegularExpression(pattern: "\n")
         
         // setup progress sheet
@@ -330,7 +323,7 @@ final class TextFinder: NSResponder {
         
         textView.isEditable = false
         
-        let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
