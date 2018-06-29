@@ -46,7 +46,6 @@ final class TokenTextView: NSTextView {
         
         // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
         self.textColor = .controlTextColor
-        self.invalidateTokens()
     }
     
     
@@ -143,7 +142,7 @@ final class TokenTextView: NSTextView {
             let layoutManager = self.layoutManager
             else { return }
         
-        let isDark = (self.window?.appearance?.name == .vibrantDark)
+        let isDark = (self.effectiveAppearance.name == .vibrantDark)
         let textColor = isDark ? self.tokenColor.highlight(withLevel: 0.7)! : self.tokenColor.shadow(withLevel: 0.7)!
         let braketColor = isDark ? self.tokenColor.highlight(withLevel: 0.3)! : self.tokenColor.shadow(withLevel: 0.3)!
         let backgroundColor = self.tokenColor.withAlphaComponent(0.3)
