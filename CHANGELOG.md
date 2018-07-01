@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-3.4.3 (unreleased)
+3.4.4 (261)
+--------------------------
+
+### Fixes
+
+- Address an issue where the application could crash on syntax highlighting.
+
+
+
+3.4.3 (259)
 --------------------------
 
 ### Fixes
