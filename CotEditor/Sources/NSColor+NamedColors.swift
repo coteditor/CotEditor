@@ -24,6 +24,7 @@
 //
 
 import AppKit.NSColor
+import AppKit.NSAppearance
 
 extension NSColor {
     
@@ -33,6 +34,13 @@ extension NSColor {
     
 
 extension NSColor {
+    
+    /// Creates a new color object that represents a blend between the current color and the weaken color by considering appearance.
+    func darken(level: CGFloat, for appearance: NSAppearance) -> NSColor? {
+        
+        return appearance.isDark ? self.highlight(withLevel: level) : self.shadow(withLevel: level)
+    }
+    
     
     /// return well distributed colors to highlight text
     static func textHighlighterColors(count: Int) -> [NSColor] {
@@ -60,6 +68,21 @@ extension NSColor {
             
             return NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
         }
+    }
+    
+}
+
+
+extension NSAppearance {
+    
+    var isDark: Bool {
+        
+        if self.name == .vibrantDark { return true }
+        
+        guard #available(macOS 10.14, *) else { return false }
+        
+//        return self.name == .darkAqua
+        return self.name.rawValue == "NSAppearanceNameDarkAqua"
     }
     
 }

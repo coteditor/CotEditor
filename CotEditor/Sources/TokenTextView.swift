@@ -132,6 +132,7 @@ final class TokenTextView: NSTextView {
     }
     
     
+    
     // MARK: Private Method
     
     /// find tokens in contens and mark-up them
@@ -142,9 +143,8 @@ final class TokenTextView: NSTextView {
             let layoutManager = self.layoutManager
             else { return }
         
-        let isDark = (self.effectiveAppearance.name == .vibrantDark)
-        let textColor = isDark ? self.tokenColor.highlight(withLevel: 0.7)! : self.tokenColor.shadow(withLevel: 0.7)!
-        let braketColor = isDark ? self.tokenColor.highlight(withLevel: 0.3)! : self.tokenColor.shadow(withLevel: 0.3)!
+        let textColor = self.tokenColor.darken(level: 0.7, for: self.effectiveAppearance)!
+        let braketColor = self.tokenColor.darken(level: 0.3, for: self.effectiveAppearance)!
         let backgroundColor = self.tokenColor.withAlphaComponent(0.3)
         
         let wholeRange = self.string.nsRange

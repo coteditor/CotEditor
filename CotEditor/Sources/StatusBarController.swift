@@ -211,7 +211,7 @@ final class StatusBarController: NSViewController {
 private extension NSMutableAttributedString {
     
     /// append formatted state
-    func appendFormattedState(value: String?, label: String?, appearance: NSAppearance? = nil) {
+    func appendFormattedState(value: String?, label: String?, appearance: NSAppearance = .current) {
         
         if !self.string.isEmpty {
             self.append(NSAttributedString(string: "   "))
@@ -220,9 +220,11 @@ private extension NSMutableAttributedString {
         if let label = label {
             let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
                                         NSLocalizedString(label, comment: ""))
-            let white: CGFloat = (appearance?.name == .vibrantDark) ? 0.7 : 0.4
+            let labelColor: NSColor = appearance.isDark
+                ? NSColor.secondaryLabelColor
+                : NSColor.labelColor.withAlphaComponent(0.6)
             let attrLabel = NSAttributedString(string: localizedLabel,
-                                               attributes: [.foregroundColor: NSColor(white: white, alpha: 1)])
+                                               attributes: [.foregroundColor: labelColor])
             self.append(attrLabel)
         }
         
