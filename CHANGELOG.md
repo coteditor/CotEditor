@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Address an issue where the application could crash on syntax highlighting.
+- Fix a typo in Italian locaization.
 
 
 
