@@ -1,14 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "mac",
-      "filename" : "Comment.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "mac",
-      "filename" : "Comment@2x.png",
-      "scale" : "2x"
+      "idiom" : "universal",
+      "filename" : "Comment.pdf"
     }
   ],
   "info" : {

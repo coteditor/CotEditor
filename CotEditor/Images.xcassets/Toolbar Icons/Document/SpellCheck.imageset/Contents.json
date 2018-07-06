@@ -1,14 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "mac",
-      "filename" : "SpellCheck.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "mac",
-      "filename" : "SpellCheck@2x.png",
-      "scale" : "2x"
+      "idiom" : "universal",
+      "filename" : "SpellCheck.pdf"
     }
   ],
   "info" : {
