@@ -7,8 +7,9 @@ Change Log
 
 ### Fixes
 
-- Address an issue where the application could crash on syntax highlighting.
-- Fix a typo in Italian locaization.
+- Address an issue where the application could rarely crash on syntax highlighting.
+- Address an issue on Mojave where text view stacked under the line number view.
+- Fix a typo in Italian localization.
 
 
 
