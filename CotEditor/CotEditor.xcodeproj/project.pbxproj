@@ -228,8 +228,6 @@
 		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13191D1EFE4B00D38E6A /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */; };
 		2A5D131A1D1EFE4B00D38E6A /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */; };
-		2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D131E1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift */; };
-		2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D131E1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift */; };
 		2A5D13221D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */; };
 		2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */; };
 		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
@@ -973,7 +971,6 @@
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
 		2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareMenuItem.swift; sourceTree = "<group>"; };
-		2A5D131E1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSWindow+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarController.swift; sourceTree = "<group>"; };
@@ -1583,7 +1580,6 @@
 			isa = PBXGroup;
 			children = (
 				2A17A3151D2D4319001DD717 /* DocumentWindow.swift */,
-				2A5D131E1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -2758,7 +2754,6 @@
 				2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */,
 				2A231A261E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
-				2A5D13201D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
@@ -2962,7 +2957,6 @@
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */,
 				2A78BFAA1D1B0E8B00A583D2 /* PreferencesWindowController.swift in Sources */,
-				2A5D131F1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2AF073EB1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AA749C31D3C263300850802 /* DocumentWindowController.swift in Sources */,

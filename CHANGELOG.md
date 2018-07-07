@@ -22,6 +22,7 @@ Change Log
 - Remove “length” display in the status bar.
 - Remove the initial document inspector visibility setting option.
 - Remove feature to change only the frontmost editor's opacity temporaly.
+    - From this, `view opacity` property on AppleScript is also deprecated.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.
 - Improve the editor's scrolling behavior to scroll along the predominant axis.
 - Optimize performance of character counting.

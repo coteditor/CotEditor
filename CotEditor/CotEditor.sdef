@@ -43,15 +43,6 @@
             <enumerator name="half" code="rWhf"/>
         </enumeration>
         
-        
-        <class-extension extends="window" description="A CotEditor window.">
-            <cocoa class="NSWindow"/>
-            <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>
-            <property name="view opacity" code="copc" type="real" access="rw" description="The opacity of the text view. (from ‘0.2’ to ‘1.0’)">
-                <cocoa key="viewOpacity"/>
-            </property>
-        </class-extension>
-        
         <class-extension extends="document" description="A CotEditor document.">
             <cocoa class="CotEditor.Document"/>
             <access-group identifier="com.coteditor.CotEditor.edit" access="rw"/>

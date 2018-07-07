@@ -35,63 +35,63 @@
 <dl class="tree">
 	<dt>Application</dt>
 	<dd>CotEditorアプリケーション</dd>
-	
+
 	<dt>Window</dt>
 	<dd>CotEditorウインドウ</dd>
 	<dd><dl class="subtree">
 		<dt><code>view opacity</code></dt>
-		<dd>エディタの不透明度（real型、0.2から1.0の範囲）<span class="added">CotEditor 1.5で追加</span></dd>
+		<dd><del>エディタの不透明度（real型、0.2から1.0の範囲）</del><span class="deprecated">CotEditor 3.5で廃止</span></dd>
 	</dl></dd>
-	
+
 	<dt>Document</dt>
 	<dd>CotEditor書類</dd>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
 		<dd>書類の内容文字列（text型）</dd>
-		
+
 		<dt><code>text</code></dt>
 		<dd>書類の内容文字列（text型）</dd>
-		
+
 		<dt><code>length</code></dt>
 		<dd>書類の文字数（int型）</dd>
-		
+
 		<dt><code>selection</code></dt>
 		<dd>書類の選択内容オブジェクト（selection-object型）</dd>
-		
+
 		<dt><code>encoding</code></dt>
 		<dd>エンコーディング（Unicode text型）</dd>
-		
+
 		<dt><code>IANA charset</code></dt>
 		<dd>エンコーディングのIANA Charset名（Unicode text型、<code>Shift_JIS</code>, <code>EUC-JP</code>など）</dd>
-		
+
 		<dt><code>line ending</code></dt>
 		<dd>改行コード（<code>CR</code> / <code>LF</code> / <code>CRLF</code>）</dd>
-		
+
 		<dt><code>tab width</code></dt>
 		<dd>スペース幅換算のタブ幅（int型）<span class="added">CotEditor 2.1で追加</span></dd>
-		
+
 		<dt><code>expands tab</code></dt>
 		<dd>タブをスペースに展開するかどうか（boolean型）</dd>
-		
+
 		<dt><code>wrap lines</code></dt>
 		<dd>折り返しているかどうか（boolean型）</dd>
-		
+
 		<dt><code>coloring style</code></dt>
 		<dd>シンタックスカラーリングスタイル（Unicode text型）</dd>
-		
+
 		<dt><del><code>line spacing</code></del></dt>
 		<dd><del>行間値（real型、0.0から10.0の範囲）</del><span class="deprecated">CotEditor 2.6で廃止</span></dd>
 	</dl></dd>
-	
+
 	<dt>Selection-object</dt>
 	<dd>選択部分オブジェクト</dd>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
 		<dd>選択内容文字列</dd>
-		
+
 		<dt><code>range</code></dt>
 		<dd>文字単位での選択位置（{location, length}の型）</dd>
-		
+
 		<dt><code>line range</code></dt>
 		<dd>行単位での選択位置（{location, length}の型、<code>length</code>省略可。また、lengthは<code>0</code>でも<code>1</code>でも、1行を選択する）</dd>
 	</dl></dd>
@@ -168,16 +168,16 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 	<dd><dl class="subtree">
 		<dt><code>for</code> (Unicode text)</dt>
 		<dd>検索対象文字列</dd>
-		
+
 		<dt>[<code>RE</code> (boolean)]</dt>
 		<dd>正規表現検索か</dd>
-		
+
 		<dt>[<code>wrap</code> (boolean)]</dt>
 		<dd>ラップサーチか</dd>
-		
+
 		<dt>[<code>ignore case</code> (boolean)]</dt>
 		<dd>大文字小文字を無視するか</dd>
-		
+
 		<dt>[<code>backwards</code> (boolean)]</dt>
 		<dd>後ろから検索するか</dd>
 	</dl></dd>
@@ -207,22 +207,22 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 	<dd><dl class="subtree">
 		<dt><code>for</code> (Unicode text)</dt>
 		<dd>置換対象文字列</dd>
-		
+
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>置換後の文字列</dd>
-		
+
 		<dt>[<code>all</code> (boolean)]</dt>
 		<dd>書類全体を対象とするか</dd>
-		
+
 		<dt>[<code>RE</code> (boolean)]</dt>
 		<dd>正規表現検索か</dd>
-		
+
 		<dt>[<code>wrap</code> (boolean)]</dt>
 		<dd>ラップサーチか</dd>
-		
+
 		<dt>[<code>ignore case</code> (boolean)]</dt>
 		<dd>大文字小文字を無視するか</dd>
-		
+
 		<dt>[<code>backwards</code> (boolean)]</dt>
 		<dd>後ろから検索するか</dd>
 	</dl></dd>
@@ -268,7 +268,7 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 	<dd><dl class="subtree">
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>新しいエンコーディング</dd>
-		
+
 		<dt><code>lossy</code> (boolean)</dt>
 		<dd>エンコーディング適用によって一部の文字列が失われても良いか</dd>
 	</dl></dd>
@@ -317,7 +317,7 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 <dl class="tree">
 	<dt><code class="command">shift left</code></dt>
 	<dd>選択位置のある行を左にシフト</dd>
-	
+
 	<dt><code class="command">shift right</code></dt>
 	<dd>選択位置のある行を右にシフト</dd>
 </dl>
@@ -335,7 +335,7 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 <dl class="tree">
 	<dt><code class="command">comment out</code></dt>
 	<dd>選択範囲にコメント記号をつけてコメント化</dd>
-	
+
 	<dt><code class="command">uncomment</code></dt>
 	<dd>選択範囲のコメント記号を取り去りコメント解除</dd>
 </dl>
@@ -465,7 +465,7 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 <dl class="tree">
 	<dt><code class="command">move line up</code></dt>
 	<dd>選択行を一つ上の行と入れ替える。<span class="added">CotEditor 2.3.0で追加</span></dd>
-	
+
 	<dt><code class="command">move line down</code></dt>
 	<dd>選択行を一つ下の行と入れ替える。<span class="added">CotEditor 2.3.0で追加</span></dd>
 </dl>
@@ -480,7 +480,7 @@ lengthが負である場合、指定される範囲は対象ドキュメント�
 <dl class="tree">
 	<dt><code class="command">sort lines</code></dt>
 	<dd>選択行を昇順にソートする。<span class="added">CotEditor 2.3.0で追加</span></dd>
-	
+
 	<dt><code class="command">reverse lines</code></dt>
 	<dd>選択行を逆順にする。<span class="added">CotEditor 2.3.0で追加</span></dd>
 </dl>
