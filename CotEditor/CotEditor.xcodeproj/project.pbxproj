@@ -1591,13 +1591,13 @@
 			name = Application;
 			sourceTree = "<group>";
 		};
-		2A2184121D0426E800522EF5 /* Alpha Window */ = {
+		2A2184121D0426E800522EF5 /* Window */ = {
 			isa = PBXGroup;
 			children = (
 				2A17A3151D2D4319001DD717 /* DocumentWindow.swift */,
 				2A5D131E1D1F9AB300D38E6A /* NSWindow+ScriptingSupport.swift */,
 			);
-			name = "Alpha Window";
+			name = Window;
 			sourceTree = "<group>";
 		};
 		2A2184221D043D7E00522EF5 /* Document View */ = {
@@ -1894,7 +1894,7 @@
 			children = (
 				2AA749C21D3C263300850802 /* DocumentWindowController.swift */,
 				2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */,
-				2A2184121D0426E800522EF5 /* Alpha Window */,
+				2A2184121D0426E800522EF5 /* Window */,
 				2A62D48D1CF73693002ADBE1 /* Toolbar */,
 				2ADD36941CFCAD4200F3175D /* Sidebar */,
 				2A2184221D043D7E00522EF5 /* Document View */,

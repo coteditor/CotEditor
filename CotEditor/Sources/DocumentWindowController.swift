@@ -109,3 +109,7 @@ final class DocumentWindowController: NSWindowController {
     }
     
 }
+
+
+
+extension DocumentWindowController: NSWindowDelegate { }

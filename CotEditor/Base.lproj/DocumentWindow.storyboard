@@ -362,7 +362,7 @@
                             </connections>
                         </toolbar>
                         <connections>
-                            <outlet property="delegate" destination="peS-bo-gb4" id="D8z-kt-PO3"/>
+                            <outlet property="delegate" destination="0UB-Lz-R6c" id="COX-Xt-aCO"/>
                         </connections>
                     </window>
                     <connections>

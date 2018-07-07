@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class DocumentToolbar: NSToolbar, NSWindowDelegate {
+final class DocumentToolbar: NSToolbar {
     
     // MARK: Private Properties
     
@@ -58,10 +58,7 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         //      What really matter is crash, or any other unwanted side effects. So, be careful.
         // cf. https://forums.developer.apple.com/thread/21887
         
-        guard
-            let superview = self.window?.contentView?.superview,
-            let contextMenu = superview.menu
-            else { return }
+        guard let contextMenu = self.window?.contentView?.superview?.menu else { return }
         
         // find "Use Small Size" menu item
         guard let menuItem = contextMenu.items.first(where: {
@@ -87,36 +84,24 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
         
         // fallback for removing "Use small size" button in `window(:willPositionSheet:using)`
         if let sheet = self.window?.attachedSheet {
-            self.removeSmallSizeButton(in: sheet)
+            sheet.removeSmallSizeButton()
         }
     }
     
+}
+
+
+
+private extension NSWindow {
     
-    
-    // MARK: Window Delegate
-    
-    /// remove "Use small size" button before showing the customization sheet
-    func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
+    /// remove "Use small size" button in the toolbar customization sheet
+    func removeSmallSizeButton() {
         
-        if sheet.className == "NSToolbarConfigPanel" {
-            self.removeSmallSizeButton(in: sheet)
-        }
-        
-        return rect
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// remove "Use small size" button in the customization sheet
-    private func removeSmallSizeButton(in sheet: NSWindow) {
-        
-        guard let views = sheet.contentView?.subviews else { return }
+        guard let views = self.contentView?.subviews else { return }
         
         // From macOS 10.13, the button is placed inside of a NSStackView
         let subviews = views.flatMap { $0.subviews }
-
+        
         let toggleButton: NSButton? = (views + subviews).lazy
             .compactMap { $0 as? NSButton }
             .first { button in
@@ -126,7 +111,23 @@ final class DocumentToolbar: NSToolbar, NSWindowDelegate {
             }
         
         toggleButton?.isHidden = true
-        sheet.contentView?.needsDisplay = true
+        self.contentView?.needsDisplay = true
+    }
+    
+}
+
+
+
+extension DocumentWindowController {
+    
+    /// remove "Use small size" button before showing the customization sheet
+    func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
+        
+        if sheet.className == "NSToolbarConfigPanel" {
+            sheet.removeSmallSizeButton()
+        }
+        
+        return rect
     }
     
 }
