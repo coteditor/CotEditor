@@ -33,8 +33,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
-    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
-    private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
+    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)
+    private lazy var preferencesViewController = NSViewController(nibName: "FindPreferencesView", bundle: nil)
     
     @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak

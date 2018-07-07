@@ -189,7 +189,7 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
-        let accessoryController = NSStoryboard(name: NSStoryboard.Name("OpenDocumentAccessory"), bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
+        let accessoryController = NSStoryboard(name: "OpenDocumentAccessory", bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
         
         // initialize encoding menu and set the accessory view
         accessoryController.openPanel = openPanel

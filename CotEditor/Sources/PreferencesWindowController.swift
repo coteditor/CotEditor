@@ -45,7 +45,6 @@ final class PreferencesWindowController: NSWindowController {
         "PrintPane",
         "IntegrationPane",
         ]
-        .map { NSStoryboard.Name($0) }
         .map { NSStoryboard(name: $0, bundle: nil).instantiateInitialController() as! NSViewController }
     
     

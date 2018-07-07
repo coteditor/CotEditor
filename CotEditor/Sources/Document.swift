@@ -75,7 +75,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     // MARK: Private Properties
     
     private lazy var printPanelAccessoryController = PrintPanelAccessoryController()
-    private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: NSStoryboard.Name("SaveDocumentAccessory"), bundle: nil).instantiateInitialController() as! NSViewController
+    private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: "SaveDocumentAccessory", bundle: nil).instantiateInitialController() as! NSViewController
     
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var isExternalUpdateAlertShown = false
@@ -216,7 +216,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // a transient document has already one
         guard self.windowControllers.isEmpty else { return }
         
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("DocumentWindow"), bundle: nil)
+        let storyboard = NSStoryboard(name: "DocumentWindow", bundle: nil)
         let windowController = storyboard.instantiateInitialController() as! NSWindowController
         
         self.addWindowController(windowController)

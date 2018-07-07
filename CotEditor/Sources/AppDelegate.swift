@@ -28,7 +28,7 @@ import Cocoa
 
 private extension NSSound {
     
-    static let glass = NSSound(named: NSSound.Name("Glass"))
+    static let glass = NSSound(named: "Glass")
 }
 
 
@@ -63,7 +63,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
-        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! NSWindowController
+        let windowController = NSStoryboard(name: "WebDocumentWindow", bundle: nil).instantiateInitialController() as! NSWindowController
         windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
         return windowController
     }()

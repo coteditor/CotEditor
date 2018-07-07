@@ -82,8 +82,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("MultipleReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
+    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel", bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     

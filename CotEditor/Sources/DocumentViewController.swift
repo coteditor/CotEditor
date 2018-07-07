@@ -704,7 +704,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// change tab width to desired number through a sheet
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomTabWidthView"), bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
+        let viewController = NSStoryboard(name: "CustomTabWidthView", bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
         viewController.defaultWidth = self.tabWidth
         viewController.completionHandler = { [weak self] (tabWidth) in
             self?.tabWidth = tabWidth
@@ -863,7 +863,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// create new (split) editor view
     private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
         
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
+        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
         
         self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
