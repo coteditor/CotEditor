@@ -1,5 +1,5 @@
 //
-//  TabStyleToolbarItem.swift
+//  StatableMenuToolbarItem.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,9 +25,9 @@
 
 import Cocoa
 
-final class TabStyleToolbarItem: StatableToolbarItem {
+final class StatableMenuToolbarItem: StatableToolbarItem {
 
-    @IBOutlet private weak var tabWidthMenu: NSMenu?
+    @IBOutlet private weak var segmentMenu: NSMenu?
     
     
     
@@ -38,12 +38,12 @@ final class TabStyleToolbarItem: StatableToolbarItem {
         
         let segmentedControl = self.segmentedControl!
         
-        // add menu to tab style button
+        // set menu to the last segment
         if #available(macOS 10.13, *) {
             segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
-            segmentedControl.setMenu(self.tabWidthMenu, forSegment: 1)
+            segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
         } else {
-            // jsut remove tab width menu segment if the menu indicator is not supported
+            // jsut remove menu segment if the menu indicator is not supported
             segmentedControl.segmentCount = 1
         }
         

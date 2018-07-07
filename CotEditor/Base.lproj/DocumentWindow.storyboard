@@ -191,7 +191,7 @@
                                         <action selector="toggleComment:" target="klO-m3-n5X" id="i36-x9-bjv"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="19BDAF81-864E-4EBF-B0FD-E79CF11DFED2" label="Tab Style" paletteLabel="Tab Style" toolTip="Toggle tab auto-expansion" image="AutoTabExpand_On" id="PUK-pd-jWZ" customClass="TabStyleToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="19BDAF81-864E-4EBF-B0FD-E79CF11DFED2" label="Tab Style" paletteLabel="Tab Style" toolTip="Toggle tab auto-expansion" image="AutoTabExpand_On" id="PUK-pd-jWZ" customClass="StatableMenuToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="52" height="23"/>
                                     <size key="maxSize" width="55" height="28"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="Zjf-op-QOB">
@@ -209,7 +209,7 @@
                                     </segmentedControl>
                                     <connections>
                                         <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="lQM-iV-Irb"/>
-                                        <outlet property="tabWidthMenu" destination="Zbb-Yj-SFG" id="7dI-Td-iNu"/>
+                                        <outlet property="segmentMenu" destination="Zbb-Yj-SFG" id="vhy-Me-Yj4"/>
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="C2AB6429-8A8C-48C3-80DA-4DC29AEDA647" label="Invisibles" paletteLabel="Invisibles" toolTip="Show or hide invisible characters in text" image="Invisibles_On" id="xbD-Up-YfQ" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
@@ -720,7 +720,7 @@
         <image name="TabStyle_On" width="20" height="18"/>
         <image name="TextSizeLargerTemplate" width="16" height="18"/>
         <image name="TextSizeSmallerTemplate" width="16" height="18"/>
-        <image name="WrapLines_On" width="19" height="18"/>
+        <image name="WrapLines_On" width="20" height="18"/>
         <image name="WritingDirectionLTRTemplate" width="14" height="18"/>
         <image name="WritingDirectionRTLTemplate" width="14" height="18"/>
         <image name="WritingDirectionVerticalTemplate" width="14" height="18"/>
