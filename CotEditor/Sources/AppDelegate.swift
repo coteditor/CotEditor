@@ -208,7 +208,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         let isAutomaticTabbing: Bool = {
             if #available(macOS 10.12, *) {
-                return (AlphaWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+                return (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
             }
             return false
         }()
@@ -239,7 +239,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 // on first window opened
                 // -> The first document needs to open a new window.
                 if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
-                    AlphaWindow.tabbingPreference = .always
+                    DocumentWindow.tabbingPreference = .always
                     firstWindowOpened = true
                 }
             }
@@ -252,7 +252,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
             }
             
-            AlphaWindow.tabbingPreference = nil
+            DocumentWindow.tabbingPreference = nil
         }
     }
     

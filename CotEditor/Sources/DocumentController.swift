@@ -263,10 +263,10 @@ final class DocumentController: NSDocumentController {
             return
         }
         
-        AlphaWindow.tabbingPreference = .manual
+        DocumentWindow.tabbingPreference = .manual
         document.makeWindowControllers()
         document.showWindows()
-        AlphaWindow.tabbingPreference = nil
+        DocumentWindow.tabbingPreference = nil
     }
     
     

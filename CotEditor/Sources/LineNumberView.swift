@@ -87,7 +87,7 @@ final class LineNumberView: NSRulerView {
         guard let window = self.window else { return }
         
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: AlphaWindow.didChangeOpacityNotification,
+                                               name: DocumentWindow.didChangeOpacityNotification,
                                                object: window)
     }
     

@@ -217,7 +217,7 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let window = self.window else {
             // textView was removed from the window
-            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: DocumentWindow.didChangeOpacityNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
             return
@@ -231,7 +231,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // observe window opacity flag
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: AlphaWindow.didChangeOpacityNotification,
+                                               name: DocumentWindow.didChangeOpacityNotification,
                                                object: window)
         
         if let scrollView = self.enclosingScrollView {

@@ -1,5 +1,5 @@
 //
-//  AlphaWindow.swift
+//  DocumentWindow.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import Cocoa
 
-final class AlphaWindow: NSWindow {
+final class DocumentWindow: NSWindow {
     
     // MARK: Notification Names
     
@@ -80,7 +80,7 @@ final class AlphaWindow: NSWindow {
         didSet {
             guard isOpaque != oldValue else { return }
             
-            NotificationCenter.default.post(name: AlphaWindow.didChangeOpacityNotification, object: self)
+            NotificationCenter.default.post(name: DocumentWindow.didChangeOpacityNotification, object: self)
         }
     }
     
@@ -137,7 +137,7 @@ final class AlphaWindow: NSWindow {
 
 // MARK: Window Tabbing
 
-extension AlphaWindow {
+extension DocumentWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
     @available(macOS 10.12, *)

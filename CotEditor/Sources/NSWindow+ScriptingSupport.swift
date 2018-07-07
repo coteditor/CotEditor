@@ -32,15 +32,15 @@ extension NSWindow {
     @objc var viewOpacity: Double {
         
         get {
-            guard let alphaWindow = self as? AlphaWindow else { return 1.0 }
+            guard let documentWindow = self as? DocumentWindow else { return 1.0 }
             
-            return Double(alphaWindow.backgroundAlpha)
+            return Double(documentWindow.backgroundAlpha)
         }
         
         set {
-            guard let alphaWindow = self as? AlphaWindow else { return }
+            guard let documentWindow = self as? DocumentWindow else { return }
             
-            alphaWindow.backgroundAlpha = CGFloat(newValue)
+            documentWindow.backgroundAlpha = CGFloat(newValue)
         }
     }
     
