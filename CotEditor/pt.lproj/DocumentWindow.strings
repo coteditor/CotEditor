@@ -93,9 +93,9 @@
 /* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
 "5v4-ft-RRo.title" = "Vertical";
 
-/* Class = "NSToolbarItem"; label = "Orientation"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "Orientação";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "Orientação";  /* Orientação */
+/* Class = "NSToolbarItem"; label = "Text Orientation"; ObjectID = "1cW-FV-40L"; */
+"1cW-FV-40L.label" = "Orientação";  /* Text Orientation */
+"1cW-FV-40L.paletteLabel" = "Orientação";  /* Text Orientation */
 "1cW-FV-40L.toolTip" = "Alterne a orientação do texto";  /* Toggle text orientation */
 "rCh-26-3Xy.ibShadowedToolTips[0]" = "Horizontal";  // "Horizontal"
 "rCh-26-3Xy.ibShadowedToolTips[1]" = "Vertical";  // "Vertical"

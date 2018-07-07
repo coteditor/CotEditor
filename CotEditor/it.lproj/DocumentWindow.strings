@@ -96,8 +96,8 @@
 "5v4-ft-RRo.title" = "Verticale";
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "Orientamento";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "Orientamento";  /* Orientation */
+"1cW-FV-40L.label" = "Orientamento";  /* Text Orientation */
+"1cW-FV-40L.paletteLabel" = "Orientamento";  /* Text Orientation */
 "1cW-FV-40L.toolTip" = "Seleziona orientamento orizzontale o verticale del testo";  /* Toggle text orientation */
 "rCh-26-3Xy.ibShadowedToolTips[0]" = "Orizzontale";  // "Horizontal"
 "rCh-26-3Xy.ibShadowedToolTips[1]" = "Verticale";  // "Vertical"

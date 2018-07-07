@@ -134,11 +134,11 @@
                                         <outlet property="menu" destination="g7Y-51-eyh" id="PjJ-1w-PtI"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D6340D2C-900C-4440-AE3B-0DB7D864D6F2" label="Orientation" paletteLabel="Orientation" toolTip="Toggle text orientation" id="1cW-FV-40L" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="D6340D2C-900C-4440-AE3B-0DB7D864D6F2" label="Text Orientation" paletteLabel="Text Orientation" toolTip="Toggle text orientation" id="1cW-FV-40L" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="79" height="24"/>
                                     <size key="maxSize" width="79" height="28"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="fMu-nq-0Xk">
-                                        <rect key="frame" x="0.0" y="14" width="79" height="24"/>
+                                        <rect key="frame" x="6" y="14" width="79" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="texturedSquare" trackingMode="selectOne" id="rCh-26-3Xy">
                                             <font key="font" metaFont="system"/>

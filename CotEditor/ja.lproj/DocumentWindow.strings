@@ -95,8 +95,8 @@
 "5v4-ft-RRo.title" = "縦書き";
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
-"1cW-FV-40L.label" = "横書き/縦書き";  /* Orientation */
-"1cW-FV-40L.paletteLabel" = "横書き/縦書き";  /* Orientation */
+"1cW-FV-40L.label" = "横書き/縦書き";  /* Text Orientation */
+"1cW-FV-40L.paletteLabel" = "横書き/縦書き";  /* Text Orientation */
 "1cW-FV-40L.toolTip" = "横書き/縦書きを切替";  /* Toggle text orientation */
 "rCh-26-3Xy.ibShadowedToolTips[0]" = "横書き";  // "Horizontal"
 "rCh-26-3Xy.ibShadowedToolTips[1]" = "縦書き";  // "Vertical"
