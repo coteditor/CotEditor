@@ -131,6 +131,8 @@
 "zn9-Cf-SiH.ibShadowedToolTips[1]" = "Tabulatorbreite wechseln";  // "Change tab width"
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "glT-ig-kuW"; */
 "glT-ig-kuW.title" = "Tabulatorbreite";
+/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "j1L-Rp-wpA"; */
+"j1L-Rp-wpA.title" = "Tabulatoren automatisch expandieren";
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
 "mGD-5P-MDq.label" = "Zeilen umbrechen";  /* Wrap Lines */

@@ -132,6 +132,8 @@
 "zn9-Cf-SiH.ibShadowedToolTips[1]" = "Change tab width";  // "Change tab width"  // FIXME: added
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "glT-ig-kuW"; */
 "glT-ig-kuW.title" = "Larghezza Tab";
+/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "j1L-Rp-wpA"; */
+"j1L-Rp-wpA.title" = "Espandi Tab automaticamente";
 
 /* Class = "NSToolbarItem"; ObjectID = "mGD-5P-MDq"; */
 "mGD-5P-MDq.label" = "Aapo automatico";  /* Wrap Lines */

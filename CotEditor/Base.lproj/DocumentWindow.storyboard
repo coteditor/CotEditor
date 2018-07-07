@@ -470,6 +470,13 @@
                                 <action selector="changeTabWidth:" target="klO-m3-n5X" id="b7K-Yf-KtM"/>
                             </connections>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="nmx-wO-JFV"/>
+                        <menuItem title="Auto-Expand Tabs" id="j1L-Rp-wpA">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="xEb-X0-k7J"/>
+                            </connections>
+                        </menuItem>
                     </items>
                 </menu>
             </objects>
