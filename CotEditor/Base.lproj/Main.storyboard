@@ -616,15 +616,6 @@ DQ
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="748">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Set Editor’s Opacity…" id="367">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="611">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>

@@ -98,16 +98,6 @@ final class DocumentWindowController: NSWindowController {
         }
     }
     
-    
-    
-    // MARK: Actions
-    
-    /// show editor opacity panel
-    @IBAction func showOpacityPanel(_ sender: Any?) {
-        
-        OpacityPanelController.shared.showWindow(sender)
-    }
-    
 }
 
 
