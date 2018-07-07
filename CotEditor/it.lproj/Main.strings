@@ -228,6 +228,8 @@
 "djM-fI-MkN.title" = "Larghezza Tab";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Larghezza Tab";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
+"gMO-5n-fiJ.title" = "Personalizzato…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Espandi Tab automaticamente";
 

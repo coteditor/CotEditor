@@ -229,6 +229,8 @@
 "djM-fI-MkN.title" = "Tab 宽度";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Tab 宽度";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
+"gMO-5n-fiJ.title" = "自定义…";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Tab 转为空格";
 

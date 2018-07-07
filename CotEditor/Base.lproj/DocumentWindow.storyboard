@@ -446,28 +446,34 @@
                         <menuItem title="Tab Width" enabled="NO" id="glT-ig-kuW">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
-                        <menuItem title="2" tag="2" indentationLevel="1" id="Qbx-j9-xJk">
+                        <menuItem title="2" tag="2" id="Qbx-j9-xJk">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="changeTabWidth:" target="klO-m3-n5X" id="VVT-nS-DqA"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="3" tag="3" indentationLevel="1" id="ulC-3K-uAT">
+                        <menuItem title="3" tag="3" id="ulC-3K-uAT">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="changeTabWidth:" target="klO-m3-n5X" id="DMd-qh-kqN"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="4" tag="4" indentationLevel="1" id="FfQ-US-0fo">
+                        <menuItem title="4" tag="4" id="FfQ-US-0fo">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="changeTabWidth:" target="klO-m3-n5X" id="jbZ-t6-MGY"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="8" tag="8" indentationLevel="1" id="ayr-Cj-9kI">
+                        <menuItem title="8" tag="8" id="ayr-Cj-9kI">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="changeTabWidth:" target="klO-m3-n5X" id="b7K-Yf-KtM"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Custom…" id="u3h-xI-sfz">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="customizeTabWidth:" target="klO-m3-n5X" id="cAY-gc-EXe"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="nmx-wO-JFV"/>

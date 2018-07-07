@@ -697,6 +697,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// change tab width to desired number through a sheet
+    @IBAction func customizeTabWidth(_ sender: Any?) {
+        
+        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomTabWidthView"), bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
+        viewController.defaultWidth = self.tabWidth
+        viewController.completionHandler = { [weak self] (tabWidth) in
+            self?.tabWidth = tabWidth
+        }
+        
+        self.presentViewControllerAsSheet(viewController)
+    }
+    
+    
     /// set new theme from menu item
     @IBAction func changeTheme(_ sender: AnyObject?) {
         

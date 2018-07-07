@@ -131,6 +131,8 @@
 "zn9-Cf-SiH.ibShadowedToolTips[1]" = "タブ幅を変更";  // "Change tab width"
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "glT-ig-kuW"; */
 "glT-ig-kuW.title" = "タブ幅";
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "u3h-xI-sfz"; */
+"u3h-xI-sfz.title" = "カスタム...";
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "j1L-Rp-wpA"; */
 "j1L-Rp-wpA.title" = "タブを自動でスペースに展開";
 

@@ -10,6 +10,7 @@ Change Log
 - New toolbar icons.
 - Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
 - New option to allow overscrolling (in Window pane).
+- Enable to change the tab width of a specific document to a desired number.
 
 
 ### Improvements

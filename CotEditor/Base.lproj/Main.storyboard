@@ -433,16 +433,16 @@ Gw
                                                             <action selector="changeTabWidth:" target="Ady-hI-5gd" id="EbA-11-0TZ"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="6" tag="6" id="HOF-KZ-dXD">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="changeTabWidth:" target="Ady-hI-5gd" id="VsK-Nd-AUL"/>
-                                                        </connections>
-                                                    </menuItem>
                                                     <menuItem title="8" tag="8" id="9e0-Q5-Oqh">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="changeTabWidth:" target="Ady-hI-5gd" id="93l-wK-p0O"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Custom…" id="gMO-5n-fiJ">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="customizeTabWidth:" target="Ady-hI-5gd" id="DLW-Em-an7"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
