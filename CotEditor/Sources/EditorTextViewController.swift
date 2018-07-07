@@ -50,6 +50,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         set {
             self.scrollView?.rulersVisible = newValue
+            if #available(macOS 10.14, *) {
+                self.scrollView?.layoutSubtreeIfNeeded()
+            }
         }
     }
     
