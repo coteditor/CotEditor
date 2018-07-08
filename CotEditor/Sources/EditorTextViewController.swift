@@ -50,6 +50,11 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         set {
             self.scrollView?.rulersVisible = newValue
+            
+            // -> Workaround issue on Mojave where line number view covers text view.
+            if #available(macOS 10.14, *) {
+                self.scrollView?.layoutSubtreeIfNeeded()
+            }
         }
     }
     
