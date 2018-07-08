@@ -32,6 +32,17 @@ Change Log
 
 
 
+3.4.4 (261)
+--------------------------
+
+### Fixes
+
+- Address an issue where the application could rarely crash on syntax highlighting.
+- Address an issue on Mojave where text view stacked under the line number view.
+- Fix a typo in Italian localization.
+
+
+
 3.4.3 (259)
 --------------------------
 
