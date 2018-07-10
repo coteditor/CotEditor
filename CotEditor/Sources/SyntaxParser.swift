@@ -166,7 +166,7 @@ extension SyntaxParser {
 extension SyntaxParser {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
+    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {  // @escaping
         
         assert(Thread.isMainThread)
         
@@ -178,7 +178,7 @@ extension SyntaxParser {
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.hash == self.textStorage.string.md5 {
             self.apply(highlights: cache.highlights, range: wholeRange)
-            completionHandler?()
+            completionHandler()
             return nil
         }
         
@@ -256,14 +256,14 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {  // @escaping
         
         guard highlightRange.length > 0 else { return nil }
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
             self.apply(highlights: [:], range: highlightRange)
-            completionHandler?()
+            completionHandler()
             return nil
         }
         
