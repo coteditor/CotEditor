@@ -20,7 +20,8 @@ Change Log
 - Remove the window size setting option.
     - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
 - Remove “length” display in the status bar.
-- Remove the initial document inspector visibility setting option.
+- Remove visibility setting options for document inspector and status bar from Window preferences pane.
+    - From now on, the latest change to a window via “View” menu will be inherited to future windows.
 - Remove feature to change only the frontmost editor's opacity temporaly.
     - From this, `view opacity` property on AppleScript is also deprecated.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.

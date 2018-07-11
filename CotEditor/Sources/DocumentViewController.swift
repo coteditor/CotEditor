@@ -571,6 +571,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         NSAnimationContext.current.withAnimation {
             self.isStatusBarShown = !self.isStatusBarShown
         }
+        
+        UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
     }
     
     

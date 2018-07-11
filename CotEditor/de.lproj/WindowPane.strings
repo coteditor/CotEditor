@@ -45,8 +45,6 @@
 "iw9-Ba-eD2.title" = "Anzeigen:";
 /* Class = "NSButtonCell"; title = "Navigation bar"; ObjectID = "3351"; */
 "3351.title" = "Navigationsleiste";
-/* Class = "NSButtonCell"; title = "Status bar"; ObjectID = "3349"; */
-"3349.title" = "Statusleiste";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "Zeilennummern";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */

@@ -46,7 +46,6 @@ extension DefaultKeys {
     // Window
     static let windowTabbing = DefaultKey<Int>("windowTabbing")
     static let showNavigationBar = DefaultKey<Bool>("showNavigationBar")
-    static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let showLineNumbers = DefaultKey<Bool>("showLineNumbers")
     static let showPageGuide = DefaultKey<Bool>("showPageGuide")
     static let pageGuideColumn = DefaultKey<Int>("pageGuideColumn")
@@ -162,6 +161,7 @@ extension DefaultKeys {
     static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     static let showInspector = DefaultKey<Bool>("showInspector")
+    static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     
     // hidden settings
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
