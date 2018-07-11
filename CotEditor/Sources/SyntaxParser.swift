@@ -142,16 +142,16 @@ extension SyntaxParser {
             return
         }
         
-        let operation = OutlineParseOperation(extractors: self.style.outlineExtractors)
-        operation.string = string.immutable  // make sure being immutable
-        operation.parseRange = string.nsRange
-        operation.queuePriority = .low
+        let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
+                                              string: string.immutable,
+                                              range: string.nsRange)
         
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
             self?.outlineItems = operation.results
         }
+        operation.queuePriority = .low
         
         self.outlineParseOperationQueue.addOperation(operation)
         

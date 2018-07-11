@@ -30,9 +30,6 @@ final class OutlineParseOperation: Operation, ProgressReporting {
     
     // MARK: Public Properties
     
-    var string: String?
-    var parseRange: NSRange = .notFound
-    
     let progress: Progress
     private(set) var results = [OutlineItem]()
     
@@ -40,15 +37,22 @@ final class OutlineParseOperation: Operation, ProgressReporting {
     // MARK: Private Properties
     
     private let extractors: [OutlineExtractor]
+    private let string: String
+    private let parseRange: NSRange
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(extractors: [OutlineExtractor]) {
+    required init(extractors: [OutlineExtractor], string: String, range parseRange: NSRange) {
+        
+        assert(parseRange.location != NSNotFound)
         
         self.extractors = extractors
+        self.string = string
+        self.parseRange = parseRange
+        
         self.progress = Progress(totalUnitCount: Int64(extractors.count + 1))
         
         super.init()
@@ -65,38 +69,34 @@ final class OutlineParseOperation: Operation, ProgressReporting {
     /// is ready to run
     override var isReady: Bool {
         
-        return self.string != nil && self.parseRange.location != NSNotFound
+        return true
     }
     
     
-    /// parse string in background and return extracted outline items
+    /// parse string and extract outline items
     override func main() {
         
-        guard !self.extractors.isEmpty else { return }
-        
         guard
-            let string = self.string,
-            !string.isEmpty,
-            self.parseRange.location != NSNotFound
-            else { return }
-        
-        var outlineItems = [OutlineItem]()
+            !self.extractors.isEmpty,
+            !self.string.isEmpty
+            else {
+                self.progress.completedUnitCount = self.progress.totalUnitCount
+                return
+            }
         
         for extractor in self.extractors {
             guard !self.isCancelled else { return }
             
-            outlineItems += extractor.items(in: string, range: self.parseRange)
+            self.results += extractor.items(in: self.string, range: self.parseRange)
             
             self.progress.completedUnitCount += 1
         }
         
         guard !self.isCancelled else { return }
         
-        outlineItems.sort {
+        self.results.sort {
             $0.range.location < $1.range.location
         }
-        
-        self.results = outlineItems
         
         self.progress.completedUnitCount += 1
     }
