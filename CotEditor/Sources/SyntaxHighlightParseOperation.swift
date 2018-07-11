@@ -98,8 +98,6 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         self.progress.cancellationHandler = { [weak self] in
             self?.cancel()
         }
-        
-        self.queuePriority = .high
     }
     
     

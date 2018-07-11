@@ -56,8 +56,6 @@ final class OutlineParseOperation: Operation, ProgressReporting {
         self.progress.cancellationHandler = { [weak self] in
             self?.cancel()
         }
-        
-        self.queuePriority = .low
     }
     
     
