@@ -26,7 +26,7 @@
 
 import Foundation
 
-final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
+final class OutlineParseOperation: Operation, ProgressReporting {
     
     // MARK: Public Properties
     
@@ -73,10 +73,6 @@ final class OutlineParseOperation: AsynchronousOperation, ProgressReporting {
     
     /// parse string in background and return extracted outline items
     override func main() {
-        
-        defer {
-            self.finish()
-        }
         
         guard !self.extractors.isEmpty else { return }
         

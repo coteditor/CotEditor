@@ -53,7 +53,7 @@ private struct QuoteCommentItem {
 
 // MARK: -
 
-final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReporting {
+final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     
     struct ParseDefinition {
         
@@ -115,10 +115,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
-        
-        defer {
-            self.finish()
-        }
         
         let results = self.extractHighlights()
         

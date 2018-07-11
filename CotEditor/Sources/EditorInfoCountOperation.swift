@@ -45,7 +45,7 @@ struct EditorInfoTypes: OptionSet {
 
 // MARK: -
 
-final class EditorInfoCountOperation: AsynchronousOperation {
+final class EditorInfoCountOperation: Operation {
     
     struct Result {
         
@@ -100,10 +100,6 @@ final class EditorInfoCountOperation: AsynchronousOperation {
     // MARK: Operation Methods
     
     override func main() {
-        
-        defer {
-            self.finish()
-        }
         
         guard !self.string.isEmpty else { return }
         
