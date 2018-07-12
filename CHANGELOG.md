@@ -8,24 +8,22 @@ Change Log
 ### New Features
 
 - New toolbar icons.
-- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
-- New option to allow overscrolling (in Window pane).
+- Highlight the same substrings of the selection automatically (Customize the behavior in General preferences pane).
+- New option to allow overscrolling (Customize the behavior in Window preference pane).
 - Enable to change the tab width of a specific document to a desired number.
 
 
 ### Improvements
 
 - Select all matches by “Find All”.
+- Improve the editor's scrolling behavior to scroll along the predominant axis.
 - Add menu item to toggle visibility of the sidebar inspector.
-- Remove the window size setting option.
-    - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
+- Remove some setting options for window such as window size and visibilities of document inspector and status bar from Window preferences pane.
+    - From now on, the latest change to a window will be inherited to future windows just like other standard Cocoa applications.
 - Remove “length” display in the status bar.
-- Remove visibility setting options for document inspector and status bar from Window preferences pane.
-    - From now on, the latest change to a window via “View” menu will be inherited to future windows.
 - Remove feature to change only the frontmost editor's opacity temporaly.
     - From this, `view opacity` property on AppleScript is also deprecated.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.
-- Improve the editor's scrolling behavior to scroll along the predominant axis.
 - Optimize performance of character counting.
 - Improve general stability on the print operation.
 - [trivial] Update editor opacity sample tips.
