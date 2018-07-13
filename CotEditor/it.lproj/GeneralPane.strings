@@ -66,8 +66,8 @@
 "rpa-Di-f4s.title" = "Aggiorna usando la versione modificata";
 
 
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Programma:";
+/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Content parse:";  // FIXME: changed
 
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Conteggia ogni fine riga come un carattere";

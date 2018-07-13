@@ -65,8 +65,8 @@
 "rpa-Di-f4s.title" = "Auf geänderte Version aktualisieren";
 
 
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Programm:";
+/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Inhaltsanalyse:";
 
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Zeilenumbrüche als Zeichen zählen";
