@@ -223,7 +223,7 @@ final class SortOptions: NSObject {
     @objc dynamic var ignoresCase: Bool = true
     @objc dynamic var numeric: Bool = true
     
-    @objc dynamic var localized: Bool = true
+    @objc dynamic var isLocalized: Bool = true
     @objc dynamic var keepsFirstLine: Bool = false
     @objc dynamic var decending: Bool = false
     
@@ -245,7 +245,7 @@ final class SortOptions: NSObject {
     
     var locale: Locale? {
         
-        return self.localized ? .current: nil
+        return self.isLocalized ? .current: nil
     }
     
 }
