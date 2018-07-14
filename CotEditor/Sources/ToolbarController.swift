@@ -32,11 +32,11 @@ extension LineEnding {
         
         switch index {
         case 0:
-            self = .LF
+            self = .lf
         case 1:
-            self = .CR
+            self = .cr
         case 2:
-            self = .CRLF
+            self = .crlf
         default:
             return nil
         }
@@ -45,11 +45,11 @@ extension LineEnding {
     
     var index: Int {
         switch self {
-        case .LF:
+        case .lf:
             return 0
-        case .CR:
+        case .cr:
             return 1
-        case .CRLF:
+        case .crlf:
             return 2
         default:
             return -1

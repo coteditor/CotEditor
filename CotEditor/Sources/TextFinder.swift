@@ -541,7 +541,7 @@ final class TextFinder: NSResponder {
     /// find string of which line endings are standardized to LF
     private var sanitizedFindString: String {
         
-        return self.findString.replacingLineEndings(with: .LF)
+        return self.findString.replacingLineEndings(with: .lf)
     }
     
     

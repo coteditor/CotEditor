@@ -133,9 +133,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
             !(textView.undoManager?.isUndoing ?? false),  // = undo
-            let lineEnding = replacementString.detectedLineEnding, lineEnding != .LF
+            let lineEnding = replacementString.detectedLineEnding, lineEnding != .lf
         {
-            return !textView.replace(with: replacementString.replacingLineEndings(with: .LF),
+            return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
                                      range: affectedCharRange,
                                      selectedRange: nil)
         }

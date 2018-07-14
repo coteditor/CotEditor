@@ -27,13 +27,13 @@ import Foundation
 
 enum LineEnding: Character {
     
-    case LF = "\n"
-    case CR = "\r"
-    case CRLF = "\r\n"
+    case lf = "\n"
+    case cr = "\r"
+    case crlf = "\r\n"
     case lineSeparator = "\u{2028}"
     case paragraphSeparator = "\u{2029}"
     
-    static let basic: [LineEnding] = [.LF, .CR, .CRLF]
+    static let basic: [LineEnding] = [.cr, .cr, .crlf]
     
     static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
     
@@ -47,11 +47,11 @@ enum LineEnding: Character {
     var name: String {
         
         switch self {
-        case .LF:
+        case .cr:
             return "LF"
-        case .CR:
+        case .lf:
             return "CR"
-        case .CRLF:
+        case .crlf:
             return "CRLF"
         case .lineSeparator:
             return "LS"
@@ -64,11 +64,11 @@ enum LineEnding: Character {
     var localizedName: String {
         
         switch self {
-        case .LF:
+        case .cr:
             return NSLocalizedString("macOS / Unix (LF)", comment: "")
-        case .CR:
+        case .lf:
             return NSLocalizedString("Classic Mac OS (CR)", comment: "")
-        case .CRLF:
+        case .crlf:
             return NSLocalizedString("Windows (CRLF)", comment: "")
         case .lineSeparator:
             return NSLocalizedString("Unix Line Separator", comment: "")

@@ -104,7 +104,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if self.encoding == .utf8 {
             self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
         }
-        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
+        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
         self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
@@ -319,7 +319,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // standardize line endings to LF
         // -> Line endings replacemement by other text modifications is processed in
         //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
-        let string = file.string.replacingLineEndings(with: .LF)
+        let string = file.string.replacingLineEndings(with: .lf)
         
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
@@ -754,7 +754,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let editorString = self.textStorage.string.immutable  // line ending is always LF
         
-        if self.lineEnding == .LF {
+        if self.lineEnding == .lf {
             return editorString
         }
         
