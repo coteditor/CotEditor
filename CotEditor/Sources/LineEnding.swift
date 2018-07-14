@@ -47,9 +47,9 @@ enum LineEnding: Character {
     var name: String {
         
         switch self {
-        case .cr:
-            return "LF"
         case .lf:
+            return "LF"
+        case .cr:
             return "CR"
         case .crlf:
             return "CRLF"
@@ -64,9 +64,9 @@ enum LineEnding: Character {
     var localizedName: String {
         
         switch self {
-        case .cr:
-            return NSLocalizedString("macOS / Unix (LF)", comment: "")
         case .lf:
+            return NSLocalizedString("macOS / Unix (LF)", comment: "")
+        case .cr:
             return NSLocalizedString("Classic Mac OS (CR)", comment: "")
         case .crlf:
             return NSLocalizedString("Windows (CRLF)", comment: "")
