@@ -116,9 +116,9 @@ struct OutlineDefinition: Equatable {
         self.pattern = pattern
         self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
         self.ignoreCase = dictionary[CodingKeys.ignoreCase.rawValue] as? Bool ?? false
-        self.bold = dictionary[CodingKeys.bold.rawValue]as? Bool ?? false
-        self.italic = dictionary[CodingKeys.italic.rawValue]as? Bool ?? false
-        self.underline = dictionary[CodingKeys.underline.rawValue]as? Bool ?? false
+        self.bold = dictionary[CodingKeys.bold.rawValue] as? Bool ?? false
+        self.italic = dictionary[CodingKeys.italic.rawValue] as? Bool ?? false
+        self.underline = dictionary[CodingKeys.underline.rawValue] as? Bool ?? false
     }
     
     
