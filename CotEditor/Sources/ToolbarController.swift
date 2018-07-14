@@ -203,7 +203,7 @@ final class ToolbarController: NSObject {
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
-            labelItem.title = NSLocalizedString("Recently Used", comment: "menu heading in syntax style list on toolbar popup")
+            labelItem.title = "Recently Used".localized(comment: "menu heading in syntax style list on toolbar popup")
             labelItem.isEnabled = false
             menu.addItem(labelItem)
             

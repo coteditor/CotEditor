@@ -225,7 +225,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
             NSPageDownFunctionKey: "⇟",
             NSClearLineFunctionKey: "⌧",
             NSHelpFunctionKey: "Help",
-            0x20: NSLocalizedString("Space", comment: "keyboard key name"),  // = Space
+            0x20: "Space".localized(comment: "keyboard key name"),  // = Space
             0x09: "⇥",  // = Tab
             0x0d: "↩",  // = Return
             0x08: "⌫",  // = Backspace, (delete backword)

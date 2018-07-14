@@ -48,7 +48,7 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     
     var localizedDescription: String {
         
-        return NSLocalizedString(self.description, comment: "")
+        return self.description.localized
     }
     
     

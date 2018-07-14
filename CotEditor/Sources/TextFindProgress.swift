@@ -93,7 +93,7 @@ struct CountableFormatter {
     
     fileprivate func localizedString(for count: Int) -> String {
         
-        return String(format: NSLocalizedString(self.format(for: count), comment: ""),
+        return String(format: self.format(for: count).localized,
                       self.integerFormatter.string(from: count as NSNumber)!)
     }
     
@@ -105,7 +105,7 @@ struct CountableFormatter {
         
         switch count {
         case 0:
-            return NSLocalizedString("Searching in text...", comment: "")
+            return "Searching in text...".localized
         case 1:
             return self.singular
         default:

@@ -1,14 +1,14 @@
 //
-//  NSTextView+Snippet.swift
+//  String+Localized.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-12-29.
+//  Created by 1024jp on 2018-07-14.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017 1024jp
+//  © 2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,22 +23,21 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
 
-extension NSTextView {
+extension String {
     
-    func insert(snippet: Snippet) {
+    /// Cocoa localized string
+    var localized: String {
         
-        let range = self.rangeForUserTextChange
+        return NSLocalizedString(self, comment: "")
+    }
+    
+    
+    /// returns a localized string, using the main bundle if one is not specified.
+    func localized(tableName: String? = nil, bundle: Bundle = .main, value: String = "", comment: String = "") -> String {
         
-        guard self.shouldChangeText(in: range, replacementString: snippet.string) else { return }
-        
-        self.replaceCharacters(in: range, with: snippet.string)
-        self.didChangeText()
-        if let selection = snippet.selection {
-            self.selectedRange = NSRange(location: range.location + selection.location, length: selection.length)
-        }
-        self.undoManager?.setActionName("Insert Snippet".localized)
+        return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: value, comment: comment)
     }
     
 }

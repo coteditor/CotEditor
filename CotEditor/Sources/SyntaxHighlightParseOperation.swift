@@ -118,7 +118,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         
         guard !self.isCancelled else { return }
         
-        self.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+        self.progress.localizedDescription = "Applying colors to text".localized
         
         self.highlightBlock(results)
         
@@ -139,7 +139,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         for syntaxType in SyntaxType.allCases {
             guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
-            self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
+            self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
             
@@ -164,8 +164,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         guard !self.isCancelled else { return [:] }
         
         // extract comments and quoted text
-        self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
-                                                    NSLocalizedString("comments and quoted texts", comment: ""))
+        self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
         highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
         
         guard !self.isCancelled else { return [:] }

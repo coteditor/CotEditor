@@ -553,13 +553,13 @@ final class EditorTextView: NSTextView, Themable {
         guard let menu = super.menu(for: event) else { return nil }
         
         // remove unwanted "Font" menu and its submenus
-        if let fontMenuItem = menu.item(withTitle: NSLocalizedString("Font", comment: "menu item title in the context menu")) {
+        if let fontMenuItem = menu.item(withTitle: "Font".localized(comment: "menu item title in the context menu")) {
             menu.removeItem(fontMenuItem)
         }
         
         // add "Inspect Character" menu item if single character is selected
         if (self.string as NSString).substring(with: self.selectedRange).count == 1 {
-            menu.insertItem(withTitle: NSLocalizedString("Inspect Character", comment: ""),
+            menu.insertItem(withTitle: "Inspect Character".localized,
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
                             at: 1)
@@ -568,7 +568,7 @@ final class EditorTextView: NSTextView, Themable {
         // add "Copy as Rich Text" menu item
         let copyIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(copy(_:)))
         if copyIndex >= 0 {  // -1 == not found
-            menu.insertItem(withTitle: NSLocalizedString("Copy as Rich Text", comment: ""),
+            menu.insertItem(withTitle: "Copy as Rich Text".localized,
                             action: #selector(copyWithStyle(_:)),
                             keyEquivalent: "",
                             at: copyIndex + 1)
@@ -577,7 +577,7 @@ final class EditorTextView: NSTextView, Themable {
         // add "Select All" menu item
         let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
         if pasteIndex >= 0 {  // -1 == not found
-            menu.insertItem(withTitle: NSLocalizedString("Select All", comment: ""),
+            menu.insertItem(withTitle: "Select All".localized,
                             action: #selector(selectAll(_:)),
                             keyEquivalent: "",
                             at: pasteIndex + 1)
@@ -908,7 +908,7 @@ final class EditorTextView: NSTextView, Themable {
             if let menuItem = item as? NSMenuItem {
                 let canComment = self.canUncomment(range: self.selectedRange, partly: false)
                 let title = canComment ? "Uncomment" : "Comment Out"
-                menuItem.title = NSLocalizedString(title, comment: "")
+                menuItem.title = title.localized
             }
             return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
             

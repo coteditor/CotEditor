@@ -65,15 +65,15 @@ enum LineEnding: Character {
         
         switch self {
         case .lf:
-            return NSLocalizedString("macOS / Unix (LF)", comment: "")
+            return "macOS / Unix (LF)".localized
         case .cr:
-            return NSLocalizedString("Classic Mac OS (CR)", comment: "")
+            return "Classic Mac OS (CR)".localized
         case .crlf:
-            return NSLocalizedString("Windows (CRLF)", comment: "")
+            return "Windows (CRLF)".localized
         case .lineSeparator:
-            return NSLocalizedString("Unix Line Separator", comment: "")
+            return "Unix Line Separator".localized
         case .paragraphSeparator:
-            return NSLocalizedString("Unix Paragraph Separator", comment: "")
+            return "Unix Paragraph Separator".localized
         }
     }
     

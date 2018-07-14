@@ -138,12 +138,12 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         self.resultMessage = {
             switch results.count {
             case 0:
-                return String(format: NSLocalizedString("No strings found in “%@”.", comment: ""), documentName)
+                return String(format: "No strings found in “%@”.".localized, documentName)
             case 1:
-                return String(format: NSLocalizedString("Found one string in “%@”.", comment: ""), documentName)
+                return String(format: "Found one string in “%@”.".localized, documentName)
             default:
                 let countStr = String.localizedStringWithFormat("%li", results.count)  // localize to add thousand separators
-                return String(format: NSLocalizedString("Found %@ strings in “%@”.", comment: ""), countStr, documentName)
+                return String(format: "Found %@ strings in “%@”.".localized, countStr, documentName)
             }
         }()
         

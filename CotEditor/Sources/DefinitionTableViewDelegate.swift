@@ -69,7 +69,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
         
         // delete
         return [NSTableViewRowAction(style: .destructive,
-                                     title: NSLocalizedString("Delete", comment: "table view action title"),
+                                     title: "Delete".localized(comment: "table view action title"),
                                      handler: { (action: NSTableViewRowAction, row: Int) in
                                         NSAnimationContext.runAnimationGroup({ context in
                                             // update UI

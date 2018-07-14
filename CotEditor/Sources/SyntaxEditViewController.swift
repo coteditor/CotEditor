@@ -133,7 +133,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         self.isCustomized = manager.isCustomizedBundledSetting(name: name)
         
         if self.isBundledStyle {
-            self.message = NSLocalizedString("Bundled styles can’t be renamed.", comment: "")
+            self.message = "Bundled styles can’t be renamed.".localized
         }
         
         super.init(nibName: nil, bundle: nil)
@@ -333,10 +333,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     /// menu titles for binding
     @objc var menuTitles: [String] {
         
-        return (0...PaneIndex.validation.rawValue).map { index in
-            let title = PaneIndex(rawValue: index)!.title
-            return NSLocalizedString(title, comment: "")
-        }
+        return (0...PaneIndex.validation.rawValue)
+            .map { PaneIndex(rawValue: $0)!.title.localized }
     }
     
     

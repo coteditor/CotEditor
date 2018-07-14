@@ -475,7 +475,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             return filePath
             
         case .printDate:
-            return String(format: NSLocalizedString("Printed on %@", comment: ""), self.dateFormatter.string(from: Date()))
+            return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
             
         case .pageNumber:
             guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }

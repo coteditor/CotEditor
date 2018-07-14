@@ -45,7 +45,7 @@ extension NSPrintInfo.AttributeKey {
 
 struct ThemeName {
     
-    static let blackAndWhite = NSLocalizedString("Black and White", comment: "")
+    static let blackAndWhite = "Black and White".localized
 }
 
 
@@ -186,7 +186,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         popupButton.addItem(withTitle: ThemeName.blackAndWhite)
         popupButton.menu?.addItem(.separator())
         
-        popupButton.addItem(withTitle: NSLocalizedString("Theme", comment: ""))
+        popupButton.addItem(withTitle: "Theme".localized)
         popupButton.lastItem?.isEnabled = false
         
         for themeName in themeNames {
@@ -394,8 +394,8 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
 /// create dictionary for localizedSummaryItems
 private func localizedSummaryItem(name: String, description: String) -> [NSPrintPanel.AccessorySummaryKey: String] {
     
-    return [.itemName: NSLocalizedString(name, comment: ""),
-            .itemDescription: NSLocalizedString(description, comment: "")]
+    return [.itemName: name.localized,
+            .itemDescription: description.localized]
 }
 
 

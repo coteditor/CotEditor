@@ -112,7 +112,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
+        self.undoManager?.setActionName("Insert Text".localized)
         
         self.didChangeText()
     }
@@ -128,7 +128,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
+        self.undoManager?.setActionName("Insert Text".localized)
         
         self.didChangeText()
     }
@@ -144,7 +144,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Replace Text", comment: ""))
+        self.undoManager?.setActionName("Replace Text".localized)
         
         self.didChangeText()
     }
@@ -160,7 +160,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
+        self.undoManager?.setActionName("Insert Text".localized)
         
         self.didChangeText()
     }

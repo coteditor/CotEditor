@@ -172,35 +172,35 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         switch action {
         case #selector(toggleStatusBar):
             let title = self.isStatusBarShown ? "Hide Status Bar" : "Show Status Bar"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            menuItem.title = title.localized
             
         case #selector(recolorAll):
             return self.syntaxParser?.canParse ?? false
             
         case #selector(toggleLineNumber):
             let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            menuItem.title = title.localized
             
         case #selector(toggleNavigationBar):
             let title = self.showsNavigationBar ? "Hide Navigation Bar" : "Show Navigation Bar"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            menuItem.title = title.localized
             
         case #selector(toggleLineWrap):
             let title = self.wrapsLines ? "Unwrap Lines" : "Wrap Lines"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            menuItem.title = title.localized
             
         case #selector(togglePageGuide):
             let title = self.showsPageGuide ? "Hide Page Guide" : "Show Page Guide"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            menuItem.title = title.localized
             
         case #selector(toggleInvisibleChars):
             let title = self.showsInvisibles ? "Hide Invisible Characters" : "Show Invisible Characters"
-            menuItem.title = NSLocalizedString(title, comment: "")
+            menuItem.title = title.localized
             // disable button if item cannot be enable
             if self.canActivateShowInvisibles {
-                menuItem.toolTip = NSLocalizedString("Show or hide invisible characters in document", comment: "")
+                menuItem.toolTip = "Show or hide invisible characters in document".localized
             } else {
-                menuItem.toolTip = NSLocalizedString("To show invisible characters, set them in Preferences", comment: "")
+                menuItem.toolTip = "To show invisible characters, set them in Preferences".localized
                 return false
             }
             
@@ -263,9 +263,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
             // disable button if item cannot be enabled
             if self.canActivateShowInvisibles {
-                item.toolTip = NSLocalizedString("Show or hide invisible characters in document", comment: "")
+                item.toolTip = "Show or hide invisible characters in document".localized
             } else {
-                item.toolTip = NSLocalizedString("To show invisible characters, set them in Preferences", comment: "")
+                item.toolTip = "To show invisible characters, set them in Preferences".localized
                 return false
             }
             
@@ -834,7 +834,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 !progress.isFinished, !progress.isCancelled
                 else { return }
             
-            let message = NSLocalizedString("Coloring text…", comment: "")
+            let message = "Coloring text…".localized
             let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
             
             self?.presentViewControllerAsSheet(indicator)

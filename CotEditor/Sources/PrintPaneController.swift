@@ -76,10 +76,10 @@ final class PrintPaneController: NSViewController {
         
         // build popup button
         popupButton.addItem(withTitle: ThemeName.blackAndWhite)
-        popupButton.addItem(withTitle: NSLocalizedString("Same as Document’s Setting", comment: ""))
+        popupButton.addItem(withTitle: "Same as Document’s Setting".localized)
         popupButton.menu?.addItem(.separator())
         
-        popupButton.addItem(withTitle: NSLocalizedString("Theme", comment: ""))
+        popupButton.addItem(withTitle: "Theme".localized)
         popupButton.lastItem?.isEnabled = false
         
         for name in themeNames {

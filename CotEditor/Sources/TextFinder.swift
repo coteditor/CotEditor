@@ -224,7 +224,7 @@ final class TextFinder: NSResponder {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: "Find All".localized)
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
@@ -297,7 +297,7 @@ final class TextFinder: NSResponder {
                 
                 if highlights.isEmpty {
                     NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
@@ -327,7 +327,7 @@ final class TextFinder: NSResponder {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: "Highlight".localized)
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
@@ -369,7 +369,7 @@ final class TextFinder: NSResponder {
                 
                 if highlights.isEmpty {
                     NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
@@ -432,7 +432,7 @@ final class TextFinder: NSResponder {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
@@ -477,14 +477,14 @@ final class TextFinder: NSResponder {
                     
                     // apply found strings to the text view
                     textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
-                                     actionName: NSLocalizedString("Replace All", comment: ""))
+                                     actionName: "Replace All".localized)
                 }
                 
                 indicator.done()
                 
                 if replacementItems.isEmpty {
                     NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
@@ -627,7 +627,7 @@ final class TextFinder: NSResponder {
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,
                                 selectedRange: NSRange(location: result.range.location, length: result.string.utf16.count),
-                                actionName: NSLocalizedString("Replace", comment: ""))
+                                actionName: "Replace".localized)
     }
     
 }

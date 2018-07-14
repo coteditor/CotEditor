@@ -218,8 +218,7 @@ private extension NSMutableAttributedString {
         }
         
         if let label = label {
-            let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
-                                        NSLocalizedString(label, comment: ""))
+            let localizedLabel = String(format: "%@: ".localized, label.localized)
             let labelColor: NSColor = appearance.isDark
                 ? NSColor.secondaryLabelColor
                 : NSColor.labelColor.withAlphaComponent(0.6)

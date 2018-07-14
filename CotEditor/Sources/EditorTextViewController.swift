@@ -151,7 +151,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if let scriptMenu = ScriptManager.shared.contexualMenu {
             let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
             item.image = #imageLiteral(resourceName: "ScriptTemplate")
-            item.toolTip = NSLocalizedString("Scripts", comment: "")
+            item.toolTip = "Scripts".localized
             item.submenu = scriptMenu
             menu.addItem(item)
         }

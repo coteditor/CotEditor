@@ -105,9 +105,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         
         switch action {
         case #selector(toggleInspector):
-            (item as? NSMenuItem)?.title = self.isSidebarShown
-                ? NSLocalizedString("Hide Inspector", comment: "")
-                : NSLocalizedString("Show Inspector", comment: "")
+            let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
+            (item as? NSMenuItem)?.title = title.localized
             
         case #selector(getInfo):
             (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off

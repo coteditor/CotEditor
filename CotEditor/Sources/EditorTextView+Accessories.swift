@@ -87,7 +87,7 @@ extension EditorTextView: ColorCodeReceiver {
         if self.shouldChangeText(in: range, replacementString: colorCode) {
             self.replaceCharacters(in: range, with: colorCode)
             self.didChangeText()
-            self.undoManager?.setActionName(NSLocalizedString("Insert Color Code", comment: ""))
+            self.undoManager?.setActionName("Insert Color Code".localized)
             self.selectedRange = NSRange(location: range.location, length: colorCode.utf16.count)
             self.centerSelectionInVisibleArea(self)
         }
