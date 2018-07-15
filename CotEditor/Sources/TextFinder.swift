@@ -685,6 +685,7 @@ private extension TextFind.Mode {
             self = .textual(options: options)
         }
     }
+    
 }
 
 
