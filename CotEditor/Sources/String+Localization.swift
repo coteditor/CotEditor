@@ -1,5 +1,5 @@
 //
-//  String+Localized.swift
+//  String+Localization.swift
 //
 //  CotEditor
 //  https://coteditor.com
