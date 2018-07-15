@@ -44,16 +44,12 @@ class ControlToolbarItem: NSToolbarItem {
     /// validate state of item
     override func validate() {
         
-        super.validate()
-        
-        // validate content view
-        guard
-            let control = self.control,
-            let action = self.action,
-            let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
-            else { return }
-        
-        control.isEnabled = {
+        self.control?.isEnabled = {
+            guard
+                let action = self.action,
+                let validator = NSApp.target(forAction: action, to: self.target, from: self) as AnyObject?
+                else { return false }
+            
             switch validator {
             case let validator as NSUserInterfaceValidations:
                 return validator.validateUserInterfaceItem(self)
