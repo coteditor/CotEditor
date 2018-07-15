@@ -25,7 +25,6 @@
 
 import Cocoa
 
-@available(macOS 10.12.2, *)
 protocol TouchBarItemValidations: AnyObject {
     
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool
@@ -33,7 +32,6 @@ protocol TouchBarItemValidations: AnyObject {
 
 
 
-@available(macOS 10.12.2, *)
 extension NSTouchBar {
     
     /// flag to enable automatic touch bar item validation
@@ -76,7 +74,6 @@ extension NSTouchBar {
 
 // MARK: -
 
-@available(macOS 10.12.2, *)
 private final class TouchBarValidator {
     
     // MARK: Public Properties
@@ -203,7 +200,6 @@ private final class TouchBarValidator {
 
 // MARK: -
 
-@available(macOS 10.12.2, *)
 extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
     /// validate item if content view is NSControl

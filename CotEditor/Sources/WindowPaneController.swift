@@ -32,7 +32,6 @@ final class WindowPaneController: NSViewController {
     private lazy var titleForRespectSystemSetting: String = self.tabbingOptionMenu!.items.first!.title
     
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
-    @IBOutlet private weak var tabbingSupportCaution: NSTextField?
     
     @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
     
@@ -41,21 +40,9 @@ final class WindowPaneController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        if (NSApp.delegate as! AppDelegate).supportsWindowTabbing {
-            self.tabbingSupportCaution!.removeFromSuperview()
-        }
-    }
-    
-    
     override func viewWillAppear() {
         
         super.viewWillAppear()
-        
-        guard #available(macOS 10.12, *) else { return }
         
         // display the current system-wide user setting for window tabbing in "Respect System Setting" menu item.
         let menu = self.tabbingOptionMenu!

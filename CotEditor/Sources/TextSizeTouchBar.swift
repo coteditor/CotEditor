@@ -25,7 +25,6 @@
 
 import Cocoa
 
-@available(macOS 10.12.2, *)
 private extension NSTouchBarItem.Identifier {
     
     static let textSizeActual = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.textSizeActual")
@@ -34,7 +33,6 @@ private extension NSTouchBarItem.Identifier {
 
 
 
-@available(macOS 10.12.2, *)
 final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceValidations {
     
     // MARK: Private Properties

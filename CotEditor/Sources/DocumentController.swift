@@ -215,10 +215,8 @@ final class DocumentController: NSDocumentController {
         
         guard let action = item.action else { return false }
         
-        if #available(macOS 10.12, *) {
-            if action == #selector(newDocumentAsTab) {
-                return self.currentDocument != nil
-            }
+        if action == #selector(newDocumentAsTab) {
+            return self.currentDocument != nil
         }
         
         return super.validateUserInterfaceItem(item)
@@ -252,7 +250,6 @@ final class DocumentController: NSDocumentController {
     // MARK: Action Messages
     
     /// open a new document as new window
-    @available(macOS 10.12, *)
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
         
         let document: NSDocument
@@ -271,7 +268,6 @@ final class DocumentController: NSDocumentController {
     
     
     /// open a new document as tab in the existing frontmost window
-    @available(macOS 10.12, *)
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
         let document: NSDocument
