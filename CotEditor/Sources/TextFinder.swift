@@ -290,7 +290,7 @@ final class TextFinder: NSResponder {
                 
                 results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 
-                progress.needsUpdateDescription(count: results.count)
+                progress.completedUnitCount += 1
             }
             
             DispatchQueue.main.sync {
@@ -360,7 +360,7 @@ final class TextFinder: NSResponder {
                     highlights.append(HighlightItem(range: range, color: color))
                 }
                 
-                progress.needsUpdateDescription(count: highlights.count)
+                progress.completedUnitCount += 1
             }
             
             DispatchQueue.main.sync {
@@ -450,8 +450,6 @@ final class TextFinder: NSResponder {
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            var count = 0
-            var progressStep = 0
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
                     stop = true
@@ -459,21 +457,12 @@ final class TextFinder: NSResponder {
                 }
                 
                 switch flag {
-                case .findProgress:
-                    break  // just give a change to cancel
-                    
-                case .foundCount(let scopeTotal):
-                    let kFrequency = 500
-                    progressStep = (scopeTotal > kFrequency) ? Int(scopeTotal / kFrequency) : scopeTotal
-                    
+                case .findProgress, .foundCount:
+                    break
                 case .replacementProgress:
-                    count += 1
-                    if count % progressStep == 0 {
-                        progress.needsUpdateDescription(count: count)
-                    }
+                    progress.completedUnitCount += 1
                 }
             }
-            progress.needsUpdateDescription(count: count)  // display final replaced number
             
             DispatchQueue.main.sync {
                 textView.isEditable = true
@@ -506,6 +495,7 @@ final class TextFinder: NSResponder {
                     }
                 }
                 
+                let count = Int(progress.completedUnitCount)
                 strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
             }
         }

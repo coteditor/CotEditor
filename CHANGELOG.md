@@ -26,6 +26,7 @@ Change Log
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.
 - Optimize performance of character counting.
 - Improve general stability on the print operation.
+- [trivial] Count progress of the Highlight command in Find menu match by match.
 - [trivial] Update editor opacity sample tips.
 - [non-AppStore ver.] Update Sparkle framework.
 

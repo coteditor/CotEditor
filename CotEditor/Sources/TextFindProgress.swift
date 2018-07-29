@@ -27,7 +27,7 @@ import Foundation
 
 final class TextFindProgress: Progress {
     
-    // MARK: Public Properties
+    // MARK: Private Properties
     
     private let format: CountableFormatter
     
@@ -45,16 +45,12 @@ final class TextFindProgress: Progress {
     }
     
     
-    // MARK: Public Methods
+    // MARK: Progress Methods
     
-    /// update localizedDescription with current progress thread safely
-    func needsUpdateDescription(count: Int) {
+    override var completedUnitCount: Int64 {
         
-        let localizedDescription = self.format.localizedString(for: count)
-        
-        DispatchQueue.main.async { [weak self] in
-            self?.completedUnitCount = Int64(count)
-            self?.localizedDescription = localizedDescription
+        didSet {
+            self.localizedDescription = self.format.localizedString(for: Int(completedUnitCount))
         }
     }
     

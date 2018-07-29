@@ -51,13 +51,13 @@ extension MultipleReplacement {
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            let result = strongSelf.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
+            let result = strongSelf.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                progress.needsUpdateDescription(count: count)
+                progress.completedUnitCount += 1
             }
             
             DispatchQueue.main.async {
@@ -126,13 +126,13 @@ extension MultipleReplacement {
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            let result = strongSelf.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
+            let result = strongSelf.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                progress.needsUpdateDescription(count: count)
+                progress.completedUnitCount += 1
             }
             
             DispatchQueue.main.async {
