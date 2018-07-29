@@ -42,7 +42,7 @@ extension NSTextView {
     }
     
     
-    /// calcurate range of characters in rect
+    /// calculate range of characters in rect
     func range(for rect: NSRect) -> NSRange? {
         
         guard

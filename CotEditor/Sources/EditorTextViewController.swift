@@ -245,7 +245,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard textView.lineHighlightRect != rect else { return }
         
-        // clear previous highlihght
+        // clear previous highlight
         if let lineHighlightRect = textView.lineHighlightRect {
             textView.setNeedsDisplay(lineHighlightRect, avoidAdditionalLayout: true)
         }
