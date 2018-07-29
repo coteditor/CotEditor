@@ -43,18 +43,18 @@ protocol TextFinderDelegate: class {
 
 struct TextFindResult {
     
-    let range: NSRange
-    let lineRange: NSRange
-    let lineNumber: Int
-    let attributedLineString: NSAttributedString
+    var range: NSRange
+    var lineNumber: Int
+    var attributedLineString: NSAttributedString
+    var inlineRange: NSRange
     
 }
 
 
 private struct HighlightItem {
     
-    let range: NSRange
-    let color: NSColor
+    var range: NSRange
+    var color: NSColor
     
 }
 
@@ -230,7 +230,7 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// find all matched string in the target and show results in a table
+    /// find all matched strings and show results in a table
     @IBAction func findAll(_ sender: Any?) {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
@@ -248,8 +248,8 @@ final class TextFinder: NSResponder {
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            var results = [TextFindResult]()
             var highlights = [HighlightItem]()
+            var results = [TextFindResult]()
             
             var lineNumber = 1
             var lineCountedLocation = 0
@@ -260,6 +260,12 @@ final class TextFinder: NSResponder {
                     return
                 }
                 
+                // highlight
+                for (index, range) in matches.enumerated() where range.length > 0 {
+                    let color = highlightColors[index]
+                    highlights.append(HighlightItem(range: range, color: color))
+                }
+                
                 let matchedRange = matches[0]
                 
                 // calculate line number
@@ -267,24 +273,22 @@ final class TextFinder: NSResponder {
                 lineNumber += lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
                 lineCountedLocation = matchedRange.location
                 
-                // highlight both string in textView and line string for result table
+                // build a highlighted line string for result table
                 let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
-                let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
-                                          length: matchedRange.length)
                 let lineString = (textFind.string as NSString).substring(with: lineRange)
                 let attrLineString = NSMutableAttributedString(string: lineString)
-                
-                for (index, range) in matches.enumerated() {
-                    guard range.length > 0 else { continue }
-                    
+                for (index, range) in matches.enumerated() where range.length > 0 {
                     let color = highlightColors[index]
                     let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
                     
                     attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
-                    highlights.append(HighlightItem(range: range, color: color))
                 }
                 
-                results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: lineNumber, attributedLineString: attrLineString))
+                // calculate inline range
+                let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
+                                          length: matchedRange.length)
+                
+                results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 
                 progress.needsUpdateDescription(count: results.count)
             }
@@ -351,9 +355,7 @@ final class TextFinder: NSResponder {
                     return
                 }
                 
-                for (index, range) in matches.enumerated() {
-                    guard range.length > 0 else { continue }
-                    
+                for (index, range) in matches.enumerated() where range.length > 0 {
                     let color = highlightColors[index]
                     highlights.append(HighlightItem(range: range, color: color))
                 }
