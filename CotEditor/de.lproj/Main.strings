@@ -477,6 +477,8 @@
 "l33-Nz-UAw.title" = "Auswahl suchen";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Alles suchen";
+/* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
+"ULf-cT-Xvb.title" = "Alle Suchübereinstimmungen auswählen";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Auswahl als Suchbegriff verwenden";

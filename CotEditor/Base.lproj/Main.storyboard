@@ -959,6 +959,12 @@ CA
                                                 <action selector="findAll:" target="Ady-hI-5gd" id="WzO-gP-yJo"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Select All Find Matches" id="ULf-cT-Xvb">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectAllMatches:" target="Ady-hI-5gd" id="9kA-Y9-dWK"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="K3C-uf-Ew4">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>

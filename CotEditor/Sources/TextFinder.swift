@@ -212,6 +212,24 @@ final class TextFinder: NSResponder {
     }
     
     
+    /// select all matched strings
+    @IBAction func selectAllMatches(_ sender: Any?) {
+        
+        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        
+        var matchedRanges = [NSRange]()
+        textFind.findAll { (matches: [NSRange], _) in
+            matchedRanges.append(matches[0])
+        }
+        
+        textView.selectedRanges = matchedRanges as [NSValue]
+        
+        self.delegate?.textFinder(self, didFind: matchedRanges.count, textView: textView)
+        
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+    }
+    
+    
     /// find all matched string in the target and show results in a table
     @IBAction func findAll(_ sender: Any?) {
         
@@ -232,7 +250,6 @@ final class TextFinder: NSResponder {
             
             var results = [TextFindResult]()
             var highlights = [HighlightItem]()
-            var selectedRanges = [NSRange]()
             
             var lineNumber = 1
             var lineCountedLocation = 0
@@ -258,10 +275,6 @@ final class TextFinder: NSResponder {
                 let attrLineString = NSMutableAttributedString(string: lineString)
                 
                 for (index, range) in matches.enumerated() {
-                    if index == 0 {
-                        selectedRanges.append(range)
-                    }
-                    
                     guard range.length > 0 else { continue }
                     
                     let color = highlightColors[index]
@@ -289,9 +302,6 @@ final class TextFinder: NSResponder {
                 for highlight in highlights {
                     textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
                 }
-                
-                // select all
-                textView.selectedRanges = selectedRanges as [NSValue]
                 
                 indicator.done()
                 

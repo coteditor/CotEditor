@@ -15,7 +15,7 @@ Change Log
 
 ### Improvements
 
-- Select all matches by “Find All”.
+- Add command “Select All Find Matches” in Find menu.
 - Improve the editor's scrolling behavior to scroll along the predominant axis.
 - Add menu item to toggle visibility of the sidebar inspector.
 - Remove some setting options for window such as window size and visibilities of document inspector and status bar from Window preferences pane.
