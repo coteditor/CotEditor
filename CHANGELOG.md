@@ -31,6 +31,11 @@ Change Log
 - [non-AppStore ver.] Update Sparkle framework.
 
 
+### Fixes
+
+- Fix an unlocalized text.
+
+
 
 3.4.4 (261)
 --------------------------

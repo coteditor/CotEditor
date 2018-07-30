@@ -101,7 +101,7 @@ struct CountableFormatter {
         
         switch count {
         case 0:
-            return "Searching in text...".localized
+            return "Searching in text…".localized
         case 1:
             return self.singular
         default:
