@@ -43,8 +43,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
 "iw9-Ba-eD2.title" = "表示:";
-/* Class = "NSButtonCell"; title = "Navigation bar"; ObjectID = "3351"; */
-"3351.title" = "ナビゲーションバー";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行番号";
 /* Class = "NSButtonCell"; title = Page guide at column:; ObjectID = "3352"; */

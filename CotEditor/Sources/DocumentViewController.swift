@@ -170,19 +170,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         guard let action = menuItem.action else { return false }
         
         switch action {
+        case #selector(recolorAll):
+            return self.syntaxParser?.canParse ?? false
+            
         case #selector(toggleStatusBar):
             let title = self.isStatusBarShown ? "Hide Status Bar" : "Show Status Bar"
             menuItem.title = title.localized
             
-        case #selector(recolorAll):
-            return self.syntaxParser?.canParse ?? false
+        case #selector(toggleNavigationBar):
+            let title = self.showsNavigationBar ? "Hide Navigation Bar" : "Show Navigation Bar"
+            menuItem.title = title.localized
             
         case #selector(toggleLineNumber):
             let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
-            menuItem.title = title.localized
-            
-        case #selector(toggleNavigationBar):
-            let title = self.showsNavigationBar ? "Hide Navigation Bar" : "Show Navigation Bar"
             menuItem.title = title.localized
             
         case #selector(toggleLineWrap):
@@ -576,19 +576,21 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// toggle visibility of line number view
-    @IBAction func toggleLineNumber(_ sender: Any?) {
-        
-        self.showsLineNumber = !self.showsLineNumber
-    }
-    
-    
     /// toggle visibility of navigation bar with fancy animation
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
             self.showsNavigationBar = !self.showsNavigationBar
         }
+        
+        UserDefaults.standard[.showNavigationBar] = self.showsNavigationBar
+    }
+    
+    
+    /// toggle visibility of line number view
+    @IBAction func toggleLineNumber(_ sender: Any?) {
+        
+        self.showsLineNumber = !self.showsLineNumber
     }
     
     

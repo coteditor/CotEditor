@@ -44,8 +44,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
 "iw9-Ba-eD2.title" = "Mostra:";
-/* Class = "NSButtonCell"; title = "Navigation bar"; ObjectID = "3351"; */
-"3351.title" = "Barra di navigazione";
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "Numeri riga";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
