@@ -17,15 +17,15 @@ Change Log
 
 - Add command “Select All Find Matches” in Find menu.
 - Improve the editor's scrolling behavior to scroll along the predominant axis.
-- Add menu item to toggle visibility of the sidebar inspector.
-- Remove some setting options for window such as window size and visibilities of document inspector and status bar from Window preferences pane.
+- Add menu item to toggle the visibility of the sidebar inspector.
+- Remove some setting options for windows such as window size and visibilities of document inspector and status bar from Window preferences pane.
     - From now on, the latest change to a window will be inherited to future windows just like other standard Cocoa applications.
 - Remove “length” display in the status bar.
-- Remove feature to change only the frontmost editor's opacity temporaly.
+- Remove feature to change only the frontmost editor's opacity temporary.
     - From this, `view opacity` property on AppleScript is also deprecated.
 - Display current user's system-wide setting for window tabbing in the menu on the Window pane.
-- Optimize performance of character counting.
-- Improve general stability on the print operation.
+- Optimize the performance of character counting.
+- Improve general stability of the print operation.
 - [trivial] Count progress of the Highlight command in Find menu match by match.
 - [trivial] Update editor opacity sample tips.
 - [non-AppStore ver.] Update Sparkle framework.
