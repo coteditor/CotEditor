@@ -227,7 +227,9 @@
 "djM-fI-MkN.title" = "タブ幅";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "タブ幅";
-/* Class = "NSMenuItem"; title = "Auto Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
+"gMO-5n-fiJ.title" = "カスタム...";
+/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "タブを自動でスペースに展開";
 
 /* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
@@ -283,6 +285,8 @@
 "Gch-XD-tRl.title" = "アウトライン";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "非互換文字";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "インスペクタを表示";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "ナビゲーションバーを表示";
@@ -304,9 +308,6 @@
 "u46-te-4c4.title" = "分割エディタを縦に配置";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "分割エディタを閉じる";
-
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "エディタの不透明度...";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "4mh-0E-3RJ.title" = "フルスクリーンにする";
@@ -476,6 +477,8 @@
 "l33-Nz-UAw.title" = "選択部分を検索";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "すべて検索";
+/* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
+"ULf-cT-Xvb.title" = "すべての検索マッチを選択";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "選択部分を検索に使用";

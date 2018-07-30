@@ -64,20 +64,20 @@ extension EditorTextView {
         switch identifier {
         case .shift:
             let item = NSCustomTouchBarItem(identifier: identifier)
-            item.customizationLabel = NSLocalizedString("Shift", comment: "touch bar item")
+            item.customizationLabel = "Shift".localized(comment: "touch bar item")
             item.view = NSSegmentedControl(images: [#imageLiteral(resourceName: "ShiftLeftTemplate"), #imageLiteral(resourceName: "ShiftRightTemplate")], trackingMode: .momentary,
                                            target: self, action: #selector(shift(_:)))
             return item
             
         case .comment:
             let item = NSCustomTouchBarItem(identifier: identifier)
-            item.customizationLabel = NSLocalizedString("Comment", comment: "touch bar item")
+            item.customizationLabel = "Comment".localized(comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "CommentTemplate"), target: self, action: #selector(toggleComment(_:)))
             return item
             
         case .textSize:
             let item = NSPopoverTouchBarItem(identifier: identifier)
-            item.customizationLabel = NSLocalizedString("Text Size", comment: "touch bar item")
+            item.customizationLabel = "Text Size".localized(comment: "touch bar item")
             item.collapsedRepresentationImage = #imageLiteral(resourceName: "TextSizeTemplate")
             item.popoverTouchBar = TextSizeTouchBar(textView: self)
             item.pressAndHoldTouchBar = TextSizeTouchBar(textView: self, forPressAndHold: true)

@@ -118,7 +118,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // append the current version number to "What’s New" menu item
         let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
         let shortVersion = String(AppInfo.shortVersion[shortVersionRange])
-        self.whatsNewMenuItem?.title = String(format: NSLocalizedString("What’s New in CotEditor %@", comment: ""), shortVersion)
+        self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
         
         // build menus
         self.buildEncodingMenu()
@@ -208,7 +208,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         let isAutomaticTabbing: Bool = {
             if #available(macOS 10.12, *) {
-                return (AlphaWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+                return (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
             }
             return false
         }()
@@ -239,7 +239,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 // on first window opened
                 // -> The first document needs to open a new window.
                 if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
-                    AlphaWindow.tabbingPreference = .always
+                    DocumentWindow.tabbingPreference = .always
                     firstWindowOpened = true
                 }
             }
@@ -252,7 +252,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
             }
             
-            AlphaWindow.tabbingPreference = nil
+            DocumentWindow.tabbingPreference = nil
         }
     }
     
@@ -267,10 +267,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // ask whether theme file should be opened as a text file
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("“%@” is a CotEditor theme file.", comment: ""), url.lastPathComponent)
-        alert.informativeText = NSLocalizedString("Do you want to install this theme?", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Install", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Open as Text File", comment: ""))
+        alert.messageText = String(format: "“%@” is a CotEditor theme file.".localized, url.lastPathComponent)
+        alert.informativeText = "Do you want to install this theme?".localized
+        alert.addButton(withTitle: "Install".localized)
+        alert.addButton(withTitle: "Open as Text File".localized)
         
         let returnCode = alert.runModal()
         
@@ -290,7 +290,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // feedback for success
         let themeName = ThemeManager.shared.settingName(from: url)
         let feedbackAlert = NSAlert()
-        feedbackAlert.messageText = String(format: NSLocalizedString("A new theme named “%@” has been successfully installed.", comment: ""), themeName)
+        feedbackAlert.messageText = String(format: "A new theme named “%@” has been successfully installed.".localized, themeName)
         
         NSSound.glass?.play()
         feedbackAlert.runModal()
@@ -410,7 +410,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // open as document
         guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return }
-        document.displayName = NSLocalizedString("Bug Report", comment: "document title")
+        document.displayName = "Bug Report".localized(comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
@@ -450,7 +450,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // add item to recolor
         let recolorAction = #selector(SyntaxHolder.recolorAll)
         let shortcut = MenuKeyBindingManager.shared.shortcut(for: recolorAction)
-        let recoloritem = NSMenuItem(title: NSLocalizedString("Re-Color All", comment: ""), action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
+        let recoloritem = NSMenuItem(title: "Re-Color All".localized, action: recolorAction, keyEquivalent: shortcut.keyEquivalent)
         recoloritem.keyEquivalentModifierMask = shortcut.modifierMask  // = default: Cmd + Opt + R
         menu.addItem(recoloritem)
     }

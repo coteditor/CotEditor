@@ -226,7 +226,9 @@
 "djM-fI-MkN.title" = "Largura da Tabulação";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Largura da Tabulação";
-/* Class = "NSMenuItem"; title = "Auto Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
+"gMO-5n-fiJ.title" = "Personalizar…";
+/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Expandir Tabulações Automaticamente";
 
 /* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
@@ -282,6 +284,8 @@
 "Gch-XD-tRl.title" = "Plano";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caracteres Incompatíveis";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "Show Inspector";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostrar Barra de Navegação";
@@ -303,9 +307,6 @@
 "u46-te-4c4.title" = "Posicionar Editores Verticalmente";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Fechar Editor Dividido";
-
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "Definir Opacidade do Editor…";
 
 
 
@@ -473,6 +474,8 @@
 "l33-Nz-UAw.title" = "Buscar Texto Selecionado";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Buscar Tudo";
+/* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
+"ULf-cT-Xvb.title" = "Select All Find Matches";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Usar Seleção para Buscar";

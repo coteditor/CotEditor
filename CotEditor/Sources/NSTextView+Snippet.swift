@@ -38,7 +38,7 @@ extension NSTextView {
         if let selection = snippet.selection {
             self.selectedRange = NSRange(location: range.location + selection.location, length: selection.length)
         }
-        self.undoManager?.setActionName(NSLocalizedString("Insert Snippet", comment: "action name"))
+        self.undoManager?.setActionName("Insert Snippet".localized)
     }
     
 }

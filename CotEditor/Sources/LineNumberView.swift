@@ -49,8 +49,8 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Private Properties
     
-    private var totalNumberOfLines = 0
-    private var needsRecountTotalNumberOfLines = true
+    private var requiredNumberOfDigits = 0
+    private var needsRecountNumberOfDigits = true
     
     private weak var draggingTimer: Timer?
     
@@ -79,6 +79,19 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Ruler View Methods
     
+    /// observe window opacity change
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
+        
+        guard let window = self.window else { return }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
+                                               name: DocumentWindow.didChangeOpacityNotification,
+                                               object: window)
+    }
+    
+    
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
@@ -86,7 +99,7 @@ final class LineNumberView: NSRulerView {
         
         // fill background
         self.backgroundColor.setFill()
-        NSBezierPath.fill(dirtyRect)
+        dirtyRect.fill()
         
         // draw frame border (1px)
         self.textColor(.stroke).setStroke()
@@ -149,17 +162,17 @@ final class LineNumberView: NSRulerView {
         if isVerticalText {
             ruleThickness = max(fontSize + 2.5 * tickLength, self.minHorizontalThickness)
         } else {
-            if self.needsRecountTotalNumberOfLines {
+            if self.needsRecountNumberOfDigits {
                 // -> count only if really needed since the line counting is high workload, especially by large document
-                self.totalNumberOfLines = string.numberOfLines(in: string.range, includingLastLineEnding: true)
-                self.needsRecountTotalNumberOfLines = false
+                let numberOfLines = string.numberOfLines(in: string.range, includingLastLineEnding: true)
+                self.requiredNumberOfDigits = max(numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                self.needsRecountNumberOfDigits = false
             }
             
             // use the line number of whole string, namely the possible largest line number
             // -> The view width depends on the number of digits of the total line numbers.
             //    It's quite dengerous to change width of line number view on scrolling dynamically.
-            let digits = max(self.totalNumberOfLines.numberOfDigits, self.minNumberOfDigits)
-            ruleThickness = max(CGFloat(digits) * charWidth + 3 * lineNumberPadding, self.minVerticalThickness)
+            ruleThickness = max(CGFloat(self.requiredNumberOfDigits) * charWidth + 3 * lineNumberPadding, self.minVerticalThickness)
         }
         ruleThickness = ceil(ruleThickness)
         if ruleThickness != self.ruleThickness {
@@ -232,15 +245,13 @@ final class LineNumberView: NSRulerView {
         }
         
         // get glyph range of which line number should be drawn
-        let visibleRect = self.scrollView?.documentVisibleRect ?? textView.frame
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
+        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: textView.visibleRect, in: textContainer)
         
         // count up lines until visible
-        let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-        var lineNumber = max(string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
+        let firstVisibleIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
+        var lineNumber = string.lineNumber(at: firstVisibleIndex)
         
         // draw visible line numbers
-        var glyphCount = glyphRangeToDraw.location
         var glyphIndex = glyphRangeToDraw.location
         var lastLineNumber = 0
         
@@ -259,18 +270,18 @@ final class LineNumberView: NSRulerView {
                     (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.upperBound == selectedRange.upperBound)))
             }
             
-            while glyphCount < glyphIndex {  // handle wrapper lines
+            var wrappedLineGlyphIndex = lineGlyphRange.location
+            while wrappedLineGlyphIndex < glyphIndex {  // handle wrapped lines
                 var range = NSRange.notFound
-                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
+                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
+                let y = scale * -lineRect.minY
                 let isWrappedLine = (lastLineNumber == lineNumber)
                 lastLineNumber = lineNumber
-                glyphCount = range.upperBound
-                
-                if isVerticalText, isWrappedLine { continue }
-                
-                let y = scale * -lineRect.minY
+                wrappedLineGlyphIndex = range.upperBound
                 
                 if isWrappedLine {
+                    guard !isVerticalText else { continue }
+                    
                     drawWrappedMark(y: y)
                     
                 } else {  // new line
@@ -278,7 +289,7 @@ final class LineNumberView: NSRulerView {
                         drawTick(y: y)
                     }
                     if !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
-                        lineRange.upperBound == length && layoutManager.extraLineFragmentTextContainer == nil  // last line for vertical text
+                        (lineRange.upperBound == length && layoutManager.extraLineFragmentTextContainer == nil)  // last line for vertical text
                     {
                         drawLineNumber(lineNumber, y: y, isBold: isSelected)
                     }
@@ -287,20 +298,20 @@ final class LineNumberView: NSRulerView {
         }
         
         // draw the last "extra" line number
-        if layoutManager.extraLineFragmentTextContainer != nil {
+        let lineRect = layoutManager.extraLineFragmentUsedRect
+        if layoutManager.extraLineFragmentTextContainer != nil, lineRect.intersects(textView.visibleRect) {
+            let lastLineNumber = string.lineNumber(at: length)
             let isSelected: Bool = {
-                if let lastSelectedRange = selectedLineRanges.last {
-                    return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
-                }
-                return false
+                guard let lastSelectedRange = selectedLineRanges.last else { return false }
+                
+                return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
             }()
-            let lineRect = layoutManager.extraLineFragmentUsedRect
             let y = scale * -lineRect.minY
             
             if isVerticalText {
                 drawTick(y: y)
             }
-            drawLineNumber(lineNumber, y: y, isBold: isSelected)
+            drawLineNumber(lastLineNumber, y: y, isBold: isSelected)
         }
         
         // draw vertical line ticks
@@ -316,7 +327,7 @@ final class LineNumberView: NSRulerView {
     /// make background transparent
     override var isOpaque: Bool {
         
-        return false
+        return self.textView?.isOpaque ?? true
     }
     
     
@@ -345,14 +356,11 @@ final class LineNumberView: NSRulerView {
         
         let textColor = self.textView?.textColor ?? .textColor
         
-        let alpha: CGFloat = {
-            if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
-                return 1.0
-            }
-            return strength.rawValue
-        }()
+        if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
+            return textColor
+        }
         
-        return textColor.withAlphaComponent(alpha)
+        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
     }
     
     
@@ -361,14 +369,26 @@ final class LineNumberView: NSRulerView {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
-        return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        if self.isOpaque, let color = self.textView?.backgroundColor {
+            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
+        } else {
+            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        }
     }
     
     
     /// update total number of lines determining view thickness on holizontal text layout
     @objc private func textDidChange(_ notification: Notification) {
         
-        self.needsRecountTotalNumberOfLines = true
+        self.needsRecountNumberOfDigits = true
+    }
+    
+    
+    /// window's opacity did change
+    @objc private func didWindowOpacityChange(_ notification: Notification?) {
+        
+        // redraw visible area
+        self.setNeedsDisplay(self.visibleRect)
     }
     
 }
@@ -495,7 +515,7 @@ extension LineNumberView {
             else { return }
         
         // get start point
-        let point = window.convertToScreen(NSRect(origin: event.locationInWindow, size: NSSize.zero)).origin
+        let point = window.convertToScreen(NSRect(origin: event.locationInWindow, size: .zero)).origin
         let index = textView.characterIndex(for: point)
         
         // repeat while dragging

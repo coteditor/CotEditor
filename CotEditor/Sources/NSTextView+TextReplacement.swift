@@ -117,7 +117,7 @@ extension NSTextView {
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: NSLocalizedString("Trim Trailing Whitespace", comment: ""))
+                     actionName: "Trim Trailing Whitespace".localized)
     }
     
 }

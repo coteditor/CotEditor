@@ -132,10 +132,9 @@ extension MultipleReplacement {
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether find only in selection.
     ///   - block: The block enumerates the matches.
-    ///   - count: The number of replaces so far.
     ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
     /// - Returns: The found ranges. This method will return first all search finished.
-    func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ count: Int, _ stop: inout Bool) -> Void) -> [NSRange] {
+    func find(string: String, ranges: [NSRange], inSelection: Bool, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
         var result = [NSRange]()
         
@@ -156,7 +155,7 @@ extension MultipleReplacement {
             // process find
             var isCancelled = false
             textFind.findAll { (ranges, stop) in
-                block(result.count, &stop)
+                block(&stop)
                 isCancelled = stop
                 
                 result.append(ranges.first!)
@@ -176,10 +175,9 @@ extension MultipleReplacement {
     ///   - ranges: The ranges of selection in the text view.
     ///   - inSelection: Whether replace only in selection.
     ///   - block: The block enumerates the matches.
-    ///   - count: The number of replaces so far.
     ///   - stop: A reference to a Bool value. The block can set the value to true to stop further processing.
     /// - Returns: The result of the replacement. This method will return first all replacement finished.
-    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ count: Int, _ stop: inout Bool) -> Void) -> Result {
+    func replace(string: String, ranges: [NSRange], inSelection: Bool, using block: @escaping (_ stop: inout Bool) -> Void) -> Result {
         
         var result = Result(string: string, selectedRanges: ranges)
         
@@ -207,7 +205,7 @@ extension MultipleReplacement {
                     break
                 case .replacementProgress:
                     result.count += 1
-                    block(result.count, &stop)
+                    block(&stop)
                     isCancelled = stop
                 }
             }

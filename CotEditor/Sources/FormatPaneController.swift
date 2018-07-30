@@ -59,7 +59,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
         super.viewDidLoad()
         
-        self.syntaxTableView?.doubleAction = #selector(openSyntaxEditSheet)
+        self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
         
         let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
@@ -120,9 +120,9 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         case #selector(openSyntaxMappingConflictSheet(_:)):
             return SyntaxManager.shared.mappingConflicts.contains { !$0.value.isEmpty }
             
-        case #selector(openSyntaxEditSheet(_:)) where SyntaxEditSheetMode(rawValue: menuItem.tag) == .copy:
+        case #selector(duplicateSyntaxStyle(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
+                menuItem.title = String(format: "Duplicate “%@”".localized, name)
             }
             menuItem.isHidden = !itemSelected
             
@@ -131,21 +131,21 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
             
         case #selector(restoreSyntaxStyle(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), name)
+                menuItem.title = String(format: "Restore “%@”".localized, name)
             }
             menuItem.isHidden = (!isBundled || !itemSelected)
             return isCustomized
             
         case #selector(exportSyntaxStyle(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
+                menuItem.title = String(format: "Export “%@”…".localized, name)
             }
             menuItem.isHidden = !itemSelected
             return (!isBundled || isCustomized)
             
         case #selector(revealSyntaxStyleInFinder(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
+                menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
             }
             return (!isBundled || isCustomized)
             
@@ -188,7 +188,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         if isCustomized {
             // Restore
             return [NSTableViewRowAction(style: .regular,
-                                         title: NSLocalizedString("Restore", comment: ""),
+                                         title: "Restore".localized,
                                          handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
                                             self?.restoreSyntaxStyle(name: styleName)
                                             
@@ -199,7 +199,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         } else {
             // Delete
             return [NSTableViewRowAction(style: .destructive,
-                                         title: NSLocalizedString("Delete", comment: ""),
+                                         title: "Delete".localized,
                                          handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
                                             self?.deleteSyntaxStyle(name: styleName)
                 })]
@@ -265,13 +265,13 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     /// recommend user to use "Auto-Detect" on changing encoding setting
     @IBAction func checkSelectedItemOfInOpenEncodingMenu(_ sender: Any?) {
         
-        guard let newTitle = self.inOpenEncodingMenu?.selectedItem?.title, newTitle != NSLocalizedString("Auto-Detect", comment: "") else { return }
+        guard let newTitle = self.inOpenEncodingMenu?.selectedItem?.title, newTitle != "Auto-Detect".localized else { return }
         
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("Are you sure you want to change to “%@”?", comment: ""), newTitle)
-        alert.informativeText = NSLocalizedString("The default “Auto-Detect” is recommended for most cases.", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Revert to “Auto-Detect”", comment: ""))
-        alert.addButton(withTitle: String(format: NSLocalizedString("Change to “%@”", comment: ""), newTitle))
+        alert.messageText = String(format: "Are you sure you want to change to “%@”?".localized, newTitle)
+        alert.informativeText = "The default “Auto-Detect” is recommended for most cases.".localized
+        alert.addButton(withTitle: "Revert to “Auto-Detect”".localized)
+        alert.addButton(withTitle: String(format: "Change to “%@”".localized, newTitle))
         
         alert.beginSheetModal(for: self.view.window!) { (returnCode: NSApplication.ModalResponse) in
             
@@ -297,12 +297,33 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     
     
     /// show syntax style edit sheet
-    @IBAction func openSyntaxEditSheet(_ sender: AnyObject?) {
+    @IBAction func editSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
-        let mode = SyntaxEditSheetMode(rawValue: sender?.tag ?? 0) ?? .edit
         
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: mode) else { return }
+        guard let viewController = SyntaxEditViewController(style: styleName, mode: .edit) else { return }
+        
+        self.presentViewControllerAsSheet(viewController)
+    }
+    
+    
+    /// show syntax style edit sheet in copy mode
+    @IBAction func duplicateSyntaxStyle(_ sender: Any?) {
+        
+        let styleName = self.targetStyleName(for: sender)
+        
+        guard let viewController = SyntaxEditViewController(style: styleName, mode: .copy) else { return }
+        
+        self.presentViewControllerAsSheet(viewController)
+    }
+    
+    
+    /// show syntax style edit sheet in new mode
+    @IBAction func createSyntaxStyle(_ sender: Any?) {
+        
+        let styleName = self.targetStyleName(for: sender)
+        
+        guard let viewController = SyntaxEditViewController(style: styleName, mode: .new) else { return }
         
         self.presentViewControllerAsSheet(viewController)
     }
@@ -334,7 +355,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
-        savePanel.nameFieldLabel = NSLocalizedString("Export As:", comment: "")
+        savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = styleName
         savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
         
@@ -350,7 +371,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func importSyntaxStyle(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = NSLocalizedString("Import", comment: "")
+        openPanel.prompt = "Import".localized
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
@@ -399,7 +420,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         inOpenMenu.removeAllItems()
         inNewMenu.removeAllItems()
         
-        let autoDetectItem = NSMenuItem(title: NSLocalizedString("Auto-Detect", comment: ""), action: nil, keyEquivalent: "")
+        let autoDetectItem = NSMenuItem(title: "Auto-Detect".localized, action: nil, keyEquivalent: "")
         autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         inOpenMenu.addItem(autoDetectItem)
         inOpenMenu.addItem(.separator())
@@ -502,10 +523,10 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     private func deleteSyntaxStyle(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete “%@” syntax style?", comment: ""), name)
-        alert.informativeText = NSLocalizedString("This action cannot be undone.", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.messageText = String(format: "Are you sure you want to delete “%@” syntax style?".localized, name)
+        alert.informativeText = "This action cannot be undone.".localized
+        alert.addButton(withTitle: "Cancel".localized)
+        alert.addButton(withTitle: "Delete".localized)
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in

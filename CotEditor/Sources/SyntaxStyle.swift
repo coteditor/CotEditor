@@ -116,9 +116,9 @@ struct OutlineDefinition: Equatable {
         self.pattern = pattern
         self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
         self.ignoreCase = dictionary[CodingKeys.ignoreCase.rawValue] as? Bool ?? false
-        self.bold = dictionary[CodingKeys.bold.rawValue]as? Bool ?? false
-        self.italic = dictionary[CodingKeys.italic.rawValue]as? Bool ?? false
-        self.underline = dictionary[CodingKeys.underline.rawValue]as? Bool ?? false
+        self.bold = dictionary[CodingKeys.bold.rawValue] as? Bool ?? false
+        self.italic = dictionary[CodingKeys.italic.rawValue] as? Bool ?? false
+        self.underline = dictionary[CodingKeys.underline.rawValue] as? Bool ?? false
     }
     
     
@@ -203,7 +203,7 @@ struct SyntaxStyle {
         self.inlineCommentDelimiter = inlineCommentDelimiter
         self.blockCommentDelimiters = blockCommentDelimiters
         
-        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.all.reduce(into: [:]) { (dict, type) in
+        let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
             let definitions = wordDicts.compactMap { HighlightDefinition(dictionary: $0) }

@@ -12,6 +12,7 @@ opt_in_rules:
   - empty_string
   - explicit_init
   - extension_access_modifier
+  - fallthrough
   - file_header
   - first_where
   - implicit_return
@@ -32,7 +33,6 @@ opt_in_rules:
 
 disabled_rules:
   - block_based_kvo
-  - for_where
   - force_cast
   - force_try
   - nesting
@@ -50,7 +50,7 @@ vertical_whitespace:
   max_empty_lines: 4
 
 file_length:
-  warning: 1500
+  warning: 1600
   error: 3000
 
 line_length:
@@ -58,7 +58,7 @@ line_length:
   error: 2000
 
 type_body_length:
-  warning: 600
+  warning: 800
   error: 1000
 
 function_body_length:

@@ -53,7 +53,7 @@ private struct QuoteCommentItem {
 
 // MARK: -
 
-final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReporting {
+final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     
     struct ParseDefinition {
         
@@ -98,8 +98,6 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         self.progress.cancellationHandler = { [weak self] in
             self?.cancel()
         }
-        
-        self.queuePriority = .high
     }
     
     
@@ -116,15 +114,11 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
         
-        defer {
-            self.finish()
-        }
-        
         let results = self.extractHighlights()
         
         guard !self.isCancelled else { return }
         
-        self.progress.localizedDescription = NSLocalizedString("Applying colors to text", comment: "")
+        self.progress.localizedDescription = "Applying colors to text".localized
         
         self.highlightBlock(results)
         
@@ -142,10 +136,10 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         
         // extract standard highlight ranges
         let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
-        for syntaxType in SyntaxType.all {
+        for syntaxType in SyntaxType.allCases {
             guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
-            self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""), syntaxType.localizedName)
+            self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
             
@@ -170,8 +164,7 @@ final class SyntaxHighlightParseOperation: AsynchronousOperation, ProgressReport
         guard !self.isCancelled else { return [:] }
         
         // extract comments and quoted text
-        self.progress.localizedDescription = String(format: NSLocalizedString("Extracting %@…", comment: ""),
-                                                    NSLocalizedString("comments and quoted texts", comment: ""))
+        self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
         highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
         
         guard !self.isCancelled else { return [:] }
@@ -281,7 +274,7 @@ private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRa
     var sanitizedHighlights = [SyntaxType: [NSRange]]()
     let highlightedIndexes = NSMutableIndexSet()
     
-    for type in SyntaxType.all.reversed() {
+    for type in SyntaxType.allCases.reversed() {
         guard let ranges = highlights[type] else { continue }
         var sanitizedRanges = [NSRange]()
         

@@ -43,23 +43,23 @@ struct InvalidKeySpecCharactersError: LocalizedError {
         
         switch self.kind {
         case .singleType:
-            return NSLocalizedString("Single type is invalid for a shortcut.", comment: "")
+            return "Single type is invalid for a shortcut.".localized
             
         case .alreadyTaken:
-            return String(format: NSLocalizedString("“%@” is already taken.", comment: ""), self.shortcut.description)
+            return String(format: "“%@” is already taken.".localized, self.shortcut.description)
             
         case .lackingCommandKey:
-            return String(format: NSLocalizedString("“%@” does not include the Command key.", comment: ""), self.shortcut.description)
+            return String(format: "“%@” does not include the Command key.".localized, self.shortcut.description)
             
         case .unwantedCommandKey:
-            return String(format: NSLocalizedString("“%@” includes the Command key.", comment: ""), self.shortcut.description)
+            return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        return NSLocalizedString("Please combine with another keys.", comment: "")
+        return "Please combine with another keys.".localized
     }
     
 }

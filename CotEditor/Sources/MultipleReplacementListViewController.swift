@@ -99,13 +99,13 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
             
         case #selector(renameSetting(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), name)
+                menuItem.title = String(format: "Rename “%@”".localized, name)
             }
             menuItem.isHidden = !itemSelected
             
         case #selector(duplicateSetting(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
+                menuItem.title = String(format: "Duplicate “%@”".localized, name)
             }
             menuItem.isHidden = !itemSelected
             
@@ -114,13 +114,13 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
             
         case #selector(exportSetting(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
+                menuItem.title = String(format: "Export “%@”…".localized, name)
             }
             menuItem.isHidden = !itemSelected
             
         case #selector(revealSettingInFinder(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
+                menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
             }
             
         default: break
@@ -184,7 +184,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
-        savePanel.nameFieldLabel = NSLocalizedString("Export As:", comment: "")
+        savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = []
         
@@ -200,7 +200,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
     @IBAction func importSetting(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = NSLocalizedString("Import", comment: "")
+        openPanel.prompt = "Import".localized
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = false
@@ -259,10 +259,10 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
     fileprivate func deleteSetting(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete “%@”?", comment: ""), name)
-        alert.informativeText = NSLocalizedString("This action cannot be undone.", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.messageText = String(format: "Are you sure you want to delete “%@”?".localized, name)
+        alert.informativeText = "This action cannot be undone.".localized
+        alert.addButton(withTitle: "Cancel".localized)
+        alert.addButton(withTitle: "Delete".localized)
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { (returnCode: NSApplication.ModalResponse) in

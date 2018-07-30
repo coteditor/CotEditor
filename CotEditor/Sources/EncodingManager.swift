@@ -28,7 +28,7 @@ import Cocoa
 
 @objc protocol EncodingHolder: class {
     
-    func changeEncoding(_ sender: AnyObject?)
+    func changeEncoding(_ sender: NSMenuItem)
 }
 
 

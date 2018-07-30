@@ -75,8 +75,7 @@ struct CharacterInfo: CustomStringConvertible {
     
     init?(string: String) {
         
-        guard string.numberOfComposedCharacters == 1 || string == "\r\n" else { return nil }
-        // -> Number of String.count and numberOfComposedCharacters are different.
+        guard string.count == 1 else { return nil }
         
         let unicodes = string.unicodeScalars
         
@@ -129,14 +128,14 @@ struct CharacterInfo: CustomStringConvertible {
         self.localizedDescription = {
             // number of characters message
             if isComplex {
-                return String(format: NSLocalizedString("<a letter consisting of %d characters>", tableName: "Unicode", comment: ""), unicodes.count)
+                return String(format: "<a letter consisting of %d characters>".localized(tableName: "Unicode"), unicodes.count)
             }
             
             // unicode character name
             guard var unicodeName = unicodes.first?.name else { return string }
             
             if let additional = additional {
-                unicodeName += " (" + NSLocalizedString(additional, tableName: "Unicode", comment: "") + ")"
+                unicodeName += " (" + additional.localized(tableName: "Unicode") + ")"
             }
             
             return unicodeName

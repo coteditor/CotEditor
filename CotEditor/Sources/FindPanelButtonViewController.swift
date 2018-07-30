@@ -104,9 +104,9 @@ final class FindPanelButtonViewController: NSViewController {
         
         self.replaceButton?.toolTip = {
             if UserDefaults.standard[.findNextAfterReplace] {
-                return NSLocalizedString("Replace the current selection with the replacement text, then find the next match.", comment: "")
+                return "Replace the current selection with the replacement text, then find the next match.".localized
             } else {
-                return NSLocalizedString("Replace the current selection with the replacement text.", comment: "")
+                return "Replace the current selection with the replacement text.".localized
             }
         }()
     }

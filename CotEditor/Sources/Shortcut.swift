@@ -33,7 +33,7 @@ enum ModifierKey {
     case shift
     case command
     
-    static let all: [ModifierKey] = [.control, .option, .shift, .command]
+    static let allCases: [ModifierKey] = [.control, .option, .shift, .command]
     
     
     var mask: NSEvent.ModifierFlags {
@@ -107,7 +107,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
         }
         
         let modifierCharacters = keySpecChars.dropLast()
-        let modifierMask = ModifierKey.all
+        let modifierMask = ModifierKey.allCases
             .filter { key in modifierCharacters.contains(key.keySpecChar) }
             .reduce(NSEvent.ModifierFlags()) { (mask, key) in mask.union(key.mask) }
         
@@ -118,7 +118,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     /// unique string to store in plist
     var keySpecChars: String {
         
-        let modifierCharacters = ModifierKey.all
+        let modifierCharacters = ModifierKey.allCases
             .filter { self.modifierMask.contains($0.mask) }
             .map { $0.keySpecChar }
             .joined()
@@ -138,7 +138,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     /// - note: an empty shortcut is marked as invalid.
     var isValid: Bool {
         
-        let keys = ModifierKey.all.filter { self.modifierMask.contains($0.mask) }
+        let keys = ModifierKey.allCases.filter { self.modifierMask.contains($0.mask) }
         
         return self.keyEquivalent.count == 1 && !keys.isEmpty
     }
@@ -172,7 +172,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
     /// modifier keys string to display
     private var printableModifierMask: String {
         
-        return ModifierKey.all
+        return ModifierKey.allCases
             .filter { self.modifierMask.contains($0.mask) }
             .map { $0.symbol }
             .joined()
@@ -225,7 +225,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
             NSPageDownFunctionKey: "⇟",
             NSClearLineFunctionKey: "⌧",
             NSHelpFunctionKey: "Help",
-            0x20: NSLocalizedString("Space", comment: "keyboard key name"),  // = Space
+            0x20: "Space".localized(comment: "keyboard key name"),  // = Space
             0x09: "⇥",  // = Tab
             0x0d: "↩",  // = Return
             0x08: "⌫",  // = Backspace, (delete backword)

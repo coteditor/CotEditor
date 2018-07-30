@@ -52,7 +52,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         if UserDefaults.standard[.sidebarWidth] >= 100 {
             self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
         }
-        self.isSidebarShown = UserDefaults.standard[.showDocumentInspector]
+        self.isSidebarShown = UserDefaults.standard[.showInspector]
         
         self.sidebarViewController?.delegate = self
     }
@@ -104,6 +104,10 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         guard let action = item.action else { return false }
         
         switch action {
+        case #selector(toggleInspector):
+            let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
+            (item as? NSMenuItem)?.title = title.localized
+            
         case #selector(getInfo):
             (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
             return self.canToggleSidebar
@@ -153,6 +157,15 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     
     // MARK: Action Messages
+    
+    /// toggle visibility of inspector
+    @IBAction func toggleInspector(_ sender: Any?) {
+        
+        NSAnimationContext.current.withAnimation(true) {
+            self.isSidebarShown = !self.isSidebarShown
+        }
+    }
+    
     
     /// toggle visibility of document inspector
     @IBAction func getInfo(_ sender: Any?) {
@@ -234,6 +247,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                     $0.sidebarViewItem?.isCollapsed = !shown
                     $0.sidebarThickness = self.sidebarThickness
                 }
+            
+            UserDefaults.standard[.showInspector] = shown
         }
     }
     
@@ -284,11 +299,9 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// window content view controllers in all tabs in the same window
     private var siblings: [WindowContentViewController] {
         
-        if #available(macOS 10.12, *) {
-            return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
-        } else {
-            return [self]
-        }
+        guard #available(macOS 10.12, *) else { return [self] }
+        
+        return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
     }
     
 }

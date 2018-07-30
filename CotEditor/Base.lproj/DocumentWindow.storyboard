@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,21 +10,21 @@
         <scene sceneID="sAX-Gn-44h">
             <objects>
                 <windowController id="0UB-Lz-R6c" customClass="DocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="gE4-1J-3li" userLabel="Window" customClass="AlphaWindow" customModule="CotEditor" customModuleProvider="target">
+                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
-                        <rect key="contentRect" x="10" y="280" width="600" height="550"/>
+                        <rect key="contentRect" x="10" y="280" width="600" height="620"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
                         <value key="minSize" type="size" width="400" height="200"/>
-                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" explicitIdentifier="docWindowToolbarID" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4" customClass="DocumentToolbar" customModule="CotEditor" customModuleProvider="target">
+                        <toolbar key="toolbar" implicitIdentifier="3995E68B-8134-479B-B055-C4912F26F2BC" displayMode="iconAndLabel" sizeMode="regular" id="peS-bo-gb4" customClass="DocumentToolbar" customModule="CotEditor" customModuleProvider="target">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" explicitItemIdentifier="lineEndingsItemID" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" tag="1" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="52" height="24"/>
-                                    <size key="maxSize" width="56" height="26"/>
-                                    <popUpButton key="view" verticalHuggingPriority="750" tag="1" id="rSf-Ar-e7V">
-                                        <rect key="frame" x="11" y="14" width="52" height="24"/>
+                                <toolbarItem implicitItemIdentifier="82E9CC78-BD07-4AD5-983F-5059E7871ECC" label="Line Endings" paletteLabel="Line Endings" toolTip="Change line endings" id="9p6-Sj-QjF" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="52" height="25"/>
+                                    <size key="maxSize" width="56" height="28"/>
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="rSf-Ar-e7V">
+                                        <rect key="frame" x="11" y="14" width="52" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="kY9-3e-rsd">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="kY9-3e-rsd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                             <menu key="menu" id="iVj-97-fkw">
@@ -49,130 +49,301 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="806A37E9-83DB-4B6B-B90D-CABEAE582D79" explicitItemIdentifier="fileEncodingsItemID" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" tag="2" id="VL4-m8-9uC" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="140" height="24"/>
-                                    <size key="maxSize" width="140" height="26"/>
-                                    <popUpButton key="view" verticalHuggingPriority="750" tag="2" id="nMw-zO-d1x">
-                                        <rect key="frame" x="0.0" y="14" width="140" height="24"/>
+                                <toolbarItem implicitItemIdentifier="806A37E9-83DB-4B6B-B90D-CABEAE582D79" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" id="VL4-m8-9uC" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="140" height="25"/>
+                                    <size key="maxSize" width="140" height="28"/>
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="nMw-zO-d1x">
+                                        <rect key="frame" x="0.0" y="14" width="140" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="uGq-td-kFd">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="uGq-td-kFd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                             <menu key="menu" id="lUg-i7-92G"/>
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" explicitItemIdentifier="syntaxColoringItemID" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" tag="3" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="100" height="24"/>
-                                    <size key="maxSize" width="110" height="26"/>
-                                    <popUpButton key="view" verticalHuggingPriority="750" tag="3" id="RTF-Xf-Dgz">
-                                        <rect key="frame" x="0.0" y="14" width="110" height="24"/>
+                                <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="100" height="25"/>
+                                    <size key="maxSize" width="110" height="28"/>
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="RTF-Xf-Dgz">
+                                        <rect key="frame" x="0.0" y="14" width="110" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="hb4-gd-uwc">
+                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="hb4-gd-uwc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="smallSystem"/>
                                             <menu key="menu" autoenablesItems="NO" id="plp-5x-eBz"/>
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="1E34F982-260D-4449-97B5-0214372CEB81" explicitItemIdentifier="searchFieldItemID" label="Get Info" paletteLabel="Get Info" toolTip="Show document information" tag="4" image="GetInfo" id="uXf-pD-u6A" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="getInfo:" target="klO-m3-n5X" id="hAx-X6-Mra"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D8B8253F-8F6E-4371-B384-927861F6E143" explicitItemIdentifier="showIncompatibleCharItemID" label="Incompatibles" paletteLabel="Show Incompatible Characters" toolTip="Show incompatible characters with current encoding" tag="5" image="IncompatibleChars" id="xle-wq-mIH" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleIncompatibleCharList:" target="klO-m3-n5X" id="KOI-wf-RAx"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="47B6BDDC-E0CC-4997-B3A0-62224DC378F6" explicitItemIdentifier="printItemID" label="Print" paletteLabel="Print" toolTip="Print" tag="-1" image="Print" id="hbb-MD-j6g" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="printDocument:" target="klO-m3-n5X" id="Od5-lf-DOv"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="NSToolbarShowFontsItem" id="bP0-GL-SND" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target"/>
-                                <toolbarItem implicitItemIdentifier="91A2D44B-F0E2-4BBD-81F0-A97429A3A26D" explicitItemIdentifier="biggerFontItemID" label="Bigger" paletteLabel="Bigger Font" toolTip="Increase font size" tag="3" image="BiggerFont" id="yOr-Yw-6Of" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="biggerFont:" target="klO-m3-n5X" id="Qxf-nb-yEk"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="33987450-ECC0-4D28-A6A7-627443C9DBD4" explicitItemIdentifier="smallerFontItemID" label="Smaller" paletteLabel="Smaller Font" toolTip="Decrease font size" tag="4" image="SmallerFont" id="IKo-gw-WgI" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="smallerFont:" target="klO-m3-n5X" id="zf1-wD-OA4"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="588E0016-D65A-482E-A324-E481FBD5A80C" explicitItemIdentifier="shiftLeftItemID" label="Shift Left" paletteLabel="Shift Left" toolTip="Shift lines to left" tag="10" image="ShiftLeft" id="04y-0n-oxo" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="shiftLeft:" target="klO-m3-n5X" id="f1L-ZB-cUJ"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="21534716-8B5C-416F-B38A-A0D761209B75" explicitItemIdentifier="shiftRightItemID" label="Shift Right" paletteLabel="Shift Right" toolTip="Shift lines to right" tag="11" image="ShiftRight" id="4F2-cX-AQu" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="shiftRight:" target="klO-m3-n5X" id="HgA-15-2qQ"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="EC10CF9A-2435-4088-9EC4-F357F7BA7611" explicitItemIdentifier="toggleCommentItemID" label="Comment" paletteLabel="Toggle Comment" toolTip="Comment-out or uncomment selection" tag="12" image="Comment" id="fW9-Xn-I9b" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleComment:" target="klO-m3-n5X" id="YdZ-m0-PoD"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7A543E54-397D-4BF6-8781-28A1C45E0F90" explicitItemIdentifier="showInvisibleCharsItemID" label="Invisibles" paletteLabel="Show/Hide Invisibles" toolTip="Show or hide invisible characters in text" tag="17" image="InvisibleChars_On" id="xbD-Up-YfQ" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleInvisibleChars:" target="klO-m3-n5X" id="UVg-ZM-cYT"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="93F983D5-17B1-449B-A3E1-4B276BAF221B" explicitItemIdentifier="showPageGuideItemID" label="Page Guide" paletteLabel="Show/Hide Page Guide" toolTip="Show or hide page guide line" tag="18" image="PageGuide_On" id="GS6-aA-mgz" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="togglePageGuide:" target="klO-m3-n5X" id="iZD-jx-cOQ"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="F9AB6624-7FDD-45B3-B6D3-59A60C475E8A" explicitItemIdentifier="wrapLinesItemID" label="Wrap Lines" paletteLabel="Toggle Wrap Lines" toolTip="Toggle wrap lines" tag="19" image="WrapLines_On" id="mGD-5P-MDq" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleLineWrap:" target="klO-m3-n5X" id="2hs-RC-dKd"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="78DD4E2B-150C-46DE-87C5-0EEFA792D573" explicitItemIdentifier="textOrientationItemID" label="Orientation" paletteLabel="Toggle Text Orientation" toolTip="Toggle text orientation" tag="20" image="VerticalOrientation_On" id="1cW-FV-40L" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleLayoutOrientation:" target="klO-m3-n5X" id="1ee-vK-XVD"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="A1D9A68E-D321-4D02-BEB8-DE95A7AF3357" explicitItemIdentifier="writingDirectionItemID" label="Writing Direction" paletteLabel="Toggle Writing Direction" toolTip="Toggle writing direction" tag="25" image="RTL_On" id="1zL-0E-fZd" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleWritingDirection:" target="klO-m3-n5X" id="QMS-gh-egs"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="B182CA80-1500-4D59-A0C6-DE9C691FA947" explicitItemIdentifier="autoTabExpandItemID" label="Expand Tabs" paletteLabel="Toggle Tab Auto-Expansion" toolTip="Toggle tab auto-expansion" tag="13" image="AutoTabExpand_On" id="c9C-af-Zcg" customClass="TogglableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="AOo-vA-XLq"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8C717A30-BD51-43A3-9F26-961DB811A614" explicitItemIdentifier="spellCheckItemID" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar" tag="24" image="SpellCheck" id="Ply-Nr-aOE" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="showGuessPanel:" target="klO-m3-n5X" id="7jm-Sv-aTP"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="3AA6CFD8-CE8A-4D11-8076-C1B6978FDC55" explicitItemIdentifier="editColorCodeItemID" label="Color Code" paletteLabel="Edit Color Code" toolTip="Open Color Code Editor and set selection as color code" tag="21" image="EditColorCode" id="Yx1-Tq-tfo" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="editColorCode:" target="klO-m3-n5X" id="WpU-Mq-bEr"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="0C87F6F6-874B-4387-8B28-0F224BD65480" explicitItemIdentifier="syntaxReColorAllItemID" label="Re-Color" paletteLabel="Re-Color All" toolTip="Re-color whole document" tag="22" image="RecolorAll" id="7dM-wh-XeA" customClass="SmallToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <connections>
-                                        <action selector="recolorAll:" target="klO-m3-n5X" id="8hR-fV-Pbf"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="7E6B6879-917A-4550-8F9F-EC1083962B8D" explicitItemIdentifier="shareItemID" label="Share" paletteLabel="Share" toolTip="Share document file" tag="23" image="Share" id="UZV-t9-t0E">
-                                    <size key="minSize" width="24" height="24"/>
-                                    <size key="maxSize" width="36" height="32"/>
-                                    <button key="view" verticalHuggingPriority="750" tag="23" id="qhf-yr-4GF">
-                                        <rect key="frame" x="1" y="14" width="36" height="32"/>
+                                <toolbarItem implicitItemIdentifier="C851D6EB-6F7D-4E1C-816F-3A47FCD18293" label="Inspector" paletteLabel="Inspector" image="Inspector" id="uXf-pD-u6A" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="9VQ-Uo-PS3">
+                                        <rect key="frame" x="7" y="14" width="44" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Share" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="5uE-n2-UaS">
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Inspector" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Cyo-vf-qSI">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleInspector:" target="klO-m3-n5X" id="BgT-Zy-sXi"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="70B46C03-6CE7-4C61-A77B-001526E7BC49" label="Text Size" paletteLabel="Text Size" toolTip="Change text size" id="ucH-DE-qQ1" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="79" height="24"/>
+                                    <size key="maxSize" width="83" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="StP-1v-4g4">
+                                        <rect key="frame" x="0.0" y="14" width="83" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="separated" trackingMode="momentary" id="mkm-Gk-q7f">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment toolTip="Decrease text size" image="TextSizeSmallerTemplate" width="36"/>
+                                                <segment toolTip="Increase text size" image="TextSizeLargerTemplate" width="36" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="changeTextSize:" target="klO-m3-n5X" id="Lyw-gQ-HbU"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <connections>
+                                        <outlet property="menu" destination="lVi-fn-aGx" id="KVa-Eq-mhj"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="530A2BF7-340F-401E-8980-9B3CE8087ABA" label="Writing Direction" paletteLabel="Writing Direction" toolTip="Change writing direction" id="1zL-0E-fZd" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="116" height="24"/>
+                                    <size key="maxSize" width="116" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="5xG-tN-u7n">
+                                        <rect key="frame" x="0.0" y="14" width="116" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="texturedSquare" trackingMode="selectOne" id="lad-Dh-atP">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment image="WritingDirectionLTRTemplate" width="36" selected="YES"/>
+                                                <segment toolTip="Right to Left" image="WritingDirectionRTLTemplate" width="36" tag="1"/>
+                                                <segment toolTip="Vertical" image="WritingDirectionVerticalTemplate" width="36" tag="2"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="changeWritingDirection:" target="klO-m3-n5X" id="R9c-iY-2TV"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <connections>
+                                        <outlet property="menu" destination="g7Y-51-eyh" id="PjJ-1w-PtI"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="D6340D2C-900C-4440-AE3B-0DB7D864D6F2" label="Text Orientation" paletteLabel="Text Orientation" toolTip="Toggle text orientation" id="1cW-FV-40L" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="79" height="24"/>
+                                    <size key="maxSize" width="79" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="fMu-nq-0Xk">
+                                        <rect key="frame" x="6" y="14" width="79" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="texturedSquare" trackingMode="selectOne" id="rCh-26-3Xy">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment toolTip="Horizontal" image="WritingDirectionLTRTemplate" width="36" selected="YES"/>
+                                                <segment toolTip="Vertical" image="WritingDirectionVerticalTemplate" width="36" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="changeOrientation:" target="klO-m3-n5X" id="GdE-mJ-Z7y"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <connections>
+                                        <outlet property="menu" destination="Kfe-kB-2bN" id="iLM-2i-o88"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="5E72786F-FD84-41EC-B90C-7C1985E7C38C" label="Indent" paletteLabel="Indent" toolTip="Indent selection" id="FZC-Iu-jGT" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="79" height="25"/>
+                                    <size key="maxSize" width="83" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="0Lf-NK-AwN">
+                                        <rect key="frame" x="0.0" y="14" width="83" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="separated" trackingMode="momentary" id="X5g-Bw-O4v">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment toolTip="Shift lines to left" image="ShiftLeft" width="36"/>
+                                                <segment toolTip="Shift lines to right" image="ShiftRight" width="36"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="shift:" target="klO-m3-n5X" id="N29-WR-bu4"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <connections>
+                                        <outlet property="menu" destination="xp3-q8-teb" id="YdS-CM-QjK"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="C038D14C-A110-4B20-AED9-21C2346C0090" label="Comment" paletteLabel="Comment" toolTip="Comment-out or uncomment selection" image="Comment" id="fW9-Xn-I9b" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="gTh-5w-6Nh">
+                                        <rect key="frame" x="7" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Comment" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ivc-cz-VNw">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleComment:" target="klO-m3-n5X" id="i36-x9-bjv"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="19BDAF81-864E-4EBF-B0FD-E79CF11DFED2" label="Tab Style" paletteLabel="Tab Style" toolTip="Toggle tab auto-expansion" image="AutoTabExpand_On" id="PUK-pd-jWZ" customClass="StatableMenuToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="52" height="23"/>
+                                    <size key="maxSize" width="55" height="28"/>
+                                    <segmentedControl key="view" verticalHuggingPriority="750" id="Zjf-op-QOB">
+                                        <rect key="frame" x="1" y="14" width="55" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="zn9-Cf-SiH" customClass="DropdownSegmentedControlCell" customModule="CotEditor" customModuleProvider="target">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment toolTip="Toggle tab auto-expansion" image="TabStyle_On" width="34"/>
+                                                <segment toolTip="Change tab width" width="14">
+                                                    <nil key="label"/>
+                                                </segment>
+                                            </segments>
+                                        </segmentedCell>
+                                    </segmentedControl>
+                                    <connections>
+                                        <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="lQM-iV-Irb"/>
+                                        <outlet property="segmentMenu" destination="Zbb-Yj-SFG" id="vhy-Me-Yj4"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="C2AB6429-8A8C-48C3-80DA-4DC29AEDA647" label="Invisibles" paletteLabel="Invisibles" toolTip="Show or hide invisible characters in text" image="Invisibles_On" id="xbD-Up-YfQ" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="u0d-YI-siI">
+                                        <rect key="frame" x="6" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Invisibles_On" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fGs-pD-1rM">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleInvisibleChars:" target="klO-m3-n5X" id="vgl-wf-fsu"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="D69A254B-ECF5-43C1-89A4-1140CF9AD2D8" label="Wrap Lines" paletteLabel="Wrap Lines" toolTip="Toggle wrap lines" image="WrapLines_On" id="mGD-5P-MDq" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="Lbi-9O-cqC">
+                                        <rect key="frame" x="11" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="WrapLines_On" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lnv-WV-F01">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleLineWrap:" target="klO-m3-n5X" id="tpP-s4-Yuk"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="0185BD18-50F5-4EE3-8861-FF61D72811C7" label="Page Guide" paletteLabel="Page Guide" toolTip="Show or hide page guide line" image="PageGuide_On" id="GS6-aA-mgz" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="kpP-zz-32F">
+                                        <rect key="frame" x="12" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="PageGuide_On" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xZO-1I-LoM">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="togglePageGuide:" target="klO-m3-n5X" id="JBo-f2-NdY"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="7AF9E4E9-FD91-4EF2-9AF6-AAF437B9242F" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar" image="SpellCheck" id="Ply-Nr-aOE" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="Lz0-Ll-Wdc">
+                                        <rect key="frame" x="13" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="SpellCheck" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rH1-ii-U1T">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="showGuessPanel:" target="klO-m3-n5X" id="B9z-L2-VZs"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="F208FEC3-D197-418F-A04B-833206F25FA7" label="Color Code" paletteLabel="Color Code" toolTip="Open Color Code Editor and set selection as color code" image="ColorCode" id="Yx1-Tq-tfo" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="Bur-Ra-ORX">
+                                        <rect key="frame" x="11" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="ColorCode" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7V7-XS-yeD">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="editColorCode:" target="klO-m3-n5X" id="sBu-5y-85K"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="61069554-3748-429C-94A3-EA8375B3BF6E" label="Fonts" paletteLabel="Fonts" toolTip="Show Font Panel" image="FontsTemplate" id="vLf-la-9dL" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="eNt-tF-HIN">
+                                        <rect key="frame" x="0.0" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="FontsTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Ka-KH-Lzi">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="showFonts:" target="klO-m3-n5X" id="sW8-Ak-nDz"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="E5B2DEA8-CA7E-42D7-A457-2F480BEF9D16" label="Find" paletteLabel="Find" toolTip="Show “Find and Replace”" image="MagnifierTemplate" id="ACV-s4-QzY" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="1fB-Sq-G7I">
+                                        <rect key="frame" x="0.0" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="MagnifierTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YBl-wB-XvX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="showFindPanel:" target="klO-m3-n5X" id="GQE-hz-elr"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="59A1E716-BBEB-496E-9E86-E43E749E2544" label="Print" paletteLabel="Print" toolTip="Print" image="PrintTemplate" id="hbb-MD-j6g" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="NDv-NS-uxz">
+                                        <rect key="frame" x="0.0" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="PrintTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="b0K-gq-RRX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="printDocument:" target="klO-m3-n5X" id="hMg-pJ-6zK"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="46091C23-F4F9-4275-9563-7E9EFA0B98F3" label="Share" paletteLabel="Share" toolTip="Share document file" image="NSShareTemplate" id="UZV-t9-t0E" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="46" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="qco-fk-gRp">
+                                        <rect key="frame" x="0.0" y="14" width="46" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="NSShareTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nZd-3c-VNg">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="showShareMenu:" target="klO-m3-n5X" id="UAj-a3-yXL"/>
+                                            <action selector="showShareMenu:" target="klO-m3-n5X" id="NBa-B0-z7x"/>
                                         </connections>
                                     </button>
                                 </toolbarItem>
@@ -191,7 +362,7 @@
                             </connections>
                         </toolbar>
                         <connections>
-                            <outlet property="delegate" destination="peS-bo-gb4" id="D8z-kt-PO3"/>
+                            <outlet property="delegate" destination="0UB-Lz-R6c" id="COX-Xt-aCO"/>
                         </connections>
                     </window>
                     <connections>
@@ -204,10 +375,116 @@
                     <connections>
                         <outlet property="encodingPopupButton" destination="nMw-zO-d1x" id="kTt-9A-udb"/>
                         <outlet property="lineEndingPopupButton" destination="rSf-Ar-e7V" id="3OJ-uo-Y2O"/>
+                        <outlet property="shareButton" destination="qco-fk-gRp" id="yIi-6V-qSy"/>
                         <outlet property="syntaxPopupButton" destination="RTF-Xf-Dgz" id="HSS-DU-DSY"/>
                         <outlet property="toolbar" destination="peS-bo-gb4" id="SXy-gP-BFW"/>
                     </connections>
                 </customObject>
+                <menu id="xp3-q8-teb">
+                    <items>
+                        <menuItem title="Shift Left" id="f0K-30-PBc">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="shiftLeft:" target="klO-m3-n5X" id="3aF-KS-beg"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Shift Right" id="GEC-yY-cni">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="shiftRight:" target="klO-m3-n5X" id="zIm-FZ-LwO"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
+                <menu id="lVi-fn-aGx">
+                    <items>
+                        <menuItem title="Smaller" id="BA7-Sh-WYm">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="smallerFont:" target="klO-m3-n5X" id="krb-AX-RLm"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Bigger" id="x2W-ye-BDw">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="biggerFont:" target="klO-m3-n5X" id="VhT-Hv-o0E"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
+                <menu id="g7Y-51-eyh">
+                    <items>
+                        <menuItem title="Right to Left" id="7iT-zZ-mIj">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Laft to Right" id="Tul-RE-xpJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Vertical" id="5v4-ft-RRo">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
+                <menu id="Kfe-kB-2bN">
+                    <items>
+                        <menuItem title="Horizontal" id="ZGb-AB-qYS">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="makeLayoutOrientationHorizontal:" target="klO-m3-n5X" id="fa2-xQ-4fs"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Vertical" id="mNA-TN-5ne">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="makeLayoutOrientationVertical:" target="klO-m3-n5X" id="SSy-Zq-J47"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
+                <menu id="Zbb-Yj-SFG">
+                    <items>
+                        <menuItem title="Tab Width" enabled="NO" id="glT-ig-kuW">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="2" tag="2" id="Qbx-j9-xJk">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="changeTabWidth:" target="klO-m3-n5X" id="VVT-nS-DqA"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="3" tag="3" id="ulC-3K-uAT">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="changeTabWidth:" target="klO-m3-n5X" id="DMd-qh-kqN"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="4" tag="4" id="FfQ-US-0fo">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="changeTabWidth:" target="klO-m3-n5X" id="jbZ-t6-MGY"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="8" tag="8" id="ayr-Cj-9kI">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="changeTabWidth:" target="klO-m3-n5X" id="b7K-Yf-KtM"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Custom…" id="u3h-xI-sfz">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="customizeTabWidth:" target="klO-m3-n5X" id="cAY-gc-EXe"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem isSeparatorItem="YES" id="nmx-wO-JFV"/>
+                        <menuItem title="Auto-Expand Tabs" id="j1L-Rp-wpA">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="toggleAutoTabExpand:" target="klO-m3-n5X" id="xEb-X0-k7J"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="544" y="93"/>
         </scene>
@@ -257,7 +534,6 @@
                         <rect key="frame" x="252" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
-                        <tabViewItems/>
                         <connections>
                             <outlet property="delegate" destination="7te-2x-zAq" id="As3-Gf-aa6"/>
                         </connections>
@@ -424,27 +700,29 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AutoTabExpand_On" width="24" height="24"/>
-        <image name="BiggerFont" width="24" height="24"/>
-        <image name="Comment" width="24" height="24"/>
+        <image name="AutoTabExpand_On" width="20" height="18"/>
+        <image name="ColorCode" width="20" height="18"/>
+        <image name="Comment" width="24" height="18"/>
         <image name="ConflictsTemplate" width="15" height="15"/>
         <image name="DocumentTemplate" width="15" height="15"/>
-        <image name="EditColorCode" width="24" height="24"/>
-        <image name="GetInfo" width="24" height="24"/>
-        <image name="IncompatibleChars" width="24" height="24"/>
-        <image name="InvisibleChars_On" width="24" height="24"/>
+        <image name="FontsTemplate" width="18" height="18"/>
+        <image name="Inspector" width="18" height="18"/>
+        <image name="Invisibles_On" width="17" height="18"/>
         <image name="LockedTemplate" width="16" height="16"/>
+        <image name="MagnifierTemplate" width="15" height="18"/>
+        <image name="NSShareTemplate" width="11" height="16"/>
         <image name="OutlineTemplate" width="15" height="15"/>
-        <image name="PageGuide_On" width="24" height="24"/>
-        <image name="Print" width="24" height="24"/>
-        <image name="RTL_On" width="24" height="24"/>
-        <image name="RecolorAll" width="24" height="24"/>
-        <image name="Share" width="24" height="24"/>
-        <image name="ShiftLeft" width="24" height="24"/>
-        <image name="ShiftRight" width="24" height="24"/>
-        <image name="SmallerFont" width="24" height="24"/>
-        <image name="SpellCheck" width="24" height="24"/>
-        <image name="VerticalOrientation_On" width="24" height="24"/>
-        <image name="WrapLines_On" width="24" height="24"/>
+        <image name="PageGuide_On" width="16" height="18"/>
+        <image name="PrintTemplate" width="18" height="18"/>
+        <image name="ShiftLeft" width="22" height="18"/>
+        <image name="ShiftRight" width="22" height="18"/>
+        <image name="SpellCheck" width="22" height="18"/>
+        <image name="TabStyle_On" width="20" height="18"/>
+        <image name="TextSizeLargerTemplate" width="16" height="18"/>
+        <image name="TextSizeSmallerTemplate" width="16" height="18"/>
+        <image name="WrapLines_On" width="20" height="18"/>
+        <image name="WritingDirectionLTRTemplate" width="14" height="18"/>
+        <image name="WritingDirectionRTLTemplate" width="14" height="18"/>
+        <image name="WritingDirectionVerticalTemplate" width="14" height="18"/>
     </resources>
 </document>

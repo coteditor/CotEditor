@@ -213,10 +213,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             case -1:
                 return nil
             case 0:
-                return NSLocalizedString("Not Found", comment: "")
+                return "Not Found".localized
             default:
-                return String(format: NSLocalizedString("%@ found", comment: ""),
-                              String.localizedStringWithFormat("%li", numberOfFound))
+                return String(format: "%@ found".localized, String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
@@ -238,10 +237,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             case -1:
                 return nil
             case 0:
-                return NSLocalizedString("Not Replaced", comment: "")
+                return "Not Replaced".localized
             default:
-                return String(format: NSLocalizedString("%@ replaced", comment: ""),
-                              String.localizedStringWithFormat("%li", numberOfReplaced))
+                return String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
@@ -315,7 +313,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         textField.stringValue = message ?? ""
         textField.sizeToFit()
         
-        // add extra scroll margin to the right side of the textView, so that entire input can be reead
+        // add extra scroll margin to the right side of the textView, so that entire input can be read
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
     }
     

@@ -78,8 +78,10 @@ final class IntegrationPaneController: NSViewController {
         if !self.linkURL.isReachable { return false }
         
         // ???: `resolvingSymlinksInPath` doesn't work correctly on OS X 10.10 SDK, so I use a legacy way (2015-08).
-//        let linkDestinationURL = self.linkURL.resolvingSymlinksInPath()
         let linkDestinationURL: URL = {
+            if #available(macOS 10.13, *) {
+                return self.linkURL.resolvingSymlinksInPath()
+            }
             let linkDestinationPath = try! FileManager.default.destinationOfSymbolicLink(atPath: self.linkURL.path)
             return URL(fileURLWithPath: linkDestinationPath)
         }()
@@ -87,7 +89,7 @@ final class IntegrationPaneController: NSViewController {
         // treat symlink as "installed"
         if linkDestinationURL == self.linkURL { return true }
         
-        // link to bundled cot is of course valid
+        // link to bundled cot is, of course, valid
         if linkDestinationURL == type(of: self).commandURL { return true }
         
         // link to '/Applications/CotEditor.app' is always valid
@@ -96,10 +98,10 @@ final class IntegrationPaneController: NSViewController {
         // display warning for invalid link
         if linkDestinationURL.isReachable {
             // link destination is not running CotEditor
-            self.warning = NSLocalizedString("The current 'cot' symbolic link doesn’t target the running CotEditor.", comment: "")
+            self.warning = "The current 'cot' symbolic link doesn’t target the running CotEditor.".localized
         } else {
             // link destination is unreachable
-            self.warning = NSLocalizedString("The current 'cot' symbolic link may target an invalid path.", comment: "")
+            self.warning = "The current 'cot' symbolic link may target an invalid path.".localized
         }
         
         return true

@@ -139,7 +139,7 @@ extension Commenting where Self: NSTextView {
         guard let (newString, newSelectedRange) = new else { return }
         
         self.replace(with: newString, range: NSRange(targetRange, in: string), selectedRange: newSelectedRange,
-                     actionName: NSLocalizedString("Comment Out", comment: "action name"))
+                     actionName: "Comment Out".localized)
     }
     
     
@@ -168,7 +168,7 @@ extension Commenting where Self: NSTextView {
         guard let (newString, newSelectedRange) = new else { return }
         
         self.replace(with: newString, range: NSRange(targetRange, in: string), selectedRange: newSelectedRange,
-                     actionName: NSLocalizedString("Uncomment", comment: "action name"))
+                     actionName: "Uncomment".localized)
     }
     
     

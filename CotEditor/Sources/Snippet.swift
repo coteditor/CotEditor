@@ -35,7 +35,7 @@ struct Snippet {
         
         case cursor = "CURSOR"
         
-        static let all: [Variable] = [.cursor]
+        static let allCases: [Variable] = [.cursor]
         
         
         var description: String {

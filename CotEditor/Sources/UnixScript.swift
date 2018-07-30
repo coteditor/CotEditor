@@ -278,9 +278,9 @@ private enum ScriptError: Error {
         
         switch self {
         case .noInputTarget:
-            return NSLocalizedString("No document to get input.", comment: "")
+            return "No document to get input.".localized
         case .noOutputTarget:
-            return NSLocalizedString("No document to put output.", comment: "")
+            return "No document to put output.".localized
         }
     }
     

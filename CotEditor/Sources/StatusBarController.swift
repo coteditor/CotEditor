@@ -129,7 +129,6 @@ final class StatusBarController: NSViewController {
     /// default keys to observe update
     private static let observedDefaultKeys: [DefaultKeys] = [.showStatusBarLines,
                                                              .showStatusBarChars,
-                                                             .showStatusBarLength,
                                                              .showStatusBarWords,
                                                              .showStatusBarLocation,
                                                              .showStatusBarLine,
@@ -156,9 +155,6 @@ final class StatusBarController: NSViewController {
         }
         if defaults[.showStatusBarChars] {
             status.appendFormattedState(value: info.chars, label: "Characters", appearance: appearance)
-        }
-        if defaults[.showStatusBarLength] {
-            status.appendFormattedState(value: info.length, label: "Length", appearance: appearance)
         }
         if defaults[.showStatusBarWords] {
             status.appendFormattedState(value: info.words, label: "Words", appearance: appearance)
@@ -215,18 +211,19 @@ final class StatusBarController: NSViewController {
 private extension NSMutableAttributedString {
     
     /// append formatted state
-    func appendFormattedState(value: String?, label: String?, appearance: NSAppearance? = nil) {
+    func appendFormattedState(value: String?, label: String?, appearance: NSAppearance = .current) {
         
         if !self.string.isEmpty {
             self.append(NSAttributedString(string: "   "))
         }
         
         if let label = label {
-            let localizedLabel = String(format: NSLocalizedString("%@: ", comment: ""),
-                                        NSLocalizedString(label, comment: ""))
-            let white: CGFloat = (appearance?.name == .vibrantDark) ? 0.7 : 0.4
+            let localizedLabel = String(format: "%@: ".localized, label.localized)
+            let labelColor: NSColor = appearance.isDark
+                ? NSColor.secondaryLabelColor
+                : NSColor.labelColor.withAlphaComponent(0.6)
             let attrLabel = NSAttributedString(string: localizedLabel,
-                                               attributes: [.foregroundColor: NSColor(white: white, alpha: 1)])
+                                               attributes: [.foregroundColor: labelColor])
             self.append(attrLabel)
         }
         

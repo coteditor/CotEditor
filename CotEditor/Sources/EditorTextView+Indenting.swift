@@ -38,7 +38,7 @@ extension EditorTextView: Indenting {
             guard self.indent() else { return }
         }
         
-        self.undoManager?.setActionName(NSLocalizedString("Shift Right", comment: "action name"))
+        self.undoManager?.setActionName("Shift Right".localized)
     }
     
     
@@ -51,7 +51,7 @@ extension EditorTextView: Indenting {
             guard self.outdent() else { return }
         }
         
-        self.undoManager?.setActionName(NSLocalizedString("Shift Left", comment: "action name"))
+        self.undoManager?.setActionName("Shift Left".localized)
     }
     
     
@@ -207,7 +207,7 @@ extension Indenting where Self: NSTextView {
         }
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: NSLocalizedString("Convert Indentation", comment: "action name"))
+                     actionName: "Convert Indentation".localized)
     }
     
 }

@@ -30,7 +30,7 @@ protocol TokenRepresentable {
     static var prefix: String { get }
     static var suffix: String { get }
     
-    static var all: [Self] { get }
+    static var allCases: [Self] { get }
     
     var token: String { get }
     var description: String { get }
@@ -48,13 +48,13 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     
     var localizedDescription: String {
         
-        return NSLocalizedString(self.description, comment: "")
+        return self.description.localized
     }
     
     
     static var tokenizer: Tokenizer {
         
-        return Tokenizer(tokens: Self.all.map({ $0.rawValue }), prefix: Self.prefix, suffix: Self.suffix)
+        return Tokenizer(tokens: Self.allCases.map({ $0.rawValue }), prefix: Self.prefix, suffix: Self.suffix)
     }
     
 }

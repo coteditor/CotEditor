@@ -36,63 +36,63 @@
 <dl class="tree">
 	<dt>Application</dt>
 	<dd>The CotEditor application.</dd>
-	
+
 	<dt>Window</dt>
 	<dd>A CotEditor window.</dd>
 	<dd><dl class="subtree">
 		<dt><code>view opacity</code></dt>
-		<dd>The opacity of the view. (real, from ‘0.2’ to ‘1.0’) <span class="added">new on CotEditor 1.5</span></dd>
+		<dd><del>The opacity of the view. (real, from ‘0.2’ to ‘1.0’)</del> <span class="deprecated">deprecated on CotEditor 3.5</span></dd>
 	</dl></dd>
-	
+
 	<dt>Document</dt>
 	<dd>CotEditor document.</dd>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
 		<dd>The contents of the document. (text)</dd>
-		
+
 		<dt><code>text</code></dt>
 		<dd>The contents of the document. (text)</dd>
-		
+
 		<dt><code>length</code></dt>
 		<dd>The number of characters of the document. (int)</dd>
-		
+
 		<dt><code>selection</code></dt>
 		<dd>The current selection. (selection-object)</dd>
-		
+
 		<dt><code>encoding</code></dt>
 		<dd>The encoding name of the document. (Unicode text)</dd>
-		
+
 		<dt><code>IANA charset</code></dt>
 		<dd>The IANA charset name of the document. (Unicode text, e.g.<code>Shift_JIS</code>, <code>EUC-JP</code>)</dd>
-		
+
 		<dt><code>line ending</code></dt>
 		<dd>The line ending code of the document. (<code>CR</code> / <code>LF</code> / <code>CRLF</code>)</dd>
-		
+
 		<dt><code>tab width</code></dt>
 		<dd>The width of a tab character in space equivalents. (int) <span class="added">new on CotEditor 2.1</span></dd>
-		
+
 		<dt><code>expands tab</code></dt>
 		<dd>Are tab characters expanded to space? (boolean) <span class="added">new on CotEditor 3.1.2</span></dd>
-		
+
 		<dt><code>wrap lines</code></dt>
 		<dd>Whether to wrap lines or not. (boolean)</dd>
-		
+
 		<dt><code>coloring style</code></dt>
 		<dd>The syntax coloring style name of the document. (Unicode text)</dd>
-		
+
 		<dt><del><code>line spacing</code></del></dt>
 		<dd><del>The spacing between lines. (real, from ‘0.0’ to ‘10.0’)</del> <span class="deprecated">deprecated on CotEditor 2.6</span></dd>
 	</dl></dd>
-	
+
 	<dt>Selection-object</dt>
 	<dd>The current selection.</dd>
 	<dd><dl class="subtree">
 		<dt><code>contents</code></dt>
 		<dd>The contents of the selection.</dd>
-		
+
 		<dt><code>range</code></dt>
 		<dd>The range of characters in the selection. The format is '{location, length}'.</dd>
-		
+
 		<dt><code>line range</code></dt>
 		<dd>The range of lines in the selection. The format is '{location, length}'. (<code>length</code> can be omitted, one line will be selected even if it were <code>0</code> or <code>0</code>)</dd>
 	</dl></dd>
@@ -169,16 +169,16 @@ When ‘length’ is a negative value, the selection range ends at the ‘length
 	<dd><dl class="subtree">
 		<dt><code>for</code> (Unicode text)</dt>
 		<dd>The string to search for.</dd>
-		
+
 		<dt>[<code>RE</code> (boolean)]</dt>
 		<dd>Perform regular expression search or not.</dd>
-		
+
 		<dt>[<code>wrap</code> (boolean)]</dt>
 		<dd>Perform wrap search or not.</dd>
-		
+
 		<dt>[<code>ignore case</code> (boolean)]</dt>
 		<dd>Ignore case or not.</dd>
-		
+
 		<dt>[<code>backwards</code> (boolean)]</dt>
 		<dd>Perform backwards search or not.</dd>
 	</dl></dd>
@@ -208,22 +208,22 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dd><dl class="subtree">
 		<dt><code>for</code> (Unicode text)</dt>
 		<dd>The string to search for.</dd>
-		
+
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>The string to replace with.</dd>
-		
+
 		<dt>[<code>all</code> (boolean)]</dt>
 		<dd>Search the whole document or not.</dd>
-		
+
 		<dt>[<code>RE</code> (boolean)]</dt>
 		<dd>Perform regular expression search or not.</dd>
-		
+
 		<dt>[<code>wrap</code> (boolean)]</dt>
 		<dd>Perform wrap search or not.</dd>
-		
+
 		<dt>[<code>ignore case</code> (boolean)]</dt>
 		<dd>Ignore case or not.</dd>
-		
+
 		<dt>[<code>backwards</code> (boolean)]</dt>
 		<dd>Perform backwards search or not.</dd>
 	</dl></dd>
@@ -269,7 +269,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 	<dd><dl class="subtree">
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>The new encoding.</dd>
-		
+
 		<dt><code>lossy</code> (boolean)</dt>
 		<dd>Whether to allow “lossy” conversion (might result in loss of character that couldn't be converted) or not.</dd>
 	</dl></dd>
@@ -318,7 +318,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <dl class="tree">
 	<dt><code class="command">shift left</code></dt>
 	<dd>Shifts the current line left.</dd>
-	
+
 	<dt><code class="command">shift right</code></dt>
 	<dd>Shifts the current line right.</dd>
 </dl>
@@ -336,7 +336,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <dl class="tree">
 	<dt><code class="command">comment out</code></dt>
 	<dd>Append comment delimiters to selected text if possible.</dd>
-	
+
 	<dt><code class="command">uncomment</code></dt>
 	<dd>Remove comment delimiters from selected text if possible.</dd>
 </dl>
@@ -466,7 +466,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <dl class="tree">
 	<dt><code class="command">move line up</code></dt>
 	<dd>Swap selected lines with the line just above. <span class="added">new on CotEditor 2.3.0</span></dd>
-	
+
 	<dt><code class="command">move line down</code></dt>
 	<dd>Swap selected lines with the line just below. <span class="added">new on CotEditor 2.3.0</span></dd>
 </dl>
@@ -481,7 +481,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 <dl class="tree">
 	<dt><code class="command">sort lines</code></dt>
 	<dd>Sort selected lines ascending. <span class="added">new on CotEditor 2.3.0</span></dd>
-	
+
 	<dt><code class="command">reverse lines</code></dt>
 	<dd>Reverse selected lines. <span class="added">new on CotEditor 2.3.0</span></dd>
 </dl>

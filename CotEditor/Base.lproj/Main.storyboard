@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -433,20 +433,20 @@ Gw
                                                             <action selector="changeTabWidth:" target="Ady-hI-5gd" id="EbA-11-0TZ"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="6" tag="6" id="HOF-KZ-dXD">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="changeTabWidth:" target="Ady-hI-5gd" id="VsK-Nd-AUL"/>
-                                                        </connections>
-                                                    </menuItem>
                                                     <menuItem title="8" tag="8" id="9e0-Q5-Oqh">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="changeTabWidth:" target="Ady-hI-5gd" id="93l-wK-p0O"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Custom…" id="gMO-5n-fiJ">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="customizeTabWidth:" target="Ady-hI-5gd" id="DLW-Em-an7"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="wXY-o5-uVy"/>
-                                                    <menuItem title="Auto Expand Tabs" id="hsG-8k-OKX">
+                                                    <menuItem title="Auto-Expand Tabs" id="hsG-8k-OKX">
                                                         <connections>
                                                             <action selector="toggleAutoTabExpand:" target="Ady-hI-5gd" id="OC3-9y-dRT"/>
                                                         </connections>
@@ -530,7 +530,8 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Inspector" id="10j-rd-fWr">
                                                 <items>
-                                                    <menuItem title="Document Inspector" keyEquivalent="i" id="564">
+                                                    <menuItem title="Document Inspector" id="564">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="getInfo:" target="Ady-hI-5gd" id="MP6-vd-LwJ"/>
                                                         </connections>
@@ -545,6 +546,12 @@ Gw
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="toggleIncompatibleCharList:" target="Ady-hI-5gd" id="tKS-ZB-SMh"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="XF7-Qo-Y5g"/>
+                                                    <menuItem title="Show Inspector" keyEquivalent="i" id="I2p-KB-gxR">
+                                                        <connections>
+                                                            <action selector="toggleInspector:" target="Ady-hI-5gd" id="To3-Cv-XPF"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -607,15 +614,6 @@ DQ
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="748">
-                                            <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                        </menuItem>
-                                        <menuItem title="Set Editor’s Opacity…" id="367">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showOpacityPanel:" target="Ady-hI-5gd" id="Mop-i1-1f6"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="611">
@@ -959,6 +957,12 @@ CA
                                         <menuItem title="Find All" tag="4" keyEquivalent="F" id="HgR-ke-6gq">
                                             <connections>
                                                 <action selector="findAll:" target="Ady-hI-5gd" id="WzO-gP-yJo"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select All Find Matches" id="ULf-cT-Xvb">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="selectAllMatches:" target="Ady-hI-5gd" id="9kA-Y9-dWK"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="K3C-uf-Ew4">

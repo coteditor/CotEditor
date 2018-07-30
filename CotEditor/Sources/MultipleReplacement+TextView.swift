@@ -45,19 +45,19 @@ extension MultipleReplacement {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: "Highlight".localized)
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            let result = strongSelf.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
+            let result = strongSelf.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                progress.needsUpdateDescription(count: count)
+                progress.completedUnitCount += 1
             }
             
             DispatchQueue.main.async {
@@ -72,7 +72,7 @@ extension MultipleReplacement {
                     // apply to the text view
                     if let layoutManager = textView.layoutManager {
                         layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
-                        let color = TextFinder.shared.highlightColor
+                        let color = NSColor.textHighlighterColor
                         for range in result {
                             layoutManager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: range)
                         }
@@ -80,13 +80,13 @@ extension MultipleReplacement {
                     
                 } else {
                     NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 let resultMessage: String = {
-                    guard result.count > 0 else { return NSLocalizedString("Not Found", comment: "") }
+                    guard result.count > 0 else { return "Not Found".localized }
                     
-                    return String(format: NSLocalizedString("%@ found", comment: ""),
+                    return String(format: "%@ found".localized,
                                   String.localizedStringWithFormat("%li", result.count))
                 }()
                 
@@ -120,19 +120,19 @@ extension MultipleReplacement {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            let result = strongSelf.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (count, stop) in
+            let result = strongSelf.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
                 }
                 
-                progress.needsUpdateDescription(count: count)
+                progress.completedUnitCount += 1
             }
             
             DispatchQueue.main.async {
@@ -147,16 +147,16 @@ extension MultipleReplacement {
                     // apply to the text view
                     textView.replace(with: [result.string], ranges: [string.nsRange],
                                      selectedRanges: result.selectedRanges,
-                                     actionName: NSLocalizedString("Replace All", comment: ""))
+                                     actionName: "Replace All".localized)
                 } else {
                     NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 let resultMessage: String = {
-                    guard result.count > 0 else { return NSLocalizedString("Not Replaced", comment: "") }
+                    guard result.count > 0 else { return "Not Replaced".localized }
                     
-                    return String(format: NSLocalizedString("%@ replaced", comment: ""),
+                    return String(format: "%@ replaced".localized,
                                   String.localizedStringWithFormat("%li", result.count))
                 }()
                 

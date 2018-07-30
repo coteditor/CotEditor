@@ -228,7 +228,9 @@
 "djM-fI-MkN.title" = "Larghezza Tab";
 /* Class = "NSMenu"; title = "Tab Width"; ObjectID = "xAm-b4-9CY"; */
 "xAm-b4-9CY.title" = "Larghezza Tab";
-/* Class = "NSMenuItem"; title = "Auto Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
+/* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "gMO-5n-fiJ"; */
+"gMO-5n-fiJ.title" = "Personalizzato…";
+/* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Espandi Tab automaticamente";
 
 /* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
@@ -284,6 +286,8 @@
 "Gch-XD-tRl.title" = "Outline";
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caratteri incompatibili";
+/* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
+"I2p-KB-gxR.title" = "Show Inspector";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostra barra di navigazione";
@@ -305,9 +309,6 @@
 "u46-te-4c4.title" = "Allinea gli editor in verticale";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Chiudi editor diviso";
-
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "Imposta la opacità dell’editor…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "4mh-0E-3RJ.title" = "Vai a tutto schermo";
@@ -477,6 +478,8 @@
 "l33-Nz-UAw.title" = "Cerca testo selezionato";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Cerca tutti";
+/* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
+"ULf-cT-Xvb.title" = "Select All Find Matches";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Usa selezione per cercare";

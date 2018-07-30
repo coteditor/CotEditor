@@ -30,7 +30,7 @@ enum ScriptingFileType {
     case appleScript
     case unixScript
     
-    static let all: [ScriptingFileType] = [.appleScript, .unixScript]
+    static let allCases: [ScriptingFileType] = [.appleScript, .unixScript]
     
     
     var extensions: [String] {
@@ -126,7 +126,7 @@ struct ScriptDescriptor {
         // Extract from URL
         
         self.url = url
-        self.type = ScriptingFileType.all.first { $0.extensions.contains(url.pathExtension) }
+        self.type = ScriptingFileType.allCases.first { $0.extensions.contains(url.pathExtension) }
         var name = url.deletingPathExtension().lastPathComponent
         
         let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)

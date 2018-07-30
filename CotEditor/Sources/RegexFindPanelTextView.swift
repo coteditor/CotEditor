@@ -108,6 +108,8 @@ final class RegexFindPanelTextView: FindPanelTextView {
     /// highlight string as regular expression pattern
     private func invalidateRegularExpression() {
         
+        assert(Thread.isMainThread)
+        
         guard let layoutManager = self.layoutManager else { return }
         
         // clear the last highlight anyway

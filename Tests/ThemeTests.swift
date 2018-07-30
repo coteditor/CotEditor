@@ -56,7 +56,7 @@ class ThemeTests: XCTestCase {
         XCTAssertEqual(theme.lineHighlight.color.brightnessComponent, 0.94, accuracy: 0.01)
         XCTAssertNil(theme.secondarySelectionColor)
         
-        for type in SyntaxType.all {
+        for type in SyntaxType.allCases {
             XCTAssertGreaterThan(theme.style(for: type)!.color.hueComponent, 0)
         }
         

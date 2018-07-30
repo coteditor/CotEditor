@@ -65,8 +65,8 @@
 "rpa-Di-f4s.title" = "Auf geänderte Version aktualisieren";
 
 
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Programm:";
+/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Inhaltsanalyse:";
 
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Zeilenumbrüche als Zeichen zählen";
@@ -78,6 +78,12 @@
 "RrC-LL-hid.title" = "Übereinstimmende Klammern „()“ „[]“ „{}“ hervorheben";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "„<>“ hervorheben";
+/* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
+"Rcq-1K-8nz.title" = "Instanzen des ausgewählten Textes hervorheben";
+/* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
+"rOw-DD-kV5.title" = "Verspätung:";
+/* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
+"ebJ-vk-RME.title" = "Sekunden";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

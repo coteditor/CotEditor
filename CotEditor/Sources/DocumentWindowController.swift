@@ -49,7 +49,7 @@ final class DocumentWindowController: NSWindowController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.windowAlpha.rawValue {
-            (self.window as? AlphaWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+            (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
         }
     }
     
@@ -66,15 +66,8 @@ final class DocumentWindowController: NSWindowController {
         self.shouldCascadeWindows = true
         self.windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "document")
         
-        let window = self.window as! AlphaWindow
-        
-        // set window size
-        let contentSize = NSSize(width: UserDefaults.standard[.windowWidth],
-                                 height: UserDefaults.standard[.windowHeight])
-        window.setContentSize(contentSize)
-        
-        // setup background
-        window.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+        // set background alpha
+        (self.window as! DocumentWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)
@@ -91,7 +84,7 @@ final class DocumentWindowController: NSWindowController {
             self.contentViewController!.representedObject = document
             
             // -> In case when the window was created as a restored window (the right side ones in the browsing mode)
-            if document.isInViewingMode, let window = self.window as? AlphaWindow {
+            if document.isInViewingMode, let window = self.window as? DocumentWindow {
                 window.backgroundAlpha = 1.0
             }
             
@@ -105,14 +98,8 @@ final class DocumentWindowController: NSWindowController {
         }
     }
     
-    
-    
-    // MARK: Actions
-    
-    /// show editor opacity panel
-    @IBAction func showOpacityPanel(_ sender: Any?) {
-        
-        OpacityPanelController.shared.showWindow(sender)
-    }
-    
 }
+
+
+
+extension DocumentWindowController: NSWindowDelegate { }

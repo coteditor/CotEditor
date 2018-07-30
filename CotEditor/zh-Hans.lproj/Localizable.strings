@@ -31,6 +31,10 @@
 "Cancel" = "取消";
 
 
+// Appending words in parentheses
+" (%@)" = " (%@)";
+
+
 
 // Main menu item titles
 "Check for Updates…" = "检查更新…";
@@ -244,6 +248,8 @@
 
 /* MARK: DocumentViewController */
 // Menu items
+"Hide Inspector" = "Show Inspector";  // FIXME: added
+"Show Inspector" = "Hide Inspector";  // FIXME: added
 "Hide Line Numbers" = "隐藏行号";
 "Show Line Numbers" = "显示行号";
 "Hide Status Bar" = "隐藏状态栏";

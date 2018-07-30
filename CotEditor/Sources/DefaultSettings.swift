@@ -40,18 +40,17 @@ struct DefaultSettings {
         .checkSpellingAsType: false,
         .highlightBraces: true,
         .highlightLtGt: false,
+        .highlightSelectionInstance: true,
+        .selectionInstanceHighlightDelay: 0.5,
         .checksUpdatesForBeta: false,
         
         .windowTabbing: -1,  // = Respect System Setting
         .showNavigationBar: true,
-        .showDocumentInspector: false,
-        .showStatusBar: true,
         .showLineNumbers: true,
         .showPageGuide: false,
         .pageGuideColumn: 80,
         .showStatusBarLines: true,
         .showStatusBarChars: true,
-        .showStatusBarLength: false,
         .showStatusBarWords: false,
         .showStatusBarLocation: true,
         .showStatusBarLine: true,
@@ -60,8 +59,7 @@ struct DefaultSettings {
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
         .splitViewVertical: false,
-        .windowWidth: 600.0,
-        .windowHeight: 620.0,
+        .overscrollRate: 0,
         .windowAlpha: 1.0,
         
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
@@ -171,6 +169,8 @@ struct DefaultSettings {
         .colorCodeType: 1,
         .sidebarWidth: 220,
         .recentStyleNames: [],
+        .showInspector: false,
+        .showStatusBar: true,
         
         // ------ hidden settings ------
         .headerFooterDateFormat: "YYYY-MM-dd HH:mm",

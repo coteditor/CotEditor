@@ -30,6 +30,10 @@
 "Cancel" = "Abbrechen";
 
 
+// Appending words in parentheses
+" (%@)" = " (%@)";
+
+
 
 // Main menu item titles
 "Check for Updates…" = "Nach Updates suchen …";
@@ -243,6 +247,8 @@
 
 /* MARK: DocumentViewController */
 // Menu items
+"Hide Inspector" = "Infofenster ausblenden";
+"Show Inspector" = "Infofenster einblenden";
 "Hide Line Numbers" = "Zeilennummern ausblenden";
 "Show Line Numbers" = "Zeilennummern einblenden";
 "Hide Status Bar" = "Statusleiste ausblenden";

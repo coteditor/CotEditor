@@ -71,11 +71,11 @@ final class SyntaxValidationViewController: NSViewController {
         let resultMessage: String = {
             switch errors.count {
             case 0:
-                return "✅ " + NSLocalizedString("No error was found.", comment: "syntax style validation result")
+                return "✅ " + "No error was found.".localized
             case 1:
-                return NSLocalizedString("An error was found!", comment: "syntax style validation result")
+                return "An error was found!".localized
             default:
-                return String(format: NSLocalizedString("%i errors were found!", comment: "syntax style validation result"), errors.count)
+                return String(format: "%i errors were found!".localized, errors.count)
             }
         }()
         

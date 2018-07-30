@@ -2,6 +2,41 @@
 Change Log
 ==========================
 
+3.5.0 (unreleased)
+--------------------------
+
+### New Features
+
+- New toolbar icons.
+- Highlight the same substrings of the selection automatically (Customize the behavior in General preferences pane).
+- New option to allow overscrolling (Customize the behavior in Window preference pane).
+- Enable to change the tab width of a specific document to a desired number.
+
+
+### Improvements
+
+- Add command “Select All Find Matches” in Find menu.
+- Improve the editor's scrolling behavior to scroll along the predominant axis.
+- Add menu item to toggle the visibility of the sidebar inspector.
+- Remove some setting options for windows such as window size and visibilities of document inspector and status bar from Window preferences pane.
+    - From now on, the latest change to a window will be inherited to future windows just like other standard Cocoa applications.
+- Remove “length” display in the status bar.
+- Remove feature to change only the frontmost editor's opacity temporary.
+    - From this, `view opacity` property on AppleScript is also deprecated.
+- Display current user's system-wide setting for window tabbing in the menu on the Window pane.
+- Optimize the performance of character counting.
+- Improve general stability of the print operation.
+- [trivial] Count progress of the Highlight command in Find menu match by match.
+- [trivial] Update editor opacity sample tips.
+- [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- Fix an unlocalized text.
+
+
+
 3.4.4 (261)
 --------------------------
 
@@ -529,7 +564,7 @@ Change Log
 - Update `cot` command-line tool:
     - Avoid creating an extra blank document if `cot` command creates a new window.
     - Fix an issue where launching the application with `--background` option didn't make CotEditor visible.
-- Adjust line height calcuration.
+- Adjust line height calculation.
 - [non-AppStore ver.] Update Sparkle framework to version 1.18.1.
 
 

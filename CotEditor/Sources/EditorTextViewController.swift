@@ -133,9 +133,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
             !(textView.undoManager?.isUndoing ?? false),  // = undo
-            let lineEnding = replacementString.detectedLineEnding, lineEnding != .LF
+            let lineEnding = replacementString.detectedLineEnding, lineEnding != .lf
         {
-            return !textView.replace(with: replacementString.replacingLineEndings(with: .LF),
+            return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
                                      range: affectedCharRange,
                                      selectedRange: nil)
         }
@@ -151,7 +151,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         if let scriptMenu = ScriptManager.shared.contexualMenu {
             let item = NSMenuItem(title: "", action: nil, keyEquivalent: "")
             item.image = #imageLiteral(resourceName: "ScriptTemplate")
-            item.toolTip = NSLocalizedString("Scripts", comment: "")
+            item.toolTip = "Scripts".localized
             item.submenu = scriptMenu
             menu.addItem(item)
         }
@@ -245,7 +245,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         guard textView.lineHighlightRect != rect else { return }
         
-        // clear previous highlihght
+        // clear previous highlight
         if let lineHighlightRect = textView.lineHighlightRect {
             textView.setNeedsDisplay(lineHighlightRect, avoidAdditionalLayout: true)
         }

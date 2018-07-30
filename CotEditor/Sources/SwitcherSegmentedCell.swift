@@ -53,7 +53,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
                 }
             
             // tint icon
-            let tintColor = NSColor.highlightColor(for: controlView)
+            let tintColor = NSColor.accentColor(for: controlView)
             let tintedIcon = selectedIcon.tinted(color: tintColor)
             
             // calculate area to draw

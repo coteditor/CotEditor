@@ -32,8 +32,7 @@ extension EditorTextView {
     /// transform all full-width-available half-width characters in selection to full-width
     @IBAction func exchangeFullwidth(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Full-width", comment: "")
-        self.transformSelection(actionName: actionName) {
+        self.transformSelection(actionName: "To Full-width".localized) {
             $0.applyingTransform(.fullwidthToHalfwidth, reverse: true) ?? $0
         }
     }
@@ -42,8 +41,7 @@ extension EditorTextView {
     /// transform all full-width characters in selection to half-width
     @IBAction func exchangeHalfwidth(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Half-width", comment: "")
-        self.transformSelection(actionName: actionName) {
+        self.transformSelection(actionName: "To Half-width".localized) {
             $0.applyingTransform(.fullwidthToHalfwidth, reverse: false) ?? $0
         }
     }
@@ -52,8 +50,7 @@ extension EditorTextView {
     /// transform half-width roman characters in selection to full-width
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Full-width Roman", comment: "")
-        self.transformSelection(actionName: actionName) {
+        self.transformSelection(actionName: "To Full-width Roman".localized) {
             $0.fullWidthRoman
         }
     }
@@ -62,8 +59,7 @@ extension EditorTextView {
     /// transform full-width roman characters in selection to half-width
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("To Half-width Roman", comment: "")
-        self.transformSelection(actionName: actionName) {
+        self.transformSelection(actionName: "To Half-width Roman".localized) {
             $0.halfWidthRoman
         }
     }
@@ -72,8 +68,7 @@ extension EditorTextView {
     /// transform Hiragana in selection to Katakana
     @IBAction func exchangeKatakana(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("Hiragana to Katakana", comment: "")
-        self.transformSelection(actionName: actionName) {
+        self.transformSelection(actionName: "Hiragana to Katakana".localized) {
             $0.applyingTransform(.hiraganaToKatakana, reverse: false) ?? $0
         }
     }
@@ -82,8 +77,7 @@ extension EditorTextView {
     /// transform Katakana in selection to Hiragana
     @IBAction func exchangeHiragana(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("Katakana to Hiragana", comment: "")
-        self.transformSelection(actionName: actionName) {
+        self.transformSelection(actionName: "Katakana to Hiragana".localized) {
             $0.applyingTransform(.hiraganaToKatakana, reverse: true) ?? $0
         }
     }
@@ -95,52 +89,63 @@ extension EditorTextView {
     /// Unicode normalization (NFD)
     @IBAction func normalizeUnicodeWithNFD(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFD") { $0.decomposedStringWithCanonicalMapping }
+        self.transformSelection(actionName: "NFD") {
+            $0.decomposedStringWithCanonicalMapping
+        }
     }
     
     
     /// Unicode normalization (NFC)
     @IBAction func normalizeUnicodeWithNFC(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFC") { $0.precomposedStringWithCanonicalMapping }
+        self.transformSelection(actionName: "NFC") {
+            $0.precomposedStringWithCanonicalMapping
+        }
     }
     
     
     /// Unicode normalization (NFKD)
     @IBAction func normalizeUnicodeWithNFKD(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFKD") { $0.decomposedStringWithCompatibilityMapping }
+        self.transformSelection(actionName: "NFKD") {
+            $0.decomposedStringWithCompatibilityMapping
+        }
     }
     
     
     /// Unicode normalization (NFKC)
     @IBAction func normalizeUnicodeWithNFKC(_ sender: Any?) {
         
-        self.transformSelection(actionName: "NFKC") { $0.precomposedStringWithCompatibilityMapping }
+        self.transformSelection(actionName: "NFKC") {
+            $0.precomposedStringWithCompatibilityMapping
+        }
     }
     
     
     /// Unicode normalization (NFKC_Casefold)
     @IBAction func normalizeUnicodeWithNFKCCF(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("NFKC Casefold", comment: "name of an Uniocode normalization type")
-        self.transformSelection(actionName: actionName) { $0.precomposedStringWithCompatibilityMappingWithCasefold }
+        self.transformSelection(actionName: "NFKC Casefold".localized) {
+            $0.precomposedStringWithCompatibilityMappingWithCasefold
+        }
     }
     
     
     /// Unicode normalization (Modified NFC)
     @IBAction func normalizeUnicodeWithModifiedNFC(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("Modified NFC", comment: "name of an Uniocode normalization type")
-        self.transformSelection(actionName: actionName) { $0.precomposedStringWithHFSPlusMapping }
+        self.transformSelection(actionName: "Modified NFC".localized) {
+            $0.precomposedStringWithHFSPlusMapping
+        }
     }
     
     
     /// Unicode normalization (Modified NFD)
     @IBAction func normalizeUnicodeWithModifiedNFD(_ sender: Any?) {
         
-        let actionName = NSLocalizedString("Modified NFD", comment: "name of an Uniocode normalization type")
-        self.transformSelection(actionName: actionName) { $0.decomposedStringWithHFSPlusMapping }
+        self.transformSelection(actionName: "Modified NFD".localized) {
+            $0.decomposedStringWithHFSPlusMapping
+        }
     }
     
 }

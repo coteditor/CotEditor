@@ -8,7 +8,6 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2004-2007 nakamuxu
 //  © 2014-2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,34 +29,54 @@ final class WindowPaneController: NSViewController {
     
     // MARK: Private Properties
     
+    private lazy var titleForRespectSystemSetting: String = self.tabbingOptionMenu!.items.first!.title
+    
+    @IBOutlet private weak var tabbingOptionMenu: NSMenu?
+    @IBOutlet private weak var tabbingSupportCaution: NSTextField?
+    
     @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
-    @objc private dynamic var supportsWindowTabbing = (NSApp.delegate as! AppDelegate).supportsWindowTabbing
     
     
     
     // MARK: -
-    // MARK: Action Messages
+    // MARK: View Controller Methods
     
-    /// opaque setting did update
-    @IBAction func changeEditorOpaque(_ sender: NSControl?) {
+    override func viewDidLoad() {
         
-        guard let sender = sender else { return }
+        super.viewDidLoad()
         
-        self.editorOpaque = (sender.doubleValue == 1.0)
+        if (NSApp.delegate as! AppDelegate).supportsWindowTabbing {
+            self.tabbingSupportCaution!.removeFromSuperview()
+        }
     }
     
     
-    /// open sample window for window size setting
-    @IBAction func openSizeSampleWindow(_ sender: Any?) {
+    override func viewWillAppear() {
         
-        let sampleWindowController = SizeSettingWindowController()
+        super.viewWillAppear()
         
-        // display modal
-        sampleWindowController.showWindow(sender)
-        NSApp.runModal(for: sampleWindowController.window!)
+        guard #available(macOS 10.12, *) else { return }
         
-        // make preferences window the key window after closing sample window
-        self.view.window?.makeKeyAndOrderFront(self)
+        // display the current system-wide user setting for window tabbing in "Respect System Setting" menu item.
+        let menu = self.tabbingOptionMenu!
+        let systemSettingLabel = menu.item(withTag: NSWindow.userTabbingPreference.rawValue)!.title
+        let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting,
+                                           attributes: [.font: menu.font])
+        let userSettingLabel = NSAttributedString(string: String(format: " (%@)".localized, systemSettingLabel),
+                                                  attributes: [.font: menu.font,
+                                                               .foregroundColor: NSColor.secondaryLabelColor])
+        
+        menu.items.first!.attributedTitle = attrLabel + userSettingLabel
+    }
+    
+    
+    
+    // MARK: Actions
+    
+    /// opaque setting did update
+    @IBAction func changeEditorOpaque(_ sender: NSControl) {
+        
+        self.editorOpaque = (sender.doubleValue == 1.0)
     }
     
 }

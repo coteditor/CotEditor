@@ -61,6 +61,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let dateFormatter: DateFormatter
     
     
+    
     // MARK: -
     // MARK: Lifecycle
     
@@ -113,11 +114,15 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// prepare for drawing
-    override func viewWillDraw() {
+    override func beginDocument() {
         
-        super.viewWillDraw()
+        super.beginDocument()
         
-        self.loadPrintSettings()
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return }
+        
+        self.applyPrintSettings(printInfo: printInfo)
+        self.resizeFrame(printInfo: printInfo)
+        
     }
     
     
@@ -219,36 +224,14 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// return page header attributed string
     override var pageHeader: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            (settings[.printsHeader] as? Bool) ?? false else { return NSAttributedString() }
-        
-        let primaryInfoType = PrintInfoType(settings[.primaryHeaderContent] as? Int)
-        let primaryAlignment = AlignmentType(settings[.primaryHeaderAlignment] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[.secondaryHeaderContent] as? Int)
-        let secondaryAlignment = AlignmentType(settings[.secondaryHeaderAlignment] as? Int)
-        
-        return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
-                                 primaryAlignment: primaryAlignment,
-                                 secondaryString: self.printInfoString(type: secondaryInfoType),
-                                 secondaryAlignment: secondaryAlignment)
+        return self.headerFooter(for: .header)
     }
     
     
     /// return page footer attributed string
     override var pageFooter: NSAttributedString {
         
-        guard let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            (settings[.printsFooter] as? Bool) ?? false else { return NSAttributedString() }
-        
-        let primaryInfoType = PrintInfoType(settings[.primaryFooterContent] as? Int)
-        let primaryAlignment = AlignmentType(settings[.primaryFooterAlignment] as? Int)
-        let secondaryInfoType = PrintInfoType(settings[.secondaryFooterContent] as? Int)
-        let secondaryAlignment = AlignmentType(settings[.secondaryFooterAlignment] as? Int)
-        
-        return self.headerFooter(primaryString: self.printInfoString(type: primaryInfoType),
-                                 primaryAlignment: primaryAlignment,
-                                 secondaryString: self.printInfoString(type: secondaryInfoType),
-                                 secondaryAlignment: secondaryAlignment)
+        return self.headerFooter(for: .footer)
     }
     
     
@@ -263,24 +246,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     override var textContainerOrigin: NSPoint {
         
         return NSPoint(x: self.xOffset, y: 0)
-    }
-    
-    
-    /// return whether do paganation by itself
-    override func knowsPageRange(_ range: NSRangePointer) -> Bool {
-        
-        // resize frame
-        self.frame.size = self.printSize
-        self.sizeToFit()
-        let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
-        switch self.layoutOrientation {
-        case .horizontal:
-            self.frame.size.height = usedHeight
-        case .vertical:
-            self.frame.size.width = usedHeight
-        }
-        
-        return super.knowsPageRange(range)  // = false
     }
     
     
@@ -323,17 +288,15 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     // MARK: Private Methods
     
     /// parse current print settings in printInfo
-    private func loadPrintSettings() {
+    private func applyPrintSettings(printInfo: NSPrintInfo) {
         
-        guard
-            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let textStorage = self.textStorage else { return }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return }
+        
+        let settings = printInfo.dictionary() as! [NSPrintInfo.AttributeKey: Any]
         
         // check whether print line numbers
         self.printsLineNumber = {
-            let mode = PrintLineNmuberMode(settings[.lineNumber] as? Int)
-            switch mode {
+            switch PrintLineNmuberMode(settings[.lineNumber] as? Int) {
             case .no:
                 return false
             case .sameAsDocument:
@@ -348,8 +311,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            let mode = PrintInvisiblesMode(settings[.invisibles] as? Int)
-            switch mode {
+            switch PrintInvisiblesMode(settings[.invisibles] as? Int) {
             case .no:
                 return false
             case .sameAsDocument:
@@ -359,64 +321,109 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             }
         }()
         
-        // setup syntax highlighting with theme
+        // set theme
+        let lastThemeName = self.theme?.name
         let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
-        if themeName == ThemeName.blackAndWhite {
-            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: textStorage.string.nsRange)
+        let theme = ThemeManager.shared.setting(name: themeName)
+        if let theme = theme {
+            self.theme = theme
+            self.textColor = theme.text.color
+            self.backgroundColor = theme.background.color
+            layoutManager.invisiblesColor = theme.invisibles.color
+            
+        } else {  // black and white
+            self.theme = nil
             self.textColor = .textColor
-            self.backgroundColor = .white
-            layoutManager.invisiblesColor = .gray
-            
-        } else {
-            if let theme = ThemeManager.shared.setting(name: themeName) {
-                self.theme = theme
-                self.textColor = theme.text.color
-                self.backgroundColor = theme.background.color
-                layoutManager.invisiblesColor = theme.invisibles.color
-            }
-            
-            // perform syntax highlighting
-            if let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController {
-                _ = self.syntaxParser.highlightAll { [weak controller] in
-                    DispatchQueue.main.async {
-                        guard let controller = controller, !controller.view.isHidden else { return }
-                        
-                        controller.needsUpdatePreview = true
-                    }
-                }
+            self.backgroundColor = .textBackgroundColor
+            layoutManager.invisiblesColor = .secondaryLabelColor
+        }
+        
+        guard lastThemeName != theme?.name else { return }
+        
+        // perform syntax highlight
+        weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
+        _ = self.syntaxParser.highlightAll {
+            DispatchQueue.main.async {
+                guard let controller = controller, !controller.view.isHidden else { return }
+                
+                controller.needsUpdatePreview = true
             }
         }
     }
     
     
+    /// resize frame considering layout orientation
+    private func resizeFrame(printInfo: NSPrintInfo) {
+        
+        // calculate view size for print considering text orientation
+        var printSize = printInfo.paperSize
+        switch self.layoutOrientation {
+        case .horizontal:
+            printSize.width -= printInfo.leftMargin + printInfo.rightMargin
+            printSize.width /= printInfo.scalingFactor
+        case .vertical:
+            printSize.height -= printInfo.leftMargin + printInfo.rightMargin
+            printSize.height /= printInfo.scalingFactor
+        }
+        
+        // adjust frame size
+        self.frame.size = printSize
+        self.sizeToFit()
+        let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
+        switch self.layoutOrientation {
+        case .horizontal:
+            self.frame.size.height = usedHeight
+        case .vertical:
+            self.frame.size.width = usedHeight
+        }
+    }
+    
+    
     /// return attributed string for header/footer
-    private func headerFooter(primaryString: String?, primaryAlignment: AlignmentType, secondaryString: String?, secondaryAlignment: AlignmentType) -> NSAttributedString {
+    private func headerFooter(for location: HeaderFooterLocation) -> NSAttributedString {
         
+        let keys = location.keys
+        
+        guard
+            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any],
+            (settings[keys.needsDraw] as? Bool) ?? false
+            else { return NSAttributedString() }
+        
+        let primaryInfoType = PrintInfoType(settings[keys.primaryContent] as? Int)
+        let primaryAlignment = AlignmentType(settings[keys.primaryAlignment] as? Int)
+        let secondaryInfoType = PrintInfoType(settings[keys.secondaryContent] as? Int)
+        let secondaryAlignment = AlignmentType(settings[keys.secondaryAlignment] as? Int)
+        
+        let primaryString = self.printInfoString(type: primaryInfoType)
+        let secondaryString = self.printInfoString(type: secondaryInfoType)
+        
+        switch (primaryString, secondaryString) {
         // case: empty
-        guard primaryString != nil || secondaryString != nil else { return NSAttributedString() }
-        
+        case (nil, nil):
+            return NSAttributedString()
+            
         // case: single content
-        if let string = primaryString, secondaryString == nil {
+        case let (.some(string), nil):
             return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        }
-        if let string = secondaryString, primaryString == nil {
+        case let (nil, .some(string)):
             return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+            
+        case let (.some(primaryString), .some(secondaryString)):
+            switch (primaryAlignment, secondaryAlignment) {
+            // case: double-sided
+            case (.left, .right):
+                return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+            case (.right, .left):
+                return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+                
+            // case: two lines
+            default:
+                let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
+                let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+                
+                return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
+            }
         }
-        guard let primaryString = primaryString, let secondaryString = secondaryString else { fatalError() }
-        
-        // case: double-sided
-        if primaryAlignment == .left, secondaryAlignment == .right {
-            return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
-        }
-        if primaryAlignment == .right, secondaryAlignment == .left {
-            return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
-        }
-        
-        // case: two lines
-        let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
-        
-        return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
     }
     
     
@@ -468,7 +475,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             return filePath
             
         case .printDate:
-            return String(format: NSLocalizedString("Printed on %@", comment: ""), self.dateFormatter.string(from: Date()))
+            return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
             
         case .pageNumber:
             guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
@@ -479,23 +486,45 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }
     }
     
+}
+
+
+
+// MARK: -
+
+private enum HeaderFooterLocation {
     
-    /// view size for print considering text orientation
-    private var printSize: NSSize {
+    case header
+    case footer
+    
+    
+    struct Keys {
         
-        guard let printInfo = NSPrintOperation.current?.printInfo else { return .zero }
+        var needsDraw: NSPrintInfo.AttributeKey
+        var primaryContent: NSPrintInfo.AttributeKey
+        var primaryAlignment: NSPrintInfo.AttributeKey
+        var secondaryContent: NSPrintInfo.AttributeKey
+        var secondaryAlignment: NSPrintInfo.AttributeKey
+    }
+    
+    
+    var keys: Keys {
         
-        var size = printInfo.paperSize
-        switch self.layoutOrientation {
-        case .horizontal:
-            size.width -= printInfo.leftMargin + printInfo.rightMargin
-            size.width /= printInfo.scalingFactor
-        case .vertical:
-            size.height -= printInfo.leftMargin + printInfo.rightMargin
-            size.height /= printInfo.scalingFactor
+        switch self {
+        case .header:
+            return Keys(needsDraw: .printsHeader,
+                        primaryContent: .primaryHeaderContent,
+                        primaryAlignment: .primaryHeaderAlignment,
+                        secondaryContent: .secondaryHeaderContent,
+                        secondaryAlignment: .secondaryHeaderAlignment)
+            
+        case .footer:
+            return Keys(needsDraw: .printsFooter,
+                        primaryContent: .primaryFooterContent,
+                        primaryAlignment: .primaryFooterAlignment,
+                        secondaryContent: .secondaryFooterContent,
+                        secondaryAlignment: .secondaryFooterAlignment)
         }
-        
-        return size
     }
     
 }
