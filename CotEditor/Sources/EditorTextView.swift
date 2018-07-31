@@ -1255,21 +1255,21 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// make link-like text clickable
+    /// make URL-like text clickable
     private func detectLinkIfNeeded() {
         
         assert(Thread.isMainThread)
         
         guard self.isAutomaticLinkDetectionEnabled else { return }
         
-        self.undoManager?.disableUndoRegistration()
+        // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
-        let currentCheckingType = self.enabledTextCheckingTypes
-        self.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
-        self.checkTextInDocument(nil)
-        self.enabledTextCheckingTypes = currentCheckingType
-        
-        self.undoManager?.enableUndoRegistration()
+        detector.enumerateMatches(in: self.string, range: self.string.nsRange) { (result, _, _) in
+            guard let result = result, let url = result.url else { return }
+            
+            self.textStorage?.addAttribute(.link, value: url, range: result.range)
+        }
     }
     
     

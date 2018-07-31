@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-3.5.0 (unreleased)
+3.5.0-beta.2 (unreleased)
+--------------------------
+
+### Improvements
+
+- Optimize auto URL detection with paste to a large document.
+
+
+
+3.5.0-beta (263)
 --------------------------
 
 ### New Features
