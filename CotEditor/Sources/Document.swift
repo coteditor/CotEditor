@@ -250,14 +250,29 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// revert to saved file contents
     override func revert(toContentsOf url: URL, ofType typeName: String) throws {
         
+        assert(Thread.isMainThread)
+        
         // once force-close all sheets
         //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
         self.windowForSheet?.sheets.forEach { $0.close() }
+        
+        // store current selections
+        let editorStates = self.textStorage.layoutManagers
+            .compactMap { $0.textViewForBeginningOfSelection }
+            .map { (textView: $0, range: $0.selectedRange) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
         // apply to UI
         self.applyContentToWindow()
+        
+        // select previous ranges again
+        let wholeRange = self.textStorage.string.nsRange
+        for state in editorStates {
+            guard let range = state.range.intersection(wholeRange) else { continue }
+            
+            state.textView.selectedRange = range
+        }
     }
     
     
