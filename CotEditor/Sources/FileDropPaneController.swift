@@ -113,7 +113,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         let allItem = menu.itemArray.first!
         allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
         
-        
         // add styles
         for styleName in SyntaxManager.shared.settingNames {
             menu.addItem(withTitle: styleName)

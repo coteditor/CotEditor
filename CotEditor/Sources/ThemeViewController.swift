@@ -89,7 +89,7 @@ final class ThemeViewController: NSViewController {
     
     
     /// send data to metadata popover
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         guard let destinationController = segue.destinationController as? ThemeMetaDataViewController else { return }
         
