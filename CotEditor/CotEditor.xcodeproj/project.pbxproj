@@ -118,6 +118,8 @@
 		2A25C52920F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */; };
 		2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
+		2A2747732111909400795954 /* Collection+Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2747722111909400795954 /* Collection+Diff.swift */; };
+		2A2747742111909400795954 /* Collection+Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2747722111909400795954 /* Collection+Diff.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */; };
@@ -861,6 +863,7 @@
 		2A25C52620F06A940003AE1A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CustomTabWidthView.strings; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthViewController.swift; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
+		2A2747722111909400795954 /* Collection+Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Diff.swift"; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
@@ -1684,6 +1687,7 @@
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
 				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
+				2A2747722111909400795954 /* Collection+Diff.swift */,
 				2AA14D041FA594A800EAF586 /* Data.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
@@ -2756,6 +2760,7 @@
 				2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
+				2A2747742111909400795954 /* Collection+Diff.swift in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
 				2AED70EF1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
@@ -2986,6 +2991,7 @@
 				2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */,
 				2AE12E071E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */,
+				2A2747732111909400795954 /* Collection+Diff.swift in Sources */,
 				2AA14CF81FA47E8900EAF586 /* ScriptDescriptor.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2AD69B881D3E4FCD00FBD998 /* Editable.swift in Sources */,

@@ -257,6 +257,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.windowForSheet?.sheets.forEach { $0.close() }
         
         // store current selections
+        let lastString = self.textStorage.string.immutable
         let editorStates = self.textStorage.layoutManagers
             .compactMap { $0.textViewForBeginningOfSelection }
             .map { (textView: $0, range: $0.selectedRange) }
@@ -267,11 +268,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.applyContentToWindow()
         
         // select previous ranges again
-        let wholeRange = self.textStorage.string.nsRange
         for state in editorStates {
-            guard let range = state.range.intersection(wholeRange) else { continue }
-            
-            state.textView.selectedRange = range
+            state.textView.selectedRanges = self.textStorage.string.equivalentRanges(to: [state.range], in: lastString) as [NSValue]
         }
     }
     
