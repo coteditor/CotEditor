@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Keep selection as possible after the editor content is updated to the latest document version modified by another process.
+- Keep selection as possible after the editor content is updated to the latest version modified by another process.
 - Optimize auto URL detection with paste to a large document.
 
 

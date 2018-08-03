@@ -260,7 +260,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let lastString = self.textStorage.string
         let editorStates = self.textStorage.layoutManagers
             .compactMap { $0.textViewForBeginningOfSelection }
-            .map { (textView: $0, ranges: $0.selectedRanges) }
+            .map { (textView: $0, ranges: $0.selectedRanges as! [NSRange]) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
@@ -268,8 +268,23 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.applyContentToWindow()
         
         // select previous ranges again
+        // -> Taking performance issue into consideration,
+        //    the selection ranges will be adjusted only when the content size is enough small.
+        let string = self.textStorage.string
+        let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
+        let considersDiff = min(lastString.count, string.count) < maxLength
+        
         for state in editorStates {
-            state.textView.selectedRanges = self.textStorage.string.equivalentRanges(to: state.ranges as! [NSRange], in: lastString) as [NSValue]
+            state.textView.selectedRanges = {
+                guard considersDiff else {
+                    // just cut extra ranges off
+                    return state.ranges
+                        .map { $0.intersection(string.nsRange) ?? NSRange(location: string.nsRange.upperBound, length: 0) }
+                        .map { $0 as NSValue }
+                }
+                
+                return string.equivalentRanges(to: state.ranges, in: lastString) as [NSValue]
+            }()
         }
     }
     
