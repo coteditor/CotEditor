@@ -69,3 +69,18 @@ func moofTime(_ label: String? = nil, work: () -> Void) {
         Swift.print("\(icon) \(time)")
     }
 }
+
+
+extension Date {
+    
+    /// Print time stamp using moof() function.
+    func moof(_ label: String? = nil) {
+        
+        if let label = label {
+            CotEditor.moof(-self.timeIntervalSinceNow, label)
+        } else {
+            CotEditor.moof(-self.timeIntervalSinceNow)
+        }
+    }
+    
+}
