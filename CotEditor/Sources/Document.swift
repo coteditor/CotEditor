@@ -257,10 +257,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.windowForSheet?.sheets.forEach { $0.close() }
         
         // store current selections
-        let lastString = self.textStorage.string.immutable
+        let lastString = self.textStorage.string
         let editorStates = self.textStorage.layoutManagers
             .compactMap { $0.textViewForBeginningOfSelection }
-            .map { (textView: $0, range: $0.selectedRange) }
+            .map { (textView: $0, ranges: $0.selectedRanges) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
@@ -269,7 +269,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // select previous ranges again
         for state in editorStates {
-            state.textView.selectedRanges = self.textStorage.string.equivalentRanges(to: [state.range], in: lastString) as [NSValue]
+            state.textView.selectedRanges = self.textStorage.string.equivalentRanges(to: state.ranges as! [NSRange], in: lastString) as [NSValue]
         }
     }
     

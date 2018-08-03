@@ -36,10 +36,11 @@ extension String {
     /// - Returns: The equivalent ranges to the given ranges.
     func equivalentRanges(to nsRanges: [NSRange], in other: String) -> [NSRange] {
         
-        let ranges = nsRanges.map { Range($0, in: other)! }
+        // -> Use UTF16View instead of Character due to performance issue
+        let ranges = nsRanges.map { Range<UTF16View.Index>($0, in: other)! }
         
-        return self.equivalentRanges(to: ranges, in: other)
-            .map { NSRange($0, in: self) }
+        return self.utf16.equivalentRanges(to: ranges, in: other.utf16)
+            .map { NSRange($0.lowerBound.encodedOffset..<$0.upperBound.encodedOffset) }
     }
     
 }
@@ -56,7 +57,7 @@ extension Collection where Element: Equatable {
     /// - Returns: The equivalent ranges to the given ranges.
     func equivalentRanges(to ranges: [Range<Index>], in other: Self) -> [Range<Index>] {
         
-        return other.diff(self)
+        return other.diff(self).lazy
             .map { element -> (offset: Int, diff: Int) in
                 switch element {
                 case .insert(at: let offset): return (offset, 1)
@@ -66,11 +67,14 @@ extension Collection where Element: Equatable {
             .reduce(into: ranges) { (ranges, item) in
                 let index = other.index(other.startIndex, offsetBy: item.offset)
                 
-                if let rangeIndex = ranges.index(where: { $0.lowerBound > index })  {
-                    ranges[rangeIndex].shift(offset: item.diff, in: self)
-                    
-                } else if let rangeIndex = ranges.index(where: { $0.contains(index) }) {
-                    ranges[rangeIndex].adjustLength(offset: item.diff, in: self)
+                ranges = ranges.map { range in
+                    if range.lowerBound > index {
+                        return range.shifted(offset: item.diff, in: self)
+                    } else if range.contains(index) {
+                        return range.lengthAdjusted(offset: item.diff, in: self)
+                    } else {
+                        return range
+                    }
                 }
             }
     }
@@ -83,20 +87,20 @@ extension Collection where Element: Equatable {
 
 private extension Range {
     
-    mutating func shift<C>(offset: Int, in collection: C) where Bound == C.Index, C: Collection {
+    func shifted<C>(offset: Int, in collection: C) -> Range<C.Index> where Bound == C.Index, C: Collection {
         
         let lowerBound = collection.index(self.lowerBound, offsetBy: offset)
         let upperBound = collection.index(self.upperBound, offsetBy: offset)
         
-        self = lowerBound..<upperBound
+        return lowerBound..<upperBound
     }
     
     
-    mutating func adjustLength<C>(offset: Int, in collection: C) where Bound == C.Index, C: Collection {
+    func lengthAdjusted<C>(offset: Int, in collection: C) -> Range<C.Index> where Bound == C.Index, C: Collection {
         
         let upperBound = collection.index(self.upperBound, offsetBy: offset)
         
-        self = self.lowerBound..<upperBound
+        return self.lowerBound..<upperBound
     }
     
 }
