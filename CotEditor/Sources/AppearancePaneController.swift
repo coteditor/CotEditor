@@ -79,7 +79,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// set delegate to ThemeViewController
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         if let destinationController = segue.destinationController as? ThemeViewController {
             destinationController.delegate = self

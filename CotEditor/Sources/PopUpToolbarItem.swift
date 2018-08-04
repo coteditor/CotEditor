@@ -33,7 +33,7 @@ final class PopUpToolbarItem: NSToolbarItem {
         
         let popUpButton = self.popUpButton!
         
-        /// setup popup menu for "Text Only" mode
+        // setup popup menu for "Text Only" mode
         let item = NSMenuItem()
         item.submenu = popUpButton.menu
         item.title = self.label

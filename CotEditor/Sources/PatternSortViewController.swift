@@ -101,7 +101,6 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
             let field = self.sampleLineField
             else { return }
         
-        
         let attributedLine = NSMutableAttributedString(string: sampleLine)
         
         try? sortPattern.validate()  // invalidate regex

@@ -28,7 +28,7 @@ import Foundation
 extension URL {
     
     /// get extended attribute
-    func extendedAttribute(for name: String) throws -> Data  {
+    func extendedAttribute(for name: String) throws -> Data {
         
         return try self.withUnsafeFileSystemRepresentation { fileSystemPath -> Data in
             
