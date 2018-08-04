@@ -41,7 +41,7 @@
 /* Class = "NSTextFieldCell"; title = "Menu title pattern"; ObjectID = "nnO-qN-dYF"; */
 "nnO-qN-dYF.title" = "メニュータイトルパターン";
 /* Class = "NSTextFieldCell"; title = "(blank matches the whole string)"; ObjectID = "rqP-22-G2u"; */
-"rqP-22-G2u.title" = "（空白はマッチした全文字列）";
+"rqP-22-G2u.title" = "（空白は一致した全文字列）";
 
 /* Class = "NSButtonCell"; title = "Bold"; ObjectID = "iub-mE-wGf"; */
 "iub-mE-wGf.title" = "ボールド";

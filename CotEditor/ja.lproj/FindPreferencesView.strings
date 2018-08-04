@@ -32,7 +32,7 @@
 /* Class = "NSButtonCell"; title = "Wrap search around"; ObjectID = "o7S-uI-urg"; */
 "o7S-uI-urg.title" = "検索を折り返す";
 /* Class = "NSButtonCell"; title = "Select next match after replace"; ObjectID = "XBp-LE-3Ry"; */
-"XBp-LE-3Ry.title" = "置換後に次のマッチを選択";
+"XBp-LE-3Ry.title" = "置換後に次の一致を選択";
 /* Class = "NSButtonCell"; title = "Auto-close progress dialog"; ObjectID = "KBq-zH-H2M"; */
 "KBq-zH-H2M.title" = "完了後自動的に進捗表示を閉じる";
 
@@ -45,7 +45,7 @@
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
 "mY4-am-wla.title" = "文字を厳密に判別";
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */
-"KG4-LQ-sen.ibShadowedToolTip" = "バイトレベルで完全一致する文字列にのみマッチ";
+"KG4-LQ-sen.ibShadowedToolTip" = "バイトレベルで完全一致する文字列にのみ一致";
 
 /* Class = "NSButtonCell"; title = "Ignore diacritical marks"; ObjectID = "OUc-5d-N7I"; */
 "OUc-5d-N7I.title" = "発音区別記号を無視";
@@ -65,14 +65,14 @@
 
 
 /* Class = "NSButtonCell"; title = "Dot matches line separators"; ObjectID = "nqr-AM-oJQ"; */
-"nqr-AM-oJQ.title" = "ドットが改行にマッチ";
+"nqr-AM-oJQ.title" = "ドットが改行に一致";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow . to match any character, including newline characters (singleline)."; ObjectID = "c11-J5-UXF"; */
-"c11-J5-UXF.ibShadowedToolTip" = ".が改行記号を含むすべての文字にマッチ（単一行モード）";
+"c11-J5-UXF.ibShadowedToolTip" = ".が改行記号を含むすべての文字に一致（単一行モード）";
 
 /* Class = "NSButtonCell"; title = "Anchors match lines"; ObjectID = "YXU-NA-BZb"; */
-"YXU-NA-BZb.title" = "アンカーが行頭/行末にマッチ";
+"YXU-NA-BZb.title" = "アンカーが行頭/行末に一致";
 /* Class = "NSButton"; ibShadowedToolTip = "Allow ^ and $ to match the start and end of lines (multiline)."; ObjectID = "Lhw-9C-lgB"; */
-"Lhw-9C-lgB.ibShadowedToolTip" = "^と$がそれぞれ行頭と行末にもマッチ（複数行モード）";
+"Lhw-9C-lgB.ibShadowedToolTip" = "^と$がそれぞれ行頭と行末にも一致（複数行モード）";
 
 /* Class = "NSButtonCell"; title = "Use Unicode word boundaries"; ObjectID = "5oj-ch-YiX"; */
 "5oj-ch-YiX.title" = "Unicode単語境界を使用";

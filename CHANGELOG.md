@@ -9,6 +9,7 @@ Change Log
 
 - Keep the cursor position as possible after the editor content is updated to the latest version modified by another process.
 - Optimize auto URL detection with paste to a large document.
+- [trivial] Update some Japanese localization.
 
 
 
