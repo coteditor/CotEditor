@@ -80,20 +80,6 @@ extension EditorTextView {
     
     // MARK: Action Messages
     
-    /// scale up
-    @IBAction func biggerFont(_ sender: Any?) {
-        
-        self.setScaleKeepingVisibleArea(self.scale * 1.1)
-    }
-    
-    
-    /// scale down
-    @IBAction func smallerFont(_ sender: Any?) {
-        
-        self.setScaleKeepingVisibleArea(self.scale / 1.1)
-    }
-    
-    
     /// change scale from segmented control button
     @IBAction func changeTextSize(_ sender: NSSegmentedControl) {
         
@@ -105,6 +91,20 @@ extension EditorTextView {
         default:
             assertionFailure("Segmented text size button must have 3 segments only.")
         }
+    }
+    
+    
+    /// scale up
+    @IBAction func biggerFont(_ sender: Any?) {
+        
+        self.setScaleKeepingVisibleArea(self.scale * 1.1)
+    }
+    
+    
+    /// scale down
+    @IBAction func smallerFont(_ sender: Any?) {
+        
+        self.setScaleKeepingVisibleArea(self.scale / 1.1)
     }
     
     
