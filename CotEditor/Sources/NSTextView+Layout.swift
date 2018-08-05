@@ -209,28 +209,28 @@ extension NSTextView {
             return (container.size.width != self.infiniteSize.width)
         }
         
-        set (wrapsLines) {
+        set {
             guard let scrollView = self.enclosingScrollView,
                   let textContainer = self.textContainer else { return }
             
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
             
-            textContainer.widthTracksTextView = wrapsLines
-            if wrapsLines {
+            textContainer.widthTracksTextView = newValue
+            if newValue {
                 let contentSize = scrollView.contentSize
                 textContainer.size.width = (contentSize.width / self.scale).rounded()
                 self.setConstrainedFrameSize(contentSize)
             } else {
                 textContainer.size = self.infiniteSize
             }
-            self.autoresizingMask = wrapsLines ? (isVertical ? .height : .width) : .none
+            self.autoresizingMask = newValue ? (isVertical ? .height : .width) : .none
             if isVertical {
-                scrollView.hasVerticalScroller = !wrapsLines
-                self.isVerticallyResizable = !wrapsLines
+                scrollView.hasVerticalScroller = !newValue
+                self.isVerticallyResizable = !newValue
             } else {
-                scrollView.hasHorizontalScroller = !wrapsLines
-                self.isHorizontallyResizable = !wrapsLines
+                scrollView.hasHorizontalScroller = !newValue
+                self.isHorizontallyResizable = !newValue
             }
             self.sizeToFit()
             
