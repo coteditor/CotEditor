@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.5.0-beta.3 (unreleased)
+--------------------------
+
+### New Features
+
+- Let the input fields in the find panel accept text scaling commands, such as “Bigger”, “Smaller” and “Reset to  Default”. 
+
+
+
 3.5.0-beta.2 (264)
 --------------------------
 
