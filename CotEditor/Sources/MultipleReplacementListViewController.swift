@@ -266,7 +266,6 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { (returnCode: NSApplication.ModalResponse) in
-            
             guard returnCode == .alertSecondButtonReturn else { return }  // cancelled
             
             do {
