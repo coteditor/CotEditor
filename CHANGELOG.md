@@ -10,6 +10,11 @@ Change Log
 - Let the input fields in the find panel accept text scaling commands, such as “Bigger”, “Smaller” and “Reset to  Default”. 
 
 
+### Improvements
+
+- [beta] Apply overscrolling rate change immediately.
+
+
 
 3.5.0-beta.2 (264)
 --------------------------

@@ -96,6 +96,7 @@ final class EditorTextView: NSTextView, Themable {
         .shouldAntialias,
         .lineHeight,
         .highlightSelectionInstance,
+        .overscrollRate,
         ]
     
     
@@ -884,6 +885,9 @@ final class EditorTextView: NSTextView, Themable {
         case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             
+        case DefaultKeys.overscrollRate.rawValue:
+            self.invalidateOverscrollRate()
+            
         default: break
         }
     }
@@ -1164,17 +1168,7 @@ final class EditorTextView: NSTextView, Themable {
     /// visible rect did resize
     @objc private func didChangeVisibleRectSize(_ notification: Notification) {
         
-        // calculate overscrolling amount
-        guard
-            let scrollView = self.enclosingScrollView,
-            let layoutManager = self.layoutManager as? LayoutManager
-            else { return }
-        
-        let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
-        let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
-        
-        // halve inset since the input value will be add to the both top and bottom
-        self.textContainerInset.height = max(floor(inset / 2), kTextContainerInset.height)
+        self.invalidateOverscrollRate()
     }
     
     
@@ -1252,6 +1246,23 @@ final class EditorTextView: NSTextView, Themable {
         
         // apply new style to current text
         self.invalidateStyle()
+    }
+    
+    
+    /// calculate overscrolling amount
+    private func invalidateOverscrollRate() {
+        
+        guard
+            let scrollView = self.enclosingScrollView,
+            let layoutManager = self.layoutManager as? LayoutManager
+            else { return }
+        
+        let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
+        let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
+        
+        // halve inset since the input value will be add to the both top and bottom
+        self.textContainerInset.height = max(floor(inset / 2), kTextContainerInset.height)
+        self.sizeToFit()
     }
     
     
