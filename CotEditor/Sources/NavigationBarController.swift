@@ -134,7 +134,7 @@ final class NavigationBarController: NSViewController {
             
             // add headding item
             let headdingItem = NSMenuItem()
-            headdingItem.title = NSLocalizedString("<Outline Menu>", comment: "")
+            headdingItem.title = "<Outline Menu>".localized
             headdingItem.representedObject = NSRange(location: 0, length: 0)
             menu.addItem(headdingItem)
             
@@ -307,10 +307,10 @@ final class NavigationBarController: NSViewController {
         }
         
         self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu(_:))
-        self.prevButton?.toolTip = NSLocalizedString("Jump to previous outline item", comment: "")
+        self.prevButton?.toolTip = "Jump to previous outline item".localized
         
         self.nextButton?.action = #selector(selectNextItemOfOutlineMenu(_:))
-        self.nextButton?.toolTip = NSLocalizedString("Jump to next outline item", comment: "")
+        self.nextButton?.toolTip = "Jump to next outline item".localized
         
         self.updatePrevNextButtonEnabled()
     }

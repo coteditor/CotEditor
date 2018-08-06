@@ -44,41 +44,31 @@
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
 "iw9-Ba-eD2.title" = "Mostra:";
-/* Class = "NSButtonCell"; title = "Navigation Bar"; ObjectID = "3351"; */
-"3351.title" = "Barra di navigazione";
-/* Class = "NSButtonCell"; title = "Document Inspector"; ObjectID = "3348"; */
-"3348.title" = "Ispettore documento";
-/* Class = "NSButtonCell"; title = "Status Bar"; ObjectID = "3349"; */
-"3349.title" = "Barra di stato";
-/* Class = "NSButtonCell"; title = "Line Numbers"; ObjectID = "A9U-Sx-or3"; */
+/* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "Numeri riga";
-/* Class = "NSButtonCell"; title = "Page Guide"; ObjectID = "3352"; */
-"3352.title" = "Guide pagina";
-/* Class = "NSTextFieldCell"; title = "Display at column:"; ObjectID = "3353"; */
-"3353.title" = "Mostra alla colonna:";
+/* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
+"3352.title" = "Guide pagina alla colonna:";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
-"kjP-FS-fyd.title" = "Barra di stato mostra:";
-/* Class = "NSButtonCell"; title = "Line Count"; ObjectID = "6jK-xX-8AH"; */
+"kjP-FS-fyd.title" = "Barra di stato:";
+/* Class = "NSButtonCell"; title = "Line count"; ObjectID = "6jK-xX-8AH"; */
 "6jK-xX-8AH.title" = "N.ro righe";
-/* Class = "NSButtonCell"; title = "Character Count"; ObjectID = "sHZ-kO-Wvu"; */
+/* Class = "NSButtonCell"; title = "Character count"; ObjectID = "sHZ-kO-Wvu"; */
 "sHZ-kO-Wvu.title" = "N.ro caratteri";
-/* Class = "NSButtonCell"; title = "Length"; ObjectID = "YE8-hr-UbT"; */
-"YE8-hr-UbT.title" = "Lunghezza";
-/* Class = "NSButtonCell"; title = "Word Count"; ObjectID = "hRw-gK-ONt"; */
+/* Class = "NSButtonCell"; title = "Word count"; ObjectID = "hRw-gK-ONt"; */
 "hRw-gK-ONt.title" = "N.ro parole";
 /* Class = "NSButtonCell"; title = "Location"; ObjectID = "ctl-Ps-V8Z"; */
 "ctl-Ps-V8Z.title" = "Posizione";
-/* Class = "NSButtonCell"; title = "Current Line"; ObjectID = "JbR-gR-aiA"; */
+/* Class = "NSButtonCell"; title = "Current line"; ObjectID = "JbR-gR-aiA"; */
 "JbR-gR-aiA.title" = "Riga";
 /* Class = "NSButtonCell"; title = "Column"; ObjectID = "SR0-Bx-Nh6"; */
 "SR0-Bx-Nh6.title" = "Colonna";
 /* Class = "NSButtonCell"; title = "Encoding"; ObjectID = "8m3-5I-Moe"; */
 "8m3-5I-Moe.title" = "Codifica";
-/* Class = "NSButtonCell"; title = "Line Endings"; ObjectID = "Ief-Dy-mPR"; */
+/* Class = "NSButtonCell"; title = "Line endings"; ObjectID = "Ief-Dy-mPR"; */
 "Ief-Dy-mPR.title" = "Fine riga";
-/* Class = "NSButtonCell"; title = "File Size"; ObjectID = "ikB-dS-c4S"; */
+/* Class = "NSButtonCell"; title = "File size"; ObjectID = "ikB-dS-c4S"; */
 "ikB-dS-c4S.title" = "Dimensione file";
 
 
@@ -88,11 +78,9 @@
 "Bj6-2A-Nxj.title" = "Orizzontale";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "Verticale";
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "D5G-Lc-5TC"; */
-"D5G-Lc-5TC.title" = "px";
-/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "1ML-Pr-BCt"; */
-"1ML-Pr-BCt.title" = "px";
 
+/* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
+"7Nz-lv-JZb.title" = "Overscroll:";  // FIXME: added
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Opacità dell’editor:";

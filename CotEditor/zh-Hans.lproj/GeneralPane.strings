@@ -66,8 +66,8 @@
 "rpa-Di-f4s.title" = "更新到被更改的版本";
 
 
-/* Class = "NSTextFieldCell"; title = "Application:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "应用选项：";
+/* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
+"lzy-Ei-xlT.title" = "Content parse:";  // FIXME: changed
 
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "统计行尾为一个字符";

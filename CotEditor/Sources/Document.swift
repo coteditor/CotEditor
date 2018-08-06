@@ -67,14 +67,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private(set) var lineEnding: LineEnding
     private(set) var fileAttributes: [FileAttributeKey: Any]?
     
-    private(set) lazy var selection: TextSelection = TextSelection(document: self)
-    private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
-    private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
+    private(set) lazy var selection = TextSelection(document: self)
+    private(set) lazy var analyzer = DocumentAnalyzer(document: self)
+    private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
+    private lazy var printPanelAccessoryController = PrintPanelAccessoryController()
     private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: NSStoryboard.Name("SaveDocumentAccessory"), bundle: nil).instantiateInitialController() as! NSViewController
     
     private var readingEncoding: String.Encoding  // encoding to read document file
@@ -104,7 +104,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         if self.encoding == .utf8 {
             self.hasUTF8BOM = UserDefaults.standard[.saveUTF8BOM]
         }
-        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .LF
+        self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
         self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
@@ -250,14 +250,42 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// revert to saved file contents
     override func revert(toContentsOf url: URL, ofType typeName: String) throws {
         
+        assert(Thread.isMainThread)
+        
         // once force-close all sheets
         //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
         self.windowForSheet?.sheets.forEach { $0.close() }
+        
+        // store current selections
+        let lastString = self.textStorage.string
+        let editorStates = self.textStorage.layoutManagers
+            .compactMap { $0.textViewForBeginningOfSelection }
+            .map { (textView: $0, ranges: $0.selectedRanges as! [NSRange]) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
         // apply to UI
         self.applyContentToWindow()
+        
+        // select previous ranges again
+        // -> Taking performance issue into consideration,
+        //    the selection ranges will be adjusted only when the content size is enough small.
+        let string = self.textStorage.string
+        let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
+        let considersDiff = min(lastString.count, string.count) < maxLength
+        
+        for state in editorStates {
+            state.textView.selectedRanges = {
+                guard considersDiff else {
+                    // just cut extra ranges off
+                    return state.ranges
+                        .map { $0.intersection(string.nsRange) ?? NSRange(location: string.nsRange.upperBound, length: 0) }
+                        .map { $0 as NSValue }
+                }
+                
+                return string.equivalentRanges(to: state.ranges, in: lastString) as [NSValue]
+            }()
+        }
     }
     
     
@@ -319,7 +347,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // standardize line endings to LF
         // -> Line endings replacemement by other text modifications is processed in
         //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
-        let string = file.string.replacingLineEndings(with: .LF)
+        let string = file.string.replacingLineEndings(with: .lf)
         
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
@@ -754,7 +782,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         let editorString = self.textStorage.string.immutable  // line ending is always LF
         
-        if self.lineEnding == .LF {
+        if self.lineEnding == .lf {
             return editorString
         }
         
@@ -812,7 +840,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             undoManager.registerUndo(withTarget: self) { [currentEncoding = self.encoding, currentHasUTF8BOM = self.hasUTF8BOM] target in
                 try? target.changeEncoding(to: currentEncoding, withUTF8BOM: currentHasUTF8BOM, lossy: lossy)
             }
-            undoManager.setActionName(String(format: NSLocalizedString("Encoding to “%@”", comment: ""), encodingName))
+            undoManager.setActionName(String(format: "Encoding to “%@”".localized, encodingName))
         }
         
         // update encoding
@@ -840,7 +868,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             undoManager.registerUndo(withTarget: self) { [currentLineEnding = self.lineEnding] target in
                 target.changeLineEnding(to: currentLineEnding)
             }
-            undoManager.setActionName(String(format: NSLocalizedString("Line Endings to “%@”", comment: ""), lineEnding.name))
+            undoManager.setActionName(String(format: "Line Endings to “%@”".localized, lineEnding.name))
         }
         
         // update line ending
@@ -899,23 +927,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change line ending with sender's tag
-    @IBAction func changeLineEnding(_ sender: AnyObject?) {
+    @IBAction func changeLineEnding(_ sender: NSMenuItem) {
         
-        guard
-            let tag = sender?.tag,
-            let lineEnding = LineEnding(index: tag) else { return }
+        guard let lineEnding = LineEnding(index: sender.tag) else { return }
         
         self.changeLineEnding(to: lineEnding)
     }
     
     
     /// change document file encoding
-    @IBAction func changeEncoding(_ sender: AnyObject?) {
+    @IBAction func changeEncoding(_ sender: NSMenuItem) {
         
-        guard let tag = sender?.tag else { return }
-        
-        let encoding = String.Encoding(rawValue: UInt(abs(tag)))
-        let withUTF8BOM = (tag == -Int(String.Encoding.utf8.rawValue))
+        let encoding = String.Encoding(rawValue: UInt(abs(sender.tag)))
+        let withUTF8BOM = (sender.tag == -Int(String.Encoding.utf8.rawValue))
         
         guard encoding != self.encoding || withUTF8BOM != self.hasUTF8BOM else { return }
         
@@ -946,11 +970,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             // ask whether just change the encoding or reinterpret docuemnt file
             let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
             let alert = NSAlert()
-            alert.messageText = NSLocalizedString("File encoding", comment: "")
-            alert.informativeText = String(format: NSLocalizedString("Do you want to convert or reinterpret this document using “%@”?", comment: ""), encodingName)
-            alert.addButton(withTitle: NSLocalizedString("Convert", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("Reinterpret", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
+            alert.messageText = "File encoding".localized
+            alert.informativeText = String(format: "Do you want to convert or reinterpret this document using “%@”?".localized, encodingName)
+            alert.addButton(withTitle: "Convert".localized)
+            alert.addButton(withTitle: "Reinterpret".localized)
+            alert.addButton(withTitle: "Cancel".localized)
             
             let documentWindow = self.windowForSheet!
             alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
@@ -967,10 +991,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     // ask user if document is edited
                     if self.isDocumentEdited {
                         let alert = NSAlert()
-                        alert.messageText = NSLocalizedString("The document has unsaved changes.", comment: "")
-                        alert.informativeText = String(format: NSLocalizedString("Do you want to discard the changes and reopen the document using “%@”?", comment: ""), encodingName)
-                        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-                        alert.addButton(withTitle: NSLocalizedString("Discard Changes", comment: ""))
+                        alert.messageText = "The document has unsaved changes.".localized
+                        alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, encodingName)
+                        alert.addButton(withTitle: "Cancel".localized)
+                        alert.addButton(withTitle: "Discard Changes".localized)
                         
                         documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                         let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
@@ -1081,10 +1105,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 : "The file has been modified by another application."
             
             let alert = NSAlert()
-            alert.messageText = NSLocalizedString(messageText, comment: "")
-            alert.informativeText = NSLocalizedString("Do you want to keep CotEditor’s edition or update to the modified edition?", comment: "")
-            alert.addButton(withTitle: NSLocalizedString("Keep CotEditor’s Edition", comment: ""))
-            alert.addButton(withTitle: NSLocalizedString("Update", comment: ""))
+            alert.messageText = messageText.localized
+            alert.informativeText = "Do you want to keep CotEditor’s edition or update to the modified edition?".localized
+            alert.addButton(withTitle: "Keep CotEditor’s Edition".localized)
+            alert.addButton(withTitle: "Update".localized)
             
             // mark the alert as critical in order to interpret other sheets already attached
             if self.windowForSheet?.attachedSheet != nil {
@@ -1156,10 +1180,10 @@ private struct ReinterpretationError: LocalizedError {
         
         switch self.kind {
         case .noFile:
-            return NSLocalizedString("The document doesn’t have a file to reinterpret.", comment: "")
+            return "The document doesn’t have a file to reinterpret.".localized
             
         case .reinterpretationFailed(let fileURL):
-            return String(format: NSLocalizedString("The file “%@” couldn’t be reinterpreted using text encoding “%@”.", comment: ""),
+            return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
                           fileURL.lastPathComponent, String.localizedName(of: self.encoding))
         }
     }
@@ -1172,7 +1196,7 @@ private struct ReinterpretationError: LocalizedError {
             return nil
             
         case .reinterpretationFailed:
-            return NSLocalizedString("The file may have been saved using a different text encoding, or it may not be a text file.", comment: "")
+            return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
         }
     }
     
@@ -1198,7 +1222,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         let encodingName = String.localizedName(of: self.encoding, withUTF8BOM: self.withUTF8BOM)
         
-        return String(format: NSLocalizedString("Some characters would have to be changed or deleted in saving as “%@”.", comment: ""), encodingName)
+        return String(format: "Some characters would have to be changed or deleted in saving as “%@”.".localized, encodingName)
     }
     
     
@@ -1206,10 +1230,10 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
         case .lossySaving:
-            return NSLocalizedString("Do you want to continue processing?", comment: "")
+            return "Do you want to continue processing?".localized
             
         case .lossyConversion:
-            return NSLocalizedString("Do you want to change encoding and show incompatible characters?", comment: "'")
+            return "Do you want to change encoding and show incompatible characters?".localized
         }
     }
     
@@ -1218,13 +1242,13 @@ private struct EncodingError: LocalizedError, RecoverableError {
         
         switch self.kind {
         case .lossySaving:
-            return [NSLocalizedString("Show Incompatible Characters", comment: ""),
-                    NSLocalizedString("Save Available Strings", comment: ""),
-                    NSLocalizedString("Cancel", comment: "")]
+            return ["Show Incompatible Characters".localized,
+                    "Save Available Strings".localized,
+                    "Cancel".localized]
             
         case .lossyConversion:
-            return [NSLocalizedString("Change Encoding", comment: ""),
-                    NSLocalizedString("Cancel", comment: "")]
+            return ["Change Encoding".localized,
+                    "Cancel".localized]
         }
     }
     

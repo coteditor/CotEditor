@@ -402,9 +402,9 @@ enum TextFindError: LocalizedError {
         
         switch self {
         case .regularExpression:
-            return NSLocalizedString("Invalid regular expression", comment: "")
+            return "Invalid regular expression".localized
         case .emptyFindString:
-            return NSLocalizedString("Empty find string", comment: "")
+            return "Empty find string".localized
         }
     }
     
@@ -415,7 +415,7 @@ enum TextFindError: LocalizedError {
         case .regularExpression(let reason):
             return reason
         case .emptyFindString:
-            return NSLocalizedString("Input text to find.", comment: "")
+            return "Input text to find.".localized
         }
     }
     

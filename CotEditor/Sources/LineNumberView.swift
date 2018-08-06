@@ -79,6 +79,19 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Ruler View Methods
     
+    /// observe window opacity change
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
+        
+        guard let window = self.window else { return }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
+                                               name: DocumentWindow.didChangeOpacityNotification,
+                                               object: window)
+    }
+    
+    
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
@@ -285,19 +298,20 @@ final class LineNumberView: NSRulerView {
         }
         
         // draw the last "extra" line number
-        if layoutManager.extraLineFragmentTextContainer != nil {
+        let lineRect = layoutManager.extraLineFragmentUsedRect
+        if layoutManager.extraLineFragmentTextContainer != nil, lineRect.intersects(textView.visibleRect) {
+            let lastLineNumber = string.lineNumber(at: length)
             let isSelected: Bool = {
                 guard let lastSelectedRange = selectedLineRanges.last else { return false }
                 
                 return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
             }()
-            let lineRect = layoutManager.extraLineFragmentUsedRect
             let y = scale * -lineRect.minY
             
             if isVerticalText {
                 drawTick(y: y)
             }
-            drawLineNumber(lineNumber, y: y, isBold: isSelected)
+            drawLineNumber(lastLineNumber, y: y, isBold: isSelected)
         }
         
         // draw vertical line ticks
@@ -313,7 +327,7 @@ final class LineNumberView: NSRulerView {
     /// make background transparent
     override var isOpaque: Bool {
         
-        return false
+        return self.textView?.isOpaque ?? true
     }
     
     
@@ -346,7 +360,7 @@ final class LineNumberView: NSRulerView {
             return textColor
         }
         
-        return textColor.withAlphaComponent(strength.rawValue)
+        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
     }
     
     
@@ -355,7 +369,11 @@ final class LineNumberView: NSRulerView {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
         
-        return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        if self.isOpaque, let color = self.textView?.backgroundColor {
+            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
+        } else {
+            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        }
     }
     
     
@@ -363,6 +381,14 @@ final class LineNumberView: NSRulerView {
     @objc private func textDidChange(_ notification: Notification) {
         
         self.needsRecountNumberOfDigits = true
+    }
+    
+    
+    /// window's opacity did change
+    @objc private func didWindowOpacityChange(_ notification: Notification?) {
+        
+        // redraw visible area
+        self.setNeedsDisplay(self.visibleRect)
     }
     
 }

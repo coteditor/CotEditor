@@ -27,31 +27,6 @@ import Foundation
 
 extension String {
     
-    /// number of composed characters in the whole string
-    var numberOfComposedCharacters: Int {
-        
-        return self.countComposedCharacters()
-    }
-    
-    
-    ///
-    func countComposedCharacters(_ body: ((_ stop: inout Bool) -> Void)? = nil) -> Int {
-        
-        guard !self.isEmpty else { return 0 }
-        
-        // normalize using NFC
-        let string = self.precomposedStringWithCanonicalMapping
-        
-        var count = 0
-        string.enumerateSubstrings(in: string.startIndex..<string.endIndex, options: [.byComposedCharacterSequences, .substringNotRequired]) { (_, _, _, stop) in
-            count += 1
-            body?(&stop)
-        }
-        
-        return count
-    }
-    
-    
     /// number of words in the whole string
     var numberOfWords: Int {
         

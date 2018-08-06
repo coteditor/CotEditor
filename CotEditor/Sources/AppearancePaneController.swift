@@ -79,7 +79,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     
     /// set delegate to ThemeViewController
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         if let destinationController = segue.destinationController as? ThemeViewController {
             destinationController.delegate = self
@@ -122,14 +122,14 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             
         case #selector(renameTheme(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Rename “%@”", comment: ""), name)
+                menuItem.title = String(format: "Rename “%@”".localized, name)
             }
             menuItem.isHidden = !itemSelected
             return !isBundled
             
         case #selector(duplicateTheme(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Duplicate “%@”", comment: ""), name)
+                menuItem.title = String(format: "Duplicate “%@”".localized, name)
             }
             menuItem.isHidden = !itemSelected
             
@@ -138,21 +138,21 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
             
         case #selector(restoreTheme(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Restore “%@”", comment: ""), name)
+                menuItem.title = String(format: "Restore “%@”".localized, name)
             }
             menuItem.isHidden = (!isBundled || !itemSelected)
             return isCustomized
             
         case #selector(exportTheme(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Export “%@”…", comment: ""), name)
+                menuItem.title = String(format: "Export “%@”…".localized, name)
             }
             menuItem.isHidden = !itemSelected
             return (!isBundled || isCustomized)
             
         case #selector(revealThemeInFinder(_:)):
             if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: NSLocalizedString("Reveal “%@” in Finder", comment: ""), name)
+                menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
             }
             return (!isBundled || isCustomized)
             
@@ -291,7 +291,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         if isCustomized {
             // Restore
             return [NSTableViewRowAction(style: .regular,
-                                         title: NSLocalizedString("Restore", comment: ""),
+                                         title: "Restore".localized,
                                          handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
                                             self?.restoreTheme(name: themeName)
                                             
@@ -302,7 +302,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         } else {
             // Delete
             return [NSTableViewRowAction(style: .destructive,
-                                         title: NSLocalizedString("Delete", comment: ""),
+                                         title: "Delete".localized,
                                          handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
                                             self?.deleteTheme(name: themeName)
                 })]
@@ -402,7 +402,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
-        savePanel.nameFieldLabel = NSLocalizedString("Export As:", comment: "")
+        savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = themeName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
@@ -418,7 +418,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @IBAction func importTheme(_ sender: Any?) {
         
         let openPanel = NSOpenPanel()
-        openPanel.prompt = NSLocalizedString("Import", comment: "")
+        openPanel.prompt = "Import".localized
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
@@ -498,10 +498,10 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     private func deleteTheme(name: String) {
         
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete “%@” theme?", comment: ""), name)
-        alert.informativeText = NSLocalizedString("This action cannot be undone.", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.messageText = String(format: "Are you sure you want to delete “%@” theme?".localized, name)
+        alert.informativeText = "This action cannot be undone.".localized
+        alert.addButton(withTitle: "Cancel".localized)
+        alert.addButton(withTitle: "Delete".localized)
         
         let window = self.view.window!
         alert.beginSheetModal(for: window) { [weak self] (returnCode: NSApplication.ModalResponse) in

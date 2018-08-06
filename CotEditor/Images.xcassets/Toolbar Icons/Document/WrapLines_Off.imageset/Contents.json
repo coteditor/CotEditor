@@ -1,14 +1,8 @@
 {
   "images" : [
     {
-      "idiom" : "mac",
-      "filename" : "WrapLines_Off.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "mac",
-      "filename" : "WrapLines_Off@2x.png",
-      "scale" : "2x"
+      "idiom" : "universal",
+      "filename" : "WrapLines_Off.pdf"
     }
   ],
   "info" : {

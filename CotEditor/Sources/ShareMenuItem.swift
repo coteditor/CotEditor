@@ -31,9 +31,7 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
     
     init() {
         
-        let title = NSLocalizedString("Share", comment: "")
-        
-        super.init(title: title, action: nil, keyEquivalent: "")
+        super.init(title: "Share".localized, action: nil, keyEquivalent: "")
         
         self.submenu = NSMenu()
         self.submenu?.delegate = self
@@ -56,7 +54,7 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
         menu.removeAllItems()
         
         guard let document = NSDocumentController.shared.currentDocument else {
-                let item = NSMenuItem(title: NSLocalizedString("No Document", comment: ""), action: nil, keyEquivalent: "")
+                let item = NSMenuItem(title: "No Document".localized, action: nil, keyEquivalent: "")
                 item.isEnabled = false
                 menu.addItem(item)
                 return

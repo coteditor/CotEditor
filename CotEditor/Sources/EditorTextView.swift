@@ -70,7 +70,7 @@ final class EditorTextView: NSTextView, Themable {
     
     private var lineHighLightColor: NSColor?
     
-    private let instanceHighlightColor: NSColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.3)
+    private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }
     
     private var needsRecompletion = false
@@ -96,6 +96,7 @@ final class EditorTextView: NSTextView, Themable {
         .shouldAntialias,
         .lineHeight,
         .highlightSelectionInstance,
+        .overscrollRate,
         ]
     
     
@@ -193,6 +194,13 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// append inset only to the bottom for overscroll
+    override var textContainerOrigin: NSPoint {
+        
+        return NSPoint(x: super.textContainerOrigin.x, y: kTextContainerInset.height)
+    }
+    
+    
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
@@ -210,8 +218,9 @@ final class EditorTextView: NSTextView, Themable {
         
         guard let window = self.window else {
             // textView was removed from the window
-            NotificationCenter.default.removeObserver(self, name: AlphaWindow.didChangeOpacityNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: DocumentWindow.didChangeOpacityNotification, object: nil)
             NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
+            NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
             return
         }
         
@@ -223,13 +232,18 @@ final class EditorTextView: NSTextView, Themable {
         
         // observe window opacity flag
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: AlphaWindow.didChangeOpacityNotification,
+                                               name: DocumentWindow.didChangeOpacityNotification,
                                                object: window)
         
-        // observe scorolling and resizing to fix drawing area on non-opaque view
         if let scrollView = self.enclosingScrollView {
+            // observe scorolling to fix drawing area on non-opaque view
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)),
                                                    name: NSView.boundsDidChangeNotification,
+                                                   object: scrollView.contentView)
+            
+            // observe resizing for overscroll amount update
+            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRectSize(_:)),
+                                                   name: NSView.frameDidChangeNotification,
                                                    object: scrollView.contentView)
         } else {
             assertionFailure("failed starting observing the visible rect change")
@@ -540,13 +554,13 @@ final class EditorTextView: NSTextView, Themable {
         guard let menu = super.menu(for: event) else { return nil }
         
         // remove unwanted "Font" menu and its submenus
-        if let fontMenuItem = menu.item(withTitle: NSLocalizedString("Font", comment: "menu item title in the context menu")) {
+        if let fontMenuItem = menu.item(withTitle: "Font".localized(comment: "menu item title in the context menu")) {
             menu.removeItem(fontMenuItem)
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if (self.string as NSString).substring(with: self.selectedRange).numberOfComposedCharacters == 1 {
-            menu.insertItem(withTitle: NSLocalizedString("Inspect Character", comment: ""),
+        if (self.string as NSString).substring(with: self.selectedRange).count == 1 {
+            menu.insertItem(withTitle: "Inspect Character".localized,
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
                             at: 1)
@@ -555,7 +569,7 @@ final class EditorTextView: NSTextView, Themable {
         // add "Copy as Rich Text" menu item
         let copyIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(copy(_:)))
         if copyIndex >= 0 {  // -1 == not found
-            menu.insertItem(withTitle: NSLocalizedString("Copy as Rich Text", comment: ""),
+            menu.insertItem(withTitle: "Copy as Rich Text".localized,
                             action: #selector(copyWithStyle(_:)),
                             keyEquivalent: "",
                             at: copyIndex + 1)
@@ -564,7 +578,7 @@ final class EditorTextView: NSTextView, Themable {
         // add "Select All" menu item
         let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
         if pasteIndex >= 0 {  // -1 == not found
-            menu.insertItem(withTitle: NSLocalizedString("Select All", comment: ""),
+            menu.insertItem(withTitle: "Select All".localized,
                             action: #selector(selectAll(_:)),
                             keyEquivalent: "",
                             at: pasteIndex + 1)
@@ -748,7 +762,7 @@ final class EditorTextView: NSTextView, Themable {
         
         let success = super.writeSelection(to: pboard, types: types)
         
-        guard let lineEnding = self.document?.lineEnding, lineEnding == .LF else { return success }
+        guard let lineEnding = self.document?.lineEnding, lineEnding == .lf else { return success }
         
         for type in types {
             guard let string = pboard.string(forType: type) else { continue }
@@ -871,6 +885,9 @@ final class EditorTextView: NSTextView, Themable {
         case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             
+        case DefaultKeys.overscrollRate.rawValue:
+            self.invalidateOverscrollRate()
+            
         default: break
         }
     }
@@ -889,14 +906,13 @@ final class EditorTextView: NSTextView, Themable {
             return self.selectedRange.length > 0
             
         case #selector(showSelectionInfo):
-            let selection = (self.string as NSString).substring(with: self.selectedRange)
-            return selection.numberOfComposedCharacters == 1
+            return (self.string as NSString).substring(with: self.selectedRange).count == 1
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {
                 let canComment = self.canUncomment(range: self.selectedRange, partly: false)
                 let title = canComment ? "Uncomment" : "Comment Out"
-                menuItem.title = NSLocalizedString(title, comment: "")
+                menuItem.title = title.localized
             }
             return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
             
@@ -1028,7 +1044,7 @@ final class EditorTextView: NSTextView, Themable {
         let string = self.string
         var selections = [NSAttributedString]()
         var propertyList = [Int]()
-        let lineEnding = self.document?.lineEnding ?? .LF
+        let lineEnding = self.document?.lineEnding ?? .lf
         
         // substring all selected attributed strings
         let selectedRanges = self.selectedRanges as! [NSRange]
@@ -1046,7 +1062,7 @@ final class EditorTextView: NSTextView, Themable {
             }
             
             // apply document's line ending
-            if lineEnding != .LF {
+            if lineEnding != .lf {
                 for (index, character) in zip(plainText.indices, plainText).reversed() where character == "\n" {  // process backwards
                     let characterRange = NSRange(index...index, in: plainText)
                     
@@ -1102,7 +1118,7 @@ final class EditorTextView: NSTextView, Themable {
         
         // apply document's line ending
         if let documentLineEnding = self.document?.lineEnding,
-            documentLineEnding != .LF, selectedString.detectedLineEnding == .LF
+            documentLineEnding != .lf, selectedString.detectedLineEnding == .lf
         {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
@@ -1149,6 +1165,13 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// visible rect did resize
+    @objc private func didChangeVisibleRectSize(_ notification: Notification) {
+        
+        self.invalidateOverscrollRate()
+    }
+    
+    
     
     // MARK: Private Methods
     
@@ -1175,6 +1198,10 @@ final class EditorTextView: NSTextView, Themable {
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
+        
+        if !self.isOpaque {
+            self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(0.7)
+        }
         
         // set scroller color considering background color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
@@ -1222,21 +1249,38 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    /// make link-like text clickable
+    /// calculate overscrolling amount
+    private func invalidateOverscrollRate() {
+        
+        guard
+            let scrollView = self.enclosingScrollView,
+            let layoutManager = self.layoutManager as? LayoutManager
+            else { return }
+        
+        let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
+        let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
+        
+        // halve inset since the input value will be add to the both top and bottom
+        self.textContainerInset.height = max(floor(inset / 2), kTextContainerInset.height)
+        self.sizeToFit()
+    }
+    
+    
+    /// make URL-like text clickable
     private func detectLinkIfNeeded() {
         
         assert(Thread.isMainThread)
         
         guard self.isAutomaticLinkDetectionEnabled else { return }
         
-        self.undoManager?.disableUndoRegistration()
+        // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
+        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         
-        let currentCheckingType = self.enabledTextCheckingTypes
-        self.enabledTextCheckingTypes = NSTextCheckingResult.CheckingType.link.rawValue
-        self.checkTextInDocument(nil)
-        self.enabledTextCheckingTypes = currentCheckingType
-        
-        self.undoManager?.enableUndoRegistration()
+        detector.enumerateMatches(in: self.string, range: self.string.nsRange) { (result, _, _) in
+            guard let result = result, let url = result.url else { return }
+            
+            self.textStorage?.addAttribute(.link, value: url, range: result.range)
+        }
     }
     
     
@@ -1281,6 +1325,7 @@ final class EditorTextView: NSTextView, Themable {
     private func highlightInstance() {
         
         guard
+            !self.string.isEmpty,  // important to avoid crash after closing editor
             self.selectedRanges.count == 1,
             self.selectedRange.length > 0,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))

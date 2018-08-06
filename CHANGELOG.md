@@ -2,26 +2,89 @@
 Change Log
 ==========================
 
-3.5.0 (unreleased)
+3.5.0-rc (unreleased)
 --------------------------
 
 ### New Features
 
-- Highlight the same substrings of the selection (You can customize the behavior in General preferences pane).
+- Let the input fields in the find panel accept text scaling commands, such as “Bigger”, “Smaller” and “Reset to  Default”.
 
 
 ### Improvements
 
-- Select all matches by “Find All”.
-- Remove window size setting option.
-    - Now, the initial window size is determined by the last window size, just like other standard Cocoa applications.
-- [trivial] Update editor opacity sample tip.
+- [beta] Apply overscrolling rate change immediately.
+
+
+
+3.5.0-beta.2 (264)
+--------------------------
+
+### Improvements
+
+- Keep the cursor position as possible after the editor content is updated to the latest version modified by another process.
+- Optimize auto URL detection with paste to a large document.
+- [beta] Update toolbar button images.
+- [trivial] Update some Japanese localization.
+
+
+
+3.5.0-beta (263)
+--------------------------
+
+### New Features
+
+- New toolbar icons.
+- Highlight the same substrings of the selection automatically (Customize the behavior in General preferences pane).
+- New option to allow overscrolling (Customize the behavior in Window preference pane).
+- Enable to change the tab width of a specific document to a desired number.
+
+
+### Improvements
+
+- Add command “Select All Find Matches” in Find menu.
+- Improve the editor's scrolling behavior to scroll along the predominant axis.
+- Add menu item to toggle the visibility of the sidebar inspector.
+- Remove some setting options for windows such as window size and visibilities of document inspector and status bar from Window preferences pane.
+    - From now on, the latest change to a window will be inherited to future windows just like other standard Cocoa applications.
+- Remove “length” display in the status bar.
+- Remove feature to change only the frontmost editor's opacity temporary.
+    - From this, `view opacity` property on AppleScript is also deprecated.
+- Display current user's system-wide setting for window tabbing in the menu on the Window pane.
+- Optimize the performance of character counting.
+- Improve general stability of the print operation.
+- [trivial] Count progress of the Highlight command in Find menu match by match.
+- [trivial] Update editor opacity sample tips.
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
 
-- Fix an issue where the help button in the muptiple replace window did not link to the suitable help page.
-- Fix an issue where "Show Mapping Conflict" menu item was always aveilable even no conflict exists.
+- Fix an unlocalized text.
+
+
+
+3.4.4 (261)
+--------------------------
+
+### Fixes
+
+- Address an issue where the application could rarely crash on syntax highlighting.
+- Address an issue on Mojave where text view stacked under the line number view.
+- Fix a typo in Italian localization.
+
+
+
+3.4.3 (259)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the help button in the multiple replace window did not link to the suitable help page.
+- Fix an issue where the current line highlight was opaque in split editors although the editor background is non-opaque.
+- Fix an issue where unwanted debug log was printed in the Console.
+- Fix an issue where “Show File Mapping Conflicts” menu item was always available even no conflict exists.
+- Improve general stability.
+- Fix an unlocalized label.
 
 
 
@@ -527,7 +590,7 @@ Change Log
 - Update `cot` command-line tool:
     - Avoid creating an extra blank document if `cot` command creates a new window.
     - Fix an issue where launching the application with `--background` option didn't make CotEditor visible.
-- Adjust line height calcuration.
+- Adjust line height calculation.
 - [non-AppStore ver.] Update Sparkle framework to version 1.18.1.
 
 

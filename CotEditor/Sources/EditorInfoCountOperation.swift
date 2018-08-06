@@ -45,7 +45,7 @@ struct EditorInfoTypes: OptionSet {
 
 // MARK: -
 
-final class EditorInfoCountOperation: AsynchronousOperation {
+final class EditorInfoCountOperation: Operation {
     
     struct Result {
         
@@ -101,10 +101,6 @@ final class EditorInfoCountOperation: AsynchronousOperation {
     
     override func main() {
         
-        defer {
-            self.finish()
-        }
-        
         guard !self.string.isEmpty else { return }
         
         let nsString = self.string as NSString
@@ -128,11 +124,11 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         // count characters
         if self.requiredInfo.contains(.characters) {
             let stringForCounting = self.countsLineEnding ? self.string : self.string.removingLineEndings
-            self.result.characters = stringForCounting.countComposedCharacters { (stop) in stop = self.isCancelled }
+            self.result.characters = stringForCounting.count
             
             if hasSelection {
                 let stringForCounting = self.countsLineEnding ? selectedString : selectedString.removingLineEndings
-                self.result.selectedCharacters = stringForCounting.countComposedCharacters { (stop) in stop = self.isCancelled }
+                self.result.selectedCharacters = stringForCounting.count
             }
         }
         
@@ -160,7 +156,7 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         if self.requiredInfo.contains(.location) {
             let locString = nsString.substring(to: selectedRange.location)
             let stringForCounting = self.countsLineEnding ? locString : locString.removingLineEndings
-            self.result.location = stringForCounting.numberOfComposedCharacters
+            self.result.location = stringForCounting.count
         }
         
         guard !self.isCancelled else { return }
@@ -175,7 +171,7 @@ final class EditorInfoCountOperation: AsynchronousOperation {
         // calculate current column
         if self.requiredInfo.contains(.column) {
             let lineRange = nsString.lineRange(for: self.selectedRange)
-            self.result.column = nsString.substring(with: NSRange(lineRange.location..<self.selectedRange.location)).numberOfComposedCharacters
+            self.result.column = nsString.substring(with: NSRange(lineRange.location..<self.selectedRange.location)).count
         }
         
         // unicode

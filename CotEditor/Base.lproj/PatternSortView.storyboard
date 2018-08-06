@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,7 +27,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="280" height="120"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="message"/>
-                        <tabViewItems/>
                         <connections>
                             <outlet property="delegate" destination="UQP-be-J0h" id="x9y-n2-ncX"/>
                         </connections>
@@ -104,7 +103,7 @@ Gw
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.localized" id="zJd-zd-ey2"/>
+                                    <binding destination="LBk-n2-xHt" name="value" keyPath="selection.isLocalized" id="fru-2s-1h8"/>
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
@@ -240,6 +239,7 @@ Gw
                             <constraint firstItem="Gi8-FU-veh" firstAttribute="leading" secondItem="CQO-oZ-nKa" secondAttribute="trailing" constant="8" symbolic="YES" id="WoW-Om-J3w"/>
                             <constraint firstItem="W2m-Jf-7Yj" firstAttribute="top" secondItem="XDJ-2v-jYy" secondAttribute="bottom" constant="8" symbolic="YES" id="Y6K-tl-N29"/>
                             <constraint firstAttribute="trailing" secondItem="W2m-Jf-7Yj" secondAttribute="trailing" constant="20" symbolic="YES" id="YAK-f4-9v6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bN6-xc-HWj" secondAttribute="trailing" constant="20" symbolic="YES" id="ZEg-0j-ju6"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JRD-Db-XHM" secondAttribute="trailing" constant="20" symbolic="YES" id="ZhC-1T-hl8"/>
                             <constraint firstItem="dx8-zl-dSu" firstAttribute="leading" secondItem="sc1-QB-34d" secondAttribute="trailing" constant="8" symbolic="YES" id="bfA-ij-0mz"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XDJ-2v-jYy" secondAttribute="trailing" constant="20" symbolic="YES" id="bvu-Pr-bjY"/>

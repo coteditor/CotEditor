@@ -27,7 +27,7 @@
 import Foundation
 import AppKit.NSTextStorage
 
-protocol SyntaxParserDelegate: class {
+protocol SyntaxParserDelegate: AnyObject {
     
     func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem])
     func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress)
@@ -142,15 +142,16 @@ extension SyntaxParser {
             return
         }
         
-        let operation = OutlineParseOperation(extractors: self.style.outlineExtractors)
-        operation.string = string.immutable  // make sure being immutable
-        operation.parseRange = string.nsRange
+        let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
+                                              string: string.immutable,
+                                              range: string.nsRange)
         
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
             self?.outlineItems = operation.results
         }
+        operation.queuePriority = .low
         
         self.outlineParseOperationQueue.addOperation(operation)
         
@@ -166,7 +167,7 @@ extension SyntaxParser {
 extension SyntaxParser {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
+    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {  // @escaping
         
         assert(Thread.isMainThread)
         
@@ -178,7 +179,7 @@ extension SyntaxParser {
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.hash == self.textStorage.string.md5 {
             self.apply(highlights: cache.highlights, range: wholeRange)
-            completionHandler?()
+            completionHandler()
             return nil
         }
         
@@ -256,25 +257,23 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: (() -> Void)? = nil) -> Progress? {  // @escaping
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {  // @escaping
         
         guard highlightRange.length > 0 else { return nil }
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
             self.apply(highlights: [:], range: highlightRange)
-            completionHandler?()
+            completionHandler()
             return nil
         }
         
-        let operation = SyntaxHighlightParseOperation(extractors: self.style.highlightExtractors,
-                                                      pairedQuoteTypes: self.style.pairedQuoteTypes,
-                                                      inlineCommentDelimiter: self.style.inlineCommentDelimiter,
-                                                      blockCommentDelimiters: self.style.blockCommentDelimiters)
-        operation.string = string
-        operation.parseRange = highlightRange
+        let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
+                                                                       pairedQuoteTypes: self.style.pairedQuoteTypes,
+                                                                       inlineCommentDelimiter: self.style.inlineCommentDelimiter,
+                                                                       blockCommentDelimiters: self.style.blockCommentDelimiters)
         
-        operation.highlightBlock = { [weak self] (highlights) in
+        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange, highlightBlock: { [weak self] (highlights) in
             guard let strongSelf = self else { return }
             
             // cache result if whole text was parsed
@@ -282,15 +281,16 @@ extension SyntaxParser {
                 strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
-            DispatchQueue.syncOnMain {
+            DispatchQueue.main.async {
                 // give up if the editor's string is changed from the analized string
                 guard strongSelf.textStorage.string == string else { return }
                 
                 strongSelf.apply(highlights: highlights, range: highlightRange)
             }
-        }
+        })
         
         operation.completionBlock = completionHandler
+        operation.queuePriority = .high
         
         self.syntaxHighlightParseOperationQueue.addOperation(operation)
         

@@ -26,7 +26,7 @@
 import Cocoa
 import ColorCode
 
-@objc protocol ColorCodeReceiver: class {
+@objc protocol ColorCodeReceiver: AnyObject {
     
     func insertColorCode(_ sender: ColorCodePanelController)
 }
@@ -34,7 +34,7 @@ import ColorCode
 
 private extension NSColorList.Name {
     
-    static let stylesheet = NSColorList.Name(NSLocalizedString("Stylesheet Keywords", comment: ""))
+    static let stylesheet = NSColorList.Name("Stylesheet Keywords".localized)
 }
 
 

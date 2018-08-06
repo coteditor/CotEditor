@@ -26,7 +26,7 @@
 
 import Cocoa
 
-protocol AdditionalDocumentPreparing: class {
+protocol AdditionalDocumentPreparing: AnyObject {
     
     func didMakeDocumentForExisitingFile(url: URL)
     func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor)
@@ -263,10 +263,10 @@ final class DocumentController: NSDocumentController {
             return
         }
         
-        AlphaWindow.tabbingPreference = .manual
+        DocumentWindow.tabbingPreference = .manual
         document.makeWindowControllers()
         document.showWindows()
-        AlphaWindow.tabbingPreference = nil
+        DocumentWindow.tabbingPreference = nil
     }
     
     
@@ -376,10 +376,11 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         
         switch self.kind {
         case .binaryFile:
-            return String(format: NSLocalizedString("The file “%@” doesn’t appear to be text data.", comment: ""), self.url.lastPathComponent)
+            return String(format: "The file “%@” doesn’t appear to be text data.".localized,
+                          self.url.lastPathComponent)
             
         case .tooLarge(let size):
-            return String(format: NSLocalizedString("The file “%@” has a size of %@.", comment: ""),
+            return String(format: "The file “%@” has a size of %@.".localized,
                           self.url.lastPathComponent,
                           ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file))
         }
@@ -391,18 +392,18 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         switch self.kind {
         case .binaryFile(let type):
             let localizedTypeName = (UTTypeCopyDescription(type as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
-            return String(format: NSLocalizedString("The file is %@.\n\nDo you really want to open the file?", comment: ""), localizedTypeName)
+            return String(format: "The file is %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
             
         case .tooLarge:
-            return NSLocalizedString("Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?", comment: "")
+            return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized
         }
     }
     
     
     var recoveryOptions: [String] {
         
-        return [NSLocalizedString("Open", comment: ""),
-                NSLocalizedString("Cancel", comment: "")]
+        return ["Open".localized,
+                "Cancel".localized]
     }
     
     

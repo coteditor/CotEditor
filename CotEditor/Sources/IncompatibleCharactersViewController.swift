@@ -137,12 +137,12 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
 private extension NSTextStorage {
     
     /// change background color of pased-in ranges
-    func markup(ranges: [NSRange], lineEnding: LineEnding = .LF) {
+    func markup(ranges: [NSRange], lineEnding: LineEnding = .lf) {
         
         guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
         
         for range in ranges {
-            let viewRange = self.string.convert(from: lineEnding, to: .LF, range: range)
+            let viewRange = self.string.convert(from: lineEnding, to: .lf, range: range)
             
             for manager in self.layoutManagers {
                 manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)

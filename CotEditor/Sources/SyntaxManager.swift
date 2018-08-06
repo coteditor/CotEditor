@@ -27,7 +27,7 @@
 import Foundation
 import YAML
 
-@objc protocol SyntaxHolder: class {
+@objc protocol SyntaxHolder: AnyObject {
     
     func changeSyntaxStyle(_ sender: Any?)
     func recolorAll(_ sender: Any?)
@@ -36,7 +36,7 @@ import YAML
 
 enum BundledStyleName {
     
-    static let none: SyntaxManager.SettingName = NSLocalizedString("None", comment: "syntax style name")
+    static let none: SyntaxManager.SettingName = "None".localized(comment: "syntax style name")
     static let xml: SyntaxManager.SettingName = "XML"
     static let markdown: SyntaxManager.SettingName = "Markdown"
 }

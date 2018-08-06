@@ -69,13 +69,13 @@ extension DocumentViewController: NSTouchBarDelegate {
         switch identifier {
         case .invisibles:
             let item = NSCustomTouchBarItem(identifier: identifier)
-            item.customizationLabel = NSLocalizedString("Invisibles", comment: "touch bar item")
+            item.customizationLabel = "Invisibles".localized(comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "InvisiblesTemplate"), target: self, action: #selector(toggleInvisibleCharsViaTouchBar(_:)))
             return item
             
         case .wrapLines:
             let item = NSCustomTouchBarItem(identifier: identifier)
-            item.customizationLabel = NSLocalizedString("Wrap Lines", comment: "touch bar item")
+            item.customizationLabel = "Wrap Lines".localized(comment: "touch bar item")
             item.view = NSButton(image: #imageLiteral(resourceName: "WrapLinesTemplate"), target: self, action: #selector(toggleLineWrapViaTouchBar(_:)))
             return item
             
@@ -160,11 +160,8 @@ extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
 
 
 
-@available(macOS 10.12.2, *)
 private extension NSColor {
     
     /// button bezel color for off state
-    class var offStateButtonBezelColor: NSColor {
-        return NSColor(white: 0.12, alpha: 1)
-    }
+    static let offStateButtonBezelColor = NSColor(white: 0.12, alpha: 1)
 }

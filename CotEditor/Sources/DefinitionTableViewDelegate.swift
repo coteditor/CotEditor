@@ -69,7 +69,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
         
         // delete
         return [NSTableViewRowAction(style: .destructive,
-                                     title: NSLocalizedString("Delete", comment: "table view action title"),
+                                     title: "Delete".localized(comment: "table view action title"),
                                      handler: { (action: NSTableViewRowAction, row: Int) in
                                         NSAnimationContext.runAnimationGroup({ context in
                                             // update UI
@@ -89,7 +89,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     @IBAction func didCheckboxClicked(_ checkbox: NSButton) {
         
         // find tableView
-        let superview = sequence(first: checkbox, next: { $0.superview }).first { (view: NSView) -> Bool in view is NSTableView }
+        let superview = sequence(first: checkbox, next: { $0.superview }).first { $0 is NSTableView }
         
         guard let tableView = superview as? NSTableView, tableView.numberOfSelectedRows > 1 else { return }
         

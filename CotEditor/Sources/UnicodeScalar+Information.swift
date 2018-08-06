@@ -80,7 +80,7 @@ extension UnicodeScalar {
         
         guard let blockName = self.blockName else { return nil }
         
-        return NSLocalizedString(sanitize(blockName: blockName), tableName: "Unicode", comment: "")
+        return sanitize(blockName: blockName).localized(tableName: "Unicode")
     }
     
 }

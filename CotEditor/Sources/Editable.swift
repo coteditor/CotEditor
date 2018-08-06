@@ -26,7 +26,7 @@
 
 import Cocoa
 
-protocol Editable: class {
+protocol Editable: AnyObject {
     
     var textView: NSTextView? { get }
     var lineEnding: LineEnding { get }
@@ -56,13 +56,13 @@ extension Editable {
         get {
             guard let textView = self.textView else { return .notFound }
             
-            return textView.string.convert(from: .LF, to: self.lineEnding, range: textView.selectedRange)
+            return textView.string.convert(from: .lf, to: self.lineEnding, range: textView.selectedRange)
         }
         
         set {
             guard let textView = self.textView else { return }
             
-            textView.selectedRange = textView.string.convert(from: self.lineEnding, to: .LF, range: newValue)
+            textView.selectedRange = textView.string.convert(from: self.lineEnding, to: .lf, range: newValue)
         }
     }
     
@@ -112,7 +112,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
+        self.undoManager?.setActionName("Insert Text".localized)
         
         self.didChangeText()
     }
@@ -128,7 +128,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
+        self.undoManager?.setActionName("Insert Text".localized)
         
         self.didChangeText()
     }
@@ -144,7 +144,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Replace Text", comment: ""))
+        self.undoManager?.setActionName("Replace Text".localized)
         
         self.didChangeText()
     }
@@ -160,7 +160,7 @@ private extension NSTextView {
         self.replaceCharacters(in: replacementRange, with: string)
         self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.undoManager?.setActionName(NSLocalizedString("Insert Text", comment: ""))
+        self.undoManager?.setActionName("Insert Text".localized)
         
         self.didChangeText()
     }

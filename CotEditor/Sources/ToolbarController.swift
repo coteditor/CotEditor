@@ -32,11 +32,11 @@ extension LineEnding {
         
         switch index {
         case 0:
-            self = .LF
+            self = .lf
         case 1:
-            self = .CR
+            self = .cr
         case 2:
-            self = .CRLF
+            self = .crlf
         default:
             return nil
         }
@@ -45,11 +45,11 @@ extension LineEnding {
     
     var index: Int {
         switch self {
-        case .LF:
+        case .lf:
             return 0
-        case .CR:
+        case .cr:
             return 1
-        case .CRLF:
+        case .crlf:
             return 2
         default:
             return -1
@@ -96,6 +96,8 @@ final class ToolbarController: NSObject {
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
+    
+    @IBOutlet private weak var shareButton: NSButton?
 
     
     
@@ -114,6 +116,9 @@ final class ToolbarController: NSObject {
         
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()
+        
+        // share button action must be called on mouseDown
+        self.shareButton?.sendAction(on: .leftMouseDown)
         
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)
@@ -198,7 +203,7 @@ final class ToolbarController: NSObject {
         
         if !recentStyleNames.isEmpty {
             let labelItem = NSMenuItem()
-            labelItem.title = NSLocalizedString("Recently Used", comment: "menu heading in syntax style list on toolbar popup")
+            labelItem.title = "Recently Used".localized(comment: "menu heading in syntax style list on toolbar popup")
             labelItem.isEnabled = false
             menu.addItem(labelItem)
             

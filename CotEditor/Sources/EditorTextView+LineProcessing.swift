@@ -92,7 +92,7 @@ extension EditorTextView {
         
         self.setSelectedRangesWithUndo(newSelectedRanges)
         
-        self.undoManager?.setActionName(NSLocalizedString("Move Line", comment: "action name"))
+        self.undoManager?.setActionName("Move Line".localized)
     }
     
     
@@ -160,7 +160,7 @@ extension EditorTextView {
         
         self.setSelectedRangesWithUndo(newSelectedRanges)
         
-        self.undoManager?.setActionName(NSLocalizedString("Move Line", comment: "action name"))
+        self.undoManager?.setActionName("Move Line".localized)
     }
     
     
@@ -179,7 +179,8 @@ extension EditorTextView {
         guard lineRange.length > 0 else { return }
         
         let lines = string
-            .substring(with: lineRange).components(separatedBy: .newlines)
+            .substring(with: lineRange)
+            .components(separatedBy: .newlines)
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // do nothing with single line
@@ -188,7 +189,7 @@ extension EditorTextView {
         let newString = lines.joined(separator: "\n")
         
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: NSLocalizedString("Sort Lines", comment: "action name"))
+                     actionName: "Sort Lines".localized)
     }
     
     
@@ -233,7 +234,7 @@ extension EditorTextView {
         let newString = lines.reversed().joined(separator: "\n")
         
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: NSLocalizedString("Reverse Lines", comment: "action name"))
+                     actionName: "Reverse Lines".localized)
     }
     
     
@@ -276,7 +277,7 @@ extension EditorTextView {
         }
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: NSLocalizedString("Delete Duplicate Lines", comment: "action name"))
+                     actionName: "Delete Duplicate Lines".localized)
     }
     
     
@@ -305,7 +306,7 @@ extension EditorTextView {
         }
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: NSLocalizedString("Duplicate Line", comment: "action name"))
+                     actionName: "Duplicate Line".localized)
     }
     
     
@@ -320,7 +321,7 @@ extension EditorTextView {
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: NSLocalizedString("Delete Line", comment: "action name"))
+                     actionName: "Delete Line".localized)
     }
     
     
@@ -353,7 +354,7 @@ extension NSTextView {
         let newString = pattern.sort(string.substring(with: lineRange), options: options)
         
         self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: NSLocalizedString("Sort Lines", comment: "action name"))
+                     actionName: "Sort Lines".localized)
     }
     
 }

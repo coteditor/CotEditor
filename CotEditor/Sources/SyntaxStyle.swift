@@ -116,9 +116,9 @@ struct OutlineDefinition: Equatable {
         self.pattern = pattern
         self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
         self.ignoreCase = dictionary[CodingKeys.ignoreCase.rawValue] as? Bool ?? false
-        self.bold = dictionary[CodingKeys.bold.rawValue]as? Bool ?? false
-        self.italic = dictionary[CodingKeys.italic.rawValue]as? Bool ?? false
-        self.underline = dictionary[CodingKeys.underline.rawValue]as? Bool ?? false
+        self.bold = dictionary[CodingKeys.bold.rawValue] as? Bool ?? false
+        self.italic = dictionary[CodingKeys.italic.rawValue] as? Bool ?? false
+        self.underline = dictionary[CodingKeys.underline.rawValue] as? Bool ?? false
     }
     
     
@@ -268,13 +268,15 @@ struct SyntaxStyle {
                 // create from completion definition
                 return completionDicts
                     .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
-                    .filter { !$0.isEmpty }.sorted()
+                    .filter { !$0.isEmpty }
+                    .sorted()
             } else {
                 // create from normal highlighting words
                 return definitionDictionary.values.flatMap { $0 }
                     .filter { $0.endString == nil && !$0.isRegularExpression }
                     .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
-                    .filter { !$0.isEmpty }.sorted()
+                    .filter { !$0.isEmpty }
+                    .sorted()
             }
         }()
         

@@ -93,7 +93,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
         guard let applicationMenu = MainMenu.application.menu else {
             preconditionFailure("no menu can be found to attach update menu item.")
         }
-        let menuItem = NSMenuItem(title: NSLocalizedString("Check for Updates…", comment: ""),
+        let menuItem = NSMenuItem(title: "Check for Updates…".localized,
                                   action: #selector(SPUUpdater.checkForUpdates),
                                   keyEquivalent: "")
         menuItem.target = updater

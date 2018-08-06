@@ -89,7 +89,7 @@ final class ReplacementManager: SettingFileManaging {
     /// create a new untitled setting
     func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
-        let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
+        let name = self.savableSettingName(for: "Untitled".localized)
         
         try self.save(setting: MultipleReplacement(), name: name) {
             completionHandler?(name)

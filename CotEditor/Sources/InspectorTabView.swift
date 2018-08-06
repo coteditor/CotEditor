@@ -34,8 +34,6 @@ final class InspectorTabView: NSTabView {
     
     // MARK: Private Properties
     
-    private static let darkBackground: NSColor = NSColor(calibratedWhite: 0.16, alpha: 1)
-    
     private let controlHeight: CGFloat = 28.0
     
     
@@ -88,8 +86,8 @@ final class InspectorTabView: NSTabView {
         NSGraphicsContext.saveGraphicsState()
         
         // draw background
-        if self.effectiveAppearance.name == .vibrantDark {
-            InspectorTabView.darkBackground.setFill()
+        if #available(macOS 10.14, *), self.drawsBackground {
+            NSColor.windowBackgroundColor.setFill()
             dirtyRect.fill()
             
         } else {
@@ -170,10 +168,8 @@ final class InspectorTabView: NSTabView {
         
         // set tabViewItem values to control buttons
         for (index, item) in self.tabViewItems.enumerated() {
-            let tooltip = NSLocalizedString(item.label, comment: "")
-            
             self.segmentedControl.setImage(item.image, forSegment: index)
-            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(tooltip, forSegment: index)
+            (self.segmentedControl.cell as! NSSegmentedCell).setToolTip(item.label.localized, forSegment: index)
         }
         
         self.segmentedControl.sizeToFit()

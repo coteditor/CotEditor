@@ -31,16 +31,16 @@ class LineEndingTests: XCTestCase {
     
     func testLineEnding() {
         
-        XCTAssertEqual(LineEnding.LF.rawValue, "\n")
-        XCTAssertEqual(LineEnding.CRLF.rawValue, "\r\n")
+        XCTAssertEqual(LineEnding.lf.rawValue, "\n")
+        XCTAssertEqual(LineEnding.crlf.rawValue, "\r\n")
         XCTAssertEqual(LineEnding.paragraphSeparator.rawValue, "\u{2029}")
     }
     
     
     func testName() {
         
-        XCTAssertEqual(LineEnding.LF.name, "LF")
-        XCTAssertEqual(LineEnding.CRLF.name, "CRLF")
+        XCTAssertEqual(LineEnding.lf.name, "LF")
+        XCTAssertEqual(LineEnding.crlf.name, "CRLF")
         XCTAssertEqual(LineEnding.paragraphSeparator.name, "PS")
     }
     
@@ -49,27 +49,27 @@ class LineEndingTests: XCTestCase {
         
         XCTAssertNil("".detectedLineEnding)
         XCTAssertNil("a".detectedLineEnding)
-        XCTAssertEqual("\n".detectedLineEnding, LineEnding.LF)
-        XCTAssertEqual("\r".detectedLineEnding, LineEnding.CR)
-        XCTAssertEqual("\r\n".detectedLineEnding, LineEnding.CRLF)
-        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, LineEnding.CRLF)  // just check the first new line
+        XCTAssertEqual("\n".detectedLineEnding, LineEnding.lf)
+        XCTAssertEqual("\r".detectedLineEnding, LineEnding.cr)
+        XCTAssertEqual("\r\n".detectedLineEnding, LineEnding.crlf)
+        XCTAssertEqual("foo\r\nbar\nbuz\u{2029}moin".detectedLineEnding, LineEnding.crlf)  // just check the first new line
     }
     
     
     func testReplacement() {
         
         XCTAssertEqual("foo\nbar".removingLineEndings, "foobar")
-        XCTAssertEqual("foo\r\nbar".replacingLineEndings(with: .CR), "foo\rbar")
+        XCTAssertEqual("foo\r\nbar".replacingLineEndings(with: .cr), "foo\rbar")
     }
     
     
     func testRangeConversion() {
         
-        let lfToCrlfRange = "a\nb\nc".convert(from: .LF, to: .CRLF, range: NSRange(location: 2, length: 2))
+        let lfToCrlfRange = "a\nb\nc".convert(from: .lf, to: .crlf, range: NSRange(location: 2, length: 2))
         XCTAssertEqual(lfToCrlfRange.location, 3)
         XCTAssertEqual(lfToCrlfRange.length, 3)
         
-        let implicitConvertedRange = "a\r\nb\r\nc".convert(to: .LF, range: NSRange(location: 3, length: 3))
+        let implicitConvertedRange = "a\r\nb\r\nc".convert(to: .lf, range: NSRange(location: 3, length: 3))
         XCTAssertEqual(implicitConvertedRange.location, 2)
         XCTAssertEqual(implicitConvertedRange.length, 2)
     }

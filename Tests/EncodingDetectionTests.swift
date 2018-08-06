@@ -42,7 +42,7 @@ class EncodingDetectionTests: XCTestCase {
     
     func testUTF8BOM() {
         
-        var encoding: String.Encoding? = nil
+        var encoding: String.Encoding?
         let string = self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")

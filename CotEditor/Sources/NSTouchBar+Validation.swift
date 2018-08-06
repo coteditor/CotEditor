@@ -26,7 +26,7 @@
 import Cocoa
 
 @available(macOS 10.12.2, *)
-protocol TouchBarItemValidations: class {
+protocol TouchBarItemValidations: AnyObject {
     
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool
 }

@@ -50,7 +50,8 @@ enum SyntaxType: String {
                                          .comments]
     
     var localizedName: String {
-        return NSLocalizedString(self.rawValue, comment: "")
+        
+        return self.rawValue.localized
     }
     
 }

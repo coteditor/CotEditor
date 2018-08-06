@@ -26,7 +26,7 @@
 import Cocoa
 import ColorCode
 
-protocol ThemeViewControllerDelegate: class {
+protocol ThemeViewControllerDelegate: AnyObject {
     
     func didUpdate(theme: ThemeManager.ThemeDictionary)
 }
@@ -89,7 +89,7 @@ final class ThemeViewController: NSViewController {
     
     
     /// send data to metadata popover
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?)  {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
         guard let destinationController = segue.destinationController as? ThemeMetaDataViewController else { return }
         
@@ -129,7 +129,6 @@ final class ThemeViewController: NSViewController {
         
         let color = NSColor.selectedTextBackgroundColor
         let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
-        
         
         self.theme?[Theme.CodingKeys.selection.rawValue]?[Theme.SelectionStyle.CodingKeys.color.rawValue] = colorCode
     }

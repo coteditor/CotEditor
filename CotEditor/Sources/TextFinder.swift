@@ -25,14 +25,14 @@
 
 import Cocoa
 
-@objc protocol TextFinderClientProvider: class {
+@objc protocol TextFinderClientProvider: AnyObject {
     
     func textFinderClient() -> NSTextView?
     
 }
 
 
-protocol TextFinderDelegate: class {
+protocol TextFinderDelegate: AnyObject {
     
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
@@ -43,18 +43,18 @@ protocol TextFinderDelegate: class {
 
 struct TextFindResult {
     
-    let range: NSRange
-    let lineRange: NSRange
-    let lineNumber: Int
-    let attributedLineString: NSAttributedString
+    var range: NSRange
+    var lineNumber: Int
+    var attributedLineString: NSAttributedString
+    var inlineRange: NSRange
     
 }
 
 
 private struct HighlightItem {
     
-    let range: NSRange
-    let color: NSColor
+    var range: NSRange
+    var color: NSColor
     
 }
 
@@ -68,8 +68,6 @@ final class TextFinder: NSResponder {
     
     
     // MARK: Public Properties
-    
-    let highlightColor: NSColor
     
     @objc dynamic var findString = "" {
         
@@ -93,11 +91,6 @@ final class TextFinder: NSResponder {
     // MARK: Lifecycle
     
     private override init() {
-        
-        self.highlightColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
-        // Highlight color is currently not customizable. (2015-01-04)
-        // It might better when it can be set in theme also for incompatible characters highlight.
-        // Just because I'm lazy.
         
         super.init()
         
@@ -219,176 +212,35 @@ final class TextFinder: NSResponder {
     }
     
     
-    /// find all matched string in the target and show results in a table
-    @IBAction func findAll(_ sender: Any?) {
+    /// select all matched strings
+    @IBAction func selectAllMatches(_ sender: Any?) {
         
         guard let (textView, textFind) = self.prepareTextFind() else { return }
         
-        textView.isEditable = false
-        
-        let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
-        let lineRegex = try! NSRegularExpression(pattern: "\n")
-        
-        // setup progress sheet
-        let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Find All", comment: ""))
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
-        
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            var results = [TextFindResult]()
-            var highlights = [HighlightItem]()
-            var selectedRanges = [NSRange]()
-            
-            var lineNumber = 1
-            var lineCountedLocation = 0
-            
-            textFind.findAll { (matches: [NSRange], stop) in
-                guard !progress.isCancelled else {
-                    stop = true
-                    return
-                }
-                
-                let matchedRange = matches[0]
-                
-                // calculate line number
-                let diffRange = NSRange(lineCountedLocation..<matchedRange.location)
-                lineNumber += lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
-                lineCountedLocation = matchedRange.location
-                
-                // highlight both string in textView and line string for result table
-                let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
-                let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
-                                          length: matchedRange.length)
-                let lineString = (textFind.string as NSString).substring(with: lineRange)
-                let attrLineString = NSMutableAttributedString(string: lineString)
-                
-                for (index, range) in matches.enumerated() {
-                    if index == 0 {
-                        selectedRanges.append(range)
-                    }
-                    
-                    guard range.length > 0 else { continue }
-                    
-                    let color = highlightColors[index]
-                    let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
-                    
-                    attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
-                    highlights.append(HighlightItem(range: range, color: color))
-                }
-                
-                results.append(TextFindResult(range: matchedRange, lineRange: inlineRange, lineNumber: lineNumber, attributedLineString: attrLineString))
-                
-                progress.needsUpdateDescription(count: results.count)
-            }
-            
-            DispatchQueue.main.sync {
-                textView.isEditable = true
-                
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
-                
-                // highlight
-                textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textFind.string.nsRange)
-                for highlight in highlights {
-                    textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
-                }
-                
-                // select all
-                textView.selectedRanges = selectedRanges as [NSValue]
-                
-                indicator.done()
-                
-                if highlights.isEmpty {
-                    NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
-                }
-                
-                strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
-                
-                // -> close also if matched since result view will be shown when succeed
-                if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
-                        panel.makeKey()
-                    }
-                }
-            }
+        var matchedRanges = [NSRange]()
+        textFind.findAll { (matches: [NSRange], _) in
+            matchedRanges.append(matches[0])
         }
         
+        textView.selectedRanges = matchedRanges as [NSValue]
+        
+        self.delegate?.textFinder(self, didFind: matchedRanges.count, textView: textView)
+        
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+    }
+    
+    
+    /// find all matched strings and show results in a table
+    @IBAction func findAll(_ sender: Any?) {
+        
+        self.findAll(showsList: true, actionName: "Find All".localized)
     }
     
     
     /// highlight all matched strings
     @IBAction func highlight(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
-        
-        textView.isEditable = false
-        
-        let highlightColors = self.highlightColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
-        
-        // setup progress sheet
-        let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Highlight", comment: ""))
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
-        
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
-            
-            var highlights = [HighlightItem]()
-            
-            textFind.findAll { (matches: [NSRange], stop) in
-                guard !progress.isCancelled else {
-                    stop = true
-                    return
-                }
-                
-                for (index, range) in matches.enumerated() {
-                    guard range.length > 0 else { continue }
-                    
-                    let color = highlightColors[index]
-                    highlights.append(HighlightItem(range: range, color: color))
-                }
-                
-                progress.needsUpdateDescription(count: highlights.count)
-            }
-            
-            DispatchQueue.main.sync {
-                textView.isEditable = true
-                
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
-                
-                // highlight
-                textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textFind.string.nsRange)
-                for highlight in highlights {
-                    textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
-                }
-                
-                indicator.done()
-                
-                if highlights.isEmpty {
-                    NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
-                }
-                
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
-                        panel.makeKey()
-                    }
-                }
-            }
-        }
-        
-        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+        self.findAll(showsList: false, actionName: "Highlight".localized)
     }
     
     
@@ -439,14 +291,12 @@ final class TextFinder: NSResponder {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: NSLocalizedString("Replace All", comment: ""))
+        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
             
-            var count = 0
-            var progressStep = 0
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
                     stop = true
@@ -454,21 +304,12 @@ final class TextFinder: NSResponder {
                 }
                 
                 switch flag {
-                case .findProgress:
-                    break  // just give a change to cancel
-                    
-                case .foundCount(let scopeTotal):
-                    let kFrequency = 500
-                    progressStep = (scopeTotal > kFrequency) ? Int(scopeTotal / kFrequency) : scopeTotal
-                    
+                case .findProgress, .foundCount:
+                    break
                 case .replacementProgress:
-                    count += 1
-                    if count % progressStep == 0 {
-                        progress.needsUpdateDescription(count: count)
-                    }
+                    progress.completedUnitCount += 1
                 }
             }
-            progress.needsUpdateDescription(count: count)  // display final replaced number
             
             DispatchQueue.main.sync {
                 textView.isEditable = true
@@ -484,14 +325,14 @@ final class TextFinder: NSResponder {
                     
                     // apply found strings to the text view
                     textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
-                                     actionName: NSLocalizedString("Replace All", comment: ""))
+                                     actionName: "Replace All".localized)
                 }
                 
                 indicator.done()
                 
                 if replacementItems.isEmpty {
                     NSSound.beep()
-                    progress.localizedDescription = NSLocalizedString("Not Found", comment: "")
+                    progress.localizedDescription = "Not Found".localized
                 }
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
@@ -501,6 +342,7 @@ final class TextFinder: NSResponder {
                     }
                 }
                 
+                let count = Int(progress.completedUnitCount)
                 strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
             }
         }
@@ -538,17 +380,16 @@ final class TextFinder: NSResponder {
     /// selected string in the current tareget
     private var selectedString: String? {
         
-        guard let selectedRange = self.client?.selectedRange,
-              let string = self.client?.string as NSString? else { return nil }
+        guard let textView = self.client else { return nil }
         
-        return string.substring(with: selectedRange)
+        return (textView.string as NSString).substring(with: textView.selectedRange)
     }
     
     
     /// find string of which line endings are standardized to LF
     private var sanitizedFindString: String {
         
-        return self.findString.replacingLineEndings(with: .LF)
+        return self.findString.replacingLineEndings(with: .lf)
     }
     
     
@@ -634,7 +475,109 @@ final class TextFinder: NSResponder {
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,
                                 selectedRange: NSRange(location: result.range.location, length: result.string.utf16.count),
-                                actionName: NSLocalizedString("Replace", comment: ""))
+                                actionName: "Replace".localized)
+    }
+    
+    
+    /// find all matched strings and apply the result to views
+    private func findAll(showsList: Bool, actionName: String) {
+        
+        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        
+        textView.isEditable = false
+        
+        let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
+        let lineRegex = try! NSRegularExpression(pattern: "\n")
+        
+        // setup progress sheet
+        let progress = TextFindProgress(format: .find)
+        let indicator = ProgressViewController(progress: progress, message: actionName)
+        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        
+        DispatchQueue.global().async { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            var highlights = [HighlightItem]()
+            var results = [TextFindResult]()  // not used if showsList is false
+            
+            textFind.findAll { (matches: [NSRange], stop) in
+                guard !progress.isCancelled else {
+                    stop = true
+                    return
+                }
+                
+                // highlight
+                highlights += matches.enumerated()
+                    .filter { $0.element.length > 0 }
+                    .map { HighlightItem(range: $0.element, color: highlightColors[$0.offset]) }
+                
+                // build TextFindResult for table
+                if showsList {
+                    let matchedRange = matches[0]
+                    
+                    // calculate line number
+                    let lastLineNumber = results.last?.lineNumber ?? 1
+                    let lastLocation = results.last?.range.location ?? 0
+                    let diffRange = NSRange(lastLocation..<matchedRange.location)
+                    let lineNumber = lastLineNumber + lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
+                    
+                    // build a highlighted line string for result table
+                    let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
+                    let lineString = (textFind.string as NSString).substring(with: lineRange)
+                    let attrLineString = NSMutableAttributedString(string: lineString)
+                    for (index, range) in matches.enumerated() where range.length > 0 {
+                        let color = highlightColors[index]
+                        let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
+                        
+                        attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
+                    }
+                    
+                    // calculate inline range
+                    let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
+                                              length: matchedRange.length)
+                    
+                    results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
+                }
+                
+                progress.completedUnitCount += 1
+            }
+            
+            DispatchQueue.main.sync {
+                textView.isEditable = true
+                
+                guard !progress.isCancelled else {
+                    indicator.dismiss(nil)
+                    return
+                }
+                
+                // highlight
+                textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textFind.string.nsRange)
+                for highlight in highlights {
+                    textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                }
+                
+                indicator.done()
+                
+                if highlights.isEmpty {
+                    NSSound.beep()
+                    progress.localizedDescription = "Not Found".localized
+                }
+                
+                if showsList {
+                    strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
+                }
+                
+                // -> close also if result view has been shown
+                if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
+                    indicator.dismiss(nil)
+                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                        panel.makeKey()
+                    }
+                }
+            }
+        }
+        
+        UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
     }
     
 }
@@ -692,6 +635,7 @@ private extension TextFind.Mode {
             self = .textual(options: options)
         }
     }
+    
 }
 
 

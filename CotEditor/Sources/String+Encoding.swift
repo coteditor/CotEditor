@@ -185,7 +185,7 @@ extension String {
     /// human-readable encoding name for UTF-8 with BOM
     static var localizedNameOfUTF8EncodingWithBOM: String {
         
-        return String(format: NSLocalizedString("%@ with BOM", comment: "Unicode (UTF-8) with BOM"),
+        return String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"),
                       String.localizedName(of: .utf8))
     }
 

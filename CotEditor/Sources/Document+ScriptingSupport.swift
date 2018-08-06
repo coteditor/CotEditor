@@ -29,9 +29,9 @@ import Cocoa
 typealias OSALineEnding = FourCharCode
 private extension OSALineEnding {
     
-    static let LF = FourCharCode(code: "leLF")
-    static let CR = FourCharCode(code: "leCR")
-    static let CRLF = FourCharCode(code: "leCL")
+    static let lf = FourCharCode(code: "leLF")
+    static let cr = FourCharCode(code: "leCR")
+    static let crlf = FourCharCode(code: "leCL")
 }
 
 
@@ -107,28 +107,28 @@ extension Document {
         
         get {
             switch self.lineEnding {
-            case .LF:
-                return OSALineEnding.LF
-            case .CR:
-                return OSALineEnding.CR
-            case .CRLF:
-                return OSALineEnding.CRLF
+            case .lf:
+                return OSALineEnding.lf
+            case .cr:
+                return OSALineEnding.cr
+            case .crlf:
+                return OSALineEnding.crlf
             default:
-                return OSALineEnding.LF
+                return OSALineEnding.lf
             }
         }
         
         set {
             let type: LineEnding = {
                 switch newValue {
-                case OSALineEnding.LF:
-                    return .LF
-                case OSALineEnding.CR:
-                    return .CR
-                case OSALineEnding.CRLF:
-                    return .CRLF
+                case OSALineEnding.lf:
+                    return .lf
+                case OSALineEnding.cr:
+                    return .cr
+                case OSALineEnding.crlf:
+                    return .crlf
                 default:
-                    return .LF
+                    return .lf
                 }
             }()
             self.changeLineEnding(to: type)

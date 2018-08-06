@@ -113,7 +113,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         let allItem = menu.itemArray.first!
         allItem.attributedTitle = NSAttributedString(string: allItem.title, attributes: allItem.attributedTitle!.attributes(at: 0, effectiveRange: nil))
         
-        
         // add styles
         for styleName in SyntaxManager.shared.settingNames {
             menu.addItem(withTitle: styleName)
@@ -139,7 +138,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // delete
         return [NSTableViewRowAction(style: .destructive,
-                                     title: NSLocalizedString("Delete", comment: "table view action title"),
+                                     title: "Delete".localized(comment: "table view action title"),
                                      handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
                                         self?.deleteSetting(at: row)
             })]
@@ -242,10 +241,10 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         let fileExtension = objects[row][FileDropComposer.SettingKey.extensions] ?? ""
         
         let alert = NSAlert()
-        alert.messageText = String(format: NSLocalizedString("Are you sure you want to delete the file drop setting for “%@”?", comment: ""), fileExtension)
-        alert.informativeText = NSLocalizedString("Deleted setting can’t be restored.", comment: "")
-        alert.addButton(withTitle: NSLocalizedString("Cancel", comment: ""))
-        alert.addButton(withTitle: NSLocalizedString("Delete", comment: ""))
+        alert.messageText = String(format: "Are you sure you want to delete the file drop setting for “%@”?".localized, fileExtension)
+        alert.informativeText = "Deleted setting can’t be restored.".localized
+        alert.addButton(withTitle: "Cancel".localized)
+        alert.addButton(withTitle: "Delete".localized)
         
         alert.beginSheetModal(for: self.view.window!) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             

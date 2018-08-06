@@ -187,7 +187,7 @@ extension SettingFileManaging {
     /// return setting name appending number suffix without extension
     func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
         
-        let suffix = appendCopySuffix ? NSLocalizedString("copy", comment: "copied file suffix") : nil
+        let suffix = appendCopySuffix ? "copy".localized(comment: "copied file suffix") : nil
         
         return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }
@@ -432,20 +432,20 @@ enum InvalidNameError: LocalizedError {
         
         switch self {
         case .empty:
-            return NSLocalizedString("Name can’t be empty.", comment: "")
+            return "Name can’t be empty.".localized
         case .containSlash:
-            return NSLocalizedString("You can’t use a name that contains “/”.", comment: "")
+            return "You can’t use a name that contains “/”.".localized
         case .startWithDot:
-            return NSLocalizedString("You can’t use a name that begins with a dot “.”.", comment: "")
+            return "You can’t use a name that begins with a dot “.”.".localized
         case .duplicated(let name):
-            return String(format: NSLocalizedString("The name “%@” is already taken.", comment: ""), name)
+            return String(format: "The name “%@” is already taken.".localized, name)
         }
     }
     
     
     var recoverySuggestion: String? {
         
-        return NSLocalizedString("Please choose another name.", comment: "")
+        return "Please choose another name.".localized
     }
     
 }
@@ -470,11 +470,11 @@ struct SettingFileError: LocalizedError {
         
         switch self.kind {
         case .deletionFailed:
-            return String(format: NSLocalizedString("“%@” couldn’t be deleted.", comment: ""), self.name)
+            return String(format: "“%@” couldn’t be deleted.".localized, self.name)
         case .importFailed:
-            return String(format: NSLocalizedString("“%@” couldn’t be imported.", comment: ""), self.name)
+            return String(format: "“%@” couldn’t be imported.".localized, self.name)
         case .noSourceFile:
-            return String(format: NSLocalizedString("No original file for “%@” was found.", comment: ""), self.name)
+            return String(format: "No original file for “%@” was found.".localized, self.name)
         }
     }
     
@@ -499,11 +499,11 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
         case .syntaxStyle:
-            return String(format: NSLocalizedString("A new style named “%@” will be installed, but a custom style with the same name already exists.", comment: ""), self.name)
+            return String(format: "A new style named “%@” will be installed, but a custom style with the same name already exists.".localized, self.name)
         case .theme:
-            return String(format: NSLocalizedString("A new theme named “%@” will be installed, but a custom theme with the same name already exists.", comment: ""), self.name)
+            return String(format: "A new theme named “%@” will be installed, but a custom theme with the same name already exists.".localized, self.name)
         case .replacement:
-            return String(format: NSLocalizedString("A new replacement definition named “%@” will be installed, but a definition with the same name already exists.", comment: ""), self.name)
+            return String(format: "A new replacement definition named “%@” will be installed, but a definition with the same name already exists.".localized, self.name)
         }
     }
     
@@ -512,19 +512,19 @@ struct ImportDuplicationError: LocalizedError, RecoverableError {
         
         switch self.type {
         case .syntaxStyle:
-            return NSLocalizedString("Do you want to replace it?\nReplaced style can’t be restored.", comment: "")
+            return "Do you want to replace it?\nReplaced style can’t be restored.".localized
         case .theme:
-            return NSLocalizedString("Do you want to replace it?\nReplaced theme can’t be restored.", comment: "")
+            return "Do you want to replace it?\nReplaced theme can’t be restored.".localized
         case .replacement:
-            return NSLocalizedString("Do you want to replace it?\nReplaced definition can’t be restored.", comment: "")
+            return "Do you want to replace it?\nReplaced definition can’t be restored.".localized
         }
     }
     
     
     var recoveryOptions: [String] {
         
-        return [NSLocalizedString("Cancel", comment: ""),
-                NSLocalizedString("Replace", comment: "")]
+        return ["Cancel".localized,
+                "Replace".localized]
     }
     
     

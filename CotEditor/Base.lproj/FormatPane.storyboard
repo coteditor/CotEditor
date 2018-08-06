@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -263,7 +263,7 @@
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N1E-uH-II1">
                                 <rect key="frame" x="20" y="355" width="510" height="5"/>
                             </box>
-                            <button toolTip="Add empty style" verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
+                            <button toolTip="Add empty style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
                                 <rect key="frame" x="166" y="19" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="DEJ-aJ-bjy"/>
@@ -276,7 +276,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openSyntaxEditSheet:" target="Lgm-sL-YIF" id="yLK-Cq-mJl"/>
+                                    <action selector="createSyntaxStyle:" target="Lgm-sL-YIF" id="ID2-QA-GdR"/>
                                 </connections>
                             </button>
                             <button toolTip="Remove selected style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dI1-Dk-Mce">
@@ -299,7 +299,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openSyntaxEditSheet:" target="Lgm-sL-YIF" id="UTF-eh-4X8"/>
+                                    <action selector="editSyntaxStyle:" target="Lgm-sL-YIF" id="Uq6-1E-GgJ"/>
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gNn-jg-1Xr">
@@ -314,9 +314,9 @@
                                     <menu key="menu" id="AYn-mG-LBH">
                                         <items>
                                             <menuItem title="Syntax Action" state="on" image="NSActionTemplate" hidden="YES" id="sRJ-x0-fo7"/>
-                                            <menuItem title="Duplicate…" tag="1" id="A7t-Ca-nZi">
+                                            <menuItem title="Duplicate…" id="A7t-Ca-nZi">
                                                 <connections>
-                                                    <action selector="openSyntaxEditSheet:" target="Lgm-sL-YIF" id="RnQ-ej-Qyz"/>
+                                                    <action selector="duplicateSyntaxStyle:" target="Lgm-sL-YIF" id="Ve7-RS-F7y"/>
                                                 </connections>
                                             </menuItem>
                                             <menuItem title="Restore" tag="1" id="3aD-Fv-G8H">
@@ -465,12 +465,12 @@
                     <items>
                         <menuItem title="Edit…" id="371-P0-KPK">
                             <connections>
-                                <action selector="openSyntaxEditSheet:" target="Lgm-sL-YIF" id="S6N-Em-eAl"/>
+                                <action selector="editSyntaxStyle:" target="Lgm-sL-YIF" id="P6Q-en-1qx"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Duplicate…" tag="1" id="5oN-VC-ot9">
+                        <menuItem title="Duplicate…" id="5oN-VC-ot9">
                             <connections>
-                                <action selector="openSyntaxEditSheet:" target="Lgm-sL-YIF" id="tE1-JE-OzT"/>
+                                <action selector="duplicateSyntaxStyle:" target="Lgm-sL-YIF" id="4T2-Zx-9kG"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Restore" tag="1" id="Zox-Ve-mru">

@@ -49,7 +49,7 @@ final class DocumentWindowController: NSWindowController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == DefaultKeys.windowAlpha.rawValue {
-            (self.window as? AlphaWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+            (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
         }
     }
     
@@ -67,7 +67,7 @@ final class DocumentWindowController: NSWindowController {
         self.windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "document")
         
         // set background alpha
-        (self.window as! AlphaWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
+        (self.window as! DocumentWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)
@@ -84,7 +84,7 @@ final class DocumentWindowController: NSWindowController {
             self.contentViewController!.representedObject = document
             
             // -> In case when the window was created as a restored window (the right side ones in the browsing mode)
-            if document.isInViewingMode, let window = self.window as? AlphaWindow {
+            if document.isInViewingMode, let window = self.window as? DocumentWindow {
                 window.backgroundAlpha = 1.0
             }
             
@@ -98,14 +98,8 @@ final class DocumentWindowController: NSWindowController {
         }
     }
     
-    
-    
-    // MARK: Actions
-    
-    /// show editor opacity panel
-    @IBAction func showOpacityPanel(_ sender: Any?) {
-        
-        OpacityPanelController.shared.showWindow(sender)
-    }
-    
 }
+
+
+
+extension DocumentWindowController: NSWindowDelegate { }

@@ -25,7 +25,7 @@
 
 import AppKit
 
-protocol IncompatibleCharacterScannerDelegate: class {
+protocol IncompatibleCharacterScannerDelegate: AnyObject {
     
     func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool
     

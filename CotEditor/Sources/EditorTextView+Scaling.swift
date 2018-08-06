@@ -80,6 +80,20 @@ extension EditorTextView {
     
     // MARK: Action Messages
     
+    /// change scale from segmented control button
+    @IBAction func changeTextSize(_ sender: NSSegmentedControl) {
+        
+        switch sender.selectedSegment {
+        case 0:
+            self.smallerFont(sender)
+        case 1:
+            self.biggerFont(sender)
+        default:
+            assertionFailure("Segmented text size button must have 3 segments only.")
+        }
+    }
+    
+    
     /// scale up
     @IBAction func biggerFont(_ sender: Any?) {
         

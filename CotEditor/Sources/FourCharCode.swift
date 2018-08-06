@@ -33,7 +33,7 @@ extension FourCharCode {
         assert(string.utf16.filter({ $0 > 0xFF }).isEmpty, "FourCharCode must contain only ASCII characters.")
         
         self = string.utf16.reduce(0) { (code, character) -> FourCharCode in
-            return (code << 8) + FourCharCode(character)
+            (code << 8) + FourCharCode(character)
         }
     }
     

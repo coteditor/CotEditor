@@ -25,16 +25,6 @@
 
 import Cocoa
 
-private extension NSColor {
-    
-    static var alternateDisabledControlTextColor = NSColor(white: 1.0, alpha: 0.75)
-}
-
-
-
-
-// MARK: -
-
 final class EncodingTableCellView: NSTableCellView {
     
     /// inverse text color of highlighted cell

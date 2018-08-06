@@ -49,14 +49,15 @@ class StringExtensionsTests: XCTestCase {
     
     func testComposedCharactersCount() {
         
-        XCTAssertEqual("foo".numberOfComposedCharacters, 3)
-        XCTAssertEqual("\r\n".numberOfComposedCharacters, 2)
-        XCTAssertEqual("😀🇯🇵a".numberOfComposedCharacters, 3)
-        XCTAssertEqual("😀🏻".numberOfComposedCharacters, 1)
-        XCTAssertEqual("👍🏻".numberOfComposedCharacters, 1)
+        // make sure that `Stirng.count` counts characters as I want
+        XCTAssertEqual("foo".count, 3)
+        XCTAssertEqual("\r\n".count, 1)
+        XCTAssertEqual("😀🇯🇵a".count, 3)
+        XCTAssertEqual("😀🏻".count, 2)
+        XCTAssertEqual("👍🏻".count, 1)
         
         // single regional indicator
-        XCTAssertEqual("🇦 ".numberOfComposedCharacters, 2)
+        XCTAssertEqual("🇦 ".count, 2)
     }
     
     

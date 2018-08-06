@@ -25,7 +25,7 @@
 
 import Foundation
 
-@objc protocol ThemeHolder: class {
+@objc protocol ThemeHolder: AnyObject {
     
     func changeTheme(_ sender: AnyObject?)
 }
@@ -112,7 +112,7 @@ final class ThemeManager: SettingFileManaging {
     func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
         
         // append number suffix if "Untitled" already exists
-        let name = self.savableSettingName(for: NSLocalizedString("Untitled", comment: ""))
+        let name = self.savableSettingName(for: "Untitled".localized)
         
         try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
             completionHandler?(name)

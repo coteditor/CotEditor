@@ -155,7 +155,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             menu.addItem(.separator())
         }
         
-        let openMenuItem = NSMenuItem(title: NSLocalizedString("Open Scripts Folder", comment: ""),
+        let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
         openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
@@ -313,7 +313,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.keyEquivalentModifierMask = shortcut.modifierMask
                 item.representedObject = script
                 item.target = self
-                item.toolTip = NSLocalizedString("“Option + click” to open script in editor.", comment: "")
+                item.toolTip = "“Option + click” to open script in editor.".localized
                 menu.addItem(item)
                 
             } else if resourceType == .directory {

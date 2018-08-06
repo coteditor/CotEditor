@@ -75,7 +75,7 @@ class LineSortTests: XCTestCase {
         pattern.column = 4
         
         let options = SortOptions()
-        options.localized = true
+        options.isLocalized = true
         
         let result = """
             dog, 🐕, 2, イヌ

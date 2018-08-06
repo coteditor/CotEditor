@@ -25,7 +25,7 @@
 
 import Foundation
 
-protocol SettingManaging: class {
+protocol SettingManaging: AnyObject {
     
     /// directory name in both Application Support and bundled Resources
     static var directoryName: String { get }
@@ -60,5 +60,6 @@ extension SettingManaging {
 // MARK: Private Property
 
 /// application's support directory in user's `Application Suuport/`
-private let supportDirectoryURL: URL = try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask,
-                                                                    appropriateFor: nil, create: false).appendingPathComponent("CotEditor")
+private let supportDirectoryURL: URL = try! FileManager.default
+    .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    .appendingPathComponent("CotEditor")
