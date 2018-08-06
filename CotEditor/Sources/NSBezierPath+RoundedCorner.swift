@@ -27,14 +27,14 @@ import Cocoa
 
 struct RectCorner: OptionSet {
     
-    public let rawValue: Int
+    let rawValue: Int
     
-    public static let topLeft     = RectCorner(rawValue: 1 << 0)
-    public static let bottomLeft  = RectCorner(rawValue: 1 << 1)
-    public static let topRight    = RectCorner(rawValue: 1 << 2)
-    public static let bottomRight = RectCorner(rawValue: 1 << 3)
+    static let topLeft     = RectCorner(rawValue: 1 << 0)
+    static let bottomLeft  = RectCorner(rawValue: 1 << 1)
+    static let topRight    = RectCorner(rawValue: 1 << 2)
+    static let bottomRight = RectCorner(rawValue: 1 << 3)
     
-    public static let allCorners: RectCorner = [.topLeft, .bottomLeft, .topRight, .bottomRight]
+    static let allCorners: RectCorner = [.topLeft, .bottomLeft, .topRight, .bottomRight]
 }
 
 

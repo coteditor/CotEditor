@@ -268,13 +268,15 @@ struct SyntaxStyle {
                 // create from completion definition
                 return completionDicts
                     .compactMap { $0[SyntaxDefinitionKey.keyString.rawValue] as? String }
-                    .filter { !$0.isEmpty }.sorted()
+                    .filter { !$0.isEmpty }
+                    .sorted()
             } else {
                 // create from normal highlighting words
                 return definitionDictionary.values.flatMap { $0 }
                     .filter { $0.endString == nil && !$0.isRegularExpression }
                     .map { $0.beginString.trimmingCharacters(in: .whitespacesAndNewlines) }
-                    .filter { !$0.isEmpty }.sorted()
+                    .filter { !$0.isEmpty }
+                    .sorted()
             }
         }()
         

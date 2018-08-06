@@ -179,7 +179,8 @@ extension EditorTextView {
         guard lineRange.length > 0 else { return }
         
         let lines = string
-            .substring(with: lineRange).components(separatedBy: .newlines)
+            .substring(with: lineRange)
+            .components(separatedBy: .newlines)
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // do nothing with single line

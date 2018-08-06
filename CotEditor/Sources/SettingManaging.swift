@@ -60,5 +60,6 @@ extension SettingManaging {
 // MARK: Private Property
 
 /// application's support directory in user's `Application Suuport/`
-private let supportDirectoryURL: URL = try! FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask,
-                                                                    appropriateFor: nil, create: false).appendingPathComponent("CotEditor")
+private let supportDirectoryURL: URL = try! FileManager.default
+    .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+    .appendingPathComponent("CotEditor")

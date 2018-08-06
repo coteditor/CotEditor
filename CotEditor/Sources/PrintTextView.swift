@@ -44,7 +44,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     var filePath: String?
     var documentName: String?
     var theme: Theme?
-    private(set) lazy var syntaxParser: SyntaxParser = SyntaxParser(textStorage: self.textStorage!)
+    private(set) lazy var syntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
     
     // settings on current window to be set by Document.

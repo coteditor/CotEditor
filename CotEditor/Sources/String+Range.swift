@@ -77,7 +77,7 @@ extension String {
         let matches = regex.matches(in: self, range: NSRange(location: 0, length: wholeLength))
         let count = matches.count
         
-        guard count > 0 else { return nil }
+        guard !matches.isEmpty else { return nil }
 
         guard location != 0 else { return NSRange(location: 0, length: 0) }
         
