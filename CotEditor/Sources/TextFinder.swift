@@ -25,14 +25,14 @@
 
 import Cocoa
 
-@objc protocol TextFinderClientProvider: class {
+@objc protocol TextFinderClientProvider: AnyObject {
     
     func textFinderClient() -> NSTextView?
     
 }
 
 
-protocol TextFinderDelegate: class {
+protocol TextFinderDelegate: AnyObject {
     
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)

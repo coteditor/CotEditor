@@ -88,7 +88,7 @@ extension EditorTextView: Indenting {
 
 // MARK: - Protocol
 
-protocol Indenting: class {
+protocol Indenting: AnyObject {
     
     var tabWidth: Int { get }
     var isAutomaticTabExpansionEnabled: Bool { get }

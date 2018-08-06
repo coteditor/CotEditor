@@ -27,7 +27,7 @@
 import Foundation
 import AppKit.NSTextStorage
 
-protocol SyntaxParserDelegate: class {
+protocol SyntaxParserDelegate: AnyObject {
     
     func syntaxParser(_ syntaxParser: SyntaxParser, didParseOutline outlineItems: [OutlineItem])
     func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress)

@@ -99,7 +99,7 @@ struct CommentTypes: OptionSet {
 }
 
 
-protocol Commenting: class {
+protocol Commenting: AnyObject {
     
     var inlineCommentDelimiter: String? { get }
     var blockCommentDelimiters: Pair<String>? { get }

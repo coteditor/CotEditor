@@ -68,7 +68,7 @@ struct InvalidKeySpecCharactersError: LocalizedError {
 
 // MARK: -
 
-protocol KeyBindingManagerProtocol: class {
+protocol KeyBindingManagerProtocol: AnyObject {
     
     var settingFileName: String { get }
     var keyBindings: Set<KeyBinding> { get }

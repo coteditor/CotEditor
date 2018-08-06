@@ -25,7 +25,7 @@
 
 import Foundation
 
-protocol SortPattern: class {
+protocol SortPattern: AnyObject {
     
     func sortKey(for line: String) -> String?
     func range(for line: String) -> Range<String.Index>?

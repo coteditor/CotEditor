@@ -25,7 +25,7 @@
 
 import Cocoa
 
-protocol TabViewControllerDelegate: class {
+protocol TabViewControllerDelegate: AnyObject {
     
     func tabViewController(_ viewController: NSTabViewController, didSelect tabViewIndex: Int)
 }

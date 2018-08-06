@@ -26,7 +26,7 @@
 
 import Cocoa
 
-protocol Editable: class {
+protocol Editable: AnyObject {
     
     var textView: NSTextView? { get }
     var lineEnding: LineEnding { get }

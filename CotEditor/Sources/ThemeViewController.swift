@@ -26,7 +26,7 @@
 import Cocoa
 import ColorCode
 
-protocol ThemeViewControllerDelegate: class {
+protocol ThemeViewControllerDelegate: AnyObject {
     
     func didUpdate(theme: ThemeManager.ThemeDictionary)
 }

@@ -161,7 +161,7 @@ final class SortPatternTabViewController: NSTabViewController {
 
 // MARK: -
 
-protocol SortPatternViewControllerDelegate: class {
+protocol SortPatternViewControllerDelegate: AnyObject {
     
     func didUpdate(sortPattern: SortPattern)
 }
