@@ -47,7 +47,7 @@
 /* Class = "NSButtonCell"; title = "Line numbers"; ObjectID = "A9U-Sx-or3"; */
 "A9U-Sx-or3.title" = "行号";
 /* Class = "NSButtonCell"; title = "Page guide at column:"; ObjectID = "3352"; */
-"3352.title" = "页面指示：";  // FIXME: changed
+"3352.title" = "列位置页面指示：";
 
 
 /* Class = "NSTextFieldCell"; title = "Status bar shows:"; ObjectID = "kjP-FS-fyd"; */
@@ -80,7 +80,7 @@
 "sQC-O4-YON.title" = "垂直";
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "Overscroll：";  // FIXME: added
+"7Nz-lv-JZb.title" = "额外滚动：";
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "编辑器透明度：";
