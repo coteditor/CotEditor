@@ -80,7 +80,7 @@
 "sQC-O4-YON.title" = "Verticale";
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
-"7Nz-lv-JZb.title" = "Overscroll:";  // FIXME: added
+"7Nz-lv-JZb.title" = "Overscroll:";
 
 /* Class = "NSTextFieldCell"; title = "Editor opacity:"; ObjectID = "gSx-LA-TPc"; */
 "gSx-LA-TPc.title" = "Opacità dell’editor:";
