@@ -285,7 +285,7 @@
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caracteres Incompatíveis";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
-"I2p-KB-gxR.title" = "Show Inspector";  // FIXME: added
+"I2p-KB-gxR.title" = "Mostrar Inspetor";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostrar Barra de Navegação";
@@ -475,7 +475,7 @@
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Buscar Tudo";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
-"ULf-cT-Xvb.title" = "Select All Find Matches";  // FIXME: added
+"ULf-cT-Xvb.title" = "Selecionar Todas as Ocorrências da Busca";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Usar Seleção para Buscar";
