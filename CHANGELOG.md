@@ -16,6 +16,11 @@ Change Log
 - [beta] Localize all text added in CotEditor 3.5.0.
 
 
+### Fixes
+
+- [beta] Fix an issue where the application crashed immediately on launch on OS X 10.11.
+
+
 
 3.5.0-beta.2 (264)
 --------------------------
