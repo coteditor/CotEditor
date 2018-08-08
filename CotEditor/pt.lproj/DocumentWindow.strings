@@ -69,10 +69,10 @@
 /* Class = "NSToolbarItem"; ObjectID = "ucH-DE-qQ1"; */
 "ucH-DE-qQ1.label" = "Tamanho do Texto";  /* Text Size */
 "ucH-DE-qQ1.paletteLabel" = "Tamanho do Texto";  /* Text Size */
-"ucH-DE-qQ1.toolTip" = "Change text size";  /* Change text size */  // FIXME: added
+"ucH-DE-qQ1.toolTip" = "Altere o tamanho do texto";  /* Change text size */
 /* Class = "NSSegmentedCell"; ObjectID = "mkm-Gk-q7f"; */
-"mkm-Gk-q7f.ibShadowedToolTips[0]" = "Decrease text size";  // "Decrease text size"  // FIXME: added
-"mkm-Gk-q7f.ibShadowedToolTips[1]" = "Increase text size";  // "Increase text size"  // FIXME: added
+"mkm-Gk-q7f.ibShadowedToolTips[0]" = "Diminua o tamanho do texto";  // "Decrease text size"
+"mkm-Gk-q7f.ibShadowedToolTips[1]" = "Aumente o tamanho do texto";  // "Increase text size"
 /* Class = "NSMenuItem"; title = "Smaller"; ObjectID = "BA7-Sh-WYm"; */
 "BA7-Sh-WYm.title" = "Menor";
 /* Class = "NSMenuItem"; title = "Bigger"; ObjectID = "x2W-ye-BDw"; */
@@ -81,7 +81,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
 "1zL-0E-fZd.label" = "Direção da Escrita";  /* Writing Direction */
 "1zL-0E-fZd.paletteLabel" = "Direção da Escrita";  /* Writing Direction */
-"1zL-0E-fZd.toolTip" = "Change writing direction";  /* Change writing direction */  // FIXME: added
+"1zL-0E-fZd.toolTip" = "Altere a direção da escrita";  /* Change writing direction */
 /* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
 "lad-Dh-atP.ibShadowedToolTips[0]" = "Da Esquerda para a Direita";  // "Left to Right"
 "lad-Dh-atP.ibShadowedToolTips[1]" = "Da Direita para a Esquerda";  // "Right to Left"
@@ -105,9 +105,9 @@
 "mNA-TN-5ne.title" = "Vertical";
 
 /* Class = "NSToolbarItem"; ObjectID = "FZC-Iu-jGT"; */
-"FZC-Iu-jGT.label" = "Indent";  /* Indent */  // FIXME: added
-"FZC-Iu-jGT.paletteLabel" = "Indent";  /* Indent */  // FIXME: added
-"FZC-Iu-jGT.toolTip" = "Indent selection";  /* Indent selection */  // FIXME: added
+"FZC-Iu-jGT.label" = "Recuo";  /* Indent */
+"FZC-Iu-jGT.paletteLabel" = "Recuo";  /* Indent */
+"FZC-Iu-jGT.toolTip" = "Recue a seleção";  /* Indent selection */
 /* Class = "NSSegmentedCell"; ObjectID = "X5g-Bw-O4v"; */
 "X5g-Bw-O4v.ibShadowedToolTips[0]" = "Desloque linhas para a esquerda";  // "Shift lines to left"
 "X5g-Bw-O4v.ibShadowedToolTips[1]" = "Desloque linhas para a direita";  // "Shift lines to right"
@@ -122,12 +122,12 @@
 "fW9-Xn-I9b.toolTip" = "Adicione ou remova o comentário da seleção";  /* Comment-out or uncomment selection */
 
 /* Class = "NSToolbarItem"; ObjectID = "PUK-pd-jWZ"; */
-"PUK-pd-jWZ.label" = "Tab Style";  /* Tab Style */  // FIXME: added
-"PUK-pd-jWZ.paletteLabel" = "Tab Style";  /* Tab Style */  // FIXME: added
+"PUK-pd-jWZ.label" = "Estilo da Tabulação";  /* Tab Style */
+"PUK-pd-jWZ.paletteLabel" = "Estilo da Tabulação";  /* Tab Style */
 "PUK-pd-jWZ.toolTip" = "Ative ou desative a expansão de tabulações automática";  /* Toggle tab auto-expansion */
 /* Class = "NSSegmentedCell"; ObjectID = "zn9-Cf-SiH"; */
 "zn9-Cf-SiH.ibShadowedToolTips[0]" = "Ative ou desative a expansão de tabulações automática";  // "Toggle tab auto-expansion"
-"zn9-Cf-SiH.ibShadowedToolTips[1]" = "Change tab width";  // "Change tab width"  // FIXME: added
+"zn9-Cf-SiH.ibShadowedToolTips[1]" = "Altere a largura da tabulação";  // "Change tab width"  //
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "glT-ig-kuW"; */
 "glT-ig-kuW.title" = "Largura da Tabulação";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "u3h-xI-sfz"; */

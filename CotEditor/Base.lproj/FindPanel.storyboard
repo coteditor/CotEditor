@@ -66,7 +66,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="146"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV">
                                 <rect key="frame" x="20" y="82" width="420" height="44"/>
                                 <clipView key="contentView" id="vCs-g9-nGi" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
@@ -110,7 +110,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg">
                                 <rect key="frame" x="20" y="28" width="420" height="44"/>
                                 <clipView key="contentView" id="vJP-0z-fPc" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>

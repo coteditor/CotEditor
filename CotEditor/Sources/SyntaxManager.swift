@@ -27,7 +27,7 @@
 import Foundation
 import YAML
 
-@objc protocol SyntaxHolder: class {
+@objc protocol SyntaxHolder: AnyObject {
     
     func changeSyntaxStyle(_ sender: Any?)
     func recolorAll(_ sender: Any?)

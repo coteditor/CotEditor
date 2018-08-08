@@ -26,7 +26,7 @@
 import Foundation
 import AppKit.NSParagraphStyle
 
-protocol MutableCopying: class {
+protocol MutableCopying: AnyObject {
     
     associatedtype MutableType
     

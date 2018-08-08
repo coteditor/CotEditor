@@ -26,7 +26,7 @@
 
 import Cocoa
 
-protocol AdditionalDocumentPreparing: class {
+protocol AdditionalDocumentPreparing: AnyObject {
     
     func didMakeDocumentForExisitingFile(url: URL)
     func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor)

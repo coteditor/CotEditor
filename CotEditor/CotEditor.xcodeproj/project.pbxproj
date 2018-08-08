@@ -187,8 +187,8 @@
 		2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A456C451A1EE38E00395158 /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
-		2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FIleDropComposer.swift */; };
-		2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FIleDropComposer.swift */; };
+		2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropComposer.swift */; };
+		2A4682B31D2F6B580005410E /* FileDropComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4682B11D2F6B580005410E /* FileDropComposer.swift */; };
 		2A4714E32093A2D40093E27F /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E22093A2D40093E27F /* SyntaxParser.swift */; };
 		2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E22093A2D40093E27F /* SyntaxParser.swift */; };
 		2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E5209630510093E27F /* OutlineExtractor.swift */; };
@@ -949,7 +949,7 @@
 		2A4257BB1D239F850086DAAD /* Invisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
 		2A456C431A1EDCFC00395158 /* en */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = en; path = en.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A456C441A1EDD0400395158 /* ja */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = ja; path = ja.lproj/ReportTemplate.md; sourceTree = "<group>"; };
-		2A4682B11D2F6B580005410E /* FIleDropComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FIleDropComposer.swift; sourceTree = "<group>"; };
+		2A4682B11D2F6B580005410E /* FileDropComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropComposer.swift; sourceTree = "<group>"; };
 		2A4714E22093A2D40093E27F /* SyntaxParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxParser.swift; sourceTree = "<group>"; };
 		2A4714E5209630510093E27F /* OutlineExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineExtractor.swift; sourceTree = "<group>"; };
 		2A4714E8209717C90093E27F /* DispatchQueue+Throttle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Throttle.swift"; sourceTree = "<group>"; };
@@ -1918,7 +1918,7 @@
 				2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */,
 				2A9C370A1D66E99400774BA4 /* Pair.swift */,
 				2AEC48321E641E4F00FB0F89 /* Snippet.swift */,
-				2A4682B11D2F6B580005410E /* FIleDropComposer.swift */,
+				2A4682B11D2F6B580005410E /* FileDropComposer.swift */,
 				2A0DD6351E655FE6001CAAA3 /* Tokenizer.swift */,
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
 				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
@@ -2877,7 +2877,7 @@
 				2A5D13361D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2AF073E41D33C3AB00770BA6 /* Theme.swift in Sources */,
-				2A4682B31D2F6B580005410E /* FIleDropComposer.swift in Sources */,
+				2A4682B31D2F6B580005410E /* FileDropComposer.swift in Sources */,
 				2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2A07E8491DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */,
 				2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
@@ -3033,7 +3033,7 @@
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
-				2A4682B21D2F6B580005410E /* FIleDropComposer.swift in Sources */,
+				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
 				2A231A361E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
 				2AD551E420D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */,

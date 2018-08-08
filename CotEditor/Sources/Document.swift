@@ -67,14 +67,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private(set) var lineEnding: LineEnding
     private(set) var fileAttributes: [FileAttributeKey: Any]?
     
-    private(set) lazy var selection: TextSelection = TextSelection(document: self)
-    private(set) lazy var analyzer: DocumentAnalyzer = DocumentAnalyzer(document: self)
-    private(set) lazy var incompatibleCharacterScanner: IncompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
+    private(set) lazy var selection = TextSelection(document: self)
+    private(set) lazy var analyzer = DocumentAnalyzer(document: self)
+    private(set) lazy var incompatibleCharacterScanner = IncompatibleCharacterScanner(document: self)
     
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController: PrintPanelAccessoryController = PrintPanelAccessoryController()
+    private lazy var printPanelAccessoryController = PrintPanelAccessoryController()
     private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: NSStoryboard.Name("SaveDocumentAccessory"), bundle: nil).instantiateInitialController() as! NSViewController
     
     private var readingEncoding: String.Encoding  // encoding to read document file

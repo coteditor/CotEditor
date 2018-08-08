@@ -68,7 +68,7 @@ extension MultipleReplacement {
                     return
                 }
                 
-                if result.count > 0 {
+                if !result.isEmpty {
                     // apply to the text view
                     if let layoutManager = textView.layoutManager {
                         layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: string.nsRange)
@@ -84,7 +84,7 @@ extension MultipleReplacement {
                 }
                 
                 let resultMessage: String = {
-                    guard result.count > 0 else { return "Not Found".localized }
+                    guard !result.isEmpty else { return "Not Found".localized }
                     
                     return String(format: "%@ found".localized,
                                   String.localizedStringWithFormat("%li", result.count))

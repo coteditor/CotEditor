@@ -25,7 +25,7 @@
 
 import Cocoa
 
-protocol MultipleReplacementPanelViewControlling: class { }
+protocol MultipleReplacementPanelViewControlling: AnyObject { }
 
 extension MultipleReplacementPanelViewControlling where Self: NSViewController {
     

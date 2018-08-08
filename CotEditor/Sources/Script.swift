@@ -25,7 +25,7 @@
 
 import Foundation
 
-protocol Script: class {
+protocol Script: AnyObject {
     
     // MARK: Properties
     

@@ -218,13 +218,13 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             return !(self.sidebarViewItem?.isCollapsed ?? true)
         }
         
-        set (shown) {
-            guard shown != self.isSidebarShown else { return }
+        set {
+            guard newValue != self.isSidebarShown else { return }
             
             // close sidebar inward if it opened so (because of insufficient space to open outward)
             let currentWidth = self.splitView.frame.width
             NSAnimationContext.current.completionHandler = {
-                if shown {
+                if newValue {
                     if self.splitView.frame.width == currentWidth {  // opened inward
                         self.siblings.forEach {
                             $0.sidebarViewItem?.collapseBehavior = .preferResizingSiblingsWithFixedSplitView
@@ -239,16 +239,16 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             }
             
             // update current tab possibly with an animation
-            self.sidebarViewItem?.isCollapsed = !shown
+            self.sidebarViewItem?.isCollapsed = !newValue
             
             // and then update background tabs
             self.siblings.filter { $0 != self }
                 .forEach {
-                    $0.sidebarViewItem?.isCollapsed = !shown
+                    $0.sidebarViewItem?.isCollapsed = !newValue
                     $0.sidebarThickness = self.sidebarThickness
                 }
             
-            UserDefaults.standard[.showInspector] = shown
+            UserDefaults.standard[.showInspector] = newValue
         }
     }
     

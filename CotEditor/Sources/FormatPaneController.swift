@@ -274,7 +274,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         alert.addButton(withTitle: String(format: "Change to “%@”".localized, newTitle))
         
         alert.beginSheetModal(for: self.view.window!) { (returnCode: NSApplication.ModalResponse) in
-            
             guard returnCode == .alertFirstButtonReturn else { return }
             
             UserDefaults.standard[.encodingInOpen] = String.Encoding.autoDetection.rawValue

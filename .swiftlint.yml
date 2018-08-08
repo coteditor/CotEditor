@@ -4,12 +4,15 @@ included:
   - Tests
 
 opt_in_rules:
+  - anyobject_protocol
   - array_init
   - attributes
   - closure_end_indentation
   - closure_spacing
+  - contains_over_first_not_nil
   - discouraged_optional_boolean
   - empty_string
+  - empty_xctest_method
   - explicit_init
   - extension_access_modifier
   - fallthrough
@@ -18,16 +21,21 @@ opt_in_rules:
   - implicit_return
   - joined_default_parameter
   - let_var_whitespace
+  - lower_acl_than_parent
+  - multiline_function_chains
   - multiline_parameters
   - nimble_operator
   - pattern_matching_keywords
   - private_outlet
+  - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
   - redundant_nil_coalescing
+  - redundant_type_annotation
   - required_enum_case
   - sorted_first_last
+  - untyped_error_in_catch
   - vertical_parameter_alignment_on_call
   - yoda_condition
 

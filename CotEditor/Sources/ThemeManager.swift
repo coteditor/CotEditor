@@ -25,7 +25,7 @@
 
 import Foundation
 
-@objc protocol ThemeHolder: class {
+@objc protocol ThemeHolder: AnyObject {
     
     func changeTheme(_ sender: AnyObject?)
 }

@@ -25,7 +25,7 @@
 
 import Cocoa
 
-protocol MultipleReplacementViewControllerDelegate: class {
+protocol MultipleReplacementViewControllerDelegate: AnyObject {
     
     func didUpdate(setting: MultipleReplacement)
 }

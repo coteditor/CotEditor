@@ -67,7 +67,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Content parse:";  // FIXME: changed
+"lzy-Ei-xlT.title" = "Analizza il contenuto:";
 
 /* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
 "3306.title" = "Conteggia ogni fine riga come un carattere";
@@ -80,11 +80,11 @@
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "Evidenzia “<>”";
 /* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
-"Rcq-1K-8nz.title" = "Highlight instances of selected text";  // FIXME: added
+"Rcq-1K-8nz.title" = "Evidenzia le istanze del testo selezionato";
 /* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
-"rOw-DD-kV5.title" = "Delay:";  // FIXME: added
+"rOw-DD-kV5.title" = "Ritardo:";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
-"ebJ-vk-RME.title" = "seconds";  // FIXME: added
+"ebJ-vk-RME.title" = "secondi";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

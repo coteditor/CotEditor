@@ -27,7 +27,7 @@ import Foundation
 import AppKit.NSColor
 import ColorCode
 
-protocol Themable: class {
+protocol Themable: AnyObject {
     
     var theme: Theme? { get }
 }
