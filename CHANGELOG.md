@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - [beta] Apply overscrolling rate change immediately.
+- [beta] Localize all text added in CotEditor 3.5.0.
 
 
 
