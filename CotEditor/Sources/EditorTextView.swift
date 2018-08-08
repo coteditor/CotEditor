@@ -71,7 +71,7 @@ final class EditorTextView: NSTextView, Themable {
     private var lineHighLightColor: NSColor?
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.highlightInstance() }  // NSTextView cannot be weak
     
     private var needsRecompletion = false
     private var particalCompletionWord: String?
