@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.5.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- Update Swift syntax style for Swift 4.2.
+
+
+
 3.5.0-rc (266)
 --------------------------
 
