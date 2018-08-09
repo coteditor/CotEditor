@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+3.6.0 (unreleased)
+--------------------------
+
+### New Features
+
+- Support Dark Mode in macOS 10.14 Mojave.
+
+
+### Improvements
+
+- Change the system requirement to __OS X 10.12.2 Sierra and later__.
+
+
+
 3.5.0 (268)
 --------------------------
 
