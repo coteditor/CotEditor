@@ -3,10 +3,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.0.0"
-  description: "Based on Swift 4.1"
+  version: "4.1.0"
+  description: "Based on Swift 4.2"
   license: "Same as CotEditor"
-  lastModified: "2018-03-07"
+  lastModified: "2018-08-09"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
@@ -46,12 +46,14 @@ attributes:
 - beginString: "@available"
 - beginString: "@convention"
 - beginString: "@discardableResult"
+- beginString: "@dynamicMemberLookup"
 - beginString: "@escaping"
 - beginString: "@GKInspectable"
 - beginString: "@IBAction"
 - beginString: "@IBDesignable"
 - beginString: "@IBInspectable"
 - beginString: "@IBOutlet"
+- beginString: "@inlinable"
 - beginString: "@inline"
 - beginString: "@noescape"
 - beginString: "@nonobjc"
@@ -66,6 +68,7 @@ attributes:
 - beginString: "@requires_stored_property_inits"
 - beginString: "@testable"
 - beginString: "@UIApplicationMain"
+- beginString: "@usableFromInline"
 - beginString: "@warn_unqualified_access"
 - beginString: "@warn_unused_result"
 characters:
@@ -129,6 +132,7 @@ types:
 - beginString: "Bool"
 - beginString: "BooleanLiteralConvertible"
 - beginString: "BooleanType"
+- beginString: "CaseIterable"
 - beginString: "Character"
 - beginString: "ClosedInterval"
 - beginString: "CollectionOfOne"
@@ -201,8 +205,10 @@ types:
 - beginString: "ManagedBufferPointer"
 - beginString: "ManagedProtoBuffer"
 - beginString: "Mirror"
-- beginString: "Mirror.AncestorRepresentation"
-- beginString: "Mirror.DisplayStyle"
+- beginString: "(?<=Mirror\\.)AncestorRepresentation\\b"
+  regularExpression: true
+- beginString: "(?<=Mirror\\.)ADisplayStyle\\b"
+  regularExpression: true
 - beginString: "MirrorPathType"
 - beginString: "MutableCollectionType"
 - beginString: "MutableIndexable"
@@ -246,15 +252,22 @@ types:
 - beginString: "StrideTo"
 - beginString: "StrideToGenerator"
 - beginString: "String"
-- beginString: "String.CharacterView"
-- beginString: "String.CharacterView.Index"
-- beginString: "String.UnicodeScalarView"
-- beginString: "String.UnicodeScalarView.Generator"
-- beginString: "String.UnicodeScalarView.Index"
-- beginString: "String.UTF16View"
-- beginString: "String.UTF16View.Index"
-- beginString: "String.UTF8View"
-- beginString: "String.UTF8View.Index"
+- beginString: "(?<=String\\.)Index\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.)UnicodeScalarView\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UnicodeScalarView\\.)Generator\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UnicodeScalarView\\.)Index\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.)UTF16View\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UTF16View\\.)Index\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.)UTF8View\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UTF8View\\.)Index\\b"
+  regularExpression: true
 - beginString: "StringInterpolationConvertible"
 - beginString: "StringLiteralConvertible"
 - beginString: "Substring"
@@ -301,6 +314,7 @@ keywords:
 - beginString: "#else"
 - beginString: "#elseif"
 - beginString: "#endif"
+- beginString: "#error"
 - beginString: "#file"
 - beginString: "#fileLiteral"
 - beginString: "#function"
@@ -310,6 +324,7 @@ keywords:
 - beginString: "#line"
 - beginString: "#selector"
 - beginString: "#sourceLocation"
+- beginString: "#warning"
 - beginString: "as"
 - beginString: "assignment"
 - beginString: "associatedtype"
