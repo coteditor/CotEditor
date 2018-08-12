@@ -81,8 +81,7 @@ extension NSAppearance {
         
         guard #available(macOS 10.14, *) else { return false }
         
-//        return self.name == .darkAqua
-        return self.name.rawValue == "NSAppearanceNameDarkAqua"
+        return self.name == .darkAqua
     }
     
 }

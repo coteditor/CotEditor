@@ -87,14 +87,6 @@ final class DocumentWindowController: NSWindowController {
             if document.isInViewingMode, let window = self.window as? DocumentWindow {
                 window.backgroundAlpha = 1.0
             }
-            
-            // workaround for that contentView origin can stack into toolbar on Sierra and earlier (2016-09 on macOS 10.12)
-            // -> cf. https://github.com/coteditor/CotEditor/issues/600
-            if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
-                if let window = self.window {
-                    window.contentView?.frame = window.contentRect(forFrameRect: NSRect(origin: .zero, size: window.frame.size))
-                }
-            }
         }
     }
     
