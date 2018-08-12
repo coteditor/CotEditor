@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "ColorCode.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "ColorCode-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "WrapLines_On.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "WrapLines_On-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

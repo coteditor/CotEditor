@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "TabStyle_On.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "TabStyle_On-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

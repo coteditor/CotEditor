@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "SpellCheck.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "SpellCheck-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {
