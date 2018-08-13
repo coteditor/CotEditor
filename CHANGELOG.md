@@ -9,6 +9,7 @@ Change Log
 
 - Update Python syntax style for Python 3.7.
 - Update Swift syntax style for Swift 4.2.
+- [dev] Remove dependency on iculibcore.
 
 
 

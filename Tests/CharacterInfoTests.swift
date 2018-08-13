@@ -31,12 +31,19 @@ final class CharacterInfoTests: XCTestCase {
     
     // MARK: UTF32Char Extension Tests
     
+    func testBlockNameTable() {
+        
+        // check comprehensiveness of block name table
+        let keys = UTF32Char.blockNameTable.keys
+        XCTAssertFalse(zip(keys, keys.dropFirst()).contains { $0.0.lowerBound + 1 == $0.1.upperBound })
+    }
+    
+    
     func testSingleSurrogate() {
         
         let character = UTF32Char(0xD83D)
         
         XCTAssertEqual(character.unicodeName, "<lead surrogate-D83D>")
-        XCTAssertEqual(character.categoryName, "Surrogate")
         XCTAssertEqual(character.blockName, "High Surrogates")
         
         XCTAssertNil(UnicodeScalar(character))
@@ -54,7 +61,6 @@ final class CharacterInfoTests: XCTestCase {
         XCTAssertFalse(unicode.isSurrogatePair)
         XCTAssertNil(unicode.surrogateCodePoints)
         XCTAssertEqual(unicode.name, "HIRAGANA LETTER A")
-        XCTAssertEqual(unicode.categoryName, "Other Letter")
         XCTAssertEqual(unicode.blockName, "Hiragana")
         XCTAssertNotNil(unicode.localizedBlockName)
     }
@@ -68,7 +74,6 @@ final class CharacterInfoTests: XCTestCase {
         XCTAssertTrue(unicode.isSurrogatePair)
         XCTAssertEqual(unicode.surrogateCodePoints!, ["U+D83D", "U+DE00"])
         XCTAssertEqual(unicode.name, "GRINNING FACE")
-        XCTAssertEqual(unicode.categoryName, "Other Symbol")
         XCTAssertEqual(unicode.blockName, "Emoticons")
         XCTAssertNotNil(unicode.localizedBlockName)
     }
