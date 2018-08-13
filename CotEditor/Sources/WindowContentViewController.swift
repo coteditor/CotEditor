@@ -162,7 +162,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     @IBAction func toggleInspector(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation(true) {
-            self.isSidebarShown = !self.isSidebarShown
+            self.isSidebarShown.toggle()
         }
     }
     

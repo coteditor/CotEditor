@@ -569,7 +569,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.isStatusBarShown = !self.isStatusBarShown
+            self.isStatusBarShown.toggle()
         }
         
         UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
@@ -580,7 +580,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.showsNavigationBar = !self.showsNavigationBar
+            self.showsNavigationBar.toggle()
         }
         
         UserDefaults.standard[.showNavigationBar] = self.showsNavigationBar
@@ -590,14 +590,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of line number view
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
-        self.showsLineNumber = !self.showsLineNumber
+        self.showsLineNumber.toggle()
     }
     
     
     /// toggle if lines wrap at window edge
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
-        self.wrapsLines = !self.wrapsLines
+        self.wrapsLines.toggle()
     }
     
     
@@ -676,21 +676,21 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of invisible characters in text view
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
-        self.showsInvisibles = !self.showsInvisibles
+        self.showsInvisibles.toggle()
     }
     
     
     /// toggle visibility of page guide line in text view
     @IBAction func togglePageGuide(_ sender: Any?) {
         
-        self.showsPageGuide = !self.showsPageGuide
+        self.showsPageGuide.toggle()
     }
     
     
     /// toggle if text view expands tab input
     @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
-        self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
+        self.isAutoTabExpandEnabled.toggle()
     }
     
     

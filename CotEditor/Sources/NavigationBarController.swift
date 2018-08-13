@@ -275,7 +275,7 @@ final class NavigationBarController: NSViewController {
             else { return }
         
         let location = self.textView!.selectedRange.location
-        let selectedItem = items.reversed().first { menuItem in
+        let selectedItem = items.last { menuItem in
             guard
                 menuItem.isEnabled,
                 let itemRange = menuItem.representedObject as? NSRange

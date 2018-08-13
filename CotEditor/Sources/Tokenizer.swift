@@ -25,12 +25,10 @@
 
 import Foundation
 
-protocol TokenRepresentable {
+protocol TokenRepresentable: CaseIterable {
     
     static var prefix: String { get }
     static var suffix: String { get }
-    
-    static var allCases: [Self] { get }
     
     var token: String { get }
     var description: String { get }
@@ -78,7 +76,7 @@ final class Tokenizer {
     
     init(tokens: [String], prefix: String, suffix: String) {
         
-        assert(!tokens.contains(where: { $0.isEmpty || $0 != NSRegularExpression.escapedPattern(for: $0) }))
+        assert(tokens.allSatisfy({ !$0.isEmpty && $0 == NSRegularExpression.escapedPattern(for: $0) }))
         
         self.tokens = tokens
         self.prefix = prefix

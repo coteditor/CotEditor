@@ -206,8 +206,8 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
                 .map { QuoteCommentItem(type: type, token: quote, role: [.begin, .end], range: $0) }
         }
         
-        // filter escaped ones
-        positions = positions.filter { !self.string.isCharacterEscaped(at: $0.range.location) }
+        // remove escaped ones
+        positions.removeAll { self.string.isCharacterEscaped(at: $0.range.location) }
         
         // sort by location
         positions.sort {

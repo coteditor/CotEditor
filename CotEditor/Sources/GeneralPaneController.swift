@@ -122,7 +122,7 @@ final class GeneralPaneController: NSViewController {
             case .alertSecondButtonReturn:  // = Later
                 break  // do nothing
             case .alertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[defaultKey] = !UserDefaults.standard[defaultKey]  // revert state
+                UserDefaults.standard[defaultKey].toggle()  // revert state
             default:
                 preconditionFailure()
             }

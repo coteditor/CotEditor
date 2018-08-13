@@ -149,7 +149,7 @@ final class SplitViewController: NSSplitViewController {
     /// toggle divider orientation
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
-        self.splitView.isVertical = !self.splitView.isVertical
+        self.splitView.isVertical.toggle()
         
         self.invalidateOpenSplitEditorButtons()
     }
