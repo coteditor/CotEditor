@@ -1,4 +1,0 @@
-module ICU [system] {
-    header "include.h"
-    export *
-}
