@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@
  */
 
 import Foundation
-import ICU
 
 extension UnicodeScalar {
     
@@ -61,14 +60,7 @@ extension UnicodeScalar {
     }
     
     
-    /// Unicode category name just returned from the ICU function
-    var categoryName: String? {
-        
-        return UTF32Char(self.value).categoryName
-    }
-    
-    
-    /// Unicode block name just returned from the ICU function
+    /// Unicode block name
     var blockName: String? {
         
         return UTF32Char(self.value).blockName
@@ -127,30 +119,10 @@ extension UTF32Char {
     }
     
     
-    /// Unicode category name just returned from the ICU function
-    var categoryName: String? {
-        
-        return self.property(for: UCHAR_GENERAL_CATEGORY)
-    }
-    
-    
-    /// Unicode block name just returned from the ICU function
+    /// Unicode block name
     var blockName: String? {
         
-        return self.property(for: UCHAR_BLOCK)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// get Unicode property for property key
-    private func property(for property: UProperty) -> String? {
-        
-        let prop = u_getIntPropertyValue(UChar32(self), property)
-        guard let name = u_getPropertyValueName(property, prop, U_LONG_PROPERTY_NAME) else { return nil }
-        
-        return String(cString: name).replacingOccurrences(of: "_", with: " ")
+        return UTF32Char.blockNameTable.first { $0.key.contains(self) }?.value
     }
     
 }
@@ -182,14 +154,10 @@ private func testUnicodeBlockNameLocalization(for language: String = "ja") {
     let bundleURL = Bundle.main.url(forResource: language, withExtension: "lproj")!
     let bundle = Bundle(url: bundleURL)
     
-    for index in 0..<UBLOCK_COUNT.rawValue {
-        let blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, index, U_LONG_PROPERTY_NAME)!
+    for blockName in UTF32Char.blockNameTable.values {
+        let sanitizedBlockName = sanitize(blockName: blockName)
+        let localizedBlockName = bundle?.localizedString(forKey: sanitizedBlockName, value: nil, table: "Unicode")
         
-        var blockName = String(cString: blockNameChars).replacingOccurrences(of: "_", with: " ")  // sanitize
-        blockName = sanitize(blockName: blockName)
-        
-        let localizedBlockName = bundle?.localizedString(forKey: blockName, value: nil, table: "Unicode")
-        
-        print((localizedBlockName == blockName) ? "⚠️" : "  ", blockName, localizedBlockName!, separator: "\t")
+        print((localizedBlockName == blockName) ? "⚠️" : "  ", sanitizedBlockName, localizedBlockName!, separator: "\t")
     }
 }
