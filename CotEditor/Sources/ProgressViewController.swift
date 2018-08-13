@@ -103,7 +103,7 @@ final class ProgressViewController: NSViewController {
     func done() {
         
         self.button?.title = "OK".localized
-        self.button?.action = #selector(dismiss)
+        self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)
         self.button?.keyEquivalent = "\r"
     }
     

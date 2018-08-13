@@ -349,11 +349,11 @@ final class LayoutManager: NSLayoutManager {
         
         // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
         let defaultParagraphStyle = textView.defaultParagraphStyle ?? NSParagraphStyle.default
-        let indentAttributes: [NSAttributedStringKey: Any] = {
+        let indentAttributes: [NSAttributedString.Key: Any] = {
             let typingParagraphStyle = (textView.typingAttributes[.paragraphStyle] as? NSParagraphStyle)?.mutable
             typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
             
-            var attributes: [NSAttributedStringKey: Any] = [:]
+            var attributes: [NSAttributedString.Key: Any] = [:]
             attributes[.font] = self.textFont
             attributes[.paragraphStyle] = typingParagraphStyle
             return attributes

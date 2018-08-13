@@ -63,7 +63,7 @@ extension EditorTextView {
         let viewController = NSStoryboard(name: NSStoryboard.Name("CustomSurroundStringView"), bundle: nil).instantiateInitialController() as! CustomSurroundStringViewController
         viewController.representedObject = self
         
-        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
+        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
     
 }

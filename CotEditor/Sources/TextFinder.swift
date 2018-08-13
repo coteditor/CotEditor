@@ -292,7 +292,7 @@ final class TextFinder: NSResponder {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -492,7 +492,7 @@ final class TextFinder: NSResponder {
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController(progress: progress, message: actionName)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }

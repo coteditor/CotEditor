@@ -73,7 +73,7 @@ extension OutlineItem {  // : Equatable
 
 extension OutlineItem {
     
-    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedStringKey: Any] = [:]) -> NSAttributedString {
+    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
         
         var font = baseFont
         var attributes = attributes
@@ -85,7 +85,7 @@ extension OutlineItem {
             font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
         }
         if self.style.contains(.underline) {
-            attributes[.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
+            attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         attributes[.font] = font
         

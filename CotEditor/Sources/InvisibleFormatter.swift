@@ -44,12 +44,12 @@ final class InvisibleFormatter: Formatter {
     
     
     /// make invisible characters visible
-    override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedStringKey: Any]? = nil) -> NSAttributedString? {
+    override func attributedString(for obj: Any, withDefaultAttributes attrs: [NSAttributedString.Key: Any]? = nil) -> NSAttributedString? {
         
         guard let string = self.string(for: obj) else { return nil }
         
         let attributedString = NSMutableAttributedString(string: string, attributes: attrs)
-        let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: NSColor.tertiaryLabelColor]
+        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: NSColor.tertiaryLabelColor]
         
         for (index, codeUnit) in string.utf16.enumerated() {
             guard

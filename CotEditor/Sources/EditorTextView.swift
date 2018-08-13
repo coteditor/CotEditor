@@ -26,9 +26,9 @@
 
 import Cocoa
 
-private extension NSAttributedStringKey {
+private extension NSAttributedString.Key {
     
-    static let autoBalancedClosingBracket = NSAttributedStringKey("autoBalancedClosingBracket")
+    static let autoBalancedClosingBracket = NSAttributedString.Key("autoBalancedClosingBracket")
 }
 
 
@@ -147,7 +147,7 @@ final class EditorTextView: NSTextView, Themable {
         self.usesFindPanel = true
         self.acceptsGlyphInfo = true
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
-                                   .underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+                                   .underlineStyle: NSUnderlineStyle.single.rawValue]
         
         // setup behaviors
         self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]

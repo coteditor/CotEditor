@@ -34,14 +34,13 @@ class StatableToolbarItem: ControlToolbarItem {
         didSet {
             guard state != oldValue else { return }
             
-            guard let base = self.image?.name()?.rawValue.components(separatedBy: "_").first else {
+            guard let base = self.image?.name()?.components(separatedBy: "_").first else {
                 assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.")
                 return
             }
             
             let suffix = (self.state == .on) ? "On" : "Off"
-            let name = NSImage.Name(base + "_" + suffix)
-            if let image = NSImage(named: name) {
+            if let image = NSImage(named: base + "_" + suffix) {
                 self.image = image
             }
         }

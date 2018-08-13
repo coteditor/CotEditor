@@ -153,7 +153,7 @@ private extension NSView {
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.toValue = 1.0
         animation.duration = duration
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
         self.layer?.add(animation, forKey: AnimationIdentifier.fadeIn)
     }
@@ -172,7 +172,7 @@ private extension NSView {
         animation.toValue = 0.0
         animation.duration = duration
         animation.beginTime = CACurrentMediaTime() + delay
-        animation.fillMode = kCAFillModeForwards
+        animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
         self.layer?.add(animation, forKey: AnimationIdentifier.fadeOut)
         

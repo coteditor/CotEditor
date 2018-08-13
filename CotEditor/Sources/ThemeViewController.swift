@@ -100,7 +100,7 @@ final class ThemeViewController: NSViewController {
     
     
     /// metadata popover closed
-    override func dismissViewController(_ viewController: NSViewController) {
+    override func dismiss(_ viewController: NSViewController) {
         
         if viewController is ThemeMetaDataViewController,
             self.storedMetadata != self.theme?[DictionaryKey.metadata.rawValue]
@@ -108,7 +108,7 @@ final class ThemeViewController: NSViewController {
             self.notifyUpdate()
         }
         
-        super.dismissViewController(viewController)
+        super.dismiss(viewController)
     }
     
     

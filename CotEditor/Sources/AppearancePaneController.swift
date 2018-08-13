@@ -184,7 +184,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
@@ -457,7 +457,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// view controller for theme editor
     private var themeViewController: ThemeViewController? {
         
-        return self.childViewControllers.lazy.compactMap { $0 as? ThemeViewController }.first
+        return self.children.lazy.compactMap { $0 as? ThemeViewController }.first
     }
     
     

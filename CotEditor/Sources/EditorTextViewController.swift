@@ -199,7 +199,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 return
         }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     

@@ -369,7 +369,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])

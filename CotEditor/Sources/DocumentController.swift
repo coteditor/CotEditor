@@ -320,7 +320,7 @@ final class DocumentController: NSDocumentController {
         document.textStorage.layoutManagers
             .flatMap { $0.textContainers }
             .compactMap { $0.textView }
-            .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
+            .forEach { NSAccessibility.post(element: $0, notification: .valueChanged) }
     }
     
     

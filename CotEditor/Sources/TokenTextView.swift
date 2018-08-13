@@ -25,9 +25,9 @@
 
 import AppKit
 
-private extension NSAttributedStringKey {
+private extension NSAttributedString.Key {
     
-    static let token = NSAttributedStringKey("token")
+    static let token = NSAttributedString.Key("token")
 }
 
 

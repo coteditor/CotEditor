@@ -77,7 +77,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     override var representedObject: Any? {
         
         didSet {
-            for viewController in self.childViewControllers {
+            for viewController in self.children {
                 viewController.representedObject = representedObject
             }
         }

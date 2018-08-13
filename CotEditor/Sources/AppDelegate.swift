@@ -249,7 +249,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         if #available(macOS 10.12, *), isAutomaticTabbing {
             // wait until finish
             while remainingDocumentCount > 0 {
-                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+                RunLoop.current.run(mode: .default, before: .distantFuture)
             }
             
             DocumentWindow.tabbingPreference = nil
@@ -374,10 +374,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        let anchorName = NSHelpManager.AnchorName(identifier.rawValue)
-        let bookName = NSHelpManager.BookName(rawValue: AppInfo.helpBookName)
-        
-        NSHelpManager.shared.openHelpAnchor(anchorName, inBook: bookName)
+        NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: AppInfo.helpBookName)
     }
     
     

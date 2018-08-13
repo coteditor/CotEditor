@@ -710,7 +710,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             self?.tabWidth = tabWidth
         }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -839,7 +839,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let message = "Coloring text…".localized
             let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
             
-            self?.presentViewControllerAsSheet(indicator)
+            self?.presentAsSheet(indicator)
         }
         
         if window.occlusionState.contains(.visible) {
@@ -927,7 +927,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
+        return self.splitViewController?.children as? [EditorViewController] ?? []
     }
     
     

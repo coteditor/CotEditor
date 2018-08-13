@@ -630,7 +630,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         get {
             let printInfo = super.printInfo
             
-            printInfo.horizontalPagination = .fitPagination
+            printInfo.horizontalPagination = .fit
             printInfo.isHorizontallyCentered = false
             printInfo.isVerticallyCentered = false
             printInfo.leftMargin = PrintTextView.horizontalPrintMargin

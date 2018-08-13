@@ -177,12 +177,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     @IBAction func showRegexHelp(_ sender: Any?) {
         
         if self.presentedViewControllers?.contains(self.regexReferenceViewController) ?? false {
-            self.dismissViewController(self.regexReferenceViewController)
+            self.dismiss(self.regexReferenceViewController)
             
         } else {
             guard let senderView = sender as? NSView else { return }
             
-            self.presentViewController(self.regexReferenceViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxY, behavior: .semitransient)
+            self.present(self.regexReferenceViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxY, behavior: .semitransient)
         }
     }
     
@@ -191,12 +191,12 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     @IBAction func showPreferences(_ sender: Any?) {
         
         if self.presentedViewControllers?.contains(self.preferencesViewController) ?? false {
-            self.dismissViewController(self.preferencesViewController)
+            self.dismiss(self.preferencesViewController)
             
         } else {
             guard let senderView = sender as? NSView else { return }
             
-            self.presentViewController(self.preferencesViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxX, behavior: .transient)
+            self.present(self.preferencesViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxX, behavior: .transient)
         }
     }
     

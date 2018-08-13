@@ -47,7 +47,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             // load "selected" icon template
             guard
                 let iconName = self.image(forSegment: segment)?.name(),
-                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))
+                let selectedIcon = NSImage(named: "Selected" + iconName)
                 else {
                     fatalError("No selected icon template for inspector tab view was found.")
                 }
