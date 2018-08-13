@@ -163,7 +163,7 @@ class StringExtensionsTests: XCTestCase {
     
     func testUnicodeNormalization() {
         
-        XCTAssertEqual("é 神 ㍑ ＡＢＣ".precomposedStringWithCompatibilityMappingWithCasefold, "é 神 リットル abc")
+        XCTAssertEqual("é 神 ㍑ ＡＢC".precomposedStringWithCompatibilityMappingWithCasefold, "é 神 リットル abc")
         XCTAssertEqual("\u{1f71} \u{03b1}\u{0301}".precomposedStringWithHFSPlusMapping, "\u{1f71} \u{03ac}")
         XCTAssertEqual("\u{1f71}".precomposedStringWithHFSPlusMapping, "\u{1f71}")  // test single char
         XCTAssertEqual("\u{1f71}".decomposedStringWithHFSPlusMapping, "\u{03b1}\u{0301}")
