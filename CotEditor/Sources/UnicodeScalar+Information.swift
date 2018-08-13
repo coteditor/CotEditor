@@ -96,14 +96,34 @@ extension UTF32Char {
     /// get Unicode name
     var unicodeName: String? {
         
+        // get control character name from special table
         if let name = self.controlCharacterName {
             return name
         }
         
-        return self.name(for: U_UNICODE_CHAR_NAME) ?? self.name(for: U_EXTENDED_CHAR_NAME)
-        // -> `U_UNICODE_CHAR_NAME` returns modern Unicode name however it doesn't support surrogate character names.
-        //    `U_EXTENDED_CHAR_NAME` returns lowercase name within angle brackets like "<lead surrogate-D83D>".
-        //    Therefore, we combine `U_UNICODE_CHAR_NAME` and `U_EXTENDED_CHAR_NAME`.
+        // get unicode name from CFStringTransform API
+        if let scalar = Unicode.Scalar(self) {
+            // -> Avoid using `String(scalar).applyingTransform(.toUnicodeName, reverse: false)`
+            //    because it cannot name simple digit number (2018-08 macOS 10.13).
+            let mutable = NSMutableString(string: String(scalar))
+            CFStringTransform(mutable as CFMutableString, nil, "Any-Name" as CFString, false)
+            
+            return mutable
+                .replacingOccurrences(of: "\\N{", with: "")
+                .replacingOccurrences(of: "}", with: "")
+        }
+        
+        // create single surrogate character by ownself
+        if let codeUnit = UTF16.CodeUnit(exactly: self) {
+            if UTF16.isLeadSurrogate(codeUnit) {
+                return "<lead surrogate-" + String(format: "%04X", self) + ">"
+            }
+            if UTF16.isTrailSurrogate(codeUnit) {
+                return "<tail surrogate-" + String(format: "%04X", self) + ">"
+            }
+        }
+        
+        return nil
     }
     
     
@@ -123,20 +143,6 @@ extension UTF32Char {
     
     
     // MARK: Private Methods
-    
-    /// get character name with name type
-    private func name(for type: UCharNameChoice) -> String? {
-        
-        var buffer = [CChar](repeating: 0, count: 128)
-        var error = U_ZERO_ERROR
-        u_charName(UChar32(self), type, &buffer, 128, &error)
-        
-        guard error == U_ZERO_ERROR,
-            let name = String(utf8String: buffer), !name.isEmpty else { return nil }
-        
-        return name
-    }
-    
     
     /// get Unicode property for property key
     private func property(for property: UProperty) -> String? {
