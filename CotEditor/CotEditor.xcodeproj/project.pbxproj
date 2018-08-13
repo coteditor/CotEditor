@@ -829,6 +829,7 @@
 		2A10D13D1E71B63D0027192A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FormatPane.strings; sourceTree = "<group>"; };
 		2A10D1471E7477D30027192A /* ItalicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItalicButton.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
+		2A1235432121875C002E9C53 /* include.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = include.h; sourceTree = "<group>"; };
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextField.swift; sourceTree = "<group>"; };
 		2A1679E51D3CE07100E8261D /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
@@ -2025,6 +2026,7 @@
 			children = (
 				2A83E2391BA1E65A0069CDFE /* libicucore.tbd */,
 				2A9BF3B91D37EB0900E3D3E2 /* module.map */,
+				2A1235432121875C002E9C53 /* include.h */,
 				2A9BF3C21D3803B600E3D3E2 /* unicode */,
 			);
 			path = ICU;
@@ -4074,7 +4076,6 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
@@ -4146,7 +4147,6 @@
 					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				OTHER_CFLAGS = "-DU_DISABLE_RENAMING=1";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
