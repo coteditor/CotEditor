@@ -24,35 +24,19 @@
 //
 
 import Foundation
-import ICU
 
 extension String {
     
     // MARK: Public Properties
     
-    /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold.
+    /// A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC with Casefold a.k.a. NFKC_Casefold or NFKC_CF.
     var precomposedStringWithCompatibilityMappingWithCasefold: String {
         
-        var error = U_ZERO_ERROR
-        let normalizer = unorm2_getInstance(nil, "nfkc_cf", UNORM2_COMPOSE, &error)
+        let mutable = NSMutableString(string: self) as CFMutableString
+        CFStringNormalize(mutable, .KC)
+        CFStringFold(mutable, .compareCaseInsensitive, nil)
         
-        guard u_success(error) else {
-            debugPrint("unorm2_getInstance failed: ", u_errorName(error))
-            return self
-        }
-        
-        let source = Array(self.utf16)
-        let sourceLength = Int32(source.count)
-        var destination = [UChar](repeating: 0, count: Int(sourceLength))
-        
-        let destLength = unorm2_normalize(normalizer, source, sourceLength, &destination, sourceLength * 64, &error)
-        
-        guard u_success(error) else {
-            debugPrint("unorm2_normalize failed: ", u_errorName(error))
-            return self
-        }
-        
-        return String(utf16CodeUnits: destination, count: Int(destLength))
+        return mutable as String
     }
     
     
@@ -80,13 +64,4 @@ extension String {
         return String(cString: buffer)
     }
     
-}
-
-
-// MARK: Private Functions
-
-/// check success from UErrorCode
-private func u_success(_ code: UErrorCode) -> Bool {
-    
-    return code.rawValue <= U_ZERO_ERROR.rawValue
 }
