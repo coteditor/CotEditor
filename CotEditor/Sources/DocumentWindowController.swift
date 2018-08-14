@@ -64,7 +64,7 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "document")
+        self.windowFrameAutosaveName = "document"
         
         // set background alpha
         (self.window as! DocumentWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
@@ -86,14 +86,6 @@ final class DocumentWindowController: NSWindowController {
             // -> In case when the window was created as a restored window (the right side ones in the browsing mode)
             if document.isInViewingMode, let window = self.window as? DocumentWindow {
                 window.backgroundAlpha = 1.0
-            }
-            
-            // workaround for that contentView origin can stack into toolbar on Sierra and earlier (2016-09 on macOS 10.12)
-            // -> cf. https://github.com/coteditor/CotEditor/issues/600
-            if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
-                if let window = self.window {
-                    window.contentView?.frame = window.contentRect(forFrameRect: NSRect(origin: .zero, size: window.frame.size))
-                }
             }
         }
     }

@@ -44,7 +44,7 @@ extension EditorTextView {
             (self.initialMagnificationScale <= 1.0 && scale >= 1.0)  // zoom-in
         {
             self.deferredMagnification += event.magnification
-            if fabs(self.deferredMagnification) > 0.4 {
+            if abs(self.deferredMagnification) > 0.4 {
                 scale = self.scale + self.deferredMagnification / 2
                 self.deferredMagnification = 0
                 self.initialMagnificationScale = scale
@@ -54,7 +54,7 @@ extension EditorTextView {
         }
         
         // sanitize final scale
-        if event.phase.contains(.ended), fabs(scale - 1.0) < 0.05 {
+        if event.phase.contains(.ended), abs(scale - 1.0) < 0.05 {
             scale = 1.0
         }
         

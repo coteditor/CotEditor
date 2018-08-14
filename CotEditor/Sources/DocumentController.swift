@@ -189,7 +189,7 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
-        let accessoryController = NSStoryboard(name: NSStoryboard.Name("OpenDocumentAccessory"), bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
+        let accessoryController = NSStoryboard(name: "OpenDocumentAccessory", bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
         
         // initialize encoding menu and set the accessory view
         accessoryController.openPanel = openPanel
@@ -215,10 +215,8 @@ final class DocumentController: NSDocumentController {
         
         guard let action = item.action else { return false }
         
-        if #available(macOS 10.12, *) {
-            if action == #selector(newDocumentAsTab) {
-                return self.currentDocument != nil
-            }
+        if action == #selector(newDocumentAsTab) {
+            return self.currentDocument != nil
         }
         
         return super.validateUserInterfaceItem(item)
@@ -252,7 +250,6 @@ final class DocumentController: NSDocumentController {
     // MARK: Action Messages
     
     /// open a new document as new window
-    @available(macOS 10.12, *)
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
         
         let document: NSDocument
@@ -271,7 +268,6 @@ final class DocumentController: NSDocumentController {
     
     
     /// open a new document as tab in the existing frontmost window
-    @available(macOS 10.12, *)
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
         let document: NSDocument
@@ -320,7 +316,7 @@ final class DocumentController: NSDocumentController {
         document.textStorage.layoutManagers
             .flatMap { $0.textContainers }
             .compactMap { $0.textView }
-            .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
+            .forEach { NSAccessibility.post(element: $0, notification: .valueChanged) }
     }
     
     

@@ -78,9 +78,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     
     /// get settings from advanced options popover
-    override func dismissViewController(_ viewController: NSViewController) {
+    override func dismiss(_ viewController: NSViewController) {
         
-        super.dismissViewController(viewController)
+        super.dismiss(viewController)
         
         if let object = viewController.representedObject as? MultipleReplacement.Settings.Object {
             guard self.definition.settings != object.settings else { return }
@@ -397,7 +397,7 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
-        guard info.draggingSource() as? NSTableView == tableView else { return [] }
+        guard info.draggingSource as? NSTableView == tableView else { return [] }
         
         if dropOperation == .on {
             tableView.setDropRow(row, dropOperation: .above)
@@ -411,11 +411,11 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
-        guard info.draggingSource() as? NSTableView == tableView else { return false }
+        guard info.draggingSource as? NSTableView == tableView else { return false }
         
         // obtain original rows from paste board
         guard
-            let data = info.draggingPasteboard().data(forType: .rows),
+            let data = info.draggingPasteboard.data(forType: .rows),
             let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
         
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move

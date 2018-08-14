@@ -135,12 +135,12 @@ final class CSVSortPattern: NSObject, SortPattern {
             end = line.index(start, offsetBy: component.count)
             
             range = start..<end
-            if let trimmedStart = component.index(where: { $0 != " " }) {
+            if let trimmedStart = component.firstIndex(where: { $0 != " " }) {
                 let offset = component.distance(from: component.startIndex, to: trimmedStart)
                 range = line.index(start, offsetBy: offset)..<range.upperBound
             }
-            if let trimmedEnd = component.reversed().index(where: { $0 != " " }) {
-                let offset = component.distance(from: component.startIndex, to: trimmedEnd.base)
+            if let trimmedEnd = component.lastIndex(where: { $0 != " " }) {
+                let offset = component.distance(from: component.startIndex, to: trimmedEnd)
                 range = range.lowerBound..<line.index(start, offsetBy: offset)
             }
         }

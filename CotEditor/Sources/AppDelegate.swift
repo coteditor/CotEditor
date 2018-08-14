@@ -28,7 +28,7 @@ import Cocoa
 
 private extension NSSound {
     
-    static let glass = NSSound(named: NSSound.Name("Glass"))
+    static let glass = NSSound(named: "Glass")
 }
 
 
@@ -54,16 +54,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    // MARK: Public Properties
-    
-    @objc dynamic let supportsWindowTabbing: Bool
-    
-    
     // MARK: Private Properties
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
-        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! NSWindowController
+        let windowController = NSStoryboard(name: "WebDocumentWindow", bundle: nil).instantiateInitialController() as! NSWindowController
         windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
         return windowController
     }()
@@ -79,13 +74,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Lifecycle
     
     override init() {
-        
-        // add tab window
-        if #available(macOS 10.12, *) {
-            self.supportsWindowTabbing = true
-        } else {
-            self.supportsWindowTabbing = false
-        }
         
         // register default setting values
         UserDefaults.standard.register(defaults: DefaultSettings.defaults)
@@ -160,9 +148,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         
         // setup touchbar
-        if #available(macOS 10.12.2, *) {
-            NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-        }
+        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
     }
     
     
@@ -206,12 +192,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// drop multiple files
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         
-        let isAutomaticTabbing: Bool = {
-            if #available(macOS 10.12, *) {
-                return (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
-            }
-            return false
-        }()
+        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
         
         var remainingDocumentCount = filenames.count
         var firstWindowOpened = false
@@ -238,7 +219,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 // on first window opened
                 // -> The first document needs to open a new window.
-                if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
+                if isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
                     DocumentWindow.tabbingPreference = .always
                     firstWindowOpened = true
                 }
@@ -246,10 +227,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // reset tabbing setting
-        if #available(macOS 10.12, *), isAutomaticTabbing {
+        if isAutomaticTabbing {
             // wait until finish
             while remainingDocumentCount > 0 {
-                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+                RunLoop.current.run(mode: .default, before: .distantFuture)
             }
             
             DocumentWindow.tabbingPreference = nil
@@ -374,10 +355,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        let anchorName = NSHelpManager.AnchorName(identifier.rawValue)
-        let bookName = NSHelpManager.BookName(rawValue: AppInfo.helpBookName)
-        
-        NSHelpManager.shared.openHelpAnchor(anchorName, inBook: bookName)
+        NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: AppInfo.helpBookName)
     }
     
     

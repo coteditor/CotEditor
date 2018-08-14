@@ -82,8 +82,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("MultipleReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
+    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel", bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     
@@ -292,7 +292,7 @@ final class TextFinder: NSResponder {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -492,7 +492,7 @@ final class TextFinder: NSResponder {
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController(progress: progress, message: actionName)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }

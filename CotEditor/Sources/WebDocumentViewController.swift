@@ -40,19 +40,6 @@ final class WebDocumentViewController: NSViewController {
     }
     
     
-    /// let webView load document file
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        // set webView programmatically
-        // -> WKWebView can be set in storyboard first on macOS 10.12
-        let webView = WKWebView(frame: self.view.frame)
-        self.view = webView
-        webView.navigationDelegate = self
-    }
-    
-    
     /// set window background programmatically
     override func viewWillAppear() {
         

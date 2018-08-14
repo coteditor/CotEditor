@@ -3,6 +3,16 @@
     {
       "idiom" : "universal",
       "filename" : "ShiftLeft.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "ShiftLeft-1.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
     }
   ],
   "info" : {

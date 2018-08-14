@@ -73,7 +73,7 @@ extension OutlineItem {  // : Equatable
 
 extension OutlineItem {
     
-    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedStringKey: Any] = [:]) -> NSAttributedString {
+    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
         
         var font = baseFont
         var attributes = attributes
@@ -85,7 +85,7 @@ extension OutlineItem {
             font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
         }
         if self.style.contains(.underline) {
-            attributes[.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
+            attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         attributes[.font] = font
         
@@ -95,15 +95,11 @@ extension OutlineItem {
 }
 
 
-extension Collection where Element == OutlineItem {
+extension Array where Element == OutlineItem {
     
     func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
         
-        return self.indices.reversed().first {
-            let item = self[$0]
-            
-            return item.range.location <= characterRange.location && (allowsSeparator || !item.isSeparator )
-        }
+        return self.lastIndex { $0.range.location <= characterRange.location && (allowsSeparator || !$0.isSeparator ) }
     }
     
 }

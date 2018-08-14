@@ -569,7 +569,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.isStatusBarShown = !self.isStatusBarShown
+            self.isStatusBarShown.toggle()
         }
         
         UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
@@ -580,7 +580,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.showsNavigationBar = !self.showsNavigationBar
+            self.showsNavigationBar.toggle()
         }
         
         UserDefaults.standard[.showNavigationBar] = self.showsNavigationBar
@@ -590,14 +590,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of line number view
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
-        self.showsLineNumber = !self.showsLineNumber
+        self.showsLineNumber.toggle()
     }
     
     
     /// toggle if lines wrap at window edge
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
-        self.wrapsLines = !self.wrapsLines
+        self.wrapsLines.toggle()
     }
     
     
@@ -676,21 +676,21 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of invisible characters in text view
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
-        self.showsInvisibles = !self.showsInvisibles
+        self.showsInvisibles.toggle()
     }
     
     
     /// toggle visibility of page guide line in text view
     @IBAction func togglePageGuide(_ sender: Any?) {
         
-        self.showsPageGuide = !self.showsPageGuide
+        self.showsPageGuide.toggle()
     }
     
     
     /// toggle if text view expands tab input
     @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
-        self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
+        self.isAutoTabExpandEnabled.toggle()
     }
     
     
@@ -704,13 +704,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// change tab width to desired number through a sheet
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomTabWidthView"), bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
+        let viewController = NSStoryboard(name: "CustomTabWidthView", bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
         viewController.defaultWidth = self.tabWidth
         viewController.completionHandler = { [weak self] (tabWidth) in
             self?.tabWidth = tabWidth
         }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -839,7 +839,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let message = "Coloring text…".localized
             let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
             
-            self?.presentViewControllerAsSheet(indicator)
+            self?.presentAsSheet(indicator)
         }
         
         if window.occlusionState.contains(.visible) {
@@ -863,7 +863,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// create new (split) editor view
     private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
         
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
+        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
         
         self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
@@ -927,7 +927,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
+        return self.splitViewController?.children as? [EditorViewController] ?? []
     }
     
     

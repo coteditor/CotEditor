@@ -25,12 +25,10 @@
 
 import Foundation
 
-enum ScriptingFileType {
+enum ScriptingFileType: CaseIterable {
     
     case appleScript
     case unixScript
-    
-    static let allCases: [ScriptingFileType] = [.appleScript, .unixScript]
     
     
     var extensions: [String] {

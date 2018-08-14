@@ -46,7 +46,7 @@ extension MultipleReplacement {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController(progress: progress, message: "Highlight".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }
@@ -121,7 +121,7 @@ extension MultipleReplacement {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
             guard let strongSelf = self else { return }

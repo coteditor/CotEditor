@@ -34,9 +34,10 @@ struct KeyBinding: Codable {
 
 extension KeyBinding: Hashable {
     
-    var hashValue: Int {
+    func hash(into hasher: inout Hasher) {
         
-        return (self.shortcut?.hashValue ?? -1) ^ self.action.hashValue
+        hasher.combine(self.action)
+        hasher.combine(self.shortcut)
     }
     
 }

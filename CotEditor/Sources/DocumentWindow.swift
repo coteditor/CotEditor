@@ -140,14 +140,12 @@ final class DocumentWindow: NSWindow {
 extension DocumentWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
-    @available(macOS 10.12, *)
     static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
     
     // MARK: Window Methods
     
-    @available(macOS 10.12, *)
     override class var userTabbingPreference: NSWindow.UserTabbingPreference {
         
         if let tabbingPreference = self.tabbingPreference {
@@ -170,7 +168,6 @@ extension DocumentWindow {
         // select tabbed window with `⌘+number`
         // -> select last tab with `⌘0`
         guard
-            #available(macOS 10.12, *),
             event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
             let characters = event.charactersIgnoringModifiers,
             let number = Int(characters), number > 0,
