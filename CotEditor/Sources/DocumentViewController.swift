@@ -29,7 +29,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, NSMenuItemValidation, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
@@ -164,8 +164,67 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// apply current state to related toolbar items
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch (action, item) {
+        case (#selector(recolorAll), _):
+            return self.syntaxParser?.canParse ?? false
+            
+        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
+            item.state = self.wrapsLines ? .on : .off
+            
+        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
+            item.state = self.wrapsLines ? .on : .off
+            
+        case (#selector(togglePageGuide), let item as StatableToolbarItem):
+            item.state = self.showsPageGuide ? .on : .off
+            
+        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
+            item.state = self.showsInvisibles ? .on : .off
+            
+            // disable button if item cannot be enabled
+            if self.canActivateShowInvisibles {
+                item.toolTip = "Show or hide invisible characters in document".localized
+            } else {
+                item.toolTip = "To show invisible characters, set them in Preferences".localized
+                return false
+            }
+            
+        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
+            item.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
+            let tag: Int = {
+                switch (self.verticalLayoutOrientation, self.writingDirection) {
+                case (true, _):
+                    return 2
+                case (false, .rightToLeft):
+                    return 1
+                default:
+                    return 0
+                }
+            }()
+            item.segmentedControl?.selectSegment(withTag: tag)
+            
+        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
+            let tag = self.verticalLayoutOrientation ? 1 : 0
+            item.segmentedControl?.selectSegment(withTag: tag)
+            
+        default: break
+        }
+        
+        return true
+    }
+    
+    
+    
+    // MARK: Menu Item Validation
+    
     /// validate menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         guard let action = menuItem.action else { return false }
         
@@ -232,62 +291,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
         case #selector(changeTheme):
             menuItem.state = (self.theme?.name == menuItem.title) ? .on : .off
-            
-        default: break
-        }
-        
-        return true
-    }
-    
-    
-    /// apply current state to related toolbar items
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch (action, item) {
-        case (#selector(recolorAll), _):
-            return self.syntaxParser?.canParse ?? false
-            
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(togglePageGuide), let item as StatableToolbarItem):
-            item.state = self.showsPageGuide ? .on : .off
-            
-        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
-            item.state = self.showsInvisibles ? .on : .off
-            
-            // disable button if item cannot be enabled
-            if self.canActivateShowInvisibles {
-                item.toolTip = "Show or hide invisible characters in document".localized
-            } else {
-                item.toolTip = "To show invisible characters, set them in Preferences".localized
-                return false
-            }
-            
-        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
-            item.state = self.isAutoTabExpandEnabled ? .on : .off
-            
-        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
-            let tag: Int = {
-                switch (self.verticalLayoutOrientation, self.writingDirection) {
-                case (true, _):
-                    return 2
-                case (false, .rightToLeft):
-                    return 1
-                default:
-                    return 0
-                }
-            }()
-            item.segmentedControl?.selectSegment(withTag: tag)
-            
-        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
-            let tag = self.verticalLayoutOrientation ? 1 : 0
-            item.segmentedControl?.selectSegment(withTag: tag)
             
         default: break
         }

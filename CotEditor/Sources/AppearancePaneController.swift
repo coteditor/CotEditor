@@ -27,7 +27,7 @@
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -87,8 +87,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     }
     
     
+    
+    // MARK: User Interface Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
@@ -568,7 +571,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
 
 // MARK: - Font Setting
 
-extension AppearancePaneController {
+extension AppearancePaneController: NSFontChanging {
     
     // MARK: View Controller Methods
     
@@ -600,11 +603,11 @@ extension AppearancePaneController {
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
+    @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let fontManager = sender as? NSFontManager else { return }
+        guard let sender = sender else { return }
         
-        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        let newFont = sender.convert(.systemFont(ofSize: 0))
         
         UserDefaults.standard[.fontName] = newFont.fontName
         UserDefaults.standard[.fontSize] = newFont.pointSize

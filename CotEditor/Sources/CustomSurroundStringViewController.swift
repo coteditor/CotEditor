@@ -66,7 +66,7 @@ final class CustomSurroundStringViewController: NSViewController {
 extension CustomSurroundStringViewController: NSTextFieldDelegate {
     
     /// keep setting beginString to the placeholder of endStringField
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         self.endStringField?.placeholderString = self.beginStringField?.stringValue
     }

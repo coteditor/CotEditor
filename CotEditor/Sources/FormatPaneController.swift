@@ -36,7 +36,7 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
 
     // MARK: Private Properties
     
@@ -81,8 +81,11 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     
+    
+    // MARK: Menu Item Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         
@@ -155,7 +158,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         return true
     }
         
-    
     
     
     // MARK: Delegate & Data Source

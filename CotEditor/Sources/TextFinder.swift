@@ -62,7 +62,7 @@ private struct HighlightItem {
 
 // MARK: -
 
-final class TextFinder: NSResponder {
+final class TextFinder: NSResponder, NSMenuItemValidation {
     
     static let shared = TextFinder()
     
@@ -109,10 +109,10 @@ final class TextFinder: NSResponder {
     
     
     
-    // MARK: Responder Methods
+    // MARK: Menu Item Validation
     
     /// validate menu item
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         guard let action = menuItem.action else { return false }
         

@@ -89,7 +89,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     // MARK: Delegate
     
     /// text in text field was changed
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         self.isValid = false
         self.unicodeName = nil

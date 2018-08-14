@@ -104,7 +104,7 @@ final class PrintPaneController: NSViewController {
 
 // MARK: - Font Setting
 
-extension PrintPaneController {
+extension PrintPaneController: NSFontChanging {
     
     // MARK: View Controller Methods
     
@@ -136,11 +136,11 @@ extension PrintPaneController {
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
+    @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let fontManager = sender as? NSFontManager else { return }
+        guard let sender = sender else { return }
         
-        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        let newFont = sender.convert(.systemFont(ofSize: 0))
         
         UserDefaults.standard[.printFontName] = newFont.fontName
         UserDefaults.standard[.printFontSize] = newFont.pointSize

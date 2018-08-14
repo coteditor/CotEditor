@@ -181,7 +181,7 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     
     
     /// text field value did change
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         self.valueDidUpdate(self)
     }

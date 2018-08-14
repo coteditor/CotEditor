@@ -206,7 +206,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // NSTextFieldDelegate  < styleNameField
     
     /// style name did change
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         guard let field = obj.object as? NSTextField, field == self.styleNameField else { return }
         
