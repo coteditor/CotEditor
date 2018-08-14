@@ -29,17 +29,17 @@
 	<key>DTCompiler</key>
 	<string>com.apple.compilers.llvm.clang.1_0</string>
 	<key>DTPlatformBuild</key>
-	<string>10L213o</string>
+	<string>10L232m</string>
 	<key>DTPlatformVersion</key>
 	<string>GM</string>
 	<key>DTSDKBuild</key>
-	<string>18A336d</string>
+	<string>18A361a</string>
 	<key>DTSDKName</key>
 	<string>macosx10.14</string>
 	<key>DTXcode</key>
 	<string>1000</string>
 	<key>DTXcodeBuild</key>
-	<string>10L213o</string>
+	<string>10L232m</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>© 2014-2018 1024jp</string>
 </dict>
