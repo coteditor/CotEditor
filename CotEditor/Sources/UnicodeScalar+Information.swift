@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,6 @@
  */
 
 import Foundation
-import ICU
 
 extension UnicodeScalar {
     
@@ -61,14 +60,7 @@ extension UnicodeScalar {
     }
     
     
-    /// Unicode category name just returned from the ICU function
-    var categoryName: String? {
-        
-        return UTF32Char(self.value).categoryName
-    }
-    
-    
-    /// Unicode block name just returned from the ICU function
+    /// Unicode block name
     var blockName: String? {
         
         return UTF32Char(self.value).blockName
@@ -96,55 +88,41 @@ extension UTF32Char {
     /// get Unicode name
     var unicodeName: String? {
         
+        // get control character name from special table
         if let name = self.controlCharacterName {
             return name
         }
         
-        return self.name(for: U_UNICODE_CHAR_NAME) ?? self.name(for: U_EXTENDED_CHAR_NAME)
-        // -> `U_UNICODE_CHAR_NAME` returns modern Unicode name however it doesn't support surrogate character names.
-        //    `U_EXTENDED_CHAR_NAME` returns lowercase name within angle brackets like "<lead surrogate-D83D>".
-        //    Therefore, we combine `U_UNICODE_CHAR_NAME` and `U_EXTENDED_CHAR_NAME`.
-    }
-    
-    
-    /// Unicode category name just returned from the ICU function
-    var categoryName: String? {
+        // get unicode name from CFStringTransform API
+        if let scalar = Unicode.Scalar(self) {
+            // -> Avoid using `String(scalar).applyingTransform(.toUnicodeName, reverse: false)`
+            //    because it cannot name simple digit number (2018-08 macOS 10.13).
+            let mutable = NSMutableString(string: String(scalar))
+            CFStringTransform(mutable as CFMutableString, nil, "Any-Name" as CFString, false)
+            
+            return mutable
+                .replacingOccurrences(of: "\\N{", with: "")
+                .replacingOccurrences(of: "}", with: "")
+        }
         
-        return self.property(for: UCHAR_GENERAL_CATEGORY)
+        // create single surrogate character by ownself
+        if let codeUnit = UTF16.CodeUnit(exactly: self) {
+            if UTF16.isLeadSurrogate(codeUnit) {
+                return "<lead surrogate-" + String(format: "%04X", self) + ">"
+            }
+            if UTF16.isTrailSurrogate(codeUnit) {
+                return "<tail surrogate-" + String(format: "%04X", self) + ">"
+            }
+        }
+        
+        return nil
     }
     
     
-    /// Unicode block name just returned from the ICU function
+    /// Unicode block name
     var blockName: String? {
         
-        return self.property(for: UCHAR_BLOCK)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// get character name with name type
-    private func name(for type: UCharNameChoice) -> String? {
-        
-        var buffer = [CChar](repeating: 0, count: 128)
-        var error = U_ZERO_ERROR
-        u_charName(UChar32(self), type, &buffer, 128, &error)
-        
-        guard error == U_ZERO_ERROR,
-            let name = String(utf8String: buffer), !name.isEmpty else { return nil }
-        
-        return name
-    }
-    
-    
-    /// get Unicode property for property key
-    private func property(for property: UProperty) -> String? {
-        
-        let prop = u_getIntPropertyValue(UChar32(self), property)
-        guard let name = u_getPropertyValueName(property, prop, U_LONG_PROPERTY_NAME) else { return nil }
-        
-        return String(cString: name).replacingOccurrences(of: "_", with: " ")
+        return UTF32Char.blockNameTable.first { $0.key.contains(self) }?.value
     }
     
 }
@@ -176,14 +154,10 @@ private func testUnicodeBlockNameLocalization(for language: String = "ja") {
     let bundleURL = Bundle.main.url(forResource: language, withExtension: "lproj")!
     let bundle = Bundle(url: bundleURL)
     
-    for index in 0..<UBLOCK_COUNT.rawValue {
-        let blockNameChars = u_getPropertyValueName(UCHAR_BLOCK, index, U_LONG_PROPERTY_NAME)!
+    for blockName in UTF32Char.blockNameTable.values {
+        let sanitizedBlockName = sanitize(blockName: blockName)
+        let localizedBlockName = bundle?.localizedString(forKey: sanitizedBlockName, value: nil, table: "Unicode")
         
-        var blockName = String(cString: blockNameChars).replacingOccurrences(of: "_", with: " ")  // sanitize
-        blockName = sanitize(blockName: blockName)
-        
-        let localizedBlockName = bundle?.localizedString(forKey: blockName, value: nil, table: "Unicode")
-        
-        print((localizedBlockName == blockName) ? "⚠️" : "  ", blockName, localizedBlockName!, separator: "\t")
+        print((localizedBlockName == blockName) ? "⚠️" : "  ", sanitizedBlockName, localizedBlockName!, separator: "\t")
     }
 }

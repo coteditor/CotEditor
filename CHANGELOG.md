@@ -2,6 +2,17 @@
 Change Log
 ==========================
 
+3.5.0 (268)
+--------------------------
+
+### Improvements
+
+- Update Python syntax style for Python 3.7.
+- Update Swift syntax style for Swift 4.2.
+- [dev] Remove dependency on iculibcore.
+
+
+
 3.5.0-rc (266)
 --------------------------
 
