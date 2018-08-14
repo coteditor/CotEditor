@@ -26,7 +26,7 @@
 import Foundation
 import AppKit.NSFont
 
-final class OutlineItem: NSObject {  // cannot be struct just because the outline inspector crashes under OS X 10.11
+struct OutlineItem {
     
     struct Style: OptionSet {
         
@@ -54,18 +54,6 @@ final class OutlineItem: NSObject {  // cannot be struct just because the outlin
     var isSeparator: Bool {
         
         return self.title == .separator
-    }
-    
-}
-
-
-extension OutlineItem {  // : Equatable
-    
-    static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
-        
-        return lhs.range == rhs.range &&
-            lhs.style == rhs.style &&
-            lhs.title == rhs.title
     }
     
 }
