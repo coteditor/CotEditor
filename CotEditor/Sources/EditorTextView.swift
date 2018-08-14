@@ -71,11 +71,11 @@ final class EditorTextView: NSTextView, Themable {
     private var lineHighLightColor: NSColor?
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.highlightInstance() }  // NSTextView cannot be weak
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
     
     private var needsRecompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.performCompletion() }  // NSTextView cannot be weak
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
