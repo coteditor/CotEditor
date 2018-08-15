@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Support Dark Mode in macOS 10.14 Mojave.
+- Add a new theme “Dendrobates (Dark)”.
 
 
 ### Improvements
