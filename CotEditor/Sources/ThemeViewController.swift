@@ -120,21 +120,6 @@ final class ThemeViewController: NSViewController {
     
     
     
-    // MARK: Action Messages
-    
-    /// apply system highlight color to color well
-    @IBAction func applySystemSelectionColor(_ button: NSButton) {
-        
-        guard button.state == .on else { return }
-        
-        let color = NSColor.selectedTextBackgroundColor
-        let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
-        
-        self.theme?[Theme.CodingKeys.selection.rawValue]?[Theme.SelectionStyle.CodingKeys.color.rawValue] = colorCode
-    }
-    
-    
-    
     // MARK: Private Methods
     
     /// notify theme update to delegate
