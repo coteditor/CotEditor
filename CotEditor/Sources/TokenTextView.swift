@@ -36,20 +36,9 @@ final class TokenTextView: NSTextView {
     var tokenizer: Tokenizer?
     var tokenColor: NSColor = .selectedControlColor
     
-    private var appearanceObserver: NSKeyValueObservation?
-    
-    
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.appearanceObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: Text View Methods
     
     override func viewDidMoveToWindow() {
@@ -58,10 +47,15 @@ final class TokenTextView: NSTextView {
         
         // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
         self.textColor = .controlTextColor
+    }
+    
+    
+    @available(macOS 10.14, *)
+    override func viewDidChangeEffectiveAppearance() {
         
-        self.appearanceObserver = self.observe(\.effectiveAppearance, options: [.initial]) { (textView, _) in
-            textView.invalidateTokens()
-        }
+        super.viewDidChangeEffectiveAppearance()
+        
+        self.invalidateTokens()
     }
     
     
