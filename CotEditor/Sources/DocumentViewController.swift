@@ -33,6 +33,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     
     // MARK: Private Properties
     
+    private var appearanceObserver: NSKeyValueObservation?
+    
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
     
@@ -42,6 +44,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     // MARK: Split View Controller Methods
     
     deinit {
+        self.appearanceObserver?.invalidate()
+        
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
     }
     
@@ -74,6 +78,17 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
                                                name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
+        
+        // observe appearance change for theme toggle
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
+            guard
+                self.view.window != nil,
+                let currentThemeName = self.theme?.name,
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, for: self.view.effectiveAppearance.isDark)
+                else { return }
+            
+            self.setTheme(name: themeName)
+        }
     }
     
     
