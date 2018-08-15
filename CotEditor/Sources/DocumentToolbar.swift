@@ -61,15 +61,12 @@ final class DocumentToolbar: NSToolbar {
         guard let contextMenu = self.window?.contentView?.superview?.menu else { return }
         
         // find "Use Small Size" menu item
-        guard let menuItem = contextMenu.items.first(where: {
-            guard let action = $0.action else { return false }
-            return NSStringFromSelector(action) == "toggleUsingSmallToolbarIcons:"
-        }) else { return }
+        guard let menuItem = contextMenu.items.first(where: { $0.action?.string == "toggleUsingSmallToolbarIcons:" }) else { return }
         
         // remove separator
         let index = contextMenu.index(of: menuItem)
-        if contextMenu.item(at: index + 1) == NSMenuItem.separator() {
-            contextMenu.removeItem(at: index + 1)
+        if let item = contextMenu.item(at: index + 1), item.isSeparatorItem {
+            contextMenu.removeItem(item)
         }
         
         // remove item
@@ -84,34 +81,8 @@ final class DocumentToolbar: NSToolbar {
         
         // fallback for removing "Use small size" button in `window(:willPositionSheet:using)`
         if let sheet = self.window?.attachedSheet {
-            sheet.removeSmallSizeButton()
+            sheet.contentView?.removeSmallSizeButton()
         }
-    }
-    
-}
-
-
-
-private extension NSWindow {
-    
-    /// remove "Use small size" button in the toolbar customization sheet
-    func removeSmallSizeButton() {
-        
-        guard let views = self.contentView?.subviews else { return }
-        
-        // From macOS 10.13, the button is placed inside of a NSStackView
-        let subviews = views.flatMap { $0.subviews }
-        
-        let toggleButton: NSButton? = (views + subviews).lazy
-            .compactMap { $0 as? NSButton }
-            .first { button in
-                guard let action = button.action else { return false }
-                
-                return NSStringFromSelector(action) == "toggleUsingSmallToolbarIcons:"
-            }
-        
-        toggleButton?.isHidden = true
-        self.contentView?.needsDisplay = true
     }
     
 }
@@ -124,10 +95,44 @@ extension DocumentWindowController {
     func window(_ window: NSWindow, willPositionSheet sheet: NSWindow, using rect: NSRect) -> NSRect {
         
         if sheet.className == "NSToolbarConfigPanel" {
-            sheet.removeSmallSizeButton()
+            sheet.contentView?.removeSmallSizeButton()
         }
         
         return rect
+    }
+    
+}
+
+
+
+private extension NSView {
+    
+    /// remove "Use small size" button in the toolbar customization sheet
+    func removeSmallSizeButton() {
+        
+        let toggleButton: NSButton? = self.descendants.lazy
+            .compactMap { $0 as? NSButton }
+            .first { $0.action?.string == "toggleUsingSmallToolbarIcons:" }
+        
+        toggleButton?.isHidden = true
+        self.needsDisplay = true
+    }
+    
+    
+    /// find all subviews recursively
+    private var descendants: [NSView] {
+        
+        return self.subviews + self.subviews.flatMap { $0.descendants }
+    }
+    
+}
+
+
+private extension Selector {
+    
+    var string: String {
+        
+        return NSStringFromSelector(self)
     }
     
 }
