@@ -210,7 +210,6 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    
     /// textView was attached to a window
     override func viewDidMoveToWindow() {
         

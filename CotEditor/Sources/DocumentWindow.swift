@@ -61,9 +61,7 @@ final class DocumentWindow: NSWindow {
         // make sure window title bar (incl. toolbar) is opaque
         //   -> It's actucally a bit dirty way but practically works well.
         //      Without this tweak, the title bar will be dyed in the background color on El Capitan. (2016-01 by 1024p)
-        if let windowTitleView = self.standardWindowButton(.closeButton)?.superview {
-            windowTitleView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        }
+        self.titlebarView?.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
         
         // observe toggling Versions browsing
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterVersionBrowserNotification, object: self)
@@ -181,6 +179,18 @@ extension DocumentWindow {
         window.orderFront(nil)
         
         return true
+    }
+    
+}
+
+
+// MARK: -
+
+private extension NSWindow {
+    
+    var titlebarView: NSVisualEffectView? {
+        
+        return self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView
     }
     
 }
