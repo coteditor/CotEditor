@@ -16,6 +16,12 @@ Change Log
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
 
 
+### Known Issues
+
+- [Mojave] Text view stacks under the line number view when zoomed.
+- [Mojave] Titlebar is tinted with theme's background color in Dark Mode.
+
+
 
 3.5.0 (268)
 --------------------------
