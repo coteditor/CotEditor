@@ -792,9 +792,9 @@ final class EditorTextView: NSTextView, Themable {
     /// update font panel to set current font
     override func updateFontPanel() {
         
-        // フォントのみをフォントパネルに渡す
-        // -> super にやらせると、テキストカラーもフォントパネルに送り、フォントパネルがさらにカラーパネル（= カラーコードパネル）にそのテキストカラーを渡すので、
-        // それを断つために自分で渡す
+        // pass only the font to the font panel
+        // -> Because the `super` sends also `self.textColor` to the font panel,
+        //    which delivers the received color to the color (code) panel.
         guard let font = self.font else { return }
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
