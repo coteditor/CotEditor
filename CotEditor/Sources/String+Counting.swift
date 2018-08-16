@@ -63,7 +63,9 @@ extension String {
     
     
     /// count the number of lines in the range
-    func numberOfLines(in range: Range<String.Index>, includingLastLineEnding: Bool) -> Int {
+    func numberOfLines(in range: Range<String.Index>? = nil, includingLastLineEnding: Bool) -> Int {
+        
+        let range = range ?? self.startIndex..<self.endIndex
         
         guard !self.isEmpty, !range.isEmpty else { return 0 }
         
