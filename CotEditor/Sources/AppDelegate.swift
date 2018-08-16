@@ -144,6 +144,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // setup KeyBindingManager
         MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
         
+        // register Help book
+        NSHelpManager.shared.registerBooks(in: Bundle.main)
+        
         // register Services
         NSApp.servicesProvider = ServicesProvider()
         
