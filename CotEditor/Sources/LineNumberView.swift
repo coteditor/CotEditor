@@ -127,7 +127,7 @@ final class LineNumberView: NSRulerView {
             else { return }
         
         let string = textView.string
-        let length = (string as NSString).length
+        let lastCharIndex = (string as NSString).length
         let selectedLineRanges = textView.selectedRanges.map { (string as NSString).lineRange(for: $0.rangeValue) }
         let isVerticalText = self.orientation == .horizontalRuler
         let scale = textView.scale
@@ -136,9 +136,8 @@ final class LineNumberView: NSRulerView {
         context.saveGState()
         
         // setup font
-        let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
-        let masterFontSize = scale * masterFont.pointSize
-        let fontSize = min(round(self.fontSizeFactor * masterFontSize), masterFontSize)
+        let textFont = textView.font ?? NSFont.systemFont(ofSize: 0)
+        let fontSize = (self.fontSizeFactor * scale * textFont.pointSize).round(interval: 0.5)
         let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
         
         context.setFont(self.lineNumberFont)
@@ -156,7 +155,7 @@ final class LineNumberView: NSRulerView {
         let numberPadding = round(0.4 * fontSize)
         let tickLength = round(0.4 * fontSize)
         
-        // adjust thickness
+        // adjust thickness if needed
         let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
         let ruleThickness: CGFloat = isVerticalText
             ? max(fontSize + 2.5 * tickLength, self.minHorizontalThickness)
@@ -169,12 +168,12 @@ final class LineNumberView: NSRulerView {
         context.textMatrix = {
             let relativePoint = self.convert(NSPoint.zero, from: textView)
             let inset = textView.textContainerOrigin.scaled(to: scale)
-            let masterAscent = scale * masterFont.ascender
+            let ascent = scale * textFont.ascender
             let flip = CGAffineTransform(scaleX: 1.0, y: -1.0)
             
             return isVerticalText
-                ? flip.translatedBy(x: round(relativePoint.x - inset.y - masterAscent), y: -ruleThickness)
-                : flip.translatedBy(x: ruleThickness - numberPadding, y: -relativePoint.y - inset.y - masterAscent)
+                ? flip.translatedBy(x: round(relativePoint.x - inset.y - ascent), y: -self.ruleThickness)
+                : flip.translatedBy(x: self.ruleThickness - numberPadding, y: -relativePoint.y - inset.y - ascent)
         }()
         
         /// draw line number block
@@ -185,11 +184,11 @@ final class LineNumberView: NSRulerView {
             // calculate base position
             let basePosition: CGPoint = isVerticalText
                 ? CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
-                : CGPoint(x: -charWidth, y: y)
+                : CGPoint(x: 0, y: y)
             
             // get glyphs and positions
             let positions: [CGPoint] = (0..<digit)
-                .map { basePosition.offsetBy(dx: -CGFloat($0) * charWidth) }
+                .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * charWidth) }
             let glyphs: [CGGlyph] = (0..<digit)
                 .map { lineNumber.number(at: $0) }
                 .map { digitGlyphs[$0] }
@@ -237,8 +236,8 @@ final class LineNumberView: NSRulerView {
         // draw visible line numbers
         var glyphIndex = glyphRangeToDraw.location
         while glyphIndex < glyphRangeToDraw.upperBound {  // count "real" lines
-            let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(at: charIndex)
+            let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
+            let lineRange = string.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             let isSelected = selectedLineRanges.contains { lineRange.intersection($0) != nil }
             glyphIndex = lineGlyphRange.upperBound
@@ -255,7 +254,7 @@ final class LineNumberView: NSRulerView {
                         drawTick(y: y)
                     }
                     if !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
-                        (lineRange.upperBound == length && layoutManager.extraLineFragmentTextContainer == nil)  // last line for vertical text
+                        (lineRange.upperBound == lastCharIndex && layoutManager.extraLineFragmentTextContainer == nil)  // last line for vertical text
                     {
                         drawLineNumber(lineNumber, y: y, isBold: isSelected)
                     }
@@ -270,10 +269,10 @@ final class LineNumberView: NSRulerView {
         }
         
         // draw the last "extra" line number
-        let lineRect = layoutManager.extraLineFragmentUsedRect
-        if layoutManager.extraLineFragmentTextContainer != nil, lineRect.intersects(textView.visibleRect) {
-            let isSelected = (selectedLineRanges.last == NSRange(location: length, length: 0))
-            let y = scale * -lineRect.minY
+        let extraLineRect = layoutManager.extraLineFragmentUsedRect
+        if !extraLineRect.isEmpty, extraLineRect.intersects(textView.visibleRect) {
+            let isSelected = (selectedLineRanges.last?.location == lastCharIndex)
+            let y = scale * -extraLineRect.minY
             
             if isVerticalText {
                 drawTick(y: y)
@@ -301,10 +300,12 @@ final class LineNumberView: NSRulerView {
     /// remove extra thickness
     override var requiredThickness: CGFloat {
         
-        if self.orientation == .horizontalRuler {
+        switch self.orientation {
+        case .verticalRuler:
+            return max(self.minVerticalThickness, self.ruleThickness)
+        case .horizontalRuler:
             return self.ruleThickness
         }
-        return max(self.minVerticalThickness, self.ruleThickness)
     }
     
     
@@ -357,16 +358,6 @@ final class LineNumberView: NSRulerView {
         
         // redraw visible area
         self.setNeedsDisplay(self.visibleRect)
-    }
-    
-}
-
-
-private extension NSTextView {
-    
-    var numberOfLines: Int {
-        
-        return self.string.numberOfLines(includingLastLineEnding: true)
     }
     
 }
@@ -430,6 +421,16 @@ private enum LineNumberFont {
 
 // MARK: Private Helper Extensions
 
+private extension NSTextView {
+    
+    var numberOfLines: Int {
+        
+        return self.string.numberOfLines(includingLastLineEnding: true)
+    }
+    
+}
+
+
 private extension Int {
     
     /// number of digits
@@ -447,6 +448,15 @@ private extension Int {
         return ((self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
     }
     
+}
+
+
+private extension FloatingPoint {
+    
+    func round(interval: Self) -> Self {
+        
+        return (self / interval).rounded() * interval
+    }
 }
 
 
