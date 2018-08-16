@@ -97,7 +97,7 @@ final class DocumentWindow: NSWindow {
         
         // manually update the Japanese menu item title for toolbar visibility toggle
         // since it doesn't work on macOS 10.12 and earlier (2018-05).
-        if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue,
+        if NSAppKitVersion.current < .macOS10_13,
             menuItem.action == #selector(toggleToolbarShown),
             Locale.preferredLanguages.first == "ja",
             let toolbar = self.toolbar

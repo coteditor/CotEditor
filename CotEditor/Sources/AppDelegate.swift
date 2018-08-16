@@ -115,7 +115,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // manually insert Share menu on macOS 10.12 and earlier
-        if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
+        if NSAppKitVersion.current < .macOS10_13 {
             (DocumentController.shared as? DocumentController)?.insertLegacyShareMenu()
         }
         
