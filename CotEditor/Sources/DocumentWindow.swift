@@ -58,10 +58,8 @@ final class DocumentWindow: NSWindow {
         
         super.init(contentRect: contentRect, styleMask: style, backing: bufferingType, defer: flag)
         
-        // make sure window title bar (incl. toolbar) is opaque
-        //   -> It's actucally a bit dirty way but practically works well.
-        //      Without this tweak, the title bar will be dyed in the background color on El Capitan. (2016-01 by 1024p)
-        self.titlebarView?.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+        self.titlebarView?.wantsLayer = true
+        self.invalidateTitlebarOpacity()
         
         // observe toggling Versions browsing
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterVersionBrowserNotification, object: self)
@@ -88,6 +86,8 @@ final class DocumentWindow: NSWindow {
         
         didSet {
             super.backgroundColor = backgroundColor?.withAlphaComponent(self.backgroundAlpha)
+            
+            self.invalidateTitlebarOpacity()
         }
     }
     
@@ -127,6 +127,18 @@ final class DocumentWindow: NSWindow {
             self.backgroundAlpha = backgroundAlpha
             self.storedBackgroundAlpha = nil
         }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// make sure window title bar (incl. toolbar) is opaque
+    private func invalidateTitlebarOpacity() {
+        
+        //   -> It's actucally a bit dirty way but practically works well.
+        //      Without this tweak, the title bar will be dyed in the window background color since El Capitan. (2016-01 by 1024p)
+        self.titlebarView?.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
     }
 
 }
