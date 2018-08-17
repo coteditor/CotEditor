@@ -15,6 +15,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __OS X 10.12.2 Sierra and later__.
+- [trivial] Optimize the performance of line number drawing.
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
 
 

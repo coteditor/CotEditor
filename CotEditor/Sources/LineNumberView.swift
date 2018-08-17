@@ -29,15 +29,61 @@ import CoreText
 
 final class LineNumberView: NSRulerView {
     
+    private struct DrawingInfo {
+        
+        let fontSize: CGFloat
+        let charWidth: CGFloat
+        let ascent: CGFloat
+        let wrappedMarkGlyph: CGGlyph
+        let digitGlyphs: [CGGlyph]
+        let padding: CGFloat
+        let tickLength: CGFloat
+        
+        private let textFont: NSFont
+        private let scale: CGFloat
+        
+        
+        init(textFont: NSFont, scale: CGFloat) {
+            
+            self.textFont = textFont
+            self.scale = scale
+            
+            // calculate font size for number
+            self.fontSize = (LineNumberView.fontSizeFactor * scale * textFont.pointSize).round(interval: 0.5)
+            self.ascent = scale * textFont.ascender
+            
+            // prepare glyphs
+            let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
+            self.wrappedMarkGlyph = font.glyph(for: "-".utf16.first!)
+            self.digitGlyphs = (0...9).map { font.glyph(for: String($0).utf16.first!) }
+            
+            // calculate character width assuming the font is monospace
+            self.charWidth = font.advance(for: self.digitGlyphs[8]).width
+            
+            // calculate margins
+            self.padding = ceil(self.charWidth)
+            self.tickLength = ceil(self.charWidth)
+        }
+        
+        
+        func isSameSource(textFont: NSFont, scale: CGFloat) -> Bool {
+            
+            return (self.textFont == textFont) && (self.scale == scale)
+        }
+        
+    }
+    
+    
+    
     // MARK: Constants
     
     private let minNumberOfDigits = 3
     private let minVerticalThickness: CGFloat = 32.0
     private let minHorizontalThickness: CGFloat = 20.0
-    private let fontSizeFactor: CGFloat = 0.9
     
-    private let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
-    private let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
+    private static let fontSizeFactor: CGFloat = 0.9
+    private static let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
+    private static let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
     
     private enum ColorStrength: CGFloat {
         case normal = 0.75
@@ -49,6 +95,7 @@ final class LineNumberView: NSRulerView {
     // MARK: Private Properties
     
     private lazy var numberOfLines = self.textView?.numberOfLines ?? 0
+    private var drawingInfo: DrawingInfo?
     
     private weak var draggingTimer: Timer?
     
@@ -90,6 +137,41 @@ final class LineNumberView: NSRulerView {
     }
     
     
+    /// prepare line number drawing
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        guard
+            let textFont = self.textView?.font,
+            let scale = self.textView?.scale
+            else { return }
+        
+        let drawingInfo: DrawingInfo
+        if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
+            drawingInfo = lastDrawingInfo
+        } else {
+            // -> update drawing info only when needed
+            drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
+            self.drawingInfo = drawingInfo
+        }
+        
+        // adjust thickness if needed
+        let ruleThickness: CGFloat = {
+            switch self.orientation {
+            case .verticalRuler:
+                let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                return max(CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 3 * drawingInfo.padding, self.minVerticalThickness)
+            case .horizontalRuler:
+                return max(drawingInfo.fontSize + 2.5 * drawingInfo.tickLength, self.minHorizontalThickness)
+            }
+        }()
+        if ceil(ruleThickness) != self.ruleThickness {
+            self.ruleThickness = ceil(ruleThickness)
+        }
+    }
+    
+    
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
@@ -120,6 +202,7 @@ final class LineNumberView: NSRulerView {
     override func drawHashMarksAndLabels(in rect: NSRect) {
         
         guard
+            let drawingInfo = self.drawingInfo,
             let textView = self.textView,
             let layoutManager = textView.layoutManager,
             let textContainer = textView.textContainer,
@@ -132,48 +215,21 @@ final class LineNumberView: NSRulerView {
         let isVerticalText = self.orientation == .horizontalRuler
         let scale = textView.scale
         
-        // save graphics context
         context.saveGState()
         
-        // setup font
-        let textFont = textView.font ?? NSFont.systemFont(ofSize: 0)
-        let fontSize = (self.fontSizeFactor * scale * textFont.pointSize).round(interval: 0.5)
-        let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
-        
-        context.setFont(self.lineNumberFont)
-        context.setFontSize(fontSize)
+        context.setFont(LineNumberView.lineNumberFont)
+        context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.textColor().cgColor)
-        
-        // prepare glyphs
-        let wrappedMarkGlyph: CGGlyph = font.glyph(for: "-".utf16.first!)
-        let digitGlyphs: [CGGlyph] = (0...9).map { font.glyph(for: String($0).utf16.first!) }
-        
-        // calculate character width assuming the font is monospace
-        let charWidth: CGFloat = font.advance(for: digitGlyphs[8]).width
-        
-        // prepare frame width
-        let numberPadding = round(0.4 * fontSize)
-        let tickLength = round(0.4 * fontSize)
-        
-        // adjust thickness if needed
-        let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
-        let ruleThickness: CGFloat = isVerticalText
-            ? max(fontSize + 2.5 * tickLength, self.minHorizontalThickness)
-            : max(CGFloat(requiredNumberOfDigits) * charWidth + 3 * numberPadding, self.minVerticalThickness)
-        if ceil(ruleThickness) != self.ruleThickness {
-            self.ruleThickness = ceil(ruleThickness)
-        }
         
         // adjust text drawing coordinate
         context.textMatrix = {
             let relativePoint = self.convert(NSPoint.zero, from: textView)
             let inset = textView.textContainerOrigin.scaled(to: scale)
-            let ascent = scale * textFont.ascender
             let flip = CGAffineTransform(scaleX: 1.0, y: -1.0)
             
             return isVerticalText
-                ? flip.translatedBy(x: round(relativePoint.x - inset.y - ascent), y: -self.ruleThickness)
-                : flip.translatedBy(x: self.ruleThickness - numberPadding, y: -relativePoint.y - inset.y - ascent)
+                ? flip.translatedBy(x: round(relativePoint.x - inset.y - drawingInfo.ascent), y: -self.ruleThickness)
+                : flip.translatedBy(x: self.ruleThickness, y: -relativePoint.y - inset.y - drawingInfo.ascent)
         }()
         
         /// draw line number block
@@ -183,19 +239,19 @@ final class LineNumberView: NSRulerView {
             
             // calculate base position
             let basePosition: CGPoint = isVerticalText
-                ? CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
-                : CGPoint(x: 0, y: y)
+                ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
+                : CGPoint(x: -drawingInfo.padding, y: y)
             
             // get glyphs and positions
             let positions: [CGPoint] = (0..<digit)
-                .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * charWidth) }
+                .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
             let glyphs: [CGGlyph] = (0..<digit)
                 .map { lineNumber.number(at: $0) }
-                .map { digitGlyphs[$0] }
+                .map { drawingInfo.digitGlyphs[$0] }
             
             if isBold {
                 context.setFillColor(self.textColor(.bold).cgColor)
-                context.setFont(self.boldLineNumberFont)
+                context.setFont(LineNumberView.boldLineNumberFont)
             }
             
             // draw
@@ -204,22 +260,22 @@ final class LineNumberView: NSRulerView {
             if isBold {
                 // restore the regular font
                 context.setFillColor(self.textColor().cgColor)
-                context.setFont(self.lineNumberFont)
+                context.setFont(LineNumberView.lineNumberFont)
             }
         }
         
         /// draw wrapped mark (-)
         func drawWrappedMark(y: CGFloat) {
             
-            let position = CGPoint(x: -charWidth, y: y)
+            let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
             
-            context.showGlyphs([wrappedMarkGlyph], at: [position])
+            context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
         }
         
         /// draw ticks block for vertical text
         func drawTick(y: CGFloat) {
             
-            let rect = CGRect(x: round(y), y: 1, width: 1, height: tickLength)
+            let rect = CGRect(x: round(y), y: 1, width: 1, height: drawingInfo.tickLength)
             let tick = CGPath(rect: rect, transform: &context.textMatrix)
             
             context.addPath(tick)
