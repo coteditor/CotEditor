@@ -38,7 +38,7 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
 // MARK: -
 
-final class EditorTextView: NSTextView, Themable {
+final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     // MARK: Notification Names
     
@@ -53,7 +53,9 @@ final class EditorTextView: NSTextView, Themable {
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var lineHighlightRect: NSRect?
+    var needsUpdateLineHighlight = true
+    var lineHighLightRect: NSRect?
+    private(set) var lineHighLightColor: NSColor?
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -67,8 +69,6 @@ final class EditorTextView: NSTextView, Themable {
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
-    
-    private var lineHighLightColor: NSColor?
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
@@ -95,6 +95,7 @@ final class EditorTextView: NSTextView, Themable {
         .fontSize,
         .shouldAntialias,
         .lineHeight,
+        .highlightCurrentLine,
         .highlightSelectionInstance,
         .overscrollRate,
         ]
@@ -250,6 +251,15 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// view did change frame
+    override func setFrameSize(_ newSize: NSSize) {
+        
+        super.setFrameSize(newSize)
+        
+        self.needsUpdateLineHighlight = true
+    }
+    
+    
     /// key is pressed
     override func keyDown(with event: NSEvent) {
         
@@ -271,6 +281,8 @@ final class EditorTextView: NSTextView, Themable {
     override func didChangeText() {
         
         super.didChangeText()
+        
+        self.needsUpdateLineHighlight = true
         
         // retry completion if needed
         //   -> Flag is set in `insertCompletion:forPartialWordRange:movement:isFinal:`
@@ -509,6 +521,8 @@ final class EditorTextView: NSTextView, Themable {
     /// selection did change
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
+        self.needsUpdateLineHighlight = true
+        
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
         
         // highlight matching brace
@@ -635,16 +649,8 @@ final class EditorTextView: NSTextView, Themable {
         super.drawBackground(in: rect)
         
         // draw current line highlight
-        if let highlightColor = self.lineHighLightColor,
-            let highlightRect = self.lineHighlightRect,
-            rect.intersects(highlightRect)
-        {
-            NSGraphicsContext.saveGraphicsState()
-            
-            highlightColor.setFill()
-            highlightRect.fill()
-            
-            NSGraphicsContext.restoreGraphicsState()
+        if UserDefaults.standard[.highlightCurrentLine] {
+            self.drawCurrentLine(in: rect)
         }
         
         self.drawRoundedBackground(in: rect)
@@ -877,6 +883,9 @@ final class EditorTextView: NSTextView, Themable {
             } else {
                 (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
+            
+        case DefaultKeys.highlightCurrentLine.rawValue:
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
         case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)

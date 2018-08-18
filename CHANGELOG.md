@@ -19,6 +19,11 @@ Change Log
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
 
 
+### Fixes
+
+- Fix an issue where the current line highlight could blink while pinch zoom.
+
+
 ### Known Issues
 
 - [Mojave] Text view stacks under the line number view when zoomed.

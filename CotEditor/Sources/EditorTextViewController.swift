@@ -58,11 +58,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         return self.scrollView?.documentView as? EditorTextView
     }
-    
-    
-    // MARK: Private Properties
-    
-    private lazy var currentLineUpdateTask = Debouncer(delay: .milliseconds(10)) { [weak self] in self?.updateCurrentLineRect() }
 
     
     
@@ -70,49 +65,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.highlightCurrentLine.rawValue)
-        
         // detach textStorage safely
         if let layoutManager = self.textView?.layoutManager {
             self.textView?.textStorage?.removeLayoutManager(layoutManager)
-        }
-    }
-    
-    
-    
-    // MARK: View Controller Methods
-    
-    /// initialize instance
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.highlightCurrentLine.rawValue, options: .new, context: nil)
-        
-        // update current line highlight on changing frame size with a delay
-        NotificationCenter.default.addObserver(self, selector: #selector(setupCurrentLineUpdateTimer), name: NSView.frameDidChangeNotification, object: self.textView)
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == DefaultKeys.highlightCurrentLine.rawValue {
-            if (change?[NSKeyValueChangeKey.newKey] as? Bool) ?? false {
-                self.setupCurrentLineUpdateTimer()
-                
-            } else {
-                guard let textView = self.textView else { return }
-                
-                let rect = textView.lineHighlightRect
-                textView.lineHighlightRect = .zero
-                if let rect = rect {
-                    textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
-                }
-            }
         }
     }
     
@@ -155,31 +110,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// the selection of main textView was changed.
-    func textViewDidChangeSelection(_ notification: Notification) {
-        
-        guard let textView = notification.object as? NSTextView else { return }
-        
-        // only on focused editor
-        guard
-            let layoutManager = textView.layoutManager,
-            let window = textView.window,
-            layoutManager.layoutManagerOwnsFirstResponder(in: window) else { return }
-        
-        // highlight the current line
-        // -> For the selection change, call `updateCurrentLineRect` directly rather than setting currentLineUpdateTimer
-        //    in order to provide a quick feedback of change to users.
-        self.currentLineUpdateTask.perform()
-    }
-    
-    
-    /// font is changed
-    func textViewDidChangeTypingAttributes(_ notification: Notification) {
-        
-        self.setupCurrentLineUpdateTimer()
-    }
-    
-    
     
     // MARK: Action Messages
     
@@ -205,49 +135,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     private var scrollView: NSScrollView? {
         
         return self.view as? NSScrollView
-    }
-    
-    
-    /// set update timer for current line highlight calculation
-    @objc private func setupCurrentLineUpdateTimer() {
-        
-        guard UserDefaults.standard[.highlightCurrentLine] else { return }
-        
-        self.currentLineUpdateTask.schedule()
-    }
-    
-    
-    /// update current line highlight area
-    private func updateCurrentLineRect() {
-        
-        // [note] Don't invoke this method too often but with a currentLineUpdateTimer because this is a heavy task.
-        
-        guard
-            UserDefaults.standard[.highlightCurrentLine],
-            let textView = self.textView,
-            let textContainer = textView.textContainer
-             else { return }
-        
-        // calculate current line rect
-        let lineRange = (textView.string as NSString).lineRange(for: textView.selectedRange, excludingLastLineEnding: true)
-        
-        textView.layoutManager?.ensureLayout(for: textContainer)  // avoid blinking on textView's dynamic bounds change
-        
-        guard var rect = textView.boundingRect(for: lineRange) else { return }
-        
-        rect.origin.x = textContainer.lineFragmentPadding
-        rect.size.width = textContainer.size.width - 2 * textContainer.lineFragmentPadding
-        
-        guard textView.lineHighlightRect != rect else { return }
-        
-        // clear previous highlight
-        if let lineHighlightRect = textView.lineHighlightRect {
-            textView.setNeedsDisplay(lineHighlightRect, avoidAdditionalLayout: true)
-        }
-        
-        // draw highlight
-        textView.lineHighlightRect = rect
-        textView.setNeedsDisplay(rect, avoidAdditionalLayout: true)
     }
     
 }
