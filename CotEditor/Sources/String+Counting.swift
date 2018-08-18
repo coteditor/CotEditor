@@ -30,15 +30,8 @@ extension String {
     /// number of words in the whole string
     var numberOfWords: Int {
         
-        guard !self.isEmpty else { return 0 }
-        
-        let range = CFRange(location: 0, length: CFStringGetLength(self as CFString))
-        let locale = CFLocaleCopyCurrent()
-        
-        guard let tokenizer = CFStringTokenizerCreate(nil, self as CFString, range, kCFStringTokenizerUnitWord, locale) else { return 0 }
-        
         var count = 0
-        while !CFStringTokenizerAdvanceToNextToken(tokenizer).isEmpty {
+        self.enumerateSubstrings(in: self.startIndex..<self.endIndex, options: [.byWords, .localized, .substringNotRequired]) { (_, _, _, _) in
             count += 1
         }
         
