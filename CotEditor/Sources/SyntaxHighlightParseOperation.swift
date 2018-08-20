@@ -63,6 +63,8 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         var blockCommentDelimiters: Pair<String>?
     }
     
+    typealias HighlightBlock = (_ highlights: [SyntaxType: [NSRange]], _ completionHandler: @escaping () -> Void) -> Void
+    
     
     
     // MARK: Public Properties
@@ -75,14 +77,14 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     
     private let definition: ParseDefinition
     private let parseRange: NSRange
-    private let highlightBlock: ([SyntaxType: [NSRange]]) -> Void
+    private let highlightBlock: HighlightBlock
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definition: ParseDefinition, string: String, range parseRange: NSRange, highlightBlock: @escaping ([SyntaxType: [NSRange]]) -> Void = { _ in }) {
+    required init(definition: ParseDefinition, string: String, range parseRange: NSRange, highlightBlock: @escaping HighlightBlock) {
         
         self.definition = definition
         self.string = string
@@ -120,9 +122,10 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         
         self.progress.localizedDescription = "Applying colors to text".localized
         
-        self.highlightBlock(results)
-        
-        self.progress.completedUnitCount += 1
+        let progress = self.progress
+        self.highlightBlock(results) {
+            progress.completedUnitCount += 1
+        }
     }
     
     

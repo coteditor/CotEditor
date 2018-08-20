@@ -273,19 +273,20 @@ extension SyntaxParser {
                                                                        inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                                        blockCommentDelimiters: self.style.blockCommentDelimiters)
         
-        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange, highlightBlock: { [weak self] (highlights) in
-            guard let strongSelf = self else { return }
+        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange, highlightBlock: { [weak self] (highlights, completionHandler) in
             
             // cache result if whole text was parsed
             if highlightRange.length == string.utf16.count {
-                strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
+                self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
             DispatchQueue.main.async {
                 // give up if the editor's string is changed from the analized string
-                guard strongSelf.textStorage.string == string else { return }
+                guard self?.textStorage.string == string else { return }
                 
-                strongSelf.apply(highlights: highlights, range: highlightRange)
+                self?.apply(highlights: highlights, range: highlightRange)
+                
+                completionHandler()
             }
         })
         

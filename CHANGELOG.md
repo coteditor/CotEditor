@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the font buttton in the toolbar did not work.
+- Address an issue where the application could rarely crash during syntax highlighting. 
 
 
 3.5.0 (268)
