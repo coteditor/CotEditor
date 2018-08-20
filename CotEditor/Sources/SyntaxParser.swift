@@ -298,16 +298,6 @@ extension SyntaxParser {
     }
     
     
-    /// whether need to display highlighting indicator
-    private func shouldShowIndicator(for highlightLength: Int) -> Bool {
-        
-        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
-        
-        // do not show indicator if threshold is 0
-        return threshold > 0 && highlightLength > threshold
-    }
-    
-    
     /// apply highlights to the document
     private func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
         
