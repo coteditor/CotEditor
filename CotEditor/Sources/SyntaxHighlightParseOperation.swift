@@ -72,24 +72,24 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     let string: String
     let progress: Progress  // can be updated from a background thread
     
+    private(set) var highlights: [SyntaxType: [NSRange]]?
+    
     
     // MARK: Private Properties
     
     private let definition: ParseDefinition
     private let parseRange: NSRange
-    private let highlightBlock: HighlightBlock
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definition: ParseDefinition, string: String, range parseRange: NSRange, highlightBlock: @escaping HighlightBlock) {
+    required init(definition: ParseDefinition, string: String, range parseRange: NSRange) {
         
         self.definition = definition
         self.string = string
         self.parseRange = parseRange
-        self.highlightBlock = highlightBlock
         
         // +1 for extractCommentsWithQuotes()
         // +1 for highlighting
@@ -116,16 +116,11 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
         
-        let results = self.extractHighlights()
+        self.highlights = self.extractHighlights()
         
         guard !self.isCancelled else { return }
         
         self.progress.localizedDescription = "Applying colors to text".localized
-        
-        let progress = self.progress
-        self.highlightBlock(results) {
-            progress.completedUnitCount += 1
-        }
     }
     
     
