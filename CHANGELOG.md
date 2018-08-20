@@ -2,6 +2,14 @@
 Change Log
 ==========================
 
+3.5.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the font buttton in the toolbar did not work.
+
+
 3.5.0 (268)
 --------------------------
 
