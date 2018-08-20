@@ -321,10 +321,14 @@ extension SyntaxParser {
             for type in SyntaxType.allCases {
                 guard let ranges = highlights[type], !ranges.isEmpty else { continue }
                 
-                let color = theme.style(for: type)?.color ?? theme.text.color
-                
-                for range in ranges {
-                    layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                if let color = theme.style(for: type)?.color {
+                    for range in ranges {
+                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                    }
+                } else {
+                    for range in ranges {
+                        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                    }
                 }
             }
         }
