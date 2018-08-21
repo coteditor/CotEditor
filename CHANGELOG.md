@@ -31,12 +31,14 @@ Change Log
 
 
 
-3.5.0 (unreleased)
+3.5.1 (unreleased)
 --------------------------
 
 ### Fixes
 
-- Fix an issue where the font buttton in the toolbar did not work.
+- Fix an issue where the font button in the toolbar did not work.
+- Address an issue where the application could rarely crash during syntax highlighting. 
+
 
 
 
