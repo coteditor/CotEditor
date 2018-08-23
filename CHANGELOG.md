@@ -34,8 +34,14 @@ Change Log
 3.5.1 (unreleased)
 --------------------------
 
+### Improvements
+
+- Change the find behavior of the simple Find/Replace command with “In selection” option to find a match only in the selection.
+
+
 ### Fixes
 
+- Fix an issue where the initial window size could be easily forgotten.
 - Fix an issue where the font button in the toolbar did not work.
 - Address an issue where the application could rarely crash during syntax highlighting. 
 

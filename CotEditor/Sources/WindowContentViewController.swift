@@ -49,10 +49,9 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
         self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         
-        if UserDefaults.standard[.sidebarWidth] >= 100 {
-            self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
-        }
-        self.isSidebarShown = UserDefaults.standard[.showInspector]
+        // apply user's preference manually (2018-08 macOS 10.13)
+        // -> Because the framework's autosave implementation doesn't work with autolayout.
+        self.restoreAutosavePositions()
         
         self.sidebarViewController?.delegate = self
     }
@@ -79,20 +78,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         didSet {
             for viewController in self.children {
                 viewController.representedObject = representedObject
-            }
-        }
-    }
-    
-    
-    /// divider position did change
-    override func splitViewDidResizeSubviews(_ notification: Notification) {
-        
-        super.splitViewDidResizeSubviews(notification)
-        
-        if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
-            // store current sidebar width
-            if self.isSidebarShown {
-                UserDefaults.standard[.sidebarWidth] = self.sidebarThickness
             }
         }
     }
@@ -247,8 +232,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                     $0.sidebarViewItem?.isCollapsed = !newValue
                     $0.sidebarThickness = self.sidebarThickness
                 }
-            
-            UserDefaults.standard[.showInspector] = newValue
         }
     }
     

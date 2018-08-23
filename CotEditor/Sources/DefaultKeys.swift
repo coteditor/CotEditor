@@ -158,9 +158,7 @@ extension DefaultKeys {
     // settings that are not in preferences
     static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
-    static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
-    static let showInspector = DefaultKey<Bool>("showInspector")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     
     // hidden settings
