@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the initial window size could be easily forgotten.
 - Fix an issue where the font button in the toolbar did not work.
 - Address an issue where the application could rarely crash during syntax highlighting. 
 
