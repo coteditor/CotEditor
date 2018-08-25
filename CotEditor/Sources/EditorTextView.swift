@@ -1326,6 +1326,7 @@ final class EditorTextView: NSTextView, Themable {
         
         guard
             !self.string.isEmpty,  // important to avoid crash after closing editor
+            !self.hasMarkedText(),
             self.selectedRanges.count == 1,
             self.selectedRange.length > 0,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))

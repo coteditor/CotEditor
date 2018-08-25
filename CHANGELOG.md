@@ -14,7 +14,8 @@ Change Log
 
 - Fix an issue where the initial window size could be easily forgotten.
 - Fix an issue where the font button in the toolbar did not work.
-- Address an issue where the application could rarely crash during syntax highlighting. 
+- Fix an issue where the inputting text that is not finalized yet could be wrongly highlighted.
+- Address an issue where the application could rarely crash during syntax highlighting.
 
 
 
