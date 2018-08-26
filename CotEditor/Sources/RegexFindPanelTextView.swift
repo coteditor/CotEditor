@@ -138,15 +138,16 @@ private extension RegularExpressionSyntaxType {
     
     var color: NSColor {
         
-        if NSAppearance.current.isDark {
-            switch self {
-            case .character: return #colorLiteral(red: 0.42, green: 0.6253333334, blue: 0.7, alpha: 1)
-            case .backReference: return #colorLiteral(red: 0.95, green: 0.4275, blue: 0.7835542928, alpha: 1)
-            case .symbol: return #colorLiteral(red: 0.95, green: 0.4657596189, blue: 0.4275, alpha: 1)
-            case .quantifier: return #colorLiteral(red: 0.6903386985, green: 0.2975, blue: 0.85, alpha: 1)
-            case .anchor: return #colorLiteral(red: 0.6179318257, green: 0.7, blue: 0.42, alpha: 1)
-            }
-        }
+        guard #available(macOS 10.13, *) else { return self.literalColor }
+        
+        return NSColor(named: self.colorName)!
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private var literalColor: NSColor {
         
         switch self {
         case .character: return #colorLiteral(red: 0.1176470596, green: 0.4011936392, blue: 0.5, alpha: 1)
@@ -155,6 +156,22 @@ private extension RegularExpressionSyntaxType {
         case .quantifier: return #colorLiteral(red: 0.4634826636, green: 0, blue: 0.6518557685, alpha: 1)
         case .anchor: return #colorLiteral(red: 0.3934386824, green: 0.5045222784, blue: 0.1255275325, alpha: 1)
         }
+    }
+    
+    
+    private var colorName: NSColor.Name {
+        
+        let name: String = {
+            switch self {
+            case .character: return "Character"
+            case .backReference: return "BackReference"
+            case .symbol: return "Symbol"
+            case .quantifier: return "Quantifier"
+            case .anchor: return "Anchor"
+            }
+        }()
+        
+        return "RegexColor/" + name
     }
     
 }
