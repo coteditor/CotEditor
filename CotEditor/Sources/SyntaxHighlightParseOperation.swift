@@ -63,8 +63,6 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         var blockCommentDelimiters: Pair<String>?
     }
     
-    typealias HighlightBlock = (_ highlights: [SyntaxType: [NSRange]], _ completionHandler: @escaping () -> Void) -> Void
-    
     
     
     // MARK: Public Properties
