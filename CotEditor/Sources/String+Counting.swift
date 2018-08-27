@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension String {
+extension StringProtocol where Self.Index == String.Index {
     
     /// number of words in the whole string
     var numberOfWords: Int {
@@ -46,12 +46,12 @@ extension String {
     }
     
     
-    /// count the number of lines in the range
-    func numberOfLines(in range: NSRange, includingLastLineEnding: Bool) -> Int {
+    /// count the number of lines at the character index (1-based).
+    func lineNumber(at index: Self.Index) -> Int {
         
-        guard let characterRange = Range(range, in: self) else { return 0 }
+        guard !self.isEmpty, index > self.startIndex else { return 1 }
         
-        return self.numberOfLines(in: characterRange, includingLastLineEnding: includingLastLineEnding)
+        return self.numberOfLines(in: self.startIndex..<index, includingLastLineEnding: true)
     }
     
     
@@ -77,13 +77,29 @@ extension String {
         return count
     }
     
+}
+
+
+
+// MARK: NSRange based
+
+extension String {
     
     /// count the number of lines at the character index (1-based).
     func lineNumber(at location: Int) -> Int {
         
         guard !self.isEmpty, location > 0 else { return 1 }
         
-        return self.numberOfLines(in: NSRange(location: 0, length: location), includingLastLineEnding: true)
+        return self.numberOfLines(in: NSRange(0..<location), includingLastLineEnding: true)
+    }
+    
+    
+    /// count the number of lines in the range
+    private func numberOfLines(in range: NSRange, includingLastLineEnding: Bool) -> Int {
+        
+        guard let characterRange = Range(range, in: self) else { return 0 }
+        
+        return self.numberOfLines(in: characterRange, includingLastLineEnding: includingLastLineEnding)
     }
     
 }

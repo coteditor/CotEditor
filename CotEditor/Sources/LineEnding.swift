@@ -89,7 +89,7 @@ enum LineEnding: Character {
 
 // MARK: -
 
-extension String {
+extension StringProtocol where Self.Index == String.Index {
     
     /// return the first line ending type
     var detectedLineEnding: LineEnding? {
@@ -115,10 +115,9 @@ extension String {
     /// replace all kind of line ending characters in the string with the desired line ending.
     func replacingLineEndings(with lineEnding: LineEnding?) -> String {
         
-        let regex = try! NSRegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
         let template = lineEnding?.string ?? ""
         
-        return regex.stringByReplacingMatches(in: self, range: self.nsRange, withTemplate: template)
+        return self.replacingOccurrences(of: "\\r\\n|[\\n\\r\\u2028\\u2029]", with: template, options: .regularExpression)
     }
     
     

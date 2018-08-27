@@ -167,8 +167,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: dirtyRect, in: textContainer)
             
             // count up lines until visible
-            let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-            var lineNumber = max(self.string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
+            let firstVisibleIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
+            var lineNumber = self.string.lineNumber(at: firstVisibleIndex)
             
             // draw visible line numbers
             var glyphCount = glyphRangeToDraw.location
