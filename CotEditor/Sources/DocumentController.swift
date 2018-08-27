@@ -213,9 +213,7 @@ final class DocumentController: NSDocumentController {
     /// return enability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        if action == #selector(newDocumentAsTab) {
+        if item.action == #selector(newDocumentAsTab) {
             return self.currentDocument != nil
         }
         
