@@ -381,7 +381,7 @@ final class SyntaxManager: SettingFileManaging {
 
 
 
-private extension String {
+private extension StringProtocol where Self.Index == String.Index {
     
     /// try extracting used language from the shebang line
     func scanInterpreterInShebang() -> String? {
