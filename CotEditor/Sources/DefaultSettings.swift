@@ -167,9 +167,7 @@ struct DefaultSettings {
         
         // ------ settings not in preferences window ------
         .colorCodeType: 1,
-        .sidebarWidth: 220,
         .recentStyleNames: [],
-        .showInspector: false,
         .showStatusBar: true,
         
         // ------ hidden settings ------

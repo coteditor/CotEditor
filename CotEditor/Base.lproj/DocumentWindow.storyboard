@@ -299,7 +299,7 @@
                                         </buttonCell>
                                     </button>
                                     <connections>
-                                        <action selector="showFonts:" target="klO-m3-n5X" id="sW8-Ak-nDz"/>
+                                        <action selector="orderFrontFontPanel:" target="klO-m3-n5X" id="HgO-2f-tFX"/>
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="E5B2DEA8-CA7E-42D7-A457-2F480BEF9D16" label="Find" paletteLabel="Find" toolTip="Show “Find and Replace”" image="MagnifierTemplate" id="ACV-s4-QzY" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">

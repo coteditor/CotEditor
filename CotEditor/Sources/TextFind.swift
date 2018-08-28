@@ -141,6 +141,10 @@ final class TextFind {
     ///   - wrapped: Whether the search was wrapped to find the result.
     func find(forward: Bool, isWrap: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
         
+        if self.inSelection {
+            return self.findInSelection(forward: forward)
+        }
+        
         let selectedRange = self.selectedRanges.first!
         let startLocation = forward ? selectedRange.upperBound : selectedRange.location
         
@@ -152,7 +156,7 @@ final class TextFind {
         
         var wrappedMatches = [NSRange]()  // matches before the start location
         var intersectionMatches = [NSRange]()  // matches including the start location
-        self.enumerateMatchs(in: [string.nsRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+        self.enumerateMatchs(in: [self.string.nsRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             if matchedRange.location >= startLocation {
                 stop = true
                 return
@@ -175,6 +179,27 @@ final class TextFind {
         let count = forwardMatches.count + wrappedMatches.count + intersectionMatches.count
         
         return (foundRange, count, isWrapped)
+    }
+    
+    
+    /// Return a match in selection ranges.
+    ///
+    /// - Parameters:
+    ///   - forward: Whether search forward from the insertion.
+    /// - Returns:
+    ///   - range: The range of matched or nil if not found.
+    ///   - count: The total number of matches in the scopes.
+    ///   - wrapped: Whether the search was wrapped to find the result.
+    func findInSelection(forward: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
+        
+        var matches = [NSRange]()
+        self.enumerateMatchs(in: self.selectedRanges, using: { (matchedRange, _, _) in
+            matches.append(matchedRange)
+        })
+        
+        let foundRange = forward ? matches.first : matches.last
+        
+        return (foundRange, matches.count, false)
     }
     
     

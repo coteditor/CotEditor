@@ -273,38 +273,41 @@ extension SyntaxParser {
                                                                        inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                                        blockCommentDelimiters: self.style.blockCommentDelimiters)
         
-        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange, highlightBlock: { [weak self] (highlights) in
-            guard let strongSelf = self else { return }
+        let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
+        operation.queuePriority = .high
+        
+        operation.completionBlock = { [weak self, weak operation] in
+            guard
+                let operation = operation,
+                let highlights = operation.highlights,
+                !operation.isCancelled
+                else {
+                    return completionHandler()
+                }
             
             // cache result if whole text was parsed
             if highlightRange.length == string.utf16.count {
-                strongSelf.highlightCache = (highlights: highlights, hash: string.md5)
+                self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
             DispatchQueue.main.async {
                 // give up if the editor's string is changed from the analized string
-                guard strongSelf.textStorage.string == string else { return }
+                guard self?.textStorage.string == string else {
+                    operation.progress.cancel()
+                    return completionHandler()
+                }
                 
-                strongSelf.apply(highlights: highlights, range: highlightRange)
+                self?.apply(highlights: highlights, range: highlightRange)
+                
+                operation.progress.completedUnitCount += 1
+                
+                completionHandler()
             }
-        })
-        
-        operation.completionBlock = completionHandler
-        operation.queuePriority = .high
+        }
         
         self.syntaxHighlightParseOperationQueue.addOperation(operation)
         
         return operation.progress
-    }
-    
-    
-    /// whether need to display highlighting indicator
-    private func shouldShowIndicator(for highlightLength: Int) -> Bool {
-        
-        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
-        
-        // do not show indicator if threshold is 0
-        return threshold > 0 && highlightLength > threshold
     }
     
     
@@ -321,10 +324,14 @@ extension SyntaxParser {
             for type in SyntaxType.allCases {
                 guard let ranges = highlights[type], !ranges.isEmpty else { continue }
                 
-                let color = theme.style(for: type)?.color ?? theme.text.color
-                
-                for range in ranges {
-                    layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                if let color = theme.style(for: type)?.color {
+                    for range in ranges {
+                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                    }
+                } else {
+                    for range in ranges {
+                        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                    }
                 }
             }
         }
