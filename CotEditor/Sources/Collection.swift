@@ -30,7 +30,7 @@ extension Array where Element: Equatable {
     /// Remove first collection element that is equal to the given `element`
     mutating func remove(_ element: Element) {
         
-        if let index = index(of: element) {
+        if let index = self.index(of: element) {
             self.remove(at: index)
         }
     }
@@ -43,7 +43,7 @@ public extension Collection {
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
     subscript(safe index: Index) -> Element? {
         
-        return indices.contains(index) ? self[index] : nil
+        return self.indices.contains(index) ? self[index] : nil
     }
     
 }
@@ -126,11 +126,9 @@ extension Array {
     /// Return subset at IndexSet
     func elements(at indexes: IndexSet) -> [Element] {
         
-        return indexes.compactMap { index in
-            guard index < self.count else { return nil }
-            
-            return self[index]
-        }
+        return indexes
+            .filter { $0 < self.count }
+            .map { self[$0] }
     }
     
     
