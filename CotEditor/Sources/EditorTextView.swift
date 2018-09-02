@@ -194,6 +194,22 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// control editability of receiver
+    override var isEditable: Bool {
+        
+        get {
+            // avoid editing while sheet is displayed
+            guard self.window?.attachedSheet == nil else { return false }
+            
+            return super.isEditable
+        }
+        
+        set {
+            super.isEditable = newValue
+        }
+    }
+    
+    
     /// append inset only to the bottom for overscroll
     override var textContainerOrigin: NSPoint {
         

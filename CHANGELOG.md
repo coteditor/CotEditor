@@ -5,6 +5,11 @@ Change Log
 3.5.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Avoid editor can be edited while a dialog covers it.
+
+
 ### Fixes
 
 - Address an issue where the application could rarely crash during syntax highlighting.
