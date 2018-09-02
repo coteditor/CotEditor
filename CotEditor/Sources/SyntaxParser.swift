@@ -290,16 +290,16 @@ extension SyntaxParser {
                 self?.highlightCache = (highlights: highlights, hash: string.md5)
             }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [progress = operation.progress] in
                 // give up if the editor's string is changed from the analized string
                 guard self?.textStorage.string == string else {
-                    operation.progress.cancel()
+                    progress.cancel()
                     return completionHandler()
                 }
                 
                 self?.apply(highlights: highlights, range: highlightRange)
                 
-                operation.progress.completedUnitCount += 1
+                progress.completedUnitCount += 1
                 
                 completionHandler()
             }

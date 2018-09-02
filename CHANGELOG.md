@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.5.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- Address an issue where the application could rarely crash during syntax highlighting.
+
+
+
 3.5.1 (271)
 --------------------------
 
