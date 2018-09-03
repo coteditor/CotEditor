@@ -285,16 +285,16 @@ extension SyntaxParser {
                     return completionHandler()
                 }
             
-            // cache result if whole text was parsed
-            if highlightRange.length == string.utf16.count {
-                self?.highlightCache = (highlights: highlights, hash: string.md5)
-            }
-            
             DispatchQueue.main.async { [progress = operation.progress] in
                 // give up if the editor's string is changed from the analized string
                 guard self?.textStorage.string == string else {
                     progress.cancel()
                     return completionHandler()
+                }
+                
+                // cache result if whole text was parsed
+                if highlightRange.length == string.utf16.count {
+                    self?.highlightCache = (highlights: highlights, hash: string.md5)
                 }
                 
                 self?.apply(highlights: highlights, range: highlightRange)
