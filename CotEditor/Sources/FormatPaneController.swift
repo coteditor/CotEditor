@@ -349,19 +349,23 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     /// export selected syntax style
     @IBAction func exportSyntaxStyle(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
+        let settingName = self.targetStyleName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = "Export As:".localized
-        savePanel.nameFieldStringValue = styleName
+        savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
         
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            do {
+                try SyntaxManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            } catch {
+                self.presentError(error)
+            }
         }
     }
     

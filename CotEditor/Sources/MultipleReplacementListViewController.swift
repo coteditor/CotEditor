@@ -151,7 +151,11 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         
         guard let settingName = self.targetSettingName(for: sender) else { return }
         
-        try? ReplacementManager.shared.duplicateSetting(name: settingName)
+        do {
+            try ReplacementManager.shared.duplicateSetting(name: settingName)
+        } catch {
+            self.presentError(error)
+        }
     }
     
     
@@ -191,7 +195,11 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            do {
+                try ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            } catch {
+                self.presentError(error)
+            }
         }
     }
     
