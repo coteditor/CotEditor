@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the multi replacement feature exported definitions without its file extension.
+- Fix an issue where “Hide extension” checkbox in the setting export dialog was ignored. 
 - Fix an issue where an unhidable empty progress dialog was displayed if another dialog was displayed when the task started.
 - Address an issue where the application could rarely crash during syntax highlighting.
 

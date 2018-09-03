@@ -361,7 +361,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!)
+            try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
         }
     }
     

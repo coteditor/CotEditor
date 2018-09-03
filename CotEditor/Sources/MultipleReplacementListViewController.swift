@@ -191,7 +191,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!)
+            try? ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
         }
     }
     

@@ -409,7 +409,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
+            try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
         }
     }
     
