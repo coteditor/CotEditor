@@ -67,7 +67,7 @@ final class SyntaxParser {
     private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
     private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
     
-    private var highlightCache: (highlights: [SyntaxType: [NSRange]], hash: String)?  // results cache of the last whole string highlights
+    private var highlightCache: (highlights: [SyntaxType: [NSRange]], string: String)?  // results cache of the last whole string highlights
     
     private lazy var outlineUpdateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.parseOutline() }
     
@@ -177,7 +177,7 @@ extension SyntaxParser {
         let wholeRange = self.textStorage.string.nsRange
         
         // use cache if the content of the whole document is the same as the last
-        if let cache = self.highlightCache, cache.hash == self.textStorage.string.md5 {
+        if let cache = self.highlightCache, cache.string == self.textStorage.string {
             self.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler()
             return nil
@@ -293,8 +293,8 @@ extension SyntaxParser {
                 }
                 
                 // cache result if whole text was parsed
-                if highlightRange.length == string.utf16.count {
-                    self?.highlightCache = (highlights: highlights, hash: string.md5)
+                if highlightRange == string.nsRange {
+                    self?.highlightCache = (highlights, string)
                 }
                 
                 self?.apply(highlights: highlights, range: highlightRange)
