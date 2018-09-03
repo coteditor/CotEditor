@@ -186,7 +186,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = []
+        savePanel.allowedFileTypes = ReplacementManager.shared.filePathExtensions
         
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
