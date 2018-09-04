@@ -97,6 +97,25 @@ final class ProgressViewController: NSViewController {
     
     
     
+    // MARK: View Controller Methods
+    
+    /// dismiss view
+    override func dismiss(_ sender: Any?) {
+        
+        // close sheet in an old way
+        // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
+        //    if the receiver was presented and dismissed during another sheet is already presented. (2018-09 macOS 10.12)
+        if let parentWindow = self.presentingViewController?.view.window,
+            let sheetWindow = self.view.window,
+            parentWindow.sheets.count > 1 {
+            parentWindow.endSheet(sheetWindow)
+        }
+        
+        super.dismiss(sender)
+    }
+    
+    
+    
     // MARK: Public Methods
     
     /// change button to done

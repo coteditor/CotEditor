@@ -365,7 +365,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let themeName = self.targetThemeName(for: sender)
         
-        try? ThemeManager.shared.duplicateSetting(name: themeName)
+        do {
+            try ThemeManager.shared.duplicateSetting(name: themeName)
+        } catch {
+            self.presentError(error)
+        }
     }
     
     
@@ -400,19 +404,23 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// export selected theme
     @IBAction func exportTheme(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
+        let settingName = self.targetThemeName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = "Export As:".localized
-        savePanel.nameFieldStringValue = themeName
+        savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
         savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
+            do {
+                try ThemeManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            } catch {
+                self.presentError(error)
+            }
         }
     }
     
