@@ -167,7 +167,7 @@ extension SyntaxParser {
 extension SyntaxParser {
     
     /// update whole document highlights
-    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {  // @escaping
+    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         assert(Thread.isMainThread)
         
@@ -257,7 +257,7 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {  // @escaping
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         guard highlightRange.length > 0 else { return nil }
         
