@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Avoid editor can be edited while a dialog covers it.
+- Avoid editor can be edited while a dialog covers it.x
 
 
 ### Fixes
