@@ -26,7 +26,7 @@
 import Foundation
 import AppKit.NSFont
 
-struct OutlineItem {
+struct OutlineItem: Equatable {
     
     struct Style: OptionSet {
         
