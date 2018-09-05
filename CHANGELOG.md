@@ -37,6 +37,7 @@ Change Log
 ### Improvements
 
 - Avoid editor can be edited while a dialog covers it.
+- Update YAML syntax style for more reliable highlight.
 
 
 ### Fixes
