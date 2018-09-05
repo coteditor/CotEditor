@@ -73,6 +73,10 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
         
+        // set theme
+        // TODO: Check if .effectiveAppearance can be taken at this point.
+        self.setTheme(name: defaults[.theme]!)
+        
         // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: didUpdateSettingNotification,
@@ -80,11 +84,12 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
         
         // observe appearance change for theme toggle
-        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance, options: .initial) { [unowned self] (_, _) in
             guard
                 self.view.window != nil,
                 let currentThemeName = self.theme?.name,
-                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, for: self.view.effectiveAppearance.isDark)
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, for: self.view.effectiveAppearance.isDark),
+                currentThemeName != themeName
                 else { return }
             
             self.setTheme(name: themeName)

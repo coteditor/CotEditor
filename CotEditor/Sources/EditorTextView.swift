@@ -118,9 +118,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.lineHeight = defaults[.lineHeight]
         self.tabWidth = defaults[.tabWidth]
         
-        self.theme = ThemeManager.shared.setting(name: defaults[.theme]!)
-        // -> will be applied first in `viewDidMoveToWindow()`
-        
         super.init(coder: coder)
         
         // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
@@ -239,9 +236,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
             return
         }
-        
-        // apply theme to window
-        self.applyTheme()
         
         // apply window opacity
         self.didWindowOpacityChange(nil)
