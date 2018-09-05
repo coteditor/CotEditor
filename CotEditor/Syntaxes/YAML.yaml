@@ -4,9 +4,9 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.1.2"
+  version: "1.2.0"
   license: "Same as CotEditor"
-  lastModified: "2018-03-06"
+  lastModified: "2018-09-05"
 outlineMenu:
 - beginString: "^([^\\n -].*?):"
   keyString: "$1:"
@@ -25,12 +25,12 @@ commands:
   regularExpression: true
 attributes: []
 characters:
-- beginString: "\\b\\d{4}-\\d{2}-\\d{2}( \\d{2}:\\d{2}:\\d{2}( [-+]\\d{2}:\\d{2})?)?\\b"
+- beginString: "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}|[0-9]{4}-[0-9]{2}?-[0-9]{2}?([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([ \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?\\b"
   regularExpression: true
+  description: "time"
 comments: []
 values:
-- beginString: "(?<!!)null\\b"
-  ignoreCase: true
+- beginString: "(?<!!)(?:null|Null|NULL)\\b"
   regularExpression: true
 - beginString: "false"
   ignoreCase: true
@@ -72,7 +72,10 @@ types:
 numbers:
 - beginString: "(?<=([-:]|!!float|!!int)) +[0-9,.]+(?=[ \\n\\}\\]])"
   regularExpression: true
-- beginString: ".inf"
+- beginString: "[-+]?\\.(inf|Inf|INF)\\b"
+  regularExpression: true
+- beginString: "\\.(nan|NaN|NAN)\\b"
+  regularExpression: true
 - beginString: "0x[0-9a-fA-F]+"
   regularExpression: true
 strings:
@@ -85,9 +88,11 @@ keywords:
     ]*:[ \\t\\n])"
   regularExpression: true
 variables:
-- beginString: "&[^ \\t\\n]+\\b"
+- beginString: "(?<!\\w)&[^ \\t\\n]+\\b"
   regularExpression: true
-- beginString: "\\*[^ \\t\\n]+\\b"
+  description: "anchor"
+- beginString: "(?<!\\w)\\*[^ \\t\\n]+\\b"
   regularExpression: true
+  description: "reference"
 commentDelimiters:
   inlineDelimiter: "#"
