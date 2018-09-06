@@ -9,6 +9,7 @@ Change Log
 
 - Avoid editor can be edited while a dialog covers it.
 - Update YAML syntax style for more reliable highlight.
+- [trivial] Adjust initial doucment window size.
 
 
 ### Fixes
