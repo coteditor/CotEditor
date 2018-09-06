@@ -10,7 +10,7 @@ Change Log
 - Avoid editor can be edited while a dialog covers it.
 - Update YAML syntax style for more reliable highlight.
 - Update Swift syntax style by fixing outline extraction.
-- [trivial] Adjust initial doucment window size.
+- [trivial] Adjust initial document window size.
 
 
 ### Fixes
