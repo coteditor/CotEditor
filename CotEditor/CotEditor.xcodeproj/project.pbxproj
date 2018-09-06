@@ -339,6 +339,8 @@
 		2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */; };
 		2A71BC7E1DDC70A80085AE1C /* NSImage+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */; };
 		2A71BC7F1DDC70A80085AE1C /* NSImage+Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */; };
+		2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
+		2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
 		2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */; };
 		2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */; };
 		2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
@@ -1043,6 +1045,7 @@
 		2A7135821CFFDC6600ADA555 /* FormattersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattersTests.swift; sourceTree = "<group>"; };
 		2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DocumentViewController+TouchBar.swift"; sourceTree = "<group>"; };
 		2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Template.swift"; sourceTree = "<group>"; };
+		2A733E8820BBB4AC0090D7CB /* String+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Case.swift"; sourceTree = "<group>"; };
 		2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+ControlCharacter.swift"; sourceTree = "<group>"; };
 		2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+Information.swift"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
@@ -1695,6 +1698,7 @@
 				2AA761341D45634400031AAF /* String+Counting.swift */,
 				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
 				2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */,
+				2A733E8820BBB4AC0090D7CB /* String+Case.swift */,
 				2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */,
 				2AAD61EF1D2B0856008FE772 /* String+Range.swift */,
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
@@ -2801,6 +2805,7 @@
 				2A33D0821D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */,
 				2A479C831D8C15A600EEEFC2 /* CenteringTextFieldCell.swift in Sources */,
 				2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */,
+				2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
 				2AA45A4F1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
@@ -3141,6 +3146,7 @@
 				2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
 				2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */,
+				2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
 				2A78BFA41D1B02ED00A583D2 /* WindowPaneController.swift in Sources */,
 				2AE73F40203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,

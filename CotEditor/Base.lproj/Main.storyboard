@@ -810,6 +810,25 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
+                                                    <menuItem title="Make Snake Case" id="F0I-F4-srF">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="snakecaseWord:" target="Ady-hI-5gd" id="sZO-xn-Orq"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Camel Case" id="nlp-Gj-W9G">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="camelcaseWord:" target="Ady-hI-5gd" id="6b5-Gh-Jmr"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Pascal Case" id="x1F-KX-2de">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="pascalcaseWord:" target="Ady-hI-5gd" id="CmK-JI-9Jm"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="kwE-D3-DED"/>
                                                     <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

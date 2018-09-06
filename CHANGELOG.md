@@ -9,6 +9,7 @@ Change Log
 
 - Support Dark Mode in macOS 10.14 Mojave.
 - Add a new theme “Dendrobates (Dark)”.
+- Add new commands to transform selections to snake case, camel case, or pascal case. 
 - [non-AppStore] The non-AppStore application binary is now notarized by Apple.
 
 
