@@ -192,25 +192,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// drop multiple files
+    /// open multiple files at once
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         
         let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
-        
-        var remainingDocumentCount = filenames.count
+        let dispatchGroup = DispatchGroup()
         var firstWindowOpened = false
         
         for filename in filenames {
             guard !self.application(sender, openFile: filename) else {
-                remainingDocumentCount -= 1
                 continue
             }
             
             let url = URL(fileURLWithPath: filename)
             
+            dispatchGroup.enter()
             DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
                 defer {
-                    remainingDocumentCount -= 1
+                    dispatchGroup.leave()
                 }
                 
                 if let error = error {
@@ -232,11 +231,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // reset tabbing setting
         if isAutomaticTabbing {
             // wait until finish
-            while remainingDocumentCount > 0 {
-                RunLoop.current.run(mode: .default, before: .distantFuture)
+            dispatchGroup.notify(queue: .main) {
+                DocumentWindow.tabbingPreference = nil
             }
-            
-            DocumentWindow.tabbingPreference = nil
         }
     }
     
