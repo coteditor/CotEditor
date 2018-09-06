@@ -237,6 +237,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             return
         }
         
+        // apply theme to window
+        self.applyTheme()
+        
         // apply window opacity
         self.didWindowOpacityChange(nil)
         
