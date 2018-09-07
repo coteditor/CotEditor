@@ -215,7 +215,7 @@ final class TextFinder: NSResponder {
     /// select all matched strings
     @IBAction func selectAllMatches(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
         var matchedRanges = [NSRange]()
         textFind.findAll { (matches: [NSRange], _) in
@@ -283,7 +283,7 @@ final class TextFinder: NSResponder {
     /// replace all matched strings with given string
     @IBAction func replaceAll(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: true) else { return }
         
         textView.isEditable = false
         
@@ -394,11 +394,11 @@ final class TextFinder: NSResponder {
     
     
     /// check Find can be performed and alert if needed
-    private func prepareTextFind() -> (NSTextView, TextFind)? {
+    private func prepareTextFind(forEditing: Bool) -> (NSTextView, TextFind)? {
         
         guard
             let textView = self.client,
-            textView.isEditable
+            (!forEditing || textView.isEditable)
             else {
                 NSSound.beep()
                 return nil
@@ -435,7 +435,7 @@ final class TextFinder: NSResponder {
     @discardableResult
     private func find(forward: Bool) -> Int {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return 0 }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
         
         let result = textFind.find(forward: forward,
                                    isWrap: UserDefaults.standard[.findIsWrap])
@@ -468,7 +468,7 @@ final class TextFinder: NSResponder {
     private func replace() -> Bool {
         
         guard
-            let (textView, textFind) = self.prepareTextFind(),
+            let (textView, textFind) = self.prepareTextFind(forEditing: true),
             let result = textFind.replace(with: self.replacementString)
             else { return false }
         
@@ -482,7 +482,7 @@ final class TextFinder: NSResponder {
     /// find all matched strings and apply the result to views
     private func findAll(showsList: Bool, actionName: String) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
         textView.isEditable = false
         

@@ -31,7 +31,7 @@ extension MultipleReplacement {
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
         guard
-            let textView = TextFinder.shared.client, textView.isEditable,
+            let textView = TextFinder.shared.client,
             textView.window?.attachedSheet == nil
             else {
                 NSSound.beep()

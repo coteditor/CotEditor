@@ -294,9 +294,12 @@ extension SettingFileManaging {
     
     
     /// export setting file to passed-in URL
-    func exportSetting(name: String, to fileURL: URL) throws {
+    func exportSetting(name: String, to fileURL: URL, hidesExtension: Bool) throws {
         
         let sourceURL = self.preparedURLForUserSetting(name: name)
+        
+        var resourceValues = URLResourceValues()
+        resourceValues.hasHiddenExtension = hidesExtension
         
         var coordinationError: NSError?
         var writingError: NSError?
@@ -306,6 +309,9 @@ extension SettingFileManaging {
             
             do {
                 try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
+                
+                var newWritingURL = newWritingURL
+                try newWritingURL.setResourceValues(resourceValues)
                 
             } catch {
                 writingError = error as NSError
