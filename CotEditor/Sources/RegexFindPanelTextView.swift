@@ -138,6 +138,16 @@ private extension RegularExpressionSyntaxType {
     
     var color: NSColor {
         
+        if NSAppearance.current.isDark {
+            switch self {
+            case .character: return #colorLiteral(red: 0.42, green: 0.6253333334, blue: 0.7, alpha: 1)
+            case .backReference: return #colorLiteral(red: 0.95, green: 0.4275, blue: 0.7835542928, alpha: 1)
+            case .symbol: return #colorLiteral(red: 0.95, green: 0.4657596189, blue: 0.4275, alpha: 1)
+            case .quantifier: return #colorLiteral(red: 0.6903386985, green: 0.2975, blue: 0.85, alpha: 1)
+            case .anchor: return #colorLiteral(red: 0.6179318257, green: 0.7, blue: 0.42, alpha: 1)
+            }
+        }
+        
         switch self {
         case .character: return #colorLiteral(red: 0.1176470596, green: 0.4011936392, blue: 0.5, alpha: 1)
         case .backReference: return #colorLiteral(red: 0.7471567648, green: 0.07381642141, blue: 0.5326599043, alpha: 1)
