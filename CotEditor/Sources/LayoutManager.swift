@@ -304,7 +304,8 @@ final class LayoutManager: NSLayoutManager {
         
         // modify selected highlight color when document is inactive
         // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable in a dark theme.
-        if color == .secondarySelectedControlColor,  // check if inactive
+        if NSAppKitVersion.current <= .macOS10_13,
+            color == .secondarySelectedControlColor,  // check if inactive
             let theme = (self.textViewForBeginningOfSelection as? Themable)?.theme,
             let secondarySelectionColor = theme.secondarySelectionColor
         {
