@@ -30,10 +30,7 @@ extension MultipleReplacement {
     /// highlight all matches in the textView
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
-        guard
-            let textView = TextFinder.shared.client,
-            textView.window?.attachedSheet == nil
-            else {
+        guard let textView = TextFinder.shared.client else {
                 NSSound.beep()
                 return
             }

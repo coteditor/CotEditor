@@ -398,7 +398,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         guard
             let textView = self.client,
-            (!forEditing || textView.isEditable)
+            (!forEditing || (textView.isEditable && textView.window?.attachedSheet == nil))
             else {
                 NSSound.beep()
                 return nil
