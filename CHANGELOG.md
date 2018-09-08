@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.5.2 (274)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the “Replace All” command didn't work on CotEditor 3.5.2.
+
+
+
 3.5.2 (273)
 --------------------------
 

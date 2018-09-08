@@ -398,7 +398,7 @@ final class TextFinder: NSResponder {
         
         guard
             let textView = self.client,
-            (!forEditing || textView.isEditable)
+            (!forEditing || (textView.isEditable && textView.window?.attachedSheet == nil))
             else {
                 NSSound.beep()
                 return nil

@@ -117,7 +117,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     // MARK: Private Methods
     
-    // SortPattern currently edited
+    /// SortPattern currently edited
     private var sortPattern: SortPattern? {
         
         return self.tabViewController?.tabViewItems[self.tabViewController!.selectedTabViewItemIndex]
