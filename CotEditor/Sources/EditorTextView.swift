@@ -666,9 +666,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // draw page guide
         if self.showsPageGuide,
-            let guideColor = self.textColor?.withAlphaComponent(0.2),
+            let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
+            let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
+            
             let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
