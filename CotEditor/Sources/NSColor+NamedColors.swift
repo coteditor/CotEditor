@@ -81,7 +81,32 @@ extension NSAppearance {
         
         guard #available(macOS 10.14, *) else { return false }
         
-        return self.name == .darkAqua
+        switch self.name {
+        case .darkAqua,
+             .accessibilityHighContrastDarkAqua,
+             .accessibilityHighContrastVibrantDark:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    
+    var isHighContrast: Bool {
+        
+        guard #available(macOS 10.14, *) else {
+            return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+        }
+        
+        switch self.name {
+        case .accessibilityHighContrastAqua,
+             .accessibilityHighContrastDarkAqua,
+             .accessibilityHighContrastVibrantLight,
+             .accessibilityHighContrastVibrantDark:
+            return true
+        default:
+            return false
+        }
     }
     
 }
