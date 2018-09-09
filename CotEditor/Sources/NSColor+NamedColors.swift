@@ -24,7 +24,6 @@
 //
 
 import AppKit.NSColor
-import AppKit.NSAppearance
 
 extension NSColor {
     
@@ -60,45 +59,6 @@ extension NSColor {
             let (_, hue) = modf(baseHue + advance)
             
             return NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
-        }
-    }
-    
-}
-
-
-extension NSAppearance {
-    
-    var isDark: Bool {
-        
-        if self.name == .vibrantDark { return true }
-        
-        guard #available(macOS 10.14, *) else { return false }
-        
-        switch self.name {
-        case .darkAqua,
-             .accessibilityHighContrastDarkAqua,
-             .accessibilityHighContrastVibrantDark:
-            return true
-        default:
-            return false
-        }
-    }
-    
-    
-    var isHighContrast: Bool {
-        
-        guard #available(macOS 10.14, *) else {
-            return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-        }
-        
-        switch self.name {
-        case .accessibilityHighContrastAqua,
-             .accessibilityHighContrastDarkAqua,
-             .accessibilityHighContrastVibrantLight,
-             .accessibilityHighContrastVibrantDark:
-            return true
-        default:
-            return false
         }
     }
     
