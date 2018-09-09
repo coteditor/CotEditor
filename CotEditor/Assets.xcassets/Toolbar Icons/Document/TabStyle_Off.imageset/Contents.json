@@ -6,11 +6,35 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "TabStyle_Off-1.pdf",
+      "filename" : "TabStyle_OffDark.pdf",
       "appearances" : [
         {
           "appearance" : "luminosity",
           "value" : "dark"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "TabStyle_OffHighContrast.pdf",
+      "appearances" : [
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "TabStyle_OffHighContrastDark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        },
+        {
+          "appearance" : "contrast",
+          "value" : "high"
         }
       ]
     }
