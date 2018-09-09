@@ -125,12 +125,9 @@ final class TokenTextView: NSTextView {
     // MARK: Actions
     
     /// variable insertion menu was selected
-    @IBAction func insertVariable(_ sender: Any?) {
+    @IBAction func insertVariable(_ sender: NSMenuItem) {
         
-        guard
-            let menuItem = sender as? NSMenuItem,
-            let title = menuItem.representedObject as? String
-            else { return }
+        guard let title = sender.representedObject as? String else { return }
         
         let range = self.rangeForUserTextChange
         
@@ -153,8 +150,9 @@ final class TokenTextView: NSTextView {
             let layoutManager = self.layoutManager
             else { return }
         
-        let textColor = self.tokenColor.darken(level: 0.7, for: self.effectiveAppearance)!
-        let braketColor = self.tokenColor.darken(level: 0.3, for: self.effectiveAppearance)!
+        let isDark = self.effectiveAppearance.isDark
+        let textColor = self.tokenColor.blended(withFraction: 0.7, of: isDark ? .white : .black)!
+        let braketColor = self.tokenColor.blended(withFraction: 0.3, of: isDark ? .white : .black)!
         let backgroundColor = self.tokenColor.withAlphaComponent(0.3)
         
         let wholeRange = self.string.nsRange
