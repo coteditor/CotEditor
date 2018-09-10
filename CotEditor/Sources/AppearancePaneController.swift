@@ -72,7 +72,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.setupFontFamilyNameAndSize()
         
-        let themeName = UserDefaults.standard[.theme]!
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
@@ -254,6 +254,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // update default theme setting
         if UserDefaults.standard[.theme] != themeName {
             UserDefaults.standard[.theme] = themeName
+        }
+        
+        // do not store to UserDefautls if it's the default theme
+        if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
+           UserDefaults.standard.restore(key: .theme)
         }
         
         self.themeViewController?.theme = themeDict
@@ -476,7 +481,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return UserDefaults.standard[.theme]!
+            return ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         }
         return self.themeNames[tableView.selectedRow]
     }
@@ -564,7 +569,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// update theme list
     @objc private func setupThemeList() {
         
-        let themeName = UserDefaults.standard[.theme]!
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()
