@@ -45,8 +45,7 @@ final class TokenTextView: NSTextView {
         
         super.viewDidMoveToWindow()
         
-        // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
-        self.textColor = .controlTextColor
+        NotificationCenter.default.addObserver(self, selector: #selector(invalidateTokens), name: NSColor.systemColorsDidChangeNotification, object: nil)
     }
     
     
@@ -143,7 +142,7 @@ final class TokenTextView: NSTextView {
     // MARK: Private Method
     
     /// find tokens in contens and mark-up them
-    private func invalidateTokens() {
+    @objc private func invalidateTokens() {
         
         guard
             let tokenizer = self.tokenizer,
