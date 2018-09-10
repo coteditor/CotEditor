@@ -252,7 +252,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
-        if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
+        if UserDefaults.standard[.theme] != themeName {
             UserDefaults.standard[.theme] = themeName
         }
         
