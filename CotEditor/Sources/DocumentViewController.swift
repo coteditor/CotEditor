@@ -74,7 +74,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         self.showsPageGuide = defaults[.showPageGuide]
         
         // set theme
-        self.setTheme(name: defaults[.theme]!)
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        self.setTheme(name: themeName)
         
         // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
@@ -408,7 +409,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             let oldName = notification?.userInfo?[Notification.UserInfoKey.old] as? String,
             oldName == self.theme?.name else { return }
         
-        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? UserDefaults.standard[.theme]!
+        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.setTheme(name: newName)
     }
