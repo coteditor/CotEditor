@@ -2,7 +2,7 @@
   "Mac" : [
     {
       "name" : "Sparkle",
-      "hash" : "a2aa0c2733b4ef289bfedb13ad312f257d71d757f7f1aa30b72628735f02e8ab"
+      "hash" : "0c84ce033dff019cefd24633a2ce1e1092413d546c6f3ea76bf6b7068d83797e"
     }
   ],
   "watchOS" : [
@@ -11,7 +11,7 @@
   "tvOS" : [
 
   ],
-  "commitish" : "e40628a78fde2dc975c9d2316589f3d3588bbd52",
+  "commitish" : "34fe3b52ffb7d7487d5d8f8d7dbd0df894d348b2",
   "iOS" : [
 
   ]

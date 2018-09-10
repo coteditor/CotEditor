@@ -19,6 +19,7 @@ Change Log
 - [trivial] Improve the high contrast mode support.
 - [trivial] Optimize the performance of line number drawing.
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
