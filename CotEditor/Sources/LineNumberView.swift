@@ -94,7 +94,7 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Private Properties
     
-    private lazy var numberOfLines = self.textView?.numberOfLines ?? 0
+    private lazy var numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
     private var drawingInfo: DrawingInfo?
     
     private weak var draggingTimer: Timer?
@@ -405,7 +405,7 @@ final class LineNumberView: NSRulerView {
     @objc private func textDidChange(_ notification: Notification) {
         
         // -> count only if really needed since the line counting is high workload, especially by large document
-        self.numberOfLines = self.textView?.numberOfLines ?? 0
+        self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
     }
     
     
