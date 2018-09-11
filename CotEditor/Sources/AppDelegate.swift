@@ -304,20 +304,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show standard about panel
     @IBAction func showAboutPanel(_ sender: Any?) {
      
-        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if APPSTORE
-            // Remove Sparkle from 3rd party code list
-            if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
-                let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
-            {
-                attrString.deleteCharacters(in: NSRange(range, in: attrString.string))
-                let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
-                options[creditsKey] = attrString
-            }
+        let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
+        var html = try! String(contentsOf: creditsURL)
+        
+        #if APPSTORE        // Remove Sparkle from 3rd party code list
+        if let range = html.range(of: "Sparkle") {
+            html = html.replacingCharacters(in: html.lineRange(for: range), with: "")
+        }
         #endif
         
-        NSApplication.shared.orderFrontStandardAboutPanel(options: options)
+        let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
+        let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
+        NSApplication.shared.orderFrontStandardAboutPanel(options: [creditsKey: attrString])
     }
     
     
