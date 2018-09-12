@@ -15,7 +15,7 @@ Change Log
 
 ### Improvements
 
-- Change the system requirement to __OS X 10.12.2 Sierra and later__.
+- Change the system requirement to __macOS 10.12.2 Sierra and later__.
 - Update `cot` command-line tool to return the focus to the client terminal window again after `--wait`.
 - [trivial] Improve the high contrast mode support.
 - [trivial] Optimize the performance of line number drawing.
