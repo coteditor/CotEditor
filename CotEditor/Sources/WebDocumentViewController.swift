@@ -45,7 +45,9 @@ final class WebDocumentViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.view.window!.backgroundColor = .white
+        if !self.view.effectiveAppearance.isDark {
+            self.view.window!.backgroundColor = .white
+        }
     }
     
     
@@ -85,6 +87,10 @@ extension WebDocumentViewController: WKNavigationDelegate {
         #if APPSTORE
             webView.apply(styleSheet: ".Sparkle { display: none }")
         #endif
+        
+        if self.view.effectiveAppearance.isDark {
+            webView.evaluateJavaScript("document.body.classList.add('dark')")
+        }
     }
     
     
@@ -109,7 +115,7 @@ private extension WKWebView {
         
         let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
         
-        self.evaluateJavaScript(js, completionHandler: nil)
+        self.evaluateJavaScript(js)
     }
     
 }

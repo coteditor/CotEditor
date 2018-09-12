@@ -24,7 +24,14 @@ h3 span         { font-size: 90%; font-weight: normal }
 #Project      h2::before { content: '🔨 ' }
 
 a:link,
-a:visited       { color: hsl(90,45%,45%) }
-a:not([href])   { color: hsl( 0, 0%,50%) }
-blockquote pre  { color: hsl( 0, 0%,45%) ; border-color: hsl( 0, 0%,90%) }
-h3 span         { color: hsl( 0, 0%,45%) }
+a:visited                 { color: hsl(90,45%,45%) }
+a:not([href])             { color: hsla( 0, 0%, 0%,0.60) }
+blockquote pre            { color: hsla( 0, 0%, 0%,0.50) ; border-color: hsla( 0, 0%, 0%,0.1) }
+h3 span                   { color: hsla( 0, 0%, 0%,0.50) }
+
+body.dark                 { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,20%) }
+body.dark a:link,
+body.dark a:visited       { color: hsl(90,55%,55%) }
+body.dark a:not([href])   { color: hsla( 0, 0%,100%,0.60) }
+body.dark blockquote pre  { color: hsla( 0, 0%,100%,0.50) ; border-color: hsla( 0, 0%,100%,0.1) }
+body.dark h3 span         { color: hsla( 0, 0%,100%,0.50) }
