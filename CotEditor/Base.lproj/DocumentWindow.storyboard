@@ -288,6 +288,21 @@
                                         <action selector="editColorCode:" target="klO-m3-n5X" id="sBu-5y-85K"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="EE502370-3E58-4FF5-9F67-A9E3359697CE" label="Emoji &amp; Symbols" paletteLabel="Emoji &amp; Symbols" toolTip="Show Emoji &amp; Symbols palette" image="Emoji" id="tek-D0-460" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="25"/>
+                                    <button key="view" verticalHuggingPriority="750" id="vRD-Ro-4Vb">
+                                        <rect key="frame" x="26" y="14" width="44" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Emoji" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Th-Xk-WmN">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="orderFrontCharacterPalette:" target="klO-m3-n5X" id="gIt-Sl-DWA"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="61069554-3748-429C-94A3-EA8375B3BF6E" label="Fonts" paletteLabel="Fonts" toolTip="Show Font Panel" image="FontsTemplate" id="vLf-la-9dL" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="44" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
@@ -706,6 +721,7 @@
         <image name="Comment" width="24" height="18"/>
         <image name="ConflictsTemplate" width="15" height="15"/>
         <image name="DocumentTemplate" width="15" height="15"/>
+        <image name="Emoji" width="20" height="18"/>
         <image name="FontsTemplate" width="18" height="18"/>
         <image name="Inspector" width="18" height="18"/>
         <image name="Invisibles_On" width="17" height="18"/>

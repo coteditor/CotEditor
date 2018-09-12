@@ -162,10 +162,15 @@
 "Yx1-Tq-tfo.paletteLabel" = "编辑颜色代码";  /* Edit Color Code */
 "Yx1-Tq-tfo.toolTip" = "打开调色盘并将选中内容设为颜色代码";  /* Open Color Code Editor and set selection as color code */
 
+/* Class = "NSToolbarItem"; label = "Emoji & Symbols"; ObjectID = "tek-D0-460"; */
+"tek-D0-460.label" = "表情与符号";  /* Emoji & Symbols */
+"tek-D0-460.paletteLabel" = "表情与符号";  /* Emoji & Symbols */
+"tek-D0-460.toolTip" = "Show Emoji & Symbols palette";  /* Show Emoji & Symbols palette */  // FIXME: added
+
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "查找";  /* Find */
 "ACV-s4-QzY.paletteLabel" = "查找";  /* Find */
-"ACV-s4-QzY.toolTip" = "Show Find & Replace";  /* Show Find & Replace */
+"ACV-s4-QzY.toolTip" = "Show Find & Replace";  /* Show Find & Replace */  // FIXME: added
 
 /* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
 "hbb-MD-j6g.label" = "打印";  /* Print */

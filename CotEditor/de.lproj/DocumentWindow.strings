@@ -161,6 +161,11 @@
 "Yx1-Tq-tfo.paletteLabel" = "Farbcode bearbeiten";  /* Edit Color Code */
 "Yx1-Tq-tfo.toolTip" = "Farbcode-Editor öffnen und die Auswahl als Farbcode einrichten";  /* Open Color Code Editor and set selection as color code */
 
+/* Class = "NSToolbarItem"; label = "Emoji & Symbols"; ObjectID = "tek-D0-460"; */
+"tek-D0-460.label" = "Emoji & Symbole";  /* Emoji & Symbols */
+"tek-D0-460.paletteLabel" = "Emoji & Symbole";  /* Emoji & Symbols */
+"tek-D0-460.toolTip" = "Emoji- & Symbolepalette einblenden";  /* Show Emoji & Symbols palette */
+
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "Suchen";  /* Find */
 "ACV-s4-QzY.paletteLabel" = "Suchen";  /* Find */
