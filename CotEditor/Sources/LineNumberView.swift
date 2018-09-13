@@ -110,6 +110,8 @@ final class LineNumberView: NSRulerView {
         
         guard let textView = scrollView?.documentView as? NSTextView else { assertionFailure(); return }
         
+        self.clientView = textView
+        
         // observe new textStorage change
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSText.didChangeNotification, object: textView)
     }
@@ -371,7 +373,7 @@ final class LineNumberView: NSRulerView {
     /// return client view casting to textView
     private var textView: NSTextView? {
         
-        return self.scrollView?.documentView as? NSTextView
+        return self.clientView as? NSTextView
     }
     
     
