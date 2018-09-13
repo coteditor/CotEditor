@@ -46,9 +46,9 @@ extension MultipleReplacement {
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             
-            let result = strongSelf.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
+            let result = self.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
@@ -121,9 +121,9 @@ extension MultipleReplacement {
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             
-            let result = strongSelf.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
+            let result = self.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return

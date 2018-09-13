@@ -295,7 +295,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
@@ -337,13 +337,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                    if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
                 
                 let count = Int(progress.completedUnitCount)
-                strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
+                self.delegate?.textFinder(self, didReplace: count, textView: textView)
             }
         }
         
@@ -495,7 +495,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             
             var highlights = [HighlightItem]()
             var results = [TextFindResult]()  // not used if showsList is false
@@ -564,13 +564,13 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 if showsList {
-                    strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
+                    self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
                 // -> close also if result view has been shown
                 if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                    if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
