@@ -32,7 +32,7 @@ Change Log
 ### Known Issues
 
 - [Mojave] Text view stacks under the line number view when zoomed.
-- [Mojave] Titlebar is tinted with theme's background color in Dark Mode.
+- [Mojave] The title bar color is not correctly updated when the system appearance is changed.
 
 
 
