@@ -25,9 +25,9 @@
 
 import Cocoa
 
-extension NSAttributedStringKey {
+extension NSAttributedString.Key {
     
-    static let roundedBackgroundColor = NSAttributedStringKey(rawValue: "roundedBackgroundColor")
+    static let roundedBackgroundColor = NSAttributedString.Key(rawValue: "roundedBackgroundColor")
 }
 
 

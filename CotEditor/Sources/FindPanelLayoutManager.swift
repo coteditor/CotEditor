@@ -62,9 +62,9 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let font = self.font
             let fullWidthFont = NSFont(name: "HiraKakuProN-W3", size: font.pointSize) ?? font
             
-            let attributes: [NSAttributedStringKey: Any] = [.font: font,
+            let attributes: [NSAttributedString.Key: Any] = [.font: font,
                                                             .foregroundColor: color]
-            let fullwidthAttributes: [NSAttributedStringKey: Any] = [.font: fullWidthFont,
+            let fullwidthAttributes: [NSAttributedString.Key: Any] = [.font: fullWidthFont,
                                                                      .foregroundColor: color]
             
             let defaults = UserDefaults.standard

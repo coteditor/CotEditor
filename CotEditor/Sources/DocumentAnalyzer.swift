@@ -119,9 +119,12 @@ final class DocumentAnalyzer: NSObject {
         self.info.owner = attrs?[.ownerAccountName] as? String
         self.info.permission = attrs?[.posixPermissions] as? NSNumber
         self.info.isReadOnly = {
-            guard !document.isInViewingMode else { return false }
+            guard
+                !document.isInViewingMode,
+                let posix = attrs?[.posixPermissions] as? UInt16
+                else { return false }
             
-            return attrs?[.immutable] as? Bool ?? false
+            return FilePermissions(mask: posix).user.contains(.write)
         }()
         
         NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateFileInfoNotification, object: self)
@@ -177,9 +180,10 @@ final class DocumentAnalyzer: NSObject {
             let textView = document.viewController?.focusedTextView,
             !textView.hasMarkedText() else { return }
         
+        let selectedRange = Range(textView.selectedRange, in: textView.string)!
         let operation = EditorInfoCountOperation(string: document.textStorage.string.immutable,
                                                  lineEnding: document.lineEnding,
-                                                 selectedRange: textView.selectedRange,
+                                                 selectedRange: selectedRange,
                                                  requiredInfo: self.requiredInfoTypes,
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
         

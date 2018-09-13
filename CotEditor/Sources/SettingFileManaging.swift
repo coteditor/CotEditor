@@ -349,13 +349,15 @@ extension SettingFileManaging {
     func updateCache(completionHandler: @escaping (() -> Void) = {}) {
         
         DispatchQueue.global().async { [weak self, previousSettingNames = self.settingNames] in
-            self?.checkUserSettings()
+            guard let self = self else { return }
             
-            let didUpdateList = self?.settingNames != previousSettingNames
+            self.checkUserSettings()
+            
+            let didUpdateList = self.settingNames != previousSettingNames
             
             DispatchQueue.main.sync {
                 if didUpdateList {
-                    self?.notifySettingListUpdate()
+                    self.notifySettingListUpdate()
                 }
                 
                 completionHandler()

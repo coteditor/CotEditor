@@ -77,7 +77,7 @@ struct DefaultSettings {
         .showInvisibleFullwidthSpace: false,
         .invisibleFullwidthSpace: 0,
         .showOtherInvisibleChars: false,
-        .theme: "Dendrobates",
+//        .theme: "Dendrobates",  // -> The default theme is set dynamically by taking the current appearance into account.
         
         .smartInsertAndDelete: false,
         .balancesBrackets: false,

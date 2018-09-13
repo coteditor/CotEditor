@@ -100,7 +100,7 @@ final class ThemeViewController: NSViewController {
     
     
     /// metadata popover closed
-    override func dismissViewController(_ viewController: NSViewController) {
+    override func dismiss(_ viewController: NSViewController) {
         
         if viewController is ThemeMetaDataViewController,
             self.storedMetadata != self.theme?[DictionaryKey.metadata.rawValue]
@@ -108,7 +108,7 @@ final class ThemeViewController: NSViewController {
             self.notifyUpdate()
         }
         
-        super.dismissViewController(viewController)
+        super.dismiss(viewController)
     }
     
     
@@ -116,21 +116,6 @@ final class ThemeViewController: NSViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         self.notifyUpdate()
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// apply system highlight color to color well
-    @IBAction func applySystemSelectionColor(_ button: NSButton) {
-        
-        guard button.state == .on else { return }
-        
-        let color = NSColor.selectedTextBackgroundColor
-        let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
-        
-        self.theme?[Theme.CodingKeys.selection.rawValue]?[Theme.SelectionStyle.CodingKeys.color.rawValue] = colorCode
     }
     
     

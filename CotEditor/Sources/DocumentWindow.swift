@@ -58,12 +58,8 @@ final class DocumentWindow: NSWindow {
         
         super.init(contentRect: contentRect, styleMask: style, backing: bufferingType, defer: flag)
         
-        // make sure window title bar (incl. toolbar) is opaque
-        //   -> It's actucally a bit dirty way but practically works well.
-        //      Without this tweak, the title bar will be dyed in the background color on El Capitan. (2016-01 by 1024p)
-        if let windowTitleView = self.standardWindowButton(.closeButton)?.superview {
-            windowTitleView.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
-        }
+        self.titlebarView?.wantsLayer = true
+        self.invalidateTitlebarOpacity()
         
         // observe toggling Versions browsing
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterVersionBrowserNotification, object: self)
@@ -90,6 +86,8 @@ final class DocumentWindow: NSWindow {
         
         didSet {
             super.backgroundColor = backgroundColor?.withAlphaComponent(self.backgroundAlpha)
+            
+            self.invalidateTitlebarOpacity()
         }
     }
     
@@ -99,7 +97,7 @@ final class DocumentWindow: NSWindow {
         
         // manually update the Japanese menu item title for toolbar visibility toggle
         // since it doesn't work on macOS 10.12 and earlier (2018-05).
-        if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue,
+        if NSAppKitVersion.current < .macOS10_13,
             menuItem.action == #selector(toggleToolbarShown),
             Locale.preferredLanguages.first == "ja",
             let toolbar = self.toolbar
@@ -130,6 +128,18 @@ final class DocumentWindow: NSWindow {
             self.storedBackgroundAlpha = nil
         }
     }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// make sure window title bar (incl. toolbar) is opaque
+    private func invalidateTitlebarOpacity() {
+        
+        //   -> It's actucally a bit dirty way but practically works well.
+        //      Without this tweak, the title bar will be dyed in the window background color since El Capitan. (2016-01 by 1024p)
+        self.titlebarView?.layer?.backgroundColor = NSColor.windowBackgroundColor.cgColor
+    }
 
 }
 
@@ -140,14 +150,12 @@ final class DocumentWindow: NSWindow {
 extension DocumentWindow {
     
     /// settable window user tabbing preference (Don't forget to set to `nil` after use.)
-    @available(macOS 10.12, *)
     static var tabbingPreference: NSWindow.UserTabbingPreference?
     
     
     
     // MARK: Window Methods
     
-    @available(macOS 10.12, *)
     override class var userTabbingPreference: NSWindow.UserTabbingPreference {
         
         if let tabbingPreference = self.tabbingPreference {
@@ -170,7 +178,6 @@ extension DocumentWindow {
         // select tabbed window with `⌘+number`
         // -> select last tab with `⌘0`
         guard
-            #available(macOS 10.12, *),
             event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
             let characters = event.charactersIgnoringModifiers,
             let number = Int(characters), number > 0,
@@ -184,6 +191,18 @@ extension DocumentWindow {
         window.orderFront(nil)
         
         return true
+    }
+    
+}
+
+
+// MARK: -
+
+private extension NSWindow {
+    
+    var titlebarView: NSVisualEffectView? {
+        
+        return self.standardWindowButton(.closeButton)?.superview as? NSVisualEffectView
     }
     
 }

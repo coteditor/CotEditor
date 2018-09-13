@@ -159,7 +159,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // NSTextFieldDelegate  < outlineView->ShortcutKeyField
     
     /// validate and apply new shortcut key input
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    func controlTextDidEndEditing(_ obj: Notification) {
         
         guard
             let textField = obj.object as? NSTextField,

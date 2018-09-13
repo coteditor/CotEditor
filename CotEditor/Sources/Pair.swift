@@ -72,7 +72,7 @@ extension Pair where T == Character {
 
 
 
-extension String {
+extension StringProtocol where Self.Index == String.Index {
     
     ///
     func indexOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {

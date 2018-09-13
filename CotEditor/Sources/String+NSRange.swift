@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension String {
+extension StringProtocol where Self.Index == String.Index {
     
     /// whole range in NSRange
     var nsRange: NSRange {

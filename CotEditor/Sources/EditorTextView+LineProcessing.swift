@@ -201,7 +201,7 @@ extension EditorTextView {
             return
         }
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("PatternSortView"), bundle: nil).instantiateInitialController() as! PatternSortViewController
+        let viewController = NSStoryboard(name: "PatternSortView", bundle: nil).instantiateInitialController() as! PatternSortViewController
         viewController.representedObject = self
         
         // sample the first line
@@ -212,7 +212,7 @@ extension EditorTextView {
         viewController.sampleLine = String(string[lineRange])
         viewController.sampleFontName = (self.layoutManager as? LayoutManager)?.textFont?.fontName
         
-        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
+        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
     
     

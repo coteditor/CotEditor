@@ -60,10 +60,10 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomSurroundStringView"), bundle: nil).instantiateInitialController() as! CustomSurroundStringViewController
+        let viewController = NSStoryboard(name: "CustomSurroundStringView", bundle: nil).instantiateInitialController() as! CustomSurroundStringViewController
         viewController.representedObject = self
         
-        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
+        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
     
 }

@@ -31,7 +31,7 @@ extension NSSplitViewController {
     func restoreAutosavePositions() {
         
         guard
-            let autosaveName = self.splitView.autosaveName?.rawValue,
+            let autosaveName = self.splitView.autosaveName,
             let subviewFrames = UserDefaults.standard.stringArray(forKey: "NSSplitView Subview Frames " + autosaveName)
             else { return }
         

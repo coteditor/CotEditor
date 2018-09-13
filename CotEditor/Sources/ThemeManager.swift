@@ -77,6 +77,20 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Public Methods
     
+    /// return default setting by taking the appearance state into consideration
+    func defaultSettingName(forDark: Bool = false) -> String {
+        
+        return forDark ? "Dendrobates (Dark)" : "Dendrobates"
+    }
+    
+    
+    /// return user default setting by taking the appearance state into consideration
+    func userDefaultSettingName(forDark: Bool = false) -> String {
+        
+        return UserDefaults.standard[.theme] ?? self.defaultSettingName(forDark: forDark)
+    }
+    
+    
     /// load theme dict in which objects are property list ready.
     func settingDictionary(name: String) -> ThemeDictionary? {
         
@@ -120,6 +134,29 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
+    /// return setting name of dark/light version of given one if any exists
+    func equivalentSettingName(to name: String, forDark: Bool) -> String? {
+        
+        let baseName: String
+        if let range = name.range(of: "^.+?(?=$| \\((?:Dark|Light)\\)$)", options: .regularExpression) {
+            baseName = String(name[range])
+        } else {
+            baseName = name
+        }
+        
+        let settingName = baseName + " " + (forDark ? "(Dark)" : "(Light)")
+        if self.settingNames.contains(settingName) {
+            return settingName
+        }
+        
+        if !forDark, self.settingNames.contains(baseName) {
+            return baseName
+        }
+        
+        return nil
+    }
+    
+    
     
     // MARK: Setting File Managing
     
@@ -141,7 +178,9 @@ final class ThemeManager: SettingFileManaging {
         self.settingNames = OrderedSet(self.bundledSettingNames + userSettingNames).array
         
         // reset user default if not found
-        if !self.settingNames.contains(UserDefaults.standard[.theme]!) {
+        if let userSetting = UserDefaults.standard[.theme],
+            !self.settingNames.contains(userSetting)
+        {
             UserDefaults.standard.restore(key: .theme)
         }
     }

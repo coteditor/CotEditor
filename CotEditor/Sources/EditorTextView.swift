@@ -26,9 +26,9 @@
 
 import Cocoa
 
-private extension NSAttributedStringKey {
+private extension NSAttributedString.Key {
     
-    static let autoBalancedClosingBracket = NSAttributedStringKey("autoBalancedClosingBracket")
+    static let autoBalancedClosingBracket = NSAttributedString.Key("autoBalancedClosingBracket")
 }
 
 
@@ -38,7 +38,7 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
 // MARK: -
 
-final class EditorTextView: NSTextView, Themable {
+final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     // MARK: Notification Names
     
@@ -53,7 +53,9 @@ final class EditorTextView: NSTextView, Themable {
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var lineHighlightRect: NSRect?
+    var needsUpdateLineHighlight = true
+    var lineHighLightRect: NSRect?
+    private(set) var lineHighLightColor: NSColor?
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -68,14 +70,12 @@ final class EditorTextView: NSTextView, Themable {
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
     
-    private var lineHighLightColor: NSColor?
-    
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.highlightInstance() }  // NSTextView cannot be weak
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
     
     private var needsRecompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [wrapper = TextViewWrapper(self)] in wrapper.textView?.performCompletion() }  // NSTextView cannot be weak
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
@@ -95,6 +95,7 @@ final class EditorTextView: NSTextView, Themable {
         .fontSize,
         .shouldAntialias,
         .lineHeight,
+        .highlightCurrentLine,
         .highlightSelectionInstance,
         .overscrollRate,
         ]
@@ -116,9 +117,6 @@ final class EditorTextView: NSTextView, Themable {
         // set paragraph style values
         self.lineHeight = defaults[.lineHeight]
         self.tabWidth = defaults[.tabWidth]
-        
-        self.theme = ThemeManager.shared.setting(name: defaults[.theme]!)
-        // -> will be applied first in `viewDidMoveToWindow()`
         
         super.init(coder: coder)
         
@@ -147,7 +145,7 @@ final class EditorTextView: NSTextView, Themable {
         self.usesFindPanel = true
         self.acceptsGlyphInfo = true
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
-                                   .underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+                                   .underlineStyle: NSUnderlineStyle.single.rawValue]
         
         // setup behaviors
         self.smartInsertDeleteEnabled = defaults[.smartInsertAndDelete]
@@ -210,7 +208,6 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
-    
     /// textView was attached to a window
     override func viewDidMoveToWindow() {
         
@@ -251,6 +248,15 @@ final class EditorTextView: NSTextView, Themable {
     }
     
     
+    /// view did change frame
+    override func setFrameSize(_ newSize: NSSize) {
+        
+        super.setFrameSize(newSize)
+        
+        self.needsUpdateLineHighlight = true
+    }
+    
+    
     /// key is pressed
     override func keyDown(with event: NSEvent) {
         
@@ -272,6 +278,8 @@ final class EditorTextView: NSTextView, Themable {
     override func didChangeText() {
         
         super.didChangeText()
+        
+        self.needsUpdateLineHighlight = true
         
         // retry completion if needed
         //   -> Flag is set in `insertCompletion:forPartialWordRange:movement:isFinal:`
@@ -510,6 +518,8 @@ final class EditorTextView: NSTextView, Themable {
     /// selection did change
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
+        self.needsUpdateLineHighlight = true
+        
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
         
         // highlight matching brace
@@ -636,16 +646,8 @@ final class EditorTextView: NSTextView, Themable {
         super.drawBackground(in: rect)
         
         // draw current line highlight
-        if let highlightColor = self.lineHighLightColor,
-            let highlightRect = self.lineHighlightRect,
-            rect.intersects(highlightRect)
-        {
-            NSGraphicsContext.saveGraphicsState()
-            
-            highlightColor.setFill()
-            highlightRect.fill()
-            
-            NSGraphicsContext.restoreGraphicsState()
+        if UserDefaults.standard[.highlightCurrentLine] {
+            self.drawCurrentLine(in: rect)
         }
         
         self.drawRoundedBackground(in: rect)
@@ -658,18 +660,18 @@ final class EditorTextView: NSTextView, Themable {
         // minimize drawing area on non-opaque background
         // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
         //    and it affects to the drawing performance on a large document critically. (2017-03 macOS 10.12)
-        var dirtyRect = dirtyRect
-        if !self.drawsBackground {
-            dirtyRect = self.visibleRect
-        }
+        let dirtyRect = self.drawsBackground ? dirtyRect: self.visibleRect
         
         super.draw(dirtyRect)
         
         // draw page guide
         if self.showsPageGuide,
-            let guideColor = self.textColor?.withAlphaComponent(0.2),
+            let textColor = self.textColor,
             let spaceWidth = (self.layoutManager as? LayoutManager)?.spaceWidth
         {
+            let isHighContrast = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
+            
             let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
             let inset = self.textContainerOrigin.x
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
@@ -793,9 +795,9 @@ final class EditorTextView: NSTextView, Themable {
     /// update font panel to set current font
     override func updateFontPanel() {
         
-        // フォントのみをフォントパネルに渡す
-        // -> super にやらせると、テキストカラーもフォントパネルに送り、フォントパネルがさらにカラーパネル（= カラーコードパネル）にそのテキストカラーを渡すので、
-        // それを断つために自分で渡す
+        // pass only the font to the font panel
+        // -> Because the `super` sends also `self.textColor` to the font panel,
+        //    which delivers the received color to the color (code) panel.
         guard let font = self.font else { return }
         
         NSFontManager.shared.setSelectedFont(font, isMultiple: false)
@@ -881,6 +883,9 @@ final class EditorTextView: NSTextView, Themable {
             } else {
                 (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
+            
+        case DefaultKeys.highlightCurrentLine.rawValue:
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
         case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
@@ -1204,7 +1209,11 @@ final class EditorTextView: NSTextView, Themable {
         }
         
         // set scroller color considering background color
-        self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
+        if #available(macOS 10.14, *) {
+            self.enclosingScrollView?.appearance = NSAppearance(named: theme.isDarkTheme ? .darkAqua : .aqua)
+        } else {
+            self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
+        }
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
     }

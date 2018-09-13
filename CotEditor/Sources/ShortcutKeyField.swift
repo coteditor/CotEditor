@@ -46,8 +46,8 @@ final class ShortcutKeyField: NSTextField {
         (self.currentEditor() as? NSTextView)?.insertionPointColor = .textBackgroundColor
         
         self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] (event: NSEvent) -> NSEvent? in
-            
             guard
+                let self = self,
                 var charsIgnoringModifiers = event.charactersIgnoringModifiers,
                 !charsIgnoringModifiers.isEmpty
                 else { return event }
@@ -73,13 +73,13 @@ final class ShortcutKeyField: NSTextField {
             
             // set input shortcut string to field
             let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
-            self?.objectValue = {
+            self.objectValue = {
                 guard keySpecChars != "\u{8}" else { return nil }  // single NSDeleteCharacter works as delete
                 return keySpecChars
             }()
             
             // end editing
-            self?.window?.endEditing(for: nil)
+            self.window?.endEditing(for: nil)
             
             return nil
         })

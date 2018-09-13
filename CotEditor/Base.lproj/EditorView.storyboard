@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="value" name="DividerColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -122,10 +122,10 @@
                             </progressIndicator>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Svt-vI-TEc">
                                 <rect key="frame" x="82" y="1" width="107" height="14"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
+                                <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Extracting Outline…" id="aUE-uy-XLQ">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
@@ -135,6 +135,7 @@
                             <constraint firstItem="MlW-Dz-FOk" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="6cS-JS-uMe"/>
                             <constraint firstAttribute="bottom" secondItem="Bmo-XE-CCn" secondAttribute="bottom" constant="-1" id="Kke-Sl-ibg"/>
                             <constraint firstItem="syK-XU-x2I" firstAttribute="leading" secondItem="Bmo-XE-CCn" secondAttribute="trailing" constant="-1" id="Lx9-yU-pBc"/>
+                            <constraint firstItem="Svt-vI-TEc" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="uo6-wO-fJZ" secondAttribute="trailing" id="OdJ-nd-QK4"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="leading" secondItem="BUj-TD-scp" secondAttribute="trailing" constant="-1" id="PLF-Ig-I6B"/>
                             <constraint firstItem="uo6-wO-fJZ" firstAttribute="top" secondItem="Fb7-9r-keA" secondAttribute="top" constant="-1" id="Pdl-aM-DT9"/>
                             <constraint firstAttribute="trailing" secondItem="syK-XU-x2I" secondAttribute="trailing" constant="-1" id="YT4-Oj-3Yn"/>
@@ -180,16 +181,16 @@
                                 <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="624"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <size key="minSize" width="600" height="624"/>
                                     <size key="maxSize" width="600" height="10000000"/>
-                                    <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <connections>
                                         <outlet property="delegate" destination="u5I-Fh-D97" id="PIc-cS-58P"/>
                                     </connections>
                                 </textView>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
@@ -211,5 +212,8 @@
         <image name="DownArrowTemplate" width="8" height="8"/>
         <image name="OpenSplitTemplate" width="9" height="9"/>
         <image name="UpArrowTemplate" width="8" height="8"/>
+        <namedColor name="DividerColor">
+            <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
     </resources>
 </document>

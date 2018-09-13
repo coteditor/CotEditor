@@ -36,7 +36,7 @@ private enum StyleKey: String {
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
 
     // MARK: Private Properties
     
@@ -81,8 +81,11 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     
+    
+    // MARK: Menu Item Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         
@@ -157,7 +160,6 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
     
     
-    
     // MARK: Delegate & Data Source
     
     /// selected syntax style in "Installed styles" list table did change
@@ -211,7 +213,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let urls = pboard.readObjects(forClasses: [NSURL.self],
                                       options: [.urlReadingFileURLsOnly: true])?
             .compactMap { $0 as? URL }
@@ -284,14 +286,14 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     /// show encoding list edit sheet
     @IBAction func openEncodingEditSheet(_ sender: Any?) {
         
-        self.presentViewControllerAsSheet(EncodingListViewController())
+        self.presentAsSheet(EncodingListViewController())
     }
     
     
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        self.presentViewControllerAsSheet(SyntaxMappingConflictsViewController())
+        self.presentAsSheet(SyntaxMappingConflictsViewController())
     }
     
     
@@ -302,7 +304,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
         guard let viewController = SyntaxEditViewController(style: styleName, mode: .edit) else { return }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -313,7 +315,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
         guard let viewController = SyntaxEditViewController(style: styleName, mode: .copy) else { return }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -324,7 +326,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
         guard let viewController = SyntaxEditViewController(style: styleName, mode: .new) else { return }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     

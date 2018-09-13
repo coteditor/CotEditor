@@ -76,7 +76,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     override var representedObject: Any? {
         
         didSet {
-            for viewController in self.childViewControllers {
+            for viewController in self.children {
                 viewController.representedObject = representedObject
             }
         }
@@ -147,7 +147,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     @IBAction func toggleInspector(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation(true) {
-            self.isSidebarShown = !self.isSidebarShown
+            self.isSidebarShown.toggle()
         }
     }
     
@@ -281,8 +281,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     /// window content view controllers in all tabs in the same window
     private var siblings: [WindowContentViewController] {
-        
-        guard #available(macOS 10.12, *) else { return [self] }
         
         return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
     }

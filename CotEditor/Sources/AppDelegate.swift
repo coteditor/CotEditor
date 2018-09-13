@@ -28,7 +28,7 @@ import Cocoa
 
 private extension NSSound {
     
-    static let glass = NSSound(named: NSSound.Name("Glass"))
+    static let glass = NSSound(named: "Glass")
 }
 
 
@@ -54,16 +54,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    // MARK: Public Properties
-    
-    @objc dynamic let supportsWindowTabbing: Bool
-    
-    
     // MARK: Private Properties
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
-        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! NSWindowController
+        let windowController = NSStoryboard(name: "WebDocumentWindow", bundle: nil).instantiateInitialController() as! NSWindowController
         windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
         return windowController
     }()
@@ -79,13 +74,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Lifecycle
     
     override init() {
-        
-        // add tab window
-        if #available(macOS 10.12, *) {
-            self.supportsWindowTabbing = true
-        } else {
-            self.supportsWindowTabbing = false
-        }
         
         // register default setting values
         UserDefaults.standard.register(defaults: DefaultSettings.defaults)
@@ -127,7 +115,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // manually insert Share menu on macOS 10.12 and earlier
-        if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
+        if NSAppKitVersion.current < .macOS10_13 {
             (DocumentController.shared as? DocumentController)?.insertLegacyShareMenu()
         }
         
@@ -156,13 +144,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // setup KeyBindingManager
         MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
         
+        // register Help book
+        NSHelpManager.shared.registerBooks(in: Bundle.main)
+        
         // register Services
         NSApp.servicesProvider = ServicesProvider()
         
         // setup touchbar
-        if #available(macOS 10.12.2, *) {
-            NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-        }
+        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
     }
     
     
@@ -203,30 +192,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// drop multiple files
+    /// open multiple files at once
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         
-        let isAutomaticTabbing: Bool = {
-            if #available(macOS 10.12, *) {
-                return (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
-            }
-            return false
-        }()
-        
-        var remainingDocumentCount = filenames.count
+        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+        let dispatchGroup = DispatchGroup()
         var firstWindowOpened = false
         
         for filename in filenames {
             guard !self.application(sender, openFile: filename) else {
-                remainingDocumentCount -= 1
                 continue
             }
             
             let url = URL(fileURLWithPath: filename)
             
+            dispatchGroup.enter()
             DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
                 defer {
-                    remainingDocumentCount -= 1
+                    dispatchGroup.leave()
                 }
                 
                 if let error = error {
@@ -238,7 +221,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 // on first window opened
                 // -> The first document needs to open a new window.
-                if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
+                if isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
                     DocumentWindow.tabbingPreference = .always
                     firstWindowOpened = true
                 }
@@ -246,13 +229,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // reset tabbing setting
-        if #available(macOS 10.12, *), isAutomaticTabbing {
+        if isAutomaticTabbing {
             // wait until finish
-            while remainingDocumentCount > 0 {
-                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+            dispatchGroup.notify(queue: .main) {
+                DocumentWindow.tabbingPreference = nil
             }
-            
-            DocumentWindow.tabbingPreference = nil
         }
     }
     
@@ -325,10 +306,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         #if APPSTORE
             // Remove Sparkle from 3rd party code list
             if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                let attrString = try? NSMutableAttributedString(url: creditsURL, documentAttributes: nil),
+                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
                 let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
             {
-                attrString.replaceCharacters(in: NSRange(range, in: attrString.string), with: "")
+                attrString.deleteCharacters(in: NSRange(range, in: attrString.string))
                 let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
                 options[creditsKey] = attrString
             }
@@ -374,10 +355,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        let anchorName = NSHelpManager.AnchorName(identifier.rawValue)
-        let bookName = NSHelpManager.BookName(rawValue: AppInfo.helpBookName)
-        
-        NSHelpManager.shared.openHelpAnchor(anchorName, inBook: bookName)
+        NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: AppInfo.helpBookName)
     }
     
     

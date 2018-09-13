@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14295.6"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -75,21 +75,11 @@
                                         <menuItem title="New Window" keyEquivalent="N" id="cTV-Rh-597">
                                             <connections>
                                                 <action selector="newDocumentAsWindow:" target="Ady-hI-5gd" id="O1V-BQ-IdO"/>
-                                                <binding destination="Voe-Tx-rLC" name="hidden" keyPath="supportsWindowTabbing" id="wEu-ms-ha8">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                    </dictionary>
-                                                </binding>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="New Tab" keyEquivalent="t" id="WCp-4v-OPR">
                                             <connections>
                                                 <action selector="newDocumentAsTab:" target="Ady-hI-5gd" id="S8W-T4-6Jr"/>
-                                                <binding destination="Voe-Tx-rLC" name="hidden" keyPath="supportsWindowTabbing" id="oPe-r3-ZV7">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                    </dictionary>
-                                                </binding>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ahO-Ic-gXg"/>
@@ -820,6 +810,25 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
+                                                    <menuItem title="Make Snake Case" id="F0I-F4-srF">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="snakecaseWord:" target="Ady-hI-5gd" id="sZO-xn-Orq"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Camel Case" id="nlp-Gj-W9G">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="camelcaseWord:" target="Ady-hI-5gd" id="6b5-Gh-Jmr"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Pascal Case" id="x1F-KX-2de">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="pascalcaseWord:" target="Ady-hI-5gd" id="CmK-JI-9Jm"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="kwE-D3-DED"/>
                                                     <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

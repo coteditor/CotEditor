@@ -2,7 +2,42 @@
 Change Log
 ==========================
 
-3.5.2 (274)
+3.6.0-beta (276)
+--------------------------
+
+### New Features
+
+- Support Dark Mode in macOS 10.14 Mojave.
+- Add a new theme “Dendrobates (Dark)”.
+- Add new commands to transform selections to snake case, camel case, or pascal case.
+- Add “Emoji & Symbols” toolbar item.
+- [non-AppStore] The non-AppStore application binary is now notarized by Apple.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 10.12.2 Sierra and later__.
+- Update `cot` command-line tool to return the focus to the client terminal window again after `--wait`.
+- [trivial] Improve the high contrast mode support.
+- [trivial] Optimize the performance of line number drawing.
+- [dev] Enable hardend runtime.
+- [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
+- [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- Fix an issue where the current line highlight could blink while pinch zoom.
+
+
+### Known Issues
+
+- [Mojave] Text view stacks under the line number view when zoomed.
+- [Mojave] The title bar color is not correctly updated when the system appearance is changed.
+
+
+
+3.5.3 (274)
 --------------------------
 
 ### Fixes
@@ -25,7 +60,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the multi replacement feature exported definitions without its file extension.
-- Fix an issue where “Hide extension” checkbox in the setting export dialog was ignored. 
+- Fix an issue where “Hide extension” checkbox in the setting export dialog was ignored.
 - Fix an issue where an unhidable empty progress dialog was displayed if another dialog was displayed when the task started.
 - Address an issue where the application could rarely crash during syntax highlighting.
 
@@ -46,6 +81,7 @@ Change Log
 - Fix an issue where the inputting text that is not finalized yet could be wrongly highlighted.
 - Fix an issue where some Unicode block names were not displayed in character info popover.
 - Address an issue where the application could rarely crash during syntax highlighting.
+
 
 
 

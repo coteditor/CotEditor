@@ -293,16 +293,3 @@ extension UTF32Char {
     ]
     
 }
-
-
-
-// MARK: -
-
-extension CountableClosedRange: Hashable where Element == UInt32 {
-    
-    public var hashValue: Int {
-        
-        return self.lowerBound.hashValue * self.upperBound.hashValue
-    }
-    
-}

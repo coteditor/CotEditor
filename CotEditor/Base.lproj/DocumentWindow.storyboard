@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +11,7 @@
         <scene sceneID="sAX-Gn-44h">
             <objects>
                 <windowController id="0UB-Lz-R6c" customClass="DocumentWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
+                    <window key="window" title="Untitled" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="documentWindow" frameAutosaveName="" id="gE4-1J-3li" userLabel="Window" customClass="DocumentWindow" customModule="CotEditor" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <rect key="contentRect" x="10" y="280" width="600" height="660"/>
@@ -287,6 +288,21 @@
                                         <action selector="editColorCode:" target="klO-m3-n5X" id="sBu-5y-85K"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="EE502370-3E58-4FF5-9F67-A9E3359697CE" label="Emoji &amp; Symbols" paletteLabel="Emoji &amp; Symbols" toolTip="Show Emoji &amp; Symbols palette" image="Emoji" id="tek-D0-460" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="44" height="25"/>
+                                    <button key="view" verticalHuggingPriority="750" id="vRD-Ro-4Vb">
+                                        <rect key="frame" x="26" y="14" width="44" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Emoji" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8Th-Xk-WmN">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="orderFrontCharacterPalette:" target="klO-m3-n5X" id="gIt-Sl-DWA"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="61069554-3748-429C-94A3-EA8375B3BF6E" label="Fonts" paletteLabel="Fonts" toolTip="Show Font Panel" image="FontsTemplate" id="vLf-la-9dL" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="44" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
@@ -501,7 +517,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <color key="value" name="DividerColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -588,7 +604,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="value" name="DividerColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -618,7 +634,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
-                                <color key="value" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="value" name="DividerColor"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                         <connections>
@@ -657,7 +673,7 @@
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="NBJ-8W-V9X" name="value" keyPath="editorStatus" id="YJ0-hw-afY"/>
@@ -668,7 +684,7 @@
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="NBJ-8W-V9X" name="value" keyPath="documentStatus" id="gXZ-ib-u50"/>
@@ -705,6 +721,7 @@
         <image name="Comment" width="24" height="18"/>
         <image name="ConflictsTemplate" width="15" height="15"/>
         <image name="DocumentTemplate" width="15" height="15"/>
+        <image name="Emoji" width="20" height="18"/>
         <image name="FontsTemplate" width="18" height="18"/>
         <image name="Inspector" width="18" height="18"/>
         <image name="Invisibles_On" width="17" height="18"/>
@@ -724,5 +741,8 @@
         <image name="WritingDirectionLTRTemplate" width="14" height="18"/>
         <image name="WritingDirectionRTLTemplate" width="14" height="18"/>
         <image name="WritingDirectionVerticalTemplate" width="14" height="18"/>
+        <namedColor name="DividerColor">
+            <color white="0.75" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
     </resources>
 </document>

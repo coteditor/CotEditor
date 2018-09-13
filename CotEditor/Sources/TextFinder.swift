@@ -62,7 +62,7 @@ private struct HighlightItem {
 
 // MARK: -
 
-final class TextFinder: NSResponder {
+final class TextFinder: NSResponder, NSMenuItemValidation {
     
     static let shared = TextFinder()
     
@@ -82,8 +82,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("MultipleReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
+    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel", bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     
@@ -109,10 +109,10 @@ final class TextFinder: NSResponder {
     
     
     
-    // MARK: Responder Methods
+    // MARK: Menu Item Validation
     
     /// validate menu item
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         guard let action = menuItem.action else { return false }
         
@@ -292,10 +292,10 @@ final class TextFinder: NSResponder {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
@@ -337,13 +337,13 @@ final class TextFinder: NSResponder {
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                    if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
                 
                 let count = Int(progress.completedUnitCount)
-                strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
+                self.delegate?.textFinder(self, didReplace: count, textView: textView)
             }
         }
         
@@ -492,10 +492,10 @@ final class TextFinder: NSResponder {
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController(progress: progress, message: actionName)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+            guard let self = self else { return }
             
             var highlights = [HighlightItem]()
             var results = [TextFindResult]()  // not used if showsList is false
@@ -564,13 +564,13 @@ final class TextFinder: NSResponder {
                 }
                 
                 if showsList {
-                    strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
+                    self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
                 // -> close also if result view has been shown
                 if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                    if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }

@@ -40,7 +40,7 @@ extension NSLayoutManager {
     
     
     /// return range of given attribute if the location is in it, otherwise nil.
-    func effectiveRange(of attrName: NSAttributedStringKey, at location: Int, in range: NSRange? = nil) -> NSRange? {
+    func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
         
         let range = range ?? NSRange(location: 0, length: self.attributedString().length)
         var effectiveRange = NSRange.notFound
@@ -52,7 +52,7 @@ extension NSLayoutManager {
     
     
     /// enumerate range and value of given temporary attribute
-    func enumerateTemporaryAttribute(_ attrName: NSAttributedStringKey, in range: NSRange, using block: (Any?, NSRange, inout Bool) -> Void) {
+    func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange, using block: (Any?, NSRange, inout Bool) -> Void) {
         
         var characterIndex = range.location
         while characterIndex < range.upperBound {

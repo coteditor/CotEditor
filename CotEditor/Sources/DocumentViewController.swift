@@ -29,9 +29,11 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, NSMenuItemValidation, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
+    
+    private var appearanceObserver: NSKeyValueObservation?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
@@ -42,6 +44,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     // MARK: Split View Controller Methods
     
     deinit {
+        self.appearanceObserver?.invalidate()
+        
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
     }
     
@@ -69,11 +73,27 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
         
+        // set theme
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        self.setTheme(name: themeName)
+        
         // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
+        
+        // observe appearance change for theme toggle
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
+            guard
+                self.view.window != nil,
+                let currentThemeName = self.theme?.name,
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: self.view.effectiveAppearance.isDark),
+                currentThemeName != themeName
+                else { return }
+            
+            self.setTheme(name: themeName)
+        }
     }
     
     
@@ -164,8 +184,67 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// apply current state to related toolbar items
+    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        guard let action = item.action else { return false }
+        
+        switch (action, item) {
+        case (#selector(recolorAll), _):
+            return self.syntaxParser?.canParse ?? false
+            
+        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
+            item.state = self.wrapsLines ? .on : .off
+            
+        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
+            item.state = self.wrapsLines ? .on : .off
+            
+        case (#selector(togglePageGuide), let item as StatableToolbarItem):
+            item.state = self.showsPageGuide ? .on : .off
+            
+        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
+            item.state = self.showsInvisibles ? .on : .off
+            
+            // disable button if item cannot be enabled
+            if self.canActivateShowInvisibles {
+                item.toolTip = "Show or hide invisible characters in document".localized
+            } else {
+                item.toolTip = "To show invisible characters, set them in Preferences".localized
+                return false
+            }
+            
+        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
+            item.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
+            let tag: Int = {
+                switch (self.verticalLayoutOrientation, self.writingDirection) {
+                case (true, _):
+                    return 2
+                case (false, .rightToLeft):
+                    return 1
+                default:
+                    return 0
+                }
+            }()
+            item.segmentedControl?.selectSegment(withTag: tag)
+            
+        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
+            let tag = self.verticalLayoutOrientation ? 1 : 0
+            item.segmentedControl?.selectSegment(withTag: tag)
+            
+        default: break
+        }
+        
+        return true
+    }
+    
+    
+    
+    // MARK: Menu Item Validation
+    
     /// validate menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         guard let action = menuItem.action else { return false }
         
@@ -232,62 +311,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
         case #selector(changeTheme):
             menuItem.state = (self.theme?.name == menuItem.title) ? .on : .off
-            
-        default: break
-        }
-        
-        return true
-    }
-    
-    
-    /// apply current state to related toolbar items
-    override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch (action, item) {
-        case (#selector(recolorAll), _):
-            return self.syntaxParser?.canParse ?? false
-            
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(togglePageGuide), let item as StatableToolbarItem):
-            item.state = self.showsPageGuide ? .on : .off
-            
-        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
-            item.state = self.showsInvisibles ? .on : .off
-            
-            // disable button if item cannot be enabled
-            if self.canActivateShowInvisibles {
-                item.toolTip = "Show or hide invisible characters in document".localized
-            } else {
-                item.toolTip = "To show invisible characters, set them in Preferences".localized
-                return false
-            }
-            
-        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
-            item.state = self.isAutoTabExpandEnabled ? .on : .off
-            
-        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
-            let tag: Int = {
-                switch (self.verticalLayoutOrientation, self.writingDirection) {
-                case (true, _):
-                    return 2
-                case (false, .rightToLeft):
-                    return 1
-                default:
-                    return 0
-                }
-            }()
-            item.segmentedControl?.selectSegment(withTag: tag)
-            
-        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
-            let tag = self.verticalLayoutOrientation ? 1 : 0
-            item.segmentedControl?.selectSegment(withTag: tag)
             
         default: break
         }
@@ -386,7 +409,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let oldName = notification?.userInfo?[Notification.UserInfoKey.old] as? String,
             oldName == self.theme?.name else { return }
         
-        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? UserDefaults.standard[.theme]!
+        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.setTheme(name: newName)
     }
@@ -569,7 +592,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleStatusBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.isStatusBarShown = !self.isStatusBarShown
+            self.isStatusBarShown.toggle()
         }
         
         UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
@@ -580,7 +603,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.showsNavigationBar = !self.showsNavigationBar
+            self.showsNavigationBar.toggle()
         }
         
         UserDefaults.standard[.showNavigationBar] = self.showsNavigationBar
@@ -590,14 +613,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of line number view
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
-        self.showsLineNumber = !self.showsLineNumber
+        self.showsLineNumber.toggle()
     }
     
     
     /// toggle if lines wrap at window edge
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
-        self.wrapsLines = !self.wrapsLines
+        self.wrapsLines.toggle()
     }
     
     
@@ -676,21 +699,21 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of invisible characters in text view
     @IBAction func toggleInvisibleChars(_ sender: Any?) {
         
-        self.showsInvisibles = !self.showsInvisibles
+        self.showsInvisibles.toggle()
     }
     
     
     /// toggle visibility of page guide line in text view
     @IBAction func togglePageGuide(_ sender: Any?) {
         
-        self.showsPageGuide = !self.showsPageGuide
+        self.showsPageGuide.toggle()
     }
     
     
     /// toggle if text view expands tab input
     @IBAction func toggleAutoTabExpand(_ sender: Any?) {
         
-        self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
+        self.isAutoTabExpandEnabled.toggle()
     }
     
     
@@ -704,13 +727,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// change tab width to desired number through a sheet
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomTabWidthView"), bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
+        let viewController = NSStoryboard(name: "CustomTabWidthView", bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
         viewController.defaultWidth = self.tabWidth
         viewController.completionHandler = { [weak self] (tabWidth) in
             self?.tabWidth = tabWidth
         }
         
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -839,7 +862,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let message = "Coloring text…".localized
             let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
             
-            self?.presentViewControllerAsSheet(indicator)
+            self?.presentAsSheet(indicator)
         }
         
         if window.occlusionState.contains(.visible) {
@@ -863,7 +886,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// create new (split) editor view
     private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
         
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
+        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
         let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
         
         self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
@@ -927,7 +950,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
+        return self.splitViewController?.children as? [EditorViewController] ?? []
     }
     
     

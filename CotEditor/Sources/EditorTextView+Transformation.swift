@@ -27,6 +27,30 @@ import Cocoa
 
 extension EditorTextView {
     
+    // MARK: Action Messages (Case Transformations)
+    
+    /// transform to snake case
+    @IBAction func snakecaseWord(_ sender: Any?) {
+        
+        self.transformSelection(actionName: "To Snake Case") { $0.snakecased }
+    }
+    
+    
+    /// transform to snake case
+    @IBAction func camelcaseWord(_ sender: Any?) {
+        
+        self.transformSelection(actionName: "To Camel Case") { $0.camelcased }
+    }
+    
+    
+    /// transform to snake case
+    @IBAction func pascalcaseWord(_ sender: Any?) {
+        
+        self.transformSelection(actionName: "To Pascal Case") { $0.pascalcased }
+    }
+    
+    
+    
     // MARK: Action Messages (Transformations)
     
     /// transform all full-width-available half-width characters in selection to full-width

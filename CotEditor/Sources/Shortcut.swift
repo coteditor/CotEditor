@@ -26,14 +26,12 @@
 
 import Cocoa
 
-enum ModifierKey {
+enum ModifierKey: CaseIterable {
     
     case control
     case option
     case shift
     case command
-    
-    static let allCases: [ModifierKey] = [.control, .option, .shift, .command]
     
     
     var mask: NSEvent.ModifierFlags {
@@ -154,9 +152,10 @@ struct Shortcut: Hashable, CustomStringConvertible {
     }
     
     
-    var hashValue: Int {
+    func hash(into hasher: inout Hasher) {
         
-        return self.modifierMask.rawValue.hashValue ^ self.keyEquivalent.hashValue
+        hasher.combine(self.modifierMask.rawValue)
+        hasher.combine(self.keyEquivalent)
     }
     
     

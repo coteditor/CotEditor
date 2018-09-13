@@ -145,8 +145,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
             let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
-            let attrs: [NSAttributedStringKey: Any] = [.font: font,
-                                                       .foregroundColor: self.textColor ?? .textColor]
+            let attrs: [NSAttributedString.Key: Any] = [.font: font,
+                                                        .foregroundColor: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
             let charSize = NSAttributedString(string: "8", attributes: attrs).size()
@@ -167,8 +167,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: dirtyRect, in: textContainer)
             
             // count up lines until visible
-            let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-            var lineNumber = max(self.string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
+            let firstVisibleIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
+            var lineNumber = self.string.lineNumber(at: firstVisibleIndex)
             
             // draw visible line numbers
             var glyphCount = glyphRangeToDraw.location
@@ -278,7 +278,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Layout Manager Delegate
     
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedStringKey: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedStringKey: Any]? {
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
         return attrs
     }
@@ -323,7 +323,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // set theme
         let lastThemeName = self.theme?.name
-        let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
+        let themeName = ThemeManager.shared.userDefaultSettingName()
         let theme = ThemeManager.shared.setting(name: themeName)
         if let theme = theme {
             self.theme = theme
@@ -428,7 +428,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributes for header/footer string
-    private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedStringKey: Any] {
+    private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedString.Key: Any] {
     
         let paragraphStyle = NSParagraphStyle.default.mutable
         

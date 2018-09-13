@@ -59,6 +59,11 @@ extension String {
             }
     }
     
+}
+
+
+
+extension StringProtocol where Self.Index == String.Index {
     
     /// range of the line containing a given index
     func lineRange(at index: Index, excludingLastLineEnding: Bool = false) -> Range<Index> {
@@ -104,22 +109,28 @@ extension String {
     }
     
     
+    /// check if character at the index is escaped with backslash
+    func isCharacterEscaped(at index: Index) -> Bool {
+        
+        let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
+        
+        return (escapes.count % 2 == 1)
+    }
+    
+}
+
+
+
+// MARK: NSRange based
+
+extension String {
+    
     /// check if character at the location in UTF16 is escaped with backslash
     func isCharacterEscaped(at location: Int) -> Bool {
         
         guard let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self) else { return false }
         
         return self.isCharacterEscaped(at: locationIndex)
-    }
-    
-    
-    /// check if character at the index is escaped with backslash
-    func isCharacterEscaped(at index: Index) -> Bool {
-        
-        let seekCharacters = self[..<index].suffix(kMaxEscapesCheckLength)
-        let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
-        
-        return (numberOfEscapes % 2 == 1)
     }
     
 }

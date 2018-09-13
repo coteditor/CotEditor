@@ -196,7 +196,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
         if defaultSetting.count == sanitized.count,
-            !zip(defaultSetting, sanitized).contains(where: { $0 != $1 }) {
+            zip(defaultSetting, sanitized).allSatisfy({ $0 == $1 }) {
             UserDefaults.standard.restore(key: .fileDropArray)
             return
         }

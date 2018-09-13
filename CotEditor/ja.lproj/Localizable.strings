@@ -216,6 +216,9 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
+"To Snake Case" = "スネークケースに";
+"To Camel Case" = "キャメルケースに";
+"To Snake Case" = "パスカルケースに";
 "To Full-width" = "全角に";
 "To Half-width" = "半角に";
 "To Full-width Roman" = "全角英数に";

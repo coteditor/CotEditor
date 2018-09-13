@@ -220,7 +220,7 @@ extension Commenting where Self: NSTextView {
 
 
 
-private extension String {
+private extension StringProtocol where Self.Index == String.Index {
     
     /// append inline style comment delimiters in range inserting spacer after delimiters and return commented-out string and new selected range
     func inlineCommentOut(delimiter: String, spacer: String, range: Range<Index>, selectedRange: Range<Index>) -> (String, NSRange) {

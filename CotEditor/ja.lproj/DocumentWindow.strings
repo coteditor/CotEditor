@@ -161,6 +161,11 @@
 "Yx1-Tq-tfo.paletteLabel" = "カラーコードを編集";  /* Edit Color Code */
 "Yx1-Tq-tfo.toolTip" = "カラーコードエディタを開き、選択範囲をカラーコードとしてセット";  /* Open Color Code Editor and set selection as color code */
 
+/* Class = "NSToolbarItem"; label = "Emoji & Symbols"; ObjectID = "tek-D0-460"; */
+"tek-D0-460.label" = "絵文字と記号";  /* Emoji & Symbols */
+"tek-D0-460.paletteLabel" = "絵文字と記号";  /* Emoji & Symbols */
+"tek-D0-460.toolTip" = "絵文字と記号パレットを表示";  /* Show Emoji & Symbols palette */
+
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "検索";  /* Find */
 "ACV-s4-QzY.paletteLabel" = "検索";  /* Find */

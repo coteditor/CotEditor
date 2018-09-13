@@ -105,7 +105,7 @@ final class ProgressViewController: NSViewController {
         // close sheet in an old way
         // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
         //    if the receiver was presented and dismissed during another sheet is already presented. (2018-09 macOS 10.12)
-        if let parentWindow = self.presenting?.view.window,
+        if let parentWindow = self.presentingViewController?.view.window,
             let sheetWindow = self.view.window,
             parentWindow.sheets.count > 1 {
             parentWindow.endSheet(sheetWindow)
@@ -122,7 +122,7 @@ final class ProgressViewController: NSViewController {
     func done() {
         
         self.button?.title = "OK".localized
-        self.button?.action = #selector(dismiss)
+        self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)
         self.button?.keyEquivalent = "\r"
     }
     

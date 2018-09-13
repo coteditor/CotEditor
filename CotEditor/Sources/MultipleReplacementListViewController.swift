@@ -26,7 +26,7 @@
 import Cocoa
 import AudioToolbox
 
-final class MultipleReplacementListViewController: NSViewController, MultipleReplacementPanelViewControlling {
+final class MultipleReplacementListViewController: NSViewController, NSMenuItemValidation, MultipleReplacementPanelViewControlling {
     
     // MARK: Private Properties
     
@@ -72,8 +72,11 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
     }
     
     
+    
+    // MARK: Menu Item Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.tableView?.menu)
         
@@ -377,7 +380,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])

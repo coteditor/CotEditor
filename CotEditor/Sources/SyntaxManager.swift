@@ -330,7 +330,7 @@ final class SyntaxManager: SettingFileManaging {
         self.settingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // remove styles not exist
-        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.settingNames.contains($0) }
+        UserDefaults.standard[.recentStyleNames]?.removeAll { !self.settingNames.contains($0) }
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
@@ -381,7 +381,7 @@ final class SyntaxManager: SettingFileManaging {
 
 
 
-private extension String {
+private extension StringProtocol where Self.Index == String.Index {
     
     /// try extracting used language from the shebang line
     func scanInterpreterInShebang() -> String? {

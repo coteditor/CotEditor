@@ -27,7 +27,7 @@
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -72,7 +72,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         self.setupFontFamilyNameAndSize()
         
-        let themeName = UserDefaults.standard[.theme]!
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         let row = self.themeNames.index(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
@@ -87,8 +87,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     }
     
     
+    
+    // MARK: User Interface Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
@@ -184,7 +187,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
@@ -249,8 +252,13 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
-        if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
+        if UserDefaults.standard[.theme] != themeName {
             UserDefaults.standard[.theme] = themeName
+        }
+        
+        // do not store to UserDefautls if it's the default theme
+        if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
+           UserDefaults.standard.restore(key: .theme)
         }
         
         self.themeViewController?.theme = themeDict
@@ -465,7 +473,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// view controller for theme editor
     private var themeViewController: ThemeViewController? {
         
-        return self.childViewControllers.lazy.compactMap { $0 as? ThemeViewController }.first
+        return self.children.lazy.compactMap { $0 as? ThemeViewController }.first
     }
     
     
@@ -473,7 +481,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @objc private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return UserDefaults.standard[.theme]!
+            return ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         }
         return self.themeNames[tableView.selectedRow]
     }
@@ -561,7 +569,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// update theme list
     @objc private func setupThemeList() {
         
-        let themeName = UserDefaults.standard[.theme]!
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()
@@ -576,7 +584,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
 
 // MARK: - Font Setting
 
-extension AppearancePaneController {
+extension AppearancePaneController: NSFontChanging {
     
     // MARK: View Controller Methods
     
@@ -608,11 +616,11 @@ extension AppearancePaneController {
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
+    @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let fontManager = sender as? NSFontManager else { return }
+        guard let sender = sender else { return }
         
-        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        let newFont = sender.convert(.systemFont(ofSize: 0))
         
         UserDefaults.standard[.fontName] = newFont.fontName
         UserDefaults.standard[.fontSize] = newFont.pointSize

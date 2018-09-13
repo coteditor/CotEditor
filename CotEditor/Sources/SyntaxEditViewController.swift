@@ -180,13 +180,13 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             if type == .comments { break }
             viewControllers.append(SyntaxTermsEditViewController(syntaxType: type))
         }
-        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxCommentsEditView"), bundle: nil))
+        viewControllers.append(NSViewController(nibName: "SyntaxCommentsEditView", bundle: nil))
         viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxOutlineEditView"), bundle: nil))
-        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxCompletionsEditView"), bundle: nil))
-        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxFileMappingEditView"), bundle: nil))
+        viewControllers.append(NSViewController(nibName: "SyntaxOutlineEditView", bundle: nil))
+        viewControllers.append(NSViewController(nibName: "SyntaxCompletionsEditView", bundle: nil))
+        viewControllers.append(NSViewController(nibName: "SyntaxFileMappingEditView", bundle: nil))
         viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController(nibName: NSNib.Name("SyntaxInfoEditView"), bundle: nil))
+        viewControllers.append(NSViewController(nibName: "SyntaxInfoEditView", bundle: nil))
         viewControllers.append(SyntaxValidationViewController())
         
         for viewController in viewControllers {
@@ -206,7 +206,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     // NSTextFieldDelegate  < styleNameField
     
     /// style name did change
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         guard let field = obj.object as? NSTextField, field == self.styleNameField else { return }
         

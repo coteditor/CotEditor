@@ -74,7 +74,7 @@ final class EditorInfoCountOperation: Operation {
     
     private let string: String
     private let lineEnding: LineEnding
-    private let selectedRange: NSRange
+    private let selectedRange: Range<String.Index>
     
     private let requiredInfo: EditorInfoTypes
     private let countsLineEnding: Bool
@@ -84,7 +84,7 @@ final class EditorInfoCountOperation: Operation {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, lineEnding: LineEnding, selectedRange: NSRange, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
+    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
         
         self.string = string
         self.lineEnding = lineEnding
@@ -103,19 +103,20 @@ final class EditorInfoCountOperation: Operation {
         
         guard !self.string.isEmpty else { return }
         
-        let nsString = self.string as NSString
-        let selectedString = nsString.substring(with: self.selectedRange)
+        let selectedString = self.string[self.selectedRange]
         let hasSelection = !selectedString.isEmpty
         
         // count length
         if self.requiredInfo.contains(.length) {
             let isSingleLineEnding = (self.lineEnding.length == 1)
-            let stringForCounting = isSingleLineEnding ? self.string : self.string.replacingLineEndings(with: self.lineEnding)
-            self.result.length = stringForCounting.utf16.count
+            self.result.length = isSingleLineEnding
+                ? self.string.utf16.count
+                : self.string.replacingLineEndings(with: self.lineEnding).utf16.count
             
             if hasSelection {
-                let stringForCounting = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: self.lineEnding)
-                self.result.selectedLength = stringForCounting.utf16.count
+                self.result.selectedLength = isSingleLineEnding
+                    ? selectedString.utf16.count
+                    : selectedString.replacingLineEndings(with: self.lineEnding).utf16.count
             }
         }
         
@@ -123,12 +124,14 @@ final class EditorInfoCountOperation: Operation {
         
         // count characters
         if self.requiredInfo.contains(.characters) {
-            let stringForCounting = self.countsLineEnding ? self.string : self.string.removingLineEndings
-            self.result.characters = stringForCounting.count
+            self.result.characters = self.countsLineEnding
+                ? self.string.count
+                : self.string.removingLineEndings.count
             
             if hasSelection {
-                let stringForCounting = self.countsLineEnding ? selectedString : selectedString.removingLineEndings
-                self.result.selectedCharacters = stringForCounting.count
+                self.result.selectedCharacters = self.countsLineEnding
+                    ? selectedString.count
+                    : selectedString.removingLineEndings.count
             }
         }
         
@@ -154,24 +157,25 @@ final class EditorInfoCountOperation: Operation {
         
         // calculate current location
         if self.requiredInfo.contains(.location) {
-            let locString = nsString.substring(to: selectedRange.location)
-            let stringForCounting = self.countsLineEnding ? locString : locString.removingLineEndings
-            self.result.location = stringForCounting.count
+            let locString = self.string[..<self.selectedRange.lowerBound]
+            self.result.location = self.countsLineEnding
+                ? locString.count
+                : locString.removingLineEndings.count
         }
         
         guard !self.isCancelled else { return }
         
         // calculate current line
         if self.requiredInfo.contains(.line) {
-            self.result.line = self.string.lineNumber(at: self.selectedRange.location)
+            self.result.line = self.string.lineNumber(at: self.selectedRange.lowerBound)
         }
         
         guard !self.isCancelled else { return }
         
         // calculate current column
         if self.requiredInfo.contains(.column) {
-            let lineRange = nsString.lineRange(for: self.selectedRange)
-            self.result.column = nsString.substring(with: NSRange(lineRange.location..<self.selectedRange.location)).count
+            let lineRange = self.string.lineRange(for: self.selectedRange)
+            self.result.column = self.string.distance(from: lineRange.lowerBound, to: self.selectedRange.lowerBound)
         }
         
         // unicode

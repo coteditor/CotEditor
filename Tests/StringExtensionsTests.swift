@@ -96,6 +96,22 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testProgrammingCases() {
+        
+        XCTAssertEqual("AbcDefg Hij".snakecased, "abc_defg hij")
+        XCTAssertEqual("abcDefg Hij".snakecased, "abc_defg hij")
+        XCTAssertEqual("_abcDefg Hij".snakecased, "_abc_defg hij")
+        
+        XCTAssertEqual("abc_defg Hij".camelcased, "abcDefg hij")
+        XCTAssertEqual("AbcDefg Hij".camelcased, "abcDefg hij")
+        XCTAssertEqual("_abcDefg Hij".camelcased, "_abcDefg hij")
+        
+        XCTAssertEqual("abc_defg Hij".pascalcased, "AbcDefg Hij")
+        XCTAssertEqual("abcDefg Hij".pascalcased, "AbcDefg Hij")
+        XCTAssertEqual("_abcDefg Hij".pascalcased, "_abcDefg Hij")
+    }
+    
+    
     func testJapaneseTransform() {
         
         let testString = "犬 イヌ いぬ Ｉｎｕ Dog 123 １２３"

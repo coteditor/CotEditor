@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension String {
+extension StringProtocol {
     
     // MARK: Public Properties
     
