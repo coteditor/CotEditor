@@ -119,10 +119,8 @@ final class DocumentAnalyzer: NSObject {
         self.info.owner = attrs?[.ownerAccountName] as? String
         self.info.permission = attrs?[.posixPermissions] as? NSNumber
         self.info.isReadOnly = {
-            guard
-                !document.isInViewingMode,
-                let posix = attrs?[.posixPermissions] as? UInt16
-                else { return false }
+            guard !document.isInViewingMode else { return true }
+            guard let posix = attrs?[.posixPermissions] as? UInt16 else { return false }
             
             return !FilePermissions(mask: posix).user.contains(.write)
         }()
