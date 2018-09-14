@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.0-beta.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue the read-only icon in the status bar displayed opposite.
+
+
+
 3.6.0-beta (276)
 --------------------------
 

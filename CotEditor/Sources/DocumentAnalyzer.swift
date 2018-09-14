@@ -124,7 +124,7 @@ final class DocumentAnalyzer: NSObject {
                 let posix = attrs?[.posixPermissions] as? UInt16
                 else { return false }
             
-            return FilePermissions(mask: posix).user.contains(.write)
+            return !FilePermissions(mask: posix).user.contains(.write)
         }()
         
         NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateFileInfoNotification, object: self)
