@@ -29,7 +29,6 @@ import Cocoa
 protocol AdditionalDocumentPreparing: AnyObject {
     
     func didMakeDocumentForExisitingFile(url: URL)
-    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor)
 }
 
 
@@ -79,10 +78,6 @@ final class DocumentController: NSDocumentController {
     /// open document
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
         
-        // listen document open event of the ODB editor protocol
-        // -> Need to fetch AppleEvent at this moment.
-        let openEvent = NSAppleEventManager.shared().currentAppleEvent
-        
         // obtain transient document if exists
         self.transientDocumentLock.lock()
         let transientDocument = self.transientDocumentToReplace
@@ -125,10 +120,6 @@ final class DocumentController: NSDocumentController {
             }
             
             completionHandler(document, documentWasAlreadyOpen, error)
-            
-            if let openEvent = openEvent {
-                (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
-            }
         }
     }
     

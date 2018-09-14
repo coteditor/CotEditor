@@ -24,11 +24,5 @@
 	<true/>
 	<key>com.apple.security.print</key>
 	<true/>
-	<key>com.apple.security.temporary-exception.apple-events</key>
-	<array>
-		<string>com.red-sweater.marsedit</string>
-		<string>com.red-sweater.marsedit.macappstore</string>
-		<string>com.red-sweater.marsedit4</string>
-	</array>
 </dict>
 </plist>

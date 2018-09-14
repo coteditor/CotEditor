@@ -5,6 +5,11 @@ Change Log
 3.6.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Abandon the ancient ODB editor support.
+
+
 ### Fixes
 
 - [beta] Fix an issue the read-only icon in the status bar displayed opposite.
