@@ -18,9 +18,9 @@ Change Log
 
 - Change the system requirement to __macOS 10.12.2 Sierra and later__.
 - Update `cot` command-line tool to return the focus to the client terminal window again after `--wait`.
+- Enable Enhanced Runtime protection for macOS Mojave and later.
 - [trivial] Improve the high contrast mode support.
 - [trivial] Optimize the performance of line number drawing.
-- [dev] Enable Enhanced Runtime protection.
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
 - [non-AppStore ver.] Update Sparkle framework.
 
