@@ -33,6 +33,10 @@ final class WindowPaneController: NSViewController {
     
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
     
+    @IBOutlet private weak var ltrWritingDirectionButton: NSButton?
+    @IBOutlet private weak var rtlWritingDirectionButton: NSButton?
+    @IBOutlet private weak var verticalWritingDirectionButton: NSButton?
+    
     @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
     
     
@@ -54,6 +58,16 @@ final class WindowPaneController: NSViewController {
                                                                .foregroundColor: NSColor.secondaryLabelColor])
         
         menu.items.first!.attributedTitle = attrLabel + userSettingLabel
+        
+        // select one of writing direction radio buttons
+        switch WritingDirection(UserDefaults.standard[.writingDirection]) {
+        case .leftToRight:
+            self.ltrWritingDirectionButton?.state = .on
+        case .rightToLeft:
+            self.rtlWritingDirectionButton?.state = .on
+        case .vertical:
+            self.verticalWritingDirectionButton?.state = .on
+        }
     }
     
     
@@ -64,6 +78,13 @@ final class WindowPaneController: NSViewController {
     @IBAction func changeEditorOpaque(_ sender: NSControl) {
         
         self.editorOpaque = (sender.doubleValue == 1.0)
+    }
+    
+    
+    /// A radio button of writingDirection was clicked
+    @IBAction func updateWritingDirectionSetting(_ sender: NSControl) {
+        
+        UserDefaults.standard[.writingDirection] = sender.tag
     }
     
 }

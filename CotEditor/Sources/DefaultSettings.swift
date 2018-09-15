@@ -99,6 +99,7 @@ struct DefaultSettings {
         .completesStandartWords: false,
         .autoComplete: false,
         
+        .writingDirection: 2,
         .lineEndCharCode: 0,
         .encodingList: DefaultSettings.encodings.map { UInt($0) },
         .encodingInNew: String.Encoding.utf8.rawValue,
