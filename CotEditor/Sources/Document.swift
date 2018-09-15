@@ -1040,7 +1040,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update view
         viewController.invalidateStyleInTextStorage()
-        viewController.verticalLayoutOrientation = self.isVerticalText
+        if self.isVerticalText {
+            viewController.verticalLayoutOrientation = true
+        }
     }
     
     
