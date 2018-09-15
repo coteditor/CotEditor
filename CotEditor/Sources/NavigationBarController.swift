@@ -33,12 +33,19 @@ final class NavigationBarController: NSViewController {
     /// observe textView
     var textView: NSTextView? {  // NSTextView cannot be weak
         
+        willSet {
+            guard let textView = self.textView else { return }
+            
+            self.orientationObserver?.invalidate()
+            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+        }
+        
         didSet {
             guard let textView = self.textView else { return }
           
-            // -> DO NOT use block-based KVO for NSTextView sublcass
-            //    since it causes application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
-            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
+            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
+                self.updateTextOrientation(to: textView.layoutOrientation)
+            }
             
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
@@ -69,6 +76,8 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Properties
     
+    private var orientationObserver: NSKeyValueObservation?
+    
     private weak var prevButton: NSButton?
     private weak var nextButton: NSButton?
     
@@ -87,7 +96,7 @@ final class NavigationBarController: NSViewController {
     // MARK: -
     
     deinit {
-        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
+        self.orientationObserver?.invalidate()
     }
     
     
@@ -103,21 +112,6 @@ final class NavigationBarController: NSViewController {
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
-    }
-    
-    
-    /// observed key value did update
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case #keyPath(NSTextView.layoutOrientation)?:
-            if let orientation = self.textView?.layoutOrientation {
-                self.updateTextOrientation(to: orientation)
-            }
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
     
     
