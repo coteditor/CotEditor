@@ -36,6 +36,8 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         let segmentedControl = self.segmentedControl!
         
         // set menu to the last segment

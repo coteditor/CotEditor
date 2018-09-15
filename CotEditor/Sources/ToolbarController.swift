@@ -114,6 +114,8 @@ final class ToolbarController: NSObject {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()
         
@@ -129,10 +131,14 @@ final class ToolbarController: NSObject {
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == DefaultKeys.recentStyleNames.rawValue {
+        switch keyPath {
+        case DefaultKeys.recentStyleNames.rawValue?:
             DispatchQueue.main.async { [weak self] in
                 self?.buildSyntaxPopupButton()
             }
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

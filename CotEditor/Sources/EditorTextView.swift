@@ -817,38 +817,36 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        guard let keyPath = keyPath, let newValue = change?[.newKey] else { return }
-        
         switch keyPath {
-        case DefaultKeys.autoExpandTab.rawValue:
-            self.isAutomaticTabExpansionEnabled = newValue as! Bool
+        case DefaultKeys.autoExpandTab.rawValue?:
+            self.isAutomaticTabExpansionEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.autoIndent.rawValue:
-            self.isAutomaticIndentEnabled = newValue as! Bool
+        case DefaultKeys.autoIndent.rawValue?:
+            self.isAutomaticIndentEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.enableSmartIndent.rawValue:
-            self.isSmartIndentEnabled = newValue as! Bool
+        case DefaultKeys.enableSmartIndent.rawValue?:
+            self.isSmartIndentEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.balancesBrackets.rawValue:
-            self.balancesBrackets = newValue as! Bool
+        case DefaultKeys.balancesBrackets.rawValue?:
+            self.balancesBrackets = change?[.newKey] as! Bool
             
-        case DefaultKeys.shouldAntialias.rawValue:
-            self.usesAntialias = newValue as! Bool
+        case DefaultKeys.shouldAntialias.rawValue?:
+            self.usesAntialias = change?[.newKey] as! Bool
             
-        case DefaultKeys.smartInsertAndDelete.rawValue:
-            self.smartInsertDeleteEnabled = newValue as! Bool
+        case DefaultKeys.smartInsertAndDelete.rawValue?:
+            self.smartInsertDeleteEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.enableSmartQuotes.rawValue:
-            self.isAutomaticQuoteSubstitutionEnabled = newValue as! Bool
+        case DefaultKeys.enableSmartQuotes.rawValue?:
+            self.isAutomaticQuoteSubstitutionEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.enableSmartDashes.rawValue:
-            self.isAutomaticDashSubstitutionEnabled = newValue as! Bool
+        case DefaultKeys.enableSmartDashes.rawValue?:
+            self.isAutomaticDashSubstitutionEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.checkSpellingAsType.rawValue:
-            self.isContinuousSpellCheckingEnabled = newValue as! Bool
+        case DefaultKeys.checkSpellingAsType.rawValue?:
+            self.isContinuousSpellCheckingEnabled = change?[.newKey] as! Bool
             
-        case DefaultKeys.autoLinkDetection.rawValue:
-            self.isAutomaticLinkDetectionEnabled = newValue as! Bool
+        case DefaultKeys.autoLinkDetection.rawValue?:
+            self.isAutomaticLinkDetectionEnabled = change?[.newKey] as! Bool
             if self.isAutomaticLinkDetectionEnabled {
                 self.detectLinkIfNeeded()
             } else {
@@ -857,24 +855,24 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
                 }
             }
             
-        case DefaultKeys.pageGuideColumn.rawValue:
+        case DefaultKeys.pageGuideColumn.rawValue?:
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-        case DefaultKeys.tabWidth.rawValue:
-            self.tabWidth = newValue as! Int
+        case DefaultKeys.tabWidth.rawValue?:
+            self.tabWidth = change?[.newKey] as! Int
             
-        case DefaultKeys.fontName.rawValue, DefaultKeys.fontSize.rawValue:
+        case DefaultKeys.fontName.rawValue, DefaultKeys.fontSize.rawValue?:
             self.resetFont(nil)
             
-        case DefaultKeys.lineHeight.rawValue:
-            self.lineHeight = newValue as! CGFloat
+        case DefaultKeys.lineHeight.rawValue?:
+            self.lineHeight = change?[.newKey] as! CGFloat
             
             // reset visible area
             self.centerSelectionInVisibleArea(self)
             
-        case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue:
+        case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue?:
             let wholeRange = self.string.nsRange
-            if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(newValue as! Bool) {
+            if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(change?[.newKey] as! Bool) {
                 if let paragraphStyle = self.defaultParagraphStyle {
                     self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
                 } else {
@@ -884,16 +882,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
                 (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
             }
             
-        case DefaultKeys.highlightCurrentLine.rawValue:
+        case DefaultKeys.highlightCurrentLine.rawValue?:
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-        case DefaultKeys.highlightSelectionInstance.rawValue where !(newValue as! Bool):
+        case DefaultKeys.highlightSelectionInstance.rawValue where !(change?[.newKey] as! Bool):
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             
-        case DefaultKeys.overscrollRate.rawValue:
+        case DefaultKeys.overscrollRate.rawValue?:
             self.invalidateOverscrollRate()
             
-        default: break
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

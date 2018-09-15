@@ -173,6 +173,9 @@ final class LayoutManager: NSLayoutManager {
             if let textView = self.firstTextView {
                 textView.setNeedsDisplay(textView.bounds, avoidAdditionalLayout: false)
             }
+            
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

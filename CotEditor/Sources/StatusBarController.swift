@@ -89,6 +89,9 @@ final class StatusBarController: NSViewController {
         if type(of: self).observedDefaultKeys.contains(where: { $0.rawValue == keyPath }) {
             self.updateEditorStatus()
             self.updateDocumentStatus()
+            
+        } else {
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

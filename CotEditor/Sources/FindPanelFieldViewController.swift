@@ -85,19 +85,22 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     /// observed user defaults are changed
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        guard let keyPath = keyPath else { return }
-        
         switch keyPath {
-        case DefaultKeys.findHistory.rawValue:
+        case DefaultKeys.findHistory.rawValue?:
             self.updateFindHistoryMenu()
-        case DefaultKeys.replaceHistory.rawValue:
+            
+        case DefaultKeys.replaceHistory.rawValue?:
             self.updateReplaceHistoryMenu()
-        case DefaultKeys.findUsesRegularExpression.rawValue:
+            
+        case DefaultKeys.findUsesRegularExpression.rawValue?:
             self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
             self.replacementTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
-        case DefaultKeys.findRegexUnescapesReplacementString.rawValue:
+            
+        case DefaultKeys.findRegexUnescapesReplacementString.rawValue?:
             self.replacementTextView?.mode = .replacement(unescapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
-        default: break
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

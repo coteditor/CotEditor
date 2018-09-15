@@ -52,10 +52,15 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == DefaultKeys.theme.rawValue, let name = change?[.newKey] as? String {
+        switch keyPath {
+        case DefaultKeys.theme.rawValue?:
+            guard let name = change?[.newKey] as? String else { return }
             DispatchQueue.main.async { [weak self] in
                 self?.setTheme(name: name)
             }
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

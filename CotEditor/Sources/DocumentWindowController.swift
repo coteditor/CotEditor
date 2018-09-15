@@ -48,8 +48,12 @@ final class DocumentWindowController: NSWindowController {
     /// apply user defaults change
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == DefaultKeys.windowAlpha.rawValue {
+        switch keyPath {
+        case DefaultKeys.windowAlpha.rawValue?:
             (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

@@ -109,8 +109,14 @@ final class NavigationBarController: NSViewController {
     /// observed key value did update
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == #keyPath(NSTextView.layoutOrientation), let orientation = self.textView?.layoutOrientation {
-            self.updateTextOrientation(to: orientation)
+        switch keyPath {
+        case #keyPath(NSTextView.layoutOrientation)?:
+            if let orientation = self.textView?.layoutOrientation {
+                self.updateTextOrientation(to: orientation)
+            }
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

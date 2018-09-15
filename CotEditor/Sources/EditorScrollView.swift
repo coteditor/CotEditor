@@ -66,7 +66,8 @@ final class EditorScrollView: NSScrollView {
     /// observed key value did update
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == #keyPath(NSTextView.layoutOrientation) {
+        switch keyPath {
+        case #keyPath(NSTextView.layoutOrientation)?:
             switch self.layoutOrientation {
             case .horizontal:
                 self.hasVerticalRuler = true
@@ -78,6 +79,9 @@ final class EditorScrollView: NSScrollView {
             
             // invalidate line number view background
             self.window?.viewsNeedDisplay = true
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
