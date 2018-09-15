@@ -102,6 +102,7 @@ extension DefaultKeys {
     static let autoComplete = DefaultKey<Bool>("autoComplete")
     
     // Format
+    static let writingDirection = DefaultKey<Int>("writingDirection")
     static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")
     static let encodingList = DefaultKey<[CFStringEncoding]>("encodingList")
     static let encodingInNew = DefaultKey<UInt>("encodingInNew")

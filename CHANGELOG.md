@@ -5,6 +5,11 @@ Change Log
 3.6.0-beta.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add an option to select the default writing direction among left-to-right, right-to-left, and vertical (Customize in Window preferences pane).
+
+
 ### Improvements
 
 - Abandon the ancient ODB editor support.
