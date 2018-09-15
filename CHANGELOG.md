@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - [beta] Fix an issue the read-only icon in the status bar displayed opposite.
+- [beta] Text view stacks under the line number view when zoomed.
 
 
 
