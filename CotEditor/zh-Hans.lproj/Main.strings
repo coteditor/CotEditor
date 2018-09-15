@@ -402,9 +402,9 @@
 /* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
 "F0I-F4-srF.title" = "Make Snake Case";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
-"nlp-Gj-W9G.title" = "Make Snake Case";  // FIXME: added
+"nlp-Gj-W9G.title" = "Make Camel Case";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
-"x1F-KX-2de.title" = "Make Snake Case";  // FIXME: added
+"x1F-KX-2de.title" = "Make Pascal Case";  // FIXME: added
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "半宽到全宽";
