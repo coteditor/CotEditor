@@ -59,6 +59,7 @@ extension DefaultKeys {
     static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
     static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
+    static let writingDirection = DefaultKey<Int>("writingDirection")
     static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
     static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
@@ -102,7 +103,6 @@ extension DefaultKeys {
     static let autoComplete = DefaultKey<Bool>("autoComplete")
     
     // Format
-    static let writingDirection = DefaultKey<Int>("writingDirection")
     static let lineEndCharCode = DefaultKey<Int>("defaultLineEndCharCode")
     static let encodingList = DefaultKey<[CFStringEncoding]>("encodingList")
     static let encodingInNew = DefaultKey<UInt>("encodingInNew")

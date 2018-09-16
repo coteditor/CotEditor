@@ -59,6 +59,7 @@ struct DefaultSettings {
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
         .splitViewVertical: false,
+        .writingDirection: 0,
         .overscrollRate: 0,
         .windowAlpha: 1.0,
         
@@ -99,7 +100,6 @@ struct DefaultSettings {
         .completesStandartWords: false,
         .autoComplete: false,
         
-        .writingDirection: 2,
         .lineEndCharCode: 0,
         .encodingList: DefaultSettings.encodings.map { UInt($0) },
         .encodingInNew: String.Encoding.utf8.rawValue,
