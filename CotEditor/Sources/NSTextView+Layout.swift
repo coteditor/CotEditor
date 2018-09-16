@@ -116,20 +116,18 @@ extension NSTextView {
     var scale: CGFloat {
         
         get {
-            return self.convert(NSSize.unit, to: nil).width
+            return self.convert(.unit, to: nil).width
         }
         
         set {
-            guard
-                let layoutManager = self.layoutManager,
-                let textContainer = self.textContainer else { return }
-            
             // sanitize scale
             let scale: CGFloat = {
                 guard let scrollView = self.enclosingScrollView else { return newValue }
                 
                 return newValue.clamped(min: scrollView.minMagnification, max: scrollView.maxMagnification)
             }()
+            
+            guard scale != self.scale else { return }
             
             // scale
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
@@ -142,12 +140,10 @@ extension NSTextView {
             self.minSize = self.visibleRect.size
             
             // ensure text layout
-            layoutManager.ensureLayout(for: textContainer)
+            if let textContainer = self.textContainer {
+                self.layoutManager?.ensureLayout(for: textContainer)
+            }
             self.sizeToFit()
-            
-            // dummy reselection to force redrawing current line highlight
-            let selectedRanges = self.selectedRanges
-            self.selectedRanges = selectedRanges
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
@@ -167,7 +163,7 @@ extension NSTextView {
             let textContainer = self.textContainer else { return }
         
         // store current coordinate
-        let centerGlyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
+        let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: self.textContainerOrigin), in: textContainer)
         let isVertical = (self.layoutOrientation == .vertical)
         let visibleRect = self.visibleRect
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
@@ -204,9 +200,9 @@ extension NSTextView {
     var wrapsLines: Bool {
         
         get {
-            guard let container = self.textContainer else { return false }
+            guard let textContainer = self.textContainer else { return false }
             
-            return (container.size.width != self.infiniteSize.width)
+            return (textContainer.size.width != self.infiniteSize.width)
         }
         
         set {
@@ -226,10 +222,10 @@ extension NSTextView {
             }
             self.autoresizingMask = newValue ? (isVertical ? .height : .width) : .none
             if isVertical {
-                scrollView.hasVerticalScroller = !newValue
+                self.enclosingScrollView?.hasVerticalScroller = !newValue
                 self.isVerticallyResizable = !newValue
             } else {
-                scrollView.hasHorizontalScroller = !newValue
+                self.enclosingScrollView?.hasHorizontalScroller = !newValue
                 self.isHorizontallyResizable = !newValue
             }
             self.sizeToFit()
