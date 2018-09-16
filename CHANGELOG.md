@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.6.0-beta.2 (unreleased)
+3.6.0-beta.2 (278)
 --------------------------
 
 ### New Features
@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Abandon the ancient ODB editor support.
+- [beta] Localize newly added strings in Chinase, German, and Italian.
 - [non-AppStore ver.] Update Sparkle framework.
 
 
@@ -20,6 +21,12 @@ Change Log
 
 - [beta] Fix an issue the read-only icon in the status bar displayed opposite.
 - [beta] Text view stacks under the line number view when zoomed.
+
+
+### Known Issues
+
+- [Mojave] The title bar color is not correctly updated when the system appearance is changed.
+- [Mojave] The editable area in editors are ocasionally set wrong after zooming.
 
 
 
