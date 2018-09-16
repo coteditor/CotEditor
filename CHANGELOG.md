@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Abandon the ancient ODB editor support.
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
