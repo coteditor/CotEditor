@@ -31,6 +31,8 @@ class ControlToolbarItem: NSToolbarItem {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         // set menu for "Text Only" mode
         let item = NSMenuItem()
         item.title = self.label

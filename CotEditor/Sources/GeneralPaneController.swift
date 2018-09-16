@@ -96,7 +96,7 @@ final class GeneralPaneController: NSViewController {
     
     
     /// A radio button of documentConflictOption was clicked
-    @IBAction func updateDocumentConflictSetting(_ sender: NSControl) {
+    @IBAction func updateDocumentConflictSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.documentConflictOption] = sender.tag
     }

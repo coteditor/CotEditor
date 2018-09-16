@@ -41,6 +41,16 @@ enum DocumentConflictOption: Int {
 }
 
 
+enum WritingDirection: Int, DefaultInitializable {
+    
+    static let defaultValue: WritingDirection = .leftToRight
+    
+    case leftToRight
+    case rightToLeft
+    case vertical
+}
+
+
 @objc enum PrintColorMode: Int {
     
     case blackWhite

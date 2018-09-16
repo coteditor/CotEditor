@@ -115,8 +115,10 @@ final class DocumentWindow: NSWindow {
     /// entering Versions
     @objc private func willEnterOpaqueMode(_ notification: Notification) {
         
-        self.storedBackgroundAlpha = self.backgroundAlpha
-        self.backgroundAlpha = 1.0
+        if !self.isOpaque {
+            self.storedBackgroundAlpha = self.backgroundAlpha
+            self.backgroundAlpha = 1.0
+        }
     }
     
     

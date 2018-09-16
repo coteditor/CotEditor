@@ -1,9 +1,9 @@
 {
-  "commitish" : "2.2.1",
+  "commitish" : "2.3.0",
   "Mac" : [
     {
       "name" : "ColorCode",
-      "hash" : "1baf56dd951b450cd0087d037f51160560e945b5164c93b44de524c1fb6ae91c"
+      "hash" : "f4c909bcf6cf2d22957e93ea71e6c8903151b146a84ce05195b57aa3b4b322d9"
     }
   ]
 }

@@ -59,6 +59,7 @@ struct DefaultSettings {
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
         .splitViewVertical: false,
+        .writingDirection: 0,
         .overscrollRate: 0,
         .windowAlpha: 1.0,
         

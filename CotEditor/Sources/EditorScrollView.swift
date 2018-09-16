@@ -27,10 +27,17 @@ import Cocoa
 
 final class EditorScrollView: NSScrollView {
     
+    // MARK: Private Properties
+    
+    private var orientationObserver: NSKeyValueObservation?
+    
+    
+    
+    // MARK: -
     // MARK: Lifecycle
     
     deinit {
-        self.documentView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
+        self.orientationObserver?.invalidate()
     }
     
     
@@ -54,30 +61,25 @@ final class EditorScrollView: NSScrollView {
     override var documentView: NSView? {
 
         willSet {
-            guard let textView = newValue as? NSTextView else { return }
-
-            // -> DO NOT use block-based KVO for NSTextView sublcass
-            //    since it causes application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
-            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
+            self.orientationObserver?.invalidate()
         }
-    }
-    
-    
-    /// observed key value did update
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == #keyPath(NSTextView.layoutOrientation) {
-            switch self.layoutOrientation {
-            case .horizontal:
-                self.hasVerticalRuler = true
-                self.hasHorizontalRuler = false
-            case .vertical:
-                self.hasVerticalRuler = false
-                self.hasHorizontalRuler = true
-            }
+        didSet {
+            guard let textView = documentView as? NSTextView else { return }
             
-            // invalidate line number view background
-            self.window?.viewsNeedDisplay = true
+            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
+                switch textView.layoutOrientation {
+                case .horizontal:
+                    self.hasVerticalRuler = true
+                    self.hasHorizontalRuler = false
+                case .vertical:
+                    self.hasVerticalRuler = false
+                    self.hasHorizontalRuler = true
+                }
+                
+                // invalidate line number view background
+                self.window?.viewsNeedDisplay = true
+            }
         }
     }
     

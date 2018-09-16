@@ -80,7 +80,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
-    private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
@@ -456,15 +455,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             switch saveOperation {
             case .saveOperation, .saveAsOperation, .saveToOperation:
-                // update file information
                 self.analyzer.invalidateFileInfo()
-                
-                // send file update notification for the external editor protocol (ODB Editor Suite)
-                let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                self.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
-                
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
-                
             case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
@@ -573,11 +565,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func close() {
         
         self.syntaxParser.invalidateCurrentParce()
-        
-        // send file close notification for the external editor protocol (ODB Editor Suite)
-        if let fileURL = self.fileURL {
-            self.odbEventSender?.sendEvent(type: .closed, fileURL: fileURL)
-        }
         
         super.close()
     }
@@ -748,13 +735,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // This method won't be invoked on Resume. (2015-01-26)
         
         ScriptManager.shared.dispatchEvent(documentOpened: self)
-    }
-    
-    
-    /// setup ODB editor event sender
-    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor) {
-        
-        self.odbEventSender = ODBEventSender(event: event)
     }
     
     
@@ -1060,7 +1040,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update view
         viewController.invalidateStyleInTextStorage()
-        viewController.verticalLayoutOrientation = self.isVerticalText
+        if self.isVerticalText {
+            viewController.verticalLayoutOrientation = true
+        }
     }
     
     

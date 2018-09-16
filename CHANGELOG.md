@@ -2,6 +2,34 @@
 Change Log
 ==========================
 
+3.6.0-beta.2 (278)
+--------------------------
+
+### New Features
+
+- Add an option to select the default writing direction among left-to-right, right-to-left, and vertical (Customize in Window preferences pane).
+
+
+### Improvements
+
+- Abandon the ancient ODB editor support.
+- [beta] Localize newly added strings in Chinase, German, and Italian.
+- [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- [beta] Fix an issue the read-only icon in the status bar displayed opposite.
+- [beta] Text view stacks under the line number view when zoomed.
+
+
+### Known Issues
+
+- [Mojave] The title bar color is not correctly updated when the system appearance is changed.
+- [Mojave] The editable area in editors are ocasionally set wrong after zooming.
+
+
+
 3.6.0-beta (276)
 --------------------------
 
@@ -18,9 +46,9 @@ Change Log
 
 - Change the system requirement to __macOS 10.12.2 Sierra and later__.
 - Update `cot` command-line tool to return the focus to the client terminal window again after `--wait`.
+- Enable Enhanced Runtime protection for macOS Mojave and later.
 - [trivial] Improve the high contrast mode support.
 - [trivial] Optimize the performance of line number drawing.
-- [dev] Enable hardend runtime.
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
 - [non-AppStore ver.] Update Sparkle framework.
 

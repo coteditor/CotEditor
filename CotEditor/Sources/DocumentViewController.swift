@@ -52,10 +52,15 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == DefaultKeys.theme.rawValue, let name = change?[.newKey] as? String {
+        switch keyPath {
+        case DefaultKeys.theme.rawValue?:
+            guard let name = change?[.newKey] as? String else { return }
             DispatchQueue.main.async { [weak self] in
                 self?.setTheme(name: name)
             }
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
@@ -64,7 +69,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         
         super.viewDidLoad()
         
-        // setup status bar
+        // set user defaults
         let defaults = UserDefaults.standard
         self.isStatusBarShown = defaults[.showStatusBar]
         self.showsInvisibles = defaults[.showInvisibles]
@@ -72,6 +77,16 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         self.showsNavigationBar = defaults[.showNavigationBar]
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
+        
+        // set writing direction
+        switch WritingDirection(defaults[.writingDirection]) {
+        case .leftToRight:
+            break
+        case .rightToLeft:
+            self.writingDirection = .rightToLeft
+        case .vertical:
+            self.verticalLayoutOrientation = true
+        }
         
         // set theme
         let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
@@ -519,7 +534,11 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     @objc var verticalLayoutOrientation: Bool {
         
         get {
-            return self.document?.isVerticalText ?? false
+            guard let textView = self.focusedTextView else {
+                return WritingDirection(UserDefaults.standard[.writingDirection]) == .vertical
+            }
+            
+            return textView.layoutOrientation == .vertical
         }
         
         set {

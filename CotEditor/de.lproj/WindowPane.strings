@@ -78,6 +78,16 @@
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "Vertikal";
 
+
+/* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
+"RwN-73-I8c.title" = "Richtung beim Schreiben:";
+/* Class = "NSButtonCell"; title = "Left to Right"; ObjectID = "3Kb-bF-CW0"; */
+"3Kb-bF-CW0.title" = "Von links nach rechts";
+/* Class = "NSButtonCell"; title = "Right to Left"; ObjectID = "USo-8p-Edc"; */
+"USo-8p-Edc.title" = "Von rechts nach links";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
+"Ge8-vU-lyg.title" = "Vertikal";
+
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
 "7Nz-lv-JZb.title" = "überscrollen:";
 

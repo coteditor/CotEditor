@@ -100,6 +100,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         // store key bindings in MainMenu.xib before menu is modified
         MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
         
