@@ -74,6 +74,16 @@ Change Log
 
 
 
+3.5.4 (275)
+--------------------------
+
+### Fixes
+
+- Fix an issue where toolbar items did not reflect their state on macOS 10.12 or earier.
+- Fix margin around the Tab toolbar icon on macOS 10.12 or earier.
+
+
+
 3.5.3 (274)
 --------------------------
 

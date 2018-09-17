@@ -47,6 +47,9 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
         } else {
             // jsut remove menu segment if the menu indicator is not supported
             segmentedControl.segmentCount = 1
+            segmentedControl.setWidth(38, forSegment: 0)
+            self.minSize.width = 44
+            self.maxSize.width = 44
         }
         
         // set menu for "Text Only" mode
