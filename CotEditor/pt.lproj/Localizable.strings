@@ -216,9 +216,9 @@
 "Convert Indentation" = "Converter Recuo";
 "Comment Out" = "Adicionar Comentário";
 "Uncomment" = "Remover Comentário";
-"To Snake Case" = "To Snake Case";  // FIXME: Added
-"To Camel Case" = "To Camel Case";  // FIXME: Added
-"To Pascal Case" = "To Pascal Case";  // FIXME: Added
+"To Snake Case" = "Para Snake Case";
+"To Camel Case" = "Para Camel Case";
+"To Pascal Case" = "Para Pascal Case";
 "To Full-width" = "para Largura Completa";
 "To Half-width" = "para Meia Largura";
 "To Full-width Roman" = "para Latino de Largura Completa";

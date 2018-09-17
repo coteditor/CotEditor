@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.0-beta.3 (Unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Localize newly added strings in Portuguese.
+
+
+
 3.6.0-beta.2 (278)
 --------------------------
 
