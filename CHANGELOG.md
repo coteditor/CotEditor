@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.6.0-beta.3 (Unreleased)
+3.6.0-beta.3 (279)
 --------------------------
 
 ### Improvements
@@ -11,7 +11,8 @@ Change Log
 
 
 ### Fixes
-- [beta] The title bar color is not correctly updated when the system appearance is changed.
+
+- [beta] Fix an issue where the title bar color was not correctly updated when the system appearance is changed.
 
 
 
