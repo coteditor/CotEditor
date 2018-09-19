@@ -51,6 +51,7 @@ final class DocumentWindowController: NSWindowController {
         switch keyPath {
         case DefaultKeys.windowAlpha.rawValue?:
             (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+            self.contentViewController?.view.needsDisplay = true
             
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
