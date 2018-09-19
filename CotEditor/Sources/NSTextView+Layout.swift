@@ -206,8 +206,9 @@ extension NSTextView {
         }
         
         set {
-            guard let scrollView = self.enclosingScrollView,
-                  let textContainer = self.textContainer else { return }
+            guard
+                let scrollView = self.enclosingScrollView,
+                let textContainer = self.textContainer else { return }
             
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
@@ -215,11 +216,12 @@ extension NSTextView {
             textContainer.widthTracksTextView = newValue
             if newValue {
                 let contentSize = scrollView.contentSize
-                textContainer.size.width = (contentSize.width / self.scale).rounded()
+                textContainer.size.width = (isVertical ? contentSize.height : contentSize.width) / self.scale
                 self.setConstrainedFrameSize(contentSize)
             } else {
                 textContainer.size = self.infiniteSize
             }
+            
             self.autoresizingMask = newValue ? (isVertical ? .height : .width) : .none
             if isVertical {
                 self.enclosingScrollView?.hasVerticalScroller = !newValue
@@ -232,14 +234,14 @@ extension NSTextView {
             
             if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
                 visibleRect.size.width = 0
-                visibleRect = visibleRect.offset(by: -self.textContainerOrigin)
+                visibleRect = visibleRect.inset(by: -self.textContainerOrigin)
                 self.scrollToVisible(visibleRect)
             }
         }
     }
     
     
-    // return infinite size for textContainer considering writing orientation state
+    /// return infinite size for textContainer considering writing orientation state
     var infiniteSize: CGSize {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).

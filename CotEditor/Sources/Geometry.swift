@@ -114,6 +114,12 @@ extension CGRect {
         return self.offsetBy(dx: point.x, dy: point.y)
     }
     
+    
+    func inset(by point: CGPoint) -> CGRect {
+        
+        return self.insetBy(dx: point.x, dy: point.y)
+    }
+    
 }
 
 
