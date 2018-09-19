@@ -84,6 +84,17 @@ final class EditorScrollView: NSScrollView {
     }
     
     
+    /// update layer (called also when system appearance was changed)
+    override func updateLayer() {
+        
+        // -> super dirty workaround to update titlebar's backaround color by considering the real "current" appearance (2018-09 macOS 10.14)
+        if #available(macOS 10.14, *) {
+            (self.window as? DocumentWindow)?.invalidateTitlebarOpacity()
+        }
+    }
+    
+    
+    
     
     // MARK: Public Methods
     

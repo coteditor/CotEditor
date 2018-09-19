@@ -10,6 +10,10 @@ Change Log
 - [beta] Localize newly added strings in Portuguese.
 
 
+### Fixes
+- [beta] The title bar color is not correctly updated when the system appearance is changed.
+
+
 
 3.6.0-beta.2 (278)
 --------------------------
