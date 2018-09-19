@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.3.2"/>
+        <development version="10000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -100,7 +101,7 @@
                                 </connections>
                             </button>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fr0-Ug-Vp1">
-                                <rect key="frame" x="246" y="328" width="19" height="27"/>
+                                <rect key="frame" x="246" y="329" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="99" doubleValue="1" id="W2Q-vb-HQ5"/>
                                 <connections>
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.tabWidth" id="gzU-DM-P9h"/>
@@ -229,7 +230,7 @@
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PeI-EQ-t3D">
-                                <rect key="frame" x="333" y="227" width="19" height="27"/>
+                                <rect key="frame" x="333" y="228" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="99" doubleValue="1" id="6ko-38-tQ2"/>
                                 <connections>
                                     <binding destination="TDG-Hm-YNe" name="enabled" keyPath="values.enableHangingIndent" id="qD8-zx-r7S"/>
@@ -263,7 +264,7 @@
                                 </textFieldCell>
                             </textField>
                             <button identifier="pref_edit" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ks6-yt-k9q">
-                                <rect key="frame" x="517" y="17" width="25" height="25"/>
+                                <rect key="frame" x="517" y="16" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="2Rz-Ie-QiJ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
