@@ -133,10 +133,10 @@ final class DocumentWindow: NSWindow {
     
     
     
-    // MARK: Private Methods
+    // MARK: Public Methods
     
     /// make sure window title bar (incl. toolbar) is opaque
-    private func invalidateTitlebarOpacity() {
+    func invalidateTitlebarOpacity() {
         
         //   -> It's actucally a bit dirty way but practically works well.
         //      Without this tweak, the title bar will be dyed in the window background color since El Capitan. (2016-01 by 1024p)

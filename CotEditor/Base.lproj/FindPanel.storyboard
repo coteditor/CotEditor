@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.3.2"/>
+        <development version="10000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -101,11 +102,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9IF-SN-YIL"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
                                     <rect key="frame" x="1" y="29" width="418" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="MOp-wH-Ump">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="MOp-wH-Ump">
                                     <rect key="frame" x="405" y="1" width="14" height="42"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -140,11 +141,11 @@
                                     </subviews>
                                     <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="pGV-vQ-vMo">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="pGV-vQ-vMo">
                                     <rect key="frame" x="1" y="29" width="418" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="xAh-LI-niW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="xAh-LI-niW">
                                     <rect key="frame" x="405" y="1" width="14" height="42"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -160,7 +161,7 @@
                                 </buttonCell>
                             </button>
                             <button toolTip="Select to ignore character case on search." verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                <rect key="frame" x="166" y="5" width="85" height="18"/>
+                                <rect key="frame" x="167" y="5" width="85" height="18"/>
                                 <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="4wg-Cz-ozb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -170,7 +171,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Select to search text only from selection." verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                <rect key="frame" x="254" y="5" width="84" height="18"/>
+                                <rect key="frame" x="255" y="5" width="84" height="18"/>
                                 <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="9bc-9Q-fhd">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -180,7 +181,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Set advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-ws-6H3">
-                                <rect key="frame" x="407" y="-1" width="38" height="28"/>
+                                <rect key="frame" x="407" y="-1" width="38" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="YHA-bW-KOd"/>
                                 </constraints>
@@ -193,7 +194,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
-                                <rect key="frame" x="141" y="5" width="19" height="19"/>
+                                <rect key="frame" x="142" y="5" width="16" height="17"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K85-R4-x2w">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="miniSystem"/>
@@ -457,11 +458,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="4il-pN-ytW">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4il-pN-ytW">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="bLD-Wn-XE2">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="bLD-Wn-XE2">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -471,7 +472,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button toolTip="Close find result." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-bN-UeN">
-                                <rect key="frame" x="17" y="151" width="25" height="23"/>
+                                <rect key="frame" x="17" y="152" width="25" height="21"/>
                                 <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3b8-pp-fct">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>

@@ -126,6 +126,20 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Ruler View Methods
     
+    /// remove extra thickness
+    override var requiredThickness: CGFloat {
+        
+        return self.ruleThickness
+    }
+    
+    
+    /// make background transparent
+    override var isOpaque: Bool {
+        
+        return self.textView?.isOpaque ?? true
+    }
+    
+    
     /// observe window opacity change
     override func viewDidMoveToWindow() {
         
@@ -345,25 +359,6 @@ final class LineNumberView: NSRulerView {
         }
         
         context.restoreGState()
-    }
-    
-    
-    /// make background transparent
-    override var isOpaque: Bool {
-        
-        return self.textView?.isOpaque ?? true
-    }
-    
-    
-    /// remove extra thickness
-    override var requiredThickness: CGFloat {
-        
-        switch self.orientation {
-        case .verticalRuler:
-            return max(self.minVerticalThickness, self.ruleThickness)
-        case .horizontalRuler:
-            return self.ruleThickness
-        }
     }
     
     

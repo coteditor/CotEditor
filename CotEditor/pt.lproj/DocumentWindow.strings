@@ -163,7 +163,7 @@
 /* Class = "NSToolbarItem"; label = "Emoji & Symbols"; ObjectID = "tek-D0-460"; */
 "tek-D0-460.label" = "Emoji e símbolos";  /* Emoji & Symbols */
 "tek-D0-460.paletteLabel" = "Emoji e símbolos";  /* Emoji & Symbols */
-"tek-D0-460.toolTip" = "Show Emoji & Symbols palette";  /* Show Emoji & Symbols palette */  // FIXME: added
+"tek-D0-460.toolTip" = "Mostrar Paleta de Emojis e Símbolos";  /* Show Emoji & Symbols palette */
 
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "Buscar";  /* Find */

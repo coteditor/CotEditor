@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+3.6.0-beta.3 (279)
+--------------------------
+
+### Improvements
+
+- [beta] Localize newly added strings in Portuguese.
+
+
+### Fixes
+
+- [beta] Fix an issue where the title bar color was not correctly updated when the system appearance is changed.
+
+
+
 3.6.0-beta.2 (278)
 --------------------------
 
