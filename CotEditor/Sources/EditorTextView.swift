@@ -885,8 +885,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         case DefaultKeys.highlightCurrentLine.rawValue?:
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-        case DefaultKeys.highlightSelectionInstance.rawValue where !(change?[.newKey] as! Bool):
-            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+        case DefaultKeys.highlightSelectionInstance.rawValue?:
+            if (change?[.newKey] as! Bool) == false {
+                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            }
             
         case DefaultKeys.overscrollRate.rawValue?:
             self.invalidateOverscrollRate()
