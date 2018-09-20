@@ -133,6 +133,18 @@ extension NSTextView {
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
             
+            // adjust frame width
+            if let scrollView = self.enclosingScrollView {
+                switch self.layoutOrientation {
+                case .horizontal:
+                    let rulerThickness = scrollView.rulersVisible ? (scrollView.verticalRulerView?.requiredThickness ?? 0) : 0
+                    self.frame.size.width = scrollView.contentSize.width - rulerThickness
+                case .vertical:
+                    let rulerThickness = scrollView.rulersVisible ? (scrollView.horizontalRulerView?.requiredThickness ?? 0) : 0
+                    self.frame.size.height = scrollView.contentSize.height - rulerThickness
+                }
+            }
+            
             // ensure bounds origin is {0, 0} for vertical text orientation
             self.translateOrigin(to: self.bounds.origin)
             

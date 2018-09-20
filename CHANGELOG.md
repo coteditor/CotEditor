@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.0 (280)
+--------------------------
+
+### Fixes
+
+- [beta] The editable area in editors are ocasionally set wrong after zooming.
+
+
+
 3.6.0-beta.3 (279)
 --------------------------
 
