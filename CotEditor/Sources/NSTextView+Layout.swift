@@ -133,8 +133,8 @@ extension NSTextView {
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
             
-            // adjust frame width
-            if let scrollView = self.enclosingScrollView {
+            // adjust frame width for wrapping mode, only on macOS 10.14 (and later?), since the AppKit's calculation was changed
+            if #available(macOS 10.14, *), let scrollView = self.enclosingScrollView {
                 switch self.layoutOrientation {
                 case .horizontal:
                     let rulerThickness = scrollView.rulersVisible ? (scrollView.verticalRulerView?.requiredThickness ?? 0) : 0

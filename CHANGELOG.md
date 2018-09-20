@@ -7,7 +7,7 @@ Change Log
 
 ### Fixes
 
-- [beta] The editable area in editors are ocasionally set wrong after zooming.
+- [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming.
 
 
 
