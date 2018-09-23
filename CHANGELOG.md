@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where theme was not applied to document print when the print theme setting is “Same as Document's Setting”.
 - [beta] Fix an issue where theme color was not applied to document print.
 - [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming on macOS 10.14 Mojave.
 
