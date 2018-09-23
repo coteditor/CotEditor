@@ -323,7 +323,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // set theme
         let lastThemeName = self.theme?.name
-        let themeName = ThemeManager.shared.userDefaultSettingName()
+        let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
         let theme = ThemeManager.shared.setting(name: themeName)
         if let theme = theme {
             self.theme = theme

@@ -2,12 +2,13 @@
 Change Log
 ==========================
 
-3.6.0 (280)
+3.6.0 (unreleased)
 --------------------------
 
 ### Fixes
 
-- [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming.
+- [beta] Fix an issue where theme color was not applied to document print.
+- [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming on macOS 10.14 Mojave.
 
 
 
