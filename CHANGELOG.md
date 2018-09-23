@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where theme was not applied to document print when the print theme setting is “Same as Document's Setting”.
+- Fix an issue where “Copy as Rich Text” command lost the style information when paste to some specific applications, such as Pages.
 - [beta] Fix an issue where theme color was not applied to document print.
 - [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming on macOS 10.14 Mojave.
 

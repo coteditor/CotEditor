@@ -1095,7 +1095,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // set to paste board
         let pboard = NSPasteboard.general
         pboard.clearContents()
-        pboard.declareTypes(self.writablePasteboardTypes, owner: nil)
+        pboard.declareTypes([.rtf] + self.writablePasteboardTypes, owner: nil)
         if pboard.canReadItem(withDataConformingToTypes: [NSPasteboard.PasteboardType.multipleTextSelection.rawValue]) {
             pboard.setPropertyList(propertyList, forType: .multipleTextSelection)
         }
