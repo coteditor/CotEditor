@@ -95,7 +95,6 @@ final class EditorScrollView: NSScrollView {
     
     
     
-    
     // MARK: Public Methods
     
     func invalidateLineNumber() {
