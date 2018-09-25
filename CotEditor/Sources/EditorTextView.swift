@@ -885,8 +885,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         case DefaultKeys.highlightCurrentLine.rawValue?:
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
-        case DefaultKeys.highlightSelectionInstance.rawValue where !(change?[.newKey] as! Bool):
-            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+        case DefaultKeys.highlightSelectionInstance.rawValue?:
+            if (change?[.newKey] as! Bool) == false {
+                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+            }
             
         case DefaultKeys.overscrollRate.rawValue?:
             self.invalidateOverscrollRate()
@@ -1093,7 +1095,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // set to paste board
         let pboard = NSPasteboard.general
         pboard.clearContents()
-        pboard.declareTypes(self.writablePasteboardTypes, owner: nil)
+        pboard.declareTypes([.rtf] + self.writablePasteboardTypes, owner: nil)
         if pboard.canReadItem(withDataConformingToTypes: [NSPasteboard.PasteboardType.multipleTextSelection.rawValue]) {
             pboard.setPropertyList(propertyList, forType: .multipleTextSelection)
         }

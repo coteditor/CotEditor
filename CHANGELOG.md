@@ -2,6 +2,18 @@
 Change Log
 ==========================
 
+3.6.0 (286)
+--------------------------
+
+### Fixes
+
+- Fix an issue where theme was not applied to document print when the print theme setting is “Same as Document's Setting”.
+- Fix an issue where “Copy as Rich Text” command lost the style information when paste to some specific applications, such as Pages.
+- [beta] Fix an issue where theme color was not applied to document print.
+- [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming on macOS 10.14 Mojave.
+
+
+
 3.6.0-beta.3 (279)
 --------------------------
 
@@ -60,10 +72,10 @@ Change Log
 
 - Change the system requirement to __macOS 10.12.2 Sierra and later__.
 - Update `cot` command-line tool to return the focus to the client terminal window again after `--wait`.
-- Enable Enhanced Runtime protection for macOS Mojave and later.
 - [trivial] Improve the high contrast mode support.
 - [trivial] Optimize the performance of line number drawing.
 - [dev] Update build environment to Xcode 10 (Swift 4.2, macOS 10.14 SDK).
+- [non-AppStore ver.] Enable Enhanced Runtime protection for macOS Mojave and later.
 - [non-AppStore ver.] Update Sparkle framework.
 
 

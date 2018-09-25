@@ -43,7 +43,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     var filePath: String?
     var documentName: String?
-    var theme: Theme?
+    private(set) var theme: Theme?
     private(set) lazy var syntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
     
@@ -322,8 +322,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }()
         
         // set theme
+        assert(settings[.theme] != nil)
         let lastThemeName = self.theme?.name
-        let themeName = ThemeManager.shared.userDefaultSettingName()
+        let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
         let theme = ThemeManager.shared.setting(name: themeName)
         if let theme = theme {
             self.theme = theme
