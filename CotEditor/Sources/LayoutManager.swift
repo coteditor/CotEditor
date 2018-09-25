@@ -32,8 +32,10 @@ final class LayoutManager: NSLayoutManager {
     // MARK: Public Properties
     
     var showsInvisibles = false {
+        
         didSet {
-            let wholeRange = NSRange(location: 0, length: self.textStorage?.length ?? 0)
+            guard let wholeRange = self.textStorage?.string.nsRange else { return }
+            
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
                 self.invalidateGlyphs(forCharacterRange: wholeRange, changeInLength: 0, actualCharacterRange: nil)
@@ -47,6 +49,7 @@ final class LayoutManager: NSLayoutManager {
     var usesAntialias = true
     
     var textFont: NSFont? {
+        
         // keep body text font to avoid the issue where the line height can be different by composite font
         // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
         //    Japansete text is input nevertheless the font that user specified dosen't support it.
@@ -70,6 +73,7 @@ final class LayoutManager: NSLayoutManager {
     }
     
     var invisiblesColor = NSColor.disabledControlTextColor {
+        
         didSet {
             self.invisibleLines = self.generateInvisibleLines()
         }
@@ -170,9 +174,7 @@ final class LayoutManager: NSLayoutManager {
                 self.invalidateLayout(forCharacterRange: self.attributedString().string.nsRange, actualCharacterRange: nil)
             }
             
-            if let textView = self.firstTextView {
-                textView.setNeedsDisplay(textView.bounds, avoidAdditionalLayout: false)
-            }
+            self.firstTextView?.needsDisplay = true
             
         } else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
@@ -322,7 +324,7 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Public Methods
     
-    /// return fixed line height to avoid having defferent line height by composite font
+    /// return fixed line height to avoid having different line height by composite font
     var lineHeight: CGFloat {
         
         let multiple = self.firstTextView?.defaultParagraphStyle?.lineHeightMultiple ?? 1.0
