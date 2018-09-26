@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Enable the enhanced runtime protection on macOS 10.14 Mojave also by the MAS version.
 - Make the i-beam cursor more legible in a dark background theme.
 
 
