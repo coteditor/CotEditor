@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.1 (unreleased)
+--------------------------
+
+### Improvements
+
+- Make the i-beam cursor more legible in a dark background theme.
+
+
+
 3.6.0 (286)
 --------------------------
 
