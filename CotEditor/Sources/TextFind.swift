@@ -37,7 +37,7 @@ final class TextFind {
     
     enum Mode {
         
-        case textual(options: String.CompareOptions)  // don't include .backwards to options
+        case textual(options: String.CompareOptions, fullWord: Bool)  // don't include .backwards to options
         case regularExpression(options: NSRegularExpression.Options, unescapesReplacement: Bool)
     }
     
@@ -88,7 +88,7 @@ final class TextFind {
         }
         
         switch mode {
-        case .textual(let options):
+        case .textual(let options, _):
             assert(!options.contains(.backwards))
             
             self.regex = nil
@@ -214,7 +214,7 @@ final class TextFind {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-        case .textual(let options):
+        case .textual(let options, _):
             let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
             guard matchedRange.location != NSNotFound else { return nil }
             
@@ -357,7 +357,7 @@ final class TextFind {
         
         guard !self.string.isEmpty else { return }
         
-        guard case .textual(let options) = self.mode else { return assertionFailure() }
+        guard case .textual(let options, _) = self.mode else { return assertionFailure() }
         
         let string = self.string as NSString
         

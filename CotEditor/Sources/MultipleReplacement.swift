@@ -241,7 +241,7 @@ private extension MultipleReplacement.Replacement {
         } else {
             let options = settings.textualOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
             
-            return .textual(options: options)
+            return .textual(options: options, fullWord: false)
         }
     }
     

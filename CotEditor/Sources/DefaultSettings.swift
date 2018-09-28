@@ -155,6 +155,7 @@ struct DefaultSettings {
         .findUsesRegularExpression: false,
         .findInSelection: false,
         .findIsWrap: true,
+        .findMatchesFullWord: false,
         .findNextAfterReplace: true,
         .findClosesIndicatorWhenDone: true,
         .findIgnoresCase: false,

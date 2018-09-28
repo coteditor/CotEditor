@@ -42,7 +42,7 @@ class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 2)
         
-        mode = .textual(options: [])
+        mode = .textual(options: [], fullWord: false)
         textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
     }
@@ -56,7 +56,7 @@ class TextFindTests: XCTestCase {
         var textFind: TextFind
         var result: (range: NSRange?, count: Int, wrapped: Bool)
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: []))
+        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
         
         result = textFind.find(forward: true, isWrap: false)
         XCTAssertEqual(result.count, 2)
@@ -69,7 +69,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, false)
         
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: []), selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 2)
@@ -82,7 +82,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, true)
         
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive), selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 3)
