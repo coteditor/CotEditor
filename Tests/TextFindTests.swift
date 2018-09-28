@@ -42,7 +42,7 @@ class TextFindTests: XCTestCase {
         textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 2)
         
-        mode = .textual(options: [])
+        mode = .textual(options: [], fullWord: false)
         textFind = try TextFind(for: "", findString: "(?!=a)(b)(c)(?=d)", mode: mode)
         XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
     }
@@ -56,7 +56,7 @@ class TextFindTests: XCTestCase {
         var textFind: TextFind
         var result: (range: NSRange?, count: Int, wrapped: Bool)
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: []))
+        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false))
         
         result = textFind.find(forward: true, isWrap: false)
         XCTAssertEqual(result.count, 2)
@@ -69,7 +69,7 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, false)
         
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: []), selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 2)
@@ -82,12 +82,43 @@ class TextFindTests: XCTestCase {
         XCTAssertEqual(result.wrapped, true)
         
         
-        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive), selectedRanges: [NSRange(location: 1, length: 0)])
+        textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
         
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 3)
         XCTAssertEqual(result.range, NSRange(location: 16, length: 3))
         XCTAssertEqual(result.wrapped, true)
+    }
+    
+    
+    func testFullWord() throws {
+        
+        var textFind: TextFind
+        var result: (range: NSRange?, count: Int, wrapped: Bool)
+        
+        textFind = try TextFind(for: "apples apple Apple", findString: "apple",
+                                mode: .textual(options: .caseInsensitive, fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 7, length: 5))
+        
+        textFind = try TextFind(for: "apples apple Apple", findString: "apple",
+                                mode: .textual(options: [.caseInsensitive, .literal], fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 7, length: 5))
+        
+        textFind = try TextFind(for: "Apfel Äpfel Äpfelchen", findString: "Äpfel",
+                                mode: .textual(options: .diacriticInsensitive, fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 0, length: 5))
+        
+        textFind = try TextFind(for: "イヌら ｲﾇ イヌ", findString: "イヌ",
+                                mode: .textual(options: .widthInsensitive, fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 4, length: 2))
     }
     
     

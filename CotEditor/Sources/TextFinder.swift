@@ -632,7 +632,7 @@ private extension TextFind.Mode {
             if defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
             if defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
             
-            self = .textual(options: options)
+            self = .textual(options: options, fullWord: defaults[.findMatchesFullWord])
         }
     }
     
