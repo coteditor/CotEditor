@@ -65,6 +65,8 @@ final class TextFind {
     private let regex: NSRegularExpression?
     private let scopeRanges: [NSRange]
     
+    private lazy var fullWordChecker = try! NSRegularExpression(pattern: "^\\b.+\\b$")
+    
     
     
     // MARK: -
@@ -214,9 +216,10 @@ final class TextFind {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-        case .textual(let options, _):
+        case .textual(let options, let fullWord):
             let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
             guard matchedRange.location != NSNotFound else { return nil }
+            guard !fullWord || self.isFullWord(range: matchedRange) else { return nil }
             
             return ReplacementItem(string: replacementString, range: matchedRange)
             
@@ -339,6 +342,13 @@ final class TextFind {
     }
     
     
+    /// chack if the given range is a range of whole word
+    private func isFullWord(range: NSRange) -> Bool {
+        
+        return self.fullWordChecker.firstMatch(in: self.string, options: .withTransparentBounds, range: range) != nil
+    }
+    
+    
     /// enumerate matchs in string using current settings
     private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
         
@@ -357,7 +367,7 @@ final class TextFind {
         
         guard !self.string.isEmpty else { return }
         
-        guard case .textual(let options, _) = self.mode else { return assertionFailure() }
+        guard case let .textual(options, fullWord) = self.mode else { return assertionFailure() }
         
         let string = self.string as NSString
         
@@ -370,12 +380,14 @@ final class TextFind {
                 
                 guard foundRange.upperBound <= scopeRange.upperBound else { break }
                 
+                searchRange.location = foundRange.upperBound
+                
+                guard !fullWord || self.isFullWord(range: foundRange) else { continue }
+                
                 var stop = false
                 block(foundRange, nil, &stop)
                 
                 guard !stop else { return }
-                
-                searchRange.location = foundRange.upperBound
             }
             
             scopeCompletionHandler?(scopeRange)

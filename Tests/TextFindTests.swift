@@ -91,6 +91,37 @@ class TextFindTests: XCTestCase {
     }
     
     
+    func testFullWord() throws {
+        
+        var textFind: TextFind
+        var result: (range: NSRange?, count: Int, wrapped: Bool)
+        
+        textFind = try TextFind(for: "apples apple Apple", findString: "apple",
+                                mode: .textual(options: .caseInsensitive, fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 7, length: 5))
+        
+        textFind = try TextFind(for: "apples apple Apple", findString: "apple",
+                                mode: .textual(options: [.caseInsensitive, .literal], fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 7, length: 5))
+        
+        textFind = try TextFind(for: "Apfel Äpfel Äpfelchen", findString: "Äpfel",
+                                mode: .textual(options: .diacriticInsensitive, fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 0, length: 5))
+        
+        textFind = try TextFind(for: "イヌら ｲﾇ イヌ", findString: "イヌ",
+                                mode: .textual(options: .widthInsensitive, fullWord: true))
+        result = textFind.find(forward: true, isWrap: true)
+        XCTAssertEqual(result.count, 2)
+        XCTAssertEqual(result.range, NSRange(location: 4, length: 2))
+    }
+    
+    
     func testVerticalTabFind() throws {
         
         let text = "\u{b}000\\v000\n"

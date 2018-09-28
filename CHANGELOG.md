@@ -5,6 +5,11 @@ Change Log
 3.6.1 (unreleased)
 --------------------------
 
+### New Features
+
+- Add “Match only whole word” option to advanced find options (Default: off).
+
+
 ### Improvements
 
 - Enable the enhanced runtime protection on macOS 10.14 Mojave also by the MAS version.
