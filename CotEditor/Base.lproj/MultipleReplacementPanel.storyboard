@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -771,7 +770,7 @@
             <objects>
                 <viewController storyboardIdentifier="MetaDataViewController" showSeguePresentationStyle="single" id="AcD-dT-Fbp" sceneMemberID="viewController">
                     <view key="view" id="bJM-X4-mkf">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="227"/>
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="245"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button toolTip="Allow . to match any character, including newline characters (singleline)." translatesAutoresizingMaskIntoConstraints="NO" id="p1M-ap-Sov">
@@ -833,7 +832,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KfD-zn-Yng">
-                                <rect key="frame" x="18" y="178" width="87" height="14"/>
+                                <rect key="frame" x="18" y="196" width="87" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Textual Search" id="GU2-Em-4lt">
                                     <font key="font" metaFont="smallSystemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -861,20 +860,32 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-Xg-g7I">
-                                <rect key="frame" x="31" y="200" width="158" height="17"/>
+                                <rect key="frame" x="31" y="218" width="158" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Advanced Find Options" id="NTu-fa-URI">
                                     <font key="font" metaFont="systemBold"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button toolTip="Match only whole word" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lEO-tC-9zj">
+                                <rect key="frame" x="17" y="173" width="143" height="18"/>
+                                <buttonCell key="cell" type="check" title="Match only whole word" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="u12-3x-Oy6">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.textMatchesFullWord" id="tZa-zg-QCK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ldg-yB-RlG" secondAttribute="trailing" constant="20" symbolic="YES" id="01S-qe-xYb"/>
                             <constraint firstItem="6W5-EH-kOg" firstAttribute="top" secondItem="9pO-Jw-K7x" secondAttribute="bottom" constant="6" symbolic="YES" id="2E4-vq-Hha"/>
                             <constraint firstItem="p1M-ap-Sov" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="403-Ws-m7c"/>
+                            <constraint firstItem="lEO-tC-9zj" firstAttribute="top" secondItem="KfD-zn-Yng" secondAttribute="bottom" constant="8" symbolic="YES" id="4pH-aS-2qb"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="p1M-ap-Sov" secondAttribute="trailing" constant="20" symbolic="YES" id="696-xs-Wab"/>
                             <constraint firstItem="KfD-zn-Yng" firstAttribute="top" secondItem="cxj-Xg-g7I" secondAttribute="bottom" constant="8" symbolic="YES" id="6Jl-hr-aFF"/>
+                            <constraint firstItem="JiF-TN-azJ" firstAttribute="top" secondItem="lEO-tC-9zj" secondAttribute="bottom" constant="6" symbolic="YES" id="7Gg-v1-fHe"/>
                             <constraint firstAttribute="bottom" secondItem="QRo-Az-lq4" secondAttribute="bottom" constant="20" symbolic="YES" id="Cfz-Cp-Cpr"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QRo-Az-lq4" secondAttribute="trailing" constant="20" symbolic="YES" id="DXV-Hj-FLP"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6W5-EH-kOg" secondAttribute="trailing" constant="20" symbolic="YES" id="Dd4-Er-PYm"/>
@@ -882,14 +893,15 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MvV-de-6ru" secondAttribute="trailing" constant="20" symbolic="YES" id="M0o-SR-xjl"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KfD-zn-Yng" secondAttribute="trailing" constant="20" symbolic="YES" id="Q7e-xJ-sJD"/>
                             <constraint firstItem="Ldg-yB-RlG" firstAttribute="top" secondItem="6W5-EH-kOg" secondAttribute="bottom" constant="14" id="SNS-bx-gzs"/>
-                            <constraint firstItem="JiF-TN-azJ" firstAttribute="top" secondItem="KfD-zn-Yng" secondAttribute="bottom" constant="8" symbolic="YES" id="Urj-W0-CKj"/>
                             <constraint firstItem="6W5-EH-kOg" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="VuE-pJ-j14"/>
                             <constraint firstItem="JiF-TN-azJ" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="Zht-1m-GBb"/>
                             <constraint firstItem="cxj-Xg-g7I" firstAttribute="top" secondItem="bJM-X4-mkf" secondAttribute="top" constant="10" id="bbs-tt-7UY"/>
                             <constraint firstItem="6HK-St-iDw" firstAttribute="top" secondItem="MvV-de-6ru" secondAttribute="bottom" constant="6" symbolic="YES" id="fK7-gw-2fa"/>
+                            <constraint firstItem="lEO-tC-9zj" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="gpm-83-lJS"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JiF-TN-azJ" secondAttribute="trailing" constant="20" symbolic="YES" id="htN-TB-B0z"/>
                             <constraint firstItem="6HK-St-iDw" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="jBM-WY-UNq"/>
                             <constraint firstItem="QRo-Az-lq4" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="lde-Nz-CiN"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="lEO-tC-9zj" secondAttribute="trailing" constant="20" symbolic="YES" id="mMZ-X5-m7b"/>
                             <constraint firstItem="QRo-Az-lq4" firstAttribute="top" secondItem="6HK-St-iDw" secondAttribute="bottom" constant="6" symbolic="YES" id="pN1-15-ct6"/>
                             <constraint firstItem="MvV-de-6ru" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="pTG-oX-Hp4"/>
                             <constraint firstItem="Ldg-yB-RlG" firstAttribute="leading" secondItem="bJM-X4-mkf" secondAttribute="leading" constant="20" symbolic="YES" id="rKr-q5-f0W"/>
@@ -910,7 +922,7 @@
                     </connections>
                 </objectController>
             </objects>
-            <point key="canvasLocation" x="632" y="734.5"/>
+            <point key="canvasLocation" x="632" y="744"/>
         </scene>
     </scenes>
     <resources>

@@ -38,6 +38,7 @@ extension MultipleReplacement.Settings {
         @objc dynamic var regexIsMultiline: Bool
         @objc dynamic var regexUsesUnicodeBoundaries: Bool
         
+        @objc dynamic var textMatchesFullWord: Bool
         @objc dynamic var regexUnescapesReplacementString: Bool
         
         
@@ -54,6 +55,7 @@ extension MultipleReplacement.Settings {
             self.regexIsMultiline = settings.regexOptions.contains(.anchorsMatchLines)
             self.regexUsesUnicodeBoundaries = settings.regexOptions.contains(.useUnicodeWordBoundaries)
             
+            self.textMatchesFullWord = settings.matchesFullWord
             self.regexUnescapesReplacementString = settings.unescapesReplacementString
         }
         
@@ -72,6 +74,7 @@ extension MultipleReplacement.Settings {
             
             return MultipleReplacement.Settings(textualOptions: textualOptions,
                                                 regexOptions: regexOptions,
+                                                matchesFullWord: self.textMatchesFullWord,
                                                 unescapesReplacementString: self.regexUnescapesReplacementString)
         }
         
