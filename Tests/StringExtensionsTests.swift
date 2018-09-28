@@ -53,7 +53,7 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("foo".count, 3)
         XCTAssertEqual("\r\n".count, 1)
         XCTAssertEqual("😀🇯🇵a".count, 3)
-        XCTAssertEqual("😀🏻".count, 2)
+        XCTAssertEqual("😀🏻".count, 1)
         XCTAssertEqual("👍🏻".count, 1)
         
         // single regional indicator
