@@ -216,7 +216,7 @@ final class TextFind {
         let selectedRange = self.selectedRanges.first!
         
         switch self.mode {
-        case .textual(let options, let fullWord):
+        case let .textual(options, fullWord):
             let matchedRange = (string as NSString).range(of: self.findString, options: options, range: selectedRange)
             guard matchedRange.location != NSNotFound else { return nil }
             guard !fullWord || self.isFullWord(range: matchedRange) else { return nil }
