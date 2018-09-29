@@ -69,7 +69,8 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        self.windowFrameAutosaveName = "document"
+        // -> Do not use "document" for autosave name because homehow windows forget the size with that name (2018-09)
+        self.windowFrameAutosaveName = "Document Window"
         
         // set background alpha
         (self.window as! DocumentWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]

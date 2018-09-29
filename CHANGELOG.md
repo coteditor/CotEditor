@@ -16,6 +16,11 @@ Change Log
 - Make the i-beam cursor more legible in a dark background theme.
 
 
+### Fixes
+
+- Fix an issue where the initial window size could be easily forgotten.
+
+
 
 3.6.0 (286)
 --------------------------
