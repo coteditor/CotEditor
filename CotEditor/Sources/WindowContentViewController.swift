@@ -208,7 +208,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             
             // close sidebar inward if it opened so (because of insufficient space to open outward)
             let currentWidth = self.splitView.frame.width
-            NSAnimationContext.current.completionHandler = {
+            NSAnimationContext.current.completionHandler = { [unowned self] in
                 if newValue {
                     if self.splitView.frame.width == currentWidth {  // opened inward
                         self.siblings.forEach {
@@ -221,17 +221,17 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                         $0.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
                     }
                 }
+                
+                // sync sidebar thickness among tabbed windows
+                self.siblings.filter { $0 != self }
+                    .forEach { $0.sidebarThickness = self.sidebarThickness }
             }
             
             // update current tab possibly with an animation
             self.sidebarViewItem?.isCollapsed = !newValue
-            
             // and then update background tabs
             self.siblings.filter { $0 != self }
-                .forEach {
-                    $0.sidebarViewItem?.isCollapsed = !newValue
-                    $0.sidebarThickness = self.sidebarThickness
-                }
+                .forEach { $0.sidebarViewItem?.isCollapsed = !newValue }
         }
     }
     
