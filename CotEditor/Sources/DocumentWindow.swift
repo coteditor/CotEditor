@@ -190,7 +190,11 @@ extension DocumentWindow {
         // prefer existing shortcut that user might define
         guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
         
-        window.orderFront(nil)
+        if #available(macOS 10.13, *) {
+            window.tabGroup?.selectedWindow = window
+        } else {
+            window.orderFront(nil)
+        }
         
         return true
     }

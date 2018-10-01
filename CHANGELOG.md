@@ -19,6 +19,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the initial window size could be easily forgotten.
+- Fix the tab window switching via shortcut key in macOS 10.14.
 
 
 
