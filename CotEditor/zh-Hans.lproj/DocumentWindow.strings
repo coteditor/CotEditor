@@ -170,7 +170,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "查找";  /* Find */
 "ACV-s4-QzY.paletteLabel" = "查找";  /* Find */
-"ACV-s4-QzY.toolTip" = "Show Find & Replace";  /* Show Find & Replace */  // FIXME: added
+"ACV-s4-QzY.toolTip" = "显示查找和替换";
 
 /* Class = "NSToolbarItem"; ObjectID = "hbb-MD-j6g"; */
 "hbb-MD-j6g.label" = "打印";  /* Print */
