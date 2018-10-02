@@ -130,9 +130,9 @@
 "GU2-Em-4lt.title" = "Ricerca testuale";
 
 /* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "u12-3x-Oy6"; */
-"u12-3x-Oy6.title" = "Match only whole word";  // FIXME: added
+"u12-3x-Oy6.title" = "Solo parole intere";
 /* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "lEO-tC-9zj"; */
-"lEO-tC-9zj.ibShadowedToolTip" = "Restrict search results to the whole words.";  // FIXME: added
+"lEO-tC-9zj.ibShadowedToolTip" = "Limita i risultati della ricerca alle parole intere.";
 
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "tv3-0Q-m6B"; */
 "tv3-0Q-m6B.title" = "Distingui i caratteri con precisione";
