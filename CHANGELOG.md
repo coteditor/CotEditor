@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Add “Match only whole word” option to advanced find options (Default: off).
+- Add syntax style for “Properties” (mainly for Java).
 
 
 ### Improvements
