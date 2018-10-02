@@ -22,6 +22,7 @@ Change Log
 
 - Fix an issue where the initial window size could be easily forgotten.
 - Fix an issue `cot` command failed if the client terminal is non-scriptable.
+- Fix an issue where the application could reraly crash on reopening documents under specific conditions.
 - Fix the tab window switching via shortcut key in macOS 10.14.
 
 
