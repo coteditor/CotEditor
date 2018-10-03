@@ -13,7 +13,7 @@ Change Log
 
 ### Improvements
 
-- Enable the enhanced runtime protection on macOS 10.14 Mojave also by the MAS version.
+- [AppStore ver.] Enable the enhanced runtime protection on macOS 10.14 Mojave also by the MAS version.
 - Make the i-beam cursor more legible in a dark background theme.
 - Sync sidebar width among tabbed windows.
 
@@ -22,8 +22,8 @@ Change Log
 
 - Fix an issue where the initial window size could be easily forgotten.
 - Fix an issue `cot` command failed if the client terminal is non-scriptable.
-- Fix an issue where the application could reraly crash on reopening documents under specific conditions.
-- Fix the tab window switching via shortcut key in macOS 10.14.
+- Fix an issue where the application could rarely crash on reopening documents under specific conditions.
+- Fix the tab window switching via a shortcut key in macOS 10.14.
 
 
 
