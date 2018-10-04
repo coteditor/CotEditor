@@ -145,6 +145,7 @@ extension DefaultKeys {
     static let findIgnoresCase = DefaultKey<Bool>("findIgnoresCase")
     static let findInSelection = DefaultKey<Bool>("findInSelection")
     static let findIsWrap = DefaultKey<Bool>("findIsWrap")
+    static let findMatchesFullWord = DefaultKey<Bool>("findMatchesFullWord")
     static let findNextAfterReplace = DefaultKey<Bool>("findsNextAfterReplace")
     static let findClosesIndicatorWhenDone = DefaultKey<Bool>("findClosesIndicatorWhenDone")
     

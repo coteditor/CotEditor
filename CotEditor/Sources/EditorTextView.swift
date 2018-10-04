@@ -257,6 +257,24 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// update cursor (invoked when cursor needs to update without moving mouse)
+    override func cursorUpdate(with event: NSEvent) {
+        
+        super.cursorUpdate(with: event)
+        
+        self.invalidateCursor()
+    }
+    
+    
+    /// mouse is moved (the cursor updates also here)
+    override func mouseMoved(with event: NSEvent) {
+        
+        super.mouseMoved(with: event)
+        
+        self.invalidateCursor()
+    }
+    
+    
     /// key is pressed
     override func keyDown(with event: NSEvent) {
         
@@ -1256,6 +1274,20 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // apply new style to current text
         self.invalidateStyle()
+    }
+    
+    
+    /// use legible white-based custom i-beam cursor for dark theme
+    private func invalidateCursor() {
+        
+        guard
+            NSAppKitVersion.current <= .macOS10_13,  // i-beam is enough findable with dark background since Mojave
+            let theme = self.theme,
+            theme.isDarkTheme,
+            NSCursor.current == .iBeam
+            else { return }
+        
+        NSCursor.lightIBeam.set()
     }
     
     

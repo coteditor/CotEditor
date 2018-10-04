@@ -2,6 +2,31 @@
 Change Log
 ==========================
 
+3.6.1 (288)
+--------------------------
+
+### New Features
+
+- Add “Match only whole word” option to advanced find options (Default: off).
+- Add syntax style for “Properties” (mainly for Java).
+
+
+### Improvements
+
+- [AppStore ver.] Enable the enhanced runtime protection on macOS 10.14 Mojave also by the MAS version.
+- Make the i-beam cursor more legible in a dark background theme.
+- Sync sidebar width among tabbed windows.
+
+
+### Fixes
+
+- Fix an issue where the initial window size could be easily forgotten.
+- Fix an issue `cot` command failed if the client terminal is non-scriptable.
+- Fix an issue where the application could rarely crash on reopening documents under specific conditions.
+- Fix the tab window switching via a shortcut key in macOS 10.14.
+
+
+
 3.6.0 (286)
 --------------------------
 

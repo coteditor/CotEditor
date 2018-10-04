@@ -62,13 +62,15 @@ final class MultipleReplacement: Codable {
         
         var textualOptions: NSString.CompareOptions
         var regexOptions: NSRegularExpression.Options
+        var matchesFullWord: Bool
         var unescapesReplacementString: Bool
         
         
-        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], unescapesReplacementString: Bool = true) {
+        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], matchesFullWord: Bool = false, unescapesReplacementString: Bool = true) {
             
             self.textualOptions = textualOptions
             self.regexOptions = regexOptions
+            self.matchesFullWord = matchesFullWord
             self.unescapesReplacementString = unescapesReplacementString
         }
     }
@@ -97,6 +99,7 @@ extension MultipleReplacement.Settings: Equatable {
         
         return lhs.textualOptions == rhs.textualOptions &&
             lhs.regexOptions == rhs.regexOptions &&
+            lhs.matchesFullWord == rhs.matchesFullWord &&
             lhs.unescapesReplacementString == rhs.unescapesReplacementString
     }
 }
@@ -241,7 +244,7 @@ private extension MultipleReplacement.Replacement {
         } else {
             let options = settings.textualOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
             
-            return .textual(options: options)
+            return .textual(options: options, fullWord: settings.matchesFullWord)
         }
     }
     

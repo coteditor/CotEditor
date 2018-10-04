@@ -83,6 +83,7 @@ extension MultipleReplacement.Settings: Codable {
         
         case textualOptions
         case regexOptions
+        case matchesFullWord
         case unescapesReplacementString
     }
     
@@ -97,6 +98,8 @@ extension MultipleReplacement.Settings: Codable {
         let regexOptions = try container.decode(UInt.self, forKey: .regexOptions)
         self.regexOptions = NSRegularExpression.Options(rawValue: regexOptions)
         
+        self.matchesFullWord = try container.decodeIfPresent(Bool.self, forKey: .matchesFullWord) ?? false
+        
         self.unescapesReplacementString = try container.decodeIfPresent(Bool.self, forKey: .unescapesReplacementString) ?? false
     }
     
@@ -107,6 +110,7 @@ extension MultipleReplacement.Settings: Codable {
         
         try container.encode(self.textualOptions.rawValue, forKey: .textualOptions)
         try container.encode(self.regexOptions.rawValue, forKey: .regexOptions)
+        try container.encode(self.matchesFullWord, forKey: .matchesFullWord)
         try container.encode(self.unescapesReplacementString, forKey: .unescapesReplacementString)
     }
     

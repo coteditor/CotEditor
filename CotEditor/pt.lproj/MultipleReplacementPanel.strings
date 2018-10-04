@@ -129,6 +129,11 @@
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "GU2-Em-4lt"; */
 "GU2-Em-4lt.title" = "Busca Textual";
 
+/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "u12-3x-Oy6"; */
+"u12-3x-Oy6.title" = "Apenas ocorrências da palavra completa";
+/* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "lEO-tC-9zj"; */
+"lEO-tC-9zj.ibShadowedToolTip" = "Restrinja os resultados da busca a palavras completas.";
+
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "tv3-0Q-m6B"; */
 "tv3-0Q-m6B.title" = "Distinguir caracteres estritamente";
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "JiF-TN-azJ"; */

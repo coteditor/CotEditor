@@ -178,7 +178,7 @@ final class DocumentAnalyzer: NSObject {
             let textView = document.viewController?.focusedTextView,
             !textView.hasMarkedText() else { return }
         
-        let selectedRange = Range(textView.selectedRange, in: textView.string)!
+        let selectedRange = Range(textView.selectedRange, in: textView.string) ?? textView.string.startIndex..<textView.string.startIndex
         let operation = EditorInfoCountOperation(string: document.textStorage.string.immutable,
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: selectedRange,
