@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.2 (unreleased)
+--------------------------
+
+### Improvements
+
+- Adjust width of line number views.
+
+
+
 3.6.1 (288)
 --------------------------
 
