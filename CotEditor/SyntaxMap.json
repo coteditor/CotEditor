@@ -59,6 +59,7 @@
     "extensions": [
       "c++",
       "cpp",
+      "cxx",
       "cc",
       "hpp",
       "h++"

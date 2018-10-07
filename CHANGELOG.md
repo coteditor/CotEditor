@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Add “.cxx” extension to “C++” syntax style.
 - Adjust width of line number views.
 
 
