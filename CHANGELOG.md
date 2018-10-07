@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Avoid selecting deleted spaces when undoing a soft tab deletion.
 - Add “.cxx” extension to “C++” syntax style.
 - Adjust width of line number views.
 
