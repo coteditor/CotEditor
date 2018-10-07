@@ -500,36 +500,24 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// delete & adjust indent
     override func deleteBackward(_ sender: Any?) {
         
-        defer {
-            super.deleteBackward(sender)
-        }
-        
-        guard self.selectedRange.length == 0 else { return }
-        
-        let location = self.selectedRange.location
-        
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            self.string.rangeOfIndent(at: location).upperBound >= location
+            let deletionRange = self.string.rangeForSoftTabDeletion(in: self.selectedRange, tabWidth: self.tabWidth)
         {
-            let column = self.string.column(of: location, tabWidth: self.tabWidth)
-            let targetLength = self.tabWidth - (column % self.tabWidth)
-            let targetRange = NSRange((location - targetLength)..<location)
-            
-            if location >= targetLength,
-                (self.string as NSString).substring(with: targetRange) == String(repeating: " ", count: targetLength) {
-                self.selectedRange = targetRange
-            }
+            self.selectedRange = deletionRange
         }
         
         // balance brackets
         if self.balancesBrackets,
+            self.selectedRange.length == 0,
             let lastCharacter = self.characterBeforeInsertion,
             let nextCharacter = self.characterAfterInsertion,
             self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
-            self.selectedRange = NSRange(location: location - 1, length: 2)
+            self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 2)
         }
+        
+        super.deleteBackward(sender)
     }
     
     

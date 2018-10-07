@@ -113,7 +113,7 @@ extension String {
     /// detect indent level of line at the location
     func indentLevel(at index: String.Index, tabWidth: Int) -> Int {
         
-        guard tabWidth > 0 else { return 0 }  // avoid to divide with zero
+        assert(tabWidth > 0)
         
         let indentRange = self.rangeOfIndent(at: index)
         
@@ -128,6 +128,8 @@ extension String {
     
     /// calculate column number at location in the line expanding tab (\t) character
     func column(of location: Int, tabWidth: Int) -> Int {
+        
+        assert(tabWidth > 0)
         
         let index = String.UTF16Index(encodedOffset: location).samePosition(in: self)!
         
@@ -167,6 +169,35 @@ extension String {
         }
         
         return indentRange
+    }
+    
+    
+    /// Range for deleting soft-tab or nil if the character to delete is not speace.
+    ///
+    /// - Parameters:
+    ///   - range: range of selection.
+    ///   - tabWidth: number of spaces for the soft tab.
+    /// - Returns: range to delete or nil if the caracter to delete is not soft-tab.
+    func rangeForSoftTabDeletion(in range: NSRange, tabWidth: Int) -> NSRange? {
+        
+        assert(tabWidth > 0)
+        
+        guard
+            range.length == 0,
+            self.rangeOfIndent(at: range.location).upperBound >= range.location
+            else { return nil }
+        
+        let column = self.column(of: range.location, tabWidth: tabWidth)
+        let targetLength = tabWidth - (column % tabWidth)
+        let targetRange = NSRange((range.location - targetLength)..<range.location)
+        
+        guard
+            range.location >= targetLength,
+            let range = Range(targetRange, in: self),
+            self[range].allSatisfy({ $0 == " " })
+            else { return nil }
+        
+        return targetRange
     }
     
 }
