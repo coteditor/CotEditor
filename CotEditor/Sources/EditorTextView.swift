@@ -663,7 +663,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // minimize drawing area on non-opaque background
         // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
         //    and it affects to the drawing performance on a large document critically. (2017-03 macOS 10.12)
-        let dirtyRect = self.drawsBackground ? dirtyRect: self.visibleRect
+        let dirtyRect = self.drawsBackground ? dirtyRect : self.visibleRect
         
         super.draw(dirtyRect)
         
