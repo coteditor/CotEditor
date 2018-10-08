@@ -201,4 +201,22 @@ extension String {
         return targetRange
     }
     
+    
+    /// Soft-tab to add.
+    ///
+    /// - Parameters:
+    ///   - location: location of insertion point.
+    ///   - tabWidth: number of spaces for the soft tab.
+    /// - Returns: string to insert as the tab.
+    func softTab(at location: Int, tabWidth: Int) -> String {
+        
+        assert(tabWidth > 0)
+        assert(location >= 0)
+        
+        let column = self.column(of: location, tabWidth: tabWidth)
+        let length = tabWidth - (column % tabWidth)
+        
+        return String(repeating: " ", count: length)
+    }
+    
 }

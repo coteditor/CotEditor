@@ -311,73 +311,68 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// on inputting text (NSTextInputClient Protocol)
     override func insertText(_ string: Any, replacementRange: NSRange) {
         
-        // do not use this method for programmatical insertion.
+        // do not use this method for programmatic insertion.
         
-        // cast NSAttributedString to String in order to make sure input string is plain-text
-        guard let plainString: String = {
-            switch string {
-            case let attrString as NSAttributedString:
-                return attrString.string
-            case let string as String:
-                return string
-            default: return nil
+        // sanitize input to plain string
+        let plainString: String = {
+            // cast input to String
+            let input: String = {
+                switch string {
+                case let attrString as NSAttributedString:
+                    return attrString.string
+                case let string as String:
+                    return string
+                default: preconditionFailure()
+                }
+            }()
+            
+            // swap '¥' with '\' if needed
+            if UserDefaults.standard[.swapYenAndBackSlash] {
+                switch input {
+                case "\\": return "¥"
+                case "¥": return "\\"
+                default: break
+                }
             }
-            }() else { return super.insertText(string, replacementRange: replacementRange) }
-        
-        // swap '¥' with '\' if needed
-        if UserDefaults.standard[.swapYenAndBackSlash], plainString.count == 1 {
-            switch plainString {
-            case "\\":
-                return super.insertText("¥", replacementRange: replacementRange)
-            case "¥":
-                return super.insertText("\\", replacementRange: replacementRange)
-            default: break
-            }
-        }
+            
+            return input
+        }()
         
         // balance brackets and quotes
-        if self.balancesBrackets && replacementRange.length == 0,
-            plainString.unicodeScalars.count == 1,
-            let firstChar = plainString.first,
-            let pair = self.matchingBracketPairs.first(where: { $0.begin == firstChar })
-        {
-            // wrap selection with brackets if some text is selected
-            if self.selectedRange.length > 0 {
-                self.surroundSelections(begin: String(pair.begin), end: String(pair.end))
-                return
+        if self.balancesBrackets, replacementRange.length == 0 {
+            // with opening symbol input
+            if let pair = self.matchingBracketPairs.first(where: { String($0.begin) == plainString }) {
+                // wrap selection with brackets if some text is selected
+                if self.rangeForUserTextChange.length > 0 {
+                    self.surroundSelections(begin: String(pair.begin), end: String(pair.end))
+                    return
+                }
                 
-            // check if insertion point is in a word
-            } else if
-                !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)),
-                !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
-            {
-                let pairedBrackets = String(pair.begin) + String(pair.end)
+                // insert bracket pair if insertion point is not in a word
+                if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)),
+                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
+                {
+                    super.insertText(String(pair.begin) + String(pair.end), replacementRange: replacementRange)
+                    self.selectedRange.location -= 1
+                    self.textStorage?.addAttribute(.autoBalancedClosingBracket, value: true,
+                                                   range: NSRange(location: self.selectedRange.location, length: 1))
+                    return
+                }
+            }
             
-                super.insertText(pairedBrackets, replacementRange: replacementRange)
-                self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 0)
-                
-                // set flag
-                self.textStorage?.addAttribute(.autoBalancedClosingBracket, value: true,
-                                               range: NSRange(location: self.selectedRange.location, length: 1))
-                
+            // just move cursor if closing bracket is already typed
+            if BracePair.braces.contains(where: { String($0.end) == plainString }),  // ignore "
+                plainString.unicodeScalars.first == self.characterAfterInsertion,
+                self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
+            {
+                self.selectedRange.location += 1
                 return
             }
-        }
-        
-        // just move cursor if closed bracket is already typed
-        if self.balancesBrackets && replacementRange.length == 0,
-            let nextCharacter = self.characterAfterInsertion,
-            let firstCharacter = plainString.first, firstCharacter == Character(nextCharacter),
-            BracePair.braces.contains(where: { $0.end == firstCharacter }),  // ignore "
-            self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
-        {
-            self.selectedRange.location += 1
-            return
         }
         
         // smart outdent with '}'
-        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled,
-            replacementRange.length == 0, plainString == "}",
+        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.length == 0,
+            plainString == "}",
             let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound
         {
             let lineRange = self.string.lineRange(at: insertionIndex)
@@ -411,17 +406,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func insertTab(_ sender: Any?) {
         
         // indent with tab key
-        if UserDefaults.standard[.indentWithTabKey], self.selectedRange.length > 0 {
+        if UserDefaults.standard[.indentWithTabKey], self.rangeForUserTextChange.length > 0 {
             self.indent()
             return
         }
         
         if self.isAutomaticTabExpansionEnabled {
-            let column = self.string.column(of: self.rangeForUserTextChange.location, tabWidth: self.tabWidth)
-            let length = self.tabWidth - (column % self.tabWidth)
-            let spaces = String(repeating: " ", count: length)
+            let softTab = self.string.softTab(at: self.rangeForUserTextChange.location, tabWidth: self.tabWidth)
             
-            return super.insertText(spaces, replacementRange: self.rangeForUserTextChange)
+            return super.insertText(softTab, replacementRange: self.rangeForUserTextChange)
         }
         
         super.insertTab(sender)
@@ -444,36 +437,37 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// insert new line & perform auto-indent
     override func insertNewline(_ sender: Any?) {
         
-        guard self.isAutomaticIndentEnabled else {
-            return super.insertNewline(sender)
-        }
+        guard
+            self.isEditable,
+            self.isAutomaticIndentEnabled
+            else { return super.insertNewline(sender) }
         
-        let indentRange = self.string.rangeOfIndent(at: self.selectedRange.location)
+        let indentRange = self.string.rangeOfIndent(at: self.rangeForUserTextChange.location)
         
         // don't auto-indent if indent is selected (2008-12-13)
-        guard indentRange.length == 0 || indentRange != self.selectedRange else {
+        guard indentRange.length == 0 || indentRange != self.rangeForUserTextChange else {
             return super.insertNewline(sender)
         }
         
         let indent: String = {
-            guard let baseIndentRange = indentRange.intersection(NSRange(0..<self.selectedRange.location)) else {
+            guard let autoIndentRange = indentRange.intersection(NSRange(0..<self.rangeForUserTextChange.location)) else {
                 return ""
             }
-            return (self.string as NSString).substring(with: baseIndentRange)
+            return (self.string as NSString).substring(with: autoIndentRange)
         }()
         
-        // calculation for smart indent
-        var shouldIncreaseIndentLevel = false
-        var shouldExpandBlock = false
+        // check if smart indent required
+        let shouldExpandBlock: Bool
+        let shouldIncreaseIndentLevel: Bool
         if self.isSmartIndentEnabled {
             let lastCharacter = self.characterBeforeInsertion
             let nextCharacter = self.characterAfterInsertion
             
-            // expand idnent block if returned inside `{}`
             shouldExpandBlock = (lastCharacter == "{" && nextCharacter == "}")
-            
-            // increace font indent level if the character just before the return is `:` or `{`
             shouldIncreaseIndentLevel = (lastCharacter == ":" || lastCharacter == "{")
+        } else {
+            shouldExpandBlock = false
+            shouldIncreaseIndentLevel = false
         }
         
         super.insertNewline(sender)
@@ -485,13 +479,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // smart indent
         if shouldExpandBlock {
-            self.insertTab(sender)
-            let selection = self.selectedRange
+            let selectedRanges = self.selectedRanges
             super.insertNewline(sender)
             super.insertText(indent, replacementRange: self.rangeForUserTextChange)
-            self.selectedRange = selection
-            
-        } else if shouldIncreaseIndentLevel {
+            self.selectedRanges = selectedRanges
+        }
+        if shouldIncreaseIndentLevel {
             self.insertTab(sender)
         }
     }
