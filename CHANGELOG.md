@@ -12,6 +12,11 @@ Change Log
 - Adjust width of line number views.
 
 
+### Fixes
+
+- Fix an issue where the cursor position did not restore correctly after repeatedly undoing & redoing bracket insertion with the “Automatically insert closing brackets and quotes” option enabled.
+
+
 
 3.6.1 (288)
 --------------------------

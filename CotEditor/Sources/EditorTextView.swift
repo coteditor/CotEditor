@@ -353,7 +353,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
                     !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
                 {
                     super.insertText(String(pair.begin) + String(pair.end), replacementRange: replacementRange)
-                    self.selectedRange.location -= 1
+                    self.setSelectedRangesWithUndo([NSRange(location: self.selectedRange.location - 1, length: 0)])
                     self.textStorage?.addAttribute(.autoBalancedClosingBracket, value: true,
                                                    range: NSRange(location: self.selectedRange.location, length: 1))
                     return
