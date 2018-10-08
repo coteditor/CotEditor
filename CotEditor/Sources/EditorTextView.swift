@@ -500,9 +500,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// delete & adjust indent
     override func deleteBackward(_ sender: Any?) {
         
+        guard self.isEditable else { return super.deleteBackward(sender) }
+        
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
-            let deletionRange = self.string.rangeForSoftTabDeletion(in: self.selectedRange, tabWidth: self.tabWidth)
+            let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth)
         {
             self.setSelectedRangesWithUndo(self.selectedRanges)
             self.selectedRange = deletionRange
@@ -516,7 +518,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
             self.setSelectedRangesWithUndo(self.selectedRanges)
-            self.selectedRange = NSRange(location: self.selectedRange.location - 1, length: 2)
+            self.selectedRange = NSRange(location: self.rangeForUserTextChange.location - 1, length: 2)
         }
         
         super.deleteBackward(sender)

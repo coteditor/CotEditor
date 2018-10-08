@@ -181,6 +181,7 @@ extension String {
     func rangeForSoftTabDeletion(in range: NSRange, tabWidth: Int) -> NSRange? {
         
         assert(tabWidth > 0)
+        assert(range.location != NSNotFound)
         
         guard
             range.length == 0,
