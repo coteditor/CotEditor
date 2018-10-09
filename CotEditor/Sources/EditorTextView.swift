@@ -302,7 +302,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.needsUpdateLineHighlight = true
         
         // retry completion if needed
-        //   -> Flag is set in `insertCompletion:forPartialWordRange:movement:isFinal:`
+        //   -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`
         if self.needsRecompletion {
             self.needsRecompletion = false
             self.completionTask.schedule(delay: .milliseconds(50))
@@ -706,7 +706,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
         {
-            layoutManager.ensureLayout(forCharacterRange: NSRange(location: 0, length: range.upperBound))
+            layoutManager.ensureLayout(forCharacterRange: NSRange(..<range.upperBound))
             let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
             let glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
                 .offset(by: self.textContainerOrigin)
@@ -959,7 +959,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     @objc var tabWidth: Int {
         
         didSet {
-            if tabWidth == 0 {
+            if tabWidth <= 0 {
                 tabWidth = oldValue
             }
             guard tabWidth != oldValue else { return }
@@ -974,7 +974,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     var lineHeight: CGFloat {
         
         didSet {
-            if lineHeight == 0 {
+            if lineHeight <= 0 {
                 lineHeight = oldValue
             }
             guard lineHeight != oldValue else { return }
@@ -1111,14 +1111,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// input an Yen sign (¥)
     @IBAction func inputYenMark(_ sender: Any?) {
         
-        super.insertText("¥", replacementRange: self.rangeForUserTextChange)
+        super.insertText("¥", replacementRange: .notFound)
     }
     
     
     ///input a backslash (\\)
     @IBAction func inputBackSlash(_ sender: Any?) {
         
-        super.insertText("\\", replacementRange: self.rangeForUserTextChange)
+        super.insertText("\\", replacementRange: .notFound)
     }
     
     
