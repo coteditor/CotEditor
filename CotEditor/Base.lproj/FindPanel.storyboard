@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,7 +65,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="146"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="20" y="82" width="420" height="44"/>
                                 <clipView key="contentView" id="vCs-g9-nGi" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
@@ -111,7 +110,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="20" y="28" width="420" height="44"/>
                                 <clipView key="contentView" id="vJP-0z-fPc" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>

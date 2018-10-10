@@ -5,6 +5,11 @@ Change Log
 3.6.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Let the input fields in the find panel accept pinch-zoom.
+
+
 ### Improvements
 
 - Avoid selecting deleted spaces when undoing a soft tab deletion.

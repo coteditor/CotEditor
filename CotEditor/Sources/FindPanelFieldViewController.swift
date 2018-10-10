@@ -25,7 +25,7 @@
 
 import Cocoa
 
-final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, NSUserInterfaceValidations {
+final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
@@ -127,54 +127,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     
     
     // MARK: Action Messages
-    
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(smallerFont):
-            guard let scrollView = self.findTextView?.enclosingScrollView else { return false }
-            return scrollView.magnification > scrollView.minMagnification
-            
-        case #selector(biggerFont):
-            guard let scrollView = self.findTextView?.enclosingScrollView else { return false }
-            return scrollView.magnification < scrollView.maxMagnification
-            
-        default:
-            break
-        }
-        
-        return true
-    }
-    
-    
-    /// scale up
-    @IBAction func biggerFont(_ sender: Any?) {
-        
-        for textView in [self.findTextView, self.replacementTextView] {
-            textView?.enclosingScrollView?.animator().magnification += 0.2
-        }
-    }
-    
-    
-    /// scale down
-    @IBAction func smallerFont(_ sender: Any?) {
-        
-        for textView in [self.findTextView, self.replacementTextView] {
-            textView?.enclosingScrollView?.animator().magnification -= 0.2
-        }
-    }
-    
-    
-    /// reset scale and font to default
-    @IBAction func resetFont(_ sender: Any?) {
-        
-        for textView in [self.findTextView, self.replacementTextView] {
-            textView?.enclosingScrollView?.animator().magnification = 1.0
-        }
-    }
-    
     
     /// show regular expression reference as popover
     @IBAction func showRegexHelp(_ sender: Any?) {

@@ -102,6 +102,8 @@
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
 		2A1A8AFA207081D9004DFEBB /* InvisibleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */; };
 		2A1A8AFB207081D9004DFEBB /* InvisibleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */; };
+		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
+		2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1CD5541DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1CD5551DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
 		2A1EB5C419AD469500C1E37E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
@@ -851,6 +853,7 @@
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
 		2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleFormatter.swift; sourceTree = "<group>"; };
+		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
@@ -1409,6 +1412,7 @@
 				2A5D132E1D1FACC900D38E6A /* FindPanelLayoutManager.swift */,
 				2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */,
 				2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */,
+				2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -2837,6 +2841,7 @@
 				2A78BFA01D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
+				2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
 				2ACC5E421E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */,
@@ -3073,6 +3078,7 @@
 				2A8C338F1D3E1C040005B0B7 /* IncompatibleCharacter.swift in Sources */,
 				2A9BF3C41D382BB100E3D3E2 /* EditorTextView+Transformation.swift in Sources */,
 				2A3A922B205638A600F9B5F3 /* BackgroundView.swift in Sources */,
+				2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A42579E1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
