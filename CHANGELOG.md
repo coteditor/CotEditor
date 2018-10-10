@@ -15,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the cursor position did not restore correctly after repeatedly undoing & redoing bracket insertion with the “Automatically insert closing brackets and quotes” option enabled.
+- Fix an issue editor scrolled unwantedly after pasting something at a latter part of the document with “Link URLs in document” option enabled.
 
 
 
