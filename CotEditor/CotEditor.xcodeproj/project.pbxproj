@@ -2577,7 +2577,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = ./updateHelpindex.sh;
+			shellScript = "./updateHelpindex.sh\n";
 		};
 		2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
