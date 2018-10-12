@@ -32,11 +32,16 @@ final class SynchronizedScrollView: NSScrollView {
     /// receive pinch zoom event
     override func magnify(with event: NSEvent) {
         
+        let lastMagnification = self.magnification
         let magnification = self.magnification + event.magnification
         let location = self.contentView.convert(event.locationInWindow, from: nil)
         
         for scrollView in self.siblings {
             scrollView.setMagnification(magnification, centeredAt: location)
+        }
+        
+        if self.magnification == 1.0, lastMagnification != 1.0 {
+            NSHapticFeedbackManager.defaultPerformer.perform(.alignment, performanceTime: .default)
         }
     }
     
