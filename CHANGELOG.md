@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Avoid selecting deleted spaces when undoing a soft tab deletion.
+- Make the credits view in About panel dark in the Dark Mode.
 - Add “.cxx” extension to “C++” syntax style.
 - Adjust the width of line number views.
 - [non-AppStore ver.] Update Sparkle framework.
