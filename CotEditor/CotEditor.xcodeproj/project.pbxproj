@@ -673,6 +673,8 @@
 		2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */; };
 		2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */; };
 		2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */; };
+		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
+		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 		8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 /* End PBXBuildFile section */
@@ -1320,6 +1322,7 @@
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
+		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
 		57ED314A1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
@@ -1717,6 +1720,7 @@
 				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
 				2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
+				2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -2679,6 +2683,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,
+				2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A50AA63204D513500D10A10 /* DocumentFile.swift in Sources */,
 				2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
@@ -3023,6 +3028,7 @@
 				2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */,
 				2A38FAFD1D1C67050032231A /* DraggableArrayController.swift in Sources */,
+				2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */,
 				2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
