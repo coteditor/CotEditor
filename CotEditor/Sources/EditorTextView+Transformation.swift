@@ -184,7 +184,7 @@ private extension NSTextView {
     func transformSelection(actionName: String? = nil, block: (String) -> String) {
         
         // transform the word that contains the cursor if nothing is selected
-        if self.selectedRanges.allSatisfy({ ($0 as! NSRange).length == 0 }) {
+        if self.selectedRange.length == 0 {
             self.selectWord(self)
         }
         
