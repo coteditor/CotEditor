@@ -2,6 +2,32 @@
 Change Log
 ==========================
 
+3.6.2 (290)
+--------------------------
+
+### New Features
+
+- Let the input fields in the find panel accept pinch-zoom.
+
+
+### Improvements
+
+- Avoid selecting deleted spaces when undoing a soft tab deletion.
+- Make the credits view in About panel dark in the Dark Mode.
+- Add “.cxx” extension to “C++” syntax style.
+- Adjust the width of line number views.
+- [non-AppStore ver.] Update Sparkle framework.
+
+
+### Fixes
+
+- Fix an issue where the cursor position did not restore correctly after repeatedly undoing & redoing bracket insertion with the “Automatically insert closing brackets and quotes” option enabled.
+- Fix an issue where editor scrolled unwantedly after pasting something at a latter half part of the document with “Link URLs in document” option enabled.
+- Fix an issue where URL link ranges expanded even if non-URL-related lines is pasted just after an URL. 
+- Fix an issue where the application could rarely crash under specific conditions.
+
+
+
 3.6.1 (288)
 --------------------------
 

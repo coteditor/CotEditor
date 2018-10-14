@@ -111,7 +111,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     func feedURLString(for updater: SPUUpdater) -> String? {
         
         // force checking beta if the currently runnning one is a beta.
-        let checksBeta: Bool = AppInfo.isPrerelease ? true : UserDefaults.standard[.checksUpdatesForBeta]
+        let checksBeta: Bool = Bundle.main.isPrerelease ? true : UserDefaults.standard[.checksUpdatesForBeta]
         
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         

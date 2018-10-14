@@ -39,7 +39,7 @@ final class IntegrationPaneController: NSViewController {
                                                              in: .localDomainMask,
                                                              appropriateFor: nil,
                                                              create: false)
-        let appName = AppInfo.bundleName
+        let appName = Bundle.main.bundleName
         
         return applicationDirURL.appendingPathComponent(appName).appendingPathExtension("app")
     }()

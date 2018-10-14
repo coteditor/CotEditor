@@ -183,7 +183,7 @@ private extension NSTextView {
     /// transform all selected strings and register to undo manager
     func transformSelection(actionName: String? = nil, block: (String) -> String) {
         
-        // transform word contains cursor if nothing is selected
+        // transform the word that contains the cursor if nothing is selected
         if self.selectedRange.length == 0 {
             self.selectWord(self)
         }
@@ -192,7 +192,6 @@ private extension NSTextView {
         var appliedRanges = [NSRange]()
         var strings = [String]()
         var newSelectedRanges = [NSRange]()
-        var success = false
         var deltaLocation = 0
         
         for range in selectedRanges where range.length > 0 {
@@ -204,10 +203,9 @@ private extension NSTextView {
             appliedRanges.append(range)
             newSelectedRanges.append(newRange)
             deltaLocation += substring.utf16.count - string.utf16.count
-            success = true
         }
         
-        guard success else { return }
+        guard !strings.isEmpty else { return }
         
         self.replace(with: strings, ranges: appliedRanges, selectedRanges: newSelectedRanges, actionName: actionName)
         

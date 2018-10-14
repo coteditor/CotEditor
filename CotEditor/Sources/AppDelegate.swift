@@ -106,8 +106,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
         
         // append the current version number to "What’s New" menu item
-        let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
-        let shortVersion = String(AppInfo.shortVersion[shortVersionRange])
+        let shortVersionRange = Bundle.main.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
+        let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
         self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
         
         // build menus
@@ -162,7 +162,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // store the latest version
         //   -> The bundle version (build number) must be Int.
-        let thisVersion = AppInfo.bundleVersion
+        let thisVersion = Bundle.main.bundleVersion
         let isLatest: Bool = {
             guard
                 let lastVersionString = UserDefaults.standard[.lastVersion],
@@ -304,20 +304,23 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show standard about panel
     @IBAction func showAboutPanel(_ sender: Any?) {
      
-        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if APPSTORE
-            // Remove Sparkle from 3rd party code list
-            if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                let attrString = try? NSMutableAttributedString(url: creditsURL, options: [:], documentAttributes: nil),
-                let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
-            {
-                attrString.deleteCharacters(in: NSRange(range, in: attrString.string))
-                let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
-                options[creditsKey] = attrString
-            }
+        let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
+        var html = try! String(contentsOf: creditsURL)
+        
+        #if APPSTORE        // Remove Sparkle from 3rd party code list
+        if let range = html.range(of: "Sparkle") {
+            html = html.replacingCharacters(in: html.lineRange(for: range), with: "")
+        }
         #endif
         
-        NSApplication.shared.orderFrontStandardAboutPanel(options: options)
+        // inverse text color in dark mode
+        if #available(macOS 10.14, *), NSApp.effectiveAppearance.isDark {
+            html = html.replacingOccurrences(of: "<body>", with: "<body style=\"color: white\">")
+        }
+        
+        let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
+        let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
+        NSApplication.shared.orderFrontStandardAboutPanel(options: [creditsKey: attrString])
     }
     
     
@@ -357,7 +360,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
         
-        NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: AppInfo.helpBookName)
+        NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: Bundle.main.helpBookName)
     }
     
     
@@ -384,8 +387,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // fill template with user environment info
         let report = template
-            .replacingOccurrences(of: "%BUNDLE_VERSION%", with: AppInfo.bundleVersion)
-            .replacingOccurrences(of: "%SHORT_VERSION%", with: AppInfo.shortVersion)
+            .replacingOccurrences(of: "%BUNDLE_VERSION%", with: Bundle.main.bundleVersion)
+            .replacingOccurrences(of: "%SHORT_VERSION%", with: Bundle.main.shortVersion)
             .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document

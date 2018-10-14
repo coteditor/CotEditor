@@ -23,35 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
-/// Container for application specific information.
-enum AppInfo {
-    
-    /// application name
-    static let bundleName = Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String
-    
-    /// human-friendly version expression (semantic versioning)
-    static let shortVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-    
-    /// build number
-    static let bundleVersion = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-    
-    /// help book name
-    static let helpBookName = Bundle.main.object(forInfoDictionaryKey: "CFBundleHelpBookName") as! String
-    
-    /// Is the running app a pre-release version?
-    static let isPrerelease: Bool = {
-        
-        let digitSet = CharacterSet(charactersIn: "0123456789.")
-        
-        // pre-release version contains non-digit letter
-        return (AppInfo.shortVersion.rangeOfCharacter(from: digitSet.inverted) != nil)
-    }()
-    
-}
-
-
 struct DocumentType {
     
     let UTType: String

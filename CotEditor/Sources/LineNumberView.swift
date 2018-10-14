@@ -177,7 +177,7 @@ final class LineNumberView: NSRulerView {
             switch self.orientation {
             case .verticalRuler:
                 let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
-                let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 3 * drawingInfo.padding
+                let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
                 return max(thickness, self.minVerticalThickness)
             case .horizontalRuler:
                 let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength

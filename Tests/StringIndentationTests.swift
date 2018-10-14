@@ -64,8 +64,6 @@ class StringIndentationTests: XCTestCase {
     
     func testIndentLevelDetection() {
         
-        XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth: 0), 0)
-        
         XCTAssertEqual("    foo".indentLevel(at: 0, tabWidth: 4), 1)
         XCTAssertEqual("    foo".indentLevel(at: 4, tabWidth: 2), 2)
         XCTAssertEqual("\tfoo".indentLevel(at: 4, tabWidth: 2), 1)
@@ -76,6 +74,19 @@ class StringIndentationTests: XCTestCase {
         
         // multiline
         XCTAssertEqual("    foo\n  bar".indentLevel(at: 10, tabWidth: 2), 1)
+    }
+    
+    
+    func testSoftTabDeletion() {
+        
+        let string = "     foo\n  bar"
+        
+        XCTAssertNil(string.rangeForSoftTabDeletion(in: NSRange(0..<0), tabWidth: 2))
+        XCTAssertNil(string.rangeForSoftTabDeletion(in: NSRange(4..<5), tabWidth: 2))
+        XCTAssertNil(string.rangeForSoftTabDeletion(in: NSRange(6..<6), tabWidth: 2))
+        XCTAssertEqual(string.rangeForSoftTabDeletion(in: NSRange(5..<5), tabWidth: 2)!, NSRange(4..<5))
+        XCTAssertEqual(string.rangeForSoftTabDeletion(in: NSRange(4..<4), tabWidth: 2)!, NSRange(2..<4))
+        XCTAssertEqual(string.rangeForSoftTabDeletion(in: NSRange(10..<10), tabWidth: 2)!, NSRange(9..<10))
     }
 
 }

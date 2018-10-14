@@ -49,7 +49,7 @@ final class GeneralPaneController: NSViewController {
                 subview.removeFromSuperview()
             }
         #endif
-        if !AppInfo.isPrerelease {
+        if !Bundle.main.isPrerelease {
             for subview in self.view.subviews where subview.tag == -2 {
                 subview.removeFromSuperview()
             }

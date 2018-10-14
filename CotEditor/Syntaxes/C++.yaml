@@ -1,16 +1,17 @@
 extensions:
 - keyString: "c++"
 - keyString: "cpp"
+- keyString: "cxx"
 - keyString: "cc"
 - keyString: "hpp"
 - keyString: "h++"
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.0.0"
+  version: "1.0.1"
   description: ""
   license: "Same as CotEditor"
-lastModified: "2016-05-17"
+lastModified: "2018-10-07"
 keywords:
 - beginString: "alignas"
 - beginString: "alignof"
