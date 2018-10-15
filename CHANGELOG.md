@@ -23,7 +23,7 @@ Change Log
 
 - Fix an issue where the cursor position did not restore correctly after repeatedly undoing & redoing bracket insertion with the “Automatically insert closing brackets and quotes” option enabled.
 - Fix an issue where editor scrolled unwantedly after pasting something at a latter half part of the document with “Link URLs in document” option enabled.
-- Fix an issue where URL link ranges expanded even if non-URL-related lines is pasted just after an URL. 
+- Fix an issue where URL link ranges expanded even if non-URL-related lines is pasted just after an URL.
 - Fix an issue where the application could rarely crash under specific conditions.
 
 
