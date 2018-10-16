@@ -66,6 +66,10 @@ final class EditorViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.navigationBarController?.textView = self.textView
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityLabel("editor".localized)
     }
     
     

@@ -108,6 +108,9 @@ final class LineNumberView: NSRulerView {
         
         super.init(scrollView: scrollView, orientation: orientation)
         
+        // set accessibility
+        self.setAccessibilityLabel("line numbers".localized)
+        
         guard let textView = scrollView?.documentView as? NSTextView else { assertionFailure(); return }
         
         self.clientView = textView

@@ -67,6 +67,11 @@ final class SidebarViewController: NSTabViewController {
         if let segmentedControl = (self.tabView as? InspectorTabView)?.segmentedControl {
             segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
         }
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("inspector".localized)
     }
     
     

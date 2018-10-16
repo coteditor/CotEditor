@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve the accessibility of user interface elements with VoiceOver.
+
+
+
 3.6.2 (290)
 --------------------------
 

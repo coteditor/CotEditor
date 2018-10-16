@@ -36,6 +36,15 @@
 
 
 
+// Accessibility labels
+"inspector" = "インスペクタ";
+"status bar" = "ステータスバー";
+"editor" = "エディタ";
+"navigation bar" = "ナビゲーションバー";
+"line numbers" = "行番号";
+
+
+
 // Main menu item titles
 "Check for Updates…" = "アップデートを確認...";
 "What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number

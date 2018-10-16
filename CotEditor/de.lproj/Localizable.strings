@@ -35,6 +35,15 @@
 
 
 
+// Accessibility labels
+"inspector" = "Infofenster";
+"status bar" = "Statusleiste";
+"navigation bar" = "Navigationsleiste";
+"editor" = "Editor";
+"line numbers" = "Zeilennummern";
+
+
+
 // Main menu item titles
 "Check for Updates…" = "Nach Updates suchen …";
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number

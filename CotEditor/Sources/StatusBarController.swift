@@ -56,6 +56,10 @@ final class StatusBarController: NSViewController {
         
         self.byteCountFormatter.isAdaptive = false
         
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityLabel("status bar".localized)
+        
         // observe change of defaults
         for key in type(of: self).observedDefaultKeys {
             UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
