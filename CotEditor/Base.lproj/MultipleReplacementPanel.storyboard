@@ -359,6 +359,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Advanced options"/>
                                 <connections>
                                     <segue destination="AcD-dT-Fbp" kind="popover" identifier="OptionsSegue" popoverAnchorView="i8z-Xa-PxI" popoverBehavior="t" preferredEdge="maxX" id="9ik-RW-SdA"/>
                                 </connections>

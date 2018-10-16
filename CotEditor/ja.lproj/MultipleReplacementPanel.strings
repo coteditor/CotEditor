@@ -101,6 +101,7 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
 "i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを設定";
+"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "詳細オプション";
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */

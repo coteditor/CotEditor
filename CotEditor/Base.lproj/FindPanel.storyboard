@@ -188,6 +188,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <accessibility description="Advanced options"/>
                                 <connections>
                                     <action selector="showPreferences:" target="fdE-8e-ywb" id="fH6-fz-kav"/>
                                 </connections>

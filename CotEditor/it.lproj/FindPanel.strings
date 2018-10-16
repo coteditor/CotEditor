@@ -96,6 +96,7 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibShadowedToolTip" = "Imposta opzioni avanzate";
+"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Opzioni avanzate";
 
 
 // Find Result
