@@ -298,6 +298,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Edit"/>
                                 <connections>
                                     <action selector="editSyntaxStyle:" target="Lgm-sL-YIF" id="Uq6-1E-GgJ"/>
                                 </connections>
