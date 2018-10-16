@@ -35,11 +35,15 @@
 "3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "查找";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "输入要查找的文本。";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
+"ObJ-nS-x0g.ibExternalAccessibilityDescription" = "清除";
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
 "VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "替换";
 /* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "输入用来替换查找到的文本。";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "Y5M-CG-n0V"; */
+"Y5M-CG-n0V.ibExternalAccessibilityDescription" = "清除";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "正则表达式";

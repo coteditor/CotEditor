@@ -274,6 +274,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="hxw-DS-gxQ" id="ioP-wf-gEs"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="findTextView.isEmpty" id="onh-xf-by1"/>
@@ -289,6 +290,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="qiQ-tb-XCa" id="iuI-2d-soX"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="replacementTextView.isEmpty" id="Bay-Pn-9Re"/>
