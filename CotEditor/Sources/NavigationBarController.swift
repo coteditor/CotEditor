@@ -117,6 +117,8 @@ final class NavigationBarController: NSViewController {
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("navigation bar".localized)
+        
+        self.outlineMenu?.setAccessibilityLabel("outline menu".localized)
     }
     
     

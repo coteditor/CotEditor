@@ -58,6 +58,7 @@ final class StatusBarController: NSViewController {
         
         // set accessibility
         self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("status bar".localized)
         
         // observe change of defaults
