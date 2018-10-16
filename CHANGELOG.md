@@ -10,6 +10,11 @@ Change Log
 - Improve the accessibility of user interface elements with VoiceOver.
 
 
+### Fixes
+
+- Fix layout in some localized environment.
+
+
 
 3.6.2 (290)
 --------------------------

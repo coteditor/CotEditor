@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UtY-fi-jOg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,6 +59,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="JWP-To-iJP" id="qgB-0g-43k"/>
                                                 <binding destination="pUX-ce-iNp" name="value" keyPath="selection.formatString" id="ib2-Zw-Ucy">
                                                     <dictionary key="options">
                                                         <string key="NSNoSelectionPlaceholder">No extension is selected.</string>
@@ -278,6 +278,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="nF4-c6-mvy" id="N2H-eS-uFC"/>
                                                 <binding destination="pUX-ce-iNp" name="content" keyPath="arrangedObjects" id="u7V-Nj-NL7"/>
                                                 <binding destination="pUX-ce-iNp" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="u7V-Nj-NL7" id="gul-uF-38z"/>
                                                 <binding destination="pUX-ce-iNp" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="gul-uF-38z" id="jIv-ca-ukj"/>

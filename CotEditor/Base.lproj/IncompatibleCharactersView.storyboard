@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="nX3-cC-y6b">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -156,6 +155,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="wLI-76-6zT" id="q4u-TX-zpo"/>
                                                 <action selector="selectCharacter:" target="nX3-cC-y6b" id="y9H-J7-Z8V"/>
                                                 <binding destination="BLm-fU-xUy" name="content" keyPath="arrangedObjects" id="nAt-g7-ez5"/>
                                                 <binding destination="BLm-fU-xUy" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="nAt-g7-ez5" id="MkZ-tG-JIQ"/>
@@ -188,7 +188,7 @@
                                     <binding destination="nX3-cC-y6b" name="hidden" keyPath="characterAvailable" id="f4O-j3-fak"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLI-76-6zT">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wLI-76-6zT">
                                 <rect key="frame" x="10" y="378" width="139" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Incompatible Characters" id="W1c-aP-XZa">
                                     <font key="font" metaFont="systemSemibold" size="11"/>

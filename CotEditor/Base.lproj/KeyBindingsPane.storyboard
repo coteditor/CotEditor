@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -189,6 +188,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="9m2-IX-4UY" id="BI0-3C-y7t"/>
                                                 <outlet property="dataSource" destination="sBQ-LT-Rwm" id="iZd-Jb-Ofb"/>
                                                 <outlet property="delegate" destination="sBQ-LT-Rwm" id="um2-rI-2oy"/>
                                             </connections>
@@ -1024,6 +1024,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="9iZ-6g-sv2" id="NNH-SL-kIT"/>
                                                 <binding destination="hA0-VV-7Fd" name="value" keyPath="selection.text" id="Y5G-PR-ofT">
                                                     <dictionary key="options">
                                                         <string key="NSNoSelectionPlaceholder">Select Action</string>
@@ -1164,6 +1165,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="5MG-oB-l1Z" id="w0z-JN-J0L"/>
                                                 <outlet property="dataSource" destination="9kQ-W2-4kw" id="cWP-Rb-gnA"/>
                                                 <outlet property="delegate" destination="9kQ-W2-4kw" id="xPR-MM-Ekc"/>
                                             </connections>

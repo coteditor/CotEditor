@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -151,6 +150,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="CHs-4y-PqE" id="CyG-21-Gz5"/>
                                     <binding destination="SKZ-Xe-n9z" name="content" keyPath="arrangedObjects" id="PiP-ab-yqQ"/>
                                     <binding destination="SKZ-Xe-n9z" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="PiP-ab-yqQ" id="uUb-IQ-rRv"/>
                                     <binding destination="SKZ-Xe-n9z" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="uUb-IQ-rRv" id="Am8-G6-bdw"/>

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Lgm-sL-YIF">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -191,6 +190,7 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <accessibilityConnection property="title" destination="uJi-Od-G4t" id="Gb8-oM-COK"/>
                                                 <binding destination="6Ls-Ew-qrv" name="content" keyPath="arrangedObjects" id="tJk-dn-kVo"/>
                                                 <binding destination="6Ls-Ew-qrv" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="tJk-dn-kVo" id="um0-ZX-Nu6"/>
                                                 <outlet property="dataSource" destination="Lgm-sL-YIF" id="HUo-At-2ax"/>
