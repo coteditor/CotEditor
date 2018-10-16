@@ -65,6 +65,16 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     // MARK: -
     // MARK: View Controller Methods
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("find result".localized)
+    }
+    
     /// prepare for display
     override func viewWillAppear() {
         

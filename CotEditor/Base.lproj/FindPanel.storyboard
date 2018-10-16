@@ -524,6 +524,7 @@
                             <constraint firstAttribute="trailing" secondItem="t8U-kV-AgP" secondAttribute="trailing" constant="20" symbolic="YES" id="ySk-vQ-dLV"/>
                             <constraint firstItem="oC1-bN-UeN" firstAttribute="top" secondItem="XqS-F4-g0U" secondAttribute="top" constant="8" id="yie-t9-cqD"/>
                         </constraints>
+                        <accessibility description="Find result"/>
                     </view>
                     <connections>
                         <outlet property="disclosureButton" destination="oC1-bN-UeN" id="O5p-sj-pxT"/>

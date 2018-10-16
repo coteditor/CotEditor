@@ -262,6 +262,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         }
         
         self.themeViewController?.theme = themeDict
+        self.themeViewController?.view.setAccessibilityLabel(themeName)
         self.themeViewController?.isBundled = isBundled
         
         self.isBundled = isBundled

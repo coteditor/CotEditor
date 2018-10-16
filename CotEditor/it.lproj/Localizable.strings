@@ -38,11 +38,14 @@
 
 // Accessibility labels
 "inspector" = "ispettore";
+"document inspector" = "ispettore del documento";
+"outline" = "outline";
+"incompatible characters" = "caratteri incompatibili";
 "status bar" = "barra di stato";
 "editor" = "editor";
 "navigation bar" = "barra di navigazione";
 "line numbers" = "numeri di riga";
-"outline" = "outline";
+"find result" = "risultati di ricerca";
 
 
 

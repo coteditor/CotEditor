@@ -73,6 +73,17 @@ final class OutlineViewController: NSViewController {
     }
     
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("outline".localized)
+    }
+    
+    
     override func viewDidAppear() {
         
         super.viewDidAppear()

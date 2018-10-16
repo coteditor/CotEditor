@@ -37,11 +37,14 @@
 
 // Accessibility labels
 "inspector" = "Infofenster";
+"document inspector" = "Dokument-Informationen";
+"outline" = "Gliederung";
+"incompatible characters" = "Inkompatible Zeichen";
 "status bar" = "Statusleiste";
 "navigation bar" = "Navigationsleiste";
 "editor" = "Editor";
 "line numbers" = "Zeilennummern";
-"outline" = "Gliederung";
+"find result" = "Suchergebnis";
 
 
 

@@ -44,6 +44,15 @@ final class DocumentInspectorViewController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityLabel("document insepector".localized)
+    }
+    
+    
     /// let documentAnalyzer autoupdate
     override func viewWillAppear() {
         

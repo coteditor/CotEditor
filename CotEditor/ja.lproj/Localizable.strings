@@ -38,11 +38,14 @@
 
 // Accessibility labels
 "inspector" = "インスペクタ";
+"document inspector" = "書類情報";
+"outline" = "アウトライン";
+"incompatible characters" = "非互換文字";
 "status bar" = "ステータスバー";
 "editor" = "エディタ";
 "navigation bar" = "ナビゲーションバー";
 "line numbers" = "行番号";
-"outline" = "アウトライン";
+"find result" = "検索結果";
 
 
 

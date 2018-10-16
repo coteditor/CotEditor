@@ -76,6 +76,16 @@ final class ThemeViewController: NSViewController {
     }
     
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+    }
+    
+    
     
     // MARK: View Controller Methods
     
