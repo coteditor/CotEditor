@@ -59,7 +59,7 @@ extension NSTextView {
         let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
         var lineNumber = self.string.lineNumber(at: firstIndex)
         
-        // enemurate visible line numbers
+        // enumerate visible line numbers
         var glyphIndex = glyphRangeToDraw.location
         while glyphIndex < glyphRangeToDraw.upperBound {  // process "real" lines
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
