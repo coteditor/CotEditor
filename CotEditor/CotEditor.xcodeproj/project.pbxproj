@@ -595,6 +595,8 @@
 		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
+		2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
+		2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C021E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
@@ -1256,6 +1258,7 @@
 		2AD69B871D3E4FCD00FBD998 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
+		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
 		2ADF3C001E6D7345009125BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FileDropPane.storyboard; sourceTree = "<group>"; };
 		2ADF3C031E6D82E2009125BB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		2ADF3C041E6D82E4009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropPane.strings"; sourceTree = "<group>"; };
@@ -1858,6 +1861,7 @@
 				2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */,
 				2A1311D52127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift */,
 				2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */,
+				2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
@@ -2801,6 +2805,7 @@
 				2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2AAD61F11D2B0856008FE772 /* String+Range.swift in Sources */,
+				2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AF073EC1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
@@ -3047,6 +3052,7 @@
 				2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
+				2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2AAD61F01D2B0856008FE772 /* String+Range.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AA86282212ED91400BB75C9 /* NSSplitViewController+Autosave.swift in Sources */,

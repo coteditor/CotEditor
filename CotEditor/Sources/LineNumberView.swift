@@ -225,22 +225,17 @@ final class LineNumberView: NSRulerView {
         guard
             let drawingInfo = self.drawingInfo,
             let textView = self.textView,
-            let layoutManager = textView.layoutManager,
-            let textContainer = textView.textContainer,
             let context = NSGraphicsContext.current?.cgContext
             else { return }
-        
-        let string = textView.string
-        let lastCharIndex = (string as NSString).length
-        let selectedLineRanges = textView.selectedRanges.map { (string as NSString).lineRange(for: $0.rangeValue) }
-        let isVerticalText = self.orientation == .horizontalRuler
-        let scale = textView.scale
         
         context.saveGState()
         
         context.setFont(LineNumberView.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.textColor().cgColor)
+        
+        let isVerticalText = self.orientation == .horizontalRuler
+        let scale = textView.scale
         
         // adjust text drawing coordinate
         context.textMatrix = {
@@ -253,108 +248,56 @@ final class LineNumberView: NSRulerView {
                 : flip.translatedBy(x: self.ruleThickness, y: -relativePoint.y - inset.y - drawingInfo.ascent)
         }()
         
-        /// draw line number block
-        func drawLineNumber(_ lineNumber: Int, y: CGFloat, isBold: Bool) {
+        // draw labels
+        textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
+            let y = scale * -lineRect.minY
             
-            let digit = lineNumber.numberOfDigits
-            
-            // calculate base position
-            let basePosition: CGPoint = isVerticalText
-                ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
-                : CGPoint(x: -drawingInfo.padding, y: y)
-            
-            // get glyphs and positions
-            let positions: [CGPoint] = (0..<digit)
-                .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
-            let glyphs: [CGGlyph] = (0..<digit)
-                .map { lineNumber.number(at: $0) }
-                .map { drawingInfo.digitGlyphs[$0] }
-            
-            if isBold {
-                context.setFillColor(self.textColor(.bold).cgColor)
-                context.setFont(LineNumberView.boldLineNumberFont)
-            }
-            
-            // draw
-            context.showGlyphs(glyphs, at: positions)
-            
-            if isBold {
-                // restore the regular font
-                context.setFillColor(self.textColor().cgColor)
-                context.setFont(LineNumberView.lineNumberFont)
-            }
-        }
-        
-        /// draw wrapped mark (-)
-        func drawWrappedMark(y: CGFloat) {
-            
-            let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
-            
-            context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
-        }
-        
-        /// draw ticks block for vertical text
-        func drawTick(y: CGFloat) {
-            
-            let rect = CGRect(x: round(y), y: 1, width: 1, height: drawingInfo.tickLength)
-            let tick = CGPath(rect: rect, transform: &context.textMatrix)
-            
-            context.addPath(tick)
-        }
-        
-        // get glyph range of which line number should be drawn
-        let visibleRect = textView.visibleRect.offset(by: -textView.textContainerOrigin)
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
-        
-        // count up lines until visible
-        let firstVisibleIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
-        var lineNumber = string.lineNumber(at: firstVisibleIndex)
-        
-        // draw visible line numbers
-        var glyphIndex = glyphRangeToDraw.location
-        while glyphIndex < glyphRangeToDraw.upperBound {  // count "real" lines
-            let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(at: characterIndex)
-            let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            let isSelected = selectedLineRanges.contains { lineRange.intersection($0) != nil }
-            glyphIndex = lineGlyphRange.upperBound
-            
-            var wrappedLineGlyphIndex = lineGlyphRange.location
-            while wrappedLineGlyphIndex < glyphIndex {  // handle wrapped lines
-                var range = NSRange.notFound
-                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
-                let y = scale * -lineRect.minY
-                wrappedLineGlyphIndex = range.upperBound
+            switch line {
+            case .new(let lineNumber, let isSelected):
+                // draw line number
+                if !isVerticalText || isSelected || lineNumber % 5 == 0 || lineNumber == 1 || lineNumber == self.numberOfLines {
+                    let digit = lineNumber.numberOfDigits
+                    
+                    // calculate base position
+                    let basePosition: CGPoint = isVerticalText
+                        ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
+                        : CGPoint(x: -drawingInfo.padding, y: y)
+                    
+                    // get glyphs and positions
+                    let positions: [CGPoint] = (0..<digit)
+                        .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
+                    let glyphs: [CGGlyph] = (0..<digit)
+                        .map { lineNumber.number(at: $0) }
+                        .map { drawingInfo.digitGlyphs[$0] }
+                    
+                    // draw
+                    if isSelected {
+                        context.setFillColor(self.textColor(.bold).cgColor)
+                        context.setFont(LineNumberView.boldLineNumberFont)
+                    }
+                    context.showGlyphs(glyphs, at: positions)
+                    if isSelected {
+                        context.setFillColor(self.textColor().cgColor)
+                        context.setFont(LineNumberView.lineNumberFont)
+                    }
+                }
                 
-                if range.location == lineGlyphRange.location {  // first line
-                    if isVerticalText {
-                        drawTick(y: y)
-                    }
-                    if !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
-                        (lineRange.upperBound == lastCharIndex && layoutManager.extraLineFragmentTextContainer == nil)  // last line for vertical text
-                    {
-                        drawLineNumber(lineNumber, y: y, isBold: isSelected)
-                    }
+                // draw tick
+                if isVerticalText {
+                    let rect = CGRect(x: round(y), y: 1, width: 1, height: drawingInfo.tickLength)
+                    let tick = CGPath(rect: rect, transform: &context.textMatrix)
                     
-                } else {  // wrapped line
-                    guard !isVerticalText else { break }
+                    context.addPath(tick)
+                }
+                
+            case .wrapped:
+                // draw wrapped mark (-)
+                if !isVerticalText {
+                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
                     
-                    drawWrappedMark(y: y)
+                    context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
                 }
             }
-            lineNumber += 1
-        }
-        
-        // draw the last "extra" line number
-        let extraLineRect = layoutManager.extraLineFragmentUsedRect
-        if !extraLineRect.isEmpty, extraLineRect.intersects(textView.visibleRect) {
-            let isSelected = (selectedLineRanges.last?.location == lastCharIndex)
-            let y = scale * -extraLineRect.minY
-            
-            if isVerticalText {
-                drawTick(y: y)
-            }
-            drawLineNumber(self.numberOfLines, y: y, isBold: isSelected)
         }
         
         // draw vertical line ticks
