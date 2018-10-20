@@ -233,20 +233,21 @@ final class LineNumberView: NSRulerView {
         context.setFont(LineNumberView.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.textColor().cgColor)
+        context.setStrokeColor(self.textColor(.stroke).cgColor)
         
-        let isVerticalText = self.orientation == .horizontalRuler
+        let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
         
-        // adjust text drawing coordinate
-        context.textMatrix = {
-            let relativePoint = self.convert(NSPoint.zero, from: textView)
-            let inset = textView.textContainerOrigin.scaled(to: scale)
-            let flip = CGAffineTransform(scaleX: 1.0, y: -1.0)
-            
-            return isVerticalText
-                ? flip.translatedBy(x: round(relativePoint.x - inset.y - drawingInfo.ascent), y: -self.ruleThickness)
-                : flip.translatedBy(x: self.ruleThickness, y: -relativePoint.y - inset.y - drawingInfo.ascent)
-        }()
+        // adjust drawing coordinate
+        let relativePoint = self.convert(NSPoint.zero, from: textView)
+        let lineBase = textView.textContainerOrigin.scaled(to: scale).y + drawingInfo.ascent
+        switch textView.layoutOrientation {
+        case .horizontal:
+            context.translateBy(x: self.ruleThickness, y: relativePoint.y + lineBase)
+        case .vertical:
+            context.translateBy(x: round(relativePoint.x - lineBase), y: self.ruleThickness)
+        }
+        context.scaleBy(x: 1, y: -1)  // flip
         
         // draw labels
         textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
@@ -284,26 +285,17 @@ final class LineNumberView: NSRulerView {
                 
                 // draw tick
                 if isVerticalText {
-                    let rect = CGRect(x: round(y), y: 1, width: 1, height: drawingInfo.tickLength)
-                    let tick = CGPath(rect: rect, transform: &context.textMatrix)
-                    
-                    context.addPath(tick)
+                    let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
+                    context.stroke(rect, width: 1)
                 }
                 
             case .wrapped:
                 // draw wrapped mark (-)
                 if !isVerticalText {
                     let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
-                    
                     context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
                 }
             }
-        }
-        
-        // draw vertical line ticks
-        if !context.isPathEmpty {
-            context.setFillColor(self.textColor(.stroke).cgColor)
-            context.fillPath()
         }
         
         context.restoreGState()
