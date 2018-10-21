@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Treat a losical line, which are delimited by line ending characters, as one line in VoiceOver, instead of a visual (wrapped) line.
 - Improve the accessibility of user interface elements with VoiceOver.
 
 
