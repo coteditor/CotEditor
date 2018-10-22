@@ -11,6 +11,7 @@ Change Log
 - Treat a losical line, which are delimited by line ending characters, as one line in VoiceOver, instead of a visual (wrapped) line.
     - Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO+F3.
 - Improve the accessibility of user interface elements with VoiceOver.
+- [trivial] Move the focus to the target input field when clear button in the find panel was pressed.
 
 
 ### Fixes

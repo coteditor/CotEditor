@@ -166,6 +166,7 @@ class FindPanelTextView: NSTextView {
         
         guard self.shouldChangeText(in: self.string.nsRange, replacementString: "") else { return }
         
+        self.window?.makeFirstResponder(self)
         self.string = ""
         
         self.didChangeText()
