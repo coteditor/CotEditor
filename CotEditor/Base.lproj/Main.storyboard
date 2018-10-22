@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
     </dependencies>
     <scenes>
@@ -765,7 +764,8 @@ CA
                                                             <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Brackets" keyEquivalent="{" id="Xoq-43-C1z">
+                                                    <menuItem title="Brackets" id="Xoq-43-C1z">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
                                                         </connections>
