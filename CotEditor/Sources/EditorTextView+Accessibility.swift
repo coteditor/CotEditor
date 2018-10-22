@@ -40,7 +40,7 @@ extension EditorTextView {
     /// return the line number for the logical line holding the insertion point.
     override func accessibilityInsertionPointLineNumber() -> Int {
         
-        return self.string.lineNumber(at: self.selectedRange.location) - 1
+        return self.accessibilityLine(for: self.selectedRange.location)
     }
     
     
@@ -63,11 +63,11 @@ private extension String {
         
         var counter = 0
         var lineRagne: NSRange = .notFound
-        (self as NSString).enumerateSubstrings(in: self.nsRange, options: [.byLines, .substringNotRequired]) { (_, _, range, stop) in
+        (self as NSString).enumerateSubstrings(in: self.nsRange, options: [.byLines, .substringNotRequired]) { (_, _, enclosingRange, stop) in
             counter += 1
             
             if counter == lineNumber {
-                lineRagne = range
+                lineRagne = enclosingRange
                 stop.pointee = true
             }
         }
