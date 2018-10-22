@@ -82,6 +82,7 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="performsActionOnEnter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <accessibility description="Find"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.findString" id="3sL-0v-4Cy">
                                                     <dictionary key="options">
@@ -124,6 +125,7 @@
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="10000000" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <accessibility description="Replace"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="VUA-ld-ABD">
                                                     <dictionary key="options">
@@ -225,6 +227,7 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <accessibility description="Recent Searches"/>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
                                 <rect key="frame" x="17" y="53" width="35" height="17"/>
@@ -248,6 +251,7 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <accessibility description="Recent Replacements"/>
                             </popUpButton>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
                                 <rect key="frame" x="358" y="107" width="59" height="14"/>

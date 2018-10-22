@@ -32,15 +32,19 @@
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
 "3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "Suchen";
-/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
+/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "Gib den Suchbegriff ein.";
+/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibExternalAccessibilityDescription" = "Suchen";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
 "ObJ-nS-x0g.ibExternalAccessibilityDescription" = "Löschen";
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
 "VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "Ersetzen";
-/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
+/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "Ersetzungstext für den gefundenen Suchbegriff eingeben.";
+/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibExternalAccessibilityDescription" = "Ersetzen";
 /* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "Y5M-CG-n0V"; */
 "Y5M-CG-n0V.ibExternalAccessibilityDescription" = "Löschen";
 
@@ -83,11 +87,15 @@
 "u6p-Hz-aK5.ibShadowedToolTips[0]" = "Vorherige Übereinstimmung suchen.";  /* "Find previous match." */
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "Nächste Übereinstimmung suchen.";  /* "Find next match." */
 
+/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "Zuletzt gesucht";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
 "cdV-rY-hCN.title" = "Zuletzt gesucht";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "Letzte Sucheinträge löschen";
 
+/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "Zuletzt ersetzt";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
 "7cw-iQ-0LM.title" = "Zuletzt ersetzt";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
