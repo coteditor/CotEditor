@@ -172,7 +172,6 @@ extension DefaultKeys {
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let autosavingDelay = DefaultKey<Double>("autosavingDelay")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
-    static let layoutTextVertical = DefaultKey<Bool>("layoutTextVertical")
     static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     

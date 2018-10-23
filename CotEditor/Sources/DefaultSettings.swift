@@ -181,7 +181,6 @@ struct DefaultSettings {
         .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
         .autosavingDelay: 5.0,
         .savesTextOrientation: true,
-        .layoutTextVertical: false,
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
         ]

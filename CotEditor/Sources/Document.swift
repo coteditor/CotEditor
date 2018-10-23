@@ -106,7 +106,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
-        self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
         
         // use the encoding user selected in open panel, if exists
         if let accessorySelectedEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding {
