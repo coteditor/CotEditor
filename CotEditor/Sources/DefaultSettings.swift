@@ -173,6 +173,7 @@ struct DefaultSettings {
         .showStatusBar: true,
         
         // ------ hidden settings ------
+        .selectedInspectorPaneIndex: 0,
         .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,

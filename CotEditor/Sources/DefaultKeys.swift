@@ -164,6 +164,7 @@ extension DefaultKeys {
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     
     // hidden settings
+    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
     static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
