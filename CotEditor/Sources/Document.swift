@@ -582,6 +582,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.syntaxParser.style = self.syntaxParser.style
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber
+        printView.baseWritingDirection = viewController.writingDirection
         
         // set font for printing
         printView.font = {

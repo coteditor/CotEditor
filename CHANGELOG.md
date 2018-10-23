@@ -16,6 +16,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the writing direction (RtL) was not delivered to printing.
 - Fix layout in some localized environment.
 
 
