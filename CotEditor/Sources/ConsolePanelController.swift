@@ -28,8 +28,60 @@ import Cocoa
 // Constants
 private let consoleFontSize: CGFloat = 11.0
 
+final class Console {
+    
+    struct Log {
+        
+        var message: String
+        var title: String?
+        var date: Date
+        
+        
+        init(message: String, title: String?) {
+            
+            self.message = message
+            self.title = title
+            self.date = Date()
+        }
+        
+    }
+    
+    
+    
+    // MARK: Public Properties
+    
+    static let shared = Console()
+    
+    private(set) var logs: [Log] = []
+    
+    
+    // MARK: Private Properties
+    
+    private let panelController = ConsolePanelController()
+    
+    
+    
+    // MARK: -
+    // MARK: Public Methods
+    
+    func showPanel() {
+        
+        self.panelController.showWindow(self)
+    }
+    
+    
+    /// append given message to the console
+    func append(log: Log) {
+        
+        self.logs.append(log)
+        self.panelController.append(message: log.message, title: log.title)
+    }
+    
+}
 
-final class ConsolePanelController: NSWindowController {
+
+
+private final class ConsolePanelController: NSWindowController {
     
     // MARK: Public Properties
     
@@ -115,7 +167,10 @@ final class ConsolePanelController: NSWindowController {
     /// flush console
     @IBAction func cleanConsole(_ sender: Any?) {
         
-        self.textView?.string = ""
+        guard let textView = self.textView else { return }
+        
+        textView.string = ""
+        NSAccessibility.post(element: textView, notification: .valueChanged)
     }
     
 }

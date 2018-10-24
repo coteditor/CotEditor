@@ -108,8 +108,10 @@ struct ScriptFileError: LocalizedError {
 
 func writeToConsole(message: String, scriptName: String) {
     
+    let log = Console.Log(message: message, title: scriptName)
+    
     DispatchQueue.main.async {
-        ConsolePanelController.shared.showWindow(nil)
-        ConsolePanelController.shared.append(message: message, title: scriptName)
+        Console.shared.showPanel()
+        Console.shared.append(log: log)
     }
 }
