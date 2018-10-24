@@ -97,7 +97,7 @@ final class ConsolePanelController: NSWindowController {
         if let title = title {
             let attrTitle = NSMutableAttributedString(string: " " + title)
             attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 1, length: title.utf16.count))
-            attrTitle.append(attrTitle)
+            attrString.append(attrTitle)
         }
         
         // append indented message
