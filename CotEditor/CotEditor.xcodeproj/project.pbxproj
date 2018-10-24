@@ -227,8 +227,8 @@
 		2A5ADE851D2168FC00F6CE26 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE831D2168FC00F6CE26 /* Collection.swift */; };
 		2A5ADE881D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */; };
 		2A5ADE891D216D4900F6CE26 /* NSColor+NamedColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */; };
-		2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
-		2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */; };
+		2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
+		2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13091D1ED10400D38E6A /* Console.swift */; };
 		2A5D13101D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
 		2A5D13111D1EE66500D38E6A /* ProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */; };
 		2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
@@ -311,7 +311,6 @@
 		2A6F0D631B5500E100C2D03C /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25859EA5076D8EE80020F779 /* PreferencesWindow.xib */; };
 		2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 258EF2F8077FEDD000011E52 /* SyntaxEditView.xib */; };
 		2A6F0D651B5500E100C2D03C /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressView.xib */; };
-		2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 		2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2A6F0D6D1B5500E100C2D03C /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
 		2A6F0D6E1B5500E100C2D03C /* PrintPanelAccessory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A07202C18E0E421006F3A43 /* PrintPanelAccessory.xib */; };
@@ -599,6 +598,8 @@
 		2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADD0ADB217CC7E600F78732 /* EditorTextView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0ADA217CC7E600F78732 /* EditorTextView+Accessibility.swift */; };
 		2ADD0ADC217CC7E600F78732 /* EditorTextView+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0ADA217CC7E600F78732 /* EditorTextView+Accessibility.swift */; };
+		2ADD0AE321800E2F00F78732 /* ConsolePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */; };
+		2ADD0AE421800E2F00F78732 /* ConsolePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */; };
 		2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C021E6D7345009125BB /* FileDropPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */; };
 		2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADF3C101E6D8774009125BB /* IntegrationPane.storyboard */; };
@@ -680,7 +681,6 @@
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
-		8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C28CD2C081101A300733DA7 /* ConsolePanel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -925,7 +925,6 @@
 		2A401FD71D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
 		2A401FD81D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
 		2A401FD91D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/EncodingListView.strings; sourceTree = "<group>"; };
-		2A401FDE1D9AD77000ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		2A401FE01D9AD77000ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
 		2A401FE11D9AD77000ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		2A401FE21D9AD77400ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/Credits.html; sourceTree = "<group>"; };
@@ -982,7 +981,7 @@
 		2A594C9E1D4BAF100076FEDC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
 		2A5ADE831D2168FC00F6CE26 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+NamedColors.swift"; sourceTree = "<group>"; };
-		2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConsolePanelController.swift; sourceTree = "<group>"; };
+		2A5D13091D1ED10400D38E6A /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
@@ -1033,7 +1032,6 @@
 		2A69076D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2A69076E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
 		2A69076F1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EncodingListView.strings; sourceTree = "<group>"; };
-		2A6907761B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		2A6907771B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		2A6907781B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
 		2A69077A1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1128,7 +1126,6 @@
 		2AA0AC621A2876CC0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/PreferencesWindow.strings"; sourceTree = "<group>"; };
 		2AA0AC641A2876E20063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodePanel.strings"; sourceTree = "<group>"; };
 		2AA0AC651A2876EC0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ColorCodePanelAccessory.strings"; sourceTree = "<group>"; };
-		2AA0AC661A2876F40063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
 		2AA0AC6D1A2877310063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EncodingListView.strings"; sourceTree = "<group>"; };
 		2AA0AC6E1A28773C0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxMappingConflictView.strings"; sourceTree = "<group>"; };
 		2AA0AC6F1A28774D0063ED1B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxEditView.strings"; sourceTree = "<group>"; };
@@ -1240,12 +1237,10 @@
 		2AD488491A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxEditView.xib; sourceTree = "<group>"; };
 		2AD4884A1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxMappingConflictView.xib; sourceTree = "<group>"; };
 		2AD4884B1A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EncodingListView.xib; sourceTree = "<group>"; };
-		2AD488521A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ConsolePanel.xib; sourceTree = "<group>"; };
 		2AD488531A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ColorCodePanelAccessory.xib; sourceTree = "<group>"; };
 		2AD488541A07FF1C00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UnicodePanel.xib; sourceTree = "<group>"; };
 		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AD4885A1A080C9500B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
-		2AD4885E1A08132300B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		2AD4885F1A08132800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		2AD488601A08132D00B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
 		2AD488621A08155700B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/PreferencesWindow.strings; sourceTree = "<group>"; };
@@ -1262,6 +1257,12 @@
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
 		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
 		2ADD0ADA217CC7E600F78732 /* EditorTextView+Accessibility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Accessibility.swift"; sourceTree = "<group>"; };
+		2ADD0AE221800E2F00F78732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ConsolePanel.storyboard; sourceTree = "<group>"; };
+		2ADD0AE52180161800F78732 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
+		2ADD0AE62180161C00F78732 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ConsolePanel.strings"; sourceTree = "<group>"; };
+		2ADD0AE72180161F00F78732 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
+		2ADD0AE82180162200F78732 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
+		2ADD0AE92180162400F78732 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		2ADF3C001E6D7345009125BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FileDropPane.storyboard; sourceTree = "<group>"; };
 		2ADF3C031E6D82E2009125BB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FileDropPane.strings; sourceTree = "<group>"; };
 		2ADF3C041E6D82E4009125BB /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FileDropPane.strings"; sourceTree = "<group>"; };
@@ -1361,7 +1362,6 @@
 		57ED31691FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxValidationView.strings; sourceTree = "<group>"; };
 		57ED316B1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxMappingConflictView.strings; sourceTree = "<group>"; };
 		57ED316C1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EncodingListView.strings; sourceTree = "<group>"; };
-		57ED316D1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
 		57ED316F1FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
 		57ED31701FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		57ED31711FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1489,7 +1489,7 @@
 		2A149DC81902BC2B00A9D6EF /* Panels */ = {
 			isa = PBXGroup;
 			children = (
-				8C28CD2C081101A300733DA7 /* ConsolePanel.xib */,
+				2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */,
 				2A5ABE77191861E3009265DF /* UnicodePanel.xib */,
 				2A607B0E1905F02F00F3A991 /* ColorCodePanelAccessory.xib */,
 			);
@@ -2229,7 +2229,7 @@
 		2AFFB72E18D8E87900118477 /* Panels */ = {
 			isa = PBXGroup;
 			children = (
-				2A5D13091D1ED10400D38E6A /* ConsolePanelController.swift */,
+				2A5D13091D1ED10400D38E6A /* Console.swift */,
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
 				2A4257B51D23153B0086DAAD /* UnicodeInputPanelController.swift */,
 			);
@@ -2472,7 +2472,6 @@
 				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
 				2A10D1211E713BE60027192A /* PrintPane.storyboard in Resources */,
 				2A6F0D651B5500E100C2D03C /* ProgressView.xib in Resources */,
-				2A6F0D661B5500E100C2D03C /* ConsolePanel.xib in Resources */,
 				2AC60699204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
 				2A4144B9201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */,
@@ -2491,6 +2490,7 @@
 				2A5DBE5A1B5D2DB700F8CB13 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A1893A51FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */,
+				2ADD0AE421800E2F00F78732 /* ConsolePanel.storyboard in Resources */,
 				2A9784A02034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */,
 				2A4144BD201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
@@ -2530,6 +2530,7 @@
 				2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */,
 				2A5F7CA51D152589001D83BC /* EditorView.storyboard in Resources */,
 				2A5D13421D1FE34F00D38E6A /* FindPanel.storyboard in Resources */,
+				2ADD0AE321800E2F00F78732 /* ConsolePanel.storyboard in Resources */,
 				2A4144BC201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 				2ADF3C121E6D8774009125BB /* IntegrationPane.storyboard in Resources */,
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
@@ -2552,7 +2553,6 @@
 				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
 				2588E9CE07C4851C0060021D /* ProgressView.xib in Resources */,
 				2A10D1201E713BE60027192A /* PrintPane.storyboard in Resources */,
-				8C28CD2E081101A300733DA7 /* ConsolePanel.xib in Resources */,
 				2A25C51B20F068FD0003AE1A /* CustomTabWidthView.storyboard in Resources */,
 				2AC60698204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
 				2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */,
@@ -2752,7 +2752,7 @@
 				2A18560C1D47FA37008FA79E /* TextFinder.swift in Sources */,
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
-				2A5D130B1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
+				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */,
@@ -3193,7 +3193,7 @@
 				2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */,
 				2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
 				2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */,
-				2A5D130A1D1ED10400D38E6A /* ConsolePanelController.swift in Sources */,
+				2A5D130A1D1ED10400D38E6A /* Console.swift in Sources */,
 				2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */,
 				2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */,
 				2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */,
@@ -3787,6 +3787,19 @@
 			name = OpenDocumentAccessory.storyboard;
 			sourceTree = "<group>";
 		};
+		2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ADD0AE221800E2F00F78732 /* Base */,
+				2ADD0AE52180161800F78732 /* ja */,
+				2ADD0AE62180161C00F78732 /* zh-Hans */,
+				2ADD0AE72180161F00F78732 /* de */,
+				2ADD0AE82180162200F78732 /* it */,
+				2ADD0AE92180162400F78732 /* pt */,
+			);
+			name = ConsolePanel.storyboard;
+			sourceTree = "<group>";
+		};
 		2ADF3BFF1E6D7345009125BB /* FileDropPane.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3865,19 +3878,6 @@
 				57ED31721FFD892900F16CAD /* pt */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		8C28CD2C081101A300733DA7 /* ConsolePanel.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AD488521A07FF1C00B795CB /* Base */,
-				2AD4885E1A08132300B795CB /* ja */,
-				2AA0AC661A2876F40063ED1B /* zh-Hans */,
-				2A6907761B8443AB00D0F3A2 /* de */,
-				2A401FDE1D9AD77000ACE036 /* it */,
-				57ED316D1FFD892900F16CAD /* pt */,
-			);
-			name = ConsolePanel.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

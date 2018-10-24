@@ -111,7 +111,7 @@ func writeToConsole(message: String, scriptName: String) {
     let log = Console.Log(message: message, title: scriptName)
     
     DispatchQueue.main.async {
-        Console.shared.showPanel()
+        Console.shared.panelController.showWindow(nil)
         Console.shared.append(log: log)
     }
 }

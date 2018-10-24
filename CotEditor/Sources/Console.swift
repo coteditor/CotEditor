@@ -1,5 +1,5 @@
 //
-//  ConsolePanelController.swift
+//  Console.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,9 +25,6 @@
 
 import Cocoa
 
-// Constants
-private let consoleFontSize: CGFloat = 11.0
-
 final class Console {
     
     struct Log {
@@ -52,56 +49,59 @@ final class Console {
     
     static let shared = Console()
     
-    private(set) var logs: [Log] = []
-    
-    
-    // MARK: Private Properties
-    
-    private let panelController = ConsolePanelController()
+    let panelController = NSStoryboard(name: "ConsolePanel", bundle: nil).instantiateInitialController() as! NSWindowController
     
     
     
     // MARK: -
     // MARK: Public Methods
     
-    func showPanel() {
-        
-        self.panelController.showWindow(self)
-    }
-    
-    
     /// append given message to the console
     func append(log: Log) {
         
-        self.logs.append(log)
-        self.panelController.append(message: log.message, title: log.title)
+        (self.panelController.contentViewController as? ConsoleViewController)?.append(log: log)
     }
     
 }
 
 
 
-private final class ConsolePanelController: NSWindowController {
+
+// MARK: -
+
+final class ConsoleWindowController: NSWindowController {
     
-    // MARK: Public Properties
+    // MARK: Window Controller Methods
     
-    static let shared = ConsolePanelController()
+    override func windowDidLoad() {
+        
+        super.windowDidLoad()
+        
+        (self.window as! NSPanel).isFloatingPanel = false
+        
+        self.windowFrameAutosaveName = "Console"
+    }
     
+}
+
+
+
+final class ConsoleViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private let fontSize: CGFloat = consoleFontSize
+    private static let fontSize: CGFloat = 11
     
     private let messageParagraphStyle: NSParagraphStyle = {
         // indent for message body
         let paragraphStyle = NSParagraphStyle.default.mutable
-        paragraphStyle.headIndent = consoleFontSize
-        paragraphStyle.firstLineHeadIndent = consoleFontSize
+        paragraphStyle.headIndent = ConsoleViewController.fontSize
+        paragraphStyle.firstLineHeadIndent = ConsoleViewController.fontSize
         return paragraphStyle
     }()
     
     private let dateFormatter: DateFormatter = {
-       let formatter = DateFormatter()
+        let formatter = DateFormatter()
         formatter.dateFormat = "YYYY-MM-dd HH:mm:ss"
         return formatter
     }()
@@ -112,26 +112,15 @@ private final class ConsolePanelController: NSWindowController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var windowNibName: NSNib.Name? {
-        
-        return NSNib.Name("ConsolePanel")
-    }
-    
-    
-    
-    // MARK: WindowController Methods
+    // MARK: Life Cycle
     
     /// setup UI
-    override func windowDidLoad() {
+    override func viewDidLoad() {
         
-        super.windowDidLoad()
+        super.viewDidLoad()
         
-        (self.window as? NSPanel)?.isFloatingPanel = false
-    
-        self.textView?.font = NSFont.messageFont(ofSize: self.fontSize)
-        self.textView?.textContainerInset = NSSize(width: 0.0, height: 4.0)
+        self.textView!.font = .messageFont(ofSize: type(of: self).fontSize)
+        self.textView!.textContainerInset = NSSize(width: 0, height: 4)
     }
     
     
@@ -139,33 +128,36 @@ private final class ConsolePanelController: NSWindowController {
     // MARK: Public Methods
     
     /// append given message to the console
-    func append(message: String, title: String?) {
+    func append(log: Console.Log) {
         
-        let lastLocation = self.textView?.textStorage?.length ?? 0
-        let date = self.dateFormatter.string(from: Date())
+        guard let textView = self.textView else { return }
+        
+        let lastLocation = textView.textStorage?.length ?? 0
+        let date = self.dateFormatter.string(from: log.date)
         let attrString = NSMutableAttributedString(string: "[" + date + "]")
         
         // append bold title
-        if let title = title {
+        if let title = log.title {
             let attrTitle = NSMutableAttributedString(string: " " + title)
             attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 1, length: title.utf16.count))
             attrString.append(attrTitle)
         }
         
         // append indented message
-        let attrMessage = NSAttributedString(string: "\n" + message + "\n", attributes: [.paragraphStyle: self.messageParagraphStyle])
+        let attrMessage = NSAttributedString(string: "\n" + log.message + "\n", attributes: [.paragraphStyle: self.messageParagraphStyle])
         attrString.append(attrMessage)
         attrString.addAttributes([.foregroundColor: NSColor.labelColor], range: attrString.string.nsRange)
         
-        self.textView?.textStorage?.append(attrString)
+        textView.textStorage?.append(attrString)
+        NSAccessibility.post(element: textView, notification: .valueChanged)
         
         // scroll to make message visible
-        self.textView?.scrollRangeToVisible(NSRange(location: lastLocation, length: attrString.length))
+        textView.scrollRangeToVisible(NSRange(location: lastLocation, length: attrString.length))
     }
     
     
     /// flush console
-    @IBAction func cleanConsole(_ sender: Any?) {
+    @IBAction func clear(_ sender: Any?) {
         
         guard let textView = self.textView else { return }
         
@@ -180,7 +172,7 @@ private final class ConsolePanelController: NSWindowController {
 // MARK: - TextFinder Support
 
 /// Map find actions to NSTextFinder, since find action key bindings are configured for TextFinder.
-extension ConsolePanelController {
+extension ConsoleViewController {
     
     /// bridge find action to NSTextFinder
     @IBAction func showFindPanel(_ sender: Any?) {
