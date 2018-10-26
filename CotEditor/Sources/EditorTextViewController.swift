@@ -119,10 +119,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         guard
             let textView = self.textView,
             let viewController = GoToLineViewController(textView: textView)
-            else {
-                NSSound.beep()
-                return
-        }
+            else { return assertionFailure() }
         
         self.presentAsSheet(viewController)
     }
