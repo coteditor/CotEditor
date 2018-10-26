@@ -94,7 +94,7 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Private Properties
     
-    private lazy var numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
+    private var numberOfLines = 1
     private var drawingInfo: DrawingInfo?
     
     private weak var draggingTimer: Timer?
@@ -115,7 +115,7 @@ final class LineNumberView: NSRulerView {
         
         self.clientView = textView
         
-        // observe new textStorage change
+        // observe text change
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSText.didChangeNotification, object: textView)
     }
     
@@ -128,13 +128,6 @@ final class LineNumberView: NSRulerView {
     
     
     // MARK: Ruler View Methods
-    
-    /// remove extra thickness
-    override var requiredThickness: CGFloat {
-        
-        return self.ruleThickness
-    }
-    
     
     /// make background transparent
     override var isOpaque: Bool {
@@ -150,6 +143,11 @@ final class LineNumberView: NSRulerView {
         
         guard let window = self.window else { return }
         
+        // set thicnesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
+        self.reservedThicknessForMarkers = 0
+        self.reservedThicknessForAccessoryView = 0
+        self.invalidateDrawingInfoAndThickness()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
                                                name: DocumentWindow.didChangeOpacityNotification,
                                                object: window)
@@ -161,35 +159,7 @@ final class LineNumberView: NSRulerView {
         
         super.viewWillDraw()
         
-        guard
-            let textFont = self.textView?.font,
-            let scale = self.textView?.scale
-            else { return }
-        
-        let drawingInfo: DrawingInfo
-        if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
-            drawingInfo = lastDrawingInfo
-        } else {
-            // -> update drawing info only when needed
-            drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
-            self.drawingInfo = drawingInfo
-        }
-        
-        // adjust thickness if needed
-        let ruleThickness: CGFloat = {
-            switch self.orientation {
-            case .verticalRuler:
-                let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
-                let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
-                return max(thickness, self.minVerticalThickness)
-            case .horizontalRuler:
-                let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
-                return max(thickness, self.minHorizontalThickness)
-            }
-        }()
-        if ceil(ruleThickness) != self.ruleThickness {
-            self.ruleThickness = ceil(ruleThickness)
-        }
+        self.invalidateDrawingInfoAndThickness()
     }
     
     
@@ -351,6 +321,41 @@ final class LineNumberView: NSRulerView {
         
         // redraw visible area
         self.setNeedsDisplay(self.visibleRect)
+    }
+    
+    
+    /// update parameters related to drawing and layout based on textView's status
+    private func invalidateDrawingInfoAndThickness() {
+        
+        guard
+            let textFont = self.textView?.font,
+            let scale = self.textView?.scale
+            else { return assertionFailure() }
+        
+        let drawingInfo: DrawingInfo
+        if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
+            drawingInfo = lastDrawingInfo
+        } else {
+            // -> update drawing info only when needed
+            drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
+            self.drawingInfo = drawingInfo
+        }
+        
+        // adjust thickness if needed
+        let ruleThickness: CGFloat = {
+            switch self.orientation {
+            case .verticalRuler:
+                let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
+                return max(thickness, self.minVerticalThickness)
+            case .horizontalRuler:
+                let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
+                return max(thickness, self.minHorizontalThickness)
+            }
+        }()
+        if ceil(ruleThickness) != self.ruleThickness {
+            self.ruleThickness = ceil(ruleThickness)
+        }
     }
     
 }

@@ -36,6 +36,7 @@ final class EditorViewController: NSSplitViewController {
             guard let textStorage = textStorage else { return }
             
             self.textView?.layoutManager?.replaceTextStorage(textStorage)
+            self.textView?.didChangeText()  // notify to lineNumberView
         }
     }
     

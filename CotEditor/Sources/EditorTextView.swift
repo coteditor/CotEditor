@@ -133,7 +133,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // set layout values
         self.minSize = self.frame.size
-        self.maxSize = NSSize.infinite
+        self.maxSize = .infinite
         self.isHorizontallyResizable = true
         self.isVerticallyResizable = true
         self.textContainerInset = kTextContainerInset
