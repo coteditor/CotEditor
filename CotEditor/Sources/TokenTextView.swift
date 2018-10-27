@@ -45,6 +45,8 @@ final class TokenTextView: NSTextView {
         
         super.viewDidMoveToWindow()
         
+        guard self.window != nil else { return }
+        
         NotificationCenter.default.addObserver(self, selector: #selector(invalidateTokens), name: NSColor.systemColorsDidChangeNotification, object: nil)
     }
     

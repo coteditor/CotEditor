@@ -28,7 +28,7 @@ import AppKit.NSFont
 
 struct DefaultSettings {
     
-    private static let settings: [DefaultKeys: Any] = [
+    static let defaults: [DefaultKeys: Any] = [
         .quitAlwaysKeepsWindows: true,
         .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
@@ -185,9 +185,6 @@ struct DefaultSettings {
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
         ]
-    
-    
-    static let defaults: [String: Any] = DefaultSettings.settings.mapKeys { $0.rawValue }
     
     
     private init() { }

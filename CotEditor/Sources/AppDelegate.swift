@@ -76,8 +76,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     override init() {
         
         // register default setting values
-        UserDefaults.standard.register(defaults: DefaultSettings.defaults)
-        NSUserDefaultsController.shared.initialValues = DefaultSettings.defaults
+        let defaults = DefaultSettings.defaults.mapKeys { $0.rawValue }
+        UserDefaults.standard.register(defaults: defaults)
+        NSUserDefaultsController.shared.initialValues = defaults
         
         // instantiate DocumentController
         _ = DocumentController.shared

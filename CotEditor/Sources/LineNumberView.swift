@@ -61,7 +61,7 @@ final class LineNumberView: NSRulerView {
             self.charWidth = font.advance(for: self.digitGlyphs[8]).width
             
             // calculate margins
-            self.padding = ceil(self.charWidth)
+            self.padding = self.charWidth
             self.tickLength = ceil(self.charWidth)
         }
         
@@ -96,6 +96,8 @@ final class LineNumberView: NSRulerView {
     
     private var numberOfLines = 1
     private var drawingInfo: DrawingInfo?
+    private var textObserver: NSObjectProtocol?
+    private var opacityObserver: NSObjectProtocol?
     
     private weak var draggingTimer: Timer?
     
@@ -115,14 +117,29 @@ final class LineNumberView: NSRulerView {
         
         self.clientView = textView
         
-        // observe text change
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSText.didChangeNotification, object: textView)
+        // observe text change for the total number of lines determining ruleThickness on holizontal text layout
+        if orientation == .verticalRuler {
+            self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
+                // -> count only if really needed since the line counting is high workload, especially by large document
+                self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
+            }
+        }
     }
     
     
     required init(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        if let observer = self.textObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        if let observer = self.opacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
@@ -141,6 +158,7 @@ final class LineNumberView: NSRulerView {
         
         super.viewDidMoveToWindow()
         
+        // only when window was attached
         guard let window = self.window else { return }
         
         // set thicnesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
@@ -148,9 +166,10 @@ final class LineNumberView: NSRulerView {
         self.reservedThicknessForAccessoryView = 0
         self.invalidateDrawingInfoAndThickness()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: DocumentWindow.didChangeOpacityNotification,
-                                               object: window)
+        // perform redraw on window opacity change
+        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+            self.setNeedsDisplay(self.visibleRect)
+        }
     }
     
     
@@ -196,7 +215,7 @@ final class LineNumberView: NSRulerView {
             let drawingInfo = self.drawingInfo,
             let textView = self.textView,
             let context = NSGraphicsContext.current?.cgContext
-            else { return }
+            else { return assertionFailure() }
         
         context.saveGState()
         
@@ -305,22 +324,6 @@ final class LineNumberView: NSRulerView {
         } else {
             return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
         }
-    }
-    
-    
-    /// update total number of lines determining view thickness on holizontal text layout
-    @objc private func textDidChange(_ notification: Notification) {
-        
-        // -> count only if really needed since the line counting is high workload, especially by large document
-        self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
-    }
-    
-    
-    /// window's opacity did change
-    @objc private func didWindowOpacityChange(_ notification: Notification?) {
-        
-        // redraw visible area
-        self.setNeedsDisplay(self.visibleRect)
     }
     
     
