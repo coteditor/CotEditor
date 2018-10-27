@@ -84,6 +84,11 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
             return
         }
         
+        guard self.endEditing() else {
+            NSSound.beep()
+            return
+        }
+        
         textView.sortLines(pattern: pattern, options: self.sortOptions)
         
         self.dismiss(sender)
@@ -196,5 +201,24 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
         self.delegate?.didUpdate(sortPattern: pattern)
     }
     
+    
+}
+
+
+
+// MARK: -
+
+extension CSVSortPattern {
+    
+    override func setNilValueForKey(_ key: String) {
+        
+        // avoid rising an exception when number field becomes empty
+        switch key {
+        case #keyPath(column):
+            self.column = 1
+        default:
+            super.setNilValueForKey(key)
+        }
+    }
     
 }
