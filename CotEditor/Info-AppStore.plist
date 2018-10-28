@@ -988,13 +988,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.6.3</string>
+	<string>3.6.4-alpha</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleSpokenName</key>
 	<string>Cot editor</string>
 	<key>CFBundleVersion</key>
-	<string>292</string>
+	<string>293</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
