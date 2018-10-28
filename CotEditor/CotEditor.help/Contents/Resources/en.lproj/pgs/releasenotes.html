@@ -23,6 +23,44 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.6.3</h1>
+	<p>release: <time>2018-10-29</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Assign <code>⌘⇧[</code> shortcut to “Show Next Tab” command instead of “Surround Selection with Brackets” command.</li>
+	<li>Treat a logical line, which is delimited by line ending characters, as one line in VoiceOver, instead of a visual (wrapped) line.<ul>
+		<li>Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO+F3.</li>
+	</ul></li>
+	<li>Improve the accessibility of user interface elements with VoiceOver.</li>
+	<li>Avoid performing custom sort with an invalid parameter.</li>
+	<li>Display default setting values as the input field's placeholder in preferences window when empty.</li>
+	<li><span class="trivial">trivial</span>: Move the focus to the target input field when the clear button in the find panel was pressed.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where selected inspector pane was not stored.</li>
+	<li>Fix an issue where initial display area shifted unwantedly if line numbers are displayed lines are unwrapped.</li>
+	<li>Fix an issue where script name was not displayed in Console.</li>
+	<li>Fix an issue where the writing direction (RtL) was not delivered to printing.</li>
+	<li>Fix layout in some localized environment.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.6.2</h1>
 	<p>release: <time>2018-10-14</time></p>
 </header>

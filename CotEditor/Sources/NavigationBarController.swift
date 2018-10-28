@@ -112,6 +112,13 @@ final class NavigationBarController: NSViewController {
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("navigation bar".localized)
+        
+        self.outlineMenu?.setAccessibilityLabel("outline menu".localized)
     }
     
     

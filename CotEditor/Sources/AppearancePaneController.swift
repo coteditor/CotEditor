@@ -40,6 +40,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic var isBundled = false
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
+    @IBOutlet private weak var lineHeightField: NSTextField?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private var themeTableMenu: NSMenu?
     
@@ -58,6 +59,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeTableView?.registerForDraggedTypes([draggedType])
         
         self.themeNames = ThemeManager.shared.settingNames
+        
+        // set default values as fields' placeholder
+        self.lineHeightField?.rebind(.value) { options in
+            options[.nullPlaceholder] = DefaultSettings.defaults[.lineHeight]
+        }
         
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
@@ -262,6 +268,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         }
         
         self.themeViewController?.theme = themeDict
+        self.themeViewController?.view.setAccessibilityLabel(themeName)
         self.themeViewController?.isBundled = isBundled
         
         self.isBundled = isBundled

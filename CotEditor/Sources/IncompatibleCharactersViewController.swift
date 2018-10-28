@@ -46,6 +46,17 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     // MARK: -
     // MARK: View Controller Methods
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("incompatible characters".localized)
+    }
+    
+    
     /// update content before display
     override func viewWillAppear() {
         

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -75,6 +74,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="I7p-Lu-lyM" id="y8o-rW-Q7E"/>
                                     <binding destination="4o4-Do-zNT" name="content" keyPath="arrangedObjects" id="bbM-l4-fcf"/>
                                     <binding destination="4o4-Do-zNT" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="bbM-l4-fcf" id="fTD-do-F13"/>
                                     <binding destination="4o4-Do-zNT" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="fTD-do-F13" id="XQK-i3-I2j"/>
@@ -148,6 +148,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="Q6R-FF-rAV" id="gCY-H2-fcE"/>
                                     <binding destination="GNq-TE-e6o" name="content" keyPath="arrangedObjects" id="Ucq-UV-FuQ"/>
                                     <binding destination="GNq-TE-e6o" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Ucq-UV-FuQ" id="M0K-Be-rce"/>
                                     <binding destination="GNq-TE-e6o" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="M0K-Be-rce" id="1sB-bq-dyH"/>
@@ -248,6 +249,7 @@
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="SeZ-88-xfo" id="fe3-qs-rrA"/>
                                     <binding destination="b1i-d7-DoG" name="content" keyPath="arrangedObjects" id="iAr-Kc-eUO"/>
                                     <binding destination="b1i-d7-DoG" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="iAr-Kc-eUO" id="I5G-Fk-P0B"/>
                                     <binding destination="b1i-d7-DoG" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="I5G-Fk-P0B" id="bcr-JC-C2G"/>

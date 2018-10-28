@@ -36,6 +36,19 @@
 
 
 
+// Accessibility labels
+"inspector" = "inspetor";
+"document inspector" = "inspetor do documento";
+"outline" = "plano";
+"incompatible characters" = "Caracteres Incompatíveis";
+"status bar" = "barra de estado";
+"editor" = "editor";
+"navigation bar" = "barra de navegação";
+"line numbers" = "números das linhas";
+"find result" = "resultados da busca";
+
+
+
 // Main menu item titles
 "Check for Updates…" = "Buscar Atualizações…";
 "What’s New in CotEditor %@" = "Novidades do CotEditor %@";  // %@ is version number

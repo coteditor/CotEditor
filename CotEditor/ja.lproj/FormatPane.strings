@@ -66,6 +66,8 @@
 "Hma-8v-2gu.ibShadowedToolTip" = "新規スタイルを追加";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibShadowedToolTip" = "選択したスタイルを編集";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "編集";
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */

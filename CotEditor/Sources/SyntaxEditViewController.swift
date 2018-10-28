@@ -197,6 +197,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         self.viewControllers = viewControllers
         self.swapView(index: 0)
+        
+        // set accessibility
+        self.box?.setAccessibilityElement(true)
+        self.box?.setAccessibilityRole(.group)
     }
     
     
@@ -348,6 +352,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         // swap views
         self.box!.contentView = view
+        self.box!.setAccessibilityLabel(self.menuTitles[index])
     }
     
     

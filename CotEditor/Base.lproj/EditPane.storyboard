@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="6FT-QA-TTg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -446,6 +445,10 @@
                             <constraint firstItem="J5U-m9-FvG" firstAttribute="centerY" secondItem="fr0-Ug-Vp1" secondAttribute="centerY" id="zdu-bJ-I6z"/>
                         </constraints>
                     </customView>
+                    <connections>
+                        <outlet property="hangingIndentWidthField" destination="I2h-Jb-whg" id="HBc-Ao-QYd"/>
+                        <outlet property="tabWidthField" destination="J5U-m9-FvG" id="2sl-rV-QID"/>
+                    </connections>
                 </viewController>
                 <customObject id="F6O-dU-PkM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="TDG-Hm-YNe" userLabel="Shared User Defaults Controller"/>

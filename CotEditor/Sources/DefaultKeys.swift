@@ -164,6 +164,7 @@ extension DefaultKeys {
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     
     // hidden settings
+    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
     static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
@@ -172,7 +173,6 @@ extension DefaultKeys {
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let autosavingDelay = DefaultKey<Double>("autosavingDelay")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
-    static let layoutTextVertical = DefaultKey<Bool>("layoutTextVertical")
     static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
     

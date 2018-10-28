@@ -138,10 +138,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         NSGraphicsContext.restoreGraphicsState()
         
         // draw line numbers if needed
-        if self.printsLineNumber,
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-        {
+        if self.printsLineNumber {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
             let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
@@ -163,55 +160,34 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 NSGraphicsContext.current?.cgContext.concatenate(transform)
             }
             
-            // get glyph range of which line number should be drawn
-            let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: dirtyRect, in: textContainer)
-            
-            // count up lines until visible
-            let firstVisibleIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
-            var lineNumber = self.string.lineNumber(at: firstVisibleIndex)
-            
-            // draw visible line numbers
-            var glyphCount = glyphRangeToDraw.location
-            var glyphIndex = glyphRangeToDraw.location
-            var lastLineNumber = 0
-            
-            while glyphIndex < glyphRangeToDraw.upperBound {  // count "real" lines
-                defer {
-                    lineNumber += 1
-                }
-                
-                let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-                let lineRange = (self.string as NSString).lineRange(at: charIndex)  // get NSRange
-                let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-                glyphIndex = lineGlyphRange.upperBound
-                
-                while glyphCount < glyphIndex {  // handle wrapped lines
-                    var range = NSRange.notFound
-                    let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
-                    let isWrappedLine = (lastLineNumber == lineNumber)
-                    lastLineNumber = lineNumber
-                    glyphCount = range.upperBound
-                    
-                    if isVerticalText, isWrappedLine { continue }
-                    
-                    var numberString = isWrappedLine ? "-" : String(lineNumber)
-                    
-                    // adjust position to draw
-                    var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
-                    let digit = numberString.count
-                    if isVerticalText {
-                        numberString = (lineNumber == 1 || lineNumber % 5 == 0) ? numberString : "·"  // draw real number only in every 5 times
+            self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
+                guard let numberString: String = {
+                    switch line {
+                    case .new(let lineNumber, _):
+                        if isVerticalText, lineNumber != 1, lineNumber % 5 != 0 {
+                            return "·"  // draw real number only in every 5 times
+                        }
+                        return String(lineNumber)
                         
-                        let width = (charSize.width * CGFloat(digit) + charSize.height)
-                        point = NSPoint(x: -point.y - width / 2,
-                                        y: point.x - charSize.height)
-                    } else {
-                        point.x -= CGFloat(digit) * charSize.width  // align right
+                    case .wrapped:
+                        guard !isVerticalText else { return nil }
+                        return "-"
                     }
-                    
-                    // draw number
-                    NSAttributedString(string: numberString, attributes: attrs).draw(at: point)
+                    }() else { return }
+                
+                // adjust position to draw
+                var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
+                let digit = numberString.count
+                if isVerticalText {
+                    let width = (charSize.width * CGFloat(digit) + charSize.height)
+                    point = NSPoint(x: -point.y - width / 2,
+                                    y: point.x - charSize.height)
+                } else {
+                    point.x -= CGFloat(digit) * charSize.width  // align right
                 }
+                
+                // draw number
+                NSAttributedString(string: numberString, attributes: attrs).draw(at: point)
             }
             
             if isVerticalText {

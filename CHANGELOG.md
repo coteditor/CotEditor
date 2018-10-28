@@ -2,6 +2,30 @@
 Change Log
 ==========================
 
+3.6.3 (292)
+--------------------------
+
+### Improvements
+
+- Assign `⌘⇧[` shortcut to “Show Next Tab” command instead of “Surround Selection with Brackets” command.
+- Treat a logical line, which is delimited by line ending characters, as one line in VoiceOver, instead of a visual (wrapped) line.
+    - Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO+F3.
+- Improve the accessibility of user interface elements with VoiceOver.
+- Avoid performing custom sort with an invalid parameter.
+- Display default setting values as the input field's placeholder in preferences window when empty.
+- [trivial] Move the focus to the target input field when the clear button in the find panel was pressed.
+
+
+### Fixes
+
+- Fix an issue where selected inspector pane was not stored.
+- Fix an issue where initial display area shifted unwantedly if line numbers are displayed lines are unwrapped.
+- Fix an issue where script name was not displayed in Console.
+- Fix an issue where the writing direction (RtL) was not delivered to printing.
+- Fix layout in some localized environment.
+
+
+
 3.6.2 (290)
 --------------------------
 
@@ -23,7 +47,7 @@ Change Log
 
 - Fix an issue where the cursor position did not restore correctly after repeatedly undoing & redoing bracket insertion with the “Automatically insert closing brackets and quotes” option enabled.
 - Fix an issue where editor scrolled unwantedly after pasting something at a latter half part of the document with “Link URLs in document” option enabled.
-- Fix an issue where URL link ranges expanded even if non-URL-related lines is pasted just after an URL. 
+- Fix an issue where URL link ranges expanded even if non-URL-related lines is pasted just after an URL.
 - Fix an issue where the application could rarely crash under specific conditions.
 
 

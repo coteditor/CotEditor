@@ -36,6 +36,7 @@ final class EditorViewController: NSSplitViewController {
             guard let textStorage = textStorage else { return }
             
             self.textView?.layoutManager?.replaceTextStorage(textStorage)
+            self.textView?.didChangeText()  // notify to lineNumberView
         }
     }
     
@@ -66,6 +67,11 @@ final class EditorViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.navigationBarController?.textView = self.textView
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("editor".localized)
     }
     
     

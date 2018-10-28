@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -207,6 +206,7 @@ DQ
                                     </tableColumn>
                                 </tableColumns>
                                 <connections>
+                                    <accessibilityConnection property="title" destination="4ZL-1N-j4N" id="GS8-pb-bsZ"/>
                                     <binding destination="oW9-gC-3kM" name="content" keyPath="arrangedObjects" id="IgN-QS-6IL"/>
                                     <binding destination="oW9-gC-3kM" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="IgN-QS-6IL" id="awA-1d-Cdx"/>
                                 </connections>
@@ -360,6 +360,7 @@ DQ
                                                     <constraint firstAttribute="trailing" secondItem="0IP-DP-nt2" secondAttribute="trailing" constant="2" id="mSV-nu-LoH"/>
                                                 </constraints>
                                                 <connections>
+                                                    <accessibilityConnection property="title" destination="OKS-Jt-6Ds" id="IPJ-gH-KxN"/>
                                                     <outlet property="textField" destination="0IP-DP-nt2" id="wCl-VF-HnV"/>
                                                 </connections>
                                             </tableCellView>

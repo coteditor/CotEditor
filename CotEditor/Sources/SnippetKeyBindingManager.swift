@@ -135,8 +135,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     }
     
     
-    /// return snippet texts to insert with key binding
-    /// param: usesFactoryDefaults   YES for default setting and NO for the current setting
+    /// snippet texts to insert with key binding
     var snippets: [String] {
         
         return UserDefaults.standard[.insertCustomTextArray] ?? []

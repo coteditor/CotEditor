@@ -28,7 +28,7 @@ import AppKit.NSFont
 
 struct DefaultSettings {
     
-    private static let settings: [DefaultKeys: Any] = [
+    static let defaults: [DefaultKeys: Any] = [
         .quitAlwaysKeepsWindows: true,
         .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
@@ -173,6 +173,7 @@ struct DefaultSettings {
         .showStatusBar: true,
         
         // ------ hidden settings ------
+        .selectedInspectorPaneIndex: 0,
         .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
@@ -181,13 +182,9 @@ struct DefaultSettings {
         .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
         .autosavingDelay: 5.0,
         .savesTextOrientation: true,
-        .layoutTextVertical: false,
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
         ]
-    
-    
-    static let defaults: [String: Any] = DefaultSettings.settings.mapKeys { $0.rawValue }
     
     
     private init() { }

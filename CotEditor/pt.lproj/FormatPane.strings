@@ -63,6 +63,8 @@
 "Hma-8v-2gu.ibShadowedToolTip" = "Adicione um estilo vazio";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibShadowedToolTip" = "Edite o estilo selecionado";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "Edite";
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */

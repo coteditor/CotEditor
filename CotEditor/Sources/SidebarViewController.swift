@@ -67,6 +67,14 @@ final class SidebarViewController: NSTabViewController {
         if let segmentedControl = (self.tabView as? InspectorTabView)?.segmentedControl {
             segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
         }
+        
+        // select last used pane
+        self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("inspector".localized)
     }
     
     
@@ -96,7 +104,17 @@ final class SidebarViewController: NSTabViewController {
             guard selectedTabViewItemIndex != oldValue else { return }
             
             self.delegate?.tabViewController(self, didSelect: self.selectedTabViewItemIndex)
+            
+            if self.isViewLoaded {  // avoid storing initial state (set in the storyboard)
+                UserDefaults.standard[.selectedInspectorPaneIndex] = self.selectedTabViewItemIndex
+            }
         }
+    }
+    
+    
+    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        
+        super.tabView(tabView, didSelect: tabViewItem)
     }
     
 }

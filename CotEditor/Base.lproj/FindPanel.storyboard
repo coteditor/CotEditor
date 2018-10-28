@@ -82,6 +82,7 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="performsActionOnEnter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <accessibility description="Find"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.findString" id="3sL-0v-4Cy">
                                                     <dictionary key="options">
@@ -124,6 +125,7 @@
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="10000000" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <accessibility description="Replace"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="VUA-ld-ABD">
                                                     <dictionary key="options">
@@ -188,6 +190,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <accessibility description="Advanced options"/>
                                 <connections>
                                     <action selector="showPreferences:" target="fdE-8e-ywb" id="fH6-fz-kav"/>
                                 </connections>
@@ -224,6 +227,7 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <accessibility description="Recent Searches"/>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
                                 <rect key="frame" x="17" y="53" width="35" height="17"/>
@@ -247,6 +251,7 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <accessibility description="Recent Replacements"/>
                             </popUpButton>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
                                 <rect key="frame" x="358" y="107" width="59" height="14"/>
@@ -274,6 +279,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="hxw-DS-gxQ" id="ioP-wf-gEs"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="findTextView.isEmpty" id="onh-xf-by1"/>
@@ -289,6 +295,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="qiQ-tb-XCa" id="iuI-2d-soX"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="replacementTextView.isEmpty" id="Bay-Pn-9Re"/>
@@ -521,6 +528,7 @@
                             <constraint firstAttribute="trailing" secondItem="t8U-kV-AgP" secondAttribute="trailing" constant="20" symbolic="YES" id="ySk-vQ-dLV"/>
                             <constraint firstItem="oC1-bN-UeN" firstAttribute="top" secondItem="XqS-F4-g0U" secondAttribute="top" constant="8" id="yie-t9-cqD"/>
                         </constraints>
+                        <accessibility description="Find result"/>
                     </view>
                     <connections>
                         <outlet property="disclosureButton" destination="oC1-bN-UeN" id="O5p-sj-pxT"/>
