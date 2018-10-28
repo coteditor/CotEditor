@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -578,6 +577,7 @@
                     </customView>
                     <connections>
                         <outlet property="fontField" destination="wT1-jD-6aC" id="bP0-VX-1Yp"/>
+                        <outlet property="lineHeightField" destination="5XW-Ju-Ix5" id="hEH-sP-bVE"/>
                         <outlet property="themeTableMenu" destination="M4k-Ev-Myg" id="fHl-oM-EJc"/>
                         <outlet property="themeTableView" destination="8ed-Dt-hO9" id="00r-aw-jk5"/>
                     </connections>

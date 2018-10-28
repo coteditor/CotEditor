@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -575,7 +574,10 @@
                         </constraints>
                     </customView>
                     <connections>
+                        <outlet property="editorOpacityField" destination="hqW-e1-Q8a" id="SAU-Ds-av4"/>
                         <outlet property="ltrWritingDirectionButton" destination="jq0-Ac-Br7" id="jg6-ch-Kd5"/>
+                        <outlet property="overscrollField" destination="C9r-v1-hrx" id="zCL-Ut-WXe"/>
+                        <outlet property="pageGuideColumnField" destination="WVD-kf-A2E" id="vOO-uZ-8Hf"/>
                         <outlet property="rtlWritingDirectionButton" destination="dbp-Ze-2O4" id="TVj-8c-4oD"/>
                         <outlet property="tabbingOptionMenu" destination="bjF-G8-yrZ" id="wAy-fz-8OU"/>
                         <outlet property="verticalWritingDirectionButton" destination="wjb-yR-EWC" id="e7U-OD-MkT"/>

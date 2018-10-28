@@ -33,6 +33,10 @@ final class WindowPaneController: NSViewController {
     
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
     
+    @IBOutlet private weak var pageGuideColumnField: NSTextField?
+    @IBOutlet private weak var overscrollField: NSTextField?
+    @IBOutlet private weak var editorOpacityField: NSTextField?
+    
     @IBOutlet private weak var ltrWritingDirectionButton: NSButton?
     @IBOutlet private weak var rtlWritingDirectionButton: NSButton?
     @IBOutlet private weak var verticalWritingDirectionButton: NSButton?
@@ -43,6 +47,23 @@ final class WindowPaneController: NSViewController {
     
     // MARK: -
     // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set default values as fields' placeholder
+        self.pageGuideColumnField?.rebind(.value) { options in
+            options[.nullPlaceholder] = DefaultSettings.defaults[.pageGuideColumn]
+        }
+        self.overscrollField?.rebind(.value) { options in
+            options[.nullPlaceholder] = self.overscrollField?.formatter?.string(for: DefaultSettings.defaults[.overscrollRate])
+        }
+        self.editorOpacityField?.rebind(.value) { options in
+            options[.nullPlaceholder] = self.editorOpacityField?.formatter?.string(for: DefaultSettings.defaults[.windowAlpha])
+        }
+    }
+    
     
     override func viewWillAppear() {
         

@@ -32,9 +32,29 @@ final class EditPaneController: NSViewController {
     
     @objc private lazy dynamic var isValidCompletion: Bool = self.validateCompletionSetting()
     
+    @IBOutlet private weak var tabWidthField: NSTextField?
+    @IBOutlet private weak var hangingIndentWidthField: NSTextField?
+    
     
     
     // MARK: -
+    // MARK: Life Cycle
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set default values as fields' placeholder
+        self.tabWidthField?.rebind(.value) { options in
+            options[.nullPlaceholder] = DefaultSettings.defaults[.tabWidth]
+        }
+        self.hangingIndentWidthField?.rebind(.value) { options in
+            options[.nullPlaceholder] = DefaultSettings.defaults[.hangingIndentWidth]
+        }
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// completion list condition was changed

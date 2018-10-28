@@ -12,6 +12,7 @@ Change Log
     - Thereby, users can now also know the current line number by pressing VoiceOver shortcut VO+F3.
 - Improve the accessibility of user interface elements with VoiceOver.
 - Avoid perforiming custom sort with an invalid parameter.
+- Display default setting values as the input field's placeholder in preferences window when empty.
 - [trivial] Move the focus to the target input field when clear button in the find panel was pressed.
 
 
