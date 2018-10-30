@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- [trivial] Display default setting values as the input field's placeholder for instance highlight delay option when empty.
+
+
+
 3.6.3 (292)
 --------------------------
 
