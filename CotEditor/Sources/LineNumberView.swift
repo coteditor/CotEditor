@@ -153,18 +153,28 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// observe window opacity change
-    override func viewDidMoveToWindow() {
+    /// just before view will be attached
+    override func viewWillMove(toSuperview newSuperview: NSView?) {
         
-        super.viewDidMoveToWindow()
+        super.viewWillMove(toSuperview: newSuperview)
         
-        // only when window was attached
-        guard let window = self.window else { return }
+        // ignoe when detached
+        guard self.superview != nil else { return }
         
         // set thicnesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
         self.reservedThicknessForMarkers = 0
         self.reservedThicknessForAccessoryView = 0
         self.invalidateDrawingInfoAndThickness()
+    }
+    
+    
+    /// observe window opacity change
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
+        
+        // ignoe when detached
+        guard let window = self.window else { return }
         
         // perform redraw on window opacity change
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
