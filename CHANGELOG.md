@@ -10,6 +10,11 @@ Change Log
 - [trivial] Display default setting values as the input field's placeholder for instance highlight delay option when empty.
 
 
+### Fixes
+
+- Fix an issue where page guide did not update when font changed.
+
+
 
 3.6.3 (292)
 --------------------------
