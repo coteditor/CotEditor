@@ -45,9 +45,7 @@ final class GeneralPaneController: NSViewController {
         
         super.viewDidLoad()
         
-        self.selectionInstanceHighlightDelayField?.rebind(.value) { options in
-            options[.nullPlaceholder] = self.selectionInstanceHighlightDelayField?.formatter?.string(for: DefaultSettings.defaults[.selectionInstanceHighlightDelay])
-        }
+        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults(.value)
         
         // remove updater options if no Sparkle provided
         #if APPSTORE

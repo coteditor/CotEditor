@@ -44,13 +44,9 @@ final class EditPaneController: NSViewController {
         
         super.viewDidLoad()
         
-        // set default values as fields' placeholder
-        self.tabWidthField?.rebind(.value) { options in
-            options[.nullPlaceholder] = DefaultSettings.defaults[.tabWidth]
-        }
-        self.hangingIndentWidthField?.rebind(.value) { options in
-            options[.nullPlaceholder] = DefaultSettings.defaults[.hangingIndentWidth]
-        }
+        // set initial values as fields' placeholder
+        self.tabWidthField?.bindNullPlaceholderToUserDefaults(.value)
+        self.hangingIndentWidthField?.bindNullPlaceholderToUserDefaults(.value)
     }
     
     

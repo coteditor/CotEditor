@@ -60,10 +60,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.themeNames = ThemeManager.shared.settingNames
         
-        // set default values as fields' placeholder
-        self.lineHeightField?.rebind(.value) { options in
-            options[.nullPlaceholder] = DefaultSettings.defaults[.lineHeight]
-        }
+        // set initial value as field's placeholder
+        self.lineHeightField?.bindNullPlaceholderToUserDefaults(.value)
         
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
