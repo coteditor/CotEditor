@@ -534,7 +534,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         }
         
         // invalidate current instances highlight
-        if UserDefaults.standard[.highlightSelectionInstance] {
+        if UserDefaults.standard[.highlightSelectionInstance], !stillSelectingFlag {
             let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
