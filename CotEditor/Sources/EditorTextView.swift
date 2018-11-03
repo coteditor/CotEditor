@@ -545,9 +545,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
+        let location = self.locationOfBeginningOfLine()
+        let range = NSRange(location..<location)
         
-        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.selectedRange = range
         self.scrollRangeToVisible(range)
     }
     
@@ -555,10 +556,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// expand selection to the beginning of the current visual line (⇧⌘←)
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
-        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
-            .union(self.selectedRange)
+        let location = self.locationOfBeginningOfLine()
+        let range = NSRange(location..<self.selectedRange.upperBound)
         
-        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.selectedRange = range
         self.scrollRangeToVisible(range)
     }
     
