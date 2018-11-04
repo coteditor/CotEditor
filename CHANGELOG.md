@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where editor area could be tuck under the line number view when toggling line wrapping state.
 - FIx an issue where changing selection by shortcut `⇧→` just after shortcut `⌘⇧←` expanded the selection to a wrong direction.
 - Fix an issue where page guide did not update when font changed.
 

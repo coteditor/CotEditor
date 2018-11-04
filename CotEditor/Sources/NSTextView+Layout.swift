@@ -227,7 +227,7 @@ extension NSTextView {
             
             textContainer.widthTracksTextView = newValue
             if newValue {
-                let contentSize = scrollView.contentSize
+                let contentSize = scrollView.documentUsableSize
                 textContainer.size.width = (isVertical ? contentSize.height : contentSize.width) / self.scale
                 self.setConstrainedFrameSize(contentSize)
             } else {
@@ -258,6 +258,22 @@ extension NSTextView {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).
         return (self.baseWritingDirection == .rightToLeft) ? CGSize(width: 9_999_999, height: CGSize.infinite.height) : .infinite
+    }
+    
+}
+
+
+
+private extension NSScrollView {
+    
+    /// contentSize removing ruler thicknesses
+    var documentUsableSize: NSSize {
+        
+        var size = self.contentSize
+        size.width -= self.verticalRulerView?.frame.width ?? 0
+        size.height -= self.horizontalRulerView?.frame.height ?? 0
+        
+        return size
     }
     
 }
