@@ -557,10 +557,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         let location = self.locationOfBeginningOfLine()
-        let range = NSRange(location..<self.selectedRange.upperBound)
         
-        self.selectedRange = range
-        self.scrollRangeToVisible(range)
+        // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
+        // instead of setting `selectedRange` directly.
+        // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
+        //    expands the selection to a wrong direction. (2018-11 macOS 10.14 #863)
+        while self.selectedRange.location > location {
+            self.moveBackwardAndModifySelection(self)
+        }
     }
     
     

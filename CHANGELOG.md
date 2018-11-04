@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- FIx an issue where changing selection by shortcut `⇧→` just after shortcut `⌘⇧←` expanded the selection to a wrong direction.
 - Fix an issue where page guide did not update when font changed.
 
 
