@@ -36,7 +36,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let lineFragmentPadding: CGFloat = 20.0
     private let lineNumberPadding: CGFloat = 10.0
     private let headerFooterFontSize: CGFloat = 9.0
-    private let lineNumberFontName = "AvenirNextCondensed-Regular"
     
 
     // MARK: Public Properties
@@ -141,7 +140,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         if self.printsLineNumber {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
-            let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
+            let font = NSFont(named: .avenirNextCondensed, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
             let attrs: [NSAttributedString.Key: Any] = [.font: font,
                                                         .foregroundColor: self.textColor ?? .textColor]
             

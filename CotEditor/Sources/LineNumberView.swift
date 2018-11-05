@@ -382,29 +382,19 @@ private enum LineNumberFont {
     case regular
     case bold
     
+    private static let name: NSFont.Name = .avenirNextCondensed
+    
     
     
     var font: NSFont {
         
-        return NSFont(name: self.fontName, size: 0) ?? self.systemFont
+        return NSFont(named: LineNumberFont.name, weight: self.weight, size: 0) ?? self.systemFont
     }
     
     
     var cgFont: CGFont {
         
         return CTFontCopyGraphicsFont(self.font, nil)
-    }
-    
-    
-    /// name of the first candidate font
-    private var fontName: String {
-        
-        switch self {
-        case .regular:
-            return "AvenirNextCondensed-Regular"
-        case .bold:
-            return "AvenirNextCondensed-DemiBold"
-        }
     }
     
     

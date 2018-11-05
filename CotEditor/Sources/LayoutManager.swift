@@ -63,7 +63,7 @@ final class LayoutManager: NSLayoutManager {
                 self.spaceWidth = textFont.spaceWidth
                 
                 // cache replacement glyph width for ATS Typesetter
-                let invisibleFont = NSFont(name: "Lucida Grande", size: textFont.pointSize) ?? textFont  // use current text font for fallback
+                let invisibleFont = NSFont(named: .lucidaGrande, size: textFont.pointSize) ?? textFont  // use current text font for fallback
                 let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
                 self.replacementGlyphWidth = invisibleFont.boundingRect(forGlyph: replacementGlyph).width
             }
@@ -423,7 +423,7 @@ final class LayoutManager: NSLayoutManager {
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let spaceFont = self.textFont ?? font
-        let fullWidthFont = NSFont.hiraginoSans(ofSize: fontSize) ?? font
+        let fullWidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
         
         return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
                               tab: self.invisibleLine(.tab, font: font),
@@ -445,16 +445,6 @@ final class LayoutManager: NSLayoutManager {
 
 
 // MARK: -
-
-private extension NSFont {
-    
-    class func hiraginoSans(ofSize size: CGFloat) -> NSFont? {
-        
-        return NSFont(name: "HiraginoSans-W3", size: size)
-    }
-    
-}
-
 
 private extension CTLine {
     
