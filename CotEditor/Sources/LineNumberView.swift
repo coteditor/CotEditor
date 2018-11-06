@@ -82,8 +82,8 @@ final class LineNumberView: NSRulerView {
     private let minHorizontalThickness: CGFloat = 20.0
     
     private static let fontSizeFactor: CGFloat = 0.9
-    private static let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
-    private static let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
+    private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
+    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
         case normal = 0.75
@@ -375,51 +375,6 @@ final class LineNumberView: NSRulerView {
 
 
 
-// MARK: Line Number Font
-
-private enum LineNumberFont {
-    
-    case regular
-    case bold
-    
-    private static let name: NSFont.Name = .avenirNextCondensed
-    
-    
-    
-    var font: NSFont {
-        
-        return NSFont(named: LineNumberFont.name, weight: self.weight, size: 0) ?? self.systemFont
-    }
-    
-    
-    var cgFont: CGFont {
-        
-        return CTFontCopyGraphicsFont(self.font, nil)
-    }
-    
-    
-    /// system font for fallback
-    private var systemFont: NSFont {
-        
-        return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
-    }
-    
-    
-    /// font weight for system fonts
-    private var weight: NSFont.Weight {
-        
-        switch self {
-        case .regular:
-            return .regular
-        case .bold:
-            return .semibold
-        }
-    }
-    
-}
-
-
-
 // MARK: Private Helper Extensions
 
 private extension NSTextView {
@@ -446,7 +401,7 @@ private extension Int {
     /// number at the desired place
     func number(at place: Int) -> Int {
         
-        return ((self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
+        return (self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place)))
     }
     
 }
