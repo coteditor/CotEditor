@@ -172,7 +172,8 @@ extension NSTextView {
         guard
             scale != currentScale,
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return }
+            let textContainer = self.textContainer
+            else { return assertionFailure() }
         
         // store current coordinate
         let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: self.textContainerOrigin), in: textContainer)
@@ -220,7 +221,8 @@ extension NSTextView {
         set {
             guard
                 let scrollView = self.enclosingScrollView,
-                let textContainer = self.textContainer else { return }
+                let textContainer = self.textContainer
+                else { return assertionFailure() }
             
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
@@ -270,8 +272,8 @@ private extension NSScrollView {
     var documentUsableSize: NSSize {
         
         var size = self.contentSize
-        size.width -= self.verticalRulerView?.frame.width ?? 0
-        size.height -= self.horizontalRulerView?.frame.height ?? 0
+        size.width -= self.verticalRulerView?.requiredThickness ?? 0
+        size.height -= self.horizontalRulerView?.requiredThickness ?? 0
         
         return size
     }

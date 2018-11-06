@@ -158,10 +158,10 @@ final class LineNumberView: NSRulerView {
         
         super.viewWillMove(toSuperview: newSuperview)
         
-        // ignoe when detached
+        // ignore when detached
         guard self.superview != nil else { return }
         
-        // set thicnesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
+        // set thicknesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
         self.reservedThicknessForMarkers = 0
         self.reservedThicknessForAccessoryView = 0
         self.invalidateDrawingInfoAndThickness()
@@ -173,7 +173,7 @@ final class LineNumberView: NSRulerView {
         
         super.viewDidMoveToWindow()
         
-        // ignoe when detached
+        // ignore when detached
         guard let window = self.window else { return }
         
         // perform redraw on window opacity change
@@ -324,7 +324,7 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// return coloring theme
+    /// return background color to fill
     private var backgroundColor: NSColor {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
@@ -436,10 +436,10 @@ extension LineNumberView {
         guard
             let window = self.window,
             let textView = self.textView
-            else { return }
+            else { return assertionFailure() }
         
         // get start point
-        let point = window.convertToScreen(NSRect(origin: event.locationInWindow, size: .zero)).origin
+        let point = window.convertPoint(toScreen: event.locationInWindow)
         let index = textView.characterIndex(for: point)
         
         // repeat while dragging
@@ -473,7 +473,7 @@ extension LineNumberView {
         guard
             let window = self.window,
             let textView = self.textView
-            else { return }
+            else { return assertionFailure() }
         
         let string = textView.string as NSString
         let draggingInfo = timer?.userInfo as? DraggingInfo
