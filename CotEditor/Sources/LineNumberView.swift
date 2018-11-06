@@ -54,11 +54,11 @@ final class LineNumberView: NSRulerView {
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
-            self.wrappedMarkGlyph = font.glyph(for: "-".utf16.first!)
-            self.digitGlyphs = (0...9).map { font.glyph(for: String($0).utf16.first!) }
+            self.wrappedMarkGlyph = font.glyph(for: "-")
+            self.digitGlyphs = (0...9).map { font.glyph(for: Character(String($0))) }
             
             // calculate character width assuming the font is monospace
-            self.charWidth = font.advance(for: self.digitGlyphs[8]).width
+            self.charWidth = font.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
             
             // calculate margins
             self.padding = self.charWidth
@@ -413,26 +413,6 @@ private extension FloatingPoint {
         
         return (self / interval).rounded() * interval
     }
-}
-
-
-private extension CTFont {
-    
-    func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
-        
-        var advance = CGSize.zero
-        CTFontGetAdvancesForGlyphs(self, orientation, [glyph], &advance, 1)  // use '8' to get width
-        return advance
-    }
-    
-    
-    func glyph(for uniChar: UniChar) -> CGGlyph {
-        
-        var glyph = CGGlyph()
-        CTFontGetGlyphsForCharacters(self, [uniChar], &glyph, 1)
-        return glyph
-    }
-    
 }
 
 
