@@ -562,8 +562,8 @@
 		2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
-		2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotImageView.swift */; };
-		2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotImageView.swift */; };
+		2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
+		2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
 		2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */; };
 		2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */; };
 		2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */; };
@@ -1226,7 +1226,7 @@
 		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = YAML.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
-		2ACDC0901D1726BD009B72D6 /* DotImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotImageView.swift; sourceTree = "<group>"; };
+		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineMenuButtonCell.swift; sourceTree = "<group>"; };
 		2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldCell.swift; sourceTree = "<group>"; };
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
@@ -1550,7 +1550,7 @@
 				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
 				2A3A922A205638A600F9B5F3 /* BackgroundView.swift */,
 				2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */,
-				2ACDC0901D1726BD009B72D6 /* DotImageView.swift */,
+				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
 				2AC3845220C929950003F213 /* OpacitySampleView.swift */,
 				2AE52F171D17468B00D60A32 /* EditorSplitView.swift */,
 				2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */,
@@ -2871,7 +2871,7 @@
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2AF9B23F208E24D50057DD21 /* Metadata.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
-				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
+				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */,
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2ADD0AEC2184AB6F00F78732 /* NSObject+Binding.swift in Sources */,
@@ -3145,7 +3145,7 @@
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
-				2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */,
+				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,

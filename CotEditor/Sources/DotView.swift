@@ -1,5 +1,5 @@
 //
-//  DotImageView.swift
+//  DotView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,11 @@
 import Cocoa
 
 @IBDesignable
-final class DotImageView: NSImageView {
+final class DotView: NSView {
+    
+    @IBInspectable var color: NSColor = .labelColor
+    
+    
     
     // MARK: View Methods
     
@@ -35,7 +39,7 @@ final class DotImageView: NSImageView {
         
         NSGraphicsContext.saveGraphicsState()
         
-        NSColor.tertiaryLabelColor.setFill()
+        self.color.setFill()
         NSBezierPath(ovalIn: self.bounds).fill()
         
         NSGraphicsContext.restoreGraphicsState()
