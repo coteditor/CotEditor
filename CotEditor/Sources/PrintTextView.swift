@@ -154,8 +154,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             if isVerticalText {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
-                let transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-                NSGraphicsContext.current?.cgContext.concatenate(transform)
+                NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
             }
             
             self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
@@ -177,7 +176,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
                 let digit = numberString.count
                 if isVerticalText {
-                    let width = (charSize.width * CGFloat(digit) + charSize.height)
+                    let width = charSize.width * CGFloat(digit) + charSize.height
                     point = NSPoint(x: -point.y - width / 2,
                                     y: point.x - charSize.height)
                 } else {
