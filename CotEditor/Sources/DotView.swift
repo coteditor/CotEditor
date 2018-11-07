@@ -28,13 +28,15 @@ import Cocoa
 @IBDesignable
 final class DotView: NSView {
     
+    // MARK: Inspectable Properties
+    
     @IBInspectable var color: NSColor = .labelColor
     
     
     
+    // MARK: -
     // MARK: View Methods
     
-    /// draw inside
     override func draw(_ dirtyRect: NSRect) {
         
         NSGraphicsContext.saveGraphicsState()
