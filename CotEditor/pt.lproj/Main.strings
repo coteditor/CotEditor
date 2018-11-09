@@ -127,6 +127,8 @@
 "172.title" = "Selecionar Tudo";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "Selecionar Linha";
+/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
+"0HX-j9-5jF.title" = "Selecionar palavra";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "Inserir Barra Invertida";

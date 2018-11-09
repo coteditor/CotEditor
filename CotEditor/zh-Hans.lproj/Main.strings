@@ -130,6 +130,8 @@
 "172.title" = "全选";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "选择行";
+/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
+"0HX-j9-5jF.title" = "选择单词";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "输入反斜杠";
