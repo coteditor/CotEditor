@@ -33,6 +33,8 @@ final class GeneralPaneController: NSViewController {
     @IBOutlet private weak var notifyConflictButton: NSButton?
     @IBOutlet private weak var revertConflictButton: NSButton?
     
+    @IBOutlet private weak var selectionInstanceHighlightDelayField: NSTextField?
+    
     
     
     // MARK: -
@@ -42,6 +44,8 @@ final class GeneralPaneController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults(.value)
         
         // remove updater options if no Sparkle provided
         #if APPSTORE

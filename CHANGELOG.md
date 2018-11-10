@@ -2,6 +2,27 @@
 Change Log
 ==========================
 
+3.6.4 (294)
+--------------------------
+
+### New Features
+
+- Add a command “Select Word” (`⌘D`) to Edit menu.
+
+
+### Improvements
+
+- [trivial] Display default setting values as the input field's placeholder for instance highlight delay option when empty.
+
+
+### Fixes
+
+- Fix an issue where editor area could be tuck under the line number view.
+- Fix an issue where changing the selection by shortcut `⇧→` just after shortcut `⌘⇧←` expanded the selection to a wrong direction.
+- Fix an issue where page guide did not update when font changed.
+
+
+
 3.6.3 (292)
 --------------------------
 

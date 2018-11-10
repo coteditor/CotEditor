@@ -128,6 +128,8 @@
 "172.title" = "すべてを選択";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "行を選択";
+/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
+"0HX-j9-5jF.title" = "単語を選択";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "バックスラッシュを入力";

@@ -31,7 +31,10 @@ final class ItalicButton: NSButton {
         
         super.viewDidMoveToSuperview()
         
-        guard let font = self.font else { return }
+        guard
+            self.superview != nil,
+            let font = self.font
+            else { return }
         
         self.font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
     }

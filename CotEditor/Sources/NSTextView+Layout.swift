@@ -172,7 +172,8 @@ extension NSTextView {
         guard
             scale != currentScale,
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return }
+            let textContainer = self.textContainer
+            else { return assertionFailure() }
         
         // store current coordinate
         let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: self.textContainerOrigin), in: textContainer)
@@ -220,14 +221,15 @@ extension NSTextView {
         set {
             guard
                 let scrollView = self.enclosingScrollView,
-                let textContainer = self.textContainer else { return }
+                let textContainer = self.textContainer
+                else { return assertionFailure() }
             
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
             
             textContainer.widthTracksTextView = newValue
             if newValue {
-                let contentSize = scrollView.contentSize
+                let contentSize = scrollView.documentUsableSize
                 textContainer.size.width = (isVertical ? contentSize.height : contentSize.width) / self.scale
                 self.setConstrainedFrameSize(contentSize)
             } else {
@@ -258,6 +260,22 @@ extension NSTextView {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).
         return (self.baseWritingDirection == .rightToLeft) ? CGSize(width: 9_999_999, height: CGSize.infinite.height) : .infinite
+    }
+    
+}
+
+
+
+private extension NSScrollView {
+    
+    /// contentSize removing ruler thicknesses
+    var documentUsableSize: NSSize {
+        
+        var size = self.contentSize
+        size.width -= self.verticalRulerView?.requiredThickness ?? 0
+        size.height -= self.horizontalRulerView?.requiredThickness ?? 0
+        
+        return size
     }
     
 }

@@ -25,7 +25,33 @@
 
 import AppKit
 
-extension NSObject {
+extension NSTextField {
+    
+    /// bind receiver's nullPlaceholder with initial value of correspondent UserDefaults key
+    func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName) {
+        
+        guard
+            let bindingInfo = self.infoForBinding(binding),
+            let object = bindingInfo[.observedObject] as? NSUserDefaultsController,
+            let keyPath = bindingInfo[.observedKeyPath] as? String
+            else { return assertionFailure() }
+        
+        let key = keyPath.replacingOccurrences(of: #keyPath(NSUserDefaultsController.values) + ".", with: "")
+        
+        guard let initialValue = object.initialValues?[key] else { return assertionFailure() }
+        
+        let placeholder = self.formatter?.string(for: initialValue) ?? initialValue
+        
+        self.rebind(binding) { options in
+            options[.nullPlaceholder] = placeholder
+        }
+    }
+    
+}
+
+
+
+private extension NSObject {
     
     /// update binding options
     func rebind(_ binding: NSBindingName, updateHandler: (_ options: inout [NSBindingOption: Any]) -> Void) {

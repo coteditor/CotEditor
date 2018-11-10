@@ -1,5 +1,5 @@
 //
-//  DotImageView.swift
+//  DotView.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,16 +26,22 @@
 import Cocoa
 
 @IBDesignable
-final class DotImageView: NSImageView {
+final class DotView: NSView {
     
+    // MARK: Inspectable Properties
+    
+    @IBInspectable var color: NSColor = .labelColor
+    
+    
+    
+    // MARK: -
     // MARK: View Methods
     
-    /// draw inside
     override func draw(_ dirtyRect: NSRect) {
         
         NSGraphicsContext.saveGraphicsState()
         
-        NSColor.tertiaryLabelColor.setFill()
+        self.color.setFill()
         NSBezierPath(ovalIn: self.bounds).fill()
         
         NSGraphicsContext.restoreGraphicsState()

@@ -260,6 +260,8 @@
 		2A5D134B1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
 		2A5D134C1D1FF31900D38E6A /* FindPanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */; };
 		2A5D2B9418E1ED420020AA1F /* SyntaxMappingConflictView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5D2B9218E1ED420020AA1F /* SyntaxMappingConflictView.xib */; };
+		2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */; };
+		2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */; };
 		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
 		2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */; };
@@ -560,8 +562,8 @@
 		2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
-		2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotImageView.swift */; };
-		2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotImageView.swift */; };
+		2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
+		2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
 		2ACDC0941D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */; };
 		2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */; };
 		2ACDC0971D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */; };
@@ -999,6 +1001,7 @@
 		2A5D13441D1FE66300D38E6A /* FindPanelButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelButtonViewController.swift; sourceTree = "<group>"; };
 		2A5D13471D1FEF9900D38E6A /* FindPanelFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelFieldViewController.swift; sourceTree = "<group>"; };
 		2A5D134A1D1FF31900D38E6A /* FindPanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelController.swift; sourceTree = "<group>"; };
+		2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSFont+Name.swift"; sourceTree = "<group>"; };
 		2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterField.swift; sourceTree = "<group>"; };
 		2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxMappingConflictsViewController.swift; sourceTree = "<group>"; };
 		2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingListViewController.swift; sourceTree = "<group>"; };
@@ -1223,7 +1226,7 @@
 		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = YAML.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
-		2ACDC0901D1726BD009B72D6 /* DotImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotImageView.swift; sourceTree = "<group>"; };
+		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
 		2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineMenuButtonCell.swift; sourceTree = "<group>"; };
 		2ACDC0961D172B2A009B72D6 /* PaddingTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaddingTextFieldCell.swift; sourceTree = "<group>"; };
 		2ACDC0991D172CDE009B72D6 /* AntialiasingTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntialiasingTextField.swift; sourceTree = "<group>"; };
@@ -1547,7 +1550,7 @@
 				2ADD36991CFCADAD00F3175D /* Inspector Tab View */,
 				2A3A922A205638A600F9B5F3 /* BackgroundView.swift */,
 				2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */,
-				2ACDC0901D1726BD009B72D6 /* DotImageView.swift */,
+				2ACDC0901D1726BD009B72D6 /* DotView.swift */,
 				2AC3845220C929950003F213 /* OpacitySampleView.swift */,
 				2AE52F171D17468B00D60A32 /* EditorSplitView.swift */,
 				2A0DD6321E655C4A001CAAA3 /* TokenTextView.swift */,
@@ -1680,6 +1683,7 @@
 				2ADD0AEA2184AB6F00F78732 /* NSObject+Binding.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
+				2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */,
 				2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */,
 				2A4E637F20ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift */,
 				2A10B6F421450A3B00B4205E /* NSAppearance.swift */,
@@ -2867,8 +2871,9 @@
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
 				2AF9B23F208E24D50057DD21 /* Metadata.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputPanelController.swift in Sources */,
-				2ACDC0921D1726BD009B72D6 /* DotImageView.swift in Sources */,
+				2ACDC0921D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */,
+				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2ADD0AEC2184AB6F00F78732 /* NSObject+Binding.swift in Sources */,
 				2A1235472121B106002E9C53 /* UTF32Char+BlockName.swift in Sources */,
 				2A9082F31D32A9B500228F50 /* ThemeManager.swift in Sources */,
@@ -3047,6 +3052,7 @@
 				2A231A2D1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */,
+				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2A48982D215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
@@ -3139,7 +3145,7 @@
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
-				2ACDC0911D1726BD009B72D6 /* DotImageView.swift in Sources */,
+				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,

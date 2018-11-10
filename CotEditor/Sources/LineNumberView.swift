@@ -54,11 +54,11 @@ final class LineNumberView: NSRulerView {
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
-            self.wrappedMarkGlyph = font.glyph(for: "-".utf16.first!)
-            self.digitGlyphs = (0...9).map { font.glyph(for: String($0).utf16.first!) }
+            self.wrappedMarkGlyph = font.glyph(for: "-")
+            self.digitGlyphs = (0...9).map { font.glyph(for: Character(String($0))) }
             
             // calculate character width assuming the font is monospace
-            self.charWidth = font.advance(for: self.digitGlyphs[8]).width
+            self.charWidth = font.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
             
             // calculate margins
             self.padding = self.charWidth
@@ -82,8 +82,8 @@ final class LineNumberView: NSRulerView {
     private let minHorizontalThickness: CGFloat = 20.0
     
     private static let fontSizeFactor: CGFloat = 0.9
-    private static let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
-    private static let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
+    private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
+    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
         case normal = 0.75
@@ -153,18 +153,28 @@ final class LineNumberView: NSRulerView {
     }
     
     
+    /// just before view will be attached
+    override func viewWillMove(toSuperview newSuperview: NSView?) {
+        
+        super.viewWillMove(toSuperview: newSuperview)
+        
+        // ignore when detached
+        guard newSuperview != nil else { return }
+        
+        // set thicknesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
+        self.reservedThicknessForMarkers = 0
+        self.reservedThicknessForAccessoryView = 0
+        self.invalidateDrawingInfoAndThickness()
+    }
+    
+    
     /// observe window opacity change
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
-        // only when window was attached
+        // ignore when detached
         guard let window = self.window else { return }
-        
-        // set thicnesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
-        self.reservedThicknessForMarkers = 0
-        self.reservedThicknessForAccessoryView = 0
-        self.invalidateDrawingInfoAndThickness()
         
         // perform redraw on window opacity change
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
@@ -314,7 +324,7 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// return coloring theme
+    /// return background color to fill
     private var backgroundColor: NSColor {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
@@ -365,61 +375,6 @@ final class LineNumberView: NSRulerView {
 
 
 
-// MARK: Line Number Font
-
-private enum LineNumberFont {
-    
-    case regular
-    case bold
-    
-    
-    
-    var font: NSFont {
-        
-        return NSFont(name: self.fontName, size: 0) ?? self.systemFont
-    }
-    
-    
-    var cgFont: CGFont {
-        
-        return CTFontCopyGraphicsFont(self.font, nil)
-    }
-    
-    
-    /// name of the first candidate font
-    private var fontName: String {
-        
-        switch self {
-        case .regular:
-            return "AvenirNextCondensed-Regular"
-        case .bold:
-            return "AvenirNextCondensed-DemiBold"
-        }
-    }
-    
-    
-    /// system font for fallback
-    private var systemFont: NSFont {
-        
-        return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
-    }
-    
-    
-    /// font weight for system fonts
-    private var weight: NSFont.Weight {
-        
-        switch self {
-        case .regular:
-            return .regular
-        case .bold:
-            return .semibold
-        }
-    }
-    
-}
-
-
-
 // MARK: Private Helper Extensions
 
 private extension NSTextView {
@@ -446,7 +401,7 @@ private extension Int {
     /// number at the desired place
     func number(at place: Int) -> Int {
         
-        return ((self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
+        return (self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place)))
     }
     
 }
@@ -458,26 +413,6 @@ private extension FloatingPoint {
         
         return (self / interval).rounded() * interval
     }
-}
-
-
-private extension CTFont {
-    
-    func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
-        
-        var advance = CGSize.zero
-        CTFontGetAdvancesForGlyphs(self, orientation, [glyph], &advance, 1)  // use '8' to get width
-        return advance
-    }
-    
-    
-    func glyph(for uniChar: UniChar) -> CGGlyph {
-        
-        var glyph = CGGlyph()
-        CTFontGetGlyphsForCharacters(self, [uniChar], &glyph, 1)
-        return glyph
-    }
-    
 }
 
 
@@ -501,10 +436,10 @@ extension LineNumberView {
         guard
             let window = self.window,
             let textView = self.textView
-            else { return }
+            else { return assertionFailure() }
         
         // get start point
-        let point = window.convertToScreen(NSRect(origin: event.locationInWindow, size: .zero)).origin
+        let point = window.convertPoint(toScreen: event.locationInWindow)
         let index = textView.characterIndex(for: point)
         
         // repeat while dragging
@@ -538,7 +473,7 @@ extension LineNumberView {
         guard
             let window = self.window,
             let textView = self.textView
-            else { return }
+            else { return assertionFailure() }
         
         let string = textView.string as NSString
         let draggingInfo = timer?.userInfo as? DraggingInfo

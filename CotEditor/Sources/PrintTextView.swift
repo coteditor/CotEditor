@@ -36,7 +36,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let lineFragmentPadding: CGFloat = 20.0
     private let lineNumberPadding: CGFloat = 10.0
     private let headerFooterFontSize: CGFloat = 9.0
-    private let lineNumberFontName = "AvenirNextCondensed-Regular"
     
 
     // MARK: Public Properties
@@ -141,8 +140,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         if self.printsLineNumber {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
-            let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
-            let attrs: [NSAttributedString.Key: Any] = [.font: font,
+            let attrs: [NSAttributedString.Key: Any] = [.font: NSFont.lineNumberFont(ofSize: fontSize),
                                                         .foregroundColor: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
@@ -156,8 +154,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             if isVerticalText {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
-                let transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-                NSGraphicsContext.current?.cgContext.concatenate(transform)
+                NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
             }
             
             self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
@@ -179,7 +176,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
                 let digit = numberString.count
                 if isVerticalText {
-                    let width = (charSize.width * CGFloat(digit) + charSize.height)
+                    let width = charSize.width * CGFloat(digit) + charSize.height
                     point = NSPoint(x: -point.y - width / 2,
                                     y: point.x - charSize.height)
                 } else {

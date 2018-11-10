@@ -83,9 +83,7 @@ class ThemeTests: XCTestCase {
         for case let url as URL in enumerator {
             guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
             
-            let theme = try Theme(contentsOf: url)
-            
-            XCTAssertNotNil(theme)
+            _ = try Theme(contentsOf: url)
         }
     }
     

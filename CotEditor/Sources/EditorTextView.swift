@@ -534,7 +534,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         }
         
         // invalidate current instances highlight
-        if UserDefaults.standard[.highlightSelectionInstance] {
+        if UserDefaults.standard[.highlightSelectionInstance], !stillSelectingFlag {
             let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
@@ -542,12 +542,36 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// select word
+    override func selectWord(_ sender: Any?) {
+        
+        if self.selectedRange.length == 0 {
+            // select word where the cursor locates
+            self.selectedRange = self.wordRange(at: self.selectedRange.location)
+            
+        } else {
+            // select next instance
+            guard let lastRange = self.selectedRanges.last as? NSRange else { return assertionFailure() }
+            
+            let string = self.string as NSString
+            let selectedWord = string.substring(with: lastRange)
+            let nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
+            
+            guard nextRange != .notFound else { return }
+            
+            self.selectedRanges.append(NSValue(range: nextRange))
+            self.scrollRangeToVisible(nextRange)
+        }
+    }
+    
+    
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
+        let location = self.locationOfBeginningOfLine()
+        let range = NSRange(location..<location)
         
-        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
+        self.selectedRange = range
         self.scrollRangeToVisible(range)
     }
     
@@ -555,11 +579,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// expand selection to the beginning of the current visual line (⇧⌘←)
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
-        let range = NSRange(location: self.locationOfBeginningOfLine(), length: 0)
-            .union(self.selectedRange)
+        let location = self.locationOfBeginningOfLine()
         
-        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
-        self.scrollRangeToVisible(range)
+        // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
+        // instead of setting `selectedRange` directly.
+        // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
+        //    expands the selection to a wrong direction. (2018-11 macOS 10.14 #863)
+        while self.selectedRange.location > location {
+            self.moveBackwardAndModifySelection(self)
+        }
     }
     
     

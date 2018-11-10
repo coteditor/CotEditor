@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -403,6 +402,7 @@
                         <outlet property="ignoreConflictButton" destination="W8P-Bl-UB5" id="UQa-9m-hG0"/>
                         <outlet property="notifyConflictButton" destination="hRD-W3-d0g" id="Tmq-AY-etP"/>
                         <outlet property="revertConflictButton" destination="KT6-dp-FQ3" id="nib-3j-bng"/>
+                        <outlet property="selectionInstanceHighlightDelayField" destination="Vvo-7F-4xj" id="40o-gY-Fwp"/>
                     </connections>
                 </viewController>
                 <customObject id="70K-YY-h4D" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

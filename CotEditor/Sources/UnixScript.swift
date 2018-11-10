@@ -186,15 +186,10 @@ final class UnixScript: Script {
         
         guard let data = try? Data(contentsOf: self.descriptor.url) else { return nil }
         
-        for encoding in EncodingManager.shared.defaultEncodings {
-            guard let encoding = encoding else { continue }
-            
-            if let contentString = String(data: data, encoding: encoding) {
-                return contentString
-            }
-        }
-        
-        return nil
+        return EncodingManager.shared.defaultEncodings.lazy
+            .compactMap { $0 }
+            .compactMap { String(data: data, encoding: $0) }
+            .first
     }()
     
     

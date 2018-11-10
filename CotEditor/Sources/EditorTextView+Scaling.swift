@@ -117,6 +117,8 @@ extension EditorTextView {
         
         self.font = font
         self.setScaleKeepingVisibleArea(1.0)
+        
+        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
     }
     
 }

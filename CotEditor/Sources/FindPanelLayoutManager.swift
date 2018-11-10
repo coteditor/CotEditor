@@ -60,7 +60,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let color = NSColor.tertiaryLabelColor
             
             let font = self.font
-            let fullWidthFont = NSFont(name: "HiraKakuProN-W3", size: font.pointSize) ?? font
+            let fullWidthFont = NSFont(named: .hiraginoSans, size: font.pointSize) ?? font
             
             let attributes: [NSAttributedString.Key: Any] = [.font: font,
                                                             .foregroundColor: color]
@@ -116,7 +116,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                         self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
                         else { continue }
                     
-                    let replaceFont = NSFont(name: "Lucida Grande", size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
+                    let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
                     let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)
                     let baseString = (string as NSString).substring(with: charRange)
                     

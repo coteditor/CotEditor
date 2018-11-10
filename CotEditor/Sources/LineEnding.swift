@@ -89,6 +89,8 @@ enum LineEnding: Character {
 
 // MARK: -
 
+private let lineEndingsRegexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
+
 extension StringProtocol where Self.Index == String.Index {
     
     /// return the first line ending type
@@ -108,16 +110,14 @@ extension StringProtocol where Self.Index == String.Index {
     /// remove all kind of line ending characters in string
     var removingLineEndings: String {
         
-        return self.replacingLineEndings(with: nil)
+        return self.replacingOccurrences(of: lineEndingsRegexPattern, with: "", options: .regularExpression)
     }
     
     
     /// replace all kind of line ending characters in the string with the desired line ending.
-    func replacingLineEndings(with lineEnding: LineEnding?) -> String {
+    func replacingLineEndings(with lineEnding: LineEnding) -> String {
         
-        let template = lineEnding?.string ?? ""
-        
-        return self.replacingOccurrences(of: "\\r\\n|[\\n\\r\\u2028\\u2029]", with: template, options: .regularExpression)
+        return self.replacingOccurrences(of: lineEndingsRegexPattern, with: lineEnding.string, options: .regularExpression)
     }
     
     
@@ -134,7 +134,7 @@ extension StringProtocol where Self.Index == String.Index {
         guard delta != 0 else { return range }
         
         let string = self.replacingLineEndings(with: currentLineEnding)
-        let regex = try! NSRegularExpression(pattern: "\\r\\n|[\\n\\r\\u2028\\u2029]")
+        let regex = try! NSRegularExpression(pattern: lineEndingsRegexPattern)
         let locationRange = NSRange(location: 0, length: range.location)
         
         let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)

@@ -59,7 +59,7 @@
 /* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
 "vlw-Tc-sLl.title" = "已安装的语法样式：";
 
-/* Class = "NSImageView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "该样式已被自定义。";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */

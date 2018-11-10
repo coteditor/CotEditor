@@ -79,10 +79,11 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate.
-    func count(_ predicate: (Element) -> Bool) -> Int {
+    @inlinable
+    func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
         var count = 0
-        for element in self where predicate(element) {
+        for element in self where try predicate(element) {
             count += 1
         }
         return count

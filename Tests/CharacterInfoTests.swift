@@ -35,7 +35,7 @@ final class CharacterInfoTests: XCTestCase {
         
         // check comprehensiveness of block name table
         let keys = UTF32Char.blockNameTable.keys.sorted { $0.lowerBound < $1.lowerBound }
-        XCTAssertEqual(zip(keys, keys.dropFirst()).count({ $0.0.upperBound + 1 != $0.1.lowerBound }), 20)
+        XCTAssertEqual(zip(keys, keys.dropFirst()).count(where: { $0.0.upperBound + 1 != $0.1.lowerBound }), 20)
     }
     
     

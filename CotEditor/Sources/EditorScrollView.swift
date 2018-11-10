@@ -65,7 +65,7 @@ final class EditorScrollView: NSScrollView {
         }
         
         didSet {
-            guard let textView = documentView as? NSTextView else { return }
+            guard let textView = documentView as? NSTextView else { return assertionFailure() }
             
             self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
                 switch textView.layoutOrientation {
@@ -123,7 +123,6 @@ final class EditorScrollView: NSScrollView {
         switch self.layoutOrientation {
         case .horizontal:
             return self.verticalRulerView
-            
         case .vertical:
             return self.horizontalRulerView
         }
