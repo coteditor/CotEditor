@@ -49,6 +49,14 @@ enum WritingDirection: Int {
 }
 
 
+enum CursorType: Int {
+    
+    case bar
+    case thickBar
+    case block
+}
+
+
 @objc enum PrintColorMode: Int {
     
     case blackWhite

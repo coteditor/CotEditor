@@ -69,6 +69,7 @@ extension DefaultKeys {
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
+    static let cursorType = DefaultKey<CursorType>("cursorType")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")
     static let showInvisibleSpace = DefaultKey<Bool>("showInvisibleSpace")
     static let invisibleSpace = DefaultKey<Int>("invisibleSpace")
