@@ -127,4 +127,19 @@ extension UserDefaults {
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
+    
+    subscript<T>(key: DefaultKey<T>) -> T where T: RawRepresentable, T.RawValue == Int {
+        
+        get {
+            guard let value = T(rawValue: self.integer(forKey: key.rawValue)) else {
+                let defaultValue = self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as? Int ?? 0
+                return T(rawValue: defaultValue)!
+            }
+            
+            return value
+        }
+        
+        set { self.set(newValue.rawValue, forKey: key.rawValue) }
+    }
+    
 }

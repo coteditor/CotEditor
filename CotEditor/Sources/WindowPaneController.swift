@@ -75,7 +75,7 @@ final class WindowPaneController: NSViewController {
         menu.items.first!.attributedTitle = attrLabel + userSettingLabel
         
         // select one of writing direction radio buttons
-        switch WritingDirection(UserDefaults.standard[.writingDirection]) {
+        switch UserDefaults.standard[.writingDirection] {
         case .leftToRight:
             self.ltrWritingDirectionButton?.state = .on
         case .rightToLeft:
@@ -99,7 +99,7 @@ final class WindowPaneController: NSViewController {
     /// A radio button of writingDirection was clicked
     @IBAction func updateWritingDirectionSetting(_ sender: NSControl) {
         
-        UserDefaults.standard[.writingDirection] = sender.tag
+        UserDefaults.standard[.writingDirection] = WritingDirection(rawValue: sender.tag)!
     }
     
 }

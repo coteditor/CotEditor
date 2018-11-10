@@ -181,9 +181,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior]) ?? .untitledDocument
-        
-        switch behavior {
+        switch UserDefaults.standard[.noDocumentOnLaunchBehavior] {
         case .untitledDocument:
             return true
         case .openPanel:

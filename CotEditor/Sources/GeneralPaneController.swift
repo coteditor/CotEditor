@@ -67,8 +67,7 @@ final class GeneralPaneController: NSViewController {
         super.viewWillAppear()
         
         // select one of document conflict radio buttons
-        let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
-        switch conflictOption {
+        switch UserDefaults.standard[.documentConflictOption] {
         case .ignore:
             self.ignoreConflictButton?.state = .on
         case .notify:
@@ -102,7 +101,7 @@ final class GeneralPaneController: NSViewController {
     /// A radio button of documentConflictOption was clicked
     @IBAction func updateDocumentConflictSetting(_ sender: NSButton) {
         
-        UserDefaults.standard[.documentConflictOption] = sender.tag
+        UserDefaults.standard[.documentConflictOption] = DocumentConflictOption(rawValue: sender.tag)!
     }
     
     

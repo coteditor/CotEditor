@@ -79,7 +79,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         self.showsPageGuide = defaults[.showPageGuide]
         
         // set writing direction
-        switch WritingDirection(defaults[.writingDirection]) {
+        switch defaults[.writingDirection] {
         case .leftToRight:
             break
         case .rightToLeft:
@@ -535,7 +535,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         
         get {
             guard let textView = self.focusedTextView else {
-                return WritingDirection(UserDefaults.standard[.writingDirection]) == .vertical
+                return UserDefaults.standard[.writingDirection] == .vertical
             }
             
             return textView.layoutOrientation == .vertical

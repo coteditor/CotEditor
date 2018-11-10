@@ -41,9 +41,7 @@ enum DocumentConflictOption: Int {
 }
 
 
-enum WritingDirection: Int, DefaultInitializable {
-    
-    static let defaultValue: WritingDirection = .leftToRight
+enum WritingDirection: Int {
     
     case leftToRight
     case rightToLeft
