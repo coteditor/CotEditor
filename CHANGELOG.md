@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- [trivial] Fix an issue on Mojave where the text selection highlight could remain between lines.
+
+
+
 3.6.4 (294)
 --------------------------
 
