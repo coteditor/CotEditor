@@ -5,6 +5,11 @@ Change Log
 3.6.5 (unreleased)
 --------------------------
 
+### New Features
+
+- New option for cursor style (Customize the behavior in Appearances preference pane).
+
+
 ### Improvements
 
 - Avoid drawing variant sequence as invisible control characters.
