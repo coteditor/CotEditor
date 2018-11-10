@@ -169,8 +169,9 @@ extension NSTextView {
         
         let currentScale = self.scale
         
+        guard scale != currentScale else { return }
+        
         guard
-            scale != currentScale,
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
             else { return assertionFailure() }
