@@ -501,32 +501,41 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yzg-b2-Ep1">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yzg-b2-Ep1" customClass="ImageRadioButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="102" y="462" width="43" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="cnD-9F-CR4">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/BarTemplate"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="UkL-ES-LIb"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-9S-QaW">
+                            <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="izZ-9S-QaW" customClass="ImageRadioButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="150" y="462" width="80" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Thick Bar" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="rM6-JW-wau">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/ThickBarTemplate"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="WVs-Mi-1PJ"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="c80-NU-o7Z">
+                            <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="c80-NU-o7Z" customClass="ImageRadioButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="235" y="462" width="56" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Block" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="YG7-Y7-xzs">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leadingImage" value="Insertion Point/BlockTemplate"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="Ai3-zA-evF"/>
                                 </connections>
@@ -634,6 +643,7 @@
                     </connections>
                 </viewController>
                 <customObject id="6Aq-a8-hQi" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <imageCell controlSize="small" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="1lZ-My-8Zc"/>
                 <menu id="M4k-Ev-Myg" userLabel="Theme Table Menu">
                     <items>
                         <menuItem title="New Theme" id="sJb-7g-2FN">
@@ -1360,6 +1370,9 @@
     </scenes>
     <resources>
         <image name="InfoTemplate" width="16" height="16"/>
+        <image name="Insertion Point/BarTemplate" width="8" height="11"/>
+        <image name="Insertion Point/BlockTemplate" width="8" height="11"/>
+        <image name="Insertion Point/ThickBarTemplate" width="8" height="11"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
