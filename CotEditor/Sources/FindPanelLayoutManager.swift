@@ -112,7 +112,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 default:
                     guard showsOtherInvisibles else { continue }
                     guard
-                        self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph),
+                        self.propertyForGlyph(at: glyphIndex) == .controlCharacter,
                         self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
                         else { continue }
                     

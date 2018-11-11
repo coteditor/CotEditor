@@ -5,6 +5,9 @@ Change Log
 3.6.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Avoid drawing variant sequence as invisible control characters.
 ### Fixes
 
 - [trivial] Fix an issue on Mojave where the text selection highlight could remain between lines.
