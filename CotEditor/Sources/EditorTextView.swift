@@ -671,6 +671,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    ///
+    override func setNeedsDisplay(_ invalidRect: NSRect) {
+        
+        // expand rect as a workaroud for thick cursors (2018-11 macOS 10.14)
+        var invalidRect = invalidRect
+        invalidRect.size.width += (self.layoutManager as? LayoutManager)?.spaceWidth ?? 0
+        
+        super.setNeedsDisplay(invalidRect)
+    }
+    
+    
     /// draw background
     override func drawBackground(in rect: NSRect) {
         
@@ -682,6 +693,43 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         }
         
         self.drawRoundedBackground(in: rect)
+    }
+    
+    
+    /// draw insersion point
+    override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+        
+        var rect = rect
+        var color = color
+        
+        switch UserDefaults.standard[.cursorType] {
+        case .bar:
+            break
+            
+        case .thickBar:
+            rect.size.width = 2
+            
+        case .block:
+            guard
+                let layoutManager = self.layoutManager as? LayoutManager,
+                let textContainer = self.textContainer
+                else { break }
+            
+            let point = NSPoint(x: rect.maxX, y: rect.midY).offset(by: -self.textContainerOrigin)
+            let glyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
+            
+            rect.size.width = {
+                guard
+                    layoutManager.isValidGlyphIndex(glyphIndex),
+                    layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
+                    else { return layoutManager.spaceWidth }
+                
+                return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
+            }()
+            color = color.withAlphaComponent(0.5)
+        }
+        
+        super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
     }
     
     
