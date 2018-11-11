@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Avoid drawing variant sequence as invisible control characters.
+- [tirivial] Draw vertical tabs as general invisible control characters.
 
 
 ### Fixes

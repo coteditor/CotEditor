@@ -116,7 +116,6 @@ final class LayoutManager: NSLayoutManager {
         let tab: CTLine
         let newLine: CTLine
         let fullwidthSpace: CTLine
-        let verticalTab: CTLine
         let replacement: CTLine
     }
     
@@ -250,10 +249,6 @@ final class LayoutManager: NSLayoutManager {
                 case .fullwidthSpace?:
                     guard self.showsFullwidthSpace else { continue }
                     line = self.invisibleLines.fullwidthSpace
-                    
-                case .verticalTab?:
-                    guard self.showsOtherInvisibles else { continue }  // Vertical tab belongs to the other invisibles.
-                    line = self.invisibleLines.verticalTab
                     
                 default:
                     guard self.showsOtherInvisibles else { continue }
@@ -427,7 +422,6 @@ final class LayoutManager: NSLayoutManager {
                               tab: self.invisibleLine(.tab, font: font),
                               newLine: self.invisibleLine(.newLine, font: font),
                               fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
-                              verticalTab: self.invisibleLine(.verticalTab, font: fullWidthFont),
                               replacement: self.invisibleLine(.replacement, font: fullWidthFont))
     }
     
