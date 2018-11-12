@@ -18,6 +18,7 @@ Change Log
 
 ### Fixes
 
+- Address an issue where the editor area could still be tuck under the line number view.
 - [trivial] Fix an issue on Mojave where the text selection highlight could remain between lines.
 
 

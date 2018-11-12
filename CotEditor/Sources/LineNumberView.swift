@@ -368,6 +368,7 @@ final class LineNumberView: NSRulerView {
         }()
         if ruleThickness != self.ruleThickness {
             self.ruleThickness = ruleThickness
+            self.textView?.invalidateTextContainerOrigin()
         }
     }
     
