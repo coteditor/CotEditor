@@ -360,14 +360,14 @@ final class LineNumberView: NSRulerView {
             case .verticalRuler:
                 let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
                 let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
-                return max(thickness, self.minVerticalThickness)
+                return max(ceil(thickness), self.minVerticalThickness)
             case .horizontalRuler:
                 let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
-                return max(thickness, self.minHorizontalThickness)
+                return max(ceil(thickness), self.minHorizontalThickness)
             }
         }()
-        if ceil(ruleThickness) != self.ruleThickness {
-            self.ruleThickness = ceil(ruleThickness)
+        if ruleThickness != self.ruleThickness {
+            self.ruleThickness = ruleThickness
         }
     }
     
