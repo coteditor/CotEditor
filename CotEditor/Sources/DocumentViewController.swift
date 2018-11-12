@@ -181,7 +181,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             // focus text view
             self.view.window?.makeFirstResponder(editorViewController.textView)
             
-            // observe syntax/theme change
+            // observe syntax change
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
                                                    name: Document.didChangeSyntaxStyleNotification,
                                                    object: document)
