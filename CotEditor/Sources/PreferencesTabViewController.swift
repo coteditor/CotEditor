@@ -93,10 +93,10 @@ final class PreferencesTabViewController: NSTabViewController {
         frame.origin = window.frame.origin
         frame.origin.y += window.frame.height - frame.height
         
+        self.view.isHidden = true
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = animated
             
-            self.view.isHidden = true
             window.setFrame(frame, display: false)
             
         }, completionHandler: { [weak self] in
