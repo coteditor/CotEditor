@@ -56,6 +56,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Private Properties
     
+    private lazy var preferencesWindowController = NSStoryboard(name: "PreferencesWindow", bundle: nil).instantiateInitialController() as! NSWindowController
+    
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
         let windowController = NSStoryboard(name: "WebDocumentWindow", bundle: nil).instantiateInitialController() as! NSWindowController
@@ -326,7 +328,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show preferences window
     @IBAction func showPreferences(_ sender: Any?) {
         
-        PreferencesWindowController.shared.showWindow(sender)
+        self.preferencesWindowController.showWindow(sender)
     }
     
     
