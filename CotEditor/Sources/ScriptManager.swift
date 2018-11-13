@@ -43,15 +43,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     
-    // MARK: Private Enum
-    
-    private enum MenuItemTag: Int {
-        
-        case scriptsDefault = 8001  // not to list up in context menu
-    }
-    
-    
-    
     // MARK: -
     // MARK: Lifecycle
     
@@ -125,12 +116,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     var contexualMenu: NSMenu? {
         
         let menu = NSMenu()
-        
-        for item in MainMenu.script.menu!.items {
-            guard item.tag != MenuItemTag.scriptsDefault.rawValue else { continue }
-            
-            menu.addItem(item.copy() as! NSMenuItem)
-        }
+        menu.items = MainMenu.script.menu!.items
+            .filter { $0.action != #selector(openScriptFolder) }
+            .map { $0.copy() as! NSMenuItem }
         
         return (menu.numberOfItems > 0) ? menu : nil
     }
@@ -158,7 +146,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
         let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
-        openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(openMenuItem)
     }
     
