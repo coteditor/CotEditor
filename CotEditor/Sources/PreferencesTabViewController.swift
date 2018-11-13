@@ -43,6 +43,9 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.viewDidLoad()
         
+        // workaround for that NSTabViewItem is not localized by storyboard (2018-11 macOS 10.14)
+        self.localizeTabViewItems()
+        
         // select last used pane
         if
             let identifier = UserDefaults.standard[.lastPreferencesPaneIdentifier],
@@ -93,13 +96,49 @@ final class PreferencesTabViewController: NSTabViewController {
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = animated
             
-            self.tabView.isHidden = true
+            self.view.isHidden = true
             window.setFrame(frame, display: false)
             
         }, completionHandler: { [weak self] in
-            self?.tabView.isHidden = false
+            self?.view.isHidden = false
             window.title = tabViewItem.label
         })
     }
     
+}
+
+
+
+private extension PreferencesTabViewController {
+    
+    private static let ibIdentifiers: [String: String] = [
+        "General": "CNJ-6L-fga",
+        "Window": "5fL-58-BrZ",
+        "Appearance": "icK-P1-6ta",
+        "Edit": "sh3-xI-elX",
+        "Format": "frU-Pc-xZT",
+        "File Drop": "aO6-oS-ZGt",
+        "Key Bindings": "b8q-WN-1ls",
+        "Print": "UuB-iq-kOt",
+        "Integration": "gEv-qP-tRM",
+        ]
+    
+    
+    /// localize tabViewItems using storyboard's .string
+    func localizeTabViewItems() {
+        
+        for item in self.tabViewItems {
+            guard
+                let identifier = item.identifier as? String,
+                let ibIdentifier = PreferencesTabViewController.ibIdentifiers[identifier]
+                else { continue }
+            
+            let key = ibIdentifier + ".label"
+            let localized = key.localized(tableName: "PreferencesWindow")
+            
+            guard key != localized else { continue }
+            
+            item.label = localized
+        }
+    }
 }
