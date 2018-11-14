@@ -44,7 +44,7 @@
 "ba7-dE-zXz.title" = "改变背景颜色";
 
 /* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
-"NIq-Tj-KWB.title" = "光标:";
+"NIq-Tj-KWB.title" = "光标：";
 /* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
 "cnD-9F-CR4.title" = "Bar";  // FIXME: added
 /* Class = "NSButtonCell"; title = "Thick Bar"; ObjectID = "rM6-JW-wau"; */

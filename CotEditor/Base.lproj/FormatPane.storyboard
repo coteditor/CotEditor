@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="Lgm-sL-YIF" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="8Od-1h-2eW" userLabel="Format Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="411"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="407"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button identifier="pref_format" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qm2-4V-mYI">
@@ -25,7 +25,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ofS-Q1-0g8">
-                                <rect key="frame" x="32" y="374" width="128" height="17"/>
+                                <rect key="frame" x="32" y="370" width="128" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Default line endings:" usesSingleLineMode="YES" id="3273">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -33,7 +33,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bJE-E6-Cbo">
-                                <rect key="frame" x="164" y="369" width="185" height="25"/>
+                                <rect key="frame" x="164" y="365" width="185" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="180" id="hbg-GK-r7p"/>
                                 </constraints>
@@ -53,7 +53,7 @@
                                 </connections>
                             </popUpButton>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MwE-73-7AJ">
-                                <rect key="frame" x="345" y="255" width="106" height="27"/>
+                                <rect key="frame" x="345" y="253" width="106" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="96" id="ac6-yE-gFi"/>
                                 </constraints>
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b9V-Tx-ggw">
-                                <rect key="frame" x="164" y="284" width="285" height="25"/>
+                                <rect key="frame" x="164" y="282" width="285" height="25"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="clipping" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="7Jm-Ku-uiU">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
@@ -82,7 +82,7 @@
                                 </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LQO-NI-fGx">
-                                <rect key="frame" x="72" y="289" width="88" height="17"/>
+                                <rect key="frame" x="72" y="287" width="88" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Opening files:" usesSingleLineMode="YES" id="3277">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -90,7 +90,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cPL-gk-JM6">
-                                <rect key="frame" x="22" y="322" width="138" height="17"/>
+                                <rect key="frame" x="22" y="318" width="138" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Default text encoding:" usesSingleLineMode="YES" id="3278">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -98,7 +98,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Lt0-OL-jLy">
-                                <rect key="frame" x="164" y="317" width="285" height="25"/>
+                                <rect key="frame" x="164" y="313" width="285" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="280" id="Iyz-Mm-eTf"/>
                                 </constraints>
@@ -252,7 +252,7 @@
                                     <binding destination="gLI-aU-mOo" name="value" keyPath="values.doSyntaxColoring" id="uZA-8S-liA"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-hA-pof">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iU4-hA-pof">
                                 <rect key="frame" x="203" y="191" width="132" height="14"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(Including outline menu)" usesSingleLineMode="YES" id="3325">
                                     <font key="font" metaFont="smallSystem"/>
@@ -261,10 +261,10 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="QgD-bI-CJS">
-                                <rect key="frame" x="20" y="220" width="510" height="5"/>
+                                <rect key="frame" x="20" y="218" width="510" height="5"/>
                             </box>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N1E-uH-II1">
-                                <rect key="frame" x="20" y="353" width="510" height="5"/>
+                                <rect key="frame" x="20" y="349" width="510" height="5"/>
                             </box>
                             <button toolTip="Add empty style" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hma-8v-2gu">
                                 <rect key="frame" x="166" y="19" width="24" height="23"/>
@@ -369,7 +369,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhi-LF-z0j">
-                                <rect key="frame" x="164" y="237" width="201" height="18"/>
+                                <rect key="frame" x="164" y="235" width="201" height="18"/>
                                 <buttonCell key="cell" type="check" title="Refer to encoding declaration" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3280">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -404,7 +404,7 @@
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="width" secondItem="F7X-aX-act" secondAttribute="width" id="N5q-K8-gxe"/>
                             <constraint firstItem="b9V-Tx-ggw" firstAttribute="leading" secondItem="Jhi-LF-z0j" secondAttribute="leading" id="OCF-u3-4W6"/>
                             <constraint firstItem="Koi-2N-36K" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="Q1G-21-WAD"/>
-                            <constraint firstItem="o7z-Td-5qC" firstAttribute="top" secondItem="QgD-bI-CJS" secondAttribute="bottom" constant="16" id="Qh6-dR-9CZ"/>
+                            <constraint firstItem="o7z-Td-5qC" firstAttribute="top" secondItem="QgD-bI-CJS" secondAttribute="bottom" constant="14" id="Qh6-dR-9CZ"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="top" secondItem="N1E-uH-II1" secondAttribute="bottom" constant="16" id="RZG-aF-78B"/>
                             <constraint firstItem="uJi-Od-G4t" firstAttribute="top" secondItem="F7X-aX-act" secondAttribute="top" id="STe-Me-2OW"/>
                             <constraint firstItem="Q0c-oI-um3" firstAttribute="height" secondItem="Hma-8v-2gu" secondAttribute="height" id="SwF-P8-s1D"/>
@@ -422,7 +422,7 @@
                             <constraint firstItem="1qJ-mx-epO" firstAttribute="baseline" secondItem="Koi-2N-36K" secondAttribute="baseline" id="iAf-nM-0Wk"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bJE-E6-Cbo" secondAttribute="trailing" constant="20" symbolic="YES" id="iCo-xO-bxl"/>
                             <constraint firstItem="Q0c-oI-um3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gNn-jg-1Xr" secondAttribute="trailing" constant="8" symbolic="YES" id="jNZ-vy-fEZ"/>
-                            <constraint firstItem="b9V-Tx-ggw" firstAttribute="top" secondItem="Lt0-OL-jLy" secondAttribute="bottom" constant="12" id="kbZ-AE-ID2"/>
+                            <constraint firstItem="b9V-Tx-ggw" firstAttribute="top" secondItem="Lt0-OL-jLy" secondAttribute="bottom" constant="10" symbolic="YES" id="kbZ-AE-ID2"/>
                             <constraint firstItem="ofS-Q1-0g8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Od-1h-2eW" secondAttribute="leading" constant="20" symbolic="YES" id="kig-xs-B0r"/>
                             <constraint firstItem="gNn-jg-1Xr" firstAttribute="top" secondItem="Hma-8v-2gu" secondAttribute="top" id="lrs-Pd-6pL"/>
                             <constraint firstItem="Qm2-4V-mYI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Q0c-oI-um3" secondAttribute="trailing" constant="12" symbolic="YES" id="mN4-kd-HL0"/>

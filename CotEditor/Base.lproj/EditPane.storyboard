@@ -136,7 +136,7 @@
                                     <binding destination="TDG-Hm-YNe" name="value" keyPath="values.enableHangingIndent" id="OoR-vu-mks"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EiF-pk-Dua">
+                            <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EiF-pk-Dua">
                                 <rect key="frame" x="18" y="255" width="93" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="W0C-tr-fa4"/>

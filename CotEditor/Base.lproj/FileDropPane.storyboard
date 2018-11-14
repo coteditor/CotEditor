@@ -11,7 +11,7 @@
             <objects>
                 <viewController title="File Drop" showSeguePresentationStyle="single" id="UtY-fi-jOg" customClass="FileDropPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="Gi6-Rx-eMY" userLabel="File Drop Pane">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="388"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="384"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button identifier="pref_filedrop" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-D1-7oE">
@@ -83,7 +83,7 @@
                                 </scroller>
                             </scrollView>
                             <button toolTip="Delete" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="458">
-                                <rect key="frame" x="43" y="155" width="24" height="23"/>
+                                <rect key="frame" x="43" y="151" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="VRI-cn-q8N"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="pAf-0I-IYk"/>
@@ -98,7 +98,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Add" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="457">
-                                <rect key="frame" x="20" y="155" width="24" height="23"/>
+                                <rect key="frame" x="20" y="151" width="24" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" focusRingType="none" inset="2" id="A1h-kK-Umc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -108,7 +108,7 @@
                                     <binding destination="pUX-ce-iNp" name="enabled" keyPath="canAdd" id="ll8-g7-aU8"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JWP-To-iJP">
                                 <rect key="frame" x="18" y="119" width="108" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Insertion Format:" usesSingleLineMode="YES" id="3332">
                                     <font key="font" metaFont="system"/>
@@ -116,8 +116,8 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-c6-mvy">
-                                <rect key="frame" x="18" y="351" width="131" height="17"/>
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nF4-c6-mvy">
+                                <rect key="frame" x="18" y="347" width="131" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="File Drop Definitions:" usesSingleLineMode="YES" id="3331">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -125,7 +125,7 @@
                                 </textFieldCell>
                             </textField>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="prG-8I-L0n">
-                                <rect key="frame" x="20" y="185" width="520" height="160"/>
+                                <rect key="frame" x="20" y="181" width="520" height="160"/>
                                 <clipView key="contentView" id="Etr-Iq-249">
                                     <rect key="frame" x="1" y="0.0" width="518" height="159"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -314,7 +314,7 @@
                             <constraint firstItem="458" firstAttribute="leading" secondItem="457" secondAttribute="trailing" constant="-1" id="HtS-Zv-scr"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="458" secondAttribute="trailing" constant="20" symbolic="YES" id="JRp-Nk-etR"/>
                             <constraint firstItem="7WH-D1-7oE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="QBC-Iv-C2I"/>
-                            <constraint firstItem="JWP-To-iJP" firstAttribute="top" secondItem="457" secondAttribute="bottom" constant="20" id="SBW-c3-QxV"/>
+                            <constraint firstItem="JWP-To-iJP" firstAttribute="top" secondItem="457" secondAttribute="bottom" constant="16" id="SBW-c3-QxV"/>
                             <constraint firstItem="457" firstAttribute="top" secondItem="prG-8I-L0n" secondAttribute="bottom" constant="8" symbolic="YES" id="T6v-in-Xxr"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="top" secondItem="JWP-To-iJP" secondAttribute="bottom" constant="6" id="bFY-y4-yig"/>
                             <constraint firstItem="Pqq-0d-en4" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="g5O-VB-rVd"/>
