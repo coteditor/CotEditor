@@ -807,7 +807,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         self.didChangeValue(forKey: #keyPath(layoutOrientation))
         
-        // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
+        // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
         self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
         
