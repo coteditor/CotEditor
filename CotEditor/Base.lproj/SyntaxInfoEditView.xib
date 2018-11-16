@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,7 +17,7 @@
             <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="LkV-qO-uNb">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="LkV-qO-uNb">
                     <rect key="frame" x="64" y="309" width="53" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Version:" usesSingleLineMode="YES" id="7gc-K7-WrS">
                         <font key="font" metaFont="system"/>
@@ -44,7 +43,7 @@
                         <outlet property="nextKeyView" destination="7aU-lg-CUg" id="fTG-JI-dcB"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="teT-gX-wAf">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="teT-gX-wAf">
                     <rect key="frame" x="27" y="277" width="90" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Last modified:" usesSingleLineMode="YES" id="wrI-z3-8T0">
                         <font key="font" metaFont="system"/>
@@ -70,7 +69,7 @@
                         <outlet property="nextKeyView" destination="BI9-H4-gcs" id="dlC-hm-rks"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yh-gb9">
+                <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OBM-Yh-gb9">
                     <rect key="frame" x="10" y="245" width="107" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Distribution URL:" usesSingleLineMode="YES" id="vOw-3n-nuT">
                         <font key="font" metaFont="system"/>
@@ -98,7 +97,7 @@
                         <outlet property="nextKeyView" destination="93A-h6-vCG" id="hXE-yK-kbO"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-D2-K5S">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="2Ku-D2-K5S">
                     <rect key="frame" x="68" y="213" width="49" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Author:" usesSingleLineMode="YES" id="aL3-Pf-XDB">
                         <font key="font" metaFont="system"/>
@@ -118,7 +117,7 @@
                         <outlet property="nextKeyView" destination="o0U-5A-8FS" id="eQh-dl-7Xg"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="QlB-f2-NG3">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="QlB-f2-NG3">
                     <rect key="frame" x="62" y="181" width="55" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="License:" usesSingleLineMode="YES" id="qBg-TV-NzD">
                         <font key="font" metaFont="system"/>
@@ -141,7 +140,7 @@
                         <outlet property="nextKeyView" destination="sNf-iG-xYO" id="zws-gQ-34V"/>
                     </connections>
                 </textField>
-                <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-Zr-mnv">
+                <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-Zr-mnv">
                     <rect key="frame" x="39" y="151" width="78" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Description:" usesSingleLineMode="YES" id="4bM-8L-klg">
                         <font key="font" metaFont="system"/>
