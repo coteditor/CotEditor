@@ -90,39 +90,17 @@ final class EditorScrollView: NSScrollView {
         }
     }
     
+}
+
+
+
+extension NSScrollView {
     
-    
-    // MARK: Public Methods
-    
-    func invalidateLineNumber() {
+    /// set true to ruler views' needsDisplay
+    final func setRulersNeedsDisplay() {
         
-        self.lineNumberView?.needsDisplay = true
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// return layout orientation of document text view
-    private var layoutOrientation: NSLayoutManager.TextLayoutOrientation {
-        
-        guard let documentView = self.documentView as? NSTextView else {
-            return .horizontal
-        }
-        
-        return documentView.layoutOrientation
-    }
-    
-    
-    /// return current line number view
-    private var lineNumberView: NSRulerView? {
-    
-        switch self.layoutOrientation {
-        case .horizontal:
-            return self.verticalRulerView
-        case .vertical:
-            return self.horizontalRulerView
-        }
+        self.verticalRulerView?.needsDisplay = true
+        self.horizontalRulerView?.needsDisplay = true
     }
     
 }
