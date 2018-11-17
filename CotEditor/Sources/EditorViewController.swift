@@ -30,16 +30,6 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var textStorage: NSTextStorage? {
-        
-        didSet {
-            guard let textStorage = textStorage else { return }
-            
-            self.textView?.layoutManager?.replaceTextStorage(textStorage)
-            self.textView?.didChangeText()  // notify to lineNumberView
-        }
-    }
-    
     var textView: EditorTextView? {
         
         return self.textViewController?.textView
@@ -142,6 +132,13 @@ final class EditorViewController: NSSplitViewController {
         set {
             self.navigationBarItem?.isCollapsed = !newValue
         }
+    }
+    
+    
+    /// set textStorage to inner text view
+    func setTextStorage(_ textStorage: NSTextStorage) {
+        
+        self.textView?.layoutManager?.replaceTextStorage(textStorage)
     }
     
     

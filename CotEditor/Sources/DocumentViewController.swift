@@ -917,7 +917,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// create and set-up new (split) editor view
     private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
         
-        editorViewController.textStorage = self.textStorage
+        editorViewController.setTextStorage(self.textStorage!)
         
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
