@@ -59,7 +59,18 @@ final class EditorViewController: NSSplitViewController {
     
     
     // MARK: -
-    // MARK: Split View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        // detach layoutManager safely
+        guard
+            let textStorage = self.textView?.textStorage,
+            let layoutManager = self.textView?.layoutManager
+            else { return assertionFailure() }
+        
+        textStorage.removeLayoutManager(layoutManager)
+    }
+    
     
     /// setup UI
     override func viewDidLoad() {
@@ -74,6 +85,9 @@ final class EditorViewController: NSSplitViewController {
         self.view.setAccessibilityLabel("editor".localized)
     }
     
+    
+    
+    // MARK: Split View Controller Methods
     
     /// avoid showing draggable cursor
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {

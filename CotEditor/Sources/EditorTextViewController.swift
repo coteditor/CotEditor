@@ -50,17 +50,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        // detach textStorage safely
-        if let layoutManager = self.textView?.layoutManager {
-            self.textView?.textStorage?.removeLayoutManager(layoutManager)
-        }
-    }
-    
-    
-    
     // MARK: Text View Delegate
     
     /// text will be edited
