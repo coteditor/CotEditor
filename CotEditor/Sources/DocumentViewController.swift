@@ -407,7 +407,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         syntaxParser.delegate = self
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxParser.style)
+            viewController.apply(style: syntaxParser.style)
             viewController.navigationBarController?.outlineItems = []
             viewController.navigationBarController?.outlineProgress = nil
         }
@@ -926,8 +926,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
-        if let syntaxStyle = self.syntaxParser?.style {
-            editorViewController.apply(syntax: syntaxStyle)
+        if let syntaxParser = self.syntaxParser {
+            editorViewController.apply(style: syntaxParser.style)
         }
         
         // copy textView states

@@ -30,18 +30,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     
-    var syntaxStyle: SyntaxStyle? {
-        
-        didSet {
-            guard let textView = self.textView, let syntaxStyle = syntaxStyle else { return }
-            
-            textView.inlineCommentDelimiter = syntaxStyle.inlineCommentDelimiter
-            textView.blockCommentDelimiters = syntaxStyle.blockCommentDelimiters
-            textView.syntaxCompletionWords = syntaxStyle.completionWords
-        }
-    }
-    
-    
     var showsLineNumber: Bool {
         
         get {

@@ -132,9 +132,13 @@ final class EditorViewController: NSSplitViewController {
     
     
     /// apply syntax style to inner text view
-    func apply(syntax: SyntaxStyle) {
+    func apply(style: SyntaxStyle) {
         
-        self.textViewController?.syntaxStyle = syntax
+        guard let textView = self.textView else { return }
+        
+        textView.inlineCommentDelimiter = style.inlineCommentDelimiter
+        textView.blockCommentDelimiters = style.blockCommentDelimiters
+        textView.syntaxCompletionWords = style.completionWords
     }
     
     
