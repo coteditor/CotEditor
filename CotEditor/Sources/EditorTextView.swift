@@ -1341,8 +1341,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         guard
             NSAppKitVersion.current <= .macOS10_13,  // i-beam is enough findable with dark background since Mojave
-            let theme = self.theme,
-            theme.isDarkTheme,
+            self.theme?.isDarkTheme == true,
             NSCursor.current == .iBeam
             else { return }
         

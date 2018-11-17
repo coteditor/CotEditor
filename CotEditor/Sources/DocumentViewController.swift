@@ -345,7 +345,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             textStorage.editedMask.contains(.editedCharacters) else { return }
         
         // don't update when input text is not yet fixed.
-        guard !(self.focusedTextView?.hasMarkedText() ?? false) else { return }
+        guard self.focusedTextView?.hasMarkedText() != false else { return }
         
         // update editor information
         // -> In case, if "Replace All" performed without moving caret.
@@ -465,7 +465,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     @objc var isStatusBarShown: Bool {
         
         get {
-            return !(self.statusBarItem?.isCollapsed ?? true)
+            return self.statusBarItem?.isCollapsed == false
         }
         
         set {

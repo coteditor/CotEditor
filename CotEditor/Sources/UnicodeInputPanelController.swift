@@ -114,7 +114,7 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     /// input unicode character to the frontmost document
     @IBAction func insertToDocument(_ sender: Any?) {
         
-        guard !(self.characterString?.isEmpty ?? true) else { return }
+        guard self.characterString?.isEmpty == false else { return }
         
         guard let receiver = NSApp.target(forAction: #selector(UnicodeInputReceiver.insertUnicodeCharacter(_:))) as? UnicodeInputReceiver else {
             NSSound.beep()

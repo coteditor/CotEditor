@@ -126,7 +126,7 @@ final class EditorViewController: NSSplitViewController {
     var showsNavigationBar: Bool {
         
         get {
-            return !(self.navigationBarItem?.isCollapsed ?? true)
+            return self.navigationBarItem?.isCollapsed == false
         }
         
         set {
