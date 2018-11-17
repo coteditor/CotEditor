@@ -175,7 +175,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     /// add separator to desired row
     private func addSeparator(at rowIndex: Int) {
         
-        guard let tableView = self.tableView else { return }
+        guard let tableView = self.tableView else { return assertionFailure() }
         
         let indexes = IndexSet(integer: rowIndex)
         
@@ -200,7 +200,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         }
         
         guard !toDeleteIndexes.isEmpty else { return }
-        guard let tableView = self.tableView else { return }
+        guard let tableView = self.tableView else { return assertionFailure() }
         
         NSAnimationContext.runAnimationGroup({ context in
             // update UI

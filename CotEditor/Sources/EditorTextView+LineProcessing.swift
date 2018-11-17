@@ -32,7 +32,7 @@ extension EditorTextView {
     /// move selected line up
     @IBAction func moveLineUp(_ sender: Any?) {
         
-        guard let textStorage = self.textStorage else { return }
+        guard let textStorage = self.textStorage else { return assertionFailure() }
         
         // get line ranges to process
         let lineRanges = self.selectedLineRanges
@@ -97,7 +97,7 @@ extension EditorTextView {
     /// move selected line down
     @IBAction func moveLineDown(_ sender: Any?) {
         
-        guard let textStorage = self.textStorage else { return }
+        guard let textStorage = self.textStorage else { return assertionFailure() }
         
         // get line ranges to process
         let lineRanges = self.selectedLineRanges

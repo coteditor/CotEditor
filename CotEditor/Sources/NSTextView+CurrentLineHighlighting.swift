@@ -73,7 +73,7 @@ extension CurrentLineHighlighting where Self: NSTextView {
         guard
             var rect = self.boundingRect(for: lineRange),
             let textContainer = self.textContainer
-            else { return }
+            else { return assertionFailure() }
         
         rect.origin.x = textContainer.lineFragmentPadding
         rect.size.width = textContainer.size.width - 2 * textContainer.lineFragmentPadding

@@ -130,7 +130,7 @@ final class ConsoleViewController: NSViewController {
     /// append given message to the console
     func append(log: Console.Log) {
         
-        guard let textView = self.textView else { return }
+        guard let textView = self.textView else { return assertionFailure() }
         
         let lastLocation = textView.textStorage?.length ?? 0
         let date = self.dateFormatter.string(from: log.date)
@@ -159,7 +159,7 @@ final class ConsoleViewController: NSViewController {
     /// flush console
     @IBAction func clear(_ sender: Any?) {
         
-        guard let textView = self.textView else { return }
+        guard let textView = self.textView else { return assertionFailure() }
         
         textView.string = ""
         NSAccessibility.post(element: textView, notification: .valueChanged)

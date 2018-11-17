@@ -53,7 +53,7 @@ final class SyntaxParser {
         didSet {
             // inform about outline items update
             DispatchQueue.main.async { [weak self, items = self.outlineItems] in
-                guard let self = self else { return }
+                guard let self = self else { return assertionFailure() }
                 
                 self.delegate?.syntaxParser(self, didParseOutline: items)
                 NotificationCenter.default.post(name: SyntaxParser.didUpdateOutlineNotification, object: self)

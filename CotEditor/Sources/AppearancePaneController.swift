@@ -380,7 +380,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// add theme
     @IBAction func addTheme(_ sender: Any?) {
         
-        guard let tableView = self.themeTableView else { return }
+        guard let tableView = self.themeTableView else { return assertionFailure() }
         
         try? ThemeManager.shared.createUntitledSetting { themeName in
             let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
@@ -643,7 +643,7 @@ extension AppearancePaneController: NSFontChanging {
     /// font in font panel did update
     @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let sender = sender else { return }
+        guard let sender = sender else { return assertionFailure() }
         
         let newFont = sender.convert(.systemFont(ofSize: 0))
         

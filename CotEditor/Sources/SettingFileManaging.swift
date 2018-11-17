@@ -349,7 +349,7 @@ extension SettingFileManaging {
     func updateCache(completionHandler: @escaping (() -> Void) = {}) {
         
         DispatchQueue.global().async { [weak self, previousSettingNames = self.settingNames] in
-            guard let self = self else { return }
+            guard let self = self else { return assertionFailure() }
             
             self.checkUserSettings()
             

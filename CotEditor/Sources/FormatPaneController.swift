@@ -418,7 +418,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard
             let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu
-            else { return }
+            else { return assertionFailure() }
         
         let menuItems = EncodingManager.shared.createEncodingMenuItems()
         

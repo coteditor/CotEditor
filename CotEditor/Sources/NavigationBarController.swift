@@ -213,7 +213,7 @@ final class NavigationBarController: NSViewController {
     /// select outline menu item via pupup menu
     @IBAction func selectOutlineMenuItem(_ sender: AnyObject?) {
         
-        guard let range = sender?.representedObject as? NSRange else { return }
+        guard let range = sender?.representedObject as? NSRange else { return assertionFailure() }
         
         let textView = self.textView!
         

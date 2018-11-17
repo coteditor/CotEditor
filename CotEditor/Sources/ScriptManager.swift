@@ -186,7 +186,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// launch script (invoked by menu item)
     @IBAction func launchScript(_ sender: AnyObject?) {
         
-        guard let script = sender?.representedObject as? Script else { return }
+        guard let script = sender?.representedObject as? Script else { return assertionFailure() }
         
         do {
             // change behavior if modifier key is pressed

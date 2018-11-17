@@ -47,7 +47,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { return }
+            else { return assertionFailure() }
         
         let selectedLineRanges = self.selectedRanges.map { (self.string as NSString).lineRange(for: $0.rangeValue) }
         

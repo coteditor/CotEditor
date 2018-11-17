@@ -83,7 +83,7 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
     
     func testXMLSytle() {
         
-        guard let style = self.htmlStyle else { return }
+        let style = self.htmlStyle!
         
         XCTAssertEqual(style.name, "HTML")
         XCTAssertFalse(style.isNone)
@@ -96,7 +96,8 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
     
     func testOutlineParse() {
         
-        guard let style = self.htmlStyle, let source = self.htmlSource else { return }
+        let style = self.htmlStyle!
+        let source = self.htmlSource!
         
         let textStorage = NSTextStorage(string: source)
         let parser = SyntaxParser(textStorage: textStorage, style: style)

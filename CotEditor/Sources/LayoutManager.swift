@@ -34,7 +34,7 @@ final class LayoutManager: NSLayoutManager {
     var showsInvisibles = false {
         
         didSet {
-            guard let wholeRange = self.textStorage?.string.nsRange else { return }
+            guard let wholeRange = self.textStorage?.string.nsRange else { return assertionFailure() }
             
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
@@ -333,7 +333,10 @@ final class LayoutManager: NSLayoutManager {
         
         guard UserDefaults.standard[.enablesHangingIndent] else { return }
         
-        guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
+        guard
+            let textStorage = self.textStorage,
+            let textView = self.firstTextView
+            else { return assertionFailure() }
         
         // only on focused editor
         if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }

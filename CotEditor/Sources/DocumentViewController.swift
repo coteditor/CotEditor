@@ -55,9 +55,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         switch keyPath {
         case DefaultKeys.theme.rawValue?:
             guard let name = change?[.newKey] as? String else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.setTheme(name: name)
-            }
+                self.setTheme(name: name)
             
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
@@ -402,7 +400,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// document updated syntax style
     @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
         
-        guard let syntaxParser = self.syntaxParser else { return }
+        guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         
         syntaxParser.delegate = self
         
@@ -707,7 +705,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// toggle if antialias text in text view
     @IBAction func toggleAntialias(_ sender: Any?) {
         
-        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return }
+        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.usesAntialias = !usesAntialias
@@ -759,7 +757,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// set new theme from menu item
     @IBAction func changeTheme(_ sender: AnyObject?) {
         
-        guard let name = sender?.title else { return }
+        guard let name = sender?.title else { return assertionFailure() }
         
         self.setTheme(name: name)
     }

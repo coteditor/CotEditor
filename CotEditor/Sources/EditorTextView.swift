@@ -657,12 +657,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func changeFont(_ sender: Any?) {
         
         guard
-            let manager = sender as? NSFontManager,
+            let fontManager = sender as? NSFontManager,
             let currentFont = self.font,
             let textStorage = self.textStorage
-            else { return }
+            else { return assertionFailure() }
         
-        let font = manager.convert(currentFont)
+        let font = fontManager.convert(currentFont)
         
         // apply to all text views sharing textStorage
         for layoutManager in textStorage.layoutManagers {
@@ -1101,7 +1101,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         assert(Thread.isMainThread)
         
-        guard let textStorage = self.textStorage else { return }
+        guard let textStorage = self.textStorage else { return assertionFailure() }
         
         let range = textStorage.mutableString.range
         
@@ -1270,7 +1270,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         assert(Thread.isMainThread)
         
-        guard let theme = self.theme else { return }
+        guard let theme = self.theme else { return assertionFailure() }
         
         self.window?.backgroundColor = theme.background.color
         
@@ -1355,7 +1355,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         guard
             let scrollView = self.enclosingScrollView,
             let layoutManager = self.layoutManager as? LayoutManager
-            else { return }
+            else { return assertionFailure() }
         
         let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)

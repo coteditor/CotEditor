@@ -178,7 +178,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         let themeNames = ThemeManager.shared.settingNames
         
-        guard let popupButton = self.colorPopupButton else { return }
+        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
         
         popupButton.removeAllItems()
         
