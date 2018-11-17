@@ -137,11 +137,9 @@ extension NSTextView {
             if #available(macOS 10.14, *), let scrollView = self.enclosingScrollView {
                 switch self.layoutOrientation {
                 case .horizontal:
-                    let rulerThickness = scrollView.rulersVisible ? (scrollView.verticalRulerView?.requiredThickness ?? 0) : 0
-                    self.frame.size.width = scrollView.contentSize.width - rulerThickness
+                    self.frame.size.width = scrollView.documentUsableSize.width
                 case .vertical:
-                    let rulerThickness = scrollView.rulersVisible ? (scrollView.horizontalRulerView?.requiredThickness ?? 0) : 0
-                    self.frame.size.height = scrollView.contentSize.height - rulerThickness
+                    self.frame.size.height = scrollView.documentUsableSize.height
                 }
             }
             
