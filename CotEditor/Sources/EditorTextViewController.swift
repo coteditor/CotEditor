@@ -59,8 +59,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // -> Line endings replacemement on file read is processed in `Document.read(from:ofType:)`
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
-            !(textView.undoManager?.isUndoing ?? false),  // = undo
-            let lineEnding = replacementString.detectedLineEnding, lineEnding != .lf
+            textView.undoManager?.isUndoing != true,  // = undo
+            let lineEnding = replacementString.detectedLineEnding,  // = no line endings
+            lineEnding != .lf
         {
             return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
                                      range: affectedCharRange,
