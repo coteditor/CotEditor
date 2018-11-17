@@ -796,15 +796,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
-        guard self.layoutOrientation != orientation else { return }
+        if self.layoutOrientation != orientation {
+            self.minSize = self.minSize.rotated
+        }
         
-        self.minSize = self.minSize.rotated
-        
-        // -> needs send kvo notification manually on Swift? (2016-09-12 on macOS 10.12 SDK)
+        // -> need to send KVO notification manually on Swift (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(forKey: #keyPath(layoutOrientation))
-        
         super.setLayoutOrientation(orientation)
-        
         self.didChangeValue(forKey: #keyPath(layoutOrientation))
         
         // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
