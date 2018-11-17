@@ -168,7 +168,7 @@ final class LineNumberView: NSRulerView {
         
         super.viewWillMove(toSuperview: newSuperview)
         
-        // ignore when detached
+        // ignore when detaches
         guard newSuperview != nil else { return }
         
         // set thicknesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
