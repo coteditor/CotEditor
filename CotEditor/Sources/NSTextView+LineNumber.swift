@@ -38,7 +38,7 @@ extension NSTextView {
     ///
     /// - Parameters:
     ///   - rect: The bounding rectangle for which to process lines.
-    ///   - includingExtraLine: If `true` `body` also enumerate extra line fragment if any.
+    ///   - includingExtraLine: If `true`, `body` enumerate also the extra line fragment if any.
     ///   - body: The closure executed for each line in the enumeration.
     ///   - line: The information of the line.
     ///   - lineRect: The line fragment rect.
@@ -61,7 +61,7 @@ extension NSTextView {
         
         // enumerate visible line numbers
         var glyphIndex = glyphRangeToDraw.location
-        while glyphIndex < glyphRangeToDraw.upperBound {  // process "real" lines
+        while glyphIndex < glyphRangeToDraw.upperBound {  // process logical lines
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = self.string.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
@@ -69,7 +69,7 @@ extension NSTextView {
             glyphIndex = lineGlyphRange.upperBound
             
             var wrappedLineGlyphIndex = lineGlyphRange.location
-            while wrappedLineGlyphIndex < glyphIndex {  // process wrapped lines
+            while wrappedLineGlyphIndex < glyphIndex {  // process visually wrapped lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
                 let line: Line = (range.location == lineGlyphRange.location) ? .new(lineNumber, isSelected) : .wrapped
