@@ -267,12 +267,13 @@ extension NSTextView {
 
 private extension NSScrollView {
     
-    /// contentSize removing ruler thicknesses
+    /// contentSize removing insets
     var documentUsableSize: NSSize {
         
+        let insets = self.contentView.contentInsets
         var size = self.contentSize
-        size.width -= self.verticalRulerView?.requiredThickness ?? 0
-        size.height -= self.horizontalRulerView?.requiredThickness ?? 0
+        size.width -= insets.left + insets.right
+        size.height -= insets.top + insets.bottom
         
         return size
     }
