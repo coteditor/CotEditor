@@ -84,7 +84,7 @@ extension NSTextView {
         guard includingExtraLine else { return }
         
         let extraLineRect = layoutManager.extraLineFragmentUsedRect
-        if !extraLineRect.isEmpty, extraLineRect.intersects(layoutRect) {
+        if !extraLineRect.isEmpty, (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY) {
             let lineNumber = max(self.string.numberOfLines(includingLastLineEnding: true), 1)
             let isSelected = (selectedLineRanges.last?.location == (self.string as NSString).length)
             
