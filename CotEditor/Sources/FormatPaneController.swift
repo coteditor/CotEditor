@@ -283,13 +283,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show encoding list edit sheet
-    @IBAction func openEncodingEditSheet(_ sender: Any?) {
-        
-        self.presentAsSheet(EncodingListViewController())
-    }
-    
-    
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         

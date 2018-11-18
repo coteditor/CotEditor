@@ -62,7 +62,7 @@
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openEncodingEditSheet:" target="Lgm-sL-YIF" id="APt-TW-Ue6"/>
+                                    <segue destination="mo3-YF-637" kind="sheet" id="Jxd-Th-IZG"/>
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b9V-Tx-ggw">
@@ -502,6 +502,14 @@
                 </menu>
             </objects>
             <point key="canvasLocation" x="-76" y="64"/>
+        </scene>
+        <!--EncodingListView-->
+        <scene sceneID="ycH-eP-fHB">
+            <objects>
+                <controllerPlaceholder storyboardName="EncodingListView" id="mo3-YF-637" sceneMemberID="viewController"/>
+                <customObject id="Kde-Ve-SlV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="359" y="63"/>
         </scene>
     </scenes>
     <resources>

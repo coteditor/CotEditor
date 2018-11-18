@@ -30,14 +30,14 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     
     // MARK: Private Properties
     
-    @objc private dynamic var encodings: [CFStringEncoding] {
+    @objc private dynamic var encodings: [CFStringEncoding] = [] {
+        
         didSet {
             // validate restorebility
-            self.canRestore = (encodings != self.defaultEncodings)
+            self.canRestore = (encodings != UserDefaults.standard.registeredValue(for: .encodingList))
         }
     }
-    private let defaultEncodings: [CFStringEncoding]
-    @objc private dynamic var canRestore: Bool  // enability of "Restore Default" button
+    @objc private dynamic var canRestore = false  // enability of "Restore Default" button
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var deleteSeparatorButton: NSButton?
@@ -47,25 +47,11 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+    override func viewWillAppear() {
         
-        self.defaultEncodings = (NSUserDefaultsController.shared.initialValues?[DefaultKeys.encodingList.rawValue] as! [UInt]).map { UInt32($0) }
+        super.viewWillAppear()
+        
         self.encodings = UserDefaults.standard[.encodingList]
-        self.canRestore = (self.encodings != self.defaultEncodings)
-        
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("EncodingListView")
     }
     
     
@@ -146,7 +132,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     /// restore encoding setting to default
     @IBAction func revertDefaultEncodings(_ sender: Any?) {
         
-        self.encodings = self.defaultEncodings
+        self.encodings = UserDefaults.standard.registeredValue(for: .encodingList)
         self.tableView?.reloadData()
     }
     
