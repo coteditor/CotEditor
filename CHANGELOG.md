@@ -14,6 +14,7 @@ Change Log
 
 - Avoid drawing variant sequence as invisible control characters.
 - Make line number view opaque if lines are unwrapped on macOS 10.14 to avoid drawing the editor's text over the line numbers.
+- Revoke the line counting behavior change with VoiceOver in CotEditor 3.6.3.
 - [tirivial] Draw vertical tabs as general invisible control characters.
 
 
