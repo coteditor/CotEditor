@@ -293,7 +293,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        self.presentAsSheet(SyntaxMappingConflictsViewController())
+        let viewController = NSStoryboard(name: "SyntaxMappingConflictsView", bundle: nil).instantiateInitialController() as! NSViewController
+        self.presentAsSheet(viewController)
     }
     
     
