@@ -174,7 +174,7 @@
                     <scrollView key="view" identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" id="1UU-Ev-81X" customClass="EditorScrollView" customModule="CotEditor" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="624"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG">
+                        <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG" customClass="EditorClipView" customModule="CotEditor" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="600" height="624"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>

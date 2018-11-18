@@ -19,7 +19,7 @@ Change Log
 
 ### Fixes
 
-- Address an issue where the editor area could still be tuck under the line number view.
+- Fix an issue where the editor area could still tuck under the line number view.
 - Fix an issue where the line number of the last empty line disappeared when lines are not wrapped and scrolled.
 - [trivial] Fix a weird view expansion on the first transition to the General preferences pane.
 - [trivial] Fix an issue on Mojave where the text selection highlight could remain between lines.

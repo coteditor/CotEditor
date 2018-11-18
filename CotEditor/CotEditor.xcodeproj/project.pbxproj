@@ -538,6 +538,8 @@
 		2AC6069B20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
 		2AC6069C20416ADE00F9C839 /* OpenPanelAccessoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC6069A20416ADE00F9C839 /* OpenPanelAccessoryController.swift */; };
 		2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */; };
+		2ACA0C6D21A14B7900723073 /* EditorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C6C21A14B7900723073 /* EditorClipView.swift */; };
+		2ACA0C6E21A14B7900723073 /* EditorClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C6C21A14B7900723073 /* EditorClipView.swift */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
@@ -1206,6 +1208,7 @@
 		2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionsTests.swift; sourceTree = "<group>"; };
 		2AC71DE31BF0BDBC002E1434 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2ACA0C6C21A14B7900723073 /* EditorClipView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorClipView.swift; sourceTree = "<group>"; };
 		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -2193,6 +2196,7 @@
 				2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */,
 				2AA45A501D2E938500A1A401 /* NavigationBarController.swift */,
 				2AA45A4D1D2E8EE700A1A401 /* EditorScrollView.swift */,
+				2ACA0C6C21A14B7900723073 /* EditorClipView.swift */,
 				2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */,
 			);
 			name = "Editor Controller";
@@ -2930,6 +2934,7 @@
 				2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
+				2ACA0C6E21A14B7900723073 /* EditorClipView.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
@@ -3115,6 +3120,7 @@
 				2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
 				2A42579E1D229A8B0086DAAD /* OutlineParseOperation.swift in Sources */,
 				2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
+				2ACA0C6D21A14B7900723073 /* EditorClipView.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A4714E9209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */,
 				2A5D13381D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
