@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.6 (298)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 3.6.5 where the syntax highlight did not update while typing.
+
+
+
 3.6.5 (297)
 --------------------------
 
