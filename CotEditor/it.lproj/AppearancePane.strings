@@ -46,11 +46,11 @@
 /* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
 "NIq-Tj-KWB.title" = "Cursore:";
 /* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
-"cnD-9F-CR4.title" = "Bar";  // FIXME: added
+"cnD-9F-CR4.title" = "Barra";
 /* Class = "NSButtonCell"; title = "Thick Bar"; ObjectID = "rM6-JW-wau"; */
-"rM6-JW-wau.title" = "Thick Bar";  // FIXME: added
+"rM6-JW-wau.title" = "Barra spessa";
 /* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
-"YG7-Y7-xzs.title" = "Block";  // FIXME: added
+"YG7-Y7-xzs.title" = "Riquadro";
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */

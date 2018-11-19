@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue on CotEditor 3.6.5 where the syntax highlight did not update while typing.
+- Add missing localizations.
 
 
 
