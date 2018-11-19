@@ -93,14 +93,16 @@ final class PreferencesTabViewController: NSTabViewController {
         frame.origin = window.frame.origin
         frame.origin.y += window.frame.height - frame.height
         
-        self.view.isHidden = true
+        // use `alphaValue` instead of `isHidden`
+        // -> Because updating `isHidden` in completionHandler under macOS 10.12 causes crash (although OK on 10.13 and above).
+        self.view.alphaValue = 0
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = animated
             
             window.setFrame(frame, display: false)
             
         }, completionHandler: { [weak self] in
-            self?.view.isHidden = false
+            self?.view.alphaValue = 1
             window.title = tabViewItem.label
         })
     }
@@ -131,7 +133,7 @@ private extension PreferencesTabViewController {
             guard
                 let identifier = item.identifier as? String,
                 let ibIdentifier = PreferencesTabViewController.ibIdentifiers[identifier]
-                else { continue }
+                else { assertionFailure(); continue }
             
             let key = ibIdentifier + ".label"
             let localized = key.localized(tableName: "PreferencesWindow")
