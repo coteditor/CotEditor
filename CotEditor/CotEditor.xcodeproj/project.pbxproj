@@ -370,8 +370,6 @@
 		2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */; };
 		2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
 		2A78BFBD1D1B376000A583D2 /* ServicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */; };
-		2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
-		2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */; };
 		2A80C65E1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C65F1CEE33C100AA664D /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C65C1CEE33C100AA664D /* Credits.html */; };
 		2A80C6681CEE540F00AA664D /* Acknowledgments.html in Resources */ = {isa = PBXBuildFile; fileRef = 2A80C6661CEE540F00AA664D /* Acknowledgments.html */; };
@@ -540,6 +538,8 @@
 		2ACA0C7B21A1982300723073 /* EncodingListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C7821A1982300723073 /* EncodingListView.storyboard */; };
 		2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
 		2ACA0C8421A299BD00723073 /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
+		2ACA0C8C21A29D4800723073 /* FindPreferencesView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */; };
+		2ACA0C8D21A29D4800723073 /* FindPreferencesView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
@@ -911,7 +911,6 @@
 		2A3F18FB203270BE002F1CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A401FB61D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		2A401FB81D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		2A401FBA1D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A401FBB1D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A401FBE1D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A401FC11D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
@@ -1074,10 +1073,6 @@
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
 		2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAML.framework; path = ../Carthage/Build/Mac/YAML.framework; sourceTree = "<group>"; };
-		2A7CF1581C4F569B0015FF2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FindPreferencesView.xib; sourceTree = "<group>"; };
-		2A7FD3501C54B1AF00CE8566 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
-		2A7FD3541C54B1B400CE8566 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
-		2A7FD3551C54B87A00CE8566 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6601CEE351200AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6611CEE351400AA664D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/Credits.html; sourceTree = "<group>"; };
@@ -1214,6 +1209,12 @@
 		2ACA0C8721A29A6000723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2ACA0C8821A29A6200723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2ACA0C8921A29A6300723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
+		2ACA0C8B21A29D4800723073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/FindPreferencesView.storyboard; sourceTree = "<group>"; };
+		2ACA0C8E21A29E4700723073 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
+		2ACA0C8F21A29E4900723073 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FindPreferencesView.strings"; sourceTree = "<group>"; };
+		2ACA0C9021A29E4A00723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
+		2ACA0C9121A29E4B00723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
+		2ACA0C9221A29E4C00723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -1347,7 +1348,6 @@
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
 		57ED314A1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		57ED314B1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		57ED314D1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		57ED314E1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		57ED31511FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EditorView.strings; sourceTree = "<group>"; };
 		57ED31541FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
@@ -1645,7 +1645,7 @@
 			children = (
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
 				2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */,
-				2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */,
+				2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */,
 				2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */,
 			);
 			name = "Text Finder";
@@ -2478,9 +2478,9 @@
 				2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */,
 				2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */,
 				2A10D1291E714D230027192A /* AppearancePane.storyboard in Resources */,
+				2ACA0C8D21A29D4800723073 /* FindPreferencesView.storyboard in Resources */,
 				2A10D1311E7152F30027192A /* EditPane.storyboard in Resources */,
 				2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */,
-				2A7CF15A1C4F569B0015FF2F /* FindPreferencesView.xib in Resources */,
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A10D1011E7088B00027192A /* WindowPane.storyboard in Resources */,
 				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
@@ -2562,7 +2562,6 @@
 				2A3A75A819E77E87001DAB88 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */,
 				2AE73ECC2035223100D8903B /* Credits.css in Resources */,
-				2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */,
 				2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */,
 				2AE7A8D620450C0000830830 /* OutlineView.storyboard in Resources */,
 				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
@@ -2582,6 +2581,7 @@
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */,
+				2ACA0C8C21A29D4800723073 /* FindPreferencesView.storyboard in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */,
 			);
@@ -3649,19 +3649,6 @@
 			name = GoToLineView.xib;
 			sourceTree = "<group>";
 		};
-		2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A7CF1581C4F569B0015FF2F /* Base */,
-				2A7FD3501C54B1AF00CE8566 /* ja */,
-				2A7FD3541C54B1B400CE8566 /* zh-Hans */,
-				2A7FD3551C54B87A00CE8566 /* de */,
-				2A401FBA1D9AD76C00ACE036 /* it */,
-				57ED314D1FFD892600F16CAD /* pt */,
-			);
-			name = FindPreferencesView.xib;
-			sourceTree = "<group>";
-		};
 		2A80C65C1CEE33C100AA664D /* Credits.html */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3803,6 +3790,19 @@
 				2ACA0C8921A29A6300723073 /* pt */,
 			);
 			name = RegexReferenceView.storyboard;
+			sourceTree = "<group>";
+		};
+		2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ACA0C8B21A29D4800723073 /* Base */,
+				2ACA0C8E21A29E4700723073 /* ja */,
+				2ACA0C8F21A29E4900723073 /* zh-Hans */,
+				2ACA0C9021A29E4A00723073 /* de */,
+				2ACA0C9121A29E4B00723073 /* it */,
+				2ACA0C9221A29E4C00723073 /* pt */,
+			);
+			name = FindPreferencesView.storyboard;
 			sourceTree = "<group>";
 		};
 		2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */ = {

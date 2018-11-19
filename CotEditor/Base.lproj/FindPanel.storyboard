@@ -192,7 +192,7 @@
                                 </buttonCell>
                                 <accessibility description="Advanced options"/>
                                 <connections>
-                                    <action selector="showPreferences:" target="fdE-8e-ywb" id="fH6-fz-kav"/>
+                                    <segue destination="qrF-VN-jgm" kind="popover" popoverAnchorView="ESq-ws-6H3" popoverBehavior="t" preferredEdge="maxX" id="qwL-bu-RuM"/>
                                 </connections>
                             </button>
                             <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
@@ -351,13 +351,21 @@
             </objects>
             <point key="canvasLocation" x="773" y="444"/>
         </scene>
+        <!--FindPreferencesView-->
+        <scene sceneID="otw-IE-cg6">
+            <objects>
+                <controllerPlaceholder storyboardName="FindPreferencesView" id="qrF-VN-jgm" sceneMemberID="viewController"/>
+                <customObject id="RCr-zH-1qK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1184" y="503"/>
+        </scene>
         <!--RegexReferenceView-->
         <scene sceneID="JHc-Ro-gvI">
             <objects>
                 <controllerPlaceholder storyboardName="RegexReferenceView" id="EHa-wl-4gS" sceneMemberID="viewController"/>
                 <customObject id="yvX-k1-Q2J" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1175" y="503"/>
+            <point key="canvasLocation" x="1185" y="444"/>
         </scene>
         <!--Find Panel Result View Controller-->
         <scene sceneID="Emr-ob-ZO3">
