@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="YLz-6z-SWq">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Print Panel Accessory Controller-->
+        <scene sceneID="cTY-Sw-xoS">
+            <objects>
+                <viewController id="YLz-6z-SWq" customClass="PrintPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="cDb-GN-YmZ">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="301"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="585">
+                                <rect key="frame" x="104" y="261" width="213" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="ywH-Ua-doT"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="722">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" autoenablesItems="NO" id="587">
+                                        <items>
+                                            <menuItem title="Black and White" id="590"/>
+                                            <menuItem title="Same as Document’s Setting" id="589"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedValue" keyPath="theme" id="09x-oH-G4n"/>
+                                </connections>
+                            </popUpButton>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="424">
+                                <rect key="frame" x="104" y="199" width="213" height="25"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="719">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="425">
+                                        <items>
+                                            <menuItem title="Don’t Print" id="428"/>
+                                            <menuItem title="Same as Document’s Setting" id="427"/>
+                                            <menuItem title="Print All" id="426"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="invisibleCharsMode" id="UkP-Ba-QDG"/>
+                                </connections>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="423">
+                                <rect key="frame" x="36" y="204" width="64" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Invisibles:" usesSingleLineMode="YES" id="718">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="416">
+                                <rect key="frame" x="104" y="230" width="213" height="25"/>
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="717">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="417">
+                                        <items>
+                                            <menuItem title="Don’t Print" id="420"/>
+                                            <menuItem title="Same as Document’s Setting" id="419"/>
+                                            <menuItem title="Print" id="418"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="lineNumberMode" id="T1v-IJ-jYl"/>
+                                </connections>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="415">
+                                <rect key="frame" x="8" y="235" width="92" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Line Numbers:" usesSingleLineMode="YES" id="716">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="198">
+                                <rect key="frame" x="104" y="138" width="165" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="EKF-Mv-PUx"/>
+                                </constraints>
+                                <popUpButtonCell key="cell" type="push" title="Document Name" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="202" id="704">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="199">
+                                        <items>
+                                            <menuItem title="None" id="393"/>
+                                            <menuItem isSeparatorItem="YES" id="394">
+                                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                            </menuItem>
+                                            <menuItem title="Syntax Name" tag="1" id="UJ5-ki-qHL"/>
+                                            <menuItem title="Document Name" state="on" tag="2" id="202"/>
+                                            <menuItem title="File Path" tag="3" id="203"/>
+                                            <menuItem title="Print Date" tag="4" id="206"/>
+                                            <menuItem title="Page Number" tag="5" id="200"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="primaryHeaderContent" id="aaV-1t-303"/>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="Yrf-uD-ceK"/>
+                                </connections>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="256">
+                                <rect key="frame" x="45" y="143" width="55" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="706">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="303">
+                                <rect key="frame" x="8" y="166" width="97" height="18"/>
+                                <buttonCell key="cell" type="check" title="Print header" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="708">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="value" keyPath="printsHeader" id="iKa-8d-dzT"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="305">
+                                <rect key="frame" x="104" y="107" width="165" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="310" id="709">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="306">
+                                        <items>
+                                            <menuItem title="None" id="395"/>
+                                            <menuItem isSeparatorItem="YES" tag="-1" id="396">
+                                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                            </menuItem>
+                                            <menuItem title="Syntax Name" tag="1" id="6RR-gp-tKJ"/>
+                                            <menuItem title="Document Name" tag="2" id="312"/>
+                                            <menuItem title="File Path" tag="3" id="307"/>
+                                            <menuItem title="Print Date" tag="4" id="311"/>
+                                            <menuItem title="Page Number" state="on" tag="5" id="310"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="OmC-ew-3w4"/>
+                                    <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryHeaderContent" id="OC1-l1-jaV"/>
+                                </connections>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="257">
+                                <rect key="frame" x="27" y="112" width="73" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="707">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ErI-yf-OgH">
+                                <rect key="frame" x="272" y="139" width="77" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="njJ-Ab-dUQ">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                                        <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
+                                            <nil key="label"/>
+                                        </segment>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="primaryHeaderAlignment" id="fjA-81-DWA"/>
+                                    <binding destination="YLz-6z-SWq" name="enabled2" keyPath="primaryHeaderContent" previousBinding="P6q-iK-XAR" id="EzE-pI-SV1">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="P6q-iK-XAR"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ff5-dQ-geo">
+                                <rect key="frame" x="272" y="49" width="77" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Aru-Gd-J0D">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                                        <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
+                                            <nil key="label"/>
+                                        </segment>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="primaryFooterAlignment" id="RPe-D1-hln"/>
+                                    <binding destination="YLz-6z-SWq" name="enabled2" keyPath="primaryFooterContent" previousBinding="vpb-1X-X1v" id="P7R-qe-YtO">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="vpb-1X-X1v"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8wl-aM-d8K">
+                                <rect key="frame" x="272" y="108" width="77" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="I4t-kQ-lvq">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                                        <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
+                                            <nil key="label"/>
+                                        </segment>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsHeader" id="uIW-VB-xZa"/>
+                                    <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="secondaryHeaderAlignment" id="eR4-Jf-JBc"/>
+                                    <binding destination="YLz-6z-SWq" name="enabled2" keyPath="secondaryHeaderContent" previousBinding="uIW-VB-xZa" id="Aog-1C-i8I">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4T8-80-2uO">
+                                <rect key="frame" x="272" y="18" width="77" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="xAm-2i-Sw1">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment toolTip="Align Left" image="LeftAlignTemplate" width="23"/>
+                                        <segment toolTip="Center" image="CenterAlignTemplate" width="23" selected="YES" tag="1"/>
+                                        <segment toolTip="Align Right" image="RightAlignTemplate" width="23">
+                                            <nil key="label"/>
+                                        </segment>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="vV0-JQ-TdN"/>
+                                    <binding destination="YLz-6z-SWq" name="selectedIndex" keyPath="secondaryFooterAlignment" id="FeU-ej-Qw8"/>
+                                    <binding destination="YLz-6z-SWq" name="enabled2" keyPath="secondaryFooterContent" previousBinding="vV0-JQ-TdN" id="9FT-Lr-TJh">
+                                        <dictionary key="options">
+                                            <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                            <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                            <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                            <integer key="NSNullPlaceholder" value="-1"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </segmentedControl>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="296">
+                                <rect key="frame" x="27" y="22" width="73" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Secondary:" usesSingleLineMode="YES" id="712">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="321">
+                                <rect key="frame" x="104" y="17" width="165" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="None" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="399" id="715">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="322">
+                                        <items>
+                                            <menuItem title="None" state="on" id="399"/>
+                                            <menuItem isSeparatorItem="YES" id="400">
+                                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                            </menuItem>
+                                            <menuItem title="Syntax Name" tag="1" id="i9p-3e-KNC"/>
+                                            <menuItem title="Document Name" tag="2" id="328"/>
+                                            <menuItem title="File Path" tag="3" id="323"/>
+                                            <menuItem title="Print Date" tag="4" id="327"/>
+                                            <menuItem title="Page Number" tag="5" id="326"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="OnN-VH-8BV"/>
+                                    <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="secondaryFooterContent" id="raJ-1y-Hyw"/>
+                                </connections>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="295">
+                                <rect key="frame" x="45" y="53" width="55" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Primary:" usesSingleLineMode="YES" id="711">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="304">
+                                <rect key="frame" x="8" y="76" width="91" height="18"/>
+                                <buttonCell key="cell" type="check" title="Print footer" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="713">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="value" keyPath="printsFooter" id="oSd-vJ-Zz6"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="313">
+                                <rect key="frame" x="104" y="48" width="165" height="25"/>
+                                <popUpButtonCell key="cell" type="push" title="Page Number" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="5" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="318" id="714">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="314">
+                                        <items>
+                                            <menuItem title="None" id="397"/>
+                                            <menuItem isSeparatorItem="YES" id="398">
+                                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                            </menuItem>
+                                            <menuItem title="Syntax Name" tag="1" id="Ro5-rK-S7p"/>
+                                            <menuItem title="Document Name" tag="2" id="320"/>
+                                            <menuItem title="File Path" tag="3" id="315"/>
+                                            <menuItem title="Print Date" tag="4" id="319"/>
+                                            <menuItem title="Page Number" state="on" tag="5" id="318"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <binding destination="YLz-6z-SWq" name="selectedTag" keyPath="primaryFooterContent" id="F79-PX-Tg6"/>
+                                    <binding destination="YLz-6z-SWq" name="enabled" keyPath="printsFooter" id="eSk-6s-EvS"/>
+                                </connections>
+                            </popUpButton>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6jK-7i-UaO">
+                                <rect key="frame" x="59" y="266" width="41" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Color:" usesSingleLineMode="YES" id="eXI-55-yQO">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8wl-aM-d8K" secondAttribute="trailing" constant="10" id="2jg-wO-RIR"/>
+                            <constraint firstItem="423" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="6fw-3B-Mqw"/>
+                            <constraint firstItem="423" firstAttribute="trailing" secondItem="257" secondAttribute="trailing" id="74O-xm-e3g"/>
+                            <constraint firstItem="416" firstAttribute="width" secondItem="585" secondAttribute="width" id="7ET-E9-d8d"/>
+                            <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="257" secondAttribute="centerY" id="8r2-bi-5x5"/>
+                            <constraint firstItem="303" firstAttribute="leading" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="9mq-sZ-rxb"/>
+                            <constraint firstItem="8wl-aM-d8K" firstAttribute="leading" secondItem="305" secondAttribute="trailing" constant="8" symbolic="YES" id="Bgj-U2-cfW"/>
+                            <constraint firstItem="304" firstAttribute="top" secondItem="257" secondAttribute="bottom" constant="20" id="DZu-1V-Yux"/>
+                            <constraint firstItem="585" firstAttribute="top" secondItem="cDb-GN-YmZ" secondAttribute="top" constant="16" id="Dn7-Pa-zbq"/>
+                            <constraint firstItem="256" firstAttribute="centerY" secondItem="ErI-yf-OgH" secondAttribute="centerY" id="EhF-cG-9vr"/>
+                            <constraint firstItem="424" firstAttribute="centerY" secondItem="423" secondAttribute="centerY" id="Gjg-se-imD"/>
+                            <constraint firstItem="8wl-aM-d8K" firstAttribute="centerY" secondItem="305" secondAttribute="centerY" id="H1z-kp-hhI"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="424" secondAttribute="trailing" constant="10" id="JhO-dp-yws"/>
+                            <constraint firstItem="321" firstAttribute="leading" secondItem="296" secondAttribute="trailing" constant="8" symbolic="YES" id="Kl0-Q7-Dgr"/>
+                            <constraint firstItem="313" firstAttribute="centerY" secondItem="ff5-dQ-geo" secondAttribute="centerY" id="M3y-5l-LG0"/>
+                            <constraint firstItem="415" firstAttribute="leading" secondItem="cDb-GN-YmZ" secondAttribute="leading" priority="751" constant="10" id="MKj-9x-PWP"/>
+                            <constraint firstItem="585" firstAttribute="baseline" secondItem="6jK-7i-UaO" secondAttribute="baseline" id="MLb-XP-yQc"/>
+                            <constraint firstItem="ErI-yf-OgH" firstAttribute="leading" secondItem="198" secondAttribute="trailing" constant="8" symbolic="YES" id="NCN-Zb-A0L"/>
+                            <constraint firstItem="305" firstAttribute="top" secondItem="198" secondAttribute="bottom" constant="10" symbolic="YES" id="PRA-Wf-g9H"/>
+                            <constraint firstItem="416" firstAttribute="leading" secondItem="415" secondAttribute="trailing" constant="8" symbolic="YES" id="QPO-c2-Ndp"/>
+                            <constraint firstItem="256" firstAttribute="top" secondItem="303" secondAttribute="bottom" constant="8" symbolic="YES" id="Ss5-Pi-jim"/>
+                            <constraint firstItem="313" firstAttribute="centerY" secondItem="295" secondAttribute="centerY" id="THZ-8C-rvC"/>
+                            <constraint firstItem="305" firstAttribute="width" secondItem="198" secondAttribute="width" id="Tbu-Bb-8SV"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ErI-yf-OgH" secondAttribute="trailing" constant="10" id="W6F-Cl-LFa"/>
+                            <constraint firstItem="256" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="XOG-i3-Y6V"/>
+                            <constraint firstItem="305" firstAttribute="width" secondItem="313" secondAttribute="width" id="XsD-IU-YaB"/>
+                            <constraint firstItem="6jK-7i-UaO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="a3k-5V-adI"/>
+                            <constraint firstItem="296" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="asI-Eb-XfU"/>
+                            <constraint firstItem="256" firstAttribute="centerY" secondItem="198" secondAttribute="centerY" id="bC2-7Q-elr"/>
+                            <constraint firstItem="295" firstAttribute="top" secondItem="304" secondAttribute="bottom" constant="8" symbolic="YES" id="cAH-jN-Wut"/>
+                            <constraint firstItem="423" firstAttribute="trailing" secondItem="256" secondAttribute="trailing" id="chF-nn-ONk"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ff5-dQ-geo" secondAttribute="trailing" constant="10" id="chM-2x-n7W"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="585" secondAttribute="trailing" constant="10" id="cou-8o-GRH"/>
+                            <constraint firstItem="304" firstAttribute="leading" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="czP-K5-gp3"/>
+                            <constraint firstItem="423" firstAttribute="trailing" secondItem="296" secondAttribute="trailing" id="dhp-97-cJj"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4T8-80-2uO" secondAttribute="trailing" constant="10" id="fI4-vR-aC8"/>
+                            <constraint firstItem="321" firstAttribute="centerY" secondItem="296" secondAttribute="centerY" id="gR7-c1-6QC"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="304" secondAttribute="trailing" constant="20" symbolic="YES" id="geh-vY-9tW"/>
+                            <constraint firstItem="ff5-dQ-geo" firstAttribute="leading" secondItem="313" secondAttribute="trailing" constant="8" symbolic="YES" id="iF7-9t-xwc"/>
+                            <constraint firstItem="321" firstAttribute="top" secondItem="313" secondAttribute="bottom" constant="10" symbolic="YES" id="jPv-78-GLp"/>
+                            <constraint firstItem="295" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="k64-pY-YhK"/>
+                            <constraint firstItem="585" firstAttribute="leading" secondItem="6jK-7i-UaO" secondAttribute="trailing" constant="8" symbolic="YES" id="kvb-Xw-XM2"/>
+                            <constraint firstItem="305" firstAttribute="width" secondItem="321" secondAttribute="width" id="lAU-Bw-y2p"/>
+                            <constraint firstItem="416" firstAttribute="centerY" secondItem="415" secondAttribute="centerY" id="lib-zJ-PEP"/>
+                            <constraint firstItem="424" firstAttribute="top" secondItem="416" secondAttribute="bottom" constant="10" symbolic="YES" id="lt4-8d-Sh6"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="416" secondAttribute="trailing" constant="10" id="noV-0s-xjE"/>
+                            <constraint firstItem="4T8-80-2uO" firstAttribute="leading" secondItem="321" secondAttribute="trailing" constant="8" symbolic="YES" id="npU-6v-EAd"/>
+                            <constraint firstItem="257" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cDb-GN-YmZ" secondAttribute="leading" constant="10" id="oxu-gP-l8x"/>
+                            <constraint firstItem="305" firstAttribute="leading" secondItem="257" secondAttribute="trailing" constant="8" symbolic="YES" id="paP-eP-SpA"/>
+                            <constraint firstItem="423" firstAttribute="trailing" secondItem="295" secondAttribute="trailing" id="qHL-sU-OX9"/>
+                            <constraint firstItem="424" firstAttribute="width" secondItem="585" secondAttribute="width" id="qIH-Uq-DV0"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="303" secondAttribute="trailing" constant="20" symbolic="YES" id="qyk-Le-gXL"/>
+                            <constraint firstItem="416" firstAttribute="top" secondItem="585" secondAttribute="bottom" constant="10" symbolic="YES" id="r8v-Hv-s0z"/>
+                            <constraint firstItem="424" firstAttribute="leading" secondItem="423" secondAttribute="trailing" constant="8" symbolic="YES" id="s6G-Mv-FJW"/>
+                            <constraint firstAttribute="bottom" secondItem="321" secondAttribute="bottom" constant="20" symbolic="YES" id="sui-6g-3Kw"/>
+                            <constraint firstItem="321" firstAttribute="centerY" secondItem="4T8-80-2uO" secondAttribute="centerY" id="uES-WR-JHg"/>
+                            <constraint firstItem="6jK-7i-UaO" firstAttribute="trailing" secondItem="423" secondAttribute="trailing" id="uab-q8-FcD"/>
+                            <constraint firstItem="198" firstAttribute="leading" secondItem="256" secondAttribute="trailing" constant="8" symbolic="YES" id="vur-ym-l9z"/>
+                            <constraint firstItem="423" firstAttribute="trailing" secondItem="415" secondAttribute="trailing" id="w6f-lo-69O"/>
+                            <constraint firstItem="303" firstAttribute="top" secondItem="424" secondAttribute="bottom" constant="20" id="xcv-gj-UGx"/>
+                            <constraint firstItem="313" firstAttribute="leading" secondItem="295" secondAttribute="trailing" constant="8" symbolic="YES" id="ypW-y8-87C"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="colorPopupButton" destination="585" id="QFr-Mu-ai1"/>
+                    </connections>
+                </viewController>
+                <customObject id="1l0-w4-WHu" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="129" y="2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CenterAlignTemplate" width="15" height="15"/>
+        <image name="LeftAlignTemplate" width="15" height="15"/>
+        <image name="RightAlignTemplate" width="15" height="15"/>
+    </resources>
+</document>

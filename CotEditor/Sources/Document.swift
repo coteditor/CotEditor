@@ -74,7 +74,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController = PrintPanelAccessoryController()
+    private lazy var printPanelAccessoryController = NSStoryboard(name: "PrintPanelAccessory", bundle: nil).instantiateInitialController() as! PrintPanelAccessoryController
     private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: "SaveDocumentAccessory", bundle: nil).instantiateInitialController() as! NSViewController
     
     private var readingEncoding: String.Encoding  // encoding to read document file
