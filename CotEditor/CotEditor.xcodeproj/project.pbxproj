@@ -134,7 +134,6 @@
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */; };
 		2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */; };
-		2A2D6C191A602D2C002451FF /* RegexReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */; };
 		2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */; };
 		2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */; };
 		2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */; };
@@ -322,7 +321,6 @@
 		2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A5ABE77191861E3009265DF /* UnicodePanel.xib */; };
 		2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
-		2A6F0D831B5500E100C2D03C /* RegexReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */; };
 		2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */; };
 		2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */; };
 		2A6FD9DA1D38F93100A59784 /* EditorTextView+Indenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */; };
@@ -540,6 +538,8 @@
 		2ACA0C7221A18D6A00723073 /* SyntaxMappingConflictsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C6F21A18D6A00723073 /* SyntaxMappingConflictsView.storyboard */; };
 		2ACA0C7A21A1982300723073 /* EncodingListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C7821A1982300723073 /* EncodingListView.storyboard */; };
 		2ACA0C7B21A1982300723073 /* EncodingListView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C7821A1982300723073 /* EncodingListView.storyboard */; };
+		2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
+		2ACA0C8421A299BD00723073 /* RegexReferenceView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
@@ -889,9 +889,6 @@
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
 		2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRadioButton.swift; sourceTree = "<group>"; };
-		2A2D6C181A602D2C002451FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/RegexReferenceView.xib; sourceTree = "<group>"; };
-		2A2D6C1C1A603781002451FF /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RegexReferenceView.strings"; sourceTree = "<group>"; };
-		2A2D6C1E1A603ACA002451FF /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationViewController.swift; sourceTree = "<group>"; };
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxEditViewController.swift; sourceTree = "<group>"; };
@@ -914,7 +911,6 @@
 		2A3F18FB203270BE002F1CA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A401FB61D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Main.strings; sourceTree = "<group>"; };
 		2A401FB81D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		2A401FB91D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A401FBA1D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		2A401FBB1D9AD76C00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A401FBE1D9AD76D00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/EditorView.strings; sourceTree = "<group>"; };
@@ -1037,7 +1033,6 @@
 		2A6602E81D05DF85003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
 		2A6602EA1D05DF87003E8D87 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppleEventManager+Additions.swift"; sourceTree = "<group>"; };
-		2A69075B1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2A6907611B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2A6907621B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2A69076D1B8443AA00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
@@ -1213,6 +1208,12 @@
 		2ACA0C7E21A19A9500723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		2ACA0C7F21A19A9600723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		2ACA0C8021A19A9700723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EncodingListView.strings; sourceTree = "<group>"; };
+		2ACA0C8221A299BD00723073 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/RegexReferenceView.storyboard; sourceTree = "<group>"; };
+		2ACA0C8521A29A5E00723073 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
+		2ACA0C8621A29A5F00723073 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/RegexReferenceView.strings"; sourceTree = "<group>"; };
+		2ACA0C8721A29A6000723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
+		2ACA0C8821A29A6200723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
+		2ACA0C8921A29A6300723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -1346,7 +1347,6 @@
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
 		57ED314A1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		57ED314B1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPanel.strings; sourceTree = "<group>"; };
-		57ED314C1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/RegexReferenceView.strings; sourceTree = "<group>"; };
 		57ED314D1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPreferencesView.strings; sourceTree = "<group>"; };
 		57ED314E1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		57ED31511FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/EditorView.strings; sourceTree = "<group>"; };
@@ -1644,7 +1644,7 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13401D1FE34F00D38E6A /* FindPanel.storyboard */,
-				2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */,
+				2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */,
 				2A7CF1571C4F569B0015FF2F /* FindPreferencesView.xib */,
 				2A3D63F91E769DDF00F538E1 /* MultipleReplacementPanel.storyboard */,
 			);
@@ -2496,9 +2496,9 @@
 				2AE7A8D720450C0000830830 /* OutlineView.storyboard in Resources */,
 				2A6F0D781B5500E100C2D03C /* ColorCodePanelAccessory.xib in Resources */,
 				2A6F0D7C1B5500E100C2D03C /* UnicodePanel.xib in Resources */,
+				2ACA0C8421A299BD00723073 /* RegexReferenceView.storyboard in Resources */,
 				2A5DBE5C1B5D2DBD00F8CB13 /* SyntaxInfoEditView.xib in Resources */,
 				2A10D1391E715E5B0027192A /* FormatPane.storyboard in Resources */,
-				2A6F0D831B5500E100C2D03C /* RegexReferenceView.xib in Resources */,
 				2A5DBE5A1B5D2DB700F8CB13 /* SyntaxFileMappingEditView.xib in Resources */,
 				2A1893A51FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A5DBE5D1B5D2DC000F8CB13 /* SyntaxValidationView.xib in Resources */,
@@ -2563,6 +2563,7 @@
 				2A3A75A919E77E87001DAB88 /* SyntaxInfoEditView.xib in Resources */,
 				2AE73ECC2035223100D8903B /* Credits.css in Resources */,
 				2A7CF1591C4F569B0015FF2F /* FindPreferencesView.xib in Resources */,
+				2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */,
 				2AE7A8D620450C0000830830 /* OutlineView.storyboard in Resources */,
 				2A3A75AC19E77E87001DAB88 /* SyntaxValidationView.xib in Resources */,
 				2588E9CE07C4851C0060021D /* ProgressView.xib in Resources */,
@@ -2581,7 +2582,6 @@
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2A5ABE79191861E3009265DF /* UnicodePanel.xib in Resources */,
 				2A3A1E761C45219800641CE0 /* HUDView.xib in Resources */,
-				2A2D6C191A602D2C002451FF /* RegexReferenceView.xib in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
 				2ADF3C011E6D7345009125BB /* FileDropPane.storyboard in Resources */,
 			);
@@ -3395,19 +3395,6 @@
 			name = CustomTabWidthView.storyboard;
 			sourceTree = "<group>";
 		};
-		2A2D6C171A602D2C002451FF /* RegexReferenceView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2A2D6C181A602D2C002451FF /* Base */,
-				2A2D6C1E1A603ACA002451FF /* ja */,
-				2A2D6C1C1A603781002451FF /* zh-Hans */,
-				2A69075B1B8443AA00D0F3A2 /* de */,
-				2A401FB91D9AD76C00ACE036 /* it */,
-				57ED314C1FFD892600F16CAD /* pt */,
-			);
-			name = RegexReferenceView.xib;
-			sourceTree = "<group>";
-		};
 		2A3A1E741C45219800641CE0 /* HUDView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3803,6 +3790,19 @@
 				2ACA0C8021A19A9700723073 /* pt */,
 			);
 			name = EncodingListView.storyboard;
+			sourceTree = "<group>";
+		};
+		2ACA0C8121A299BD00723073 /* RegexReferenceView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2ACA0C8221A299BD00723073 /* Base */,
+				2ACA0C8521A29A5E00723073 /* ja */,
+				2ACA0C8621A29A5F00723073 /* zh-Hans */,
+				2ACA0C8721A29A6000723073 /* de */,
+				2ACA0C8821A29A6200723073 /* it */,
+				2ACA0C8921A29A6300723073 /* pt */,
+			);
+			name = RegexReferenceView.storyboard;
 			sourceTree = "<group>";
 		};
 		2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */ = {
