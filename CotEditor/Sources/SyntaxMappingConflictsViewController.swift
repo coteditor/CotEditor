@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2017 1024jp
+//  © 2014-2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,11 +33,11 @@ final class MappingConflict: NSObject {
     @objc dynamic let doubledStyles: String
     
     
-    required init(name: String, primaryStyle: String, doubledStyles: String) {
+    required init(name: String, styles: [String]) {
         
         self.name = name
-        self.primaryStyle = primaryStyle
-        self.doubledStyles = doubledStyles
+        self.primaryStyle = styles.first!
+        self.doubledStyles = styles.dropFirst().joined(separator: ", ")
         
         super.init()
     }
@@ -50,53 +50,21 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private dynamic let extensionConflicts: [MappingConflict]
-    @objc private dynamic let filenameConflicts: [MappingConflict]
+    @objc private dynamic var extensionConflicts: [MappingConflict] = []
+    @objc private dynamic var filenameConflicts: [MappingConflict] = []
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
         
         let conflictDicts = SyntaxManager.shared.mappingConflicts
-        
-        self.extensionConflicts = type(of: self).parseConflictDict(conflictDict: conflictDicts[.extensions]!)
-        self.filenameConflicts = type(of: self).parseConflictDict(conflictDict: conflictDicts[.filenames]!)
-        
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("SyntaxMappingConflictView")
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// convert conflictDict data for table
-    private static func parseConflictDict(conflictDict: [String: [String]]) -> [MappingConflict] {
-        
-        return conflictDict.map { item in
-            
-            let styles = item.value
-            let primaryStyle = styles.first!
-            let doubledStyles = styles.dropFirst().joined(separator: ", ")
-            
-            return MappingConflict(name: item.key,
-                                   primaryStyle: primaryStyle,
-                                   doubledStyles: doubledStyles)
-        }
+        self.extensionConflicts = conflictDicts[.extensions]?.map { MappingConflict(name: $0.key, styles: $0.value) } ?? []
+        self.filenameConflicts = conflictDicts[.filenames]?.map { MappingConflict(name: $0.key, styles: $0.value) } ?? []
     }
     
 }

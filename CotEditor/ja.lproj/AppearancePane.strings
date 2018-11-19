@@ -42,6 +42,15 @@
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "背景カラーを変更";
 
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
+"NIq-Tj-KWB.title" = "カーソル:";
+/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
+"cnD-9F-CR4.title" = "線";
+/* Class = "NSButtonCell"; title = "Thick Bar"; ObjectID = "rM6-JW-wau"; */
+"rM6-JW-wau.title" = "太い線";
+/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
+"YG7-Y7-xzs.title" = "ブロック";
+
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "不可視文字:";

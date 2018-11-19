@@ -163,7 +163,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         
         guard
             let textField = obj.object as? NSTextField,
-            let outlineView = self.outlineView else { return }
+            let outlineView = self.outlineView else { return assertionFailure() }
         
         let row = outlineView.row(for: textField)
         let column = outlineView.column(for: textField)

@@ -71,6 +71,12 @@ extension CTFont {
     }
     
     
+    /// Get advancement of a glyph.
+    ///
+    /// - Parameters:
+    ///   - glyph: Glyph to calculate advancement.
+    ///   - orientation: Drawing orientation.
+    /// - Returns: Advancement of passed-in glyph.
     func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
         
         var advance: CGSize = .zero

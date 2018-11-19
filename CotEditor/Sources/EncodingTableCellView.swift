@@ -31,7 +31,7 @@ final class EncodingTableCellView: NSTableCellView {
     override var backgroundStyle: NSView.BackgroundStyle {
         
         didSet {
-            guard let textField = self.textField else { return }
+            guard let textField = self.textField else { return assertionFailure() }
             
             let highlighted = (backgroundStyle == .dark)
             let attrString = textField.attributedStringValue

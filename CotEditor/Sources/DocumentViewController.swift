@@ -55,9 +55,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         switch keyPath {
         case DefaultKeys.theme.rawValue?:
             guard let name = change?[.newKey] as? String else { return }
-            DispatchQueue.main.async { [weak self] in
-                self?.setTheme(name: name)
-            }
+                self.setTheme(name: name)
             
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
@@ -79,7 +77,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         self.showsPageGuide = defaults[.showPageGuide]
         
         // set writing direction
-        switch WritingDirection(defaults[.writingDirection]) {
+        switch defaults[.writingDirection] {
         case .leftToRight:
             break
         case .rightToLeft:
@@ -181,7 +179,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             // focus text view
             self.view.window?.makeFirstResponder(editorViewController.textView)
             
-            // observe syntax/theme change
+            // observe syntax change
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
                                                    name: Document.didChangeSyntaxStyleNotification,
                                                    object: document)
@@ -345,7 +343,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             textStorage.editedMask.contains(.editedCharacters) else { return }
         
         // don't update when input text is not yet fixed.
-        guard !(self.focusedTextView?.hasMarkedText() ?? false) else { return }
+        guard self.focusedTextView?.hasMarkedText() != false else { return }
         
         // update editor information
         // -> In case, if "Replace All" performed without moving caret.
@@ -402,12 +400,12 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// document updated syntax style
     @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
         
-        guard let syntaxParser = self.syntaxParser else { return }
+        guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         
         syntaxParser.delegate = self
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxParser.style)
+            viewController.apply(style: syntaxParser.style)
             viewController.navigationBarController?.outlineItems = []
             viewController.navigationBarController?.outlineProgress = nil
         }
@@ -465,7 +463,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     @objc var isStatusBarShown: Bool {
         
         get {
-            return !(self.statusBarItem?.isCollapsed ?? true)
+            return self.statusBarItem?.isCollapsed == false
         }
         
         set {
@@ -535,7 +533,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         
         get {
             guard let textView = self.focusedTextView else {
-                return WritingDirection(UserDefaults.standard[.writingDirection]) == .vertical
+                return UserDefaults.standard[.writingDirection] == .vertical
             }
             
             return textView.layoutOrientation == .vertical
@@ -707,7 +705,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// toggle if antialias text in text view
     @IBAction func toggleAntialias(_ sender: Any?) {
         
-        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return }
+        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.usesAntialias = !usesAntialias
@@ -759,7 +757,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// set new theme from menu item
     @IBAction func changeTheme(_ sender: AnyObject?) {
         
-        guard let name = sender?.title else { return }
+        guard let name = sender?.title else { return assertionFailure() }
         
         self.setTheme(name: name)
     }
@@ -917,7 +915,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// create and set-up new (split) editor view
     private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
         
-        editorViewController.textStorage = self.textStorage
+        editorViewController.setTextStorage(self.textStorage!)
         
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
@@ -926,8 +924,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
-        if let syntaxStyle = self.syntaxParser?.style {
-            editorViewController.apply(syntax: syntaxStyle)
+        if let syntaxParser = self.syntaxParser {
+            editorViewController.apply(style: syntaxParser.style)
         }
         
         // copy textView states

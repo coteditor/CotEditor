@@ -33,7 +33,7 @@ final class WebDocumentViewController: NSViewController {
     override var representedObject: Any? {
         
         didSet {
-            guard let url = self.representedObject as? URL else { return }
+            guard let url = representedObject as? URL else { return }
             
             self.webView?.loadFileURL(url, allowingReadAccessTo: url)
         }

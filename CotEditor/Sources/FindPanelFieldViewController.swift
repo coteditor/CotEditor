@@ -111,7 +111,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// find string did change
     func textDidChange(_ notification: Notification) {
         
-        guard let textView = notification.object as? NSTextView else { return }
+        guard let textView = notification.object as? NSTextView else { return assertionFailure() }
         
         switch textView {
         case self.findTextView!:

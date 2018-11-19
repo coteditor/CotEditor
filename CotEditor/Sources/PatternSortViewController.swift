@@ -74,7 +74,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
         guard
             let textView = self.representedObject as? NSTextView,
             let pattern = self.sortPattern
-            else { return }
+            else { return assertionFailure() }
         
         do {
             try pattern.validate()
@@ -196,7 +196,7 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     /// notify value change to delegate
     @IBAction func valueDidUpdate(_ sender: Any?) {
         
-        guard let pattern = self.representedObject as? SortPattern else { return }
+        guard let pattern = self.representedObject as? SortPattern else { return assertionFailure() }
         
         self.delegate?.didUpdate(sortPattern: pattern)
     }

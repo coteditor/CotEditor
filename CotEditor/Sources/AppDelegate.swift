@@ -56,6 +56,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Private Properties
     
+    private lazy var preferencesWindowController = NSStoryboard(name: "PreferencesWindow", bundle: nil).instantiateInitialController() as! NSWindowController
+    
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
         let windowController = NSStoryboard(name: "WebDocumentWindow", bundle: nil).instantiateInitialController() as! NSWindowController
@@ -181,9 +183,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior]) ?? .untitledDocument
-        
-        switch behavior {
+        switch UserDefaults.standard[.noDocumentOnLaunchBehavior] {
         case .untitledDocument:
             return true
         case .openPanel:
@@ -328,7 +328,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show preferences window
     @IBAction func showPreferences(_ sender: Any?) {
         
-        PreferencesWindowController.shared.showWindow(sender)
+        self.preferencesWindowController.showWindow(sender)
     }
     
     
@@ -359,7 +359,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open a specific page in Help contents
     @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
-        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
+        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
         
         NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: Bundle.main.helpBookName)
     }
@@ -384,7 +384,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // load template file
         let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md")!
-        guard let template = try? String(contentsOf: url) else { return }
+        guard let template = try? String(contentsOf: url) else { return assertionFailure() }
         
         // fill template with user environment info
         let report = template
@@ -393,7 +393,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
-        guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return }
+        guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return assertionFailure() }
         document.displayName = "Bug Report".localized(comment: "document title")
         document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)

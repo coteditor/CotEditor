@@ -121,10 +121,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         super.init(coder: coder)
         
         // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
-        if NSAppKitVersion.current <= .macOS10_13 {
-            self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
-            self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
-        }
+        self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
+        self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
         
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
@@ -659,17 +657,28 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func changeFont(_ sender: Any?) {
         
         guard
-            let manager = sender as? NSFontManager,
+            let fontManager = sender as? NSFontManager,
             let currentFont = self.font,
             let textStorage = self.textStorage
-            else { return }
+            else { return assertionFailure() }
         
-        let font = manager.convert(currentFont)
+        let font = fontManager.convert(currentFont)
         
         // apply to all text views sharing textStorage
         for layoutManager in textStorage.layoutManagers {
             layoutManager.firstTextView?.font = font
         }
+    }
+    
+    
+    ///
+    override func setNeedsDisplay(_ invalidRect: NSRect) {
+        
+        // expand rect as a workaroud for thick cursors (2018-11 macOS 10.14)
+        var invalidRect = invalidRect
+        invalidRect.size.width += (self.layoutManager as? LayoutManager)?.spaceWidth ?? 0
+        
+        super.setNeedsDisplay(invalidRect)
     }
     
     
@@ -684,6 +693,43 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         }
         
         self.drawRoundedBackground(in: rect)
+    }
+    
+    
+    /// draw insersion point
+    override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
+        
+        var rect = rect
+        var color = color
+        
+        switch UserDefaults.standard[.cursorType] {
+        case .bar:
+            break
+            
+        case .thickBar:
+            rect.size.width = 2
+            
+        case .block:
+            guard
+                let layoutManager = self.layoutManager as? LayoutManager,
+                let textContainer = self.textContainer
+                else { break }
+            
+            let point = NSPoint(x: rect.maxX, y: rect.midY).offset(by: -self.textContainerOrigin)
+            let glyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
+            
+            rect.size.width = {
+                guard
+                    layoutManager.isValidGlyphIndex(glyphIndex),
+                    layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
+                    else { return layoutManager.spaceWidth }
+                
+                return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
+            }()
+            color = color.withAlphaComponent(0.5)
+        }
+        
+        super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
     }
     
     
@@ -750,18 +796,16 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
-        guard self.layoutOrientation != orientation else { return }
+        if self.layoutOrientation != orientation {
+            self.minSize = self.minSize.rotated
+        }
         
-        self.minSize = self.minSize.rotated
-        
-        // -> needs send kvo notification manually on Swift? (2016-09-12 on macOS 10.12 SDK)
+        // -> need to send KVO notification manually on Swift (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(forKey: #keyPath(layoutOrientation))
-        
         super.setLayoutOrientation(orientation)
-        
         self.didChangeValue(forKey: #keyPath(layoutOrientation))
         
-        // enable non-contiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
+        // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
         self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
         
@@ -840,7 +884,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// let line number view update
     override func updateRuler() {
         
-        (self.enclosingScrollView as? EditorScrollView)?.invalidateLineNumber()
+        self.enclosingScrollView?.setRulersNeedsDisplay()
     }
     
     
@@ -1057,7 +1101,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         assert(Thread.isMainThread)
         
-        guard let textStorage = self.textStorage else { return }
+        guard let textStorage = self.textStorage else { return assertionFailure() }
         
         let range = textStorage.mutableString.range
         
@@ -1226,7 +1270,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         assert(Thread.isMainThread)
         
-        guard let theme = self.theme else { return }
+        guard let theme = self.theme else { return assertionFailure() }
         
         self.window?.backgroundColor = theme.background.color
         
@@ -1297,8 +1341,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         guard
             NSAppKitVersion.current <= .macOS10_13,  // i-beam is enough findable with dark background since Mojave
-            let theme = self.theme,
-            theme.isDarkTheme,
+            self.theme?.isDarkTheme == true,
             NSCursor.current == .iBeam
             else { return }
         
@@ -1312,7 +1355,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         guard
             let scrollView = self.enclosingScrollView,
             let layoutManager = self.layoutManager as? LayoutManager
-            else { return }
+            else { return assertionFailure() }
         
         let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)

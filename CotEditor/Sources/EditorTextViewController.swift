@@ -30,18 +30,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     
-    var syntaxStyle: SyntaxStyle? {
-        
-        didSet {
-            guard let textView = self.textView, let syntaxStyle = syntaxStyle else { return }
-            
-            textView.inlineCommentDelimiter = syntaxStyle.inlineCommentDelimiter
-            textView.blockCommentDelimiters = syntaxStyle.blockCommentDelimiters
-            textView.syntaxCompletionWords = syntaxStyle.completionWords
-        }
-    }
-    
-    
     var showsLineNumber: Bool {
         
         get {
@@ -62,17 +50,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        // detach textStorage safely
-        if let layoutManager = self.textView?.layoutManager {
-            self.textView?.textStorage?.removeLayoutManager(layoutManager)
-        }
-    }
-    
-    
-    
     // MARK: Text View Delegate
     
     /// text will be edited
@@ -82,8 +59,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         // -> Line endings replacemement on file read is processed in `Document.read(from:ofType:)`
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
-            !(textView.undoManager?.isUndoing ?? false),  // = undo
-            let lineEnding = replacementString.detectedLineEnding, lineEnding != .lf
+            textView.undoManager?.isUndoing != true,  // = undo
+            let lineEnding = replacementString.detectedLineEnding,  // = no line endings
+            lineEnding != .lf
         {
             return !textView.replace(with: replacementString.replacingLineEndings(with: .lf),
                                      range: affectedCharRange,

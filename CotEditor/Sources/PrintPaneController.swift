@@ -70,7 +70,7 @@ final class PrintPaneController: NSViewController {
         let themeName = UserDefaults.standard[.printTheme]
         let themeNames = ThemeManager.shared.settingNames
         
-        guard let popupButton = self.colorPopupButton else { return }
+        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
         
         popupButton.removeAllItems()
         

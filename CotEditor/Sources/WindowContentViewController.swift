@@ -200,7 +200,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     private var isSidebarShown: Bool {
         
         get {
-            return !(self.sidebarViewItem?.isCollapsed ?? true)
+            return self.sidebarViewItem?.isCollapsed == false
         }
         
         set {

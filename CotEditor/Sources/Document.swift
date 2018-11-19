@@ -180,9 +180,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // pretend as if iCloud storage is disabled to let system give up opening the open panel on launch (2018-02 macOS 10.13)
         if NSAppleEventManager.shared().isOpenEvent {
-            let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
-            
-            guard behavior == .openPanel else { return false }
+            guard UserDefaults.standard[.noDocumentOnLaunchBehavior] == .openPanel else { return false }
         }
         
         return super.usesUbiquitousStorage
@@ -654,7 +652,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
-        let option = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption]) ?? .notify
+        let option = UserDefaults.standard[.documentConflictOption]
         
         guard
             option != .ignore,

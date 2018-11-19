@@ -32,7 +32,7 @@ final class ServicesProvider: NSObject {
     /// open new document with string via Services
     @objc func openSelection(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
-        guard let selection = pboard.string(forType: .string) else { return }
+        guard let selection = pboard.string(forType: .string) else { return assertionFailure() }
         
         let document: NSDocument
         do {
@@ -54,7 +54,7 @@ final class ServicesProvider: NSObject {
     /// open files via Services
     @objc func openFile(_ pboard: NSPasteboard, userData: String, error: AutoreleasingUnsafeMutablePointer<NSString?>) {
         
-        guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return }
+        guard let fileURLs = pboard.readObjects(forClasses: [NSURL.self]) as? [URL] else { return assertionFailure() }
         
         for fileURL in fileURLs {
             NSDocumentController.shared.openDocument(withContentsOf: fileURL, display: true) { (document: NSDocument?, documentWasAlreadyOpen: Bool, error: Error?) in

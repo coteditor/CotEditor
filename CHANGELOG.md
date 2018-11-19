@@ -2,6 +2,31 @@
 Change Log
 ==========================
 
+3.6.5 (297)
+--------------------------
+
+### New Features
+
+- New option for cursor style (Customize the behavior in Appearances preference pane).
+
+
+### Improvements
+
+- Avoid drawing variant sequence as invisible control characters.
+- Make line number view opaque if lines are unwrapped on macOS 10.14 to avoid drawing the editor's text over the line numbers.
+- Revoke the line counting behavior change with VoiceOver in CotEditor 3.6.3.
+- [tirivial] Draw vertical tabs as general invisible control characters.
+
+
+### Fixes
+
+- Fix an issue where the editor area could still tuck under the line number view.
+- Fix an issue where the line number of the last empty line disappeared when lines are not wrapped and scrolled.
+- [trivial] Fix a weird view expansion on the first transition to the General preferences pane.
+- [trivial] Fix an issue on Mojave where the text selection highlight could remain between lines.
+
+
+
 3.6.4 (294)
 --------------------------
 

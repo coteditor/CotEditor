@@ -137,11 +137,9 @@ extension NSTextView {
             if #available(macOS 10.14, *), let scrollView = self.enclosingScrollView {
                 switch self.layoutOrientation {
                 case .horizontal:
-                    let rulerThickness = scrollView.rulersVisible ? (scrollView.verticalRulerView?.requiredThickness ?? 0) : 0
-                    self.frame.size.width = scrollView.contentSize.width - rulerThickness
+                    self.frame.size.width = scrollView.documentUsableSize.width
                 case .vertical:
-                    let rulerThickness = scrollView.rulersVisible ? (scrollView.horizontalRulerView?.requiredThickness ?? 0) : 0
-                    self.frame.size.height = scrollView.contentSize.height - rulerThickness
+                    self.frame.size.height = scrollView.documentUsableSize.height
                 }
             }
             
@@ -169,8 +167,9 @@ extension NSTextView {
         
         let currentScale = self.scale
         
+        guard scale != currentScale else { return }
+        
         guard
-            scale != currentScale,
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
             else { return assertionFailure() }
@@ -268,12 +267,13 @@ extension NSTextView {
 
 private extension NSScrollView {
     
-    /// contentSize removing ruler thicknesses
+    /// contentSize removing insets
     var documentUsableSize: NSSize {
         
+        let insets = self.contentView.contentInsets
         var size = self.contentSize
-        size.width -= self.verticalRulerView?.requiredThickness ?? 0
-        size.height -= self.horizontalRulerView?.requiredThickness ?? 0
+        size.width -= insets.left + insets.right
+        size.height -= insets.top + insets.bottom
         
         return size
     }

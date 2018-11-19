@@ -41,6 +41,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
+    @IBOutlet private weak var barCursorButton: NSButton?
+    @IBOutlet private weak var thickBarCursorButton: NSButton?
+    @IBOutlet private weak var blockCursorButton: NSButton?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private var themeTableMenu: NSMenu?
     
@@ -75,6 +78,16 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewWillAppear()
         
         self.setupFontFamilyNameAndSize()
+        
+        // select one of cursor type radio buttons
+        switch UserDefaults.standard[.cursorType] {
+        case .bar:
+            self.barCursorButton?.state = .on
+        case .thickBar:
+            self.thickBarCursorButton?.state = .on
+        case .block:
+            self.blockCursorButton?.state = .on
+        }
         
         let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         let row = self.themeNames.index(of: themeName) ?? 0
@@ -357,10 +370,17 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Action Messages
     
+    /// A radio button of documentConflictOption was clicked
+    @IBAction func updateCursorTypeSetting(_ sender: NSButton) {
+        
+        UserDefaults.standard[.cursorType] = CursorType(rawValue: sender.tag)!
+    }
+    
+    
     /// add theme
     @IBAction func addTheme(_ sender: Any?) {
         
-        guard let tableView = self.themeTableView else { return }
+        guard let tableView = self.themeTableView else { return assertionFailure() }
         
         try? ThemeManager.shared.createUntitledSetting { themeName in
             let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
@@ -623,7 +643,7 @@ extension AppearancePaneController: NSFontChanging {
     /// font in font panel did update
     @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let sender = sender else { return }
+        guard let sender = sender else { return assertionFailure() }
         
         let newFont = sender.convert(.systemFont(ofSize: 0))
         

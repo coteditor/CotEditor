@@ -92,20 +92,20 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                 }
                 return defaults[.printTheme] ?? ThemeName.blackAndWhite
             }()
-            self.lineNumberMode = PrintLineNmuberMode(defaults[.printLineNumIndex])
-            self.invisibleCharsMode = PrintInvisiblesMode(defaults[.printInvisibleCharIndex])
+            self.lineNumberMode = defaults[.printLineNumIndex]
+            self.invisibleCharsMode = defaults[.printInvisibleCharIndex]
             
             self.printsHeader = defaults[.printHeader]
-            self.primaryHeaderContent = PrintInfoType(defaults[.primaryHeaderContent])
-            self.primaryHeaderAlignment = AlignmentType(defaults[.primaryHeaderAlignment])
-            self.secondaryHeaderContent = PrintInfoType(defaults[.secondaryHeaderContent])
-            self.secondaryHeaderAlignment = AlignmentType(defaults[.secondaryHeaderAlignment])
+            self.primaryHeaderContent = defaults[.primaryHeaderContent]
+            self.primaryHeaderAlignment = defaults[.primaryHeaderAlignment]
+            self.secondaryHeaderContent = defaults[.secondaryHeaderContent]
+            self.secondaryHeaderAlignment = defaults[.secondaryHeaderAlignment]
             
             self.printsFooter = defaults[.printFooter]
-            self.primaryFooterContent = PrintInfoType(defaults[.primaryFooterContent])
-            self.primaryFooterAlignment = AlignmentType(defaults[.primaryFooterAlignment])
-            self.secondaryFooterContent = PrintInfoType(defaults[.secondaryFooterContent])
-            self.secondaryFooterAlignment = AlignmentType(defaults[.secondaryFooterAlignment])
+            self.primaryFooterContent = defaults[.primaryFooterContent]
+            self.primaryFooterAlignment = defaults[.primaryFooterAlignment]
+            self.secondaryFooterContent = defaults[.secondaryFooterContent]
+            self.secondaryFooterAlignment = defaults[.secondaryFooterAlignment]
             
             // apply current theme
             self.setupColorMenu()
@@ -178,7 +178,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         let themeNames = ThemeManager.shared.settingNames
         
-        guard let popupButton = self.colorPopupButton else { return }
+        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
         
         popupButton.removeAllItems()
         

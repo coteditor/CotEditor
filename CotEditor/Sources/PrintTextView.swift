@@ -117,7 +117,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         super.beginDocument()
         
-        guard let printInfo = NSPrintOperation.current?.printInfo else { return }
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return assertionFailure() }
         
         self.applyPrintSettings(printInfo: printInfo)
         self.resizeFrame(printInfo: printInfo)
@@ -263,7 +263,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// parse current print settings in printInfo
     private func applyPrintSettings(printInfo: NSPrintInfo) {
         
-        guard let layoutManager = self.layoutManager as? LayoutManager else { return }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
         let settings = printInfo.dictionary() as! [NSPrintInfo.AttributeKey: Any]
         

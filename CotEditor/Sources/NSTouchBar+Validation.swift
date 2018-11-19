@@ -209,10 +209,9 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         guard
             let control = self.control,
             let action = control.action,
-            let validator = NSApp.target(forAction: action, to: control.target, from: self) as AnyObject?
+            let validator = NSApp.target(forAction: action, to: control.target, from: self)
             else { return }
         
-        // -> Casting from Any to AnyObject before putting it to `switch` statement is really important. Be careful if you wanna make a change. (2017-02-03 on SDK macOS 10.12)
         switch validator {
         case let validator as TouchBarItemValidations:
             control.isEnabled = validator.validateTouchBarItem(self)

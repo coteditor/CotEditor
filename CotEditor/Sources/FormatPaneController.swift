@@ -283,17 +283,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    /// show encoding list edit sheet
-    @IBAction func openEncodingEditSheet(_ sender: Any?) {
-        
-        self.presentAsSheet(EncodingListViewController())
-    }
-    
-    
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        self.presentAsSheet(SyntaxMappingConflictsViewController())
+        let viewController = NSStoryboard(name: "SyntaxMappingConflictsView", bundle: nil).instantiateInitialController() as! NSViewController
+        self.presentAsSheet(viewController)
     }
     
     
@@ -418,7 +412,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         guard
             let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu
-            else { return }
+            else { return assertionFailure() }
         
         let menuItems = EncodingManager.shared.createEncodingMenuItems()
         

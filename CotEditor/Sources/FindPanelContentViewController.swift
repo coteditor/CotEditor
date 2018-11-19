@@ -148,7 +148,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         guard
             let resultViewItem = self.resultSplitViewItem,
             let panel = self.splitView.window
-            else { return }
+            else { return assertionFailure() }
         
         let resultView = resultViewItem.viewController.view
         let height = resultView.bounds.height

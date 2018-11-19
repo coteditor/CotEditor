@@ -34,7 +34,7 @@ final class LayoutManager: NSLayoutManager {
     var showsInvisibles = false {
         
         didSet {
-            guard let wholeRange = self.textStorage?.string.nsRange else { return }
+            guard let wholeRange = self.textStorage?.string.nsRange else { return assertionFailure() }
             
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
@@ -116,7 +116,6 @@ final class LayoutManager: NSLayoutManager {
         let tab: CTLine
         let newLine: CTLine
         let fullwidthSpace: CTLine
-        let verticalTab: CTLine
         let replacement: CTLine
     }
     
@@ -251,15 +250,9 @@ final class LayoutManager: NSLayoutManager {
                     guard self.showsFullwidthSpace else { continue }
                     line = self.invisibleLines.fullwidthSpace
                     
-                case .verticalTab?:
-                    guard self.showsOtherInvisibles else { continue }  // Vertical tab belongs to the other invisibles.
-                    line = self.invisibleLines.verticalTab
-                    
                 default:
                     guard self.showsOtherInvisibles else { continue }
-                    guard self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph) else { continue }
-                    // skip the second glyph if character is a surrogate-pair
-                    guard !UTF16.isTrailSurrogate(codeUnit) else { continue }
+                    guard self.propertyForGlyph(at: glyphIndex) == .controlCharacter else { continue }
                     line = self.invisibleLines.replacement
                 }
                 
@@ -340,7 +333,10 @@ final class LayoutManager: NSLayoutManager {
         
         guard UserDefaults.standard[.enablesHangingIndent] else { return }
         
-        guard let textStorage = self.textStorage, let textView = self.firstTextView else { return }
+        guard
+            let textStorage = self.textStorage,
+            let textView = self.firstTextView
+            else { return assertionFailure() }
         
         // only on focused editor
         if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }
@@ -429,7 +425,6 @@ final class LayoutManager: NSLayoutManager {
                               tab: self.invisibleLine(.tab, font: font),
                               newLine: self.invisibleLine(.newLine, font: font),
                               fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
-                              verticalTab: self.invisibleLine(.verticalTab, font: fullWidthFont),
                               replacement: self.invisibleLine(.replacement, font: fullWidthFont))
     }
     

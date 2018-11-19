@@ -78,7 +78,6 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let tab = NSAttributedString(string: Invisible.tab.usedSymbol, attributes: attributes)
             let newLine = NSAttributedString(string: Invisible.newLine.usedSymbol, attributes: attributes)
             let fullwidthSpace = NSAttributedString(string: Invisible.fullwidthSpace.usedSymbol, attributes: fullwidthAttributes)
-            let verticalTab = NSAttributedString(string: Invisible.verticalTab.usedSymbol, attributes: attributes)
             
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
@@ -105,14 +104,10 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     guard showsFullwidthSpace else { continue }
                     glyphString = fullwidthSpace
                     
-                case .verticalTab?:
-                    guard showsOtherInvisibles else { continue }
-                    glyphString = verticalTab
-                    
                 default:
                     guard showsOtherInvisibles else { continue }
                     guard
-                        self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph),
+                        self.propertyForGlyph(at: glyphIndex) == .controlCharacter,
                         self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
                         else { continue }
                     

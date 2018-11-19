@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,6 +26,9 @@
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="hLU-O5-Y6k">
                                 <rect key="frame" x="20" y="53" width="520" height="347"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="347" id="2X6-VD-y6g"/>
+                                </constraints>
                                 <connections>
                                     <segue destination="udD-qO-Gzu" kind="embed" id="gtj-Fu-jRb"/>
                                 </connections>
@@ -222,7 +225,7 @@
                                     <binding destination="sBQ-LT-Rwm" name="enabled" keyPath="restoreble" id="vHw-kA-B8G"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9m2-IX-4UY">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9m2-IX-4UY">
                                 <rect key="frame" x="18" y="339" width="165" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Shortcuts for menu items" id="ZYM-tb-Csx">
                                     <font key="font" metaFont="systemSemibold" size="13"/>
@@ -230,7 +233,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-Ch-TGC">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bY-Ch-TGC">
                                 <rect key="frame" x="187" y="339" width="129" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="(excluding Script menu)" id="Dl2-3y-7EJ">
                                     <font key="font" metaFont="smallSystem"/>
@@ -238,7 +241,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlK-a9-bD5">
+                            <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rlK-a9-bD5">
                                 <rect key="frame" x="18" y="305" width="478" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The keys here must include the Command key." id="qGe-Et-FB2">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1066,13 +1069,13 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4k-5i-Dap">
-                                <rect key="frame" x="20" y="132" width="474" height="165"/>
+                                <rect key="frame" x="20" y="140" width="474" height="157"/>
                                 <clipView key="contentView" id="jvf-yy-WrK">
-                                    <rect key="frame" x="1" y="0.0" width="472" height="164"/>
+                                    <rect key="frame" x="1" y="0.0" width="472" height="156"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="firstColumnOnly" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="4UU-j5-2K9" viewBased="YES" indentationPerLevel="16" outlineTableColumn="sz5-hl-bZK" id="ehK-hE-MU5">
-                                            <rect key="frame" x="0.0" y="0.0" width="472" height="141"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="472" height="133"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1185,7 +1188,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5MG-oB-l1Z">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5MG-oB-l1Z">
                                 <rect key="frame" x="18" y="339" width="219" height="17"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Shortcuts for preset text insertion" id="eMZ-Mx-JSK">
                                     <font key="font" metaFont="systemSemibold" size="13"/>
@@ -1193,7 +1196,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H96-sj-oDK">
+                            <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H96-sj-oDK">
                                 <rect key="frame" x="18" y="305" width="478" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="The keys here must exclude the Command key." id="5zd-aF-0zL">
                                     <font key="font" metaFont="smallSystem"/>
@@ -1239,7 +1242,7 @@
                             <constraint firstAttribute="trailing" secondItem="H96-sj-oDK" secondAttribute="trailing" constant="20" symbolic="YES" id="9Ry-c6-93e"/>
                             <constraint firstItem="Y0R-5q-peR" firstAttribute="top" secondItem="5MG-oB-l1Z" secondAttribute="bottom" constant="4" id="I4t-zj-kbI"/>
                             <constraint firstItem="Ail-hi-5Nc" firstAttribute="leading" secondItem="UXn-Ep-KgN" secondAttribute="trailing" constant="8" symbolic="YES" id="IWP-VW-sJM"/>
-                            <constraint firstItem="9iZ-6g-sv2" firstAttribute="top" secondItem="u4k-5i-Dap" secondAttribute="bottom" constant="8" symbolic="YES" id="Ksn-1i-KaT"/>
+                            <constraint firstItem="9iZ-6g-sv2" firstAttribute="top" secondItem="u4k-5i-Dap" secondAttribute="bottom" constant="16" id="Ksn-1i-KaT"/>
                             <constraint firstItem="5MG-oB-l1Z" firstAttribute="leading" secondItem="yh9-JI-r5p" secondAttribute="leading" constant="20" symbolic="YES" id="MzN-e7-cEf"/>
                             <constraint firstAttribute="trailing" secondItem="Ail-hi-5Nc" secondAttribute="trailing" constant="20" symbolic="YES" id="Qdd-Ea-LO5"/>
                             <constraint firstItem="9iZ-6g-sv2" firstAttribute="leading" secondItem="yh9-JI-r5p" secondAttribute="leading" constant="20" symbolic="YES" id="T8S-lr-Hvd"/>

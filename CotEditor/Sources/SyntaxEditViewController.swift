@@ -226,7 +226,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     /// side menu tableView selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let tableView = notification.object as? NSTableView else { return }
+        guard let tableView = notification.object as? NSTableView else { return assertionFailure() }
         
         let row = tableView.selectedRow
         

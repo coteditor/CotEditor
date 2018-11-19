@@ -85,11 +85,9 @@ final class FindPanelButtonViewController: NSViewController {
     
     
     /// perform segmented Find Next/Previous button
-    @IBAction func clickSegmentedFindButton(_ sender: Any?) {
+    @IBAction func clickSegmentedFindButton(_ sender: NSSegmentedControl) {
         
-        guard let segmentedControl = sender as? NSSegmentedControl else { return }
-        
-        switch segmentedControl.selectedSegment {
+        switch sender.selectedSegment {
         case 0:
             TextFinder.shared.findPrevious(sender)
         case 1:

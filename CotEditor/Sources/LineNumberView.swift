@@ -149,16 +149,26 @@ final class LineNumberView: NSRulerView {
     /// make background transparent
     override var isOpaque: Bool {
         
-        return self.textView?.isOpaque ?? true
+        guard let textView = self.textView else { return true }
+        
+        if textView.isOpaque { return true }
+        
+        // avoid overlapping line numbers with the text in the text view
+        // -> On macOS 10.14 (and later?), text view is drawn under the ruler view. (2018-11 macOS 10.14)
+        if NSAppKitVersion.current > .macOS10_13_4 {
+            return !textView.wrapsLines
+        }
+        
+        return false
     }
     
     
-    /// just before view will be attached
+    /// just before the receiver attaches to a superview
     override func viewWillMove(toSuperview newSuperview: NSView?) {
         
         super.viewWillMove(toSuperview: newSuperview)
         
-        // ignore when detached
+        // ignore when detaches
         guard newSuperview != nil else { return }
         
         // set thicknesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
@@ -360,14 +370,14 @@ final class LineNumberView: NSRulerView {
             case .verticalRuler:
                 let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
                 let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
-                return max(thickness, self.minVerticalThickness)
+                return max(ceil(thickness), self.minVerticalThickness)
             case .horizontalRuler:
                 let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
-                return max(thickness, self.minHorizontalThickness)
+                return max(ceil(thickness), self.minHorizontalThickness)
             }
         }()
-        if ceil(ruleThickness) != self.ruleThickness {
-            self.ruleThickness = ceil(ruleThickness)
+        if ruleThickness != self.ruleThickness {
+            self.ruleThickness = ruleThickness
         }
     }
     

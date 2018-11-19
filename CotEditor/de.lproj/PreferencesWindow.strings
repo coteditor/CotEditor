@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,41 +25,24 @@
  
  */
 
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
-"6.title" = "Einstellungen";
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "KjF-xP-N55"; */
+"KjF-xP-N55.title" = "Einstellungen";
 
-/* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
-"HlR-fr-Hwd.label" = "Allgemein";  /* General */
-"HlR-fr-Hwd.paletteLabel" = "Allgemein";  /* General */
-
-/* Class = "NSToolbarItem"; ObjectID = "agm-iM-Y3j"; */
-"agm-iM-Y3j.label" = "Fenster";  /* Window */
-"agm-iM-Y3j.paletteLabel" = "Fenster";  /* Window */
-
-/* Class = "NSToolbarItem"; ObjectID = "TSL-LZ-a98"; */
-"TSL-LZ-a98.label" = "Aussehen";  /* Appearance */
-"TSL-LZ-a98.paletteLabel" = "Aussehen";  /* Appearance */
-
-/* Class = "NSToolbarItem"; ObjectID = "bYW-oU-kKx"; */
-"bYW-oU-kKx.label" = "Bearbeiten";  /* Edit */
-"bYW-oU-kKx.paletteLabel" = "Bearbeiten";  /* Edit */
-
-/* Class = "NSToolbarItem"; ObjectID = "Pxf-UL-fD9"; */
-"Pxf-UL-fD9.label" = "Format";  /* Format  */
-"Pxf-UL-fD9.paletteLabel" = "Format";  /* Format  */
-
-/* Class = "NSToolbarItem"; ObjectID = "0c4-Jh-Er6"; */
-"0c4-Jh-Er6.label" = "Datei-Drop";  /* File Drop */
-"0c4-Jh-Er6.paletteLabel" = "Datei-Drop";  /* File Drop */
-
-/* Class = "NSToolbarItem"; ObjectID = "WSf-8J-dN6"; */
-"WSf-8J-dN6.label" = "Kurzbefehle";  /* Key Bindings */
-"WSf-8J-dN6.paletteLabel" = "Kurzbefehle";  /* Key Bindings */
-
-/* Class = "NSToolbarItem"; ObjectID = "uTl-fL-Jcq"; */
-"uTl-fL-Jcq.label" = "Drucken";  /* Print */
-"uTl-fL-Jcq.paletteLabel" = "Drucken";  /* Print */
-
-/* Class = "NSToolbarItem"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.label" = "Integration";  /* Integration */
-"Bn7-e8-FVC.paletteLabel" = "Integration";  /* Integration */
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
+"CNJ-6L-fga.label" = "Allgemein";
+/* Class = "NSTabViewItem"; label = "Window"; ObjectID = "5fL-58-BrZ"; */
+"5fL-58-BrZ.label" = "Fenster";
+/* Class = "NSTabViewItem"; label = "Appearance"; ObjectID = "icK-P1-6ta"; */
+"icK-P1-6ta.label" = "Aussehen";
+/* Class = "NSTabViewItem"; label = "Edit"; ObjectID = "sh3-xI-elX"; */
+"sh3-xI-elX.label" = "Bearbeiten";
+/* Class = "NSTabViewItem"; label = "Format"; ObjectID = "frU-Pc-xZT"; */
+"frU-Pc-xZT.label" = "Format";
+/* Class = "NSTabViewItem"; label = "File Drop"; ObjectID = "aO6-oS-ZGt"; */
+"aO6-oS-ZGt.label" = "Datei-Drop";
+/* Class = "NSTabViewItem"; label = "Key Bindings"; ObjectID = "b8q-WN-1ls"; */
+"b8q-WN-1ls.label" = "Kurzbefehle";
+/* Class = "NSTabViewItem"; label = "Print"; ObjectID = "UuB-iq-kOt"; */
+"UuB-iq-kOt.label" = "Drucken";
+/* Class = "NSTabViewItem"; label = "Integration"; ObjectID = "gEv-qP-tRM"; */
+"gEv-qP-tRM.label" = "Integration";

@@ -184,7 +184,7 @@ final class OutlineViewController: NSViewController {
             NotificationCenter.default.removeObserver(observer)
         }
         
-        guard let document = self.document else { return }
+        guard let document = self.document else { return assertionFailure() }
         
         self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [unowned self] _ in
             self.observeSyntaxStyle()
@@ -202,7 +202,7 @@ final class OutlineViewController: NSViewController {
             NotificationCenter.default.removeObserver(observer)
         }
         
-        guard let syntaxParser = self.document?.syntaxParser else { return }
+        guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
         self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [unowned self] _ in
             self.outlineView?.reloadData()
@@ -215,7 +215,7 @@ final class OutlineViewController: NSViewController {
     /// update row selection to synchronize with editor's cursor location
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
-        guard let outlineView = self.outlineView else { return }
+        guard let outlineView = self.outlineView else { return assertionFailure() }
         
         guard
             let textView = textView ?? self.document?.textView,

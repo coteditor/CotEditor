@@ -40,7 +40,7 @@ final class ATSTypesetter: NSATSTypesetter {
         //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         //      挿入すると行間がズレる」問題が生じる。
         
-        guard let manager = self.layoutManager as? LayoutManager else { return }
+        guard let manager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
         lineRect.pointee.size.height = manager.lineHeight
         usedRect.pointee.size.height = manager.lineHeight
