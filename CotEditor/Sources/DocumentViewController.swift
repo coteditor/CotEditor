@@ -744,7 +744,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// change tab width to desired number through a sheet
     @IBAction func customizeTabWidth(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: "CustomTabWidthView", bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
+        let viewController = CustomTabWidthViewController.instantiate(storyboard: "CustomTabWidthView")
         viewController.defaultWidth = self.tabWidth
         viewController.completionHandler = { [weak self] (tabWidth) in
             self?.tabWidth = tabWidth
@@ -903,8 +903,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// create new (split) editor view
     private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
         
-        let storyboard = NSStoryboard(name: "EditorView", bundle: nil)
-        let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
+        let editorViewController = EditorViewController.instantiate(storyboard: "EditorView")
         
         self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
         

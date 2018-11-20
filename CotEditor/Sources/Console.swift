@@ -49,7 +49,7 @@ final class Console {
     
     static let shared = Console()
     
-    let panelController = NSStoryboard(name: "ConsolePanel", bundle: nil).instantiateInitialController() as! NSWindowController
+    let panelController = NSWindowController.instantiate(storyboard: "ConsolePanel")
     
     
     

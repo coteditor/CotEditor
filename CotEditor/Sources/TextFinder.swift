@@ -82,8 +82,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel", bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
+    private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
     
     
     

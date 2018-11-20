@@ -540,6 +540,8 @@
 		2ACA0C8D21A29D4800723073 /* FindPreferencesView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C8A21A29D4800723073 /* FindPreferencesView.storyboard */; };
 		2ACA0C9521A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */; };
 		2ACA0C9621A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */; };
+		2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
+		2ACA0C9E21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */; };
 		2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B11E52B7920078241F /* DefaultOptions.swift */; };
 		2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC21B41E52B8C50078241F /* DefaultKeys.swift */; };
@@ -1218,6 +1220,7 @@
 		2ACA0C9921A2A13200723073 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2ACA0C9A21A2A13400723073 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
 		2ACA0C9B21A2A13500723073 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
+		2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Instantiation.swift"; sourceTree = "<group>"; };
 		2ACB538D1A3DFC170040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
@@ -1685,6 +1688,7 @@
 			isa = PBXGroup;
 			children = (
 				2ADD0AEA2184AB6F00F78732 /* NSObject+Binding.swift */,
+				2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */,
 				2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */,
 				2A5D2DC221908F4A006814D5 /* NSFont+Name.swift */,
@@ -2756,6 +2760,7 @@
 				2AC3845420C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2AE12E081E7DDF0700681F72 /* CustomSurroundStringViewController.swift in Sources */,
 				2A4CB9931D79F38A000D6ADA /* DocumentToolbar.swift in Sources */,
+				2ACA0C9E21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2A4257A81D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */,
 				2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */,
@@ -3119,6 +3124,7 @@
 				2A4714E9209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */,
 				2A5D13381D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
 				2A6FD9F31D3ACEB500A59784 /* DefaultKey.swift in Sources */,
+				2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
 				2AAD61F81D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */,
 				2A5D132F1D1FACC900D38E6A /* FindPanelLayoutManager.swift in Sources */,
