@@ -143,4 +143,5 @@ private extension PreferencesTabViewController {
             item.label = localized
         }
     }
+    
 }
