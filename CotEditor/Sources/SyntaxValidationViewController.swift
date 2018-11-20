@@ -46,15 +46,6 @@ final class SyntaxValidationViewController: NSViewController {
     }
     
     
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
-        self.textView?.textColor = .controlTextColor
-    }
-    
-    
     
     // MARK: Public Methods
     
