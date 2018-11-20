@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -192,7 +192,7 @@
                                 </buttonCell>
                                 <accessibility description="Advanced options"/>
                                 <connections>
-                                    <action selector="showPreferences:" target="fdE-8e-ywb" id="fH6-fz-kav"/>
+                                    <segue destination="qrF-VN-jgm" kind="popover" popoverAnchorView="ESq-ws-6H3" popoverBehavior="t" preferredEdge="maxX" id="qwL-bu-RuM"/>
                                 </connections>
                             </button>
                             <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
@@ -202,7 +202,7 @@
                                     <font key="font" metaFont="miniSystem"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="showRegexHelp:" target="fdE-8e-ywb" id="LmB-uw-LiE"/>
+                                    <segue destination="EHa-wl-4gS" kind="popover" popoverAnchorView="i2l-7Z-Zmf" popoverBehavior="t" preferredEdge="maxY" id="k5A-DB-ULq"/>
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-bg-rl5" userLabel="Recent Searches">
@@ -350,6 +350,22 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="773" y="444"/>
+        </scene>
+        <!--FindPreferencesView-->
+        <scene sceneID="otw-IE-cg6">
+            <objects>
+                <controllerPlaceholder storyboardName="FindPreferencesView" id="qrF-VN-jgm" sceneMemberID="viewController"/>
+                <customObject id="RCr-zH-1qK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1184" y="503"/>
+        </scene>
+        <!--RegexReferenceView-->
+        <scene sceneID="JHc-Ro-gvI">
+            <objects>
+                <controllerPlaceholder storyboardName="RegexReferenceView" id="EHa-wl-4gS" sceneMemberID="viewController"/>
+                <customObject id="yvX-k1-Q2J" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1185" y="444"/>
         </scene>
         <!--Find Panel Result View Controller-->
         <scene sceneID="Emr-ob-ZO3">

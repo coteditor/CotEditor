@@ -67,13 +67,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     // MARK: -
     // MARK: View Controller Method
     
-    /// nib name
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("PrintPanelAccessory")
-    }
-    
-    
     /// printInfo did set (new print sheet will be displayed)
     override var representedObject: Any? {
         

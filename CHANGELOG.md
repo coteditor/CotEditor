@@ -2,6 +2,17 @@
 Change Log
 ==========================
 
+3.6.6 (299)
+--------------------------
+
+### Fixes
+
+- Fix an issue on CotEditor 3.6.5 where the syntax highlight did not update while typing.
+- Fix an issue where preferences panes could not changed under macOS 10.12.
+- Add missing localizations.
+
+
+
 3.6.5 (297)
 --------------------------
 

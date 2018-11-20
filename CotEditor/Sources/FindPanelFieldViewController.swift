@@ -33,9 +33,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
-    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: "RegexReferenceView", bundle: nil)
-    private lazy var preferencesViewController = NSViewController(nibName: "FindPreferencesView", bundle: nil)
-    
     @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
@@ -127,34 +124,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: Action Messages
-    
-    /// show regular expression reference as popover
-    @IBAction func showRegexHelp(_ sender: Any?) {
-        
-        if self.presentedViewControllers?.contains(self.regexReferenceViewController) ?? false {
-            self.dismiss(self.regexReferenceViewController)
-            
-        } else {
-            guard let senderView = sender as? NSView else { return }
-            
-            self.present(self.regexReferenceViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxY, behavior: .semitransient)
-        }
-    }
-    
-    
-    /// show find panel preferences as popover
-    @IBAction func showPreferences(_ sender: Any?) {
-        
-        if self.presentedViewControllers?.contains(self.preferencesViewController) ?? false {
-            self.dismiss(self.preferencesViewController)
-            
-        } else {
-            guard let senderView = sender as? NSView else { return }
-            
-            self.present(self.preferencesViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxX, behavior: .transient)
-        }
-    }
-    
     
     /// set selected history string to find field
     @IBAction func selectFindHistory(_ sender: NSMenuItem?) {
