@@ -185,6 +185,7 @@ struct DefaultSettings {
         .savesTextOrientation: true,
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
+        .maximumSelectionInstanceHighlightCount: 100,
         ]
     
     

@@ -163,9 +163,9 @@ extension DefaultKeys {
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
+    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     
     // hidden settings
-    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
     static let headerFooterPathAbbreviatingWithTilde = DefaultKey<Bool>("headerFooterPathAbbreviatingWithTilde")
     static let autoCompletionDelay = DefaultKey<Double>("autoCompletionDelay")
@@ -176,6 +176,7 @@ extension DefaultKeys {
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
     static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
+    static let maximumSelectionInstanceHighlightCount = DefaultKey<Int>("maximumSelectionInstanceHighlightCount")
     
     static let lastVersion = DefaultKey<String>("lastVersion")
     

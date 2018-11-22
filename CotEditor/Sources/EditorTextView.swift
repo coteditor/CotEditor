@@ -1444,12 +1444,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         let substring = String(self.string[range])
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
+        let matches = regex.matches(in: self.string, range: self.string.nsRange)
+            
+        guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
         
-        regex.matches(in: self.string, range: self.string.nsRange)
+        matches
             .map { $0.range }
-            .forEach {
-                self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0)
-            }
+            .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
     }
     
 }

@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.7 (unreleased)
+--------------------------
+
+### Improvements
+
+- Change not to highlight occurrences of the selection when there are more than 100.
+
+
+
 3.6.6 (299)
 --------------------------
 
