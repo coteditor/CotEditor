@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Syntax Comments Edit View Controller-->
+        <!--Syntax Edit Child View Controller-->
         <scene sceneID="o9u-Na-igU">
             <objects>
-                <viewController id="dQc-6h-PHn" customClass="SyntaxCommentsEditViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dQc-6h-PHn" customClass="SyntaxEditChildViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Hz6-mo-xeY">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -411,17 +411,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="commentcController" destination="SKZ-Xe-n9z" id="Qjp-yG-uGe"/>
-                        <outlet property="delimitersController" destination="zSU-F6-ULA" id="8BU-JZ-Ecm"/>
                         <outlet property="tableViewDelegate" destination="Mps-4k-Noo" id="6kW-mG-Pnj"/>
                     </connections>
                 </viewController>
                 <customObject id="qlc-O4-KrW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController id="au5-OB-I1o" userLabel="Style Controller">
-                    <connections>
-                        <binding destination="dQc-6h-PHn" name="contentObject" keyPath="representedObject" id="HFh-aj-YqA"/>
-                    </connections>
-                </objectController>
                 <objectController id="zSU-F6-ULA" userLabel="Delimiters Controller">
                     <declaredKeys>
                         <string>inlineDelimiter</string>
@@ -429,7 +422,7 @@
                         <string>endDelimiter</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="au5-OB-I1o" name="contentObject" keyPath="selection.commentDelimiters" id="Fe8-Az-Vmr"/>
+                        <binding destination="dQc-6h-PHn" name="contentObject" keyPath="representedObject.commentDelimiters" id="npp-PR-kRJ"/>
                     </connections>
                 </objectController>
                 <arrayController clearsFilterPredicateOnInsertion="NO" id="SKZ-Xe-n9z" userLabel="Comments Controller">
@@ -441,14 +434,10 @@
                         <string>description</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="au5-OB-I1o" name="contentArray" keyPath="selection.comments" id="euC-rA-7iw"/>
+                        <binding destination="dQc-6h-PHn" name="contentArray" keyPath="representedObject.comments" id="GAJ-ij-PNY"/>
                     </connections>
                 </arrayController>
-                <customObject id="Mps-4k-Noo" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="SKZ-Xe-n9z" id="OXn-zj-SXA"/>
-                    </connections>
-                </customObject>
+                <customObject id="Mps-4k-Noo" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="330" y="-162"/>
         </scene>

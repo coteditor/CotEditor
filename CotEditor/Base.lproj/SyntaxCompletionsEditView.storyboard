@@ -165,11 +165,7 @@
                         <binding destination="GrA-AP-g7S" name="contentArray" keyPath="representedObject.completions" id="qsX-ND-083"/>
                     </connections>
                 </arrayController>
-                <customObject id="i4g-IP-54D" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="SKZ-Xe-n9z" id="SMF-Ny-5wG"/>
-                    </connections>
-                </customObject>
+                <customObject id="i4g-IP-54D" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="99" y="-56"/>
         </scene>

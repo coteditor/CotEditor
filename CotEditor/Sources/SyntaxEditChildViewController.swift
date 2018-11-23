@@ -28,5 +28,4 @@ import Cocoa
 final class SyntaxEditChildViewController: NSViewController {
     
     @IBOutlet private var tableViewDelegate: DefinitionTableViewDelegate?
-    
 }

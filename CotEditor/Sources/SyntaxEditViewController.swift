@@ -182,11 +182,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             controller.syntaxType = type
             viewControllers.append(controller)
         }
-        viewControllers.append(SyntaxCommentsEditViewController.instantiate(storyboard: "SyntaxCommentsEditView"))
+        viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCommentsEditView"))
         viewControllers.append(nil)  // separator
         viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxOutlineEditView"))
         viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCompletionsEditView"))
-        viewControllers.append(SyntaxFileMappingEditViewController.instantiate(storyboard: "SyntaxFileMappingEditView"))
+        viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxFileMappingEditView"))
         viewControllers.append(nil)  // separator
         viewControllers.append(NSViewController.instantiate(storyboard: "SyntaxInfoEditView"))
         viewControllers.append(SyntaxValidationViewController.instantiate(storyboard: "SyntaxValidationView"))

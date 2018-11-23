@@ -321,11 +321,7 @@
                         <binding destination="lwP-3N-c9s" name="contentArray" keyPath="representedObject.outlineMenu" id="i8s-Rl-rXC"/>
                     </connections>
                 </arrayController>
-                <customObject id="6W8-jL-KBe" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="SKZ-Xe-n9z" id="riK-mC-ZLg"/>
-                    </connections>
-                </customObject>
+                <customObject id="6W8-jL-KBe" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="298" y="-173"/>
         </scene>

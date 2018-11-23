@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Syntax File Mapping Edit View Controller-->
+        <!--Syntax Edit Child View Controller-->
         <scene sceneID="oGN-91-aUy">
             <objects>
-                <viewController id="PkK-eS-ZqL" customClass="SyntaxFileMappingEditViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PkK-eS-ZqL" customClass="SyntaxEditChildViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Hz6-mo-xeY">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -150,7 +150,7 @@
                                                 <binding destination="GNq-TE-e6o" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="Ucq-UV-FuQ" id="M0K-Be-rce"/>
                                                 <binding destination="GNq-TE-e6o" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="M0K-Be-rce" id="1sB-bq-dyH"/>
                                                 <outlet property="dataSource" destination="GNq-TE-e6o" id="Ega-x4-USD"/>
-                                                <outlet property="delegate" destination="A1s-0g-450" id="H5P-nb-f9e"/>
+                                                <outlet property="delegate" destination="d7s-my-ran" id="eOW-GP-12z"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -251,7 +251,7 @@
                                                 <binding destination="b1i-d7-DoG" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="iAr-Kc-eUO" id="I5G-Fk-P0B"/>
                                                 <binding destination="b1i-d7-DoG" name="sortDescriptors" keyPath="sortDescriptors" previousBinding="I5G-Fk-P0B" id="bcr-JC-C2G"/>
                                                 <outlet property="dataSource" destination="b1i-d7-DoG" id="YJP-EB-9Nw"/>
-                                                <outlet property="delegate" destination="T80-vh-snI" id="k3P-3y-16Q"/>
+                                                <outlet property="delegate" destination="d7s-my-ran" id="XWW-nK-Vv8"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -416,45 +416,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="extensionsController" destination="4o4-Do-zNT" id="tIR-l0-3cQ"/>
-                        <outlet property="extensionsTableViewDelegate" destination="d7s-my-ran" id="suw-iX-4aV"/>
-                        <outlet property="filenamesController" destination="GNq-TE-e6o" id="QUw-fB-cUB"/>
-                        <outlet property="filenamesTableViewDelegate" destination="A1s-0g-450" id="Zb7-e6-NIF"/>
-                        <outlet property="interpretersController" destination="b1i-d7-DoG" id="C91-RC-bVi"/>
-                        <outlet property="interpretersTableViewDelegate" destination="T80-vh-snI" id="1Qo-24-2hv"/>
-                        <outlet property="styleController" destination="hc2-Je-ujn" id="Opt-9I-DfX"/>
+                        <outlet property="tableViewDelegate" destination="d7s-my-ran" id="mhI-hK-cKs"/>
                     </connections>
                 </viewController>
                 <customObject id="57I-0Z-vMv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController id="hc2-Je-ujn" userLabel="Style Controller">
-                    <declaredKeys>
-                        <string>keywords</string>
-                        <string>commands</string>
-                        <string>types</string>
-                        <string>variables</string>
-                        <string>values</string>
-                        <string>numbers</string>
-                        <string>strings</string>
-                        <string>characters</string>
-                        <string>comments</string>
-                        <string>outlineMenu</string>
-                        <string>completions</string>
-                        <string>extensions</string>
-                        <string>filenames</string>
-                        <string>commentDelimiters</string>
-                        <string>attributes</string>
-                        <string>metadata</string>
-                    </declaredKeys>
-                    <connections>
-                        <binding destination="PkK-eS-ZqL" name="contentObject" keyPath="representedObject" id="Rdr-fM-4Fv"/>
-                    </connections>
-                </objectController>
                 <arrayController clearsFilterPredicateOnInsertion="NO" id="4o4-Do-zNT" userLabel="Extensions Controller" customClass="DraggableArrayController" customModule="CotEditor" customModuleProvider="target">
                     <declaredKeys>
                         <string>keyString</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="hc2-Je-ujn" name="contentArray" keyPath="selection.extensions" id="cxv-DJ-lbP"/>
+                        <binding destination="PkK-eS-ZqL" name="contentArray" keyPath="representedObject.extensions" id="OJg-9J-DAm"/>
                     </connections>
                 </arrayController>
                 <arrayController clearsFilterPredicateOnInsertion="NO" id="GNq-TE-e6o" userLabel="Filenames Controller">
@@ -462,7 +433,7 @@
                         <string>keyString</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="hc2-Je-ujn" name="contentArray" keyPath="selection.filenames" id="tKm-di-Z0u"/>
+                        <binding destination="PkK-eS-ZqL" name="contentArray" keyPath="representedObject.filenames" id="lxJ-Nv-cit"/>
                     </connections>
                 </arrayController>
                 <arrayController clearsFilterPredicateOnInsertion="NO" id="b1i-d7-DoG" userLabel="Interpreters Controller">
@@ -470,24 +441,10 @@
                         <string>keyString</string>
                     </declaredKeys>
                     <connections>
-                        <binding destination="hc2-Je-ujn" name="contentArray" keyPath="selection.interpreters" id="zIr-Dy-CE8"/>
+                        <binding destination="PkK-eS-ZqL" name="contentArray" keyPath="representedObject.interpreters" id="ERz-S9-Hir"/>
                     </connections>
                 </arrayController>
-                <customObject id="d7s-my-ran" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="4o4-Do-zNT" id="3Se-9O-qZt"/>
-                    </connections>
-                </customObject>
-                <customObject id="A1s-0g-450" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="GNq-TE-e6o" id="IYP-VP-dWx"/>
-                    </connections>
-                </customObject>
-                <customObject id="T80-vh-snI" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target">
-                    <connections>
-                        <outlet property="arrayController" destination="b1i-d7-DoG" id="TRE-Uh-zQr"/>
-                    </connections>
-                </customObject>
+                <customObject id="d7s-my-ran" customClass="DefinitionTableViewDelegate" customModule="CotEditor" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="147" y="95"/>
         </scene>

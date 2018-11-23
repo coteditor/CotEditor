@@ -47,14 +47,12 @@ final class SyntaxTermsEditViewController: NSViewController {
     }
     
     
-    // MARK: View Controller Methods
-    
-    /// setup binding with desired key
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.termsController!.bind(.contentArray, to: self, withKeyPath: "representedObject." + self.syntaxType.rawValue)
+        // set binding with desired key
+        self.termsController!.bind(.contentArray, to: self, withKeyPath: #keyPath(representedObject) + "." + self.syntaxType.rawValue)
     }
     
 }
