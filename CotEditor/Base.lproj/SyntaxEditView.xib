@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="box" destination="WhA-dU-Us9" id="cck-Ad-z3q"/>
                 <outlet property="menuTableView" destination="1Wa-et-npE" id="lS4-Re-kDg"/>
-                <outlet property="restoreButton" destination="8JS-kM-ddu" id="SBL-8S-Njo"/>
                 <outlet property="styleNameField" destination="N84-W6-0ZN" id="iNp-Qe-VqX"/>
                 <outlet property="view" destination="rup-fw-CX3" id="dYn-AA-dcX"/>
             </connections>
@@ -155,6 +154,9 @@
                     <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1020">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
+                        <connections>
+                            <binding destination="-2" name="enabled" keyPath="isRestoreble" id="CNI-F2-KZo"/>
+                        </connections>
                     </buttonCell>
                     <connections>
                         <action selector="setToFactoryDefaults:" target="-2" id="b5I-xl-dUQ"/>
@@ -173,7 +175,7 @@ Gw
 </string>
                     </buttonCell>
                     <connections>
-                        <action selector="cancel:" target="-2" id="OpO-Z1-FgH"/>
+                        <action selector="dismissController:" target="-2" id="mNL-U1-AUs"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" tag="100" translatesAutoresizingMaskIntoConstraints="NO" id="Kxb-9F-vML">

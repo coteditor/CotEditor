@@ -26,88 +26,86 @@
 
 import Cocoa
 
-
-enum SyntaxEditSheetMode: Int {
+final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
-    case edit
-    case copy
-    case new
-}
-
-
-private enum PaneIndex: Int {
-    
-    case keywords
-    case commands
-    case types
-    case attributes
-    case variables
-    case values
-    case numbers
-    case strings
-    case characters
-    case comments
-    case separator1
-    case outline
-    case completion
-    case fileMapping
-    case separator2
-    case styleInfo
-    case validation
+    enum Mode: Int {
+        
+        case edit
+        case copy
+        case new
+    }
     
     
-    var title: String {
-        switch self {
-        case .keywords: return "Keywords"
-        case .commands: return "Commands"
-        case .types: return "Types"
-        case .attributes: return "Attributes"
-        case .variables: return "Variables"
-        case .values: return "Values"
-        case .numbers: return "Numbers"
-        case .strings: return "Strings"
-        case .characters: return "Characters"
-        case .comments: return "Comments"
-        case .separator1: return String.separator
-        case .outline: return "Outline Menu"
-        case .completion: return "Completion List"
-        case .fileMapping: return "File Mapping"
-        case .separator2: return String.separator
-        case .styleInfo: return "Style Info"
-        case .validation: return "Syntax Validation"
+    private enum PaneIndex: Int, CaseIterable {
+        
+        case keywords
+        case commands
+        case types
+        case attributes
+        case variables
+        case values
+        case numbers
+        case strings
+        case characters
+        case comments
+        case separator1
+        case outline
+        case completion
+        case fileMapping
+        case separator2
+        case styleInfo
+        case validation
+        
+        
+        var title: String {
+            switch self {
+            case .keywords: return "Keywords"
+            case .commands: return "Commands"
+            case .types: return "Types"
+            case .attributes: return "Attributes"
+            case .variables: return "Variables"
+            case .values: return "Values"
+            case .numbers: return "Numbers"
+            case .strings: return "Strings"
+            case .characters: return "Characters"
+            case .comments: return "Comments"
+            case .separator1: return String.separator
+            case .outline: return "Outline Menu"
+            case .completion: return "Completion List"
+            case .fileMapping: return "File Mapping"
+            case .separator2: return String.separator
+            case .styleInfo: return "Style Info"
+            case .validation: return "Syntax Validation"
+            }
         }
     }
-}
-
-
-
-// MARK: -
-
-final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
+    
+    
     
     // MARK: Private Properties
     
-    private let mode: SyntaxEditSheetMode
+    @objc private let menuTitles: [String] = PaneIndex.allCases.map { $0.title.localized }  // for binding
+    
+    private let mode: Mode
     private let originalStyleName: String
-    @objc private dynamic var style: NSMutableDictionary
+    private let style = NSMutableDictionary()
     @objc private dynamic var message: String?
     @objc private dynamic var isStyleNameValid = true
+    @objc private dynamic var isRestoreble = false
     private let isBundledStyle: Bool
-    private let isCustomized: Bool
     
     private var viewControllers = [NSViewController?]()
     
     @IBOutlet private weak var box: NSBox?
     @IBOutlet private weak var menuTableView: NSTableView?
     @IBOutlet private weak var styleNameField: NSTextField?
-    @IBOutlet private weak var restoreButton: NSButton?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init?(style styleName: String, mode: SyntaxEditSheetMode) {
+    required init?(style styleName: String, mode: Mode) {
         
         let manager = SyntaxManager.shared
         let name: String
@@ -126,11 +124,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             style = manager.blankSettingDictionary
         }
         self.mode = mode
-        self.style = NSMutableDictionary(dictionary: style)
+        self.style.setDictionary(style)
         self.originalStyleName = name
         
         self.isBundledStyle = manager.isBundledSetting(name: name)
-        self.isCustomized = manager.isCustomizedBundledSetting(name: name)
+        self.isRestoreble = manager.isCustomizedBundledSetting(name: name)
         
         if self.isBundledStyle {
             self.message = "Bundled styles can’t be renamed.".localized
@@ -169,35 +167,30 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             self.styleNameField?.isSelectable = false
             self.styleNameField?.isEditable = false
             self.styleNameField?.isBordered = true
-            self.restoreButton?.isEnabled = self.isCustomized
-        } else {
-            self.restoreButton?.isEnabled = false
         }
         
         // setup views
-        var viewControllers = [NSViewController?]()
-        for type in SyntaxType.allCases {
-            if type == .comments { break }
-            let controller = SyntaxTermsEditViewController.instantiate(storyboard: "SyntaxTermsEditView")
-            controller.syntaxType = type
-            viewControllers.append(controller)
+        self.viewControllers = SyntaxType.allCases.map { type in
+            switch type {
+            case .comments:
+                return SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCommentsEditView")
+            default:
+                let controller = SyntaxTermsEditViewController.instantiate(storyboard: "SyntaxTermsEditView")
+                controller.syntaxType = type
+                return controller
+            }
         }
-        viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCommentsEditView"))
-        viewControllers.append(nil)  // separator
-        viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxOutlineEditView"))
-        viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCompletionsEditView"))
-        viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxFileMappingEditView"))
-        viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController.instantiate(storyboard: "SyntaxInfoEditView"))
-        viewControllers.append(SyntaxValidationViewController.instantiate(storyboard: "SyntaxValidationView"))
+        self.viewControllers += [
+            nil,  // separator
+            SyntaxEditChildViewController.instantiate(storyboard: "SyntaxOutlineEditView"),
+            SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCompletionsEditView"),
+            SyntaxEditChildViewController.instantiate(storyboard: "SyntaxFileMappingEditView"),
+            nil,  // separator
+            NSViewController.instantiate(storyboard: "SyntaxInfoEditView"),
+            SyntaxValidationViewController.instantiate(storyboard: "SyntaxValidationView"),
+        ]
+        self.viewControllers.forEach { $0?.representedObject = self.style }
         
-        for viewController in viewControllers {
-            guard let viewController = viewController else { continue }  // skip separator
-            
-            viewController.representedObject = self.style
-        }
-        
-        self.viewControllers = viewControllers
         self.swapView(index: 0)
         
         // set accessibility
@@ -253,14 +246,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         guard let style = SyntaxManager.shared.bundledSettingDictionary(name: self.originalStyleName) else { return }
         
-        // discard current editing
-        self.discardEditing()
-        
-        // set new content
         self.style.setDictionary(style)
-        
-        // disable "Restore Defaults" button
-        self.restoreButton?.isEnabled = false
+        self.isRestoreble = false
     }
     
     
@@ -325,24 +312,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// discard edit and close editor
-    @IBAction func cancel(_ sender: Any?) {
-        
-        self.discardEditing()
-        self.dismiss(sender)
-    }
-    
-    
     
     // MARK: Private Methods
-    
-    /// menu titles for binding
-    @objc var menuTitles: [String] {
-        
-        return (0...PaneIndex.validation.rawValue)
-            .map { PaneIndex(rawValue: $0)!.title.localized }
-    }
-    
     
     /// change pane
     private func swapView(index: Int) {
@@ -350,10 +321,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // finish current editing anyway
         self.endEditing()
         
-        guard let view = self.viewControllers[index]?.view else { return }
+        guard let viewController = self.viewControllers[index] else { return }
         
         // swap views
-        self.box!.contentView = view
+        self.box!.contentView = viewController.view
         self.box!.setAccessibilityLabel(self.menuTitles[index])
     }
     
