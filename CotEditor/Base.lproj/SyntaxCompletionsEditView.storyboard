@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Syntax Completions Edit View Controller-->
+        <!--Syntax Edit Child View Controller-->
         <scene sceneID="cBG-L2-EyB">
             <objects>
-                <viewController id="GrA-AP-g7S" customClass="SyntaxCompletionsEditViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="GrA-AP-g7S" customClass="SyntaxEditChildViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Hz6-mo-xeY">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

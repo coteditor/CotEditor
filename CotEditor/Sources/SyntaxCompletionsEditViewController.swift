@@ -25,7 +25,7 @@
 
 import Cocoa
 
-final class SyntaxCompletionsEditViewController: NSViewController {
+final class SyntaxEditChildViewController: NSViewController {
     
     @IBOutlet private var tableViewDelegate: DefinitionTableViewDelegate?
     
