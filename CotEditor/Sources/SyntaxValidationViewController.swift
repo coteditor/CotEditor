@@ -29,9 +29,10 @@ final class SyntaxValidationViewController: NSViewController {
     
     // MARK: Private Properties
     
+    @objc private dynamic var errors: [SyntaxStyleValidator.StyleError] = []
+    
     @objc private dynamic var statusImage: NSImage?
     @objc private dynamic var message = ""
-    @objc private dynamic var result = ""
     
     
     
@@ -40,11 +41,21 @@ final class SyntaxValidationViewController: NSViewController {
     
     override func viewWillAppear() {
         
-        // update validation result
-        let style = self.representedObject as! SyntaxManager.StyleDictionary
-        let errors = SyntaxStyleValidator.validate(style)
+        super.viewWillAppear()
         
-        self.display(errors: errors)
+        self.validateStyle()
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    func validateStyle() {
+        
+        let style = self.representedObject as! SyntaxManager.StyleDictionary
+        
+        self.errors = SyntaxStyleValidator.validate(style)
+        self.updateMessage()
     }
     
     
@@ -52,31 +63,21 @@ final class SyntaxValidationViewController: NSViewController {
     // MARK: Private Methods
     
     /// insert the results to text view
-    private func display(errors: [SyntaxStyleValidator.StyleError]) {
+    private func updateMessage() {
         
-        let imageName = errors.isEmpty ? NSImage.statusAvailableName : NSImage.statusUnavailableName
+        let imageName = self.errors.isEmpty ? NSImage.statusAvailableName : NSImage.statusUnavailableName
         self.statusImage = NSImage(named: imageName)
         
         self.message = {
-            switch errors.count {
+            switch self.errors.count {
             case 0:
-                return "No error was found.".localized
+                return "No error found.".localized
             case 1:
-                return "An error was found!".localized
+                return "An error found!".localized
             default:
                 return String(format: "%i errors were found!".localized, errors.count)
             }
         }()
-        
-        self.result = errors
-            .map { error -> String in
-                guard let failureReason = error.failureReason else {
-                    return error.localizedDescription
-                }
-                return error.localizedDescription + "\n\t> " + failureReason
-            }
-            .map { "⚠️ " + $0 }
-            .joined(separator: "\n\n")
     }
     
 }

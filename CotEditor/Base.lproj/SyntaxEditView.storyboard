@@ -33,7 +33,7 @@
                 <controllerPlaceholder storyboardName="SyntaxValidationView" id="h9E-mw-xBs" sceneMemberID="viewController"/>
                 <customObject id="cOp-wY-5Yv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1296" y="97"/>
+            <point key="canvasLocation" x="1296" y="119"/>
         </scene>
         <!--SyntaxOutlineEditView-->
         <scene sceneID="SbB-kN-1fX">
@@ -65,7 +65,7 @@
                 <controllerPlaceholder storyboardName="SyntaxInfoEditView" id="Acd-43-iJP" sceneMemberID="viewController"/>
                 <customObject id="VCx-Ca-MEt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1289" y="58"/>
+            <point key="canvasLocation" x="1289" y="81"/>
         </scene>
         <!--SyntaxFileMappingEditView-->
         <scene sceneID="dqI-HU-kqQ">
@@ -364,6 +364,6 @@ DQ
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="evB-SF-2md"/>
-        <segue reference="oWW-tk-Ap2"/>
+        <segue reference="zM9-LR-mh8"/>
     </inferredMetricsTieBreakers>
 </document>

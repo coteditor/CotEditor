@@ -29,7 +29,7 @@ import Foundation
 final class SyntaxStyleValidator {
     
     /// model object for syntax validation result
-    struct StyleError: LocalizedError {
+    final class StyleError: NSObject, LocalizedError {
         
         enum ErrorKind {
             case duplicated
@@ -46,7 +46,18 @@ final class SyntaxStyleValidator {
         let kind: ErrorKind
         let type: String
         let role: Role
-        let string: String
+        @objc let string: String
+        
+        
+        init(kind: ErrorKind, type: String, role: Role, string: String) {
+            
+            self.kind = kind
+            self.type = type
+            self.role = role
+            self.string = string
+            
+            super.init()
+        }
         
         
         var errorDescription: String? {
@@ -55,7 +66,7 @@ final class SyntaxStyleValidator {
         }
         
         
-        var failureReason: String? {
+        @objc var failureReason: String? {
             
             switch self.kind {
             case .duplicated:
@@ -70,7 +81,13 @@ final class SyntaxStyleValidator {
         }
         
         
-        private var localizedRole: String {
+        @objc var localizedType: String {
+            
+            return self.type.localized
+        }
+        
+        
+        @objc var localizedRole: String {
             
             switch self.role {
             case .begin:

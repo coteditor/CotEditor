@@ -411,9 +411,9 @@
 "Syntax Validation" = "シンタックスの検証";
 
 // Syntax style validation results
-"No error was found." = "エラーはありませんでした。";
-"An error was found!" = "エラーがありました！";
-"%i errors were found!" = "%i個のエラーがありました！";
+"No error found." = "エラーはありません。";
+"An error found!" = "エラーがあります！";
+"%i errors found!" = "%i個のエラーがあります！";
 
 
 
@@ -462,7 +462,7 @@
 "End string" = "終了文字列";
 "Regular expression" = "正規表現";
 "The same word is registered multiple times." = "重複して登録されています。";
-"Regular Expression Error: " = "正規表現エラー:";
+"Regular Expression Error: " = "正規表現エラー: ";
 
 
 

@@ -411,9 +411,9 @@
 "Syntax Validation" = "语法验证";
 
 // Syntax style validation results
-"No error was found." = "没有发现错误";
-"An error was found!" = "发现 1 个错误";
-"%i errors were found!" = "发现 %i 个错误";
+"No error found." = "没有发现错误";
+"An error found!" = "发现 1 个错误";
+"%i errors found!" = "发现 %i 个错误";
 
 
 

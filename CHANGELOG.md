@@ -8,7 +8,9 @@ Change Log
 ### Improvements
 
 - Change not to highlight occurrences of the selection when there are more than 100.
-- Now, syntax style validation is automatically start when the pane switched to “Valitation”.
+- Update validation pane in the syntax style editor:
+    - Now, validation is performed automatically when the pane switched to “Valitation”.
+
 
 ### Fixes
 

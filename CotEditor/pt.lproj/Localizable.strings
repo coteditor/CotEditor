@@ -411,9 +411,9 @@
 "Syntax Validation" = "Validação da Sintaxe";
 
 // Syntax style validation results
-"No error was found." = "Nenhum erro encontrado.";
-"An error was found!" = "1 erro encontrado!";
-"%i errors were found!" = "%i erros encontrados!";
+"No error found." = "Nenhum erro encontrado.";
+"An error found!" = "1 erro encontrado!";
+"%i errors found!" = "%i erros encontrados!";
 
 
 
