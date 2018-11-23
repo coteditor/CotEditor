@@ -180,7 +180,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             if type == .comments { break }
             viewControllers.append(SyntaxTermsEditViewController(syntaxType: type))
         }
-        viewControllers.append(NSViewController(nibName: "SyntaxCommentsEditView", bundle: nil))
+        viewControllers.append(SyntaxCommentsEditViewController.instantiate(storyboard: "SyntaxCommentsEditView"))
         viewControllers.append(nil)  // separator
         viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxOutlineEditView"))
         viewControllers.append(SyntaxEditChildViewController.instantiate(storyboard: "SyntaxCompletionsEditView"))
