@@ -462,7 +462,7 @@
 "End string" = "Fine stringa";
 "Regular expression" = "Espressione regolare";
 "The same word is registered multiple times." = "La stessa parola risulta registrata più volte.";
-"Regular Expression Error: " = "Errore nell’espressione regolare: ";
+"Regular Expression: " = "Espressione regolare: ";
 
 
 

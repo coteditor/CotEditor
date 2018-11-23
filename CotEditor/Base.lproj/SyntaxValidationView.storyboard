@@ -119,9 +119,15 @@
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="v53-HN-2Ah" name="displayPatternValue1" keyPath="objectValue.localizedRole" id="BQG-xB-fwr">
+                                                                        <binding destination="v53-HN-2Ah" name="displayPatternValue1" keyPath="objectValue.localizedRole" id="4Hy-lm-mHN">
                                                                             <dictionary key="options">
                                                                                 <string key="NSDisplayPattern">(%{value1}@)</string>
+                                                                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                                                            </dictionary>
+                                                                        </binding>
+                                                                        <binding destination="v53-HN-2Ah" name="hidden" keyPath="objectValue.localizedRole" id="pTI-AW-RnM">
+                                                                            <dictionary key="options">
+                                                                                <string key="NSValueTransformerName">NSIsNil</string>
                                                                             </dictionary>
                                                                         </binding>
                                                                     </connections>

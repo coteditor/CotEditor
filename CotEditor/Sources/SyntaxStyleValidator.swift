@@ -62,7 +62,7 @@ final class SyntaxStyleValidator {
         
         var errorDescription: String? {
             
-            return self.type.localized + " [" + self.localizedRole + "]: " + self.string
+            return self.type.localized + ": " + self.string
         }
         
         
@@ -73,7 +73,7 @@ final class SyntaxStyleValidator {
                 return "The same word is registered multiple times.".localized
                 
             case .regularExpression(let error):
-                return "Regular Expression Error: ".localized + error.localizedDescription
+                return "Regular Expression: ".localized + error.localizedDescription
             
             case .blockComment:
                 return "Block comment needs both begin delimiter and end delimiter.".localized
@@ -87,7 +87,7 @@ final class SyntaxStyleValidator {
         }
         
         
-        @objc var localizedRole: String {
+        @objc var localizedRole: String? {
             
             switch self.role {
             case .begin:
@@ -97,7 +97,7 @@ final class SyntaxStyleValidator {
                 return "End string".localized
                 
             case .regularExpression:
-                return "Regular expression".localized
+                return nil
             }
         }
         

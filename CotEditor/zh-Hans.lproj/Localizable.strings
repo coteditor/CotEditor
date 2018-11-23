@@ -462,7 +462,7 @@
 "End string" = "结束字符串";
 "Regular expression" = "正则表达式";
 "The same word is registered multiple times." = "重复注册。";
-"Regular Expression Error: " = "正则表达式错误：";
+"Regular Expression: " = "正则表达式：";
 
 
 

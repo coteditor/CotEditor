@@ -461,7 +461,7 @@
 "End string" = "Endzeichenkette";
 "Regular expression" = "Regulärer Ausdruck";
 "The same word is registered multiple times." = "Mehrfach registriert.";
-"Regular Expression Error: " = "Regulärer Ausdruck Fehler: ";
+"Regular Expression: " = "Regulärer Ausdruck: ";
 
 
 
