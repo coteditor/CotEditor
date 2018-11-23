@@ -297,7 +297,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleName = self.targetStyleName(for: sender)
         let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
-        viewController.setup(style: styleName, mode: .edit)
+        viewController.mode = .edit(styleName)
         
         self.presentAsSheet(viewController)
     }
@@ -308,7 +308,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         let styleName = self.targetStyleName(for: sender)
         let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
-        viewController.setup(style: styleName, mode: .copy)
+        viewController.mode = .copy(styleName)
         
         self.presentAsSheet(viewController)
     }
@@ -317,9 +317,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax style edit sheet in new mode
     @IBAction func createSyntaxStyle(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
         let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
-        viewController.setup(style: styleName, mode: .new)
         
         self.presentAsSheet(viewController)
     }
