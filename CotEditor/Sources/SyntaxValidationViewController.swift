@@ -38,15 +38,6 @@ final class SyntaxValidationViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("SyntaxValidationView")
-    }
-    
-    
-    
     // MARK: Public Methods
     
     /// validate style and insert the results to text view

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0x1-oE-Hn6">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Syntax Validation View Controller-->
+        <scene sceneID="XZs-gq-HCq">
+            <objects>
+                <viewController id="0x1-oE-Hn6" customClass="SyntaxValidationViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Hz6-mo-xeY">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dua-03-oC0">
+                                <rect key="frame" x="7" y="304" width="110" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Kg3-HL-s9C"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Start Validation" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="7cj-Tc-SoJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="startValidation:" target="0x1-oE-Hn6" id="6Dc-Ek-hnz"/>
+                                </connections>
+                            </button>
+                            <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3h-vn-LqF">
+                                <rect key="frame" x="12" y="12" width="426" height="290"/>
+                                <clipView key="contentView" id="IWP-KU-odZ">
+                                    <rect key="frame" x="1" y="1" width="424" height="288"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="bar" incrementalSearchingEnabled="YES" usesRuler="YES" id="Wdj-BP-SpZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="424" height="288"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="424" height="288"/>
+                                            <size key="maxSize" width="426" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="textContainerInset">
+                                                    <size key="value" width="4" height="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <binding destination="0x1-oE-Hn6" name="value" keyPath="result" id="Qsv-dL-MVk"/>
+                                            </connections>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="uCl-3b-64W">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="udZ-qb-RXt">
+                                    <rect key="frame" x="409" y="1" width="16" height="288"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="R3h-vn-LqF" secondAttribute="trailing" constant="12" id="7hM-Hs-DFA"/>
+                            <constraint firstItem="Dua-03-oC0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="8cy-0p-7Hm"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dua-03-oC0" secondAttribute="trailing" constant="20" symbolic="YES" id="DTc-wl-oKB"/>
+                            <constraint firstItem="Dua-03-oC0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="HdG-po-vj9"/>
+                            <constraint firstItem="R3h-vn-LqF" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="JPb-Xh-czK"/>
+                            <constraint firstAttribute="bottom" secondItem="R3h-vn-LqF" secondAttribute="bottom" constant="12" id="en7-C0-egD"/>
+                            <constraint firstItem="R3h-vn-LqF" firstAttribute="top" secondItem="Dua-03-oC0" secondAttribute="bottom" constant="8" symbolic="YES" id="lSu-hr-ZB9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="Wdj-BP-SpZ" id="Hn8-db-BmF"/>
+                    </connections>
+                </viewController>
+                <customObject id="Oke-qj-VSe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="111" y="97"/>
+        </scene>
+    </scenes>
+</document>

@@ -187,7 +187,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         viewControllers.append(NSViewController(nibName: "SyntaxFileMappingEditView", bundle: nil))
         viewControllers.append(nil)  // separator
         viewControllers.append(NSViewController(nibName: "SyntaxInfoEditView", bundle: nil))
-        viewControllers.append(SyntaxValidationViewController())
+        viewControllers.append(SyntaxValidationViewController.instantiate(storyboard: "SyntaxValidationView"))
         
         for viewController in viewControllers {
             guard let viewController = viewController else { continue }  // skip separator
