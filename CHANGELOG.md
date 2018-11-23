@@ -10,6 +10,10 @@ Change Log
 - Change not to highlight occurrences of the selection when there are more than 100.
 - Now, syntax style validation is automatically start when the pane switched to “Valitation”.
 
+### Fixes
+
+- Fix an issue where the syntax style validator ignored unbaranced block comment delimiters that should be an error.
+
 
 
 3.6.6 (299)

@@ -176,7 +176,7 @@ final class SyntaxStyleValidator {
         // validate block comment delimiter pair
         if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
             let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
-            let endDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
+            let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter.rawValue]
             let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
             if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
