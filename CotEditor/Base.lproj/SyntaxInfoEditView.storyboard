@@ -145,7 +145,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
+                            <textField verticalHuggingPriority="249" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sNf-iG-xYO">
                                 <rect key="frame" x="123" y="41" width="315" height="127"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bnJ-UO-5HV">
                                     <font key="font" metaFont="system"/>

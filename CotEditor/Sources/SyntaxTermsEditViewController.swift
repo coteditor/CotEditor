@@ -27,11 +27,6 @@ import Cocoa
 
 final class SyntaxTermsEditViewController: NSViewController {
     
-    // MARK: Public Properties
-    
-    var syntaxType: SyntaxType = .keywords
-    
-    
     // MARK: Private Properties
     
     @IBOutlet private var termsController: NSArrayController?
@@ -47,12 +42,13 @@ final class SyntaxTermsEditViewController: NSViewController {
     }
     
     
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
         // set binding with desired key
-        self.termsController!.bind(.contentArray, to: self, withKeyPath: #keyPath(representedObject) + "." + self.syntaxType.rawValue)
+        let type = (self.parent as? NSTabViewController)?.tabViewItem(for: self)?.identifier as? String
+        self.termsController!.bind(.contentArray, to: self, withKeyPath: #keyPath(representedObject) + "." + type!)
     }
     
 }
