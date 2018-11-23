@@ -189,7 +189,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             NSViewController.instantiate(storyboard: "SyntaxInfoEditView"),
             SyntaxValidationViewController.instantiate(storyboard: "SyntaxValidationView"),
         ]
-        self.viewControllers.forEach { $0?.representedObject = self.style }
         
         self.swapView(index: 0)
         
@@ -284,9 +283,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             return
         }
         
-        // validate syntax and display errors (or proceed if user has already seen the error)
-        let validationController = self.viewControllers[PaneIndex.validation.rawValue] as! SyntaxValidationViewController
-        guard validationController.didValidate || validationController.validateSyntax() else {
+        // validate syntax and display errors
+        guard SyntaxStyleValidator.validate(self.style as! SyntaxManager.StyleDictionary).isEmpty else {
             // show "Validation" pane
             self.menuTableView?.selectRowIndexes(IndexSet(integer: PaneIndex.validation.rawValue), byExtendingSelection: false)
             NSSound.beep()
@@ -322,6 +320,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         self.endEditing()
         
         guard let viewController = self.viewControllers[index] else { return }
+        
+        viewController.representedObject = self.style
         
         // swap views
         self.box!.contentView = viewController.view

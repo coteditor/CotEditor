@@ -29,31 +29,38 @@ final class SyntaxValidationViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private(set) var didValidate = false
-    
-    @objc private dynamic var result: String?
-    
-    @IBOutlet private var textView: NSTextView?
+    @objc private dynamic var statusImage: NSImage?
+    @objc private dynamic var message = ""
+    @objc private dynamic var result = ""
     
     
     
     // MARK: -
-    // MARK: Public Methods
+    // MARK: Life Cycle
     
-    /// validate style and insert the results to text view
-    ///
-    /// - Returns: If the style is valid
-    @discardableResult
-    func validateSyntax() -> Bool {
+    override func viewWillAppear() {
         
-        guard let style = self.representedObject as? [String: Any] else { return true }
-        
+        // update validation result
+        let style = self.representedObject as! SyntaxManager.StyleDictionary
         let errors = SyntaxStyleValidator.validate(style)
         
-        let resultMessage: String = {
+        self.display(errors: errors)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// insert the results to text view
+    private func display(errors: [SyntaxStyleValidator.StyleError]) {
+        
+        let imageName = errors.isEmpty ? NSImage.statusAvailableName : NSImage.statusUnavailableName
+        self.statusImage = NSImage(named: imageName)
+        
+        self.message = {
             switch errors.count {
             case 0:
-                return "✅ " + "No error was found.".localized
+                return "No error was found.".localized
             case 1:
                 return "An error was found!".localized
             default:
@@ -61,24 +68,15 @@ final class SyntaxValidationViewController: NSViewController {
             }
         }()
         
-        let errorMessages: [String] = errors.map { (error: SyntaxStyleValidator.StyleError) -> String in
-            let failureReason = error.failureReason ?? ""
-            return "⚠️ " + error.localizedDescription + "\n\t> " + failureReason
-        }
-        
-        self.result = resultMessage + "\n\n" + errorMessages.joined(separator: "\n\n")
-        
-        return errors.isEmpty
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// start syntax style validation
-    @IBAction func startValidation(_ sender: Any?) {
-        
-        self.validateSyntax()
+        self.result = errors
+            .map { error -> String in
+                guard let failureReason = error.failureReason else {
+                    return error.localizedDescription
+                }
+                return error.localizedDescription + "\n\t> " + failureReason
+            }
+            .map { "⚠️ " + $0 }
+            .joined(separator: "\n\n")
     }
     
 }

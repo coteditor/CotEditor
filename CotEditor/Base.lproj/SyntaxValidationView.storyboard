@@ -14,31 +14,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dua-03-oC0">
-                                <rect key="frame" x="7" y="304" width="110" height="27"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="Kg3-HL-s9C"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Start Validation" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="7cj-Tc-SoJ">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="startValidation:" target="0x1-oE-Hn6" id="6Dc-Ek-hnz"/>
-                                </connections>
-                            </button>
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R3h-vn-LqF">
-                                <rect key="frame" x="12" y="12" width="426" height="290"/>
+                                <rect key="frame" x="12" y="12" width="426" height="291"/>
                                 <clipView key="contentView" id="IWP-KU-odZ">
-                                    <rect key="frame" x="1" y="1" width="424" height="288"/>
+                                    <rect key="frame" x="1" y="1" width="424" height="289"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView editable="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="bar" incrementalSearchingEnabled="YES" usesRuler="YES" id="Wdj-BP-SpZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="424" height="288"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="424" height="289"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="424" height="288"/>
+                                            <size key="minSize" width="424" height="289"/>
                                             <size key="maxSize" width="426" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <userDefinedRuntimeAttributes>
@@ -57,28 +44,48 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="udZ-qb-RXt">
-                                    <rect key="frame" x="409" y="1" width="16" height="288"/>
+                                    <rect key="frame" x="409" y="1" width="16" height="289"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Iou-wI-Hw7">
+                                <rect key="frame" x="34" y="311" width="144" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="VALIDATION MESSAGE" id="xyN-YF-VuY">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="0x1-oE-Hn6" name="value" keyPath="message" id="gwg-qh-XXP"/>
+                                </connections>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZQE-Vk-Dls">
+                                <rect key="frame" x="12" y="312" width="16" height="16"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSStatusAvailable" id="Las-EU-Zwm"/>
+                                <connections>
+                                    <binding destination="0x1-oE-Hn6" name="value" keyPath="statusImage" id="Dof-tr-w5v"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="R3h-vn-LqF" firstAttribute="top" secondItem="Iou-wI-Hw7" secondAttribute="bottom" constant="8" symbolic="YES" id="1tF-jf-0kE"/>
                             <constraint firstAttribute="trailing" secondItem="R3h-vn-LqF" secondAttribute="trailing" constant="12" id="7hM-Hs-DFA"/>
-                            <constraint firstItem="Dua-03-oC0" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="8cy-0p-7Hm"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dua-03-oC0" secondAttribute="trailing" constant="20" symbolic="YES" id="DTc-wl-oKB"/>
-                            <constraint firstItem="Dua-03-oC0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="HdG-po-vj9"/>
+                            <constraint firstItem="Iou-wI-Hw7" firstAttribute="centerY" secondItem="ZQE-Vk-Dls" secondAttribute="centerY" id="CNp-Uo-MLc"/>
                             <constraint firstItem="R3h-vn-LqF" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="JPb-Xh-czK"/>
+                            <constraint firstItem="Iou-wI-Hw7" firstAttribute="leading" secondItem="ZQE-Vk-Dls" secondAttribute="trailing" constant="8" symbolic="YES" id="Nva-Kw-pGa"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Iou-wI-Hw7" secondAttribute="trailing" constant="20" symbolic="YES" id="d6J-hm-Nnp"/>
                             <constraint firstAttribute="bottom" secondItem="R3h-vn-LqF" secondAttribute="bottom" constant="12" id="en7-C0-egD"/>
-                            <constraint firstItem="R3h-vn-LqF" firstAttribute="top" secondItem="Dua-03-oC0" secondAttribute="bottom" constant="8" symbolic="YES" id="lSu-hr-ZB9"/>
+                            <constraint firstItem="Iou-wI-Hw7" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="o5R-Rg-51E"/>
+                            <constraint firstItem="ZQE-Vk-Dls" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="ttj-7Z-ZcK"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <outlet property="textView" destination="Wdj-BP-SpZ" id="Hn8-db-BmF"/>
-                    </connections>
                 </viewController>
                 <customObject id="Oke-qj-VSe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="111" y="97"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSStatusAvailable" width="16" height="16"/>
+    </resources>
 </document>
