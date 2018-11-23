@@ -14,14 +14,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szY-Yp-KrM">
-                                <rect key="frame" x="12" y="41" width="426" height="181"/>
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="szY-Yp-KrM">
+                                <rect key="frame" x="12" y="41" width="426" height="185"/>
                                 <clipView key="contentView" id="oan-uw-mqe">
-                                    <rect key="frame" x="1" y="0.0" width="424" height="180"/>
+                                    <rect key="frame" x="1" y="0.0" width="424" height="184"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="uOT-Vg-FZh" viewBased="YES" id="ace-Sg-2RE">
-                                            <rect key="frame" x="0.0" y="0.0" width="427" height="157"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="427" height="161"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -33,7 +33,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="dZp-ZN-oe0">
+                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" scrollable="YES" lineBreakMode="clipping" inset="2" id="dZp-ZN-oe0">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="titleBar" size="12"/>
                                                     </buttonCell>
@@ -69,7 +69,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
-                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" inset="2" id="bG0-wz-WPX">
+                                                    <buttonCell key="dataCell" type="check" bezelStyle="regularSquare" imagePosition="only" alignment="left" controlSize="small" scrollable="YES" lineBreakMode="clipping" inset="2" id="bG0-wz-WPX">
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="titleBar" size="12"/>
                                                     </buttonCell>
@@ -189,7 +189,7 @@
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
-                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="xae-A2-skh">
+                                                    <textFieldCell key="dataCell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="xae-A2-skh">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -402,7 +402,7 @@
                             <constraint firstItem="szY-Yp-KrM" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="rvq-3E-HB4"/>
                             <constraint firstItem="gGr-AE-CgQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="uqO-dc-qh7"/>
                             <constraint firstItem="ska-c0-sx2" firstAttribute="centerY" secondItem="WDn-Vx-yAe" secondAttribute="centerY" id="vCH-uF-3PL"/>
-                            <constraint firstItem="szY-Yp-KrM" firstAttribute="top" secondItem="teO-CT-cDt" secondAttribute="bottom" constant="30" id="weW-NY-it7"/>
+                            <constraint firstItem="szY-Yp-KrM" firstAttribute="top" secondItem="teO-CT-cDt" secondAttribute="bottom" constant="26" id="weW-NY-it7"/>
                             <constraint firstItem="WDn-Vx-yAe" firstAttribute="leading" secondItem="1xs-RY-0ID" secondAttribute="trailing" constant="30" id="wiF-At-bsf"/>
                             <constraint firstItem="K52-O0-Gy1" firstAttribute="leading" secondItem="WDn-Vx-yAe" secondAttribute="leading" id="wk7-ET-U9T"/>
                             <constraint firstItem="3Fq-66-Myr" firstAttribute="width" secondItem="DyC-OT-P9k" secondAttribute="width" id="wnp-Cr-D8r"/>

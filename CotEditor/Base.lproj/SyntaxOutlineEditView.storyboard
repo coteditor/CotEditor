@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="450" height="340"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-6x-e5X">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-6x-e5X">
                                 <rect key="frame" x="12" y="121" width="426" height="182"/>
                                 <clipView key="contentView" id="kWo-dQ-dd2">
                                     <rect key="frame" x="1" y="0.0" width="424" height="181"/>
