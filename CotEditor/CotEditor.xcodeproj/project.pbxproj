@@ -161,7 +161,6 @@
 		2A3A1E771C45219800641CE0 /* HUDView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A1E741C45219800641CE0 /* HUDView.xib */; };
 		2A3A758E19E77C84001DAB88 /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
 		2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
-		2A3A75A719E77E87001DAB88 /* SyntaxCompletionsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */; };
 		2A3A75AA19E77E87001DAB88 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */; };
 		2A3A922B205638A600F9B5F3 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A3A922A205638A600F9B5F3 /* BackgroundView.swift */; };
@@ -262,7 +261,6 @@
 		2A5DBE571B5D2DAD00F8CB13 /* SyntaxTermsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */; };
 		2A5DBE581B5D2DB000F8CB13 /* SyntaxCommentsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */; };
 		2A5DBE591B5D2DB400F8CB13 /* SyntaxOutlineEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */; };
-		2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */; };
 		2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */; };
 		2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */; };
 		2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */; };
@@ -491,6 +489,10 @@
 		2AB2241E21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2241B21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard */; };
 		2AB2242521A7D1E100F6201F /* SyntaxFileMappingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2242421A7D1E100F6201F /* SyntaxFileMappingEditViewController.swift */; };
 		2AB2242621A7D1E100F6201F /* SyntaxFileMappingEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2242421A7D1E100F6201F /* SyntaxFileMappingEditViewController.swift */; };
+		2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
+		2AB2242A21A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */; };
+		2AB2243121A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2243021A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift */; };
+		2AB2243221A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2243021A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift */; };
 		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
 		2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
@@ -922,14 +924,12 @@
 		2A401FD11D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		2A401FD21D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2A401FD31D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		2A401FD41D9AD76F00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
 		2A401FE21D9AD77400ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = it; path = it.lproj/Credits.html; sourceTree = "<group>"; };
 		2A401FE41D9AED8200ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = it; path = it.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		2A401FE51D9AEE4500ACE036 /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		2A401FE61D9AEEB700ACE036 /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A401FE71D9AF0A300ACE036 /* it */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2A401FE81D9AF7CA00ACE036 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Unicode.strings; sourceTree = "<group>"; };
-		2A4064001B9DA7720032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
 		2A4064021B9DA7C60032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 		2A4064041B9DA8BE0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2A4064061B9DAA4E0032AC7F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
@@ -1165,11 +1165,17 @@
 		2AB2242221A7D0D100F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
 		2AB2242321A7D0D200F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxFileMappingEditView.strings; sourceTree = "<group>"; };
 		2AB2242421A7D1E100F6201F /* SyntaxFileMappingEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxFileMappingEditViewController.swift; sourceTree = "<group>"; };
+		2AB2242821A7D51800F6201F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxCompletionsEditView.storyboard; sourceTree = "<group>"; };
+		2AB2242B21A7D5E900F6201F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		2AB2242C21A7D5EA00F6201F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
+		2AB2242D21A7D5EA00F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		2AB2242E21A7D5EB00F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		2AB2242F21A7D5EC00F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
+		2AB2243021A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxCompletionsEditViewController.swift; sourceTree = "<group>"; };
 		2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ViewController.swift"; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinableButton.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
-		2ABD9F6F1A3E0A2D00BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCompletionsEditView.xib; sourceTree = "<group>"; };
 		2ABD9F701A3E0A3900BF9003 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxCommentsEditView.xib; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
 		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
@@ -1232,8 +1238,6 @@
 		2ACB538F1A3DFC9E0040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxTermsEditView.strings"; sourceTree = "<group>"; };
 		2ACB53911A3DFD390040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		2ACB53951A3DFEA60040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCommentsEditView.strings"; sourceTree = "<group>"; };
-		2ACB539B1A3DFFA30040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
-		2ACB539D1A3DFFE30040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxCompletionsEditView.strings"; sourceTree = "<group>"; };
 		2ACB539F1A3E00180040F19F /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
 		2ACB53A11A3E00F20040F19F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SyntaxOutlineEditView.strings"; sourceTree = "<group>"; };
 		2ACB53AA1A3E03C50040F19F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SyntaxOutlineEditView.xib; sourceTree = "<group>"; };
@@ -1378,7 +1382,6 @@
 		57ED31631FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxTermsEditView.strings; sourceTree = "<group>"; };
 		57ED31641FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCommentsEditView.strings; sourceTree = "<group>"; };
 		57ED31651FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxOutlineEditView.strings; sourceTree = "<group>"; };
-		57ED31661FFD892800F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxCompletionsEditView.strings; sourceTree = "<group>"; };
 		57ED31711FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		57ED31721FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		57ED31731FFD892900F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
@@ -1662,6 +1665,7 @@
 			children = (
 				2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */,
 				2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */,
+				2AB2243021A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift */,
 				2AB2242421A7D1E100F6201F /* SyntaxFileMappingEditViewController.swift */,
 				2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */,
 				2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */,
@@ -1822,7 +1826,7 @@
 				2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */,
 				2A3A759819E77E87001DAB88 /* SyntaxCommentsEditView.xib */,
 				2A3A75A219E77E87001DAB88 /* SyntaxOutlineEditView.xib */,
-				2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */,
+				2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */,
 				2AB2241B21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard */,
 				2AB2241221A7CDEF00F6201F /* SyntaxInfoEditView.storyboard */,
 				2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */,
@@ -2495,6 +2499,7 @@
 				2A6F0D641B5500E100C2D03C /* SyntaxEditView.xib in Resources */,
 				2A10D1211E713BE60027192A /* PrintPane.storyboard in Resources */,
 				2A6F0D651B5500E100C2D03C /* ProgressView.xib in Resources */,
+				2AB2242A21A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2AC60699204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
 				2AD940E821A47C4B0076A28C /* GoToLineView.storyboard in Resources */,
@@ -2512,7 +2517,6 @@
 				2AB2241E21A7CFC900F6201F /* SyntaxFileMappingEditView.storyboard in Resources */,
 				2ADD0AE421800E2F00F78732 /* ConsolePanel.storyboard in Resources */,
 				2A9784A02034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
-				2A5DBE5B1B5D2DBA00F8CB13 /* SyntaxCompletionsEditView.xib in Resources */,
 				2A4144BD201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2566,11 +2570,11 @@
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */,
 				2ACA0C7121A18D6A00723073 /* SyntaxMappingConflictsView.storyboard in Resources */,
 				2A3A75A619E77E87001DAB88 /* SyntaxCommentsEditView.xib in Resources */,
+				2AB2242921A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2A3A75AB19E77E87001DAB88 /* SyntaxOutlineEditView.xib in Resources */,
 				2AD940DC21A46B100076A28C /* UnicodePanel.storyboard in Resources */,
 				2AE12E0B1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
 				2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */,
-				2A3A75A719E77E87001DAB88 /* SyntaxCompletionsEditView.xib in Resources */,
 				2AE73ECC2035223100D8903B /* Credits.css in Resources */,
 				2ACA0C8321A299BD00723073 /* RegexReferenceView.storyboard in Resources */,
 				2AE7A8D620450C0000830830 /* OutlineView.storyboard in Resources */,
@@ -2853,6 +2857,7 @@
 				2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */,
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
+				2AB2243221A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift in Sources */,
 				2AA45A4F1D2E8EE700A1A401 /* EditorScrollView.swift in Sources */,
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
 				2A10D1491E7477D30027192A /* ItalicButton.swift in Sources */,
@@ -3035,6 +3040,7 @@
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,
 				2A91C3211D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
+				2AB2243121A7D67E00F6201F /* SyntaxCompletionsEditViewController.swift in Sources */,
 				2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
@@ -3415,19 +3421,6 @@
 			name = SyntaxCommentsEditView.xib;
 			sourceTree = "<group>";
 		};
-		2A3A759A19E77E87001DAB88 /* SyntaxCompletionsEditView.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2ABD9F6F1A3E0A2D00BF9003 /* Base */,
-				2ACB539B1A3DFFA30040F19F /* ja */,
-				2ACB539D1A3DFFE30040F19F /* zh-Hans */,
-				2A4064001B9DA7720032AC7F /* de */,
-				2A401FD41D9AD76F00ACE036 /* it */,
-				57ED31661FFD892800F16CAD /* pt */,
-			);
-			name = SyntaxCompletionsEditView.xib;
-			sourceTree = "<group>";
-		};
 		2A3A75A019E77E87001DAB88 /* SyntaxTermsEditView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -3664,6 +3657,19 @@
 				2AB2242321A7D0D200F6201F /* pt */,
 			);
 			name = SyntaxFileMappingEditView.storyboard;
+			sourceTree = "<group>";
+		};
+		2AB2242721A7D51800F6201F /* SyntaxCompletionsEditView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2AB2242821A7D51800F6201F /* Base */,
+				2AB2242B21A7D5E900F6201F /* ja */,
+				2AB2242C21A7D5EA00F6201F /* zh-Hans */,
+				2AB2242D21A7D5EA00F6201F /* de */,
+				2AB2242E21A7D5EB00F6201F /* it */,
+				2AB2242F21A7D5EC00F6201F /* pt */,
+			);
+			name = SyntaxCompletionsEditView.storyboard;
 			sourceTree = "<group>";
 		};
 		2AB4326C1912ADAC00835004 /* CharacterPopover.xib */ = {
