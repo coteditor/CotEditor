@@ -28,13 +28,6 @@ import Cocoa
 
 final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
-    // MARK: Private Properties
-    
-    @IBOutlet private weak var arrayController: NSArrayController?
-    
-    
-    
-    // MARK: -
     // MARK: Delegate
     
     /// selection did change
@@ -65,7 +58,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
         
         guard edge == .trailing else { return [] }
-        guard let arrayController = self.arrayController else { return [] }
+        guard let arrayController = tableView.infoForBinding(.content)?[.observedObject] as? NSArrayController else { return [] }
         
         // delete
         return [NSTableViewRowAction(style: .destructive,

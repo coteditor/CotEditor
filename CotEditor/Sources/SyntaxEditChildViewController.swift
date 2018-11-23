@@ -1,14 +1,14 @@
 //
-//  UnderlinableButton.swift
+//  SyntaxEditChildViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-05-22.
+//  Created by 1024jp on 2018-11-23.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,23 +25,7 @@
 
 import Cocoa
 
-@IBDesignable
-final class UnderlinableButton: NSButton {
-
-    @IBInspectable var underline: Bool = false {
-        
-        didSet {
-            let attributedTitle = self.attributedTitle.mutable
-            let range = NSRange(location: 0, length: attributedTitle.length)
-            
-            if self.underline {
-                attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-            } else {
-                attributedTitle.removeAttribute(.underlineStyle, range: range)
-            }
-            
-            self.attributedTitle = attributedTitle
-        }
-    }
+final class SyntaxEditChildViewController: NSViewController {
     
+    @IBOutlet private var tableViewDelegate: DefinitionTableViewDelegate?
 }
