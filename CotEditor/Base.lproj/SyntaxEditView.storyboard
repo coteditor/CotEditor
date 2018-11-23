@@ -262,7 +262,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="i12-7i-sAj"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" inset="2" id="1020">
+                                <buttonCell key="cell" type="push" title="Restore Defaults" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1020">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <connections>
@@ -271,6 +271,11 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="setToFactoryDefaults:" target="8Mx-zQ-ItP" id="b5I-xl-dUQ"/>
+                                    <binding destination="8Mx-zQ-ItP" name="hidden" keyPath="isBundledStyle" id="qs6-2z-iwf">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dje-ga-BFL">

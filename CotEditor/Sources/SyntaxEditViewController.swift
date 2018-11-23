@@ -70,7 +70,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     @objc private dynamic var message: String?
     @objc private dynamic var isStyleNameValid = true
     @objc private dynamic var isRestoreble = false
-    private var isBundledStyle = false
+    @objc private dynamic var isBundledStyle = false
     
     private var tabViewController: NSTabViewController?
     
@@ -170,7 +170,6 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             else { return }
 
         self.style.setDictionary(style)
-        self.isRestoreble = false
         
         // update validation result if displayed
         let tabViewController = self.tabViewController!
