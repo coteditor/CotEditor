@@ -178,7 +178,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         var viewControllers = [NSViewController?]()
         for type in SyntaxType.allCases {
             if type == .comments { break }
-            viewControllers.append(SyntaxTermsEditViewController(syntaxType: type))
+            let controller = SyntaxTermsEditViewController.instantiate(storyboard: "SyntaxTermsEditView")
+            controller.syntaxType = type
+            viewControllers.append(controller)
         }
         viewControllers.append(SyntaxCommentsEditViewController.instantiate(storyboard: "SyntaxCommentsEditView"))
         viewControllers.append(nil)  // separator
