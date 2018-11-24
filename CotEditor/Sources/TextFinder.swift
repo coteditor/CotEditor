@@ -447,7 +447,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textView.showFindIndicator(for: range)
             
             if result.wrapped, let view = textView.enclosingScrollView?.superview {
-                let hudController = HUDController(symbol: .wrap)!
+                let hudController = HUDController.instantiate(storyboard: "HUDView")
+                hudController.symbol = .wrap
                 hudController.isReversed = !forward
                 hudController.show(in: view)
             }

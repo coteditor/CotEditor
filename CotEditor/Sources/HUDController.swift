@@ -51,6 +51,7 @@ final class HUDController: NSViewController {
     // MARK: Public Properties
     
     var isReversed = false
+    var symbol: HUDSymbol = .wrap
     
     
     // MARK: Private Properties
@@ -59,7 +60,7 @@ final class HUDController: NSViewController {
     private let defaultDisplayingInterval: TimeInterval = 0.1
     private let fadeDuration: TimeInterval = 0.5
     
-    @objc private dynamic let symbolImage: NSImage
+    @objc private dynamic var symbolImage: NSImage?
     
     @IBOutlet private weak var symbolView: NSImageView?
     
@@ -68,37 +69,16 @@ final class HUDController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    required init?(symbol: HUDSymbol) {
-        
-        self.symbolImage = symbol.image
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("HUDView")
-    }
-    
-    
-    
-    // MARK: View Controller Methods
-    
     /// setup UI
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
         self.view.identifier = .HUD
         self.view.layer?.cornerRadius = self.cornerRadius
         self.view.layer?.opacity = 0.0
+        
+        self.symbolImage = self.symbol.image
         
         // set rotate symbol
         if self.isReversed {
