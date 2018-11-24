@@ -182,7 +182,7 @@ final class SyntaxStyleValidator {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
                         results.append(StyleError(kind: .regularExpression(error: error),
-                                                  type: key,
+                                                  type: "Outline Menu",
                                                   role: .regularExpression,
                                                   string: definition.beginString))
                     }
@@ -198,7 +198,7 @@ final class SyntaxStyleValidator {
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
             if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
                 results.append(StyleError(kind: .blockComment,
-                                          type: "comment",
+                                          type: "Comments",
                                           role: beginDelimiterExists ? .begin : .end,
                                           string: beginDelimiter ?? endDelimiter!))
             }

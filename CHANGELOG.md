@@ -16,6 +16,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the syntax style validator ignored unbaranced block comment delimiters that should be an error.
+- Fix minor issues in the syntax style editor.
 
 
 
