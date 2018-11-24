@@ -187,15 +187,19 @@ final class MenuKeyBindingManager: KeyBindingManager {
                  #selector(NSWindow.makeKeyAndOrderFront),
                  #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
                  return false
-                
-            // window tabbing actions
-            // -> Because they cannot be set correctly.
+            default: break
+            }
+        }
+        
+        // window tabbing actions
+        // -> Because they cannot be set correctly.
+        if let action = menuItem.action {
+            switch action {
             case #selector(NSWindow.selectNextTab(_:)),
                  #selector(NSWindow.selectPreviousTab(_:)),
                  #selector(NSWindow.moveTabToNewWindow(_:)),
                  #selector(NSWindow.mergeAllWindows(_:)):
                 return false
-                
             default: break
             }
         }
