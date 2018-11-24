@@ -411,7 +411,7 @@
 
 // Syntax style validation results
 "No error found." = "エラーはありません。";
-"An error found!" = "エラーがあります！";
+"An error found!" = "1個のエラーがあります！";
 "%i errors found!" = "%i個のエラーがあります！";
 "outline menu" = "アウトラインメニュー";
 
