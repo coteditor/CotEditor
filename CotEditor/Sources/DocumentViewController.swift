@@ -877,7 +877,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
                 else { return }
             
             let message = "Coloring text…".localized
-            let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
+            let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+            indicator.setup(progress: progress, message: message, closesWhenFinished: true)
             
             self?.presentAsSheet(indicator)
         }

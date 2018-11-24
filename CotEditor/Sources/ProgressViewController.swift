@@ -29,8 +29,8 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private dynamic let progress: Progress
-    @objc private dynamic let message: String
+    @objc private dynamic var progress: Progress?
+    @objc private dynamic var message: String = ""
     
     private var progressObserver: NSKeyValueObservation?
     private var descriptionObserver: NSKeyValueObservation?
@@ -46,53 +46,10 @@ final class ProgressViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    required init(progress: Progress, message: String, closesWhenFinished: Bool = false) {
-        
-        self.progress = progress
-        self.message = message
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        self.progressObserver = progress.observe(\.fractionCompleted, options: .initial) { [weak self] (progress, _) in
-            guard !progress.isIndeterminate else { return }
-            
-            self?.progressThrottle {
-                self?.indicator?.doubleValue = progress.fractionCompleted
-            }
-        }
-        
-        self.descriptionObserver = progress.observe(\.localizedDescription, options: .initial) { [weak self] (progress, _) in
-            DispatchQueue.main.async {
-                self?.descriptionField?.stringValue = progress.localizedDescription
-            }
-        }
-        
-        self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
-            guard closesWhenFinished, progress.isFinished else { return }
-            
-            DispatchQueue.main.async {
-                self?.dismiss(nil)
-            }
-        }
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     deinit {
         self.progressObserver?.invalidate()
         self.descriptionObserver?.invalidate()
         self.finishObserver?.invalidate()
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("ProgressView")
     }
     
     
@@ -118,6 +75,36 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Public Methods
     
+    /// initialize view with given progress instance
+    func setup(progress: Progress, message: String, closesWhenFinished: Bool = false) {
+        
+        self.progress = progress
+        self.message = message
+        
+        self.progressObserver = progress.observe(\.fractionCompleted, options: .initial) { [weak self] (progress, _) in
+            guard !progress.isIndeterminate else { return }
+            
+            self?.progressThrottle {
+                self?.indicator?.doubleValue = progress.fractionCompleted
+            }
+        }
+        
+        self.descriptionObserver = progress.observe(\.localizedDescription, options: .initial) { [weak self] (progress, _) in
+            DispatchQueue.main.async {
+                self?.descriptionField?.stringValue = progress.localizedDescription
+            }
+        }
+        
+        self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
+            guard closesWhenFinished, progress.isFinished else { return }
+            
+            DispatchQueue.main.async {
+                self?.dismiss(nil)
+            }
+        }
+    }
+    
+    
     /// change button to done
     func done() {
         
@@ -133,7 +120,7 @@ final class ProgressViewController: NSViewController {
     /// cancel current process
     @IBAction func cancel(_ sender: Any?) {
         
-        self.progress.cancel()
+        self.progress?.cancel()
         
         self.dismiss(sender)
     }

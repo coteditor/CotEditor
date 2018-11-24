@@ -291,7 +291,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
@@ -492,7 +493,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: actionName)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: actionName)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
