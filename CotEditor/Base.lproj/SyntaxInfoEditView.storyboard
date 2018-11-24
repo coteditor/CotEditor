@@ -168,6 +168,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
+                                    <action selector="jumpToURL:" target="QOX-2V-Izf" id="pmk-dq-5Vq"/>
                                     <binding destination="YVG-yW-9Ua" name="hidden" keyPath="selection.distributionURL" id="Ivb-vo-aHM">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSIsNil</string>
