@@ -15,6 +15,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where `cot` command failed to open paths or stdin containing backslash character.
 - Fix an issue where the syntax style validator ignored unbaranced block comment delimiters that should be an error.
 - Fix minor issues in the syntax style editor.
 - Fix some localized strings.
