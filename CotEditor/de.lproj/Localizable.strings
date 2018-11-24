@@ -292,14 +292,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "Zeilen";
-"Characters" = "Zeichen";
-"Length" = "Länge";
-"Words" = "Wörter";
-"Location" = "Position";
-"Line" = "Zeile";
-"Column" = "Spalte";
+"Lines: " = "Zeilen: ";
+"Characters: " = "Zeichen: ";
+"Length: " = "Länge: ";
+"Words: " = "Wörter: ";
+"Location: " = "Position: ";
+"Line: " = "Zeile: ";
+"Column: " = "Spalte: ";
 
 
 

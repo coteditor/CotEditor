@@ -293,14 +293,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "行数";
-"Characters" = "文字数";
-"Length" = "文字長";
-"Words" = "単語数";
-"Location" = "位置";
-"Line" = "行";
-"Column" = "列";
+"Lines: " = "行数: ";
+"Characters: " = "文字数: ";
+"Length: " = "文字長: ";
+"Words: " = "単語数: ";
+"Location: " = "位置: ";
+"Line: " = "行: ";
+"Column: " = "列: ";
 
 
 
