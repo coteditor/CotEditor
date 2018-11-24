@@ -1097,7 +1097,7 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Script" image="ScriptTemplate" tag="800" id="617">
+                            <menuItem title="Script" image="ScriptTemplate" id="617">
                                 <menu key="submenu" title="Script" id="616"/>
                             </menuItem>
                             <menuItem title="Help" id="103">
