@@ -1206,10 +1206,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
-        guard
-            let popoverController = CharacterPopoverController(character: selectedString),
-            let selectedRect = self.boundingRect(for: self.selectedRange)
-            else { return }
+        let popoverController = CharacterPopoverController.instantiate(storyboard: "CharacterPopover")
+        do {
+            try popoverController.setup(character: selectedString)
+        } catch {
+            return print(error)
+        }
+        
+        guard let selectedRect = self.boundingRect(for: self.selectedRange) else { return }
         
         let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
         

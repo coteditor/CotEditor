@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="OrY-ac-ENK">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Character Popover Controller-->
+        <scene sceneID="Giy-eo-fv1">
+            <objects>
+                <viewController id="OrY-ac-ENK" customClass="CharacterPopoverController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="0jI-EZ-ymG">
+                        <rect key="frame" x="0.0" y="0.0" width="276" height="92"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-OL-NAu" customClass="CharacterField" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="8" y="10" width="68" height="72"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="brS-3N-jsB"/>
+                                </constraints>
+                                <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="蛙" id="E2I-1W-zW6" customClass="CharacterFieldCell" customModule="CotEditor" customModuleProvider="target">
+                                    <font key="font" size="64" name="TimesNewRomanPSMT"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="OrY-ac-ENK" name="textColor" keyPath="characterColor" id="ysW-yx-Kvf"/>
+                                    <binding destination="OrY-ac-ENK" name="value" keyPath="glyph" id="3UM-ew-p9Q"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-mh-lm6">
+                                <rect key="frame" x="80" y="31" width="188" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="U+86D9" id="Atm-wm-Ocl">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="OrY-ac-ENK" name="value" keyPath="unicode" id="hp1-3b-UV5"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="cvP-MD-1SF">
+                                <rect key="frame" x="80" y="66" width="188" height="16"/>
+                                <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK UNIFIED IDEOGRAPH-86D9" id="H6i-fn-bnL">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="OrY-ac-ENK" name="value" keyPath="unicodeName" id="bJ0-A8-8ap"/>
+                                </connections>
+                            </textField>
+                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-LW-D7y">
+                                <rect key="frame" x="80" y="49" width="188" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK Unified Ideographs" id="h7A-Kh-GoY">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="OrY-ac-ENK" name="value" keyPath="unicodeBlockName" id="GWn-J1-VN6"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="V7B-LW-D7y" secondAttribute="bottom" constant="4" id="4Nz-VM-PAT"/>
+                            <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" priority="749" constant="4" id="B75-bi-dvz"/>
+                            <constraint firstAttribute="trailing" secondItem="cvP-MD-1SF" secondAttribute="trailing" constant="10" id="GfY-bt-3uf"/>
+                            <constraint firstAttribute="trailing" secondItem="V7B-LW-D7y" secondAttribute="trailing" constant="10" id="HVL-ke-sJa"/>
+                            <constraint firstItem="V7B-LW-D7y" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="JzA-kM-gRT"/>
+                            <constraint firstItem="5tD-mh-lm6" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="TEN-2w-O09"/>
+                            <constraint firstItem="Lnp-OL-NAu" firstAttribute="leading" secondItem="0jI-EZ-ymG" secondAttribute="leading" constant="10" id="Vj2-pk-Yi8"/>
+                            <constraint firstAttribute="bottom" secondItem="Lnp-OL-NAu" secondAttribute="bottom" priority="740" constant="10" id="Vnu-NL-Tu3"/>
+                            <constraint firstItem="V7B-LW-D7y" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" constant="3" id="cW3-TS-n9I"/>
+                            <constraint firstAttribute="trailing" secondItem="5tD-mh-lm6" secondAttribute="trailing" constant="10" id="e7L-Ya-1fM"/>
+                            <constraint firstItem="cvP-MD-1SF" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="e8Y-ow-6K9"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5tD-mh-lm6" secondAttribute="bottom" constant="12" id="ggB-LH-qfa"/>
+                            <constraint firstItem="Lnp-OL-NAu" firstAttribute="top" secondItem="0jI-EZ-ymG" secondAttribute="top" constant="10" id="sWg-5J-zQW"/>
+                            <constraint firstItem="Lnp-OL-NAu" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="top" id="zIk-gW-Q8x"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="unicodeBlockNameField" destination="V7B-LW-D7y" id="BHc-Ks-iOV"/>
+                    </connections>
+                </viewController>
+                <customObject id="4OK-k5-a7c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

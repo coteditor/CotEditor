@@ -294,7 +294,6 @@
 		2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */ = {isa = PBXBuildFile; fileRef = 2A456C421A1EDCFC00395158 /* ReportTemplate.md */; };
 		2A6F0D651B5500E100C2D03C /* ProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2588E9CC07C4851C0060021D /* ProgressView.xib */; };
 		2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
-		2A6F0D6D1B5500E100C2D03C /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
 		2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
 		2A6F0D811B5500E100C2D03C /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
 		2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */; };
@@ -491,7 +490,6 @@
 		2AB2244B21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
 		2AB2245421A809A000F6201F /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
 		2AB2245521A809A000F6201F /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
-		2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2AB4326C1912ADAC00835004 /* CharacterPopover.xib */; };
 		2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2AB9B4681ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */; };
@@ -499,6 +497,8 @@
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
+		2ABC828421A9486A008F9229 /* CharacterPopover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */; };
+		2ABC828521A9486A008F9229 /* CharacterPopover.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */; };
 		2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF86BC208C3C630082D52B /* AudioToolbox.swift */; };
 		2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */; };
@@ -1183,6 +1183,7 @@
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinableButton.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
+		2ABC828321A9486A008F9229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CharacterPopover.storyboard; sourceTree = "<group>"; };
 		2ABF86BC208C3C630082D52B /* AudioToolbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioToolbox.swift; sourceTree = "<group>"; };
 		2ABFF6D61D02856A00BE2795 /* ShortcutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutTests.swift; sourceTree = "<group>"; };
 		2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDocument+ErrorHandling.swift"; sourceTree = "<group>"; };
@@ -1259,7 +1260,6 @@
 		2ACFE58A1D20730B0005233A /* FindPanelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelContentViewController.swift; sourceTree = "<group>"; };
 		2AD21FCB1D2E3BE80018C8D1 /* StatusBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		2AD4883E1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ProgressView.xib; sourceTree = "<group>"; };
-		2AD4883F1A07FF1B00B795CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CharacterPopover.xib; sourceTree = "<group>"; };
 		2AD488591A080C1800B795CB /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AD551E320D6CF2F007279B1 /* ControlToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlToolbarItem.swift; sourceTree = "<group>"; };
 		2AD551E620D70026007279B1 /* SegmentedToolbarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedToolbarItem.swift; sourceTree = "<group>"; };
@@ -1990,9 +1990,9 @@
 				2A1893A61FFF16A400AD244F /* PatternSortViewController.swift */,
 				2AE12E061E7DDF0700681F72 /* CustomSurroundStringViewController.swift */,
 				2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */,
+				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
 				2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */,
-				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
 			);
 			name = "Accessory Views";
 			sourceTree = "<group>";
@@ -2094,8 +2094,8 @@
 				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
 				2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */,
 				2A25C51920F068FD0003AE1A /* CustomTabWidthView.storyboard */,
+				2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */,
 				2A3A1E741C45219800641CE0 /* HUDView.xib */,
-				2AB4326C1912ADAC00835004 /* CharacterPopover.xib */,
 			);
 			name = "Document Accessories";
 			sourceTree = "<group>";
@@ -2492,11 +2492,11 @@
 				2AC60699204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
 				2AB2243621A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
+				2ABC828521A9486A008F9229 /* CharacterPopover.storyboard in Resources */,
 				2AD940E821A47C4B0076A28C /* GoToLineView.storyboard in Resources */,
 				2A4144B9201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */,
 				2AE12E0C1E7DDF5100681F72 /* CustomSurroundStringView.storyboard in Resources */,
 				2ACA0CA621A3BFB700723073 /* ColorCodePanelAccessory.storyboard in Resources */,
-				2A6F0D6D1B5500E100C2D03C /* CharacterPopover.xib in Resources */,
 				2AB2241521A7CDEF00F6201F /* SyntaxInfoEditView.storyboard in Resources */,
 				2AB2243F21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */,
 				2ACA0C9621A2A03D00723073 /* PrintPanelAccessory.storyboard in Resources */,
@@ -2534,6 +2534,7 @@
 				2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */,
 				2AD940E721A47C4B0076A28C /* GoToLineView.storyboard in Resources */,
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
+				2ABC828421A9486A008F9229 /* CharacterPopover.storyboard in Resources */,
 				2ACA0C7A21A1982300723073 /* EncodingListView.storyboard in Resources */,
 				2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */,
 				2A2179F61A07093B002C4AB1 /* SyntaxMap.json in Resources */,
@@ -2578,7 +2579,6 @@
 				2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */,
 				2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */,
 				2A86C47F2037312900B9357C /* SaveDocumentAccessory.storyboard in Resources */,
-				2AB4326E1912ADAC00835004 /* CharacterPopover.xib in Resources */,
 				2A1893A41FFF15E000AD244F /* PatternSortView.storyboard in Resources */,
 				2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
@@ -3661,12 +3661,12 @@
 			name = SyntaxEditView.storyboard;
 			sourceTree = "<group>";
 		};
-		2AB4326C1912ADAC00835004 /* CharacterPopover.xib */ = {
+		2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				2AD4883F1A07FF1B00B795CB /* Base */,
+				2ABC828321A9486A008F9229 /* Base */,
 			);
-			name = CharacterPopover.xib;
+			name = CharacterPopover.storyboard;
 			sourceTree = "<group>";
 		};
 		2AC20A6F1E70819E0093B9C6 /* GeneralPane.storyboard */ = {
