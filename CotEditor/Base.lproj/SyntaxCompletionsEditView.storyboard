@@ -15,19 +15,19 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hML-7o-Nlt">
-                                <rect key="frame" x="12" y="41" width="426" height="265"/>
+                                <rect key="frame" x="8" y="37" width="434" height="273"/>
                                 <clipView key="contentView" id="BRb-fe-mCP">
-                                    <rect key="frame" x="1" y="0.0" width="424" height="264"/>
+                                    <rect key="frame" x="1" y="0.0" width="432" height="272"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="cfa-Oh-il3" viewBased="YES" id="2a7-Wl-Q5m">
-                                            <rect key="frame" x="0.0" y="0.0" width="424" height="241"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="432" height="249"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn identifier="completionWords" width="420.853515625" minWidth="75.353515625" maxWidth="1000" id="uGV-wD-V9T">
+                                                <tableColumn identifier="completionWords" width="428.853515625" minWidth="75.353515625" maxWidth="1000" id="uGV-wD-V9T">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Completions">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -42,11 +42,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="xa5-eD-pfY">
-                                                            <rect key="frame" x="1" y="1" width="421" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="429" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t3z-J1-uqF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="421" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="429" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="string" usesSingleLineMode="YES" id="1Xc-SV-RAk">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -87,12 +87,12 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="cfa-Oh-il3">
-                                    <rect key="frame" x="0.0" y="0.0" width="424" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="432" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3F8-YV-QQ6">
-                                <rect key="frame" x="10" y="314" width="430" height="14"/>
+                                <rect key="frame" x="6" y="318" width="375" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="If no word, the completion list will be generated from coloring settings." id="fJg-PK-TBB">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -100,7 +100,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cti-PX-cUI">
-                                <rect key="frame" x="12" y="11" width="24" height="23"/>
+                                <rect key="frame" x="8" y="7" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="4WV-zA-tAz"/>
                                     <constraint firstAttribute="width" constant="24" id="bhv-oq-2Sx"/>
@@ -115,7 +115,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wgl-Fa-zXY">
-                                <rect key="frame" x="35" y="11" width="24" height="23"/>
+                                <rect key="frame" x="31" y="7" width="24" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="bhw-uB-OWQ">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="miniSystem"/>
@@ -126,7 +126,7 @@
                                 </connections>
                             </button>
                             <button identifier="about_complist_settings" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eST-UC-Ayr">
-                                <rect key="frame" x="415" y="8" width="25" height="25"/>
+                                <rect key="frame" x="419" y="4" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oOZ-0a-aOK">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -134,21 +134,21 @@
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="cti-PX-cUI" secondAttribute="bottom" constant="12" id="1aB-HD-fSW"/>
-                            <constraint firstItem="hML-7o-Nlt" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="3oo-YY-3Q4"/>
+                            <constraint firstAttribute="bottom" secondItem="cti-PX-cUI" secondAttribute="bottom" constant="8" id="1aB-HD-fSW"/>
+                            <constraint firstItem="hML-7o-Nlt" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="3oo-YY-3Q4"/>
                             <constraint firstItem="Wgl-Fa-zXY" firstAttribute="centerY" secondItem="cti-PX-cUI" secondAttribute="centerY" id="926-TO-ORW"/>
                             <constraint firstItem="Wgl-Fa-zXY" firstAttribute="leading" secondItem="cti-PX-cUI" secondAttribute="trailing" constant="-1" id="FJo-NW-8Es"/>
-                            <constraint firstAttribute="bottom" secondItem="eST-UC-Ayr" secondAttribute="bottom" constant="12" id="Mp9-Nx-oHu"/>
+                            <constraint firstAttribute="bottom" secondItem="eST-UC-Ayr" secondAttribute="bottom" constant="8" id="Mp9-Nx-oHu"/>
                             <constraint firstItem="cti-PX-cUI" firstAttribute="leading" secondItem="hML-7o-Nlt" secondAttribute="leading" id="Xc3-fH-nOL"/>
-                            <constraint firstItem="3F8-YV-QQ6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="12" id="Yvv-Ow-D2u"/>
-                            <constraint firstAttribute="trailing" secondItem="hML-7o-Nlt" secondAttribute="trailing" constant="12" id="cI1-OU-di3"/>
+                            <constraint firstItem="3F8-YV-QQ6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="8" id="Yvv-Ow-D2u"/>
+                            <constraint firstAttribute="trailing" secondItem="hML-7o-Nlt" secondAttribute="trailing" constant="8" id="cI1-OU-di3"/>
                             <constraint firstItem="cti-PX-cUI" firstAttribute="height" secondItem="Wgl-Fa-zXY" secondAttribute="height" id="h8a-3z-E71"/>
                             <constraint firstItem="eST-UC-Ayr" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Wgl-Fa-zXY" secondAttribute="trailing" constant="12" symbolic="YES" id="hyx-8z-gjI"/>
-                            <constraint firstAttribute="trailing" secondItem="eST-UC-Ayr" secondAttribute="trailing" constant="12" id="kN4-UY-PXx"/>
-                            <constraint firstAttribute="trailing" secondItem="3F8-YV-QQ6" secondAttribute="trailing" constant="12" id="lAL-Th-gVR"/>
+                            <constraint firstAttribute="trailing" secondItem="eST-UC-Ayr" secondAttribute="trailing" constant="8" id="kN4-UY-PXx"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3F8-YV-QQ6" secondAttribute="trailing" constant="8" id="lAL-Th-gVR"/>
                             <constraint firstItem="hML-7o-Nlt" firstAttribute="top" secondItem="3F8-YV-QQ6" secondAttribute="bottom" constant="8" symbolic="YES" id="mUq-R8-eNx"/>
                             <constraint firstItem="cti-PX-cUI" firstAttribute="width" secondItem="Wgl-Fa-zXY" secondAttribute="width" id="p9O-Fr-hgc"/>
-                            <constraint firstItem="3F8-YV-QQ6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="12" id="pBT-MC-Xs7"/>
+                            <constraint firstItem="3F8-YV-QQ6" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="8" id="pBT-MC-Xs7"/>
                             <constraint firstItem="cti-PX-cUI" firstAttribute="top" secondItem="hML-7o-Nlt" secondAttribute="bottom" constant="8" symbolic="YES" id="w6l-X4-MWM"/>
                         </constraints>
                     </view>

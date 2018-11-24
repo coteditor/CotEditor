@@ -10,7 +10,7 @@ Change Log
 - Change not to highlight occurrences of the selection when there are more than 100.
 - Update validation pane in the syntax style editor:
     - Now, validation is performed automatically when the pane switched to “Valitation”.
-- [trivial] Remove “Restore to Defaults” button in the syntax style editor if the style has no defaults.
+- [trivial] Remove “Restore Defaults” button in the syntax style editor if the style has no defaults.
 
 
 ### Fixes
