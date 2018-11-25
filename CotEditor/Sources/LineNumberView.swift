@@ -187,6 +187,9 @@ final class LineNumberView: NSRulerView {
         guard let window = self.window else { return }
         
         // perform redraw on window opacity change
+        if let observer = self.opacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
             self.setNeedsDisplay(self.visibleRect)
         }
