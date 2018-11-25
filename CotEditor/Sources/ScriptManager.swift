@@ -156,7 +156,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Dispatch an Apple event that notifies the given document was opened
     ///
-    /// - parameter document: the document that was opened
+    /// - Parameter document: The document that was opened.
     func dispatchEvent(documentOpened document: Document) {
         
         let eventType = ScriptingEventType.documentOpened
@@ -171,7 +171,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Dispatch an Apple event that notifies the given document was opened
     ///
-    /// - parameter document: the document that was opened
+    /// - Parameter document: The document that was opened.
     func dispatchEvent(documentSaved document: Document) {
         
         let eventType = ScriptingEventType.documentSaved
@@ -234,16 +234,15 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Create an Apple event caused by the given `Document`
     ///
-    /// - bug:
+    /// - Bug:
     ///   NSScriptObjectSpecifier.descriptor can be nil.
     ///   If `nil`, the error is propagated by passing a string in place of `Document`.
     ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
     ///
-    /// - parameters:
-    ///   - document: the document to dispatch an Apple event
-    ///   - eventID: the event ID to be set in the returned event
-    ///
-    /// - returns: a descriptor for an Apple event by the `Document`
+    /// - Parameters:
+    ///   - document: The document to dispatch an Apple event.
+    ///   - eventID: The event ID to be set in the returned event.
+    /// - Returns: A descriptor for an Apple event by the `Document`.
     private func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
@@ -257,9 +256,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
     ///
-    /// - parameters:
-    ///   - event: the Apple event to be dispatched
-    ///   - scripts: AppleScripts handling the given Apple event
+    /// - Parameters:
+    ///   - event: The Apple event to be dispatched.
+    ///   - scripts: AppleScripts handling the given Apple event.
     private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [Script]) {
         
         for script in scripts {
@@ -321,7 +320,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// open script file in an editor
-    /// - throws: ScriptFileError
+    ///
+    /// - Throws: `ScriptFileError`
     private func editScript(at url: URL) throws {
         
         guard NSWorkspace.shared.open(url) else {
@@ -332,7 +332,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// reveal script file in Finder
-    /// - throws: ScriptFileError
+    ///
+    /// - Throws: `ScriptFileError`
     private func revealScript(at url: URL) throws {
         
         guard url.isReachable else {

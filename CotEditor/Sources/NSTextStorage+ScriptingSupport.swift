@@ -27,22 +27,20 @@ import AppKit
 
 extension NSTextStorage {
     
-    /**
-     Observe text storage update for in case when a part of the contents is directly edited from an AppleScript.
-     
-     This method is used for a textStorage that will be passed to AppleScript.
-     
-     e.g.:
-     ```AppleScript
-     tell first document of application "CotEditor"
-         set first paragraph of contents to "foo bar"
-     end tell
-     ```
-     
-     - Parameters:
-        - block: The block to be executed when the textStorage is edited.
-        - editedString: The contents of the textStrage after the editing.
-     */
+    /// Observe text storage update for in case when a part of the contents is directly edited from an AppleScript.
+    ///
+    /// This method is used for a textStorage that will be passed to AppleScript.
+    ///
+    /// e.g.:
+    /// ```AppleScript
+    /// tell first document of application "CotEditor"
+    /// set first paragraph of contents to "foo bar"
+    /// end tell
+    /// ```
+    ///
+    /// - Parameters
+    ///   - block: The block to be executed when the textStorage is edited.
+    ///   - editedString: The contents of the textStrage after the editing.
     func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
         
         weak var observer: NSObjectProtocol?

@@ -753,7 +753,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
+    /// Return whole string in the current text storage which document's line endings are already applied to.
+    ///
+    /// - Note: The internal text storage has always LF for its line ending.
     var string: String {
         
         let editorString = self.textStorage.string.immutable  // line ending is always LF
@@ -798,7 +800,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// change file encoding registering process to the undo manager
     ///
-    /// `EncodingError` (Kind.lossyConversion) can be thorwn only if `lossy` flag is `true`.
+    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thorwn but only if `lossy` flag is `true`.
     func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, lossy: Bool) throws {
         
         assert(Thread.isMainThread)

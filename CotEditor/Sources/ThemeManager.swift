@@ -191,8 +191,8 @@ final class ThemeManager: SettingFileManaging {
     
     /// Load ThemeDictionary from a file at the URL.
     ///
-    /// - parameter fileURL: URL to a setting file.
-    /// - throws: CocoaError
+    /// - Parameter fileURL: URL to a setting file.
+    /// - Throws: `CocoaError`
     private func loadSettingDictionary(at fileURL: URL) throws -> ThemeDictionary {
         
         let data = try Data(contentsOf: fileURL)

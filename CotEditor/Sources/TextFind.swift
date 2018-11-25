@@ -80,7 +80,7 @@ final class TextFind {
     ///   - mode: The settable options for the text search.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
-    /// - Throws: TextFindError
+    /// - Throws: `TextFindError`
     init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws {
         
         assert(!selectedRanges.isEmpty)

@@ -61,7 +61,7 @@ final class CharacterPopoverController: NSViewController {
     /// initialize view with character
     ///
     /// - Parameter character: `character` must be a single character (or a surrogate-pair). If not, throws an error.
-    /// - Throws: CharacterInfo.Error
+    /// - Throws: `CharacterInfo.Error`
     func setup(character: String) throws {
         
         let info = try CharacterInfo(string: character)

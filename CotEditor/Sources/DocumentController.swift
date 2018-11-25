@@ -314,7 +314,7 @@ final class DocumentController: NSDocumentController {
     /// - Parameters:
     ///   - url: The location of the new document object.
     ///   - typeName: The type of the document.
-    /// - Throws: DocumentReadError
+    /// - Throws: `DocumentReadError`
     private func checkOpeningSafetyOfDocument(at url: URL, typeName: String) throws {
         
         // check if the file is possible binary

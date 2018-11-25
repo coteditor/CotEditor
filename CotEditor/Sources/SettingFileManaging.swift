@@ -220,7 +220,8 @@ extension SettingFileManaging {
     
     
     /// delete user's setting file for the setting name
-    /// - throws: SettingFileError
+    ///
+    /// - Throws: `SettingFileError`
     func removeSetting(name: String) throws {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
@@ -327,7 +328,8 @@ extension SettingFileManaging {
     
     
     /// import setting at passed-in URL
-    /// - throws: SettingFileError
+    ///
+    /// - Throws: `SettingFileError`
     func importSetting(fileURL: URL) throws {
         
         let importName = self.settingName(from: fileURL)
@@ -389,7 +391,8 @@ extension SettingFileManaging {
     // MARK: Private Methods
     
     /// force import setting at passed-in URL
-    /// - throws: SettingFileError
+    ///
+    /// - Throws: `SettingFileError`
     private func overwriteSetting(fileURL: URL) throws {
         
         let name = self.settingName(from: fileURL)

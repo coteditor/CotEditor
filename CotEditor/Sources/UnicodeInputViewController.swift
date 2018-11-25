@@ -54,7 +54,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     
     
     // MARK: -
-    // MARK: Life Cycle
+    // MARK: Lifecycle
     
     deinit {
         if let observer = self.windowObserver {

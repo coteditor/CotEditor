@@ -58,18 +58,15 @@ extension String {
     }
     
     
-    /**
-     Return character range for line location/length allowing negative value.
-     
-     - parameters:
-         - location: Index of the first line in range. The line location starts not with 0 but with 1.
-                     Passing 0 to the location will return NSNotFound.
-         - length:   Number of lines to include.
-     
-     - returns: Character range, or NSRange(NSNotFound, 0) if the given values are out of range.
-     
-     - note: The last line break will be included.
-     */
+    /// Return character range for line location/length allowing negative value.
+    ///
+    /// - Parameters:
+    ///   - location: Index of the first line in range. The line location starts not with 0 but with 1.
+    ///               Passing 0 to the location will return NSNotFound.
+    ///   - length: Number of lines to include.
+    /// - Returns: Character range, or NSRange(NSNotFound, 0) if the given values are out of range.
+    ///
+    /// - Note: The last line break will be included.
     func rangeForLine(location: Int, length: Int) -> NSRange? {
         
         let wholeLength = self.utf16.count

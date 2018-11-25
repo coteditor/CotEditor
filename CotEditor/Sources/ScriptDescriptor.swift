@@ -118,7 +118,7 @@ struct ScriptDescriptor {
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
-    /// - parameter url: the location of an user script
+    /// - Parameter url: The location of an user script.
     init(at url: URL) {
         
         // Extract from URL
@@ -162,7 +162,7 @@ struct ScriptDescriptor {
     
     /// Create and return an user script instance
     ///
-    /// - returns: An instance of `Script` created by the receiver.
+    /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
     func makeScript() -> Script? {
         

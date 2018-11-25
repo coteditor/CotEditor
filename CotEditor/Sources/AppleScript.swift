@@ -46,7 +46,8 @@ final class AppleScript: Script {
     // MARK: Script Methods
     
     /// run script
-    /// - throws: Error by NSUserScriptTask
+    ///
+    /// - Throws: Error by `NSUserScriptTask`
     func run(completionHandler: (() -> Void)? = nil) throws {
         
         try self.run(withAppleEvent: nil, completionHandler: completionHandler)
@@ -57,9 +58,9 @@ final class AppleScript: Script {
     ///
     /// Any script errors will be written to the console panel.
     ///
-    /// - parameter event: the apple event
+    /// - Parameter event: The apple event.
     ///
-    /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
+    /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {

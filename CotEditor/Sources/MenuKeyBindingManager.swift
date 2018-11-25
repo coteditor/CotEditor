@@ -72,7 +72,8 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     /// create a KVO-compatible collection for outlineView in preferences from the key binding setting
-    /// - parameter usesDefaults:   `true` for default setting and `false` for the current setting
+    ///
+    /// - Parameter usesDefaults: `true` for default setting and `false` for the current setting.
     override func outlineTree(defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         return self.outlineTree(menu: NSApp.mainMenu!, defaults: usesDefaults)

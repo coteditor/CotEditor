@@ -27,14 +27,10 @@ import Foundation
 
 extension UserDefaults {
     
-    /**
-     Returns the CGFloat value associated with the specified key.
-     
-     - parameters:
-         - key: A key in the current user's defaults database.
-     
-     - returns: The CGFloat value associated with the specified key. If the key does not exist, this method returns 0.
-     */
+    /// Returns the CGFloat value associated with the specified key.
+    ///
+    /// - Parameter key: A key in the current user's defaults database.
+    /// - Returns: The CGFloat value associated with the specified key. If the key does not exist, this method returns 0.
     func cgFloat(forKey key: String) -> CGFloat {
         
         return CGFloat(self.double(forKey: key))

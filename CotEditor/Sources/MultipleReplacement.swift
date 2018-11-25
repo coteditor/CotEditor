@@ -258,7 +258,7 @@ extension MultipleReplacement.Replacement {
     
     /// check if replacement rule is valid
     ///
-    /// - Throws: TextFindError
+    /// - Throws: `TextFindError`
     func validate(regexOptions: NSRegularExpression.Options = []) throws {
         
         guard !self.findString.isEmpty else {

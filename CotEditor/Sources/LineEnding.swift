@@ -124,7 +124,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// convert passed-in range as if line endings are changed from fromLineEnding to toLineEnding
     /// assuming the receiver has `fromLineEnding` regardless of actual ones if specified
     ///
-    /// - important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
+    /// - Important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
     func convert(from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding, range: NSRange) -> NSRange {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }

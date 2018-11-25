@@ -37,7 +37,7 @@ final class SyntaxValidationViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: Life Cycle
+    // MARK: Lifecycle
     
     override func viewWillAppear() {
         
