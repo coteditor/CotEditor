@@ -172,8 +172,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         self.style.setDictionary(style)
         
         // update validation result if displayed
-        let tabViewController = self.tabViewController!
-        (tabViewController.tabViewItems[tabViewController.selectedTabViewItemIndex].viewController as? SyntaxValidationViewController)?.validateStyle()
+        (self.tabViewController?.tabView.selectedTabViewItem?.viewController as? SyntaxValidationViewController)?.validateStyle()
     }
     
     
