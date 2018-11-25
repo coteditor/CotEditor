@@ -51,9 +51,9 @@ extension NSTextStorage {
                 NotificationCenter.default.removeObserver(observer)
             }
             
-            if let textStorage = notification.object as? NSTextStorage {
-                block(textStorage.string)
-            }
+            guard let textStorage = notification.object as? NSTextStorage else { return assertionFailure() }
+            
+            block(textStorage.string)
         }
         
         // disconnect the observation after 0.5 sec. anyway (otherwise app may crash)

@@ -165,7 +165,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// selected syntax style in "Installed styles" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView, object == self.syntaxTableView else { return }
+        guard notification.object as? NSTableView == self.syntaxTableView else { return }
         
         self.validateRemoveSyntaxStyleButton()
     }

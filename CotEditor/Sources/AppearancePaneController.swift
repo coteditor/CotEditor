@@ -248,7 +248,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// theme did update
     func didUpdate(theme: ThemeManager.ThemeDictionary) {
         
-        // save
         do {
             try ThemeManager.shared.save(settingDictionary: theme, name: self.selectedThemeName)
         } catch {
@@ -262,7 +261,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// selection of theme table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView, object == self.themeTableView else { return }
+        guard notification.object as? NSTableView == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
         let themeDict = ThemeManager.shared.settingDictionary(name: themeName)
