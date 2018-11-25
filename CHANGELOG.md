@@ -11,6 +11,7 @@ Change Log
 - Update validation pane in the syntax style editor:
     - Now, validation is performed automatically when the pane switched to “Validation”.
 - [trivial] Remove “Restore Defaults” button in the syntax style editor if the style has no defaults.
+- [non-AppStore ver.] Update Sparkle framework.
 
 
 ### Fixes
