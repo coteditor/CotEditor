@@ -68,8 +68,10 @@ extension String {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         
-        let data = self.data(using: encoding, allowLossyConversion: true)!  // lossy conversion must success
-        let convertedString = String(data: data, encoding: encoding)!
+        guard
+            let data = self.data(using: encoding, allowLossyConversion: true),  // lossy conversion must always success
+            let convertedString = String(data: data, encoding: encoding)
+            else { assertionFailure(); return [] }
         
         guard convertedString.count == self.count else {
             // detect incompatible chars using Differ
