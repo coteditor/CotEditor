@@ -115,15 +115,16 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// return menu for context menu
     var contexualMenu: NSMenu? {
         
+        let items = MainMenu.script.menu!.items
+            .filter { $0.action != #selector(openScriptFolder) }
+            .map { $0.copy() as! NSMenuItem }
+        
+        guard !items.isEmpty else { return nil }
+        
         let menu = NSMenu()
+        menu.items = items
         
-        for item in MainMenu.script.menu!.items {
-            guard item.action != #selector(openScriptFolder) else { continue }
-            
-            menu.addItem(item.copy() as! NSMenuItem)
-        }
-        
-        return (menu.numberOfItems > 0) ? menu : nil
+        return menu
     }
     
     
