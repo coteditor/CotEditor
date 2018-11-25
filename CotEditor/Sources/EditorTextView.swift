@@ -1638,10 +1638,10 @@ extension EditorTextView {
         
         guard
             proposedCharRange.length == 0,  // not on expanding selection
-            range.length == 1  // clicked character can be a brace
+            range.length == 1,  // clicked character can be a brace
+            let characterIndex = Range(range, in: self.string)?.lowerBound  // just in case
             else { return range }
         
-        let characterIndex = Range(range, in: self.string)!.lowerBound
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text
