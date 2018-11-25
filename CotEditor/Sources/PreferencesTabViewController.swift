@@ -27,6 +27,11 @@ import Cocoa
 
 final class PreferencesTabViewController: NSTabViewController {
     
+    private var lastFrame: NSRect?
+    
+    
+    
+    // MARK: -
     // MARK: Tab View Controller Methods
     
     override var selectedTabViewItemIndex: Int {
@@ -68,6 +73,18 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.tabView(tabView, willSelect: tabViewItem)
         
+        if let frame = self.lastFrame {
+            tabView.selectedTabViewItem?.view?.frame = frame
+        }
+        
+        self.lastFrame = tabViewItem?.view?.frame
+    }
+    
+    
+    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        
+        super.tabView(tabView, didSelect: tabViewItem)
+        
         guard let tabViewItem = tabViewItem else { return assertionFailure() }
         
         self.switchPane(to: tabViewItem, animated: true)
@@ -80,29 +97,38 @@ final class PreferencesTabViewController: NSTabViewController {
     /// resize window to fit to new view
     private func switchPane(to tabViewItem: NSTabViewItem, animated: Bool) {
         
-        guard let viewController = tabViewItem.viewController else { return assertionFailure() }
+        guard let viewFrame = self.lastFrame ?? tabViewItem.view?.frame else { return assertionFailure() }
         
         // initialize tabView's frame size
         guard let window = self.view.window else {
-            self.view.frame = viewController.view.frame
+            self.view.frame = viewFrame
             return
         }
         
         // calculate window frame
-        var frame = window.frameRect(forContentRect: viewController.view.frame)
+        var frame = window.frameRect(forContentRect: viewFrame)
         frame.origin = window.frame.origin
         frame.origin.y += window.frame.height - frame.height
         
-        // use `alphaValue` instead of `isHidden`
-        // -> Because updating `isHidden` in completionHandler under macOS 10.12 causes crash (although OK on 10.13 and above).
-        self.view.alphaValue = 0
+        if #available(macOS 10.13, *) {
+            self.view.isHidden = true
+        } else {
+            // use `alphaValue` instead of `isHidden`
+            // -> Because updating `isHidden` in completionHandler under macOS 10.12 causes
+            //    either crash or skip initial update of the theme editor (although OK on 10.13 and above).
+            self.view.alphaValue = 0
+        }
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = animated
             
             window.setFrame(frame, display: false)
             
         }, completionHandler: { [weak self] in
-            self?.view.alphaValue = 1
+            if #available(macOS 10.13, *) {
+                self?.view.isHidden = false
+            } else {
+                self?.view.alphaValue = 1
+            }
             window.title = tabViewItem.label
         })
     }
