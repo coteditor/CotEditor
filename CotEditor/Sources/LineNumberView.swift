@@ -118,7 +118,8 @@ final class LineNumberView: NSRulerView {
         self.clientView = textView
         
         // observe text change for the total number of lines determining ruleThickness on holizontal text layout
-        // -> count only if really needed since the line counting is high workload, especially by large document
+        // -> Count only if really needed since the line counting is high workload, especially by large document.
+        //    The initial count will be performed first after the textStorage is swapped in `EditorViewController.setTextStorage(_:)`.
         if orientation == .verticalRuler {
             self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
                 self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
