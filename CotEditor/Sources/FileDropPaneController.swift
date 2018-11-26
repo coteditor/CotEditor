@@ -131,20 +131,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// set action on swiping theme name
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        
-        guard edge == .trailing else { return [] }
-        
-        // delete
-        return [NSTableViewRowAction(style: .destructive,
-                                     title: "Delete".localized(comment: "table view action title"),
-                                     handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
-                                        self?.deleteSetting(at: row)
-            })]
-    }
-    
-    
     // Text View Delegate < fromatTextView
     
     /// insertion format text view was edited
