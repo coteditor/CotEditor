@@ -23,6 +23,44 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.6.7</h1>
+	<p>release: <time>2018-11-27</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Change not to highlight occurrences of the selection when there are more than 100.</li>
+	<li>Update validation pane in the syntax style editor:<ul>
+		<li>Now, validation is performed automatically when the pane switched to “Validation”.</li></ul>
+	</li>
+	<li><span class="trivial">trivial</span>: Remove “Restore Defaults” button in the syntax style editor if the style has no defaults.</li>
+	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where <code>cot</code> command failed to open paths or stdin containing backslash character.</li>
+	<li>Fix an issue on CotEditor 3.6.5 where right-click no longer opens the context menu under macOS 10.13 and earlier.</li>
+	<li>Fix an issue where thickness of the line numbers view did not grow enough with a large number of lines.</li>
+	<li>Fix an issue where the syntax style validator ignored unbalanced block comment delimiters that should be an error.</li>
+	<li>Fix the preferences pane switching animation under macOS 10.13 and earlier.</li>
+	<li>Fix possible crashes.</li>
+	<li>Fix minor issues in the syntax style editor.</li>
+	<li>Fix some localized strings.</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
 	<h1>CotEditor 3.6.6</h1>
 	<p>release: <time>2018-11-20</time></p>
 </header>
