@@ -93,29 +93,6 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     }
     
     
-    /// set action on swiping row
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        
-        guard edge == .trailing else { return [] }
-        
-        // only separater can be removed
-        guard self.encodings[row] == kCFStringEncodingInvalidId else { return [] }
-        
-        // delete
-        return [NSTableViewRowAction(style: .destructive,
-                                     title: "Delete".localized(comment: "table view action title"),
-                                     handler: { (action: NSTableViewRowAction, row: Int) in
-                                        NSAnimationContext.runAnimationGroup({ context in
-                                            // update UI
-                                            tableView.removeRows(at: IndexSet(integer: row), withAnimation: .slideLeft)
-                                            }, completionHandler: { [weak self] in
-                                                // update data
-                                                self?.encodings.remove(at: row)
-                                        })
-            })]
-    }
-    
-    
     
     // MARK: Action Messages
     

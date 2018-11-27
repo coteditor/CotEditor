@@ -32,12 +32,6 @@ import ColorCode
 }
 
 
-private extension NSColorList.Name {
-    
-    static let stylesheet = NSColorList.Name("Stylesheet Keywords".localized)
-}
-
-
 
 // MARK: -
 
@@ -45,48 +39,27 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Public Properties
     
-    static let shared = ColorCodePanelController()
+    static let shared = ColorCodePanelController.instantiate(storyboard: "ColorCodePanelAccessory")
     
     @objc private(set) dynamic var colorCode: String?
     
     
     // MARK: Private Properties
     
+    private let stylesheetColorList: NSColorList = {
+        let colorList = NSColorList(name: "Stylesheet Keywords".localized)
+        for (keyword, color) in NSColor.stylesheetKeywordColors {
+            colorList.setColor(color, forKey: keyword)
+        }
+        return colorList
+    }()
+    
     private weak var panel: NSColorPanel?
-    private var stylesheetColorList: NSColorList
     @objc private dynamic var color: NSColor?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
-        
-        // setup stylesheet color list
-        let colorList = NSColorList(name: .stylesheet)
-        for (keyword, color) in NSColor.stylesheetKeywordColors {
-            colorList.setColor(color, forKey: NSColor.Name(keyword))
-        }
-        self.stylesheetColorList = colorList
-        
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("ColorCodePanelAccessory")
-    }
-    
-    
-    
     // MARK: Public Methods
     
     /// set color to color panel from color code

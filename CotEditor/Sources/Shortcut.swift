@@ -133,7 +133,8 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     
     /// whether key combination is valid for a shortcut
-    /// - note: an empty shortcut is marked as invalid.
+    ///
+    /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {
         
         let keys = ModifierKey.allCases.filter { self.modifierMask.contains($0.mask) }

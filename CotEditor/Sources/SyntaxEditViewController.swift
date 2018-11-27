@@ -26,181 +26,97 @@
 
 import Cocoa
 
-
-enum SyntaxEditSheetMode: Int {
+final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
     
-    case edit
-    case copy
-    case new
-}
-
-
-private enum PaneIndex: Int {
-    
-    case keywords
-    case commands
-    case types
-    case attributes
-    case variables
-    case values
-    case numbers
-    case strings
-    case characters
-    case comments
-    case separator1
-    case outline
-    case completion
-    case fileMapping
-    case separator2
-    case styleInfo
-    case validation
+    enum Mode {
+        
+        case edit(_ name: String)
+        case copy(_ name: String)
+        case new
+    }
     
     
-    var title: String {
-        switch self {
-        case .keywords: return "Keywords"
-        case .commands: return "Commands"
-        case .types: return "Types"
-        case .attributes: return "Attributes"
-        case .variables: return "Variables"
-        case .values: return "Values"
-        case .numbers: return "Numbers"
-        case .strings: return "Strings"
-        case .characters: return "Characters"
-        case .comments: return "Comments"
-        case .separator1: return String.separator
-        case .outline: return "Outline Menu"
-        case .completion: return "Completion List"
-        case .fileMapping: return "File Mapping"
-        case .separator2: return String.separator
-        case .styleInfo: return "Style Info"
-        case .validation: return "Syntax Validation"
+    
+    // MARK: Public Properties
+    
+    var mode: Mode = .new {
+        
+        didSet {
+            let manager = SyntaxManager.shared
+            
+            let style: SyntaxManager.StyleDictionary = {
+                switch mode {
+                case .edit(let name), .copy(let name):
+                    return manager.settingDictionary(name: name) ?? manager.blankSettingDictionary
+                case .new:
+                    return manager.blankSettingDictionary
+                }
+            }()
+            self.style.setDictionary(style)
+            
+            if case .edit(let name) = mode {
+                self.isBundledStyle = manager.isBundledSetting(name: name)
+                self.isRestoreble = manager.isCustomizedBundledSetting(name: name)
+            }
         }
     }
-}
-
-
-
-// MARK: -
-
-final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NSTableViewDelegate {
+    
     
     // MARK: Private Properties
     
-    private let mode: SyntaxEditSheetMode
-    private let originalStyleName: String
-    @objc private dynamic var style: NSMutableDictionary
+    @objc private dynamic var menuTitles: [String] = []  // for binding
+    
+    private let style = NSMutableDictionary(dictionary: SyntaxManager.shared.blankSettingDictionary)
     @objc private dynamic var message: String?
     @objc private dynamic var isStyleNameValid = true
-    private let isBundledStyle: Bool
-    private let isCustomized: Bool
+    @objc private dynamic var isRestoreble = false
+    @objc private dynamic var isBundledStyle = false
     
-    private var viewControllers = [NSViewController?]()
+    private var tabViewController: NSTabViewController?
     
-    @IBOutlet private weak var box: NSBox?
     @IBOutlet private weak var menuTableView: NSTableView?
     @IBOutlet private weak var styleNameField: NSTextField?
-    @IBOutlet private weak var restoreButton: NSButton?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init?(style styleName: String, mode: SyntaxEditSheetMode) {
+    /// prepare embeded TabViewController
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
-        let manager = SyntaxManager.shared
-        let name: String
-        let style: SyntaxManager.StyleDictionary
-        switch mode {
-        case .edit:
-            name = styleName
-            style = manager.settingDictionary(name: styleName) ?? manager.blankSettingDictionary
-            
-        case .copy:
-            name = manager.savableSettingName(for: styleName, appendCopySuffix: true)
-            style = manager.settingDictionary(name: styleName) ?? manager.blankSettingDictionary
-            
-        case .new:
-            name = ""
-            style = manager.blankSettingDictionary
+        if let destinationController = segue.destinationController as? NSTabViewController {
+            self.tabViewController = destinationController
+            self.menuTitles = destinationController.tabViewItems.map { $0.label.localized }
+            destinationController.children.forEach { $0.representedObject = self.style }
         }
-        self.mode = mode
-        self.style = NSMutableDictionary(dictionary: style)
-        self.originalStyleName = name
-        
-        self.isBundledStyle = manager.isBundledSetting(name: name)
-        self.isCustomized = manager.isCustomizedBundledSetting(name: name)
-        
-        if self.isBundledStyle {
-            self.message = "Bundled styles can’t be renamed.".localized
-        }
-        
-        super.init(nibName: nil, bundle: nil)
     }
     
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("SyntaxEditView")
-    }
-    
-    
-    
-    // MARK: View Controller Methods
     
     /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // setup style name field and restore button
-        self.styleNameField?.stringValue = self.originalStyleName
-        
+        // setup style name field
+        self.styleNameField?.stringValue = {
+            switch self.mode {
+            case .edit(let name): return name
+            case .copy(let name): return SyntaxManager.shared.savableSettingName(for: name, appendingCopySuffix: true)
+            case .new: return ""
+            }
+        }()
         if self.isBundledStyle {
             self.styleNameField?.drawsBackground = false
             self.styleNameField?.isBezeled = false
             self.styleNameField?.isSelectable = false
             self.styleNameField?.isEditable = false
             self.styleNameField?.isBordered = true
-            self.restoreButton?.isEnabled = self.isCustomized
-        } else {
-            self.restoreButton?.isEnabled = false
         }
         
-        // setup views
-        var viewControllers = [NSViewController?]()
-        for type in SyntaxType.allCases {
-            if type == .comments { break }
-            viewControllers.append(SyntaxTermsEditViewController(syntaxType: type))
+        if self.isBundledStyle {
+            self.message = "Bundled styles can’t be renamed.".localized
         }
-        viewControllers.append(NSViewController(nibName: "SyntaxCommentsEditView", bundle: nil))
-        viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController(nibName: "SyntaxOutlineEditView", bundle: nil))
-        viewControllers.append(NSViewController(nibName: "SyntaxCompletionsEditView", bundle: nil))
-        viewControllers.append(NSViewController(nibName: "SyntaxFileMappingEditView", bundle: nil))
-        viewControllers.append(nil)  // separator
-        viewControllers.append(NSViewController(nibName: "SyntaxInfoEditView", bundle: nil))
-        viewControllers.append(SyntaxValidationViewController())
-        
-        for viewController in viewControllers {
-            guard let viewController = viewController else { continue }  // skip separator
-            
-            viewController.representedObject = self.style
-        }
-        
-        self.viewControllers = viewControllers
-        self.swapView(index: 0)
-        
-        // set accessibility
-        self.box?.setAccessibilityElement(true)
-        self.box?.setAccessibilityRole(.group)
     }
     
     
@@ -228,10 +144,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         guard let tableView = notification.object as? NSTableView else { return assertionFailure() }
         
-        let row = tableView.selectedRow
-        
         // switch view
-        self.swapView(index: row)
+        self.endEditing()
+        self.tabViewController?.selectedTabViewItemIndex = tableView.selectedRow
     }
     
     
@@ -239,7 +154,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // separator cannot be selected
-        return (PaneIndex(rawValue: row)!.title != String.separator)
+        return (self.menuTitles[row] != .separator)
     }
     
     
@@ -249,16 +164,15 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     /// restore current settings in editor to default
     @IBAction func setToFactoryDefaults(_ sender: Any?) {
         
-        guard let style = SyntaxManager.shared.bundledSettingDictionary(name: self.originalStyleName) else { return }
-        
-        // discard current editing
-        self.discardEditing()
-        
-        // set new content
+        guard
+            case .edit(let name) = self.mode,
+            let style = SyntaxManager.shared.bundledSettingDictionary(name: name)
+            else { return }
+
         self.style.setDictionary(style)
         
-        // disable "Restore Defaults" button
-        self.restoreButton?.isEnabled = false
+        // update validation result if displayed
+        (self.tabViewController?.tabView.selectedTabViewItem?.viewController as? SyntaxValidationViewController)?.validateStyle()
     }
     
     
@@ -295,11 +209,11 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             return
         }
         
-        // validate syntax and display errors (or proceed if user has already seen the error)
-        let validationController = self.viewControllers[PaneIndex.validation.rawValue] as! SyntaxValidationViewController
-        guard validationController.didValidate || validationController.validateSyntax() else {
+        // validate syntax and display errors
+        guard SyntaxStyleValidator.validate(self.style as! SyntaxManager.StyleDictionary).isEmpty else {
             // show "Validation" pane
-            self.menuTableView?.selectRowIndexes(IndexSet(integer: PaneIndex.validation.rawValue), byExtendingSelection: false)
+            let index = self.tabViewController!.tabViewItems.firstIndex { ($0.identifier as? String) == "validation" }!
+            self.menuTableView?.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
             NSSound.beep()
             return
         }
@@ -311,7 +225,12 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             styleDictionary[key] = value
         }
         
-        let oldName: String? = (self.mode == .new) ? nil : self.originalStyleName
+        let oldName: String? = {
+            switch self.mode {
+            case .edit(let name): return name
+            default: return nil
+            }
+        }()
         
         do {
             try SyntaxManager.shared.save(settingDictionary: styleDictionary, name: styleName, oldName: oldName)
@@ -323,52 +242,29 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
     }
     
     
-    /// discard edit and close editor
-    @IBAction func cancel(_ sender: Any?) {
-        
-        self.discardEditing()
-        self.dismiss(sender)
-    }
-    
-    
     
     // MARK: Private Methods
-    
-    /// menu titles for binding
-    @objc var menuTitles: [String] {
-        
-        return (0...PaneIndex.validation.rawValue)
-            .map { PaneIndex(rawValue: $0)!.title.localized }
-    }
-    
-    
-    /// change pane
-    private func swapView(index: Int) {
-        
-        // finish current editing anyway
-        self.endEditing()
-        
-        guard let view = self.viewControllers[index]?.view else { return }
-        
-        // swap views
-        self.box!.contentView = view
-        self.box!.setAccessibilityLabel(self.menuTitles[index])
-    }
-    
     
     /// validate passed-in style name and return if valid
     @discardableResult
     private func validate(styleName: String) -> Bool {
         
-        if self.mode == .edit, self.isBundledStyle { return true }  // cannot edit style name
+        if case .edit = self.mode, self.isBundledStyle { return true }  // cannot edit style name
         
         self.isStyleNameValid = true
         self.message = nil
         
-        if (self.mode == .edit), (styleName.caseInsensitiveCompare(self.originalStyleName) == .orderedSame) { return true }
+        if case .edit(let name) = self.mode, (styleName.caseInsensitiveCompare(name) == .orderedSame) { return true }
+        
+        let originalName: String? = {
+            switch self.mode {
+            case .edit(let name): return name
+            default: return nil
+            }
+        }()
         
         do {
-            try SyntaxManager.shared.validate(settingName: styleName, originalName: self.originalStyleName)
+            try SyntaxManager.shared.validate(settingName: styleName, originalName: originalName)
             
         } catch let error as InvalidNameError {
             self.isStyleNameValid = false

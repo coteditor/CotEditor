@@ -29,7 +29,7 @@ import Foundation
 final class SyntaxStyleValidator {
     
     /// model object for syntax validation result
-    struct StyleError: LocalizedError {
+    final class StyleError: NSObject, LocalizedError {
         
         enum ErrorKind {
             case duplicated
@@ -46,23 +46,34 @@ final class SyntaxStyleValidator {
         let kind: ErrorKind
         let type: String
         let role: Role
-        let string: String
+        @objc let string: String
+        
+        
+        init(kind: ErrorKind, type: String, role: Role, string: String) {
+            
+            self.kind = kind
+            self.type = type
+            self.role = role
+            self.string = string
+            
+            super.init()
+        }
         
         
         var errorDescription: String? {
             
-            return self.type.localized + " [" + self.localizedRole + "]: " + self.string
+            return self.type.localized + ": " + self.string
         }
         
         
-        var failureReason: String? {
+        @objc var failureReason: String? {
             
             switch self.kind {
             case .duplicated:
                 return "The same word is registered multiple times.".localized
                 
             case .regularExpression(let error):
-                return "Regular Expression Error: ".localized + error.localizedDescription
+                return "Regular Expression: ".localized + error.localizedDescription
             
             case .blockComment:
                 return "Block comment needs both begin delimiter and end delimiter.".localized
@@ -70,7 +81,13 @@ final class SyntaxStyleValidator {
         }
         
         
-        private var localizedRole: String {
+        @objc var localizedType: String {
+            
+            return self.type.localized
+        }
+        
+        
+        @objc var localizedRole: String? {
             
             switch self.role {
             case .begin:
@@ -80,7 +97,7 @@ final class SyntaxStyleValidator {
                 return "End string".localized
                 
             case .regularExpression:
-                return "Regular expression".localized
+                return nil
             }
         }
         
@@ -165,7 +182,7 @@ final class SyntaxStyleValidator {
                         _ = try NSRegularExpression(pattern: definition.beginString)
                     } catch {
                         results.append(StyleError(kind: .regularExpression(error: error),
-                                                  type: key,
+                                                  type: "outline menu",
                                                   role: .regularExpression,
                                                   string: definition.beginString))
                     }
@@ -176,12 +193,12 @@ final class SyntaxStyleValidator {
         // validate block comment delimiter pair
         if let commentDelimiters = styleDictionary[SyntaxKey.commentDelimiters.rawValue] as? [String: String] {
             let beginDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
-            let endDelimiter = commentDelimiters[DelimiterKey.beginDelimiter.rawValue]
+            let endDelimiter = commentDelimiters[DelimiterKey.endDelimiter.rawValue]
             let beginDelimiterExists = !(beginDelimiter?.isEmpty ?? true)
             let endDelimiterExists = !(endDelimiter?.isEmpty ?? true)
             if (beginDelimiterExists && !endDelimiterExists) || (!beginDelimiterExists && endDelimiterExists) {
                 results.append(StyleError(kind: .blockComment,
-                                          type: "comment",
+                                          type: "comments",
                                           role: beginDelimiterExists ? .begin : .end,
                                           string: beginDelimiter ?? endDelimiter!))
             }

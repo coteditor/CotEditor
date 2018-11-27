@@ -1206,10 +1206,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
-        guard
-            let popoverController = CharacterPopoverController(character: selectedString),
-            let selectedRect = self.boundingRect(for: self.selectedRange)
-            else { return }
+        let popoverController = CharacterPopoverController.instantiate(storyboard: "CharacterPopover")
+        do {
+            try popoverController.setup(character: selectedString)
+        } catch {
+            return print(error)
+        }
+        
+        guard let selectedRect = self.boundingRect(for: self.selectedRange) else { return }
         
         let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
         
@@ -1444,12 +1448,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         let substring = String(self.string[range])
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
+        let matches = regex.matches(in: self.string, range: self.string.nsRange)
+            
+        guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
         
-        regex.matches(in: self.string, range: self.string.nsRange)
+        matches
             .map { $0.range }
-            .forEach {
-                self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0)
-            }
+            .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
     }
     
 }
@@ -1633,10 +1638,10 @@ extension EditorTextView {
         
         guard
             proposedCharRange.length == 0,  // not on expanding selection
-            range.length == 1  // clicked character can be a brace
+            range.length == 1,  // clicked character can be a brace
+            let characterIndex = Range(range, in: self.string)?.lowerBound  // just in case
             else { return range }
         
-        let characterIndex = Range(range, in: self.string)!.lowerBound
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text

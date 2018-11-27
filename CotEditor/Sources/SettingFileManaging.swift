@@ -185,19 +185,21 @@ extension SettingFileManaging {
     
     
     /// return setting name appending number suffix without extension
-    func savableSettingName(for proposedName: String, appendCopySuffix: Bool = false) -> String {
+    func savableSettingName(for proposedName: String, appendingCopySuffix: Bool = false) -> String {
         
-        let suffix = appendCopySuffix ? "copy".localized(comment: "copied file suffix") : nil
+        let suffix = appendingCopySuffix ? "copy".localized(comment: "copied file suffix") : nil
         
         return self.settingNames.createAvailableName(for: proposedName, suffix: suffix)
     }
     
     
     /// validate whether the setting name is valid (for a file name) and throw an error if not
-    func validate(settingName: String, originalName: String) throws {
+    func validate(settingName: String, originalName: String?) throws {
         
         // just case difference is OK
-        guard settingName.caseInsensitiveCompare(originalName) != .orderedSame else { return }
+        if let originalName = originalName, settingName.caseInsensitiveCompare(originalName) != .orderedSame {
+            return
+        }
         
         if settingName.isEmpty {
             throw InvalidNameError.empty
@@ -218,7 +220,8 @@ extension SettingFileManaging {
     
     
     /// delete user's setting file for the setting name
-    /// - throws: SettingFileError
+    ///
+    /// - Throws: `SettingFileError`
     func removeSetting(name: String) throws {
         
         guard let url = self.urlForUserSetting(name: name) else { return }  // not exist or already removed
@@ -258,7 +261,7 @@ extension SettingFileManaging {
     /// duplicate the setting with name
     func duplicateSetting(name: String) throws {
         
-        let newName = self.savableSettingName(for: name, appendCopySuffix: true)
+        let newName = self.savableSettingName(for: name, appendingCopySuffix: true)
         
         guard let sourceURL = self.urlForUsedSetting(name: name) else {
             throw SettingFileError(kind: .noSourceFile, name: name, error: nil)
@@ -325,7 +328,8 @@ extension SettingFileManaging {
     
     
     /// import setting at passed-in URL
-    /// - throws: SettingFileError
+    ///
+    /// - Throws: `SettingFileError`
     func importSetting(fileURL: URL) throws {
         
         let importName = self.settingName(from: fileURL)
@@ -387,7 +391,8 @@ extension SettingFileManaging {
     // MARK: Private Methods
     
     /// force import setting at passed-in URL
-    /// - throws: SettingFileError
+    ///
+    /// - Throws: `SettingFileError`
     private func overwriteSetting(fileURL: URL) throws {
         
         let name = self.settingName(from: fileURL)

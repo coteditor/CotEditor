@@ -292,14 +292,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "Zeilen";
-"Characters" = "Zeichen";
-"Length" = "Länge";
-"Words" = "Wörter";
-"Location" = "Position";
-"Line" = "Zeile";
-"Column" = "Spalte";
+"Lines: " = "Zeilen: ";
+"Characters: " = "Zeichen: ";
+"Length: " = "Länge: ";
+"Words: " = "Wörter: ";
+"Location: " = "Position: ";
+"Line: " = "Zeile: ";
+"Column: " = "Spalte: ";
 
 
 
@@ -410,9 +409,10 @@
 "Syntax Validation" = "Syntaxvalidierung";
 
 // Syntax style validation results
-"No error was found." = "Kein Fehler wurde gefunden.";
-"An error was found!" = "Ein Fehler wurde gefunden.";
-"%i errors were found!" = "%i Fehler wurden gefunden.";
+"No error found." = "Kein Fehler wurde gefunden.";
+"An error found!" = "Ein Fehler wurde gefunden.";
+"%i errors found!" = "%i Fehler wurden gefunden.";
+"outline menu" = "Gliederungsmenü";
 
 
 
@@ -461,7 +461,7 @@
 "End string" = "Endzeichenkette";
 "Regular expression" = "Regulärer Ausdruck";
 "The same word is registered multiple times." = "Mehrfach registriert.";
-"Regular Expression Error: " = "Regulärer Ausdruck Fehler: ";
+"Regular Expression: " = "Regulärer Ausdruck: ";
 
 
 

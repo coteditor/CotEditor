@@ -354,8 +354,8 @@ final class SyntaxManager: SettingFileManaging {
     
     /// Load StyleDictionary at file URL.
     ///
-    /// - parameter fileURL: URL to a setting file.
-    /// - throws: CocoaError
+    /// - Parameter fileURL: URL to a setting file.
+    /// - Throws: `CocoaError`
     private func loadSettingDictionary(at fileURL: URL) throws -> StyleDictionary {
         
         let data = try Data(contentsOf: fileURL)

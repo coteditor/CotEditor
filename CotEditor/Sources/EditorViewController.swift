@@ -139,6 +139,7 @@ final class EditorViewController: NSSplitViewController {
     func setTextStorage(_ textStorage: NSTextStorage) {
         
         self.textView?.layoutManager?.replaceTextStorage(textStorage)
+        self.textView?.didChangeText()  // notify to lineNumberView to drive initial line count
     }
     
     

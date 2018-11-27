@@ -94,10 +94,8 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// show Go To sheet
     @IBAction func gotoLocation(_ sender: Any?) {
         
-        guard
-            let textView = self.textView,
-            let viewController = GoToLineViewController(textView: textView)
-            else { return assertionFailure() }
+        let viewController = GoToLineViewController.instantiate(storyboard: "GoToLineView")
+        viewController.textView = self.textView
         
         self.presentAsSheet(viewController)
     }

@@ -72,7 +72,8 @@ final class UnixScript: Script {
     // MARK: Script Methods
     
     /// run script
-    /// - throws: ScriptFileError or Error by NSUserScriptTask
+    ///
+    /// - Throws: `ScriptFileError` or Error by `NSUserScriptTask`
     func run(completionHandler: (() -> Void)? = nil) throws {
         
         // check script file
@@ -194,7 +195,8 @@ final class UnixScript: Script {
     
     
     /// return document content conforming to the input type
-    /// - throws: ScriptError
+    ///
+    /// - Throws: `ScriptError`
     private func readInputString(type: InputType, editor: Editable?) throws -> String {
         
         guard let editor = editor else {
@@ -212,7 +214,8 @@ final class UnixScript: Script {
     
     
     /// apply results conforming to the output type to the frontmost document
-    /// - throws: ScriptError
+    ///
+    /// - Throws: `ScriptError`
     private static func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
         if type == .pasteBoard {

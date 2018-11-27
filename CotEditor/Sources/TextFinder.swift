@@ -82,8 +82,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: "FindPanel", bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: "MultipleReplacementPanel", bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
+    private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
     
     
     
@@ -291,7 +291,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in
@@ -447,7 +448,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textView.showFindIndicator(for: range)
             
             if result.wrapped, let view = textView.enclosingScrollView?.superview {
-                let hudController = HUDController(symbol: .wrap)!
+                let hudController = HUDController.instantiate(storyboard: "HUDView")
+                hudController.symbol = .wrap
                 hudController.isReversed = !forward
                 hudController.show(in: view)
             }
@@ -491,7 +493,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: actionName)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: actionName)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
         DispatchQueue.global().async { [weak self] in

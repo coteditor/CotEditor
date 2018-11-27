@@ -293,14 +293,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@：";
-"Lines" = "行数";
-"Characters" = "字符数";
-"Length" = "长度";
-"Words" = "字数";
-"Location" = "位置";
-"Line" = "行";
-"Column" = "列";
+"Lines: " = "行数：";
+"Characters: " = "字符数：";
+"Length: " = "长度：";
+"Words: " = "字数：";
+"Location: " = "位置：";
+"Line: " = "行：";
+"Column: " = "列：";
 
 
 
@@ -411,9 +410,10 @@
 "Syntax Validation" = "语法验证";
 
 // Syntax style validation results
-"No error was found." = "没有发现错误";
-"An error was found!" = "发现 1 个错误";
-"%i errors were found!" = "发现 %i 个错误";
+"No error found." = "没有发现错误";
+"An error found!" = "发现 1 个错误";
+"%i errors found!" = "发现 %i 个错误";
+"outline menu" = "大纲菜单";
 
 
 
@@ -462,7 +462,7 @@
 "End string" = "结束字符串";
 "Regular expression" = "正则表达式";
 "The same word is registered multiple times." = "重复注册。";
-"Regular Expression Error: " = "正则表达式错误：";
+"Regular Expression: " = "正则表达式：";
 
 
 

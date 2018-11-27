@@ -197,7 +197,7 @@ extension EditorTextView {
             return
         }
         
-        let viewController = NSStoryboard(name: "PatternSortView", bundle: nil).instantiateInitialController() as! PatternSortViewController
+        let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
         viewController.representedObject = self
         
         // sample the first line

@@ -226,11 +226,10 @@ private extension NSMutableAttributedString {
         }
         
         if let label = label {
-            let localizedLabel = String(format: "%@: ".localized, label.localized)
             let labelColor: NSColor = appearance.isDark
                 ? NSColor.secondaryLabelColor
                 : NSColor.labelColor.withAlphaComponent(0.6)
-            let attrLabel = NSAttributedString(string: localizedLabel,
+            let attrLabel = NSAttributedString(string: (label + ": ").localized,
                                                attributes: [.foregroundColor: labelColor])
             self.append(attrLabel)
         }

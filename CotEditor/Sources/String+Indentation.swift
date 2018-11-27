@@ -175,9 +175,9 @@ extension String {
     /// Range for deleting soft-tab or nil if the character to delete is not speace.
     ///
     /// - Parameters:
-    ///   - range: range of selection.
-    ///   - tabWidth: number of spaces for the soft tab.
-    /// - Returns: range to delete or nil if the caracter to delete is not soft-tab.
+    ///   - range: The range of selection.
+    ///   - tabWidth: The number of spaces for the soft tab.
+    /// - Returns: Range to delete or nil if the caracter to delete is not soft-tab.
     func rangeForSoftTabDeletion(in range: NSRange, tabWidth: Int) -> NSRange? {
         
         assert(tabWidth > 0)
@@ -205,9 +205,9 @@ extension String {
     /// Soft-tab to add.
     ///
     /// - Parameters:
-    ///   - location: location of insertion point.
-    ///   - tabWidth: number of spaces for the soft tab.
-    /// - Returns: string to insert as the tab.
+    ///   - location: The location of insertion point.
+    ///   - tabWidth: The number of spaces for the soft tab.
+    /// - Returns: String to insert as the tab.
     func softTab(at location: Int, tabWidth: Int) -> String {
         
         assert(tabWidth > 0)

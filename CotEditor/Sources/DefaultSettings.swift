@@ -172,9 +172,9 @@ struct DefaultSettings {
         .colorCodeType: 1,
         .recentStyleNames: [],
         .showStatusBar: true,
+        .selectedInspectorPaneIndex: 0,
         
         // ------ hidden settings ------
-        .selectedInspectorPaneIndex: 0,
         .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
@@ -185,6 +185,7 @@ struct DefaultSettings {
         .savesTextOrientation: true,
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
+        .maximumSelectionInstanceHighlightCount: 100,
         ]
     
     

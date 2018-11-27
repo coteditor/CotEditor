@@ -180,7 +180,7 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
-        let accessoryController = NSStoryboard(name: "OpenDocumentAccessory", bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
+        let accessoryController = OpenPanelAccessoryController.instantiate(storyboard: "OpenDocumentAccessory")
         
         // initialize encoding menu and set the accessory view
         accessoryController.openPanel = openPanel
@@ -314,7 +314,7 @@ final class DocumentController: NSDocumentController {
     /// - Parameters:
     ///   - url: The location of the new document object.
     ///   - typeName: The type of the document.
-    /// - Throws: DocumentReadError
+    /// - Throws: `DocumentReadError`
     private func checkOpeningSafetyOfDocument(at url: URL, typeName: String) throws {
         
         // check if the file is possible binary

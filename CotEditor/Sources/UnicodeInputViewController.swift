@@ -1,5 +1,5 @@
 //
-//  UnicodeInputPanelController.swift
+//  UnicodeInputViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -27,23 +27,25 @@ import Cocoa
 
 @objc protocol UnicodeInputReceiver: AnyObject {
     
-    func insertUnicodeCharacter(_ sender: UnicodeInputPanelController)
+    func insertUnicodeCharacter(_ sender: UnicodeInputViewController)
 }
 
 
 
 // MARK: -
 
-final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate {
+final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     
     // MARK: Public Properties
     
-    static let shared = UnicodeInputPanelController()
+    static let sharedPanel = NSWindowController.instantiate(storyboard: "UnicodePanel")
     
     @objc private(set) dynamic var characterString: String?
     
     
     // MARK: Private Properties
+    
+    private var windowObserver: NSObjectProtocol?
     
     @objc private dynamic var codePoint: String?
     @objc private dynamic var isValid = false
@@ -54,33 +56,24 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
     // MARK: -
     // MARK: Lifecycle
     
-    override var windowNibName: NSNib.Name? {
-        
-        return NSNib.Name("UnicodePanel")
+    deinit {
+        if let observer = self.windowObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
-    
-    // MARK: Window Controller Methods
-    
-    override func windowDidLoad() {
+    override func viewDidLoad() {
         
-        super.windowDidLoad()
+        super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(mainWindowDidResign), name: NSWindow.didResignMainNotification, object: nil)
-    }
-    
-    
-    
-    // MARK: Notification
-    
-    /// notification about main window resign
-    @objc private func mainWindowDidResign(_ notification: Notification) {
-        
-        guard NSApp.isActive else { return }
-        
-        if NSDocumentController.shared.documents.count <= 1 {  // The 1 is the document now resigning.
-            self.window?.performClose(self)
+        self.windowObserver = NotificationCenter.default.addObserver(forName: NSWindow.didResignMainNotification, object: nil, queue: .main) { [unowned self] _ in
+            guard
+                NSApp.isActive,
+                NSDocumentController.shared.documents.count <= 1  // The 1 is the document now resigning.
+                else { return }
+            
+            self.view.window?.performClose(self)
         }
     }
     
@@ -97,7 +90,8 @@ final class UnicodeInputPanelController: NSWindowController, NSTextFieldDelegate
         
         guard
             let input = (obj.object as? NSTextField)?.stringValue,
-            let longChar = UInt32(codePoint: input) else { return }
+            let longChar = UInt32(codePoint: input)
+            else { return }
         
         self.unicodeName = longChar.unicodeName
         

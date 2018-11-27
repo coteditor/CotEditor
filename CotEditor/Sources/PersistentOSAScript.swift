@@ -51,7 +51,8 @@ final class PersistentOSAScript: Script {
     // MARK: Script Methods
     
     /// run script
-    /// - throws: Error by NSUserScriptTask
+    ///
+    /// - Throws: Error by `NSUserScriptTask`
     func run(completionHandler: (() -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {
@@ -72,9 +73,8 @@ final class PersistentOSAScript: Script {
     ///
     /// Any script errors will be written to the console panel.
     ///
-    /// - parameter event: the apple event
-    ///
-    /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
+    /// - Parameter event: The apple event.
+    /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
         
         guard let event = event else {

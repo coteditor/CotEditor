@@ -61,6 +61,12 @@ extension UnicodeScalar {
 
 struct CharacterInfo: CustomStringConvertible {
     
+    enum `Error`: Swift.Error {
+        
+        case notSingleCharacter
+    }
+    
+    
     // MARK: Public Properties
 
     let string: String
@@ -73,9 +79,11 @@ struct CharacterInfo: CustomStringConvertible {
     // MARK: -
     // MARK: Lifecycle
     
-    init?(string: String) {
+    init(string: String) throws {
         
-        guard string.count == 1 else { return nil }
+        guard string.count == 1 else {
+            throw Error.notSingleCharacter
+        }
         
         let unicodes = string.unicodeScalars
         

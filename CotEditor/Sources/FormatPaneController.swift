@@ -165,7 +165,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// selected syntax style in "Installed styles" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView, object == self.syntaxTableView else { return }
+        guard notification.object as? NSTableView == self.syntaxTableView else { return }
         
         self.validateRemoveSyntaxStyleButton()
     }
@@ -286,7 +286,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: "SyntaxMappingConflictsView", bundle: nil).instantiateInitialController() as! NSViewController
+        let viewController = NSViewController.instantiate(storyboard: "SyntaxMappingConflictsView")
+        
         self.presentAsSheet(viewController)
     }
     
@@ -295,8 +296,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @IBAction func editSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
-        
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: .edit) else { return }
+        let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
+        viewController.mode = .edit(styleName)
         
         self.presentAsSheet(viewController)
     }
@@ -306,8 +307,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     @IBAction func duplicateSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
-        
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: .copy) else { return }
+        let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
+        viewController.mode = .copy(styleName)
         
         self.presentAsSheet(viewController)
     }
@@ -316,9 +317,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     /// show syntax style edit sheet in new mode
     @IBAction func createSyntaxStyle(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
-        
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: .new) else { return }
+        let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
         
         self.presentAsSheet(viewController)
     }

@@ -125,8 +125,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     /// SortPattern currently edited
     private var sortPattern: SortPattern? {
         
-        return self.tabViewController?.tabViewItems[self.tabViewController!.selectedTabViewItemIndex]
-            .viewController?.representedObject as? SortPattern
+        return self.tabViewController?.tabView.selectedTabViewItem?.viewController?.representedObject as? SortPattern
     }
     
 }

@@ -29,9 +29,8 @@ extension NSImage {
     
     /// Return a copy of the image tinted with the color.
     ///
-    ///  - parameter color: The color to tint the image.
-    ///
-    ///  - returns: A tinted image.
+    /// - Parameter color: The color to tint the image.
+    /// - Returns: A tinted image.
     func tinted(color: NSColor) -> NSImage {
         
         assert(self.isTemplate, "A image to tint should be a template image.")

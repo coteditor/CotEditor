@@ -31,16 +31,16 @@ final class UnderlinableButton: NSButton {
     @IBInspectable var underline: Bool = false {
         
         didSet {
-        let attributedTitle = self.attributedTitle.mutable
-        let range = NSRange(location: 0, length: attributedTitle.length)
-        
-        if self.underline {
-            attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-        } else {
-            attributedTitle.removeAttribute(.underlineStyle, range: range)
-        }
-        
-        self.attributedTitle = attributedTitle
+            let attributedTitle = self.attributedTitle.mutable
+            let range = NSRange(location: 0, length: attributedTitle.length)
+            
+            if self.underline {
+                attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+            } else {
+                attributedTitle.removeAttribute(.underlineStyle, range: range)
+            }
+            
+            self.attributedTitle = attributedTitle
         }
     }
     

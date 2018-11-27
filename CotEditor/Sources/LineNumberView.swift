@@ -118,9 +118,10 @@ final class LineNumberView: NSRulerView {
         self.clientView = textView
         
         // observe text change for the total number of lines determining ruleThickness on holizontal text layout
+        // -> Count only if really needed since the line counting is high workload, especially by large document.
+        //    The initial count will be performed first after the textStorage is swapped in `EditorViewController.setTextStorage(_:)`.
         if orientation == .verticalRuler {
             self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
-                // -> count only if really needed since the line counting is high workload, especially by large document
                 self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
             }
         }
@@ -187,6 +188,9 @@ final class LineNumberView: NSRulerView {
         guard let window = self.window else { return }
         
         // perform redraw on window opacity change
+        if let observer = self.opacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
             self.setNeedsDisplay(self.visibleRect)
         }

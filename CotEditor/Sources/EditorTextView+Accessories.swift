@@ -32,7 +32,7 @@ extension EditorTextView: UnicodeInputReceiver {
     /// show Unicode input panel
     @IBAction func showUnicodeInputPanel(_ sender: Any?) {
         
-        UnicodeInputPanelController.shared.showWindow(self)
+        UnicodeInputViewController.sharedPanel.showWindow(self)
     }
     
     
@@ -40,7 +40,7 @@ extension EditorTextView: UnicodeInputReceiver {
     // MARK: Protocol
     
     /// insert an Unicode character from Unicode input panel
-    @IBAction func insertUnicodeCharacter(_ sender: UnicodeInputPanelController) {
+    @IBAction func insertUnicodeCharacter(_ sender: UnicodeInputViewController) {
         
         guard let character = sender.characterString else { return }
         

@@ -38,7 +38,7 @@ final class EditPaneController: NSViewController {
     
     
     // MARK: -
-    // MARK: Life Cycle
+    // MARK: Lifecycle
     
     override func viewDidLoad() {
         

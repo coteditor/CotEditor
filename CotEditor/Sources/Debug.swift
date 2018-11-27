@@ -25,14 +25,15 @@
 
 import Foundation
 
-/**
- Debug friendly print with a dog/cow.
- 
- This function works just like `Swift.debugPring()` function. The advantage is you can know the thread and the function name that invoked this function easily at the same time. A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thead, otherwise a 🐕.
- 
- - parameter items: Zero or more items to print.
- - parameter function: The name of the function that invoked this function. You never need to set this parameter manually because it's set automatically.
- */
+///  Debug friendly print with a dog/cow.
+///
+/// This function works just like `Swift.debugPring()` function.
+/// The advantage is you can know the thread and the function name that invoked this function easily at the same time.
+/// A 🐄 icon will be printed at the beginning of the message if it's invoked in a background thead, otherwise a 🐕.
+///
+/// - Parameters:
+///   - items: Zero or more items to print.
+///   - function: The name of the function that invoked this function. You never need to set this parameter manually because it's set automatically.
 func moof(_ items: Any..., function: String = #function) {
     
     let icon = Thread.isMainThread ? "🐕" : "🐄"

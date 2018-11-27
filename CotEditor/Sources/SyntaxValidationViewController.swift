@@ -29,74 +29,55 @@ final class SyntaxValidationViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private(set) var didValidate = false
+    @objc private dynamic var errors: [SyntaxStyleValidator.StyleError] = []
     
-    @objc private dynamic var result: String?
-    
-    @IBOutlet private var textView: NSTextView?
+    @objc private dynamic var statusImage: NSImage?
+    @objc private dynamic var message = ""
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("SyntaxValidationView")
-    }
-    
-    
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
-        // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
-        self.textView?.textColor = .controlTextColor
+        self.validateStyle()
     }
     
     
     
     // MARK: Public Methods
     
-    /// validate style and insert the results to text view
-    ///
-    /// - Returns: If the style is valid
-    @discardableResult
-    func validateSyntax() -> Bool {
+    func validateStyle() {
         
-        guard let style = self.representedObject as? [String: Any] else { return true }
+        let style = self.representedObject as! SyntaxManager.StyleDictionary
         
-        let errors = SyntaxStyleValidator.validate(style)
-        
-        let resultMessage: String = {
-            switch errors.count {
-            case 0:
-                return "✅ " + "No error was found.".localized
-            case 1:
-                return "An error was found!".localized
-            default:
-                return String(format: "%i errors were found!".localized, errors.count)
-            }
-        }()
-        
-        let errorMessages: [String] = errors.map { (error: SyntaxStyleValidator.StyleError) -> String in
-            let failureReason = error.failureReason ?? ""
-            return "⚠️ " + error.localizedDescription + "\n\t> " + failureReason
-        }
-        
-        self.result = resultMessage + "\n\n" + errorMessages.joined(separator: "\n\n")
-        
-        return errors.isEmpty
+        self.errors = SyntaxStyleValidator.validate(style)
+        self.updateMessage()
     }
     
     
     
-    // MARK: Action Messages
+    // MARK: Private Methods
     
-    /// start syntax style validation
-    @IBAction func startValidation(_ sender: Any?) {
+    /// insert the results to text view
+    private func updateMessage() {
         
-        self.validateSyntax()
+        let imageName = self.errors.isEmpty ? NSImage.statusAvailableName : NSImage.statusUnavailableName
+        self.statusImage = NSImage(named: imageName)
+        
+        self.message = {
+            switch self.errors.count {
+            case 0:
+                return "No error found.".localized
+            case 1:
+                return "An error found!".localized
+            default:
+                return String(format: "%i errors were found!".localized, errors.count)
+            }
+        }()
     }
     
 }

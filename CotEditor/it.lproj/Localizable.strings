@@ -293,14 +293,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "Righe";
-"Characters" = "Caratteri";
-"Length" = "Lunghezza";
-"Words" = "Parole";
-"Location" = "Posizione";
-"Line" = "Riga";
-"Column" = "Colonna";
+"Lines: " = "Righe: ";
+"Characters: " = "Caratteri: ";
+"Length: " = "Lunghezza: ";
+"Words: " = "Parole";
+"Location: " = "Posizione: ";
+"Line: " = "Riga: ";
+"Column: " = "Colonna: ";
 
 
 
@@ -411,9 +410,10 @@
 "Syntax Validation" = "Validazione sintassi";
 
 // Syntax style validation results
-"No error was found." = "Nessun errore rilevato.";
-"An error was found!" = "Trovato un errore.";
-"%i errors were found!" = "Trovati %i errori.";
+"No error found." = "Nessun errore rilevato.";
+"An error found!" = "Trovato un errore.";
+"%i errors found!" = "Trovati %i errori.";
+"outline menu" = "menu degli outline";
 
 
 
@@ -462,7 +462,7 @@
 "End string" = "Fine stringa";
 "Regular expression" = "Espressione regolare";
 "The same word is registered multiple times." = "La stessa parola risulta registrata più volte.";
-"Regular Expression Error: " = "Errore nell’espressione regolare: ";
+"Regular Expression: " = "Espressione regolare: ";
 
 
 
