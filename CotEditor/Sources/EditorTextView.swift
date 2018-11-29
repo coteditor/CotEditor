@@ -869,18 +869,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
-    /// update font panel to set current font
-    override func updateFontPanel() {
-        
-        // pass only the font to the font panel
-        // -> Because the `super` sends also `self.textColor` to the font panel,
-        //    which delivers the received color to the color (code) panel.
-        guard let font = self.font else { return }
-        
-        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
-    }
-    
-    
     /// let line number view update
     override func updateRuler() {
         
