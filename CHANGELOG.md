@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Improve the performance of text replacement.
+- Improve the performance of text replacement significantly.
 
 
 
