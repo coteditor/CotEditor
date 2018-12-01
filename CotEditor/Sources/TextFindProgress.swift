@@ -32,6 +32,7 @@ final class TextFindProgress: Progress {
     private let format: CountableFormatter
     
     
+    // MARK: -
     // MARK: Lifecycle
     
     init(format: CountableFormatter, totalUnitCount: Int = -1) {

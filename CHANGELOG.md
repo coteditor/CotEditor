@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.7 (unreleased)
+--------------------------
+
+### Improvements
+
+- Improve the performance of text replacement significantly.
+
+
+
 3.6.7 (301)
 --------------------------
 
