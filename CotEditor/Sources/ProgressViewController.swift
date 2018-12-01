@@ -33,7 +33,7 @@ final class ProgressViewController: NSViewController {
     @objc private dynamic var message: String = ""
     
     private var finishObserver: NSKeyValueObservation?
-    private lazy var updateTimer: DispatchSourceTimer = DispatchSource.makeTimerSource(queue: .main)
+    private var updateTimer: DispatchSourceTimer?
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var descriptionField: NSTextField?
@@ -46,7 +46,7 @@ final class ProgressViewController: NSViewController {
     
     deinit {
         self.finishObserver?.invalidate()
-        self.updateTimer.cancel()
+        self.updateTimer?.cancel()
     }
     
     
@@ -62,21 +62,24 @@ final class ProgressViewController: NSViewController {
         
         // trigger a timer updating UI every 0.1 seconds.
         // -> This is much more performance-efficient than KV-Observing `.fractionCompleted` or `.localizedDescription`. (2019-12 macOS 10.14)
-        self.updateTimer.cancel()
-        self.updateTimer.schedule(deadline: .now(), repeating: .milliseconds(100))
-        self.updateTimer.setEventHandler { [weak self] in
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now(), repeating: .milliseconds(100))
+        timer.schedule(wallDeadline: .now(), repeating: 0.1)
+        timer.setEventHandler { [weak self] in
             guard let progress = self?.progress else { return }
             
             self?.indicator?.doubleValue = progress.fractionCompleted
             self?.descriptionField?.stringValue = progress.localizedDescription
         }
-        self.updateTimer.resume()
+        timer.resume()
+        self.updateTimer?.cancel()
+        self.updateTimer = timer
     }
     
     
     override func dismiss(_ sender: Any?) {
         
-        self.updateTimer.cancel()
+        self.updateTimer?.cancel()
         
         // close sheet in an old way
         // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
@@ -115,7 +118,7 @@ final class ProgressViewController: NSViewController {
     /// change button to done
     func done() {
         
-        self.updateTimer.cancel()
+        self.updateTimer?.cancel()
         
         self.button?.title = "OK".localized
         self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)
