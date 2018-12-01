@@ -18,7 +18,7 @@ Change Log
 
 - Fix an issue where `cot` command failed to open paths or stdin containing backslash character.
 - Fix an issue on CotEditor 3.6.5 where right-click no longer opens the context menu under macOS 10.13 and earlier.
-- Fix an issue where thickness of the line numbers view did not grow enough with a large number of lines.
+- Fix an issue where the thickness of the line numbers view did not grow enough with a large number of lines.
 - Fix an issue where the syntax style validator ignored unbalanced block comment delimiters that should be an error.
 - Fix the preferences pane switching animation under macOS 10.13 and earlier.
 - Fix possible crashes.
