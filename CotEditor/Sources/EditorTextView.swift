@@ -869,13 +869,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
-    /// let line number view update
-    override func updateRuler() {
-        
-        self.enclosingScrollView?.setRulersNeedsDisplay()
-    }
-    
-    
     
     // MARK: KVO
     

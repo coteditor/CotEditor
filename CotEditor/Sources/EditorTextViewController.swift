@@ -30,26 +30,56 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Public Properties
     
+    @IBOutlet private(set) weak var textView: EditorTextView?
+    
     var showsLineNumber: Bool {
         
         get {
-            return self.scrollView?.rulersVisible ?? false
+            return !(self.lineNumberView?.isHidden ?? true)
         }
         
         set {
-            self.scrollView?.rulersVisible = newValue
+            self.lineNumberView?.isHidden = !newValue
         }
     }
     
     
-    var textView: EditorTextView? {
-        
-        return self.scrollView?.documentView as? EditorTextView
-    }
-
+    // MARK: Private Properties
+    
+    private var orientationObserver: NSKeyValueObservation?
+    
+    @IBOutlet private weak var lineNumberView: LineNumberView?
+    
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    deinit {
+        self.orientationObserver?.invalidate()
+    }
+    
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // observe text orientation for line number view
+        self.orientationObserver = self.textView!.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
+            
+            switch textView.layoutOrientation {
+            case .horizontal:
+                self.stackView?.orientation = .horizontal
+            case .vertical:
+                self.stackView?.orientation = .vertical
+            }
+            
+            self.lineNumberView?.orientation = textView.layoutOrientation
+        }
+    }
+    
+    
+    
     // MARK: Text View Delegate
     
     /// text will be edited
@@ -104,10 +134,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Methods
     
-    /// cast view to NSScrollView
-    private var scrollView: NSScrollView? {
+    /// cast view to NSStackView
+    private var stackView: NSStackView? {
         
-        return self.view as? NSScrollView
+        return self.view as? NSStackView
     }
     
 }

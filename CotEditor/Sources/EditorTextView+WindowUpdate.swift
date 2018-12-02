@@ -1,10 +1,10 @@
 //
-//  EditorClipView.swift
+//  EditorTextView+WindowUpdate.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2018-11-18.
+//  Created by 1024jp on 2018-12-02.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -25,22 +25,17 @@
 
 import Cocoa
 
-final class EditorClipView: NSClipView {
+extension EditorTextView {
     
-    override func constrainBoundsRect(_ proposedBounds: NSRect) -> NSRect {
+    // MARK: View Methods
+    
+    /// update layer (called also when system appearance was changed)
+    override func updateLayer() {
         
-        var bounds = super.constrainBoundsRect(proposedBounds)
-        
-        // avoid that the documentView tucks under the ruler views (2018-11 macOS 10.14)
-        // -> This is a super dirty workaround, but no better way.
-        if bounds.minX <= 0 {
-            bounds.origin.x = -self.contentInsets.left
+        // -> super dirty workaround to update titlebar's backaround color by considering the real "current" appearance (2018-09 macOS 10.14)
+        if #available(macOS 10.14, *) {
+            (self.window as? DocumentWindow)?.invalidateTitlebarOpacity()
         }
-        if bounds.minY <= 0 {
-            bounds.origin.y = -self.contentInsets.top
-        }
-        
-        return bounds
     }
     
 }

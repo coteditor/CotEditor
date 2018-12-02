@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Improve the performance of text replacement significantly.
+- Improve drawing and layout of line number view. 
 
 
 

@@ -171,40 +171,65 @@
         <scene sceneID="F5v-F6-xnV">
             <objects>
                 <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <scrollView key="view" identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" id="1UU-Ev-81X" customClass="EditorScrollView" customModule="CotEditor" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="624"/>
+                    <stackView key="view" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Val-Qg-Ge8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="665"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG" customClass="EditorClipView" customModule="CotEditor" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="624"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" findStyle="panel" allowsUndo="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="624"/>
+                        <beginningViews>
+                            <customView horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-Jr-jkg" customClass="LineNumberView" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="32" height="665"/>
+                                <connections>
+                                    <outlet property="textView" destination="aeT-4W-UoJ" id="RbK-q6-Dw1"/>
+                                </connections>
+                            </customView>
+                        </beginningViews>
+                        <endViews>
+                            <scrollView identifier="editorScrollView" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Ev-81X">
+                                <rect key="frame" x="32" y="0.0" width="568" height="665"/>
+                                <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG">
+                                    <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                    <size key="minSize" width="600" height="624"/>
-                                    <size key="maxSize" width="600" height="10000000"/>
-                                    <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="u5I-Fh-D97" id="PIc-cS-58P"/>
-                                    </connections>
-                                </textView>
-                            </subviews>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pXl-He-aXd">
-                            <rect key="frame" x="584" y="0.0" width="16" height="624"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
+                                    <subviews>
+                                        <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" findStyle="panel" allowsUndo="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <size key="minSize" width="568" height="665"/>
+                                            <size key="maxSize" width="732" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="u5I-Fh-D97" id="PIc-cS-58P"/>
+                                            </connections>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
+                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pXl-He-aXd">
+                                    <rect key="frame" x="552" y="0.0" width="16" height="665"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </endViews>
+                        <visibilityPriorities>
+                            <integer value="1000"/>
+                            <integer value="1000"/>
+                        </visibilityPriorities>
+                        <customSpacing>
+                            <real value="3.4028234663852886e+38"/>
+                            <real value="3.4028234663852886e+38"/>
+                        </customSpacing>
+                    </stackView>
+                    <connections>
+                        <outlet property="lineNumberView" destination="UmS-Jr-jkg" id="YvN-sD-I3x"/>
+                        <outlet property="textView" destination="aeT-4W-UoJ" id="qMv-kT-S59"/>
+                    </connections>
                 </viewController>
                 <customObject id="Yzz-IO-9Qh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1469" y="-9"/>
+            <point key="canvasLocation" x="1469" y="7"/>
         </scene>
     </scenes>
     <resources>
