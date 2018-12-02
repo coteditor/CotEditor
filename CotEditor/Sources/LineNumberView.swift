@@ -111,6 +111,7 @@ final class LineNumberView: NSView {
     private var frameObserver: NSObjectProtocol?
     private var scrollObserver: NSObjectProtocol?
     private var opacityObserver: NSObjectProtocol?
+    private var colorObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
     
@@ -144,6 +145,8 @@ final class LineNumberView: NSView {
          self.opacityObserver]
             .compactMap { $0 }
             .forEach { NotificationCenter.default.removeObserver($0) }
+        
+        self.colorObserver?.invalidate()
     }
     
     
@@ -392,6 +395,10 @@ final class LineNumberView: NSView {
         }
         
         self.scrollObserver = NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: textView.enclosingScrollView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
+        }
+        
+        self.colorObserver = textView.observe(\.backgroundColor) { [unowned self] (_, _)  in
             self.needsDisplay = true
         }
     }
