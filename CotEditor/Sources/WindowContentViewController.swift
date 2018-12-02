@@ -43,7 +43,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         super.viewDidLoad()
         
         // -> needs layer to mask rounded window corners
-        //                to redraw line number view background by thickness increase
+        //                to draw backgrounds of subviews correctly on macOS 10.12 (and macOS 10.13?)
         self.view.wantsLayer = true
         
         // set behavior to glow window size on sidebar toggling rather than opening sidebar inward

@@ -50,6 +50,9 @@ disabled_rules:
   - unused_closure_parameter
   - weak_delegate
 
+private_outlet:
+  allow_private_set: true
+  
 trailing_whitespace:
   ignores_empty_lines: true
 

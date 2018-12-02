@@ -137,9 +137,9 @@ extension NSTextView {
             if #available(macOS 10.14, *), let scrollView = self.enclosingScrollView {
                 switch self.layoutOrientation {
                 case .horizontal:
-                    self.frame.size.width = scrollView.documentUsableSize.width
+                    self.frame.size.width = scrollView.contentSize.width
                 case .vertical:
-                    self.frame.size.height = scrollView.documentUsableSize.height
+                    self.frame.size.height = scrollView.contentSize.height
                 }
             }
             
@@ -228,7 +228,7 @@ extension NSTextView {
             
             textContainer.widthTracksTextView = newValue
             if newValue {
-                let contentSize = scrollView.documentUsableSize
+                let contentSize = scrollView.contentSize
                 textContainer.size.width = (isVertical ? contentSize.height : contentSize.width) / self.scale
                 self.setConstrainedFrameSize(contentSize)
             } else {
@@ -259,23 +259,6 @@ extension NSTextView {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).
         return (self.baseWritingDirection == .rightToLeft) ? CGSize(width: 9_999_999, height: CGSize.infinite.height) : .infinite
-    }
-    
-}
-
-
-
-private extension NSScrollView {
-    
-    /// contentSize removing insets
-    var documentUsableSize: NSSize {
-        
-        let insets = self.contentView.contentInsets
-        var size = self.contentSize
-        size.width -= insets.left + insets.right
-        size.height -= insets.top + insets.bottom
-        
-        return size
     }
     
 }

@@ -27,7 +27,7 @@
 import Cocoa
 import CoreText
 
-final class LineNumberView: NSRulerView {
+final class LineNumberView: NSView {
     
     private struct DrawingInfo {
         
@@ -74,6 +74,16 @@ final class LineNumberView: NSRulerView {
     }
     
     
+    // MARK: Public Properties
+    
+    var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
+        
+        didSet {
+            self.invalidateDrawingInfoAndThickness()
+            self.invalidateIntrinsicContentSize()
+        }
+    }
+    
     
     // MARK: Constants
     
@@ -97,85 +107,72 @@ final class LineNumberView: NSRulerView {
     private var numberOfLines = 1
     private var drawingInfo: DrawingInfo?
     private var textObserver: NSObjectProtocol?
+    private var selectionObserver: NSObjectProtocol?
+    private var frameObserver: NSObjectProtocol?
+    private var scrollObserver: NSObjectProtocol?
     private var opacityObserver: NSObjectProtocol?
     
     private weak var draggingTimer: Timer?
     
+    private var thickness: CGFloat = 32 {
+        
+        didSet {
+            guard thickness != oldValue else { return }
+            
+            self.invalidateIntrinsicContentSize()
+        }
+    }
     
-    
-    // MARK: -
-    // MARK: Lifecycle
-    
-    override init(scrollView: NSScrollView?, orientation: NSRulerView.Orientation) {
+    @IBOutlet private weak var textView: NSTextView? {
         
-        super.init(scrollView: scrollView, orientation: orientation)
-        
-        // set accessibility
-        self.setAccessibilityLabel("line numbers".localized)
-        
-        guard let textView = scrollView?.documentView as? NSTextView else { assertionFailure(); return }
-        
-        self.clientView = textView
-        
-        // observe text change for the total number of lines determining ruleThickness on holizontal text layout
-        // -> Count only if really needed since the line counting is high workload, especially by large document.
-        //    The initial count will be performed first after the textStorage is swapped in `EditorViewController.setTextStorage(_:)`.
-        if orientation == .verticalRuler {
-            self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
-                self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
+        didSet {
+            if let textView = self.textView {
+                self.observeTextView(textView)
             }
         }
     }
     
     
-    required init(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
     
+    // MARK: -
     
     deinit {
-        if let observer = self.textObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-        if let observer = self.opacityObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        [self.textObserver,
+         self.selectionObserver,
+         self.frameObserver,
+         self.scrollObserver,
+         self.opacityObserver]
+            .compactMap { $0 }
+            .forEach { NotificationCenter.default.removeObserver($0) }
     }
     
     
     
-    // MARK: Ruler View Methods
+    // MARK: View Methods
+    
+    /// view name for VoiceOver
+    override func accessibilityLabel() -> String? {
+        
+        return "line numbers".localized
+    }
+    
     
     /// make background transparent
     override var isOpaque: Bool {
         
-        guard let textView = self.textView else { return true }
-        
-        if textView.isOpaque { return true }
-        
-        // avoid overlapping line numbers with the text in the text view
-        // -> On macOS 10.14 (and later?), text view is drawn under the ruler view. (2018-11 macOS 10.14)
-        if NSAppKitVersion.current > .macOS10_13_4 {
-            return !textView.wrapsLines
-        }
-        
-        return false
+        return self.textView?.isOpaque ?? true
     }
     
     
-    /// just before the receiver attaches to a superview
-    override func viewWillMove(toSuperview newSuperview: NSView?) {
+    /// define the size
+    override var intrinsicContentSize: NSSize {
         
-        super.viewWillMove(toSuperview: newSuperview)
-        
-        // ignore when detaches
-        guard newSuperview != nil else { return }
-        
-        // set thicknesses at this point because doing it in `init` causes somehow a cash... (2018-10 macOS 10.14)
-        self.reservedThicknessForMarkers = 0
-        self.reservedThicknessForAccessoryView = 0
-        self.invalidateDrawingInfoAndThickness()
+        switch self.orientation {
+        case .horizontal:
+            return NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
+        case .vertical:
+            return NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
+        }
     }
     
     
@@ -215,25 +212,54 @@ final class LineNumberView: NSRulerView {
         self.backgroundColor.setFill()
         dirtyRect.fill()
         
-        // draw frame border (1px)
+        // draw divider (1px)
         self.textColor(.stroke).setStroke()
         switch self.orientation {
-        case .verticalRuler:
-            NSBezierPath.strokeLine(from: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.maxY),
-                                    to: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.minY))
-        case .horizontalRuler:
-            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.frame.maxY - 0.5),
-                                    to: NSPoint(x: dirtyRect.maxX, y: self.frame.maxY - 0.5))
+        case .horizontal:
+            NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
+                                    to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
+        case .vertical:
+            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
+                                    to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
         }
         
         NSGraphicsContext.restoreGraphicsState()
         
-        self.drawHashMarksAndLabels(in: dirtyRect)
+        self.drawNumbers(in: dirtyRect)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// return text color considering current accesibility setting
+    private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
+        
+        let textColor = self.textView?.textColor ?? .textColor
+        
+        if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
+            return textColor
+        }
+        
+        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
+    }
+    
+    
+    /// return background color to fill
+    private var backgroundColor: NSColor {
+        
+        let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
+        
+        if self.isOpaque, let color = self.textView?.backgroundColor {
+            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
+        } else {
+            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
+        }
     }
     
     
     /// draw line numbers
-    override func drawHashMarksAndLabels(in rect: NSRect) {
+    private func drawNumbers(in rect: NSRect) {
         
         guard
             let drawingInfo = self.drawingInfo,
@@ -256,11 +282,10 @@ final class LineNumberView: NSRulerView {
         let lineBase = textView.textContainerOrigin.scaled(to: scale).y + drawingInfo.ascent
         switch textView.layoutOrientation {
         case .horizontal:
-            context.translateBy(x: self.ruleThickness, y: relativePoint.y + lineBase)
+            context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
         case .vertical:
-            context.translateBy(x: round(relativePoint.x - lineBase), y: self.ruleThickness)
+            context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
         }
-        context.scaleBy(x: 1, y: -1)  // flip
         
         // draw labels
         textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
@@ -315,42 +340,6 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    
-    // MARK: Private Methods
-    
-    /// return client view casting to textView
-    private var textView: NSTextView? {
-        
-        return self.clientView as? NSTextView
-    }
-    
-    
-    /// return text color considering current accesibility setting
-    private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
-        
-        let textColor = self.textView?.textColor ?? .textColor
-        
-        if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
-            return textColor
-        }
-        
-        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
-    }
-    
-    
-    /// return background color to fill
-    private var backgroundColor: NSColor {
-        
-        let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
-        
-        if self.isOpaque, let color = self.textView?.backgroundColor {
-            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
-        } else {
-            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
-        }
-    }
-    
-    
     /// update parameters related to drawing and layout based on textView's status
     private func invalidateDrawingInfoAndThickness() {
         
@@ -368,20 +357,42 @@ final class LineNumberView: NSRulerView {
             self.drawingInfo = drawingInfo
         }
         
-        // adjust thickness if needed
-        let ruleThickness: CGFloat = {
+        // adjust thickness
+        self.thickness = {
             switch self.orientation {
-            case .verticalRuler:
+            case .horizontal:
                 let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
                 let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
                 return max(ceil(thickness), self.minVerticalThickness)
-            case .horizontalRuler:
+            case .vertical:
                 let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
                 return max(ceil(thickness), self.minHorizontalThickness)
             }
         }()
-        if ruleThickness != self.ruleThickness {
-            self.ruleThickness = ruleThickness
+    }
+    
+    
+    /// observe textView's update to update line number drawing
+    private func observeTextView(_ textView: NSTextView) {
+        
+        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
+            if self.orientation == .horizontal {
+                // -> Count only if really needed since the line counting is high workload, especially by large document.
+                self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
+            }
+            self.needsDisplay = true
+        }
+        
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
+        }
+        
+        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
+        }
+        
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: textView.enclosingScrollView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
         }
     }
     
