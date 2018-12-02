@@ -157,13 +157,6 @@ final class LineNumberView: NSView {
     }
     
     
-    /// flip view coordinate
-    override var isFlipped: Bool {
-        
-        return true
-    }
-    
-    
     /// make background transparent
     override var isOpaque: Bool {
         
@@ -226,8 +219,8 @@ final class LineNumberView: NSView {
             NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
                                     to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
         case .vertical:
-            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.maxY - 0.5),
-                                    to: NSPoint(x: dirtyRect.maxX, y: self.bounds.maxY - 0.5))
+            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
+                                    to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
         }
         
         NSGraphicsContext.restoreGraphicsState()
@@ -289,11 +282,10 @@ final class LineNumberView: NSView {
         let lineBase = textView.textContainerOrigin.scaled(to: scale).y + drawingInfo.ascent
         switch textView.layoutOrientation {
         case .horizontal:
-            context.translateBy(x: self.thickness, y: relativePoint.y + lineBase)
+            context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
         case .vertical:
-            context.translateBy(x: round(relativePoint.x - lineBase), y: self.thickness)
+            context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
         }
-        context.scaleBy(x: 1, y: -1)  // flip
         
         // draw labels
         textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
