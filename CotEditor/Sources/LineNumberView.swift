@@ -136,6 +136,7 @@ final class LineNumberView: NSView {
     
     
     // MARK: -
+    // MARK: Lifecycle
     
     deinit {
         [self.textObserver,
