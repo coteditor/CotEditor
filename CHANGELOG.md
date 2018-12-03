@@ -8,7 +8,8 @@ Change Log
 ### Improvements
 
 - Improve the performance of text replacement significantly.
-- Improve drawing and layout of line number view. 
+- Improve the line number view fundamentally so that all unwanted behaviors after macOS Mojave disappear.
+- [dev] Stop LineNumberView inheriting NSRulerView.
 
 
 
