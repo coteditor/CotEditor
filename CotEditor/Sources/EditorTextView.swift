@@ -569,7 +569,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         let location = self.locationOfBeginningOfLine()
         let range = NSRange(location..<location)
         
-        self.selectedRange = range
+        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
         self.scrollRangeToVisible(range)
     }
     

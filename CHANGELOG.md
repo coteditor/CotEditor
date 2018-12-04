@@ -12,6 +12,11 @@ Change Log
 - [dev] Stop LineNumberView inheriting NSRulerView.
 
 
+### Fixes
+
+- Fix the cursor location by changing the selection with shortcut `⌘←`.
+
+
 
 3.6.7 (301)
 --------------------------
