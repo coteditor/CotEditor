@@ -30,7 +30,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     // MARK: Private Properties
     
-    fileprivate var settingNames = [String]()
+    private var settingNames = [String]()
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -252,7 +252,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     // MARK: Private Methods
     
     /// return setting name which is currently selected in the list table
-    fileprivate var selectedSettingName: String? {
+    private var selectedSettingName: String? {
         
         let index = self.tableView?.selectedRow ?? 0
         
@@ -271,7 +271,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     
     /// try to delete given setting
-    fileprivate func deleteSetting(name: String) {
+    private func deleteSetting(name: String) {
         
         let alert = NSAlert()
         alert.messageText = String(format: "Are you sure you want to delete “%@”?".localized, name)
@@ -304,7 +304,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     
     
     /// try to import setting file at given URL
-    fileprivate func importSetting(fileURL: URL) {
+    private func importSetting(fileURL: URL) {
         
         do {
             try ReplacementManager.shared.importSetting(fileURL: fileURL)
