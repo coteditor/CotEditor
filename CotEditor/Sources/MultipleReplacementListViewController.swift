@@ -59,16 +59,20 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
                 NSAlert(error: error).beginSheetModal(for: self.view.window!)
             }
         }
-        self.tableView?.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
+        
+        // select an item in list
+        let row: Int = {
+            guard
+                let lastSelectedName = UserDefaults.standard[.selectedMultipleReplacementSettingName],
+                let row = self.settingNames.firstIndex(of: lastSelectedName)
+                else { return 0 }
+            
+            return row
+            }()
+        self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe replacement setting list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
     }
     
     
@@ -440,6 +444,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
             else { return }
         
         self.mainViewController?.change(setting: setting)
+        UserDefaults.standard[.selectedMultipleReplacementSettingName] = settingName
     }
     
 }

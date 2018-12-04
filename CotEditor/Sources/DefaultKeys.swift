@@ -164,6 +164,7 @@ extension DefaultKeys {
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
+    static let selectedMultipleReplacementSettingName = DefaultKey<String>("selectedMultipleReplacementSettingName")
     
     // hidden settings
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
