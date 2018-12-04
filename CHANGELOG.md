@@ -2723,27 +2723,27 @@ Change Log
 - Avoid the move to previous outline item button to select the first “<Outilne Menu>” item.
 - Deprecate text color setting for line number view which is hidden setting.
 - Remove the output type keyword `Pasteboard puts` for CotEditor script, that was deprecated on CotEditor 0.7.2 and had remained for backwards compatibility.
-- [2.0β] Display migration panel on the first launch.
-- [2.0β] Improve launch speed.
-- [2.0β] Tweak Japanese localization of preferences.
-- [2.0β] Allow inputting non-roman characters on syntax style meta fields.
-- [2.0β] Adjust layout of preferences.
-- [2.0β] Adjust highlight color for incompatible chars.
-- [2.0β] Adjust animation duration of toggling navigation bar and status bar.
-- [2.0β] Brush up images.
-- [2.0β] Update documents.
+- [beta] Display migration panel on the first launch.
+- [beta] Improve launch speed.
+- [beta] Tweak Japanese localization of preferences.
+- [beta] Allow inputting non-roman characters on syntax style meta fields.
+- [beta] Adjust layout of preferences.
+- [beta] Adjust highlight color for incompatible chars.
+- [beta] Adjust animation duration of toggling navigation bar and status bar.
+- [beta] Brush up images.
+- [beta] Update documents.
 
 
 ### Fixes
 
 - Avoid horizontal scrollers on key bindings edit sheets.
 - Fix help buttons on preferences panes.
-- [2.0β] Fix an issue that semi-transparent text views flicked on scrolling on Yosemite.
-- [2.0β] Avoid horizontal scrollers on syntax edit sheets in Japanese localization.
-- [2.0β] Fix an issue that coloring label names were partially missing in syntax style validator.
-- [2.0β] Fix syntax colorings of “Haskell”, “LaTeX” and “PHP” styles.
-- [2.0β] Fill missing tooltips of some toolbar icons in the English localization.
-- [2.0β] Fix a possible issue that syntax highlighting could not be updated after style edit.
+- [beta] Fix an issue that semi-transparent text views flicked on scrolling on Yosemite.
+- [beta] Avoid horizontal scrollers on syntax edit sheets in Japanese localization.
+- [beta] Fix an issue that coloring label names were partially missing in syntax style validator.
+- [beta] Fix syntax colorings of “Haskell”, “LaTeX” and “PHP” styles.
+- [beta] Fill missing tooltips of some toolbar icons in the English localization.
+- [beta] Fix a possible issue that syntax highlighting could not be updated after style edit.
 
 
 
@@ -2761,10 +2761,10 @@ Change Log
 
 ### Fixes
 
-- [2.0β] Fix an issue that some colors could not be edited in theme edit view under Japanese localization.
-- [2.0β] Fix an issue that line wrap toggling behaves something strange if contents are short.
-- [2.0β] Fix an issue that document info could not scroll.
-- [2.0β] Fix an issue that contents of document info in drawer disappear on OS X Lion.
+- [beta] Fix an issue that some colors could not be edited in theme edit view under Japanese localization.
+- [beta] Fix an issue that line wrap toggling behaves something strange if contents are short.
+- [beta] Fix an issue that document info could not scroll.
+- [beta] Fix an issue that contents of document info in drawer disappear on OS X Lion.
 
 
 
