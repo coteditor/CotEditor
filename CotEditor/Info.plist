@@ -890,6 +890,22 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>toml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>TOMLIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>TOML</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>v</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>

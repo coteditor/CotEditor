@@ -589,6 +589,17 @@
 
     ]
   },
+  "TOML": {
+    "extensions": [
+      "toml"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
   "Tcl": {
     "extensions": [
       "tcl"

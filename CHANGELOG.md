@@ -5,6 +5,11 @@ Change Log
 3.6.8 (unreleased)
 --------------------------
 
+### New Features
+
+- Add syntax style for “TOML”.
+
+
 ### Improvements
 
 - Improve the performance of text replacement significantly.
