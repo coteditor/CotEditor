@@ -87,7 +87,9 @@ final class OutlineParseOperation: Operation, ProgressReporting {
         for extractor in self.extractors {
             guard !self.isCancelled else { return }
             
-            self.results += extractor.items(in: self.string, range: self.parseRange)
+            self.results += extractor.items(in: self.string, range: self.parseRange) { (stop) in
+                stop = self.isCancelled
+            }
             
             self.progress.completedUnitCount += 1
         }

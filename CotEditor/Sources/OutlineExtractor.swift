@@ -58,9 +58,9 @@ struct OutlineExtractor {
     
     
     /// extract outline items in given string
-    func items(in string: String, range parseRange: NSRange) -> [OutlineItem] {
+    func items(in string: String, range parseRange: NSRange, using block: (_ stop: inout Bool) -> Void) -> [OutlineItem] {
         
-        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange).map { result in
+        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: parseRange, using: block).map { result in
             
             // separator item
             if self.template == .separator {
