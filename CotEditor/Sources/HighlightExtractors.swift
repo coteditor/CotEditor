@@ -27,7 +27,7 @@ import Foundation
 
 protocol HighlightExtractable {
     
-    func ranges(in: String, range: NSRange) -> [NSRange]
+    func ranges(in: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange]
 }
 
 
@@ -69,7 +69,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) -> [NSRange] {
+    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
         var ranges = [NSRange]()
         
@@ -119,9 +119,9 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) -> [NSRange] {
+    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
-        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range).lazy
+        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
             .map { $0.range }
     }
     
@@ -147,9 +147,9 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) -> [NSRange] {
+    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
-        return self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range).lazy
+        return self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
             .map { $0.range }
             .compactMap { beginRange in
                 let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],

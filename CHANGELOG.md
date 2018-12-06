@@ -21,6 +21,7 @@ Change Log
 ### Fixes
 
 - Fix the cursor location by changing the selection with shortcut `⌘←`.
+- Fix an issue where the rainbow cursor could appear when cancelling syntax highlight with a large document multiple times.
 
 
 
