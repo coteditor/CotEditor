@@ -16,7 +16,7 @@ Change Log
 - Improve the line number view fundamentally so that all unwanted behaviors after macOS Mojave disappear.
 - Select the setting selected in the last session when opening the Multiple Replacement window.
 - Enable the noncontiguous layout only with large documents.
-    - This change may improve the editor's dwaring and scrolling behaviors.
+    - This change may improve the editor's drawing and scrolling behaviors.
 - Improve general performance and stability.
 - [dev] Stop LineNumberView inheriting NSRulerView.
 

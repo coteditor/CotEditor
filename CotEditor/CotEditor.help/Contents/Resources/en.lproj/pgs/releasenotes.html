@@ -23,6 +23,50 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.6.8</h1>
+	<p>release: <time>2018-12-08</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add syntax style for “TOML”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Improve the performance of text replacement significantly.</li>
+	<li>Improve the line number view fundamentally so that all unwanted behaviors after macOS Mojave disappear.</li>
+	<li>Select the setting selected in the last session when opening the Multiple Replacement window.</li>
+	<li>Enable the noncontiguous layout only with large documents.
+	<ul>
+		<li>This change may improve the editor's drawing and scrolling behaviors.</li>
+	</ul></li>
+	<li>Improve general performance and stability.</li>
+	<li><span class="trivial">dev</span>: Stop LineNumberView inheriting NSRulerView.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix the cursor location by changing the selection with shortcut <code>⌘←</code>.</li>
+	<li>Fix an issue where the rainbow cursor could appear when cancelling syntax highlight with a large document multiple times.</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
 	<h1>CotEditor 3.6.7</h1>
 	<p>release: <time>2018-11-27</time></p>
 </header>
