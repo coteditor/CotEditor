@@ -15,6 +15,7 @@ Change Log
 - Improve the performance of text replacement significantly.
 - Improve the line number view fundamentally so that all unwanted behaviors after macOS Mojave disappear.
 - Select the setting selected in the last session when opening the Multiple Replacement window.
+- Improve general performance and stability.
 - [dev] Stop LineNumberView inheriting NSRulerView.
 
 
