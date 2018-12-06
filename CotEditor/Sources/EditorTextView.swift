@@ -126,7 +126,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
-        layoutManager.allowsNonContiguousLayout = true
         self.textContainer!.replaceLayoutManager(layoutManager)
         
         // set layout values
@@ -296,6 +295,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func didChangeText() {
         
         super.didChangeText()
+        
+        self.invalidateNonContiguousLayout()
         
         self.needsUpdateLineHighlight = true
         
@@ -805,9 +806,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         super.setLayoutOrientation(orientation)
         self.didChangeValue(forKey: #keyPath(layoutOrientation))
         
-        // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
-        //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
-        self.layoutManager?.allowsNonContiguousLayout = (orientation == .horizontal)
+        self.invalidateNonContiguousLayout()
         
         // reset writing direction
         if orientation == .vertical {
@@ -1318,6 +1317,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // apply new style to current text
         self.invalidateStyle()
+    }
+    
+    
+    /// validate whether turns the noncontiguous layout on
+    private func invalidateNonContiguousLayout() {
+        
+        let isLargeText = self.string.count > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
+        
+        // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
+        //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
+        let isHorizontal = (self.layoutOrientation == .horizontal)
+        
+        self.layoutManager?.allowsNonContiguousLayout = isLargeText && isHorizontal
     }
     
     
