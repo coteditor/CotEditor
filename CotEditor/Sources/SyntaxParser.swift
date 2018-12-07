@@ -153,6 +153,10 @@ extension SyntaxParser {
         }
         operation.queuePriority = .low
         
+        // -> Regarding the outline extraction, just cancel previous operations before pasing the latest string,
+        //    since user cannot cancel it manually.
+        self.outlineParseOperationQueue.cancelAllOperations()
+        
         self.outlineParseOperationQueue.addOperation(operation)
         
         self.delegate?.syntaxParser(self, didStartParsingOutline: operation.progress)

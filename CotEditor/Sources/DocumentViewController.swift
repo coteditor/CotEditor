@@ -783,8 +783,9 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = self.createEditorViewController(relativeTo: currentEditorViewController)
+        let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
+        self.splitViewController?.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
         self.invalidateSyntaxHighlight()
@@ -898,17 +899,6 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
                 presentBlock()
             }
         }
-    }
-    
-    
-    /// create new (split) editor view
-    private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
-        
-        let editorViewController = EditorViewController.instantiate(storyboard: "EditorView")
-        
-        self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
-        
-        return editorViewController
     }
     
     

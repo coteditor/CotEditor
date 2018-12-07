@@ -23,6 +23,50 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.6.8</h1>
+	<p>リリース: <time>2018-12-08</time></p>
+</header>
+
+
+<section>
+<h2>新機能</h2>
+
+<ul>
+	<li>シンタックス定義TOMLを追加</li>
+</ul>
+</section>
+
+
+<section>
+<h2>改良</h2>
+
+<ul>
+	<li>「すべて置換」の処理時間を大幅に改善</li>
+	<li>行番号ビューを抜本的に改変し、macOS Mojaveでの諸問題を回避</li>
+	<li>最後ののセッションで選択した複数置換ウインドウで設定を記憶</li>
+	<li>大きい書類でのみnoncontiguous layoutを有効にするよう変更
+	<ul>
+		<li>この変更により、通常サイズの書類におけるスクロールおよび描画の振る舞いを改善</li>
+	</ul></li>
+	<li>全般的な効率と安定性を向上</li>
+	<li><span class="trivial">開発</span>: LineNumberViewがNSRulerViewを継承するのを廃止</li>
+</ul>
+</section>
+
+
+<section>
+<h2>修正</h2>
+
+<ul>
+	<li>ショートカット<code>⌘←</code>でのカーソル位置を修正</li>
+	<li>シンタックスハイライトを複数回キャンセルしたときにレインボーカーソルが出ることがある不具合を修正</li>
+</ul>
+</section>
+</article>
+
+
+<article>
+<header>
 	<h1>CotEditor 3.6.7</h1>
 	<p>リリース: <time>2018-11-27</time></p>
 </header>

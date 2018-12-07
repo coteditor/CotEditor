@@ -7,7 +7,7 @@ Preencha o modelo a seguir e publique-o em [GitHub Issues](https://github.com/co
 
  - CotEditor: %SHORT_VERSION% (%BUNDLE_VERSION%)
  - System: macOS %SYSTEM_VERSION%
- - Language: Brazilian Portuguese
+ - Language: Portuguese
 
 
 ## Short Description (Descrição Curta)

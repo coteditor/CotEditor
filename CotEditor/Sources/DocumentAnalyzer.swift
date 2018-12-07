@@ -207,9 +207,7 @@ final class DocumentAnalyzer: NSObject {
         }
         
         // cancel waiting operations to avoid stacking large operations
-        self.editorInfoCountOperationQueue.operations
-            .filter { !$0.isExecuting }
-            .forEach { $0.cancel() }
+        self.editorInfoCountOperationQueue.cancelAllOperations()
         
         self.editorInfoCountOperationQueue.addOperation(operation)
     }

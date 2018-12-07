@@ -144,7 +144,9 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !self.isCancelled else { return }
                 
-                let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange)
+                let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange) { (stop) in
+                    stop = self.isCancelled
+                }
                 
                 rangesQueue.async(flags: .barrier) {
                     childProgress.completedUnitCount += 1

@@ -32,10 +32,8 @@ final class ProgressViewController: NSViewController {
     @objc private dynamic var progress: Progress?
     @objc private dynamic var message: String = ""
     
-    private var progressObserver: NSKeyValueObservation?
-    private var descriptionObserver: NSKeyValueObservation?
     private var finishObserver: NSKeyValueObservation?
-    private lazy var progressThrottle = DispatchQueue.main.throttle(delay: .milliseconds(200))
+    private var updateTimer: DispatchSourceTimer?
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var descriptionField: NSTextField?
@@ -47,17 +45,41 @@ final class ProgressViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        self.progressObserver?.invalidate()
-        self.descriptionObserver?.invalidate()
         self.finishObserver?.invalidate()
+        self.updateTimer?.cancel()
     }
     
     
     
     // MARK: View Controller Methods
     
-    /// dismiss view
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        self.indicator?.doubleValue = self.progress!.fractionCompleted
+        self.descriptionField?.stringValue = self.progress!.localizedDescription
+        
+        // trigger a timer updating UI every 0.1 seconds.
+        // -> This is much more performance-efficient than KV-Observing `.fractionCompleted` or `.localizedDescription`. (2018-12 macOS 10.14)
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now(), repeating: .milliseconds(100))
+        timer.schedule(wallDeadline: .now(), repeating: 0.1)
+        timer.setEventHandler { [weak self] in
+            guard let progress = self?.progress else { return }
+            
+            self?.indicator?.doubleValue = progress.fractionCompleted
+            self?.descriptionField?.stringValue = progress.localizedDescription
+        }
+        timer.resume()
+        self.updateTimer?.cancel()
+        self.updateTimer = timer
+    }
+    
+    
     override func dismiss(_ sender: Any?) {
+        
+        self.updateTimer?.cancel()
         
         // close sheet in an old way
         // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
@@ -81,25 +103,13 @@ final class ProgressViewController: NSViewController {
         self.progress = progress
         self.message = message
         
-        self.progressObserver = progress.observe(\.fractionCompleted, options: .initial) { [weak self] (progress, _) in
-            guard !progress.isIndeterminate else { return }
-            
-            self?.progressThrottle {
-                self?.indicator?.doubleValue = progress.fractionCompleted
-            }
-        }
-        
-        self.descriptionObserver = progress.observe(\.localizedDescription, options: .initial) { [weak self] (progress, _) in
-            DispatchQueue.main.async {
-                self?.descriptionField?.stringValue = progress.localizedDescription
-            }
-        }
-        
-        self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
-            guard closesWhenFinished, progress.isFinished else { return }
-            
-            DispatchQueue.main.async {
-                self?.dismiss(nil)
+        if closesWhenFinished {
+            self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
+                guard progress.isFinished else { return }
+                
+                DispatchQueue.main.async {
+                    self?.dismiss(nil)
+                }
             }
         }
     }
@@ -107,6 +117,8 @@ final class ProgressViewController: NSViewController {
     
     /// change button to done
     func done() {
+        
+        self.updateTimer?.cancel()
         
         self.button?.title = "OK".localized
         self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)

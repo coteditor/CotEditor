@@ -306,7 +306,8 @@ final class TextFind {
                     if ioStop { return }
                     
                     let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
-                    replacedString = (replacedString as NSString).replacingCharacters(in: substringRange, with: item.string)
+                    guard let range = Range(substringRange, in: replacedString) else { assertionFailure(); continue }
+                    replacedString.replaceSubrange(range, with: item.string)
                 }
                 replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
                 length = (replacedString as NSString).length

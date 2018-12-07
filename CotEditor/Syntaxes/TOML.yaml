@@ -1,0 +1,60 @@
+extensions:
+- keyString: "toml"
+filenames: []
+interpreters: []
+metadata:
+  version: "1.0.0"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  lastModified: "2018-12-05"
+  distributionURL: "https://coteditor.com"
+commentDelimiters:
+  inlineDelimiter: "#"
+keywords:
+- beginString: "(?<=\\[)[^\\],]+(?=\\])"
+  description: "table"
+  regularExpression: true
+attributes: []
+commands: []
+types: []
+variables: []
+values:
+- beginString: "false"
+- beginString: "true"
+numbers:
+- beginString: "(\\b|[-+])0b[01][01_]*\\b"
+  description: "binary"
+  regularExpression: true
+- beginString: "(\\b|[-+])0o[0-7][0-7_]*\\b"
+  regularExpression: true
+  description: "octal"
+- beginString: "(\\b|[-+])0x[0-9a-fA-F][0-9a-fA-F_]*\\b"
+  description: "hex"
+  regularExpression: true
+- beginString: "(\\b|[-+])[0-9][0-9_]*(\\.[0-9][0-9_]*)?(e[+-]?[0-9][0-9_]*)?\\b"
+  regularExpression: true
+  ignoreCase: true
+  description: "int / float"
+- beginString: "(\\b|[-+])inf\\b"
+  description: "inf"
+  regularExpression: true
+- beginString: "(\\b|[-+])nan\\b"
+  description: "nan"
+  regularExpression: true
+strings:
+- beginString: "\""
+  endString: "\""
+- beginString: "\"\"\""
+  endString: "\"\"\""
+- beginString: "'"
+  endString: "'"
+- beginString: "'''"
+  endString: "'''"
+characters:
+- beginString: "\\b[0-9]{4}-[0-9]{2}-[0-9]{2}(([Tt]|[ \\t]+)[0-9]{2}?:[0-9]{2}:[0-9]{2}(\\.[0-9]*)?(([
+    \\t]*)Z|[-+][0-9]{2}?(:[0-9]{2})?)?)?\\b"
+  regularExpression: true
+  description: "date-time"
+comments: []
+outlineMenu: []
+completions: []

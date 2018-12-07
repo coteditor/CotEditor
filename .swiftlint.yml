@@ -9,6 +9,7 @@ opt_in_rules:
   - attributes
   - closure_end_indentation
   - closure_spacing
+  - collection_alignment
   - contains_over_first_not_nil
   - discouraged_optional_boolean
   - empty_string
@@ -18,12 +19,14 @@ opt_in_rules:
   - fallthrough
   - file_header
   - first_where
+  - identical_operands
   - implicit_return
   - joined_default_parameter
   - let_var_whitespace
   - lower_acl_than_parent
   - multiline_function_chains
   - multiline_parameters
+  - multiline_parameters_brackets
   - nimble_operator
   - pattern_matching_keywords
   - private_outlet
@@ -35,6 +38,8 @@ opt_in_rules:
   - redundant_type_annotation
   - required_enum_case
   - sorted_first_last
+  - static_operator
+  - toggle_bool
   - untyped_error_in_catch
   - vertical_parameter_alignment_on_call
   - yoda_condition
@@ -50,6 +55,9 @@ disabled_rules:
   - unused_closure_parameter
   - weak_delegate
 
+private_outlet:
+  allow_private_set: true
+  
 trailing_whitespace:
   ignores_empty_lines: true
 
