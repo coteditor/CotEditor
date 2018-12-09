@@ -462,8 +462,8 @@
 		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
 		2AAD61ED1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
-		2AAD61F01D2B0856008FE772 /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* String+Range.swift */; };
-		2AAD61F11D2B0856008FE772 /* String+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* String+Range.swift */; };
+		2AAD61F01D2B0856008FE772 /* String+FuzzyRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* String+FuzzyRange.swift */; };
+		2AAD61F11D2B0856008FE772 /* String+FuzzyRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EF1D2B0856008FE772 /* String+FuzzyRange.swift */; };
 		2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
 		2AAD61F51D2BA0E0008FE772 /* OutlineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */; };
 		2AAD61F81D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */; };
@@ -1124,7 +1124,7 @@
 		2AAC7494203FA35100D91832 /* Differ.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Differ.framework.dSYM; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
-		2AAD61EF1D2B0856008FE772 /* String+Range.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Range.swift"; sourceTree = "<group>"; };
+		2AAD61EF1D2B0856008FE772 /* String+FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FuzzyRange.swift"; sourceTree = "<group>"; };
 		2AAD61F31D2BA0E0008FE772 /* OutlineItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutlineItem.swift; sourceTree = "<group>"; };
 		2AAD61F71D2BA3F5008FE772 /* SyntaxHighlightParseOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlightParseOperation.swift; sourceTree = "<group>"; };
 		2AAD61FB1D2BD102008FE772 /* String+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
@@ -1728,7 +1728,7 @@
 				2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */,
 				2A733E8820BBB4AC0090D7CB /* String+Case.swift */,
 				2A4D69261D3FF61C00FBBD0B /* String+Encoding.swift */,
-				2AAD61EF1D2B0856008FE772 /* String+Range.swift */,
+				2AAD61EF1D2B0856008FE772 /* String+FuzzyRange.swift */,
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
 				2A887A8F20FA1D19002BFA34 /* String+Localization.swift */,
 				2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */,
@@ -2824,7 +2824,7 @@
 				2A10B6F621450A3B00B4205E /* NSAppearance.swift in Sources */,
 				2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
-				2AAD61F11D2B0856008FE772 /* String+Range.swift in Sources */,
+				2AAD61F11D2B0856008FE772 /* String+FuzzyRange.swift in Sources */,
 				2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2AF073EC1D33F17100770BA6 /* DictionaryKey.swift in Sources */,
@@ -3080,7 +3080,7 @@
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */,
 				2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
-				2AAD61F01D2B0856008FE772 /* String+Range.swift in Sources */,
+				2AAD61F01D2B0856008FE772 /* String+FuzzyRange.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2AA86282212ED91400BB75C9 /* NSSplitViewController+Autosave.swift in Sources */,
 				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
