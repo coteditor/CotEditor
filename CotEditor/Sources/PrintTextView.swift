@@ -167,7 +167,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                         return String(lineNumber)
                         
                     case .wrapped:
-                        guard !isVerticalText else { return nil }
+                        if isVerticalText { return nil }
                         return "-"
                     }
                     }() else { return }
