@@ -57,6 +57,9 @@ final class ProgressViewController: NSViewController {
         
         super.viewWillAppear()
         
+        self.indicator?.doubleValue = self.progress!.fractionCompleted
+        self.descriptionField?.stringValue = self.progress!.localizedDescription
+        
         // trigger a timer updating UI every 0.1 seconds.
         // -> This is much more performance-efficient than KV-Observing `.fractionCompleted` or `.localizedDescription`. (2018-12 macOS 10.14)
         let timer = DispatchSource.makeTimerSource(queue: .main)

@@ -5,6 +5,11 @@ Change Log
 3.6.9 (unreleased)
 --------------------------
 
+### Improvements
+
+- Optimize syntax highlighting.
+
+
 ### Fixes
 
 - Fix an issue where a part of line numbers disappeared when Japanese text is being input.
