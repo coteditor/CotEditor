@@ -178,35 +178,36 @@ final class DocumentAnalyzer: NSObject {
             let textView = document.viewController?.focusedTextView,
             !textView.hasMarkedText() else { return }
         
-        let selectedRange = Range(textView.selectedRange, in: textView.string) ?? textView.string.startIndex..<textView.string.startIndex
-        let operation = EditorInfoCountOperation(string: document.textStorage.string.immutable,
+        let string = textView.string.immutable
+        let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
+        let operation = EditorInfoCountOperation(string: string,
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: selectedRange,
                                                  requiredInfo: self.requiredInfoTypes,
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
         
         operation.completionBlock = { [weak self, weak operation] in
-            guard
-                let operation = operation, !operation.isCancelled,
-                let info = self?.info else { return }
+            guard let operation = operation, !operation.isCancelled else { return }
             
             let result = operation.result
             
             DispatchQueue.main.async {
-                info.length = CountFormatter.format(result.length, selected: result.selectedLength)
-                info.chars = CountFormatter.format(result.characters, selected: result.selectedCharacters)
-                info.lines = CountFormatter.format(result.lines, selected: result.selectedLines)
-                info.words = CountFormatter.format(result.words, selected: result.selectedWords)
-                info.location = CountFormatter.format(result.location)
-                info.line = CountFormatter.format(result.line)
-                info.column = CountFormatter.format(result.column)
-                info.unicode = result.unicode
+                guard let self = self else { return }
+                
+                self.info.length = CountFormatter.format(result.length, selected: result.selectedLength)
+                self.info.chars = CountFormatter.format(result.characters, selected: result.selectedCharacters)
+                self.info.lines = CountFormatter.format(result.lines, selected: result.selectedLines)
+                self.info.words = CountFormatter.format(result.words, selected: result.selectedWords)
+                self.info.location = CountFormatter.format(result.location)
+                self.info.line = CountFormatter.format(result.line)
+                self.info.column = CountFormatter.format(result.column)
+                self.info.unicode = result.unicode
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
         }
         
-        // cancel waiting operations to avoid stacking large operations
+        // cancel waiting operations to avoid stuck large operations
         self.editorInfoCountOperationQueue.cancelAllOperations()
         
         self.editorInfoCountOperationQueue.addOperation(operation)

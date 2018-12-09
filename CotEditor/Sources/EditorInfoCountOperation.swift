@@ -86,6 +86,8 @@ final class EditorInfoCountOperation: Operation {
     
     init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
         
+        assert(selectedRange.upperBound <= string.endIndex)
+        
         self.string = string
         self.lineEnding = lineEnding
         self.selectedRange = selectedRange
@@ -104,7 +106,8 @@ final class EditorInfoCountOperation: Operation {
         guard !self.string.isEmpty else { return }
         
         let selectedString = self.string[self.selectedRange]
-        let hasSelection = !selectedString.isEmpty
+        let hasSelection = !self.selectedRange.isEmpty
+        let cursorLocation = self.selectedRange.lowerBound
         
         // count length
         if self.requiredInfo.contains(.length) {
@@ -140,6 +143,7 @@ final class EditorInfoCountOperation: Operation {
         // count lines
         if self.requiredInfo.contains(.lines) {
             self.result.lines = self.string.numberOfLines
+            
             if hasSelection {
                 self.result.selectedLines = selectedString.numberOfLines
             }
@@ -150,6 +154,7 @@ final class EditorInfoCountOperation: Operation {
         // count words
         if self.requiredInfo.contains(.words) {
             self.result.words = self.string.numberOfWords
+            
             if hasSelection {
                 self.result.selectedWords = selectedString.numberOfWords
             }
@@ -157,7 +162,7 @@ final class EditorInfoCountOperation: Operation {
         
         // calculate current location
         if self.requiredInfo.contains(.location) {
-            let locString = self.string[..<self.selectedRange.lowerBound]
+            let locString = self.string[..<cursorLocation]
             self.result.location = self.countsLineEnding
                 ? locString.count
                 : locString.removingLineEndings.count
@@ -167,15 +172,15 @@ final class EditorInfoCountOperation: Operation {
         
         // calculate current line
         if self.requiredInfo.contains(.line) {
-            self.result.line = self.string.lineNumber(at: self.selectedRange.lowerBound)
+            self.result.line = self.string.lineNumber(at: cursorLocation)
         }
         
         guard !self.isCancelled else { return }
         
         // calculate current column
         if self.requiredInfo.contains(.column) {
-            let lineRange = self.string.lineRange(for: self.selectedRange)
-            self.result.column = self.string.distance(from: lineRange.lowerBound, to: self.selectedRange.lowerBound)
+            let lineStartIndex = self.string.lineRange(at: cursorLocation).lowerBound
+            self.result.column = self.string.distance(from: lineStartIndex, to: cursorLocation)
         }
         
         // unicode
