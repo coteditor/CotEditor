@@ -308,7 +308,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
         var html = try! String(contentsOf: creditsURL)
         
-        #if APPSTORE        // Remove Sparkle from 3rd party code list
+        #if APPSTORE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
             html = html.replacingCharacters(in: html.lineRange(for: range), with: "")
         }
