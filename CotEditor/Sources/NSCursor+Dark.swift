@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSCursor
 
 extension NSCursor {
     

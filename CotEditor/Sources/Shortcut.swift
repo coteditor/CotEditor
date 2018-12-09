@@ -24,7 +24,8 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
+import AppKit.NSEvent
 
 enum ModifierKey: CaseIterable {
     

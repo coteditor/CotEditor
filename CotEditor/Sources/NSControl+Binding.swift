@@ -1,5 +1,5 @@
 //
-//  NSObject+Binding.swift
+//  NSControl+Binding.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import AppKit
 
-extension NSTextField {
+extension NSControl {
     
     /// bind receiver's nullPlaceholder with initial value of correspondent UserDefaults key
     func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName) {

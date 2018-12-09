@@ -31,6 +31,7 @@ private extension NSAttributedString.Key {
 }
 
 
+
 final class TokenTextView: NSTextView {
     
     var tokenizer: Tokenizer?

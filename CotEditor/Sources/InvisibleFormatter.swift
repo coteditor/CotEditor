@@ -23,7 +23,8 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
+import AppKit.NSColor
 
 final class InvisibleFormatter: Formatter {
     
