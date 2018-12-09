@@ -122,7 +122,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
         guard !items.isEmpty else { return nil }
         
         let menu = NSMenu()
-        menu.items = items
+//        menu.items = items  // <- this line fails on macOS 10.13 and earlier
+        for item in items {
+            menu.addItem(item)
+        }
         
         return menu
     }

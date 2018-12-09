@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where some of line numbers disappeared on macOS 10.13 (and earlier?) when Japanese text is being input.
+- Fix an issue where the context menu did not open under macOS 10.13 and earlier if the user has scripts.
 
 
 
