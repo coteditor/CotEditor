@@ -63,8 +63,8 @@
 		2A10D1311E7152F30027192A /* EditPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D12E1E7152F30027192A /* EditPane.storyboard */; };
 		2A10D1381E715E5B0027192A /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
 		2A10D1391E715E5B0027192A /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
-		2A10D1481E7477D30027192A /* ItalicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* ItalicButton.swift */; };
-		2A10D1491E7477D30027192A /* ItalicButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* ItalicButton.swift */; };
+		2A10D1481E7477D30027192A /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* StyledButton.swift */; };
+		2A10D1491E7477D30027192A /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* StyledButton.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* UTF32Char+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */; };
@@ -488,8 +488,6 @@
 		2AB2245521A809A000F6201F /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
 		2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
-		2AB9B4681ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */; };
-		2AB9B4691ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABBACA21E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
 		2ABC76241909BF5200D2B592 /* Themes in Resources */ = {isa = PBXBuildFile; fileRef = 2A7846DA18FE035E006BDF00 /* Themes */; };
@@ -850,7 +848,7 @@
 		2A10D13B1E71B63B0027192A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/FormatPane.strings"; sourceTree = "<group>"; };
 		2A10D13C1E71B63C0027192A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FormatPane.strings; sourceTree = "<group>"; };
 		2A10D13D1E71B63D0027192A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FormatPane.strings; sourceTree = "<group>"; };
-		2A10D1471E7477D30027192A /* ItalicButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItalicButton.swift; sourceTree = "<group>"; };
+		2A10D1471E7477D30027192A /* StyledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTF32Char+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
@@ -1177,7 +1175,6 @@
 		2AB2245A21A809B800F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ViewController.swift"; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
-		2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlinableButton.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
 		2ABC828321A9486A008F9229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CharacterPopover.storyboard; sourceTree = "<group>"; };
 		2ABC828721A950AC008F9229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/HUDView.storyboard; sourceTree = "<group>"; };
@@ -1563,7 +1560,7 @@
 				2AD8D7492064AD83000BEFDB /* NumberTextField.swift */,
 				2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */,
 				2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */,
-				2A10D1471E7477D30027192A /* ItalicButton.swift */,
+				2A10D1471E7477D30027192A /* StyledButton.swift */,
 				2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */,
 				2ACDC0931D1727D9009B72D6 /* OutlineMenuButtonCell.swift */,
 				2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */,
@@ -1660,7 +1657,6 @@
 				2AB2243021A7D67E00F6201F /* SyntaxEditChildViewController.swift */,
 				2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */,
 				2A38FAFF1D1C6B6D0032231A /* DefinitionTableViewDelegate.swift */,
-				2AB9B4671ED2BAE900B8AEB2 /* UnderlinableButton.swift */,
 			);
 			name = "Syntax Edit Sheet";
 			sourceTree = "<group>";
@@ -2831,7 +2827,6 @@
 				2AE73F41203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
 				2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */,
 				2A12C8001D1843B50069C60B /* SeparatorTextField.swift in Sources */,
-				2AB9B4691ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */,
 				2ACDC0951D1727D9009B72D6 /* OutlineMenuButtonCell.swift in Sources */,
 				2A9BF3CC1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A64F2461D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
@@ -2850,7 +2845,7 @@
 				2AB2243221A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
 				2AA45A4F1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift in Sources */,
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
-				2A10D1491E7477D30027192A /* ItalicButton.swift in Sources */,
+				2A10D1491E7477D30027192A /* StyledButton.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
 				2AC186DE1E2F4264002F4D27 /* Debug.swift in Sources */,
 				2A5DCE8A1D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
@@ -3133,7 +3128,7 @@
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A2792981D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
 				2AF073E31D33C3AB00770BA6 /* Theme.swift in Sources */,
-				2A10D1481E7477D30027192A /* ItalicButton.swift in Sources */,
+				2A10D1481E7477D30027192A /* StyledButton.swift in Sources */,
 				2A91C3181D1BE91E007CF8BE /* DefaultSettings.swift in Sources */,
 				2AA45A4B1D2E871900A1A401 /* EditorViewController.swift in Sources */,
 				2A1893AA1FFF422D00AD244F /* LineSort.swift in Sources */,
@@ -3211,7 +3206,6 @@
 				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2A5D13321D1FB90300D38E6A /* FindPanelTextView.swift in Sources */,
 				2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
-				2AB9B4681ED2BAE900B8AEB2 /* UnderlinableButton.swift in Sources */,
 				2A5D13351D1FC87900D38E6A /* FindPanelTextClipView.swift in Sources */,
 				2A25C52820F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */,
 				2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */,

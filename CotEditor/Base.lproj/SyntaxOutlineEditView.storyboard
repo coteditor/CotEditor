@@ -231,24 +231,29 @@
                                     <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.bold" id="oHN-Q7-K9W"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-BP-ynf" customClass="ItalicButton" customModule="CotEditor" customModuleProvider="target">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5fG-BP-ynf" customClass="StyledButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="54" y="16" width="48" height="18"/>
                                 <buttonCell key="cell" type="check" title="Italic" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="fUz-0u-0D4">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isItalic" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isUnderlined" value="NO"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.italic" id="xWI-2A-OYt"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rFv-YW-Uea" customClass="UnderlinableButton" customModule="CotEditor" customModuleProvider="target">
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rFv-YW-Uea" customClass="StyledButton" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="104" y="16" width="73" height="18"/>
                                 <buttonCell key="cell" type="check" title="Underline" bezelStyle="regularSquare" imagePosition="left" controlSize="mini" inset="2" id="00X-sB-42F">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="underline" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isUnderlined" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isItalic" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <binding destination="SKZ-Xe-n9z" name="value" keyPath="selection.underline" id="e91-xE-cUI"/>
