@@ -122,9 +122,9 @@ final class CharacterInfoTests: XCTestCase {
     
     // MARK: - CharacterInfo Tests
     
-    func testMultiCharString() throws {
+    func testMultiCharString() {
         
-        _ = try CharacterInfo(string: "foo")
+        XCTAssertThrowsError(try CharacterInfo(string: "foo"))
     }
     
     
