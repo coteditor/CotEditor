@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.9 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where some of line numbers disappeared on macOS 10.13 (and earlier?) when Japanese text is being input.
+
+
+
 3.6.8 (303)
 --------------------------
 
