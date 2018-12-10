@@ -784,8 +784,8 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
-        self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         self.splitViewController?.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
+        self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
         self.invalidateSyntaxHighlight()

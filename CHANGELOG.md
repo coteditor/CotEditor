@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue whrere the application crashed when splitting editors.
 - Fix an issue where a part of line numbers disappeared when Japanese text is being input.
 - Fix an issue where the context menu did not open under macOS 10.13 and earlier if the user has scripts.
 - [tirivial] Fix font style of“Italic” button in the outline menu editor.
