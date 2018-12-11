@@ -134,6 +134,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
 }
 
 
+
 private extension RegularExpressionSyntaxType {
     
     var color: NSColor {

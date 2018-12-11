@@ -36,6 +36,7 @@ enum RegularExpressionParseMode {
 }
 
 
+
 enum RegularExpressionSyntaxType {
     
     case character
@@ -138,6 +139,7 @@ enum RegularExpressionSyntaxType {
     }
     
 }
+
 
 
 private extension String {

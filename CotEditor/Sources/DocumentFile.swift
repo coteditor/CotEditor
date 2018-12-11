@@ -30,6 +30,7 @@ extension FileAttributeKey {
     static let extendedAttributes = FileAttributeKey("NSFileExtendedAttributes")
 }
 
+
 struct FileExtendedAttributeName {
     
     static let encoding = "com.apple.TextEncoding"

@@ -76,14 +76,15 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
 }
 
 
+
 extension NSDocument {
     
     // MARK: Actions
     
     /// perform share
-    @IBAction func share(_ sender: NSMenuItem?) {
+    @IBAction func share(_ sender: NSMenuItem) {
         
-        guard let service = sender?.representedObject as? NSSharingService else { return }
+        guard let service = sender.representedObject as? NSSharingService else { return assertionFailure() }
         
         service.perform(withItems: [self])
     }

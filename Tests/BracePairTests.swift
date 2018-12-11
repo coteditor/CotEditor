@@ -53,6 +53,5 @@ class BracePairTests: XCTestCase {
         XCTAssertNil(string.indexOfBracePair(endIndex: string.index(start, offsetBy: 2), pair: pair))
         XCTAssertEqual(string.indexOfBracePair(beginIndex: string.index(start, offsetBy: 2), pair: pair), string.index(start, offsetBy: 3))
     }
-    
 
 }

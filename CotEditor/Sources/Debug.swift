@@ -41,7 +41,6 @@ func moof(_ items: Any..., function: String = #function) {
     
     if items.isEmpty {
         Swift.print(prefix)
-        
     } else {
         Swift.print(prefix, terminator: "")
         Swift.debugPrint(items)

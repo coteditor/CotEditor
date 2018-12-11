@@ -27,6 +27,7 @@ import Cocoa
 
 protocol MultipleReplacementPanelViewControlling: AnyObject { }
 
+
 extension MultipleReplacementPanelViewControlling where Self: NSViewController {
     
     var contentListViewController: MultipleReplacementListViewController? {

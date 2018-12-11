@@ -33,6 +33,7 @@ private enum StyleKey: String {
     case state
 }
 
+
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 

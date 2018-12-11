@@ -44,6 +44,7 @@ extension LineEnding {
     
     
     var index: Int {
+        
         switch self {
         case .lf:
             return 0
