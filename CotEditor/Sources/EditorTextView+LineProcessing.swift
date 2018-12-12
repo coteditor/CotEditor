@@ -32,131 +32,24 @@ extension EditorTextView {
     /// move selected line up
     @IBAction func moveLineUp(_ sender: Any?) {
         
-        guard let textStorage = self.textStorage else { return assertionFailure() }
-        
-        let ranges = self.selectedRanges as! [NSRange]
-        
-        // get line ranges to process
-        let lineRanges = (self.string as NSString).lineRanges(for: ranges)
-        
-        // cannot perform Move Line Up if one of the selections is already in the first line
-        guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else {
+        guard let editingInfo = self.string.moveLineUp(in: self.selectedRanges as! [NSRange]) else {
             NSSound.beep()
             return
         }
         
-        // register redo for text selection
-        self.setSelectedRangesWithUndo(self.selectedRanges)
-        
-        var selectedRanges = [NSRange]()
-        
-        // swap lines
-        textStorage.beginEditing()
-        for lineRange in lineRanges {
-            let string = textStorage.string as NSString
-            
-            let upperLineRange = string.lineRange(at: lineRange.location - 1)
-            var lineString = string.substring(with: lineRange)
-            var upperLineString = string.substring(with: upperLineRange)
-            
-            // last line
-            if !lineString.hasSuffix("\n") {
-                lineString += "\n"
-                upperLineString = upperLineString.trimmingCharacters(in: .newlines)
-            }
-            
-            let replacementString = lineString + upperLineString
-            let editRange = NSRange(location: upperLineRange.location, length: replacementString.utf16.count)
-            
-            // swap
-            guard self.shouldChangeText(in: editRange, replacementString: replacementString) else { continue }
-            
-            textStorage.replaceCharacters(in: editRange, with: replacementString)
-            self.didChangeText()
-            
-            // move selected ranges in the line to move
-            for selectedRange in ranges {
-                if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
-                                                  length: intersectionRange.length))
-                    
-                } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
-                    selectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
-                                                  length: selectedRange.length))
-                }
-            }
-        }
-        textStorage.endEditing()
-        
-        self.setSelectedRangesWithUndo(selectedRanges)
-        
-        self.undoManager?.setActionName("Move Line".localized)
+        self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
     
     
     /// move selected line down
     @IBAction func moveLineDown(_ sender: Any?) {
         
-        guard let textStorage = self.textStorage else { return assertionFailure() }
-        
-        let ranges = self.selectedRanges as! [NSRange]
-        
-        // get line ranges to process
-        let lineRanges = (self.string as NSString).lineRanges(for: ranges)
-        
-        // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.string.utf16.count else {
+        guard let editingInfo = self.string.moveLineDown(in: self.selectedRanges as! [NSRange]) else {
             NSSound.beep()
             return
         }
         
-        // register redo for text selection
-        self.setSelectedRangesWithUndo(self.selectedRanges)
-        
-        var selectedRanges = [NSRange]()
-        
-        // swap lines
-        textStorage.beginEditing()
-        for lineRange in lineRanges.reversed() {
-            let string = textStorage.string as NSString
-            
-            var lowerLineRange = string.lineRange(at: lineRange.upperBound)
-            var lineString = string.substring(with: lineRange)
-            var lowerLineString = string.substring(with: lowerLineRange)
-            
-            // last line
-            if !lowerLineString.hasSuffix("\n") {
-                lineString = lineString.trimmingCharacters(in: .newlines)
-                lowerLineString += "\n"
-                lowerLineRange.length += 1
-            }
-            
-            let replacementString = lowerLineString + lineString
-            let editRange = NSRange(location: lineRange.location, length: replacementString.utf16.count)
-            
-            // swap
-            guard self.shouldChangeText(in: editRange, replacementString: replacementString) else { continue }
-            
-            textStorage.replaceCharacters(in: editRange, with: replacementString)
-            self.didChangeText()
-            
-            // move selected ranges in the line to move
-            for selectedRange in ranges {
-                if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
-                                                  length: intersectionRange.length))
-                    
-                } else if editRange.contains(selectedRange.location) {
-                    selectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
-                                                  length: selectedRange.length))
-                }
-            }
-        }
-        textStorage.endEditing()
-        
-        self.setSelectedRangesWithUndo(selectedRanges)
-        
-        self.undoManager?.setActionName("Move Line".localized)
+        self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
     
     
@@ -288,6 +181,105 @@ private extension String {
     
     typealias EditingInfo = (strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?)
     
+    
+    
+    /// move selected line up
+    func moveLineUp(in ranges: [NSRange]) -> EditingInfo? {
+        
+        // get line ranges to process
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        
+        // cannot perform Move Line Up if one of the selections is already in the first line
+        guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else { return nil }
+        
+        var string = self as NSString
+        var replacementRange = NSRange()
+        var selectedRanges = [NSRange]()
+        
+        // swap lines
+        for lineRange in lineRanges {
+            let upperLineRange = string.lineRange(at: lineRange.location - 1)
+            var lineString = string.substring(with: lineRange)
+            var upperLineString = string.substring(with: upperLineRange)
+            
+            // last line
+            if !lineString.hasSuffix("\n") {
+                lineString += "\n"
+                upperLineString = upperLineString.trimmingCharacters(in: .newlines)
+            }
+            
+            // swap
+            let editRange = lineRange.union(upperLineRange)
+            string = string.replacingCharacters(in: editRange, with: lineString + upperLineString) as NSString
+            replacementRange.formUnion(editRange)
+            
+            // move selected ranges in the line to move
+            for selectedRange in ranges {
+                if let intersectionRange = selectedRange.intersection(editRange) {
+                    selectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
+                                                  length: intersectionRange.length))
+                    
+                } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
+                    selectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
+                                                  length: selectedRange.length))
+                }
+            }
+        }
+        
+        let replacementString = string.substring(with: replacementRange)
+        
+        return (strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
+    }
+    
+    
+    /// move selected line down
+    func moveLineDown(in ranges: [NSRange]) -> EditingInfo? {
+        
+        // get line ranges to process
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        
+        // cannot perform Move Line Down if one of the selections is already in the last line
+        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.nsRange.upperBound else { return nil }
+        
+        var string = self as NSString
+        var replacementRange = NSRange()
+        var selectedRanges = [NSRange]()
+        
+        // swap lines
+        for lineRange in lineRanges.reversed() {
+            var lowerLineRange = string.lineRange(at: lineRange.upperBound)
+            var lineString = string.substring(with: lineRange)
+            var lowerLineString = string.substring(with: lowerLineRange)
+            
+            // last line
+            if !lowerLineString.hasSuffix("\n") {
+                lineString = lineString.trimmingCharacters(in: .newlines)
+                lowerLineString += "\n"
+                lowerLineRange.length += 1
+            }
+            
+            // swap
+            let editRange = lineRange.union(lowerLineRange)
+            string = string.replacingCharacters(in: editRange, with: lowerLineString + lineString) as NSString
+            replacementRange.formUnion(editRange)
+            
+            // move selected ranges in the line to move
+            for selectedRange in ranges {
+                if let intersectionRange = selectedRange.intersection(editRange) {
+                    selectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
+                                                  length: intersectionRange.length))
+                    
+                } else if editRange.contains(selectedRange.location) {
+                    selectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
+                                                  length: selectedRange.length))
+                }
+            }
+        }
+        
+        let replacementString = string.substring(with: replacementRange)
+        
+        return (strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
+    }
     
     
     /// sort selected lines ascending
