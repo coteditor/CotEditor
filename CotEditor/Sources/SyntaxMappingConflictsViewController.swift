@@ -25,7 +25,6 @@
 
 import Cocoa
 
-// data model
 final class MappingConflict: NSObject {
     
     @objc dynamic let name: String
@@ -42,7 +41,6 @@ final class MappingConflict: NSObject {
         super.init()
     }
 }
-
 
 
 

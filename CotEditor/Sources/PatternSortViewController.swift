@@ -199,8 +199,7 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
         
         self.delegate?.didUpdate(sortPattern: pattern)
     }
-    
-    
+
 }
 
 

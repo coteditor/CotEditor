@@ -30,6 +30,7 @@ private extension NSTouchBar.CustomizationIdentifier {
     static let documentView = NSTouchBar.CustomizationIdentifier("com.coteditor.CotEditor.touchBar.documentView")
 }
 
+
 extension NSTouchBarItem.Identifier {
     
     static let invisibles = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.invisibles")
@@ -112,6 +113,7 @@ extension DocumentViewController: NSTouchBarDelegate {
     }
     
 }
+
 
 
 extension DocumentViewController: TouchBarItemValidations {

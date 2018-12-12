@@ -1,10 +1,10 @@
 //
-//  UnderlinableButton.swift
+//  StyledButton.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-05-22.
+//  Created by 1024jp on 2017-03-12.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -23,18 +23,34 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 @IBDesignable
-final class UnderlinableButton: NSButton {
-
-    @IBInspectable var underline: Bool = false {
+final class StyledButton: NSButton {
+    
+    @IBInspectable var isItalic: Bool = false {
+        
+        didSet {
+            guard let font = self.font else { return }
+            
+            self.font = {
+                if isItalic {
+                    return NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
+                } else {
+                    return NSFontManager.shared.convert(font, toNotHaveTrait: .italicFontMask)
+                }
+            }()
+        }
+    }
+    
+    
+    @IBInspectable var isUnderlined: Bool = false {
         
         didSet {
             let attributedTitle = self.attributedTitle.mutable
             let range = NSRange(location: 0, length: attributedTitle.length)
             
-            if self.underline {
+            if isUnderlined {
                 attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
             } else {
                 attributedTitle.removeAttribute(.underlineStyle, range: range)

@@ -38,15 +38,13 @@ extension NSRegularExpression {
     func matches(in string: String, options: NSRegularExpression.MatchingOptions, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSTextCheckingResult] {
         
         var matches: [NSTextCheckingResult] = []
-        self.enumerateMatches(in: string, options: options.union(.reportProgress), range: range) { (match, flags, stopPointer) in
-            if flags == .progress {
-                var stop = false
-                block(&stop)
-                if stop {
-                    stopPointer.pointee = ObjCBool(stop)
-                    matches = []
-                    return
-                }
+        self.enumerateMatches(in: string, options: options, range: range) { (match, flags, stopPointer) in
+            var stop = false
+            block(&stop)
+            if stop {
+                stopPointer.pointee = ObjCBool(stop)
+                matches = []
+                return
             }
             
             if let match = match {

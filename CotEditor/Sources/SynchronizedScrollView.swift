@@ -65,7 +65,7 @@ final class SynchronizedScrollView: NSScrollView {
     }
     
     
-    /// invoking super's `smartMagnify(with:)` without the issue about the cycle invoking
+    /// invoke super's `smartMagnify(with:)` without the issue about the cycle invoking
     private func syncedSmartMagnify(with event: NSEvent) {
         
         super.smartMagnify(with: event)

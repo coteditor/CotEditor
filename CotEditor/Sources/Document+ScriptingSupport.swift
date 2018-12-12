@@ -348,7 +348,7 @@ extension Document {
         let location = rangeArray[0]
         let length = max(rangeArray[1], 1)
         
-        let range = self.string.range(location: location, length: length)
+        guard let range = string.range(location: location, length: length) else { return nil }
         
         return (self.string as NSString).substring(with: range)
     }

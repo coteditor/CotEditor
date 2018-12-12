@@ -142,10 +142,10 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             var ranges = [NSRange]()
             
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
-                guard !self.isCancelled else { return }
+                guard !childProgress.isCancelled else { return }
                 
                 let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange) { (stop) in
-                    stop = self.isCancelled
+                    stop = childProgress.isCancelled
                 }
                 
                 rangesQueue.async(flags: .barrier) {
@@ -167,7 +167,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         
         guard !self.isCancelled else { return [:] }
         
-        let sanitized = sanitize(highlights: highlights)
+        let sanitized = highlights.sanitized()
         
         self.progress.completedUnitCount += 1
         
@@ -260,33 +260,37 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
 
 
 
-// MARK: Private Functions
+// MARK: - Private Functions
 
-/// Remove duplicated coloring ranges.
-///
-/// This sanitization will reduce performance time of `applyHighlights:highlights:layoutManager:` significantly.
-/// Adding temporary attribute to a layoutManager is quite sluggish,
-/// so we want to remove useless highlighting ranges as many as possible beforehand.
-private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRange]] {
+private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     
-    var sanitizedHighlights = [SyntaxType: [NSRange]]()
-    let highlightedIndexes = NSMutableIndexSet()
-    
-    for type in SyntaxType.allCases.reversed() {
-        guard let ranges = highlights[type] else { continue }
-        var sanitizedRanges = [NSRange]()
+    /// Remove duplicated ranges.
+    ///
+    /// - Note:
+    /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
+    /// Adding temporary attribute to a layoutManager is quite sluggish,
+    /// so we want to remove useless highlighting ranges as many as possible beforehand.
+    ///
+    /// - Returns: Sanitized syntax highlight dictionary.
+    func sanitized() -> [SyntaxType: [NSRange]] {
         
-        for range in ranges {
-            guard !highlightedIndexes.contains(in: range) else { continue }
-            
-            sanitizedRanges.append(range)
-            highlightedIndexes.add(in: range)
-        }
+        var registeredIndexes = IndexSet()
         
-        guard !sanitizedRanges.isEmpty else { continue }
-        
-        sanitizedHighlights[type] = sanitizedRanges
+        return SyntaxType.allCases.reversed()
+            .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
+                guard let ranges = self[type] else { return }
+                
+                let indexes = ranges
+                    .compactMap { Range<Int>($0) }
+                    .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+                    .subtracting(registeredIndexes)
+                
+                guard indexes.count > 0 else { return }
+                
+                registeredIndexes.formUnion(indexes)
+                dict[type] = indexes
+            }
+            .mapValues { $0.rangeView.map { NSRange($0) } }
     }
     
-    return sanitizedHighlights
 }

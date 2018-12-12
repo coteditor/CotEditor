@@ -25,7 +25,6 @@
 
 import Foundation
 
-
 struct Snippet {
     
     enum Variable: String, TokenRepresentable {
