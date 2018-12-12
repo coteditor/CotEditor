@@ -27,9 +27,11 @@
 import Cocoa
 import CoreText
 
-final class LayoutManager: NSLayoutManager {
+final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     // MARK: Public Properties
+    
+    var ignoresDisplayValidation = false
     
     var showsInvisibles = false {
         
@@ -311,6 +313,17 @@ final class LayoutManager: NSLayoutManager {
         }
     
         super.fillBackgroundRectArray(rectArray, count: rectCount, forCharacterRange: charRange, color: color)
+    }
+    
+    
+    /// invalidate display for the given character range
+    override func invalidateDisplay(forCharacterRange charRange: NSRange) {
+        
+        // ignore display validation during applying temporary attributes continuously
+        // -> See `SyntaxParser.apply(highlights:range:)` for the usage of this option. (2018-12)
+        if self.ignoresDisplayValidation { return }
+        
+        super.invalidateDisplay(forCharacterRange: charRange)
     }
     
     

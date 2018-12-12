@@ -34,6 +34,12 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
+protocol ValidationIgnorable: AnyObject {
+    
+    var ignoresDisplayValidation: Bool { get set }
+}
+
+
 
 final class SyntaxParser {
     
@@ -321,6 +327,23 @@ extension SyntaxParser {
         assert(Thread.isMainThread)
         
         for layoutManager in self.textStorage.layoutManagers {
+            // disable display validation during applying attributes
+            // -> According to the implementation of NSLayoutManager in GNUstep,
+            //    `invalidateDisplayForCharacterRange:` is invoked every time inside of `addTemporaryAttribute:value:forCharacterRange:`.
+            //    Ignoring that process during highlight reduces the application time,
+            //    which shows the rainbow cursor because of a main thread task, significantly.
+            //    See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
+            //    (2018-12 macOS 10.14)
+            if let ignorable = layoutManager as? NSLayoutManager & ValidationIgnorable {
+                ignorable.ignoresDisplayValidation = true
+            }
+            defer {
+                if let ignorable = layoutManager as? NSLayoutManager & ValidationIgnorable {
+                    ignorable.ignoresDisplayValidation = false
+                    ignorable.invalidateDisplay(forCharacterRange: highlightRange)
+                }
+            }
+                
             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
