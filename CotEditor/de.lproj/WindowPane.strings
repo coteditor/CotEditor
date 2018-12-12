@@ -80,7 +80,7 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
-"RwN-73-I8c.title" = "Richtung beim Schreiben:";
+"RwN-73-I8c.title" = "Schreibrichtung:";
 /* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
 "3Kb-bF-CW0.title" = "Von links nach rechts";
 /* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */

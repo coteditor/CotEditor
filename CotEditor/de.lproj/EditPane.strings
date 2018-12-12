@@ -62,7 +62,7 @@
 /* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
 "3274.title" = "Zeilen an Editorbreite anpasen";
 /* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
-"mCq-92-2sT.title" = " Einzug hat Zeilen umbrochen um:";
+"mCq-92-2sT.title" = "Umgebrochene Zeilen einrücken um:";
 /* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
 "P9V-pV-PAX.title" = "Leerzeichen";
 
