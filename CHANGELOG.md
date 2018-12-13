@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.10 (unreleased)
+--------------------------
+
+### Improvements
+
+- Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
+
+
+
 3.6.9 (305)
 --------------------------
 
