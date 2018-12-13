@@ -57,7 +57,7 @@ extension UnicodeScalar {
 
 // MARK: -
 
-struct CharacterInfo: CustomStringConvertible {
+struct CharacterInfo {
     
     enum `Error`: Swift.Error {
         
@@ -148,6 +148,11 @@ struct CharacterInfo: CustomStringConvertible {
         }()
     }
     
+}
+
+
+
+extension CharacterInfo: CustomStringConvertible {
     
     var description: String {
         
