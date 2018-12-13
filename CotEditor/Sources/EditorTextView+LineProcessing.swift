@@ -65,29 +65,6 @@ extension EditorTextView {
     }
     
     
-    /// show pattern sort sheet
-    @IBAction func patternSort(_ sender: Any?) {
-        
-        guard self.isEditable else {
-            NSSound.beep()
-            return
-        }
-        
-        let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
-        viewController.representedObject = self
-        
-        // sample the first line
-        let string = self.string
-        let range = Range(self.selectedRange, in: string)!
-        let location = range.isEmpty ? string.startIndex : range.lowerBound
-        let lineRange = string.lineRange(at: location, excludingLastLineEnding: true)
-        viewController.sampleLine = String(string[lineRange])
-        viewController.sampleFontName = (self.layoutManager as? LayoutManager)?.textFont?.fontName
-        
-        self.viewControllerForSheet?.presentAsSheet(viewController)
-    }
-    
-    
     /// reverse selected lines (only in the first selection)
     @IBAction func reverseLines(_ sender: Any?) {
         
@@ -136,6 +113,28 @@ extension EditorTextView {
         let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
         
         self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
+    }
+    
+    
+    /// show pattern sort sheet
+    @IBAction func patternSort(_ sender: Any?) {
+        
+        guard self.isEditable else {
+            NSSound.beep()
+            return
+        }
+        
+        let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
+        viewController.representedObject = self
+        
+        // sample the first line
+        let range = Range(self.selectedRange, in: self.string)!
+        let location = range.isEmpty ? self.string.startIndex : range.lowerBound
+        let lineRange = self.string.lineRange(at: location, excludingLastLineEnding: true)
+        viewController.sampleLine = String(self.string[lineRange])
+        viewController.sampleFontName = (self.layoutManager as? LayoutManager)?.textFont?.fontName
+        
+        self.viewControllerForSheet?.presentAsSheet(viewController)
     }
     
     
