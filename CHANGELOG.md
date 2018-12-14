@@ -9,6 +9,7 @@ Change Log
 
 - Change counting method of the cursor location and column to 1-based (formerly 0-based).
 - Optimize syntax highlight application so that the time displaying the rainbow cursor reduces significantly with a large document.
+- Move focus to the editor when lines are selected by clicking line numbers.
 - Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
 
 
