@@ -866,13 +866,14 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         guard threshold > 0, highlightLength > threshold else { return }
         
         guard let window = self.view.window else {
-            assertionFailure("Expeced window to be non-nil.")
+            assertionFailure("Expected window to be non-nil.")
             return
         }
         
         // display indicator first when window is visible
         let presentBlock = { [weak self, weak progress] in
             guard
+                let self = self,
                 let progress = progress,
                 !progress.isFinished, !progress.isCancelled
                 else { return }
@@ -881,7 +882,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
             indicator.setup(progress: progress, message: message, closesWhenFinished: true)
             
-            self?.presentAsSheet(indicator)
+            self.presentAsSheet(indicator)
         }
         
         if window.occlusionState.contains(.visible) {
@@ -889,7 +890,6 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         } else {
             weak var observer: NSObjectProtocol?
             observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (_) in
-                
                 guard window.occlusionState.contains(.visible) else { return }
                 
                 if let observer = observer {

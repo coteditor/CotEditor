@@ -103,7 +103,7 @@ final class ProgressViewController: NSViewController {
         self.message = message
         
         if closesWhenFinished {
-            self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
+            self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
                 guard progress.isFinished else { return }
                 
                 DispatchQueue.main.async {
