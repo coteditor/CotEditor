@@ -33,7 +33,7 @@ extension NSRegularExpression {
     ///   - string: The string to search.
     ///   - options: The matching options to use.
     ///   - range: The range of the string to search.
-    ///   - block: The Block gives a chance to cancel during a long-running match operation.
+    ///   - block: The block gives a chance to cancel during a long-running match operation.
     /// - Returns: An array of all the matches or an empty array if cancelled.
     func matches(in string: String, options: NSRegularExpression.MatchingOptions, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSTextCheckingResult] {
         

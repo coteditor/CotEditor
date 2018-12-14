@@ -28,7 +28,7 @@ import Differ
 
 extension String {
     
-    /// calculate equivalent ranges in the receiver to the given ranges in the given string using Differ.
+    /// Calculate equivalent ranges in the receiver to the given ranges in the given string using Differ.
     ///
     /// - Parameters:
     ///   - ranges: The original ranges to be based on.
@@ -49,7 +49,7 @@ extension String {
 
 extension Collection where Element: Equatable {
     
-    /// calculate equivalent ranges in the receiver to the given ranges in the given collection using Differ.
+    /// Calculate equivalent ranges in the receiver to the given ranges in the given collection using Differ.
     ///
     /// - Parameters:
     ///   - ranges: The original ranges to be based on.
