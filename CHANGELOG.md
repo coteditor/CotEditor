@@ -13,6 +13,11 @@ Change Log
 - Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
 
 
+### Fixes
+
+- [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific condition.
+
+
 
 3.6.9 (305)
 --------------------------
