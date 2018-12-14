@@ -218,6 +218,8 @@ extension NSTextView {
         }
         
         set {
+            guard newValue != self.wrapsLines else { return }
+            
             guard
                 let scrollView = self.enclosingScrollView,
                 let textContainer = self.textContainer

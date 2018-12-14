@@ -1357,8 +1357,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
         
-        // halve inset since the input value will be add to the both top and bottom
-        self.textContainerInset.height = max(floor(inset / 2), kTextContainerInset.height)
+        // halve inset since the input value will be added to both top and bottom
+        let height = max(floor(inset / 2), kTextContainerInset.height)
+        
+        // avoid high-loaded `sizeToFit()` if not required
+        guard height != self.textContainerInset.height else { return }
+        
+        self.textContainerInset.height = height
         self.sizeToFit()
     }
     
