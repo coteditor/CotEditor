@@ -518,7 +518,7 @@ extension LineNumberView {
         textView.scrollToVisible(targetRect)
         
         // move focus to textView
-        self.window?.makeFirstResponder(textView)
+        window.makeFirstResponder(textView)
         
         // select lines
         let currentIndex = textView.characterIndex(for: point)
