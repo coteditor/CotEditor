@@ -96,11 +96,12 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
-    func countPrefix(while predicate: (Element) -> Bool) -> Int {
+    @inlinable
+    func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
         var count = 0
         for element in self {
-            guard predicate(element) else { break }
+            guard try predicate(element) else { break }
             
             count += 1
         }
