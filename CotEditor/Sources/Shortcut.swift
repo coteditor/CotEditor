@@ -108,7 +108,7 @@ struct Shortcut: Hashable {
         let modifierCharacters = keySpecChars.dropLast()
         let modifierMask = ModifierKey.allCases
             .filter { key in modifierCharacters.contains(key.keySpecChar) }
-            .reduce(NSEvent.ModifierFlags()) { (mask, key) in mask.union(key.mask) }
+            .reduce(into: NSEvent.ModifierFlags()) { (mask, key) in mask.formUnion(key.mask) }
         
         self.init(modifierMask: modifierMask, keyEquivalent: String(keyEquivalent))
     }

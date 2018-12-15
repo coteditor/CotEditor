@@ -167,10 +167,11 @@ extension Indenting where Self: NSTextView {
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let offset = droppedRanges
                 .prefix { $0.location < selectedRange.location }
-                .reduce(0) { $0 + (selectedRange.intersection($1) ?? $1).length }
+                .map { (selectedRange.intersection($0) ?? $0).length }
+                .reduce(0, +)
             let lengthDiff = droppedRanges
-                .compactMap { selectedRange.intersection($0) }
-                .reduce(0) { $0 + $1.length }
+                .compactMap { selectedRange.intersection($0)?.length }
+                .reduce(0, +)
             
             return NSRange(location: selectedRange.location - offset,
                            length: selectedRange.length - lengthDiff)

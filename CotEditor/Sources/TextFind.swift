@@ -314,7 +314,9 @@ final class TextFind {
             }
             
             // build selectedRange
-            let locationDelta = zip(selectedRanges, self.selectedRanges).reduce(scopeRange.location) { $0 + ($1.0.length - $1.1.length) }
+            let locationDelta = zip(selectedRanges, self.selectedRanges)
+                .map { $0.0.length - $0.1.length }
+                .reduce(scopeRange.location, +)
             let selectedRange = NSRange(location: locationDelta, length: length)
             selectedRanges.append(selectedRange)
             
