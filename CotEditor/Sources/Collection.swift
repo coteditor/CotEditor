@@ -47,6 +47,21 @@ public extension Collection {
 }
 
 
+extension Sequence where Element: Equatable {
+    
+    /// An array consists of unique elements of receiver keeping ordering.
+    var unique: [Element] {
+        
+        return self.reduce(into: []) { (unique, element) in
+            guard !unique.contains(element) else { return }
+            
+            unique.append(element)
+        }
+    }
+    
+}
+
+
 
 extension Dictionary {
     

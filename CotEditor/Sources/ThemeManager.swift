@@ -175,7 +175,7 @@ final class ThemeManager: SettingFileManaging {
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
-        self.settingNames = OrderedSet(self.bundledSettingNames + userSettingNames).array
+        self.settingNames = (self.bundledSettingNames + userSettingNames).unique
         
         // reset user default if not found
         if let userSetting = UserDefaults.standard[.theme],
