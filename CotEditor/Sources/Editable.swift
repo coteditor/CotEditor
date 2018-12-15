@@ -56,13 +56,13 @@ extension Editable {
         get {
             guard let textView = self.textView else { return .notFound }
             
-            return textView.string.convert(from: .lf, to: self.lineEnding, range: textView.selectedRange)
+            return textView.string.convert(range: textView.selectedRange, from: .lf, to: self.lineEnding)
         }
         
         set {
             guard let textView = self.textView else { return }
             
-            textView.selectedRange = textView.string.convert(from: self.lineEnding, to: .lf, range: newValue)
+            textView.selectedRange = textView.string.convert(range: newValue, from: self.lineEnding, to: .lf)
         }
     }
     

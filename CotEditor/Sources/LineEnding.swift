@@ -35,8 +35,6 @@ enum LineEnding: Character {
     
     static let basic: [LineEnding] = [.cr, .cr, .crlf]
     
-    static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
-    
     
     var string: String {
         
@@ -80,7 +78,7 @@ enum LineEnding: Character {
     
     var length: Int {
         
-        return self.string.unicodeScalars.count
+        return self.rawValue.unicodeScalars.count
     }
     
 }
@@ -89,14 +87,17 @@ enum LineEnding: Character {
 
 // MARK: -
 
-private let lineEndingsRegexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
+private extension LineEnding {
+    
+    static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
+    static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
+}
+
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// return the first line ending type
+    /// the first line ending type
     var detectedLineEnding: LineEnding? {
-        
-        guard !self.isEmpty else { return nil }
         
         // We don't use `CharacterSet.newlines` because it contains more characters than we need.
         guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
@@ -107,25 +108,28 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// remove all kind of line ending characters in string
+    /// string removing all kind of line ending characters in the receiver
     var removingLineEndings: String {
         
-        return self.replacingOccurrences(of: lineEndingsRegexPattern, with: "", options: .regularExpression)
+        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression)
     }
     
     
-    /// replace all kind of line ending characters in the string with the desired line ending.
+    /// String replacing all kind of line ending characters in the the receiver with the desired line ending.
+    ///
+    /// - Parameter lineEnding: The line ending type to replace with.
+    /// - Returns: String replacing line ending characers.
     func replacingLineEndings(with lineEnding: LineEnding) -> String {
         
-        return self.replacingOccurrences(of: lineEndingsRegexPattern, with: lineEnding.string, options: .regularExpression)
+        return self.replacingOccurrences(of: LineEnding.regexPattern, with: lineEnding.string, options: .regularExpression)
     }
     
     
-    /// convert passed-in range as if line endings are changed from fromLineEnding to toLineEnding
-    /// assuming the receiver has `fromLineEnding` regardless of actual ones if specified
+    /// Convert passed-in range as if line endings are changed from `fromLineEnding` to `toLineEnding`
+    /// by assuming the receiver has `fromLineEnding` regardless of actual ones if specified.
     ///
     /// - Important: Consider to avoid using this method in a frequent loop as it's relatively heavy.
-    func convert(from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding, range: NSRange) -> NSRange {
+    func convert(range: NSRange, from fromLineEnding: LineEnding? = nil, to toLineEnding: LineEnding) -> NSRange {
         
         guard let currentLineEnding = (fromLineEnding ?? self.detectedLineEnding) else { return range }
         
@@ -134,7 +138,7 @@ extension StringProtocol where Self.Index == String.Index {
         guard delta != 0 else { return range }
         
         let string = self.replacingLineEndings(with: currentLineEnding)
-        let regex = try! NSRegularExpression(pattern: lineEndingsRegexPattern)
+        let regex = try! NSRegularExpression(pattern: LineEnding.regexPattern)
         let locationRange = NSRange(location: 0, length: range.location)
         
         let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)

@@ -153,7 +153,7 @@ private extension NSTextStorage {
         guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
         
         for range in ranges {
-            let viewRange = self.string.convert(from: lineEnding, to: .lf, range: range)
+            let viewRange = self.string.convert(range: range, from: lineEnding, to: .lf)
             
             for manager in self.layoutManagers {
                 manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)
