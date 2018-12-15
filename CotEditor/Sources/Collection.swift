@@ -25,7 +25,7 @@
 
 import Foundation
 
-extension Array where Element: Equatable {
+extension RangeReplaceableCollection where Element: Equatable {
     
     /// Remove first collection element that is equal to the given `element`
     mutating func remove(_ element: Element) {
