@@ -419,7 +419,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
-            case TextFindError.regularExpression:
+            case TextFind.Error.regularExpression:
                 self.findPanelController.showWindow(self)
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
             default: break

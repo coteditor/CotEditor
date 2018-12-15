@@ -256,20 +256,20 @@ private extension MultipleReplacement.Replacement {
 
 extension MultipleReplacement.Replacement {
     
-    /// check if replacement rule is valid
+    /// Check if replacement rule is valid.
     ///
-    /// - Throws: `TextFindError`
+    /// - Throws: `TextFind.Error`
     func validate(regexOptions: NSRegularExpression.Options = []) throws {
         
         guard !self.findString.isEmpty else {
-            throw TextFindError.emptyFindString
+            throw TextFind.Error.emptyFindString
         }
         
         if self.usesRegularExpression {
             do {
                 _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
-                throw TextFindError.regularExpression(reason: error.localizedDescription)
+                throw TextFind.Error.regularExpression(reason: error.localizedDescription)
             }
         }
     }

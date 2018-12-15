@@ -50,6 +50,36 @@ final class TextFind {
     }
     
     
+    enum `Error`: LocalizedError {
+        
+        case regularExpression(reason: String)
+        case emptyFindString
+        
+        
+        var errorDescription: String? {
+            
+            switch self {
+            case .regularExpression:
+                return "Invalid regular expression".localized
+            case .emptyFindString:
+                return "Empty find string".localized
+            }
+        }
+        
+        
+        var recoverySuggestion: String? {
+            
+            switch self {
+            case .regularExpression(let reason):
+                return reason
+            case .emptyFindString:
+                return "Input text to find.".localized
+            }
+        }
+        
+    }
+    
+    
     
     // MARK: Public Properties
     
@@ -80,13 +110,13 @@ final class TextFind {
     ///   - mode: The settable options for the text search.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
-    /// - Throws: `TextFindError`
+    /// - Throws: `TextFind.Error`
     init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws {
         
         assert(!selectedRanges.isEmpty)
         
         guard !findString.isEmpty else {
-            throw TextFindError.emptyFindString
+            throw TextFind.Error.emptyFindString
         }
         
         switch mode {
@@ -109,7 +139,7 @@ final class TextFind {
             do {
                 self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: options)
             } catch {
-                throw TextFindError.regularExpression(reason: error.localizedDescription)
+                throw TextFind.Error.regularExpression(reason: error.localizedDescription)
             }
         }
         
@@ -423,39 +453,6 @@ final class TextFind {
             }
             
             scopeCompletionHandler?(scopeRange)
-        }
-    }
-    
-}
-
-
-
-// MARK: - Error
-
-enum TextFindError: LocalizedError {
-    
-    case regularExpression(reason: String)
-    case emptyFindString
-    
-    
-    var errorDescription: String? {
-        
-        switch self {
-        case .regularExpression:
-            return "Invalid regular expression".localized
-        case .emptyFindString:
-            return "Empty find string".localized
-        }
-    }
-    
-    
-    var recoverySuggestion: String? {
-        
-        switch self {
-        case .regularExpression(let reason):
-            return reason
-        case .emptyFindString:
-            return "Input text to find.".localized
         }
     }
     
