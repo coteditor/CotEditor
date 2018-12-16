@@ -275,8 +275,8 @@
 		2A64F2491D26327C001B229F /* KeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2471D26327C001B229F /* KeyBindingManager.swift */; };
 		2A64F24B1D26615A001B229F /* KeyBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F24A1D26615A001B229F /* KeyBindingItem.swift */; };
 		2A64F24C1D26615A001B229F /* KeyBindingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F24A1D26615A001B229F /* KeyBindingItem.swift */; };
-		2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */; };
-		2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */; };
+		2A657D1D2033ED6B00C2611C /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */; };
+		2A657D1E2033ED6B00C2611C /* DefaultInitializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */; };
 		2A6602D01D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
@@ -1005,7 +1005,7 @@
 		2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnippetKeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F2471D26327C001B229F /* KeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F24A1D26615A001B229F /* KeyBindingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingItem.swift; sourceTree = "<group>"; };
-		2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RawRepresentable+DefaultInitializable.swift"; sourceTree = "<group>"; };
+		2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializable.swift; sourceTree = "<group>"; };
 		2A6602CF1D05BD72003E8D87 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/DocumentWindow.storyboard; sourceTree = "<group>"; };
 		2A6602D21D05BD84003E8D87 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
 		2A6602D31D05BD86003E8D87 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/DocumentWindow.strings"; sourceTree = "<group>"; };
@@ -1543,7 +1543,8 @@
 				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
-				2A41CB3A1C39068200F9122B /* Value Transformers */,
+				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
+				2A41CB3A1C39068200F9122B /* Formatters */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1685,6 +1686,7 @@
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */,
 				2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */,
 				2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */,
 				2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */,
@@ -1703,6 +1705,7 @@
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */,
 				2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */,
+				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
 			);
 			name = AppKit;
 			sourceTree = "<group>";
@@ -1710,7 +1713,6 @@
 		2A359E011DAEA0FC00FEF7AA /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				2A657D1C2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift */,
 				2A885E321D5C3A1B00288723 /* Comparable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
@@ -1739,10 +1741,10 @@
 				2AF45E211E6C17700030CD60 /* OperationQueue.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
 				2A4714E8209717C90093E27F /* DispatchQueue+Throttle.swift */,
-				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
 				2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
 				2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */,
+				2AEDB4211D4635CD0020AD15 /* Data+Authopen.swift */,
 			);
 			name = Foundation;
 			sourceTree = "<group>";
@@ -1850,14 +1852,14 @@
 			path = "../UI Tests";
 			sourceTree = "<group>";
 		};
-		2A41CB3A1C39068200F9122B /* Value Transformers */ = {
+		2A41CB3A1C39068200F9122B /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
 				2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
 				2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */,
 			);
-			name = "Value Transformers";
+			name = Formatters;
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
@@ -1873,8 +1875,8 @@
 				2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */,
 				2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */,
 				2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */,
-				2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */,
 				2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */,
+				2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */,
 				2A9082E11D32456300228F50 /* NSTextView+Layout.swift */,
 				2A36CE7B1FF654C000020702 /* NSTextView+Snippet.swift */,
 				2A3A19E1206C9A0700516DE4 /* NSTextView+BracePair.swift */,
@@ -1962,10 +1964,8 @@
 		2A5ADE861D21690300F6CE26 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */,
 				2A359E011DAEA0FC00FEF7AA /* Foundation */,
 				2A359E001DAEA0EE00FEF7AA /* AppKit */,
-				2ABF86BF208C3CB90082D52B /* Others */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2099,14 +2099,6 @@
 				2ABC828621A950AC008F9229 /* HUDView.storyboard */,
 			);
 			name = "Document Accessories";
-			sourceTree = "<group>";
-		};
-		2ABF86BF208C3CB90082D52B /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
-			);
-			name = Others;
 			sourceTree = "<group>";
 		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
@@ -2933,7 +2925,7 @@
 				2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */,
 				2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
-				2A657D1E2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
+				2A657D1E2033ED6B00C2611C /* DefaultInitializable.swift in Sources */,
 				2ADA15EF21C5073D00C6608B /* Array+IndexSet.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
@@ -2994,7 +2986,7 @@
 				2A78BFBC1D1B376000A583D2 /* ServicesProvider.swift in Sources */,
 				2AD551E720D70026007279B1 /* SegmentedToolbarItem.swift in Sources */,
 				2A4D47BF2070D42500AB1E7E /* MultipleReplacementPanelController.swift in Sources */,
-				2A657D1D2033ED6B00C2611C /* RawRepresentable+DefaultInitializable.swift in Sources */,
+				2A657D1D2033ED6B00C2611C /* DefaultInitializable.swift in Sources */,
 				2ACC21B21E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2A3643E61E7C3D2400EA3CE8 /* ReplacementManager.swift in Sources */,

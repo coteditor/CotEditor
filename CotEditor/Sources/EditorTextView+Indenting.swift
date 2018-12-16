@@ -187,12 +187,8 @@ extension Indenting where Self: NSTextView {
         
         guard !self.string.isEmpty else { return }
         
-        let ranges: [NSRange] = {
-            if self.selectedRange.length == 0 {  // convert all if nothing selected
-                return [self.string.nsRange]
-            }
-            return self.selectedRanges as! [NSRange]
-        }()
+        // process whole document if no text selected
+        let ranges = (self.selectedRange.length == 0) ? [self.string.nsRange] : self.selectedRanges as! [NSRange]
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()
