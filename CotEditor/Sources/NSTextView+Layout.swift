@@ -136,16 +136,6 @@ extension NSTextView {
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
             
-            // adjust frame width for wrapping mode, only on macOS 10.14 (and later?), since the AppKit's calculation was changed
-            if #available(macOS 10.14, *), let scrollView = self.enclosingScrollView {
-                switch self.layoutOrientation {
-                case .horizontal:
-                    self.frame.size.width = scrollView.contentSize.width
-                case .vertical:
-                    self.frame.size.height = scrollView.contentSize.height
-                }
-            }
-            
             // ensure bounds origin is {0, 0} for vertical text orientation
             self.translateOrigin(to: self.bounds.origin)
             
@@ -215,9 +205,7 @@ extension NSTextView {
     var wrapsLines: Bool {
         
         get {
-            guard let textContainer = self.textContainer else { return false }
-            
-            return (textContainer.size.width != self.infiniteSize.width)
+            return self.textContainer?.widthTracksTextView ?? false
         }
         
         set {
@@ -240,13 +228,14 @@ extension NSTextView {
                 textContainer.size = self.infiniteSize
             }
             
-            self.autoresizingMask = newValue ? (isVertical ? .height : .width) : .none
             if isVertical {
-                self.enclosingScrollView?.hasVerticalScroller = !newValue
+                self.autoresizingMask = newValue ? .height : .none
                 self.isVerticallyResizable = !newValue
+                self.enclosingScrollView?.hasVerticalScroller = !newValue
             } else {
-                self.enclosingScrollView?.hasHorizontalScroller = !newValue
+                self.autoresizingMask = newValue ? .width : .none
                 self.isHorizontallyResizable = !newValue
+                self.enclosingScrollView?.hasHorizontalScroller = !newValue
             }
             self.sizeToFit()
             

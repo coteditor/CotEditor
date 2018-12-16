@@ -128,11 +128,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         let layoutManager = LayoutManager()
         self.textContainer!.replaceLayoutManager(layoutManager)
         
-        // set layout values
+        // set layout values (wraps lines)
         self.minSize = self.frame.size
         self.maxSize = .infinite
-        self.isHorizontallyResizable = true
+        self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
+        self.autoresizingMask = .width
         self.textContainerInset = kTextContainerInset
         
         // set NSTextView behaviors
