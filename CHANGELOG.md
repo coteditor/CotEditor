@@ -17,6 +17,7 @@ Change Log
 ### Fixes
 
 - [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific condition.
+- [trivial] Fix an issue where editor scrolled occasionally unintendedly when an arrow key is pressed.
 
 
 
