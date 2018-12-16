@@ -25,7 +25,9 @@
 
 extension RangeReplaceableCollection where Element: Equatable {
     
-    /// Remove first collection element that is equal to the given `element`
+    /// Remove first collection element that is equal to the given `element`.
+    ///
+    /// - Parameter element: The element to be removed.
     mutating func remove(_ element: Element) {
         
         if let index = self.index(of: element) {
@@ -36,15 +38,19 @@ extension RangeReplaceableCollection where Element: Equatable {
 }
 
 
-public extension Collection {
+
+extension Collection {
 
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
+    ///
+    /// - Parameter index: The position of the element to obtain.
     subscript(safe index: Index) -> Element? {
         
         return self.indices.contains(index) ? self[index] : nil
     }
     
 }
+
 
 
 extension Sequence where Element: Equatable {
@@ -96,7 +102,9 @@ extension Sequence {
     func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
         var count = 0
-        for element in self where try predicate(element) {
+        for element in self {
+            guard try predicate(element) else { continue }
+            
             count += 1
         }
         return count
