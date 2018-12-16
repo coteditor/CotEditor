@@ -71,14 +71,14 @@ extension CurrentLineHighlighting where Self: NSTextView {
         let lineRange = (self.string as NSString).lineRange(for: self.selectedRange, excludingLastLineEnding: true)
         
         guard
-            var rect = self.boundingRect(for: lineRange),
+            let rect = self.boundingRect(for: lineRange),
             let textContainer = self.textContainer
             else { return assertionFailure() }
         
-        rect.origin.x = textContainer.lineFragmentPadding
-        rect.size.width = textContainer.size.width - 2 * textContainer.lineFragmentPadding
-        
-        self.lineHighLightRect = rect
+        self.lineHighLightRect = NSRect(x: textContainer.lineFragmentPadding,
+                                        y: rect.minY,
+                                        width: textContainer.size.width - 2 * textContainer.lineFragmentPadding,
+                                        height: rect.height)
     }
     
 }

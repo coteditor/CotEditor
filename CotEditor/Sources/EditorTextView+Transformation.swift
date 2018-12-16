@@ -189,8 +189,8 @@ private extension NSTextView {
         }
         
         let selectedRanges = self.selectedRanges as! [NSRange]
-        var appliedRanges = [NSRange]()
         var strings = [String]()
+        var appliedRanges = [NSRange]()
         var newSelectedRanges = [NSRange]()
         var deltaLocation = 0
         
@@ -202,7 +202,7 @@ private extension NSTextView {
             strings.append(string)
             appliedRanges.append(range)
             newSelectedRanges.append(newRange)
-            deltaLocation += substring.utf16.count - string.utf16.count
+            deltaLocation += range.length - newRange.length
         }
         
         guard !strings.isEmpty else { return }

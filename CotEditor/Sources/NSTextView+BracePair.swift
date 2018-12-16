@@ -50,7 +50,7 @@ extension NSTextView {
         case .begin(let index), .end(let index):
             let range = NSRange(index...index, in: string)
             self.showFindIndicator(for: range)
-        case .odd: return
+        case .odd: break
         }
     }
     

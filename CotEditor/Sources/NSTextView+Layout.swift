@@ -47,7 +47,8 @@ extension NSTextView {
         
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return nil }
+            let textContainer = self.textContainer
+            else { return nil }
         
         let visibleRect = rect.offset(by: -self.textContainerOrigin)
         let glyphRange = layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
@@ -61,7 +62,8 @@ extension NSTextView {
         
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return nil }
+            let textContainer = self.textContainer
+            else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         var boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
@@ -82,7 +84,8 @@ extension NSTextView {
         
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return [] }
+            let textContainer = self.textContainer
+            else { return [] }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         

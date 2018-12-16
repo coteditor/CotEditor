@@ -91,10 +91,10 @@ extension NSTextView {
             (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
             else { return }
         
-        lineNumber = max(self.string.numberOfLines(includingLastLineEnding: true), 1)
+        let lastLineNumber = max(self.string.numberOfLines(includingLastLineEnding: true), 1)
         let isSelected = (selectedLineRanges.last?.location == (self.string as NSString).length)
         
-        body(.new(lineNumber, isSelected), extraLineRect)
+        body(.new(lastLineNumber, isSelected), extraLineRect)
     }
     
 }
