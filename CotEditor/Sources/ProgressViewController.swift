@@ -64,12 +64,7 @@ final class ProgressViewController: NSViewController {
         // -> This is much more performance-efficient than KV-Observing `.fractionCompleted` or `.localizedDescription`. (2018-12 macOS 10.14)
         let timer = DispatchSource.makeTimerSource(queue: .main)
         timer.schedule(deadline: .now(), repeating: .milliseconds(100), leeway: .milliseconds(50))
-        timer.setEventHandler { [weak self] in
-            guard let progress = self?.progress else { return }
-            
-            self?.indicator?.doubleValue = progress.fractionCompleted
-            self?.descriptionField?.stringValue = progress.localizedDescription
-        }
+        timer.setEventHandler { [weak self] in self?.updateProgress() }
         timer.resume()
         self.updateTimer?.cancel()
         self.updateTimer = timer
@@ -102,11 +97,13 @@ final class ProgressViewController: NSViewController {
         self.progress = progress
         self.message = message
         
-        if closesWhenFinished {
-            self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
-                guard progress.isFinished else { return }
+        self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
+            guard progress.isFinished else { return }
+            
+            DispatchQueue.main.async {
+                self?.updateProgress()
                 
-                DispatchQueue.main.async {
+                if closesWhenFinished {
                     self?.dismiss(nil)
                 }
             }
@@ -118,6 +115,7 @@ final class ProgressViewController: NSViewController {
     func done() {
         
         self.updateTimer?.cancel()
+        self.updateProgress()
         
         self.button?.title = "OK".localized
         self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)
@@ -134,6 +132,19 @@ final class ProgressViewController: NSViewController {
         self.progress?.cancel()
         
         self.dismiss(sender)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// update progress UI
+    private func updateProgress() {
+        
+        guard let progress = self.progress else { return assertionFailure() }
+        
+        self.indicator?.doubleValue = progress.fractionCompleted
+        self.descriptionField?.stringValue = progress.localizedDescription
     }
     
 }
