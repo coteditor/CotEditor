@@ -600,6 +600,8 @@
 		2AD940F121A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */; };
 		2ADA15EE21C5073D00C6608B /* Array+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */; };
 		2ADA15EF21C5073D00C6608B /* Array+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */; };
+		2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
+		2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADD0AD9217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
 		2ADD0AE321800E2F00F78732 /* ConsolePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */; };
@@ -1276,6 +1278,7 @@
 		2AD940ED21A47DDA0076A28C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2AD940EF21A7CBF50076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxValidationView.storyboard; sourceTree = "<group>"; };
 		2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+IndexSet.swift"; sourceTree = "<group>"; };
+		2ADBC91421C9F30000B884FF /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
 		2ADD0AE221800E2F00F78732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ConsolePanel.storyboard; sourceTree = "<group>"; };
 		2ADD0AE52180161800F78732 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
@@ -1540,6 +1543,7 @@
 				2AC186DC1E2F4264002F4D27 /* Debug.swift */,
 				2A88E7701E81A2C7000019C6 /* OrderedSet.swift */,
 				2A11F2121E669BFA005E1675 /* PointerBridge.swift */,
+				2ADBC91421C9F30000B884FF /* Atomic.swift */,
 				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
@@ -2926,6 +2930,7 @@
 				2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2A1856061D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2A657D1E2033ED6B00C2611C /* DefaultInitializable.swift in Sources */,
+				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
 				2ADA15EF21C5073D00C6608B /* Array+IndexSet.swift in Sources */,
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
@@ -3003,6 +3008,7 @@
 				2AAD61F41D2BA0E0008FE772 /* OutlineItem.swift in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
 				2AA4F6A020A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
+				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2AD21FCC1D2E3BE80018C8D1 /* StatusBarController.swift in Sources */,
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */,

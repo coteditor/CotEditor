@@ -133,15 +133,13 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         var highlights = [SyntaxType: [NSRange]]()
         
         // extract standard highlight ranges
-        let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
         for syntaxType in SyntaxType.allCases {
             guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
             self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            
-            var ranges = [NSRange]()
+            let atomicRanges = Atomic<[NSRange]>([])
             
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !childProgress.isCancelled else { return }
@@ -150,14 +148,11 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
                     stop = childProgress.isCancelled
                 }
                 
-                rangesQueue.async(flags: .barrier) {
-                    childProgress.completedUnitCount += 1
-                    ranges += extractedRanges
-                }
+                atomicRanges.mutate { $0 += extractedRanges }
+                childProgress.completedUnitCount += 1
             }
             
-            highlights[syntaxType] = rangesQueue.sync { ranges }
-            
+            highlights[syntaxType] = atomicRanges.value
             childProgress.completedUnitCount = childProgress.totalUnitCount
         }
         
