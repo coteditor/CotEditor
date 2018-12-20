@@ -47,6 +47,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         self.appearanceObserver?.invalidate()
         
         UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
+        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.showInvisibles.rawValue)
     }
     
     
@@ -55,7 +56,10 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         switch keyPath {
         case DefaultKeys.theme.rawValue?:
             guard let name = change?[.newKey] as? String else { return }
-                self.setTheme(name: name)
+            self.setTheme(name: name)
+            
+        case DefaultKeys.showInvisibles.rawValue?:
+            self.showsInvisibles = change?[.newKey] as! Bool
             
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
@@ -95,6 +99,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
                                                name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
         UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
+        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.showInvisibles.rawValue, options: .new, context: nil)
         
         // observe appearance change for theme toggle
         self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
