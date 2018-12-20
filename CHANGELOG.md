@@ -19,8 +19,14 @@ Change Log
 ### Fixes
 
 - Fix an issue where the final number of replacement in the progress dialog was occasionally underrated.
+- Fix an issue where the curusor could not be set at the end of the document via AppleScript or `cot` command.
 - [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific condition.
 - [trivial] Fix an issue where editor scrolled occasionally unintendedly when an arrow key is pressed.
+
+
+### TODO
+
+- Update `cot` submodule.
 
 
 
