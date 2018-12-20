@@ -33,15 +33,15 @@ protocol Themable: AnyObject {
 }
 
 
-struct Theme: Codable {
+struct Theme: Equatable, Codable {
     
-    struct Style {
+    struct Style: Equatable {
         
         var color: NSColor
     }
     
     
-    struct SelectionStyle {
+    struct SelectionStyle: Equatable {
         
         var color: NSColor
         var usesSystemSetting: Bool

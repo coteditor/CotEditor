@@ -971,11 +971,15 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         
         assert(Thread.isMainThread)
         
-        guard let theme = ThemeManager.shared.setting(name: name) else { return }
+        guard
+            let theme = ThemeManager.shared.setting(name: name),
+            theme != self.theme
+            else { return }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme
         }
+        
         self.invalidateSyntaxHighlight()
         self.invalidateRestorableState()
     }
