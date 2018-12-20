@@ -27,6 +27,8 @@ import Cocoa
 
 final class PreferencesWindow: NSPanel {
     
+    // MARK: Panel Methods
+    
     /// disable "Hide Toolbar" menu item
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
