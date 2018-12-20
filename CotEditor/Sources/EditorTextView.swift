@@ -127,6 +127,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
         self.textContainer!.replaceLayoutManager(layoutManager)
+        self.layoutManager?.allowsNonContiguousLayout = true
         
         // set layout values (wraps lines)
         self.minSize = self.frame.size
@@ -1325,7 +1326,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// validate whether turns the noncontiguous layout on
     private func invalidateNonContiguousLayout() {
         
-        let isLargeText = self.string.count > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
+        guard let storage = self.textStorage else { return }
+        
+        // -> Obtaining textStorage's length is much faster than string.count. (2018-12 on macOS 10.14)
+        let isLargeText = storage.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
         
         // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
