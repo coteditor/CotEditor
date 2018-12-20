@@ -842,7 +842,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
             defaults[.showInvisibleTab] ||
             defaults[.showInvisibleNewLine] ||
             defaults[.showInvisibleFullwidthSpace] ||
-            defaults[.showInvisibles])
+            defaults[.showOtherInvisibleChars])
     }
     
     
