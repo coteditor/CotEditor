@@ -167,7 +167,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
+        switch keyPath {
+        case let keyPath? where type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath):
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             
@@ -177,7 +178,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             self.firstTextView?.needsDisplay = true
             
-        } else {
+        default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }

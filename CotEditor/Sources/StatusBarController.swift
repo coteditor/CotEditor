@@ -91,11 +91,12 @@ final class StatusBarController: NSViewController {
     /// apply change of user setting
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if type(of: self).observedDefaultKeys.contains(where: { $0.rawValue == keyPath }) {
+        switch keyPath {
+        case let keyPath? where type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath):
             self.updateEditorStatus()
             self.updateDocumentStatus()
             
-        } else {
+        default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
