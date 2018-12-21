@@ -35,18 +35,19 @@ extension HighlightDefinition {
     
     func extractor() throws -> HighlightExtractable {
         
-        if self.isRegularExpression {
-            if let endString = self.endString {
-                return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
-            } else {
-                return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
-            }
-        } else {
-            if let endString = self.endString {
-                return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
-            } else {
-                preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
-            }
+        switch (self.isRegularExpression, self.endString) {
+        case (true, .some(let endString)):
+            return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
+            
+        case (true, .none):
+            return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
+            
+        case (false, .some(let endString)):
+            return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
+            
+        case (false, .none):
+            preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
+            
         }
     }
     
