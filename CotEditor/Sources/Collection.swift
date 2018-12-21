@@ -98,7 +98,6 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate.
-    @inlinable
     func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
         var count = 0
@@ -117,7 +116,6 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
-    @inlinable
     func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
         var count = 0
