@@ -58,7 +58,7 @@ final class MultipleReplacement: Codable {
     }
     
     
-    struct Settings {
+    struct Settings: Equatable {
         
         var textualOptions: NSString.CompareOptions
         var regexOptions: NSRegularExpression.Options
@@ -87,21 +87,6 @@ final class MultipleReplacement: Codable {
         self.settings = settings
     }
     
-}
-
-
-
-// MARK: - Equatable
-
-extension MultipleReplacement.Settings: Equatable {
-    
-    static func == (lhs: MultipleReplacement.Settings, rhs: MultipleReplacement.Settings) -> Bool {
-        
-        return lhs.textualOptions == rhs.textualOptions &&
-            lhs.regexOptions == rhs.regexOptions &&
-            lhs.matchesFullWord == rhs.matchesFullWord &&
-            lhs.unescapesReplacementString == rhs.unescapesReplacementString
-    }
 }
 
 

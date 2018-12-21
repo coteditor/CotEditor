@@ -37,14 +37,7 @@ struct Pair<T> {
 }
 
 
-extension Pair: Equatable where T: Equatable {
-    
-    static func == (lhs: Pair<T>, rhs: Pair<T>) -> Bool {
-        
-        return lhs.begin == rhs.begin && lhs.end == rhs.end
-    }
-    
-}
+extension Pair: Equatable where T: Equatable { }
 
 
 

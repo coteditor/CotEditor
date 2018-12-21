@@ -154,12 +154,6 @@ struct Shortcut: Hashable {
     }
     
     
-    static func == (lhs: Shortcut, rhs: Shortcut) -> Bool {
-        
-        return lhs.keySpecChars == rhs.keySpecChars
-    }
-    
-    
     
     // MARK: Private Methods
     

@@ -51,15 +51,6 @@ struct HighlightDefinition: Equatable {
         self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
     }
     
-    
-    static func == (lhs: HighlightDefinition, rhs: HighlightDefinition) -> Bool {
-        
-        return lhs.beginString == rhs.beginString &&
-            lhs.endString == rhs.endString &&
-            lhs.isRegularExpression == rhs.isRegularExpression &&
-            lhs.ignoreCase == rhs.ignoreCase
-    }
-    
 }
 
 
@@ -119,17 +110,6 @@ struct OutlineDefinition: Equatable {
         self.bold = dictionary[CodingKeys.bold.rawValue] as? Bool ?? false
         self.italic = dictionary[CodingKeys.italic.rawValue] as? Bool ?? false
         self.underline = dictionary[CodingKeys.underline.rawValue] as? Bool ?? false
-    }
-    
-    
-    static func == (lhs: OutlineDefinition, rhs: OutlineDefinition) -> Bool {
-        
-        return lhs.pattern == rhs.pattern &&
-            lhs.template == rhs.template &&
-            lhs.ignoreCase == rhs.ignoreCase &&
-            lhs.bold == rhs.bold &&
-            lhs.italic == rhs.italic &&
-            lhs.underline == rhs.underline
     }
     
 }
