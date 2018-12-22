@@ -58,12 +58,6 @@ final class PreferencesTabViewController: NSTabViewController {
         {
             self.selectedTabViewItemIndex = item.offset
         }
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
         
         self.switchPane(to: self.tabViewItems[self.selectedTabViewItemIndex], animated: false)
     }
