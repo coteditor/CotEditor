@@ -278,6 +278,8 @@ extension SyntaxParser {
             return nil
         }
         
+        let wholeRange = string.nsRange
+        
         let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
                                                                        pairedQuoteTypes: self.style.pairedQuoteTypes,
                                                                        inlineCommentDelimiter: self.style.inlineCommentDelimiter,
@@ -286,7 +288,16 @@ extension SyntaxParser {
         let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
         operation.queuePriority = .high
         
+        // give up if the editor's string is changed from the parsed string
+        let modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
+            guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
+            
+            operation?.cancel()
+        }
+        
         operation.completionBlock = { [weak self, weak operation] in
+            NotificationCenter.default.removeObserver(modificationObserver)
+            
             guard
                 let operation = operation,
                 let highlights = operation.highlights,
@@ -296,14 +307,10 @@ extension SyntaxParser {
                 }
             
             DispatchQueue.main.async { [progress = operation.progress] in
-                // give up if the editor's string is changed from the analized string
-                guard self?.textStorage.string == string else {
-                    progress.cancel()
-                    return completionHandler()
-                }
+                assert(self?.textStorage.length == wholeRange.length)
                 
                 // cache result if whole text was parsed
-                if highlightRange == string.nsRange {
+                if highlightRange == wholeRange {
                     self?.highlightCache = (highlights, string)
                 }
                 
