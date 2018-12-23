@@ -77,7 +77,7 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
 
 
 
-extension NSDocument {
+extension NSDocument: NSSharingServiceDelegate {
     
     // MARK: Actions
     
@@ -86,7 +86,17 @@ extension NSDocument {
         
         guard let service = sender.representedObject as? NSSharingService else { return assertionFailure() }
         
+        service.delegate = self
         service.perform(withItems: [self])
+    }
+    
+    
+    
+    // MARK: Sharing Service Delegate
+    
+    public func sharingService(_ sharingService: NSSharingService, sourceWindowForShareItems items: [Any], sharingContentScope: UnsafeMutablePointer<NSSharingService.SharingContentScope>) -> NSWindow? {
+        
+        return self.windowForSheet
     }
     
 }
