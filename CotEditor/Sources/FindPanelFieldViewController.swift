@@ -94,7 +94,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self.replacementTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
             
         case DefaultKeys.findRegexUnescapesReplacementString.rawValue?:
-            self.replacementTextView?.mode = .replacement(unescapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
+            self.replacementTextView?.parseMode = .replacement(unescapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
             
         default:
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)

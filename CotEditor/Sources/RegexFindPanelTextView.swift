@@ -29,7 +29,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
-    var mode: RegularExpressionParseMode = .search {
+    var parseMode: RegularExpressionParseMode = .search {
         
         didSet {
             self.invalidateRegularExpression()
@@ -63,7 +63,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         guard
             self.isRegularExpressionMode,
-            case .search = self.mode,
+            case .search = self.parseMode,
             granularity == .selectByWord,
             proposedCharRange.length == 0,  // not on expanding selection
             range.length == 1  // clicked character can be a brace
@@ -94,7 +94,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         guard
             self.isRegularExpressionMode,
-            case .search = self.mode,
+            case .search = self.parseMode,
             !stillSelectingFlag
             else { return }
         
@@ -108,27 +108,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     /// highlight string as regular expression pattern
     private func invalidateRegularExpression() {
         
-        assert(Thread.isMainThread)
-        
-        guard let layoutManager = self.layoutManager else { return }
-        
-        // clear the last highlight anyway
-        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
-        
-        guard self.isRegularExpressionMode else { return }
-        
-        switch self.mode {
-        case .search:
-            guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }  // check if pattern is valid
-        case .replacement:
-            break
-        }
-        
-        for type in RegularExpressionSyntaxType.priority.reversed() {
-            for range in type.ranges(in: self.string, mode: self.mode) {
-                layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
-            }
-        }
+        self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)
     }
     
 }
