@@ -25,13 +25,14 @@
 
 import Cocoa
 
-class RegexTextField: NSTextField {
+final class RegexTextField: NSTextField {
     
     // MARK: Private Properties
     
     @IBInspectable private var isReplacement: Bool = false
+    @IBInspectable private var bindingKeyPath: String = ""
     
-    @objc fileprivate dynamic var isRegularExpression = true {
+    @objc private dynamic var isRegularExpression = true {
         
         didSet {
             self.formatter = isRegularExpression ? self.regexFormatter : nil
@@ -52,6 +53,13 @@ class RegexTextField: NSTextField {
         super.awakeFromNib()
         
         self.formatter = self.isRegularExpression ? self.regexFormatter : nil
+
+        // bind with cellView's objectValue
+        if !self.bindingKeyPath.isEmpty  {
+            guard let tableCellView = self.superview as? NSTableCellView else { return assertionFailure() }
+            
+            self.bind(NSBindingName(#keyPath(isRegularExpression)), to: tableCellView, withKeyPath: "objectValue." + self.bindingKeyPath, options: [.nullPlaceholder: false])
+        }
     }
     
     
@@ -90,30 +98,6 @@ class RegexTextField: NSTextField {
         guard let editor = self.currentEditor() as? NSTextView else { return }
         
         editor.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpression)
-    }
-    
-}
-
-
-
-final class DynamicRegexTextField: RegexTextField {
-    
-    // MARK: Private Properties
-    
-    @IBInspectable private var regexKeyPath: String = "objectValue.regularExpression"
-    
-    
-    // MARK: -
-    // MARK: Text Field Methods
-    
-    override func awakeFromNib() {
-        
-        super.awakeFromNib()
-        
-        guard let tableCellView = self.superview as? NSTableCellView else { return assertionFailure() }
-        
-        // bind with cellView's objectValue
-        self.bind(NSBindingName(#keyPath(isRegularExpression)), to: tableCellView, withKeyPath: self.regexKeyPath, options: [.nullPlaceholder: false])
     }
     
 }
