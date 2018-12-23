@@ -12,6 +12,7 @@ Change Log
 - Move focus to the editor when lines are selected by clicking line numbers.
 - Apply update of “Show invisible characters” option in the preferences immediately to opened documents.
 - Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
+- Enable “Share” button in toolbar also in the Text Only mode.
 - Make composition views for the Share feature document-modal also in macOS 10.12.
 - Disable “Hide Toolbar” command for the preferences window.
 - Improve general performance.

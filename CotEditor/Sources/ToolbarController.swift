@@ -98,7 +98,7 @@ final class ToolbarController: NSObject {
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
     
-    @IBOutlet private weak var shareButton: NSButton?
+    @IBOutlet private weak var shareToolbarItem: NSToolbarItem?
 
     
     
@@ -120,8 +120,10 @@ final class ToolbarController: NSObject {
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()
         
-        // share button action must be called on mouseDown
-        self.shareButton?.sendAction(on: .leftMouseDown)
+        // setup Share toolbar item
+        // -> Share button action must be called on mouseDown.
+        (self.shareToolbarItem!.view as! NSButton).sendAction(on: .leftMouseDown)
+        self.shareToolbarItem!.menuFormRepresentation = ShareMenuItem()
         
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)
