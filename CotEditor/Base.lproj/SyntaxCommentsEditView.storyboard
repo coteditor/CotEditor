@@ -117,7 +117,7 @@
                                                             <rect key="frame" x="61" y="1" width="192" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-uo-Z0U">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SxV-uo-Z0U" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="192" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="begin" usesSingleLineMode="YES" id="kSc-q8-TSC">
                                                                         <font key="font" metaFont="system"/>
@@ -159,7 +159,7 @@
                                                             <rect key="frame" x="255.5" y="1" width="101" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-UI-asU">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-UI-asU" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="101" height="17"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="end" usesSingleLineMode="YES" id="ike-P3-f5j">
                                                                         <font key="font" metaFont="system"/>
