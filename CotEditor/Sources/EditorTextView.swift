@@ -77,6 +77,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
+    private var windowOpacityObserver: NSObjectProtocol?
+    private var scrollObserver: NSObjectProtocol?
+    private var resizeObserver: NSObjectProtocol?
+    
     private let observedDefaultKeys: [DefaultKeys] = [
         .autoExpandTab,
         .autoIndent,
@@ -178,6 +182,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         for key in self.observedDefaultKeys {
             UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
         }
+        self.removeNotificationObservers()
     }
     
     
@@ -214,11 +219,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         super.viewDidMoveToWindow()
         
+        // textView will be removed from the window
         guard let window = self.window else {
-            // textView was removed from the window
-            NotificationCenter.default.removeObserver(self, name: DocumentWindow.didChangeOpacityNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
+            self.removeNotificationObservers()
             return
         }
         
@@ -226,23 +229,26 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.applyTheme()
         
         // apply window opacity
-        self.didWindowOpacityChange(nil)
+        self.didChangeWindowOpacity(to: window.isOpaque)
         
         // observe window opacity flag
-        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: DocumentWindow.didChangeOpacityNotification,
-                                               object: window)
+        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+            self.didChangeWindowOpacity(to: window.isOpaque)
+        }
         
         if let scrollView = self.enclosingScrollView {
             // observe scorolling to fix drawing area on non-opaque view
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)),
-                                                   name: NSView.boundsDidChangeNotification,
-                                                   object: scrollView.contentView)
+            self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
+                if !self.drawsBackground {
+                    // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                }
+            }
             
             // observe resizing for overscroll amount update
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRectSize(_:)),
-                                                   name: NSView.frameDidChangeNotification,
-                                                   object: scrollView.contentView)
+            self.resizeObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
+                self.invalidateOverscrollRate()
+            }
         } else {
             assertionFailure("failed starting observing the visible rect change")
         }
@@ -1206,43 +1212,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     
     
-    // MARK: Notification
-    
-    /// window's opacity did change
-    @objc private func didWindowOpacityChange(_ notification: Notification?) {
-        
-        let isOpaque = self.window?.isOpaque ?? true
-        
-        // let text view have own background if possible
-        self.drawsBackground = isOpaque
-        
-        // make the current line highlight a bit transparent
-        let highlightAlpha: CGFloat = isOpaque ? 1.0 : 0.7
-        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(highlightAlpha)
-        
-        // redraw visible area
-        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-    }
-    
-    
-    /// visible rect did change
-    @objc private func didChangeVisibleRect(_ notification: Notification) {
-        
-        if !self.drawsBackground {
-            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-        }
-    }
-    
-    
-    /// visible rect did resize
-    @objc private func didChangeVisibleRectSize(_ notification: Notification) {
-        
-        self.invalidateOverscrollRate()
-    }
-    
-    
-    
     // MARK: Private Methods
     
     /// document object representing the text view contents
@@ -1252,12 +1221,44 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// remove notification observers
+    private func removeNotificationObservers() {
+        
+        if let observer = self.windowOpacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.windowOpacityObserver = nil
+        }
+        if let observer = self.scrollObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.scrollObserver = nil
+        }
+        if let observer = self.resizeObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.resizeObserver = nil
+        }
+    }
+    
+    
+    /// window's opacity did change
+    private func didChangeWindowOpacity(to isOpaque: Bool) {
+        
+        // let text view have own background if possible
+        self.drawsBackground = isOpaque
+        
+        // make the current line highlight a bit transparent
+        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(isOpaque ? 1.0 : 0.7)
+        
+        // redraw visible area
+        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+    }
+    
+    
     /// update coloring settings
     private func applyTheme() {
         
         assert(Thread.isMainThread)
         
-        guard let theme = self.theme else { return assertionFailure() }
+        guard let theme = self.theme else { return }
         
         self.window?.backgroundColor = theme.background.color
         

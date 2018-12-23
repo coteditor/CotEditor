@@ -95,6 +95,7 @@ final class OutlineViewController: NSViewController {
         //      it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
         }
         
         self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
@@ -114,6 +115,7 @@ final class OutlineViewController: NSViewController {
         
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
         }
     }
     
@@ -182,6 +184,7 @@ final class OutlineViewController: NSViewController {
         
         if let observer = self.documentObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.documentObserver = nil
         }
         
         guard let document = self.document else { return assertionFailure() }
@@ -200,6 +203,7 @@ final class OutlineViewController: NSViewController {
         
         if let observer = self.syntaxStyleObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.syntaxStyleObserver = nil
         }
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
