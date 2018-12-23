@@ -29,11 +29,21 @@ final class RegularExpressionFormatter: Formatter {
     
     // MARK: Private Properties
     
-    @IBInspectable private var isReplacement: Bool = false
+    private(set) var mode: RegularExpressionParseMode = .search
     
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    convenience init(mode: RegularExpressionParseMode) {
+        
+        self.init()
+        self.mode = mode
+    }
+    
+    
+    
     // MARK: Formatter Function
     
     /// convert to plain string
@@ -53,18 +63,20 @@ final class RegularExpressionFormatter: Formatter {
         guard !string.isEmpty else { return attributedString }
         
         // valdiate regex pattern
-        do {
-            _ = try NSRegularExpression(pattern: string)
-        } catch {
-            attributedString.insert(NSAttributedString(string: "⚠️ "), at: 0)
-            return attributedString
+        switch self.mode {
+        case .search:
+            do {
+                _ = try NSRegularExpression(pattern: string)
+            } catch {
+                attributedString.insert(NSAttributedString(string: "⚠️ "), at: 0)
+                return attributedString
+            }
+        case .replacement: break
         }
         
         // syntax highlight
-        let mode: RegularExpressionParseMode = self.isReplacement ? .replacement(unescapes: false) : .search
-        
         for type in RegularExpressionSyntaxType.priority.reversed() {
-            for range in type.ranges(in: string, mode: mode) {
+            for range in type.ranges(in: string, mode: self.mode) {
                 attributedString.addAttribute(.foregroundColor, value: type.color, range: range)
             }
         }
