@@ -30,7 +30,7 @@ final class InvisibleFormatter: Formatter {
     
     // MARK: Properties
     
-    var invisibles: [Invisible] = [.newLine, .tab, .fullwidthSpace]
+    private let invisibles: [Invisible] = [.newLine, .tab, .fullwidthSpace]
     
     
     
@@ -50,7 +50,7 @@ final class InvisibleFormatter: Formatter {
         guard let string = self.string(for: obj) else { return nil }
         
         let attributedString = NSMutableAttributedString(string: string, attributes: attrs)
-        let attributes: [NSAttributedString.Key: Any] = [.foregroundColor: NSColor.tertiaryLabelColor]
+        let attributes = (attrs ?? [:]).merging([.foregroundColor: NSColor.tertiaryLabelColor]) { $1 }
         
         for (index, codeUnit) in string.utf16.enumerated() {
             guard
@@ -58,8 +58,8 @@ final class InvisibleFormatter: Formatter {
                 self.invisibles.contains(invisible)
                 else { continue }
             
-            let range = NSRange(location: index, length: 1)
-            attributedString.replaceCharacters(in: range, with: NSAttributedString(string: invisible.usedSymbol, attributes: attributes))
+            let attributedInvisible = NSAttributedString(string: invisible.usedSymbol, attributes: attributes)
+            attributedString.replaceCharacters(in: NSRange(index...index), with: attributedInvisible)
         }
         
         return attributedString
