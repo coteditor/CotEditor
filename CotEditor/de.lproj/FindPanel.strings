@@ -102,8 +102,8 @@
 "vfK-an-Qnl.title" = "Letzte Ersetzungen löschen";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
-"ESq-ws-6H3.ibShadowedToolTip" = "Erweitere Optionen einstellen";
-"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Erweitere Optionen";
+"ESq-ws-6H3.ibShadowedToolTip" = "Erweiterte Optionen einstellen";
+"ESq-ws-6H3.ibExternalAccessibilityDescription" = "Erweiterte Optionen";
 
 
 // Find Result
