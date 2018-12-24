@@ -95,24 +95,22 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     // MARK: Actions
     
-    /// add a new replacement rule
+    /// add a new replacement rule at the end
     @IBAction func add(_ sender: Any?) {
         
         self.endEditing()
         
-        // update data
-        self.definition.replacements.append(MultipleReplacement.Replacement())
-        
-        // update UI
-        guard let tableView = self.tableView else { return }
-        
-        let lastRow = self.definition.replacements.count - 1
+        let lastRow = self.definition.replacements.endIndex
         let indexes = IndexSet(integer: lastRow)
-        let column = tableView.column(withIdentifier: .findString)
+        let replacements = [MultipleReplacement.Replacement](repeating: .init(), count: indexes.count)
         
+        self.insertReplacements(replacements, at: indexes)
+        
+        // start editing automatically
+        let tableView = self.tableView!
+        let column = tableView.column(withIdentifier: .findString)
         tableView.scrollRowToVisible(lastRow)
-        tableView.insertRows(at: indexes, withAnimation: .effectGap)
-        tableView.editColumn(column, row: lastRow, with: nil, select: true)  // start editing automatically
+        tableView.editColumn(column, row: lastRow, with: nil, select: true)
     }
     
     
@@ -121,22 +119,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         self.endEditing()
         
-        guard let tableView = self.tableView else { return }
+        let rowIndexes = self.tableView!.selectedRowIndexes
         
-        let indexes = tableView.selectedRowIndexes
-        
-        // update UI
-        tableView.removeRows(at: indexes, withAnimation: .effectGap)
-        
-        // update data
-        self.definition.replacements.remove(in: indexes)
+        self.removeReplacements(at: rowIndexes)
         
         if self.definition.replacements.isEmpty {
             self.add(nil)
         }
-        
-        // notify modification
-        self.updateNotificationTask.schedule()
     }
     
     
@@ -192,6 +181,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         self.hasInvalidSetting = false
         self.resultMessage = nil
         
+        self.undoManager?.removeAllActions(withTarget: self)
         self.tableView?.reloadData()
         
         if setting.replacements.isEmpty {
@@ -214,6 +204,117 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     @objc private func validateObject() {
         
         self.hasInvalidSetting = self.definition.replacements.contains { (try? $0.validate()) != nil }
+    }
+    
+    
+    /// Undoable insertion of replacement definitions.
+    ///
+    /// - Parameters:
+    ///   - replacements: New replacement definitions to insert.
+    ///   - rowIndexes: Rows of definitions to insert.
+    private func insertReplacements(_ replacements: [MultipleReplacement.Replacement], at rowIndexes: IndexSet) {
+        
+        assert(replacements.count == rowIndexes.count)
+        
+        // register undo
+        self.undoManager?.registerUndo(withTarget: self) { target in
+            target.removeReplacements(at: rowIndexes)
+        }
+        
+        // update data
+        self.definition.replacements.insert(replacements, at: rowIndexes)
+        
+        // update view
+        if let tableView = self.tableView {
+            tableView.insertRows(at: rowIndexes, withAnimation: .effectGap)
+        }
+        
+        // notify modification
+        self.updateNotificationTask.schedule()
+    }
+    
+    
+    /// Undoable removal of replacement definitions.
+    ///
+    /// - Parameter rowIndexes: Rows of definitions to remove.
+    private func removeReplacements(at rowIndexes: IndexSet) {
+        
+        // register undo
+        self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
+            target.insertReplacements(replacements, at: rowIndexes)
+        }
+        
+        // update view
+        if let tableView = self.tableView {
+            tableView.removeRows(at: rowIndexes, withAnimation: .effectGap)
+        }
+        
+        // update data
+        self.definition.replacements.remove(in: rowIndexes)
+        
+        // notify modification
+        self.updateNotificationTask.schedule()
+    }
+    
+    
+    /// Undoable replacement definitions' update.
+    ///
+    /// - Parameters:
+    ///   - replacements: New replacement definitions to update.
+    ///   - rowIndexes: Rows of definitions to be updated.
+    private func updateReplacements(_ replacements: [MultipleReplacement.Replacement], at rowIndexes: IndexSet) {
+        
+        assert(replacements.count == rowIndexes.count)
+        
+        // register undo
+        self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
+            target.updateReplacements(replacements, at: rowIndexes)
+        }
+        
+        // update data
+        for (row, replacement) in zip(rowIndexes, replacements) {
+            self.definition.replacements[row] = replacement
+        }
+        
+        // update view
+        if let tableView = self.tableView {
+            let allColumnIndexes = IndexSet(integersIn: 0..<tableView.numberOfColumns)
+            tableView.reloadData(forRowIndexes: rowIndexes, columnIndexes: allColumnIndexes)
+        }
+        
+        // notify modification
+        self.updateNotificationTask.schedule()
+    }
+    
+    
+    /// Undoable move of replacement definitions.
+    ///
+    /// - Parameters:
+    ///   - sourceRows: Rows of definitions to move.
+    ///   - destinationRows: Rows of definitions to place.
+    private func moveReplacements(from sourceRows: IndexSet, to destinationRows: IndexSet) {
+        
+        assert(sourceRows.count == destinationRows.count)
+        
+        // register undo
+        self.undoManager?.registerUndo(withTarget: self) { target in
+            target.moveReplacements(from: destinationRows, to: sourceRows)
+        }
+        
+        // update data
+        let draggingItems = self.definition.replacements.elements(at: sourceRows)
+        self.definition.replacements.remove(in: sourceRows)
+        self.definition.replacements.insert(draggingItems, at: destinationRows)
+        
+        // update view
+        if let tableView = self.tableView {
+            tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])
+            tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
+            tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+        }
+        
+        // notify modification
+        self.updateNotificationTask.schedule()
     }
     
 }
@@ -323,52 +424,52 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
         
         guard row >= 0, column >= 0 else { return }
         
-        let identifier = tableView.tableColumns[column].identifier
-        let rowIndexes = IndexSet(integer: row)
-        let updateRowIndexes: IndexSet
+        // update all selected checkboxes in the same column
+        let rowIndex = IndexSet(integer: row)
+        let rowIndexes = (sender is NSButton) ? rowIndex.union(tableView.selectedRowIndexes) : rowIndex
         
-        switch sender {
-        case let textField as NSTextField:
-            updateRowIndexes = rowIndexes
-            let value = textField.stringValue
-            switch identifier {
-            case .findString:
-                self.definition.replacements[row].findString = value
-            case .replacementString:
-                self.definition.replacements[row].replacementString = value
-            case .description:
-                self.definition.replacements[row].description = (value.isEmpty) ? nil : value
-            default:
-                preconditionFailure()
-            }
-            
-        case let checkbox as NSButton:
-            // update all selected checkboxes in the same column
-            let selectedIndexes = tableView.selectedRowIndexes
-            updateRowIndexes = selectedIndexes.contains(row) ? selectedIndexes.union(rowIndexes) : rowIndexes
-            
-            let value = (checkbox.state == .on)
-            for index in updateRowIndexes {
-                switch identifier {
-                case .isEnabled:
-                    self.definition.replacements[index].isEnabled = value
-                case .ignoresCase:
-                    self.definition.replacements[index].ignoresCase = value
-                case .usesRegularExpression:
-                    self.definition.replacements[index].usesRegularExpression = value
+        let identifier = tableView.tableColumns[column].identifier
+        
+        let replacements: [MultipleReplacement.Replacement] = rowIndexes
+            .map { self.definition.replacements[$0] }
+            .map { replacement in
+                var replacement = replacement
+                
+                switch sender {
+                case let textField as NSTextField:
+                    let value = textField.stringValue
+                    switch identifier {
+                    case .findString:
+                        replacement.findString = value
+                    case .replacementString:
+                        replacement.replacementString = value
+                    case .description:
+                        replacement.description = value.isEmpty ? nil : value
+                    default:
+                        preconditionFailure()
+                    }
+                    
+                case let checkbox as NSButton:
+                    let value = (checkbox.state == .on)
+                    switch identifier {
+                    case .isEnabled:
+                        replacement.isEnabled = value
+                    case .ignoresCase:
+                        replacement.ignoresCase = value
+                    case .usesRegularExpression:
+                        replacement.usesRegularExpression = value
+                    default:
+                        preconditionFailure()
+                    }
+                    
                 default:
                     preconditionFailure()
                 }
+                
+                return replacement
             }
-            
-        default:
-            preconditionFailure()
-        }
         
-        let allColumnIndexes = IndexSet(integersIn: 0..<tableView.numberOfColumns)
-        tableView.reloadData(forRowIndexes: updateRowIndexes, columnIndexes: allColumnIndexes)
-        
-        self.updateNotificationTask.schedule()
+        self.updateReplacements(replacements, at: rowIndexes)
     }
     
 }
@@ -423,20 +524,14 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
         // obtain original rows from paste board
         guard
             let data = info.draggingPasteboard.data(forType: .rows),
-            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
+            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet
+            else { return false }
         
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move
         let destinationRows = IndexSet(destinationRow..<(destinationRow + sourceRows.count))
         
-        // update data
-        let draggingItems = self.definition.replacements.elements(at: sourceRows)
-        self.definition.replacements.remove(in: sourceRows)
-        self.definition.replacements.insert(draggingItems, at: destinationRows)
-        
-        // update UI
-        tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])
-        tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
-        tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+        // move
+        self.moveReplacements(from: sourceRows, to: destinationRows)
         
         return true
     }

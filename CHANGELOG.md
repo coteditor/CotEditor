@@ -9,6 +9,7 @@ Change Log
 
 - Change counting method of the cursor location and column to 1-based (formerly 0-based).
 - Optimize syntax highlight application so that the time displaying the rainbow cursor reduces significantly with a large document.
+- Make editing multiple replacement definitions undoable.
 - Syntax highlight reguler expression patterns in the syntax style editor, multiple replacement definition editor, and the custom sort dialog.
 - Move focus to the editor when lines are selected by clicking line numbers.
 - Apply update of “Show invisible characters” option in the preferences immediately to opened documents.
