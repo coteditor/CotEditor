@@ -27,9 +27,10 @@ import Foundation
 
 final class RegularExpressionFormatter: Formatter {
     
-    // MARK: Private Properties
+    // MARK: Public Properties
     
-    private(set) var mode: RegularExpressionParseMode = .search
+    var parsesRegularExpression: Bool = true
+    var mode: RegularExpressionParseMode = .search
     
     
     
@@ -60,7 +61,7 @@ final class RegularExpressionFormatter: Formatter {
         
         let attributedString = NSMutableAttributedString(string: string, attributes: attrs)
         
-        guard !string.isEmpty else { return attributedString }
+        guard self.parsesRegularExpression, !string.isEmpty else { return attributedString }
         
         // valdiate regex pattern
         switch self.mode {

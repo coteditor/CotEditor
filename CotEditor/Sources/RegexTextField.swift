@@ -27,21 +27,28 @@ import Cocoa
 
 final class RegexTextField: NSTextField {
     
-    // MARK: Private Properties
+    // MARK: Public Properties
     
-    @IBInspectable private var isReplacement: Bool = false
-    @IBInspectable private var bindingKeyPath: String = ""
-    
-    @objc private dynamic var isRegularExpression = true {
+    @objc dynamic var parsesRegularExpression = true {
         
         didSet {
-            self.formatter = isRegularExpression ? self.regexFormatter : nil
+            (self.formatter as! RegularExpressionFormatter).parsesRegularExpression = parsesRegularExpression
             self.invalidateFieldEditor()
             self.needsDisplay = true
         }
     }
     
-    private lazy var regexFormatter = RegularExpressionFormatter(mode: self.parseMode)
+    var unescapesReplacement: Bool = false {
+        
+        didSet {
+            (self.formatter as! RegularExpressionFormatter).mode = self.parseMode
+        }
+    }
+    
+    // MARK: Private Properties
+    
+    @IBInspectable private var isReplacement: Bool = false
+    @IBInspectable private var bindingKeyPath: String = ""
     
     
     
@@ -52,13 +59,13 @@ final class RegexTextField: NSTextField {
         
         super.awakeFromNib()
         
-        self.formatter = self.isRegularExpression ? self.regexFormatter : nil
+        self.formatter = RegularExpressionFormatter(mode: self.parseMode)
 
         // bind with cellView's objectValue
         if !self.bindingKeyPath.isEmpty  {
             guard let tableCellView = self.superview as? NSTableCellView else { return assertionFailure() }
             
-            self.bind(NSBindingName(#keyPath(isRegularExpression)), to: tableCellView, withKeyPath: "objectValue." + self.bindingKeyPath, options: [.nullPlaceholder: false])
+            self.bind(NSBindingName(#keyPath(parsesRegularExpression)), to: tableCellView, withKeyPath: "objectValue." + self.bindingKeyPath, options: [.nullPlaceholder: false])
         }
     }
     
@@ -88,7 +95,7 @@ final class RegexTextField: NSTextField {
     
     private var parseMode: RegularExpressionParseMode {
         
-        return self.isReplacement ? .replacement(unescapes: false) : .search
+        return self.isReplacement ? .replacement(unescapes: self.unescapesReplacement) : .search
     }
     
     
@@ -97,7 +104,7 @@ final class RegexTextField: NSTextField {
         
         guard let editor = self.currentEditor() as? NSTextView else { return }
         
-        editor.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpression)
+        editor.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.parsesRegularExpression)
     }
     
 }
