@@ -86,6 +86,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
             guard self.definition.settings != object.settings else { return }
             
             self.definition.settings = object.settings
+            self.tableView?.reloadData()  // update regex highlight for replacement string
             self.updateNotificationTask.schedule()
         }
     }
