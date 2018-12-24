@@ -101,8 +101,6 @@
 		2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893A91FFF422D00AD244F /* LineSort.swift */; };
 		2A1893AD1FFF6A0100AD244F /* LineSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */; };
 		2A18A5BF1C4A746A00BAD817 /* Encodings in Resources */ = {isa = PBXBuildFile; fileRef = 2A18A5BE1C4A746A00BAD817 /* Encodings */; };
-		2A1A8AFA207081D9004DFEBB /* InvisibleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */; };
-		2A1A8AFB207081D9004DFEBB /* InvisibleFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */; };
 		2A1B7E75216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */; };
 		2A1CD5541DD1AADE006E17DB /* NSAlert+ModalSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */; };
@@ -883,7 +881,6 @@
 		2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineSortTests.swift; sourceTree = "<group>"; };
 		2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingDetectionTests.swift; sourceTree = "<group>"; };
 		2A18A5BE1C4A746A00BAD817 /* Encodings */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Encodings; path = TestFiles/Encodings; sourceTree = "<group>"; };
-		2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvisibleFormatter.swift; sourceTree = "<group>"; };
 		2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SynchronizedScrollView.swift; sourceTree = "<group>"; };
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1876,7 +1873,6 @@
 		2A41CB3A1C39068200F9122B /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
-				2A1A8AF9207081D9004DFEBB /* InvisibleFormatter.swift */,
 				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
 			);
@@ -2776,7 +2772,6 @@
 				2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */,
 				2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */,
 				2A231A371E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
-				2A1A8AFB207081D9004DFEBB /* InvisibleFormatter.swift in Sources */,
 				2AA749C41D3C263300850802 /* DocumentWindowController.swift in Sources */,
 				2A5D13261D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */,
 				2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */,
@@ -3186,7 +3181,6 @@
 				2AED70EE1D2E36EF006FFBCE /* DocumentViewController.swift in Sources */,
 				2A1893A71FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2A1814BE21CFC9CF00602214 /* RegexTextField.swift in Sources */,
-				2A1A8AFA207081D9004DFEBB /* InvisibleFormatter.swift in Sources */,
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,

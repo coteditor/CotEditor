@@ -24,27 +24,25 @@
 //
 
 import Foundation
+import AppKit.NSColor
 
 final class RegularExpressionFormatter: Formatter {
     
     // MARK: Public Properties
     
-    var parsesRegularExpression: Bool = true
     var mode: RegularExpressionParseMode = .search
+    var parsesRegularExpression: Bool = true
+    var showsInvisibles: Bool = false
+    var showsError: Bool = true
+    
+    
+    // MARK: Private Properties
+    
+    private let invisibles: [Invisible] = [.newLine, .tab, .fullwidthSpace]
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    convenience init(mode: RegularExpressionParseMode) {
-        
-        self.init()
-        self.mode = mode
-    }
-    
-    
-    
     // MARK: Formatter Function
     
     /// convert to plain string
@@ -61,24 +59,42 @@ final class RegularExpressionFormatter: Formatter {
         
         let attributedString = NSMutableAttributedString(string: string, attributes: attrs)
         
-        guard self.parsesRegularExpression, !string.isEmpty else { return attributedString }
+        guard !string.isEmpty else { return attributedString }
         
-        // valdiate regex pattern
-        switch self.mode {
-        case .search:
-            do {
-                _ = try NSRegularExpression(pattern: string)
-            } catch {
-                attributedString.insert(NSAttributedString(string: "⚠️ "), at: 0)
-                return attributedString
+        if self.parsesRegularExpression {
+            // validate regex pattern
+            switch self.mode {
+            case .search:
+                do {
+                    _ = try NSRegularExpression(pattern: string)
+                } catch {
+                    if self.showsError {
+                        attributedString.replaceCharacters(in: NSRange(..<0), with: "⚠️ ")
+                    }
+                    return attributedString
+                }
+            case .replacement: break
             }
-        case .replacement: break
+            
+            // syntax highlight
+            for type in RegularExpressionSyntaxType.priority.reversed() {
+                for range in type.ranges(in: string, mode: self.mode) {
+                    attributedString.addAttribute(.foregroundColor, value: type.color, range: range)
+                }
+            }
         }
         
-        // syntax highlight
-        for type in RegularExpressionSyntaxType.priority.reversed() {
-            for range in type.ranges(in: string, mode: self.mode) {
-                attributedString.addAttribute(.foregroundColor, value: type.color, range: range)
+        if self.showsInvisibles {
+            let attributes = (attrs ?? [:]).merging([.foregroundColor: NSColor.tertiaryLabelColor]) { $1 }
+            
+            for (index, codeUnit) in string.utf16.enumerated() {
+                guard
+                    let invisible = Invisible(codeUnit: codeUnit),
+                    self.invisibles.contains(invisible)
+                    else { continue }
+                
+                let attributedInvisible = NSAttributedString(string: invisible.usedSymbol, attributes: attributes)
+                attributedString.replaceCharacters(in: NSRange(index...index), with: attributedInvisible)
             }
         }
         

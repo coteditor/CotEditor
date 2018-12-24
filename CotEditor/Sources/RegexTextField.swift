@@ -32,7 +32,7 @@ final class RegexTextField: NSTextField {
     @objc dynamic var parsesRegularExpression = true {
         
         didSet {
-            (self.formatter as! RegularExpressionFormatter).parsesRegularExpression = parsesRegularExpression
+            self.regexFormatter?.parsesRegularExpression = parsesRegularExpression
             self.invalidateFieldEditor()
             self.needsDisplay = true
         }
@@ -41,13 +41,15 @@ final class RegexTextField: NSTextField {
     var unescapesReplacement: Bool = false {
         
         didSet {
-            (self.formatter as! RegularExpressionFormatter).mode = self.parseMode
+            self.regexFormatter?.mode = self.parseMode
         }
     }
     
     // MARK: Private Properties
     
     @IBInspectable private var isReplacement: Bool = false
+    @IBInspectable private var showsError: Bool = true
+    @IBInspectable private var showsInvisibles: Bool = false
     @IBInspectable private var bindingKeyPath: String = ""
     
     
@@ -59,7 +61,12 @@ final class RegexTextField: NSTextField {
         
         super.awakeFromNib()
         
-        self.formatter = RegularExpressionFormatter(mode: self.parseMode)
+        // setup regex formatter
+        let formatter = RegularExpressionFormatter()
+        formatter.mode = self.parseMode
+        formatter.showsError = self.showsError
+        formatter.showsInvisibles = self.showsInvisibles
+        self.formatter = formatter
 
         // bind with cellView's objectValue
         if !self.bindingKeyPath.isEmpty  {
@@ -92,6 +99,12 @@ final class RegexTextField: NSTextField {
     
     
     // MARK: Private Methods
+    
+    private var regexFormatter: RegularExpressionFormatter? {
+        
+        return self.formatter as? RegularExpressionFormatter
+    }
+    
     
     private var parseMode: RegularExpressionParseMode {
         

@@ -276,6 +276,12 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
             preconditionFailure()
         }
         
+        // update regex field
+        if let field = cellView.textField as? RegexTextField {
+            field.parsesRegularExpression = replacement.isEnabled && replacement.usesRegularExpression
+            field.unescapesReplacement = self.definition.settings.unescapesReplacementString
+        }
+        
         // update warning icon
         if identifier == .findString, let imageView = cellView.imageView {
             let errorMessage: String? = {
