@@ -17,6 +17,7 @@ Change Log
 - Make composition views for the Share feature document-modal also in macOS 10.12.
 - Disable “Hide Toolbar” command for the preferences window.
 - Improve general performance.
+- Update German localization (Thanks to J-rg!).
 
 
 ### Fixes
