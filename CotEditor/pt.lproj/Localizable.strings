@@ -109,6 +109,15 @@
 
 
 
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Insert Rule";  // FIXME: added
+"Delete Rules" = "Delete Rules";  // FIXME: added
+"Edit Rule" = "Edit Rule";  // FIXME: added
+"Move Rules" = "Move Rules";  // FIXME: added
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Auto-Detect" = "Detectar Automaticamente";

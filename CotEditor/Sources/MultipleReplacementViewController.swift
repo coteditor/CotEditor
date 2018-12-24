@@ -220,6 +220,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         self.undoManager?.registerUndo(withTarget: self) { target in
             target.removeReplacements(at: rowIndexes)
         }
+        if self.undoManager?.isUndoing == false {
+            self.undoManager?.setActionName("Insert Rule".localized)
+        }
         
         // update data
         self.definition.replacements.insert(replacements, at: rowIndexes)
@@ -242,6 +245,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         // register undo
         self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
             target.insertReplacements(replacements, at: rowIndexes)
+        }
+        if self.undoManager?.isUndoing == false {
+            self.undoManager?.setActionName("Delete Rules".localized)
         }
         
         // update view
@@ -269,6 +275,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         // register undo
         self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
             target.updateReplacements(replacements, at: rowIndexes)
+        }
+        if self.undoManager?.isUndoing == false {
+            self.undoManager?.setActionName("Edit Rule".localized)
         }
         
         // update data
@@ -299,6 +308,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         // register undo
         self.undoManager?.registerUndo(withTarget: self) { target in
             target.moveReplacements(from: destinationRows, to: sourceRows)
+        }
+        if self.undoManager?.isUndoing == false {
+            self.undoManager?.setActionName("Move Rules".localized)
         }
         
         // update data

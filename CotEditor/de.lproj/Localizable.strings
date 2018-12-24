@@ -108,6 +108,15 @@
 
 
 
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Regel hinzufügen";
+"Delete Rules" = "Regeln löschen";
+"Edit Rule" = "Regel bearbeiten";
+"Move Rules" = "Regeln verschieben";
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Auto-Detect" = "Automatisch erkennen";
