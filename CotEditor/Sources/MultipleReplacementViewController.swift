@@ -280,7 +280,7 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
         if identifier == .findString, let imageView = cellView.imageView {
             let errorMessage: String? = {
                 do {
-                    try replacement.validate()
+                    try replacement.validate(regexOptions: self.definition.settings.regexOptions)
                 } catch {
                     guard let suggestion = (error as? LocalizedError)?.recoverySuggestion else { return error.localizedDescription }
                     
