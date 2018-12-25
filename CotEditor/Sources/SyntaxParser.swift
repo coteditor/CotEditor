@@ -309,7 +309,6 @@ extension SyntaxParser {
             
             DispatchQueue.main.async { [progress = operation.progress] in
                 defer {
-                    
                     NotificationCenter.default.removeObserver(modificationObserver)
                     completionHandler()
                 }
