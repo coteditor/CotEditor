@@ -93,6 +93,8 @@ final class ToolbarController: NSObject {
     
     // MARK: Private Properties
     
+    private var recentStyleNamesObserver: UserDefaultsObservation?
+    
     @IBOutlet private weak var toolbar: NSToolbar?
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
@@ -106,7 +108,7 @@ final class ToolbarController: NSObject {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.recentStyleNames.rawValue)
+        self.recentStyleNamesObserver?.invalidate()
     }
     
     
@@ -132,20 +134,11 @@ final class ToolbarController: NSObject {
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.recentStyleNames.rawValue, options: [], context: nil)
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        switch keyPath {
-        case DefaultKeys.recentStyleNames.rawValue?:
-            DispatchQueue.main.async { [weak self] in
+        self.recentStyleNamesObserver = UserDefaults.standard.observe(key: .recentStyleNames) { [weak self] _ in
+            DispatchQueue.main.async {
                 self?.buildSyntaxPopupButton()
             }
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

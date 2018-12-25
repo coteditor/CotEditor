@@ -33,6 +33,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
+    private var defaultsObservers: [UserDefaultsObservation] = []
+    
     @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private weak var findHistoryMenu: NSMenu?
@@ -46,8 +48,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue)
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue)
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -59,13 +60,24 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidLoad()
         
-        // sync history menus with user default
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, options: .initial, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, options: .initial, context: nil)
-        
-        // sync text view states with user default
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, options: .initial, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findRegexUnescapesReplacementString.rawValue, options: .initial, context: nil)
+        self.defaultsObservers += [
+            // sync history menus with user default
+            UserDefaults.standard.observe(key: .findHistory, options: .initial) { [unowned self] _ in
+                self.updateFindHistoryMenu()
+            },
+            UserDefaults.standard.observe(key: .replaceHistory, options: .initial) { [unowned self] _ in
+                self.updateReplaceHistoryMenu()
+            },
+            
+            // sync text view states with user default
+            UserDefaults.standard.observe(key: .findUsesRegularExpression, options: [.initial, .new]) { [unowned self] change in
+                self.findTextView?.isRegularExpressionMode = change.new!
+                self.replacementTextView?.isRegularExpressionMode = change.new!
+            },
+            UserDefaults.standard.observe(key: .findRegexUnescapesReplacementString, options: [.initial, .new]) { [unowned self] change in
+                self.replacementTextView?.parseMode = .replacement(unescapes: change.new!)
+            }
+        ]
     }
     
     
@@ -76,29 +88,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // make find text view the initial first responder to focus it on showWindow(_:)
         self.view.window?.initialFirstResponder = self.findTextView
-    }
-    
-    
-    /// observed user defaults are changed
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.findHistory.rawValue?:
-            self.updateFindHistoryMenu()
-            
-        case DefaultKeys.replaceHistory.rawValue?:
-            self.updateReplaceHistoryMenu()
-            
-        case DefaultKeys.findUsesRegularExpression.rawValue?:
-            self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
-            self.replacementTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
-            
-        case DefaultKeys.findRegexUnescapesReplacementString.rawValue?:
-            self.replacementTextView?.parseMode = .replacement(unescapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
     
     

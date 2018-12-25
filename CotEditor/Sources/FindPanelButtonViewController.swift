@@ -29,6 +29,8 @@ final class FindPanelButtonViewController: NSViewController {
     
     // MARK: Private Properties
     
+    private var findNextAfterReplaceObserver: UserDefaultsObservation?
+    
     @IBOutlet private weak var replaceButton: NSButton?
     
     
@@ -37,7 +39,7 @@ final class FindPanelButtonViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findNextAfterReplace.rawValue)
+        self.findNextAfterReplaceObserver?.invalidate()
     }
     
     
@@ -52,19 +54,8 @@ final class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findNextAfterReplace.rawValue, context: nil)
-    }
-    
-    
-    /// observed user defaults are changed
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.findNextAfterReplace.rawValue?:
+        self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace) { [unowned self] _ in
             self.invalidateReplaceButtonBehavior()
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

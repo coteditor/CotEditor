@@ -77,32 +77,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
+    private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
     private var scrollObserver: NSObjectProtocol?
     private var resizeObserver: NSObjectProtocol?
-    
-    private let observedDefaultKeys: [DefaultKeys] = [
-        .autoExpandTab,
-        .autoIndent,
-        .enableSmartIndent,
-        .smartInsertAndDelete,
-        .balancesBrackets,
-        .checkSpellingAsType,
-        .pageGuideColumn,
-        .enableSmartQuotes,
-        .enableSmartDashes,
-        .tabWidth,
-        .hangingIndentWidth,
-        .enablesHangingIndent,
-        .autoLinkDetection,
-        .fontName,
-        .fontSize,
-        .shouldAntialias,
-        .lineHeight,
-        .highlightCurrentLine,
-        .highlightSelectionInstance,
-        .overscrollRate,
-        ]
     
     
     
@@ -171,17 +149,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         self.invalidateDefaultParagraphStyle()
         
-        // observe change of defaults
-        for key in self.observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, options: .new, context: nil)
-        }
+        // observe change in defaults
+        self.defaultsObservers = self.observeDefaults()
     }
     
     
     deinit {
-        for key in self.observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
-        }
+        self.defaultsObservers.forEach { $0.invalidate() }
         self.removeNotificationObservers()
     }
     
@@ -878,94 +852,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     
     
-    // MARK: KVO
-    
-    /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.autoExpandTab.rawValue?:
-            self.isAutomaticTabExpansionEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.autoIndent.rawValue?:
-            self.isAutomaticIndentEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.enableSmartIndent.rawValue?:
-            self.isSmartIndentEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.balancesBrackets.rawValue?:
-            self.balancesBrackets = change?[.newKey] as! Bool
-            
-        case DefaultKeys.shouldAntialias.rawValue?:
-            self.usesAntialias = change?[.newKey] as! Bool
-            
-        case DefaultKeys.smartInsertAndDelete.rawValue?:
-            self.smartInsertDeleteEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.enableSmartQuotes.rawValue?:
-            self.isAutomaticQuoteSubstitutionEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.enableSmartDashes.rawValue?:
-            self.isAutomaticDashSubstitutionEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.checkSpellingAsType.rawValue?:
-            self.isContinuousSpellCheckingEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.autoLinkDetection.rawValue?:
-            self.isAutomaticLinkDetectionEnabled = change?[.newKey] as! Bool
-            if self.isAutomaticLinkDetectionEnabled {
-                self.detectLinkIfNeeded()
-            } else {
-                if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: textStorage.mutableString.range)
-                }
-            }
-            
-        case DefaultKeys.pageGuideColumn.rawValue?:
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            
-        case DefaultKeys.tabWidth.rawValue?:
-            self.tabWidth = change?[.newKey] as! Int
-            
-        case DefaultKeys.fontName.rawValue, DefaultKeys.fontSize.rawValue?:
-            self.resetFont(nil)
-            
-        case DefaultKeys.lineHeight.rawValue?:
-            self.lineHeight = change?[.newKey] as! CGFloat
-            
-            // reset visible area
-            self.centerSelectionInVisibleArea(self)
-            
-        case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue?:
-            let wholeRange = self.string.nsRange
-            if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(change?[.newKey] as! Bool) {
-                if let paragraphStyle = self.defaultParagraphStyle {
-                    self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
-                } else {
-                    self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
-                }
-            } else {
-                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
-            }
-            
-        case DefaultKeys.highlightCurrentLine.rawValue?:
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            
-        case DefaultKeys.highlightSelectionInstance.rawValue?:
-            if (change?[.newKey] as! Bool) == false {
-                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            }
-            
-        case DefaultKeys.overscrollRate.rawValue?:
-            self.invalidateOverscrollRate()
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
-    }
-    
-    
-    
     // MARK: Protocol
     
     /// apply current state to related menu items and toolbar items
@@ -1460,6 +1346,117 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         matches
             .map { $0.range }
             .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
+    }
+    
+    
+    /// observe defaults to apply the change immediately
+    private func observeDefaults() -> [UserDefaultsObservation] {
+        
+        let keys: [DefaultKeys] = [
+            .autoExpandTab,
+            .autoIndent,
+            .enableSmartIndent,
+            .balancesBrackets,
+            .shouldAntialias,
+            .smartInsertAndDelete,
+            .enableSmartQuotes,
+            .enableSmartDashes,
+            .checkSpellingAsType,
+            .autoLinkDetection,
+            .pageGuideColumn,
+            .overscrollRate,
+            .tabWidth,
+            .fontName,
+            .fontSize,
+            .lineHeight,
+            .highlightCurrentLine,
+            .highlightSelectionInstance,
+            .enablesHangingIndent,
+            .hangingIndentWidth,
+            ]
+        
+        return UserDefaults.standard.observe(keys: keys, options: [.new]) { [unowned self] (key, change) in
+            
+            let new = change.new
+            switch key {
+            case .autoExpandTab:
+                self.isAutomaticTabExpansionEnabled = new as! Bool
+                
+            case .autoIndent:
+                self.isAutomaticIndentEnabled = new as! Bool
+                
+            case .enableSmartIndent:
+                self.isSmartIndentEnabled = new as! Bool
+                
+            case .balancesBrackets:
+                self.balancesBrackets = new as! Bool
+                
+            case .shouldAntialias:
+                self.usesAntialias = new as! Bool
+                
+            case .smartInsertAndDelete:
+                self.smartInsertDeleteEnabled = new as! Bool
+                
+            case .enableSmartQuotes:
+                self.isAutomaticQuoteSubstitutionEnabled = new as! Bool
+                
+            case .enableSmartDashes:
+                self.isAutomaticDashSubstitutionEnabled = new as! Bool
+                
+            case .checkSpellingAsType:
+                self.isContinuousSpellCheckingEnabled = new as! Bool
+                
+            case .autoLinkDetection:
+                self.isAutomaticLinkDetectionEnabled = new as! Bool
+                if self.isAutomaticLinkDetectionEnabled {
+                    self.detectLinkIfNeeded()
+                } else if let textStorage = self.textStorage {
+                    textStorage.removeAttribute(.link, range: NSRange(0..<textStorage.length))
+                }
+                
+            case .pageGuideColumn:
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                
+            case .overscrollRate:
+                self.invalidateOverscrollRate()
+                
+            case .tabWidth:
+                self.tabWidth = new as! Int
+                
+            case .fontName, .fontSize:
+                self.resetFont(nil)
+                
+            case .lineHeight:
+                self.lineHeight = new as! CGFloat
+                self.centerSelectionInVisibleArea(self)  // reset visible area
+                
+            case .highlightCurrentLine:
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                
+            case .highlightSelectionInstance:
+                if !(new as! Bool) {
+                    self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                }
+                
+            case .enablesHangingIndent:
+                let wholeRange = self.string.nsRange
+                if !(new as! Bool) {
+                    if let paragraphStyle = self.defaultParagraphStyle {
+                        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
+                    } else {
+                        self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
+                    }
+                } else {
+                    (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
+                }
+                
+            case .hangingIndentWidth:
+                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: self.string.nsRange)
+                
+            default:
+                preconditionFailure()
+            }
+        }
     }
     
 }
