@@ -45,6 +45,10 @@ final class EncodingManager: NSObject {
     static let shared = EncodingManager()
     
     
+    // MARK: Private Properties
+    
+    private var encodingListObserver: UserDefaultsObservation?
+    
     
     // MARK: -
     // MARK: Lifecycle
@@ -59,29 +63,16 @@ final class EncodingManager: NSObject {
             self.sanitizeEncodingListSetting()
         }
         
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue, context: nil)
+        self.encodingListObserver = UserDefaults.standard.observe(key: .encodingList) { [weak self] _ in
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
+            }
+        }
     }
     
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue)
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.encodingList.rawValue?:
-            DispatchQueue.main.async { [weak self] in
-                NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
-            }
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
+        self.encodingListObserver?.invalidate()
     }
     
     

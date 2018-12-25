@@ -89,19 +89,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     // MARK: Private Properties
     
-    private static let observedDefaultKeys: [DefaultKeys] = [
-        .invisibleSpace,
-        .invisibleTab,
-        .invisibleNewLine,
-        .invisibleFullwidthSpace,
-        
-        .showInvisibleSpace,
-        .showInvisibleTab,
-        .showInvisibleNewLine,
-        .showInvisibleFullwidthSpace,
-        
-        .showOtherInvisibleChars,
-        ]
+    private var defaultsObservers: [UserDefaultsObservation] = []
     
     private var defaultLineHeight: CGFloat = 1.0
     
@@ -111,6 +99,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     private var showsFullwidthSpace = false
     
     private lazy var invisibleLines: InvisibleLines = self.generateInvisibleLines()
+    
     
     private struct InvisibleLines {
         
@@ -141,9 +130,27 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         
         self.typesetter = ATSTypesetter()
         
-        // observe change of defaults
-        for key in type(of: self).observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
+        // observe change in defaults
+        let defaultKeys: [DefaultKeys] = [
+            .invisibleSpace,
+            .invisibleTab,
+            .invisibleNewLine,
+            .invisibleFullwidthSpace,
+            
+            .showInvisibleSpace,
+            .showInvisibleTab,
+            .showInvisibleNewLine,
+            .showInvisibleFullwidthSpace,
+            
+            .showOtherInvisibleChars,
+            ]
+        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [unowned self] (key, _) in
+            self.applyDefaultInvisiblesSetting()
+            self.invisibleLines = self.generateInvisibleLines()
+            
+            guard let textView = self.firstTextView else { return }
+            
+            textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: (key != .showOtherInvisibleChars))
         }
     }
     
@@ -155,32 +162,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     
     deinit {
-        for key in type(of: self).observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
-        }
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case let keyPath? where type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath):
-            self.applyDefaultInvisiblesSetting()
-            self.invisibleLines = self.generateInvisibleLines()
-            
-            if keyPath == DefaultKeys.showOtherInvisibleChars.rawValue {
-                self.invalidateLayout(forCharacterRange: self.attributedString().string.nsRange, actualCharacterRange: nil)
-            }
-            
-            self.firstTextView?.needsDisplay = true
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     

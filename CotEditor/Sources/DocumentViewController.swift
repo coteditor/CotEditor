@@ -34,6 +34,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     // MARK: Private Properties
     
     private var appearanceObserver: NSKeyValueObservation?
+    private var defaultsObservers: [UserDefaultsObservation] = []
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
@@ -45,25 +46,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     
     deinit {
         self.appearanceObserver?.invalidate()
-        
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.showInvisibles.rawValue)
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.theme.rawValue?:
-            guard let name = change?[.newKey] as? String else { return }
-            self.setTheme(name: name)
-            
-        case DefaultKeys.showInvisibles.rawValue?:
-            self.showsInvisibles = change?[.newKey] as! Bool
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -98,8 +81,16 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.showInvisibles.rawValue, options: .new, context: nil)
+        
+        // observe defaults change
+        self.defaultsObservers = [
+            UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
+                self.setTheme(name: ThemeManager.shared.defaultSettingName())
+            },
+            UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [unowned self] change in
+                self.showsInvisibles = change.new!
+            },
+        ]
         
         // observe appearance change for theme toggle
         self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
