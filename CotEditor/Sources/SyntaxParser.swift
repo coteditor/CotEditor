@@ -289,25 +289,35 @@ extension SyntaxParser {
         operation.qualityOfService = .userInitiated
         
         // give up if the editor's string is changed from the parsed string
+        let isModified = Atomic(false)
         let modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
             guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
             
+            isModified.mutate { $0 = true }
             operation?.cancel()
         }
         
         operation.completionBlock = { [weak self, weak operation] in
-            NotificationCenter.default.removeObserver(modificationObserver)
-            
             guard
                 let operation = operation,
                 let highlights = operation.highlights,
                 !operation.isCancelled
                 else {
+                    NotificationCenter.default.removeObserver(modificationObserver)
                     return completionHandler()
                 }
             
             DispatchQueue.main.async { [progress = operation.progress] in
-                assert(self?.textStorage.length == wholeRange.length)
+                defer {
+                    
+                    NotificationCenter.default.removeObserver(modificationObserver)
+                    completionHandler()
+                }
+                
+                guard !isModified.value else {
+                    progress.cancel()
+                    return
+                }
                 
                 // cache result if whole text was parsed
                 if highlightRange == wholeRange {
@@ -317,8 +327,6 @@ extension SyntaxParser {
                 self?.apply(highlights: highlights, range: highlightRange)
                 
                 progress.completedUnitCount += 1
-                
-                completionHandler()
             }
         }
         
