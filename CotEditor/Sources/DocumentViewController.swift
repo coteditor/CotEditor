@@ -109,11 +109,12 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
-        return [#keyPath(isStatusBarShown),
-                #keyPath(showsNavigationBar),
-                #keyPath(showsLineNumber),
-                #keyPath(showsPageGuide),
-                #keyPath(showsInvisibles),
+        return super.restorableStateKeyPaths + [
+            #keyPath(isStatusBarShown),
+            #keyPath(showsNavigationBar),
+            #keyPath(showsLineNumber),
+            #keyPath(showsPageGuide),
+            #keyPath(showsInvisibles),
         ]
     }
     

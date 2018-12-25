@@ -81,7 +81,9 @@ final class SidebarViewController: NSTabViewController {
     /// restore last state
     override class var restorableStateKeyPaths: [String] {
         
-        return super.restorableStateKeyPaths + [#keyPath(selectedTabViewItemIndex)]
+        return super.restorableStateKeyPaths + [
+            #keyPath(selectedTabViewItemIndex),
+        ]
     }
     
     
