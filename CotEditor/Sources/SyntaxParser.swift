@@ -157,7 +157,7 @@ extension SyntaxParser {
             
             self?.outlineItems = operation.results
         }
-        operation.queuePriority = .low
+        operation.qualityOfService = .utility
         
         // -> Regarding the outline extraction, just cancel previous operations before pasing the latest string,
         //    since user cannot cancel it manually.
@@ -286,7 +286,7 @@ extension SyntaxParser {
                                                                        blockCommentDelimiters: self.style.blockCommentDelimiters)
         
         let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
-        operation.queuePriority = .high
+        operation.qualityOfService = .userInitiated
         
         // give up if the editor's string is changed from the parsed string
         let modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in

@@ -46,7 +46,7 @@ extension MultipleReplacement {
         indicator.setup(progress: progress, message: "Highlight".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
             let result = self.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
@@ -122,7 +122,7 @@ extension MultipleReplacement {
         indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
             let result = self.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in

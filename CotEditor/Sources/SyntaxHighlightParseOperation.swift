@@ -148,8 +148,10 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
                     stop = childProgress.isCancelled
                 }
                 
-                atomicRanges.asyncMutate { $0 += extractedRanges }
-                childProgress.completedUnitCount += 1
+                atomicRanges.asyncMutate {
+                    $0 += extractedRanges
+                    childProgress.completedUnitCount += 1
+                }
             }
             
             highlights[syntaxType] = atomicRanges.value
