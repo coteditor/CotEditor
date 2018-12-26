@@ -29,7 +29,7 @@ import YAML
 
 @objc protocol SyntaxHolder: AnyObject {
     
-    func changeSyntaxStyle(_ sender: Any?)
+    func changeSyntaxStyle(_ sender: AnyObject?)
     func recolorAll(_ sender: Any?)
 }
 

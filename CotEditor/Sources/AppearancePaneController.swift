@@ -485,7 +485,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     }
     
     
-    @IBAction func reloadAllThemes(_ sender: AnyObject?) {
+    @IBAction func reloadAllThemes(_ sender: Any?) {
         
         ThemeManager.shared.updateCache()
     }

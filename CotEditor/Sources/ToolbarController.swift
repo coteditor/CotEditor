@@ -200,7 +200,7 @@ final class ToolbarController: NSObject {
         
         let styleNames = SyntaxManager.shared.settingNames
         let recentStyleNames = UserDefaults.standard[.recentStyleNames]!
-        let action = #selector(Document.changeSyntaxStyle(_:))
+        let action = #selector(Document.changeSyntaxStyle)
         
         menu.removeAllItems()
         

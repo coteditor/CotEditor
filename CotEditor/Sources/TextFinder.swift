@@ -181,7 +181,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// activate multiple replacement panel
-    @IBAction func showMultipleReplacementPanel(_ sender: AnyObject?) {
+    @IBAction func showMultipleReplacementPanel(_ sender: Any?) {
         
         self.multipleReplacementPanelController.showWindow(sender)
     }
