@@ -387,7 +387,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     // MARK: Notifications
     
     /// selection did change
-    @objc private func textViewDidChangeSelection(_ notification: Notification?) {
+    @objc private func textViewDidChangeSelection(_ notification: Notification) {
         
         // update document information
         self.document?.analyzer.invalidateEditorInfo()
@@ -395,7 +395,7 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     
     
     /// document updated syntax style
-    @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
+    @objc private func didChangeSyntaxStyle(_ notification: Notification) {
         
         guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         
@@ -413,13 +413,13 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     
     
     /// theme did update
-    @objc private func didUpdateTheme(_ notification: Notification?) {
+    @objc private func didUpdateTheme(_ notification: Notification) {
         
         guard
-            let oldName = notification?.userInfo?[Notification.UserInfoKey.old] as? String,
+            let oldName = notification.userInfo?[Notification.UserInfoKey.old] as? String,
             oldName == self.theme?.name else { return }
         
-        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        let newName = (notification.userInfo?[Notification.UserInfoKey.new] as? String) ?? ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.setTheme(name: newName)
     }
