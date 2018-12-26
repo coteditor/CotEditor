@@ -19,6 +19,7 @@ Change Log
 - Disable “Hide Toolbar” command for the preferences window.
 - Improve general performance.
 - Update German localization (Thanks to J-rg!).
+- [trivial] Make the minimum width of outline inspector wider.
 
 
 ### Fixes
