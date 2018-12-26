@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,14 +28,12 @@
 /* Class = "NSTextFieldCell"; title = "Syntax Style Mapping Conflicts"; ObjectID = "1022"; */
 "1022.title" = "ファイル関連付けのコンフリクト";
 
-/* Class = "NSTextFieldCell"; title = "CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditorは自動的に最初のスタイルを使用します。解決するにはそれぞれのシンタックススタイルを編集してください。";
+/* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
+"gnp-H7-p1W.title" = "以下のファイル関連付けルールはいくつかのスタイルで重複して登録されています。CotEditorは自動的に最初のスタイルを使用します。解決するにはそれぞれのシンタックススタイルを編集してください。";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
 "31z-NP-PkW.title" = "拡張子:";
-/* Class = "NSTextFieldCell"; title = "The following extensions are registered in multiple styles."; ObjectID = "XdB-k6-qyy"; */
-"XdB-k6-qyy.title" = "以下の拡張子はいくつかのスタイルで重複して登録されています。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "qkj-mf-TAf"; */
 "qkj-mf-TAf.headerCell.title" = "拡張子";
@@ -47,8 +45,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
 "Msi-ee-MNF.title" = "ファイル名:";
-/* Class = "NSTextFieldCell"; title = "The following filenames are registered in multiple styles."; ObjectID = "4AH-1o-au2"; */
-"4AH-1o-au2.title" = "以下のファイル名はいくつかのスタイルで重複して登録されています。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
 "YGO-sx-UT0.headerCell.title" = "ファイル名";
@@ -56,6 +52,17 @@
 "cz8-8b-5qL.headerCell.title" = "使用するスタイル";
 /* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "nge-9Z-A9D"; */
 "nge-9Z-A9D.headerCell.title" = "重複しているスタイル";
+
+
+/* Class = "NSTextFieldCell"; title = "Interpreter:"; ObjectID = "kam-EA-6Bv"; */
+"kam-EA-6Bv.title" = "インタープリタ:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "vBH-h4-kc0"; */
+"vBH-h4-kc0.headerCell.title" = "インタープリタ";
+/* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "DCi-HG-D1O"; */
+"DCi-HG-D1O.headerCell.title" = "使用するスタイル";
+/* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "lyj-6e-zZV"; */
+"lyj-6e-zZV.headerCell.title" = "重複しているスタイル";
 
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1021"; */

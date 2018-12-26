@@ -15,6 +15,7 @@ Change Log
 - Apply update of “Show invisible characters” option in the preferences immediately to opened documents.
 - Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
 - Enable the “Share” button in toolbar also in the Text Only mode.
+- Display also mapping conflicts of interpreters in the syntax style file mapping conflict dialog.
 - Make composition views for the Share feature document-modal also in macOS 10.12.
 - Disable “Hide Toolbar” command for the preferences window.
 - Improve general performance.

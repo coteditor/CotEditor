@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2016 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -28,14 +28,12 @@
 /* Class = "NSTextFieldCell"; title = "Syntax Style Mapping Conflicts"; ObjectID = "1022"; */
 "1022.title" = "Dateizuordnungskonflikte";
 
-/* Class = "NSTextFieldCell"; title = "CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditor verwendet den ersten Stil automatisch. Um Konflikte zu beheben, bearbeite jeden Syntaxstil.";
+/* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
+"gnp-H7-p1W.title" = "Die folgenden Dateizuordnungsregeln sind in mehreren Stilen registriert.CotEditor verwendet den ersten Stil automatisch. Um Konflikte zu beheben, bearbeite jeden Syntaxstil.";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
 "31z-NP-PkW.title" = "Suffix:";
-/* Class = "NSTextFieldCell"; title = "The following extensions are registered in multiple styles."; ObjectID = "XdB-k6-qyy"; */
-"XdB-k6-qyy.title" = "Die folgenden Suffixe sind in mehreren Stilen registriert.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "qkj-mf-TAf"; */
 "qkj-mf-TAf.headerCell.title" = "Suffix";
@@ -47,8 +45,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
 "Msi-ee-MNF.title" = "Dateiname:";
-/* Class = "NSTextFieldCell"; title = "The following filenames are registered in multiple styles."; ObjectID = "4AH-1o-au2"; */
-"4AH-1o-au2.title" = "Die folgenden Dateinamen sind in mehreren Stilen registriert.";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
 "YGO-sx-UT0.headerCell.title" = "Dateiname";
@@ -56,6 +52,17 @@
 "cz8-8b-5qL.headerCell.title" = "Angewandter Stil";
 /* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "nge-9Z-A9D"; */
 "nge-9Z-A9D.headerCell.title" = "Duplizierte Stile";
+
+
+/* Class = "NSTextFieldCell"; title = "Interpreter:"; ObjectID = "kam-EA-6Bv"; */
+"kam-EA-6Bv.title" = "Interpreter:";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "vBH-h4-kc0"; */
+"vBH-h4-kc0.headerCell.title" = "Interpreter";
+/* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "DCi-HG-D1O"; */
+"DCi-HG-D1O.headerCell.title" = "Angewandter Stil";
+/* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "lyj-6e-zZV"; */
+"lyj-6e-zZV.headerCell.title" = "Duplizierte Stile";
 
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1021"; */

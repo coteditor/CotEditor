@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2016 CotEditor Project
+ © 2014-2018 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,14 +29,12 @@
 /* Class = "NSTextFieldCell"; title = "Syntax Style Mapping Conflicts"; ObjectID = "1022"; */
 "1022.title" = "语法样式映射冲突";
 
-/* Class = "NSTextFieldCell"; title = "CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditor 将自动使用第一种样式。编译下面的语法样式来解决冲突。";
+/* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
+"gnp-H7-p1W.title" = "CotEditor 将自动使用第一种样式。编译下面的语法样式来解决冲突。";  // FIXME: added the first sentence.
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
 "31z-NP-PkW.title" = "扩展名：";
-/* Class = "NSTextFieldCell"; title = "The following extensions are registered in multiple styles."; ObjectID = "XdB-k6-qyy"; */
-"XdB-k6-qyy.title" = "以下扩展名被注册给了多种语法。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Extension"; ObjectID = "qkj-mf-TAf"; */
 "qkj-mf-TAf.headerCell.title" = "扩展名";
@@ -48,8 +46,6 @@
 
 /* Class = "NSTextFieldCell"; title = "Filename:"; ObjectID = "Msi-ee-MNF"; */
 "Msi-ee-MNF.title" = "文件名：";
-/* Class = "NSTextFieldCell"; title = "The following filenames are registered in multiple styles."; ObjectID = "4AH-1o-au2"; */
-"4AH-1o-au2.title" = "以下文件名被注册给了多种语法样式。";
 
 /* Class = "NSTableColumn"; headerCell.title = "Filename"; ObjectID = "YGO-sx-UT0"; */
 "YGO-sx-UT0.headerCell.title" = "文件名";
@@ -57,6 +53,17 @@
 "cz8-8b-5qL.headerCell.title" = "已使用样式";
 /* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "nge-9Z-A9D"; */
 "nge-9Z-A9D.headerCell.title" = "重复的样式";
+
+
+/* Class = "NSTextFieldCell"; title = "Interpreter:"; ObjectID = "kam-EA-6Bv"; */
+"kam-EA-6Bv.title" = "解释器：";
+
+/* Class = "NSTableColumn"; headerCell.title = "Interpreter"; ObjectID = "vBH-h4-kc0"; */
+"vBH-h4-kc0.headerCell.title" = "解释器";
+/* Class = "NSTableColumn"; headerCell.title = "Used Style"; ObjectID = "DCi-HG-D1O"; */
+"DCi-HG-D1O.headerCell.title" = "已使用样式";
+/* Class = "NSTableColumn"; headerCell.title = "Duplicated Styles"; ObjectID = "lyj-6e-zZV"; */
+"lyj-6e-zZV.headerCell.title" = "重复的样式";
 
 
 /* Class = "NSButtonCell"; title = "Close"; ObjectID = "1021"; */
