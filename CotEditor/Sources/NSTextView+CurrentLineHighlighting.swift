@@ -42,7 +42,7 @@ extension CurrentLineHighlighting where Self: NSTextView {
     func drawCurrentLine(in dirtyRect: NSRect) {
         
         if self.needsUpdateLineHighlight {
-            self.invalidateLineHighLightRect()
+            self.lineHighLightRect = self.calcurateLineHighLightRect()
             self.needsUpdateLineHighlight = false
         }
         
@@ -66,19 +66,21 @@ extension CurrentLineHighlighting where Self: NSTextView {
     // MARK: Private Methods
     
     /// update lineHighLightRect
-    private func invalidateLineHighLightRect() {
+    private func calcurateLineHighLightRect() -> NSRect {
         
         let lineRange = (self.string as NSString).lineRange(for: self.selectedRange, excludingLastLineEnding: true)
         
         guard
-            let rect = self.boundingRect(for: lineRange),
-            let textContainer = self.textContainer
-            else { return assertionFailure() }
+            let textContainer = self.textContainer,
+            let rect = self.boundingRect(for: lineRange)
+            else { assertionFailure(); return .zero }
         
-        self.lineHighLightRect = NSRect(x: textContainer.lineFragmentPadding,
-                                        y: rect.minY,
-                                        width: textContainer.size.width - 2 * textContainer.lineFragmentPadding,
-                                        height: rect.height)
+        return NSRect(x: 0,
+                      y: rect.minY,
+                      width: textContainer.size.width,
+                      height: rect.height)
+            .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
+            .integral
     }
     
 }
