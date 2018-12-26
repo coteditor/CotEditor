@@ -37,7 +37,7 @@ final class DocumentWindow: NSWindow {
     var backgroundAlpha: CGFloat = 1.0 {
         
         didSet {
-            backgroundAlpha = backgroundAlpha.clamped(min: 0.2, max: 1.0)
+            backgroundAlpha = backgroundAlpha.clamped(to: 0.2...1.0)
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)
             self.isOpaque = (backgroundAlpha == 1.0)
             self.invalidateShadow()
