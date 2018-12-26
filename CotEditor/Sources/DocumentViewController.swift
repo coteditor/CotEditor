@@ -565,14 +565,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Action Messages
     
-    /// toggle visibility of status bar with fancy animation
-    @IBAction func toggleStatusBar(_ sender: Any?) {
+    /// re-color whole document
+    @IBAction func recolorAll(_ sender: Any?) {
         
-        NSAnimationContext.current.withAnimation {
-            self.isStatusBarShown.toggle()
-        }
+        self.invalidateSyntaxHighlight()
+    }
+    
+    
+    /// set new theme from menu item
+    @IBAction func changeTheme(_ sender: AnyObject?) {
         
-        UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
+        guard let name = sender?.title else { return assertionFailure() }
+        
+        self.setTheme(name: name)
     }
     
     
@@ -594,10 +599,101 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// toggle visibility of status bar with fancy animation
+    @IBAction func toggleStatusBar(_ sender: Any?) {
+        
+        NSAnimationContext.current.withAnimation {
+            self.isStatusBarShown.toggle()
+        }
+        
+        UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
+    }
+    
+    
+    /// toggle visibility of page guide line in text view
+    @IBAction func togglePageGuide(_ sender: Any?) {
+        
+        self.showsPageGuide.toggle()
+    }
+    
+    
     /// toggle if lines wrap at window edge
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
         self.wrapsLines.toggle()
+    }
+    
+    
+    /// toggle visibility of invisible characters in text view
+    @IBAction func toggleInvisibleChars(_ sender: Any?) {
+        
+        self.showsInvisibles.toggle()
+    }
+    
+    
+    /// toggle if antialias text in text view
+    @IBAction func toggleAntialias(_ sender: Any?) {
+        
+        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
+        
+        for viewController in self.editorViewControllers {
+            viewController.textView?.usesAntialias = !usesAntialias
+        }
+    }
+    
+    
+    /// toggle if text view expands tab input
+    @IBAction func toggleAutoTabExpand(_ sender: Any?) {
+        
+        self.isAutoTabExpandEnabled.toggle()
+    }
+    
+    
+    /// change tab width from the main menu
+    @IBAction func changeTabWidth(_ sender: NSMenuItem) {
+        
+        self.tabWidth = sender.tag
+    }
+    
+    
+    /// change tab width to desired number through a sheet
+    @IBAction func customizeTabWidth(_ sender: Any?) {
+        
+        let viewController = CustomTabWidthViewController.instantiate(storyboard: "CustomTabWidthView")
+        viewController.defaultWidth = self.tabWidth
+        viewController.completionHandler = { [weak self] (tabWidth) in
+            self?.tabWidth = tabWidth
+        }
+        
+        self.presentAsSheet(viewController)
+    }
+    
+    
+    /// make text layout orientation horizontal
+    @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = false
+    }
+    
+    
+    /// make text layout orientation vertical
+    @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = true
+    }
+    
+    
+    /// make entire writing direction LTR
+    @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
+        
+        self.writingDirection = .leftToRight
+    }
+    
+    
+    /// make entire writing direction RTL
+    @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
+        
+        self.writingDirection = .rightToLeft
     }
     
     
@@ -631,102 +727,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         default:
             assertionFailure("Segmented layout orientation button must have 2 segments only.")
         }
-    }
-    
-    
-    /// make text layout orientation horizontal
-    @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
-        
-        self.verticalLayoutOrientation = false
-    }
-    
-    
-    /// make text layout orientation vertical
-    @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
-        
-        self.verticalLayoutOrientation = true
-    }
-    
-    
-    /// make entire writing direction LTR
-    @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
-        
-        self.writingDirection = .leftToRight
-    }
-    
-    
-    /// make entire writing direction RTL
-    @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
-        
-        self.writingDirection = .rightToLeft
-    }
-    
-    
-    /// toggle if antialias text in text view
-    @IBAction func toggleAntialias(_ sender: Any?) {
-        
-        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
-        
-        for viewController in self.editorViewControllers {
-            viewController.textView?.usesAntialias = !usesAntialias
-        }
-    }
-    
-    
-    /// toggle visibility of invisible characters in text view
-    @IBAction func toggleInvisibleChars(_ sender: Any?) {
-        
-        self.showsInvisibles.toggle()
-    }
-    
-    
-    /// toggle visibility of page guide line in text view
-    @IBAction func togglePageGuide(_ sender: Any?) {
-        
-        self.showsPageGuide.toggle()
-    }
-    
-    
-    /// toggle if text view expands tab input
-    @IBAction func toggleAutoTabExpand(_ sender: Any?) {
-        
-        self.isAutoTabExpandEnabled.toggle()
-    }
-    
-    
-    /// change tab width from the main menu
-    @IBAction func changeTabWidth(_ sender: NSMenuItem) {
-        
-        self.tabWidth = sender.tag
-    }
-    
-    
-    /// change tab width to desired number through a sheet
-    @IBAction func customizeTabWidth(_ sender: Any?) {
-        
-        let viewController = CustomTabWidthViewController.instantiate(storyboard: "CustomTabWidthView")
-        viewController.defaultWidth = self.tabWidth
-        viewController.completionHandler = { [weak self] (tabWidth) in
-            self?.tabWidth = tabWidth
-        }
-        
-        self.presentAsSheet(viewController)
-    }
-    
-    
-    /// set new theme from menu item
-    @IBAction func changeTheme(_ sender: AnyObject?) {
-        
-        guard let name = sender?.title else { return assertionFailure() }
-        
-        self.setTheme(name: name)
-    }
-    
-    
-    /// re-color whole document
-    @IBAction func recolorAll(_ sender: Any?) {
-        
-        self.invalidateSyntaxHighlight()
     }
     
     
