@@ -29,7 +29,7 @@ import Cocoa
 private let maximumNumberOfSplitEditors = 8
 
 
-final class DocumentViewController: NSSplitViewController, NSMenuItemValidation, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
+final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate, ThemeHolder, NSTextStorageDelegate {
     
     // MARK: Private Properties
     
@@ -194,138 +194,101 @@ final class DocumentViewController: NSSplitViewController, NSMenuItemValidation,
     }
     
     
-    /// apply current state to related toolbar items
+    /// apply current state to related UI items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch (action, item) {
-        case (#selector(recolorAll), _):
+        switch item.action {
+        case #selector(recolorAll)?:
             return self.syntaxParser?.canParse ?? false
             
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(togglePageGuide), let item as StatableToolbarItem):
-            item.state = self.showsPageGuide ? .on : .off
-            
-        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
-            item.state = self.showsInvisibles ? .on : .off
-            
-            // disable button if item cannot be enabled
-            if self.canActivateShowInvisibles {
-                item.toolTip = "Show or hide invisible characters in document".localized
-            } else {
-                item.toolTip = "To show invisible characters, set them in Preferences".localized
-                return false
+        case #selector(changeTheme)?:
+            if let item = item as? NSMenuItem {
+                item.state = (self.theme?.name == item.title) ? .on : .off
             }
             
-        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
-            item.state = self.isAutoTabExpandEnabled ? .on : .off
+        case #selector(toggleNavigationBar)?:
+            (item as? NSMenuItem)?.title = self.showsNavigationBar
+                ? "Hide Navigation Bar".localized
+                : "Show Navigation Bar".localized
             
-        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
+        case #selector(toggleLineNumber)?:
+            (item as? NSMenuItem)?.title = self.showsLineNumber
+                ? "Hide Line Numbers".localized
+                : "Show Line Numbers".localized
+            
+        case #selector(toggleStatusBar)?:
+            (item as? NSMenuItem)?.title = self.isStatusBarShown
+                ? "Hide Status Bar".localized
+                : "Show Status Bar".localized
+            
+        case #selector(togglePageGuide)?:
+            (item as? NSMenuItem)?.title = self.showsPageGuide
+                ? "Hide Page Guide".localized
+                : "Show Page Guide".localized
+            (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
+            
+        case #selector(toggleLineWrap)?:
+            (item as? NSMenuItem)?.title = self.wrapsLines
+                ? "Unwrap Lines".localized
+                : "Wrap Lines".localized
+            (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
+            
+        case #selector(toggleInvisibleChars)?:
+            (item as? NSMenuItem)?.title = self.showsInvisibles
+                ? "Hide Invisible Characters".localized
+                : "Show Invisible Characters".localized
+            (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
+            
+            // disable if item cannot be enabled
+            item.toolTip = self.canActivateShowInvisibles
+                ? "Show or hide invisible characters in document".localized
+                : "To show invisible characters, set them in Preferences".localized
+            return self.canActivateShowInvisibles
+            
+        case #selector(toggleAntialias)?:
+            (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
+            
+        case #selector(toggleAutoTabExpand)?:
+            (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+        case #selector(changeTabWidth)?:
+            (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
+            
+        case #selector(makeLayoutOrientationHorizontal)?:
+            (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
+            
+        case #selector(makeLayoutOrientationVertical)?:
+            (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
+            
+        case #selector(makeWritingDirectionLeftToRight)?:
+            (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
+            return !self.verticalLayoutOrientation
+            
+        case #selector(makeWritingDirectionRightToLeft)?:
+            (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
+            return !self.verticalLayoutOrientation
+            
+        case #selector(changeWritingDirection)?:
             let tag: Int = {
                 switch (self.verticalLayoutOrientation, self.writingDirection) {
-                case (true, _):
-                    return 2
-                case (false, .rightToLeft):
-                    return 1
-                default:
-                    return 0
+                case (true, _): return 2
+                case (false, .rightToLeft): return 1
+                default: return 0
                 }
             }()
-            item.segmentedControl?.selectSegment(withTag: tag)
+            (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
             
-        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
+        case #selector(changeOrientation)?:
             let tag = self.verticalLayoutOrientation ? 1 : 0
-            item.segmentedControl?.selectSegment(withTag: tag)
+            (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
+            
+        case #selector(closeSplitTextView)?:
+            return (self.splitViewController?.splitViewItems.count ?? 0) > 1
             
         default: break
         }
         
-        return true
-    }
-    
-    
-    
-    // MARK: Menu Item Validation
-    
-    /// validate menu items
-    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        guard let action = menuItem.action else { return false }
-        
-        switch action {
-        case #selector(recolorAll):
-            return self.syntaxParser?.canParse ?? false
-            
-        case #selector(toggleStatusBar):
-            let title = self.isStatusBarShown ? "Hide Status Bar" : "Show Status Bar"
-            menuItem.title = title.localized
-            
-        case #selector(toggleNavigationBar):
-            let title = self.showsNavigationBar ? "Hide Navigation Bar" : "Show Navigation Bar"
-            menuItem.title = title.localized
-            
-        case #selector(toggleLineNumber):
-            let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
-            menuItem.title = title.localized
-            
-        case #selector(toggleLineWrap):
-            let title = self.wrapsLines ? "Unwrap Lines" : "Wrap Lines"
-            menuItem.title = title.localized
-            
-        case #selector(togglePageGuide):
-            let title = self.showsPageGuide ? "Hide Page Guide" : "Show Page Guide"
-            menuItem.title = title.localized
-            
-        case #selector(toggleInvisibleChars):
-            let title = self.showsInvisibles ? "Hide Invisible Characters" : "Show Invisible Characters"
-            menuItem.title = title.localized
-            // disable button if item cannot be enable
-            if self.canActivateShowInvisibles {
-                menuItem.toolTip = "Show or hide invisible characters in document".localized
-            } else {
-                menuItem.toolTip = "To show invisible characters, set them in Preferences".localized
-                return false
-            }
-            
-        case #selector(toggleAutoTabExpand):
-            menuItem.state = self.isAutoTabExpandEnabled ? .on : .off
-            
-        case #selector(makeLayoutOrientationHorizontal):
-            menuItem.state = self.verticalLayoutOrientation ? .off : .on
-            
-        case #selector(makeLayoutOrientationVertical):
-            menuItem.state = self.verticalLayoutOrientation ? .on : .off
-            
-        case #selector(makeWritingDirectionLeftToRight):
-            menuItem.state = (self.writingDirection == .leftToRight) ? .on : .off
-            return !self.verticalLayoutOrientation
-            
-        case #selector(makeWritingDirectionRightToLeft):
-            menuItem.state = (self.writingDirection == .rightToLeft) ? .on : .off
-            return !self.verticalLayoutOrientation
-            
-        case #selector(toggleAntialias):
-            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
-            
-        case #selector(changeTabWidth):
-            menuItem.state = (self.tabWidth == menuItem.tag) ? .on : .off
-            
-        case #selector(closeSplitTextView):
-            return ((self.splitViewController?.splitViewItems.count ?? 0) > 1)
-            
-        case #selector(changeTheme):
-            menuItem.state = (self.theme?.name == menuItem.title) ? .on : .off
-            
-        default: break
-        }
-        
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     
