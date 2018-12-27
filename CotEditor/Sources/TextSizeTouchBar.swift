@@ -38,6 +38,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     // MARK: Private Properties
     
     private weak var textContainer: NSTextContainer?  // hold textContainer instead of textView, which cannot be weak
+    private var scaleObserver: NSKeyValueObservation!
     
     
     
@@ -55,13 +56,23 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         self.delegate = self
         self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
         
-        NotificationCenter.default.addObserver(self, selector: #selector(invalidateSlider), name: NSTextView.didChangeScaleNotification, object: textView)
+        // observe scale for slider
+        self.scaleObserver = textView.observe(\.scale) { [weak self] (textView, _) in
+            guard let item = self?.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return assertionFailure() }
+            
+            item.slider.doubleValue = Double(textView.scale)
+        }
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        self.scaleObserver.invalidate()
     }
     
     
@@ -143,14 +154,6 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     private var textView: NSTextView? {
         
         return self.textContainer?.textView
-    }
-    
-    /// validate text size slider in touch bar
-    @objc private func invalidateSlider(_ notification: Notification) {
-        
-        guard let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return }
-        
-        item.slider.doubleValue = Double(self.textView?.scale ?? 1.0)
     }
     
 }
