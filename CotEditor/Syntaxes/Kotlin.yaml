@@ -29,14 +29,13 @@ numbers:
 - beginString: "\\b[0-9][0-9_]*\\.[0-9][0-9_]*([eE][0-9]+)?f?\\b"
   description: "Float"
   regularExpression: true
-- beginString: "\\b[0-9][0-9_]*L?\\b"
+- beginString: "\\b[0-9][0-9_]*(L|l|ul)?\\b"
   regularExpression: true
-  ignoreCase: false
+  ignoreCase: true
   description: "Int"
 keywords:
 - beginString: "!in"
 - beginString: "!is"
-  ignoreCase: false
 - beginString: "abstract"
 - beginString: "actual"
 - beginString: "annotation"
@@ -104,7 +103,6 @@ keywords:
 - beginString: "val"
 - beginString: "var"
 - beginString: "vararg"
-  ignoreCase: false
 - beginString: "when"
 - beginString: "where"
 - beginString: "while"
