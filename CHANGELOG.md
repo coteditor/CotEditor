@@ -5,6 +5,11 @@ Change Log
 3.6.10 (unreleased)
 --------------------------
 
+### New Features
+
+- Add syntax style for “Kotlin”.
+
+
 ### Improvements
 
 - Change counting method of the cursor location and column to 1-based (formerly 0-based).

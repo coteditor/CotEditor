@@ -310,6 +310,19 @@
       "julia"
     ]
   },
+  "Kotlin": {
+    "extensions": [
+      "kt",
+      "kts"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+      "kotlin",
+      "kotlinc"
+    ]
+  },
   "LaTeX": {
     "extensions": [
       "tex",
