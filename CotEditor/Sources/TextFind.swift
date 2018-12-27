@@ -200,7 +200,7 @@ final class TextFind {
             }
         })
         
-        var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
+        var foundRange = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
         let isWrapped = (foundRange == nil && isWrap)
@@ -383,7 +383,7 @@ final class TextFind {
     
     
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
         
         switch self.mode {
         case .textual:
@@ -396,7 +396,7 @@ final class TextFind {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateTextualMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
         
         guard !self.string.isEmpty else { return }
         
@@ -423,13 +423,13 @@ final class TextFind {
                 guard !stop else { return }
             }
             
-            scopeCompletionHandler?(scopeRange)
+            scopeCompletionHandler(scopeRange)
         }
     }
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateRegularExpressionMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
         
         guard !self.string.isEmpty else { return }
         
@@ -452,7 +452,7 @@ final class TextFind {
                 }
             }
             
-            scopeCompletionHandler?(scopeRange)
+            scopeCompletionHandler(scopeRange)
         }
     }
     

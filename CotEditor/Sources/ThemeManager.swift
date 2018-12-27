@@ -101,7 +101,7 @@ final class ThemeManager: SettingFileManaging {
     
     
     /// save setting file
-    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
+    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -117,19 +117,19 @@ final class ThemeManager: SettingFileManaging {
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
             
-            completionHandler?()
+            completionHandler()
         }
     }
     
     
     /// create a new untitled setting
-    func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
+    func createUntitledSetting(completionHandler: @escaping ((_ settingName: String) -> Void) = { _ in }) throws {
         
         // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: "Untitled".localized)
         
         try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
-            completionHandler?(name)
+            completionHandler(name)
         }
     }
     
