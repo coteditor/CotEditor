@@ -90,6 +90,15 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [unowned self] change in
                 self.showsInvisibles = change.new!
             },
+            UserDefaults.standard.observe(key: .showLineNumbers, options: [.new]) { [unowned self] change in
+                self.showsLineNumber = change.new!
+            },
+            UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [unowned self] change in
+                self.showsPageGuide = change.new!
+            },
+            UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [unowned self] change in
+                self.wrapsLines = change.new!
+            },
         ]
         
         // observe appearance change for theme toggle

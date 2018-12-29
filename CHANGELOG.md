@@ -17,7 +17,7 @@ Change Log
 - Make editing multiple replacement definitions undoable.
 - Syntax highlight regular expression patterns in the syntax style editor, multiple replacement definitions, and the custom sort dialog.
 - Move focus to the editor when lines are selected by clicking line numbers.
-- Apply update of “Show invisible characters” option in the preferences immediately to opened documents.
+- Apply update of “Line numbers”, “Page guide” and “invisible characters” visibility options in the preferences immediately to opened documents.
 - Suppress the dialog asking if you want to keep the document when an unsaved empty document is about to close, and silently discard the auto-saved backup file.
 - Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
 - Enable the “Share” button in toolbar also in the Text Only mode.
