@@ -20,7 +20,7 @@
                                     <rect key="frame" x="1" y="0.0" width="432" height="294"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="ihI-nZ-eZa" viewBased="YES" id="N7j-We-fF0">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="ihI-nZ-eZa" viewBased="YES" id="N7j-We-fF0">
                                             <rect key="frame" x="0.0" y="0.0" width="432" height="271"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
