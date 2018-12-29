@@ -221,7 +221,9 @@ extension SyntaxParser {
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
-        guard var highlightRange = editedRange.intersection(wholeRange) else { return nil }
+        guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
+        
+        var highlightRange = editedRange
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {

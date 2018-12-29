@@ -37,6 +37,7 @@ Change Log
 
 - Fix an issue where the final number of the replacement in the progress dialog was occasionally underrated.
 - Fix an issue where the cursor could not be set at the end of the document via AppleScript or `cot` command.
+- Fix an issue where syntax highlight was not updated in specific condition when deleted.
 - Fix the preferences pane switching animation under macOS 10.13 and earlier.
 - [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific conditions.
 - [trivial] Fix an issue where editor occasionally scrolled unintendedly when an arrow key is pressed.
