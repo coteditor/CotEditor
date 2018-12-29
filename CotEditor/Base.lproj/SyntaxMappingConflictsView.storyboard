@@ -552,8 +552,8 @@ DQ
                                                                     <sortDescriptor key="sortDescriptorPrototype" selector="caseInsensitiveCompare:" sortKey="doubledStyles"/>
                                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                     <prototypeCellViews>
-                                                                        <tableCellView misplaced="YES" id="lhF-Id-XwW">
-                                                                            <rect key="frame" x="196" y="1" width="159" height="16"/>
+                                                                        <tableCellView id="lhF-Id-XwW">
+                                                                            <rect key="frame" x="196" y="1" width="159" height="17"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
                                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="U4F-FD-huB">
