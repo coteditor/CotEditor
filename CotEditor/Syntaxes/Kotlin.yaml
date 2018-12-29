@@ -1,22 +1,37 @@
-outlineMenu: []
-values:
-- beginString: "false"
-- beginString: "null"
-- beginString: "true"
-comments: []
-interpreters:
-- keyString: "kotlin"
-- keyString: "kotlinc"
 metadata:
   distributionURL: "https://coteditor.com"
   lastModified: "2018-12-28"
   author: "1024jp"
   license: "Same as CotEditor"
   version: "1.0.0"
+extensions:
+- keyString: "kt"
+- keyString: "kts"
+filenames: []
+interpreters:
+- keyString: "kotlin"
+- keyString: "kotlinc"
+outlineMenu:
+- beginString: "^([ \\t]*)(?:[a-z]+ ){0,3}class +([a-zA-Z0-9_]+)"
+  bold: true
+  ignoreCase: false
+  description: "class"
+  keyString: "$1$2"
+- beginString: "^([ \\t]*)(?:[a-z]+ ){0,3}fun +([a-zA-Z0-9_]+\\([^\\)]*\\))"
+  keyString: "$1$2"
+  description: "function"
+values:
+- beginString: "false"
+- beginString: "null"
+- beginString: "true"
+comments: []
 characters:
 - beginString: "'"
   endString: "'"
-attributes: []
+attributes:
+- beginString: "@[a-z][a-zA-Z0-9_]*\\b"
+  description: "annotation"
+  regularExpression: true
 numbers:
 - beginString: "\\b0b[01][01_]*\\b"
   regularExpression: true
@@ -106,7 +121,6 @@ keywords:
 - beginString: "when"
 - beginString: "where"
 - beginString: "while"
-filenames: []
 variables:
 - beginString: "super"
 - beginString: "this"
@@ -139,7 +153,4 @@ strings:
 - beginString: "\"\"\""
   endString: "\"\"\""
 completions: []
-extensions:
-- keyString: "kt"
-- keyString: "kts"
 commands: []
