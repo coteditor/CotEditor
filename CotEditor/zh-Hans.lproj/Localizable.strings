@@ -111,10 +111,10 @@
 
 /* MARK: Multiple Replacement View Controller */
 // Undo action names
-"Insert Rule" = "Insert Rule";  // FIXME: added
-"Delete Rules" = "Delete Rules";  // FIXME: added
-"Edit Rule" = "Edit Rule";  // FIXME: added
-"Move Rules" = "Move Rules";  // FIXME: added
+"Insert Rule" = "插入规则";
+"Delete Rules" = "删除规则";
+"Edit Rule" = "编辑规则";
+"Move Rules" = "移动规则";
 
 
 
