@@ -30,7 +30,7 @@
 "1022.title" = "Mappatura dei conflitti di stile sintassi";
 
 /* Class = "NSTextFieldCell"; title = "The following file mapping rules are registered in multiple styles. CotEditor uses the first style automatically. To resolve conflicts, edit each syntax style."; ObjectID = "gnp-H7-p1W"; */
-"gnp-H7-p1W.title" = "CotEditor usa automaticamente il primo stile. Per risolvere i conflitti, modificare ciascuno stile di sintassi.";  // FIXME: added the first sentence.
+"gnp-H7-p1W.title" = "Le seguenti regole di mappatura del file sono registrate per più stili. CotEditor usa automaticamente il primo stile. Per risolvere eventuali conflitti, modificare ciascuno stile di sintassi";
 
 
 /* Class = "NSTextFieldCell"; title = "Extension:"; ObjectID = "31z-NP-PkW"; */
