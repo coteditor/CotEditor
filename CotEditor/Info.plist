@@ -526,6 +526,27 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>kt</string>
+				<string>kts</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>KotlinIcon</string>
+			<key>CFBundleTypeName</key>
+			<string>Kotlin source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.kotlinlang.source</string>
+			</array>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).Document</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>lisp</string>
 				<string>lsp</string>
 			</array>
@@ -1139,6 +1160,28 @@
 	</array>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.source-code</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Kotlin script</string>
+			<key>UTTypeIconFile</key>
+			<string>KotlinIcon</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.kotlinlang.source</string>
+			<key>UTTypeReferenceURL</key>
+			<string>https://kotlinlang.org</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>kt</string>
+					<string>kts</string>
+				</array>
+			</dict>
+		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>

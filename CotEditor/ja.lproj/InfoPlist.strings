@@ -52,6 +52,7 @@
 "JavaScript" = "JavaScript";
 "JSON" = "JSON";
 "Julia script" = "Juliaスクリプト";
+"Kotlin source" = "Kotlinソース";
 "Lisp script" = "Lispスクリプト";
 "Lua script" = "Luaスクリプト";
 "Markdown document" = "Markdown書類";
