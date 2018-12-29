@@ -15,8 +15,8 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-ng-N5P">
-                                <rect key="frame" x="130" y="278" width="301" height="18"/>
-                                <buttonCell key="cell" type="check" title="Ignore line endings when couinting characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
+                                <rect key="frame" x="130" y="278" width="298" height="18"/>
+                                <buttonCell key="cell" type="check" title="Ignore line endings when counting characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
