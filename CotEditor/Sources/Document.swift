@@ -571,6 +571,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                     }
                     
                     shouldClose = true
+                    self.fileURL = nil
                 }
             }
         }
