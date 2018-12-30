@@ -35,6 +35,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     private var appearanceObserver: NSKeyValueObservation?
     private var defaultsObservers: [UserDefaultsObservation] = []
+    private weak var syntaxHighlightProgress: Progress?
     
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
@@ -328,8 +329,15 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                if let progress = syntaxParser.highlight(around: editedRange) {
-                    self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                if let progress = self?.syntaxHighlightProgress {
+                    // retry syntax highlight if the last highlightAll has not finished yet
+                    progress.cancel()
+                    self?.syntaxHighlightProgress = syntaxParser.highlightAll()
+                    
+                } else {
+                    if let progress = syntaxParser.highlight(around: editedRange) {
+                        self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                    }
                 }
             }
         }
@@ -823,6 +831,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let length = self.syntaxParser?.textStorage.length
             else { return }
         
+        self.syntaxHighlightProgress = progress
         self.presentHighlightIndicator(progress: progress, highlightLength: length)
     }
     
