@@ -90,7 +90,7 @@ final class SyntaxParser {
     
     
     deinit {
-        self.invalidateCurrentParce()
+        self.invalidateCurrentParse()
     }
     
     
@@ -105,7 +105,7 @@ final class SyntaxParser {
     
     
     /// cancel all syntax parse
-    func invalidateCurrentParce() {
+    func invalidateCurrentParse() {
         
         self.highlightCache = nil
         self.outlineUpdateTask.cancel()

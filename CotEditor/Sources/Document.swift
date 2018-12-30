@@ -598,7 +598,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// close document
     override func close() {
         
-        self.syntaxParser.invalidateCurrentParce()
+        self.syntaxParser.invalidateCurrentParse()
         
         super.close()
     }
@@ -906,7 +906,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
-        self.syntaxParser.invalidateCurrentParce()
+        self.syntaxParser.invalidateCurrentParse()
         self.syntaxParser.style = syntaxStyle
         
         DispatchQueue.main.async { [weak self] in
