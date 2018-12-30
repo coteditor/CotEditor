@@ -30,7 +30,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// whole range in NSRange
     var nsRange: NSRange {
         
-        return NSRange(self.startIndex..<self.endIndex, in: self)
+        return NSRange(..<self.endIndex, in: self)
     }
     
 }

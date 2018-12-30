@@ -142,15 +142,15 @@ extension SyntaxParser {
     /// parse outline
     private func parseOutline() {
         
-        let string = self.textStorage.string
-        guard !string.isEmpty else {
+        let wholeRange = NSRange(0..<self.textStorage.length)
+        guard wholeRange.length > 0 else {
             self.outlineItems = []
             return
         }
         
         let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
-                                              string: string.immutable,
-                                              range: string.nsRange)
+                                              string: self.textStorage.string.immutable,
+                                              range: wholeRange)
         
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
@@ -184,7 +184,7 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        let wholeRange = self.textStorage.string.nsRange
+        let wholeRange = NSRange(0..<self.textStorage.length)
         
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.string == self.textStorage.string {
@@ -195,7 +195,7 @@ extension SyntaxParser {
         
         // make sure that string is immutable
         //   -> `string` of NSTextStorage is actually a mutable object
-        //      and it can cause crash when the mutable string is given to NSRegularExpression instance.
+        //      and it can cause crash when a mutable string is given to NSRegularExpression instance.
         //      (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
@@ -217,7 +217,7 @@ extension SyntaxParser {
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = self.textStorage.string.immutable
         
-        let wholeRange = string.nsRange
+        let wholeRange = NSRange(0..<self.textStorage.length)
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
@@ -270,6 +270,8 @@ extension SyntaxParser {
     
     /// perform highlighting
     private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+        
+        assert(Thread.isMainThread)
         
         guard highlightRange.length > 0 else { return nil }
         
