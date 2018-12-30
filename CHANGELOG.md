@@ -27,7 +27,7 @@ Change Log
 - Improve general performance.
 - Update German localization (Thanks to J-rg!).
 - Update `cot` command-line tool:
-    - Accept a negative value for <code>--column</code> option to count from the end of the line.
+    - Accept a negative value for `--column` option to count from the end of the line.
     - Change `--column` count from 0-based to 1-based.
     - Fix an issue where the last empty line was ignoed when specifying the cursor position with `--line` option.
 - [trivial] Make the minimum width of outline inspector wider.
