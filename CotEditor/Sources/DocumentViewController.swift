@@ -347,7 +347,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineProgress = nil
             viewController.navigationBarController?.outlineItems = outlineItems
-            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need invoke it (2008-05-16)
+            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it (2008-05-16)
         }
     }
     
@@ -823,12 +823,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// re-highlight whole content
     private func invalidateSyntaxHighlight() {
         
+        self.syntaxHighlightProgress?.cancel()
+        self.syntaxHighlightProgress = self.syntaxParser?.highlightAll()
+        
         guard
-            let progress = self.syntaxParser?.highlightAll(),
-            let length = self.syntaxParser?.textStorage.length
+            let progress = self.syntaxHighlightProgress,
+            let length = self.textStorage?.length
             else { return }
         
-        self.syntaxHighlightProgress = progress
         self.presentHighlightIndicator(progress: progress, highlightLength: length)
     }
     

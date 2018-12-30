@@ -152,7 +152,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.autosaveIdentifier = identifier
         }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
-            self.setSyntaxStyle(name: styleName)
+            if self.syntaxParser.style.name != styleName {
+                self.setSyntaxStyle(name: styleName)
+            }
         }
         if coder.containsValue(forKey: SerializationKey.isVerticalText) {
             self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
@@ -354,7 +356,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
             let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
-            self.setSyntaxStyle(name: styleName)
+            self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
     
@@ -898,7 +900,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change syntax style with style name
-    func setSyntaxStyle(name: String) {
+    func setSyntaxStyle(name: String, isInitial: Bool = false) {
         
         guard
             let syntaxStyle = SyntaxManager.shared.setting(name: name),
@@ -909,7 +911,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.syntaxParser.invalidateCurrentParse()
         self.syntaxParser.style = syntaxStyle
         
+        // skip notification when initial style was set on file open
+        // to avoid redundant highlight parse due to async notification.
+        guard !isInitial else { return }
+        
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             NotificationCenter.default.post(name: Document.didChangeSyntaxStyleNotification, object: self)
         }
     }

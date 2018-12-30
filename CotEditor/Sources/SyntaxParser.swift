@@ -199,9 +199,6 @@ extension SyntaxParser {
         //      (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
-        // avoid parsing twice for the same string
-        guard (self.syntaxHighlightParseOperationQueue.operations.last as? SyntaxHighlightParseOperation)?.string != string else { return nil }
-        
         return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
     }
     
