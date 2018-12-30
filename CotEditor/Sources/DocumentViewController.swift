@@ -307,16 +307,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// text did edit
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
-        // ignore if only attributes did change
-        guard let textStorage = notification.object as? NSTextStorage,
-            textStorage.editedMask.contains(.editedCharacters) else { return }
-        
-        // don't update when input text is not yet fixed.
-        guard self.focusedTextView?.hasMarkedText() != true else { return }
+        // ignore if only attributes did change or input text is not yet fixed.
+        guard
+            let textStorage = notification.object as? NSTextStorage,
+            textStorage.editedMask.contains(.editedCharacters),
+            self.focusedTextView?.hasMarkedText() != true
+            else { return }
         
         // update editor information
         // -> In case, if "Replace All" performed without moving caret.
         self.document?.analyzer.invalidateEditorInfo()
+        
+        // update incompatible characters list
+        self.document?.incompatibleCharacterScanner.invalidate()
         
         // parse syntax
         if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
@@ -325,14 +328,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                guard let progress = syntaxParser.highlight(around: editedRange) else { return }
-                
-                self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                if let progress = syntaxParser.highlight(around: editedRange) {
+                    self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                }
             }
         }
-        
-        // update incompatible characters list
-        self.document?.incompatibleCharacterScanner.invalidate()
     }
     
     
