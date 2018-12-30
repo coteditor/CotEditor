@@ -46,7 +46,6 @@ Change Log
 ### TODO
 
 - Update `cot` submodule.
-- Localization.
 - Update copyright year
 
 

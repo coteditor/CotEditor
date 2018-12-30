@@ -68,7 +68,7 @@
 "lzy-Ei-xlT.title" = "Análise de conteúdo:"; 
 
 /* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
-"3306.title" = "Ignore line endings when counting characters";  // FIXME: updated
+"3306.title" = "Ignorar finais de linha ao contar caracteres";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "Criar links de URLs no documento";
 /* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
