@@ -66,11 +66,11 @@ extension NSTextView {
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = self.string.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            let isSelected = selectedLineRanges.contains { lineRange.intersection($0) != nil }
+            let isSelected = selectedLineRanges.contains { $0.intersection(lineRange) != nil }
             glyphIndex = lineGlyphRange.upperBound
             
-            var wrappedLineGlyphIndex = lineGlyphRange.location
-            while wrappedLineGlyphIndex < glyphIndex {  // process visually wrapped lines
+            var wrappedLineGlyphIndex = max(lineGlyphRange.location, glyphRangeToDraw.lowerBound)
+            while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
                 let line: Line = (range.location == lineGlyphRange.location) ? .new(lineNumber, isSelected) : .wrapped
