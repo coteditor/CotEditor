@@ -326,15 +326,18 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
             syntaxParser.invalidateOutline()
             
-            if let progress = self.syntaxHighlightProgress {
-                // retry syntax highlight if the last highlightAll has not finished yet
-                progress.cancel()
-                self.syntaxHighlightProgress = syntaxParser.highlightAll()
-                
-            } else {
-                let editedRange = textStorage.editedRange
-                if let progress = syntaxParser.highlight(around: editedRange) {
-                    self.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+            // perform highlight in the next run loop to give layoutManager time to update temporary attribute
+            let editedRange = textStorage.editedRange
+            DispatchQueue.main.async { [weak self] in
+                if let progress = self?.syntaxHighlightProgress {
+                    // retry syntax highlight if the last highlightAll has not finished yet
+                    progress.cancel()
+                    self?.syntaxHighlightProgress = syntaxParser.highlightAll()
+                    
+                } else {
+                    if let progress = syntaxParser.highlight(around: editedRange) {
+                        self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                    }
                 }
             }
         }
