@@ -24,7 +24,7 @@
 <article>
 <header>
 	<h1>CotEditor 3.6.10</h1>
-	<p>release: <time>2019-01-01</time></p>
+	<p>release: <time>2019-01-02</time></p>
 </header>
 
 
@@ -58,6 +58,7 @@
 	<li>Update <code>cot</code> command-line tool:<ul>
 		<li>Accept a negative value for <code>--column</code> option to count from the end of the line.</li>
 		<li>Change <code>--column</code> count from 0-based to 1-based.</li>
+		<li>Improve error message when failed.</li>
 		<li>Fix an issue where the last empty line was ignoed when specifying the cursor position with <code>--line</code> option.</li>
     </ul></li>
 	<li><span class="trivial">trivial</span>: Make the minimum width of outline inspector wider.</li>
@@ -72,6 +73,7 @@
 	<li>Fix an issue where the final number of the replacement in the progress dialog was occasionally underrated.</li>
 	<li>Fix an issue where the cursor could not be set at the end of the document via AppleScript or <code>cot</code> command.</li>
 	<li>Fix an issue where syntax highlight was not updated in a specific condition when deleted.</li>
+	<li>Fix an issue where line number views did not update when editor is scrolled via script.</li>
 	<li>Fix the preferences pane switching animation under macOS 10.13 and earlier.</li>
 	<li><span class="trivial">trivial</span>: Fix a potential issue where last empty line number could be drawn at the first line position under specific conditions.</li>
 	<li><span class="trivial">trivial</span>: Fix an issue where editor occasionally scrolled unintendedly when an arrow key is pressed.</li>
