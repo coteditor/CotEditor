@@ -29,6 +29,7 @@ Change Log
 - Update `cot` command-line tool:
     - Accept a negative value for `--column` option to count from the end of the line.
     - Change `--column` count from 0-based to 1-based.
+    - Improve error message when failed.
     - Fix an issue where the last empty line was ignoed when specifying the cursor position with `--line` option.
 - [trivial] Make the minimum width of outline inspector wider.
 
@@ -45,7 +46,6 @@ Change Log
 
 ### TODO
 
-- Update `cot` submodule.
 - Update copyright year
 
 
