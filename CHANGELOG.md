@@ -45,11 +45,6 @@ Change Log
 - [trivial] Fix an issue where editor occasionally scrolled unintendedly when an arrow key is pressed.
 
 
-### TODO
-
-- Update copyright year
-
-
 
 3.6.9 (305)
 --------------------------
