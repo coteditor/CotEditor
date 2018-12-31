@@ -396,7 +396,7 @@ final class LineNumberView: NSView {
             self.needsDisplay = true
         }
         
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: textView.enclosingScrollView, queue: .main) { [unowned self] _ in
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [unowned self] _ in
             self.needsDisplay = true
         }
         
