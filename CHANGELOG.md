@@ -30,7 +30,7 @@ Change Log
     - Accept a negative value for `--column` option to count from the end of the line.
     - Change `--column` count from 0-based to 1-based.
     - Improve error message when failed.
-    - Fix an issue where the last empty line was ignoed when specifying the cursor position with `--line` option.
+    - Fix an issue where the last empty line was ignored when specifying the cursor position with `--line` option.
 - [trivial] Make the minimum width of outline inspector wider.
 
 
@@ -39,7 +39,7 @@ Change Log
 - Fix an issue where the final number of the replacement in the progress dialog was occasionally underrated.
 - Fix an issue where the cursor could not be set at the end of the document via AppleScript or `cot` command.
 - Fix an issue where syntax highlight was not updated in specific condition when deleted.
-- Fix an issue where line number views did not update when editor is scrolled via script.
+- Fix an issue where line number views did not update when the editor is scrolled via script.
 - Fix the preferences pane switching animation under macOS 10.13 and earlier.
 - [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific conditions.
 - [trivial] Fix an issue where editor occasionally scrolled unintendedly when an arrow key is pressed.
