@@ -15,13 +15,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-ng-N5P">
-                                <rect key="frame" x="130" y="278" width="267" height="18"/>
-                                <buttonCell key="cell" type="check" title="Count each line ending as one character" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
+                                <rect key="frame" x="130" y="278" width="298" height="18"/>
+                                <buttonCell key="cell" type="check" title="Ignore line endings when counting characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="3306">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.countLineEndingAsChar" id="CkO-bw-cyI"/>
+                                    <binding destination="ttU-LH-46v" name="value" keyPath="values.countLineEndingAsChar" id="ALG-y2-EEP">
+                                        <dictionary key="options">
+                                            <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                        </dictionary>
+                                    </binding>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oN2-0G-iXz">

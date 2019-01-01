@@ -65,6 +65,7 @@ final class ThemeViewController: NSViewController {
     // MARK: Private Properties
     
     private var storedMetadata: NSDictionary?
+    private var observedKeys: Set<String> = []
     
     
     
@@ -125,7 +126,13 @@ final class ThemeViewController: NSViewController {
     /// theme is modified
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        self.notifyUpdate()
+        switch keyPath {
+        case let keyPath? where self.observedKeys.contains(keyPath):
+            self.notifyUpdate()
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
     }
     
     
@@ -151,11 +158,13 @@ final class ThemeViewController: NSViewController {
         
         guard let theme = self.theme else { return }
         
+        self.observedKeys.removeAll()
         for (key, subdict) in theme {
             guard key != DictionaryKey.metadata.rawValue else { continue }
             
             for case let keyPath as String in subdict.allKeys {
                 subdict.addObserver(self, forKeyPath: keyPath, context: nil)
+                self.observedKeys.update(with: keyPath)
             }
         }
     }
@@ -166,6 +175,7 @@ final class ThemeViewController: NSViewController {
         
         guard let theme = self.theme else { return }
         
+        self.observedKeys.removeAll()
         for (key, subdict) in theme {
             guard key != DictionaryKey.metadata.rawValue else { continue }
             

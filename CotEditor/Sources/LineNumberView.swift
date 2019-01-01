@@ -191,6 +191,7 @@ final class LineNumberView: NSView {
         // perform redraw on window opacity change
         if let observer = self.opacityObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.opacityObserver = nil
         }
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
             self.setNeedsDisplay(self.visibleRect)
@@ -395,7 +396,7 @@ final class LineNumberView: NSView {
             self.needsDisplay = true
         }
         
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: textView.enclosingScrollView, queue: .main) { [unowned self] _ in
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [unowned self] _ in
             self.needsDisplay = true
         }
         
@@ -516,6 +517,9 @@ extension LineNumberView {
         let pointedRect = window.convertFromScreen(NSRect(origin: point, size: .zero))
         let targetRect = textView.convert(pointedRect, from: nil)
         textView.scrollToVisible(targetRect)
+        
+        // move focus to textView
+        window.makeFirstResponder(textView)
         
         // select lines
         let currentIndex = textView.characterIndex(for: point)

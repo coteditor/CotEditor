@@ -33,14 +33,7 @@ extension NSAppearance {
         
         guard #available(macOS 10.14, *) else { return false }
         
-        switch self.name {
-        case .darkAqua,
-             .accessibilityHighContrastDarkAqua,
-             .accessibilityHighContrastVibrantDark:
-            return true
-        default:
-            return false
-        }
+        return self.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
     }
     
     

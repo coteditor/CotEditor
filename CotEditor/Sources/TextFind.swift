@@ -50,6 +50,36 @@ final class TextFind {
     }
     
     
+    enum `Error`: LocalizedError {
+        
+        case regularExpression(reason: String)
+        case emptyFindString
+        
+        
+        var errorDescription: String? {
+            
+            switch self {
+            case .regularExpression:
+                return "Invalid regular expression".localized
+            case .emptyFindString:
+                return "Empty find string".localized
+            }
+        }
+        
+        
+        var recoverySuggestion: String? {
+            
+            switch self {
+            case .regularExpression(let reason):
+                return reason
+            case .emptyFindString:
+                return "Input text to find.".localized
+            }
+        }
+        
+    }
+    
+    
     
     // MARK: Public Properties
     
@@ -80,13 +110,13 @@ final class TextFind {
     ///   - mode: The settable options for the text search.
     ///   - inSelection: Whether find string only in selectedRanges.
     ///   - selectedRanges: The selected ranges in the text view.
-    /// - Throws: `TextFindError`
+    /// - Throws: `TextFind.Error`
     init(for string: String, findString: String, mode: TextFind.Mode, inSelection: Bool = false, selectedRanges: [NSRange] = [NSRange()]) throws {
         
         assert(!selectedRanges.isEmpty)
         
         guard !findString.isEmpty else {
-            throw TextFindError.emptyFindString
+            throw TextFind.Error.emptyFindString
         }
         
         switch mode {
@@ -109,7 +139,7 @@ final class TextFind {
             do {
                 self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: options)
             } catch {
-                throw TextFindError.regularExpression(reason: error.localizedDescription)
+                throw TextFind.Error.regularExpression(reason: error.localizedDescription)
             }
         }
         
@@ -170,7 +200,7 @@ final class TextFind {
             }
         })
         
-        var foundRange: NSRange? = forward ? forwardMatches.first : wrappedMatches.last
+        var foundRange = forward ? forwardMatches.first : wrappedMatches.last
         
         // wrap search
         let isWrapped = (foundRange == nil && isWrap)
@@ -314,7 +344,9 @@ final class TextFind {
             }
             
             // build selectedRange
-            let locationDelta = zip(selectedRanges, self.selectedRanges).reduce(scopeRange.location) { $0 + ($1.0.length - $1.1.length) }
+            let locationDelta = zip(selectedRanges, self.selectedRanges)
+                .map { $0.0.length - $0.1.length }
+                .reduce(scopeRange.location, +)
             let selectedRange = NSRange(location: locationDelta, length: length)
             selectedRanges.append(selectedRange)
             
@@ -351,7 +383,7 @@ final class TextFind {
     
     
     /// enumerate matchs in string using current settings
-    private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
         
         switch self.mode {
         case .textual:
@@ -364,7 +396,7 @@ final class TextFind {
     
     
     /// enumerate matchs in string using textual search
-    private func enumerateTextualMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateTextualMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
         
         guard !self.string.isEmpty else { return }
         
@@ -391,13 +423,13 @@ final class TextFind {
                 guard !stop else { return }
             }
             
-            scopeCompletionHandler?(scopeRange)
+            scopeCompletionHandler(scopeRange)
         }
     }
     
     
     /// enumerate matchs in string using regular expression
-    private func enumerateRegularExpressionMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void)? = nil) {
+    private func enumerateRegularExpressionMatchs(in ranges: [NSRange], using block: (_ matchedRange: NSRange, _ match: NSTextCheckingResult?, _ stop: inout Bool) -> Void, scopeCompletionHandler: ((NSRange) -> Void) = { _ in }) {
         
         guard !self.string.isEmpty else { return }
         
@@ -420,40 +452,7 @@ final class TextFind {
                 }
             }
             
-            scopeCompletionHandler?(scopeRange)
-        }
-    }
-    
-}
-
-
-
-// MARK: - Error
-
-enum TextFindError: LocalizedError {
-    
-    case regularExpression(reason: String)
-    case emptyFindString
-    
-    
-    var errorDescription: String? {
-        
-        switch self {
-        case .regularExpression:
-            return "Invalid regular expression".localized
-        case .emptyFindString:
-            return "Empty find string".localized
-        }
-    }
-    
-    
-    var recoverySuggestion: String? {
-        
-        switch self {
-        case .regularExpression(let reason):
-            return reason
-        case .emptyFindString:
-            return "Input text to find.".localized
+            scopeCompletionHandler(scopeRange)
         }
     }
     

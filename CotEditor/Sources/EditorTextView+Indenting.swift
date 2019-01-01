@@ -167,10 +167,11 @@ extension Indenting where Self: NSTextView {
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let offset = droppedRanges
                 .prefix { $0.location < selectedRange.location }
-                .reduce(0) { $0 + (selectedRange.intersection($1) ?? $1).length }
+                .map { (selectedRange.intersection($0) ?? $0).length }
+                .reduce(0, +)
             let lengthDiff = droppedRanges
-                .compactMap { selectedRange.intersection($0) }
-                .reduce(0) { $0 + $1.length }
+                .compactMap { selectedRange.intersection($0)?.length }
+                .reduce(0, +)
             
             return NSRange(location: selectedRange.location - offset,
                            length: selectedRange.length - lengthDiff)
@@ -186,12 +187,8 @@ extension Indenting where Self: NSTextView {
         
         guard !self.string.isEmpty else { return }
         
-        let ranges: [NSRange] = {
-            if self.selectedRange.length == 0 {  // convert all if nothing selected
-                return [self.string.nsRange]
-            }
-            return self.selectedRanges as! [NSRange]
-        }()
+        // process whole document if no text selected
+        let ranges = (self.selectedRange.length == 0) ? [self.string.nsRange] : self.selectedRanges as! [NSRange]
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()

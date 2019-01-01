@@ -33,15 +33,15 @@ protocol Themable: AnyObject {
 }
 
 
-struct Theme: Codable {
+struct Theme: Equatable, Codable {
     
-    struct Style {
+    struct Style: Equatable {
         
         var color: NSColor
     }
     
     
-    struct SelectionStyle {
+    struct SelectionStyle: Equatable {
         
         var color: NSColor
         var usesSystemSetting: Bool
@@ -122,14 +122,14 @@ struct Theme: Codable {
     /// Is background color dark?
     var isDarkTheme: Bool {
         
-        return self.background.color.brightnessComponent < self.text.color.brightnessComponent
+        return self.background.color.lightnessComponent < self.text.color.lightnessComponent
     }
     
     
     /// selection color for inactive text view
     var secondarySelectionColor: NSColor? {
         
-        return self.selection.usesSystemSetting ? nil : NSColor(calibratedWhite: self.selection.color.brightnessComponent, alpha: 1.0)
+        return self.selection.usesSystemSetting ? nil : NSColor(calibratedWhite: self.selection.color.lightnessComponent, alpha: 1.0)
     }
     
     

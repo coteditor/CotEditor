@@ -3,10 +3,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.1"
+  version: "1.2.2"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
-  lastModified: "2015-12-25"
+  lastModified: "2018-12-26"
 outlineMenu:
 - beginString: " id=\"(.+?)\""
   description: "id"
@@ -304,9 +304,9 @@ completions:
 - keyString: "z"
 - keyString: "zoomAndPan"
 commands:
-- beginString: "(?<=<)\\?xml"
+- beginString: "(?<=<)\\?xml\\b"
   regularExpression: true
-- beginString: "(?<=<)\\?xml-stylesheet"
+- beginString: "(?<=<)\\?xml-stylesheet\\b"
   regularExpression: true
 - beginString: "\\?(?=>)"
   regularExpression: true
@@ -1089,19 +1089,19 @@ keywords:
 - beginString: "(?<=</?dc:)type\\b"
   regularExpression: true
 variables:
-- beginString: "cc:(?=[a-zA-Z])"
+- beginString: "\\bcc:(?=[a-zA-Z])"
   regularExpression: true
-- beginString: "dc:(?=[a-zA-Z])"
+- beginString: "\\bdc:(?=[a-zA-Z])"
   regularExpression: true
-- beginString: "rdf:(?=[a-zA-Z])"
+- beginString: "\\brdf:(?=[a-zA-Z])"
   regularExpression: true
-- beginString: "svg:(?=[a-zA-Z])"
+- beginString: "\\bsvg:(?=[a-zA-Z])"
   regularExpression: true
-- beginString: "xlink:(?=[a-z])"
+- beginString: "\\bxlink:(?=[a-z])"
   regularExpression: true
-- beginString: "xml:(?=[a-z])"
+- beginString: "\\bxml:(?=[a-z])"
   regularExpression: true
-- beginString: "xmlns:(?=[a-z])"
+- beginString: "\\bxmlns:(?=[a-z])"
   regularExpression: true
 commentDelimiters:
   endDelimiter: "-->"

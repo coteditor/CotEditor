@@ -77,28 +77,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
-    private let observedDefaultKeys: [DefaultKeys] = [
-        .autoExpandTab,
-        .autoIndent,
-        .enableSmartIndent,
-        .smartInsertAndDelete,
-        .balancesBrackets,
-        .checkSpellingAsType,
-        .pageGuideColumn,
-        .enableSmartQuotes,
-        .enableSmartDashes,
-        .tabWidth,
-        .hangingIndentWidth,
-        .enablesHangingIndent,
-        .autoLinkDetection,
-        .fontName,
-        .fontSize,
-        .shouldAntialias,
-        .lineHeight,
-        .highlightCurrentLine,
-        .highlightSelectionInstance,
-        .overscrollRate,
-        ]
+    private var defaultsObservers: [UserDefaultsObservation] = []
+    private var windowOpacityObserver: NSObjectProtocol?
+    private var scrollObserver: NSObjectProtocol?
+    private var resizeObserver: NSObjectProtocol?
     
     
     
@@ -127,12 +109,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // setup layoutManager and textContainer
         let layoutManager = LayoutManager()
         self.textContainer!.replaceLayoutManager(layoutManager)
+        self.layoutManager?.allowsNonContiguousLayout = true
         
-        // set layout values
+        // set layout values (wraps lines)
         self.minSize = self.frame.size
         self.maxSize = .infinite
-        self.isHorizontallyResizable = true
+        self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
+        self.autoresizingMask = .width
         self.textContainerInset = kTextContainerInset
         
         // set NSTextView behaviors
@@ -165,17 +149,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         self.invalidateDefaultParagraphStyle()
         
-        // observe change of defaults
-        for key in self.observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, options: .new, context: nil)
-        }
+        // observe change in defaults
+        self.defaultsObservers = self.observeDefaults()
     }
     
     
     deinit {
-        for key in self.observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
-        }
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.removeNotificationObservers()
     }
     
     
@@ -185,9 +166,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
-        return [#keyPath(layoutOrientation),
-                #keyPath(font),
-                #keyPath(tabWidth)]
+        return super.restorableStateKeyPaths + [
+            #keyPath(layoutOrientation),
+            #keyPath(font),
+            #keyPath(tabWidth)
+        ]
     }
     
     
@@ -212,11 +195,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         super.viewDidMoveToWindow()
         
+        // textView will be removed from the window
         guard let window = self.window else {
-            // textView was removed from the window
-            NotificationCenter.default.removeObserver(self, name: DocumentWindow.didChangeOpacityNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: NSView.boundsDidChangeNotification, object: nil)
-            NotificationCenter.default.removeObserver(self, name: NSView.frameDidChangeNotification, object: nil)
+            self.removeNotificationObservers()
             return
         }
         
@@ -224,23 +205,26 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.applyTheme()
         
         // apply window opacity
-        self.didWindowOpacityChange(nil)
+        self.didChangeWindowOpacity(to: window.isOpaque)
         
         // observe window opacity flag
-        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: DocumentWindow.didChangeOpacityNotification,
-                                               object: window)
+        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+            self.didChangeWindowOpacity(to: window.isOpaque)
+        }
         
         if let scrollView = self.enclosingScrollView {
             // observe scorolling to fix drawing area on non-opaque view
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRect(_:)),
-                                                   name: NSView.boundsDidChangeNotification,
-                                                   object: scrollView.contentView)
+            self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
+                if !self.drawsBackground {
+                    // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                }
+            }
             
             // observe resizing for overscroll amount update
-            NotificationCenter.default.addObserver(self, selector: #selector(didChangeVisibleRectSize(_:)),
-                                                   name: NSView.frameDidChangeNotification,
-                                                   object: scrollView.contentView)
+            self.resizeObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
+                self.invalidateOverscrollRate()
+            }
         } else {
             assertionFailure("failed starting observing the visible rect change")
         }
@@ -777,16 +761,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func scrollRangeToVisible(_ range: NSRange) {
         
         // scroll line by line if an arrow key is pressed
+        // -> Perform only when the scroll target is near by the visible area.
+        //    Otherwise with the noncontiguous layout:
+        //    - Scroll jumps when the cursor is initially in the end part of document.
+        //    - Scroll doesn't reach to the bottom with command+down arrow.
+        //    (2018-12 macOS 10.14)
         if NSEvent.modifierFlags.contains(.numericPad),
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
+            let rect = self.boundingRect(for: range),
+            let lineHeight = self.enclosingScrollView?.lineScroll,
+            self.visibleRect.insetBy(dx: -lineHeight, dy: -lineHeight).intersects(rect)
         {
-            layoutManager.ensureLayout(forCharacterRange: NSRange(..<range.upperBound))
-            let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-            let glyphRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-                .offset(by: self.textContainerOrigin)
-            
-            super.scrollToVisible(glyphRect)  // move minimum distance
+            super.scrollToVisible(rect)  // move minimum distance
             return
         }
         
@@ -864,94 +849,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             if self.showsPageGuide {
                 self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             }
-        }
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.autoExpandTab.rawValue?:
-            self.isAutomaticTabExpansionEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.autoIndent.rawValue?:
-            self.isAutomaticIndentEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.enableSmartIndent.rawValue?:
-            self.isSmartIndentEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.balancesBrackets.rawValue?:
-            self.balancesBrackets = change?[.newKey] as! Bool
-            
-        case DefaultKeys.shouldAntialias.rawValue?:
-            self.usesAntialias = change?[.newKey] as! Bool
-            
-        case DefaultKeys.smartInsertAndDelete.rawValue?:
-            self.smartInsertDeleteEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.enableSmartQuotes.rawValue?:
-            self.isAutomaticQuoteSubstitutionEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.enableSmartDashes.rawValue?:
-            self.isAutomaticDashSubstitutionEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.checkSpellingAsType.rawValue?:
-            self.isContinuousSpellCheckingEnabled = change?[.newKey] as! Bool
-            
-        case DefaultKeys.autoLinkDetection.rawValue?:
-            self.isAutomaticLinkDetectionEnabled = change?[.newKey] as! Bool
-            if self.isAutomaticLinkDetectionEnabled {
-                self.detectLinkIfNeeded()
-            } else {
-                if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: textStorage.mutableString.range)
-                }
-            }
-            
-        case DefaultKeys.pageGuideColumn.rawValue?:
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            
-        case DefaultKeys.tabWidth.rawValue?:
-            self.tabWidth = change?[.newKey] as! Int
-            
-        case DefaultKeys.fontName.rawValue, DefaultKeys.fontSize.rawValue?:
-            self.resetFont(nil)
-            
-        case DefaultKeys.lineHeight.rawValue?:
-            self.lineHeight = change?[.newKey] as! CGFloat
-            
-            // reset visible area
-            self.centerSelectionInVisibleArea(self)
-            
-        case DefaultKeys.enablesHangingIndent.rawValue, DefaultKeys.hangingIndentWidth.rawValue?:
-            let wholeRange = self.string.nsRange
-            if keyPath == DefaultKeys.enablesHangingIndent.rawValue, !(change?[.newKey] as! Bool) {
-                if let paragraphStyle = self.defaultParagraphStyle {
-                    self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
-                } else {
-                    self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
-                }
-            } else {
-                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
-            }
-            
-        case DefaultKeys.highlightCurrentLine.rawValue?:
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            
-        case DefaultKeys.highlightSelectionInstance.rawValue?:
-            if (change?[.newKey] as! Bool) == false {
-                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            }
-            
-        case DefaultKeys.overscrollRate.rawValue?:
-            self.invalidateOverscrollRate()
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     
@@ -1203,43 +1100,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     
     
-    // MARK: Notification
-    
-    /// window's opacity did change
-    @objc private func didWindowOpacityChange(_ notification: Notification?) {
-        
-        let isOpaque = self.window?.isOpaque ?? true
-        
-        // let text view have own background if possible
-        self.drawsBackground = isOpaque
-        
-        // make the current line highlight a bit transparent
-        let highlightAlpha: CGFloat = isOpaque ? 1.0 : 0.7
-        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(highlightAlpha)
-        
-        // redraw visible area
-        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-    }
-    
-    
-    /// visible rect did change
-    @objc private func didChangeVisibleRect(_ notification: Notification) {
-        
-        if !self.drawsBackground {
-            // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-        }
-    }
-    
-    
-    /// visible rect did resize
-    @objc private func didChangeVisibleRectSize(_ notification: Notification) {
-        
-        self.invalidateOverscrollRate()
-    }
-    
-    
-    
     // MARK: Private Methods
     
     /// document object representing the text view contents
@@ -1249,12 +1109,44 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// remove notification observers
+    private func removeNotificationObservers() {
+        
+        if let observer = self.windowOpacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.windowOpacityObserver = nil
+        }
+        if let observer = self.scrollObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.scrollObserver = nil
+        }
+        if let observer = self.resizeObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.resizeObserver = nil
+        }
+    }
+    
+    
+    /// window's opacity did change
+    private func didChangeWindowOpacity(to isOpaque: Bool) {
+        
+        // let text view have own background if possible
+        self.drawsBackground = isOpaque
+        
+        // make the current line highlight a bit transparent
+        self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(isOpaque ? 1.0 : 0.7)
+        
+        // redraw visible area
+        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+    }
+    
+    
     /// update coloring settings
     private func applyTheme() {
         
         assert(Thread.isMainThread)
         
-        guard let theme = self.theme else { return assertionFailure() }
+        guard let theme = self.theme else { return }
         
         self.window?.backgroundColor = theme.background.color
         
@@ -1323,7 +1215,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     /// validate whether turns the noncontiguous layout on
     private func invalidateNonContiguousLayout() {
         
-        let isLargeText = self.string.count > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
+        guard let storage = self.textStorage else { return }
+        
+        // -> Obtaining textStorage's length is much faster than string.count. (2018-12 on macOS 10.14)
+        let isLargeText = storage.length > UserDefaults.standard[.minimumLengthForNonContiguousLayout]
         
         // enable noncontiguous layout only on normal horizontal layout (2016-06 on OS X 10.11 El Capitan)
         //  -> Otherwise by vertical layout, the view scrolls occasionally to a strange position on typing.
@@ -1354,11 +1249,16 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             let layoutManager = self.layoutManager as? LayoutManager
             else { return assertionFailure() }
         
-        let rate = UserDefaults.standard[.overscrollRate].clamped(min: 0, max: 1.0)
+        let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
         
-        // halve inset since the input value will be add to the both top and bottom
-        self.textContainerInset.height = max(floor(inset / 2), kTextContainerInset.height)
+        // halve inset since the input value will be added to both top and bottom
+        let height = max(floor(inset / 2), kTextContainerInset.height)
+        
+        // avoid high-loaded `sizeToFit()` if not required
+        guard height != self.textContainerInset.height else { return }
+        
+        self.textContainerInset.height = height
         self.sizeToFit()
     }
     
@@ -1448,6 +1348,117 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         matches
             .map { $0.range }
             .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
+    }
+    
+    
+    /// observe defaults to apply the change immediately
+    private func observeDefaults() -> [UserDefaultsObservation] {
+        
+        let keys: [DefaultKeys] = [
+            .autoExpandTab,
+            .autoIndent,
+            .enableSmartIndent,
+            .balancesBrackets,
+            .shouldAntialias,
+            .smartInsertAndDelete,
+            .enableSmartQuotes,
+            .enableSmartDashes,
+            .checkSpellingAsType,
+            .autoLinkDetection,
+            .pageGuideColumn,
+            .overscrollRate,
+            .tabWidth,
+            .fontName,
+            .fontSize,
+            .lineHeight,
+            .highlightCurrentLine,
+            .highlightSelectionInstance,
+            .enablesHangingIndent,
+            .hangingIndentWidth,
+            ]
+        
+        return UserDefaults.standard.observe(keys: keys, options: [.new]) { [unowned self] (key, change) in
+            
+            let new = change.new
+            switch key {
+            case .autoExpandTab:
+                self.isAutomaticTabExpansionEnabled = new as! Bool
+                
+            case .autoIndent:
+                self.isAutomaticIndentEnabled = new as! Bool
+                
+            case .enableSmartIndent:
+                self.isSmartIndentEnabled = new as! Bool
+                
+            case .balancesBrackets:
+                self.balancesBrackets = new as! Bool
+                
+            case .shouldAntialias:
+                self.usesAntialias = new as! Bool
+                
+            case .smartInsertAndDelete:
+                self.smartInsertDeleteEnabled = new as! Bool
+                
+            case .enableSmartQuotes:
+                self.isAutomaticQuoteSubstitutionEnabled = new as! Bool
+                
+            case .enableSmartDashes:
+                self.isAutomaticDashSubstitutionEnabled = new as! Bool
+                
+            case .checkSpellingAsType:
+                self.isContinuousSpellCheckingEnabled = new as! Bool
+                
+            case .autoLinkDetection:
+                self.isAutomaticLinkDetectionEnabled = new as! Bool
+                if self.isAutomaticLinkDetectionEnabled {
+                    self.detectLinkIfNeeded()
+                } else if let textStorage = self.textStorage {
+                    textStorage.removeAttribute(.link, range: NSRange(0..<textStorage.length))
+                }
+                
+            case .pageGuideColumn:
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                
+            case .overscrollRate:
+                self.invalidateOverscrollRate()
+                
+            case .tabWidth:
+                self.tabWidth = new as! Int
+                
+            case .fontName, .fontSize:
+                self.resetFont(nil)
+                
+            case .lineHeight:
+                self.lineHeight = new as! CGFloat
+                self.centerSelectionInVisibleArea(self)  // reset visible area
+                
+            case .highlightCurrentLine:
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                
+            case .highlightSelectionInstance:
+                if !(new as! Bool) {
+                    self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                }
+                
+            case .enablesHangingIndent:
+                let wholeRange = self.string.nsRange
+                if !(new as! Bool) {
+                    if let paragraphStyle = self.defaultParagraphStyle {
+                        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
+                    } else {
+                        self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
+                    }
+                } else {
+                    (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
+                }
+                
+            case .hangingIndentWidth:
+                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: self.string.nsRange)
+                
+            default:
+                preconditionFailure()
+            }
+        }
     }
     
 }

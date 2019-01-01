@@ -29,7 +29,9 @@ final class StatusBarController: NSViewController {
     
     // MARK: Private Properties
     
+    private var defaultsObservers: [UserDefaultsObservation] = []
     private let byteCountFormatter = ByteCountFormatter()
+    
     @objc private dynamic var editorStatus: NSAttributedString?
     @objc private dynamic var documentStatus: NSAttributedString?
     @objc private dynamic var showsReadOnly = false
@@ -40,9 +42,7 @@ final class StatusBarController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        for key in type(of: self).observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
-        }
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -61,9 +61,25 @@ final class StatusBarController: NSViewController {
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("status bar".localized)
         
-        // observe change of defaults
-        for key in type(of: self).observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
+        // observe change in defaults
+        let editorDefaultKeys: [DefaultKeys] = [
+            .showStatusBarLines,
+            .showStatusBarChars,
+            .showStatusBarWords,
+            .showStatusBarLocation,
+            .showStatusBarLine,
+            .showStatusBarColumn,
+            ]
+        self.defaultsObservers += UserDefaults.standard.observe(keys: editorDefaultKeys) { [unowned self] (_, _) in
+            self.updateEditorStatus()
+        }
+        let documentDefaultKeys: [DefaultKeys] = [
+            .showStatusBarEncoding,
+            .showStatusBarLineEndings,
+            .showStatusBarFileSize,
+            ]
+        self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [unowned self] (_, _) in
+            self.updateDocumentStatus()
         }
     }
     
@@ -83,21 +99,6 @@ final class StatusBarController: NSViewController {
         super.viewDidDisappear()
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
-    }
-    
-    
-    // MARK: KVO
-    
-    /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if type(of: self).observedDefaultKeys.contains(where: { $0.rawValue == keyPath }) {
-            self.updateEditorStatus()
-            self.updateDocumentStatus()
-            
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
     }
     
     
@@ -133,20 +134,6 @@ final class StatusBarController: NSViewController {
     
     
     // MARK: Private Methods
-    
-    /// default keys to observe update
-    private static let observedDefaultKeys: [DefaultKeys] = [.showStatusBarLines,
-                                                             .showStatusBarChars,
-                                                             .showStatusBarWords,
-                                                             .showStatusBarLocation,
-                                                             .showStatusBarLine,
-                                                             .showStatusBarColumn,
-                                                             
-                                                             .showStatusBarEncoding,
-                                                             .showStatusBarLineEndings,
-                                                             .showStatusBarFileSize,
-                                                             ]
-    
     
     /// update left side text
     @objc private func updateEditorStatus() {

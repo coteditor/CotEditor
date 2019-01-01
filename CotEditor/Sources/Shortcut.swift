@@ -73,7 +73,7 @@ enum ModifierKey: CaseIterable {
 
 
 
-struct Shortcut: Hashable, CustomStringConvertible {
+struct Shortcut: Hashable {
     
     let modifierMask: NSEvent.ModifierFlags
     let keyEquivalent: String
@@ -108,7 +108,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
         let modifierCharacters = keySpecChars.dropLast()
         let modifierMask = ModifierKey.allCases
             .filter { key in modifierCharacters.contains(key.keySpecChar) }
-            .reduce(NSEvent.ModifierFlags()) { (mask, key) in mask.union(key.mask) }
+            .reduce(into: NSEvent.ModifierFlags()) { (mask, key) in mask.formUnion(key.mask) }
         
         self.init(modifierMask: modifierMask, keyEquivalent: String(keyEquivalent))
     }
@@ -147,23 +147,10 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     // MARK: Protocols
     
-    /// shortcut string to display
-    var description: String {
-        
-        return self.printableModifierMask + self.printableKeyEquivalent
-    }
-    
-    
     func hash(into hasher: inout Hasher) {
         
         hasher.combine(self.modifierMask.rawValue)
         hasher.combine(self.keyEquivalent)
-    }
-    
-    
-    static func == (lhs: Shortcut, rhs: Shortcut) -> Bool {
-        
-        return lhs.keySpecChars == rhs.keySpecChars
     }
     
     
@@ -237,6 +224,17 @@ struct Shortcut: Hashable, CustomStringConvertible {
         
         return table.mapKeys { UnicodeScalar($0)! }
     }()
+    
+}
+
+
+extension Shortcut: CustomStringConvertible {
+    
+    /// shortcut string to display
+    var description: String {
+        
+        return self.printableModifierMask + self.printableKeyEquivalent
+    }
     
 }
 

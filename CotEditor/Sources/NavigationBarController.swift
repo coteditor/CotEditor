@@ -211,9 +211,9 @@ final class NavigationBarController: NSViewController {
     // MARK: Action Messages
     
     /// select outline menu item via pupup menu
-    @IBAction func selectOutlineMenuItem(_ sender: AnyObject?) {
+    @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
-        guard let range = sender?.representedObject as? NSRange else { return assertionFailure() }
+        guard let range = sender.representedObject as? NSRange else { return assertionFailure() }
         
         let textView = self.textView!
         

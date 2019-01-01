@@ -30,7 +30,7 @@
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "Auswählen …";
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
-"3290.title" = "Text glätten";
+"3290.title" = "Schrift glätten";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Zeilenhöhe:";
@@ -53,9 +53,9 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
-"oAZ-6U-Ba8.title" = "Unsichtbares:";
+"oAZ-6U-Ba8.title" = "Steuerzeichen:";
 /* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
-"gqy-Io-eUU.title" = "Unsichtbare Zeichen anzeigen";
+"gqy-Io-eUU.title" = "Steuerzeichen anzeigen";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Leerzeichen";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */

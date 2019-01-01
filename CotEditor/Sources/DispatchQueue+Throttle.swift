@@ -27,7 +27,7 @@ import Dispatch
 
 extension DispatchQueue {
     
-    /// perform action but never be called more than once each specified interval.
+    /// Perform action but never be called more than once each specified interval.
     ///
     /// - Parameters:
     ///    - delay: The time interval.

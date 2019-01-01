@@ -30,6 +30,8 @@ final class DocumentWindowController: NSWindowController {
     
     // MARK: Private Properties
     
+    private var windowAlphaObserver: UserDefaultsObservation?
+    
     @IBOutlet private var toolbarController: ToolbarController?
     
     
@@ -38,24 +40,7 @@ final class DocumentWindowController: NSWindowController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue)
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    /// apply user defaults change
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        switch keyPath {
-        case DefaultKeys.windowAlpha.rawValue?:
-            (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
-            self.contentViewController?.view.needsDisplay = true
-            
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
+        self.windowAlphaObserver?.invalidate()
     }
     
     
@@ -76,7 +61,10 @@ final class DocumentWindowController: NSWindowController {
         (self.window as! DocumentWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
         
         // observe opacity setting change
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)
+        self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha, options: [.new]) { [unowned self] change in
+            (self.window as? DocumentWindow)?.backgroundAlpha = change.new!
+            self.contentViewController?.view.needsDisplay = true
+        }
     }
     
     

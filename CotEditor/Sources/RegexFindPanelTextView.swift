@@ -29,7 +29,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
-    var mode: RegularExpressionParseMode = .search {
+    var parseMode: RegularExpressionParseMode = .search {
         
         didSet {
             self.invalidateRegularExpression()
@@ -63,7 +63,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         guard
             self.isRegularExpressionMode,
-            case .search = self.mode,
+            case .search = self.parseMode,
             granularity == .selectByWord,
             proposedCharRange.length == 0,  // not on expanding selection
             range.length == 1  // clicked character can be a brace
@@ -94,7 +94,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
         
         guard
             self.isRegularExpressionMode,
-            case .search = self.mode,
+            case .search = self.parseMode,
             !stillSelectingFlag
             else { return }
         
@@ -108,71 +108,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     /// highlight string as regular expression pattern
     private func invalidateRegularExpression() {
         
-        assert(Thread.isMainThread)
-        
-        guard let layoutManager = self.layoutManager else { return }
-        
-        // clear the last highlight anyway
-        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: self.string.nsRange)
-        
-        guard self.isRegularExpressionMode else { return }
-        
-        switch self.mode {
-        case .search:
-            guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }  // check if pattern is valid
-        case .replacement:
-            break
-        }
-        
-        for type in RegularExpressionSyntaxType.priority.reversed() {
-            for range in type.ranges(in: self.string, mode: self.mode) {
-                layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
-            }
-        }
-    }
-    
-}
-
-
-
-private extension RegularExpressionSyntaxType {
-    
-    var color: NSColor {
-        
-        guard #available(macOS 10.13, *) else { return self.literalColor }
-        
-        return NSColor(named: self.colorName)!
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    private var literalColor: NSColor {
-        
-        switch self {
-        case .character: return #colorLiteral(red: 0.1176470596, green: 0.4011936392, blue: 0.5, alpha: 1)
-        case .backReference: return #colorLiteral(red: 0.7471567648, green: 0.07381642141, blue: 0.5326599043, alpha: 1)
-        case .symbol: return #colorLiteral(red: 0.7450980544, green: 0.1236130619, blue: 0.07450980693, alpha: 1)
-        case .quantifier: return #colorLiteral(red: 0.4634826636, green: 0, blue: 0.6518557685, alpha: 1)
-        case .anchor: return #colorLiteral(red: 0.3934386824, green: 0.5045222784, blue: 0.1255275325, alpha: 1)
-        }
-    }
-    
-    
-    private var colorName: NSColor.Name {
-        
-        let name: String = {
-            switch self {
-            case .character: return "Character"
-            case .backReference: return "BackReference"
-            case .symbol: return "Symbol"
-            case .quantifier: return "Quantifier"
-            case .anchor: return "Anchor"
-            }
-        }()
-        
-        return "RegexColor/" + name
+        self.highlightAsRegularExpressionPattern(mode: self.parseMode, enabled: self.isRegularExpressionMode)
     }
     
 }

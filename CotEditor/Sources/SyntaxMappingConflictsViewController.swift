@@ -50,19 +50,30 @@ final class SyntaxMappingConflictsViewController: NSViewController {
     
     @objc private dynamic var extensionConflicts: [MappingConflict] = []
     @objc private dynamic var filenameConflicts: [MappingConflict] = []
+    @objc private dynamic var interpreterConflicts: [MappingConflict] = []
+    
+    @IBOutlet private weak var extensionView: NSView?
+    @IBOutlet private weak var filenameView: NSView?
+    @IBOutlet private weak var interpreterView: NSView?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
         let conflictDicts = SyntaxManager.shared.mappingConflicts
+        
         self.extensionConflicts = conflictDicts[.extensions]?.map { MappingConflict(name: $0.key, styles: $0.value) } ?? []
         self.filenameConflicts = conflictDicts[.filenames]?.map { MappingConflict(name: $0.key, styles: $0.value) } ?? []
+        self.interpreterConflicts = conflictDicts[.interpreters]?.map { MappingConflict(name: $0.key, styles: $0.value) } ?? []
+        
+        self.extensionView?.isHidden = self.extensionConflicts.isEmpty
+        self.filenameView?.isHidden = self.filenameConflicts.isEmpty
+        self.interpreterView?.isHidden = self.interpreterConflicts.isEmpty
     }
     
 }

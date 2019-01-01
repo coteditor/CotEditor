@@ -109,6 +109,15 @@
 
 
 
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "条件を追加";
+"Delete Rules" = "条件を削除";
+"Edit Rule" = "条件を編集";
+"Move Rules" = "条件を移動";
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Auto-Detect" = "自動認識";

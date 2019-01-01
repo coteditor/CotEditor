@@ -58,12 +58,6 @@ final class PreferencesTabViewController: NSTabViewController {
         {
             self.selectedTabViewItemIndex = item.offset
         }
-    }
-    
-    
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
         
         self.switchPane(to: self.tabViewItems[self.selectedTabViewItemIndex], animated: false)
     }
@@ -110,25 +104,13 @@ final class PreferencesTabViewController: NSTabViewController {
         frame.origin = window.frame.origin
         frame.origin.y += window.frame.height - frame.height
         
-        if #available(macOS 10.13, *) {
-            self.view.isHidden = true
-        } else {
-            // use `alphaValue` instead of `isHidden`
-            // -> Because updating `isHidden` in completionHandler under macOS 10.12 causes
-            //    either crash or skip initial update of the theme editor (although OK on 10.13 and above).
-            self.view.alphaValue = 0
-        }
+        self.view.isHidden = true
         NSAnimationContext.runAnimationGroup({ context in
             context.allowsImplicitAnimation = animated
-            
             window.setFrame(frame, display: false)
             
         }, completionHandler: { [weak self] in
-            if #available(macOS 10.13, *) {
-                self?.view.isHidden = false
-            } else {
-                self?.view.alphaValue = 1
-            }
+            self?.view.isHidden = false
             window.title = tabViewItem.label
         })
     }
@@ -158,7 +140,7 @@ private extension PreferencesTabViewController {
         for item in self.tabViewItems {
             guard
                 let identifier = item.identifier as? String,
-                let ibIdentifier = PreferencesTabViewController.ibIdentifiers[identifier]
+                let ibIdentifier = type(of: self).ibIdentifiers[identifier]
                 else { assertionFailure(); continue }
             
             let key = ibIdentifier + ".label"

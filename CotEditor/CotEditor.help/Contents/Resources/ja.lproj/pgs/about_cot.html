@@ -29,6 +29,10 @@
 <p>そして、Terminal からアンインストールする場合は以下のようにします。</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
+<h3>Mojave以降のセキュリティ認証</h3>
+<p>macOS 10.14 Mojave から、ほかのアプリケーションから <code>cot</code> コマンドで CotEditor を操作するために、ユーザ認証が必要となりました。この認証は通常 <code>cot</code> コマンドを初めて使用したときに表示されるダイアログから行えますが、なんらかの理由でそれがされなかった場合は手動での設定が必要です。システム環境設定 &gt; セキュリティとプライバシー &gt; プライバシー &gt; オートメーションで、ターミナルなど利用するクライアントの下にある <strong>CotEditor</strong>（また、<code>--wait</code> オプションのためには <strong>System Events</strong> も）のチェックボックスを有効にしてください。</p>
+
+
 <h2>オプション</h2>
 <p><code>cot</code> コマンドは以下のオプションが使用できます。</p>
 
@@ -42,20 +46,32 @@
 	<tr><th><code>-v</code>, <code>--version</code></th><td>バージョンを表示します。</td></tr>
 </table>
 
+<p><code>--line</code> オプションと <code>--column</code> は負の値を指定することもできます。そのとき、<code>--line</code> オプションの場合は書類の末尾から、<code>--column</code> オプションの場合は行の末尾からカウントがされます。</p>
+
 <h2>例</h2>
 <p><code>cot</code> コマンド単体で CotEditor が起動します。</p>
 
 <pre class="source"><code>cot
 </code></pre>
 
-<p>以下のコマンドは、foo.txt ファイルを CotEditor で開き 200 行目にスクロールします。もし foo.txt ファイルが存在しない場合は、<code>cot</code> コマンドは何も行いません。</p>
+<p>以下のコマンドは、foo.txt ファイルを CotEditor で開き 200 行目にカーソルを移動します。もし foo.txt ファイルが存在しない場合は、<code>cot</code> コマンドは何も行いません。</p>
 
 <pre class="source"><code>cot --line 200 foo.txt
+</code></pre>
+
+<p>以下のコマンドは、foo.txt ファイルを CotEditor で開き、書類末尾にカーソルを移動します。</p>
+
+<pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
 
 <p>文字列をパイプで渡すこともできます。CotEditor は渡された文字列を新規書類として開きます。</p>
 
 <pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
+</code></pre>
+
+<p><code>--wait</code> オプションを使えば CotEditor を <code>git</code> のエディタとして指定することも可能です。</p>
+
+<pre class="source"><code>git config --global core.editor &quot;cot -w&quot;
 </code></pre>
 
 

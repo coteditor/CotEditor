@@ -192,11 +192,9 @@ extension Commenting where Self: NSTextView {
         if let delimiter = self.inlineCommentDelimiter {
             let lines = target.components(separatedBy: "\n")
             var commentLineCount = 0
-            for line in lines {
-                if line.hasPrefix(delimiter) {
-                    if partly { return true }
-                    commentLineCount += 1
-                }
+            for line in lines where line.hasPrefix(delimiter) {
+                if partly { return true }
+                commentLineCount += 1
             }
             return commentLineCount == lines.count
         }

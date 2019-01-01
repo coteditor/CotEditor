@@ -54,8 +54,9 @@ extension String {
             .reduce(self) { (string, entity) in
                 entity.value.matches(in: string, range: string.nsRange)
                     .map { $0.range(at: 1) }
+                    .compactMap { Range($0, in: string) }
                     .reversed()
-                    .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: entity.key) }
+                    .reduce(string) { $0.replacingCharacters(in: $1, with: entity.key) }
             }
     }
     

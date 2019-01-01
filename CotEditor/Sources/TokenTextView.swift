@@ -144,7 +144,7 @@ final class TokenTextView: NSTextView {
     
     // MARK: Private Method
     
-    /// find tokens in contens and mark-up them
+    /// find tokens in contents and mark-up them
     @objc private func invalidateTokens() {
         
         guard

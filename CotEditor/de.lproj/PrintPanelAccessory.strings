@@ -42,7 +42,7 @@
 "418.title" = "Drucken";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Unsichtbare:";
+"718.title" = "Steuerzeichen:";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "Wie Dokument";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */

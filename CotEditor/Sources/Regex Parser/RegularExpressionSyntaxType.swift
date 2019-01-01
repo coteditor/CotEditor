@@ -142,7 +142,7 @@ enum RegularExpressionSyntaxType {
 
 
 
-private extension String {
+private extension StringProtocol where Self.Index == String.Index {
     
     /// ranges of inside most outer pairs of brace
     func ranges(bracePair: BracePair) -> [Range<Index>] {

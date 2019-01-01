@@ -52,20 +52,36 @@ extension NSLayoutManager {
     
     
     /// enumerate range and value of given temporary attribute
-    func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange, using block: (Any?, NSRange, inout Bool) -> Void) {
+    func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange, using block: (_ value: Any, _ range: NSRange, _ stop: inout Bool) -> Void) {
         
         var characterIndex = range.location
         while characterIndex < range.upperBound {
             var effectiveRange: NSRange = .notFound
             let value = self.temporaryAttribute(attrName, atCharacterIndex: characterIndex, longestEffectiveRange: &effectiveRange, in: range)
             
-            var stop = false
-            block(value, effectiveRange, &stop)
-            
-            guard !stop else { return }
+            if let value = value {
+                var stop = false
+                block(value, effectiveRange, &stop)
+                
+                guard !stop else { return }
+            }
             
             characterIndex = effectiveRange.upperBound
         }
+    }
+    
+    
+    /// check if at least one temporary attribute for given attribute key exists
+    func hasTemporaryAttribute(for attrName: NSAttributedString.Key) -> Bool {
+        
+        guard let storage = self.textStorage else { return false }
+        
+        var found = false
+        self.enumerateTemporaryAttribute(attrName, in: NSRange(..<storage.length)) { (_, _, stop) in
+            stop = true
+            found = true
+        }
+        return found
     }
     
 }

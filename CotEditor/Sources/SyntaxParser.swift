@@ -34,6 +34,12 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
+protocol ValidationIgnorable: AnyObject {
+    
+    var ignoresDisplayValidation: Bool { get set }
+}
+
+
 
 final class SyntaxParser {
     
@@ -84,7 +90,7 @@ final class SyntaxParser {
     
     
     deinit {
-        self.invalidateCurrentParce()
+        self.invalidateCurrentParse()
     }
     
     
@@ -99,7 +105,7 @@ final class SyntaxParser {
     
     
     /// cancel all syntax parse
-    func invalidateCurrentParce() {
+    func invalidateCurrentParse() {
         
         self.highlightCache = nil
         self.outlineUpdateTask.cancel()
@@ -136,22 +142,22 @@ extension SyntaxParser {
     /// parse outline
     private func parseOutline() {
         
-        let string = self.textStorage.string
-        guard !string.isEmpty else {
+        let wholeRange = NSRange(0..<self.textStorage.length)
+        guard wholeRange.length > 0 else {
             self.outlineItems = []
             return
         }
         
         let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
-                                              string: string.immutable,
-                                              range: string.nsRange)
+                                              string: self.textStorage.string.immutable,
+                                              range: wholeRange)
         
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
             self?.outlineItems = operation.results
         }
-        operation.queuePriority = .low
+        operation.qualityOfService = .utility
         
         // -> Regarding the outline extraction, just cancel previous operations before pasing the latest string,
         //    since user cannot cancel it manually.
@@ -178,7 +184,7 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        let wholeRange = self.textStorage.string.nsRange
+        let wholeRange = NSRange(0..<self.textStorage.length)
         
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.string == self.textStorage.string {
@@ -189,12 +195,9 @@ extension SyntaxParser {
         
         // make sure that string is immutable
         //   -> `string` of NSTextStorage is actually a mutable object
-        //      and it can cause crash when the mutable string is given to NSRegularExpression instance.
+        //      and it can cause crash when a mutable string is given to NSRegularExpression instance.
         //      (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
-        
-        // avoid parsing twice for the same string
-        guard (self.syntaxHighlightParseOperationQueue.operations.last as? SyntaxHighlightParseOperation)?.string != string else { return nil }
         
         return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
     }
@@ -211,11 +214,13 @@ extension SyntaxParser {
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = self.textStorage.string.immutable
         
-        let wholeRange = string.nsRange
+        let wholeRange = NSRange(0..<self.textStorage.length)
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
-        guard var highlightRange = editedRange.intersection(wholeRange) else { return nil }
+        guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
+        
+        var highlightRange = editedRange
         
         // highlight whole if string is enough short
         if wholeRange.length <= bufferLength {
@@ -263,6 +268,8 @@ extension SyntaxParser {
     /// perform highlighting
     private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
+        assert(Thread.isMainThread)
+        
         guard highlightRange.length > 0 else { return nil }
         
         // just clear current highlight and return if no coloring needs
@@ -272,13 +279,24 @@ extension SyntaxParser {
             return nil
         }
         
+        let wholeRange = string.nsRange
+        
         let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
                                                                        pairedQuoteTypes: self.style.pairedQuoteTypes,
                                                                        inlineCommentDelimiter: self.style.inlineCommentDelimiter,
                                                                        blockCommentDelimiters: self.style.blockCommentDelimiters)
         
         let operation = SyntaxHighlightParseOperation(definition: definition, string: string, range: highlightRange)
-        operation.queuePriority = .high
+        operation.qualityOfService = .userInitiated
+        
+        // give up if the editor's string is changed from the parsed string
+        let isModified = Atomic(false)
+        let modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
+            guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
+            
+            isModified.mutate { $0 = true }
+            operation?.cancel()
+        }
         
         operation.completionBlock = { [weak self, weak operation] in
             guard
@@ -286,26 +304,29 @@ extension SyntaxParser {
                 let highlights = operation.highlights,
                 !operation.isCancelled
                 else {
+                    NotificationCenter.default.removeObserver(modificationObserver)
                     return completionHandler()
                 }
             
             DispatchQueue.main.async { [progress = operation.progress] in
-                // give up if the editor's string is changed from the analized string
-                guard self?.textStorage.string == string else {
+                defer {
+                    NotificationCenter.default.removeObserver(modificationObserver)
+                    completionHandler()
+                }
+                
+                guard !isModified.value else {
                     progress.cancel()
-                    return completionHandler()
+                    return
                 }
                 
                 // cache result if whole text was parsed
-                if highlightRange == string.nsRange {
+                if highlightRange == wholeRange {
                     self?.highlightCache = (highlights, string)
                 }
                 
                 self?.apply(highlights: highlights, range: highlightRange)
                 
                 progress.completedUnitCount += 1
-                
-                completionHandler()
             }
         }
         
@@ -321,6 +342,23 @@ extension SyntaxParser {
         assert(Thread.isMainThread)
         
         for layoutManager in self.textStorage.layoutManagers {
+            // disable display validation during applying attributes
+            // -> According to the implementation of NSLayoutManager in GNUstep,
+            //    `invalidateDisplayForCharacterRange:` is invoked every time inside of `addTemporaryAttribute:value:forCharacterRange:`.
+            //    Ignoring that process during highlight reduces the application time,
+            //    which shows the rainbow cursor because of a main thread task, significantly.
+            //    See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
+            //    (2018-12 macOS 10.14)
+            if let ignorable = layoutManager as? NSLayoutManager & ValidationIgnorable {
+                ignorable.ignoresDisplayValidation = true
+            }
+            defer {
+                if let ignorable = layoutManager as? NSLayoutManager & ValidationIgnorable {
+                    ignorable.ignoresDisplayValidation = false
+                    ignorable.invalidateDisplay(forCharacterRange: highlightRange)
+                }
+            }
+                
             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }

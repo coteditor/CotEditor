@@ -397,7 +397,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
     }
     
     
-    @IBAction func reloadAllStyles(_ sender: AnyObject?) {
+    @IBAction func reloadAllStyles(_ sender: Any?) {
         
         SyntaxManager.shared.updateCache()
     }

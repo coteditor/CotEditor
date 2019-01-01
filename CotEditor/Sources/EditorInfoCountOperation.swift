@@ -53,9 +53,9 @@ final class EditorInfoCountOperation: Operation {
         var characters = 0
         var lines = 0
         var words = 0
-        var location = 0  // caret location from the beginning of document
+        var location = 1  // caret location from the beginning of document
         var line = 1      // current line
-        var column = 0    // caret location from the beginning of line
+        var column = 1    // caret location from the beginning of line
         var unicode: String?  // Unicode of selected single character (or surrogate-pair)
         
         var selectedLength = 0
@@ -164,8 +164,8 @@ final class EditorInfoCountOperation: Operation {
         if self.requiredInfo.contains(.location) {
             let locString = self.string[..<cursorLocation]
             self.result.location = self.countsLineEnding
-                ? locString.count
-                : locString.removingLineEndings.count
+                ? locString.count + 1
+                : locString.removingLineEndings.count + 1
         }
         
         guard !self.isCancelled else { return }
@@ -180,7 +180,7 @@ final class EditorInfoCountOperation: Operation {
         // calculate current column
         if self.requiredInfo.contains(.column) {
             let lineStartIndex = self.string.lineRange(at: cursorLocation).lowerBound
-            self.result.column = self.string.distance(from: lineStartIndex, to: cursorLocation)
+            self.result.column = self.string.distance(from: lineStartIndex, to: cursorLocation) + 1
         }
         
         // unicode

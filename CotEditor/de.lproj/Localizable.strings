@@ -108,6 +108,15 @@
 
 
 
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Regel hinzufügen";
+"Delete Rules" = "Regeln löschen";
+"Edit Rule" = "Regel bearbeiten";
+"Move Rules" = "Regeln verschieben";
+
+
+
 /* MARK: Document Controller */
 // File open accessory's menu item title
 "Auto-Detect" = "Automatisch erkennen";
@@ -142,7 +151,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Das Dokument hat ungespeicherte Änderungen.";
-"Do you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen verwerfen und das Dokument mithilfe der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
+"Do you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen verwerfen und das Dokument in der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretation failed alert
@@ -166,7 +175,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
-"Invisibles" = "Unsichtbares";
+"Invisibles" = "Steuerzeichen";
 "Wrap Lines" = "Zeilen umbrechen";
 
 // Touch bar item labels -Text View

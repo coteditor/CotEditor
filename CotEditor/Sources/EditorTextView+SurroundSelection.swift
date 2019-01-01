@@ -30,28 +30,28 @@ extension EditorTextView {
     // MARK: Action Messages
     
     /// insert ' around selections
-    @IBAction func surroundSelectionWithSingleQuotes(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithSingleQuotes(_ sender: Any?) {
         
         self.surroundSelections(begin: "'", end: "'")
     }
     
     
     /// insert " around selections
-    @IBAction func surroundSelectionWithDoubleQuotes(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithDoubleQuotes(_ sender: Any?) {
         
         self.surroundSelections(begin: "\"", end: "\"")
     }
     
     
     /// insert () around selections
-    @IBAction func surroundSelectionWithParenthesis(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithParenthesis(_ sender: Any?) {
         
         self.surroundSelections(begin: "(", end: ")")
     }
     
     
     /// insert {} around selections
-    @IBAction func surroundSelectionWithBraces(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithBraces(_ sender: Any?) {
         
         self.surroundSelections(begin: "{", end: "}")
     }
@@ -80,10 +80,9 @@ extension NSTextView {
         let selectedRanges = self.selectedRanges as! [NSRange]
         
         let replacementStrings = selectedRanges.map { begin + string.substring(with: $0) + end }
-        let newSelectedRanges = selectedRanges.enumerated().map { item -> NSRange in
-            let range = item.element
-            return NSRange(location: (item.offset + 1) * begin.utf16.count + range.location + item.offset * end.utf16.count,
-                           length: range.length)
+        let newSelectedRanges = selectedRanges.enumerated().map { (offset, range) in
+            NSRange(location: (offset + 1) * begin.utf16.count + range.location + offset * end.utf16.count,
+                    length: range.length)
         }
         
         return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)

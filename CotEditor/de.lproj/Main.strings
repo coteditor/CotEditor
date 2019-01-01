@@ -238,9 +238,9 @@
 "788.title" = "Unsichtbare Zeichen einblenden";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
-"mEh-BD-ZlV.title" = "Richtung beim Schreiben";
+"mEh-BD-ZlV.title" = "Schreibrichtung";
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "hxr-2A-KYT"; */
-"hxr-2A-KYT.title" = "Richtung beim Schreiben";
+"hxr-2A-KYT.title" = "Schreibrichtung";
 /* Class = "NSMenuItem"; title = "Orientation"; ObjectID = "6eV-nI-heo"; */
 "6eV-nI-heo.title" = "Orientierung";
 /* Class = "NSMenuItem"; title = "Horizontal"; ObjectID = "jQ7-hG-AjA"; */
@@ -487,7 +487,7 @@
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Alles suchen";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
-"ULf-cT-Xvb.title" = "Alle Suchübereinstimmungen auswählen";
+"ULf-cT-Xvb.title" = "Alle Übereinstimmungen auswählen";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Auswahl als Suchbegriff verwenden";

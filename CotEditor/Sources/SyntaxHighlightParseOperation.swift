@@ -29,14 +29,16 @@ import Foundation
 private struct QuoteCommentItem {
     
     let type: SyntaxType
-    let token: String
+    let token: Token
     let role: Role
     let range: NSRange
     
     
-    enum Token {
-        static let inlineComment = "inlineComment"
-        static let blockComment = "blockComment"
+    enum Token: Equatable {
+        
+        case inlineComment
+        case blockComment
+        case string(String)
     }
     
     
@@ -131,15 +133,13 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         var highlights = [SyntaxType: [NSRange]]()
         
         // extract standard highlight ranges
-        let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
         for syntaxType in SyntaxType.allCases {
             guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
             self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            
-            var ranges = [NSRange]()
+            let atomicRanges = Atomic<[NSRange]>([], attributes: .concurrent)
             
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
                 guard !childProgress.isCancelled else { return }
@@ -148,14 +148,13 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
                     stop = childProgress.isCancelled
                 }
                 
-                rangesQueue.async(flags: .barrier) {
+                atomicRanges.asyncMutate {
+                    $0 += extractedRanges
                     childProgress.completedUnitCount += 1
-                    ranges += extractedRanges
                 }
             }
             
-            highlights[syntaxType] = rangesQueue.sync { ranges }
-            
+            highlights[syntaxType] = atomicRanges.value
             childProgress.completedUnitCount = childProgress.totalUnitCount
         }
         
@@ -183,9 +182,9 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         
         if let delimiters = self.definition.blockCommentDelimiters {
             positions += string.ranges(of: delimiters.begin, range: self.parseRange)
-                .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .begin, range: $0) }
+                .map { QuoteCommentItem(type: .comments, token: .blockComment, role: .begin, range: $0) }
             positions += string.ranges(of: delimiters.end, range: self.parseRange)
-                .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .end, range: $0) }
+                .map { QuoteCommentItem(type: .comments, token: .blockComment, role: .end, range: $0) }
         }
         
         if let delimiter = self.definition.inlineCommentDelimiter {
@@ -194,14 +193,14 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
                     let lineRange = string.lineRange(for: range)
                     let endRange = NSRange(location: lineRange.upperBound, length: 0)
                     
-                    return [QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.inlineComment, role: .begin, range: range),
-                            QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.inlineComment, role: .end, range: endRange)]
+                    return [QuoteCommentItem(type: .comments, token: .inlineComment, role: .begin, range: range),
+                            QuoteCommentItem(type: .comments, token: .inlineComment, role: .end, range: endRange)]
                 }
         }
         
         for (quote, type) in self.definition.pairedQuoteTypes {
             positions += string.ranges(of: quote, range: self.parseRange)
-                .map { QuoteCommentItem(type: type, token: quote, role: [.begin, .end], range: $0) }
+                .map { QuoteCommentItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
         }
         
         // remove escaped ones

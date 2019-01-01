@@ -230,7 +230,10 @@ final class DocumentController: NSDocumentController {
             return inSaveGroup && item.isSeparatorItem
         }?.offset ?? fileMenu.numberOfItems
         
-        fileMenu.insertItem(ShareMenuItem(), at: index)
+        let item = ShareMenuItem()
+        item.tag = MainMenu.MenuItemTag.sharingService.rawValue
+        
+        fileMenu.insertItem(item, at: index)
         fileMenu.insertItem(NSMenuItem.separator(), at: index)
     }
     

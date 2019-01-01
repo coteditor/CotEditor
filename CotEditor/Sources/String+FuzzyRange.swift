@@ -49,7 +49,7 @@ extension String {
         
         guard newLocation >= 0, newLength >= 0 else { return nil }
         
-        return NSRange(location: newLocation, length: newLength).intersection(self.nsRange)
+        return NSRange(newLocation..<min(newLocation + newLength, wholeLength))
     }
     
     

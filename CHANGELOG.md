@@ -2,6 +2,50 @@
 Change Log
 ==========================
 
+3.6.10 (307)
+--------------------------
+
+### New Features
+
+- Add syntax style for “Kotlin”.
+
+
+### Improvements
+
+- Change counting method of the cursor location and column to 1-based (formerly 0-based).
+- Optimize syntax highlight application so that the time displaying the rainbow cursor reduces significantly with a large document.
+- Make editing multiple replacement definitions undoable.
+- Syntax highlight regular expression patterns in the syntax style editor, multiple replacement definitions, and the custom sort dialog.
+- Move focus to the editor when lines are selected by clicking line numbers.
+- Apply update of “Line numbers”, “Page guide” and “invisible characters” visibility options in the preferences immediately to opened documents.
+- Suppress the dialog asking if you want to keep the document when an unsaved empty document is about to close, and silently discard the auto-saved backup file.
+- Change the label of the option “Count each line ending as one character” in General pane to “Ignore line endings when counting characters” (the value reversed).
+- Enable the “Share” button in toolbar also in the Text Only mode.
+- Display also mapping conflicts of interpreters in the syntax style file mapping conflict dialog.
+- Make composition views for the Share feature document-modal also in macOS 10.12.
+- Disable “Hide Toolbar” command for the preferences window.
+- Improve general performance.
+- Update German localization (Thanks to J-rg!).
+- Update `cot` command-line tool:
+    - Accept a negative value for `--column` option to count from the end of the line.
+    - Change `--column` count from 0-based to 1-based.
+    - Improve error message when failed.
+    - Fix an issue where the last empty line was ignoed when specifying the cursor position with `--line` option.
+- [trivial] Make the minimum width of outline inspector wider.
+
+
+### Fixes
+
+- Fix an issue where the final number of the replacement in the progress dialog was occasionally underrated.
+- Fix an issue where the cursor could not be set at the end of the document via AppleScript or `cot` command.
+- Fix an issue where syntax highlight was not updated in specific condition when deleted.
+- Fix an issue where line number views did not update when editor is scrolled via script.
+- Fix the preferences pane switching animation under macOS 10.13 and earlier.
+- [trivial] Fix a potential issue where last empty line number could be drawn at the first line position under specific conditions.
+- [trivial] Fix an issue where editor occasionally scrolled unintendedly when an arrow key is pressed.
+
+
+
 3.6.9 (305)
 --------------------------
 

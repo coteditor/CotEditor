@@ -38,11 +38,16 @@ extension NSTextView {
     /// draw rounded background rects for .roundedBackgroundColor temporary attributes in the layoutManager
     func drawRoundedBackground(in dirtyRect: NSRect) {
         
-        guard let dirtyRange = self.range(for: dirtyRect) else { return }
+        // avoid invoking heavy-duty `range(for:)` as possible
+        guard
+            let layoutManager = self.layoutManager,
+            layoutManager.hasTemporaryAttribute(for: .roundedBackgroundColor),
+            let dirtyRange = self.range(for: dirtyRect)
+            else { return }
         
         NSGraphicsContext.saveGraphicsState()
         
-        self.layoutManager?.enumerateTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange) { (value, range, _) in
+        layoutManager.enumerateTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange) { (value, range, _) in
             guard let color = value as? NSColor else { return }
             
             color.setFill()

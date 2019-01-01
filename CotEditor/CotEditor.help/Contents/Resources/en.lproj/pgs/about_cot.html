@@ -28,6 +28,10 @@
 <p>And uninstallation via Terminal is like the following:</p>
 <pre class="source"><code>unlink /usr/local/bin/cot</code></pre>
 
+<h3>Security authorization on Mojave and later</h3>
+<p>From macOS 10.14 Mojave, user authorization is required to control CotEditor from other applications in which <code>cot</code> command is used. The authorization is normally done via a dialog displays automatically when you use the <code>cot</code> command for the first time. However, in some cases, you may need to authorize it manually from System Preferences &gt; Security &amp; Privacy &gt; Privacy &gt; Automation. Select the checkbox for <strong>CotEditor</strong> (and also <strong>System Events</strong> for <code>--wait</code> option) under your client application, such as Terminal.</p>
+
+
 <h2>Options</h2>
 <p>The following options can be used on <code>cot</code> command.</p>
 
@@ -41,20 +45,32 @@
 	<tr><th><code>-v</code>, <code>--version</code></th><td>Print version information.</td></tr>
 </table>
 
+<p>For <code>--line</code> and <code>--column</code> options, you can specifty a negative number to count from the end of the document (<code>--line</code> option) or a line (<code>--column</code> option).</p>
+
 <h2>Examples</h2>
 <p>A simple <code>cot</code> command will launch CotEditor, or just activate it if CotEditor is already running.</p>
 
 <pre class="source"><code>cot
 </code></pre>
 
-<p>The following command opens the foo.txt file on CotEditor and scroll to the line 200 in the opened document. <code>cot</code> command do nothing if foo.txt file is not exists.</p>
+<p>The following command opens the foo.txt file on CotEditor and move the cursor to the line 200 in the opened document. <code>cot</code> command do nothing if foo.txt file is not exists.</p>
 
 <pre class="source"><code>cot --line 200 foo.txt
+</code></pre>
+
+<p>The following command opens the foo.txt file on CotEditor and move the cursor to the end of the document.</p>
+
+<pre class="source"><code>cot --line -1 --column -1 foo.txt
 </code></pre>
 
 <p>You can also pipe a text. CotEditor will open a new document with the piped text.</p>
 
 <pre class="source"><code>echo &quot;I am a dog but also a cow at the same time.&quot; | cot
+</code></pre>
+
+<p>Using <code>--wait</code> option, CotEditor can be used as the editor for <code>git</code>.</p>
+
+<pre class="source"><code>git config --global core.editor &quot;cot -w&quot;
 </code></pre>
 
 

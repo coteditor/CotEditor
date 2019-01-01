@@ -181,7 +181,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     
     
     /// activate multiple replacement panel
-    @IBAction func showMultipleReplacementPanel(_ sender: AnyObject?) {
+    @IBAction func showMultipleReplacementPanel(_ sender: Any?) {
         
         self.multipleReplacementPanelController.showWindow(sender)
     }
@@ -295,7 +295,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
@@ -419,7 +419,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
-            case TextFindError.regularExpression:
+            case TextFind.Error.regularExpression:
                 self.findPanelController.showWindow(self)
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
             default: break
@@ -497,7 +497,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         indicator.setup(progress: progress, message: actionName)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
             var highlights = [HighlightItem]()

@@ -185,6 +185,7 @@ final class DocumentAnalyzer: NSObject {
                                                  selectedRange: selectedRange,
                                                  requiredInfo: self.requiredInfoTypes,
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
+        operation.qualityOfService = .utility
         
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }

@@ -1,5 +1,5 @@
 //
-//  RawRepresentable+DefaultInitializable.swift
+//  DefaultInitializable.swift
 //
 //  CotEditor
 //  https://coteditor.com

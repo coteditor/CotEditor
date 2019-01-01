@@ -35,7 +35,6 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
         
         self.submenu = NSMenu()
         self.submenu?.delegate = self
-        self.tag = MainMenu.MenuItemTag.sharingService.rawValue
     }
     
     
@@ -54,11 +53,11 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
         menu.removeAllItems()
         
         guard let document = NSDocumentController.shared.currentDocument else {
-                let item = NSMenuItem(title: "No Document".localized, action: nil, keyEquivalent: "")
-                item.isEnabled = false
-                menu.addItem(item)
-                return
-            }
+            let item = NSMenuItem(title: "No Document".localized, action: nil, keyEquivalent: "")
+            item.isEnabled = false
+            menu.addItem(item)
+            return
+        }
         
         // add menu items dynamically
         for service in NSSharingService.sharingServices(forItems: [document]) {
@@ -77,7 +76,7 @@ final class ShareMenuItem: NSMenuItem, NSMenuDelegate {
 
 
 
-extension NSDocument {
+extension NSDocument: NSSharingServiceDelegate {
     
     // MARK: Actions
     
@@ -86,7 +85,17 @@ extension NSDocument {
         
         guard let service = sender.representedObject as? NSSharingService else { return assertionFailure() }
         
+        service.delegate = self
         service.perform(withItems: [self])
+    }
+    
+    
+    
+    // MARK: Sharing Service Delegate
+    
+    public func sharingService(_ sharingService: NSSharingService, sourceWindowForShareItems items: [Any], sharingContentScope: UnsafeMutablePointer<NSSharingService.SharingContentScope>) -> NSWindow? {
+        
+        return self.windowForSheet
     }
     
 }

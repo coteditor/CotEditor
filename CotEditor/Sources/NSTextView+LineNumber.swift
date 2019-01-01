@@ -66,11 +66,11 @@ extension NSTextView {
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = self.string.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            let isSelected = selectedLineRanges.contains { lineRange.intersection($0) != nil }
+            let isSelected = selectedLineRanges.contains { $0.intersection(lineRange) != nil }
             glyphIndex = lineGlyphRange.upperBound
             
-            var wrappedLineGlyphIndex = lineGlyphRange.location
-            while wrappedLineGlyphIndex < glyphIndex {  // process visually wrapped lines
+            var wrappedLineGlyphIndex = max(lineGlyphRange.location, glyphRangeToDraw.lowerBound)
+            while wrappedLineGlyphIndex < min(glyphIndex, glyphRangeToDraw.upperBound) {  // process visually wrapped lines
                 var range = NSRange.notFound
                 let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
                 let line: Line = (range.location == lineGlyphRange.location) ? .new(lineNumber, isSelected) : .wrapped
@@ -84,13 +84,17 @@ extension NSTextView {
         
         guard includingExtraLine else { return }
         
-        let extraLineRect = layoutManager.extraLineFragmentUsedRect
-        if !extraLineRect.isEmpty, (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY) {
-            let lineNumber = max(self.string.numberOfLines(includingLastLineEnding: true), 1)
-            let isSelected = (selectedLineRanges.last?.location == (self.string as NSString).length)
-            
-            body(.new(lineNumber, isSelected), extraLineRect)
-        }
+        let extraLineRect = layoutManager.extraLineFragmentRect
+        
+        guard
+            !extraLineRect.isEmpty,
+            (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
+            else { return }
+        
+        let lastLineNumber = max(self.string.numberOfLines(includingLastLineEnding: true), 1)
+        let isSelected = (selectedLineRanges.last?.location == (self.string as NSString).length)
+        
+        body(.new(lastLineNumber, isSelected), extraLineRect)
     }
     
 }

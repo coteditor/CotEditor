@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@
 "Text document" = "Text-Dokument";
 "Plain text" = "Reiner Text";
 "CotEditor Theme" = "CotEditor-Thema";
-"CotEditor Replacement Definition" = "CotEditor-Ersatzdefinition";
+"CotEditor Replacement Definition" = "CotEditor-Ersetzungsdefinition";
 "BibTeX" = "BibTeX";
 "Configuration" = "Konfiguration";
 "C header" = "C-Header-Code";
@@ -52,6 +52,7 @@
 "JavaScript" = "JavaScript";
 "JSON" = "JSON";
 "Julia script" = "Julia-Skript";
+"Kotlin source" = "Kotlin-Quellcode";
 "Lisp script" = "Lisp-Skript";
 "Lua script" = "Lua-Skript";
 "Markdown document" = "Markdown-Dokument";

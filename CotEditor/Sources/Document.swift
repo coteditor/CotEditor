@@ -82,6 +82,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var fileData: Data?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
+    private var isStab = true  // not saved yet
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -151,7 +152,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.autosaveIdentifier = identifier
         }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
-            self.setSyntaxStyle(name: styleName)
+            if self.syntaxParser.style.name != styleName {
+                self.setSyntaxStyle(name: styleName)
+            }
         }
         if coder.containsValue(forKey: SerializationKey.isVerticalText) {
             self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
@@ -310,6 +313,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
         
+        self.isStab = false
+        
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
@@ -351,7 +356,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
             let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
-            self.setSyntaxStyle(name: styleName)
+            self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
     
@@ -453,6 +458,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             case .saveOperation, .saveAsOperation, .saveToOperation:
                 self.analyzer.invalidateFileInfo()
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
+                self.isStab = false
             case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
@@ -548,19 +554,53 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// display dialogs about save before closing document
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        // disable save dialog if content is empty and not saved
-        if self.fileURL == nil, self.textStorage.string.isEmpty {
+        var shouldClose = false
+        
+        // disable save dialog if content is empty and not saved explicitly
+        if self.isStab, self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
+            
+            // remove auto-saved file if exists
+            if let url = self.fileURL {
+                var deletionError: NSError?
+                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_READ
+                    do {
+                        try FileManager.default.removeItem(at: url)
+                    } catch {
+                        // do nothing and let super's `.canClose(withDelegate:shouldClose:contextInfo:)` handle the stuff
+                        Swift.print("Failed empty file deletion: \(error)")
+                        return
+                    }
+                    
+                    shouldClose = true
+                    self.fileURL = nil
+                }
+            }
         }
         
-        super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+        // manually call delegate but only when you wanna modify `shouldClose` flag
+        guard
+            shouldClose,
+            let selector = shouldCloseSelector,
+            let context = contextInfo,
+            let object = delegate as? NSObject,
+            let objcClass = objc_getClass(object.className) as? AnyClass,
+            let method = class_getMethodImplementation(objcClass, selector)
+            else {
+                return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+            }
+        
+        typealias Signature = @convention(c) (NSObject, Selector, NSDocument, Bool, UnsafeMutableRawPointer) -> Void
+        let function = unsafeBitCast(method, to: Signature.self)
+        
+        function(object, selector, self, shouldClose, context)
     }
     
     
     /// close document
     override func close() {
         
-        self.syntaxParser.invalidateCurrentParce()
+        self.syntaxParser.invalidateCurrentParse()
         
         super.close()
     }
@@ -661,7 +701,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         var didChange = false
         var fileModificationDate: Date?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [unowned self] (newURL) in  // FILE_READ
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
             // ignore if file's modificationDate is the same as document's modificationDate
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
             guard fileModificationDate != self.fileModificationDate else { return }
@@ -703,17 +743,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// apply current state to menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
-        
-        switch action {
-        case #selector(changeEncoding(_:)):
+        switch menuItem.action {
+        case #selector(changeEncoding(_:))?:
             let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
             menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
-        case #selector(changeLineEnding(_:)):
+        case #selector(changeLineEnding(_:))?:
             menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
-        case #selector(changeSyntaxStyle(_:)):
+        case #selector(changeSyntaxStyle(_:))?:
             let name = self.syntaxParser.style.name
             menuItem.state = (menuItem.title == name) ? .on : .off
             
@@ -862,7 +900,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change syntax style with style name
-    func setSyntaxStyle(name: String) {
+    func setSyntaxStyle(name: String, isInitial: Bool = false) {
         
         guard
             let syntaxStyle = SyntaxManager.shared.setting(name: name),
@@ -870,10 +908,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
-        self.syntaxParser.invalidateCurrentParce()
+        self.syntaxParser.invalidateCurrentParse()
         self.syntaxParser.style = syntaxStyle
         
+        // skip notification when initial style was set on file open
+        // to avoid redundant highlight parse due to async notification.
+        guard !isInitial else { return }
+        
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             NotificationCenter.default.post(name: Document.didChangeSyntaxStyleNotification, object: self)
         }
     }

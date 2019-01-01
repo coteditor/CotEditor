@@ -27,9 +27,11 @@
 import Cocoa
 import CoreText
 
-final class LayoutManager: NSLayoutManager {
+final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     // MARK: Public Properties
+    
+    var ignoresDisplayValidation = false
     
     var showsInvisibles = false {
         
@@ -87,19 +89,7 @@ final class LayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private static let observedDefaultKeys: [DefaultKeys] = [
-        .invisibleSpace,
-        .invisibleTab,
-        .invisibleNewLine,
-        .invisibleFullwidthSpace,
-        
-        .showInvisibleSpace,
-        .showInvisibleTab,
-        .showInvisibleNewLine,
-        .showInvisibleFullwidthSpace,
-        
-        .showOtherInvisibleChars,
-        ]
+    private var defaultsObservers: [UserDefaultsObservation] = []
     
     private var defaultLineHeight: CGFloat = 1.0
     
@@ -109,6 +99,7 @@ final class LayoutManager: NSLayoutManager {
     private var showsFullwidthSpace = false
     
     private lazy var invisibleLines: InvisibleLines = self.generateInvisibleLines()
+    
     
     private struct InvisibleLines {
         
@@ -139,9 +130,27 @@ final class LayoutManager: NSLayoutManager {
         
         self.typesetter = ATSTypesetter()
         
-        // observe change of defaults
-        for key in type(of: self).observedDefaultKeys {
-            UserDefaults.standard.addObserver(self, forKeyPath: key.rawValue, context: nil)
+        // observe change in defaults
+        let defaultKeys: [DefaultKeys] = [
+            .invisibleSpace,
+            .invisibleTab,
+            .invisibleNewLine,
+            .invisibleFullwidthSpace,
+            
+            .showInvisibleSpace,
+            .showInvisibleTab,
+            .showInvisibleNewLine,
+            .showInvisibleFullwidthSpace,
+            
+            .showOtherInvisibleChars,
+            ]
+        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [unowned self] (key, _) in
+            self.applyDefaultInvisiblesSetting()
+            self.invisibleLines = self.generateInvisibleLines()
+            
+            guard let textView = self.firstTextView else { return }
+            
+            textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: (key != .showOtherInvisibleChars))
         }
     }
     
@@ -153,31 +162,7 @@ final class LayoutManager: NSLayoutManager {
     
     
     deinit {
-        for key in type(of: self).observedDefaultKeys {
-            UserDefaults.standard.removeObserver(self, forKeyPath: key.rawValue)
-        }
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    /// apply change of user setting
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if let keyPath = keyPath, type(of: self).observedDefaultKeys.map({ $0.rawValue }).contains(keyPath) {
-            self.applyDefaultInvisiblesSetting()
-            self.invisibleLines = self.generateInvisibleLines()
-            
-            if keyPath == DefaultKeys.showOtherInvisibleChars.rawValue {
-                self.invalidateLayout(forCharacterRange: self.attributedString().string.nsRange, actualCharacterRange: nil)
-            }
-            
-            self.firstTextView?.needsDisplay = true
-            
-        } else {
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
-        }
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -311,6 +296,17 @@ final class LayoutManager: NSLayoutManager {
         }
     
         super.fillBackgroundRectArray(rectArray, count: rectCount, forCharacterRange: charRange, color: color)
+    }
+    
+    
+    /// invalidate display for the given character range
+    override func invalidateDisplay(forCharacterRange charRange: NSRange) {
+        
+        // ignore display validation during applying temporary attributes continuously
+        // -> See `SyntaxParser.apply(highlights:range:)` for the usage of this option. (2018-12)
+        if self.ignoresDisplayValidation { return }
+        
+        super.invalidateDisplay(forCharacterRange: charRange)
     }
     
     
