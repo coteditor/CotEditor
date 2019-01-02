@@ -34,3 +34,28 @@ protocol MultiCursorEditing: AnyObject {
 extension MultiCursorEditing where Self: NSTextView {
     
 }
+
+
+
+@objc extension NSTextView {
+    
+    /// Calculate rect for insartion point at `index`.
+    ///
+    /// - Parameter index: The character index where the insertion point will locate.
+    /// - Returns: Rect where insertion point filled.
+    func insertionPointRect(at index: Int) -> NSRect {
+        
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return .zero }
+        
+        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        let boundingRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer)
+            .offset(by: self.textContainerOrigin)
+        let rect = NSRect(x: floor(boundingRect.minX), y: boundingRect.minY, width: 1, height: boundingRect.height)
+        
+        return self.centerScanRect(rect)
+    }
+    
+}
