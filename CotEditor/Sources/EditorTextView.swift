@@ -73,6 +73,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
     
+    private var mouseDownPoint: NSPoint = .zero
     private var isSelectingRectangularly = false
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
@@ -274,7 +275,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// the left mouse button is pressed
     override func mouseDown(with event: NSEvent) {
         
-        let mouseDownPoint = self.convert(event.locationInWindow, from: nil)
+        self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isSelectingRectangularly = event.modifierFlags.contains(.option)
         
         super.mouseDown(with: event)
@@ -286,7 +287,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
         let point = self.convert(pointInWindow, from: nil)
-        let isDragged = (point != mouseDownPoint)
+        let isDragged = (point != self.mouseDownPoint)
         
         // add/remove sub insrtion point at clicked point
         if event.modifierFlags.contains(.command), !isDragged {
@@ -574,11 +575,23 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// multiple selection did change
     override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
+        var ranges = ranges
+        
         // interrupt rectangular selection
         if self.isSelectingRectangularly {
             if stillSelectingFlag {
+                if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
+                    ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
+                    self.insertionLocations = Array(locations[1...])
+                } else {
+                    self.insertionLocations = []
+                }
+                
                 // redraw insertion points manually while rectangular selection (will be drawn in `draw(_:)`)
                 self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                
+            } else {
+                ranges = ranges.isEmpty ? self.selectedRanges : ranges
             }
         }
         

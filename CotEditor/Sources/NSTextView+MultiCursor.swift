@@ -118,6 +118,41 @@ extension MultiCursorEditing where Self: NSTextView {
     }
     
     
+    /// Calculate multiple insertion points for rectangular selection.
+    ///
+    /// - Parameters:
+    ///   - startPoint: The point where the dragging started, in view coordinates.
+    ///   - candidates: The candidate ranges for selectedRanges that is passed to `setSelectedRanges(_s:affinity:stillSelecting:)`.
+    /// - Returns: Locations for all insertion points.
+    @discardableResult
+    func insertionLocations(from startPoint: NSPoint, candidates ranges: [NSValue]) -> [Int]? {
+        
+        // perform only when recutangular selection was failed
+        guard
+            ranges.count == 1,
+            let range = ranges.first as? NSRange
+            else { return nil }
+        
+        guard let layoutManager = self.layoutManager else { assertionFailure(); return nil }
+        
+        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        
+        var locations: [Int] = []
+        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { (_, usedRect, _, glyphRange, stop) in
+            let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
+            let point = NSPoint(x: startPoint.x, y: rect.midY)
+            
+            guard rect.contains(point) else { return }
+            
+            locations.append(self.characterIndexForInsertion(at: point))
+        }
+        
+        guard locations.count > 1 else { return nil }
+        
+        return locations
+    }
+    
+    
     /// Add a new insrtion point at `point` or remove an existing if any.
     ///
     /// - Parameter point: The point where user clicked, in view coordinates.
