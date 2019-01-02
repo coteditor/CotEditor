@@ -73,6 +73,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
     
+    private var isSelectingRectangularly = false
+    
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
     
@@ -273,6 +275,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func mouseDown(with event: NSEvent) {
         
         let mouseDownPoint = self.convert(event.locationInWindow, from: nil)
+        self.isSelectingRectangularly = event.modifierFlags.contains(.option)
         
         super.mouseDown(with: event)
         
@@ -289,6 +292,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if event.modifierFlags.contains(.command), !isDragged {
             self.modifyInsertionPoint(at: point)
         }
+        
+        self.isSelectingRectangularly = false
     }
     
     
@@ -566,6 +571,21 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// multiple selection did change
+    override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        // interrupt rectangular selection
+        if self.isSelectingRectangularly {
+            if stillSelectingFlag {
+                // redraw insertion points manually while rectangular selection (will be drawn in `draw(_:)`)
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            }
+        }
+        
+        super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
+    }
+    
+    
     /// selection did change
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
@@ -820,6 +840,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.centerScanRect(guideRect).fill()
             
             NSGraphicsContext.restoreGraphicsState()
+        }
+        
+        // draw zero-width insertion points while rectangular selection
+        // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
+        if self.isSelectingRectangularly, self.selectedRanges.allSatisfy({ $0.rangeValue.length == 0 }) {
+            ([self.selectedRange.location] + self.insertionLocations)
+                .map { self.insertionPointRect(at: $0) }
+                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: true) }
         }
     }
     
