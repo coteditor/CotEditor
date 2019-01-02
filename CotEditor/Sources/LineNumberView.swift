@@ -476,12 +476,13 @@ extension LineNumberView {
         let point = window.convertPoint(toScreen: event.locationInWindow)
         let index = textView.characterIndex(for: point)
         
-        // repeat while dragging
-        self.draggingTimer = .scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(selectLines),
-                                             userInfo: DraggingInfo(index: index, selectedRanges: textView.selectedRanges as! [NSRange]),
-                                             repeats: true)
+        let selectedRanges = textView.selectedRanges.map { $0.rangeValue }
         
-        self.selectLines(nil)  // for single click event
+        // repeat while dragging
+        self.draggingTimer = .scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(selectLines),
+                                             userInfo: DraggingInfo(index: index, selectedRanges: selectedRanges),
+                                             repeats: true)
+        self.draggingTimer?.fire()  // for single click event
     }
     
     
@@ -489,12 +490,6 @@ extension LineNumberView {
     override func mouseUp(with event: NSEvent) {
         
         self.draggingTimer?.invalidate()
-        
-        // settle selection
-        //   -> in `selectLines:`, `stillSelecting` flag is always YES
-        if let ranges = self.textView?.selectedRanges {
-            self.textView?.selectedRanges = ranges
-        }
     }
     
     
@@ -502,28 +497,27 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// select lines while dragging event
-    @objc private func selectLines(_ timer: Timer?) {
+    @objc private func selectLines(_ timer: Timer) {
         
         guard
             let window = self.window,
-            let textView = self.textView
+            let textView = self.textView,
+            let draggingInfo = timer.userInfo as? DraggingInfo
             else { return assertionFailure() }
         
-        let string = textView.string as NSString
-        let draggingInfo = timer?.userInfo as? DraggingInfo
-        let point = NSEvent.mouseLocation  // screen based point
-        
         // scroll text view if needed
-        let pointedRect = window.convertFromScreen(NSRect(origin: point, size: .zero))
-        let targetRect = textView.convert(pointedRect, from: nil)
-        textView.scrollToVisible(targetRect)
+        let pointInScreen = NSEvent.mouseLocation
+        let pointInWindow = window.convertPoint(fromScreen: pointInScreen)
+        let point = textView.convert(pointInWindow, from: nil)  // textView-based
+        textView.scrollToVisible(NSRect(origin: point, size: .zero))
         
         // move focus to textView
         window.makeFirstResponder(textView)
         
         // select lines
-        let currentIndex = textView.characterIndex(for: point)
-        let clickedIndex = draggingInfo?.index ?? currentIndex
+        let string = textView.string as NSString
+        let currentIndex = textView.characterIndex(for: pointInScreen)
+        let clickedIndex = draggingInfo.index
         let currentLineRange = string.lineRange(at: currentIndex)
         let clickedLineRange = string.lineRange(at: clickedIndex)
         var range = currentLineRange.union(clickedLineRange)
@@ -532,11 +526,10 @@ extension LineNumberView {
         
         // with Command key (add selection)
         if NSEvent.modifierFlags.contains(.command) {
-            let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as! [NSRange]
             var selectedRanges = [NSRange]()
             var intersects = false
             
-            for selectedRange in originalSelectedRanges {
+            for selectedRange in draggingInfo.selectedRanges {
                 if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
                     let range1 = NSRange(selectedRange.location..<range.location)
                     let range2 = NSRange(range.upperBound..<selectedRange.upperBound)
