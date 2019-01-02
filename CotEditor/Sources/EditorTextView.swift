@@ -185,6 +185,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// use sub-insertion points also for multi-text editing
+    override var rangesForUserTextChange: [NSValue]? {
+        
+        return self.insertionRanges as [NSValue]
+    }
+    
+    
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
