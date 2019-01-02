@@ -49,7 +49,8 @@ extension NSTextView {
             let textContainer = self.textContainer
             else { return assertionFailure() }
         
-        let selectedLineRanges = self.selectedRanges.map { (self.string as NSString).lineRange(for: $0.rangeValue) }
+        let selectedLineRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
+            .map { (self.string as NSString).lineRange(for: $0.rangeValue) }
         
         // get glyph range of which line number should be drawn
         // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
