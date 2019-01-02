@@ -68,7 +68,7 @@ vertical_whitespace:
   max_empty_lines: 4
 
 file_length:
-  warning: 1800
+  warning: 2000
   error: 3000
 
 line_length:

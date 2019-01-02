@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
 // MARK: -
 
-final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
     // MARK: Notification Names
     
@@ -57,6 +57,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     var lineHighLightRect: NSRect?
     private(set) var lineHighLightColor: NSColor?
     
+    var insertionLocations: [Int] = []
+    
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
@@ -70,6 +72,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
+    
+    private var mouseDownPoint: NSPoint = .zero
+    private var isSelectingRectangularly = false
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
@@ -183,6 +188,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// use sub-insertion points also for multi-text editing
+    override var rangesForUserTextChange: [NSValue]? {
+        
+        return self.insertionRanges as [NSValue]
+    }
+    
+    
     /// post notification about becoming the first responder
     override func becomeFirstResponder() -> Bool {
         
@@ -260,6 +272,32 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// the left mouse button is pressed
+    override func mouseDown(with event: NSEvent) {
+        
+        self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
+        self.isSelectingRectangularly = event.modifierFlags.contains(.option)
+        
+        super.mouseDown(with: event)
+        
+        // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
+        //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
+        
+        guard let window = self.window else { return }
+        
+        let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
+        let point = self.convert(pointInWindow, from: nil)
+        let isDragged = (point != self.mouseDownPoint)
+        
+        // add/remove sub insrtion point at clicked point
+        if event.modifierFlags.contains(.command), !isDragged {
+            self.modifyInsertionPoint(at: point)
+        }
+        
+        self.isSelectingRectangularly = false
+    }
+    
+    
     /// key is pressed
     override func keyDown(with event: NSEvent) {
         
@@ -324,6 +362,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             
             return input
         }()
+        
+        // enter multi-cursor editing
+        let insertionRanges = self.insertionRanges
+        if insertionRanges.count > 1 {
+            self.insertText(plainString, replacementRanges: insertionRanges)
+            return
+        }
         
         // balance brackets and quotes
         if self.balancesBrackets, replacementRange.length == 0 {
@@ -482,6 +527,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         guard self.isEditable else { return super.deleteBackward(sender) }
         
+        if self.multipleDeleteBackward() { return }
+        
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
             let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth)
@@ -505,9 +552,57 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// change multiple selection ranges
+    override var selectedRanges: [NSValue] {
+        
+        willSet {
+            // keep only empty ranges that super may discard for following multi-cursor editing
+            self.insertionLocations = newValue
+                .map { $0.rangeValue }
+                .filter { $0.length == 0 }
+                .map { $0.location }
+        }
+        
+        didSet {
+            // remove the official selectedRange from the sub insertion points
+            if self.selectedRange.length == 0 {
+                self.insertionLocations.removeAll { $0 == self.selectedRange.location }
+            }
+        }
+    }
+    
+    
+    /// multiple selection did change
+    override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        var ranges = ranges
+        
+        // interrupt rectangular selection
+        if self.isSelectingRectangularly {
+            if stillSelectingFlag {
+                if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
+                    ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
+                    self.insertionLocations = Array(locations[1...])
+                } else {
+                    self.insertionLocations = []
+                }
+                
+                // redraw insertion points manually while rectangular selection (will be drawn in `draw(_:)`)
+                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                
+            } else {
+                ranges = ranges.isEmpty ? self.selectedRanges : ranges
+            }
+        }
+        
+        super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
+    }
+    
+    
     /// selection did change
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
+        self.insertionLocations.removeAll()
         self.needsUpdateLineHighlight = true
         
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
@@ -661,9 +756,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     ///
     override func setNeedsDisplay(_ invalidRect: NSRect) {
         
-        // expand rect as a workaroud for thick cursors (2018-11 macOS 10.14)
-        var invalidRect = invalidRect
-        invalidRect.size.width += (self.layoutManager as? LayoutManager)?.spaceWidth ?? 0
+        // expand rect as a workaroud for thick or multiple cursors (2018-11 macOS 10.14)
+        super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         
         super.setNeedsDisplay(invalidRect)
     }
@@ -690,30 +784,37 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         switch self.cursorType {
         case .bar:
             break
-            
         case .thickBar:
             rect.size.width = 2
-            
         case .block:
-            guard
-                let layoutManager = self.layoutManager as? LayoutManager,
-                let textContainer = self.textContainer
-                else { break }
-            
             let index = self.characterIndexForInsertion(at: rect.mid)
-            let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-            
-            rect.size.width = {
-                guard
-                    layoutManager.isValidGlyphIndex(glyphIndex),
-                    layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
-                    else { return layoutManager.spaceWidth }
-                
-                return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
-            }()
+            rect.size.width = self.insertionBlockWidth(at: index)
         }
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
+        
+        // draw sub insertion rects
+        self.insertionLocations
+            .map { self.insertionPointRect(at: $0) }
+            .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
+    }
+    
+    
+    /// calculate rect for insartion point at index
+    override func insertionPointRect(at index: Int) -> NSRect {
+        
+        var rect = super.insertionPointRect(at: index)
+        
+        switch self.cursorType {
+        case .bar:
+            break
+        case .thickBar:
+            rect.size.width = 2
+        case .block:
+            rect.size.width = self.insertionBlockWidth(at: index)
+        }
+        
+        return rect
     }
     
     
@@ -752,6 +853,14 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             self.centerScanRect(guideRect).fill()
             
             NSGraphicsContext.restoreGraphicsState()
+        }
+        
+        // draw zero-width insertion points while rectangular selection
+        // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
+        if self.isSelectingRectangularly, self.selectedRanges.allSatisfy({ $0.rangeValue.length == 0 }) {
+            ([self.selectedRange.location] + self.insertionLocations)
+                .map { self.insertionPointRect(at: $0) }
+                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: true) }
         }
     }
     
@@ -813,6 +922,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             self.insertDroppedFiles(urls)
         {
             return true
+        }
+        
+        // paste a single string to all insertion points
+        if pboard.name == .generalPboard,
+            pboard.types?.contains(.multipleTextSelection) == false,
+            let string = pboard.string(forType: .string),
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            ranges.count > 1,
+            string.rangeOfCharacter(from: .newlines) == nil
+        {
+            return self.insertText(string, replacementRanges: ranges)
         }
         
         return super.readSelection(from: pboard, type: type)
@@ -1321,6 +1441,28 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.didChangeText()
         
         return true
+    }
+    
+    
+    /// Return the width of the insertion point to be drawn at the `index`.
+    ///
+    /// - Parameter index: The character index of the insertion point.
+    /// - Returns: The width of insertion point rect.
+    private func insertionBlockWidth(at index: Int) -> CGFloat {
+        
+        guard
+            let layoutManager = self.layoutManager as? LayoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return 1 }
+        
+        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        
+        guard
+            layoutManager.isValidGlyphIndex(glyphIndex),
+            layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
+            else { return layoutManager.spaceWidth }
+        
+        return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
     }
     
     
