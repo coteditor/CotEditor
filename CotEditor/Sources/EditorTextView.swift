@@ -883,6 +883,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return true
         }
         
+        // paste a single string to all insertion points
+        if pboard.name == .generalPboard,
+            pboard.types?.contains(.multipleTextSelection) == false,
+            let string = pboard.string(forType: .string),
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            ranges.count > 1,
+            string.rangeOfCharacter(from: .newlines) == nil
+        {
+            return self.insertText(string, replacementRanges: ranges)
+        }
+        
         return super.readSelection(from: pboard, type: type)
     }
     
