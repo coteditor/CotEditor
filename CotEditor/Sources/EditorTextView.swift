@@ -327,6 +327,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return input
         }()
         
+        // enter multi-cursor editing
+        let insertionRanges = self.insertionRanges
+        if insertionRanges.count > 1 {
+            self.insertText(plainString, replacementRanges: insertionRanges)
+            return
+        }
+        
         // balance brackets and quotes
         if self.balancesBrackets, replacementRange.length == 0 {
             // with opening symbol input
@@ -484,6 +491,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         guard self.isEditable else { return super.deleteBackward(sender) }
         
+        if self.multipleDeleteBackward() { return }
+        
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
             let deletionRange = self.string.rangeForSoftTabDeletion(in: self.rangeForUserTextChange, tabWidth: self.tabWidth)
@@ -507,9 +516,30 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// change multiple selection ranges
+    override var selectedRanges: [NSValue] {
+        
+        willSet {
+            // keep only empty ranges that super may discard for following multi-cursor editing
+            self.insertionLocations = newValue
+                .map { $0.rangeValue }
+                .filter { $0.length == 0 }
+                .map { $0.location }
+        }
+        
+        didSet {
+            // remove the official selectedRange from the sub insertion points
+            if self.selectedRange.length == 0 {
+                self.insertionLocations.removeAll { $0 == self.selectedRange.location }
+            }
+        }
+    }
+    
+    
     /// selection did change
     override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
+        self.insertionLocations.removeAll()
         self.needsUpdateLineHighlight = true
         
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)

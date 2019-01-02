@@ -53,7 +53,8 @@ extension NSTextView {
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
         
         // register redo for text selection
-        self.setSelectedRangesWithUndo(self.selectedRanges)
+        // -> Prefer using `rangesForUserTextChange` to save also multi-insertion points
+        self.setSelectedRangesWithUndo(self.rangesForUserTextChange ?? self.selectedRanges)
         
         // tell textEditor about beginning of the text processing
         guard self.shouldChangeText(inRanges: ranges as [NSValue], replacementStrings: strings) else { return false }

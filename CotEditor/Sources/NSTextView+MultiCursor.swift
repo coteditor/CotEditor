@@ -33,6 +33,90 @@ protocol MultiCursorEditing: AnyObject {
 
 extension MultiCursorEditing where Self: NSTextView {
     
+    /// All ranges to insert for multiple-cursor editing.
+    var insertionRanges: [NSRange] {
+        
+        let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
+        return ((self.selectedRanges as! [NSRange]) + insertionRanges).sorted { $0.location < $1.location }
+    }
+    
+    
+    /// Insert the same string at multiple ranges.
+    ///
+    /// - Parameters:
+    ///   - string: The string to insert.
+    ///   - replacementRanges: The ranges to insert.
+    /// - Returns: Whether the insertion succeed.
+    @discardableResult
+    func insertText(_ string: String, replacementRanges: [NSRange]) -> Bool {
+        
+        assert(!replacementRanges.isEmpty)
+        
+        let replacementStrings = [String](repeating: string, count: replacementRanges.count)
+        
+        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges, insertionLocations = self.insertionLocations] target in
+            target.selectedRanges = selectedRanges
+            target.insertionLocations = insertionLocations
+        }
+        
+        guard self.shouldChangeText(inRanges: replacementRanges as [NSValue], replacementStrings: replacementStrings) else { return false }
+        
+        let stringLength = string.nsRange.length
+        let attributedString = NSAttributedString(string: string, attributes: self.typingAttributes)
+        var newInsertionLocations: [Int] = []
+        var offset = 0
+        
+        self.textStorage?.beginEditing()
+        for range in replacementRanges {
+            let replacementRange = NSRange(location: range.location + offset, length: range.length)
+            
+            self.textStorage?.replaceCharacters(in: replacementRange, with: attributedString)
+            
+            newInsertionLocations.append(range.location + offset + stringLength)
+            
+            offset += stringLength - range.length
+        }
+        self.textStorage?.endEditing()
+        
+        self.didChangeText()
+        
+        self.selectedRange = NSRange(location: newInsertionLocations.removeFirst(), length: 0)
+        self.insertionLocations = newInsertionLocations
+        
+        return true
+    }
+    
+    
+    /// Remove backward at all insertionRanges when there is more than one to delete.
+    ///
+    /// - Returns: Whether the deletion succeed.
+    func multipleDeleteBackward() -> Bool {
+        
+        let ranges = self.insertionRanges
+        
+        guard ranges.count > 1 else { return false }
+        
+        let deletionRanges: [NSRange] = ranges
+            .map { range in
+                guard range.location > 0 else { return range }
+                guard range.length == 0 else { return range }
+                
+                if let self = self as? NSTextView & Indenting,
+                    self.isAutomaticTabExpansionEnabled,
+                    let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
+                { return indentRange }
+                
+                return NSRange(location: range.location-1, length: 1)
+            }
+            // remove overlappings
+            .map { Range<Int>($0)! }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+            .rangeView
+            .map { NSRange($0) }
+        
+        return self.insertText("", replacementRanges: deletionRanges)
+    }
+    
 }
 
 
