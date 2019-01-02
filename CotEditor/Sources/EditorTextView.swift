@@ -66,6 +66,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     
+    private var cursorType: CursorType = .bar
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
@@ -91,10 +92,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         let defaults = UserDefaults.standard
         
+        self.cursorType = defaults[.cursorType]
+        self.balancesBrackets = defaults[.balancesBrackets]
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
         self.isSmartIndentEnabled = defaults[.enableSmartIndent]
-        self.balancesBrackets = defaults[.balancesBrackets]
         
         // set paragraph style values
         self.lineHeight = defaults[.lineHeight]
@@ -685,9 +687,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
         var rect = rect
-        var color = color
-        
-        switch UserDefaults.standard[.cursorType] {
+        switch self.cursorType {
         case .bar:
             break
             
@@ -700,8 +700,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
                 let textContainer = self.textContainer
                 else { break }
             
-            let point = NSPoint(x: rect.maxX, y: rect.midY).offset(by: -self.textContainerOrigin)
-            let glyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
+            let index = self.characterIndexForInsertion(at: rect.mid)
+            let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
             
             rect.size.width = {
                 guard
@@ -711,7 +711,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
                 
                 return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
             }()
-            color = color.withAlphaComponent(0.5)
         }
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
@@ -1153,7 +1152,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.backgroundColor = theme.background.color
         self.textColor = theme.text.color
         self.lineHighLightColor = theme.lineHighlight.color
-        self.insertionPointColor = theme.insertionPoint.color
+        self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
@@ -1355,6 +1354,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private func observeDefaults() -> [UserDefaultsObservation] {
         
         let keys: [DefaultKeys] = [
+            .cursorType,
             .autoExpandTab,
             .autoIndent,
             .enableSmartIndent,
@@ -1381,6 +1381,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             
             let new = change.new
             switch key {
+            case .cursorType:
+                self.cursorType = UserDefaults.standard[.cursorType]
+                self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+                
             case .autoExpandTab:
                 self.isAutomaticTabExpansionEnabled = new as! Bool
                 
