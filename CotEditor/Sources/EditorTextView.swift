@@ -262,6 +262,29 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// the left mouse button is pressed
+    override func mouseDown(with event: NSEvent) {
+        
+        let mouseDownPoint = self.convert(event.locationInWindow, from: nil)
+        
+        super.mouseDown(with: event)
+        
+        // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
+        //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
+        
+        guard let window = self.window else { return }
+        
+        let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
+        let point = self.convert(pointInWindow, from: nil)
+        let isDragged = (point != mouseDownPoint)
+        
+        // add/remove sub insrtion point at clicked point
+        if event.modifierFlags.contains(.command), !isDragged {
+            self.modifyInsertionPoint(at: point)
+        }
+    }
+    
+    
     /// key is pressed
     override func keyDown(with event: NSEvent) {
         
