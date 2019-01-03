@@ -124,10 +124,9 @@ extension MultiCursorEditing where Self: NSTextView {
     ///   - startPoint: The point where the dragging started, in view coordinates.
     ///   - candidates: The candidate ranges for selectedRanges that is passed to `setSelectedRanges(_s:affinity:stillSelecting:)`.
     /// - Returns: Locations for all insertion points.
-    @discardableResult
     func insertionLocations(from startPoint: NSPoint, candidates ranges: [NSValue]) -> [Int]? {
         
-        // perform only when recutangular selection was failed
+        // perform only when normal recutangular selection was failed
         guard
             ranges.count == 1,
             let range = ranges.first as? NSRange
