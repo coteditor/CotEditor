@@ -648,7 +648,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        let location = self.locationOfBeginningOfLine()
+        let location = self.locationOfBeginningOfLine(for: self.selectedRange)
         let range = NSRange(location..<location)
         
         self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
@@ -659,7 +659,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// expand selection to the beginning of the current visual line (⇧⌘←)
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
-        let location = self.locationOfBeginningOfLine()
+        let location = self.locationOfBeginningOfLine(for: self.selectedRange)
         
         // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
         // instead of setting `selectedRange` directly.

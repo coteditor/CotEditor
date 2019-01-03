@@ -52,11 +52,11 @@ extension NSTextView {
     
     
     /// location of the beginning of the current visual line considering indent
-    func locationOfBeginningOfLine() -> Int {
+    func locationOfBeginningOfLine(for range: NSRange) -> Int {
         
         let string = self.string as NSString
-        let currentLocation = self.selectedRange.location
-        let lineRange = string.lineRange(for: self.selectedRange)
+        let currentLocation = range.location
+        let lineRange = string.lineRange(for: range)
         
         if let layoutManager = self.layoutManager, currentLocation > 0 {
             // beginning of current visual line
