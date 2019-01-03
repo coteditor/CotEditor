@@ -33,6 +33,13 @@ protocol MultiCursorEditing: AnyObject {
 
 extension MultiCursorEditing where Self: NSTextView {
     
+    /// Whether the receiver has multiple points to insert text.
+    var hasMultipleInsertions: Bool {
+        
+        return (self.insertionRanges.count + self.selectedRanges.count) > 1
+    }
+    
+    
     /// All ranges to insert for multiple-cursor editing.
     var insertionRanges: [NSRange] {
         
@@ -187,19 +194,12 @@ extension MultiCursorEditing where Self: NSTextView {
     /// Move all cursors with the same rule.
     ///
     /// - Parameters:
-    ///   - singleCursorHandler: The fallback block when the cursor is single.
+    ///   - affinity: The selection affinity for the movement.
     ///   - block: The block that describes the rule how to move the cursors.
     ///   - range: The range of each insertion.
-    ///   - affinity: The selection affinity for the movement.
-    func moveCursors(single singleCursorHandler: () -> Void, multiple block: (_ range: NSRange) -> Int, affinity: NSSelectionAffinity) {
+    func moveCursors(affinity: NSSelectionAffinity, using block: (_ range: NSRange) -> Int) {
         
-        let insertionRanges = self.insertionRanges
-        
-        guard insertionRanges.count > 1 else { return singleCursorHandler() }
-        
-        let locations = insertionRanges
-            .map { block($0) }
-            .unique
+        let locations = self.insertionRanges.map(block).unique
         
         // manually set ranges and insertionLocations separatelly to inform `affinity` to the receiver
         let selectionRange = NSRange(location: locations[0], length: 0)
