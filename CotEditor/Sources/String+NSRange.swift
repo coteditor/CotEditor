@@ -79,9 +79,9 @@ extension NSString {
     
     
     /// line range containing a given location
-    func lineRange(at location: Int) -> NSRange {
+    func lineRange(at location: Int, excludingLastLineEnding: Bool = false) -> NSRange {
         
-        return self.lineRange(for: NSRange(location: location, length: 0))
+        return self.lineRange(for: NSRange(location: location, length: 0), excludingLastLineEnding: excludingLastLineEnding)
     }
     
     

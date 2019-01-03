@@ -76,8 +76,8 @@ line_length:
   error: 2000
 
 type_body_length:
-  warning: 800
-  error: 1000
+  warning: 1000
+  error: 1500
 
 function_body_length:
   warning: 90

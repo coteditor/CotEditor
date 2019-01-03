@@ -183,6 +183,32 @@ extension MultiCursorEditing where Self: NSTextView {
         return true
     }
     
+    
+    /// Move all cursors with the same rule.
+    ///
+    /// - Parameters:
+    ///   - singleCursorHandler: The fallback block when the cursor is single.
+    ///   - block: The block that describes the rule how to move the cursors.
+    ///   - range: The range of each insertion.
+    ///   - affinity: The selection affinity for the movement.
+    func moveCursors(single singleCursorHandler: () -> Void, multiple block: (_ range: NSRange) -> Int, affinity: NSSelectionAffinity) {
+        
+        let insertionRanges = self.insertionRanges
+        
+        guard insertionRanges.count > 1 else { return singleCursorHandler() }
+        
+        let locations = insertionRanges
+            .map { block($0) }
+            .unique
+        
+        // manually set ranges and insertionLocations separatelly to inform `affinity` to the receiver
+        let selectionRange = NSRange(location: locations[0], length: 0)
+        self.setSelectedRanges([selectionRange as NSValue], affinity: affinity, stillSelecting: false)
+        self.insertionLocations = Array(locations[1...])
+        
+        self.scrollRangeToVisible(NSRange(locations.first!..<locations.last!))
+    }
+    
 }
 
 
@@ -206,6 +232,61 @@ extension MultiCursorEditing where Self: NSTextView {
         let insertionPointRect = NSRect(x: rect.minX, y: rect.minY, width: 1, height: rect.height)
         
         return self.centerScanRect(insertionPointRect)
+    }
+}
+
+
+
+extension NSTextView {
+    
+    
+    /// Find the location for a insertion point where one (visual) line above to the given insertion point location.
+    ///
+    /// - Parameter index: The character index of the reference insertion point.
+    /// - Returns: The character index of the objective insertion point location or `nil` if cannot move.
+    func upperInsertionLocation(of index: Int) -> Int? {
+        
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return nil }
+        
+        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        let currentInsertionRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        var lineGlyphRange: NSRange = .notFound
+        layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
+        
+        guard lineGlyphRange.lowerBound > 0 else { return nil }
+        
+        let upperLineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphRange.lowerBound - 1, effectiveRange: nil)
+        let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
+        
+        return self.characterIndexForInsertion(at: upperInsertionRect)
+    }
+    
+    
+    /// Find the location for a insertion point where one (visual) line below to the given insertion point location.
+    ///
+    /// - Parameter index: The character index of the reference insertion point.
+    /// - Returns: The character index of the objective insertion point location or `nil` if cannot move.
+    func lowerInsertionLocation(of index: Int) -> Int? {
+        
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return nil }
+        
+        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        let currentInsertionRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        var lineGlyphRange: NSRange = .notFound
+        layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
+        
+        guard lineGlyphRange.upperBound < layoutManager.numberOfGlyphs else { return nil }
+        
+        let upperLineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphRange.upperBound + 1, effectiveRange: nil)
+        let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
+        
+        return self.characterIndexForInsertion(at: upperInsertionRect)
     }
     
 }

@@ -35,7 +35,13 @@ extension NSLayoutManager {
         
         self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange, withoutAdditionalLayout: true)
         
-        return self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
+        var range = self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
+        
+        // strip last line ending character
+        let lineEndingRange = (self.attributedString().string as NSString).rangeOfCharacter(from: .newlines, options: .backwards, range: range)
+        range.length -= lineEndingRange.length
+        
+        return range
     }
     
     

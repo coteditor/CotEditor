@@ -645,14 +645,125 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// Move cursor backward.
+    ///
+    /// - Note: `opt↑` invokes first this method and then `moveToBeginningOfParagraph(_:)`.
+    override func moveBackward(_ sender: Any?) {
+        
+        guard self.insertionRanges.count > 1 else { return super.moveBackward(sender) }
+        
+        self.moveLeft(sender)
+    }
+    
+    
+    /// Move cursor backward.
+    ///
+    /// - Note: `opt↓` invokes first this method and then `moveToEndOfParagraph(_:)`.
+    override func moveForward(_ sender: Any?) {
+        
+        guard self.insertionRanges.count > 1 else { return super.moveForward(sender) }
+        
+        self.moveRight(sender)
+    }
+    
+    
+    /// Move cursor backward (←).
+    ///
+    /// - Note:
+    ///   Although the method name contains "Left", it will be adjusted intelligently in vertical/RTL layout mode.
+    ///   This rule is valid for all `move*{Left|Right}(_:)` actions.
+    override func moveLeft(_ sender: Any?) {
+        
+        self.moveCursors(single: { super.moveLeft(sender) },
+                         multiple: { max($0.lowerBound - 1, 0) },
+                         affinity: .downstream)
+    }
+    
+    
+    /// move cursor forward (→)
+    override func moveRight(_ sender: Any?) {
+        
+        let length = self.attributedString().length
+        self.moveCursors(single: { super.moveRight(sender) },
+                         multiple: { min($0.upperBound + 1, length) },
+                         affinity: .upstream)
+    }
+    
+    
+    /// move cursor up to the upper visual line (↑)
+    override func moveUp(_ sender: Any?) {
+        
+        self.moveCursors(single: { super.moveUp(sender) },
+                         multiple: { self.upperInsertionLocation(of: $0.lowerBound) ?? $0.lowerBound },
+                         affinity: .downstream)
+    }
+    
+    
+    /// move cursor down to the lower visual line (↓)
+    override func moveDown(_ sender: Any?) {
+        
+        self.moveCursors(single: { super.moveDown(sender) },
+                         multiple: { self.lowerInsertionLocation(of: $0.upperBound) ?? $0.upperBound },
+                         affinity: .upstream)
+    }
+    
+    
+    /// move cursor to the beginning of the word (opt←)
+    override func moveWordLeft(_ sender: Any?) {
+        
+        self.moveCursors(single: { super.moveWordLeft(sender) },
+                         multiple: { self.wordRange(at: max($0.lowerBound - 1, 0)).lowerBound },
+                         affinity: .downstream)
+    }
+    
+    
+    /// move cursor to the end of the word (opt→)
+    override func moveWordRight(_ sender: Any?) {
+        
+        let length = self.attributedString().length
+        self.moveCursors(single: { super.moveWordRight(sender) },
+                         multiple: { self.wordRange(at: min($0.upperBound + 1, length)).upperBound },
+                         affinity: .upstream)
+    }
+    
+    
+    /// Move cursor to the beginning of the logical line.
+    ///
+    /// - Note: `opt↑` invokes first `moveBackward(_:)` and then this method.
+    override func moveToBeginningOfParagraph(_ sender: Any?) {
+        
+        self.moveCursors(single: { super.moveToBeginningOfParagraph(sender) },
+                         multiple: { (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound },
+                         affinity: .downstream)
+    }
+    
+    
+    /// move cursor to the end of the logical line
+    ///
+    /// - Note: `opt↓` invokes first `moveForward(_:)` and then this method.
+    override func moveToEndOfParagraph(_ sender: Any?) {
+        
+        self.moveCursors(single: { super.moveToEndOfParagraph(sender) },
+                         multiple: { (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound },
+                         affinity: .upstream)
+    }
+    
+    
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        let location = self.locationOfBeginningOfLine(for: self.selectedRange)
-        let range = NSRange(location..<location)
+        self.moveCursors(single: { super.moveToBeginningOfLine(sender) },
+                         multiple: { self.locationOfBeginningOfLine(for: $0) },
+                         affinity: .downstream)
+    }
+    
+    
+    /// move cursor to the end of the current visual line (⌘→)
+    override func moveToEndOfLine(_ sender: Any?) {
         
-        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
-        self.scrollRangeToVisible(range)
+        self.moveCursors(single: { super.moveToEndOfLine(sender) },
+                         multiple: { self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? $0.upperBound },
+                         affinity: .upstream)
     }
     
     
