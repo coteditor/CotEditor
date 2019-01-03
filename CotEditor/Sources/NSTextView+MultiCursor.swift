@@ -201,11 +201,11 @@ extension MultiCursorEditing where Self: NSTextView {
             else { assertionFailure(); return .zero }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let boundingRect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer)
+        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
             .offset(by: self.textContainerOrigin)
-        let rect = NSRect(x: floor(boundingRect.minX), y: boundingRect.minY, width: 1, height: boundingRect.height)
+        let insertionPointRect = NSRect(x: rect.minX, y: rect.minY, width: 1, height: rect.height)
         
-        return self.centerScanRect(rect)
+        return self.centerScanRect(insertionPointRect)
     }
     
 }
