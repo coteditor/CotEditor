@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.11 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the application could crash when deleting the last character in a large document.
+
+
+
 3.6.10 (307)
 --------------------------
 
