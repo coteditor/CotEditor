@@ -5,6 +5,11 @@ Change Log
 3.6.11 (unreleased)
 --------------------------
 
+### Improvements
+
+- Live update selection highlight in line number views.
+
+
 ### Fixes
 
 - Fix an issue where the application could crash when deleting the last character in a large document.
