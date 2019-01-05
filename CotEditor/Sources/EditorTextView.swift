@@ -59,6 +59,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private(set) var lineHighLightColor: NSColor?
     
     var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
+    var selectionOrigins: [Int] = []
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false
@@ -606,6 +607,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let selectedRanges = self.selectedRanges.map { $0.rangeValue }
         self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.contains(location) || $0.upperBound == location } }
         
+        if !stillSelectingFlag {
+            self.selectionOrigins = self.insertionRanges
+                .filter { $0.length == 0 }
+                .map { $0.location }
+        }
+        
         self.updateInsertionPointTimer()
         
         self.needsUpdateLineHighlight = true
@@ -670,7 +677,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// Move cursor backward.
+    /// Move cursor forward.
     ///
     /// - Note: `opt↓` invokes first this method and then `moveToEndOfParagraph(_:)`.
     override func moveForward(_ sender: Any?) {
@@ -694,6 +701,21 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// move cursor backward and modify selection (⇧←).
+    override func moveLeftAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveLeftAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin < range.upperBound {
+                return (max(range.upperBound - 1, 0), range.lowerBound)
+            } else {
+                return (max(range.lowerBound - 1, 0), range.upperBound)
+            }
+        }
+    }
+    
+    
     /// move cursor forward (→)
     override func moveRight(_ sender: Any?) {
         
@@ -704,12 +726,43 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// move cursor forward and modify selection (⇧→).
+    override func moveRightAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
+        
+        let length = self.attributedString().length
+        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
+            if let origin = origin, origin > range.lowerBound {
+                return (min(range.lowerBound + 1, length), range.upperBound)
+            } else {
+                return (min(range.upperBound + 1, length), range.lowerBound)
+            }
+        }
+    }
+    
+    
     /// move cursor up to the upper visual line (↑)
     override func moveUp(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveUp(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.upperInsertionLocation(of: $0.lowerBound) ?? $0.lowerBound }
+        self.moveCursors(affinity: .downstream) { self.upperInsertionLocation(of: $0.lowerBound) }
+    }
+    
+    
+    /// move cursor up and modify selection (⇧↑).
+    override func moveUpAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveUpAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin < range.upperBound {
+                return (self.upperInsertionLocation(of: range.upperBound), range.lowerBound)
+            } else {
+                return (self.upperInsertionLocation(of: range.lowerBound), range.upperBound)
+            }
+        }
     }
     
     
@@ -718,7 +771,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         guard self.hasMultipleInsertions else { return super.moveDown(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.lowerInsertionLocation(of: $0.upperBound) ?? $0.upperBound }
+        self.moveCursors(affinity: .downstream) { self.lowerInsertionLocation(of: $0.upperBound) }
+    }
+    
+    
+    /// move cursor down and modify selection (⇧↓).
+    override func moveDownAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveDownAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin > range.lowerBound {
+                return (self.lowerInsertionLocation(of: range.lowerBound), range.upperBound)
+            } else {
+                return(self.lowerInsertionLocation(of: range.upperBound), range.lowerBound)
+            }
+        }
     }
     
     
@@ -731,6 +799,21 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// move cursor to the beginning of the word and modify selection (⇧opt←).
+    override func moveWordLeftAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveWordLeftAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin < range.upperBound {
+                return (self.wordRange(at: max(range.upperBound - 1, 0)).lowerBound, range.lowerBound)
+            } else {
+                return (self.wordRange(at: max(range.lowerBound - 1, 0)).lowerBound, range.upperBound)
+            }
+        }
+    }
+    
+    
     /// move cursor to the end of the word (opt→)
     override func moveWordRight(_ sender: Any?) {
         
@@ -738,6 +821,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let length = self.attributedString().length
         self.moveCursors(affinity: .upstream) { self.wordRange(at: min($0.upperBound + 1, length)).upperBound }
+    }
+    
+    
+    /// move cursor to the end of the word and modify selection (⇧opt→).
+    override func moveWordRightAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveWordRightAndModifySelection(sender) }
+        
+        let length = self.attributedString().length
+        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
+            if let origin = origin, origin > range.lowerBound {
+                return (self.wordRange(at: min(range.lowerBound + 1, length)).upperBound, range.upperBound)
+            } else {
+                return (self.wordRange(at: min(range.upperBound + 1, length)).upperBound, range.lowerBound)
+            }
+        }
     }
     
     
@@ -770,26 +869,54 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// move cursor to the beginning of the current visual line and modify selection (⇧⌘←).
+    override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else {
+            let location = self.locationOfBeginningOfLine(for: self.selectedRange)
+            
+            // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
+            // instead of setting `selectedRange` directly.
+            // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
+            //    expands the selection to a wrong direction. (2018-11 macOS 10.14 #863)
+            while self.selectedRange.location > location {
+                self.moveBackwardAndModifySelection(self)
+            }
+            return
+        }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin < range.upperBound {
+                return (self.locationOfBeginningOfLine(for: range), range.lowerBound)
+            } else {
+                return (self.locationOfBeginningOfLine(for: range), range.upperBound)
+            }
+        }
+    }
+    
+    
     /// move cursor to the end of the current visual line (⌘→)
     override func moveToEndOfLine(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveToEndOfLine(sender) }
         
-        self.moveCursors(affinity: .upstream) { self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? $0.upperBound }
+        let length = self.attributedString().length
+        self.moveCursors(affinity: .upstream) { self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length }
     }
     
     
-    /// expand selection to the beginning of the current visual line (⇧⌘←)
-    override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
+    /// move cursor to the end of the current visual line and modify selection (⇧⌘→).
+    override func moveToEndOfLineAndModifySelection(_ sender: Any?) {
         
-        let location = self.locationOfBeginningOfLine(for: self.selectedRange)
+        guard self.hasMultipleInsertions else { return super.moveToEndOfLineAndModifySelection(sender) }
         
-        // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
-        // instead of setting `selectedRange` directly.
-        // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
-        //    expands the selection to a wrong direction. (2018-11 macOS 10.14 #863)
-        while self.selectedRange.location > location {
-            self.moveBackwardAndModifySelection(self)
+        let length = self.attributedString().length
+        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
+            if let origin = origin, origin > range.lowerBound {
+                return (self.layoutManager?.lineFragmentRange(at: range.upperBound).upperBound ?? length, range.upperBound)
+            } else {
+                return (self.layoutManager?.lineFragmentRange(at: range.upperBound).upperBound ?? length, range.lowerBound)
+            }
         }
     }
     

@@ -28,6 +28,7 @@ import Cocoa
 protocol MultiCursorEditing: AnyObject {
     
     var insertionLocations: [Int] { get set }
+    var selectionOrigins: [Int] { get set }
     
     var insertionPointTimer: DispatchSourceTimer? { get set }
     var insertionPointOn: Bool { get set }
@@ -241,6 +242,43 @@ extension MultiCursorEditing where Self: NSTextView {
     }
     
     
+    /// Move all cursors and expand selection with the same rule.
+    ///
+    /// - Parameters:
+    ///   - affinity: The selection affinity for the movement.
+    ///   - block: The block that describes the rule how to change the selection.
+    ///   - range: The range of each insertion.
+    ///   - origin: The character index where the selection initially started.
+    func moveCursorsAndModifySelection(affinity: NSSelectionAffinity, using block: (_ range: NSRange, _ origin: Int?) -> (cursor: Int, origin: Int)) {
+        
+        var origins = self.selectionOrigins
+        var newOrigins: [Int] = []
+        let ranges = self.insertionRanges.map { range -> NSRange in
+            let origin: Int?
+            if let index = origins.firstIndex(where: { range.upperBound == $0 || range.lowerBound == $0 }) {
+                origin = origins.remove(at: index)
+            } else {
+                origin = nil
+            }
+            
+            let bounds = block(range, origin)
+            
+            newOrigins.append(origin ?? bounds.origin)
+            
+            return (bounds.cursor <= bounds.origin) ? NSRange(bounds.cursor..<bounds.origin) : NSRange(bounds.1..<bounds.cursor)
+        }
+        
+        guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
+        
+        // manually set ranges and insertionLocations separatelly to inform `affinity` to the receiver
+        self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
+        self.insertionLocations = set.insertionLocations
+        self.selectionOrigins = newOrigins
+        
+        self.scrollRangeToVisible(NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound))
+    }
+    
+    
     /// Enable or disable `insertionPointTimer` according to the selection state.
     func updateInsertionPointTimer() {
         
@@ -286,19 +324,19 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `nil` if cannot move.
-    func upperInsertionLocation(of index: Int) -> Int? {
+    func upperInsertionLocation(of index: Int) -> Int {
         
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { assertionFailure(); return nil }
+            else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let currentInsertionRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
         var lineGlyphRange: NSRange = .notFound
         layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
         
-        guard lineGlyphRange.lowerBound > 0 else { return nil }
+        guard lineGlyphRange.lowerBound > 0 else { return 0 }
         
         let upperLineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphRange.lowerBound - 1, effectiveRange: nil)
         let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
@@ -311,19 +349,22 @@ extension NSTextView {
     ///
     /// - Parameter index: The character index of the reference insertion point.
     /// - Returns: The character index of the objective insertion point location or `nil` if cannot move.
-    func lowerInsertionLocation(of index: Int) -> Int? {
+    func lowerInsertionLocation(of index: Int) -> Int {
         
         guard
             let layoutManager = self.layoutManager,
             let textContainer = self.textContainer
-            else { assertionFailure(); return nil }
+            else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        
+        guard layoutManager.isValidGlyphIndex(glyphIndex) else { return self.attributedString().length }
+        
         let currentInsertionRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
         var lineGlyphRange: NSRange = .notFound
         layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
         
-        guard lineGlyphRange.upperBound < layoutManager.numberOfGlyphs else { return nil }
+        guard lineGlyphRange.upperBound < layoutManager.numberOfGlyphs else { return self.attributedString().length }
         
         let upperLineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphRange.upperBound + 1, effectiveRange: nil)
         let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
