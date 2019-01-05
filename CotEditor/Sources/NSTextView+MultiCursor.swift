@@ -162,6 +162,26 @@ extension MultiCursorEditing where Self: NSTextView {
     }
     
     
+    /// Sanitize and divide selection ranges candidate to ones to set to the proper `selectionRanges` and `insertionLocations`.
+    ///
+    /// - Parameter ranges: The selection ranges randidate.
+    /// - Returns: Sanitized range set for `selectionRanges` and `insertionLocations`, or `nil` when invalid.
+    func prepareForSelectionUpdate(_ ranges: [NSRange]) -> (selectedRanges: [NSValue], insertionLocations: [Int])? {
+        
+        guard !ranges.isEmpty else { return nil }
+        
+        let ranges = ranges.unique.sorted { $0.location < $1.location }
+        let nonemptyRanges = ranges.filter { $0.length > 0 }
+        var emptyRanges = ranges.filter { $0.length == 0 }
+        
+        // -> In the proper implementation of NSTextView, `selectionRanges` can have
+        //    either a single empty range, a single nonempty range, or multiple nonempty ranges (macOS 10.14).
+        let selectedRanges = nonemptyRanges.isEmpty ? [emptyRanges.removeFirst()] : nonemptyRanges
+        
+        return (selectedRanges as [NSValue], emptyRanges.map { $0.location })
+    }
+    
+    
     /// Add a new insrtion point at `point` or remove an existing if any.
     ///
     /// - Parameter point: The point where user clicked, in view coordinates.
@@ -169,26 +189,19 @@ extension MultiCursorEditing where Self: NSTextView {
     @discardableResult
     func modifyInsertionPoint(at point: NSPoint) -> Bool {
         
-        guard self.selectedRanges.allSatisfy({ $0.rangeValue.length == 0 }) else { return false }
-        
         let location = self.characterIndexForInsertion(at: point)
-        let emptySelectedLocations = self.selectedRanges
-            .map { $0.rangeValue }
-            .filter { $0.length == 0 }
-            .map { $0.location }
-        var locations = self.insertionLocations + emptySelectedLocations
+        var ranges = self.insertionRanges
         
-        if let clicked = locations.first(where: { $0 == location }) {
-            locations.remove(clicked)
-        } else {
-            locations.append(location)
+        if let clicked = ranges.first(where: { $0.contains(location) || $0.upperBound == location }) {
+            ranges.remove(clicked)
+        } else if ranges.allSatisfy({ $0.length == 0 }) {
+            ranges.append(NSRange(location..<location))
         }
-        locations.sort()
         
-        guard !locations.isEmpty else { return false }
+        guard let set = self.prepareForSelectionUpdate(ranges) else { return false }
         
-        self.selectedRange = NSRange(location: locations.removeFirst(), length: 0)
-        self.insertionLocations = locations
+        self.selectedRanges = set.selectedRanges
+        self.insertionLocations = set.insertionLocations
         
         return true
     }
