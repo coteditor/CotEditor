@@ -289,6 +289,8 @@
 		2A6602D11D05BD72003E8D87 /* DocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */; };
 		2A685F6A2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
 		2A685F6B2027729000A130A4 /* NSAppleEventManager+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */; };
+		2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
+		2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */; };
 		2A6E3F3D19B5218300A63E97 /* CotEditor.help in Resources */ = {isa = PBXBuildFile; fileRef = 2A6E3F3C19B5218300A63E97 /* CotEditor.help */; };
 		2A6F0D551B5500E100C2D03C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1EB5C319AD469500C1E37E /* Assets.xcassets */; };
 		2A6F0D561B5500E100C2D03C /* Syntaxes in Resources */ = {isa = PBXBuildFile; fileRef = 2A3A758D19E77C84001DAB88 /* Syntaxes */; };
@@ -1035,6 +1037,7 @@
 		2A69077B1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2A69077C1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		2A69077E1B8443AB00D0F3A2 /* de */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = de; path = de.lproj/ReportTemplate.md; sourceTree = "<group>"; };
+		2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+CursorMovement.swift"; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A6F0E081B5500E100C2D03C /* Info-AppStore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-AppStore.plist"; sourceTree = "<group>"; };
@@ -1895,6 +1898,7 @@
 			children = (
 				2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */,
 				2AA45A4D1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift */,
+				2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */,
 				2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */,
 				2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */,
 				2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */,
@@ -2800,6 +2804,7 @@
 				2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */,
 				2A5D130B1D1ED10400D38E6A /* Console.swift in Sources */,
+				2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */,
 				2ACDC0981D172B2A009B72D6 /* PaddingTextFieldCell.swift in Sources */,
 				2A86C47C20371DBE00B9357C /* FilePermissions.swift in Sources */,
 				2A9082ED1D325BEC00228F50 /* UserDefaults.swift in Sources */,
@@ -3023,6 +3028,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */,
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
