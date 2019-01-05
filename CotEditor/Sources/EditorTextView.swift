@@ -58,7 +58,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHighLightRect: NSRect?
     private(set) var lineHighLightColor: NSColor?
     
-    var insertionLocations: [Int] = []
+    var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
     
@@ -281,9 +281,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
-        if self.isPerformingRectangularSelection {
-            self.enableOwnInsertionPointTimer()
-        }
+        self.updateInsertionPointTimer(enableForcely: true)
         
         super.mouseDown(with: event)
         
@@ -296,17 +294,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let point = self.convert(pointInWindow, from: nil)
         let isDragged = (point != self.mouseDownPoint)
         
-        // add/remove sub insrtion point at clicked point
-        if event.modifierFlags.contains(.command) {
-            if !isDragged {
-                self.modifyInsertionPoint(at: point)
-            } else {
-                self.insertionLocations = []
-            }
+        // add/remove insrtion point at clicked point
+        if event.modifierFlags.contains(.command), !isDragged {
+            self.modifyInsertionPoint(at: point)
         }
         
+        self.updateInsertionPointTimer()
         self.isPerformingRectangularSelection = false
-        self.insertionPointTimer?.cancel()
     }
     
     
@@ -604,6 +598,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // remove official selectedRanges from the sub insertion points
         let selectedRanges = self.selectedRanges.map { $0.rangeValue }
         self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.contains(location) || $0.upperBound == location } }
+        
+        self.updateInsertionPointTimer()
         
         self.needsUpdateLineHighlight = true
         
@@ -968,7 +964,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // draw zero-width insertion points while rectangular selection
         // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
-        if self.isPerformingRectangularSelection {
+        if self.needsDrawInsertionPoints {
             self.insertionRanges
                 .filter { $0.length == 0 }
                 .map { self.insertionPointRect(at: $0.location) }

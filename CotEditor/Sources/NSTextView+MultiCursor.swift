@@ -51,6 +51,13 @@ extension MultiCursorEditing where Self: NSTextView {
     }
     
     
+    /// Whetehr the receiver needs to draw insertion points by itself.
+    var needsDrawInsertionPoints: Bool {
+        
+        return !(self.insertionPointTimer?.isCancelled ?? true)
+    }
+    
+    
     /// Insert the same string at multiple ranges.
     ///
     /// - Parameters:
@@ -200,7 +207,7 @@ extension MultiCursorEditing where Self: NSTextView {
         
         if let clicked = ranges.first(where: { $0.contains(location) || $0.upperBound == location }) {
             ranges.remove(clicked)
-        } else if ranges.allSatisfy({ $0.length == 0 }) {
+        } else {
             ranges.append(NSRange(location..<location))
         }
         
@@ -233,23 +240,17 @@ extension MultiCursorEditing where Self: NSTextView {
     }
     
     
-    /// Enable insertion point blink timer to draw insertion points forcely.
-    func enableOwnInsertionPointTimer() {
+    /// Enable or disable `insertionPointTimer` according to the selection state.
+    ///
+    /// - Parameter enableForcely: `true` to enable the timer regardless the selection state.
+    func updateInsertionPointTimer(enableForcely: Bool = false) {
         
-        let period = UserDefaults.standard.textInsertionPointBlinkPeriod
-        
-        let timer = DispatchSource.makeTimerSource(queue: .main)
-        timer.schedule(deadline: .now())
-        timer.setEventHandler { [unowned self] in
-            self.insertionPointOn.toggle()
-            let interval = self.insertionPointOn ? period.on : period.off
-            timer.schedule(deadline: .now() + .milliseconds(interval))
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        if enableForcely || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ $0.rangeValue.length > 0 })) {
+            self.enableOwnInsertionPointTimer()
+            
+        } else {
+            self.insertionPointTimer?.cancel()
         }
-        timer.resume()
-        
-        self.insertionPointTimer?.cancel()
-        self.insertionPointTimer = timer
     }
     
 }
@@ -335,7 +336,7 @@ extension NSTextView {
 
 
 
-// MARK: -
+// MARK: Private
 
 private struct BlinkPeriod {
     
@@ -353,6 +354,32 @@ private extension UserDefaults {
         
         return BlinkPeriod(on: (onPeriod > 0) ? onPeriod : 500,
                            off: (offPeriod > 0) ? offPeriod : 500)
+    }
+    
+}
+
+
+private extension MultiCursorEditing where Self: NSTextView {
+    
+    /// Enable insertion point blink timer to draw insertion points forcely.
+    private func enableOwnInsertionPointTimer() {
+        
+        guard self.insertionPointTimer?.isCancelled ?? true else { return }
+        
+        let period = UserDefaults.standard.textInsertionPointBlinkPeriod
+        
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now())
+        timer.setEventHandler { [unowned self] in
+            self.insertionPointOn.toggle()
+            let interval = self.insertionPointOn ? period.on : period.off
+            timer.schedule(deadline: .now() + .milliseconds(interval))
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
+        timer.resume()
+        
+        self.insertionPointTimer?.cancel()
+        self.insertionPointTimer = timer
     }
     
 }
