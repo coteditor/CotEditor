@@ -77,7 +77,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var isSmartIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
-    private var isSelectingRectangularly = false
+    private var isPerformingRectangularSelection = false
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
@@ -280,8 +280,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func mouseDown(with event: NSEvent) {
         
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
-        self.isSelectingRectangularly = event.modifierFlags.contains(.option)
-        if self.isSelectingRectangularly {
+        self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
+        if self.isPerformingRectangularSelection {
             self.enableOwnInsertionPointTimer()
         }
         
@@ -305,7 +305,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             }
         }
         
-        self.isSelectingRectangularly = false
+        self.isPerformingRectangularSelection = false
         self.insertionPointTimer?.cancel()
     }
     
@@ -569,28 +569,24 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         willSet {
             // keep only empty ranges that super may discard for following multi-cursor editing
+            // -> The ranges that `setSelectedRanges(_:affinity:stillSelecting:)` receives are sanitized already in NSTextView manner.
             self.insertionLocations = newValue
                 .map { $0.rangeValue }
                 .filter { $0.length == 0 }
                 .map { $0.location }
         }
-        
-        didSet {
-            // remove the official selectedRange from the sub insertion points
-            if self.selectedRange.length == 0 {
-                self.insertionLocations.removeAll { $0 == self.selectedRange.location }
-            }
-        }
     }
     
     
-    /// multiple selection did change
+    /// Change selection.
+    ///
+    /// - Note: Upate `insertionLocations` manually when you use this method.
     override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
         var ranges = ranges
         
         // interrupt rectangular selection
-        if self.isSelectingRectangularly {
+        if self.isPerformingRectangularSelection {
             if stillSelectingFlag {
                 if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
                     ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
@@ -598,10 +594,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 } else {
                     self.insertionLocations = []
                 }
-                
-                // redraw insertion points manually while rectangular selection (will be drawn in `draw(_:)`)
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                
             } else {
                 ranges = ranges.isEmpty ? self.selectedRanges : ranges
             }
@@ -609,30 +601,26 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         
-        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
-    }
-    
-    
-    /// selection did change
-    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        // remove official selectedRanges from the sub insertion points
+        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.contains(location) || $0.upperBound == location } }
         
-        self.insertionLocations.removeAll()
         self.needsUpdateLineHighlight = true
         
-        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
-        
         // highlight matching brace
-        if UserDefaults.standard[.highlightBraces], !stillSelectingFlag {
+        if !stillSelectingFlag, UserDefaults.standard[.highlightBraces] {
             let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
             self.highligtMatchingBrace(candidates: bracePairs)
         }
         
         // invalidate current instances highlight
-        if UserDefaults.standard[.highlightSelectionInstance], !stillSelectingFlag {
+        if !stillSelectingFlag, UserDefaults.standard[.highlightSelectionInstance] {
             let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
             self.instanceHighlightTask.schedule(delay: .seconds(delay))
         }
+        
+        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
     }
     
     
@@ -980,9 +968,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // draw zero-width insertion points while rectangular selection
         // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
-        if self.isSelectingRectangularly {
+        if self.isPerformingRectangularSelection {
             self.insertionRanges
-                .filter { !self.shouldDrawInsertionPoint || $0 != self.selectedRange }
                 .filter { $0.length == 0 }
                 .map { self.insertionPointRect(at: $0.location) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
@@ -1597,6 +1584,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         guard
             !self.string.isEmpty,  // important to avoid crash after closing editor
             !self.hasMarkedText(),
+            self.insertionLocations.isEmpty,
             self.selectedRanges.count == 1,
             self.selectedRange.length > 0,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
