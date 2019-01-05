@@ -430,7 +430,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // auto completion
         if UserDefaults.standard[.autoComplete] {
             let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
-            self.completionTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+            self.completionTask.schedule(delay: .seconds(delay))
         }
     }
     
@@ -620,7 +620,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if UserDefaults.standard[.highlightSelectionInstance], !stillSelectingFlag {
             let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+            self.instanceHighlightTask.schedule(delay: .seconds(delay))
         }
     }
     
