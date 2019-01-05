@@ -597,13 +597,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
-    }
-    
-    
-    /// selection did change
-    override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
-        
-        super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         
         NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
     }
