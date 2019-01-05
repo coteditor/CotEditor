@@ -165,14 +165,20 @@ extension MultiCursorEditing where Self: NSTextView {
     /// Sanitize and divide selection ranges candidate to ones to set to the proper `selectionRanges` and `insertionLocations`.
     ///
     /// - Parameter ranges: The selection ranges randidate.
-    /// - Returns: Sanitized range set for `selectionRanges` and `insertionLocations`, or `nil` when invalid.
+    /// - Returns: Sanitized range set to set to `selectionRanges` and `insertionLocations`, or `nil` when invalid.
     func prepareForSelectionUpdate(_ ranges: [NSRange]) -> (selectedRanges: [NSValue], insertionLocations: [Int])? {
         
         guard !ranges.isEmpty else { return nil }
         
         let ranges = ranges.unique.sorted { $0.location < $1.location }
-        let nonemptyRanges = ranges.filter { $0.length > 0 }
-        var emptyRanges = ranges.filter { $0.length == 0 }
+        let selectionSet = ranges
+            .map { Range<Int>($0)! }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+        let nonemptyRanges = selectionSet.rangeView
+            .map { NSRange($0) }
+        var emptyRanges = ranges
+            .filter { $0.length == 0 }
+            .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
         //    either a single empty range, a single nonempty range, or multiple nonempty ranges (macOS 10.14).
@@ -215,14 +221,15 @@ extension MultiCursorEditing where Self: NSTextView {
     ///   - range: The range of each insertion.
     func moveCursors(affinity: NSSelectionAffinity, using block: (_ range: NSRange) -> Int) {
         
-        let locations = self.insertionRanges.map(block).unique
+        let ranges = self.insertionRanges.map(block).map { NSRange($0..<$0) }
+        
+        guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
         
         // manually set ranges and insertionLocations separatelly to inform `affinity` to the receiver
-        let selectionRange = NSRange(location: locations[0], length: 0)
-        self.setSelectedRanges([selectionRange as NSValue], affinity: affinity, stillSelecting: false)
-        self.insertionLocations = Array(locations[1...])
+        self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
+        self.insertionLocations = set.insertionLocations
         
-        self.scrollRangeToVisible(NSRange(locations.first!..<locations.last!))
+        self.scrollRangeToVisible(NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound))
     }
     
     
