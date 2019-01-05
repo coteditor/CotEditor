@@ -31,6 +31,7 @@ protocol MultiCursorEditing: AnyObject {
     
     var insertionPointTimer: DispatchSourceTimer? { get set }
     var insertionPointOn: Bool { get set }
+    var isPerformingRectangularSelection: Bool { get }
 }
 
 
@@ -241,11 +242,9 @@ extension MultiCursorEditing where Self: NSTextView {
     
     
     /// Enable or disable `insertionPointTimer` according to the selection state.
-    ///
-    /// - Parameter enableForcely: `true` to enable the timer regardless the selection state.
-    func updateInsertionPointTimer(enableForcely: Bool = false) {
+    func updateInsertionPointTimer() {
         
-        if enableForcely || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ $0.rangeValue.length > 0 })) {
+        if self.isPerformingRectangularSelection || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ $0.rangeValue.length > 0 })) {
             self.enableOwnInsertionPointTimer()
             
         } else {

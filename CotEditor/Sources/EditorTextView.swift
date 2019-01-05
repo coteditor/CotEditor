@@ -61,6 +61,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
+    private(set) var isPerformingRectangularSelection = false
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -77,7 +78,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var isSmartIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
-    private var isPerformingRectangularSelection = false
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
@@ -281,7 +281,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
-        self.updateInsertionPointTimer(enableForcely: true)
+        self.updateInsertionPointTimer()
         
         super.mouseDown(with: event)
         
@@ -299,8 +299,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.modifyInsertionPoint(at: point)
         }
         
-        self.updateInsertionPointTimer()
         self.isPerformingRectangularSelection = false
+        self.updateInsertionPointTimer()
     }
     
     
