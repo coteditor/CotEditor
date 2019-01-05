@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -43,6 +43,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     // MARK: Notification Names
     
     static let didBecomeFirstResponderNotification = Notification.Name("TextViewDidBecomeFirstResponder")
+    static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
     
     
     // MARK: Public Properties
@@ -500,6 +501,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         }
         
         super.deleteBackward(sender)
+    }
+    
+    
+    /// selection did change
+    override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
+        
+        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
     }
     
     

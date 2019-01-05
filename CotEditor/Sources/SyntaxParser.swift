@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -231,12 +231,10 @@ extension SyntaxParser {
             for layoutManager in self.textStorage.layoutManagers {
                 guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
                 
-                if editedRange.intersection(visibleRange) != nil {
-                    highlightRange.formUnion(visibleRange)
-                }
+                highlightRange.formUnion(visibleRange)
             }
             
-            highlightRange = highlightRange.intersection(wholeRange)!
+            highlightRange = highlightRange.intersection(wholeRange) ?? wholeRange
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color
