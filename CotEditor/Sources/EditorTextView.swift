@@ -283,6 +283,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
         self.updateInsertionPointTimer()
         
+        let selectedRange = (self.selectedRange.length == 0) ? self.selectedRange : nil
+        
         super.mouseDown(with: event)
         
         // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
@@ -294,8 +296,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let point = self.convert(pointInWindow, from: nil)
         let isDragged = (point != self.mouseDownPoint)
         
+        // restore the first empty insertion if it seems to dissapear
+        if event.modifierFlags.contains(.command), let selectedRange = selectedRange, self.selectedRange.length > 0 {
+            self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
+        }
+        
         // add/remove insrtion point at clicked point
-        if event.modifierFlags.contains(.command), !isDragged {
+        if event.modifierFlags.contains(.command), event.clickCount == 1, !isDragged {
             self.modifyInsertionPoint(at: point)
         }
         
@@ -617,6 +624,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+    }
+    
+    
+    /// set a single selection
+    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        self.insertionLocations.removeAll()
+        
+        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
     }
     
     
