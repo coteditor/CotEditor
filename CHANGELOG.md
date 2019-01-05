@@ -11,6 +11,20 @@ Change Log
 
 
 
+3.6.11 (309)
+--------------------------
+
+### Improvements
+
+- Live update selection highlight in line number views.
+
+
+### Fixes
+
+- Fix an issue where the application could crash when deleting the last character in a large document.
+
+
+
 3.6.10 (307)
 --------------------------
 
