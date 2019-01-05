@@ -40,7 +40,7 @@ extension MultiCursorEditing where Self: NSTextView {
     /// Whether the receiver has multiple points to insert text.
     var hasMultipleInsertions: Bool {
         
-        return (self.insertionRanges.count + self.selectedRanges.count) > 1
+        return (self.insertionLocations.count + self.selectedRanges.count) > 1
     }
     
     
