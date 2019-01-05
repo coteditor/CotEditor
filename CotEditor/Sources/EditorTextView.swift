@@ -297,8 +297,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let isDragged = (point != self.mouseDownPoint)
         
         // add/remove sub insrtion point at clicked point
-        if event.modifierFlags.contains(.command), !isDragged {
-            self.modifyInsertionPoint(at: point)
+        if event.modifierFlags.contains(.command) {
+            if !isDragged {
+                self.modifyInsertionPoint(at: point)
+            } else {
+                self.insertionLocations = []
+            }
         }
         
         self.isSelectingRectangularly = false
