@@ -59,6 +59,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private(set) var lineHighLightColor: NSColor?
     
     var insertionLocations: [Int] = []
+    var insertionPointTimer: DispatchSourceTimer?
+    var insertionPointOn = false
     
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
@@ -163,6 +165,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     
     deinit {
+        self.insertionPointTimer?.cancel()
         self.defaultsObservers.forEach { $0.invalidate() }
         self.removeNotificationObservers()
     }
@@ -278,6 +281,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
         self.isSelectingRectangularly = event.modifierFlags.contains(.option)
+        if self.isSelectingRectangularly {
+            self.enableOwnInsertionPointTimer()
+        }
         
         super.mouseDown(with: event)
         
@@ -296,6 +302,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         self.isSelectingRectangularly = false
+        self.insertionPointTimer?.cancel()
     }
     
     
@@ -969,10 +976,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // draw zero-width insertion points while rectangular selection
         // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
-        if self.isSelectingRectangularly, self.selectedRanges.allSatisfy({ $0.rangeValue.length == 0 }) {
-            ([self.selectedRange.location] + self.insertionLocations)
-                .map { self.insertionPointRect(at: $0) }
-                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: true) }
+        if self.isSelectingRectangularly {
+            self.insertionRanges
+                .filter { !self.shouldDrawInsertionPoint || $0 != self.selectedRange }
+                .filter { $0.length == 0 }
+                .map { self.insertionPointRect(at: $0.location) }
+                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
     }
     

@@ -28,6 +28,9 @@ import Cocoa
 protocol MultiCursorEditing: AnyObject {
     
     var insertionLocations: [Int] { get set }
+    
+    var insertionPointTimer: DispatchSourceTimer? { get set }
+    var insertionPointOn: Bool { get set }
 }
 
 
@@ -209,6 +212,26 @@ extension MultiCursorEditing where Self: NSTextView {
         self.scrollRangeToVisible(NSRange(locations.first!..<locations.last!))
     }
     
+    
+    /// Enable insertion point blink timer to draw insertion points forcely.
+    func enableOwnInsertionPointTimer() {
+        
+        let period = UserDefaults.standard.textInsertionPointBlinkPeriod
+        
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now())
+        timer.setEventHandler { [unowned self] in
+            self.insertionPointOn.toggle()
+            let interval = self.insertionPointOn ? period.on : period.off
+            timer.schedule(deadline: .now() + .milliseconds(interval))
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
+        timer.resume()
+        
+        self.insertionPointTimer?.cancel()
+        self.insertionPointTimer = timer
+    }
+    
 }
 
 
@@ -286,6 +309,30 @@ extension NSTextView {
         let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
         
         return self.characterIndexForInsertion(at: upperInsertionRect)
+    }
+    
+}
+
+
+
+// MARK: -
+
+private struct BlinkPeriod {
+    
+    var on: Int
+    var off: Int
+}
+
+
+private extension UserDefaults {
+    
+    var textInsertionPointBlinkPeriod: BlinkPeriod {
+        
+        let onPeriod = self.integer(forKey: "NSTextInsertionPointBlinkPeriodOn")
+        let offPeriod = self.integer(forKey: "NSTextInsertionPointBlinkPeriodOff")
+        
+        return BlinkPeriod(on: (onPeriod > 0) ? onPeriod : 500,
+                           off: (offPeriod > 0) ? offPeriod : 500)
     }
     
 }
