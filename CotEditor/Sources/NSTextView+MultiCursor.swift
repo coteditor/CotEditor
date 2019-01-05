@@ -229,9 +229,8 @@ extension MultiCursorEditing where Self: NSTextView {
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
             .offset(by: self.textContainerOrigin)
-        let insertionPointRect = NSRect(x: rect.minX, y: rect.minY, width: 1, height: rect.height)
         
-        return self.centerScanRect(insertionPointRect)
+        return NSRect(x: rect.minX, y: rect.minY, width: 1, height: rect.height).integral
     }
 }
 
