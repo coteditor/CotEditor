@@ -472,7 +472,7 @@ extension EditorTextView {
     
     
     
-    // MARK: - Actions
+    // MARK: Actions
     
     @IBAction func selectColumnUp(_ sender: Any?) {
         
@@ -505,6 +505,53 @@ extension EditorTextView {
         self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
         self.scrollRangeToVisible(range)
+    }
+    
+}
+
+
+
+// MARK: - Deletion
+
+extension EditorTextView {
+    
+    /// delete to the end of logical line (^K)
+    override func deleteToEndOfParagraph(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.deleteToEndOfParagraph(sender) }
+        
+        self.moveToEndOfParagraphAndModifySelection(sender)
+        self.deleteBackward(sender)
+    }
+    
+    
+    /// delete to the beginning of visual line (command+delete)
+    override func deleteToBeginningOfLine(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.deleteToBeginningOfLine(sender) }
+        
+        self.moveToBeginningOfLine(sender)
+        self.deleteBackward(sender)
+    }
+    
+    
+    /// delete to the biginning of word (opt+delete)
+    override func deleteWordBackward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.deleteWordBackward(sender) }
+        
+        self.moveWordForwardAndModifySelection(sender)
+        self.deleteBackward(sender)
+    }
+    
+    
+    /// delete to the end of word (opt⌦)
+    override func deleteWordForward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.deleteWordForward(sender) }
+        
+        self.moveWordBackwardAndModifySelection(sender)
+        self.deleteBackward(sender)
     }
     
 }
