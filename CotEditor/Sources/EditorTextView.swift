@@ -614,10 +614,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let selectedRanges = self.selectedRanges.map { $0.rangeValue }
         self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.contains(location) || $0.upperBound == location } }
         
-        if !stillSelectingFlag {
-            self.selectionOrigins = self.insertionRanges
-                .filter { $0.length == 0 }
-                .map { $0.location }
+        if !stillSelectingFlag, !self.hasMultipleInsertions {
+            self.selectionOrigins = [self.selectedRange.location]
         }
         
         self.updateInsertionPointTimer()

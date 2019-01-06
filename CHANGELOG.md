@@ -5,6 +5,11 @@ Change Log
 3.7.0-beta.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Add `^⇧↑` and `^⇧↓` shortcuts to add an insertion point above/below.
+
+
 ### Fixes
 
 - [beta] Fix a crash when moving multiple cursors with arrow keys.

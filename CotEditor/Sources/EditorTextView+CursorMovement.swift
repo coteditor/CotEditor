@@ -474,37 +474,55 @@ extension EditorTextView {
     
     // MARK: Actions
     
+    /// add insertion point just above the first selected range (^⇧↑)
     @IBAction func selectColumnUp(_ sender: Any?) {
         
-        let firstRange = self.selectedRange
-        let lowerBound = self.upperInsertionLocation(of: firstRange.lowerBound)
-        let upperBound = self.upperInsertionLocation(of: firstRange.upperBound)
-        let range = NSRange(lowerBound..<upperBound)
+        let ranges = self.insertionRanges
+        let origins = self.selectionOrigins
         
-        let insertionRanges = [range] + self.insertionRanges
+        let insertionRanges: [NSRange]
+        if ranges.count > 1, origins.first != ranges.first?.location {
+            insertionRanges = Array(ranges[..<(ranges.count - 1)])
+            
+        } else {
+            let firstRange = ranges.first!
+            let lowerBound = self.upperInsertionLocation(of: firstRange.lowerBound)
+            let upperBound = self.upperInsertionLocation(of: firstRange.upperBound)
+            
+            insertionRanges = [NSRange(lowerBound..<upperBound)] + ranges
+        }
         
         guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
         
         self.setSelectedRanges(set.selectedRanges, affinity: .downstream, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(range)
+        self.selectionOrigins = origins
     }
     
     
+    /// add insertion point just below the last selected range (^⇧↓)
     @IBAction func selectColumnDown(_ sender: Any?) {
         
-        let lastRange = self.selectedRanges.last!.rangeValue
-        let lowerBound = self.lowerInsertionLocation(of: lastRange.lowerBound)
-        let upperBound = self.lowerInsertionLocation(of: lastRange.upperBound)
-        let range = NSRange(lowerBound..<upperBound)
+        let ranges = self.insertionRanges
+        let origins = self.selectionOrigins
         
-        let insertionRanges = self.insertionRanges + [range]
+        let insertionRanges: [NSRange]
+        if ranges.count > 1, origins.last != ranges.last?.location {
+            insertionRanges = Array(ranges[1...])
+            
+        } else {
+            let lastRange = ranges.last!
+            let lowerBound = self.lowerInsertionLocation(of: lastRange.lowerBound)
+            let upperBound = self.lowerInsertionLocation(of: lastRange.upperBound)
+            
+            insertionRanges = ranges + [NSRange(lowerBound..<upperBound)]
+        }
         
         guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
         
         self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(range)
+        self.selectionOrigins = origins
     }
     
 }
