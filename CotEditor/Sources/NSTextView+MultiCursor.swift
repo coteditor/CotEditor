@@ -307,7 +307,7 @@ extension MultiCursorEditing where Self: NSTextView {
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
             .offset(by: self.textContainerOrigin)
         
-        return NSRect(x: rect.minX, y: rect.minY, width: 1, height: rect.height).integral
+        return NSRect(x: floor(rect.minX), y: rect.minY, width: 1 / self.scale, height: rect.height)
     }
 }
 

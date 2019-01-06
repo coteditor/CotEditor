@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.0-beta.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Fix the width of insertion points.
+
+
+
 3.7.0-beta (321)
 --------------------------
 

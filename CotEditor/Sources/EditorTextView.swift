@@ -764,7 +764,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         case .bar:
             break
         case .thickBar:
-            rect.size.width = 2
+            rect.size.width *= 2
         case .block:
             let index = self.characterIndexForInsertion(at: rect.mid)
             rect.size.width = self.insertionBlockWidth(at: index)
@@ -788,7 +788,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         case .bar:
             break
         case .thickBar:
-            rect.size.width = 2
+            rect.size.width *= 2
         case .block:
             rect.size.width = self.insertionBlockWidth(at: index)
         }
