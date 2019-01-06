@@ -348,6 +348,10 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        
+        // -> `glyphIndex` is invalid when the char index is already at the end of the document.
+        guard layoutManager.isValidGlyphIndex(glyphIndex) else { return self.attributedString().length }
+        
         let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
         let currentRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
         let lowerRect = NSPoint(x: currentRect.midX, y: lineRect.maxY + 1).offset(by: self.textContainerOrigin)
