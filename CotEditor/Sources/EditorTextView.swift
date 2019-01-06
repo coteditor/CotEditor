@@ -329,6 +329,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// Esc key is pressed
+    override func cancelOperation(_ sender: Any?) {
+        
+        // exit multi-cursor mode
+        if self.hasMultipleInsertions {
+            self.selectedRange = self.insertionRanges.first!
+            return
+        }
+        
+        // -> NSTextView doesn't impelment cancelOperation (macOS 10.14)
+        if super.responds(to: #selector(cancelOperation)) {
+            super.cancelOperation(sender)
+        }
+    }
+    
+    
     /// text did change
     override func didChangeText() {
         
@@ -614,10 +630,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let selectedRanges = self.selectedRanges.map { $0.rangeValue }
         self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.contains(location) || $0.upperBound == location } }
         
-        if !stillSelectingFlag {
-            self.selectionOrigins = self.insertionRanges
-                .filter { $0.length == 0 }
-                .map { $0.location }
+        if !stillSelectingFlag, !self.hasMultipleInsertions {
+            self.selectionOrigins = [self.selectedRange.location]
         }
         
         self.updateInsertionPointTimer()
@@ -764,7 +778,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         case .bar:
             break
         case .thickBar:
-            rect.size.width = 2
+            rect.size.width *= 2
         case .block:
             let index = self.characterIndexForInsertion(at: rect.mid)
             rect.size.width = self.insertionBlockWidth(at: index)
@@ -788,7 +802,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         case .bar:
             break
         case .thickBar:
-            rect.size.width = 2
+            rect.size.width *= 2
         case .block:
             rect.size.width = self.insertionBlockWidth(at: index)
         }

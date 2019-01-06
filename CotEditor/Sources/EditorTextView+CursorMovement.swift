@@ -139,7 +139,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordLeft(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.wordRange(at: max($0.lowerBound - 1, 0)).lowerBound }
+        self.moveCursors(affinity: .downstream) { self.textStorage!.nextWord(from: $0.lowerBound, forward: false) }
     }
     
     
@@ -150,9 +150,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
             if let origin = origin, origin < range.upperBound {
-                return (self.wordRange(at: max(range.upperBound - 1, 0)).lowerBound, range.lowerBound)
+                return (self.textStorage!.nextWord(from: range.upperBound, forward: false), range.lowerBound)
             } else {
-                return (self.wordRange(at: max(range.lowerBound - 1, 0)).lowerBound, range.upperBound)
+                return (self.textStorage!.nextWord(from: range.lowerBound, forward: false), range.upperBound)
             }
         }
     }
@@ -163,8 +163,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordRight(sender) }
         
-        let length = self.attributedString().length
-        self.moveCursors(affinity: .upstream) { self.wordRange(at: min($0.upperBound + 1, length)).upperBound }
+        self.moveCursors(affinity: .upstream) { self.textStorage!.nextWord(from: $0.upperBound, forward: true) }
     }
     
     
@@ -173,12 +172,11 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordRightAndModifySelection(sender) }
         
-        let length = self.attributedString().length
         self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
             if let origin = origin, origin > range.lowerBound {
-                return (self.wordRange(at: min(range.lowerBound + 1, length)).upperBound, range.upperBound)
+                return (self.textStorage!.nextWord(from: range.lowerBound, forward: true), range.upperBound)
             } else {
-                return (self.wordRange(at: min(range.upperBound + 1, length)).upperBound, range.lowerBound)
+                return (self.textStorage!.nextWord(from: range.upperBound, forward: true), range.lowerBound)
             }
         }
     }
@@ -381,7 +379,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordBackward(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.wordRange(at: $0.lowerBound).lowerBound }
+        self.moveCursors(affinity: .downstream) { self.textStorage!.nextWord(from: $0.lowerBound, forward: false) }
     }
     
     
@@ -392,9 +390,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
             if let origin = origin, origin < range.upperBound {
-                return (self.wordRange(at: range.upperBound).lowerBound, range.lowerBound)
+                return (self.textStorage!.nextWord(from: range.upperBound, forward: false), range.lowerBound)
             } else {
-                return (self.wordRange(at: range.lowerBound).lowerBound, range.upperBound)
+                return (self.textStorage!.nextWord(from: range.lowerBound, forward: false), range.upperBound)
             }
         }
     }
@@ -405,7 +403,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordForward(sender) }
         
-        self.moveCursors(affinity: .upstream) { self.wordRange(at: $0.upperBound).upperBound }
+        self.moveCursors(affinity: .upstream) { self.textStorage!.nextWord(from: $0.upperBound, forward: true) }
     }
     
     
@@ -416,9 +414,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
             if let origin = origin, origin > range.lowerBound {
-                return (self.wordRange(at: range.lowerBound).upperBound, range.upperBound)
+                return (self.textStorage!.nextWord(from: range.lowerBound, forward: true), range.upperBound)
             } else {
-                return (self.wordRange(at: range.upperBound).upperBound, range.lowerBound)
+                return (self.textStorage!.nextWord(from: range.upperBound, forward: true), range.lowerBound)
             }
         }
     }
@@ -474,14 +472,16 @@ extension EditorTextView {
     
     // MARK: Actions
     
+    /// add insertion point just above the first selected range (^⇧↑)
     @IBAction func selectColumnUp(_ sender: Any?) {
         
-        let firstRange = self.selectedRange
-        let lowerBound = self.upperInsertionLocation(of: firstRange.lowerBound)
-        let upperBound = self.upperInsertionLocation(of: firstRange.upperBound)
+        let ranges = self.insertionRanges
+        let baseRange = ranges.first!
+        let lowerBound = self.upperInsertionLocation(of: baseRange.lowerBound)
+        let upperBound = self.upperInsertionLocation(of: baseRange.upperBound)
         let range = NSRange(lowerBound..<upperBound)
         
-        let insertionRanges = [range] + self.insertionRanges
+        let insertionRanges = [range] + ranges
         
         guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
         
@@ -491,14 +491,16 @@ extension EditorTextView {
     }
     
     
+    /// add insertion point just below the last selected range (^⇧↓)
     @IBAction func selectColumnDown(_ sender: Any?) {
         
-        let lastRange = self.selectedRanges.last!.rangeValue
-        let lowerBound = self.lowerInsertionLocation(of: lastRange.lowerBound)
-        let upperBound = self.lowerInsertionLocation(of: lastRange.upperBound)
+        let ranges = self.insertionRanges
+        let baseRange = ranges.last!
+        let lowerBound = self.lowerInsertionLocation(of: baseRange.lowerBound)
+        let upperBound = self.lowerInsertionLocation(of: baseRange.upperBound)
         let range = NSRange(lowerBound..<upperBound)
         
-        let insertionRanges = self.insertionRanges + [range]
+        let insertionRanges = ranges + [range]
         
         guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
         

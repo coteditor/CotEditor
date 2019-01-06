@@ -2,6 +2,23 @@
 Change Log
 ==========================
 
+3.7.0-beta.2 (323)
+--------------------------
+
+### Improvements
+
+- [beta] Exit muti-cursor mode by using `esc` key.
+- [beta] Add `^⇧↑` and `^⇧↓` shortcuts to add an insertion point above/below.
+
+
+### Fixes
+
+- [beta] Fix a crash when moving multiple cursors with arrow keys.
+- [beta] Fix the width of insertion points.
+- [beta] Fix cursor behavior when moving multi-cursors among words with shortcut keys.
+
+
+
 3.7.0-beta (321)
 --------------------------
 
