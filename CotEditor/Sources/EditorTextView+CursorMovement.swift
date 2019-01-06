@@ -433,6 +433,45 @@ extension EditorTextView {
     
     
     
+    // MARK: Text View Methods - Select
+    
+    /// select logical line
+    override func selectParagraph(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.selectParagraph(sender) }
+        
+        let ranges = self.insertionRanges.map { (self.string as NSString).lineRange(for: $0) }
+        
+        self.selectedRanges = ranges as [NSValue]
+        
+        self.scrollRangeToVisible(NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound))
+    }
+    
+    
+    /// select word
+    override func selectWord(_ sender: Any?) {
+        
+        if self.selectedRange.length == 0 {
+            // select words where the cursors locate
+            self.selectedRanges = self.insertionRanges.map { self.wordRange(at: $0.location) } as [NSValue]
+            
+        } else {
+            // select next instance
+            guard let lastRange = self.selectedRanges.last as? NSRange else { return assertionFailure() }
+            
+            let string = self.string as NSString
+            let selectedWord = string.substring(with: lastRange)
+            let nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
+            
+            guard nextRange != .notFound else { return }
+            
+            self.selectedRanges.append(NSValue(range: nextRange))
+            self.scrollRangeToVisible(nextRange)
+        }
+    }
+    
+    
+    
     // MARK: - Actions
     
     @IBAction func selectColumnUp(_ sender: Any?) {

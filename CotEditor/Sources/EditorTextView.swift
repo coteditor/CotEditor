@@ -643,29 +643,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// select word
-    override func selectWord(_ sender: Any?) {
-        
-        if self.selectedRange.length == 0 {
-            // select word where the cursor locates
-            self.selectedRange = self.wordRange(at: self.selectedRange.location)
-            
-        } else {
-            // select next instance
-            guard let lastRange = self.selectedRanges.last as? NSRange else { return assertionFailure() }
-            
-            let string = self.string as NSString
-            let selectedWord = string.substring(with: lastRange)
-            let nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
-            
-            guard nextRange != .notFound else { return }
-            
-            self.selectedRanges.append(NSValue(range: nextRange))
-            self.scrollRangeToVisible(nextRange)
-        }
-    }
-    
-    
     /// customize context menu
     override func menu(for event: NSEvent) -> NSMenu? {
         
