@@ -2,6 +2,14 @@
 Change Log
 ==========================
 
+3.7.0-beta.3 (unreleasd)
+--------------------------
+
+### Fixes
+
+- [beta] Fix multi-cursor behavior of deleting to the beginning of visual line by `⌘⌫`.
+
+
 3.7.0-beta.2 (323)
 --------------------------
 

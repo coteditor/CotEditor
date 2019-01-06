@@ -532,7 +532,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.deleteToBeginningOfLine(sender) }
         
-        self.moveToBeginningOfLine(sender)
+        self.moveToBeginningOfLineAndModifySelection(sender)
         self.deleteBackward(sender)
     }
     
