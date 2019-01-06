@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.7.0-beta.2 (unreleased)
+3.7.0-beta.2 (323)
 --------------------------
 
 ### Improvements
@@ -15,7 +15,7 @@ Change Log
 
 - [beta] Fix a crash when moving multiple cursors with arrow keys.
 - [beta] Fix the width of insertion points.
-- [beta] Fix cursor behavior when moving multi-cursors among words with shortcut key.
+- [beta] Fix cursor behavior when moving multi-cursors among words with shortcut keys.
 
 
 
