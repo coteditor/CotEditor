@@ -320,4 +320,41 @@ extension EditorTextView {
         }
     }
     
+    
+    
+    // MARK: - Actions
+    
+    @IBAction func selectColumnUp(_ sender: Any?) {
+        
+        let firstRange = self.selectedRange
+        let lowerBound = self.upperInsertionLocation(of: firstRange.lowerBound)
+        let upperBound = self.upperInsertionLocation(of: firstRange.upperBound)
+        let range = NSRange(lowerBound..<upperBound)
+        
+        let insertionRanges = [range] + self.insertionRanges
+        
+        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
+        
+        self.setSelectedRanges(set.selectedRanges, affinity: .downstream, stillSelecting: false)
+        self.insertionLocations = set.insertionLocations
+        self.scrollRangeToVisible(range)
+    }
+    
+    
+    @IBAction func selectColumnDown(_ sender: Any?) {
+        
+        let lastRange = self.selectedRanges.last!.rangeValue
+        let lowerBound = self.lowerInsertionLocation(of: lastRange.lowerBound)
+        let upperBound = self.lowerInsertionLocation(of: lastRange.upperBound)
+        let range = NSRange(lowerBound..<upperBound)
+        
+        let insertionRanges = self.insertionRanges + [range]
+        
+        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
+        
+        self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
+        self.insertionLocations = set.insertionLocations
+        self.scrollRangeToVisible(range)
+    }
+    
 }
