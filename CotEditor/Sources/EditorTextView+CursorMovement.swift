@@ -38,7 +38,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveLeft(sender) }
         
-        self.moveCursors(affinity: .downstream) { max($0.lowerBound - 1, 0) }
+        self.moveCursors(affinity: .downstream) { (self.string as NSString).index(before: $0.lowerBound) }
     }
     
     
@@ -49,9 +49,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
             if let origin = origin, origin < range.upperBound {
-                return (max(range.upperBound - 1, 0), range.lowerBound)
+                return ((self.string as NSString).index(before: range.upperBound), range.lowerBound)
             } else {
-                return (max(range.lowerBound - 1, 0), range.upperBound)
+                return ((self.string as NSString).index(before: range.lowerBound), range.upperBound)
             }
         }
     }
@@ -62,8 +62,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveRight(sender) }
         
-        let length = self.attributedString().length
-        self.moveCursors(affinity: .upstream) { min($0.upperBound + 1, length) }
+        self.moveCursors(affinity: .upstream) { (self.string as NSString).index(after: $0.upperBound) }
     }
     
     
@@ -72,12 +71,11 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
         
-        let length = self.attributedString().length
         self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
             if let origin = origin, origin > range.lowerBound {
-                return (min(range.lowerBound + 1, length), range.upperBound)
+                return ((self.string as NSString).index(after: range.lowerBound), range.upperBound)
             } else {
-                return (min(range.upperBound + 1, length), range.lowerBound)
+                return ((self.string as NSString).index(after: range.upperBound), range.lowerBound)
             }
         }
     }
@@ -189,9 +187,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
             if let origin = origin, origin < range.upperBound {
-                return ((self.string as NSString).lineRange(at: max(range.upperBound - 1, 0)).lowerBound, range.lowerBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(before: range.upperBound)).lowerBound, range.lowerBound)
             } else {
-                return ((self.string as NSString).lineRange(at: max(range.lowerBound - 1, 0)).lowerBound, range.upperBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(before: range.lowerBound)).lowerBound, range.upperBound)
             }
         }
     }
@@ -202,12 +200,11 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveParagraphForwardAndModifySelection(sender) }
         
-        let length = self.attributedString().length
         self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
             if let origin = origin, origin > range.lowerBound {
-                return ((self.string as NSString).lineRange(at: min(range.lowerBound + 1, length), excludingLastLineEnding: true).upperBound, range.upperBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(after: range.lowerBound), excludingLastLineEnding: true).upperBound, range.upperBound)
             } else {
-                return ((self.string as NSString).lineRange(at: min(range.upperBound + 1, length), excludingLastLineEnding: true).upperBound, range.lowerBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(after: range.upperBound), excludingLastLineEnding: true).upperBound, range.lowerBound)
             }
         }
     }
@@ -554,6 +551,47 @@ extension EditorTextView {
         
         self.moveWordBackwardAndModifySelection(sender)
         self.deleteBackward(sender)
+    }
+    
+}
+
+
+
+private extension NSString {
+    
+    /// Return NSRange-based character index where just before the given character index
+    /// by taking grapheme clusters into account.
+    ///
+    /// - Parameter location: NSRange-based character index to refer.
+    /// - Returns: NSRange-based character index just before the given `location`,
+    ///            or `0` when the given `location` is the first.
+    ///
+    /// - Note: Caution this method is not performance-efficient.
+    func index(before location: Int) -> Int {
+        
+        guard location > 0 else { return 0 }
+        
+        let range = NSRange(location: location - 1, length: 0)
+        
+        return self.rangeOfComposedCharacterSequences(for: range).lowerBound
+    }
+    
+    
+    /// Return NSRange-based character index where just after the given character index
+    /// by taking grapheme clusters into account.
+    ///
+    /// - Parameter location: NSRange-based character index to refer.
+    /// - Returns: NSRange-based character index just before the given `location`,
+    ///            or `location` when the given `location` is the last.
+    ///
+    /// - Note: Caution this method is not performance-efficient.
+    func index(after location: Int) -> Int {
+        
+        guard location < self.length else { return self.length }
+        
+        let range = NSRange(location: location + 1, length: 0)
+        
+        return self.rangeOfComposedCharacterSequences(for: range).upperBound
     }
     
 }

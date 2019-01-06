@@ -8,6 +8,8 @@ Change Log
 ### Fixes
 
 - [beta] Fix multi-cursor behavior of deleting to the beginning of visual line by `⌘⌫`.
+- [beta] Fix multi-cusor movement when encounter a surrogate pair.
+
 
 
 3.7.0-beta.2 (323)
