@@ -37,7 +37,8 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     // MARK: Private Properties
     
-    private weak var textContainer: NSTextContainer?  // hold textContainer instead of textView, which cannot be weak
+    private weak var textView: NSTextView?
+    private var scaleObserver: NSKeyValueObservation!
     
     
     
@@ -46,7 +47,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     init(textView: NSTextView, forPressAndHold: Bool = false) {
         
-        self.textContainer = textView.textContainer
+        self.textView = textView
         
         super.init()
         
@@ -55,13 +56,23 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         self.delegate = self
         self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
         
-        NotificationCenter.default.addObserver(self, selector: #selector(invalidateSlider), name: NSTextView.didChangeScaleNotification, object: textView)
+        // observe scale for slider
+        self.scaleObserver = textView.observe(\.scale) { [unowned self] (textView, _) in
+            guard let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return assertionFailure() }
+            
+            item.slider.doubleValue = Double(textView.scale)
+        }
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        self.scaleObserver.invalidate()
     }
     
     
@@ -73,8 +84,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         switch identifier {
         case .textSizeActual:
             let item = NSCustomTouchBarItem(identifier: identifier)
-            item.view = NSButton(title: "Actual Size".localized,
-                                 target: self, action: #selector(resetTextSize(_:)))
+            item.view = NSButton(title: "Actual Size".localized, target: self, action: #selector(resetTextSize))
             return item
             
         case .textSizeSlider:
@@ -87,7 +97,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
             item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
             item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
             item.target = self
-            item.action = #selector(textSizeSliderChanged(_:))
+            item.action = #selector(textSizeSliderChanged)
             
             let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]", metrics: nil,
                                                              views: ["slider": item.slider])
@@ -109,7 +119,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         guard let action = item.action else { return false }
         
         switch action {
-        case #selector(resetTextSize(_:)):
+        case #selector(resetTextSize):
             return (self.textView?.scale != 1.0)
             
         default:
@@ -130,27 +140,10 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     }
     
     
-    /// "Actaul Size" button was pressed
+    /// "Actaul Size" button was touched
     @IBAction func resetTextSize(_ sender: Any?) {
         
         self.textView?.setScaleKeepingVisibleArea(1.0)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    private var textView: NSTextView? {
-        
-        return self.textContainer?.textView
-    }
-    
-    /// validate text size slider in touch bar
-    @objc private func invalidateSlider(_ notification: Notification) {
-        
-        guard let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return }
-        
-        item.slider.doubleValue = Double(self.textView?.scale ?? 1.0)
     }
     
 }

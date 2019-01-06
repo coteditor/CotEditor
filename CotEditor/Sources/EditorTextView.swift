@@ -38,7 +38,7 @@ private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
 
 // MARK: -
 
-final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
     
     // MARK: Notification Names
     
@@ -58,6 +58,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     var lineHighLightRect: NSRect?
     private(set) var lineHighLightColor: NSColor?
     
+    var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
+    var selectionOrigins: [Int] = []
+    var insertionPointTimer: DispatchSourceTimer?
+    var insertionPointOn = false
+    private(set) var isPerformingRectangularSelection = false
+    
     // for Scaling extension
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
@@ -67,9 +73,12 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     
+    private var cursorType: CursorType = .bar
     private var balancesBrackets = false
     private var isAutomaticIndentEnabled = false
     private var isSmartIndentEnabled = false
+    
+    private var mouseDownPoint: NSPoint = .zero
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
@@ -92,10 +101,11 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         let defaults = UserDefaults.standard
         
+        self.cursorType = defaults[.cursorType]
+        self.balancesBrackets = defaults[.balancesBrackets]
         self.isAutomaticTabExpansionEnabled = defaults[.autoExpandTab]
         self.isAutomaticIndentEnabled = defaults[.autoIndent]
         self.isSmartIndentEnabled = defaults[.enableSmartIndent]
-        self.balancesBrackets = defaults[.balancesBrackets]
         
         // set paragraph style values
         self.lineHeight = defaults[.lineHeight]
@@ -156,6 +166,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     
     
     deinit {
+        self.insertionPointTimer?.cancel()
         self.defaultsObservers.forEach { $0.invalidate() }
         self.removeNotificationObservers()
     }
@@ -179,6 +190,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override var textContainerOrigin: NSPoint {
         
         return NSPoint(x: super.textContainerOrigin.x, y: kTextContainerInset.height)
+    }
+    
+    
+    /// use sub-insertion points also for multi-text editing
+    override var rangesForUserTextChange: [NSValue]? {
+        
+        return self.insertionRanges as [NSValue]
     }
     
     
@@ -259,6 +277,41 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// the left mouse button is pressed
+    override func mouseDown(with event: NSEvent) {
+        
+        self.mouseDownPoint = self.convert(event.locationInWindow, from: nil)
+        self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
+        self.updateInsertionPointTimer()
+        
+        let selectedRange = (self.selectedRange.length == 0) ? self.selectedRange : nil
+        
+        super.mouseDown(with: event)
+        
+        // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
+        //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
+        
+        guard let window = self.window else { return }
+        
+        let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
+        let point = self.convert(pointInWindow, from: nil)
+        let isDragged = (point != self.mouseDownPoint)
+        
+        // restore the first empty insertion if it seems to dissapear
+        if event.modifierFlags.contains(.command), let selectedRange = selectedRange, self.selectedRange.length > 0 {
+            self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
+        }
+        
+        // add/remove insrtion point at clicked point
+        if event.modifierFlags.contains(.command), event.clickCount == 1, !isDragged {
+            self.modifyInsertionPoint(at: point)
+        }
+        
+        self.isPerformingRectangularSelection = false
+        self.updateInsertionPointTimer()
+    }
+    
+    
     /// key is pressed
     override func keyDown(with event: NSEvent) {
         
@@ -324,6 +377,13 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             return input
         }()
         
+        // enter multi-cursor editing
+        let insertionRanges = self.insertionRanges
+        if insertionRanges.count > 1 {
+            self.insertText(plainString, replacementRanges: insertionRanges)
+            return
+        }
+        
         // balance brackets and quotes
         if self.balancesBrackets, replacementRange.length == 0 {
             // with opening symbol input
@@ -335,8 +395,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
                 }
                 
                 // insert bracket pair if insertion point is not in a word
-                if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)),
-                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
+                if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? UnicodeScalar(0)),
+                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? UnicodeScalar(0)))  // for "
                 {
                     super.insertText(String(pair.begin) + String(pair.end), replacementRange: replacementRange)
                     self.setSelectedRangesWithUndo([NSRange(location: self.selectedRange.location - 1, length: 0)])
@@ -348,7 +408,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             
             // just move cursor if closing bracket is already typed
             if BracePair.braces.contains(where: { String($0.end) == plainString }),  // ignore "
-                plainString.unicodeScalars.first == self.characterAfterInsertion,
+                plainString.unicodeScalars.first == self.character(after: self.rangeForUserTextChange),
                 self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
             {
                 self.selectedRange.location += 1
@@ -359,7 +419,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // smart outdent with '}'
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.length == 0,
             plainString == "}",
-            let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound
+            let insertionIndex = Range(self.rangeForUserTextChange, in: self.string)?.upperBound
         {
             let lineRange = self.string.lineRange(at: insertionIndex)
             
@@ -383,7 +443,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         // auto completion
         if UserDefaults.standard[.autoComplete] {
             let delay: TimeInterval = UserDefaults.standard[.autoCompletionDelay]
-            self.completionTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+            self.completionTask.schedule(delay: .seconds(delay))
         }
     }
     
@@ -428,51 +488,58 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             self.isAutomaticIndentEnabled
             else { return super.insertNewline(sender) }
         
-        let indentRange = self.string.rangeOfIndent(at: self.rangeForUserTextChange.location)
+        let tab = self.isAutomaticIndentEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
         
-        // don't auto-indent if indent is selected (2008-12-13)
-        guard indentRange.length == 0 || indentRange != self.rangeForUserTextChange else {
-            return super.insertNewline(sender)
-        }
+        let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
+        self.setSelectedRangesWithUndo(ranges)
         
-        let indent: String = {
-            guard let autoIndentRange = indentRange.intersection(NSRange(0..<self.rangeForUserTextChange.location)) else {
-                return ""
+        let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
+            .map { range in
+                let indentRange = (range.length == 0) ? self.string.rangeOfIndent(at: range.location) : range
+                
+                guard
+                    indentRange.length > 0,
+                    let autoIndentRange = indentRange.intersection(NSRange(0..<range.location))
+                    else { return (range, "", 0) }
+                
+                var indent = (self.string as NSString).substring(with: autoIndentRange)
+                var insertion = indent.count
+                
+                // smart indent
+                if self.isSmartIndentEnabled {
+                    let lastCharacter = self.character(before: range)
+                    let nextCharacter = self.character(after: self.rangeForUserTextChange)
+                    let indentBase = indent
+                    
+                    // increase indent level
+                    if lastCharacter == ":" || lastCharacter == "{" {
+                        indent += tab
+                        insertion += tab.count
+                    }
+                    
+                    // expand block
+                    if lastCharacter == "{", nextCharacter == "}" {
+                        indent += "\n" + indentBase
+                    }
+                }
+                
+                return (range, indent, insertion)
             }
-            return (self.string as NSString).substring(with: autoIndentRange)
-        }()
-        
-        // check if smart indent required
-        let shouldExpandBlock: Bool
-        let shouldIncreaseIndentLevel: Bool
-        if self.isSmartIndentEnabled {
-            let lastCharacter = self.characterBeforeInsertion
-            let nextCharacter = self.characterAfterInsertion
-            
-            shouldExpandBlock = (lastCharacter == "{" && nextCharacter == "}")
-            shouldIncreaseIndentLevel = (lastCharacter == ":" || lastCharacter == "{")
-        } else {
-            shouldExpandBlock = false
-            shouldIncreaseIndentLevel = false
-        }
         
         super.insertNewline(sender)
         
         // auto indent
-        if !indent.isEmpty {
-            super.insertText(indent, replacementRange: self.rangeForUserTextChange)
+        var locations: [Int] = []
+        var offset = 0
+        for (range, indent, insertion) in indents {
+            let location = range.lowerBound + 1 + offset  // +1 for new line character
+            
+            super.insertText(indent, replacementRange: NSRange(location..<location))
+            
+            offset += -range.length + 1 + indent.count
+            locations.append(location + insertion)
         }
-        
-        // smart indent
-        if shouldExpandBlock {
-            let selectedRanges = self.selectedRanges
-            super.insertNewline(sender)
-            super.insertText(indent, replacementRange: self.rangeForUserTextChange)
-            self.selectedRanges = selectedRanges
-        }
-        if shouldIncreaseIndentLevel {
-            self.insertTab(sender)
-        }
+        self.setSelectedRangesWithUndo(locations.map { NSRange($0..<$0) })
     }
     
     
@@ -480,6 +547,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func deleteBackward(_ sender: Any?) {
         
         guard self.isEditable else { return super.deleteBackward(sender) }
+        
+        if self.multipleDeleteBackward() { return }
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
@@ -491,9 +560,9 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         // balance brackets
         if self.balancesBrackets,
-            self.selectedRange.length == 0,
-            let lastCharacter = self.characterBeforeInsertion,
-            let nextCharacter = self.characterAfterInsertion,
+            self.rangeForUserTextChange.length == 0,
+            let lastCharacter = self.character(before: self.rangeForUserTextChange),
+            let nextCharacter = self.character(after: self.rangeForUserTextChange),
             self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
             self.setSelectedRangesWithUndo(self.selectedRanges)
@@ -504,83 +573,80 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
-    /// selection did change
-    override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+    /// change multiple selection ranges
+    override var selectedRanges: [NSValue] {
         
-        super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
-        
-        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
+        willSet {
+            // keep only empty ranges that super may discard for following multi-cursor editing
+            // -> The ranges that `setSelectedRanges(_:affinity:stillSelecting:)` receives are sanitized already in NSTextView manner.
+            self.insertionLocations = newValue
+                .map { $0.rangeValue }
+                .filter { $0.length == 0 }
+                .map { $0.location }
+        }
     }
     
     
-    /// selection did change
-    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+    /// Change selection.
+    ///
+    /// - Note: Upate `insertionLocations` manually when you use this method.
+    override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
+        
+        var ranges = ranges
+        
+        // interrupt rectangular selection
+        if self.isPerformingRectangularSelection {
+            if stillSelectingFlag {
+                if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
+                    ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
+                    self.insertionLocations = Array(locations[1...])
+                } else {
+                    self.insertionLocations = []
+                }
+            } else {
+                ranges = ranges.isEmpty ? self.selectedRanges : ranges
+            }
+        }
+        
+        super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
+        
+        // remove official selectedRanges from the sub insertion points
+        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.contains(location) || $0.upperBound == location } }
+        
+        if !stillSelectingFlag {
+            self.selectionOrigins = self.insertionRanges
+                .filter { $0.length == 0 }
+                .map { $0.location }
+        }
+        
+        self.updateInsertionPointTimer()
         
         self.needsUpdateLineHighlight = true
         
-        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
-        
         // highlight matching brace
-        if UserDefaults.standard[.highlightBraces], !stillSelectingFlag {
+        if !stillSelectingFlag, UserDefaults.standard[.highlightBraces] {
             let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
             self.highligtMatchingBrace(candidates: bracePairs)
         }
         
         // invalidate current instances highlight
-        if UserDefaults.standard[.highlightSelectionInstance], !stillSelectingFlag {
+        if !stillSelectingFlag, UserDefaults.standard[.highlightSelectionInstance] {
             let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
             self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+            self.instanceHighlightTask.schedule(delay: .seconds(delay))
         }
+        
+        NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
     }
     
     
-    /// select word
-    override func selectWord(_ sender: Any?) {
+    /// set a single selection
+    override func setSelectedRange(_ charRange: NSRange, affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
-        if self.selectedRange.length == 0 {
-            // select word where the cursor locates
-            self.selectedRange = self.wordRange(at: self.selectedRange.location)
-            
-        } else {
-            // select next instance
-            guard let lastRange = self.selectedRanges.last as? NSRange else { return assertionFailure() }
-            
-            let string = self.string as NSString
-            let selectedWord = string.substring(with: lastRange)
-            let nextRange = string.range(of: selectedWord, range: NSRange(lastRange.upperBound..<string.length))
-            
-            guard nextRange != .notFound else { return }
-            
-            self.selectedRanges.append(NSValue(range: nextRange))
-            self.scrollRangeToVisible(nextRange)
-        }
-    }
-    
-    
-    /// move cursor to the beginning of the current visual line (⌘←)
-    override func moveToBeginningOfLine(_ sender: Any?) {
+        self.insertionLocations.removeAll()
         
-        let location = self.locationOfBeginningOfLine()
-        let range = NSRange(location..<location)
-        
-        self.setSelectedRange(range, affinity: .downstream, stillSelecting: false)
-        self.scrollRangeToVisible(range)
-    }
-    
-    
-    /// expand selection to the beginning of the current visual line (⇧⌘←)
-    override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
-        
-        let location = self.locationOfBeginningOfLine()
-        
-        // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
-        // instead of setting `selectedRange` directly.
-        // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
-        //    expands the selection to a wrong direction. (2018-11 macOS 10.14 #863)
-        while self.selectedRange.location > location {
-            self.moveBackwardAndModifySelection(self)
-        }
+        super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
     }
     
     
@@ -669,9 +735,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     ///
     override func setNeedsDisplay(_ invalidRect: NSRect) {
         
-        // expand rect as a workaroud for thick cursors (2018-11 macOS 10.14)
-        var invalidRect = invalidRect
-        invalidRect.size.width += (self.layoutManager as? LayoutManager)?.spaceWidth ?? 0
+        // expand rect as a workaroud for thick or multiple cursors (2018-11 macOS 10.14)
+        super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         
         super.setNeedsDisplay(invalidRect)
     }
@@ -695,36 +760,40 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override func drawInsertionPoint(in rect: NSRect, color: NSColor, turnedOn flag: Bool) {
         
         var rect = rect
-        var color = color
-        
-        switch UserDefaults.standard[.cursorType] {
+        switch self.cursorType {
         case .bar:
             break
-            
         case .thickBar:
             rect.size.width = 2
-            
         case .block:
-            guard
-                let layoutManager = self.layoutManager as? LayoutManager,
-                let textContainer = self.textContainer
-                else { break }
-            
-            let point = NSPoint(x: rect.maxX, y: rect.midY).offset(by: -self.textContainerOrigin)
-            let glyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
-            
-            rect.size.width = {
-                guard
-                    layoutManager.isValidGlyphIndex(glyphIndex),
-                    layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
-                    else { return layoutManager.spaceWidth }
-                
-                return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
-            }()
-            color = color.withAlphaComponent(0.5)
+            let index = self.characterIndexForInsertion(at: rect.mid)
+            rect.size.width = self.insertionBlockWidth(at: index)
         }
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
+        
+        // draw sub insertion rects
+        self.insertionLocations
+            .map { self.insertionPointRect(at: $0) }
+            .forEach { super.drawInsertionPoint(in: $0, color: color, turnedOn: flag) }
+    }
+    
+    
+    /// calculate rect for insartion point at index
+    override func insertionPointRect(at index: Int) -> NSRect {
+        
+        var rect = super.insertionPointRect(at: index)
+        
+        switch self.cursorType {
+        case .bar:
+            break
+        case .thickBar:
+            rect.size.width = 2
+        case .block:
+            rect.size.width = self.insertionBlockWidth(at: index)
+        }
+        
+        return rect
     }
     
     
@@ -763,6 +832,15 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             self.centerScanRect(guideRect).fill()
             
             NSGraphicsContext.restoreGraphicsState()
+        }
+        
+        // draw zero-width insertion points while rectangular selection
+        // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
+        if self.needsDrawInsertionPoints {
+            self.insertionRanges
+                .filter { $0.length == 0 }
+                .map { self.insertionPointRect(at: $0.location) }
+                .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
     }
     
@@ -824,6 +902,17 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             self.insertDroppedFiles(urls)
         {
             return true
+        }
+        
+        // paste a single string to all insertion points
+        if pboard.name == .generalPboard,
+            pboard.types?.contains(.multipleTextSelection) == false,
+            let string = pboard.string(forType: .string),
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            ranges.count > 1,
+            string.rangeOfCharacter(from: .newlines) == nil
+        {
+            return self.insertText(string, replacementRanges: ranges)
         }
         
         return super.readSelection(from: pboard, type: type)
@@ -1163,7 +1252,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         self.backgroundColor = theme.background.color
         self.textColor = theme.text.color
         self.lineHighLightColor = theme.lineHighlight.color
-        self.insertionPointColor = theme.insertionPoint.color
+        self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
@@ -1335,12 +1424,35 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     }
     
     
+    /// Return the width of the insertion point to be drawn at the `index`.
+    ///
+    /// - Parameter index: The character index of the insertion point.
+    /// - Returns: The width of insertion point rect.
+    private func insertionBlockWidth(at index: Int) -> CGFloat {
+        
+        guard
+            let layoutManager = self.layoutManager as? LayoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return 1 }
+        
+        let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        
+        guard
+            layoutManager.isValidGlyphIndex(glyphIndex),
+            layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
+            else { return layoutManager.spaceWidth }
+        
+        return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
+    }
+    
+    
     /// highlight all instances of the selection
     private func highlightInstance() {
         
         guard
             !self.string.isEmpty,  // important to avoid crash after closing editor
             !self.hasMarkedText(),
+            self.insertionLocations.isEmpty,
             self.selectedRanges.count == 1,
             self.selectedRange.length > 0,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
@@ -1365,6 +1477,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private func observeDefaults() -> [UserDefaultsObservation] {
         
         let keys: [DefaultKeys] = [
+            .cursorType,
             .autoExpandTab,
             .autoIndent,
             .enableSmartIndent,
@@ -1391,6 +1504,10 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
             
             let new = change.new
             switch key {
+            case .cursorType:
+                self.cursorType = UserDefaults.standard[.cursorType]
+                self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+                
             case .autoExpandTab:
                 self.isAutomaticTabExpansionEnabled = new as! Bool
                 
@@ -1617,10 +1734,10 @@ extension EditorTextView {
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.length == 0,  // selected
-            let lastCharacter = self.characterBeforeInsertion, !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
+            let lastCharacter = self.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }
         
-        if let nextCharacter = self.characterAfterInsertion, CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
+        if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
         
         self.complete(self)
     }
@@ -1691,10 +1808,10 @@ extension EditorTextView {
     
     
     
-    // MARK: Private Methods
+    // MARK: Public Methods
     
     /// word range that includes location
-    private func wordRange(at location: Int) -> NSRange {
+    func wordRange(at location: Int) -> NSRange {
         
         let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
         

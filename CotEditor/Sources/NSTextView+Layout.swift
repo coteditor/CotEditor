@@ -107,16 +107,10 @@ extension NSTextView {
 
 extension NSTextView {
     
-    // MARK: Notification Names
-    
-    static let didChangeScaleNotification = Notification.Name("TextViewDidChangeScale")
-    
-    
-    
     // MARK: Public Methods
     
     /// current zooming scale
-    var scale: CGFloat {
+    @objc var scale: CGFloat {
         
         get {
             return self.convert(.unit, to: nil).width
@@ -133,8 +127,10 @@ extension NSTextView {
             guard scale != self.scale else { return }
             
             // scale
+            self.willChangeValue(for: \.scale)
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
+            self.didChangeValue(for: \.scale)
             
             // ensure bounds origin is {0, 0} for vertical text orientation
             self.translateOrigin(to: self.bounds.origin)
@@ -149,8 +145,6 @@ extension NSTextView {
             self.sizeToFit()
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            
-            NotificationCenter.default.post(name: NSTextView.didChangeScaleNotification, object: self)
         }
     }
     

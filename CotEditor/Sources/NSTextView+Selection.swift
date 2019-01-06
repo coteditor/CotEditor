@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,36 +27,32 @@ import Cocoa
 
 extension NSTextView {
     
-    /// character just before the insertion or 0
-    var characterBeforeInsertion: UnicodeScalar? {
+    /// character just before the given range
+    func character(before range: NSRange) -> UnicodeScalar? {
         
-        let location = self.selectedRange.location - 1
+        guard range.lowerBound > 0 else { return nil }
         
-        guard location >= 0 else { return nil }
-        
-        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
+        guard let index = String.UTF16Index(encodedOffset: range.lowerBound - 1).samePosition(in: self.string.unicodeScalars) else { return nil }
         
         return self.string.unicodeScalars[safe: index]
     }
     
     
-    /// character just after the insertion
-    var characterAfterInsertion: UnicodeScalar? {
+    /// character just after the given range
+    func character(after range: NSRange) -> UnicodeScalar? {
         
-        let location = self.selectedRange.location
-        
-        guard let index = String.UTF16Index(encodedOffset: location).samePosition(in: self.string.unicodeScalars) else { return nil }
+        guard let index = String.UTF16Index(encodedOffset: range.upperBound).samePosition(in: self.string.unicodeScalars) else { return nil }
         
         return self.string.unicodeScalars[safe: index]
     }
     
     
     /// location of the beginning of the current visual line considering indent
-    func locationOfBeginningOfLine() -> Int {
+    func locationOfBeginningOfLine(for range: NSRange) -> Int {
         
         let string = self.string as NSString
-        let currentLocation = self.selectedRange.location
-        let lineRange = string.lineRange(for: self.selectedRange)
+        let currentLocation = range.location
+        let lineRange = string.lineRange(for: range)
         
         if let layoutManager = self.layoutManager, currentLocation > 0 {
             // beginning of current visual line

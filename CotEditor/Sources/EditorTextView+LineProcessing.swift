@@ -32,10 +32,13 @@ extension EditorTextView {
     /// move selected line up
     @IBAction func moveLineUp(_ sender: Any?) {
         
-        guard let editingInfo = self.string.moveLineUp(in: self.selectedRanges as! [NSRange]) else {
-            NSSound.beep()
-            return
-        }
+        guard
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let editingInfo = self.string.moveLineUp(in: ranges)
+            else {
+                NSSound.beep()
+                return
+            }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
@@ -44,10 +47,13 @@ extension EditorTextView {
     /// move selected line down
     @IBAction func moveLineDown(_ sender: Any?) {
         
-        guard let editingInfo = self.string.moveLineDown(in: self.selectedRanges as! [NSRange]) else {
-            NSSound.beep()
-            return
-        }
+        guard
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let editingInfo = self.string.moveLineDown(in: ranges)
+            else {
+                NSSound.beep()
+                return
+            }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
@@ -80,8 +86,10 @@ extension EditorTextView {
     /// delete duplicate lines in selection
     @IBAction func deleteDuplicateLine(_ sender: Any?) {
         
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        
         // process whole document if no text selected
-        let ranges = (self.selectedRange.length == 0) ? [self.string.nsRange] : self.selectedRanges as! [NSRange]
+        let ranges = (self.selectedRange.length == 0) ? [self.string.nsRange] : selectedRanges
         
         guard let editingInfo = self.string.deleteDuplicateLine(in: ranges) else { return }
         
@@ -92,7 +100,9 @@ extension EditorTextView {
     /// duplicate selected lines below
     @IBAction func duplicateLine(_ sender: Any?) {
         
-        guard let editingInfo = self.string.duplicateLine(in: self.selectedRanges as! [NSRange]) else { return }
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        
+        guard let editingInfo = self.string.duplicateLine(in: selectedRanges) else { return }
         
         self.edit(with: editingInfo, actionName: "Duplicate Line".localized)
     }
@@ -101,7 +111,9 @@ extension EditorTextView {
     /// remove selected lines
     @IBAction func deleteLine(_ sender: Any?) {
         
-        guard let editingInfo = self.string.deleteLine(in: self.selectedRanges as! [NSRange]) else { return }
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        
+        guard let editingInfo = self.string.deleteLine(in: selectedRanges) else { return }
         
         self.edit(with: editingInfo, actionName: "Delete Line".localized)
     }

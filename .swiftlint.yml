@@ -68,7 +68,7 @@ vertical_whitespace:
   max_empty_lines: 4
 
 file_length:
-  warning: 1800
+  warning: 2000
   error: 3000
 
 line_length:
@@ -76,11 +76,11 @@ line_length:
   error: 2000
 
 type_body_length:
-  warning: 800
-  error: 1000
+  warning: 1000
+  error: 1500
 
 function_body_length:
-  warning: 80
+  warning: 90
   error: 100
 
 cyclomatic_complexity:

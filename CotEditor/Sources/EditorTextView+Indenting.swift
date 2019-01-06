@@ -101,11 +101,13 @@ extension Indenting where Self: NSTextView {
     @discardableResult
     func indent() -> Bool {
         
-        guard self.tabWidth > 0 else { return false }
+        guard
+            self.tabWidth > 0,
+            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
+            else { return false }
         
         // get indent target
         let string = self.string as NSString
-        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // create indent string to prepend
         let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
@@ -134,11 +136,13 @@ extension Indenting where Self: NSTextView {
     @discardableResult
     func outdent() -> Bool {
         
-        guard self.tabWidth > 0 else { return false }
+        guard
+            self.tabWidth > 0,
+            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
+            else { return false }
         
-        // get range to process
+        // get indent target
         let string = self.string as NSString
-        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // find ranges to remove
         let lineRanges = string.lineRanges(for: selectedRanges)
