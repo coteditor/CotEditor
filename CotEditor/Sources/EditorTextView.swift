@@ -395,8 +395,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 }
                 
                 // insert bracket pair if insertion point is not in a word
-                if !CharacterSet.alphanumerics.contains(self.characterAfterInsertion ?? UnicodeScalar(0)),
-                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.characterBeforeInsertion ?? UnicodeScalar(0)))  // for "
+                if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? UnicodeScalar(0)),
+                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? UnicodeScalar(0)))  // for "
                 {
                     super.insertText(String(pair.begin) + String(pair.end), replacementRange: replacementRange)
                     self.setSelectedRangesWithUndo([NSRange(location: self.selectedRange.location - 1, length: 0)])
@@ -408,7 +408,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             // just move cursor if closing bracket is already typed
             if BracePair.braces.contains(where: { String($0.end) == plainString }),  // ignore "
-                plainString.unicodeScalars.first == self.characterAfterInsertion,
+                plainString.unicodeScalars.first == self.character(after: self.rangeForUserTextChange),
                 self.textStorage?.attribute(.autoBalancedClosingBracket, at: self.selectedRange.location, effectiveRange: nil) as? Bool ?? false
             {
                 self.selectedRange.location += 1
@@ -419,7 +419,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // smart outdent with '}'
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.length == 0,
             plainString == "}",
-            let insertionIndex = Range(self.selectedRange, in: self.string)?.upperBound
+            let insertionIndex = Range(self.rangeForUserTextChange, in: self.string)?.upperBound
         {
             let lineRange = self.string.lineRange(at: insertionIndex)
             
@@ -488,51 +488,58 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.isAutomaticIndentEnabled
             else { return super.insertNewline(sender) }
         
-        let indentRange = self.string.rangeOfIndent(at: self.rangeForUserTextChange.location)
+        let tab = self.isAutomaticIndentEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
         
-        // don't auto-indent if indent is selected (2008-12-13)
-        guard indentRange.length == 0 || indentRange != self.rangeForUserTextChange else {
-            return super.insertNewline(sender)
-        }
+        let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
+        self.setSelectedRangesWithUndo(ranges)
         
-        let indent: String = {
-            guard let autoIndentRange = indentRange.intersection(NSRange(0..<self.rangeForUserTextChange.location)) else {
-                return ""
+        let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
+            .map { range in
+                let indentRange = (range.length == 0) ? self.string.rangeOfIndent(at: range.location) : range
+                
+                guard
+                    indentRange.length > 0,
+                    let autoIndentRange = indentRange.intersection(NSRange(0..<range.location))
+                    else { return (range, "", 0) }
+                
+                var indent = (self.string as NSString).substring(with: autoIndentRange)
+                var insertion = indent.count
+                
+                // smart indent
+                if self.isSmartIndentEnabled {
+                    let lastCharacter = self.character(before: range)
+                    let nextCharacter = self.character(after: self.rangeForUserTextChange)
+                    let indentBase = indent
+                    
+                    // increase indent level
+                    if lastCharacter == ":" || lastCharacter == "{" {
+                        indent += tab
+                        insertion += tab.count
+                    }
+                    
+                    // expand block
+                    if lastCharacter == "{", nextCharacter == "}" {
+                        indent += "\n" + indentBase
+                    }
+                }
+                
+                return (range, indent, insertion)
             }
-            return (self.string as NSString).substring(with: autoIndentRange)
-        }()
-        
-        // check if smart indent required
-        let shouldExpandBlock: Bool
-        let shouldIncreaseIndentLevel: Bool
-        if self.isSmartIndentEnabled {
-            let lastCharacter = self.characterBeforeInsertion
-            let nextCharacter = self.characterAfterInsertion
-            
-            shouldExpandBlock = (lastCharacter == "{" && nextCharacter == "}")
-            shouldIncreaseIndentLevel = (lastCharacter == ":" || lastCharacter == "{")
-        } else {
-            shouldExpandBlock = false
-            shouldIncreaseIndentLevel = false
-        }
         
         super.insertNewline(sender)
         
         // auto indent
-        if !indent.isEmpty {
-            super.insertText(indent, replacementRange: self.rangeForUserTextChange)
+        var locations: [Int] = []
+        var offset = 0
+        for (range, indent, insertion) in indents {
+            let location = range.lowerBound + 1 + offset  // +1 for new line character
+            
+            super.insertText(indent, replacementRange: NSRange(location..<location))
+            
+            offset += -range.length + 1 + indent.count
+            locations.append(location + insertion)
         }
-        
-        // smart indent
-        if shouldExpandBlock {
-            let selectedRanges = self.selectedRanges
-            super.insertNewline(sender)
-            super.insertText(indent, replacementRange: self.rangeForUserTextChange)
-            self.selectedRanges = selectedRanges
-        }
-        if shouldIncreaseIndentLevel {
-            self.insertTab(sender)
-        }
+        self.setSelectedRangesWithUndo(locations.map { NSRange($0..<$0) })
     }
     
     
@@ -553,9 +560,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // balance brackets
         if self.balancesBrackets,
-            self.selectedRange.length == 0,
-            let lastCharacter = self.characterBeforeInsertion,
-            let nextCharacter = self.characterAfterInsertion,
+            self.rangeForUserTextChange.length == 0,
+            let lastCharacter = self.character(before: self.rangeForUserTextChange),
+            let nextCharacter = self.character(after: self.rangeForUserTextChange),
             self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
         {
             self.setSelectedRangesWithUndo(self.selectedRanges)
@@ -1727,10 +1734,10 @@ extension EditorTextView {
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
             self.selectedRange.length == 0,  // selected
-            let lastCharacter = self.characterBeforeInsertion, !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
+            let lastCharacter = self.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }
         
-        if let nextCharacter = self.characterAfterInsertion, CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
+        if let nextCharacter = self.character(after: self.selectedRange), CharacterSet.alphanumerics.contains(nextCharacter) { return }  // caret is (probably) at the middle of a word
         
         self.complete(self)
     }

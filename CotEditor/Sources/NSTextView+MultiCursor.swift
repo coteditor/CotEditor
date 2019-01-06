@@ -73,10 +73,7 @@ extension MultiCursorEditing where Self: NSTextView {
         
         let replacementStrings = [String](repeating: string, count: replacementRanges.count)
         
-        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges, insertionLocations = self.insertionLocations] target in
-            target.selectedRanges = selectedRanges
-            target.insertionLocations = insertionLocations
-        }
+        self.setSelectedRangesWithUndo(self.insertionRanges)
         
         guard self.shouldChangeText(inRanges: replacementRanges as [NSValue], replacementStrings: replacementStrings) else { return false }
         
@@ -99,8 +96,7 @@ extension MultiCursorEditing where Self: NSTextView {
         
         self.didChangeText()
         
-        self.selectedRange = NSRange(location: newInsertionLocations.removeFirst(), length: 0)
-        self.insertionLocations = newInsertionLocations
+        self.setSelectedRangesWithUndo(newInsertionLocations.map { NSRange(location: $0, length: 0) })
         
         return true
     }
