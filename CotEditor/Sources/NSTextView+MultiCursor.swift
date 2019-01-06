@@ -261,7 +261,7 @@ extension MultiCursorEditing where Self: NSTextView {
             
             newOrigins.append(origin ?? bounds.origin)
             
-            return (bounds.cursor <= bounds.origin) ? NSRange(bounds.cursor..<bounds.origin) : NSRange(bounds.1..<bounds.cursor)
+            return (bounds.cursor <= bounds.origin) ? NSRange(bounds.cursor..<bounds.origin) : NSRange(bounds.origin..<bounds.cursor)
         }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
@@ -319,7 +319,7 @@ extension NSTextView {
     /// Find the location for a insertion point where one (visual) line above to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
-    /// - Returns: The character index of the objective insertion point location or `nil` if cannot move.
+    /// - Returns: The character index of the objective insertion point location or `0` if cannot move.
     func upperInsertionLocation(of index: Int) -> Int {
         
         guard
@@ -328,23 +328,18 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let currentInsertionRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
-        var lineGlyphRange: NSRange = .notFound
-        layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
+        let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
+        let currentRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        let upperRect = NSPoint(x: currentRect.midX, y: lineRect.minY - 1).offset(by: self.textContainerOrigin)
         
-        guard lineGlyphRange.lowerBound > 0 else { return 0 }
-        
-        let upperLineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphRange.lowerBound - 1, effectiveRange: nil)
-        let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
-        
-        return self.characterIndexForInsertion(at: upperInsertionRect)
+        return self.characterIndexForInsertion(at: upperRect)
     }
     
     
     /// Find the location for a insertion point where one (visual) line below to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
-    /// - Returns: The character index of the objective insertion point location or `nil` if cannot move.
+    /// - Returns: The character index of the objective insertion point location or end of the document if cannot move.
     func lowerInsertionLocation(of index: Int) -> Int {
         
         guard
@@ -353,19 +348,11 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
+        let currentRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        let lowerRect = NSPoint(x: currentRect.midX, y: lineRect.maxY + 1).offset(by: self.textContainerOrigin)
         
-        guard layoutManager.isValidGlyphIndex(glyphIndex) else { return self.attributedString().length }
-        
-        let currentInsertionRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
-        var lineGlyphRange: NSRange = .notFound
-        layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &lineGlyphRange)
-        
-        guard lineGlyphRange.upperBound < layoutManager.numberOfGlyphs else { return self.attributedString().length }
-        
-        let upperLineRect = layoutManager.lineFragmentRect(forGlyphAt: lineGlyphRange.upperBound + 1, effectiveRange: nil)
-        let upperInsertionRect = NSPoint(x: currentInsertionRect.midX, y: upperLineRect.midY).offset(by: self.textContainerOrigin)
-        
-        return self.characterIndexForInsertion(at: upperInsertionRect)
+        return self.characterIndexForInsertion(at: lowerRect)
     }
     
 }

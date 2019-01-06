@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- [beta] Fix a crash when moving multiple cursors with arrow keys.
 - [beta] Fix the width of insertion points.
 
 
