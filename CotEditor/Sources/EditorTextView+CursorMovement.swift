@@ -83,7 +83,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor up to the upper visual line (↑)
+    /// move cursor up to the upper visual line (↑ / ^P)
     override func moveUp(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveUp(sender) }
@@ -92,7 +92,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor up and modify selection (⇧↑).
+    /// move cursor up and modify selection (⇧↑ / ^⇧P).
     override func moveUpAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveUpAndModifySelection(sender) }
@@ -107,7 +107,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor down to the lower visual line (↓)
+    /// move cursor down to the lower visual line (↓ / ^N)
     override func moveDown(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveDown(sender) }
@@ -116,7 +116,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor down and modify selection (⇧↓).
+    /// move cursor down and modify selection (⇧↓ / ^⇧N).
     override func moveDownAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveDownAndModifySelection(sender) }
@@ -125,7 +125,7 @@ extension EditorTextView {
             if let origin = origin, origin > range.lowerBound {
                 return (self.lowerInsertionLocation(of: range.lowerBound), range.upperBound)
             } else {
-                return(self.lowerInsertionLocation(of: range.upperBound), range.lowerBound)
+                return (self.lowerInsertionLocation(of: range.upperBound), range.lowerBound)
             }
         }
     }
@@ -134,7 +134,7 @@ extension EditorTextView {
     
     // MARK: Text View Methods - Option+Arrow
     
-    /// move cursor to the beginning of the word (opt←)
+    /// move cursor to the beginning of the word continuasly (opt←)
     override func moveWordLeft(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveWordLeft(sender) }
@@ -143,7 +143,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the beginning of the word and modify selection (⇧opt←).
+    /// move cursor to the beginning of the word and modify selection continuasly (⇧opt←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveWordLeftAndModifySelection(sender) }
@@ -158,7 +158,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word (opt→)
+    /// move cursor to the end of the word continuasly (opt→)
     override func moveWordRight(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveWordRight(sender) }
@@ -168,7 +168,7 @@ extension EditorTextView {
     }
     
     
-    /// move cursor to the end of the word and modify selection (⇧opt→).
+    /// move cursor to the end of the word and modify selection continuasly (⇧opt→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveWordRightAndModifySelection(sender) }
@@ -184,29 +184,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor backward.
-    ///
-    /// - Note: `opt↑` invokes first this method and then `moveToBeginningOfParagraph(_:)`.
-    override func moveBackward(_ sender: Any?) {
-        
-        guard self.hasMultipleInsertions else { return super.moveBackward(sender) }
-        
-        self.moveLeft(sender)
-    }
-    
-    
-    /// Move cursor to the beginning of the logical line.
-    ///
-    /// - Note: `opt↑` invokes first `moveBackward(_:)` and then this method.
-    override func moveToBeginningOfParagraph(_ sender: Any?) {
-        
-        guard self.hasMultipleInsertions else { return super.moveToBeginningOfParagraph(sender) }
-        
-        self.moveCursors(affinity: .downstream) { (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound }
-    }
-    
-    
-    /// move cursor to the beginning of the logical line and modify selection (⇧opt↑).
+    /// move cursor to the beginning of the logical line and modify selection continuasly (⇧opt↑).
     override func moveParagraphBackwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveParagraphBackwardAndModifySelection(sender) }
@@ -221,29 +199,7 @@ extension EditorTextView {
     }
     
     
-    /// Move cursor forward.
-    ///
-    /// - Note: `opt↓` invokes first this method and then `moveToEndOfParagraph(_:)`.
-    override func moveForward(_ sender: Any?) {
-        
-        guard self.hasMultipleInsertions else { return super.moveForward(sender) }
-        
-        self.moveRight(sender)
-    }
-    
-    
-    /// Move cursor to the end of the logical line.
-    ///
-    /// - Note: `opt↓` invokes first `moveForward(_:)` and then this method.
-    override func moveToEndOfParagraph(_ sender: Any?) {
-        
-        guard self.hasMultipleInsertions else { return super.moveToEndOfParagraph(sender) }
-        
-        self.moveCursors(affinity: .upstream) { (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound }
-    }
-    
-    
-    /// move cursor to the end of the logical line and modify selection (⇧opt↓).
+    /// move cursor to the end of the logical line and modify selection continuasly (⇧opt↓).
     override func moveParagraphForwardAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveParagraphForwardAndModifySelection(sender) }
@@ -319,6 +275,161 @@ extension EditorTextView {
             }
         }
     }
+    
+    
+    
+    // MARK: Text View Methods - Emacs
+    
+    /// Move cursor backward (^B).
+    ///
+    /// - Note: `opt↑` invokes first this method and then `moveToBeginningOfParagraph(_:)`.
+    override func moveBackward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveBackward(sender) }
+        
+        self.moveLeft(sender)
+    }
+    
+    
+    /// Move cursor backward and modify selection (^⇧B).
+    ///
+    /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
+    override func moveBackwardAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveBackwardAndModifySelection(sender) }
+        
+        self.moveLeftAndModifySelection(sender)
+    }
+    
+    
+    /// Move cursor forward (^F).
+    ///
+    /// - Note: `opt↓` invokes first this method and then `moveToEndOfParagraph(_:)`.
+    override func moveForward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveForward(sender) }
+        
+        self.moveRight(sender)
+    }
+    
+    
+    /// Move cursor forward and modify selection (^⇧F).
+    ///
+    /// - Note: `opt⇧↓` invokes first this method and then `moveToEndOfParagraphAndModifySelection(_:)`.
+    override func moveForwardAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveForwardAndModifySelection(sender) }
+        
+        self.moveRightAndModifySelection(sender)
+    }
+    
+    
+    /// Move cursor to the beginning of the logical line (^A).
+    ///
+    /// - Note: `opt↑` invokes first `moveBackward(_:)` and then this method.
+    override func moveToBeginningOfParagraph(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveToBeginningOfParagraph(sender) }
+        
+        self.moveCursors(affinity: .downstream) { (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound }
+    }
+    
+    
+    /// move cursor to the beginning of the logical line and modify selection (^⇧A).
+    override func moveToBeginningOfParagraphAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveToBeginningOfParagraphAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin < range.upperBound {
+                return ((self.string as NSString).lineRange(at: range.upperBound).lowerBound, range.lowerBound)
+            } else {
+                return ((self.string as NSString).lineRange(at: range.lowerBound).lowerBound, range.upperBound)
+            }
+        }
+    }
+    
+    
+    /// Move cursor to the end of the logical line (^E).
+    ///
+    /// - Note: `opt↓` invokes first `moveForward(_:)` and then this method.
+    override func moveToEndOfParagraph(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveToEndOfParagraph(sender) }
+        
+        self.moveCursors(affinity: .upstream) { (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound }
+    }
+    
+    
+    /// move cursor to the end of the logical line and modify selection (^⇧E).
+    override func moveToEndOfParagraphAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveToEndOfParagraphAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
+            if let origin = origin, origin > range.lowerBound {
+                return ((self.string as NSString).lineRange(at: range.lowerBound, excludingLastLineEnding: true).upperBound, range.upperBound)
+            } else {
+                return ((self.string as NSString).lineRange(at: range.upperBound, excludingLastLineEnding: true).upperBound, range.lowerBound)
+            }
+        }
+    }
+    
+    
+    /// move cursor to the beginning of the word (^⌥B)
+    override func moveWordBackward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveWordBackward(sender) }
+        
+        self.moveCursors(affinity: .downstream) { self.wordRange(at: $0.lowerBound).lowerBound }
+    }
+    
+    
+    /// move cursor to the beginning of the word and modify selection (^⌥⇧B).
+    override func moveWordBackwardAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveWordBackwardAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
+            if let origin = origin, origin < range.upperBound {
+                return (self.wordRange(at: range.upperBound).lowerBound, range.lowerBound)
+            } else {
+                return (self.wordRange(at: range.lowerBound).lowerBound, range.upperBound)
+            }
+        }
+    }
+    
+    
+    /// move cursor to the end of the word (^⌥F)
+    override func moveWordForward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveWordForward(sender) }
+        
+        self.moveCursors(affinity: .upstream) { self.wordRange(at: $0.upperBound).upperBound }
+    }
+    
+    
+    /// move cursor to the end of the word and modify selection (^⌥⇧F).
+    override func moveWordForwardAndModifySelection(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.moveWordForwardAndModifySelection(sender) }
+        
+        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
+            if let origin = origin, origin > range.lowerBound {
+                return (self.wordRange(at: range.lowerBound).upperBound, range.upperBound)
+            } else {
+                return (self.wordRange(at: range.upperBound).upperBound, range.lowerBound)
+            }
+        }
+    }
+    
+    // The following actions are also a part of NSStandardKeyBindingResponding but not implemented
+    // since they seem just to bridge to `moveTo{Beginning|End}OfLine*` series. (2019-01 macOS 10.14)
+    
+    // moveToLeftEndOfLine(_ sender: Any?)
+    // moveToLeftEndOfLineAndModifySelection(_ sender: Any?)
+    // moveToRightEndOfLine(_ sender: Any?)
+    // moveToRightEndOfLineAndModifySelection(_ sender: Any?)
     
     
     
