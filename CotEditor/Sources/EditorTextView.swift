@@ -329,6 +329,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// Esc key is pressed
+    override func cancelOperation(_ sender: Any?) {
+        
+        // exit multi-cursor mode
+        if self.hasMultipleInsertions {
+            self.selectedRange = self.insertionRanges.first!
+            return
+        }
+        
+        // -> NSTextView doesn't impelment cancelOperation (macOS 10.14)
+        if super.responds(to: #selector(cancelOperation)) {
+            super.cancelOperation(sender)
+        }
+    }
+    
+    
     /// text did change
     override func didChangeText() {
         

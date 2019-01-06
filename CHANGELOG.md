@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [beta] Exit muti-cursor mode by using `esc` key.
 - [beta] Add `^⇧↑` and `^⇧↓` shortcuts to add an insertion point above/below.
 
 
