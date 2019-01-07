@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,6 +49,38 @@ extension NSString {
     var range: NSRange {
         
         return NSRange(location: 0, length: self.length)
+    }
+    
+    
+    /// Return NSRange-based character index where just before the given character index
+    /// by taking grapheme clusters into account.
+    ///
+    /// - Parameter location: NSRange-based character index to refer.
+    /// - Returns: NSRange-based character index just before the given `location`,
+    ///            or `0` when the given `location` is the first.
+    func index(before location: Int) -> Int {
+        
+        guard location > 0 else { return 0 }
+        
+        let range = NSRange(location: location - 1, length: 0)
+        
+        return self.rangeOfComposedCharacterSequences(for: range).lowerBound
+    }
+    
+    
+    /// Return NSRange-based character index where just after the given character index
+    /// by taking grapheme clusters into account.
+    ///
+    /// - Parameter location: NSRange-based character index to refer.
+    /// - Returns: NSRange-based character index just before the given `location`,
+    ///            or `location` when the given `location` is the last.
+    func index(after location: Int) -> Int {
+        
+        guard location < self.length else { return self.length }
+        
+        let range = NSRange(location: location + 1, length: 0)
+        
+        return self.rangeOfComposedCharacterSequences(for: range).upperBound
     }
     
     

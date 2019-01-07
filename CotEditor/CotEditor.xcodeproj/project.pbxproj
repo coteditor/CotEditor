@@ -314,8 +314,8 @@
 		2A6FD9E81D394F5900A59784 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E61D394F5900A59784 /* LayoutManager.swift */; };
 		2A6FD9EA1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */; };
 		2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */; };
-		2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */; };
-		2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */; };
+		2A6FD9ED1D3A85D700A59784 /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* NSString.swift */; };
+		2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9EC1D3A85D700A59784 /* NSString.swift */; };
 		2A6FD9F31D3ACEB500A59784 /* DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */; };
 		2A6FD9F41D3ACEB500A59784 /* DefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */; };
 		2A6FD9F61D3AE29E00A59784 /* SyntaxStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */; };
@@ -1048,7 +1048,7 @@
 		2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2A6FD9E61D394F5900A59784 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Commenting.swift"; sourceTree = "<group>"; };
-		2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+NSRange.swift"; sourceTree = "<group>"; };
+		2A6FD9EC1D3A85D700A59784 /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSString.swift; sourceTree = "<group>"; };
 		2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKey.swift; sourceTree = "<group>"; };
 		2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyle.swift; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FormattersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormattersTests.swift; sourceTree = "<group>"; };
@@ -1756,7 +1756,6 @@
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
 				2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */,
 				2AAD61FB1D2BD102008FE772 /* String+Additions.swift */,
-				2A6FD9EC1D3A85D700A59784 /* String+NSRange.swift */,
 				2AA761341D45634400031AAF /* String+Counting.swift */,
 				2A9BF3CA1D3842FA00E3D3E2 /* String+Normalization.swift */,
 				2A9BF3C61D38325200E3D3E2 /* String+JapaneseTransformation.swift */,
@@ -1766,6 +1765,7 @@
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
 				2A887A8F20FA1D19002BFA34 /* String+Localization.swift */,
 				2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */,
+				2A6FD9EC1D3A85D700A59784 /* NSString.swift */,
 				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
 				2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */,
 				2A9082EB1D325BEC00228F50 /* UserDefaults.swift */,
@@ -2845,7 +2845,7 @@
 				2A0BF8A91DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2A1814BC21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift in Sources */,
 				2A4714EA209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */,
-				2A6FD9EE1D3A85D700A59784 /* String+NSRange.swift in Sources */,
+				2A6FD9EE1D3A85D700A59784 /* NSString.swift in Sources */,
 				2A91C31F1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */,
 				2A7646EC1D49035500350674 /* SettingFileManaging.swift in Sources */,
@@ -3251,7 +3251,7 @@
 				2AA4D3741D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
 				2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */,
-				2A6FD9ED1D3A85D700A59784 /* String+NSRange.swift in Sources */,
+				2A6FD9ED1D3A85D700A59784 /* NSString.swift in Sources */,
 				2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */,
 				2AA79C7821CB7251005AD6AD /* PreferencesWindow.swift in Sources */,
 				2ACFE58B1D20730B0005233A /* FindPanelContentViewController.swift in Sources */,
