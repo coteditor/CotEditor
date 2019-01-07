@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -128,6 +128,26 @@ extension NSTextView {
     
 }
 
+
+
+extension String {
+    
+    /// Create a String from Any but `anyString` must be either String or NSAttributedString.
+    ///
+    /// - Parameter anyString: String or NSAttributedString.
+    init(anyString: Any) {
+        
+        switch anyString {
+        case let string as String:
+            self = string
+        case let attributedString as NSAttributedString:
+            self = attributedString.string
+        default:
+            preconditionFailure()
+        }
+    }
+    
+}
 
 
 extension String {

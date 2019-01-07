@@ -371,15 +371,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // sanitize input to plain string
         let plainString: String = {
             // cast input to String
-            let input: String = {
-                switch string {
-                case let attrString as NSAttributedString:
-                    return attrString.string
-                case let string as String:
-                    return string
-                default: preconditionFailure()
-                }
-            }()
+            let input = String(anyString: string)
             
             // swap '¥' with '\' if needed
             if UserDefaults.standard[.swapYenAndBackSlash] {
