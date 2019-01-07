@@ -605,7 +605,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     /// Change selection.
     ///
-    /// - Note: Upate `insertionLocations` manually when you use this method.
+    /// - Note: Update `insertionLocations` manually when you use this method.
     override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
         var ranges = ranges
