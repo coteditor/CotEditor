@@ -110,18 +110,16 @@ extension NSTextView {
         let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
         let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
         
-        // exclude editing line if needed
-        let replacementRanges: [NSRange] = {
-            guard keepingEditingPoint else { return ranges }
-            
-            let cursorLocation = self.selectedRange.location
-            return ranges.filter { $0.upperBound != cursorLocation && !$0.contains(cursorLocation) }
-        }()
-        
+        // exclude editing lines if needed
+        let replacementRanges: [NSRange] = keepingEditingPoint
+            ? ranges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
+            : ranges
+           
         guard !replacementRanges.isEmpty else { return }
         
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
+        // calculate selectedRanges after deletion
         let removedIndexes = replacementRanges.reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
         let selectedRanges: [NSRange] = editingRanges.map { range in
             let location = range.location - removedIndexes.count { $0 < range.location }

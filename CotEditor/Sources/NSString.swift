@@ -40,6 +40,32 @@ extension StringProtocol where Self.Index == String.Index {
 extension NSRange {
     
     static let notFound = NSRange(location: NSNotFound, length: 0)
+    
+    
+    /// Check if the given index is in the receiver or touchs to one of the receiver's bounds.
+    ///
+    /// - Parameter index: The index to test.
+    func touches(_ index: Int) -> Bool {
+        
+        return self.lowerBound <= index && index <= self.upperBound
+    }
+    
+    
+    
+    /// Check if the two ranges overlap or touch each other.
+    ///
+    /// - Parameter range: The range to test.
+    /// - Note: Unlike Swift.Range's `overlaps(_:)`, this method returns `true` when a range length is 0.
+    func touches(_ range: NSRange) -> Bool {
+        
+        if self.location == NSNotFound { return false }
+        if range.location == NSNotFound { return false }
+        if self.upperBound < range.lowerBound { return false }
+        if range.upperBound < self.lowerBound { return false }
+        
+        return true
+    }
+    
 }
 
 
