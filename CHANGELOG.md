@@ -5,7 +5,7 @@ Change Log
 3.7.0-beta.3 (unreleasd)
 --------------------------
 
-### Fixes
+### Improvements
 
 - [beta] Support `^T` and `fn+delete` (`^D`) shortcut multi-cursor editing.
 
