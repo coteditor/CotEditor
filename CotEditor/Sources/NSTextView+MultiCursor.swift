@@ -203,7 +203,7 @@ extension MultiCursorEditing where Self: NSTextView {
         let location = self.characterIndexForInsertion(at: point)
         var ranges = self.insertionRanges
         
-        if let clicked = ranges.first(where: { $0.contains(location) || $0.upperBound == location }) {
+        if let clicked = ranges.first(where: { $0.touches(location) }) {
             ranges.remove(clicked)
         } else {
             ranges.append(NSRange(location..<location))
