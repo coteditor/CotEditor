@@ -297,8 +297,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let point = self.convert(pointInWindow, from: nil)
         let isDragged = (point != self.mouseDownPoint)
         
-        // restore the first empty insertion if it seems to dissapear
-        if event.modifierFlags.contains(.command), let selectedRange = selectedRange, self.selectedRange.length > 0 {
+        // restore the first empty insertion if it seems to disappear
+        if event.modifierFlags.contains(.command),
+            self.selectedRange.length > 0,
+            let selectedRange = selectedRange,
+            selectedRange.length == 0,
+            !self.selectedRange.contains(selectedRange.location),
+            self.selectedRange.upperBound != selectedRange.location
+        {
             self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
         }
         
