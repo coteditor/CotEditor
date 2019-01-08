@@ -502,7 +502,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.isAutomaticIndentEnabled
             else { return super.insertNewline(sender) }
         
-        let tab = self.isAutomaticIndentEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
+        let tab = self.isAutomaticTabExpansionEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
         
         let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
         self.setSelectedRangesWithUndo(ranges)
