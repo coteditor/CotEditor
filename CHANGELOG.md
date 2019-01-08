@@ -7,7 +7,7 @@ Change Log
 
 ### Fixes
 
-- [beta] Support `fn+delete` /  `^D` shortcut multi-cursor editing.
+- [beta] Support `^T` and `fn+delete` (`^D`) shortcut multi-cursor editing.
 
 
 ### Fixes
