@@ -80,7 +80,7 @@ extension NSString {
         
         let range = NSRange(location: location + 1, length: 0)
         
-        return self.rangeOfComposedCharacterSequences(for: range).upperBound
+        return self.rangeOfComposedCharacterSequences(for: range).lowerBound
     }
     
     
