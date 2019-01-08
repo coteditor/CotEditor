@@ -474,9 +474,8 @@ extension EditorTextView {
         
         let ranges = self.insertionRanges
         let baseRange = ranges.first!
-        let columnBaseRange = ranges.last!
-        let lowerBound = self.upperInsertionLocation(of: baseRange.lowerBound, column: columnBaseRange.lowerBound)
-        let upperBound = self.upperInsertionLocation(of: baseRange.upperBound, column: columnBaseRange.upperBound)
+        let lowerBound = self.upperInsertionLocation(of: baseRange.lowerBound)
+        let upperBound = self.upperInsertionLocation(of: baseRange.upperBound)
         let range = NSRange(lowerBound..<upperBound)
         
         let insertionRanges = [range] + ranges
@@ -494,9 +493,8 @@ extension EditorTextView {
         
         let ranges = self.insertionRanges
         let baseRange = ranges.last!
-        let columnBaseRange = ranges.first!
-        let lowerBound = self.lowerInsertionLocation(of: baseRange.lowerBound, column: columnBaseRange.lowerBound)
-        let upperBound = self.lowerInsertionLocation(of: baseRange.upperBound, column: columnBaseRange.lowerBound)
+        let lowerBound = self.lowerInsertionLocation(of: baseRange.lowerBound)
+        let upperBound = self.lowerInsertionLocation(of: baseRange.upperBound)
         let range = NSRange(lowerBound..<upperBound)
         
         let insertionRanges = ranges + [range]
