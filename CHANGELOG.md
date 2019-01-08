@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- [beta] Fix an issue where multiple cursors disappeared after (auto-)saving with “trim tailing whitespace on save” option.
 - [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
 - [beta] Fix multi-cursor behavior of deleting to the beginning of visual line by `⌘⌫`.
 - [beta] Fix multi-cusor movement when encounter a surrogate pair.

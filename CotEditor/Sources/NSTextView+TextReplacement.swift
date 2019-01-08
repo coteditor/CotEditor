@@ -64,12 +64,11 @@ extension NSTextView {
             self.undoManager?.setActionName(actionName)
         }
         
-        let attributes = self.typingAttributes
         
         textStorage.beginEditing()
         // use backwards enumeration to skip adjustment of applying location
         for (string, range) in zip(strings, ranges).reversed() {
-            let attrString = NSAttributedString(string: string, attributes: attributes)
+            let attrString = NSAttributedString(string: string, attributes: self.typingAttributes)
             
             textStorage.replaceCharacters(in: range, with: attrString)
         }
@@ -109,6 +108,7 @@ extension NSTextView {
         assert(Thread.isMainThread)
 
         let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
+        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
         
         // exclude editing line if needed
         let replacementRanges: [NSRange] = {
@@ -122,7 +122,15 @@ extension NSTextView {
         
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
+        let removedIndexes = replacementRanges.reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
+        let selectedRanges: [NSRange] = editingRanges.map { range in
+            let location = range.location - removedIndexes.count { $0 < range.location }
+            let length = range.length - removedIndexes.count { range.contains($0) }
+            
+            return NSRange(location: location, length: length)
+        }
+        
+        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                      actionName: "Trim Trailing Whitespace".localized)
     }
     
