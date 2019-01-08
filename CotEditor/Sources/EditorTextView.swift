@@ -345,9 +345,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // -> NSTextView doesn't impelment cancelOperation (macOS 10.14)
-        if super.responds(to: #selector(cancelOperation)) {
-            super.cancelOperation(sender)
-        }
     }
     
     
