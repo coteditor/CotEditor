@@ -979,7 +979,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {
-                let canComment = self.canUncomment(range: self.selectedRange, partly: false)
+                let canComment = self.canUncomment(partly: false)
                 let title = canComment ? "Uncomment" : "Comment Out"
                 menuItem.title = title.localized
             }
@@ -992,7 +992,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return (self.blockCommentDelimiters != nil)
             
         case #selector(uncomment(_:)):
-            return self.canUncomment(range: self.selectedRange, partly: true)
+            return self.canUncomment(partly: true)
             
         default: break
         }
