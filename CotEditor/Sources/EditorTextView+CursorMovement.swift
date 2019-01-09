@@ -38,7 +38,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveLeft(sender) }
         
-        self.moveCursors(affinity: .downstream) { max($0.lowerBound - 1, 0) }
+        self.moveCursors(affinity: .downstream) { (self.string as NSString).index(before: $0.lowerBound) }
     }
     
     
@@ -49,9 +49,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
             if let origin = origin, origin < range.upperBound {
-                return (max(range.upperBound - 1, 0), range.lowerBound)
+                return ((self.string as NSString).index(before: range.upperBound), range.lowerBound)
             } else {
-                return (max(range.lowerBound - 1, 0), range.upperBound)
+                return ((self.string as NSString).index(before: range.lowerBound), range.upperBound)
             }
         }
     }
@@ -62,8 +62,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveRight(sender) }
         
-        let length = self.attributedString().length
-        self.moveCursors(affinity: .upstream) { min($0.upperBound + 1, length) }
+        self.moveCursors(affinity: .upstream) { (self.string as NSString).index(after: $0.upperBound) }
     }
     
     
@@ -72,12 +71,11 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
         
-        let length = self.attributedString().length
         self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
             if let origin = origin, origin > range.lowerBound {
-                return (min(range.lowerBound + 1, length), range.upperBound)
+                return ((self.string as NSString).index(after: range.lowerBound), range.upperBound)
             } else {
-                return (min(range.upperBound + 1, length), range.lowerBound)
+                return ((self.string as NSString).index(after: range.upperBound), range.lowerBound)
             }
         }
     }
@@ -189,9 +187,9 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
             if let origin = origin, origin < range.upperBound {
-                return ((self.string as NSString).lineRange(at: max(range.upperBound - 1, 0)).lowerBound, range.lowerBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(before: range.upperBound)).lowerBound, range.lowerBound)
             } else {
-                return ((self.string as NSString).lineRange(at: max(range.lowerBound - 1, 0)).lowerBound, range.upperBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(before: range.lowerBound)).lowerBound, range.upperBound)
             }
         }
     }
@@ -202,12 +200,11 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveParagraphForwardAndModifySelection(sender) }
         
-        let length = self.attributedString().length
         self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
             if let origin = origin, origin > range.lowerBound {
-                return ((self.string as NSString).lineRange(at: min(range.lowerBound + 1, length), excludingLastLineEnding: true).upperBound, range.upperBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(after: range.lowerBound), excludingLastLineEnding: true).upperBound, range.upperBound)
             } else {
-                return ((self.string as NSString).lineRange(at: min(range.upperBound + 1, length), excludingLastLineEnding: true).upperBound, range.lowerBound)
+                return ((self.string as NSString).lineRange(at: self.string.index(after: range.upperBound), excludingLastLineEnding: true).upperBound, range.lowerBound)
             }
         }
     }
@@ -494,19 +491,117 @@ extension EditorTextView {
     /// add insertion point just below the last selected range (^⇧↓)
     @IBAction func selectColumnDown(_ sender: Any?) {
         
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return }
+        
         let ranges = self.insertionRanges
-        let baseRange = ranges.last!
-        let lowerBound = self.lowerInsertionLocation(of: baseRange.lowerBound)
-        let upperBound = self.lowerInsertionLocation(of: baseRange.upperBound)
-        let range = NSRange(lowerBound..<upperBound)
+        let newRanges = layoutManager.verticalRanges(in: NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound), baseRange: ranges[0], in: textContainer)
         
-        let insertionRanges = ranges + [range]
-        
-        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
+        guard let set = self.prepareForSelectionUpdate(newRanges) else { return }
         
         self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(range)
+        self.scrollRangeToVisible(newRanges.last!)
+    }
+    
+}
+
+
+
+extension NSLayoutManager {
+    
+    func verticalRanges(in range: NSRange, baseRange: NSRange, in textContainer: NSTextContainer) -> [NSRange] {
+        
+        let glyphRange = self.glyphRange(forCharacterRange: baseRange, actualCharacterRange: nil)
+        let lowerRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.lowerBound, length: 0), in: textContainer)
+        let upperRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.upperBound, length: 0), in: textContainer)
+        let baseRect = NSRect(x: min(lowerRect.minX, upperRect.minX), y: 0,
+                              width: abs(lowerRect.minX - upperRect.minX), height: 1)
+        
+        var ranges: [NSRange] = []
+        var targetRect: NSRect = .zero
+        self.enumeratelineFragmentUsedRects(in: range) { (rect) in
+            targetRect = baseRect.offsetBy(dx: 0, dy: rect.midY)
+//            guard rect.intersects(targetRect) else { return }
+            
+            ranges.append(self.characterRange(for: targetRect, in: textContainer))
+        }
+        
+        assert(!ranges.isEmpty)
+        
+        targetRect.origin.y = targetRect.maxY + targetRect.height
+        moof(targetRect)
+        ranges.append(self.characterRange(for: targetRect, in: textContainer))
+        moof(ranges)
+        return ranges
+    }
+    
+    
+    private func characterRange(for rect: NSRect, in textContainer: NSTextContainer) -> NSRange {
+        
+        let lowerGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.minX, y: rect.minY), in: textContainer)
+        let upperGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.maxX, y: rect.minY), in: textContainer)
+        
+        return self.characterRange(forGlyphRange: NSRange(lowerGlyphIndex..<upperGlyphIndex), actualGlyphRange: nil)
+    }
+    
+    
+    private func enumeratelineFragmentUsedRects(in characterRange: NSRange, body: (_ usedLineRect: NSRect) -> Void) {
+        
+        let glyphRange = self.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
+        
+        // enumerate visible line numbers
+        var glyphIndex = glyphRange.lowerBound
+        repeat {  // process logical lines
+            var effectiveRange = NSRange.notFound
+            let rect = self.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+            body(rect)
+            
+            glyphIndex = effectiveRange.upperBound
+        } while (glyphIndex < glyphRange.upperBound)
+        
+        guard  glyphRange.upperBound == self.numberOfGlyphs else { return }
+        
+        body(self.extraLineFragmentUsedRect)
+    }
+    
+}
+
+
+
+// MARK: - Editing
+
+extension EditorTextView {
+    
+    /// swap characters before and after insertions (^T)
+    override func transpose(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.transpose(sender) }
+        
+        let string = self.string as NSString
+        
+        var replacementRanges: [NSRange] = []
+        var replacementStrings: [String] = []
+        var selectedRanges: [NSRange] = []
+        for range in self.insertionRanges.reversed() {
+            guard range.length == 0 else {
+                selectedRanges.append(range)
+                continue
+            }
+            
+            let lastIndex = string.index(before: range.location)
+            let nextIndex = string.index(after: range.location)
+            let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
+            let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
+            
+            replacementStrings.append(nextCharacter + lastCharacter)
+            replacementRanges.append(NSRange(lastIndex..<nextIndex))
+            selectedRanges.append(NSRange(nextIndex..<nextIndex))
+        }
+        
+        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
 }
@@ -516,6 +611,16 @@ extension EditorTextView {
 // MARK: - Deletion
 
 extension EditorTextView {
+    
+    /// delete forward (fn+delete / ^D)
+    override func deleteForward(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.deleteForward(sender) }
+        
+        self.moveForwardAndModifySelection(sender)
+        self.deleteBackward(sender)
+    }
+    
     
     /// delete to the end of logical line (^K)
     override func deleteToEndOfParagraph(_ sender: Any?) {
@@ -532,7 +637,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.deleteToBeginningOfLine(sender) }
         
-        self.moveToBeginningOfLine(sender)
+        self.moveToBeginningOfLineAndModifySelection(sender)
         self.deleteBackward(sender)
     }
     

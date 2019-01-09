@@ -2,6 +2,27 @@
 Change Log
 ==========================
 
+3.7.0-beta.3 (325)
+--------------------------
+
+### Improvements
+
+- [beta] Support commenting-out/uncommenting in multi-cursor editing.
+- [beta] Support `^T` and `fn+delete` (`^D`) shortcut in multi-cursor editing.
+
+
+### Fixes
+
+- [beta] Fix an issue where multiple cursors disappeared after (auto-)saving with “trim trailing whitespace on save” option.
+- [beta] Fix an issue where the first cursor could disappear after some specific text editing.
+- [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
+- [beta] Fix multi-cursor behavior of deleting to the beginning of the visual line by `⌘⌫`.
+- [beta] Fix multi-cursor movement when encountering a surrogate pair.
+- [beta] Fix an issue where a selected range and an insertion point could overlap.
+- [beta] Fix an issue where the appliation could rarely crash after moving cursors.
+
+
+
 3.7.0-beta.2 (323)
 --------------------------
 

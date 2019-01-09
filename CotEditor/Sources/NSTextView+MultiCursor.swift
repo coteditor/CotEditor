@@ -203,7 +203,7 @@ extension MultiCursorEditing where Self: NSTextView {
         let location = self.characterIndexForInsertion(at: point)
         var ranges = self.insertionRanges
         
-        if let clicked = ranges.first(where: { $0.contains(location) || $0.upperBound == location }) {
+        if let clicked = ranges.first(where: { $0.touches(location) }) {
             ranges.remove(clicked)
         } else {
             ranges.append(NSRange(location..<location))
@@ -315,7 +315,6 @@ extension MultiCursorEditing where Self: NSTextView {
 
 extension NSTextView {
     
-    
     /// Find the location for a insertion point where one (visual) line above to the given insertion point location.
     ///
     /// - Parameter index: The character index of the reference insertion point.
@@ -328,11 +327,11 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
-        let currentRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
-        let upperRect = NSPoint(x: currentRect.midX, y: lineRect.minY - 1).offset(by: self.textContainerOrigin)
+        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+            .offset(by: self.textContainerOrigin)
+        let point = NSPoint(x: rect.minX, y: rect.minY - 1)
         
-        return self.characterIndexForInsertion(at: upperRect)
+        return self.characterIndexForInsertion(at: point)
     }
     
     
@@ -348,15 +347,11 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
+        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+            .offset(by: self.textContainerOrigin)
+        let point = NSPoint(x: rect.minX, y: rect.maxY + 1)
         
-        // -> `glyphIndex` is invalid when the char index is already at the end of the document.
-        guard layoutManager.isValidGlyphIndex(glyphIndex) else { return self.attributedString().length }
-        
-        let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil)
-        let currentRect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
-        let lowerRect = NSPoint(x: currentRect.midX, y: lineRect.maxY + 1).offset(by: self.textContainerOrigin)
-        
-        return self.characterIndexForInsertion(at: lowerRect)
+        return self.characterIndexForInsertion(at: point)
     }
     
 }

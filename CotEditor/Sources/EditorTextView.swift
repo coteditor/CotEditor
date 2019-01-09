@@ -60,6 +60,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
+    var baseSelectedRange: NSRange = .notFound
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false
@@ -297,8 +298,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let point = self.convert(pointInWindow, from: nil)
         let isDragged = (point != self.mouseDownPoint)
         
-        // restore the first empty insertion if it seems to dissapear
-        if event.modifierFlags.contains(.command), let selectedRange = selectedRange, self.selectedRange.length > 0 {
+        // restore the first empty insertion if it seems to disappear
+        if event.modifierFlags.contains(.command),
+            self.selectedRange.length > 0,
+            let selectedRange = selectedRange,
+            selectedRange.length == 0,
+            !self.selectedRange.contains(selectedRange.location),
+            self.selectedRange.upperBound != selectedRange.location
+        {
             self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
         }
         
@@ -339,9 +346,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // -> NSTextView doesn't impelment cancelOperation (macOS 10.14)
-        if super.responds(to: #selector(cancelOperation)) {
-            super.cancelOperation(sender)
-        }
     }
     
     
@@ -371,15 +375,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // sanitize input to plain string
         let plainString: String = {
             // cast input to String
-            let input: String = {
-                switch string {
-                case let attrString as NSAttributedString:
-                    return attrString.string
-                case let string as String:
-                    return string
-                default: preconditionFailure()
-                }
-            }()
+            let input = String(anyString: string)
             
             // swap '¥' with '\' if needed
             if UserDefaults.standard[.swapYenAndBackSlash] {
@@ -504,7 +500,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.isAutomaticIndentEnabled
             else { return super.insertNewline(sender) }
         
-        let tab = self.isAutomaticIndentEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
+        let tab = self.isAutomaticTabExpansionEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
         
         let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
         self.setSelectedRangesWithUndo(ranges)
@@ -605,7 +601,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     /// Change selection.
     ///
-    /// - Note: Upate `insertionLocations` manually when you use this method.
+    /// - Note: Update `insertionLocations` manually when you use this method.
     override func setSelectedRanges(_ ranges: [NSValue], affinity: NSSelectionAffinity, stillSelecting stillSelectingFlag: Bool) {
         
         var ranges = ranges
@@ -983,7 +979,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {
-                let canComment = self.canUncomment(range: self.selectedRange, partly: false)
+                let canComment = self.canUncomment(partly: false)
                 let title = canComment ? "Uncomment" : "Comment Out"
                 menuItem.title = title.localized
             }
@@ -996,7 +992,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return (self.blockCommentDelimiters != nil)
             
         case #selector(uncomment(_:)):
-            return self.canUncomment(range: self.selectedRange, partly: true)
+            return self.canUncomment(partly: true)
             
         default: break
         }
