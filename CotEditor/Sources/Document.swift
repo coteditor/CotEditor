@@ -82,7 +82,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var fileData: Data?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
-    private var isStab = true  // not saved yet
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -313,8 +312,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // store file data in order to check the file content identity in `presentedItemDidChange()`
         self.fileData = file.data
         
-        self.isStab = false
-        
         // use file attributes only if `fileURL` exists
         // -> The passed-in `url` in this method can point to a file that isn't the real document file,
         //    for example on resuming an unsaved document.
@@ -458,7 +455,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             case .saveOperation, .saveAsOperation, .saveToOperation:
                 self.analyzer.invalidateFileInfo()
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
-                self.isStab = false
             case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
@@ -555,9 +551,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
         var shouldClose = false
-        
         // disable save dialog if content is empty and not saved explicitly
-        if self.isStab, self.textStorage.string.isEmpty {
+        if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
             
             // remove auto-saved file if exists
