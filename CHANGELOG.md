@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [beta] Support commenting-out/uncommenting in multi-cursor editing.
 - [beta] Support `^T` and `fn+delete` (`^D`) shortcut in multi-cursor editing.
 
 
