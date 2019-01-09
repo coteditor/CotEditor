@@ -1,18 +1,8 @@
-# ref. http://docs.travis-ci.com/user/languages/objective-c/
-
-language: objective-c
+language: swift
 osx_image: xcode10.1
 
-before_install:
-  - gem install xcpretty
-
-script:
-  set -o pipefail &&
-  travis_retry
-  xcodebuild test
-  -workspace CotEditor.xcworkspace
-  -scheme CotEditor
-  CODE_SIGN_IDENTITY=""
-  CODE_SIGNING_REQUIRED=NO
-  ENABLE_HARDENED_RUNTIME=NO
-  | xcpretty
+xcode_workspace: CotEditor.xcworkspace
+xcode_scheme: CotEditor
+xcode_destination: platform=macOS
+xcode_sdk: macosx10.14
+xcodebuild_args: CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=YES ENABLE_HARDENED_RUNTIME=NO
