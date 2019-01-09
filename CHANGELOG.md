@@ -19,7 +19,7 @@ Change Log
 - [beta] Fix multi-cursor behavior of deleting to the beginning of the visual line by `⌘⌫`.
 - [beta] Fix multi-cursor movement when encountering a surrogate pair.
 - [beta] Fix an issue where a selected range and an insertion point could overlap.
-- [beta] Fix an issue where the appliation could rarely crash after moving cursors.
+- [beta] Fix an issue where the application could rarely crash after moving cursors.
 
 
 
