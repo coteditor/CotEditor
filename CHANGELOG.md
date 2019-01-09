@@ -7,15 +7,16 @@ Change Log
 
 ### Improvements
 
-- [beta] Support `^T` and `fn+delete` (`^D`) shortcut multi-cursor editing.
+- [beta] Support `^T` and `fn+delete` (`^D`) shortcut in multi-cursor editing.
 
 
 ### Fixes
 
-- [beta] Fix an issue where multiple cursors disappeared after (auto-)saving with “trim tailing whitespace on save” option.
+- [beta] Fix an issue where multiple cursors disappeared after (auto-)saving with “trim trailing whitespace on save” option.
+- [beta] Fix an issue where the first cursor could disappear after some specific text editing.
 - [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
-- [beta] Fix multi-cursor behavior of deleting to the beginning of visual line by `⌘⌫`.
-- [beta] Fix multi-cusor movement when encounter a surrogate pair.
+- [beta] Fix multi-cursor behavior of deleting to the beginning of the visual line by `⌘⌫`.
+- [beta] Fix multi-cursor movement when encountering a surrogate pair.
 - [beta] Fix an issue where a selected range and an insertion point could overlap.
 
 

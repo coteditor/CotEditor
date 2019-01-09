@@ -66,7 +66,7 @@ extension NSTextView {
         
         
         textStorage.beginEditing()
-        // use backwards enumeration to skip adjustment of applying location
+        // use a backward enumeration to skip adjustment of applying location
         for (string, range) in zip(strings, ranges).reversed() {
             let attrString = NSAttributedString(string: string, attributes: self.typingAttributes)
             
@@ -87,7 +87,16 @@ extension NSTextView {
     /// set undoable selection change
     func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
         
-        self.selectedRanges = ranges
+        if let self = self as? NSTextView & MultiCursorEditing,
+            let ranges = ranges as? [NSRange],
+            let set = self.prepareForSelectionUpdate(ranges)
+        {
+            self.selectedRanges = set.selectedRanges
+            self.insertionLocations = set.insertionLocations
+            
+        } else {
+            self.selectedRanges = ranges
+        }
         
         self.undoManager?.registerUndo(withTarget: self) { target in
             target.setSelectedRangesWithUndo(ranges)
@@ -102,7 +111,7 @@ extension NSTextView {
     }
     
     
-    /// trim all trailing whitespace with/without keeeping editing point
+    /// trim all trailing whitespace with/without keeping editing point
     func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
         assert(Thread.isMainThread)
