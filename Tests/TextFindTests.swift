@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -61,12 +61,12 @@ class TextFindTests: XCTestCase {
         result = textFind.find(forward: true, isWrap: false)
         XCTAssertEqual(result.count, 2)
         XCTAssertEqual(result.range, NSRange(location: 0, length: 3))
-        XCTAssertEqual(result.wrapped, false)
+        XCTAssertFalse(result.wrapped)
         
         result = textFind.find(forward: false, isWrap: false)
         XCTAssertEqual(result.count, 2)
         XCTAssertNil(result.range)
-        XCTAssertEqual(result.wrapped, false)
+        XCTAssertFalse(result.wrapped)
         
         
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: [], fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
@@ -74,12 +74,12 @@ class TextFindTests: XCTestCase {
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 2)
         XCTAssertEqual(result.range, NSRange(location: 8, length: 3))
-        XCTAssertEqual(result.wrapped, false)
+        XCTAssertFalse(result.wrapped)
         
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 2)
         XCTAssertEqual(result.range, NSRange(location: 8, length: 3))
-        XCTAssertEqual(result.wrapped, true)
+        XCTAssertTrue(result.wrapped)
         
         
         textFind = try TextFind(for: text, findString: findString, mode: .textual(options: .caseInsensitive, fullWord: false), selectedRanges: [NSRange(location: 1, length: 0)])
@@ -87,7 +87,7 @@ class TextFindTests: XCTestCase {
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 3)
         XCTAssertEqual(result.range, NSRange(location: 16, length: 3))
-        XCTAssertEqual(result.wrapped, true)
+        XCTAssertTrue(result.wrapped)
     }
     
     
@@ -154,12 +154,12 @@ class TextFindTests: XCTestCase {
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 3)
         XCTAssertEqual(result.range, NSRange(location: 9, length: 2))
-        XCTAssertEqual(result.wrapped, false)
+        XCTAssertFalse(result.wrapped)
         
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 3)
         XCTAssertEqual(result.range, NSRange(location: 17, length: 2))
-        XCTAssertEqual(result.wrapped, true)
+        XCTAssertTrue(result.wrapped)
         
         
         textFind = try TextFind(for: "ABCDEFG", findString: findString, mode: mode, selectedRanges: [NSRange(location: 1, length: 1)])
@@ -167,12 +167,12 @@ class TextFindTests: XCTestCase {
         result = textFind.find(forward: true, isWrap: true)
         XCTAssertEqual(result.count, 1)
         XCTAssertEqual(result.range, NSRange(location: 1, length: 2))
-        XCTAssertEqual(result.wrapped, true)
+        XCTAssertTrue(result.wrapped)
         
         result = textFind.find(forward: false, isWrap: true)
         XCTAssertEqual(result.count, 1)
         XCTAssertEqual(result.range, NSRange(location: 1, length: 2))
-        XCTAssertEqual(result.wrapped, true)
+        XCTAssertTrue(result.wrapped)
         
         replacementResult = textFind.replace(with: "$1")
         XCTAssertNil(replacementResult)

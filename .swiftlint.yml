@@ -22,6 +22,7 @@ opt_in_rules:
   - identical_operands
   - implicit_return
   - joined_default_parameter
+  - last_where
   - let_var_whitespace
   - lower_acl_than_parent
   - multiline_function_chains
@@ -42,6 +43,7 @@ opt_in_rules:
   - toggle_bool
   - untyped_error_in_catch
   - vertical_parameter_alignment_on_call
+  - xct_specific_matcher
   - yoda_condition
 
 disabled_rules:
