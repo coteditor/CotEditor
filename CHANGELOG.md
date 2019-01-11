@@ -2,6 +2,13 @@
 Change Log
 ==========================
 
+3.7.0-beta.4 (unreleased)
+--------------------------
+
+- Suppress blinking Edit menu when perform `^⇧↑` or `^⇧↓` shortcut.
+
+
+
 3.7.0-beta.3 (325)
 --------------------------
 
