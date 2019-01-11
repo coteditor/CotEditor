@@ -5,6 +5,11 @@ Change Log
 3.7.0-beta.4 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Support snippet insertion in multi-cursor editing.
+
+
 ### Fixes
 
 - [beta] Suppress blinking Edit menu when perform `^⇧↑` or `^⇧↓` shortcut.
