@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.11 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the snippet insertion did not work.
+
+
+
 3.6.11 (309)
 --------------------------
 
