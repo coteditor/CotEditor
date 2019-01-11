@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,8 +120,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     override class var restorableStateKeyPaths: [String] {
         
         return super.restorableStateKeyPaths + [
-            #keyPath(isStatusBarShown),
-            #keyPath(showsNavigationBar),
             #keyPath(showsLineNumber),
             #keyPath(showsPageGuide),
             #keyPath(showsInvisibles),
@@ -437,7 +435,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// Whether status bar is visible
-    @objc var isStatusBarShown: Bool {
+    var isStatusBarShown: Bool {
         
         get {
             return self.statusBarItem?.isCollapsed == false
@@ -451,7 +449,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// visibility of navigation bars
-    @objc var showsNavigationBar = false {
+    var showsNavigationBar = false {
         
         didSet {
             for viewController in self.editorViewControllers {
