@@ -85,8 +85,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // observe defaults change
         self.defaultsObservers = [
-            UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
-                self.setTheme(name: ThemeManager.shared.defaultSettingName())
+            UserDefaults.standard.observe(key: .theme, options: [.old, .new]) { [unowned self] change in
+                guard change.old == nil || self.theme?.name == change.old else { return }
+                
+                let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+                self.setTheme(name: themeName)
             },
             UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [unowned self] change in
                 self.showsInvisibles = change.new!

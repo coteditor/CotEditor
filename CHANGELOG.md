@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the snippet insertion did not work.
+- Fix an issue where theme change did not applied to opened documents under specific conditions.
 
 
 
