@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -269,12 +269,12 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // update default theme setting
         if UserDefaults.standard[.theme] != themeName {
-            UserDefaults.standard[.theme] = themeName
-        }
-        
-        // do not store to UserDefautls if it's the default theme
-        if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
-           UserDefaults.standard.restore(key: .theme)
+            // do not store to UserDefautls if it's the default theme
+            if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
+                UserDefaults.standard.restore(key: .theme)
+            } else {
+                UserDefaults.standard[.theme] = themeName
+            }
         }
         
         self.themeViewController?.theme = themeDict

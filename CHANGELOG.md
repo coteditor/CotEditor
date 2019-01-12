@@ -65,6 +65,17 @@ Change Log
 
 
 
+3.6.12 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the snippet insertion did not work.
+- Fix an issue where theme change did not applied to opened documents under specific conditions.
+- Improve stability.
+
+
+
 3.6.11 (309)
 --------------------------
 

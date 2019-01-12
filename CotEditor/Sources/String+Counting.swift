@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,18 +26,6 @@
 import Foundation
 
 extension StringProtocol where Self.Index == String.Index {
-    
-    /// number of words in the whole string
-    var numberOfWords: Int {
-        
-        var count = 0
-        self.enumerateSubstrings(in: self.startIndex..<self.endIndex, options: [.byWords, .localized, .substringNotRequired]) { (_, _, _, _) in
-            count += 1
-        }
-        
-        return count
-    }
-    
     
     /// number of lines in the whole string ignoring the last new line character
     var numberOfLines: Int {
