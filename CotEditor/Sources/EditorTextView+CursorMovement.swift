@@ -599,46 +599,11 @@ extension NSLayoutManager {
 
 
 
-// MARK: - Editing
+// MARK: - 
 
 extension EditorTextView {
     
-    /// swap characters before and after insertions (^T)
-    override func transpose(_ sender: Any?) {
-        
-        guard self.hasMultipleInsertions else { return super.transpose(sender) }
-        
-        let string = self.string as NSString
-        
-        var replacementRanges: [NSRange] = []
-        var replacementStrings: [String] = []
-        var selectedRanges: [NSRange] = []
-        for range in self.insertionRanges.reversed() {
-            guard range.length == 0 else {
-                selectedRanges.append(range)
-                continue
-            }
-            
-            let lastIndex = string.index(before: range.location)
-            let nextIndex = string.index(after: range.location)
-            let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
-            let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
-            
-            replacementStrings.append(nextCharacter + lastCharacter)
-            replacementRanges.append(NSRange(lastIndex..<nextIndex))
-            selectedRanges.append(NSRange(nextIndex..<nextIndex))
-        }
-        
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
-    }
-    
-}
-
-
-
-// MARK: - Deletion
-
-extension EditorTextView {
+    // MARK: Deletion
     
     /// delete forward (fn+delete / ^D)
     override func deleteForward(_ sender: Any?) {
@@ -687,6 +652,39 @@ extension EditorTextView {
         
         self.moveWordBackwardAndModifySelection(sender)
         self.deleteBackward(sender)
+    }
+    
+    
+    
+    // MARK: Editing
+    
+    /// swap characters before and after insertions (^T)
+    override func transpose(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.transpose(sender) }
+        
+        let string = self.string as NSString
+        
+        var replacementRanges: [NSRange] = []
+        var replacementStrings: [String] = []
+        var selectedRanges: [NSRange] = []
+        for range in self.insertionRanges.reversed() {
+            guard range.length == 0 else {
+                selectedRanges.append(range)
+                continue
+            }
+            
+            let lastIndex = string.index(before: range.location)
+            let nextIndex = string.index(after: range.location)
+            let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
+            let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
+            
+            replacementStrings.append(nextCharacter + lastCharacter)
+            replacementRanges.append(NSRange(lastIndex..<nextIndex))
+            selectedRanges.append(NSRange(nextIndex..<nextIndex))
+        }
+        
+        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
 }
