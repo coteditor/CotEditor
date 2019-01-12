@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- [beta] Fix selection after commenting-out.
 - [beta] Suppress blinking Edit menu when perform `^⇧↑` or `^⇧↓` shortcut.
 - [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
 

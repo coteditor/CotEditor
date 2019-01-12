@@ -238,14 +238,27 @@ private extension NSRange {
     /// - Returns: A new range that the receiver moved.
     func move(inserting items: [(string: String, location: Int, forward: Bool)]) -> NSRange {
         
-        let location = items
-            .prefix { $0.location < self.lowerBound || ($0.location == self.lowerBound && $0.forward) }
+        var location = items
+            .prefix { $0.location < self.lowerBound }  //  || ($0.location == self.lowerBound && $0.forward)
             .map { ($0.string as NSString).length }
             .reduce(self.location, +)
-        let length = items
+        var length = items
             .filter { self.lowerBound < $0.location && $0.location < self.upperBound }
             .map { ($0.string as NSString).length }
             .reduce(self.length, +)
+        
+        // adjust edge insertions depending on the selection state
+        if self.length == 0 {
+            location += items
+                .filter { $0.location == self.lowerBound && $0.forward }
+                .map { ($0.string as NSString).length }
+                .reduce(0, +)
+        } else {
+            length += items
+                .filter { $0.location == self.lowerBound && $0.forward || $0.location == self.upperBound && !$0.forward }
+                .map { ($0.string as NSString).length }
+                .reduce(0, +)
+        }
         
         return NSRange(location: location, length: length)
     }
