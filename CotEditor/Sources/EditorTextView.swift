@@ -60,7 +60,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
-    var baseSelectedRange: NSRange = .notFound
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false

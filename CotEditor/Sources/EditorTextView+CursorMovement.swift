@@ -500,106 +500,21 @@ extension EditorTextView {
     /// add insertion point just above the first selected range (^⇧↑)
     @IBAction func selectColumnUp(_ sender: Any?) {
         
-        let ranges = self.insertionRanges
-        let baseRange = ranges.first!
-        let lowerBound = self.upperInsertionLocation(of: baseRange.lowerBound)
-        let upperBound = self.upperInsertionLocation(of: baseRange.upperBound)
-        let range = NSRange(lowerBound..<upperBound)
-        
-        let insertionRanges = [range] + ranges
-        
-        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
-        
-        self.setSelectedRanges(set.selectedRanges, affinity: .downstream, stillSelecting: false)
-        self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(range)
+        self.addSelectedColumn(affinity: .downstream)
     }
     
     
     /// add insertion point just below the last selected range (^⇧↓)
     @IBAction func selectColumnDown(_ sender: Any?) {
         
-        let ranges = self.insertionRanges
-        let baseRange = ranges.first!
-        let lowerBound = self.lowerInsertionLocation(of: baseRange.lowerBound)
-        let upperBound = self.lowerInsertionLocation(of: baseRange.upperBound)
-        let range = NSRange(lowerBound..<upperBound)
-        
-        let insertionRanges = ranges + [range]
-        
-        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
-        
-        self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
-        self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(range)
+        self.addSelectedColumn(affinity: .upstream)
     }
     
 }
 
 
 
-extension NSLayoutManager {
-    
-    func verticalRanges(in range: NSRange, baseRange: NSRange, in textContainer: NSTextContainer) -> [NSRange] {
-        
-        let glyphRange = self.glyphRange(forCharacterRange: baseRange, actualCharacterRange: nil)
-        let lowerRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.lowerBound, length: 0), in: textContainer)
-        let upperRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.upperBound, length: 0), in: textContainer)
-        let baseRect = NSRect(x: min(lowerRect.minX, upperRect.minX), y: 0,
-                              width: abs(lowerRect.minX - upperRect.minX), height: 1)
-        
-        var ranges: [NSRange] = []
-        var targetRect: NSRect = .zero
-        self.enumeratelineFragmentUsedRects(in: range) { (rect) in
-            targetRect = baseRect.offsetBy(dx: 0, dy: rect.midY)
-//            guard rect.intersects(targetRect) else { return }
-            
-            ranges.append(self.characterRange(for: targetRect, in: textContainer))
-        }
-        
-        assert(!ranges.isEmpty)
-        
-        targetRect.origin.y = targetRect.maxY + targetRect.height
-        moof(targetRect)
-        ranges.append(self.characterRange(for: targetRect, in: textContainer))
-        moof(ranges)
-        return ranges
-    }
-    
-    
-    private func characterRange(for rect: NSRect, in textContainer: NSTextContainer) -> NSRange {
-        
-        let lowerGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.minX, y: rect.minY), in: textContainer)
-        let upperGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.maxX, y: rect.minY), in: textContainer)
-        
-        return self.characterRange(forGlyphRange: NSRange(lowerGlyphIndex..<upperGlyphIndex), actualGlyphRange: nil)
-    }
-    
-    
-    private func enumeratelineFragmentUsedRects(in characterRange: NSRange, body: (_ usedLineRect: NSRect) -> Void) {
-        
-        let glyphRange = self.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
-        
-        // enumerate visible line numbers
-        var glyphIndex = glyphRange.lowerBound
-        repeat {  // process logical lines
-            var effectiveRange = NSRange.notFound
-            let rect = self.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
-            body(rect)
-            
-            glyphIndex = effectiveRange.upperBound
-        } while (glyphIndex < glyphRange.upperBound)
-        
-        guard  glyphRange.upperBound == self.numberOfGlyphs else { return }
-        
-        body(self.extraLineFragmentUsedRect)
-    }
-    
-}
-
-
-
-// MARK: - 
+// MARK: -
 
 extension EditorTextView {
     
