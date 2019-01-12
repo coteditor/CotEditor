@@ -517,19 +517,19 @@ extension EditorTextView {
     /// add insertion point just below the last selected range (^⇧↓)
     @IBAction func selectColumnDown(_ sender: Any?) {
         
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-            else { assertionFailure(); return }
-        
         let ranges = self.insertionRanges
-        let newRanges = layoutManager.verticalRanges(in: NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound), baseRange: ranges[0], in: textContainer)
+        let baseRange = ranges.first!
+        let lowerBound = self.lowerInsertionLocation(of: baseRange.lowerBound)
+        let upperBound = self.lowerInsertionLocation(of: baseRange.upperBound)
+        let range = NSRange(lowerBound..<upperBound)
         
-        guard let set = self.prepareForSelectionUpdate(newRanges) else { return }
+        let insertionRanges = ranges + [range]
+        
+        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
         
         self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(newRanges.last!)
+        self.scrollRangeToVisible(range)
     }
     
 }
