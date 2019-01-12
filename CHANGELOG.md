@@ -5,6 +5,11 @@ Change Log
 3.6.12 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update syntax style for “SVG”.
+
+
 ### Fixes
 
 - Fix an issue where the snippet insertion did not work.
