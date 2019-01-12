@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [beta] Support snippet insertion in multi-cursor editing.
+- [beta] Import some bug fixes for CotEditor 3.6.12.
 
 
 ### Fixes
