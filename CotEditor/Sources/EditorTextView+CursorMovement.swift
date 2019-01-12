@@ -480,12 +480,14 @@ extension EditorTextView {
             let character = event.charactersIgnoringModifiers?.utf16.first
             else { return false }
         
-        switch Int(character) {
-        case NSUpArrowFunctionKey:
+        switch (Int(character), self.layoutOrientation) {
+        case (NSUpArrowFunctionKey, .horizontal),
+             (NSRightArrowFunctionKey, .vertical):
             self.doCommand(by: #selector(selectColumnUp))
             return true
             
-        case NSDownArrowFunctionKey:
+        case (NSDownArrowFunctionKey, .horizontal),
+             (NSLeftArrowFunctionKey, .vertical):
             self.doCommand(by: #selector(selectColumnDown))
             return true
             
