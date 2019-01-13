@@ -13,7 +13,8 @@ Change Log
 ### Fixes
 
 - Fix an issue where the snippet insertion did not work.
-- Fix an issue where theme change did not applied to opened documents under specific conditions.
+- Fix an issue where theme change did not apply to opened documents under specific conditions.
+- Fix an issue where user theme was not applied when windows restored on macOS 10.12.
 - Improve stability.
 
 
