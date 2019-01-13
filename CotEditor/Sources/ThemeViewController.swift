@@ -87,6 +87,20 @@ final class ThemeViewController: NSViewController {
     }
     
     
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        // workaround for macOS 10.12 where NSColorWell do not update while the view is hidden
+        // (2019-01 macOS 10.14)
+        if NSAppKitVersion.current < .macOS10_13 {
+            let theme = self.theme
+            self.theme = nil
+            self.theme = theme
+        }
+    }
+    
+    
     
     // MARK: View Controller Methods
     
