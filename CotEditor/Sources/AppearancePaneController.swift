@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,6 +37,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
     
     private var themeNames = [String]()
+    private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
@@ -98,7 +99,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// set delegate to ThemeViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
+        super.prepare(for: segue, sender: sender)
+        
         if let destinationController = segue.destinationController as? ThemeViewController {
+            self.themeViewController = destinationController
             destinationController.delegate = self
         }
     }
@@ -269,17 +273,17 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // update default theme setting
         if UserDefaults.standard[.theme] != themeName {
-            UserDefaults.standard[.theme] = themeName
-        }
-        
-        // do not store to UserDefautls if it's the default theme
-        if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
-           UserDefaults.standard.restore(key: .theme)
+            // do not store to UserDefautls if it's the default theme
+            if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
+                UserDefaults.standard.restore(key: .theme)
+            } else {
+                UserDefaults.standard[.theme] = themeName
+            }
         }
         
         self.themeViewController?.theme = themeDict
-        self.themeViewController?.view.setAccessibilityLabel(themeName)
         self.themeViewController?.isBundled = isBundled
+        self.themeViewController?.view.setAccessibilityLabel(themeName)
         
         self.isBundled = isBundled
     }
@@ -493,13 +497,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     // MARK: Private Methods
-    
-    /// view controller for theme editor
-    private var themeViewController: ThemeViewController? {
-        
-        return self.children.lazy.compactMap { $0 as? ThemeViewController }.first
-    }
-    
     
     /// return theme name which is currently selected in the list table
     @objc private dynamic var selectedThemeName: String {

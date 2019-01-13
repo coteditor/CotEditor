@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,7 +120,7 @@ final class StatusBarController: NSViewController {
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            analyzer.needsUpdateStatusEditorInfo = !self.view.isHidden
+            analyzer.needsUpdateStatusEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
             
             NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -138,7 +138,7 @@ final class StatusBarController: NSViewController {
     /// update left side text
     @objc private func updateEditorStatus() {
         
-        guard !self.view.isHidden else { return }
+        guard !self.view.isHiddenOrHasHiddenAncestor else { return }
         guard let info = self.documentAnalyzer?.info else { return }
         
         let appearance = self.view.effectiveAppearance
@@ -176,7 +176,7 @@ final class StatusBarController: NSViewController {
     /// update right side text and readonly icon state
     @objc private func updateDocumentStatus() {
         
-        guard !self.view.isHidden else { return }
+        guard !self.view.isHiddenOrHasHiddenAncestor else { return }
         guard let info = self.documentAnalyzer?.info else { return }
         
         let defaults = UserDefaults.standard

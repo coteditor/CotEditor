@@ -469,148 +469,56 @@ extension EditorTextView {
     
     // MARK: Actions
     
+    /// process user's shortcut input
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        
+        guard !super.performKeyEquivalent(with: event) else { return true }
+        
+        // interrupt for selectColumnUp/Down actions
+        guard
+            event.modifierFlags.intersection([.shift, .control, .option, .command]) == [.shift, .control],
+            let character = event.charactersIgnoringModifiers?.utf16.first
+            else { return false }
+        
+        switch (Int(character), self.layoutOrientation) {
+        case (NSUpArrowFunctionKey, .horizontal),
+             (NSRightArrowFunctionKey, .vertical):
+            self.doCommand(by: #selector(selectColumnUp))
+            return true
+            
+        case (NSDownArrowFunctionKey, .horizontal),
+             (NSLeftArrowFunctionKey, .vertical):
+            self.doCommand(by: #selector(selectColumnDown))
+            return true
+            
+        default:
+             return false
+        }
+    }
+    
+    
     /// add insertion point just above the first selected range (^⇧↑)
     @IBAction func selectColumnUp(_ sender: Any?) {
         
-        let ranges = self.insertionRanges
-        let baseRange = ranges.first!
-        let lowerBound = self.upperInsertionLocation(of: baseRange.lowerBound)
-        let upperBound = self.upperInsertionLocation(of: baseRange.upperBound)
-        let range = NSRange(lowerBound..<upperBound)
-        
-        let insertionRanges = [range] + ranges
-        
-        guard let set = self.prepareForSelectionUpdate(insertionRanges) else { return }
-        
-        self.setSelectedRanges(set.selectedRanges, affinity: .downstream, stillSelecting: false)
-        self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(range)
+        self.addSelectedColumn(affinity: .downstream)
     }
     
     
     /// add insertion point just below the last selected range (^⇧↓)
     @IBAction func selectColumnDown(_ sender: Any?) {
         
-        guard
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-            else { assertionFailure(); return }
-        
-        let ranges = self.insertionRanges
-        let newRanges = layoutManager.verticalRanges(in: NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound), baseRange: ranges[0], in: textContainer)
-        
-        guard let set = self.prepareForSelectionUpdate(newRanges) else { return }
-        
-        self.setSelectedRanges(set.selectedRanges, affinity: .upstream, stillSelecting: false)
-        self.insertionLocations = set.insertionLocations
-        self.scrollRangeToVisible(newRanges.last!)
+        self.addSelectedColumn(affinity: .upstream)
     }
     
 }
 
 
 
-extension NSLayoutManager {
-    
-    func verticalRanges(in range: NSRange, baseRange: NSRange, in textContainer: NSTextContainer) -> [NSRange] {
-        
-        let glyphRange = self.glyphRange(forCharacterRange: baseRange, actualCharacterRange: nil)
-        let lowerRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.lowerBound, length: 0), in: textContainer)
-        let upperRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.upperBound, length: 0), in: textContainer)
-        let baseRect = NSRect(x: min(lowerRect.minX, upperRect.minX), y: 0,
-                              width: abs(lowerRect.minX - upperRect.minX), height: 1)
-        
-        var ranges: [NSRange] = []
-        var targetRect: NSRect = .zero
-        self.enumeratelineFragmentUsedRects(in: range) { (rect) in
-            targetRect = baseRect.offsetBy(dx: 0, dy: rect.midY)
-//            guard rect.intersects(targetRect) else { return }
-            
-            ranges.append(self.characterRange(for: targetRect, in: textContainer))
-        }
-        
-        assert(!ranges.isEmpty)
-        
-        targetRect.origin.y = targetRect.maxY + targetRect.height
-        moof(targetRect)
-        ranges.append(self.characterRange(for: targetRect, in: textContainer))
-        moof(ranges)
-        return ranges
-    }
-    
-    
-    private func characterRange(for rect: NSRect, in textContainer: NSTextContainer) -> NSRange {
-        
-        let lowerGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.minX, y: rect.minY), in: textContainer)
-        let upperGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.maxX, y: rect.minY), in: textContainer)
-        
-        return self.characterRange(forGlyphRange: NSRange(lowerGlyphIndex..<upperGlyphIndex), actualGlyphRange: nil)
-    }
-    
-    
-    private func enumeratelineFragmentUsedRects(in characterRange: NSRange, body: (_ usedLineRect: NSRect) -> Void) {
-        
-        let glyphRange = self.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
-        
-        // enumerate visible line numbers
-        var glyphIndex = glyphRange.lowerBound
-        repeat {  // process logical lines
-            var effectiveRange = NSRange.notFound
-            let rect = self.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
-            body(rect)
-            
-            glyphIndex = effectiveRange.upperBound
-        } while (glyphIndex < glyphRange.upperBound)
-        
-        guard  glyphRange.upperBound == self.numberOfGlyphs else { return }
-        
-        body(self.extraLineFragmentUsedRect)
-    }
-    
-}
-
-
-
-// MARK: - Editing
+// MARK: -
 
 extension EditorTextView {
     
-    /// swap characters before and after insertions (^T)
-    override func transpose(_ sender: Any?) {
-        
-        guard self.hasMultipleInsertions else { return super.transpose(sender) }
-        
-        let string = self.string as NSString
-        
-        var replacementRanges: [NSRange] = []
-        var replacementStrings: [String] = []
-        var selectedRanges: [NSRange] = []
-        for range in self.insertionRanges.reversed() {
-            guard range.length == 0 else {
-                selectedRanges.append(range)
-                continue
-            }
-            
-            let lastIndex = string.index(before: range.location)
-            let nextIndex = string.index(after: range.location)
-            let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
-            let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
-            
-            replacementStrings.append(nextCharacter + lastCharacter)
-            replacementRanges.append(NSRange(lastIndex..<nextIndex))
-            selectedRanges.append(NSRange(nextIndex..<nextIndex))
-        }
-        
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
-    }
-    
-}
-
-
-
-// MARK: - Deletion
-
-extension EditorTextView {
+    // MARK: Deletion
     
     /// delete forward (fn+delete / ^D)
     override func deleteForward(_ sender: Any?) {
@@ -659,6 +567,39 @@ extension EditorTextView {
         
         self.moveWordBackwardAndModifySelection(sender)
         self.deleteBackward(sender)
+    }
+    
+    
+    
+    // MARK: Editing
+    
+    /// swap characters before and after insertions (^T)
+    override func transpose(_ sender: Any?) {
+        
+        guard self.hasMultipleInsertions else { return super.transpose(sender) }
+        
+        let string = self.string as NSString
+        
+        var replacementRanges: [NSRange] = []
+        var replacementStrings: [String] = []
+        var selectedRanges: [NSRange] = []
+        for range in self.insertionRanges.reversed() {
+            guard range.length == 0 else {
+                selectedRanges.append(range)
+                continue
+            }
+            
+            let lastIndex = string.index(before: range.location)
+            let nextIndex = string.index(after: range.location)
+            let lastCharacter = string.substring(with: NSRange(lastIndex..<range.location))
+            let nextCharacter = string.substring(with: NSRange(range.location..<nextIndex))
+            
+            replacementStrings.append(nextCharacter + lastCharacter)
+            replacementRanges.append(NSRange(lastIndex..<nextIndex))
+            selectedRanges.append(NSRange(nextIndex..<nextIndex))
+        }
+        
+        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
 }

@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+3.7.0-beta.4 (327)
+--------------------------
+
+### Improvements
+
+- [beta] Support snippet insertion in multi-cursor editing.
+- [beta] Replace `^⇧↑` and `^⇧↓` shortcuts with `^⇧→` and `^⇧←` correspondingly when the text orientation is vertical.
+- [beta] Fix and improve behavior of `^⇧↑` and `^⇧↓` shortcuts.
+- [beta] Merge changes in CotEditor 3.6.12.
+
+
+### Fixes
+
+- [beta] Fix selection after commenting-out.
+- [beta] Suppress blinking Edit menu when perform `^⇧↑` or `^⇧↓` shortcut.
+- [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
+
+
+
 3.7.0-beta.3 (325)
 --------------------------
 
@@ -19,7 +38,7 @@ Change Log
 - [beta] Fix multi-cursor behavior of deleting to the beginning of the visual line by `⌘⌫`.
 - [beta] Fix multi-cursor movement when encountering a surrogate pair.
 - [beta] Fix an issue where a selected range and an insertion point could overlap.
-- [beta] Fix an issue where the appliation could rarely crash after moving cursors.
+- [beta] Fix an issue where the application could rarely crash after moving cursors.
 
 
 
@@ -46,6 +65,24 @@ Change Log
 ### New Features
 
 - Multi-cursor editing.
+
+
+
+3.6.12 (unreleased)
+--------------------------
+
+### Improvements
+
+- Update syntax style for “SVG”.
+
+
+### Fixes
+
+- Fix an issue where the snippet insertion did not work.
+- Fix an issue where theme change did not apply to opened documents under specific conditions.
+- Fix an issue where user theme was not applied when windows restored on macOS 10.12.
+- Fix an issue on macOS 10.12 where the initial theme editor was empty when the preferences window switches to Appearance pane.
+- Improve stability.
 
 
 

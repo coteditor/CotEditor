@@ -60,7 +60,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
-    var baseSelectedRange: NSRange = .notFound
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
     private(set) var isPerformingRectangularSelection = false
@@ -500,7 +499,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.isAutomaticIndentEnabled
             else { return super.insertNewline(sender) }
         
-        let tab = self.isAutomaticTabExpansionEnabled ? "\t" : String(repeating: " ", count: self.tabWidth)
+        let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
         
         let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
         self.setSelectedRangesWithUndo(ranges)

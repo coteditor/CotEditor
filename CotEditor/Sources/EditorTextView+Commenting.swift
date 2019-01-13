@@ -48,7 +48,7 @@ extension EditorTextView: Commenting {
     @IBAction func toggleComment(_ sender: Any?) {
         
         if self.canUncomment(partly: false) {
-            self.uncomment(types: .both, fromLineHead: self.commentsAtLineHead)
+            self.uncomment(fromLineHead: self.commentsAtLineHead)
         } else {
             self.commentOut(types: .both, fromLineHead: self.commentsAtLineHead)
         }
@@ -79,7 +79,7 @@ extension EditorTextView: Commenting {
     /// uncomment selection removing comment delimiters
     @IBAction func uncomment(_ sender: Any?) {
         
-        self.uncomment(types: .both, fromLineHead: false)
+        self.uncomment(fromLineHead: false)
     }
     
 }
@@ -113,14 +113,18 @@ extension Commenting where Self: NSTextView {
     
     // MARK: Public Methods
     
-    /// comment out selection appending comment delimiters
+    /// Comment out selections by appending comment delimiters.
+    ///
+    /// - Parameters:
+    ///   - types: The type of commenting-out. When, `.both`, inline-style takes priprity over block-style.
+    ///   - fromLineHead: When `true`, the receiver comments out from the beginning of the line.
     func commentOut(types: CommentTypes, fromLineHead: Bool) {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return }
         
         let spacer = self.appendsCommentSpacer ? " " : ""
-        let targetRanges = self.commentingRanges(fromLineHead: self.commentsAtLineHead)
-        let infos: [(string: String, location: Int, before: Bool)] = {
+        let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
+        let items: [(string: String, location: Int, forward: Bool)] = {
             if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
                 return self.string.inlineCommentOut(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
             }
@@ -130,65 +134,55 @@ extension Commenting where Self: NSTextView {
             return []
         }()
         
-        guard !infos.isEmpty else { return }
+        guard !items.isEmpty else { return }
         
-        let newStrings = infos.map { $0.string }
-        let replacementRanges = infos.map { NSRange($0.location..<$0.location) }
+        let newStrings = items.map { $0.string }
+        let replacementRanges = items.map { NSRange($0.location..<$0.location) }
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
-            .map { $0.rangeValue }
-            .map { range -> NSRange in
-                let location = infos
-                    .filter { $0.location < range.location || ($0.location == range.location && $0.before) }
-                    .reduce(into: range.location) { $0 += ($1.string as NSString).length }
-                let length = infos.filter { range.lowerBound < $0.location && $0.location < range.upperBound }
-                    .reduce(into: range.length) { $0 += ($1.string as NSString).length }
-                
-                return NSRange(location: location, length: length)
-            }
+            .map { $0.rangeValue.move(inserting: items) }
         
         self.replace(with: newStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                      actionName: "Comment Out".localized)
     }
     
     
-    /// uncomment selection removing comment delimiters
-    func uncomment(types: CommentTypes, fromLineHead: Bool) {
+    /// Uncomment selections by removing comment delimiters.
+    ///
+    /// - Parameters:
+    ///   - fromLineHead: When `true`, the receiver uncomments from the beginning of the line.
+    func uncomment(fromLineHead: Bool) {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return }
         
         let spacer = self.appendsCommentSpacer ? " " : ""
-        let targetRanges = self.commentingRanges(fromLineHead: self.commentsAtLineHead).filter { $0.length > 0 }
-        let indices: IndexSet = {
-            if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
-                let indices = self.string.blockUncomment(delimiters: delimiters, spacer: spacer, ranges: targetRanges)
+        let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
+        let deletionRanges: [NSRange] = {
+            if let delimiters = self.blockCommentDelimiters {
+                let indices = self.string.rangesOf(delimiters: delimiters, spacer: spacer, ranges: targetRanges)
                 if !indices.isEmpty { return indices }
             }
-            if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
-                return self.string.inlineUncomment(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
+            if let delimiter = self.inlineCommentDelimiter {
+                return self.string.rangesOf(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
             }
-            return IndexSet()
+            return []
         }()
         
-        guard !indices.isEmpty else { return }
+        guard !deletionRanges.isEmpty else { return }
         
-        let replacementRanges = indices.rangeView.map { NSRange($0.lowerBound..<$0.upperBound) }
-        let newStrings = [String](repeating: "", count: replacementRanges.count)
+        let newStrings = [String](repeating: "", count: deletionRanges.count)
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
-            .map { $0.rangeValue }
-            .map { range -> NSRange in
-                let location = range.location - indices.count { $0 < range.location }
-                let length = range.length - indices.count { range.contains($0) }
-                
-                return NSRange(location: location, length: length)
-            }
+            .map { $0.rangeValue.move(deleting: deletionRanges) }
         
-        
-        self.replace(with: newStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
+        self.replace(with: newStrings, ranges: deletionRanges, selectedRanges: selectedRanges,
                      actionName: "Uncomment".localized)
     }
     
     
-    /// whether given range can be uncommented
+    /// Whether given range can be uncommented.
+    ///
+    /// - Parameter partly: When `true`, the method returns true when a part of slections is commented-out,
+    ///                     otherwise only when the entire selections are commented out.
+    /// - Returns: `true` when selection can be uncommented.
     func canUncomment(partly: Bool) -> Bool {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }
@@ -236,10 +230,68 @@ extension Commenting where Self: NSTextView {
 
 
 
+private extension NSRange {
+    
+    /// Return a new range by assuming the indices of the given items are inserted.
+    ///
+    /// - Parameter items: An array of items to be inserted.
+    /// - Returns: A new range that the receiver moved.
+    func move(inserting items: [(string: String, location: Int, forward: Bool)]) -> NSRange {
+        
+        var location = items
+            .prefix { $0.location < self.lowerBound }  //  || ($0.location == self.lowerBound && $0.forward)
+            .map { ($0.string as NSString).length }
+            .reduce(self.location, +)
+        var length = items
+            .filter { self.lowerBound < $0.location && $0.location < self.upperBound }
+            .map { ($0.string as NSString).length }
+            .reduce(self.length, +)
+        
+        // adjust edge insertions depending on the selection state
+        if self.length == 0 {
+            location += items
+                .filter { $0.location == self.lowerBound && $0.forward }
+                .map { ($0.string as NSString).length }
+                .reduce(0, +)
+        } else {
+            length += items
+                .filter { $0.location == self.lowerBound && $0.forward || $0.location == self.upperBound && !$0.forward }
+                .map { ($0.string as NSString).length }
+                .reduce(0, +)
+        }
+        
+        return NSRange(location: location, length: length)
+    }
+    
+    
+    /// Return a new range by assuming the indexes in the given ranges are removed.
+    ///
+    /// - Parameter deletingRanges: An array of NSRange where the indexes are emoved.
+    /// - Returns: A new range that the receiver moved.
+    func move(deleting deletingRanges: [NSRange]) -> NSRange {
+        
+        let indices = deletingRanges.reduce(into: IndexSet()) { $0.insert(integersIn: Range($1)!) }
+        
+        let location = self.location - indices.count(in: ..<self.lowerBound)
+        let length = self.length - indices.count(in: Range(self)!)
+        
+        return NSRange(location: location, length: length)
+    }
+
+}
+
+
 private extension String {
     
-    /// append inline style comment delimiters in range inserting spacer after delimiters and return commented-out string and new selected range
-    func inlineCommentOut(delimiter: String, spacer: String, ranges: [NSRange]) -> [(string: String, location: Int, before: Bool)] {
+    /// Return editing information to comment out given `ranges` by appending inline-style comment delimiters
+    /// and spacers after delimiters.
+    ///
+    /// - Parameters:
+    ///   - delimiter: The inline comment delimiter to insert.
+    ///   - spacer: The spacer between delimiter and string.
+    ///   - ranges: The ranges where to comment out.
+    /// - Returns: Items that contain editing information to insert comment delimiters.
+    func inlineCommentOut(delimiter: String, spacer: String, ranges: [NSRange]) -> [(string: String, location: Int, forward: Bool)] {
         
         let regex = try! NSRegularExpression(pattern: "^", options: [.anchorsMatchLines])
         
@@ -250,41 +302,66 @@ private extension String {
     }
     
     
-    /// append block style comment delimiters in range inserting spacer between string and delimiters and return commented-out string and new selected range
-    func blockCommentOut(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [(string: String, location: Int, before: Bool)] {
+    /// Return editing information to comment out given `ranges` by appending block-style comment delimiters
+    /// and spacers between string and delimiters.
+    ///
+    /// - Parameters:
+    ///   - delimiters: The pair of block comment delimiters to insert.
+    ///   - spacer: The spacer between delimiter and string.
+    ///   - ranges: The ranges where to comment out.
+    /// - Returns: Items that contain editing information to insert comment delimiters.
+    func blockCommentOut(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [(string: String, location: Int, forward: Bool)] {
         
         return ranges.flatMap { [(delimiters.begin + spacer, $0.lowerBound, true), (spacer + delimiters.end, $0.upperBound, false)] }
     }
     
     
-    /// find inline style comment delimiters with and without spacers in range and return a character location IndexSet to remove
-    func inlineUncomment(delimiter: String, spacer: String, ranges: [NSRange]) -> IndexSet {
+    /// Find inline-style delimiters in `ranges` as well as spacers between the content and a delimiter if eny.
+    ///
+    /// - Parameters:
+    ///   - delimiter: The inline delimiter to find.
+    ///   - spacer: The spacer between delimiter and string.
+    ///   - ranges: The ranges where to find.
+    /// - Returns: Ranges where delimiters and spacers are.
+    func rangesOf(delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange] {
         
-        let pattern = NSRegularExpression.escapedPattern(for: delimiter)
+        let ranges = ranges.filter { $0.length > 0 }
+        
+        guard !ranges.isEmpty, !self.isEmpty else { return [] }
+        
+        let delimiterPattern = NSRegularExpression.escapedPattern(for: delimiter)
         let spacerPattern = spacer.isEmpty ? "" : "(?:" + spacer + ")?"
-        let regex = try! NSRegularExpression(pattern: "^" + pattern + spacerPattern,
-                                             options: [.anchorsMatchLines])
+        let pattern = "^" + delimiterPattern + spacerPattern
+        let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
             .map { $0.range }
-            .map { $0.lowerBound..<$0.upperBound }
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
     }
     
     
-    /// remove block style comment delimiters in range removing also spacers between string and delimiter and return uncommented string and new selected range
-    func blockUncomment(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> IndexSet {
+    /// Find block-style delimiters in `ranges` as well as spacers between the content and a delimiter if eny.
+    ///
+    /// - Note: This method matches a block only when one of the given `ranges` fits exactly.
+    ///
+    /// - Parameters:
+    ///   - delimiters: The pair of block delimiters to find.
+    ///   - spacer: The spacer between delimiter and string.
+    ///   - ranges: The ranges where to find.
+    /// - Returns: Ranges where delimiters and spacers are.
+    func rangesOf(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange] {
+        
+        let ranges = ranges.filter { $0.length > 0 }
+        
+        guard !ranges.isEmpty, !self.isEmpty else { return [] }
         
         let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
         let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
         let spacerPattern = spacer.isEmpty ? "" : "(?:" + spacer + ")?"
-        let regex = try! NSRegularExpression(pattern: "\\A(" + beginPattern + spacerPattern + ").*?(" + spacerPattern + endPattern + ")\\Z",
-                                             options: [.dotMatchesLineSeparators])
+        let pattern = "\\A(" + beginPattern + spacerPattern + ").*?(" + spacerPattern + endPattern + ")\\Z"
+        let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
             .flatMap { [$0.range(at: 1), $0.range(at: 2)] }
-            .map { $0.lowerBound..<$0.upperBound }
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
     }
     
 }

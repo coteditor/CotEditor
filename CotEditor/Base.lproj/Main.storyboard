@@ -204,18 +204,6 @@ Gw
                                                 <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Select Column Up" hidden="YES" keyEquivalent="" allowsKeyEquivalentWhenHidden="YES" id="6b9-vN-pSS">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
-                                            <connections>
-                                                <action selector="selectColumnUp:" target="Ady-hI-5gd" id="Lbf-4h-fwy"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Select Column Down" hidden="YES" keyEquivalent="" allowsKeyEquivalentWhenHidden="YES" id="fVF-ze-m75">
-                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" control="YES"/>
-                                            <connections>
-                                                <action selector="selectColumnDown:" target="Ady-hI-5gd" id="Pvj-Ki-MiL"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="630">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>

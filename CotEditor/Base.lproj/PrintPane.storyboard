@@ -10,7 +10,7 @@
         <scene sceneID="yRn-WR-08k">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="4if-cg-44c" customClass="PrintPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="KkP-8S-iZE">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="KkP-8S-iZE">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="402"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -497,7 +497,7 @@
                             <constraint firstItem="RcK-yz-5sk" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="KkP-8S-iZE" secondAttribute="leading" constant="20" symbolic="YES" id="wdq-8Z-gOE"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MOp-QG-730" secondAttribute="trailing" constant="20" symbolic="YES" id="yxa-TT-sNM"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="colorPopupButton" destination="ito-FV-Lxm" id="X5I-oa-8Lz"/>
                         <outlet property="fontField" destination="Ia8-c8-PX3" id="K2S-7d-aja"/>

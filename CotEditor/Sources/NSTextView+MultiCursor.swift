@@ -286,6 +286,59 @@ extension MultiCursorEditing where Self: NSTextView {
         }
     }
     
+    
+    /// Add new insertion points just above/below to the current insertions.
+    ///
+    /// - Parameter affinity: The direction to add new ones; `.downstream` to add above, otherwise `.upstream`.
+    func addSelectedColumn(affinity: NSSelectionAffinity) {
+        
+        guard
+            let layoutManager = self.layoutManager,
+            let textContainer = self.textContainer
+            else { assertionFailure(); return }
+        
+        let glyphRanges = self.insertionRanges.map { layoutManager.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
+        let wholeRange = NSRange(glyphRanges.first!.lowerBound..<glyphRanges.last!.upperBound)
+        let lineFragmentUsedRects = layoutManager.lineFragmentUsedRects(in: wholeRange)
+        
+        // new visual line to append
+        var newLineRect: NSRect = {
+            switch affinity {
+            case .downstream:
+                let rect = lineFragmentUsedRects.first!
+                return rect.offsetBy(dx: 0, dy: -rect.height)
+            case.upstream:
+                let rect = lineFragmentUsedRects.last!
+                return rect.offsetBy(dx: 0, dy: rect.height)
+            }
+        }()
+        
+        let baseIndex = (affinity == .downstream) ? glyphRanges.last!.lowerBound : glyphRanges.first!.upperBound
+        
+        // get base selection rects in the origin line
+        // -> At the same time, expand newLineRect to the entire line fragment
+        //    to allow placing insertion points even when the line is shorter than the origin insertion columns.
+        var baseLineRange: NSRange = .notFound
+        newLineRect.size.width = layoutManager.lineFragmentRect(forGlyphAt: baseIndex, effectiveRange: &baseLineRange, withoutAdditionalLayout: true).width
+        let rowBounds = glyphRanges
+            .filter { baseLineRange.touches($0) }
+            .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
+        
+        let newRanges = (lineFragmentUsedRects + [newLineRect])
+            .flatMap { lineRect in rowBounds
+                .filter { $0.x < lineRect.maxX }
+                .map { NSRect(x: $0.x, y: lineRect.midY, width: $0.width, height: 0) }
+            }
+            .map { layoutManager.glyphRange(forLineRect: $0, in: textContainer) }
+            .map { layoutManager.characterRange(forGlyphRange: $0, actualGlyphRange: nil) }
+        
+        guard let set = self.prepareForSelectionUpdate(newRanges) else { return }
+        
+        self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
+        self.insertionLocations = set.insertionLocations
+        self.scrollRangeToVisible(newRanges.last!)  // the last is newly added one
+    }
+    
 }
 
 
@@ -402,6 +455,68 @@ private extension MultiCursorEditing where Self: NSTextView {
         
         self.insertionPointTimer?.cancel()
         self.insertionPointTimer = timer
+    }
+    
+}
+
+
+private extension NSLayoutManager {
+    
+    /// Retrun the bounds between upper and lower bounds of the given `range` in horizontal axis.
+    ///
+    /// - Parameters:
+    ///   - characterRange: The glyph range for which to return the bounds.
+    ///   - container: The text container in which the glyphs are laid out.
+    /// - Returns: Actual bounds of the given `characterRange` or bounds between `.upperBound` and `.lowerBound`
+    ///            when the range extends across multiple lines.
+    func minimumRowBounds(of glyphRange: NSRange, in container: NSTextContainer) -> (x: CGFloat, width: CGFloat) {
+        
+        let lowerRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.lowerBound, length: 0), in: container)
+        let upperRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.upperBound, length: 0), in: container)
+        
+        return (x: min(lowerRect.minX, upperRect.minX), width: abs(lowerRect.minX - upperRect.minX))
+    }
+    
+    
+    /// Return the range for glyphs that are laid out within the given rectangle in the given text container
+    /// expecting the given rect is contained in a single line fragment.
+    ///
+    /// - Parameters:
+    ///   - rect: The bounding rectangle for which to return glyphs.
+    ///   - textContainer: The container in which the returned glyph is laid out.
+    /// - Returns: Glyph range corresponding to the given rectangle.
+    /// - Note: Not like formal `glyphRange(forBoundingRect:in:)`, this method returns non-zero location
+    ///         even when the given rect is empty.
+    func glyphRange(forLineRect rect: NSRect, in container: NSTextContainer) -> NSRange {
+        
+        let lowerGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.minX, y: rect.minY), in: container)
+        let upperGlyphIndex = self.glyphIndex(for: NSPoint(x: rect.maxX, y: rect.minY), in: container)
+        
+        return NSRange(lowerGlyphIndex..<upperGlyphIndex)
+    }
+    
+    
+    /// Return all line fragment used rects including `extraLineFragmentUsedRect` or empty range at the end of given range.
+    ///
+    /// - Parameter characterRange: The glyph range where to return line fragment rectangles.
+    /// - Returns: An array of the portions of the line fragment rectangles that actually contains glyphs or other marks that are drawn.
+    func lineFragmentUsedRects(in glyphRange: NSRange) -> [NSRect] {
+        
+        var rects: [NSRect] = []
+        var glyphIndex = glyphRange.lowerBound
+        while glyphIndex <= glyphRange.upperBound {
+            var effectiveRange: NSRange = .notFound
+            let rect = self.lineFragmentUsedRect(forGlyphAt: glyphIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+            glyphIndex = effectiveRange.upperBound
+            
+            rects.append(rect)
+        }
+        
+        if glyphRange.upperBound == self.numberOfGlyphs {
+            rects.append(self.extraLineFragmentUsedRect)
+        }
+        
+        return rects
     }
     
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import AppKit.NSSpellChecker
 
 struct EditorInfoTypes: OptionSet {
     
@@ -77,6 +78,7 @@ final class EditorInfoCountOperation: Operation {
     private let selectedRange: Range<String.Index>
     
     private let requiredInfo: EditorInfoTypes
+    private let language: String
     private let countsLineEnding: Bool
     
     
@@ -84,7 +86,7 @@ final class EditorInfoCountOperation: Operation {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
+    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, language: String, countsLineEnding: Bool) {
         
         assert(selectedRange.upperBound <= string.endIndex)
         
@@ -92,6 +94,7 @@ final class EditorInfoCountOperation: Operation {
         self.lineEnding = lineEnding
         self.selectedRange = selectedRange
         self.requiredInfo = requiredInfo
+        self.language = language
         self.countsLineEnding = countsLineEnding
         
         super.init()
@@ -153,11 +156,15 @@ final class EditorInfoCountOperation: Operation {
         
         // count words
         if self.requiredInfo.contains(.words) {
-            self.result.words = self.string.numberOfWords
-            
-            if hasSelection {
-                self.result.selectedWords = selectedString.numberOfWords
+            // perform on the main thraed to use shared NSSpellChecker (macOS 10.14)
+            let operation = { [unowned self] in
+                self.result.words = NSSpellChecker.shared.countWords(in: self.string, language: self.language)
+                
+                if hasSelection {
+                    self.result.selectedWords = NSSpellChecker.shared.countWords(in: String(selectedString), language: self.language)
+                }
             }
+            Thread.isMainThread ? operation() : DispatchQueue.main.sync(execute: operation)
         }
         
         // calculate current location
