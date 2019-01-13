@@ -297,12 +297,12 @@ extension MultiCursorEditing where Self: NSTextView {
             let textContainer = self.textContainer
             else { assertionFailure(); return }
         
-        let ranges = self.insertionRanges
-        let wholeRange = NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound)
+        let glyphRanges = self.insertionRanges.map { layoutManager.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
+        let wholeRange = NSRange(glyphRanges.first!.lowerBound..<glyphRanges.last!.upperBound)
         let lineFragmentUsedRects = layoutManager.lineFragmentUsedRects(in: wholeRange)
         
         // new visual line to append
-        let newLineRect: NSRect = {
+        var newLineRect: NSRect = {
             switch affinity {
             case .downstream:
                 let rect = lineFragmentUsedRects.first!
@@ -313,10 +313,22 @@ extension MultiCursorEditing where Self: NSTextView {
             }
         }()
         
-        let baseRange = (affinity == .downstream) ? ranges.last! : ranges.first!
-        let rowBounds = layoutManager.minimumRowBounds(of: baseRange, in: textContainer)
-        let newRanges = (lineFragmentUsedRects.filter { $0.maxX > rowBounds.x } + [newLineRect])
-            .map { NSRect(x: rowBounds.x, y: $0.midY, width: rowBounds.width, height: 0) }
+        let baseIndex = (affinity == .downstream) ? glyphRanges.last!.lowerBound : glyphRanges.first!.upperBound
+        
+        // get base selection rects in the origin line
+        // -> At the same time, expand newLineRect to the entire line fragment
+        //    to allow placing insertion points even when the line is shorter than the origin insertion columns.
+        var baseLineRange: NSRange = .notFound
+        newLineRect.size.width = layoutManager.lineFragmentRect(forGlyphAt: baseIndex, effectiveRange: &baseLineRange, withoutAdditionalLayout: true).width
+        let rowBounds = glyphRanges
+            .filter { baseLineRange.touches($0) }
+            .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
+        
+        let newRanges = (lineFragmentUsedRects + [newLineRect])
+            .flatMap { lineRect in rowBounds
+                .filter { $0.x < lineRect.maxX }
+                .map { NSRect(x: $0.x, y: lineRect.midY, width: $0.width, height: 0) }
+            }
             .map { layoutManager.glyphRange(forLineRect: $0, in: textContainer) }
             .map { layoutManager.characterRange(forGlyphRange: $0, actualGlyphRange: nil) }
         
@@ -453,13 +465,12 @@ private extension NSLayoutManager {
     /// Retrun the bounds between upper and lower bounds of the given `range` in horizontal axis.
     ///
     /// - Parameters:
-    ///   - characterRange: The character range for which to return the bounds.
+    ///   - characterRange: The glyph range for which to return the bounds.
     ///   - container: The text container in which the glyphs are laid out.
     /// - Returns: Actual bounds of the given `characterRange` or bounds between `.upperBound` and `.lowerBound`
     ///            when the range extends across multiple lines.
-    func minimumRowBounds(of characterRange: NSRange, in container: NSTextContainer) -> (x: CGFloat, width: CGFloat) {
+    func minimumRowBounds(of glyphRange: NSRange, in container: NSTextContainer) -> (x: CGFloat, width: CGFloat) {
         
-        let glyphRange = self.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
         let lowerRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.lowerBound, length: 0), in: container)
         let upperRect = self.boundingRect(forGlyphRange: NSRange(location: glyphRange.upperBound, length: 0), in: container)
         
@@ -487,11 +498,9 @@ private extension NSLayoutManager {
     
     /// Return all line fragment used rects including `extraLineFragmentUsedRect` or empty range at the end of given range.
     ///
-    /// - Parameter characterRange: The character range where to return line fragment rectangles.
+    /// - Parameter characterRange: The glyph range where to return line fragment rectangles.
     /// - Returns: An array of the portions of the line fragment rectangles that actually contains glyphs or other marks that are drawn.
-    func lineFragmentUsedRects(in characterRange: NSRange) -> [NSRect] {
-        
-        let glyphRange = self.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
+    func lineFragmentUsedRects(in glyphRange: NSRange) -> [NSRect] {
         
         var rects: [NSRect] = []
         var glyphIndex = glyphRange.lowerBound
