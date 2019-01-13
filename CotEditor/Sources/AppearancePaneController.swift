@@ -98,6 +98,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// set delegate to ThemeViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
+        super.prepare(for: segue, sender: sender)
+        
         if let destinationController = segue.destinationController as? ThemeViewController {
             destinationController.delegate = self
         }
