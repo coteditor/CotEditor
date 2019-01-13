@@ -9,14 +9,14 @@ Change Log
 
 - [beta] Support snippet insertion in multi-cursor editing.
 - [beta] Replace `^⇧↑` and `^⇧↓` shortcuts with `^⇧→` and `^⇧←` correspondingly when the text orientation is vertical.
-- [beta] Fix and improve behavior of `^⇧↑` and `^⇧↓` shortcuts.
+- [beta] Fix and improve the behavior of `^⇧↑` and `^⇧↓` shortcuts.
 - [beta] Merge changes in CotEditor 3.6.12.
 
 
 ### Fixes
 
 - [beta] Fix selection after commenting-out.
-- [beta] Suppress blinking Edit menu when perform `^⇧↑` or `^⇧↓` shortcut.
+- [beta] Suppress blinking Edit menu when performing `^⇧↑` or `^⇧↓` shortcut.
 - [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
 
 
