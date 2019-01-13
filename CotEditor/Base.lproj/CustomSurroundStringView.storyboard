@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kEF-7D-yxK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kEF-7D-yxK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +10,7 @@
         <scene sceneID="esQ-Ja-4bV">
             <objects>
                 <viewController id="kEF-7D-yxK" customClass="CustomSurroundStringViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" id="qm0-mj-ZRs">
+                    <view key="view" id="qm0-mj-ZRs">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="116"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -114,7 +113,7 @@ DQ
                             <constraint firstItem="vdD-2e-kYr" firstAttribute="leading" secondItem="dTZ-8D-7FW" secondAttribute="trailing" constant="8" symbolic="YES" id="qna-hF-mZD"/>
                             <constraint firstAttribute="trailing" secondItem="7Wp-Ho-fpu" secondAttribute="trailing" constant="20" symbolic="YES" id="y7l-Tv-dBG"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="beginStringField" destination="vdD-2e-kYr" id="YYS-SD-vgQ"/>
                         <outlet property="endStringField" destination="Dnl-uB-u5M" id="msS-qQ-EBj"/>

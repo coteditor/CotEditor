@@ -3,12 +3,12 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.2"
+  version: "1.2.3"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
-  lastModified: "2018-12-26"
+  lastModified: "2019-01-13"
 outlineMenu:
-- beginString: " id=\"(.+?)\""
+- beginString: "(?<= )id=\"(.+?)\""
   description: "id"
   ignoreCase: true
   keyString: "#$1"

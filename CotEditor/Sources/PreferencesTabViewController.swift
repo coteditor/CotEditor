@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,8 +58,14 @@ final class PreferencesTabViewController: NSTabViewController {
         {
             self.selectedTabViewItemIndex = item.offset
         }
+    }
+    
+    
+    override func viewWillAppear() {
         
-        self.switchPane(to: self.tabViewItems[self.selectedTabViewItemIndex], animated: false)
+        super.viewWillAppear()
+        
+        self.view.window!.title = self.tabViewItems[self.selectedTabViewItemIndex].label
     }
     
     
@@ -81,7 +87,7 @@ final class PreferencesTabViewController: NSTabViewController {
         
         guard let tabViewItem = tabViewItem else { return assertionFailure() }
         
-        self.switchPane(to: tabViewItem, animated: true)
+        self.switchPane(to: tabViewItem)
     }
     
     
@@ -89,7 +95,7 @@ final class PreferencesTabViewController: NSTabViewController {
     // MARK: Private Methods
     
     /// resize window to fit to new view
-    private func switchPane(to tabViewItem: NSTabViewItem, animated: Bool) {
+    private func switchPane(to tabViewItem: NSTabViewItem) {
         
         guard let viewFrame = self.lastFrame ?? tabViewItem.view?.frame else { return assertionFailure() }
         
@@ -105,9 +111,8 @@ final class PreferencesTabViewController: NSTabViewController {
         frame.origin.y += window.frame.height - frame.height
         
         self.view.isHidden = true
-        NSAnimationContext.runAnimationGroup({ context in
-            context.allowsImplicitAnimation = animated
-            window.setFrame(frame, display: false)
+        NSAnimationContext.runAnimationGroup({ _ in
+            window.animator().setFrame(frame, display: false)
             
         }, completionHandler: { [weak self] in
             self?.view.isHidden = false

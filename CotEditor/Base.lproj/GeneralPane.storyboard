@@ -10,7 +10,7 @@
         <scene sceneID="eDf-Cn-NDW">
             <objects>
                 <viewController id="JG1-NR-KT5" customClass="GeneralPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="T5J-Ml-0Oc">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="T5J-Ml-0Oc">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="629"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -401,7 +401,7 @@
                             <constraint firstItem="nfo-ng-N5P" firstAttribute="leading" secondItem="Af4-HM-9hW" secondAttribute="trailing" constant="8" symbolic="YES" id="y8f-Fb-pzV"/>
                             <constraint firstItem="kcH-nv-zZT" firstAttribute="top" secondItem="n3l-C4-aVy" secondAttribute="bottom" constant="8" id="yOh-tG-iW8"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="ignoreConflictButton" destination="W8P-Bl-UB5" id="UQa-9m-hG0"/>
                         <outlet property="notifyConflictButton" destination="hRD-W3-d0g" id="Tmq-AY-etP"/>

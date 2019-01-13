@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -87,6 +87,20 @@ final class ThemeViewController: NSViewController {
     }
     
     
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        // workaround for macOS 10.12 where NSColorWell do not update while the view is hidden
+        // (2019-01 macOS 10.14)
+        if NSAppKitVersion.current < .macOS10_13 {
+            let theme = self.theme
+            self.theme = nil
+            self.theme = theme
+        }
+    }
+    
+    
     
     // MARK: View Controller Methods
     
@@ -101,6 +115,8 @@ final class ThemeViewController: NSViewController {
     
     /// send data to metadata popover
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        
+        super.prepare(for: segue, sender: sender)
         
         guard let destinationController = segue.destinationController as? ThemeMetaDataViewController else { return }
         

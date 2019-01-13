@@ -71,10 +71,17 @@ Change Log
 3.6.12 (unreleased)
 --------------------------
 
+### Improvements
+
+- Update syntax style for “SVG”.
+
+
 ### Fixes
 
 - Fix an issue where the snippet insertion did not work.
-- Fix an issue where theme change did not applied to opened documents under specific conditions.
+- Fix an issue where theme change did not apply to opened documents under specific conditions.
+- Fix an issue where user theme was not applied when windows restored on macOS 10.12.
+- Fix an issue on macOS 10.12 where the initial theme editor was empty when the preferences window switches to Appearance pane.
 - Improve stability.
 
 

@@ -37,6 +37,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
     
     private var themeNames = [String]()
+    private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
@@ -98,7 +99,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// set delegate to ThemeViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
+        super.prepare(for: segue, sender: sender)
+        
         if let destinationController = segue.destinationController as? ThemeViewController {
+            self.themeViewController = destinationController
             destinationController.delegate = self
         }
     }
@@ -278,8 +282,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         }
         
         self.themeViewController?.theme = themeDict
-        self.themeViewController?.view.setAccessibilityLabel(themeName)
         self.themeViewController?.isBundled = isBundled
+        self.themeViewController?.view.setAccessibilityLabel(themeName)
         
         self.isBundled = isBundled
     }
@@ -493,13 +497,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     
     // MARK: Private Methods
-    
-    /// view controller for theme editor
-    private var themeViewController: ThemeViewController? {
-        
-        return self.children.lazy.compactMap { $0 as? ThemeViewController }.first
-    }
-    
     
     /// return theme name which is currently selected in the list table
     @objc private dynamic var selectedThemeName: String {

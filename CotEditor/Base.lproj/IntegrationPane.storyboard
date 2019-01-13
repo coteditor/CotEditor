@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NGa-54-JV0">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="NGa-54-JV0">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +10,7 @@
         <scene sceneID="WqS-yN-drh">
             <objects>
                 <viewController title="Integration" id="NGa-54-JV0" customClass="IntegrationPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" id="dua-kZ-3F1" userLabel="Integration Pane">
+                    <view key="view" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="250" id="dua-kZ-3F1">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="169"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -141,7 +140,7 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7Os-2K-aO5" secondAttribute="trailing" constant="20" symbolic="YES" id="xPu-od-dxI"/>
                             <constraint firstItem="wsF-Up-svi" firstAttribute="top" secondItem="dua-kZ-3F1" secondAttribute="top" constant="20" symbolic="YES" id="zce-9t-hl1"/>
                         </constraints>
-                    </customView>
+                    </view>
                 </viewController>
                 <customObject id="Wg0-Wy-vM7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
