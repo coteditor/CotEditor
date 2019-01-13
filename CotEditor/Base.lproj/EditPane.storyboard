@@ -10,7 +10,7 @@
         <scene sceneID="iXe-FN-1cU">
             <objects>
                 <viewController id="6FT-QA-TTg" customClass="EditPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="4sX-tH-txQ" userLabel="Edit Pane">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="4sX-tH-txQ">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="520"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -444,7 +444,7 @@
                             <constraint firstItem="nqq-MP-8Cp" firstAttribute="leading" secondItem="D3Q-hS-szA" secondAttribute="leading" id="yfz-OA-Slv"/>
                             <constraint firstItem="J5U-m9-FvG" firstAttribute="centerY" secondItem="fr0-Ug-Vp1" secondAttribute="centerY" id="zdu-bJ-I6z"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="hangingIndentWidthField" destination="I2h-Jb-whg" id="HBc-Ao-QYd"/>
                         <outlet property="tabWidthField" destination="J5U-m9-FvG" id="2sl-rV-QID"/>

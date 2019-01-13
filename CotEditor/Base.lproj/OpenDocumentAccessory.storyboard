@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
     <dependencies>
         <deployment identifier="macosx"/>
-        <development version="10000" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +10,7 @@
         <scene sceneID="wFf-cg-u4q">
             <objects>
                 <viewController id="vOM-aK-O2P" customClass="OpenPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalCompressionResistancePriority="250" id="QJb-eU-19Y" userLabel="Open Document Accessory View">
+                    <view key="view" horizontalCompressionResistancePriority="250" id="QJb-eU-19Y">
                         <rect key="frame" x="0.0" y="0.0" width="408" height="63"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -64,7 +63,7 @@
                             <constraint firstItem="ODB-Ry-beC" firstAttribute="top" secondItem="gw6-MD-3B5" secondAttribute="bottom" constant="8" symbolic="YES" id="ic0-qc-hkp"/>
                             <constraint firstItem="ODB-Ry-beC" firstAttribute="leading" secondItem="lFu-5f-V7p" secondAttribute="trailing" constant="8" symbolic="YES" id="sQr-9w-CwA"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="encodingMenu" destination="gw6-MD-3B5" id="fdF-Xn-4Eg"/>
                     </connections>

@@ -10,7 +10,7 @@
         <scene sceneID="HD1-eZ-pHa">
             <objects>
                 <viewController title="File Drop" showSeguePresentationStyle="single" id="UtY-fi-jOg" customClass="FileDropPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="Gi6-Rx-eMY" userLabel="File Drop Pane">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="Gi6-Rx-eMY">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="384"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -332,7 +332,7 @@
                             <constraint firstItem="prG-8I-L0n" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="yg8-O0-IK3"/>
                             <constraint firstItem="nF4-c6-mvy" firstAttribute="leading" secondItem="Gi6-Rx-eMY" secondAttribute="leading" constant="20" symbolic="YES" id="zqp-oX-HNv"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="fileDropController" destination="pUX-ce-iNp" id="txr-r2-FdH"/>
                         <outlet property="formatTextView" destination="Rdu-bG-bow" id="9Qd-ji-qr0"/>

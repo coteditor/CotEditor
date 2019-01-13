@@ -17,7 +17,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="220" height="453"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <customView verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebD-7V-XD9" userLabel="Document View">
+                                <view verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ebD-7V-XD9">
                                     <rect key="frame" x="0.0" y="0.0" width="220" height="453"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fer-mi-39p">
@@ -561,7 +561,7 @@
                                         <constraint firstItem="cy5-Cu-gLS" firstAttribute="top" secondItem="fer-mi-39p" secondAttribute="bottom" constant="4" id="zbR-Yo-9w3"/>
                                         <constraint firstItem="UJf-4P-eSh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ebD-7V-XD9" secondAttribute="leading" constant="12" id="zqv-0p-RGR"/>
                                     </constraints>
-                                </customView>
+                                </view>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="ebD-7V-XD9" firstAttribute="leading" secondItem="1dC-Qd-qwY" secondAttribute="leading" id="nIj-vY-Y49"/>

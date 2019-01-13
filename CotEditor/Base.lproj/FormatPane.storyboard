@@ -10,7 +10,7 @@
         <scene sceneID="Owo-g1-qK8">
             <objects>
                 <viewController id="Lgm-sL-YIF" customClass="FormatPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="8Od-1h-2eW" userLabel="Format Pane">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="8Od-1h-2eW">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="407"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -446,7 +446,7 @@
                             <constraint firstItem="iU4-hA-pof" firstAttribute="leading" secondItem="o7z-Td-5qC" secondAttribute="trailing" constant="8" symbolic="YES" id="xyF-ym-FxT"/>
                             <constraint firstItem="cPL-gk-JM6" firstAttribute="trailing" secondItem="ofS-Q1-0g8" secondAttribute="trailing" id="xzn-6r-a4r"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="inNewEncodingMenu" destination="Lt0-OL-jLy" id="qLi-F4-1wz"/>
                         <outlet property="inOpenEncodingMenu" destination="b9V-Tx-ggw" id="zVe-Tw-KOt"/>

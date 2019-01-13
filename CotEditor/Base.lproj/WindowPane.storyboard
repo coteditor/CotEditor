@@ -10,7 +10,7 @@
         <scene sceneID="6Sb-ps-7Bi">
             <objects>
                 <viewController id="Qki-Cn-AgK" customClass="WindowPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="uRF-iT-6pD">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="uRF-iT-6pD">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="427"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
@@ -572,7 +572,7 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wjb-yR-EWC" secondAttribute="trailing" constant="20" symbolic="YES" id="xGT-ky-rPs"/>
                             <constraint firstItem="HPd-WR-pN4" firstAttribute="leading" secondItem="uRF-iT-6pD" secondAttribute="leading" constant="20" symbolic="YES" id="yO8-xW-hwV"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="editorOpacityField" destination="hqW-e1-Q8a" id="SAU-Ds-av4"/>
                         <outlet property="ltrWritingDirectionButton" destination="jq0-Ac-Br7" id="jg6-ch-Kd5"/>

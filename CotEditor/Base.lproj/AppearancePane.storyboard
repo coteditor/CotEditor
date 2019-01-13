@@ -10,7 +10,7 @@
         <scene sceneID="oau-eS-BHv">
             <objects>
                 <viewController id="WBM-EY-ENr" customClass="AppearancePaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="LgU-un-VaX" userLabel="Appearance Pane">
+                    <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="LgU-un-VaX">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="608"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -634,7 +634,7 @@
                             <constraint firstItem="Cq3-kO-Ned" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LgU-un-VaX" secondAttribute="leading" constant="20" symbolic="YES" id="yLR-zU-5Ha"/>
                             <constraint firstItem="nqX-jr-n2L" firstAttribute="baseline" secondItem="uyp-Xk-mRF" secondAttribute="baseline" id="zL5-Nj-PuM"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="barCursorButton" destination="Yzg-b2-Ep1" id="RZ7-ZY-imd"/>
                         <outlet property="blockCursorButton" destination="c80-NU-o7Z" id="oMA-jt-a5K"/>
@@ -707,7 +707,7 @@
         <scene sceneID="8Ia-Aw-2IO">
             <objects>
                 <viewController storyboardIdentifier="ThemeViewController" id="z57-dm-qGO" customClass="ThemeViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" id="Znd-c6-kcA">
+                    <view key="view" id="Znd-c6-kcA">
                         <rect key="frame" x="0.0" y="0.0" width="342" height="278"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -1176,7 +1176,7 @@
                             <constraint firstItem="qAi-YR-6Uq" firstAttribute="centerY" secondItem="8QY-g0-UOv" secondAttribute="centerY" id="zFA-MT-rTA"/>
                             <constraint firstItem="r0Y-ri-e5S" firstAttribute="leading" secondItem="Znd-c6-kcA" secondAttribute="leading" priority="750" constant="14" id="zR6-mD-Sh8"/>
                         </constraints>
-                    </customView>
+                    </view>
                 </viewController>
                 <objectController id="fug-yh-kPG" userLabel="Theme Controller">
                     <connections>
@@ -1191,7 +1191,7 @@
         <scene sceneID="qi2-hI-9Gp">
             <objects>
                 <viewController id="I23-rk-sjA" customClass="ThemeMetaDataViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" verticalHuggingPriority="750" placeholderIntrinsicWidth="297" placeholderIntrinsicHeight="82" id="zCc-Xl-Fid" userLabel="Metadata View">
+                    <view key="view" verticalHuggingPriority="750" placeholderIntrinsicWidth="297" placeholderIntrinsicHeight="82" id="zCc-Xl-Fid">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="99"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -1359,7 +1359,7 @@
                             <constraint firstItem="VKm-te-Na7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zCc-Xl-Fid" secondAttribute="leading" constant="10" id="x6I-GO-Lq9"/>
                             <constraint firstItem="Usu-Br-G0a" firstAttribute="centerY" secondItem="wm2-h6-dfh" secondAttribute="centerY" id="xz3-sg-5oD"/>
                         </constraints>
-                    </customView>
+                    </view>
                 </viewController>
                 <customObject id="Oyw-bQ-ntc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <objectController id="0m3-ka-vdo" userLabel="Metadata Controller">

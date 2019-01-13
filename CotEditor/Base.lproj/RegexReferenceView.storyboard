@@ -10,7 +10,7 @@
         <scene sceneID="4dB-22-EhT">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="QTs-5w-XoW" customClass="DetachablePopoverViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" id="oE9-dl-6Qq" userLabel="Regex Reference Popover">
+                    <view key="view" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" id="oE9-dl-6Qq">
                         <rect key="frame" x="0.0" y="0.0" width="496" height="275"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
