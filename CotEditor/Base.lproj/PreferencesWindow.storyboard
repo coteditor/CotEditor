@@ -41,7 +41,7 @@
                         <tabViewItem label="Print" identifier="Print" image="Preferences/Print" id="UuB-iq-kOt"/>
                         <tabViewItem label="Integration" identifier="Integration" image="Preferences/Integration" id="gEv-qP-tRM"/>
                     </tabViewItems>
-                    <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
+                    <viewControllerTransitionOptions key="transitionOptions"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="2ir-uf-iS5">
                         <rect key="frame" x="0.0" y="0.0" width="560" height="320"/>
                         <autoresizingMask key="autoresizingMask"/>
