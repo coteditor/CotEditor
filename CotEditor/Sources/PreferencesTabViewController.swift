@@ -27,7 +27,7 @@ import Cocoa
 
 final class PreferencesTabViewController: NSTabViewController {
     
-    private var lastFrame: NSRect?
+    private var lastFrameSize: NSSize?
     
     
     
@@ -73,11 +73,7 @@ final class PreferencesTabViewController: NSTabViewController {
         
         super.tabView(tabView, willSelect: tabViewItem)
         
-        if let frame = self.lastFrame {
-            tabView.selectedTabViewItem?.view?.frame = frame
-        }
-        
-        self.lastFrame = tabViewItem?.view?.frame
+        self.lastFrameSize = tabViewItem?.view?.frame.size
     }
     
     
@@ -97,22 +93,17 @@ final class PreferencesTabViewController: NSTabViewController {
     /// resize window to fit to new view
     private func switchPane(to tabViewItem: NSTabViewItem) {
         
-        guard let viewFrame = self.lastFrame ?? tabViewItem.view?.frame else { return assertionFailure() }
+        guard let contentSize = self.lastFrameSize ?? tabViewItem.view?.frame.size else { return assertionFailure() }
         
         // initialize tabView's frame size
         guard let window = self.view.window else {
-            self.view.frame = viewFrame
+            self.view.frame.size = contentSize
             return
         }
         
-        // calculate window frame
-        var frame = window.frameRect(forContentRect: viewFrame)
-        frame.origin = window.frame.origin
-        frame.origin.y += window.frame.height - frame.height
-        
-        self.view.isHidden = true
         NSAnimationContext.runAnimationGroup({ _ in
-            window.animator().setFrame(frame, display: false)
+            self.view.isHidden = true
+            window.animator().setFrame(for: contentSize)
             
         }, completionHandler: { [weak self] in
             self?.view.isHidden = false
@@ -155,6 +146,22 @@ private extension PreferencesTabViewController {
             
             item.label = localized
         }
+    }
+    
+}
+
+
+
+private extension NSWindow {
+    
+    /// calculate window frame for the given contentSize
+    func setFrame(for contentSize: NSSize, flag: Bool = false) {
+        
+        let frameSize = self.frameRect(forContentRect: NSRect(origin: .zero, size: contentSize)).size
+        let frame = NSRect(origin: self.frame.origin, size: frameSize)
+            .offsetBy(dx: 0, dy: self.frame.height - frameSize.height)
+        
+        self.setFrame(frame, display: flag)
     }
     
 }
