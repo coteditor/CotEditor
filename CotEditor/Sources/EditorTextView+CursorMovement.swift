@@ -38,7 +38,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveLeft(sender) }
         
-        self.moveCursors(affinity: .downstream) { (self.string as NSString).index(before: $0.lowerBound) }
+        self.moveCursors(affinity: .downstream) {
+            ($0.length == 0) ? (self.string as NSString).index(before: $0.lowerBound) : $0.lowerBound
+        }
     }
     
     
@@ -62,7 +64,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveRight(sender) }
         
-        self.moveCursors(affinity: .upstream) { (self.string as NSString).index(after: $0.upperBound) }
+        self.moveCursors(affinity: .upstream) {
+            ($0.length == 0) ? (self.string as NSString).index(after: $0.upperBound) : $0.upperBound
+        }
     }
     
     

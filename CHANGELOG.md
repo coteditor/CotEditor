@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.0-beta.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Fix multi-cursor behavior with `→` and `←` when something is selected.
+
+
+
 3.7.0-beta.4 (327)
 --------------------------
 
