@@ -1,8 +1,12 @@
 language: swift
 osx_image: xcode10.1
 
-xcode_workspace: CotEditor.xcworkspace
-xcode_scheme: CotEditor
-xcode_destination: platform=macOS
-xcode_sdk: macosx10.14
-xcodebuild_args: CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=YES ENABLE_HARDENED_RUNTIME=NO
+script:
+  set -o pipefail &&
+  travis_retry
+  xcodebuild build
+  -workspace CotEditor.xcworkspace
+  -scheme CotEditor
+  CODE_SIGN_IDENTITY=""
+  CODE_SIGNING_REQUIRED=NO
+  | xcpretty
