@@ -68,12 +68,15 @@ Change Log
 
 
 
-3.6.12 (unreleased)
+3.6.12 (311)
 --------------------------
 
 ### Improvements
 
 - Update syntax style for “SVG”.
+- Update `cot` command-line tool:
+    - Fix an issue where stack trace displayed when using `--wait` option with some clients other than Terminal.app.
+    - Fix an issue where `--column` could misplace the insertion point when a negative number was given.
 
 
 ### Fixes
