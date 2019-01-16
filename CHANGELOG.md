@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.6.13 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the last syntax style was not applied when a not-saved document was restored from the last session.
+
+
+
 3.6.12 (311)
 --------------------------
 
