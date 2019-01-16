@@ -7,7 +7,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the last syntax style was not applied when a not-saved document was restored from the last session.
+- Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
 - Fix a possible issue where word counting could stuck.
 
 
