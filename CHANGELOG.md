@@ -5,6 +5,11 @@ Change Log
 3.7.0-beta.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- [beta] Merge a part of changes in CotEditor 3.6.13.
+
+
 ### Fixes
 
 - [beta] Fix multi-cursor behavior with `→` and `←` when something is selected.
@@ -74,6 +79,17 @@ Change Log
 ### New Features
 
 - Multi-cursor editing.
+
+
+
+3.6.13 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
+- Fix an issue where auto-completion could cancel suddenly under a restricted condition.
+- Fix a possible issue where word counting could stuck.
 
 
 

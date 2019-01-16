@@ -45,6 +45,13 @@ final class SyntaxParser {
     
     static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
     
+    private struct Cache {
+        
+        var styleName: String
+        var string: String
+        var highlights: [SyntaxType: [NSRange]]
+    }
+    
     
     // MARK: Public Properties
     
@@ -73,7 +80,7 @@ final class SyntaxParser {
     private let outlineParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.outlineParseOperationQueue")
     private let syntaxHighlightParseOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.syntaxHighlightParseOperationQueue")
     
-    private var highlightCache: (highlights: [SyntaxType: [NSRange]], string: String)?  // results cache of the last whole string highlights
+    private var highlightCache: Cache?  // results cache of the last whole string highlights
     
     private lazy var outlineUpdateTask = Debouncer(delay: .milliseconds(400)) { [weak self] in self?.parseOutline() }
     
@@ -187,7 +194,7 @@ extension SyntaxParser {
         let wholeRange = NSRange(0..<self.textStorage.length)
         
         // use cache if the content of the whole document is the same as the last
-        if let cache = self.highlightCache, cache.string == self.textStorage.string {
+        if let cache = self.highlightCache, cache.styleName == self.style.name, cache.string == self.textStorage.string {
             self.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler()
             return nil
@@ -278,6 +285,7 @@ extension SyntaxParser {
         }
         
         let wholeRange = string.nsRange
+        let styleName = self.style.name
         
         let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
                                                                        pairedQuoteTypes: self.style.pairedQuoteTypes,
@@ -319,7 +327,7 @@ extension SyntaxParser {
                 
                 // cache result if whole text was parsed
                 if highlightRange == wholeRange {
-                    self?.highlightCache = (highlights, string)
+                    self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
                 }
                 
                 self?.apply(highlights: highlights, range: highlightRange)

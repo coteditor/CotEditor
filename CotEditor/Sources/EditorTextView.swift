@@ -84,6 +84,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
     
     private var needsRecompletion = false
+    private var isShowingCompletion = false
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
@@ -633,17 +634,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.needsUpdateLineHighlight = true
         
-        // highlight matching brace
-        if !stillSelectingFlag, UserDefaults.standard[.highlightBraces] {
-            let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-            self.highligtMatchingBrace(candidates: bracePairs)
-        }
-        
-        // invalidate current instances highlight
-        if !stillSelectingFlag, UserDefaults.standard[.highlightSelectionInstance] {
-            let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            self.instanceHighlightTask.schedule(delay: .seconds(delay))
+        if !stillSelectingFlag, !self.isShowingCompletion {
+            // highlight matching brace
+            if UserDefaults.standard[.highlightBraces] {
+                let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+                self.highligtMatchingBrace(candidates: bracePairs)
+            }
+            
+            // invalidate current instances highlight
+            if UserDefaults.standard[.highlightSelectionInstance] {
+                let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
+                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                self.instanceHighlightTask.schedule(delay: .seconds(delay))
+            }
         }
         
         NotificationCenter.default.post(name: EditorTextView.didLiveChangeSelectionNotification, object: self)
@@ -1679,6 +1682,8 @@ extension EditorTextView {
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
         self.completionTask.cancel()
+        
+        self.isShowingCompletion = !flag
         
         // store original string
         if self.particalCompletionWord == nil {
