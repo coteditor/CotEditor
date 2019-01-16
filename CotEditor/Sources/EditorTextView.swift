@@ -75,6 +75,7 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
     
     private var needsRecompletion = false
+    private var isShowingCompletion = false
     private var particalCompletionWord: String?
     private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
     
@@ -520,17 +521,19 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         super.setSelectedRange(charRange, affinity: affinity, stillSelecting: stillSelectingFlag)
         
-        // highlight matching brace
-        if UserDefaults.standard[.highlightBraces], !stillSelectingFlag {
-            let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-            self.highligtMatchingBrace(candidates: bracePairs)
-        }
-        
-        // invalidate current instances highlight
-        if UserDefaults.standard[.highlightSelectionInstance], !stillSelectingFlag {
-            let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-            self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-            self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+        if !stillSelectingFlag, !self.isShowingCompletion {
+            // highlight matching brace
+            if UserDefaults.standard[.highlightBraces] {
+                let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+                self.highligtMatchingBrace(candidates: bracePairs)
+            }
+            
+            // invalidate current instances highlight
+            if UserDefaults.standard[.highlightSelectionInstance] {
+                let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
+                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                self.instanceHighlightTask.schedule(delay: .milliseconds(Int(delay * 1000)))
+            }
         }
     }
     
@@ -1553,6 +1556,8 @@ extension EditorTextView {
     override func insertCompletion(_ word: String, forPartialWordRange charRange: NSRange, movement: Int, isFinal flag: Bool) {
         
         self.completionTask.cancel()
+        
+        self.isShowingCompletion = !flag
         
         // store original string
         if self.particalCompletionWord == nil {
