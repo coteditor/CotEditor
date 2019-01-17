@@ -171,7 +171,8 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         return super.restorableStateKeyPaths + [
             #keyPath(layoutOrientation),
             #keyPath(font),
-            #keyPath(tabWidth)
+            #keyPath(scale),
+            #keyPath(tabWidth),
         ]
     }
     

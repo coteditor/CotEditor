@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -116,7 +116,7 @@ extension NSTextView {
     // MARK: Public Methods
     
     /// current zooming scale
-    var scale: CGFloat {
+    @objc var scale: CGFloat {
         
         get {
             return self.convert(.unit, to: nil).width
@@ -131,6 +131,8 @@ extension NSTextView {
             }()
             
             guard scale != self.scale else { return }
+            
+            self.willChangeValue(for: \.scale)
             
             // scale
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
@@ -147,6 +149,8 @@ extension NSTextView {
                 self.layoutManager?.ensureLayout(for: textContainer)
             }
             self.sizeToFit()
+            
+            self.didChangeValue(for: \.scale)
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
             
