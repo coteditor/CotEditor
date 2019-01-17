@@ -1105,6 +1105,8 @@
 	</dict>
 	<key>OSAScriptingDefinition</key>
 	<string>$(PRODUCT_NAME).sdef</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>${EXECUTABLE_NAME} needs user approval to control other applications with AppleScript.</string>
 	<key>SUEnableJavaScript</key>
 	<true/>
 	<key>SUPublicDSAKeyFile</key>
