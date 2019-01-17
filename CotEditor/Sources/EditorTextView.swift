@@ -169,7 +169,6 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
     override class var restorableStateKeyPaths: [String] {
         
         return super.restorableStateKeyPaths + [
-            #keyPath(layoutOrientation),
             #keyPath(font),
             #keyPath(scale),
             #keyPath(tabWidth),

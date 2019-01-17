@@ -7,8 +7,7 @@ Change Log
 
 ### Improvements
 
-- Improve inspector width restoration.
-- Make zoom state restoreble.
+- Restore more UI state on window restoration.
 
 
 ### Fixes
