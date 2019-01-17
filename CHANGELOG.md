@@ -5,6 +5,11 @@ Change Log
 3.6.13 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve inspector width restoration.
+
+
 ### Fixes
 
 - Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
