@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -142,7 +142,7 @@ final class NavigationBarController: NSViewController {
             // add headding item
             let headdingItem = NSMenuItem()
             headdingItem.title = "<Outline Menu>".localized
-            headdingItem.representedObject = NSRange(location: 0, length: 0)
+            headdingItem.representedObject = NSRange(0..<0)
             menu.addItem(headdingItem)
             
             // add outline items
@@ -183,9 +183,7 @@ final class NavigationBarController: NSViewController {
         
         guard let menu = self.outlineMenu else { return false }
         
-        let nextRange = (menu.indexOfSelectedItem + 1)..<menu.numberOfItems
-        
-        return menu.itemArray[nextRange].contains { $0.representedObject != nil }
+        return menu.itemArray[(menu.indexOfSelectedItem + 1)...].contains { $0.representedObject != nil }
     }
     
     
@@ -228,8 +226,8 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
-        let index = stride(from: popUp.indexOfSelectedItem - 1, to: 0, by: -1)
-            .first { popUp.item(at: $0)!.representedObject != nil } ?? 0
+        let index = popUp.itemArray[..<popUp.indexOfSelectedItem]
+            .lastIndex { $0.representedObject != nil } ?? 0
         
         popUp.menu!.performActionForItem(at: index)
     }
@@ -240,8 +238,8 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
-        let index = stride(from: popUp.indexOfSelectedItem + 1, to: popUp.numberOfItems, by: 1)
-            .first { popUp.item(at: $0)!.representedObject != nil }
+        let index = popUp.itemArray[(popUp.indexOfSelectedItem + 1)...]
+            .firstIndex { $0.representedObject != nil }
         
         if let index = index {
             popUp.menu!.performActionForItem(at: index)
@@ -276,12 +274,13 @@ final class NavigationBarController: NSViewController {
     @objc private func invalidateOutlineMenuSelection() {
         
         guard
+            let textView = self.textView,
             let popUp = self.outlineMenu, popUp.isEnabled,
             let items = popUp.menu?.items,
             let firstItem = items.first
             else { return }
         
-        let location = self.textView!.selectedRange.location
+        let location = textView.selectedRange.location
         let selectedItem = items.last { menuItem in
             guard
                 menuItem.isEnabled,
