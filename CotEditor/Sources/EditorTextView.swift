@@ -1281,18 +1281,21 @@ final class EditorTextView: NSTextView, CurrentLineHighlighting, Themable {
         
         assert(Thread.isMainThread)
         
-        guard self.isAutomaticLinkDetectionEnabled else { return }
+        guard
+            self.isAutomaticLinkDetectionEnabled,
+            let textStorage = self.textStorage
+            else { return }
         
         // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let range = self.string.nsRange
+        let range = NSRange(..<textStorage.length)
         
-        self.textStorage?.removeAttribute(.link, range: range)
+        textStorage.removeAttribute(.link, range: range)
         
         detector.enumerateMatches(in: self.string, range: range) { (result, _, _) in
             guard let result = result, let url = result.url else { return }
             
-            self.textStorage?.addAttribute(.link, value: url, range: result.range)
+            textStorage.addAttribute(.link, value: url, range: result.range)
         }
         
         // ensure layout to avoid unwanted scroll with cursor move after pasting something

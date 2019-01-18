@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,7 +36,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     var showsInvisibles = false {
         
         didSet {
-            guard let wholeRange = self.textStorage?.string.nsRange else { return assertionFailure() }
+            guard let textStorage = self.textStorage else { return assertionFailure() }
+            
+            let wholeRange = NSRange(..<textStorage.length)
             
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
