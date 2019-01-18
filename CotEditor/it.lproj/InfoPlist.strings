@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@
  limitations under the License.
  
  */
+
+// Descriptions for privacy authorization dialog
+"NSAppleEventsUsageDescription" = "CotEditor needs user approval to control other applications with AppleScript.";  // "CotEditor needs user approval to control other applications with AppleScript."  // FIXME: added
 
 // Document Types
 "Text document" = "Documento di testo";

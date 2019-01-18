@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -237,7 +237,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
             // apply to current string
             if let textStorage = self.textStorage {
-                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: textStorage.string.nsRange)
+                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(..<textStorage.length))
             }
             
             // set font also to layout manager

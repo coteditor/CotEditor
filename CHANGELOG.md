@@ -85,6 +85,11 @@ Change Log
 3.6.13 (unreleased)
 --------------------------
 
+### Improvements
+
+- Restore more UI state on window restoration.
+
+
 ### Fixes
 
 - Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
