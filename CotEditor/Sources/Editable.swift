@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,6 +36,14 @@ protocol Editable: AnyObject {
 }
 
 
+enum InsertionLocation {
+    
+    case replaceSelection
+    case afterSelection
+    case replaceAll
+    case afterAll
+}
+
 
 extension Editable {
     
@@ -60,109 +68,35 @@ extension Editable {
         }
         
         set {
-            guard let textView = self.textView else { return }
+            guard let textView = self.textView else { return assertionFailure() }
             
             textView.selectedRange = textView.string.convert(range: newValue, from: self.lineEnding, to: .lf)
         }
     }
     
     
-    /// replace selected text with given string and select inserted range
-    func insert(string: String) {
+    /// insert string at desire location and select inserted range
+    func insert(string: String, at location: InsertionLocation = .replaceSelection) {
         
-        self.textView?.insert(string: string)
-    }
-    
-    
-    /// insert given string just after current selection and select inserted range
-    func insertAfterSelection(string: String) {
+        guard let textView = self.textView else { return assertionFailure() }
         
-        self.textView?.insertAfterSelection(string: string)
-    }
-    
-    
-    /// swap whole current string with given string and select inserted range
-    func replaceAllString(with string: String) {
+        let replacementRange: NSRange = {
+            switch location {
+            case .replaceSelection:
+                return textView.selectedRange
+            case .afterSelection:
+                return NSRange(location: textView.selectedRange.upperBound, length: 0)
+            case .replaceAll:
+                return textView.string.nsRange
+            case .afterAll:
+                return NSRange(location: textView.string.utf16.count, length: 0)
+            }
+            }()
         
-        self.textView?.replaceAllString(with: string)
-    }
-    
-    
-    /// append string at the end of the whole string and select inserted range
-    func append(string: String) {
+        let selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
         
-        self.textView?.append(string: string)
-    }
-    
-}
-
-
-
-// MARK: -
-
-private extension NSTextView {
-    
-    /// treat programmatic text insertion
-    func insert(string: String) {
-        
-        let replacementRange = self.selectedRange
-        
-        guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
-        
-        self.replaceCharacters(in: replacementRange, with: string)
-        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
-        
-        self.undoManager?.setActionName("Insert Text".localized)
-        
-        self.didChangeText()
-    }
-    
-    
-    /// insert given string just after current selection and select inserted range
-    func insertAfterSelection(string: String) {
-        
-        let replacementRange = NSRange(location: self.selectedRange.upperBound, length: 0)
-        
-        guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
-        
-        self.replaceCharacters(in: replacementRange, with: string)
-        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
-        
-        self.undoManager?.setActionName("Insert Text".localized)
-        
-        self.didChangeText()
-    }
-    
-    
-    /// swap whole current string with given string and select inserted range
-    func replaceAllString(with string: String) {
-        
-        let replacementRange = self.string.nsRange
-        
-        guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
-        
-        self.replaceCharacters(in: replacementRange, with: string)
-        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
-        
-        self.undoManager?.setActionName("Replace Text".localized)
-        
-        self.didChangeText()
-    }
-    
-    
-    /// append string at the end of the whole string and select inserted range
-    func append(string: String) {
-        
-        let replacementRange = NSRange(location: self.string.utf16.count, length: 0)
-        
-        guard self.shouldChangeText(in: replacementRange, replacementString: string) else { return }
-        
-        self.replaceCharacters(in: replacementRange, with: string)
-        self.selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
-        
-        self.undoManager?.setActionName("Insert Text".localized)
-        
-        self.didChangeText()
+        textView.replace(with: string, range: replacementRange, selectedRange: selectedRange,
+                         actionName: "Insert Text".localized)
     }
     
 }
