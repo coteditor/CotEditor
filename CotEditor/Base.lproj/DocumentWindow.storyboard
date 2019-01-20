@@ -7,6 +7,66 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="Yfj-JT-7D8">
+            <objects>
+                <viewController storyboardIdentifier="Opacity Slider" id="ZLM-Nl-Z29" sceneMemberID="viewController">
+                    <view key="view" id="bOA-H3-R5s">
+                        <rect key="frame" x="0.0" y="0.0" width="168" height="35"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK">
+                                <rect key="frame" x="32" y="8" width="104" height="19"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="IyE-hB-aRv"/>
+                                </constraints>
+                                <sliderCell key="cell" continuous="YES" state="on" alignment="left" minValue="0.20000000000000001" maxValue="1" doubleValue="1" tickMarkPosition="below" sliderType="linear" id="nH9-7k-ekd"/>
+                                <connections>
+                                    <action selector="changeOpacity:" target="5Ob-vN-y5O" id="ye6-US-Iju"/>
+                                    <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject" id="SX0-IU-zgh"/>
+                                </connections>
+                            </slider>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="142" y="10" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="fKr-dw-ydI"/>
+                                    <constraint firstAttribute="width" secondItem="8NN-KX-RmA" secondAttribute="height" multiplier="1:1" id="z4I-AJ-XUY"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="EVo-Ee-gQ1" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="Ua8-gn-INm"/>
+                                    <constraint firstAttribute="width" secondItem="EVo-Ee-gQ1" secondAttribute="height" multiplier="1:1" id="ffh-fp-NbT"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="opacity">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8NN-KX-RmA" secondAttribute="trailing" constant="10" id="B8y-Wd-GeZ"/>
+                            <constraint firstItem="EVo-Ee-gQ1" firstAttribute="leading" secondItem="bOA-H3-R5s" secondAttribute="leading" constant="10" id="PNF-bq-CpF"/>
+                            <constraint firstItem="8NN-KX-RmA" firstAttribute="centerY" secondItem="EVo-Ee-gQ1" secondAttribute="centerY" id="Qk8-Dg-YoV"/>
+                            <constraint firstItem="ZFD-Ne-lGK" firstAttribute="top" secondItem="bOA-H3-R5s" secondAttribute="top" constant="10" id="UJn-5i-qgj"/>
+                            <constraint firstAttribute="bottom" secondItem="ZFD-Ne-lGK" secondAttribute="bottom" constant="10" id="b4K-7o-CYA"/>
+                            <constraint firstItem="8NN-KX-RmA" firstAttribute="leading" secondItem="ZFD-Ne-lGK" secondAttribute="trailing" constant="8" symbolic="YES" id="frb-pU-Ioy"/>
+                            <constraint firstItem="ZFD-Ne-lGK" firstAttribute="leading" secondItem="EVo-Ee-gQ1" secondAttribute="trailing" constant="8" symbolic="YES" id="g88-0H-jxA"/>
+                            <constraint firstItem="ZFD-Ne-lGK" firstAttribute="centerY" secondItem="EVo-Ee-gQ1" secondAttribute="centerY" id="v3v-iY-csa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="5Ob-vN-y5O" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44" y="-202"/>
+        </scene>
         <!--Window Controller-->
         <scene sceneID="sAX-Gn-44h">
             <objects>
@@ -78,7 +138,7 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="C851D6EB-6F7D-4E1C-816F-3A47FCD18293" label="Inspector" paletteLabel="Inspector" image="Inspector" id="uXf-pD-u6A" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="9VQ-Uo-PS3">
                                         <rect key="frame" x="7" y="14" width="44" height="28"/>
@@ -114,7 +174,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="530A2BF7-340F-401E-8980-9B3CE8087ABA" label="Writing Direction" paletteLabel="Writing Direction" toolTip="Change writing direction" id="1zL-0E-fZd" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="116" height="24"/>
+                                    <size key="minSize" width="115" height="24"/>
                                     <size key="maxSize" width="116" height="28"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="5xG-tN-u7n">
                                         <rect key="frame" x="0.0" y="14" width="116" height="24"/>
@@ -136,7 +196,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="D6340D2C-900C-4440-AE3B-0DB7D864D6F2" label="Text Orientation" paletteLabel="Text Orientation" toolTip="Toggle text orientation" id="1cW-FV-40L" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="79" height="24"/>
+                                    <size key="minSize" width="78" height="24"/>
                                     <size key="maxSize" width="79" height="28"/>
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="fMu-nq-0Xk">
                                         <rect key="frame" x="6" y="14" width="79" height="24"/>
@@ -178,7 +238,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="C038D14C-A110-4B20-AED9-21C2346C0090" label="Comment" paletteLabel="Comment" toolTip="Comment-out or uncomment selection" image="Comment" id="fW9-Xn-I9b" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="gTh-5w-6Nh">
                                         <rect key="frame" x="7" y="14" width="44" height="28"/>
@@ -214,7 +274,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="C2AB6429-8A8C-48C3-80DA-4DC29AEDA647" label="Invisibles" paletteLabel="Invisibles" toolTip="Show or hide invisible characters in text" image="Invisibles_On" id="xbD-Up-YfQ" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="u0d-YI-siI">
                                         <rect key="frame" x="6" y="14" width="44" height="28"/>
@@ -229,7 +289,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="D69A254B-ECF5-43C1-89A4-1140CF9AD2D8" label="Wrap Lines" paletteLabel="Wrap Lines" toolTip="Toggle wrap lines" image="WrapLines_On" id="mGD-5P-MDq" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="Lbi-9O-cqC">
                                         <rect key="frame" x="11" y="14" width="44" height="28"/>
@@ -244,7 +304,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="0185BD18-50F5-4EE3-8861-FF61D72811C7" label="Page Guide" paletteLabel="Page Guide" toolTip="Show or hide page guide line" image="PageGuide_On" id="GS6-aA-mgz" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="kpP-zz-32F">
                                         <rect key="frame" x="12" y="14" width="44" height="28"/>
@@ -259,7 +319,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7AF9E4E9-FD91-4EF2-9AF6-AAF437B9242F" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar" image="SpellCheck" id="Ply-Nr-aOE" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="Lz0-Ll-Wdc">
                                         <rect key="frame" x="13" y="14" width="44" height="28"/>
@@ -274,7 +334,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="F208FEC3-D197-418F-A04B-833206F25FA7" label="Color Code" paletteLabel="Color Code" toolTip="Open Color Code Editor and set selection as color code" image="ColorCode" id="Yx1-Tq-tfo" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="Bur-Ra-ORX">
                                         <rect key="frame" x="11" y="14" width="44" height="28"/>
@@ -289,7 +349,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="EE502370-3E58-4FF5-9F67-A9E3359697CE" label="Emoji &amp; Symbols" paletteLabel="Emoji &amp; Symbols" toolTip="Show Emoji &amp; Symbols palette" image="Emoji" id="tek-D0-460" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="25"/>
                                     <button key="view" verticalHuggingPriority="750" id="vRD-Ro-4Vb">
                                         <rect key="frame" x="26" y="14" width="44" height="25"/>
@@ -303,8 +363,23 @@
                                         <action selector="orderFrontCharacterPalette:" target="klO-m3-n5X" id="gIt-Sl-DWA"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="61069554-3748-429C-94A3-EA8375B3BF6E" label="Fonts" paletteLabel="Fonts" toolTip="Show Font Panel" image="FontsTemplate" id="vLf-la-9dL" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="AFF7902E-7E9C-432A-AD6F-76142467F8A6" label="Opacity" paletteLabel="Opacity" toolTip="Set editor’s opacity" image="Opacity" id="LYl-ty-usA" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="46" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="bZi-gJ-Pzq">
+                                        <rect key="frame" x="1" y="14" width="46" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Opacity" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0mA-hs-YW5">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="showOpacitySlider:" target="0UB-Lz-R6c" id="a3X-ix-IEH"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="61069554-3748-429C-94A3-EA8375B3BF6E" label="Fonts" paletteLabel="Fonts" toolTip="Show Font Panel" image="FontsTemplate" id="vLf-la-9dL" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="eNt-tF-HIN">
                                         <rect key="frame" x="0.0" y="14" width="44" height="28"/>
@@ -319,7 +394,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="E5B2DEA8-CA7E-42D7-A457-2F480BEF9D16" label="Find" paletteLabel="Find" toolTip="Show “Find and Replace”" image="MagnifierTemplate" id="ACV-s4-QzY" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="1fB-Sq-G7I">
                                         <rect key="frame" x="0.0" y="14" width="44" height="28"/>
@@ -334,7 +409,7 @@
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="59A1E716-BBEB-496E-9E86-E43E749E2544" label="Print" paletteLabel="Print" toolTip="Print" image="PrintTemplate" id="hbb-MD-j6g" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="NDv-NS-uxz">
                                         <rect key="frame" x="0.0" y="14" width="44" height="28"/>
@@ -728,6 +803,7 @@
         <image name="LockedTemplate" width="16" height="16"/>
         <image name="MagnifierTemplate" width="15" height="18"/>
         <image name="NSShareTemplate" width="11" height="16"/>
+        <image name="Opacity" width="20" height="18"/>
         <image name="OutlineTemplate" width="15" height="15"/>
         <image name="PageGuide_On" width="16" height="18"/>
         <image name="PrintTemplate" width="18" height="18"/>

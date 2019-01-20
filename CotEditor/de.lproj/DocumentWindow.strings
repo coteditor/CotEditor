@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -165,6 +165,11 @@
 "tek-D0-460.label" = "Emoji & Symbole";  /* Emoji & Symbols */
 "tek-D0-460.paletteLabel" = "Emoji & Symbole";  /* Emoji & Symbols */
 "tek-D0-460.toolTip" = "Emoji- & Symbolpalette einblenden";  /* Show Emoji & Symbols palette */
+
+/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
+"LYl-ty-usA.label" = "Deckkraft";  /* Opacity */
+"LYl-ty-usA.paletteLabel" = "Deckkraft";  /* Opacity */
+"LYl-ty-usA.toolTip" = "Deckkraft des Editors einstellen";  /* Set editor’s opacity */
 
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "Suchen";  /* Find */

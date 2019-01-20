@@ -93,6 +93,26 @@ final class DocumentWindow: NSWindow {
     }
     
     
+    /// store UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if coder.containsValue(forKey: #keyPath(backgroundAlpha)) {
+            self.backgroundAlpha = CGFloat(coder.decodeDouble(forKey: #keyPath(backgroundAlpha)))
+        }
+    }
+    
+    
+    /// resume UI state
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        super.encodeRestorableState(with: coder)
+        
+        coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
+    }
+    
+    
     /// apply current state to menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         

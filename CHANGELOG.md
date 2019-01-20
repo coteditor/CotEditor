@@ -5,6 +5,11 @@ Change Log
 3.7.0-beta.5 (unreleased)
 --------------------------
 
+### New Features
+
+- Add Opacity toolbar item to change editor's opacity.
+
+
 ### Improvements
 
 - [beta] Merge a part of changes in CotEditor 3.6.13.
