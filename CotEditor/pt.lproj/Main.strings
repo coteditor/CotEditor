@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2019 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -309,6 +309,9 @@
 "u46-te-4c4.title" = "Posicionar Editores Verticalmente";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Fechar Editor Dividido";
+
+/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "Definir Opacidade do Editor…";
 
 
 

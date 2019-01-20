@@ -83,6 +83,33 @@ final class DocumentWindowController: NSWindowController {
         }
     }
     
+    
+    
+    // MARK: Actions
+    
+    /// show editor opacity slider as popover
+    @IBAction func showOpacitySlider(_ sender: Any?) {
+        
+        guard
+            let window = self.window as? DocumentWindow,
+            let origin = sender as? NSView ?? self.contentViewController?.view,
+            let sliderViewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? NSViewController,
+            let contentViewController = self.contentViewController
+            else { return assertionFailure() }
+        
+        sliderViewController.representedObject = window.backgroundAlpha
+        
+        contentViewController.present(sliderViewController, asPopoverRelativeTo: .zero, of: origin,
+                                      preferredEdge: .minY, behavior: .transient)
+    }
+    
+    
+    /// change editor opacity via toolbar
+    @IBAction func changeOpacity(_ sender: NSSlider) {
+        
+        (self.window as! DocumentWindow).backgroundAlpha = CGFloat(sender.doubleValue)
+    }
+    
 }
 
 

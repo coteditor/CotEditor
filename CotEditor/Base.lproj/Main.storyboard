@@ -611,6 +611,13 @@ DQ
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="kAE-Tf-I6P"/>
+                                        <menuItem title="Set Editor’s Opacity…" id="367">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showOpacitySlider:" target="Ady-hI-5gd" id="VEp-dh-l6T"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="611">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>

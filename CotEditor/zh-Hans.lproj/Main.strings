@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -311,6 +311,9 @@
 "u46-te-4c4.title" = "纵向分栏显示";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "关闭分栏显示";
+
+/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "设置编辑器透明度…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "2da-fK-Nkg.title" = "进入全屏";
