@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2018 1024jp
+//  © 2013-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,7 +63,6 @@ final class DocumentWindowController: NSWindowController {
         // observe opacity setting change
         self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha, options: [.new]) { [unowned self] change in
             (self.window as? DocumentWindow)?.backgroundAlpha = change.new!
-            self.contentViewController?.view.needsDisplay = true
         }
     }
     
