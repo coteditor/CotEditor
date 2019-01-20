@@ -103,11 +103,11 @@ struct ScriptDescriptor {
     
     let url: URL
     let name: String
+    let shortcut: Shortcut
+    let ordering: Int?
     let type: ScriptingFileType?
     let executionModel: ScriptingExecutionModel
     let eventTypes: [ScriptingEventType]
-    let shortcut: Shortcut
-    let ordering: Int?
     
     
     
@@ -121,8 +121,6 @@ struct ScriptDescriptor {
     /// - Parameter url: The location of an user script.
     init(at url: URL) {
         
-        // Extract from URL
-        
         self.url = url
         self.type = ScriptingFileType.allCases.first { $0.extensions.contains(url.pathExtension) }
         var name = url.deletingPathExtension().lastPathComponent
@@ -133,12 +131,12 @@ struct ScriptDescriptor {
         } else {
             self.shortcut = shortcut
             
-            // Remove the shortcut specification from the script name
+            // remove the shortcut specification from the script name
             name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
         }
         
         if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
-            // Remove the parenthesis at last
+            // remove the parenthesis at last
             let orderingString = name[..<name.index(before: range.upperBound)]
             self.ordering = Int(orderingString)
             
