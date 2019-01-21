@@ -612,7 +612,7 @@ DQ
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kAE-Tf-I6P"/>
-                                        <menuItem title="Set Editor’s Opacity…" id="367">
+                                        <menuItem title="Change Editor’s Opacity…" id="367">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showOpacitySlider:" target="Ady-hI-5gd" id="VEp-dh-l6T"/>

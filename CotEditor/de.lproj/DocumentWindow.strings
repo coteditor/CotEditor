@@ -154,7 +154,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "Deckkraft";  /* Opacity */
 "LYl-ty-usA.paletteLabel" = "Deckkraft";  /* Opacity */
-"LYl-ty-usA.toolTip" = "Deckkraft des Editors einstellen";  /* Set editor’s opacity */
+"LYl-ty-usA.toolTip" = "Deckkraft des Editors wechseln";  /* Change editor’s opacity */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */

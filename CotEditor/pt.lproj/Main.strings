@@ -310,8 +310,8 @@
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Fechar Editor Dividido";
 
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "Definir Opacidade do Editor…";
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "Altere Opacidade do Editor…";
 
 
 

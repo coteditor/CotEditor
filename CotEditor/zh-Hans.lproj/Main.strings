@@ -312,8 +312,8 @@
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "关闭分栏显示";
 
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
-"367.title" = "设置编辑器透明度…";
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "更改编辑器透明度…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "2da-fK-Nkg.title" = "进入全屏";

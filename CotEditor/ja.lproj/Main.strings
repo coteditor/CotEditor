@@ -311,7 +311,7 @@
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "分割エディタを閉じる";
 
-/* Class = "NSMenuItem"; title = "Set Editor’s Opacity…"; ObjectID = "367"; */
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
 "367.title" = "エディタの不透明度...";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */

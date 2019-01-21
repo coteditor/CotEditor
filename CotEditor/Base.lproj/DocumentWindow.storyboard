@@ -318,7 +318,7 @@
                                         <action selector="togglePageGuide:" target="klO-m3-n5X" id="JBo-f2-NdY"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="CC5204DD-E523-4929-B3CE-697DB1E53CF0" label="Opacity" paletteLabel="Opacity" toolTip="Set editor’s opacity" image="Opacity" id="LYl-ty-usA" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                <toolbarItem implicitItemIdentifier="CC5204DD-E523-4929-B3CE-697DB1E53CF0" label="Opacity" paletteLabel="Opacity" toolTip="Change editor’s opacity" image="Opacity" id="LYl-ty-usA" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="44" height="25"/>
                                     <size key="maxSize" width="46" height="28"/>
                                     <button key="view" verticalHuggingPriority="750" id="bZi-gJ-Pzq">

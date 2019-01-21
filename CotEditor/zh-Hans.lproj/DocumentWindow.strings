@@ -155,7 +155,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "透明度";  /* Opacity */
 "LYl-ty-usA.paletteLabel" = "透明度";  /* Opacity */
-"LYl-ty-usA.toolTip" = "设置编辑器透明度";  /* Set editor’s opacity */
+"LYl-ty-usA.toolTip" = "更改编辑器透明度";  /* Change editor’s opacity */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "拼写检查";  /* Spell Check */
