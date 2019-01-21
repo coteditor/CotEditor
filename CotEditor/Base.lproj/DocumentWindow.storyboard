@@ -12,7 +12,7 @@
             <objects>
                 <viewController storyboardIdentifier="Opacity Slider" id="ZLM-Nl-Z29" sceneMemberID="viewController">
                     <view key="view" id="bOA-H3-R5s">
-                        <rect key="frame" x="0.0" y="0.0" width="168" height="35"/>
+                        <rect key="frame" x="0.0" y="0.0" width="168" height="57"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFD-Ne-lGK">
@@ -26,7 +26,7 @@
                                     <binding destination="ZLM-Nl-Z29" name="value" keyPath="representedObject" id="SX0-IU-zgh"/>
                                 </connections>
                             </slider>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                            <customView toolTip="Opaque" translatesAutoresizingMaskIntoConstraints="NO" id="8NN-KX-RmA" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="142" y="10" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="fKr-dw-ydI"/>
@@ -38,7 +38,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="EVo-Ee-gQ1" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
+                            <customView toolTip="Transparent" translatesAutoresizingMaskIntoConstraints="NO" id="EVo-Ee-gQ1" customClass="OpacitySampleView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="10" y="10" width="16" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="Ua8-gn-INm"/>
@@ -50,13 +50,24 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w6y-xp-bly">
+                                <rect key="frame" x="8" y="34" width="101" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Editor’s Opacity" id="Are-7I-6OR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="w6y-xp-bly" firstAttribute="leading" secondItem="bOA-H3-R5s" secondAttribute="leading" constant="10" id="8ZK-7g-gVK"/>
                             <constraint firstAttribute="trailing" secondItem="8NN-KX-RmA" secondAttribute="trailing" constant="10" id="B8y-Wd-GeZ"/>
                             <constraint firstItem="EVo-Ee-gQ1" firstAttribute="leading" secondItem="bOA-H3-R5s" secondAttribute="leading" constant="10" id="PNF-bq-CpF"/>
                             <constraint firstItem="8NN-KX-RmA" firstAttribute="centerY" secondItem="EVo-Ee-gQ1" secondAttribute="centerY" id="Qk8-Dg-YoV"/>
-                            <constraint firstItem="ZFD-Ne-lGK" firstAttribute="top" secondItem="bOA-H3-R5s" secondAttribute="top" constant="10" id="UJn-5i-qgj"/>
+                            <constraint firstItem="EVo-Ee-gQ1" firstAttribute="top" secondItem="w6y-xp-bly" secondAttribute="bottom" constant="8" symbolic="YES" id="Tdv-Pe-xeS"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="w6y-xp-bly" secondAttribute="trailing" constant="20" symbolic="YES" id="ZOb-kt-9qP"/>
                             <constraint firstAttribute="bottom" secondItem="ZFD-Ne-lGK" secondAttribute="bottom" constant="10" id="b4K-7o-CYA"/>
+                            <constraint firstItem="w6y-xp-bly" firstAttribute="top" secondItem="bOA-H3-R5s" secondAttribute="top" constant="6" id="bha-wT-AWy"/>
                             <constraint firstItem="8NN-KX-RmA" firstAttribute="leading" secondItem="ZFD-Ne-lGK" secondAttribute="trailing" constant="8" symbolic="YES" id="frb-pU-Ioy"/>
                             <constraint firstItem="ZFD-Ne-lGK" firstAttribute="leading" secondItem="EVo-Ee-gQ1" secondAttribute="trailing" constant="8" symbolic="YES" id="g88-0H-jxA"/>
                             <constraint firstItem="ZFD-Ne-lGK" firstAttribute="centerY" secondItem="EVo-Ee-gQ1" secondAttribute="centerY" id="v3v-iY-csa"/>
@@ -65,7 +76,7 @@
                 </viewController>
                 <customObject id="5Ob-vN-y5O" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="44" y="-202"/>
+            <point key="canvasLocation" x="44" y="-190"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="sAX-Gn-44h">
