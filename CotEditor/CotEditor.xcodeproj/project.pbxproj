@@ -2142,7 +2142,7 @@
 				2A1814BA21CF8F3800602214 /* RegularExpressionSyntaxType+Color.swift */,
 				2AC6BFD021D00ABD00FF325C /* NSTextView+RegexParse.swift */,
 			);
-			path = "Regex Parser";
+			name = "Regex Parser";
 			sourceTree = "<group>";
 		};
 		2AC71DE01BF0BDBC002E1434 /* Tests */ = {
@@ -2654,7 +2654,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ruby makeSyntaxMap.rb";
+			shellScript = "ruby makeSyntaxMap.rb\n";
 		};
 		2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2710,7 +2710,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "cd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2ACC21B91E546CCF0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4042,7 +4042,6 @@
 		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
@@ -4060,7 +4059,6 @@
 		2AC71DE71BF0BDBC002E1434 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;

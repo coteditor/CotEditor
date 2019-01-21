@@ -126,6 +126,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             #keyPath(showsLineNumber),
             #keyPath(showsPageGuide),
             #keyPath(showsInvisibles),
+            #keyPath(wrapsLines),
+            #keyPath(verticalLayoutOrientation),
+            #keyPath(writingDirection),
+            #keyPath(isAutoTabExpandEnabled),
         ]
     }
     
@@ -137,17 +141,27 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             coder.encode(themeName, forKey: "theme")
         }
         
+        // manunally encode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
+        for keyPath in type(of: self).restorableStateKeyPaths {
+            coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
+        }
+        
         super.encodeRestorableState(with: coder)
     }
     
     
-    /// resume UI state
+    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
         
         if let themeName = coder.decodeObject(forKey: "theme") as? String {
             self.setTheme(name: themeName)
+        }
+        
+        // manunally decode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
+        for keyPath in type(of: self).restorableStateKeyPaths where coder.containsValue(forKey: keyPath) {
+            self.setValue(coder.decodeObject(forKey: keyPath), forKeyPath: keyPath)
         }
     }
     
@@ -474,7 +488,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// if lines soft-wrap at window edge
-    var wrapsLines = false {
+    @objc var wrapsLines = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -529,7 +543,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    var writingDirection: NSWritingDirection {
+    @objc var writingDirection: NSWritingDirection {
         
         get {
             return self.focusedTextView?.baseWritingDirection ?? .leftToRight
@@ -559,7 +573,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// whether replace tab with spaces
-    var isAutoTabExpandEnabled: Bool {
+    @objc var isAutoTabExpandEnabled: Bool {
         
         get {
             return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]

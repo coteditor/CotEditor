@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -310,6 +310,9 @@
 "u46-te-4c4.title" = "分割エディタを縦に配置";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "分割エディタを閉じる";
+
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "エディタの不透明度...";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "4mh-0E-3RJ.title" = "フルスクリーンにする";

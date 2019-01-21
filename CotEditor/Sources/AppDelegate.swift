@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2018 1024jp
+//  © 2013-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -148,9 +148,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // setup KeyBindingManager
         MenuKeyBindingManager.shared.applyKeyBindingsToMainMenu()
-        
-        // register Help book
-        NSHelpManager.shared.registerBooks(in: Bundle.main)
         
         // register Services
         NSApp.servicesProvider = ServicesProvider()

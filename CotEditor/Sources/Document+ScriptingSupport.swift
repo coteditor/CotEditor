@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,7 +46,7 @@ extension Document {
             let textStorage = NSTextStorage(string: self.string)
             
             textStorage.observeDirectEditing { [weak self] (editedString) in
-                self?.replaceAllString(with: editedString)
+                self?.insert(string: editedString, at: .replaceAll)
             }
             
             return textStorage
@@ -55,10 +55,10 @@ extension Document {
         set {
             switch newValue {
             case let textStorage as NSTextStorage:
-                self.replaceAllString(with: textStorage.string)
+                self.insert(string: textStorage.string, at: .replaceAll)
                 
             case let string as String:
-                self.replaceAllString(with: string)
+                self.insert(string: string, at: .replaceAll)
                 
             default:
                 assertionFailure()
@@ -299,7 +299,7 @@ extension Document {
             
             guard numberOfReplacements > 0 else { return 0 }
             
-            self.replaceAllString(with: newWholeString as String)
+            self.insert(string: newWholeString as String, at: .replaceAll)
             self.selectedRange = NSRange()
             
             return numberOfReplacements as NSNumber

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,13 +34,14 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Public Properties
     
-    var backgroundAlpha: CGFloat = 1.0 {
+    @objc var backgroundAlpha: CGFloat = 1.0 {
         
         didSet {
             backgroundAlpha = backgroundAlpha.clamped(to: 0.2...1.0)
             self.backgroundColor = self.backgroundColor.withAlphaComponent(backgroundAlpha)
             self.isOpaque = (backgroundAlpha == 1.0)
             self.invalidateShadow()
+            self.contentView?.needsDisplay = true
         }
     }
     
@@ -89,6 +90,26 @@ final class DocumentWindow: NSWindow {
             
             self.invalidateTitlebarOpacity()
         }
+    }
+    
+    
+    /// store UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if coder.containsValue(forKey: #keyPath(backgroundAlpha)) {
+            self.backgroundAlpha = CGFloat(coder.decodeDouble(forKey: #keyPath(backgroundAlpha)))
+        }
+    }
+    
+    
+    /// resume UI state
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        super.encodeRestorableState(with: coder)
+        
+        coder.encode(Double(self.backgroundAlpha), forKey: #keyPath(backgroundAlpha))
     }
     
     

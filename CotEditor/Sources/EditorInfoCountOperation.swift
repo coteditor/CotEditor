@@ -155,16 +155,20 @@ final class EditorInfoCountOperation: Operation {
         guard !self.isCancelled else { return }
         
         // count words
+        let dispatchGroup = DispatchGroup()
         if self.requiredInfo.contains(.words) {
             // perform on the main thraed to use shared NSSpellChecker (macOS 10.14)
-            let operation = { [unowned self] in
+            dispatchGroup.enter()
+            DispatchQueue.main.async { [weak self] in
+                defer { dispatchGroup.leave() }
+                guard let self = self else { return }
+                
                 self.result.words = NSSpellChecker.shared.countWords(in: self.string, language: self.language)
                 
                 if hasSelection {
                     self.result.selectedWords = NSSpellChecker.shared.countWords(in: String(selectedString), language: self.language)
                 }
             }
-            Thread.isMainThread ? operation() : DispatchQueue.main.sync(execute: operation)
         }
         
         // calculate current location
@@ -196,6 +200,9 @@ final class EditorInfoCountOperation: Operation {
                 self.result.unicode = selectedString.unicodeScalars.first?.codePoint
             }
         }
+        
+        // wait word count on the main thread
+        dispatchGroup.wait()
     }
     
 }

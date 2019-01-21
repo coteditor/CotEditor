@@ -49,4 +49,4 @@ License
 © 2011, 2014 usami-k,
 © 2013-2019 1024jp.
 
-The source code is distributed under the terms of the __Apache License, Version 2.0__. See [LICENSE](LICENSE) for details.
+The source code is licensed under the terms of the __Apache License, Version 2.0__. The image resources are licensed under the terms of the [__Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License__](https://creativecommons.org/licenses/by-nc-nd/4.0/). See [LICENSE](LICENSE) for details.

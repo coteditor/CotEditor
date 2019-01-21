@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -88,7 +88,7 @@ final class UnixScript: Script {
         }
         
         // fetch target document
-        weak var document = NSDocumentController.shared.currentDocument as? Document
+        weak var document = NSDocumentController.shared.currentDocument as? NSDocument & Editable
         
         // read input
         let input: String?
@@ -199,9 +199,7 @@ final class UnixScript: Script {
     /// - Throws: `ScriptError`
     private func readInputString(type: InputType, editor: Editable?) throws -> String {
         
-        guard let editor = editor else {
-            throw ScriptError.noInputTarget
-        }
+        guard let editor = editor else { throw ScriptError.noInputTarget }
         
         switch type {
         case .selection:
@@ -218,44 +216,33 @@ final class UnixScript: Script {
     /// - Throws: `ScriptError`
     private static func applyOutput(_ output: String, editor: Editable?, type: OutputType) throws {
         
-        if type == .pasteBoard {
-            let pasteboard = NSPasteboard.general
-            pasteboard.declareTypes([.string], owner: nil)
-            guard pasteboard.setString(output, forType: .string) else {
-                NSSound.beep()
-                return
-            }
-            return
-        }
+        assert(Thread.isMainThread)
         
-        if type == .newDocument {
-            let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Document
-            document.insert(string: output)
+        switch type {
+        case .replaceSelection:
+            guard let editor = editor else { throw ScriptError.noOutputTarget }
+            editor.insert(string: output, at: .replaceSelection)
+            
+        case .replaceAllText:
+            guard let editor = editor else { throw ScriptError.noOutputTarget }
+            editor.insert(string: output, at: .replaceAll)
+            
+        case .insertAfterSelection:
+            guard let editor = editor else { throw ScriptError.noOutputTarget }
+            editor.insert(string: output, at: .afterSelection)
+            
+        case .appendToAllText:
+            guard let editor = editor else { throw ScriptError.noOutputTarget }
+            editor.insert(string: output, at: .afterAll)
+            
+        case .newDocument:
+            let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Editable
+            document.insert(string: output, at: .replaceAll)
             document.selectedRange = NSRange(location: 0, length: 0)
-            return
-        }
-        
-        guard let editor = editor else {
-            throw ScriptError.noOutputTarget
-        }
-        
-        DispatchQueue.main.async {
-            switch type {
-            case .replaceSelection:
-                editor.insert(string: output)
-                
-            case .replaceAllText:
-                editor.replaceAllString(with: output)
-                
-            case .insertAfterSelection:
-                editor.insertAfterSelection(string: output)
-                
-            case .appendToAllText:
-                editor.append(string: output)
-                
-            case .newDocument, .pasteBoard:
-                assertionFailure()
-            }
+            
+        case .pasteBoard:
+            NSPasteboard.general.declareTypes([.string], owner: nil)
+            NSPasteboard.general.setString(output, forType: .string)
         }
     }
     

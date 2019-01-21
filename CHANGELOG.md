@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+3.7.0-beta.5 (329)
+--------------------------
+
+### New Features
+
+- Add Opacity toolbar item to change editor's opacity.
+
+
+### Improvements
+
+- [beta] Merge a part of changes in CotEditor 3.6.13.
+
+
+### Fixes
+
+- [beta] Fix multi-cursor behavior with `→` and `←` when something is selected.
+
+
+
 3.7.0-beta.4 (327)
 --------------------------
 
@@ -9,14 +28,14 @@ Change Log
 
 - [beta] Support snippet insertion in multi-cursor editing.
 - [beta] Replace `^⇧↑` and `^⇧↓` shortcuts with `^⇧→` and `^⇧←` correspondingly when the text orientation is vertical.
-- [beta] Fix and improve behavior of `^⇧↑` and `^⇧↓` shortcuts.
+- [beta] Fix and improve the behavior of `^⇧↑` and `^⇧↓` shortcuts.
 - [beta] Merge changes in CotEditor 3.6.12.
 
 
 ### Fixes
 
 - [beta] Fix selection after commenting-out.
-- [beta] Suppress blinking Edit menu when perform `^⇧↑` or `^⇧↓` shortcut.
+- [beta] Suppress blinking Edit menu when performing `^⇧↑` or `^⇧↓` shortcut.
 - [beta] Fix an issue where auto-inserted tab did not expand to spaces on auto indent level adjustment.
 
 
@@ -65,6 +84,22 @@ Change Log
 ### New Features
 
 - Multi-cursor editing.
+
+
+
+3.6.13 (unreleased)
+--------------------------
+
+### Improvements
+
+- Restore more UI state on window restoration.
+
+
+### Fixes
+
+- Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
+- Fix an issue where auto-completion could cancel suddenly under a restricted condition.
+- Fix a possible issue where word counting could stuck.
 
 
 
