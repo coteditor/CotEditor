@@ -152,6 +152,11 @@
 "GS6-aA-mgz.paletteLabel" = "页面指示";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "显示或隐藏页面指示";  /* Show or hide page guide line */
 
+/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
+"LYl-ty-usA.label" = "透明度";  /* Opacity */
+"LYl-ty-usA.paletteLabel" = "透明度";  /* Opacity */
+"LYl-ty-usA.toolTip" = "设置编辑器透明度";  /* Set editor’s opacity */
+
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "拼写检查";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "拼写检查";  /* Spell Check */
@@ -166,11 +171,6 @@
 "tek-D0-460.label" = "表情与符号";  /* Emoji & Symbols */
 "tek-D0-460.paletteLabel" = "表情与符号";  /* Emoji & Symbols */
 "tek-D0-460.toolTip" = "显示「颜文字&符号」盘";  /* Show Emoji & Symbols palette */
-
-/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
-"LYl-ty-usA.label" = "透明度";  /* Opacity */
-"LYl-ty-usA.paletteLabel" = "透明度";  /* Opacity */
-"LYl-ty-usA.toolTip" = "设置编辑器透明度";  /* Set editor’s opacity */
 
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "查找";  /* Find */

@@ -150,6 +150,11 @@
 "GS6-aA-mgz.paletteLabel" = "Guia da Página";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Mostre ou oculte a linha de guia da página";  /* Show or hide page guide line */
 
+/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
+"LYl-ty-usA.label" = "Opacidade";  /* Opacity */
+"LYl-ty-usA.paletteLabel" = "Opacidade";  /* Opacity */
+"LYl-ty-usA.toolTip" = "Definir Opacidade do Editor";  /* Set editor’s opacity */
+
 /* Class = "NSToolbarItem"; label = "Spell Check"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Verificar Ortografia";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Verificar Ortografia";  /* Spell Check */
@@ -164,11 +169,6 @@
 "tek-D0-460.label" = "Emoji e símbolos";  /* Emoji & Symbols */
 "tek-D0-460.paletteLabel" = "Emoji e símbolos";  /* Emoji & Symbols */
 "tek-D0-460.toolTip" = "Mostrar Paleta de Emojis e Símbolos";  /* Show Emoji & Symbols palette */
-
-/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
-"LYl-ty-usA.label" = "Opacidade";  /* Opacity */
-"LYl-ty-usA.paletteLabel" = "Opacidade";  /* Opacity */
-"LYl-ty-usA.toolTip" = "Definir Opacidade do Editor";  /* Set editor’s opacity */
 
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "Buscar";  /* Find */

@@ -318,6 +318,21 @@
                                         <action selector="togglePageGuide:" target="klO-m3-n5X" id="JBo-f2-NdY"/>
                                     </connections>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="CC5204DD-E523-4929-B3CE-697DB1E53CF0" label="Opacity" paletteLabel="Opacity" toolTip="Set editor’s opacity" image="Opacity" id="LYl-ty-usA" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="44" height="25"/>
+                                    <size key="maxSize" width="46" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="bZi-gJ-Pzq">
+                                        <rect key="frame" x="1" y="14" width="46" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Opacity" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0mA-hs-YW5">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="showOpacitySlider:" target="0UB-Lz-R6c" id="a3X-ix-IEH"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="7AF9E4E9-FD91-4EF2-9AF6-AAF437B9242F" label="Spell Check" paletteLabel="Spell Check" toolTip="Show spelling and grammar" image="SpellCheck" id="Ply-Nr-aOE" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <size key="minSize" width="43" height="25"/>
                                     <size key="maxSize" width="44" height="28"/>
@@ -361,21 +376,6 @@
                                     </button>
                                     <connections>
                                         <action selector="orderFrontCharacterPalette:" target="klO-m3-n5X" id="gIt-Sl-DWA"/>
-                                    </connections>
-                                </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="AFF7902E-7E9C-432A-AD6F-76142467F8A6" label="Opacity" paletteLabel="Opacity" toolTip="Set editor’s opacity" image="Opacity" id="LYl-ty-usA" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="44" height="25"/>
-                                    <size key="maxSize" width="46" height="28"/>
-                                    <button key="view" verticalHuggingPriority="750" id="bZi-gJ-Pzq">
-                                        <rect key="frame" x="1" y="14" width="46" height="28"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="Opacity" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0mA-hs-YW5">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                    <connections>
-                                        <action selector="showOpacitySlider:" target="0UB-Lz-R6c" id="a3X-ix-IEH"/>
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="61069554-3748-429C-94A3-EA8375B3BF6E" label="Fonts" paletteLabel="Fonts" toolTip="Show Font Panel" image="FontsTemplate" id="vLf-la-9dL" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
