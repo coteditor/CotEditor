@@ -1031,13 +1031,15 @@
 	<key>CFBundleSpokenName</key>
 	<string>Cot editor</string>
 	<key>CFBundleVersion</key>
-	<string>328</string>
+	<string>329</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>${EXECUTABLE_NAME} needs user approval to control other applications with AppleScript.</string>
 	<key>NSAppleScriptEnabled</key>
 	<true/>
 	<key>NSHumanReadableCopyright</key>
@@ -1105,8 +1107,6 @@
 	</dict>
 	<key>OSAScriptingDefinition</key>
 	<string>$(PRODUCT_NAME).sdef</string>
-	<key>NSAppleEventsUsageDescription</key>
-	<string>${EXECUTABLE_NAME} needs user approval to control other applications with AppleScript.</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
