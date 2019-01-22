@@ -27,7 +27,7 @@
  */
 
 // Descriptions for privacy authorization dialog
-"NSAppleEventsUsageDescription" = "CotEditor needs user approval to control other applications with AppleScript.";  // "CotEditor needs user approval to control other applications with AppleScript."  // FIXME: added
+"NSAppleEventsUsageDescription" = "CotEditor 需要用户授权使用 AppleScript 控制其他应用。";  // "CotEditor needs user approval to control other applications with AppleScript."
 
 // Document Types
 "Text document" = "文本文档";

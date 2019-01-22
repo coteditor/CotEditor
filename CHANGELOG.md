@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [beta] Keep insertion points afeter cut.
+- [beta] Localize newly added strings.
 
 
 
