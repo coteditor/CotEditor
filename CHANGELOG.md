@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.0-rc (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Keep insertion points afeter cut.
+
+
+
 3.7.0-beta.5 (329)
 --------------------------
 

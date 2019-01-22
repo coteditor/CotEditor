@@ -585,6 +585,28 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// delete the selected text and place it onto the general pasteboard
+    override func cut(_ sender: Any?) {
+        
+        let insertionRanges = self.insertionRanges
+        self.setSelectedRangesWithUndo(insertionRanges)
+        
+        super.cut(sender)
+        
+        guard insertionRanges.count > 1 else { return }
+        
+        // keep insertion points after cut
+        let ranges = insertionRanges.enumerated()
+            .map { insertionRanges[..<$0.offset].reduce(into: $0.element.location) { $0 -= $1.length } }
+            .map { NSRange($0..<$0) }
+        
+        guard let set = self.prepareForSelectionUpdate(ranges) else { return }
+        
+        self.selectedRanges = set.selectedRanges
+        self.insertionLocations = set.insertionLocations
+    }
+    
+    
     /// change multiple selection ranges
     override var selectedRanges: [NSValue] {
         
