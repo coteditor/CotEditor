@@ -68,7 +68,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var initialMagnificationScale: CGFloat = 0
     var deferredMagnification: CGFloat = 0
     
-    private(set) lazy var customSurroundStringViewController = self.instantinateSurroundStringViewController()
+    private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
     
     
     // MARK: Private Properties

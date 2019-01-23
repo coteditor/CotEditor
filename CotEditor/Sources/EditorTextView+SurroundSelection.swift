@@ -67,6 +67,8 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
+        self.customSurroundStringViewController.representedObject = self
+        
         self.viewControllerForSheet?.presentAsSheet(self.customSurroundStringViewController)
     }
     
@@ -75,18 +77,6 @@ extension EditorTextView {
 
 
 extension NSTextView {
-    
-    /// instantinate a new CustomSurroundStringViewController for the receiver
-    func instantinateSurroundStringViewController() -> NSViewController {
-        
-        let viewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
-        viewController.representedObject = self
-        viewController.beginString = UserDefaults.standard[.beginCustomSurroundString] ?? ""
-        viewController.endString = UserDefaults.standard[.endCustomSurroundString] ?? ""
-        
-        return viewController
-    }
-    
     
     /// insert strings around selections
     @discardableResult
@@ -102,13 +92,7 @@ extension NSTextView {
                     length: range.length)
         }
         
-        guard self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges) else { return false }
-        
-        // store last used string pair
-        UserDefaults.standard[.beginCustomSurroundString] = begin
-        UserDefaults.standard[.endCustomSurroundString] = end
-        
-        return true
+        return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)
     }
     
 }

@@ -38,6 +38,18 @@ final class CustomSurroundStringViewController: NSViewController {
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.beginString = UserDefaults.standard[.beginCustomSurroundString] ?? ""
+        self.endString = UserDefaults.standard[.endCustomSurroundString] ?? ""
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// apply
@@ -56,6 +68,10 @@ final class CustomSurroundStringViewController: NSViewController {
         let endString = self.endString.isEmpty ? self.beginString : self.endString
         
         textView.surroundSelections(begin: self.beginString, end: endString)
+        
+        // store last used string pair
+        UserDefaults.standard[.beginCustomSurroundString] = self.beginString
+        UserDefaults.standard[.endCustomSurroundString] = self.endString
         
         self.dismiss(sender)
     }
