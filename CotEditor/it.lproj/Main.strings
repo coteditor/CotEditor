@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
 "134.title" = "Nascondi CotEditor";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
-"145.title" = "Nascendi altri";
+"145.title" = "Nascondi altri";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "Mostra tutto";
 
