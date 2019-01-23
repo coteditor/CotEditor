@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,10 +67,18 @@ extension EditorTextView {
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
+        self.viewControllerForSheet?.presentAsSheet(self.customSurroundStringViewController)
+    }
+    
+    
+    func instantinateSurroundStringViewController() -> NSViewController {
+        
         let viewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
         viewController.representedObject = self
+        viewController.beginString = UserDefaults.standard[.beginCustomSurroundString] ?? ""
+        viewController.endString = UserDefaults.standard[.endCustomSurroundString] ?? ""
         
-        self.viewControllerForSheet?.presentAsSheet(viewController)
+        return viewController
     }
     
 }
@@ -93,7 +101,12 @@ extension NSTextView {
                     length: range.length)
         }
         
-        return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)
+        guard self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges) else { return false }
+        
+        UserDefaults.standard[.beginCustomSurroundString] = begin
+        UserDefaults.standard[.endCustomSurroundString] = end
+        
+        return true
     }
     
 }

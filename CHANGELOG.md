@@ -12,6 +12,7 @@ Change Log
 
 ### Improvements
 
+- Remember last used custom characters for “Surround Selection with Custom Characters” action.
 - [beta] Keep insertion points afeter cut.
 - [beta] Localize newly added strings.
 
