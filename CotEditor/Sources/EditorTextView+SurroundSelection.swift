@@ -70,7 +70,13 @@ extension EditorTextView {
         self.viewControllerForSheet?.presentAsSheet(self.customSurroundStringViewController)
     }
     
+}
+
+
+
+extension NSTextView {
     
+    /// instantinate a new CustomSurroundStringViewController for the receiver
     func instantinateSurroundStringViewController() -> NSViewController {
         
         let viewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
@@ -81,11 +87,6 @@ extension EditorTextView {
         return viewController
     }
     
-}
-
-
-
-extension NSTextView {
     
     /// insert strings around selections
     @discardableResult
@@ -103,6 +104,7 @@ extension NSTextView {
         
         guard self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges) else { return false }
         
+        // store last used string pair
         UserDefaults.standard[.beginCustomSurroundString] = begin
         UserDefaults.standard[.endCustomSurroundString] = end
         
