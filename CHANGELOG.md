@@ -5,6 +5,11 @@ Change Log
 3.7.0-rc (unreleased)
 --------------------------
 
+### New Features
+
+- Add “Surround Selection With Square Brackets” menu item.
+
+
 ### Improvements
 
 - [beta] Keep insertion points afeter cut.

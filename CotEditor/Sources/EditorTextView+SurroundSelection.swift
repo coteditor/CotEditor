@@ -57,6 +57,13 @@ extension EditorTextView {
     }
     
     
+    /// insert [] around selections
+    @IBAction func surroundSelectionWithSquareBrackets(_ sender: Any?) {
+        
+        self.surroundSelections(begin: "[", end: "]")
+    }
+    
+    
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         

@@ -386,6 +386,8 @@
 "G3o-1h-GwR.title" = "Parentesi";
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "Parentesi graffe";
+/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Parentesi quadre";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "Personalizzato…";
 

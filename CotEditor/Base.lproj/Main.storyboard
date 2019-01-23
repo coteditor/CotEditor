@@ -782,6 +782,12 @@ CA
                                                             <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Square Brackets" id="cTU-2P-7Tp">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithSquareBrackets:" target="Ady-hI-5gd" id="92J-nd-Mh7"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="mRR-Qb-394"/>
                                                     <menuItem title="Custom…" keyEquivalent="L" id="3VX-DL-PgT">
                                                         <connections>
