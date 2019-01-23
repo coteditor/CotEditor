@@ -22,7 +22,7 @@ Change Log
 
 ### New Features
 
-- Add Opacity toolbar item to change editor's opacity.
+- Add “Opacity” toolbar item to change editor's opacity.
 
 
 ### Improvements
