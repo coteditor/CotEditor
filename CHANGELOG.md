@@ -2,12 +2,28 @@
 Change Log
 ==========================
 
+3.7.0-rc (unreleased)
+--------------------------
+
+### New Features
+
+- Add “Surround Selection With” > “Square Brackets” menu item.
+
+
+### Improvements
+
+- Remember the last used custom characters for “Surround Selection With” > “Custom” action.
+- [beta] Keep insertion points afeter cut.
+- [beta] Localize newly added strings.
+
+
+
 3.7.0-beta.5 (329)
 --------------------------
 
 ### New Features
 
-- Add Opacity toolbar item to change editor's opacity.
+- Add “Opacity” toolbar item to change editor's opacity.
 
 
 ### Improvements

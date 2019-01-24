@@ -385,7 +385,9 @@
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
 "G3o-1h-GwR.title" = "圆括号";
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "方括号";
+"Xoq-43-C1z.title" = "大括号";
+/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "方括号";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "自定义…";
 

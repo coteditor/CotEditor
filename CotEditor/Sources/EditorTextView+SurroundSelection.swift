@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,13 +57,19 @@ extension EditorTextView {
     }
     
     
+    /// insert [] around selections
+    @IBAction func surroundSelectionWithSquareBrackets(_ sender: Any?) {
+        
+        self.surroundSelections(begin: "[", end: "]")
+    }
+    
+    
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let viewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
-        viewController.representedObject = self
+        self.customSurroundStringViewController.representedObject = self
         
-        self.viewControllerForSheet?.presentAsSheet(viewController)
+        self.viewControllerForSheet?.presentAsSheet(self.customSurroundStringViewController)
     }
     
 }
