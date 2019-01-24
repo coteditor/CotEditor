@@ -7,12 +7,12 @@ Change Log
 
 ### New Features
 
-- Add “Surround Selection With Square Brackets” menu item.
+- Add “Surround Selection With” > “Square Brackets” menu item.
 
 
 ### Improvements
 
-- Remember last used custom characters for “Surround Selection with Custom Characters” action.
+- Remember last used custom characters for “Surround Selection With” > “Custom” action.
 - [beta] Keep insertion points afeter cut.
 - [beta] Localize newly added strings.
 
