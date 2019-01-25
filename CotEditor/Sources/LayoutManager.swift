@@ -215,8 +215,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let utf16Index = String.UTF16View.Index(encodedOffset: charIndex)
-                let codeUnit = string.utf16[utf16Index]
+                let codeUnit = (string as NSString).character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine

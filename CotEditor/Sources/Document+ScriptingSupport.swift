@@ -98,7 +98,7 @@ extension Document {
     /// length of document (integer)
     @objc var length: Int {
         
-        return self.string.utf16.count
+        return (self.string as NSString).length
     }
     
     
