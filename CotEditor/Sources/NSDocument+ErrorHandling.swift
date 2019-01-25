@@ -34,6 +34,8 @@ extension NSDocument.SaveOperationType {
             return true
         case .saveOperation, .saveAsOperation, .saveToOperation:
             return false
+        @unknown default:
+            fatalError()
         }
     }
     

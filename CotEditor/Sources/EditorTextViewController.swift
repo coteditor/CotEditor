@@ -73,6 +73,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
                 self.stackView?.orientation = .horizontal
             case .vertical:
                 self.stackView?.orientation = .vertical
+            @unknown default: fatalError()
             }
             
             self.lineNumberView?.orientation = textView.layoutOrientation

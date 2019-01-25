@@ -176,6 +176,7 @@ final class LineNumberView: NSView {
             return NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
         case .vertical:
             return NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
+        @unknown default: fatalError()
         }
     }
     
@@ -227,6 +228,7 @@ final class LineNumberView: NSView {
         case .vertical:
             NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
                                     to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
+        @unknown default: fatalError()
         }
         
         NSGraphicsContext.restoreGraphicsState()
@@ -291,6 +293,7 @@ final class LineNumberView: NSView {
             context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
         case .vertical:
             context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
+        @unknown default: fatalError()
         }
         
         // draw labels
@@ -373,6 +376,7 @@ final class LineNumberView: NSView {
             case .vertical:
                 let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
                 return max(ceil(thickness), self.minHorizontalThickness)
+            @unknown default: fatalError()
             }
         }()
     }

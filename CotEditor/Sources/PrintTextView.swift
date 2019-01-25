@@ -338,6 +338,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         case .vertical:
             printSize.height -= printInfo.leftMargin + printInfo.rightMargin
             printSize.height /= printInfo.scalingFactor
+        @unknown default: fatalError()
         }
         
         // adjust frame size
@@ -349,6 +350,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             self.frame.size.height = usedHeight
         case .vertical:
             self.frame.size.width = usedHeight
+        @unknown default: fatalError()
         }
     }
     

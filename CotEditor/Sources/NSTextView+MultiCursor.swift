@@ -236,6 +236,7 @@ extension MultiCursorEditing where Self: NSTextView {
             switch affinity {
             case .downstream: return ranges.first!
             case .upstream:   return ranges.last!
+            @unknown default: fatalError()
             }
         }()
         self.scrollRangeToVisible(rangeToVisible)
@@ -332,6 +333,7 @@ extension MultiCursorEditing where Self: NSTextView {
                 return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
             case .upstream:
                 return layoutManager.extraLineFragmentRect
+            @unknown default: fatalError()
             }
         }()
         

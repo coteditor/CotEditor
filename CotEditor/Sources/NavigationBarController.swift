@@ -310,6 +310,8 @@ final class NavigationBarController: NSViewController {
             self.nextButton = self.leftButton
             self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
             self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
+            
+        @unknown default: fatalError()
         }
         
         self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu(_:))
