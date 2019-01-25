@@ -191,4 +191,27 @@ extension NSString {
         return lineRanges.array
     }
     
+    
+    /// Find the widest character range that contains the given `index` and not contains given character set.
+    ///
+    /// - Parameters:
+    ///   - set: The character set to end expanding range.
+    ///   - index: The index of character to be contained to the result range. `index` must be within `range`.
+    ///   - range: The range in which to search. `range` must not exceed the bounds of the receiver.
+    /// - Returns: The found character range.
+    func rangeOfCharacter(until set: CharacterSet, at index: Int, range: NSRange? = nil) -> NSRange {
+        
+        let range = range ?? NSRange(..<self.length)
+        
+        assert(range.contains(index))
+        
+        let lowerDelimiterRange = self.rangeOfCharacter(from: set, options: .backwards, range: NSRange(range.lowerBound..<index))
+        let lowerBound = (lowerDelimiterRange != .notFound) ? lowerDelimiterRange.upperBound : range.lowerBound
+        
+        let upperDelimiterRange = self.rangeOfCharacter(from: set, range: NSRange(index..<range.upperBound))
+        let upperBound = (upperDelimiterRange != .notFound) ? upperDelimiterRange.lowerBound : range.upperBound
+        
+        return NSRange(lowerBound..<upperBound)
+    }
+    
 }

@@ -1854,15 +1854,12 @@ extension EditorTextView {
     /// word range that includes location
     func wordRange(at location: Int) -> NSRange {
         
-        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
+        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location..<location), granularity: .selectByWord)
         
-        guard proposedWordRange.length > 1,
-            let proposedRange = Range(proposedWordRange, in: self.string),
-            let locationIndex = String.UTF16View.Index(encodedOffset: location).samePosition(in: self.string),
-            let wordRange = self.string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange)
-            else { return proposedWordRange }
+        guard proposedWordRange.contains(location) else { return proposedWordRange }
         
-        return NSRange(wordRange, in: self.string)
+        // treat `.` and `:` as word delimiter
+        return (self.string as NSString).rangeOfCharacter(until: CharacterSet(charactersIn: ".:"), at: location, range: proposedWordRange)
     }
     
 }
