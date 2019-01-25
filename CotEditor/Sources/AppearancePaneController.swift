@@ -91,7 +91,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         }
         
         let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
-        let row = self.themeNames.index(of: themeName) ?? 0
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
@@ -386,7 +386,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         guard let tableView = self.themeTableView else { return assertionFailure() }
         
         try? ThemeManager.shared.createUntitledSetting { themeName in
-            let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
+            let row = ThemeManager.shared.settingNames.firstIndex(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
@@ -410,7 +410,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBAction func renameTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
-        let row = self.themeNames.index(of: themeName) ?? 0
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
         
         self.themeTableView?.editColumn(0, row: row, with: nil, select: false)
     }
@@ -595,7 +595,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()
         
-        let row = self.themeNames.index(of: themeName) ?? 0
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     

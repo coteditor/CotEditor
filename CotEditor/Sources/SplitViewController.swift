@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -118,7 +118,7 @@ final class SplitViewController: NSSplitViewController {
         splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
         
         if let otherEditorViewController = otherEditorViewController {
-            guard let baseIndex = self.children.index(of: otherEditorViewController) else {
+            guard let baseIndex = self.children.firstIndex(of: otherEditorViewController) else {
                 assertionFailure("The base editor view is not belong to the same window.")
                 return
             }
@@ -178,7 +178,7 @@ final class SplitViewController: NSSplitViewController {
         
         guard count > 1 else { return }
         
-        let focusIndex = self.children.index(of: self.focusedSubviewController!) ?? 0
+        let focusIndex = self.children.firstIndex(of: self.focusedSubviewController!) ?? 0
         let index: Int = {
             switch focusIndex {
             case 0 where !onNext:
