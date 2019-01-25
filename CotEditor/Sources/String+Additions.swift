@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -127,7 +127,7 @@ extension String {
     /// check if character at the location in UTF16 is escaped with backslash
     func isCharacterEscaped(at location: Int) -> Bool {
         
-        guard let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self) else { return false }
+        guard let locationIndex = String.UTF16View.Index(encodedOffset: location).samePosition(in: self) else { return false }
         
         return self.isCharacterEscaped(at: locationIndex)
     }

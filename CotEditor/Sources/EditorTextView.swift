@@ -1858,7 +1858,7 @@ extension EditorTextView {
         
         guard proposedWordRange.length > 1,
             let proposedRange = Range(proposedWordRange, in: self.string),
-            let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self.string),
+            let locationIndex = String.UTF16View.Index(encodedOffset: location).samePosition(in: self.string),
             let wordRange = self.string.rangeOfCharacters(from: CharacterSet(charactersIn: ".:").inverted, at: locationIndex, range: proposedRange)
             else { return proposedWordRange }
         
