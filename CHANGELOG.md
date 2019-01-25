@@ -2,7 +2,16 @@
 Change Log
 ==========================
 
-3.7.0-rc (unreleased)
+3.7.0-rc.2 (unreleased)
+--------------------------
+
+### Improvements
+
+- [dev] Update Differ framework to 1.3.0.
+
+
+
+3.7.0-rc (331)
 --------------------------
 
 ### New Features

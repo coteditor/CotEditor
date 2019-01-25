@@ -1,9 +1,9 @@
 {
-  "commitish" : "1.2.3",
+  "commitish" : "1.3.0",
   "Mac" : [
     {
       "name" : "Differ",
-      "hash" : "654bf39658c61b87f9781f5143cffe404588e1322d85e05b06df4e6072c4a980"
+      "hash" : "6e345a3a681159fe28e900d5e7e285dedf23e74942ece78a8718da7383a6c476"
     }
   ]
 }
