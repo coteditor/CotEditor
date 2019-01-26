@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ extension String {
                 }
                 .map { (offset) in
                     let index = self.index(self.startIndex, offsetBy: offset)
-                    let location = index.samePosition(in: self.utf16)!.encodedOffset
+                    let location = NSRange(index..<index, in: self).location
                     let character = self[index]
                     let converted: String? = {
                         guard let data = String(character).data(using: encoding, allowLossyConversion: true) else { return nil }
@@ -103,7 +103,7 @@ extension String {
             .filter { $1.0 != $1.1 }
             .map { (index, characters) -> IncompatibleCharacter in
                 let (original, converted) = characters
-                let location = index.samePosition(in: self.utf16)!.encodedOffset
+                let location = NSRange(index..<index, in: self).location
                 
                 return IncompatibleCharacter(character: original,
                                              convertedCharacter: (original == "¥" && encoding.canConvertYenSign) ? "\\" : String(converted),
