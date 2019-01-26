@@ -1283,7 +1283,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         guard let theme = self.theme else { return }
         
-        self.window?.backgroundColor = theme.background.color
+        (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         
         self.backgroundColor = theme.background.color
         self.textColor = theme.text.color
