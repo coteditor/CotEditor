@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [beta] Disble “Change Opacity” action while fullscreen mode.
 - [dev] Update Differ framework to 1.3.0.
 
 
