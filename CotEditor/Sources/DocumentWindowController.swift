@@ -31,6 +31,7 @@ final class DocumentWindowController: NSWindowController {
     // MARK: Private Properties
     
     private var windowAlphaObserver: UserDefaultsObservation?
+    private var appearanceModeObserver: UserDefaultsObservation?
     
     @IBOutlet private var toolbarController: ToolbarController?
     
@@ -41,6 +42,7 @@ final class DocumentWindowController: NSWindowController {
     
     deinit {
         self.windowAlphaObserver?.invalidate()
+        self.appearanceModeObserver?.invalidate()
     }
     
     
@@ -63,6 +65,20 @@ final class DocumentWindowController: NSWindowController {
         self.windowAlphaObserver?.invalidate()
         self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha, options: [.new]) { [weak self] change in
             (self?.window as? DocumentWindow)?.backgroundAlpha = change.new!
+        }
+        
+        // observe appearance setting change
+        if #available(macOS 10.14, *) {
+            self.appearanceModeObserver?.invalidate()
+            self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: [.initial, .new]) { [unowned self] change in
+                self.window?.appearance = {
+                    switch UserDefaults.standard[.documentAppearance] {
+                    case .default: return nil
+                    case .light:   return NSAppearance(named: .aqua)
+                    case .dark:    return NSAppearance(named: .darkAqua)
+                    }
+                }()
+            }
         }
     }
     

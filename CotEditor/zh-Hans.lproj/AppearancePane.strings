@@ -70,6 +70,15 @@
 /* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "其他不可见字符";
 
+/* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
+"6KG-3a-ZuU.title" = "外观：";
+/* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
+"apQ-au-gOC.title" = "Match System";  // FIXME: added
+/* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
+"FwU-oj-kwc.title" = "浅色";
+/* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
+"1Cg-21-kjr.title" = "深色";
+
 
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
 "Avf-y8-wXG.headerCell.title" = "主题";

@@ -5,6 +5,11 @@ Change Log
 3.8.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only for macOS 10.14 and later).
+
+
 ### Improvements
 
 - Change the system requirement to __macOS 10.13 High Sierra and later__.
