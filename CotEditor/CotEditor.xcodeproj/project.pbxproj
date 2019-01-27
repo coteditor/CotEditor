@@ -438,8 +438,6 @@
 		2AA375481D40BDCB0080C27C /* LineEnding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA375461D40BDCB0080C27C /* LineEnding.swift */; };
 		2AA45A4B1D2E871900A1A401 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */; };
 		2AA45A4C1D2E871900A1A401 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */; };
-		2AA45A4E1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4D1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift */; };
-		2AA45A4F1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A4D1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift */; };
 		2AA45A511D2E938500A1A401 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A501D2E938500A1A401 /* NavigationBarController.swift */; };
 		2AA45A521D2E938500A1A401 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A501D2E938500A1A401 /* NavigationBarController.swift */; };
 		2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */; };
@@ -1131,7 +1129,6 @@
 		2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringIndentationTests.swift; sourceTree = "<group>"; };
 		2AA375461D40BDCB0080C27C /* LineEnding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEnding.swift; sourceTree = "<group>"; };
 		2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
-		2AA45A4D1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+WindowUpdate.swift"; sourceTree = "<group>"; };
 		2AA45A501D2E938500A1A401 /* NavigationBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		2AA45A531D2F22C600A1A401 /* NSFont+Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSFont+Size.swift"; sourceTree = "<group>"; };
 		2AA4D3731D1AA0AC001D261D /* KeyBindingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingsViewController.swift; sourceTree = "<group>"; };
@@ -1897,7 +1894,6 @@
 			isa = PBXGroup;
 			children = (
 				2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */,
-				2AA45A4D1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift */,
 				2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */,
 				2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */,
 				2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */,
@@ -2888,7 +2884,6 @@
 				2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */,
 				2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
 				2AB2243221A7D67E00F6201F /* SyntaxEditChildViewController.swift in Sources */,
-				2AA45A4F1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift in Sources */,
 				2A17A3171D2D4319001DD717 /* DocumentWindow.swift in Sources */,
 				2A10D1491E7477D30027192A /* StyledButton.swift in Sources */,
 				2ACDC0A71D17350A009B72D6 /* InspectorTabView.swift in Sources */,
@@ -3140,7 +3135,6 @@
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2AD616CC1D3E583D0016EFB6 /* DocumentController.swift in Sources */,
-				2AA45A4E1D2E8EE700A1A401 /* EditorTextView+WindowUpdate.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
 				2A231A391E7C31F400C2A909 /* MultipleReplacementListViewController.swift in Sources */,
 				2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */,

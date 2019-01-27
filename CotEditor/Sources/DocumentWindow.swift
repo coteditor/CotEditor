@@ -59,6 +59,11 @@ final class DocumentWindow: NSWindow {
     }
     
     
+    // MARK: Private Properties
+    
+    private var appearanceObserver: NSKeyValueObservation?
+    
+    
     
     // MARK: -
     // MARK: Lifecycle
@@ -67,6 +72,10 @@ final class DocumentWindow: NSWindow {
         
         super.init(contentRect: contentRect, styleMask: style, backing: bufferingType, defer: flag)
         
+        self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
+            self?.invalidateTitlebarOpacity()
+        }
+        
         // observe toggling fullscreen mode
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterFullScreenNotification, object: self)
         NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: NSWindow.willExitFullScreenNotification, object: self)
@@ -74,6 +83,11 @@ final class DocumentWindow: NSWindow {
         // observe toggling Versions browsing
         NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterVersionBrowserNotification, object: self)
         NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: NSWindow.willExitVersionBrowserNotification, object: self)
+    }
+    
+    
+    deinit {
+        self.appearanceObserver?.invalidate()
     }
     
     
@@ -148,15 +162,14 @@ final class DocumentWindow: NSWindow {
     
     
     
-    // MARK: Public Methods
+    // MARK: Private Methods
     
     /// make sure window title bar (incl. toolbar) is opaque
-    func invalidateTitlebarOpacity() {
+    private func invalidateTitlebarOpacity() {
         
-        //   -> It's actucally a bit dirty way but practically works well.
-        //      Without this tweak, the title bar will be dyed in the window background color since El Capitan. (2016-01 by 1024p)
+        // dirty manupulation to avoid the title bar being dyed in the window background color (2016-01).
         self.titlebarView?.wantsLayer = !self.isOpaque
-        self.titlebarView?.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor
+        self.titlebarView?.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
     }
 
 }
