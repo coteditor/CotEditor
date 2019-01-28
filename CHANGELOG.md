@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [beta] Disable “Change Opacity” action while fullscreen mode.
+- [beta] Update help contents.
 - [trivial] Improve toolbar color.
 - [dev] Update Differ framework to 1.3.0.
 
