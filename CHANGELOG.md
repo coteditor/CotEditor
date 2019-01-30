@@ -12,6 +12,10 @@ Change Log
 - [trivial] Improve toolbar color.
 - [dev] Update Differ framework to 1.3.0.
 
+### Fixes
+
+- Fix an issue where selected ranges were set wrongly after updating document due to an external modification. 
+
 
 
 3.7.0-rc (331)
@@ -127,7 +131,7 @@ Change Log
 
 - Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
 - Fix an issue where auto-completion could cancel suddenly under a restricted condition.
-- Fix a possible issue where word counting could stuck.
+- Fix a possible issue where word counting could be stuck.
 
 
 
