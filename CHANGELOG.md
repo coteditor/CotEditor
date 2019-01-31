@@ -12,6 +12,7 @@ Change Log
 - [trivial] Improve toolbar color.
 - [dev] Update Differ framework to 1.3.0.
 
+
 ### Fixes
 
 - Fix an issue where selected ranges were set wrongly after updating document due to an external modification. 
