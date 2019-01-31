@@ -42,6 +42,13 @@ extension NSRange {
     static let notFound = NSRange(location: NSNotFound, length: 0)
     
     
+    /// A Boolean value indicating whether the range contains no elements.
+    var isEmpty: Bool {
+        
+        return (self.length == 0)
+    }
+    
+    
     /// Check if the given index is in the receiver or touchs to one of the receiver's bounds.
     ///
     /// - Parameter index: The index to test.
@@ -151,7 +158,7 @@ extension NSString {
         guard excludingLastLineEnding else { return lineRange }
         
         // ignore last line ending
-        if lineRange.length > 0, self.character(at: lineRange.upperBound - 1) == "\n".utf16.first! {
+        if !lineRange.isEmpty, self.character(at: lineRange.upperBound - 1) == "\n".utf16.first! {
             lineRange.length -= 1
         }
         

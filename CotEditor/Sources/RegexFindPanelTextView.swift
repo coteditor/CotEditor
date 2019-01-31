@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
             self.isRegularExpressionMode,
             case .search = self.parseMode,
             granularity == .selectByWord,
-            proposedCharRange.length == 0,  // not on expanding selection
+            proposedCharRange.isEmpty,  // not on expanding selection
             range.length == 1  // clicked character can be a brace
             else { return range }
         

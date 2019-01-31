@@ -150,7 +150,7 @@ extension SyntaxParser {
     private func parseOutline() {
         
         let wholeRange = NSRange(0..<self.textStorage.length)
-        guard wholeRange.length > 0 else {
+        guard !wholeRange.isEmpty else {
             self.outlineItems = []
             return
         }
@@ -275,7 +275,7 @@ extension SyntaxParser {
         
         assert(Thread.isMainThread)
         
-        guard highlightRange.length > 0 else { return nil }
+        guard !highlightRange.isEmpty else { return nil }
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {

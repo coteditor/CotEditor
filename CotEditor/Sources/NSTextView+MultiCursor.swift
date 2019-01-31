@@ -114,7 +114,7 @@ extension MultiCursorEditing where Self: NSTextView {
         let deletionRanges: [NSRange] = ranges
             .map { range in
                 guard range.location > 0 else { return range }
-                guard range.length == 0 else { return range }
+                guard range.isEmpty else { return range }
                 
                 if let self = self as? NSTextView & Indenting,
                     self.isAutomaticTabExpansionEnabled,
@@ -182,7 +182,7 @@ extension MultiCursorEditing where Self: NSTextView {
         let nonemptyRanges = selectionSet.rangeView
             .map { NSRange($0) }
         var emptyRanges = ranges
-            .filter { $0.length == 0 }
+            .filter { $0.isEmpty }
             .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
@@ -278,7 +278,7 @@ extension MultiCursorEditing where Self: NSTextView {
     /// Enable or disable `insertionPointTimer` according to the selection state.
     func updateInsertionPointTimer() {
         
-        if self.isPerformingRectangularSelection || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ $0.rangeValue.length > 0 })) {
+        if self.isPerformingRectangularSelection || (!self.insertionLocations.isEmpty && self.selectedRanges.allSatisfy({ !$0.rangeValue.isEmpty })) {
             self.enableOwnInsertionPointTimer()
             
         } else {

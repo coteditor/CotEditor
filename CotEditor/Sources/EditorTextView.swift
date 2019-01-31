@@ -287,7 +287,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isPerformingRectangularSelection = event.modifierFlags.contains(.option)
         self.updateInsertionPointTimer()
         
-        let selectedRange = (self.selectedRange.length == 0) ? self.selectedRange : nil
+        let selectedRange = self.selectedRange.isEmpty ? self.selectedRange : nil
         
         super.mouseDown(with: event)
         
@@ -302,9 +302,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // restore the first empty insertion if it seems to disappear
         if event.modifierFlags.contains(.command),
-            self.selectedRange.length > 0,
+            !self.selectedRange.isEmpty,
             let selectedRange = selectedRange,
-            selectedRange.length == 0,
+            selectedRange.isEmpty,
             !self.selectedRange.contains(selectedRange.location),
             self.selectedRange.upperBound != selectedRange.location
         {
@@ -399,11 +399,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // balance brackets and quotes
-        if self.balancesBrackets, replacementRange.length == 0 {
+        if self.balancesBrackets, replacementRange.isEmpty {
             // with opening symbol input
             if let pair = self.matchingBracketPairs.first(where: { String($0.begin) == plainString }) {
                 // wrap selection with brackets if some text is selected
-                if self.rangeForUserTextChange.length > 0 {
+                if !self.rangeForUserTextChange.isEmpty {
                     self.surroundSelections(begin: String(pair.begin), end: String(pair.end))
                     return
                 }
@@ -431,7 +431,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // smart outdent with '}'
-        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.length == 0,
+        if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.isEmpty,
             plainString == "}",
             let insertionIndex = Range(self.rangeForUserTextChange, in: self.string)?.upperBound
         {
@@ -466,7 +466,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func insertTab(_ sender: Any?) {
         
         // indent with tab key
-        if UserDefaults.standard[.indentWithTabKey], self.rangeForUserTextChange.length > 0 {
+        if UserDefaults.standard[.indentWithTabKey], !self.rangeForUserTextChange.isEmpty {
             self.indent()
             return
         }
@@ -509,10 +509,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
-                let indentRange = (range.length == 0) ? self.string.rangeOfIndent(at: range.location) : range
+                let indentRange = range.isEmpty ? self.string.rangeOfIndent(at: range.location) : range
                 
                 guard
-                    indentRange.length > 0,
+                    !indentRange.isEmpty,
                     let autoIndentRange = indentRange.intersection(NSRange(0..<range.location))
                     else { return (range, "", 0) }
                 
@@ -574,7 +574,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // balance brackets
         if self.balancesBrackets,
-            self.rangeForUserTextChange.length == 0,
+            self.rangeForUserTextChange.isEmpty,
             let lastCharacter = self.character(before: self.rangeForUserTextChange),
             let nextCharacter = self.character(after: self.rangeForUserTextChange),
             self.matchingBracketPairs.contains(where: { $0.begin == Character(lastCharacter) && $0.end == Character(nextCharacter) })
@@ -617,7 +617,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             // -> The ranges that `setSelectedRanges(_:affinity:stillSelecting:)` receives are sanitized already in NSTextView manner.
             self.insertionLocations = newValue
                 .map { $0.rangeValue }
-                .filter { $0.length == 0 }
+                .filter { $0.isEmpty }
                 .map { $0.location }
         }
     }
@@ -874,7 +874,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
         if self.needsDrawInsertionPoints {
             self.insertionRanges
-                .filter { $0.length == 0 }
+                .filter { $0.isEmpty }
                 .map { self.insertionPointRect(at: $0.location) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
@@ -998,7 +998,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         switch action {
         case #selector(copyWithStyle):
-            return self.selectedRange.length > 0
+            return !self.selectedRange.isEmpty
             
         case #selector(showSelectionInfo):
             return (self.string as NSString).substring(with: self.selectedRange).count == 1
@@ -1117,7 +1117,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         let range = textStorage.mutableString.range
         
-        guard range.length > 0 else { return }
+        guard !range.isEmpty else { return }
         
         textStorage.addAttributes(self.typingAttributes, range: range)
         (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
@@ -1131,7 +1131,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// copy selection with syntax highlight and font style
     @IBAction func copyWithStyle(_ sender: Any?) {
         
-        guard self.selectedRange.length > 0 else {
+        guard !self.selectedRange.isEmpty else {
             NSSound.beep()
             return
         }
@@ -1493,7 +1493,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             !self.hasMarkedText(),
             self.insertionLocations.isEmpty,
             self.selectedRanges.count == 1,
-            self.selectedRange.length > 0,
+            !self.selectedRange.isEmpty,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
                 .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil,
             let range = Range(self.selectedRange, in: self.string)
@@ -1662,7 +1662,7 @@ extension EditorTextView {
     override func completions(forPartialWordRange charRange: NSRange, indexOfSelectedItem index: UnsafeMutablePointer<Int>) -> [String]? {
         
         // do nothing if completion is not suggested from the typed characters
-        guard charRange.length > 0 else { return nil }
+        guard !charRange.isEmpty else { return nil }
         
         var candidateWords = OrderedSet<String>()
         let particalWord = (self.string as NSString).substring(with: charRange)
@@ -1774,7 +1774,7 @@ extension EditorTextView {
         
         // abord if:
         guard !self.hasMarkedText(),  // input is not specified (for Japanese input)
-            self.selectedRange.length == 0,  // selected
+            self.selectedRange.isEmpty,  // selected
             let lastCharacter = self.character(before: self.selectedRange), !CharacterSet.whitespacesAndNewlines.contains(lastCharacter)  // previous character is blank
             else { return }
         
@@ -1801,7 +1801,7 @@ extension EditorTextView {
         guard granularity == .selectByWord else { return range }
         
         // treat additional specific characters as separator (see `wordRange(at:)` for details)
-        if range.length > 0 {
+        if !range.isEmpty {
             range = self.wordRange(at: proposedCharRange.location)
             if proposedCharRange.length > 1 {
                 range.formUnion(self.wordRange(at: proposedCharRange.upperBound - 1))
@@ -1809,7 +1809,7 @@ extension EditorTextView {
         }
         
         guard
-            proposedCharRange.length == 0,  // not on expanding selection
+            proposedCharRange.isEmpty,  // not on expanding selection
             range.length == 1,  // clicked character can be a brace
             let characterIndex = Range(range, in: self.string)?.lowerBound  // just in case
             else { return range }

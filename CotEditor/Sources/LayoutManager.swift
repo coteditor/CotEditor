@@ -341,7 +341,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         let string = textStorage.string as NSString
         let lineRange = string.lineRange(for: range)
         
-        guard lineRange.length > 0 else { return }
+        guard !lineRange.isEmpty else { return }
         
         let hangingIndent = self.spaceWidth * CGFloat(UserDefaults.standard[.hangingIndentWidth])
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")

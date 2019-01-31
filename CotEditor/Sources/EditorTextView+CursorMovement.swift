@@ -39,7 +39,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveLeft(sender) }
         
         self.moveCursors(affinity: .downstream) {
-            ($0.length == 0) ? (self.string as NSString).index(before: $0.lowerBound) : $0.lowerBound
+            $0.isEmpty ? (self.string as NSString).index(before: $0.lowerBound) : $0.lowerBound
         }
     }
     
@@ -65,7 +65,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveRight(sender) }
         
         self.moveCursors(affinity: .upstream) {
-            ($0.length == 0) ? (self.string as NSString).index(after: $0.upperBound) : $0.upperBound
+            $0.isEmpty ? (self.string as NSString).index(after: $0.upperBound) : $0.upperBound
         }
     }
     
@@ -450,7 +450,7 @@ extension EditorTextView {
     /// select word
     override func selectWord(_ sender: Any?) {
         
-        if self.selectedRange.length == 0 {
+        if self.selectedRange.isEmpty {
             // select words where the cursors locate
             self.selectedRanges = self.insertionRanges.map { self.wordRange(at: $0.location) } as [NSValue]
             
@@ -588,7 +588,7 @@ extension EditorTextView {
         var replacementStrings: [String] = []
         var selectedRanges: [NSRange] = []
         for range in self.insertionRanges.reversed() {
-            guard range.length == 0 else {
+            guard range.isEmpty else {
                 selectedRanges.append(range)
                 continue
             }

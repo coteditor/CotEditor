@@ -184,7 +184,7 @@ extension String {
         assert(range.location != NSNotFound)
         
         guard
-            range.length == 0,
+            range.isEmpty,
             self.rangeOfIndent(at: range.location).upperBound >= range.location
             else { return nil }
         
