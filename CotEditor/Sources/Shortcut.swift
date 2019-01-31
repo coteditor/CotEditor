@@ -183,49 +183,42 @@ struct Shortcut: Hashable {
     
     
     /// table for characters that cannot be displayed as is with their printable substitutions
-    private static let printableKeyEquivalents: [UnicodeScalar: String] = {
-        
-        // keys:  unprintable key int
-        // value: printable representation
-        let table: [Int: String] = [
-            NSUpArrowFunctionKey: "↑",
-            NSDownArrowFunctionKey: "↓",
-            NSLeftArrowFunctionKey: "←",
-            NSRightArrowFunctionKey: "→",
-            NSF1FunctionKey: "F1",
-            NSF2FunctionKey: "F2",
-            NSF3FunctionKey: "F3",
-            NSF4FunctionKey: "F4",
-            NSF5FunctionKey: "F5",
-            NSF6FunctionKey: "F6",
-            NSF7FunctionKey: "F7",
-            NSF8FunctionKey: "F8",
-            NSF9FunctionKey: "F9",
-            NSF10FunctionKey: "F10",
-            NSF11FunctionKey: "F11",
-            NSF12FunctionKey: "F12",
-            NSF13FunctionKey: "F13",
-            NSF14FunctionKey: "F14",
-            NSF15FunctionKey: "F15",
-            NSF16FunctionKey: "F16",
-            NSDeleteCharacter: "⌦",  // = "Delete forward" (do not use NSDeleteFunctionKey)
-            NSHomeFunctionKey: "↖",
-            NSEndFunctionKey: "↘",
-            NSPageUpFunctionKey: "⇞",
-            NSPageDownFunctionKey: "⇟",
-            NSClearLineFunctionKey: "⌧",
-            NSHelpFunctionKey: "Help",
-            0x20: "Space".localized(comment: "keyboard key name"),  // = Space
-            0x09: "⇥",  // = Tab
-            0x0d: "↩",  // = Return
-            0x08: "⌫",  // = Backspace, (delete backword)
-            0x03: "⌅",  // = Enter
-            0x31: "⇤",  // = Backtab
-            0x1b: "⎋",  // = Escape
-        ]
-        
-        return table.mapKeys { UnicodeScalar($0)! }
-    }()
+    private static let printableKeyEquivalents: [UnicodeScalar: String] = [
+        NSUpArrowFunctionKey: "↑",
+        NSDownArrowFunctionKey: "↓",
+        NSLeftArrowFunctionKey: "←",
+        NSRightArrowFunctionKey: "→",
+        NSF1FunctionKey: "F1",
+        NSF2FunctionKey: "F2",
+        NSF3FunctionKey: "F3",
+        NSF4FunctionKey: "F4",
+        NSF5FunctionKey: "F5",
+        NSF6FunctionKey: "F6",
+        NSF7FunctionKey: "F7",
+        NSF8FunctionKey: "F8",
+        NSF9FunctionKey: "F9",
+        NSF10FunctionKey: "F10",
+        NSF11FunctionKey: "F11",
+        NSF12FunctionKey: "F12",
+        NSF13FunctionKey: "F13",
+        NSF14FunctionKey: "F14",
+        NSF15FunctionKey: "F15",
+        NSF16FunctionKey: "F16",
+        NSDeleteCharacter: "⌦",  // = "Delete forward" (do not use NSDeleteFunctionKey)
+        NSHomeFunctionKey: "↖",
+        NSEndFunctionKey: "↘",
+        NSPageUpFunctionKey: "⇞",
+        NSPageDownFunctionKey: "⇟",
+        NSClearLineFunctionKey: "⌧",
+        NSHelpFunctionKey: "Help",
+        0x20: "Space".localized(comment: "keyboard key name"),  // = Space
+        0x09: "⇥",  // = Tab
+        0x0d: "↩",  // = Return
+        0x08: "⌫",  // = Backspace, (delete backword)
+        0x03: "⌅",  // = Enter
+        0x31: "⇤",  // = Backtab
+        0x1b: "⎋",  // = Escape
+        ].mapKeys { UnicodeScalar($0)! }
     
 }
 

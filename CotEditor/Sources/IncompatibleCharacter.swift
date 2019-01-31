@@ -86,11 +86,9 @@ extension String {
                     let index = self.index(self.startIndex, offsetBy: offset)
                     let location = NSRange(index..<index, in: self).location
                     let character = self[index]
-                    let converted: String? = {
-                        guard let data = String(character).data(using: encoding, allowLossyConversion: true) else { return nil }
-                        
-                        return String(data: data, encoding: encoding)
-                    }()
+                    let converted: String? = String(character)
+                        .data(using: encoding, allowLossyConversion: true)
+                        .flatMap { String(data: $0, encoding: encoding) }
                     
                     return IncompatibleCharacter(character: character,
                                                  convertedCharacter: converted,

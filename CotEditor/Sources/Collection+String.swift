@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,10 +35,7 @@ extension Collection where Element == String {
     /// - Returns: The created name.
     func createAvailableName(for proposedName: String, suffix: String? = nil) -> String {
         
-        let spaceSuffix: String = {
-            guard let suffix = suffix else { return "" }
-            return " " + suffix
-        }()
+        let spaceSuffix = suffix.flatMap { " " + $0 } ?? ""
         
         let (rootName, baseCount): (String, Int?) = {
             let regex = try! NSRegularExpression(pattern: spaceSuffix + "( ([0-9]+))?$")

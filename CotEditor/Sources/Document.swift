@@ -618,13 +618,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.baseWritingDirection = viewController.writingDirection
         
         // set font for printing
-        printView.font = {
-            if UserDefaults.standard[.setPrintFont] {  // == use printing font
-                return NSFont(name: UserDefaults.standard[.printFontName]!,
-                              size: UserDefaults.standard[.printFontSize])
-            }
-            return viewController.font
-        }()
+        printView.font = UserDefaults.standard[.setPrintFont]
+            ? NSFont(name: UserDefaults.standard[.printFontName]!, size: UserDefaults.standard[.printFontSize])
+            : viewController.font
         
         // [caution] need to set string after setting other properties
         printView.string = self.textStorage.string
