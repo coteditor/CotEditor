@@ -462,7 +462,7 @@ private extension MultiCursorEditing where Self: NSTextView {
 
 private extension NSLayoutManager {
     
-    /// Retrun the bounds between upper and lower bounds of the given `range` in horizontal axis.
+    /// Return the bounds between upper and lower bounds of the given `range` in horizontal axis.
     ///
     /// - Parameters:
     ///   - characterRange: The glyph range for which to return the bounds.
