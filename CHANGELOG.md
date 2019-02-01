@@ -47,11 +47,14 @@ Change Log
 
 ### Improvements
 
-- [beta] Merge a part of changes in CotEditor 3.6.13.
+- Restore more UI state on window restoration.
 
 
 ### Fixes
 
+- Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
+- Fix an issue where auto-completion could cancel suddenly under a restricted condition.
+- Fix a possible issue where word counting could be stuck.
 - [beta] Fix multi-cursor behavior with `→` and `←` when something is selected.
 
 
@@ -119,22 +122,6 @@ Change Log
 ### New Features
 
 - Multi-cursor editing.
-
-
-
-3.6.13 (unreleased)
---------------------------
-
-### Improvements
-
-- Restore more UI state on window restoration.
-
-
-### Fixes
-
-- Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.
-- Fix an issue where auto-completion could cancel suddenly under a restricted condition.
-- Fix a possible issue where word counting could be stuck.
 
 
 
