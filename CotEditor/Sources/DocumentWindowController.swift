@@ -100,7 +100,7 @@ final class DocumentWindowController: NSWindowController {
         sliderViewController.representedObject = window.backgroundAlpha
         
         contentViewController.present(sliderViewController, asPopoverRelativeTo: .zero, of: origin,
-                                      preferredEdge: .minY, behavior: .transient)
+                                      preferredEdge: .maxY, behavior: .transient)
     }
     
     
