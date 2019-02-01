@@ -230,7 +230,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.didChangeWindowOpacity(to: window.isOpaque)
         
         // observe window opacity flag
-        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] (notification) in
+            guard let window = notification.object as? NSWindow else { return assertionFailure() }
+            
             self.didChangeWindowOpacity(to: window.isOpaque)
         }
         

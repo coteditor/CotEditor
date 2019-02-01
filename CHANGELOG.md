@@ -16,7 +16,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where selected ranges were set wrongly after updating document due to an external modification. 
+- Fix an issue where closed windows remained on the memory.
+- Fix an issue where selected ranges were set wrongly after updating document due to an external modification.
 
 
 
