@@ -166,14 +166,14 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
-    func testRangeOfCharacters() {
+    func testRangeOfCharacter() {
         
-        let set = CharacterSet(charactersIn: "._").inverted
-        let string = "abc.d🐕f_ghij"
+        let set = CharacterSet(charactersIn: "._")
+        let string = "abc.d🐕f_ghij" as NSString
         
-        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.startIndex)!], "abc")
-        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.index(string.startIndex, offsetBy: 4))!], "d🐕f")
-        XCTAssertEqual(string[string.rangeOfCharacters(from: set, at: string.index(before: string.endIndex))!], "ghij")
+        XCTAssertEqual(string.substring(with: string.rangeOfCharacter(until: set, at: 0)), "abc")
+        XCTAssertEqual(string.substring(with: string.rangeOfCharacter(until: set, at: 4)), "d🐕f")
+        XCTAssertEqual(string.substring(with: string.rangeOfCharacter(until: set, at: string.length - 1)), "ghij")
     }
     
     

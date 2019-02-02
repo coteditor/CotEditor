@@ -24,7 +24,7 @@
 <article>
 <header>
 	<h1>CotEditor 3.7.0</h1>
-	<p>release: <time>2019-02-01</time></p>
+	<p>release: <time>2019-02</time></p>
 </header>
 
 
@@ -32,7 +32,7 @@
 <h2>New Features</h2>
 
 <ul>
-	<li>Multi-cursor editing.</li>
+	<li><a href="../pgs/howto_edit_multiple_points.html">Multi-cursor editing</a>.</li>
 	<li>Add “Opacity” toolbar item to change editor's opacity.</li>
 	<li>Add “Surround Selection With” &gt; “Square Brackets” menu item.</li>
 </ul>
@@ -45,6 +45,7 @@
 <ul>
 	<li>Restore more UI state on window restoration.</li>
 	<li>Remember the last used custom characters for “Surround Selection with Custom Characters” action.</li>
+	<li><span class="trivial">trivial</span>: Improve toolbar color.</li>
 </ul>
 </section>
 
@@ -55,7 +56,9 @@
 <ul>
 	<li>Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.</li>
 	<li>Fix an issue where auto-completion could cancel suddenly under a restricted condition.</li>
-	<li>Fix a possible issue where word counting could stuck.</li>
+	<li>Fix an issue where closed windows remained on the memory.</li>
+	<li>Fix an issue where selected ranges were set wrongly after updating the document due to an external modification.</li>
+	<li>Fix a possible issue where word counting could be stuck.</li>
 </ul>
 </section>
 </article>

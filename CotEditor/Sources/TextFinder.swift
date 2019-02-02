@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -511,7 +511,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 
                 // highlight
                 highlights += matches.enumerated()
-                    .filter { $0.element.length > 0 }
+                    .filter { !$0.element.isEmpty }
                     .map { HighlightItem(range: $0.element, color: highlightColors[$0.offset]) }
                 
                 // build TextFindResult for table
@@ -528,7 +528,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
-                    for (index, range) in matches.enumerated() where range.length > 0 {
+                    for (index, range) in matches.enumerated() where !range.isEmpty {
                         let color = highlightColors[index]
                         let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
                         

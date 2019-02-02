@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,13 +24,38 @@
 //
 
 import AppKit.NSColor
+import AppKit.NSAppearance
 
 extension NSColor {
     
     static let textHighlighterColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
     static let alternateDisabledControlTextColor = NSColor(white: 1.0, alpha: 0.75)
 }
+
+
+
+extension NSColor {
     
+    /// Return CGColor of the receiver by converting system color correctly for the specific appearance.
+    ///
+    /// - Parameter appearance: The appearance to get the corresponding system color.
+    /// - Returns: A CGColor instance.
+    func cgColor(for appearance: NSAppearance) -> CGColor {
+        
+        guard NSAppearance.current != appearance else { return self.cgColor }
+        
+        let currentAppearance = NSAppearance.current
+        NSAppearance.current = appearance
+        defer {
+            NSAppearance.current = currentAppearance
+        }
+        
+        return self.cgColor
+    }
+    
+}
+
+
 
 extension NSColor {
     

@@ -43,6 +43,7 @@ final class DocumentToolbar: NSToolbar {
         }
         
         set {
+            _ = newValue
             super.sizeMode = .regular
         }
     }

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -211,8 +211,8 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             if $0.range.location < $1.range.location { return true }
             if $0.range.location > $1.range.location { return false }
             
-            if $0.range.length == 0 { return true }
-            if $1.range.length == 0 { return false }
+            if $0.range.isEmpty { return true }
+            if $1.range.isEmpty { return false }
             
             guard $0.role.rawValue == $1.role.rawValue else {
                 return $0.role.rawValue > $1.role.rawValue

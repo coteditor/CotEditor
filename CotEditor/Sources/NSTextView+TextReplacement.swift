@@ -33,11 +33,7 @@ extension NSTextView {
     @discardableResult
     func replace(with string: String, range: NSRange, selectedRange: NSRange?, actionName: String? = nil) -> Bool {
         
-        let selectedRanges: [NSRange]? = {
-            guard let selectedRange = selectedRange else { return nil }
-            
-            return [selectedRange]
-        }()
+        let selectedRanges: [NSRange]? = selectedRange.flatMap { [$0] }
         
         return self.replace(with: [string], ranges: [range], selectedRanges: selectedRanges, actionName: actionName)
     }
@@ -63,7 +59,6 @@ extension NSTextView {
         if let actionName = actionName {
             self.undoManager?.setActionName(actionName)
         }
-        
         
         textStorage.beginEditing()
         // use a backward enumeration to skip adjustment of applying location

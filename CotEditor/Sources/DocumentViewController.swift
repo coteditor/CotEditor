@@ -85,9 +85,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // observe defaults change
         self.defaultsObservers = [
-            UserDefaults.standard.observe(key: .theme, options: [.old, .new]) { [unowned self] change in
-                guard change.old == nil || self.theme?.name == change.old else { return }
-                
+            UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
                 let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
                 self.setTheme(name: themeName)
             },
@@ -110,8 +108,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             guard
                 self.view.window != nil,
                 let currentThemeName = self.theme?.name,
-                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: self.view.effectiveAppearance.isDark),
-                currentThemeName != themeName
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: self.view.effectiveAppearance.isDark)
                 else { return }
             
             self.setTheme(name: themeName)
@@ -412,9 +409,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard
             let oldName = notification.userInfo?[Notification.UserInfoKey.old] as? String,
+            let newName = notification.userInfo?[Notification.UserInfoKey.new] as? String,
             oldName == self.theme?.name else { return }
-        
-        let newName = (notification.userInfo?[Notification.UserInfoKey.new] as? String) ?? ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.setTheme(name: newName)
     }
@@ -806,7 +802,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // move focus to the next text view if the view to close has a focus
         if splitViewController.focusedSubviewController == currentEditorViewController {
             let childViewControllers = self.editorViewControllers
-            let deleteIndex = childViewControllers.index(of: currentEditorViewController) ?? 0
+            let deleteIndex = childViewControllers.firstIndex(of: currentEditorViewController) ?? 0
             let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
             
             self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)

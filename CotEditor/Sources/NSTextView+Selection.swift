@@ -32,7 +32,7 @@ extension NSTextView {
         
         guard range.lowerBound > 0 else { return nil }
         
-        guard let index = String.UTF16Index(encodedOffset: range.lowerBound - 1).samePosition(in: self.string.unicodeScalars) else { return nil }
+        guard let index = String.UTF16View.Index(encodedOffset: range.lowerBound - 1).samePosition(in: self.string.unicodeScalars) else { return nil }
         
         return self.string.unicodeScalars[safe: index]
     }
@@ -41,7 +41,7 @@ extension NSTextView {
     /// character just after the given range
     func character(after range: NSRange) -> UnicodeScalar? {
         
-        guard let index = String.UTF16Index(encodedOffset: range.upperBound).samePosition(in: self.string.unicodeScalars) else { return nil }
+        guard let index = String.UTF16View.Index(encodedOffset: range.upperBound).samePosition(in: self.string.unicodeScalars) else { return nil }
         
         return self.string.unicodeScalars[safe: index]
     }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,15 +126,12 @@ final class TextFind {
             self.regex = nil
             
         case .regularExpression(let options, _):
-            let sanitizedFindString: String = {
-                // replace `\v` with `\u000b`
-                //   -> Because NSRegularExpression cannot handle `\v` correctly. (2017-07 on macOS 10.12)
-                //   cf. https://github.com/coteditor/CotEditor/issues/713
-                if findString.contains("\\v") {
-                    return findString.replacingOccurrences(of: "(?<!\\\\)\\\\v", with: "\\\\u000b", options: .regularExpression)
-                }
-                return findString
-            }()
+            // replace `\v` with `\u000b`
+            //   -> Because NSRegularExpression cannot handle `\v` correctly. (2017-07 on macOS 10.12)
+            //   cf. https://github.com/coteditor/CotEditor/issues/713
+            let sanitizedFindString: String = findString.contains("\\v")
+                ? findString.replacingOccurrences(of: "(?<!\\\\)\\\\v", with: "\\\\u000b", options: .regularExpression)
+                : findString
             
             do {
                 self.regex = try NSRegularExpression(pattern: sanitizedFindString, options: options)
@@ -181,14 +178,14 @@ final class TextFind {
         let startLocation = forward ? selectedRange.upperBound : selectedRange.location
         
         var forwardMatches = [NSRange]()  // matches after the start location
-        let forwardRange = NSRange(startLocation..<string.utf16.count)
+        let forwardRange = NSRange(startLocation..<(self.string as NSString).length)
         self.enumerateMatchs(in: [forwardRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             forwardMatches.append(matchedRange)
         })
         
         var wrappedMatches = [NSRange]()  // matches before the start location
         var intersectionMatches = [NSRange]()  // matches including the start location
-        self.enumerateMatchs(in: [self.string.nsRange], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
+        self.enumerateMatchs(in: [(self.string as NSString).range], using: { (matchedRange: NSRange, match: NSTextCheckingResult?, stop) in
             if matchedRange.location >= startLocation {
                 stop = true
                 return

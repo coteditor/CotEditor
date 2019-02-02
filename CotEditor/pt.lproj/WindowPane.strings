@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2019 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,9 +35,6 @@
 "10Z-Xd-CLV.title" = "Automaticamente";
 /* Class = "NSMenuItem"; title = "Manually"; ObjectID = "o1f-vR-aFm"; */
 "o1f-vR-aFm.title" = "Manualmente";  // The same as the popup menu selection in the System Preferences > "Dock"
-
-/* Class = "NSTextFieldCell"; title = "(Only on Sierra and later)"; ObjectID = "AaA-Nm-2CL"; */
-"AaA-Nm-2CL.title" = "(apenas no Sierra e posteriores)";
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */

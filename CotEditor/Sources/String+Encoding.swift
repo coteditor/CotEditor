@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -198,7 +198,7 @@ extension String {
         let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
         let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let scanLength = min(self.utf16.endIndex.encodedOffset, maxLength)
+        let scanLength = min(self.utf16.count, maxLength)
         
         guard
             let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),

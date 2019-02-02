@@ -100,7 +100,7 @@ final class DocumentWindowController: NSWindowController {
         sliderViewController.representedObject = window.backgroundAlpha
         
         contentViewController.present(sliderViewController, asPopoverRelativeTo: .zero, of: origin,
-                                      preferredEdge: .minY, behavior: .transient)
+                                      preferredEdge: .maxY, behavior: .transient)
     }
     
     
@@ -108,6 +108,22 @@ final class DocumentWindowController: NSWindowController {
     @IBAction func changeOpacity(_ sender: NSSlider) {
         
         (self.window as! DocumentWindow).backgroundAlpha = CGFloat(sender.doubleValue)
+    }
+    
+}
+
+
+
+extension DocumentWindowController: NSUserInterfaceValidations {
+    
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        switch item.action {
+        case #selector(showOpacitySlider)?:
+            return self.window?.styleMask.contains(.fullScreen) == false
+        default:
+            return true
+        }
     }
     
 }

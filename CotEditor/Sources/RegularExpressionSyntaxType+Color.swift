@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,7 @@ extension RegularExpressionSyntaxType {
         
         guard #available(macOS 10.13, *) else { return self.literalColor }
         
-        return NSColor(named: self.colorName)!
+        return NSColor(named: "RegexColor/" + self.colorName)!
     }
     
     
@@ -53,17 +53,13 @@ extension RegularExpressionSyntaxType {
     
     private var colorName: NSColor.Name {
         
-        let name: String = {
-            switch self {
-            case .character: return "Character"
-            case .backReference: return "BackReference"
-            case .symbol: return "Symbol"
-            case .quantifier: return "Quantifier"
-            case .anchor: return "Anchor"
-            }
-        }()
-        
-        return "RegexColor/" + name
+        switch self {
+        case .character: return "Character"
+        case .backReference: return "BackReference"
+        case .symbol: return "Symbol"
+        case .quantifier: return "Quantifier"
+        case .anchor: return "Anchor"
+        }
     }
     
 }

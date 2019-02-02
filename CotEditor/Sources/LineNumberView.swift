@@ -534,10 +534,10 @@ extension LineNumberView {
                     let range1 = NSRange(selectedRange.location..<range.location)
                     let range2 = NSRange(range.upperBound..<selectedRange.upperBound)
                     
-                    if range1.length > 0 {
+                    if !range1.isEmpty {
                         selectedRanges.append(range1)
                     }
-                    if range2.length > 0 {
+                    if !range2.isEmpty {
                         selectedRanges.append(range2)
                     }
                     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ final class TokenTextView: NSTextView {
     override func deleteBackward(_ sender: Any?) {
         
         guard
-            self.selectedRange.length == 0,
+            self.selectedRange.isEmpty,
             self.selectedRange.location > 0,
             let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: self.selectedRange.location - 1),
             effectiveRange.upperBound == self.selectedRange.location

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -159,7 +159,7 @@ struct Theme: Equatable, Codable {
 
 extension Theme.Style: Codable {
     
-    fileprivate static let invalidColor = NSColor.gray.usingColorSpaceName(.calibratedRGB)!
+    fileprivate static let invalidColor = NSColor.gray.usingColorSpace(.genericRGB)!
     
     private enum CodingKeys: String, CodingKey {
         

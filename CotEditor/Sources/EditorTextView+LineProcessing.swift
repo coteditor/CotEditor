@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ extension EditorTextView {
     @IBAction func sortLinesAscending(_ sender: Any?) {
         
         // process whole document if no text selected
-        let range = (self.selectedRange.length == 0) ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
         guard let editingInfo = self.string.sortLinesAscending(in: range) else { return }
         
@@ -75,7 +75,7 @@ extension EditorTextView {
     @IBAction func reverseLines(_ sender: Any?) {
         
         // process whole document if no text selected
-        let range = (self.selectedRange.length == 0) ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
         guard let editingInfo = self.string.reverseLines(in: range) else { return }
         
@@ -89,7 +89,7 @@ extension EditorTextView {
         guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
         
         // process whole document if no text selected
-        let ranges = (self.selectedRange.length == 0) ? [self.string.nsRange] : selectedRanges
+        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : selectedRanges
         
         guard let editingInfo = self.string.deleteDuplicateLine(in: ranges) else { return }
         
@@ -168,12 +168,12 @@ extension NSTextView {
     func sortLines(pattern: SortPattern, options: SortOptions) {
         
         // process whole document if no text selected
-        let range = (self.selectedRange.length == 0) ? self.string.nsRange : self.selectedRange
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
         let string = self.string as NSString
         let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
         
-        guard lineRange.length > 0 else { return }
+        guard !lineRange.isEmpty else { return }
         
         let newString = pattern.sort(string.substring(with: lineRange), options: options)
         

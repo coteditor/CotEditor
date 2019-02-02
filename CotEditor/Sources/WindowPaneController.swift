@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -66,11 +66,13 @@ final class WindowPaneController: NSViewController {
         // display the current system-wide user setting for window tabbing in "Respect System Setting" menu item.
         let menu = self.tabbingOptionMenu!
         let systemSettingLabel = menu.item(withTag: NSWindow.userTabbingPreference.rawValue)!.title
-        let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting,
-                                           attributes: [.font: menu.font])
+        let attributes: [NSAttributedString.Key: Any] = {
+            guard let font = menu.font else { return [:] }
+            return [.font: font]
+        }()
+        let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting, attributes: attributes)
         let userSettingLabel = NSAttributedString(string: String(format: " (%@)".localized, systemSettingLabel),
-                                                  attributes: [.font: menu.font,
-                                                               .foregroundColor: NSColor.secondaryLabelColor])
+                                                  attributes: [.foregroundColor: NSColor.secondaryLabelColor].merging(attributes) { $1 })
         
         menu.items.first!.attributedTitle = attrLabel + userSettingLabel
         

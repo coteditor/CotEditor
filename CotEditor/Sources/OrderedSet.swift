@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -140,7 +140,7 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection, Hashable {
     /// remove the specified element from the set.
     mutating func remove(_ element: Element) {
         
-        guard let index = self.index(of: element) else { return }
+        guard let index = self.firstIndex(of: element) else { return }
         
         self.remove(at: index)
     }

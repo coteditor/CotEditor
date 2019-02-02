@@ -215,8 +215,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let utf16Index = String.UTF16Index(encodedOffset: charIndex)
-                let codeUnit = string.utf16[utf16Index]
+                let codeUnit = (string as NSString).character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine
@@ -342,7 +341,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         let string = textStorage.string as NSString
         let lineRange = string.lineRange(for: range)
         
-        guard lineRange.length > 0 else { return }
+        guard !lineRange.isEmpty else { return }
         
         let hangingIndent = self.spaceWidth * CGFloat(UserDefaults.standard[.hangingIndentWidth])
         let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")

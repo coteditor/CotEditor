@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,16 +30,13 @@
 "8zu-3V-Obg.title" = "Pref. pannelli:";
 
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
-"Guj-Kc-zf2.title" = "Come imp. di sistema";
+"Guj-Kc-zf2.title" = "Come impostazioni di sistema";
 /* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
 "OJs-2q-bg5.title" = "Sempre";  // The same as the popup menu selection in the System Preferences > "Dock"
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "Automaticamente";
 /* Class = "NSMenuItem"; title = "Manually"; ObjectID = "o1f-vR-aFm"; */
 "o1f-vR-aFm.title" = "Manualmente";  // The same as the popup menu selection in the System Preferences > "Dock"
-
-/* Class = "NSTextFieldCell"; title = "(Only on Sierra and later)"; ObjectID = "AaA-Nm-2CL"; */
-"AaA-Nm-2CL.title" = "(Solo su Sierra e successivi)";
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */

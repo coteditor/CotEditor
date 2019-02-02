@@ -24,7 +24,6 @@ opt_in_rules:
   - joined_default_parameter
   - last_where
   - let_var_whitespace
-  - lower_acl_than_parent
   - multiline_function_chains
   - multiline_parameters
   - multiline_parameters_brackets
@@ -42,6 +41,7 @@ opt_in_rules:
   - static_operator
   - toggle_bool
   - untyped_error_in_catch
+  - unused_private_declaration
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher
   - yoda_condition
