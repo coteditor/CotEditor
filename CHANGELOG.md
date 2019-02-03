@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+3.7.0-rc.3 (releasenotes)
+--------------------------
+
+### Fixes
+
+- [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓`  shortcuts.
+- [beta] Fix an issue the application crashed by performing `^⇧↑` or `^⇧↓` shortcut when RTL text is selected.
+
+
+
 3.7.0-rc.2 (333)
 --------------------------
 
