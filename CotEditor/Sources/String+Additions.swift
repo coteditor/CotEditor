@@ -91,7 +91,7 @@ extension StringProtocol where Self.Index == String.Index {
         
         let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
         
-        return (escapes.count % 2 == 1)
+        return !escapes.count.isMultiple(of: 2)
     }
     
 }

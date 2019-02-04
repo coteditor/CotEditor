@@ -303,7 +303,7 @@ final class LineNumberView: NSView {
             switch line {
             case .new(let lineNumber, let isSelected):
                 // draw line number
-                if !isVerticalText || isSelected || lineNumber % 5 == 0 || lineNumber == 1 || lineNumber == self.numberOfLines {
+                if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
                     let digit = lineNumber.numberOfDigits
                     
                     // calculate base position

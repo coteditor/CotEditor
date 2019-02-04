@@ -111,7 +111,7 @@ extension NSLayoutManager {
         var bidiLevels: [UInt8] = [0]
         self.getGlyphs(in: NSRange(glyphIndex..<(glyphIndex + 1)), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
         
-        return (bidiLevels[0] % 2 == 1)
+        return !bidiLevels[0].isMultiple(of: 2)
     }
     
     
