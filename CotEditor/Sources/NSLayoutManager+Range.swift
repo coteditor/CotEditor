@@ -134,9 +134,9 @@ extension NSLayoutManager {
         
         switch baseWritingDirection {
         case .rightToLeft:
-            return string.index(after: characterIndexes.max()!)
+            return string.index(after: characterIndexes.max() ?? 0)
         default:
-            return string.index(before: characterIndexes.min()!)
+            return string.index(before: characterIndexes.min() ?? 0)
         }
     }
     
@@ -160,9 +160,9 @@ extension NSLayoutManager {
         
         switch baseWritingDirection {
         case .rightToLeft:
-            return string.index(before: characterIndexes.min()!)
+            return string.index(before: characterIndexes.min() ?? 0)
         default:
-            return string.index(after: characterIndexes.max()!)
+            return string.index(after: characterIndexes.max() ?? 0)
         }
     }
     
