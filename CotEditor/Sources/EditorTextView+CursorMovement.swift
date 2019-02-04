@@ -39,7 +39,11 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveLeft(sender) }
         
         self.moveCursors(affinity: .downstream) {
-            $0.isEmpty ? (self.string as NSString).index(before: $0.lowerBound) : $0.lowerBound
+            if $0.isEmpty {
+                return self.layoutManager!.leftCharacterIndex(of: $0.location, baseWritingDirection: self.baseWritingDirection)
+            } else {
+                return self.layoutManager!.isRTL(at: $0.upperBound) ? $0.upperBound : $0.lowerBound
+            }
         }
     }
     
@@ -50,7 +54,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveLeftAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(toward: .lower, affinity: .downstream) {
-            (self.string as NSString).index(before: $0)
+            self.layoutManager!.leftCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
         }
     }
     
@@ -61,7 +65,11 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveRight(sender) }
         
         self.moveCursors(affinity: .upstream) {
-            $0.isEmpty ? (self.string as NSString).index(after: $0.upperBound) : $0.upperBound
+            if $0.isEmpty {
+                return self.layoutManager!.rightCharacterIndex(of: $0.location, baseWritingDirection: self.baseWritingDirection)
+            } else {
+                return self.layoutManager!.isRTL(at: $0.lowerBound) ? $0.lowerBound : $0.upperBound
+            }
         }
     }
     
@@ -72,7 +80,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(toward: .upper, affinity: .upstream) {
-            (self.string as NSString).index(after: $0)
+            self.layoutManager!.rightCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
         }
     }
     
@@ -125,7 +133,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordLeft(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.textStorage!.nextWord(from: $0.lowerBound, forward: false) }
+        self.moveCursors(affinity: .downstream) {
+            self.textStorage!.nextWord(from: $0.lowerBound, forward: self.layoutManager!.isRTL(at: $0.lowerBound))
+        }
     }
     
     
@@ -135,7 +145,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveWordLeftAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(toward: .lower, affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0, forward: false)
+            self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0))
         }
     }
     
@@ -145,7 +155,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordRight(sender) }
         
-        self.moveCursors(affinity: .upstream) { self.textStorage!.nextWord(from: $0.upperBound, forward: true) }
+        self.moveCursors(affinity: .upstream) {
+            self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound))
+        }
     }
     
     
@@ -155,7 +167,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveWordRightAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(toward: .upper, affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0, forward: true)
+            self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0))
         }
     }
     

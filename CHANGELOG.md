@@ -5,6 +5,11 @@ Change Log
 3.7.0-rc.3 (releasenotes)
 --------------------------
 
+### Improvements
+
+- [beta] Support right-to-left and bidi text by moving multiple cursors.
+
+
 ### Fixes
 
 - [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓`  shortcuts.
