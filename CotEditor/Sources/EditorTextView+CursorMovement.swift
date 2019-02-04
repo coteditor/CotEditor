@@ -90,7 +90,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveUp(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.upperInsertionLocation(of: $0.lowerBound) }
+        self.moveCursors(affinity: .downstream) {
+            self.upperInsertionLocation(of: $0.lowerBound)
+        }
     }
     
     
@@ -110,7 +112,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveDown(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.lowerInsertionLocation(of: $0.upperBound) }
+        self.moveCursors(affinity: .downstream) {
+            self.lowerInsertionLocation(of: $0.upperBound)
+        }
     }
     
     
@@ -200,7 +204,9 @@ extension EditorTextView {
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        self.moveCursors(affinity: .downstream) { self.locationOfBeginningOfLine(for: $0.location) }
+        self.moveCursors(affinity: .downstream) {
+            self.locationOfBeginningOfLine(for: $0.location)
+        }
     }
     
     
@@ -232,7 +238,9 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveToEndOfLine(sender) }
         
         let length = self.attributedString().length
-        self.moveCursors(affinity: .upstream) { self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length }
+        self.moveCursors(affinity: .upstream) {
+            self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length
+        }
     }
     
     
@@ -302,7 +310,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToBeginningOfParagraph(sender) }
         
-        self.moveCursors(affinity: .downstream) { (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound }
+        self.moveCursors(affinity: .downstream) {
+            (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound
+        }
     }
     
     
@@ -324,7 +334,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToEndOfParagraph(sender) }
         
-        self.moveCursors(affinity: .upstream) { (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound }
+        self.moveCursors(affinity: .upstream) {
+            (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound
+        }
     }
     
     
@@ -344,7 +356,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordBackward(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.textStorage!.nextWord(from: $0.lowerBound, forward: false) }
+        self.moveCursors(affinity: .downstream) {
+            self.textStorage!.nextWord(from: $0.lowerBound, forward: false)
+        }
     }
     
     
@@ -364,7 +378,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordForward(sender) }
         
-        self.moveCursors(affinity: .upstream) { self.textStorage!.nextWord(from: $0.upperBound, forward: true) }
+        self.moveCursors(affinity: .upstream) {
+            self.textStorage!.nextWord(from: $0.upperBound, forward: true)
+        }
     }
     
     
