@@ -327,17 +327,17 @@ final class TextFind {
                 length = scopeRange.length
             } else {
                 // build replacementString
-                var replacedString = (self.string as NSString).substring(with: scopeRange)
+                var replacedString = (self.string as NSString).substring(with: scopeRange) as NSString
                 for item in items.reversed() {
                     block(.replacementProgress, &ioStop)
                     if ioStop { return }
                     
+                    // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
                     let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
-                    guard let range = Range(substringRange, in: replacedString) else { assertionFailure(); continue }
-                    replacedString.replaceSubrange(range, with: item.string)
+                    replacedString = replacedString.replacingCharacters(in: substringRange, with: item.string) as NSString
                 }
-                replacementItems.append(ReplacementItem(string: replacedString, range: scopeRange))
-                length = (replacedString as NSString).length
+                replacementItems.append(ReplacementItem(string: replacedString as String, range: scopeRange))
+                length = replacedString.length
             }
             
             // build selectedRange
