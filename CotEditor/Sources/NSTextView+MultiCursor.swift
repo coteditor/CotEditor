@@ -36,13 +36,6 @@ protocol MultiCursorEditing: AnyObject {
 }
 
 
-enum MovingDirection {
-    
-    case lower
-    case upper
-}
-
-
 extension MultiCursorEditing where Self: NSTextView {
     
     /// Whether the receiver has multiple points to insert text.
@@ -248,11 +241,11 @@ extension MultiCursorEditing where Self: NSTextView {
     /// Move all cursors and expand selection with the same rule.
     ///
     /// - Parameters:
-    ///   - toward: The direction to move the cursor.
+    ///   - forward: `true` if the cursor should move forward, otherwise `false`.
     ///   - affinity: The selection affinity for the movement.
     ///   - block: The block that describes the rule how to move the cursor.
     ///   - cursor: The character index of the cursor to move.
-    func moveCursorsAndModifySelection(toward: MovingDirection, affinity: NSSelectionAffinity, using block: (_ cursor: Int) -> Int) {
+    func moveCursorsAndModifySelection(forward: Bool, affinity: NSSelectionAffinity, using block: (_ cursor: Int) -> Int) {
         
         var origins = self.selectionOrigins
         var newOrigins: [Int] = []
@@ -265,11 +258,11 @@ extension MultiCursorEditing where Self: NSTextView {
             }
             
             let (cursor, newOrigin): (Int, Int) = {
-                switch (toward, origin) {
-                case (.lower, range.lowerBound): return (range.upperBound, range.lowerBound)
-                case (.lower, _):                return (range.lowerBound, range.upperBound)
-                case (.upper, range.upperBound): return (range.lowerBound, range.upperBound)
-                case (.upper, _):                return (range.upperBound, range.lowerBound)
+                switch (forward, origin) {
+                case (false, range.lowerBound): return (range.upperBound, range.lowerBound)
+                case (false, _):                return (range.lowerBound, range.upperBound)
+                case (true,  range.upperBound): return (range.lowerBound, range.upperBound)
+                case (true,  _):                return (range.upperBound, range.lowerBound)
                 }
             }()
             
