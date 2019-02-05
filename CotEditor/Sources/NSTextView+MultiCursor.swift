@@ -261,8 +261,8 @@ extension MultiCursorEditing where Self: NSTextView {
                 switch (forward, origin) {
                 case (false, range.lowerBound): return (range.upperBound, range.lowerBound)
                 case (false, _):                return (range.lowerBound, range.upperBound)
-                case (true,  range.upperBound): return (range.lowerBound, range.upperBound)
-                case (true,  _):                return (range.upperBound, range.lowerBound)
+                case (true, range.upperBound):  return (range.lowerBound, range.upperBound)
+                case (true, _):                 return (range.upperBound, range.lowerBound)
                 }
             }()
             
