@@ -129,10 +129,8 @@ extension NSTextView {
             self.willChangeValue(for: \.scale)
             
             // scale
-            self.willChangeValue(for: \.scale)
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
-            self.didChangeValue(for: \.scale)
             
             // ensure bounds origin is {0, 0} for vertical text orientation
             self.translateOrigin(to: self.bounds.origin)
