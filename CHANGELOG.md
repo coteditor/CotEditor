@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where “Replace All” could fail when the text to find is a combining character such as a diacritical mark.
+- Fix an issue where the year in the print header or console prompt was displayed wrongly in specific days.
 - [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓`  shortcuts.
 - [beta] Fix an issue the application crashed by performing `^⇧↑` or `^⇧↓` shortcut when RTL text is selected.
 
