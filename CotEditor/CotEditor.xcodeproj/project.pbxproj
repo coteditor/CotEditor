@@ -2678,7 +2678,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../Carthage\n\n// build XPCs\nschemes=(\n    'SparkleInstallerLauncher'\n    'SparkleInstallerConnection'\n    'SparkleInstallerStatus'\n)\nfor scheme in ${schemes[@]}; do\n    xcodebuild build -project Checkouts/Sparkle/Sparkle.xcodeproj -scheme $scheme -derivedDataPath DerivedData -configuration Release\ndone\n\n# copy results to Carthage/Build directory\n#    -> So that, we can usually skip build process.\nfor file in './DerivedData/Build/Products/Release/*.xpc'; do\n    cp -r ${file} Build/Mac/\ndone\n";
+			shellScript = "cd ../Carthage\n\n// build XPCs\nschemes=(\n    'SparkleInstallerLauncher'\n    'SparkleInstallerConnection'\n    'SparkleInstallerStatus'\n)\nfor scheme in ${schemes[@]}; do\n    echo \"📦 Building ${scheme}...\"\n    xcodebuild build -project Checkouts/Sparkle/Sparkle.xcodeproj -scheme $scheme -derivedDataPath DerivedData -configuration Release\ndone\n\n# copy results to Carthage/Build directory\n#    -> So that, we can usually skip build process.\nfor file in './DerivedData/Build/Products/Release/*.xpc'; do\n    echo \"🚛 Copying ${file}...\"\n    cp -r ${file} Build/Mac/\ndone\n";
 		};
 		2A9247051FCD471B008DBC30 /* Codesign Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
