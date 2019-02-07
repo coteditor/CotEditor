@@ -18,6 +18,7 @@ Change Log
 - Fix an issue where the year in the print header or console prompt was displayed wrongly in specific days (Thanks to Frédéric Blondiau!).
 - [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓`  shortcuts.
 - [beta] Fix an issue the application crashed by performing `^⇧↑` or `^⇧↓` shortcut when RTL text is selected.
+- [rc.2] Fix background color when editor was scrolled over a boundary.
 
 
 

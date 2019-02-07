@@ -1271,6 +1271,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // let text view have own background if possible
         self.drawsBackground = isOpaque
+        self.enclosingScrollView?.drawsBackground = isOpaque
         
         // make the current line highlight a bit transparent
         self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(isOpaque ? 1.0 : 0.7)
@@ -1290,6 +1291,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         
         self.backgroundColor = theme.background.color
+        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.textColor = theme.text.color
         self.lineHighLightColor = theme.lineHighlight.color
         self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
