@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Delete sequential paces character by character when they are not located at the beginning of a line even if “Expand tabs to spaces” option is enabled.
 - [beta] Support right-to-left and bidi text by moving multiple cursors.
 
 
