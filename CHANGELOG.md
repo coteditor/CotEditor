@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.7.0-rc.3 (releasenotes)
+3.7.0-rc.3 (335)
 --------------------------
 
 ### Improvements
@@ -13,13 +13,13 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where lines did not wrap correctly with vertical text orientation.
 - Fix an issue where “Replace All” could fail when the text to find is a combining character such as a diacritical mark.
+- Fix an issue where lines did not wrap correctly with vertical text orientation.
 - Fix an issue where the line wrap width of a split view could be set shorter than the actual view if scroller bars are set to be always visible.
 - Fix an issue where the year in the print header or console prompt was displayed wrongly in specific days (Thanks to Frédéric Blondiau!).
-- [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓`  shortcuts.
+- [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓` shortcuts.
 - [beta] Fix an issue the application crashed by performing `^⇧↑` or `^⇧↓` shortcut when RTL text is selected.
-- [rc.2] Fix background color when editor was scrolled over a boundary.
+- [rc.2] Fix background color when an editor was scrolled over a boundary.
 
 
 
