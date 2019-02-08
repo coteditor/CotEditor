@@ -44,6 +44,7 @@
 
 <ul>
 	<li>Restore more UI state on window restoration.</li>
+	<li>Delete sequential paces character by character when they are not located at the beginning of a line even if “Expand tabs to spaces” option is enabled.</li>
 	<li>Remember the last used custom characters for “Surround Selection with Custom Characters” action.</li>
 	<li><span class="trivial">trivial</span>: Improve toolbar color.</li>
 </ul>
@@ -54,10 +55,14 @@
 <h2>Fixes</h2>
 
 <ul>
+	<li>Fix an issue where “Replace All” could fail when the text to find is a combining character such as a diacritical mark.</li>
+	<li>Fix an issue where lines did not wrap correctly with vertical text orientation.</li>
 	<li>Fix an issue where the last syntax style was not applied when an unsaved document was restored from the last session.</li>
 	<li>Fix an issue where auto-completion could cancel suddenly under a restricted condition.</li>
+	<li>Fix an issue where the line wrap width of a split view could be set shorter than the actual view if scroll bars are set to be always visible.</li>
+	<li>Fix an issue where the year in the print header or console prompt was displayed wrongly in specific days (Thanks to Frédéric Blondiau!).</li>
 	<li>Fix an issue where closed windows remained on the memory.</li>
-	<li>Fix an issue where selected ranges were set wrongly after updating the document due to an external modification.</li>
+	<li>Address an issue where selected ranges were set wrongly after updating the document due to an external modification.</li>
 	<li>Fix a possible issue where word counting could be stuck.</li>
 </ul>
 </section>

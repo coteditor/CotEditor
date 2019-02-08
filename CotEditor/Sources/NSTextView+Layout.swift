@@ -129,10 +129,8 @@ extension NSTextView {
             self.willChangeValue(for: \.scale)
             
             // scale
-            self.willChangeValue(for: \.scale)
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
-            self.didChangeValue(for: \.scale)
             
             // ensure bounds origin is {0, 0} for vertical text orientation
             self.translateOrigin(to: self.bounds.origin)
@@ -209,33 +207,26 @@ extension NSTextView {
         set {
             guard newValue != self.wrapsLines else { return }
             
-            guard
-                let scrollView = self.enclosingScrollView,
-                let textContainer = self.textContainer
-                else { return assertionFailure() }
+            guard let textContainer = self.textContainer else { return assertionFailure() }
             
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
             
-            textContainer.widthTracksTextView = newValue
             if newValue {
-                let contentSize = scrollView.contentSize
-                textContainer.size.width = (isVertical ? contentSize.height : contentSize.width) / self.scale
-                self.setConstrainedFrameSize(contentSize)
+                let width = self.visibleRect.width
+                self.frame.size[keyPath: isVertical ? \NSSize.height : \NSSize.width] = width * self.scale
+                textContainer.size.width = width
+                textContainer.widthTracksTextView = true
             } else {
+                textContainer.widthTracksTextView = false
                 textContainer.size = self.infiniteSize
             }
             
             if isVertical {
-                self.autoresizingMask = newValue ? .height : .none
                 self.isVerticallyResizable = !newValue
-                self.enclosingScrollView?.hasVerticalScroller = !newValue
             } else {
-                self.autoresizingMask = newValue ? .width : .none
                 self.isHorizontallyResizable = !newValue
-                self.enclosingScrollView?.hasHorizontalScroller = !newValue
             }
-            self.sizeToFit()
             
             if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
                 visibleRect.size.width = 0

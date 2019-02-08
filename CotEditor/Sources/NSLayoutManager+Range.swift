@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -88,6 +88,96 @@ extension NSLayoutManager {
             found = true
         }
         return found
+    }
+    
+}
+
+
+
+// MARK: - Bidi-Text Helpers
+
+extension NSLayoutManager {
+    
+    /// Check the writing direction of the character.
+    ///
+    /// - Parameter index: The character index to check.
+    /// - Returns: `true` when is right-to-left, otherwise `false`.
+    func isRTL(at index: Int) -> Bool {
+        
+        let glyphIndex = self.glyphIndexForCharacter(at: index)
+        
+        guard glyphIndex < self.numberOfGlyphs else { return false }
+        
+        var bidiLevels: [UInt8] = [0]
+        self.getGlyphs(in: NSRange(glyphIndex..<(glyphIndex + 1)), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
+        
+        return (bidiLevels[0] % 2 == 1)
+    }
+    
+    
+    /// Return the character index of the left side of the given character index in display order.
+    ///
+    /// - Parameters:
+    ///   - characterIndex: The character index of the origin character.
+    ///   - baseWritingDirection: The base writing direction of the entire string to move index among lines.
+    /// - Returns: Left character index.
+    func leftCharacterIndex(of characterIndex: Int, baseWritingDirection: NSWritingDirection) -> Int {
+        
+        let characterIndexes = self.lineFragmentInsertionPointIndexes(forCharacterAt: characterIndex)
+        
+        guard let index = characterIndexes.firstIndex(of: characterIndex) else { assertionFailure(); return characterIndex }
+        
+        // -> The target is in the same fragment.
+        if index > 0 { return characterIndexes[index - 1] }
+        
+        let string = self.attributedString().string as NSString
+        
+        switch baseWritingDirection {
+        case .rightToLeft:
+            return string.index(after: characterIndexes.max() ?? 0)
+        default:
+            return string.index(before: characterIndexes.min() ?? 0)
+        }
+    }
+    
+    
+    /// Return the character index of the right side of the given character index in display order.
+    ///
+    /// - Parameters:
+    ///   - characterIndex: The character index of the origin character.
+    ///   - baseWritingDirection: The base writing direction of the entire string to move index among lines.
+    /// - Returns: Right character index.
+    func rightCharacterIndex(of characterIndex: Int, baseWritingDirection: NSWritingDirection) -> Int {
+        
+        let characterIndexes = self.lineFragmentInsertionPointIndexes(forCharacterAt: characterIndex)
+        
+        guard let index = characterIndexes.firstIndex(of: characterIndex) else { assertionFailure(); return characterIndex }
+        
+        // -> The target is in the same fragment.
+        if index < characterIndexes.count - 1 { return characterIndexes[index + 1] }
+        
+        let string = self.attributedString().string as NSString
+        
+        switch baseWritingDirection {
+        case .rightToLeft:
+            return string.index(before: characterIndexes.min() ?? 0)
+        default:
+            return string.index(after: characterIndexes.max() ?? 0)
+        }
+    }
+    
+    
+    /// Return the character indexes for the insertion points in the same line fragment of the given character index in display order.
+    ///
+    /// - Parameter characterIndex: The character index of one character within the line fragment.
+    /// - Returns: An array contains character indexes in display order.
+    private func lineFragmentInsertionPointIndexes(forCharacterAt characterIndex: Int) -> [Int] {
+        
+        let count = self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: nil)
+        var characterIndexes = [Int](repeating: 0, count: count)
+        self.getLineFragmentInsertionPoints(forCharacterAt: characterIndex, alternatePositions: false, inDisplayOrder: true, positions: nil, characterIndexes: &characterIndexes)
+        
+        return characterIndexes
     }
     
 }

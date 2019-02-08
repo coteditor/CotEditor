@@ -132,6 +132,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isVerticallyResizable = true
         self.autoresizingMask = .width
         self.textContainerInset = kTextContainerInset
+        // workaround to avoid wrapping lines wrongly when scrollers are set to be always visible (macOS 10.14 2019-02)
+        self.textContainer!.size.width = self.frame.size.width
         
         // set NSTextView behaviors
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
@@ -1269,6 +1271,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // let text view have own background if possible
         self.drawsBackground = isOpaque
+        self.enclosingScrollView?.drawsBackground = isOpaque
         
         // make the current line highlight a bit transparent
         self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(isOpaque ? 1.0 : 0.7)
@@ -1288,6 +1291,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         
         self.backgroundColor = theme.background.color
+        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.textColor = theme.text.color
         self.lineHighLightColor = theme.lineHighlight.color
         self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)

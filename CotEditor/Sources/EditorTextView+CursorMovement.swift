@@ -33,13 +33,17 @@ extension EditorTextView {
     ///
     /// - Note:
     ///   Although the method name contains "Left", it will be adjusted intelligently in vertical/RTL layout mode.
-    ///   This rule is valid for all `move*{Left|Right}(_:)` actions.
+    ///   This rule seems to be valid for all `move*{Left|Right}(_:)` actions.
     override func moveLeft(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else { return super.moveLeft(sender) }
         
         self.moveCursors(affinity: .downstream) {
-            $0.isEmpty ? (self.string as NSString).index(before: $0.lowerBound) : $0.lowerBound
+            if $0.isEmpty {
+                return self.layoutManager!.leftCharacterIndex(of: $0.location, baseWritingDirection: self.baseWritingDirection)
+            } else {
+                return self.layoutManager!.isRTL(at: $0.upperBound) ? $0.upperBound : $0.lowerBound
+            }
         }
     }
     
@@ -49,12 +53,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveLeftAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return ((self.string as NSString).index(before: range.upperBound), range.lowerBound)
-            } else {
-                return ((self.string as NSString).index(before: range.lowerBound), range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            self.layoutManager!.leftCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
         }
     }
     
@@ -65,7 +65,11 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveRight(sender) }
         
         self.moveCursors(affinity: .upstream) {
-            $0.isEmpty ? (self.string as NSString).index(after: $0.upperBound) : $0.upperBound
+            if $0.isEmpty {
+                return self.layoutManager!.rightCharacterIndex(of: $0.location, baseWritingDirection: self.baseWritingDirection)
+            } else {
+                return self.layoutManager!.isRTL(at: $0.lowerBound) ? $0.lowerBound : $0.upperBound
+            }
         }
     }
     
@@ -75,12 +79,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveRightAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return ((self.string as NSString).index(after: range.lowerBound), range.upperBound)
-            } else {
-                return ((self.string as NSString).index(after: range.upperBound), range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
+            self.layoutManager!.rightCharacterIndex(of: $0, baseWritingDirection: self.baseWritingDirection)
         }
     }
     
@@ -90,7 +90,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveUp(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.upperInsertionLocation(of: $0.lowerBound) }
+        self.moveCursors(affinity: .downstream) {
+            self.upperInsertionLocation(of: $0.lowerBound)
+        }
     }
     
     
@@ -99,12 +101,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveUpAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return (self.upperInsertionLocation(of: range.upperBound), range.lowerBound)
-            } else {
-                return (self.upperInsertionLocation(of: range.lowerBound), range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            self.upperInsertionLocation(of: $0)
         }
     }
     
@@ -114,7 +112,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveDown(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.lowerInsertionLocation(of: $0.upperBound) }
+        self.moveCursors(affinity: .downstream) {
+            self.lowerInsertionLocation(of: $0.upperBound)
+        }
     }
     
     
@@ -123,12 +123,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveDownAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return (self.lowerInsertionLocation(of: range.lowerBound), range.upperBound)
-            } else {
-                return (self.lowerInsertionLocation(of: range.upperBound), range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .downstream) {
+            self.lowerInsertionLocation(of: $0)
         }
     }
     
@@ -141,7 +137,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordLeft(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.textStorage!.nextWord(from: $0.lowerBound, forward: false) }
+        self.moveCursors(affinity: .downstream) {
+            self.textStorage!.nextWord(from: $0.lowerBound, forward: self.layoutManager!.isRTL(at: $0.lowerBound))
+        }
     }
     
     
@@ -150,12 +148,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordLeftAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return (self.textStorage!.nextWord(from: range.upperBound, forward: false), range.lowerBound)
-            } else {
-                return (self.textStorage!.nextWord(from: range.lowerBound, forward: false), range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0))
         }
     }
     
@@ -165,7 +159,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordRight(sender) }
         
-        self.moveCursors(affinity: .upstream) { self.textStorage!.nextWord(from: $0.upperBound, forward: true) }
+        self.moveCursors(affinity: .upstream) {
+            self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound))
+        }
     }
     
     
@@ -174,12 +170,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordRightAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return (self.textStorage!.nextWord(from: range.lowerBound, forward: true), range.upperBound)
-            } else {
-                return (self.textStorage!.nextWord(from: range.upperBound, forward: true), range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
+            self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0))
         }
     }
     
@@ -189,12 +181,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveParagraphBackwardAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return ((self.string as NSString).lineRange(at: self.string.index(before: range.upperBound)).lowerBound, range.lowerBound)
-            } else {
-                return ((self.string as NSString).lineRange(at: self.string.index(before: range.lowerBound)).lowerBound, range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            (self.string as NSString).lineRange(at: self.string.index(before: $0)).lowerBound
         }
     }
     
@@ -204,12 +192,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveParagraphForwardAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return ((self.string as NSString).lineRange(at: self.string.index(after: range.lowerBound), excludingLastLineEnding: true).upperBound, range.upperBound)
-            } else {
-                return ((self.string as NSString).lineRange(at: self.string.index(after: range.upperBound), excludingLastLineEnding: true).upperBound, range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
+            (self.string as NSString).lineRange(at: self.string.index(after: $0), excludingLastLineEnding: true).upperBound
         }
     }
     
@@ -220,7 +204,9 @@ extension EditorTextView {
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
-        self.moveCursors(affinity: .downstream) { self.locationOfBeginningOfLine(for: $0) }
+        self.moveCursors(affinity: .downstream) {
+            self.locationOfBeginningOfLine(for: $0.location)
+        }
     }
     
     
@@ -228,7 +214,7 @@ extension EditorTextView {
     override func moveToBeginningOfLineAndModifySelection(_ sender: Any?) {
         
         guard self.hasMultipleInsertions else {
-            let location = self.locationOfBeginningOfLine(for: self.selectedRange)
+            let location = self.locationOfBeginningOfLine(for: self.selectedRange.location)
             
             // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
             // instead of setting `selectedRange` directly.
@@ -240,12 +226,8 @@ extension EditorTextView {
             return
         }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return (self.locationOfBeginningOfLine(for: range), range.lowerBound)
-            } else {
-                return (self.locationOfBeginningOfLine(for: range), range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            self.locationOfBeginningOfLine(for: $0)
         }
     }
     
@@ -256,7 +238,9 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveToEndOfLine(sender) }
         
         let length = self.attributedString().length
-        self.moveCursors(affinity: .upstream) { self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length }
+        self.moveCursors(affinity: .upstream) {
+            self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length
+        }
     }
     
     
@@ -266,12 +250,8 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveToEndOfLineAndModifySelection(sender) }
         
         let length = self.attributedString().length
-        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return (self.layoutManager?.lineFragmentRange(at: range.upperBound).upperBound ?? length, range.upperBound)
-            } else {
-                return (self.layoutManager?.lineFragmentRange(at: range.upperBound).upperBound ?? length, range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
+            self.layoutManager?.lineFragmentRange(at: $0).upperBound ?? length
         }
     }
     
@@ -330,7 +310,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToBeginningOfParagraph(sender) }
         
-        self.moveCursors(affinity: .downstream) { (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound }
+        self.moveCursors(affinity: .downstream) {
+            (self.string as NSString).lineRange(at: $0.lowerBound).lowerBound
+        }
     }
     
     
@@ -339,12 +321,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToBeginningOfParagraphAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return ((self.string as NSString).lineRange(at: range.upperBound).lowerBound, range.lowerBound)
-            } else {
-                return ((self.string as NSString).lineRange(at: range.lowerBound).lowerBound, range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            (self.string as NSString).lineRange(at: $0).lowerBound
         }
     }
     
@@ -356,7 +334,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToEndOfParagraph(sender) }
         
-        self.moveCursors(affinity: .upstream) { (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound }
+        self.moveCursors(affinity: .upstream) {
+            (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound
+        }
     }
     
     
@@ -365,12 +345,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToEndOfParagraphAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return ((self.string as NSString).lineRange(at: range.lowerBound, excludingLastLineEnding: true).upperBound, range.upperBound)
-            } else {
-                return ((self.string as NSString).lineRange(at: range.upperBound, excludingLastLineEnding: true).upperBound, range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
+            (self.string as NSString).lineRange(at: $0, excludingLastLineEnding: true).upperBound
         }
     }
     
@@ -380,7 +356,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordBackward(sender) }
         
-        self.moveCursors(affinity: .downstream) { self.textStorage!.nextWord(from: $0.lowerBound, forward: false) }
+        self.moveCursors(affinity: .downstream) {
+            self.textStorage!.nextWord(from: $0.lowerBound, forward: false)
+        }
     }
     
     
@@ -389,12 +367,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordBackwardAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .downstream) { (range, origin) in
-            if let origin = origin, origin < range.upperBound {
-                return (self.textStorage!.nextWord(from: range.upperBound, forward: false), range.lowerBound)
-            } else {
-                return (self.textStorage!.nextWord(from: range.lowerBound, forward: false), range.upperBound)
-            }
+        self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
+            self.textStorage!.nextWord(from: $0, forward: false)
         }
     }
     
@@ -404,7 +378,9 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordForward(sender) }
         
-        self.moveCursors(affinity: .upstream) { self.textStorage!.nextWord(from: $0.upperBound, forward: true) }
+        self.moveCursors(affinity: .upstream) {
+            self.textStorage!.nextWord(from: $0.upperBound, forward: true)
+        }
     }
     
     
@@ -413,12 +389,8 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveWordForwardAndModifySelection(sender) }
         
-        self.moveCursorsAndModifySelection(affinity: .upstream) { (range, origin) in
-            if let origin = origin, origin > range.lowerBound {
-                return (self.textStorage!.nextWord(from: range.lowerBound, forward: true), range.upperBound)
-            } else {
-                return (self.textStorage!.nextWord(from: range.upperBound, forward: true), range.lowerBound)
-            }
+        self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
+            self.textStorage!.nextWord(from: $0, forward: true)
         }
     }
     

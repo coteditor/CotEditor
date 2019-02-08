@@ -183,7 +183,7 @@
                             </customView>
                         </beginningViews>
                         <endViews>
-                            <scrollView identifier="editorScrollView" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Ev-81X">
+                            <scrollView identifier="editorScrollView" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Ev-81X">
                                 <rect key="frame" x="32" y="0.0" width="568" height="665"/>
                                 <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG">
                                     <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
@@ -203,8 +203,8 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
-                                    <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
+                                    <rect key="frame" x="0.0" y="649" width="568" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pXl-He-aXd">

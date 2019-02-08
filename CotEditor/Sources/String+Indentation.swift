@@ -172,7 +172,7 @@ extension String {
     }
     
     
-    /// Range for deleting soft-tab or nil if the character to delete is not speace.
+    /// Range for deleting soft-tab or nil if the character to delete is not a space.
     ///
     /// - Parameters:
     ///   - range: The range of selection.
@@ -183,10 +183,11 @@ extension String {
         assert(tabWidth > 0)
         assert(range.location != NSNotFound)
         
-        guard
-            range.isEmpty,
-            self.rangeOfIndent(at: range.location).upperBound >= range.location
-            else { return nil }
+        guard range.isEmpty else { return nil }
+        
+        let lineRange = (self as NSString).lineRange(at: range.location)
+        let forwardRange = NSRange(lineRange.location..<range.location)
+        guard (self as NSString).range(of: "^ +$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
         let column = self.column(of: range.location, tabWidth: tabWidth)
         let targetLength = tabWidth - (column % tabWidth)

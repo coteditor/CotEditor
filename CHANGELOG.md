@@ -2,7 +2,28 @@
 Change Log
 ==========================
 
-3.7.0-rc.2 (unreleased)
+3.7.0-rc.3 (335)
+--------------------------
+
+### Improvements
+
+- Delete sequential paces character by character when they are not located at the beginning of a line even if “Expand tabs to spaces” option is enabled.
+- [beta] Support right-to-left and bidi text by moving multiple cursors.
+
+
+### Fixes
+
+- Fix an issue where “Replace All” could fail when the text to find is a combining character such as a diacritical mark.
+- Fix an issue where lines did not wrap correctly with vertical text orientation.
+- Fix an issue where the line wrap width of a split view could be set shorter than the actual view if scroller bars are set to be always visible.
+- Fix an issue where the year in the print header or console prompt was displayed wrongly in specific days (Thanks to Frédéric Blondiau!).
+- [beta] Fix detailed behaviors of `^⇧↑` and `^⇧↓` shortcuts.
+- [beta] Fix an issue the application crashed by performing `^⇧↑` or `^⇧↓` shortcut when RTL text is selected.
+- [rc.2] Fix background color when an editor was scrolled over a boundary.
+
+
+
+3.7.0-rc.2 (333)
 --------------------------
 
 ### Improvements
@@ -17,7 +38,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where closed windows remained on the memory.
-- Fix an issue where selected ranges were set wrongly after updating document due to an external modification.
+- Address an issue where selected ranges were set wrongly after updating document due to an external modification.
 
 
 

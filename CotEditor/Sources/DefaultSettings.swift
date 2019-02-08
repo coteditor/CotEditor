@@ -175,7 +175,7 @@ struct DefaultSettings {
         .selectedInspectorPaneIndex: 0,
         
         // ------ hidden settings ------
-        .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
+        .headerFooterDateFormat: "yyyy-MM-dd HH:mm",
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
         .showColoringIndicatorTextLength: 75000,
