@@ -12,7 +12,7 @@ Change Log
 
 ### Fixes
 
-- [beta] Fix an issue where  `option+delete` shortcut deleted a word but toward a wrong direction.
+- [beta] Fix an issue where `option+delete` shortcut with multi-corsors deleted a word but toward a wrong direction.
 - [beta] Fix an issue where moving multiple cursors with a shortcut would not scroll the editor until the moved cursors visible.
 
 
