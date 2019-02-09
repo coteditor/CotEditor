@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Keep selections after performing “Duplicate Lines.”
+- [beta] keep cursors after performing “Delete Lines.”
 
 
 ### Fixes

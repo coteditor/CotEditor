@@ -402,10 +402,17 @@ private extension String {
         
         guard !ranges.isEmpty else { return nil }
         
-        let replacementRanges = (self as NSString).lineRanges(for: ranges)
-        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        let replacementStrings = [String](repeating: "", count: lineRanges.count)
         
-        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
+        var selectedRanges = [NSRange]()
+        var offset = 0
+        for range in lineRanges {
+            selectedRanges.append(NSRange(location: range.location + offset, length: 0))
+            offset -= range.length
+        }
+        
+        return (strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
     
 }
