@@ -9,12 +9,12 @@ Change Log
 
 - Keep selections after performing “Duplicate Lines.”
 - [beta] Keep cursors after performing “Delete Lines.”
-- [beta] Change behavior of `command+delete` shortcut with a single selection.
+- [beta] Change behavior of `⌘⌦` shortcut with a single selection.
 
 
 ### Fixes
 
-- [beta] Fix an issue where `option+delete` shortcut with multi-corsors deleted a word but toward a wrong direction.
+- [beta] Fix an issue where `⌥⌦` shortcut with multi-corsors deleted a word but toward a wrong direction.
 - [beta] Fix an issue where moving multiple cursors with a shortcut would not scroll the editor until the moved cursors visible.
 
 
