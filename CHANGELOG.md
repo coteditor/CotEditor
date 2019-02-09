@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [rc.3] Fix an issue where  `option+delete` shortcut deleted a word but toward a wrong direction.
+
+
+
 3.7.0-rc.3 (335)
 --------------------------
 

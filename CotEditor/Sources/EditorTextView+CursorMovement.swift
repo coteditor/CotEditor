@@ -534,8 +534,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.deleteWordBackward(sender) }
         
-        // FIXME: #921
-        self.moveWordForwardAndModifySelection(sender)
+        self.moveWordBackwardAndModifySelection(sender)
         self.deleteBackward(sender)
     }
     
