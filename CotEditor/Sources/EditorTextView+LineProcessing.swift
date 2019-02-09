@@ -373,6 +373,7 @@ private extension String {
         let string = self as NSString
         var replacementStrings = [String]()
         var replacementRanges = [NSRange]()
+        var selectedRanges = [NSRange]()
         
         for range in ranges {
             let lineRange = string.lineRange(for: range)
@@ -384,11 +385,15 @@ private extension String {
                 lineString += "\n"
             }
             
+            let offset = (replacementStrings + [lineString]).map { ($0 as NSString).length }.reduce(0, +)
+            let selectedRange = NSRange(location: range.location + offset, length: range.length)
+            
             replacementStrings.append(lineString)
             replacementRanges.append(replacementRange)
+            selectedRanges.append(selectedRange)
         }
         
-        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
+        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
     

@@ -5,10 +5,15 @@ Change Log
 3.7.0 (unreleased)
 --------------------------
 
+### Improvements
+
+- Keep selections after performing “Duplicate Lines.”
+
+
 ### Fixes
 
-- [rc.3] Fix an issue where  `option+delete` shortcut deleted a word but toward a wrong direction.
-- [rc.3] Fix an issue where moving multiple cursors with a shortcut would not scroll the editor until the moved cursors visible.
+- [beta] Fix an issue where  `option+delete` shortcut deleted a word but toward a wrong direction.
+- [beta] Fix an issue where moving multiple cursors with a shortcut would not scroll the editor until the moved cursors visible.
 
 
 
