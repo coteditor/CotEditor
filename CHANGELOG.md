@@ -8,7 +8,8 @@ Change Log
 ### Improvements
 
 - Keep selections after performing “Duplicate Lines.”
-- [beta] keep cursors after performing “Delete Lines.”
+- [beta] Keep cursors after performing “Delete Lines.”
+- [beta] Change behavior of `command+delete` shortcut with a single selection.
 
 
 ### Fixes

@@ -519,9 +519,9 @@ extension EditorTextView {
     /// delete to the beginning of visual line (command+delete)
     override func deleteToBeginningOfLine(_ sender: Any?) {
         
-        guard self.hasMultipleInsertions else { return super.deleteToBeginningOfLine(sender) }
+        // -> Do not invoke super even with a single selection because the behavior of
+        //    `moveToBeginningOfLineAndModifySelection` is different from the default implementation.
         
-        // FIXME: delete also indent spaces
         self.moveToBeginningOfLineAndModifySelection(sender)
         self.deleteBackward(sender)
     }
