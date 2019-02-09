@@ -204,6 +204,7 @@ extension EditorTextView {
     /// move cursor to the beginning of the current visual line (⌘←)
     override func moveToBeginningOfLine(_ sender: Any?) {
         
+        // FIXME: #922
         self.moveCursors(affinity: .downstream) {
             self.locationOfBeginningOfLine(for: $0.location)
         }
@@ -237,6 +238,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.moveToEndOfLine(sender) }
         
+        // FIXME: #922
         let length = self.attributedString().length
         self.moveCursors(affinity: .upstream) {
             self.layoutManager?.lineFragmentRange(at: $0.upperBound).upperBound ?? length
@@ -521,6 +523,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.deleteToBeginningOfLine(sender) }
         
+        // FIXME: delete also indent spaces
         self.moveToBeginningOfLineAndModifySelection(sender)
         self.deleteBackward(sender)
     }
@@ -531,6 +534,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.deleteWordBackward(sender) }
         
+        // FIXME: #921
         self.moveWordForwardAndModifySelection(sender)
         self.deleteBackward(sender)
     }
