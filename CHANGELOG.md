@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - [rc.3] Fix an issue where  `option+delete` shortcut deleted a word but toward a wrong direction.
+- [rc.3] Fix an issue where moving multiple cursors with a shortcut would not scroll the editor until the moved cursors visible.
 
 
 
