@@ -2,6 +2,23 @@
 Change Log
 ==========================
 
+3.7.0-rc.4 (337)
+--------------------------
+
+### Improvements
+
+- Keep selections after performing “Duplicate Lines.”
+- [beta] Keep cursors after performing “Delete Lines.”
+- [beta] Change behavior of `⌘⌦` shortcut with a single selection.
+
+
+### Fixes
+
+- [beta] Fix an issue where `⌥⌦` shortcut with multi-cursors deleted a word but toward a wrong direction.
+- [beta] Fix an issue where moving multiple cursors with a shortcut would not scroll the editor until the moved cursors visible.
+
+
+
 3.7.0-rc.3 (335)
 --------------------------
 

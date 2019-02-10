@@ -234,7 +234,13 @@ extension MultiCursorEditing where Self: NSTextView {
         self.setSelectedRanges(set.selectedRanges, affinity: affinity, stillSelecting: false)
         self.insertionLocations = set.insertionLocations
         
-        self.scrollRangeToVisible(NSRange(ranges.first!.lowerBound..<ranges.last!.upperBound))
+        let rangeToVisible: NSRange = {
+            switch affinity {
+            case .downstream: return ranges.first!
+            case .upstream:   return ranges.last!
+            }
+        }()
+        self.scrollRangeToVisible(rangeToVisible)
     }
     
     
