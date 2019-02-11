@@ -224,8 +224,10 @@ extension NSTextView {
             
             if isVertical {
                 self.isVerticallyResizable = !newValue
+                self.enclosingScrollView?.hasVerticalScroller = !newValue
             } else {
                 self.isHorizontallyResizable = !newValue
+                self.enclosingScrollView?.hasHorizontalScroller = !newValue
             }
             
             if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {

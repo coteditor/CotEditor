@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Hide the horizontal scroll bar area when text wrapped.
+
+
+
 3.7.0-rc.5 (339)
 --------------------------
 
