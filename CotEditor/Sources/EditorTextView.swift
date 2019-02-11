@@ -132,8 +132,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isVerticallyResizable = true
         self.autoresizingMask = .width
         self.textContainerInset = kTextContainerInset
-        // workaround to avoid wrapping lines wrongly when scrollers are set to be always visible (macOS 10.14 2019-02)
-        self.textContainer!.size.width = self.frame.size.width
         
         // set NSTextView behaviors
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
