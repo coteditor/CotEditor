@@ -132,8 +132,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isVerticallyResizable = true
         self.autoresizingMask = .width
         self.textContainerInset = kTextContainerInset
-        // workaround to avoid wrapping lines wrongly when scrollers are set to be always visible (macOS 10.14 2019-02)
-        self.textContainer!.size.width = self.frame.size.width
         
         // set NSTextView behaviors
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
@@ -910,10 +908,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
-        if self.layoutOrientation != orientation {
-            self.minSize = self.minSize.rotated
-        }
-        
         // -> need to send KVO notification manually on Swift (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(forKey: #keyPath(layoutOrientation))
         super.setLayoutOrientation(orientation)
@@ -924,6 +918,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // reset writing direction
         if orientation == .vertical {
             self.baseWritingDirection = .leftToRight
+        }
+        
+        // reset text wrapping width
+        if self.wrapsLines {
+            let keyPath = (orientation == .vertical) ? \NSSize.height : \NSSize.width
+            self.frame.size[keyPath: keyPath] = self.visibleRect.width * self.scale
         }
     }
     

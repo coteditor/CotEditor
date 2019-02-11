@@ -161,7 +161,7 @@ final class EditorInfoCountOperation: Operation {
             dispatchGroup.enter()
             DispatchQueue.main.async { [weak self] in
                 defer { dispatchGroup.leave() }
-                guard let self = self else { return }
+                guard let self = self, !self.isCancelled else { return }
                 
                 self.result.words = NSSpellChecker.shared.countWords(in: self.string, language: self.language)
                 

@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+3.7.0-rc.5 (339)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where lines did not wrap correctly with vertical text orientation.
+- [beta] Fix an issue where the line wrap width of a split view could be set shorter than the actual view if scroller bars are set to be always visible.
+
+
+
 3.7.0-rc.4 (337)
 --------------------------
 
