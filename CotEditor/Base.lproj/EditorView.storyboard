@@ -171,30 +171,28 @@
         <scene sceneID="F5v-F6-xnV">
             <objects>
                 <viewController id="u5I-Fh-D97" customClass="EditorTextViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <stackView key="view" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Val-Qg-Ge8">
+                    <stackView key="view" distribution="fill" orientation="horizontal" alignment="top" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="Val-Qg-Ge8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="665"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <beginningViews>
-                            <customView horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-Jr-jkg" customClass="LineNumberView" customModule="CotEditor" customModuleProvider="target">
+                        <subviews>
+                            <customView horizontalHuggingPriority="750" verticalHuggingPriority="750" placeholderIntrinsicWidth="32" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="UmS-Jr-jkg" customClass="LineNumberView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="32" height="665"/>
                                 <connections>
                                     <outlet property="textView" destination="aeT-4W-UoJ" id="RbK-q6-Dw1"/>
                                 </connections>
                             </customView>
-                        </beginningViews>
-                        <endViews>
-                            <scrollView identifier="editorScrollView" fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Ev-81X">
+                            <scrollView identifier="editorScrollView" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" translatesAutoresizingMaskIntoConstraints="NO" id="1UU-Ev-81X">
                                 <rect key="frame" x="32" y="0.0" width="568" height="665"/>
                                 <clipView key="contentView" drawsBackground="NO" id="BHe-gR-oOG">
-                                    <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="553" height="650"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView identifier="coreTextView" importsGraphics="NO" richText="NO" verticallyResizable="YES" baseWritingDirection="leftToRight" findStyle="panel" allowsUndo="YES" allowsNonContiguousLayout="YES" id="aeT-4W-UoJ" customClass="EditorTextView" customModule="CotEditor" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="568" height="665"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="553" height="650"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="568" height="665"/>
+                                            <size key="minSize" width="553" height="650"/>
                                             <size key="maxSize" width="732" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <connections>
@@ -204,15 +202,15 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1uy-9I-jAW">
-                                    <rect key="frame" x="0.0" y="649" width="568" height="16"/>
+                                    <rect key="frame" x="0.0" y="650" width="553" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="pXl-He-aXd">
-                                    <rect key="frame" x="552" y="0.0" width="16" height="665"/>
+                                    <rect key="frame" x="553" y="0.0" width="15" height="650"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                        </endViews>
+                        </subviews>
                         <visibilityPriorities>
                             <integer value="1000"/>
                             <integer value="1000"/>
@@ -229,7 +227,7 @@
                 </viewController>
                 <customObject id="Yzz-IO-9Qh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1469" y="7"/>
+            <point key="canvasLocation" x="1469" y="6.5"/>
         </scene>
     </scenes>
     <resources>
