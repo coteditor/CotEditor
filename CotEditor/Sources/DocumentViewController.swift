@@ -896,6 +896,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// create and set-up new (split) editor view
     private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
         
+        editorViewController.setTextStorage(self.textStorage!)
+        
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
         editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
@@ -915,8 +917,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             textView.baseWritingDirection = baseTextView.baseWritingDirection
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
-        
-        editorViewController.setTextStorage(self.textStorage!)
         
         NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
                                                name: NSTextView.didChangeSelectionNotification,
