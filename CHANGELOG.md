@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.0 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where lines did not wrap correctly with vertical text orientation.
+
+
+
 3.7.0-rc.4 (337)
 --------------------------
 
