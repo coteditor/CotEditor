@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - [beta] Hide the horizontal scroll bar area when text wrapped.
+- [beta] Fix an issue where the line wrap width of a split view could be set shorter than the actual view if scroller bars are set to be always visible.
 
 
 
