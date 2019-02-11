@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -138,8 +138,10 @@ final class EditorViewController: NSSplitViewController {
     /// set textStorage to inner text view
     func setTextStorage(_ textStorage: NSTextStorage) {
         
-        self.textView?.layoutManager?.replaceTextStorage(textStorage)
-        self.textView?.didChangeText()  // notify to lineNumberView to drive initial line count
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        textView.layoutManager?.replaceTextStorage(textStorage)
+        textView.didChangeText()  // notify to lineNumberView to drive initial line count
     }
     
     
