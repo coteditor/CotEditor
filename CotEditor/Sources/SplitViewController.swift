@@ -129,6 +129,8 @@ final class SplitViewController: NSSplitViewController {
             self.addSplitViewItem(splitViewItem)
         }
         
+        self.splitView.layoutSubtreeIfNeeded()
+        
         self.invalidateOpenSplitEditorButtons()
         self.invalidateCloseSplitEditorButtons()
     }
