@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.1 (unreleased)
+--------------------------
+
+### Improvements
+
+- Highlight all lines that contains one of multi-insrtion points as current lines.
+
+
+
 3.7.0 (342)
 --------------------------
 

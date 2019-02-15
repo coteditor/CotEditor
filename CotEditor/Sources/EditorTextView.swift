@@ -55,7 +55,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var syntaxCompletionWords: [String] = []
     
     var needsUpdateLineHighlight = true
-    var lineHighLightRect: NSRect?
+    var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
     var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
