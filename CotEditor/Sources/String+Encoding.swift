@@ -52,7 +52,7 @@ private let ISO2022JPEscapeSequences: [Data] = [
     [0x1B, 0x24, 0x40],  // 1978
     [0x1B, 0x24, 0x42],  // 1983
     [0x1B, 0x24, 0x28, 0x44],  // JISX0212
-    ].map { Data(bytes: $0) }
+    ].map { Data($0) }
 
 
 private let maxDetectionLength = 1024 * 8
@@ -301,7 +301,7 @@ extension Data {
     /// return Data by adding UTF-8 BOM
     var addingUTF8BOM: Data {
         
-        return Data(bytes: UTF8.bom) + self
+        return Data(UTF8.bom) + self
     }
     
     

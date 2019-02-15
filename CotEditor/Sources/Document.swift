@@ -478,7 +478,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
         }
         if UserDefaults.standard[.savesTextOrientation] {
-            try url.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil, for: FileExtendedAttributeName.verticalText)
+            try url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
         }
         
         if saveOperation != .autosaveElsewhereOperation {
