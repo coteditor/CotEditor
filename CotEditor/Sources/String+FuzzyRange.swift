@@ -43,13 +43,14 @@ extension String {
     /// - Returns: A character range, or `nil` if the given values are out of range.
     func range(location: Int, length: Int) -> NSRange? {
         
-        let wholeLength = self.utf16.count
-        let newLocation = (location >= 0) ? location : (wholeLength + location)
-        let newLength = (length >= 0) ? length : (wholeLength - newLocation + length)
+        let wholeLength = (self as NSString).length
+        let lowerBound = (location >= 0) ? location : (wholeLength + location)
+        let newLength = (length >= 0) ? length : (wholeLength - lowerBound + length)
+        let upperBound = min(lowerBound + newLength, wholeLength)
         
-        guard newLocation >= 0, newLength >= 0 else { return nil }
+        guard lowerBound >= 0, newLength >= 0, lowerBound <= upperBound else { return nil }
         
-        return NSRange(newLocation..<min(newLocation + newLength, wholeLength))
+        return NSRange(lowerBound..<upperBound)
     }
     
     
