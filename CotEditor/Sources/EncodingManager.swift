@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,9 +64,7 @@ final class EncodingManager: NSObject {
         }
         
         self.encodingListObserver = UserDefaults.standard.observe(key: .encodingList) { [weak self] _ in
-            DispatchQueue.main.async {
-                NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
-            }
+            NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
         }
     }
     

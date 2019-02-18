@@ -10,6 +10,11 @@ Change Log
 - Highlight all lines that contains one of multi-insrtion points as current lines.
 
 
+### Fixes
+
+- Improve stability.
+
+
 
 3.7.0 (342)
 --------------------------

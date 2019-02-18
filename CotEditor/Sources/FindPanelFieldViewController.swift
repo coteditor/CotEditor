@@ -228,6 +228,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     /// apply history to UI
     private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
         
+        assert(Thread.isMainThread)
+        
         // clear current history items
         menu.items
             .filter { $0.action == action || $0.isSeparatorItem }

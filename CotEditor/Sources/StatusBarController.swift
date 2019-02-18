@@ -138,6 +138,8 @@ final class StatusBarController: NSViewController {
     /// update left side text
     @objc private func updateEditorStatus() {
         
+        assert(Thread.isMainThread)
+        
         guard !self.view.isHiddenOrHasHiddenAncestor else { return }
         guard let info = self.documentAnalyzer?.info else { return }
         
@@ -175,6 +177,8 @@ final class StatusBarController: NSViewController {
     
     /// update right side text and readonly icon state
     @objc private func updateDocumentStatus() {
+        
+        assert(Thread.isMainThread)
         
         guard !self.view.isHiddenOrHasHiddenAncestor else { return }
         guard let info = self.documentAnalyzer?.info else { return }

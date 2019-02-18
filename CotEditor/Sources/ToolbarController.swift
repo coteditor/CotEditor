@@ -137,9 +137,7 @@ final class ToolbarController: NSObject {
         
         self.recentStyleNamesObserver?.invalidate()
         self.recentStyleNamesObserver = UserDefaults.standard.observe(key: .recentStyleNames) { [weak self] _ in
-            DispatchQueue.main.async {
-                self?.buildSyntaxPopupButton()
-            }
+            self?.buildSyntaxPopupButton()
         }
     }
     

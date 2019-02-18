@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import Foundation
 
 extension UserDefaults {
     
-    func observe<Value>(key: DefaultKey<Value>, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (UserDefaultsObservation.Change<Value>) -> Void) -> UserDefaultsObservation {
+    func observe<Value>(key: DefaultKey<Value>, queue: OperationQueue? = .main, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (UserDefaultsObservation.Change<Value>) -> Void) -> UserDefaultsObservation {
         
-        let observation = UserDefaultsObservation(object: self, key: key.rawValue) { (change) in
+        let observation = UserDefaultsObservation(object: self, key: key.rawValue, queue: queue) { (change) in
             
             let typedChange = UserDefaultsObservation.Change(kind: change.kind,
                                                              new: change.new as? Value,
@@ -45,10 +45,10 @@ extension UserDefaults {
     }
     
     
-    func observe(keys: [DefaultKeys], options: NSKeyValueObservingOptions = [], changeHandler: @escaping (DefaultKeys, UserDefaultsObservation.Change<Any>) -> Void) -> [UserDefaultsObservation] {
+    func observe(keys: [DefaultKeys], queue: OperationQueue? = .main, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (DefaultKeys, UserDefaultsObservation.Change<Any>) -> Void) -> [UserDefaultsObservation] {
         
         let observations = keys.map { key in
-            UserDefaultsObservation(object: self, key: key.rawValue) { changeHandler(key, $0) }
+            UserDefaultsObservation(object: self, key: key.rawValue, queue: queue) { changeHandler(key, $0) }
         }
         observations.forEach { $0.startObservation(options) }
         
@@ -77,16 +77,18 @@ final class UserDefaultsObservation: NSObject {
     private weak var object: UserDefaults?
     private let changeHandler: (Change<Any>) -> Void
     private let key: String
+    private let queue: OperationQueue?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    init(object: UserDefaults, key: String, changeHandler: @escaping (Change<Any>) -> Void) {
+    fileprivate init(object: UserDefaults, key: String, queue: OperationQueue?, changeHandler: @escaping (Change<Any>) -> Void) {
         
         self.object = object
         self.key = key
+        self.queue = queue
         self.changeHandler = changeHandler
     }
     
@@ -113,7 +115,13 @@ final class UserDefaultsObservation: NSObject {
                                  indexes: change[.indexesKey] as! IndexSet?,
                                  isPrior: change[.notificationIsPriorKey] as? Bool ?? false)
         
-        self.changeHandler(typedChange)
+        if let queue = self.queue {
+            queue.addOperation { [handler = self.changeHandler] in
+                handler(typedChange)
+            }
+        } else {
+            self.changeHandler(typedChange)
+        }
     }
     
     
