@@ -1445,6 +1445,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }()
         
         let replacementString = urls.reduce(into: "") { (string, url) in
+            if url.pathExtension == "textClipping", let textClipping = try? TextClipping(url: url) {
+                string += textClipping.string
+                return
+            }
             if let dropText = composer.dropText(forFileURL: url, documentURL: documentURL, syntaxStyle: syntaxStyle) {
                 string += dropText
                 return
