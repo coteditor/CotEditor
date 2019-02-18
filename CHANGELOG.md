@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Highlight all lines that contains one of multi-insrtion points as current lines.
+- Highlight all lines that contain one of multi-insrtion points as current lines.
 - Insert the text cotnent of .textClipping files when dropped.
 
 
