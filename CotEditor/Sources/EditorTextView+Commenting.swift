@@ -158,11 +158,11 @@ extension Commenting where Self: NSTextView {
         let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
         let deletionRanges: [NSRange] = {
             if let delimiters = self.blockCommentDelimiters {
-                let indices = self.string.rangesOf(delimiters: delimiters, spacer: spacer, ranges: targetRanges)
+                let indices = self.string.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges)
                 if !indices.isEmpty { return indices }
             }
             if let delimiter = self.inlineCommentDelimiter {
-                return self.string.rangesOf(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
+                return self.string.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges)
             }
             return []
         }()
@@ -323,7 +323,7 @@ private extension String {
     ///   - spacer: The spacer between delimiter and string.
     ///   - ranges: The ranges where to find.
     /// - Returns: Ranges where delimiters and spacers are.
-    func rangesOf(delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange] {
+    func rangesOfInlineDelimiter(_ delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange] {
         
         let ranges = ranges.filter { !$0.isEmpty }
         
@@ -348,7 +348,7 @@ private extension String {
     ///   - spacer: The spacer between delimiter and string.
     ///   - ranges: The ranges where to find.
     /// - Returns: Ranges where delimiters and spacers are.
-    func rangesOf(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange] {
+    func rangesOfBlockDelimiters(_ delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange] {
         
         let ranges = ranges.filter { !$0.isEmpty }
         
