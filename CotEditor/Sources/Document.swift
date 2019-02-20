@@ -398,7 +398,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(Thread.isMainThread)
         if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
-            let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
+            let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation || saveOperation == .autosaveAsOperation)
             let textView = self.textStorage.layoutManagers.lazy
                 .compactMap { $0.textViewForBeginningOfSelection }
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }

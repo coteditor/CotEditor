@@ -7,12 +7,13 @@ Change Log
 
 ### Improvements
 
-- Highlight all lines that contain one of multi-insrtion points as current lines.
+- Highlight all lines that contain one of multi-insertion points as current lines.
 - Insert the text cotnent of .textClipping files when dropped.
 
 
 ### Fixes
 
+- Fix an issue where trailing whitespaces before the insertion points could be wrongly removed on the first auto-saving.
 - Improve stability.
 
 
