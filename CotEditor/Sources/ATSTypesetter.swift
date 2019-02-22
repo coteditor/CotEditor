@@ -87,9 +87,10 @@ final class ATSTypesetter: NSATSTypesetter {
         // -> Getting index fails when the code point is a part of surrogate pair.
         guard
             charIndex > 0,
-            let string = self.attributedString?.string,
-            let index = String.UTF16View.Index(encodedOffset: charIndex).samePosition(in: string)
+            let string = self.attributedString?.string
             else { return true }
+        
+        let index = String.Index(utf16Offset: charIndex, in: string)
         
         // check if the character is the first non-whitespace character after indent
         for character in string[..<index].reversed() {

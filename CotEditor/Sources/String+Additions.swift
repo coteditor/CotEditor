@@ -105,7 +105,7 @@ extension String {
     /// check if character at the location in UTF16 is escaped with backslash
     func isCharacterEscaped(at location: Int) -> Bool {
         
-        guard let locationIndex = String.UTF16View.Index(encodedOffset: location).samePosition(in: self) else { return false }
+        let locationIndex = String.Index(utf16Offset: location, in: self)
         
         return self.isCharacterEscaped(at: locationIndex)
     }
