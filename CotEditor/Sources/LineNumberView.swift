@@ -185,14 +185,15 @@ final class LineNumberView: NSView {
         
         super.viewDidMoveToWindow()
         
-        // ignore when detached
-        guard let window = self.window else { return }
-        
-        // perform redraw on window opacity change
         if let observer = self.opacityObserver {
             NotificationCenter.default.removeObserver(observer)
             self.opacityObserver = nil
         }
+        
+        // ignore when detached
+        guard let window = self.window else { return }
+        
+        // perform redraw on window opacity change
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
             self.setNeedsDisplay(self.visibleRect)
         }

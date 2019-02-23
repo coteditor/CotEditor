@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ final class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
+        self.findNextAfterReplaceObserver?.invalidate()
         self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace) { [unowned self] _ in
             self.invalidateReplaceButtonBehavior()
         }

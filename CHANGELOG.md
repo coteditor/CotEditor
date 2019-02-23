@@ -2,7 +2,23 @@
 Change Log
 ==========================
 
-3.7.0 (unreleased)
+3.7.1 (344)
+--------------------------
+
+### Improvements
+
+- Highlight all lines that contain one of the multi-insertion points as current lines.
+- Insert the text content of .textClipping files when dropped.
+
+
+### Fixes
+
+- Fix an issue where trailing whitespaces before the insertion points could be wrongly removed on the first auto-saving.
+- Improve stability.
+
+
+
+3.7.0 (342)
 --------------------------
 
 ### Fixes

@@ -84,6 +84,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                                                object: ThemeManager.shared)
         
         // observe defaults change
+        self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = [
             UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
                 let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
@@ -104,6 +105,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         ]
         
         // observe appearance change for theme toggle
+        self.appearanceObserver?.invalidate()
         self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
             guard
                 self.view.window != nil,

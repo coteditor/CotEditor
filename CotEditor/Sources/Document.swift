@@ -398,7 +398,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(Thread.isMainThread)
         if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
-            let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
+            let keepsEditingPoint = saveOperation.isAutoSaving
             let textView = self.textStorage.layoutManagers.lazy
                 .compactMap { $0.textViewForBeginningOfSelection }
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
@@ -452,11 +452,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            switch saveOperation {
-            case .saveOperation, .saveAsOperation, .saveToOperation:
+            if !saveOperation.isAutoSaving {
                 self.analyzer.invalidateFileInfo()
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
-            case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
     }
@@ -478,7 +476,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
         }
         if UserDefaults.standard[.savesTextOrientation] {
-            try url.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil, for: FileExtendedAttributeName.verticalText)
+            try url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
         }
         
         if saveOperation != .autosaveElsewhereOperation {
@@ -502,7 +500,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.isExecutable, (saveOperation == .saveOperation || saveOperation == .saveAsOperation) {
+        if self.isExecutable, !saveOperation.isAutoSaving {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions.rawValue] = permissions | S_IXUSR
         }

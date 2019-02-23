@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 CotEditor Project
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import AppKit
 protocol CurrentLineHighlighting: AnyObject {
     
     var needsUpdateLineHighlight: Bool { get set }
-    var lineHighLightRect: NSRect? { get set }
+    var lineHighLightRects: [NSRect] { get set }
     var lineHighLightColor: NSColor? { get }
 }
 
@@ -42,21 +42,18 @@ extension CurrentLineHighlighting where Self: NSTextView {
     func drawCurrentLine(in dirtyRect: NSRect) {
         
         if self.needsUpdateLineHighlight {
-            self.lineHighLightRect = self.calcurateLineHighLightRect()
+            self.lineHighLightRects = self.calcurateLineHighLightRects()
             self.needsUpdateLineHighlight = false
         }
         
-        guard
-            let rect = self.lineHighLightRect,
-            let color = self.lineHighLightColor,
-            rect.intersects(dirtyRect)
-            else { return }
+        guard let color = self.lineHighLightColor else { return }
         
-        // draw highlight
         NSGraphicsContext.saveGraphicsState()
         
         color.setFill()
-        rect.fill()
+        for rect in self.lineHighLightRects where rect.intersects(dirtyRect) {
+            rect.fill()
+        }
         
         NSGraphicsContext.restoreGraphicsState()
     }
@@ -65,14 +62,29 @@ extension CurrentLineHighlighting where Self: NSTextView {
     
     // MARK: Private Methods
     
-    /// update lineHighLightRect
-    private func calcurateLineHighLightRect() -> NSRect {
+    /// Calculate highlight rects for all insertion points.
+    ///
+    /// - Returns: Rects for current line highlight.
+    private func calcurateLineHighLightRects() -> [NSRect] {
         
-        let lineRange = (self.string as NSString).lineRange(for: self.selectedRange, excludingLastLineEnding: true)
+        return self.rangesForUserTextChange?
+            .map { $0.rangeValue }
+            .map { (self.string as NSString).lineRange(for: $0, excludingLastLineEnding: true) }
+            .unique
+            .map { self.lineRect(for: $0) }
+            ?? []
+    }
+    
+    
+    /// Return rect for the line that contains the given range.
+    ///
+    /// - Parameter range: The range to obtain line rect.
+    /// - Returns: Line rect in view coordinate.
+    private func lineRect(for range: NSRange) -> NSRect {
         
         guard
             let textContainer = self.textContainer,
-            let rect = self.boundingRect(for: lineRange)
+            let rect = self.boundingRect(for: range)
             else { assertionFailure(); return .zero }
         
         return NSRect(x: 0,
