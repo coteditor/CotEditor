@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,6 +57,8 @@ final class GoToLineViewController: NSViewController {
     
     /// apply
     @IBAction func ok(_ sender: Any?) {
+        
+        self.endEditing()
         
         guard self.selectLocation() else {
             NSSound.beep()

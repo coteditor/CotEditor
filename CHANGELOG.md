@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.
+
+
+
 3.7.1 (344)
 --------------------------
 
