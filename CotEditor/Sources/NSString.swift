@@ -73,6 +73,16 @@ extension NSRange {
         return true
     }
     
+    
+    /// Return a copied NSRange but whose location is shifted toward the given `offset`.
+    ///
+    /// - Parameter offset: The offset to shift.
+    /// - Returns: A new NSRange.
+    func shifted(offset: Int) -> NSRange {
+        
+        return NSRange(location: self.location + offset, length: self.length)
+    }
+    
 }
 
 

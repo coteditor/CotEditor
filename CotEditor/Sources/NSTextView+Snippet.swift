@@ -37,8 +37,12 @@ extension NSTextView {
             
             let snippetLength = snippet.string.utf16.count
             return ranges.map { range in
-                let location = ranges.prefix { $0 != range }.map { snippetLength - $0.length }.reduce(range.location, +)
-                return NSRange(location: location + selection.location, length: selection.length)
+                let offset = ranges
+                    .prefix { $0 != range }
+                    .map { snippetLength - $0.length }
+                    .reduce(range.location, +)
+
+                return selection.shifted(offset: offset)
             }
         }()
         

@@ -84,9 +84,7 @@ extension MultiCursorEditing where Self: NSTextView {
         
         self.textStorage?.beginEditing()
         for range in replacementRanges {
-            let replacementRange = NSRange(location: range.location + offset, length: range.length)
-            
-            self.textStorage?.replaceCharacters(in: replacementRange, with: attributedString)
+            self.textStorage?.replaceCharacters(in: range.shifted(offset: offset), with: attributedString)
             
             newInsertionLocations.append(range.location + offset + stringLength)
             

@@ -333,7 +333,7 @@ final class TextFind {
                     if ioStop { return }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
-                    let substringRange = NSRange(location: item.range.location - scopeRange.location, length: item.range.length)
+                    let substringRange = item.range.shifted(offset: -scopeRange.location)
                     replacedString = replacedString.replacingCharacters(in: substringRange, with: item.string) as NSString
                 }
                 replacementItems.append(ReplacementItem(string: replacedString as String, range: scopeRange))
