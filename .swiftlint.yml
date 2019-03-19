@@ -1,3 +1,5 @@
+macOS_deployment_target:
+    10.12.2
 
 included:
   - CotEditor/Sources
