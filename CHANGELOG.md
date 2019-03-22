@@ -5,6 +5,11 @@ Change Log
 3.7.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- Use monospace numbers for line numbers in Find All result table.
+
+
 ### Fixes
 
 - Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.
