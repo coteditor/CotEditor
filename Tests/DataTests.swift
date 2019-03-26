@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,10 +31,10 @@ class DataTests: XCTestCase {
 
     func testComponents() {
         
-        let data = Data(bytes: [0, 1, 2, 3, 4, 5, 6])
+        let data = Data([0, 1, 2, 3, 4, 5, 6])
         let subdata = data.components(length: 3)
         
-        XCTAssertEqual(subdata, [Data(bytes: [0, 1, 2]), Data(bytes: [3, 4, 5]), Data(bytes: [6])])
+        XCTAssertEqual(subdata, [Data([0, 1, 2]), Data([3, 4, 5]), Data([6])])
     }
 
 }
