@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Use monospace numbers for line numbers in Find All result table.
+- [dev] Update build environment to Xcode 10.2 (Swift 5, macOS 10.14 SDK).
 
 
 ### Fixes
