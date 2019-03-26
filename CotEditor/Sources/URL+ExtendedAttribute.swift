@@ -40,8 +40,9 @@ extension URL {
             // get xattr data
             var data = Data(count: length)
             let size = data.withUnsafeMutableBytes {
-                getxattr(fileSystemPath, name, $0, length, 0, XATTR_NOFOLLOW)
+                getxattr(fileSystemPath, name, $0.baseAddress, length, 0, XATTR_NOFOLLOW)
             }
+            
             guard size >= 0 else { throw POSIXError(err: errno) }
             
             return data
@@ -61,7 +62,7 @@ extension URL {
         try self.withUnsafeFileSystemRepresentation { fileSystemPath in
             
             let size = data.withUnsafeBytes {
-                setxattr(fileSystemPath, name, $0, data.count, 0, XATTR_NOFOLLOW)
+                setxattr(fileSystemPath, name, $0.baseAddress, data.count, 0, XATTR_NOFOLLOW)
             }
             
             guard size >= 0 else { throw POSIXError(err: errno) }

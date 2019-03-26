@@ -131,8 +131,7 @@ extension String {
         
         assert(tabWidth > 0)
         
-        let index = String.UTF16View.Index(encodedOffset: location).samePosition(in: self)!
-        
+        let index = String.Index(utf16Offset: location, in: self)
         let lineRange = self.lineRange(at: index)
         let column = self.distance(from: lineRange.lowerBound, to: index)
         

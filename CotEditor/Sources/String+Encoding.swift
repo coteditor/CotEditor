@@ -111,6 +111,16 @@ extension String.Encoding {
 
 extension String {
     
+    /// decode data and remove UTF-8 BOM if exists
+    init?(bomCapableData data: Data, encoding: String.Encoding) {
+        
+        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: UTF8.bom))
+        let bomFreeData = hasUTF8WithBOM ? data[UTF8.bom.count...] : data
+        
+        self.init(data: bomFreeData, encoding: encoding)
+    }
+    
+    
     /// obtain string from Data with intelligent encoding detection
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
@@ -118,7 +128,7 @@ extension String {
         if !data.isEmpty {
             // check UTF-8 BOM
             if data.starts(with: UTF8.bom) {
-                if let string = String(data: data, encoding: .utf8) {
+                if let string = String(bomCapableData: data, encoding: .utf8) {
                     usedEncoding = .utf8
                     self = string
                     return

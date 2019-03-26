@@ -161,7 +161,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 guard let numberString: String = {
                     switch line {
                     case .new(let lineNumber, _):
-                        if isVerticalText, lineNumber != 1, lineNumber % 5 != 0 {
+                        if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
                             return "·"  // draw real number only in every 5 times
                         }
                         return String(lineNumber)
@@ -338,6 +338,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         case .vertical:
             printSize.height -= printInfo.leftMargin + printInfo.rightMargin
             printSize.height /= printInfo.scalingFactor
+        @unknown default: fatalError()
         }
         
         // adjust frame size
@@ -349,6 +350,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             self.frame.size.height = usedHeight
         case .vertical:
             self.frame.size.width = usedHeight
+        @unknown default: fatalError()
         }
     }
     
