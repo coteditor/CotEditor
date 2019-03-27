@@ -389,12 +389,9 @@ private extension NSString {
     /// find and return the range of the first occurrence starting from the given selectedRange
     func range(of searchString: String, selectedRange: NSRange, options: NSString.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
-        let targetRange: NSRange = {
-            if options.contains(.backwards), !options.contains(.regularExpression) {
-                return NSRange(location: 0, length: selectedRange.location)
-            }
-            return NSRange(selectedRange.upperBound..<self.length)
-        }()
+        let targetRange = (options.contains(.backwards) && !options.contains(.regularExpression))
+            ? NSRange(0..<selectedRange.location)
+            : NSRange(selectedRange.upperBound..<self.length)
         
         var foundRange = self.range(of: searchString, options: options, range: targetRange)
         if foundRange.location == NSNotFound, isWrapSearch {
