@@ -9,7 +9,8 @@ Change Log
 
 - Use monospace numbers for line numbers in Find All result table.
 - Optimize performance highlighting found matches.
-- [dev] Update build environment to Xcode 10.2 (Swift 5, macOS 10.14 SDK).
+- [dev] Update build environment to Xcode 10.2 (Swift 5).
+- [dev] Update Differ framework to 1.4.0.
 
 
 ### Fixes

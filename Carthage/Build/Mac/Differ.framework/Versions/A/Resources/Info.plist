@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>BuildMachineOSBuild</key>
-	<string>18D109</string>
+	<string>18E226</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -46,6 +46,7 @@
 	<array>
 		<integer>1</integer>
 		<integer>2</integer>
+		<integer>4</integer>
 	</array>
 </dict>
 </plist>
