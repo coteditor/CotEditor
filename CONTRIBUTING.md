@@ -40,10 +40,6 @@ Especially, follow the terms of the following applications.
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-Refer also to the Apple's guidelines about terminology. They are about English, but also useful for localization.
-
-- [Terminology and Wording -macOS Human Interface Guidelines](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/OSXHIGuidelines/TerminologyWording.html#//apple_ref/doc/uid/20000957-CH15-SW1)
-
 #### Submitting a new localization
 
 Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `de.lproj/` directory because they are always up-to-date and well organized.
