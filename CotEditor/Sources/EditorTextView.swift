@@ -1372,13 +1372,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// use legible white-based custom i-beam cursor for dark theme
     private func invalidateCursor() {
         
-        guard
-            NSAppKitVersion.current <= .macOS10_13,  // i-beam is enough findable with dark background since Mojave
-            self.theme?.isDarkTheme == true,
-            NSCursor.current == .iBeam
-            else { return }
+        guard self.theme?.isDarkTheme == true else { return }
         
-        NSCursor.lightIBeam.set()
+        switch NSCursor.current {
+        case .iBeam where NSAppKitVersion.current <= .macOS10_13:
+            // -> i-beam is enough findable with dark background since Mojave
+            NSCursor.lightIBeam.set()
+            
+        case .iBeamCursorForVerticalLayout:
+            NSCursor.lightIBeamCursorForVerticalLayout.set()
+            
+        default:
+            break
+        }
     }
     
     

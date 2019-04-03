@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Make the i-beam cursor more legible in vertical text orientation and dark background theme.
 - Use monospace numbers for line numbers in Find All result table.
 - Optimize performance highlighting found matches.
 - [dev] Update build environment to Xcode 10.2 (Swift 5).
