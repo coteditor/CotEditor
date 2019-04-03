@@ -15,6 +15,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the “Discard Changes” and “Cancel” buttons in the dialog for encoding reinterpretation performed oppositely (Thanks to Aurélien Roy!).
 - Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.
 - Fix an issue where `change kana` scripting command did not work.
 
