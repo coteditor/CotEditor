@@ -16,6 +16,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue under macOS 10.12 where application hung up if “Text Orientation” toolbar item is visible.
 - Fix an issue where the “Discard Changes” and “Cancel” buttons in the dialog for encoding reinterpretation performed oppositely (Thanks to Aurélien Roy!).
 - Fix an issue where color code editor was invisible under macOS 10.12.
 - Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.
