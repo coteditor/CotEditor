@@ -4,7 +4,7 @@ osx_image: xcode10.2
 script:
   set -o pipefail &&
   travis_retry
-  xcodebuild build
+  xcodebuild build test
   -workspace CotEditor.xcworkspace
   -scheme CotEditor
   CODE_SIGN_IDENTITY=""
