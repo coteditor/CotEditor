@@ -2,6 +2,28 @@
 Change Log
 ==========================
 
+3.7.2 (347)
+--------------------------
+
+### Improvements
+
+- Make the i-beam cursor more legible in vertical text orientation and dark background theme.
+- Use monospace numbers for line numbers in Find All result table.
+- Optimize performance highlighting found matches.
+- [dev] Update build environment to Xcode 10.2 (Swift 5).
+- [dev] Update Differ framework to 1.4.0.
+
+
+### Fixes
+
+- Fix an issue under macOS 10.12 where application hung up if “Text Orientation” toolbar item is visible.
+- Fix an issue where the “Discard Changes” and “Cancel” buttons in the dialog for encoding reinterpretation performed oppositely (Thanks to Aurélien Roy!).
+- Fix an issue where color code editor was invisible under macOS 10.12.
+- Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.
+- Fix an issue where `change kana` scripting command did not work.
+
+
+
 3.7.1 (344)
 --------------------------
 

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -107,7 +107,7 @@ struct DocumentFile {
         // try interpreting with xattr encoding
         if let xattrEncoding = xattrEncoding {
             // just trust xattr encoding if content is empty
-            if let string = data.isEmpty ? "" : String(data: data, encoding: xattrEncoding) {
+            if let string = data.isEmpty ? "" : String(bomCapableData: data, encoding: xattrEncoding) {
                 return (string, xattrEncoding)
             }
         }
@@ -120,7 +120,7 @@ struct DocumentFile {
         if refersToEncodingTag,
             let scannedEncoding = string.scanEncodingDeclaration(upTo: self.maxEncodingScanLength, suggestedCFEncodings: suggestedCFEncodings),
             scannedEncoding != usedEncoding,
-            let string = String(data: data, encoding: scannedEncoding)
+            let string = String(bomCapableData: data, encoding: scannedEncoding)
         {
             return (string, scannedEncoding)
         }

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,6 +41,11 @@ class EncodingDetectionTests: XCTestCase {
     
     
     func testUTF8BOM() {
+        
+        // -> String(data:encoding:) preserves BOM since Swift 5 (2019-03)
+        let data = self.dataForFileName("UTF-8 BOM")
+        XCTAssertEqual(String(data: data, encoding: .utf8), "\u{FEFF}0")
+        XCTAssertEqual(String(bomCapableData: data, encoding: .utf8), "0")
         
         var encoding: String.Encoding?
         let string = self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,8 +55,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSingleChar() {
         
-        let unicode = UnicodeScalar("あ")!
-        
+        let unicode = UnicodeScalar("あ")
         XCTAssertEqual(unicode.codePoint, "U+3042")
         XCTAssertFalse(unicode.isSurrogatePair)
         XCTAssertNil(unicode.surrogateCodePoints)
@@ -68,7 +67,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSurrogateEmoji() {
         
-        let unicode = UnicodeScalar("😀")!
+        let unicode = UnicodeScalar("😀")
         
         XCTAssertEqual(unicode.codePoint, "U+1F600")
         XCTAssertTrue(unicode.isSurrogatePair)
@@ -81,7 +80,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testUnicodeBlockNameWithHyphen() {
         
-        let character = UnicodeScalar("﷽")!
+        let character = UnicodeScalar("﷽")
         
         XCTAssertEqual(character.codePoint, "U+FDFD")
         XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
@@ -108,7 +107,7 @@ final class CharacterInfoTests: XCTestCase {
         // test DELETE
         XCTAssertEqual(Int(ControlCharacter.deleteCharacter), NSDeleteCharacter)
         let deleteCharacter = UnicodeScalar(NSDeleteCharacter)!
-        let deletePictureCharacter = UnicodeScalar("␡")!
+        let deletePictureCharacter = UnicodeScalar("␡")
         XCTAssertEqual(deleteCharacter.name, "DELETE")
         XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
         XCTAssertEqual(deleteCharacter.pictureRepresentation, deletePictureCharacter)

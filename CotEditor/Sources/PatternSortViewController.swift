@@ -73,6 +73,11 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     /// perform sort
     @IBAction func ok(_ sender: Any?) {
         
+        guard self.endEditing() else {
+            NSSound.beep()
+            return
+        }
+        
         guard
             let textView = self.representedObject as? NSTextView,
             let pattern = self.sortPattern
@@ -82,11 +87,6 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
             try pattern.validate()
         } catch {
             NSAlert(error: error).beginSheetModal(for: self.view.window!)
-            NSSound.beep()
-            return
-        }
-        
-        guard self.endEditing() else {
             NSSound.beep()
             return
         }

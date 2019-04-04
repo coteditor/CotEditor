@@ -19,7 +19,7 @@ Pull-Request
 
 ### General Code Improvements
 
-Bug fixes and improvements are welcome. If you wanna add a new feature or the change is huge, it's better at first to ask the team whether your idea will be accepted.
+Bug fixes and improvements are welcome. If you want to add a new feature or the change is huge, it's better at first to ask the team whether your idea will be accepted.
 
 By adding code, please follow our coding style guide below. 
 
@@ -40,20 +40,21 @@ Especially, follow the terms of the following applications.
 - Find panel in Pages.app
 - Some setting messages in ScriptEditor.app
 
-Refer also to the Apple's guidelines about terminology. They are about English, but also useful for localization.
-
-- [Terminology and Wording -macOS Human Interface Guidelines](https://developer.apple.com/library/content/documentation/UserExperience/Conceptual/OSXHIGuidelines/TerminologyWording.html#//apple_ref/doc/uid/20000957-CH15-SW1)
-
 #### Submitting a new localization
 
 Copy one of a whole .lproj directory and use it as a template. We recommend using `CotEditor/ja.lproj/` or `de.lproj/` directory because they are always up-to-date and well organized.
 Note that you don't need to localize the Unicode block names in the `Unicode.strings` file.
 
-Continuous maintenance of the localization is recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized so that you can keep all your localized strings up to date.
-Currently, we have maintainers for:
+Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized, so that you can keep all your localized strings up to date.
+Currently, we already have maintainers for:
 
 - Simplified Chinese
 - Italian
+- (Brazilian) Portuguese
+
+#### Localization for App Store
+
+CotEditor project is also asking for localization of description on the Mac App Store. We have a separate repository for it at [coteditor/Documents-for-AppStore](https://github.com/coteditor/Documents-for-AppStore).
 
 
 ### Syntax Styles

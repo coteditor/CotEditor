@@ -227,12 +227,10 @@ private extension String {
             // move selected ranges in the line to move
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
-                                                  length: intersectionRange.length))
+                    selectedRanges.append(intersectionRange.shifted(offset: -upperLineRange.length))
                     
                 } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
-                    selectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
-                                                  length: selectedRange.length))
+                    selectedRanges.append(selectedRange.shifted(offset: -upperLineRange.length))
                 }
             }
         }
@@ -277,12 +275,10 @@ private extension String {
             // move selected ranges in the line to move
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
-                                                  length: intersectionRange.length))
+                    selectedRanges.append(intersectionRange.shifted(offset: lowerLineRange.length))
                     
                 } else if editRange.contains(selectedRange.location) {
-                    selectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
-                                                  length: selectedRange.length))
+                    selectedRanges.append(selectedRange.shifted(offset: lowerLineRange.length))
                 }
             }
         }
@@ -386,7 +382,7 @@ private extension String {
             }
             
             let offset = (replacementStrings + [lineString]).map { ($0 as NSString).length }.reduce(0, +)
-            let selectedRange = NSRange(location: range.location + offset, length: range.length)
+            let selectedRange = range.shifted(offset: offset)
             
             replacementStrings.append(lineString)
             replacementRanges.append(replacementRange)

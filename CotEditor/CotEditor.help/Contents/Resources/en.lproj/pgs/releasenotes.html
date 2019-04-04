@@ -24,8 +24,8 @@
 
 <article>
 <header>
-	<h1>CotEditor 3.7.1</h1>
-	<p>release: <time>2019-02-24</time></p>
+	<h1>CotEditor 3.7.2</h1>
+	<p>release: <time>2019-04-04</time></p>
 </header>
 
 
@@ -33,8 +33,43 @@
 <h2>Improvements</h2>
 
 <ul>
-	<li>Highlight all lines that contain one of multi-insertion points as current lines.</li>
-	<li>Insert the text cotnent of .textClipping files when dropped.</li>
+	<li>Make the i-beam cursor more legible in vertical text orientation and dark background theme.</li>
+	<li>Use monospace numbers for line numbers in Find All result table.</li>
+	<li>Optimize performance highlighting found matches.</li>
+	<li><span class="trivial">dev</span>: Update build environment to Xcode 10.2 (Swift 5).</li>
+	<li><span class="trivial">dev</span>: Update Differ framework to 1.4.0.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue under macOS 10.12 where application hung up if some specific toolbar items are visible.</li>
+	<li>Fix an issue where the “Discard Changes” and “Cancel” buttons in the dialog for encoding reinterpretation performed oppositely (Thanks to Aurélien Roy!).</li>
+	<li>Fix an issue where color code editor was invisible under macOS 10.12.</li>
+	<li>Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.</li>
+	<li>Fix an issue where <code>change kana</code> scripting command did not work.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
+	<h1>CotEditor 3.7.1</h1>
+	<p>release: <time>2019-02-23</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Highlight all lines that contain one of the multi-insertion points as current lines.</li>
+	<li>Insert the text content of .textClipping files when dropped.</li>
 </ul>
 </section>
 

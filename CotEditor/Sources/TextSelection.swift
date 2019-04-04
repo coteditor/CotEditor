@@ -295,7 +295,7 @@ final class TextSelection: NSObject {
     
     
     /// convert Japanese Hiragana in the selection to Katakana or vice versa
-    @objc func handleChangeKanaScript(_ command: NSScriptCommand) {
+    @objc func handleChangeKana(_ command: NSScriptCommand) {
         
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,

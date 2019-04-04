@@ -189,7 +189,7 @@ final class UnixScript: Script {
         
         return EncodingManager.shared.defaultEncodings.lazy
             .compactMap { $0 }
-            .compactMap { String(data: data, encoding: $0) }
+            .compactMap { String(bomCapableData: data, encoding: $0) }
             .first
     }()
     

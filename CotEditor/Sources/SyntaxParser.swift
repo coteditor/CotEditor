@@ -34,7 +34,7 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
-protocol ValidationIgnorable: AnyObject {
+protocol ValidationIgnorable: NSLayoutManager {
     
     var ignoresDisplayValidation: Bool { get set }
 }
@@ -355,16 +355,16 @@ extension SyntaxParser {
             //    which shows the rainbow cursor because of a main thread task, significantly.
             //    See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
             //    (2018-12 macOS 10.14)
-            if let ignorable = layoutManager as? NSLayoutManager & ValidationIgnorable {
-                ignorable.ignoresDisplayValidation = true
+            if let layoutManager = layoutManager as? ValidationIgnorable {
+                layoutManager.ignoresDisplayValidation = true
             }
             defer {
-                if let ignorable = layoutManager as? NSLayoutManager & ValidationIgnorable {
-                    ignorable.ignoresDisplayValidation = false
-                    ignorable.invalidateDisplay(forCharacterRange: highlightRange)
+                if let layoutManager = layoutManager as? ValidationIgnorable {
+                    layoutManager.ignoresDisplayValidation = false
+                    layoutManager.invalidateDisplay(forCharacterRange: highlightRange)
                 }
             }
-                
+            
             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
             
             guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }

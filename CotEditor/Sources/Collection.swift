@@ -100,13 +100,7 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate.
     func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        var count = 0
-        for element in self {
-            guard try predicate(element) else { continue }
-            
-            count += 1
-        }
-        return count
+        return try self.reduce(0) { try predicate($1) ? $0 + 1 : $0 }
     }
     
     
@@ -118,13 +112,7 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
     func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        var count = 0
-        for element in self {
-            guard try predicate(element) else { break }
-            
-            count += 1
-        }
-        return count
+        return try self.prefix(while: predicate).count
     }
     
 }

@@ -84,9 +84,7 @@ extension MultiCursorEditing where Self: NSTextView {
         
         self.textStorage?.beginEditing()
         for range in replacementRanges {
-            let replacementRange = NSRange(location: range.location + offset, length: range.length)
-            
-            self.textStorage?.replaceCharacters(in: replacementRange, with: attributedString)
+            self.textStorage?.replaceCharacters(in: range.shifted(offset: offset), with: attributedString)
             
             newInsertionLocations.append(range.location + offset + stringLength)
             
@@ -238,6 +236,7 @@ extension MultiCursorEditing where Self: NSTextView {
             switch affinity {
             case .downstream: return ranges.first!
             case .upstream:   return ranges.last!
+            @unknown default: fatalError()
             }
         }()
         self.scrollRangeToVisible(rangeToVisible)
@@ -334,6 +333,7 @@ extension MultiCursorEditing where Self: NSTextView {
                 return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
             case .upstream:
                 return layoutManager.extraLineFragmentRect
+            @unknown default: fatalError()
             }
         }()
         

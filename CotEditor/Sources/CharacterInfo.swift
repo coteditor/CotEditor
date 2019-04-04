@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -124,12 +124,9 @@ struct CharacterInfo {
         
         self.isComplex = isComplex
         
-        self.pictureString = {
-            guard unicodes.count == 1,  // ignore CRLF
-                let pictureCharacter = unicodes.first?.pictureRepresentation else { return nil }
-            
-            return String(Character(pictureCharacter))
-        }()
+        self.pictureString = unicodes.count == 1  // ignore CRLF
+            ? unicodes.first?.pictureRepresentation.flatMap { String(Character($0)) }
+            : nil
         
         self.localizedDescription = {
             // number of characters message
