@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- “Input in unicode hex” now supports multi-cursor editing.
+
+
+
 3.7.2 (347)
 --------------------------
 
