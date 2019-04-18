@@ -88,14 +88,14 @@ extension EditorTextView: Indenting {
 
 // MARK: - Protocol
 
-protocol Indenting: AnyObject {
+protocol Indenting: NSTextView {
     
     var tabWidth: Int { get }
     var isAutomaticTabExpansionEnabled: Bool { get }
 }
 
 
-extension Indenting where Self: NSTextView {
+extension Indenting {
     
     /// increase indent level
     @discardableResult
