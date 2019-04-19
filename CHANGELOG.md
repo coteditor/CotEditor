@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - “Input in unicode hex” now supports multi-cursor editing.
+- Make font size of outline view customizable.
 
 
 ### Fixes
