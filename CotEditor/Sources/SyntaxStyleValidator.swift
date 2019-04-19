@@ -138,23 +138,24 @@ final class SyntaxStyleValidator {
                 }
             
             // allow appearing the same definitions in different kinds
-            var lastBeginString: String?
-            var lastEndString: String?
+            var lastDefinition: HighlightDefinition?
             
             for definition in definitions {
                 defer {
-                    lastBeginString = definition.beginString
-                    lastEndString = definition.endString
+                    lastDefinition = definition
                 }
                 
-                guard definition.beginString != lastBeginString || definition.endString != lastEndString else {
-                    results.append(StyleError(kind: .duplicated,
-                                              type: key,
-                                              role: .begin,
-                                              string: definition.beginString))
-                    
-                    continue
-                }
+                guard
+                    definition.beginString != lastDefinition?.beginString ||
+                    definition.endString != lastDefinition?.endString
+                    else {
+                        results.append(StyleError(kind: .duplicated,
+                                                  type: key,
+                                                  role: .begin,
+                                                  string: definition.beginString))
+                        
+                        continue
+                    }
                 
                 if definition.isRegularExpression {
                     do {
