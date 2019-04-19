@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,6 +58,8 @@ extension DefaultKeys {
     static let showStatusBarEncoding = DefaultKey<Bool>("showStatusBarEncoding")
     static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
     static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
+    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
+    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
     static let writingDirection = DefaultKey<WritingDirection>("writingDirection")
     static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
