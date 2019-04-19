@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where user settings could not be overwritten to export when the same filename already exists.
+- Fix syntax style validator.
 - Improve stability.
 
 

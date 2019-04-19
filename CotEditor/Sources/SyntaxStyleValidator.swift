@@ -120,9 +120,6 @@ final class SyntaxStyleValidator {
         
         let syntaxDictKeys = SyntaxType.allCases.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue]
         
-        var lastBeginString: String?
-        var lastEndString: String?
-        
         for key in syntaxDictKeys {
             guard let dictionaries = styleDictionary[key] as? [[String: Any]] else { continue }
             
@@ -139,6 +136,10 @@ final class SyntaxStyleValidator {
                     
                     return endString0 < endString1
                 }
+            
+            // allow appearing the same definitions in different kinds
+            var lastBeginString: String?
+            var lastEndString: String?
             
             for definition in definitions {
                 defer {
