@@ -47,7 +47,7 @@ extension String {
         let newLocation = (location >= 0) ? location : (wholeLength + location)
         let newLength = (length >= 0) ? length : (wholeLength - newLocation + length)
         
-        guard newLocation >= 0, newLength >= 0 else { return nil }
+        guard newLocation >= 0, newLength >= 0, newLocation <= wholeLength else { return nil }
         
         return NSRange(newLocation..<min(newLocation + newLength, wholeLength))
     }
