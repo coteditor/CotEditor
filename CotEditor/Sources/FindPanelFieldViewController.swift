@@ -75,7 +75,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             self?.replacementClearButtonConstraint?.constant = -inset
         }
         
-        
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers += [
             // sync history menus with user default
