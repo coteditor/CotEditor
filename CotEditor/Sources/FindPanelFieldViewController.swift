@@ -33,6 +33,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
+    private var scrollerStyleObserver: NSKeyValueObservation?
     private var defaultsObservers: [UserDefaultsObservation] = []
     
     @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
@@ -41,6 +42,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
     @IBOutlet private weak var replacementResultField: NSTextField?
+    @IBOutlet private weak var findClearButtonConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var replacementClearButtonConstraint: NSLayoutConstraint?
     
     
     
@@ -59,6 +62,21 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        // adjust clear button position according to the visiblity of scroller area
+        self.scrollerStyleObserver = self.findTextView?.enclosingScrollView?.observe(\.scrollerStyle, options: .initial) { [weak self] (scrollView, _) in
+                let inset: CGFloat = {
+                    switch scrollView.scrollerStyle {
+                    case .overlay: return 5
+                    case .legacy: return 16
+                    @unknown default: return 5
+                    }
+                }()
+                
+                self?.findClearButtonConstraint?.constant = -inset
+                self?.replacementClearButtonConstraint?.constant = -inset
+        }
+        
         
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers += [
