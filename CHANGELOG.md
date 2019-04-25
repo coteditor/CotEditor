@@ -14,7 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where user settings could not be overwritten to export when the same filename already exists.
-- Fix an issue where clear buttons in the find panel's text fields could overlap with scroll bar areas. 
+- Fix an issue where clear buttons in the find panel's text fields could overlap with scroll bar areas.
 - Fix syntax style validator.
 - Improve stability.
 
