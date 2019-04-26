@@ -112,7 +112,7 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
     func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        return try self.prefix(while: predicate).count
+        return try self.lazy.prefix(while: predicate).count
     }
     
 }

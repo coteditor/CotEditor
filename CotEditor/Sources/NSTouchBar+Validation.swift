@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -209,13 +209,15 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         guard
             let control = self.control,
             let action = control.action,
-            let validator = NSApp.target(forAction: action, to: control.target, from: self)
+            let validator = NSApp.target(forAction: action, to: control.target, from: self) as AnyObject?
             else { return }
         
         switch validator {
         case let validator as TouchBarItemValidations:
             control.isEnabled = validator.validateTouchBarItem(self)
         case let validator as NSUserInterfaceValidations:
+            control.isEnabled = validator.validateUserInterfaceItem(self)
+        case _ where validator.responds(to: #selector(NSUserInterfaceValidations.validateUserInterfaceItem)):  // workaround for macOS 10.12 and earier
             control.isEnabled = validator.validateUserInterfaceItem(self)
         default: break
         }

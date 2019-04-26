@@ -173,6 +173,7 @@ struct DefaultSettings {
         .recentStyleNames: [],
         .showStatusBar: true,
         .selectedInspectorPaneIndex: 0,
+        .outlineViewFontSize: NSFont.smallSystemFontSize,
         
         // ------ hidden settings ------
         .headerFooterDateFormat: "yyyy-MM-dd HH:mm",

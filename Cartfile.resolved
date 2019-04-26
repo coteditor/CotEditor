@@ -1,4 +1,4 @@
 github "1024jp/WFColorCode" "2.4.0"
 github "coteditor/YAML.framework" "3271df33f182c0c77fece29f8bfe76fcda1a3ca0"
-github "sparkle-project/Sparkle" "b0fe9aa09a54115bb0480058e33829de48af8b37"
-github "tonyarnold/Differ" "1.4.0"
+github "sparkle-project/Sparkle" "894f9dd683035ca3d223b2babffea45073659ae9"
+github "tonyarnold/Differ" "1.4.1"

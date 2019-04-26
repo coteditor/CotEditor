@@ -99,7 +99,7 @@ struct CommentTypes: OptionSet {
 }
 
 
-protocol Commenting: AnyObject {
+protocol Commenting: NSTextView {
     
     var inlineCommentDelimiter: String? { get }
     var blockCommentDelimiters: Pair<String>? { get }
@@ -109,7 +109,7 @@ protocol Commenting: AnyObject {
 }
 
 
-extension Commenting where Self: NSTextView {
+extension Commenting {
     
     // MARK: Public Methods
     

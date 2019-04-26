@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 import Foundation
 import AppKit.NSParagraphStyle
 
-protocol MutableCopying: AnyObject {
+protocol MutableCopying: NSMutableCopying {
     
     associatedtype MutableType
     
@@ -34,7 +34,7 @@ protocol MutableCopying: AnyObject {
 }
 
 
-extension MutableCopying where Self: NSMutableCopying {
+extension MutableCopying {
     
     var mutable: MutableType {
         

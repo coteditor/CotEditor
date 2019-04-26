@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,9 +120,6 @@ final class SyntaxStyleValidator {
         
         let syntaxDictKeys = SyntaxType.allCases.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue]
         
-        var lastBeginString: String?
-        var lastEndString: String?
-        
         for key in syntaxDictKeys {
             guard let dictionaries = styleDictionary[key] as? [[String: Any]] else { continue }
             
@@ -140,20 +137,25 @@ final class SyntaxStyleValidator {
                     return endString0 < endString1
                 }
             
+            // allow appearing the same definitions in different kinds
+            var lastDefinition: HighlightDefinition?
+            
             for definition in definitions {
                 defer {
-                    lastBeginString = definition.beginString
-                    lastEndString = definition.endString
+                    lastDefinition = definition
                 }
                 
-                guard definition.beginString != lastBeginString || definition.endString != lastEndString else {
-                    results.append(StyleError(kind: .duplicated,
-                                              type: key,
-                                              role: .begin,
-                                              string: definition.beginString))
-                    
-                    continue
-                }
+                guard
+                    definition.beginString != lastDefinition?.beginString ||
+                    definition.endString != lastDefinition?.endString
+                    else {
+                        results.append(StyleError(kind: .duplicated,
+                                                  type: key,
+                                                  role: .begin,
+                                                  string: definition.beginString))
+                        
+                        continue
+                    }
                 
                 if definition.isRegularExpression {
                     do {

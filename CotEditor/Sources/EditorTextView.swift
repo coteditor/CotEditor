@@ -774,7 +774,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func setNeedsDisplay(_ invalidRect: NSRect) {
         
         // expand rect as a workaroud for thick or multiple cursors (2018-11 macOS 10.14)
-        super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        if self.cursorType != .bar || self.hasMultipleInsertions {
+            super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
         
         super.setNeedsDisplay(invalidRect)
     }

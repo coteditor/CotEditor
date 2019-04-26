@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -100,9 +100,10 @@ extension StringProtocol where Self.Index == String.Index {
     var detectedLineEnding: LineEnding? {
         
         // We don't use `CharacterSet.newlines` because it contains more characters than we need.
-        guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
-        let character = self[range.lowerBound]
-        // -> This is enough because Swift (at least Swift 3) treats "\r\n" as a single character.
+        guard
+            let range = self.rangeOfCharacter(from: LineEnding.characterSet),
+            let character = self[range].first  // Swift treats "\r\n" also as a single character.
+            else { return nil }
         
         return LineEnding(rawValue: character)
     }

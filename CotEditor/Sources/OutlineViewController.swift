@@ -42,6 +42,8 @@ final class OutlineViewController: NSViewController {
     private var selectionObserver: NSObjectProtocol?
     private var isOwnSelectionChange = false
     
+    private var fontSizeObserver: UserDefaultsObservation?
+    
     @IBOutlet private weak var outlineView: NSOutlineView?
     
     
@@ -59,6 +61,8 @@ final class OutlineViewController: NSViewController {
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }
+        
+        self.fontSizeObserver?.invalidate()
     }
     
     
@@ -81,6 +85,11 @@ final class OutlineViewController: NSViewController {
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("outline".localized)
+        
+        self.fontSizeObserver?.invalidate()
+        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
+            self?.outlineView?.reloadData()
+        }
     }
     
     
@@ -297,13 +306,42 @@ extension OutlineViewController: NSOutlineViewDataSource {
         
         switch identifier {
         case .title:
-            let font: NSFont = outlineView.font ?? .systemFont(ofSize: NSFont.smallSystemFontSize)
+            let fontSize = UserDefaults.standard[.outlineViewFontSize]
+            let font = outlineView.font.flatMap { NSFont(name: $0.fontName, size: fontSize) } ?? .systemFont(ofSize: fontSize)
             
             return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
             
         default:
             preconditionFailure()
         }
+    }
+    
+}
+
+
+
+extension OutlineViewController {
+    
+    /// Increase outline view's font size.
+    @IBAction func biggerFont(_ sender: Any?) {
+        
+        UserDefaults.standard[.outlineViewFontSize] += 1
+    }
+    
+    
+    /// Decrease outline view's font size.
+    @IBAction func smallerFont(_ sender: Any?) {
+        
+        guard UserDefaults.standard[.outlineViewFontSize] > NSFont.smallSystemFontSize else { return }
+        
+        UserDefaults.standard[.outlineViewFontSize] -= 1
+    }
+    
+    
+    /// Restore outline view's font size to default.
+    @IBAction func resetFont(_ sender: Any?) {
+        
+        UserDefaults.standard.restore(key: .outlineViewFontSize)
     }
     
 }

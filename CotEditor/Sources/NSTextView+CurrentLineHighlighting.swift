@@ -25,7 +25,7 @@
 
 import AppKit
 
-protocol CurrentLineHighlighting: AnyObject {
+protocol CurrentLineHighlighting: NSTextView {
     
     var needsUpdateLineHighlight: Bool { get set }
     var lineHighLightRects: [NSRect] { get set }
@@ -34,7 +34,7 @@ protocol CurrentLineHighlighting: AnyObject {
 
 
 
-extension CurrentLineHighlighting where Self: NSTextView {
+extension CurrentLineHighlighting {
     
     // MARK: Public Methods
     

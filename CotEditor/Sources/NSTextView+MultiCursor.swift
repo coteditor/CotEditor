@@ -25,7 +25,7 @@
 
 import Cocoa
 
-protocol MultiCursorEditing: AnyObject {
+protocol MultiCursorEditing: NSTextView {
     
     var insertionLocations: [Int] { get set }
     var selectionOrigins: [Int] { get set }
@@ -36,7 +36,7 @@ protocol MultiCursorEditing: AnyObject {
 }
 
 
-extension MultiCursorEditing where Self: NSTextView {
+extension MultiCursorEditing {
     
     /// Whether the receiver has multiple points to insert text.
     var hasMultipleInsertions: Bool {
@@ -114,7 +114,7 @@ extension MultiCursorEditing where Self: NSTextView {
                 guard range.location > 0 else { return range }
                 guard range.isEmpty else { return range }
                 
-                if let self = self as? NSTextView & Indenting,
+                if let self = self as? Indenting,
                     self.isAutomaticTabExpansionEnabled,
                     let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }

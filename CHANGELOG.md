@@ -2,12 +2,30 @@
 Change Log
 ==========================
 
+3.7.3 (349)
+--------------------------
+
+### Improvements
+
+- “Input in unicode hex” now supports multi-cursor editing.
+- Make font size of outline view customizable.
+
+
+### Fixes
+
+- Fix an issue where user settings could not be overwritten to export when the same filename already exists.
+- Fix an issue where clear buttons in the find panel's text fields could overlap with scroll bar areas.
+- Fix syntax style validator.
+- Improve stability.
+
+
+
 3.7.2 (347)
 --------------------------
 
 ### Improvements
 
-- Make the i-beam cursor more legible in vertical text orientation and dark background theme.
+- Make the i-beam cursor legible in vertical text orientation and dark background theme.
 - Use monospace numbers for line numbers in Find All result table.
 - Optimize performance highlighting found matches.
 - [dev] Update build environment to Xcode 10.2 (Swift 5).

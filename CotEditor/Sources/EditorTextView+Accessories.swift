@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,14 +42,12 @@ extension EditorTextView: UnicodeInputReceiver {
     /// insert an Unicode character from Unicode input panel
     @IBAction func insertUnicodeCharacter(_ sender: UnicodeInputViewController) {
         
-        guard let character = sender.characterString else { return }
+        guard
+            let character = sender.characterString,
+            let ranges = self.rangesForUserTextChange as? [NSRange]
+            else { return }
         
-        let range = self.rangeForUserTextChange
-        
-        if self.shouldChangeText(in: range, replacementString: character) {
-            self.replaceCharacters(in: range, with: character)
-            self.didChangeText()
-        }
+        self.insertText(character, replacementRanges: ranges)
     }
     
 }
