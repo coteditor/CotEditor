@@ -1,0 +1,94 @@
+/*
+ 
+ EditPane.strings (French)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2019 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Substitution:"; ObjectID = "SqI-BC-ar9"; */
+"SqI-BC-ar9.title" = "Substitution :";
+/* Class = "NSButtonCell"; title = "Smart copy/paste"; ObjectID = "3302"; */
+"3302.title" = "Copier-coller intelligent";
+/* Class = "NSButtonCell"; title = "Automatically insert closing brackets and quotes"; ObjectID = "GRh-V2-hmW"; */
+"GRh-V2-hmW.title" = "Insérer automatiquement les parenthèses et guillemets fermants";
+/* Class = "NSButtonCell"; title = "Swap “¥” and “\\” keys"; ObjectID = "3303"; */
+"3303.title" = "Inverser les touches “¥” et “\\”";
+/* Class = "NSTextFieldCell"; title = "Smart"; ObjectID = "6I3-dM-2QV"; */
+"6I3-dM-2QV.title" = "";
+/* Class = "NSButtonCell"; title = "Quotes"; ObjectID = "Abx-fM-gyc"; */
+"Abx-fM-gyc.title" = "Guillemets intelligents";
+/* Class = "NSButtonCell"; title = "Dashes"; ObjectID = "nr1-0X-aBY"; */
+"nr1-0X-aBY.title" = "Tirets intelligents";
+
+
+/* Class = "NSTextFieldCell"; title = "Indentation:"; ObjectID = "9bX-ei-1x8"; */
+"9bX-ei-1x8.title" = "Indentation :";
+/* Class = "NSButtonCell"; title = "Automatic indent"; ObjectID = "3285"; */
+"3285.title" = "Identation automatique";
+/* Class = "NSButtonCell"; title = "Expand tabs to spaces"; ObjectID = "3283"; */
+"3283.title" = "Convertir les tabulations en espaces";
+/* Class = "NSTextFieldCell"; title = "Indent width:"; ObjectID = "3287"; */
+"3287.title" = "Largeur :";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "as9-us-CuG"; */
+"as9-us-CuG.title" = "espaces";
+/* Class = "NSButtonCell"; title = "Detect indent style on document opening"; ObjectID = "Cte-hW-0M3"; */
+"Cte-hW-0M3.title" = "Détecter le style d'indentation à l'ouverture du document";
+/* Class = "NSButtonCell"; title = "Indent selection with Tab key"; ObjectID = "aVn-PD-hen"; */
+"aVn-PD-hen.title" = "Indenter la sélection avec la touche Tabulation";
+
+
+/* Class = "NSTextFieldCell"; title = "Line wrapping:"; ObjectID = "P1I-gs-RgX"; */
+"P1I-gs-RgX.title" = "Renvoi à la ligne :";
+/* Class = "NSButtonCell"; title = "Wrap lines to editor width"; ObjectID = "3274"; */
+"3274.title" = "Renvoyer les lignes qui dépassent la largeur de l'éditeur";
+/* Class = "NSButtonCell"; title = "Indent wrapped lines by:"; ObjectID = "mCq-92-2sT"; */
+"mCq-92-2sT.title" = "Indenter les lignes renvoyées avec :";
+/* Class = "NSTextFieldCell"; title = "spaces"; ObjectID = "P9V-pV-PAX"; */
+"P9V-pV-PAX.title" = "espaces";
+
+
+/* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "EDl-AJ-1dK"; */
+"EDl-AJ-1dK.title" = "Commentaires :";
+/* Class = "NSButtonCell"; title = "Append a space to comment delimiter"; ObjectID = "6Dw-5M-Gv0"; */
+"6Dw-5M-Gv0.title" = "Ajouter un espace après le symbole de commentaire";
+/* Class = "NSButtonCell"; title = "Always from line head"; ObjectID = "Byi-E9-owf"; */
+"Byi-E9-owf.title" = "Toujours commenter du début de la ligne";
+
+
+/* Class = "NSTextFieldCell"; title = "Completion:"; ObjectID = "gDN-SU-sZH"; */
+"gDN-SU-sZH.title" = "Complétion :";
+
+/* Class = "NSTextFieldCell"; title = "Completion list includes:"; ObjectID = "dLj-Kh-KtX"; */
+"dLj-Kh-KtX.title" = "La liste de complétion inclue :";
+/* Class = "NSButtonCell"; title = "Words in document"; ObjectID = "EJZ-N6-54G"; */
+"EJZ-N6-54G.title" = "Mots du document";
+/* Class = "NSButtonCell"; title = "Words defined in syntax style"; ObjectID = "1v9-7i-9RL"; */
+"1v9-7i-9RL.title" = "Mots définis dans la syntaxe";
+/* Class = "NSButtonCell"; title = "Standard words"; ObjectID = "c5j-0N-f2R"; */
+"c5j-0N-f2R.title" = "Mots courants";
+
+/* Class = "NSButtonCell"; title = "Suggest completions while typing"; ObjectID = "J1B-wA-rdr"; */
+"J1B-wA-rdr.title" = "Suggérer des mots pendant la frappe";
+
+/* Class = "NSTextFieldCell"; title = "⚠️ Select at least one item to enable completion."; ObjectID = "dmb-pc-4M5"; */
+"dmb-pc-4M5.title" = "⚠️ Sélectionnez au moins un élément pour activer la complétion.";

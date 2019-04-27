@@ -1,0 +1,561 @@
+/*
+ 
+ Localizable.strings (French)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2019 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+// Basic button titles
+"OK" = "OK";
+"Cancel" = "Annuler";
+
+
+// Appending words in parentheses
+" (%@)" = "（%@）";
+
+
+
+// Accessibility labels
+"inspector" = "inspecteur";
+"document inspector" = "inspecteur de document";
+"outline" = "structure";
+"incompatible characters" = "caractères incompatibles";
+"status bar" = "barre d'état";
+"editor" = "éditeur";
+"navigation bar" = "barre de navigation";
+"line numbers" = "numéros de ligne";
+"find result" = "résultat de la recherche";
+
+
+
+// Main menu item titles
+"Check for Updates…" = "Vérifier les mises à jour…";
+"What’s New in CotEditor %@" = "Nouveautés de CotEditor %@";  // %@ is version number
+
+
+// Share menu
+"Share" = "Partager";
+"No Document" = "Aucun document";
+
+
+
+/* MARK: AppDelegate */
+// Format - Syntax coloring menu item title
+"Recently Used" = "Récemment utilisés";
+"Re-Color All" = "Tout recolorer";
+
+// Importing theme
+"“%@” is a CotEditor theme file." = "“%@” est un fichier de thème CotEditor.";
+"Do you want to install this theme?" = "Voulez-vous installer ce thème ?";
+"Install" = "Installer";
+"Open as Text File" = "Ouvrir en tant que fichier texte";
+"A new theme named “%@” has been successfully installed." = "Un nouveau thème nommé ”%@” a été installé avec succès.";
+
+// Window title of bug report
+"Bug Report" = "Rapport de bug";
+
+
+
+/* MARK: Text Finder */
+"Replace" = "Remplacer";
+"Find All" = "Tout rechercher";
+"Replace All" = "Tout remplacer";
+"Highlight" = "Surligner";
+"Searching in text…" = "Recherche en cours…";
+"%@ string found." = "%@ élément trouvé.";
+"%@ strings found." = "%@ éléments trouvés.";
+"%@ string replaced." = "%@ élément remplacé.";
+"%@ strings replaced." = "%@ éléments remplacés.";
+"Invalid regular expression" = "Expression régulière invalide";
+"Empty find string" = "Châine de recherche vide";
+"Input text to find." = "Texte à rechercher";
+
+
+/* MARK: FindPanelController */
+"Replace the current selection with the replacement text, then find the next match." = "Remplacer la sélection avec le texte de remplacement, puis chercher la prochaine correspondance.";
+"Replace the current selection with the replacement text." = "Remplacer la sélection avec le texte de remplacement.";
+"Not Found" = "Introuvable";
+"%@ found" = "%@ trouvé(s)";  // %@ is number of founds
+"Not Replaced" = "Non remplacé(s)";
+"%@ replaced" = "%@ remplacé(s)";  // %@ is number of replaced
+
+
+/* MARK: FindPanelResultViewController */
+// Find result (“%@” is filename)
+"No strings found in “%@”." = "Aucune chaîne trouvée dans “%@”.";
+"Found one string in “%@”." = "Une chaîne trouvée dans “%@”.";
+"Found %@ strings in “%@”." = "%@ chaînes trouvées dans “%@”.";
+
+
+
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Nouvelle règle";
+"Delete Rules" = "Supprimer les règles";
+"Edit Rule" = "Modifier la règle";
+"Move Rules" = "Déplacer les règles";
+
+
+
+/* MARK: Document Controller */
+// File open accessory's menu item title
+"Auto-Detect" = "Détecter automatiquement";
+
+// Binary file alert
+"The file “%@” doesn’t appear to be text data." = "Le fichier “%@” ne semble pas être dans un format textuel.";
+"The file is %@.\n\nDo you really want to open the file?" = "Le fichier est %@.\n\nVoulez-vous tout de même ouvrir ce fichier ?";
+
+// Large file alert
+"The file “%@” has a size of %@." = "Le fichier “%@” a une taille de %@.";
+"Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?" = "En ouvrant un fichier d'aussi grande taille, il se peut que l'application ralentisse ou ne réponde plus.\n\nVoulez-vous tout de même ouvrir ce fichier ?";
+"Open" = "Ouvrir";
+
+
+
+/* MARK: Document */
+// Undo action names
+"Encoding to “%@”" = "Encodage en “%@”";
+"Line Endings to “%@”" = "Fins de ligne en “%@”";
+
+// Convert or reinterpret encoding alert
+"File encoding" = "Encodage du fichier";
+"Do you want to convert or reinterpret this document using “%@”?" = "Voulez-vous convertir le document ou bien le réinterpréter en utilisant “%@” ?";
+"Convert" = "Convertir";
+"Reinterpret" = "Ré-interpréter";
+
+// Lossy encoding alert
+"Some characters would have to be changed or deleted in saving as “%@”." = "Certains caractères devront être altérés ou supprimés en sauvegardant en “%@”.";
+"Do you want to continue processing?" = "Voulez-vous poursuivre ?";
+"Save Available Strings" = "Sauvegarder les caractères disponibles";
+"Show Incompatible Characters" = "Montrer les caractères incompatibles";
+
+// Encoding change with unsaved changes alert
+"The document has unsaved changes." = "Le document contient des modifications non sauvegardées.";
+"Do you want to discard the changes and reopen the document using “%@”?" = "Voulez-vous abandonner les modifications et réouvrir le document en utilisant “%@” ?";
+"Discard Changes" = "Abandonner les modifications";
+
+// Reinterpretation failed alert
+"The document doesn’t have a file to reinterpret." = "Le document n'a pas de fichier à réinterpréter.";
+"The file “%@” couldn’t be reinterpreted using text encoding “%@”." = "Le fichier “%@” n'a pas pu être réinterprété en utilisant l'encodage “%@”.";
+"The file may have been saved using a different text encoding, or it may not be a text file." = "Le fichier a peut-être été sauvegardé dans un encodage différent, ou bien il ne s'agit pas d'un fichier texte.";
+
+// incompatible characters alert
+"Some characters would have to be changed or deleted in saving as “%@”." = "Certains caractères devront être altérés ou supprimés en sauvegardant en “%@”.";
+"Do you want to change encoding and show incompatible characters?" = "Voulez-vous changer l'encodage et afficher les caractères incomptables ?";
+"Change Encoding" = "Changer l'encodage";
+
+// Modified by an external application alert
+"The file has been modified by another application. There are also unsaved changes in CotEditor." = "Le fichier a été modifié par une autre application. Il y a des modifcations non sauvegardées dans CotEditor.";
+"The file has been modified by another application." = "Le fichier a été modifié par une autre application.";
+"Do you want to keep CotEditor’s edition or update to the modified edition?" = "Voulez-vous garder la version dans CotEditor ou rafraîchir vers la version modifiée ?";
+"Keep CotEditor’s Edition" = "Garder la version dans CotEditor";
+"Update" = "Rafraîchir";
+
+
+
+/* MARK: Touch Bar */
+// Touch bar item labels -Document View
+"Invisibles" = "Invisibles";
+"Wrap Lines" = "Renvoyer à la ligne";
+
+// Touch bar item labels -Text View
+"Shift" = "Indenter";
+"Comment" = "Commenter";
+"Text Size" = "Taille du texte";
+"Actual Size" = "Taille réelle";
+
+
+
+/* MARK: PrintTextView */
+// header/footer
+"Printed on %@" = "Imprimé le %@";  // %@ is date
+
+
+
+/* MARK: PrintAccessoryViewController */
+// Summary item names
+"Color" = "Couleur";
+"Line Number" = "Numéro de ligne";
+"Invisible Characters" = "Caractères invisibles";
+"Print Header" = "Imprimer l'en-tête";
+"Primary Header" = "En-tête principal";
+"Primary Header Alignment" = "Alignement de l'en-tête principal";
+"Secondary Header" = "En-tête secondaire";
+"Secondary Header Alignment" = "Alignement de l'en-tête secondaire";
+"Print Footer" = "Imprimer le pied de page";
+"Primary Footer" = "Pied de page principal";
+"Primary Footer Alignment" = "Alignement du pied de page";
+"Secondary Footer" = "Pied de page secondaire";
+"Secondary Footer Alignment" = "Alignement du pied de page secondaire";
+
+// Summary item values
+"On" = "Oui";
+"Off" = "Non";
+"Don’t Print" = "Ne pas imprimer";
+"Same as Document’s Setting" = "Identique aux paramètres du document";
+"Black and White" = "Noir et Blanc";
+"Print" = "Imprimer";
+"Print All" = "Tout imprimer";
+"Syntax Name" = "Nom de la syntaxe";
+"Document Name" = "Nom du document";
+"File Path" = "Chemin du fichier";
+"Print Date" = "Date d'impression";
+"Page Number" = "Numéro de page";
+"Left" = "Gauche";
+"Center" = "Centre";
+"Right" = "Droite";
+
+
+
+/* MARK: EditorTextView */
+// Undo action names
+"Replace Text" = "Remplacer du Texte";
+"Insert Text" = "Insérer du Texte";
+"Insert Snippet" = "Insérer un Snippet";
+"Shift Right" = "Décaler à Droite";
+"Shift Left" = "Décaler à Gauche";
+"Convert Indentation" = "Convertir l'Indentation";
+"Comment Out" = "Commenter";
+"Uncomment" = "Décommenter";
+"To Snake Case" = "En Snake Case";
+"To Camel Case" = "En Camel Case";
+"To Pascal Case" = "En Pascal Case";
+"To Full-width" = "En plaine chasse";
+"To Half-width" = "En demi-chasse";
+"To Full-width Roman" = "En Roman pleine chasse";
+"To Half-width Roman" = "En Roman demi-chasse";
+"Hiragana to Katakana" = "Hiragana vers Katakana";
+"Katakana to Hiragana" = "Katakana vers Hiragana";
+"NFD" = "NFD";
+"NFC" = "NFC";
+"NFKD" = "NFKD";
+"NFKC" = "NFKC";
+"NFKC Casefold" = "NFKC Casefold";
+"Modified NFC" = "NFC modifié";
+"Modified NFD" = "NFD modifié";
+"Inspect Character" = "Inspecter le caractère";
+"Move Line" = "Déplacer les lignes";
+"Sort Lines" = "Trier les lignes";
+"Reverse Lines" = "Inverser les lignes";
+"Delete Duplicate Lines" = "Supprimer les lignes en double";
+"Duplicate Line" = "Dupliquer la ligne";
+"Delete Line" = "Supprimer la ligne";
+"Trim Trailing Whitespace" = "Rogner les espaces aux extrémités";
+
+// Contextual menu items
+"Font" = "Police";
+"Text" = "Texte";
+"Copy as Rich Text" = "Copier en tant que texte riche";
+"Select All" = "Tout sélectionner";
+
+
+
+/* MARK: DocumentViewController */
+// Menu items
+"Hide Inspector" = "Masquer l'inspecteur";
+"Show Inspector" = "Afficher l'inspecteur";
+"Hide Line Numbers" = "Masquer les numéros de ligne";
+"Show Line Numbers" = "Afficher les numéros de ligne";
+"Hide Status Bar" = "Masquer la barre d'état";
+"Show Status Bar" = "Afficher la barre d'état";
+"Hide Navigation Bar" = "Masquer la barre de navigation";
+"Show Navigation Bar" = "Afficher la barre de navigation";
+"Hide Invisible Characters" = "Masquer les caractères invisibles";
+"Show Invisible Characters" = "Afficher les caractères invisibles";
+"Hide Page Guide" = "Masquer le guide de page";
+"Show Page Guide" = "Afficher le guide de page";
+"Unwrap Lines" = "Ne pas renvoyer à la ligne";
+"Wrap Lines" = "Renvoyer à la ligne";
+
+// Tooltip for "Show Invisible Characters" menu item
+"Show or hide invisible characters in document" = "Affiche ou masque les caractères invisibles dans le document";
+"To show invisible characters, set them in Preferences" = "Pour afficher les caractères invisibles, activez l'option dans les Préférences";
+
+
+
+/* MARK: SplitViewController */
+// Menu items
+"Stack Editors Horizontally" = "Empiler les éditeurs horizontalement";
+"Stack Editors Vertically" = "Empiler les éditeurs verticalement";
+
+
+
+/* MARK: StatusBarController */
+"Lines: " = "Lignes : ";
+"Characters: " = "Caractères : ";
+"Length: " = "Longueur : ";
+"Words: " = "Mots : ";
+"Location: " = "Position : ";
+"Line: " = "Ligne : ";
+"Column: " = "Colonne : ";
+
+
+
+/* MARK: NavigationBarController */
+// Outline menu title
+"<Outline Menu>" = "＜Menu Structure＞";
+"Jump to previous outline item" = "Aller à l'élément de structure précédent";
+"Jump to next outline item" = "Aller à l'élément de structure suivant";
+
+
+
+/* MARK: SyntaxStyle */
+// Coloring indicator
+"Coloring text…" = "Coloration du texte…";
+"Please wait for a while." = "Veuillez patienter quelques instants.";
+"Extracting %@…" = "Extraction de %@…";
+"Applying colors to text" = "Application des couleurs au texte";
+"keywords" = "mots-clés";
+"commands" = "commandes";
+"types" = "types";
+"attributes" = "attributs";
+"variables" = "varialbes";
+"values" = "valeurs";
+"numbers" = "nombres";
+"strings" = "chaînes de caractères";
+"characters" = "caractères";
+"comments" = "commentaires";
+"comments and quoted texts" = "commentaires et textes entre guillemets";
+
+
+
+/* MARK: ColorCodePanelController */
+// Undo action name
+"Insert Color Code" = "Insérer le code couleur";
+// Color list name
+"Stylesheet Keywords" = "Mots-clés CSS";
+
+
+// General pane
+// Autosave setting update alert
+"The change will be applied first at the next launch." = "Le changement sera appliqué au prochain lancement.";
+"Do you want to restart CotEditor now?" = "Voulez-vous relancer CotEditor maintenant ?";
+"Restart Now" = "Relancer maintenant";
+"Later" = "Plus tard";
+
+
+// Appearance pane
+// Contextual menu items
+"Rename “%@”" = "Renommer “%@”";
+"Duplicate “%@”" = "Dupliquer “%@”";
+"Restore “%@”" = "Restaurer “%@”";
+"Reveal “%@” in Finder" = "Afficher “%@” dans le Finder";
+// Theme deletion alert
+"Are you sure you want to delete “%@” theme?" = "Êtes-vous sûr de vouloir supprimer le thème “%@” ?";
+"This action cannot be undone." = "Cette action est irréversible.";
+
+// Swipe to delete (also used in the Format pane)
+"Delete" = "Supprimer";
+"Restore" = "Restaurer";
+
+
+// Format pane
+// Encoding menu alert
+"Are you sure you want to change to “%@”?" = "Êtes-vous sûr de vouloir passer en “%@”?";
+"The default “Auto-Detect” is recommended for most cases." = "Le réglage par défaut “Détection automatique” est recommandé pour la plupart des situations.";
+"Change to “%@”" = "Changer en “%@”";
+"Revert to “Auto-Detect”" = "Revenir à “Détecter automatiquement”";
+
+// Installed syntax styles action menu items
+"Duplicate “%@”…" = "Duplication de “%@”…";
+"Export “%@”…" = "Export de “%@”…";
+"Reveal “%@” in Finder" = "Afficher “%@” dans le Finder";
+
+
+// File Drop pane
+// File drop setting deletion alert
+"Are you sure you want to delete the file drop setting for “%@”?" = "Êtes-vous sûr de supprimer le réglage File Drop pour “%@”?";
+"Deleted setting can’t be restored." = "Les réglages supprimés ne peuvent pas être restaurés.";
+
+
+// Print pane
+"Theme" = "Thème";
+
+
+// Integration pane
+// Warnings on Integration pane
+"The current 'cot' symbolic link doesn’t target the running CotEditor." = "Le lien symbolique 'cot' actuel ne pointe pas vers la version de CotEditor en cours d'éxécution.";
+"The current 'cot' symbolic link may target an invalid path." = "Il se peut que le lien symbolique 'cot' pointe vers un chemin invalide.";
+
+
+
+/* MARK: SyntaxEditViewController */
+// Menu items
+"Keywords" = "Mots-clés";
+"Commands" = "Commandes";
+"Types" = "Types";
+"Attributes" = "Attributs";
+"Variables" = "Variables";
+"Values" = "Valeurs";
+"Numbers" = "Nombres";
+"Strings" = "Chaînes de caractères";
+"Characters" = "Caractères";
+"Comments" = "Commentaires";
+"Outline Menu" = "Menu Struture";
+"Completion List" = "Autocomplétion";
+"File Mapping" = "Mappage de fichiers";
+"Style Info" = "Informations";
+"Syntax Validation" = "Validation de la syntaxe";
+
+// Syntax style validation results
+"No error found." = "Aucune erreur trouvée.";
+"An error found!" = "Une erreur trouvée !";
+"%i errors found!" = "%1 erreurs trouvées !";
+"outline menu" = "menu structure";
+
+
+
+/* MARK: SettingFileManager */
+"“%@” couldn’t be deleted." = "“%@” n'a pas pu être supprimé.";
+"“%@” couldn’t be imported." = "“%@”n'a pas pu être importé.";
+"No original file for “%@” was found." = "Aucun fichier original pour “%@” n'a été trouvé.";
+
+// Setting filename warnings
+"Please choose another name." = "Veuillez choisir un autre nom.";
+"Name can’t be empty." = "Le nom ne peut pas être vide.";
+"You can’t use a name that contains “/”." = "Le nom ne peut pas contenir de slashs “/”.";
+"You can’t use a name that begins with a dot “.”." = "Le nom ne peut pas commencer par un point “.”";
+"The name “%@” is already taken." = "Le nom “%@” est déjà utilisé.";
+
+
+
+/* MARK: SyntaxManager */
+// Style name
+"None" = "Aucun";
+
+// Selected syntax style name was original
+"Bundled styles can’t be renamed." = "Les syntaxes intégrées ne peuvent pas être renommés.";
+
+// Suffix of copied syntax coloring style
+"copy" = "copie";
+
+// Delete syntax style alert
+"Are you sure you want to delete “%@” syntax style?" = "Êtes-vous sûr de vouloir supprimer la syntaxe “%@” ?";
+"Deleted style can’t be restored." = "Les syntaxes supprimées ne peuvent être restaurées.";
+"Delete" = "Supprimer";
+"Replace" = "Remplacer";
+
+// Import syntax style file choose openPanel button
+"Import" = "Importer";
+// Importing same name style alert
+"A new style named “%@” will be installed, but a custom style with the same name already exists." = "Une nouvelle syntaxe nommée “%@” va être installée, mais une syntaxe personnalisée avec le même nom existe déjà.";
+"Do you want to replace it?\nReplaced style can’t be restored." = "Voulez-vous la remplacer ?\nLa syntaxe d'origine ne pourra pas être restaurée.";
+
+// Export syntax style file savePanel label
+"Export As:" = "Exporter sous :";
+
+// Syntax validation
+"Block comment needs both begin delimiter and end delimiter." = "Les commentaires en bloc ont besoin d'un délimiteur de début et de fin.";
+"Begin string" = "Début de chaîne";
+"End string" = "Fin de chaîne";
+"Regular expression" = "Expression régulière";
+"The same word is registered multiple times." = "Le même mot est présent plusieurs fois.";
+"Regular Expression: " = "Expression régulière : ";
+
+
+
+/* MARK: ThemeManager */
+// Theme names
+"Untitled" = "Sans titre";
+"Customized Theme" = "Thème personnalisé";
+
+// Theme import duplicated alert
+"A new theme named “%@” will be installed, but a custom theme with the same name already exists." = "Un nouveau thème nommé “%@” va être installé, mais un thème personnalisé avec le même nom existe déjà.";
+"Do you want to replace it?\nReplaced theme can’t be restored." = "Voulez-vous le remplacer ?\nLe thème d'origine ne pourra pas être restauré.";
+
+
+
+/* MARK: ReplacementManager */
+// Replacements import duplicated alert
+"A new replacement definition named “%@” will be installed, but a definition with the same name already exists." = "Une nouvelle liste de remplacements nommée “%@” va être installée, mais une liste avec le même nom existe déjà.";
+"Do you want to replace it?\nReplaced definition can’t be restored." = "Voulez-vous la remplacer ?\nLa liste de remplacements d'origine ne pourra pas être restaurée.";
+
+
+
+/* MARK: KeyBindingManager */
+// Label for text menu keybindings action
+"Insert Text %li" = "Insérer le texte %li";
+
+// Keyboard key name
+"Space" = "Espace";
+
+// Warning messages
+"“%@” is already taken." = "“%@” est déjà attribué.";
+"“%@” does not include the Command key." = "“%@” n'inclue pas la touche Commande.";
+"“%@” includes the Command key." = "“%@” inclue la touche Commande.";
+"Please choose another key." = "Veuillez choisir une autre touche.";
+"Single type is invalid for a shortcut." = "Un raccourci clavier ne peut pas être composé que d'une seule touche.";
+"Please combine with another keys." = "Veuillez combiner avec d'autres touches.";
+
+
+
+/* MARK: ScriptManager */
+// Menu items
+"Open Scripts Folder" = "Ouvrir le dossier des Scripts";
+
+// Script menu item tooltips
+"“Option + click” to open script in editor." = "“Alt + clic“ pour ouvrir le script dans l'éditeur.";
+
+
+
+/* MARK: Script */
+
+// No script target document errors
+"No document to get input." = "Aucun document d'entrée.";
+"No document to put output." = "Aucun document de sortie.";
+
+// Script file error description
+"The script “%@” does not exist." = "Le script “%@” n'existe pas.";
+"The script file “%@” couldn’t be opened." = "Le fichier de script “%@” n'a pas pu être ouvert.";
+"The script “%@” can’t be executed because you don’t have the execute permission." = "Le script “%@” n'a pas pu être éxécuté car vous ne disposez pas des permissions d'éxécution.";
+"The script “%@” couldn’t be read." = "Le script “%@” n'a pas pu être lu.";
+
+// Script file error recovery suggestions
+"Check the script file." = "Vérifiez le fichier de script.";
+"Check permission of the script file." = "Vérifiez les permissions du fichier de script.";
+
+
+
+/* MARK: FileDropComposer */
+// Descriptions about variables in the file drop feature
+"The dropped file absolute path." = "Le chemin absolu du fichier déposé.";
+"The relative path between dropped file and the document." = "Le chemin relatif du fichier déposé par rapport au document.";
+"The dropped file’s name including extension (if exists)." = "Le nom du fichier déposé avec l'extension (si présente).";
+"The dropped file’s name without extension." = "Le nom du fichier déposé sans l'extension.";
+"The dropped file’s extension." = "L'extension du fichier déposé.";
+"The dropped file’s extension (converted to lowercase)." = "L'extension du fichier déposé (en minuscules).";
+"The dropped file’s extension (converted to uppercase)." = "L'extension du fichier déposé (en majuscules).";
+"The parent directory name of dropped file." = "Le nom du dossier parent du fichier déposé.";
+"(If the dropped file is an image) image width." = "Largeur de l'image (si le fichier déposé est une image)";
+"(If the dropped file is an image) image height." = "Hauteur de l'image (si le fichier déposé est une image)";
+
+
+
+/* MARK: Snippet */
+// Descriptions about variables in the snippet feature
+"The cursor position after inserting the snippet." = "La position du curseur après l'insertion du snippet.";
+
+
+/* String extension */
+// Encoding name for UTF-8 with BOM (`%@` is the system localized name for UTF-8)
+"%@ with BOM" = "%@ avec BOM";

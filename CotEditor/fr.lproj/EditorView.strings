@@ -1,0 +1,43 @@
+/*
+ 
+ EditorView.strings (French)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2019 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to previous outline item"; ObjectID = "BUj-TD-scp"; */
+"BUj-TD-scp.ibShadowedToolTip" = "Aller à l'élément de structure suivant";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to next outline item"; ObjectID = "MlW-Dz-FOk"; */
+"MlW-Dz-FOk.ibShadowedToolTip" = "Aller à l'élément de structure précédent";
+
+
+/* Class = "NSTextFieldCell"; title = "Extracting Outline…"; ObjectID = "aUE-uy-XLQ"; */
+"aUE-uy-XLQ.title" = "Récupération de la structure…";
+
+
+/* Class = "NSButton"; ibShadowedToolTip = "Close split editor"; ObjectID = "Bmo-XE-CCn"; */
+"Bmo-XE-CCn.ibShadowedToolTip" = "Fermer l'éditeur divisé";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Split editor"; ObjectID = "syK-XU-x2I"; */
+"syK-XU-x2I.ibShadowedToolTip" = "Diviser l'éditeur";
