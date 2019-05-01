@@ -2,6 +2,20 @@
 Change Log
 ==========================
 
+3.7.4 (unreleased)
+--------------------------
+
+### New Features
+
+- Add French localization (thanks to Aurélien Roy!).
+
+
+### Fixes
+
+- Fix missing localization (thanks to Aurélien Roy!).
+
+
+
 3.7.3 (349)
 --------------------------
 
