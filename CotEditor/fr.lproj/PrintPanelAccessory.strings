@@ -1,0 +1,146 @@
+/*
+ 
+ PrintPanelAccessory.strings (French)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2019 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Color:"; ObjectID = "eXI-55-yQO"; */
+"eXI-55-yQO.title" = "Couleur :";
+/* Class = "NSMenuItem"; title = "Black and White"; ObjectID = "590"; */
+"590.title" = "Noir et blanc";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "589"; */
+"589.title" = "Identique aux paramètres du document";
+
+/* Class = "NSTextFieldCell"; title = "Line Numbers:"; ObjectID = "716"; */
+"716.title" = "N° de ligne :";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "420"; */
+"420.title" = "Ne pas imprimer";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "419"; */
+"419.title" = "Identique aux paramètres du document";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "418"; */
+"418.title" = "Imprimer";
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
+"718.title" = "Invisibles :";
+/* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
+"427.title" = "Identique aux paramètres du document";
+/* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
+"428.title" = "Ne pas imprimer";
+/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "426"; */
+"426.title" = "Tout imprimer";
+
+
+/* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */
+"708.title" = "Imprimer l'en-tête";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "706"; */
+"706.title" = "Principal :";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "393"; */
+"393.title" = "Aucun";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "UJ5-ki-qHL"; */
+"UJ5-ki-qHL.title" = "Nom de la syntaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "202"; */
+"202.title" = "Nom du document";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "203"; */
+"203.title" = "Chemin du fichier";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "206"; */
+"206.title" = "Date d'impression";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "200"; */
+"200.title" = "Numéro de page";
+
+/* Class = "NSSegmentedCell"; ObjectID = "Aru-Gd-J0D"; */
+"Aru-Gd-J0D.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
+"Aru-Gd-J0D.ibShadowedToolTips[1]" = "Centrer";  /* Center */
+"Aru-Gd-J0D.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "707"; */
+"707.title" = "Secondaire :";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "395"; */
+"395.title" = "Aucun";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "6RR-gp-tKJ"; */
+"6RR-gp-tKJ.title" = "Nom de la syntaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "312"; */
+"312.title" = "Nom du document";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "307"; */
+"307.title" = "Chemin du fichier";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "311"; */
+"311.title" = "Date d'impression";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "310"; */
+"310.title" = "Numéro de page";
+
+/* Class = "NSSegmentedCell"; ObjectID = "I4t-kQ-lvq"; */
+"I4t-kQ-lvq.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
+"I4t-kQ-lvq.ibShadowedToolTips[1]" = "Centrer";  /* Center */
+"I4t-kQ-lvq.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
+
+
+
+/* Class = "NSButtonCell"; title = "Print footer"; ObjectID = "713"; */
+"713.title" = "Imprimer le pied de page";
+
+/* Class = "NSTextFieldCell"; title = "Primary:"; ObjectID = "711"; */
+"711.title" = "Principal :";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "397"; */
+"397.title" = "Aucun";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "Ro5-rK-S7p"; */
+"Ro5-rK-S7p.title" = "Nom de la syntaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "320"; */
+"320.title" = "Nom du document";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "315"; */
+"315.title" = "Chemin du fichier";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "319"; */
+"319.title" = "Date d'impression";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "318"; */
+"318.title" = "Numéro de page";
+
+/* Class = "NSSegmentedCell"; ObjectID = "njJ-Ab-dUQ"; */
+"njJ-Ab-dUQ.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
+"njJ-Ab-dUQ.ibShadowedToolTips[1]" = "Centrer";  /* Center */
+"njJ-Ab-dUQ.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */
+
+
+/* Class = "NSTextFieldCell"; title = "Secondary:"; ObjectID = "712"; */
+"712.title" = "Secondaire :";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "399"; */
+"399.title" = "Aucun";
+/* Class = "NSMenuItem"; title = "Syntax Name"; ObjectID = "i9p-3e-KNC"; */
+"i9p-3e-KNC.title" = "Nom de la syntaxe";
+/* Class = "NSMenuItem"; title = "Document Name"; ObjectID = "328"; */
+"328.title" = "Nom du document";
+/* Class = "NSMenuItem"; title = "File Path"; ObjectID = "323"; */
+"323.title" = "Chemin du fichier";
+/* Class = "NSMenuItem"; title = "Print Date"; ObjectID = "327"; */
+"327.title" = "Date d'impression";
+/* Class = "NSMenuItem"; title = "Page Number"; ObjectID = "326"; */
+"326.title" = "Numéro de page";
+
+/* Class = "NSSegmentedCell"; ObjectID = "xAm-2i-Sw1"; */
+"xAm-2i-Sw1.ibShadowedToolTips[0]" = "Aligner à gauche";  /* Align Left */
+"xAm-2i-Sw1.ibShadowedToolTips[1]" = "Centrer";  /* Center */
+"xAm-2i-Sw1.ibShadowedToolTips[2]" = "Aligner à droite";  /* Align Right */

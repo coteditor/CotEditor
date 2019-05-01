@@ -1,16 +1,15 @@
 /*
  
- GoToLineView.strings (Italian)
+ GoToLineView.strings (French)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-09-28.
- Localized by Agostino Maiello
- 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2015-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,14 +26,14 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Line:"; ObjectID = "R30-Wf-Rfd"; */
-"R30-Wf-Rfd.title" = "Riga:";
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
-"IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "Numero di riga";
+"R30-Wf-Rfd.title" = "Ligne :";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "yIX-ZF-8vP"; */
+"yIX-ZF-8vP.ibShadowedIsNilPlaceholder" = "Numéro de ligne";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Line Number"; ObjectID = "F6K-QJ-Ox1"; */
-"F6K-QJ-Ox1.placeholderString" = "Numero di riga";
+"F6K-QJ-Ox1.placeholderString" = "Numéro de ligne";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
-"JUX-sh-0Ej.title" = "Annulla";
+"JUX-sh-0Ej.title" = "Annuler";
 /* Class = "NSButtonCell"; title = "Go"; ObjectID = "cuJ-kD-yiJ"; */
-"cuJ-kD-yiJ.title" = "Vai";
+"cuJ-kD-yiJ.title" = "Aller";
