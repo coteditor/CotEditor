@@ -140,8 +140,6 @@ private func sanitize(blockName: String) -> String {
         .replacingOccurrences(of: "Mathematical", with: "Math")
         .replacingOccurrences(of: "Supplement", with: "Supp.")
         .replacingOccurrences(of: "Description", with: "Desc.")
-        .replacingOccurrences(of: "Pahiavi", with: "Pahlavi")  // typo in oricinal ICU data
-        .replacingOccurrences(of: "Eibasan", with: "Elbasan")  // typo in oricinal ICU data
 }
 
 
