@@ -139,7 +139,7 @@
 "Thaana" = "Thaana";
 "Telugu" = "Télougou";
 "Hiragana" = "Hiragana";
-"CJK Compatibility Ideographs Supplement" = "Suppl. d’idéogr. de compatibilité CJK";  // Supp. -> Supplement
+"CJK Compatibility Ideographs Supp." = "Suppl. d’idéogr. de compatibilité CJK";
 "Katakana" = "Katakana";
 "Mathematical Operators" = "Opérateurs mathématiques";
 "Mahjong Tiles" = "Pièces de mahjong";
@@ -182,7 +182,7 @@
 "Letterlike Symbols" = "Symboles en forme de lettres";
 "Sinhala" = "Cingalais";
 "Supplemental Punctuation" = "Ponctuation supplémentaire";
-"Mathematical Alphanumeric Symbols" = "Symboles alphanum. math.";  // Math -> Mathematical
+"Math Alphanumeric Symbols" = "Symboles alphanum. math.";
 "Cypriot Syllabary" = "Syllabisme chypriote";
 "Gurmukhi" = "Gurmukhi";
 "Gothic" = "Gothique";
@@ -260,7 +260,7 @@
 "Psalter Pahlavi" = "Pehlevi des psautiers";
 "CJK Unified Ideographs Ext. C" = "Idéogr. unifiés CJK d’ext. C";
 "Palmyrene" = "Palmyrénien";
-"Ideographic Description Characters" = "Caractères idéographiques";  // Desc. -> Description
+"Ideographic Desc. Characters" = "Caractères idéographiques";
 "Rejang" = "Rejang";
 "Alchemical Symbols" = "Symboles alchimiques";
 "Pau Cin Hau" = "Pau Cin Hau";

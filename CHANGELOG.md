@@ -12,7 +12,7 @@ Change Log
 
 ### Fixes
 
-- Fix missing localization (thanks to Aurélien Roy!).
+- Fix missing localization.
 
 
 
