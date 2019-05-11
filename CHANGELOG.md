@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the Unicode character name for `U+FEFF` (ZERO WIDTH NO-BREAK SPACE) was empty.
 - Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible.
 - Fix missing localization.
 
