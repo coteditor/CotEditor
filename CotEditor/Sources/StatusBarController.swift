@@ -89,6 +89,8 @@ final class StatusBarController: NSViewController {
         
         super.viewDidAppear()
         
+        assert(self.documentAnalyzer != nil)
+        
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
     }
     
@@ -120,7 +122,9 @@ final class StatusBarController: NSViewController {
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            analyzer.needsUpdateStatusEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
+            if self.isViewLoaded {
+                analyzer.needsUpdateStatusEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
+            }
             
             NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -140,8 +144,11 @@ final class StatusBarController: NSViewController {
         
         assert(Thread.isMainThread)
         
-        guard !self.view.isHiddenOrHasHiddenAncestor else { return }
-        guard let info = self.documentAnalyzer?.info else { return }
+        guard
+            self.isViewLoaded,
+            !self.view.isHiddenOrHasHiddenAncestor,
+            let info = self.documentAnalyzer?.info
+            else { return }
         
         let appearance = self.view.effectiveAppearance
         let defaults = UserDefaults.standard
@@ -180,8 +187,11 @@ final class StatusBarController: NSViewController {
         
         assert(Thread.isMainThread)
         
-        guard !self.view.isHiddenOrHasHiddenAncestor else { return }
-        guard let info = self.documentAnalyzer?.info else { return }
+        guard
+            self.isViewLoaded,
+            !self.view.isHiddenOrHasHiddenAncestor,
+            let info = self.documentAnalyzer?.info
+            else { return }
         
         let defaults = UserDefaults.standard
         let status = NSMutableAttributedString()

@@ -54,12 +54,14 @@ final class DocumentInspectorViewController: NSViewController {
     
     
     /// let documentAnalyzer autoupdate
-    override func viewWillAppear() {
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        assert(self.analyzer != nil)
         
         self.analyzer?.needsUpdateEditorInfo = true
         self.analyzer?.invalidateEditorInfo()
-        
-        super.viewWillAppear()
     }
     
     
@@ -84,7 +86,9 @@ final class DocumentInspectorViewController: NSViewController {
         }
         
         didSet {
-            self.analyzer?.needsUpdateEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
+            if self.isViewLoaded {
+                self.analyzer?.needsUpdateEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
+            }
         }
     }
     
