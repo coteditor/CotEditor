@@ -12,7 +12,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible. 
+- Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible.
 - Fix missing localization.
 
 

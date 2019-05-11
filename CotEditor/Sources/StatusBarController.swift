@@ -85,13 +85,14 @@ final class StatusBarController: NSViewController {
     
     
     /// request analyzer to update editor info
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         assert(self.documentAnalyzer != nil)
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
+        self.documentAnalyzer?.invalidateEditorInfo()
     }
     
     
