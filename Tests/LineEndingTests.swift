@@ -56,9 +56,15 @@ class LineEndingTests: XCTestCase {
     }
     
     
-    func testReplacement() {
+    func testCount() {
         
         XCTAssertEqual("foo\nbar".countExceptLineEnding, 6)
+        XCTAssertEqual("\u{feff}".countExceptLineEnding, 1)
+    }
+    
+    
+    func testReplacement() {
+        
         XCTAssertEqual("foo\r\nbar".replacingLineEndings(with: .cr), "foo\rbar")
     }
     

@@ -48,18 +48,17 @@ extension StringProtocol where Self.Index == String.Index {
         
         let range = range ?? self.startIndex..<self.endIndex
         
-        guard !self.isEmpty, !range.isEmpty else { return 0 }
+        if self.isEmpty || range.isEmpty { return 0 }
         
-        var count = 0
-        self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
-            count += 1
-        }
+        // -> CharacterSet.newlines contains U+000A ~ U+000D, U+0085, U+2028, and U+2029.
+        let newlines: [Character] = ["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"]
+        let count = self[range].count { newlines.contains($0) } + 1
         
-        if includingLastLineEnding,
-            let last = self[range].unicodeScalars.last,
-            CharacterSet.newlines.contains(last)
+        if !includingLastLineEnding,
+            let last = self[range].last,
+            newlines.contains(last)
         {
-            count += 1
+            return count - 1
         }
         
         return count
