@@ -30,7 +30,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// number of lines in the whole string ignoring the last new line character
     var numberOfLines: Int {
         
-        return self.numberOfLines(in: self.startIndex..<self.endIndex, includingLastLineEnding: false)
+        return self.numberOfLines(includingLastLineEnding: false)
     }
     
     

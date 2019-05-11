@@ -109,10 +109,10 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// string removing all kind of line ending characters in the receiver
-    var removingLineEndings: String {
+    /// count characters in the receiver but excepting all kind of line endings
+    var countExceptLineEnding: Int {
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression)
+        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count
     }
     
     
