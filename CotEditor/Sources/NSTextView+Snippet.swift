@@ -29,6 +29,8 @@ extension NSTextView {
     
     func insert(snippet: Snippet) {
         
+        guard !snippet.string.isEmpty else { return }
+        
         let ranges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
         let strings = [String](repeating: snippet.string, count: ranges.count)
         
