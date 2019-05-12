@@ -331,15 +331,16 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     // NSOutlineViewDelegate  < outlineView
     
     /// change snippet array controller's selection
-    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+    func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        if let arrayController = self.snippetArrayController {
-            let index = outlineView.row(forItem: item)
-            
-            arrayController.setSelectionIndex(index)
-        }
+        guard
+            let arrayController = self.snippetArrayController,
+            let outlineView = notification.object as? NSOutlineView
+            else { return assertionFailure() }
         
-        return true
+        guard outlineView.selectedRow >= 0 else { return }
+        
+        arrayController.setSelectionIndex(outlineView.selectedRow)
     }
     
     
