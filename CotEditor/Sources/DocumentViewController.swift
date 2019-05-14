@@ -83,6 +83,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                                                name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
         
+        // observe cursor
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
+                                               name: NSTextView.didChangeSelectionNotification,
+                                               object: self.editorViewControllers.first!.textView!)
+        
         // observe defaults change
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = [
@@ -168,8 +173,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// deliver document to child view controllers
     override var representedObject: Any? {
         
+        willSet {
+            guard let document = representedObject as? Document else { return }
+            
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
+        }
+        
         didSet {
             guard let document = representedObject as? Document else { return }
+            
+            // This setter can be invoked twice if the view was initially made for a transient document.
             
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
@@ -785,6 +798,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         currentEditorViewController.textView?.centerSelectionInVisibleArea(self)
         newEditorViewController.textView?.centerSelectionInVisibleArea(self)
         
+        // observe cursor
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
+                                               name: NSTextView.didChangeSelectionNotification,
+                                               object: newEditorViewController.textView)
+        
         // move focus to the new editor
         self.view.window?.makeFirstResponder(newEditorViewController.textView)
     }
@@ -919,10 +937,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             textView.baseWritingDirection = baseTextView.baseWritingDirection
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
-                                               name: NSTextView.didChangeSelectionNotification,
-                                               object: editorViewController.textView)
     }
     
     

@@ -16,6 +16,7 @@ Change Log
 - Fix an issue where the application did crash when the selected text contains some specific characters.
 - Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible.
 - Fix missing localization.
+- Improve stability.
 
 
 
