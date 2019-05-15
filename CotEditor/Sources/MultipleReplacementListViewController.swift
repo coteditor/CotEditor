@@ -199,7 +199,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = ReplacementManager.shared.filePathExtensions
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
             do {
@@ -280,7 +280,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         alert.addButton(withTitle: "Delete".localized)
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { (returnCode: NSApplication.ModalResponse) in
+        alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             guard returnCode == .alertSecondButtonReturn else { return }  // cancelled
             
             do {

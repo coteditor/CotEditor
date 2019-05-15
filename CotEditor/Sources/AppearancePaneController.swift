@@ -446,7 +446,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
             do {
