@@ -67,8 +67,7 @@ final class SidebarViewController: NSTabViewController {
         self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
         
         // bind segmentedControl manually  (2016-09 on macOS 10.12)
-        let segmentedControl = (self.tabView as! InspectorTabView).segmentedControl
-        segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
+        (self.tabView as! InspectorTabView).segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
         
         // set accessibility
         self.view.setAccessibilityElement(true)
