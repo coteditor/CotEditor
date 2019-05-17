@@ -1661,12 +1661,11 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
-        let firstLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
-        let firstLetterSet = CharacterSet(firstLetters)
+        let firstSyntaxLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
+        let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates
         guard
-            !firstLetterSet.isEmpty,
             !self.string.isEmpty,
             let characterRange = Range(range, in: self.string),
             let index = self.string[..<characterRange.upperBound].rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards)?.upperBound

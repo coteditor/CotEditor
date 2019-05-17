@@ -15,6 +15,7 @@ Change Log
 - Fix an issue where the Unicode character name for `U+FEFF` (ZERO WIDTH NO-BREAK SPACE) was empty.
 - Fix an issue where the application did crash when the selected text contains some specific characters.
 - Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible.
+- FIx an issue where the word completion suggested words start with letters in the middle of the typed word.
 - Fix missing localization.
 - Improve stability.
 
