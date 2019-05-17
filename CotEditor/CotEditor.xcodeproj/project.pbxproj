@@ -868,6 +868,7 @@
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
+		2A08C889228E72DC002DC184 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/Credits.html; sourceTree = "<group>"; };
 		2A0AEA052124A83B00E4EC3D /* SelectionColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionColorWell.swift; sourceTree = "<group>"; };
 		2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextSizeTouchBar.swift; sourceTree = "<group>"; };
 		2A0D64A11D20FFB0006B4937 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/FindPanel.strings; sourceTree = "<group>"; };
@@ -3606,6 +3607,7 @@
 				2A401FE21D9AD77400ACE036 /* it */,
 				2AF4F57F1DE60B4200703525 /* zh-Hans */,
 				57ED31751FFD892900F16CAD /* pt */,
+				2A08C889228E72DC002DC184 /* fr */,
 			);
 			name = Credits.html;
 			sourceTree = "<group>";
