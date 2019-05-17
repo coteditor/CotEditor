@@ -1025,13 +1025,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.7.4-alpha</string>
+	<string>3.7.4</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleSpokenName</key>
 	<string>Cot editor</string>
 	<key>CFBundleVersion</key>
-	<string>350</string>
+	<string>351</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
