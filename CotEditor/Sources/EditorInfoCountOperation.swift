@@ -132,12 +132,12 @@ final class EditorInfoCountOperation: Operation {
         if self.requiredInfo.contains(.characters) {
             self.result.characters = self.countsLineEnding
                 ? self.string.count
-                : self.string.removingLineEndings.count
+                : self.string.countExceptLineEnding
             
             if hasSelection {
                 self.result.selectedCharacters = self.countsLineEnding
                     ? selectedString.count
-                    : selectedString.removingLineEndings.count
+                    : selectedString.countExceptLineEnding
             }
         }
         
@@ -176,7 +176,7 @@ final class EditorInfoCountOperation: Operation {
             let locString = self.string[..<cursorLocation]
             self.result.location = self.countsLineEnding
                 ? locString.count + 1
-                : locString.removingLineEndings.count + 1
+                : locString.countExceptLineEnding + 1
         }
         
         guard !self.isCancelled else { return }

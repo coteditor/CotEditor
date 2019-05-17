@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,9 +56,15 @@ class LineEndingTests: XCTestCase {
     }
     
     
+    func testCount() {
+        
+        XCTAssertEqual("foo\nbar".countExceptLineEnding, 6)
+        XCTAssertEqual("\u{feff}".countExceptLineEnding, 1)
+    }
+    
+    
     func testReplacement() {
         
-        XCTAssertEqual("foo\nbar".removingLineEndings, "foobar")
         XCTAssertEqual("foo\r\nbar".replacingLineEndings(with: .cr), "foo\rbar")
     }
     

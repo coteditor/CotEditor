@@ -68,7 +68,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// automatically insert Shre menu (on macOS 10.13 and later)
+    /// automatically inserts Share menu (on macOS 10.13 and later)
     override var allowsAutomaticShareMenu: Bool {
 
         return true
@@ -87,7 +87,7 @@ final class DocumentController: NSDocumentController {
         }
         self.transientDocumentLock.unlock()
         
-        super.openDocument(withContentsOf: url, display: false) { (document, documentWasAlreadyOpen, error) in
+        super.openDocument(withContentsOf: url, display: false) { [unowned self] (document, documentWasAlreadyOpen, error) in
             
             assert(Thread.isMainThread)
             
@@ -190,7 +190,7 @@ final class DocumentController: NSDocumentController {
         openPanel.isAccessoryViewDisclosed = true
         
         // run non-modal open panel
-        super.beginOpenPanel(openPanel, forTypes: inTypes) { (result: Int) in
+        super.beginOpenPanel(openPanel, forTypes: inTypes) { [unowned self] (result: Int) in
             
             if result == NSApplication.ModalResponse.OK.rawValue {
                 self.accessorySelectedEncoding = accessoryController.selectedEncoding

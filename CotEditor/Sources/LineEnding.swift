@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum LineEnding: Character {
+enum LineEnding: Character, CaseIterable {
     
     case lf = "\n"
     case cr = "\r"
@@ -89,6 +89,7 @@ enum LineEnding: Character {
 
 private extension LineEnding {
     
+    static let allCharacters = LineEnding.allCases.map { $0.rawValue }
     static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
     static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
 }
@@ -96,7 +97,7 @@ private extension LineEnding {
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// the first line ending type
+    /// The first line ending type.
     var detectedLineEnding: LineEnding? {
         
         // We don't use `CharacterSet.newlines` because it contains more characters than we need.
@@ -109,10 +110,10 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// string removing all kind of line ending characters in the receiver
-    var removingLineEndings: String {
+    /// Count characters in the receiver but except all kinds of line endings.
+    var countExceptLineEnding: Int {
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression)
+        return self.count { !LineEnding.allCharacters.contains($0) }
     }
     
     

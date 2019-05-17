@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+3.7.4 (351)
+--------------------------
+
+### New Features
+
+- Add French localization (thanks to Aurélien Roy!).
+
+
+### Fixes
+- Fix an issue where the snippet texts were occasionally not editable from the preferences pane.
+- Fix an issue where the Unicode character name for `U+FEFF` (ZERO WIDTH NO-BREAK SPACE) was empty.
+- Fix an issue where the application did crash when the selected text contains some specific control characters.
+- Fix an issue where the word completion suggested words start with letters in the middle of the typed word.
+- Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible.
+- Fix missing localization.
+- Improve stability.
+
+
+
 3.7.3 (349)
 --------------------------
 

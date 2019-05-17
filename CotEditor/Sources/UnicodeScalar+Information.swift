@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -137,12 +137,9 @@ private func sanitize(blockName: String) -> String {
     
     return blockName
         .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-        .replacingOccurrences(of: "Extension-", with: "Ext. ")
-        .replacingOccurrences(of: " And ", with: " and ")
-        .replacingOccurrences(of: " For ", with: " for ")
-        .replacingOccurrences(of: " Mathematical ", with: " Math ")
-        .replacingOccurrences(of: "Supplementary ", with: "Supp. ")
-        .replacingOccurrences(of: "Latin 1", with: "Latin-1")  // only for "Latin-1
+        .replacingOccurrences(of: "Mathematical", with: "Math")
+        .replacingOccurrences(of: "Supplement", with: "Supp.")
+        .replacingOccurrences(of: "Description", with: "Desc.")
 }
 
 

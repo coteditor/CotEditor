@@ -26,8 +26,12 @@
 
 /* Class = "NSTextFieldCell"; title = "Line:"; ObjectID = "R30-Wf-Rfd"; */
 "R30-Wf-Rfd.title" = "Linha:";
-/* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
-"IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "Número da Linha";
+
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "yIX-ZF-8vP"; */
+"yIX-ZF-8vP.ibShadowedIsNilPlaceholder" = "Número da Linha";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Line Number"; ObjectID = "F6K-QJ-Ox1"; */
+"F6K-QJ-Ox1.placeholderString" = "Número da Linha";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
 "JUX-sh-0Ej.title" = "Cancelar";

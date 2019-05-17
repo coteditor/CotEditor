@@ -31,6 +31,9 @@
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
 "IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "Numero di riga";
 
+/* Class = "NSTextFieldCell"; placeholderString = "Line Number"; ObjectID = "F6K-QJ-Ox1"; */
+"F6K-QJ-Ox1.placeholderString" = "Numero di riga";
+
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
 "JUX-sh-0Ej.title" = "Annulla";
 /* Class = "NSButtonCell"; title = "Go"; ObjectID = "cuJ-kD-yiJ"; */

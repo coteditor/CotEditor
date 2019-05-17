@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -205,7 +205,7 @@ extension UTF32Char {
         0x10400...0x1044F: "Deseret",
         0x10450...0x1047F: "Shavian",
         0x10480...0x104AF: "Osmanya",
-        0x10500...0x1052F: "Eibasan",
+        0x10500...0x1052F: "Elbasan",
         0x10530...0x105FF: "Caucasian Albanian",
         0x10600...0x107FF: "Linear A",
         0x10800...0x1083F: "Cypriot Syllabary",
@@ -224,7 +224,7 @@ extension UTF32Char {
         0x10B00...0x10B3F: "Avestan",
         0x10B40...0x10B5F: "Inscriptional Parthian",
         0x10B60...0x10B7F: "Inscriptional Pahlavi",
-        0x10B80...0x10BFF: "Psalter Pahiavi",
+        0x10B80...0x10BFF: "Psalter Pahlavi",
         0x10C00...0x10C4F: "Old Turkic",
         0x10C80...0x10E5F: "Old Hungarian",
         0x10E60...0x10E7F: "Rumi Numeral Symbols",

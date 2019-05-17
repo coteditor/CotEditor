@@ -67,16 +67,18 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("a".numberOfLines, 1)
         XCTAssertEqual("\n".numberOfLines, 1)
         XCTAssertEqual("\n\n".numberOfLines, 2)
+        XCTAssertEqual("\u{feff}".numberOfLines, 1)
+        XCTAssertEqual("ab\r\ncd".numberOfLines, 2)
         
         let testString = "a\nb c\n\n"
         XCTAssertEqual(testString.numberOfLines, 3)
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 0), includingLastLineEnding: true), 0)   // ""
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 1), includingLastLineEnding: true), 1)   // "a"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 2), includingLastLineEnding: true), 2)   // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 2), includingLastLineEnding: false), 1)  // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 6), includingLastLineEnding: true), 3)   // "a\nb c\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 0, length: 7), includingLastLineEnding: true), 4)   // "a\nb c\n\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(location: 2, length: 4), includingLastLineEnding: false), 1)  // "b c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0), includingLastLineEnding: true), 0)   // ""
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1), includingLastLineEnding: true), 1)   // "a"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includingLastLineEnding: true), 2)   // "a\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includingLastLineEnding: false), 1)  // "a\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6), includingLastLineEnding: true), 3)   // "a\nb c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7), includingLastLineEnding: true), 4)   // "a\nb c\n\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(2..<4), includingLastLineEnding: false), 1)  // "b c\n"
         
         XCTAssertEqual(testString.lineNumber(at: 0), 1)
         XCTAssertEqual(testString.lineNumber(at: 1), 1)
