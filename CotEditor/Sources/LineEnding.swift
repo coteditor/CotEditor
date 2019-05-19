@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum LineEnding: Character, CaseIterable {
+enum LineEnding: Character {
     
     case lf = "\n"
     case cr = "\r"
@@ -89,7 +89,6 @@ enum LineEnding: Character, CaseIterable {
 
 private extension LineEnding {
     
-    static let allCharacters = LineEnding.allCases.map { $0.rawValue }
     static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
     static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
 }
@@ -113,7 +112,13 @@ extension StringProtocol where Self.Index == String.Index {
     /// Count characters in the receiver but except all kinds of line endings.
     var countExceptLineEnding: Int {
         
-        return self.count { !LineEnding.allCharacters.contains($0) }
+        // workarond for Swift 5.1 that removes BOM at the beginning (2019-05 Swift 5.1).
+        if self.starts(with: "\u{FEFF}") {
+            let startIndex = self.index(after: self.startIndex)
+            return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
+        }
+        
+        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count
     }
     
     

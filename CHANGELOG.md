@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix performance regression due to a bug fix in CotEditor 3.7.4.
+
+
+
 3.7.4 (351)
 --------------------------
 

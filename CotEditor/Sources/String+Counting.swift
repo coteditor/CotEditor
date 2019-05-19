@@ -46,19 +46,27 @@ extension StringProtocol where Self.Index == String.Index {
     /// count the number of lines in the range
     func numberOfLines(in range: Range<String.Index>? = nil, includingLastLineEnding: Bool) -> Int {
         
-        let range = range ?? self.startIndex..<self.endIndex
+        var range = range ?? self.startIndex..<self.endIndex
         
         if self.isEmpty || range.isEmpty { return 0 }
         
-        // -> CharacterSet.newlines contains U+000A ~ U+000D, U+0085, U+2028, and U+2029.
-        let newlines: [Character] = ["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"]
-        let count = self[range].count { newlines.contains($0) } + 1
+        // workarond for Swift 5.1 that removes BOM at the beginning (2019-05 Swift 5.1).
+        if self[range.lowerBound] == "\u{FEFF}" {
+            range = self.index(after: range.lowerBound)..<range.upperBound
+            guard !range.isEmpty else { return 1 }
+        }
         
-        if !includingLastLineEnding,
-            let last = self[range].last,
-            newlines.contains(last)
+        let substring = self[range]
+        var count = 0
+        substring.enumerateSubstrings(in: substring.startIndex..<substring.endIndex, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
+            count += 1
+        }
+        
+        if includingLastLineEnding,
+            let last = substring.unicodeScalars.last,
+            CharacterSet.newlines.contains(last)
         {
-            return count - 1
+            count += 1
         }
         
         return count
