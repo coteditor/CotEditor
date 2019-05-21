@@ -1127,7 +1127,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         textStorage.addAttributes(self.typingAttributes, range: range)
         (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
-        self.detectLinkIfNeeded()
     }
     
     
