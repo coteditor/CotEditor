@@ -623,6 +623,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] need to set string after setting other properties
         printView.string = self.textStorage.string
         
+        // detect URLs manually (2019-05 macOS 10.14).
+        // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
+        //    but then, multiline-URLs over a page break would be broken. (cf. #958)
+        printView.textStorage?.detectLink()
+        
         // create print operation
         let printOperation = NSPrintOperation(view: printView, printInfo: self.printInfo)
         printOperation.printInfo.dictionary().addEntries(from: printSettings)

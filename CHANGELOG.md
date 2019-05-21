@@ -5,6 +5,11 @@ Change Log
 3.7.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Underline URLs in printed document alsos if “Link URLs in document” option is enabled.
+
+
 ### Fixes
 
 - Fix performance regression due to a bug fix in CotEditor 3.7.4.
