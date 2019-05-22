@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix performance regression due to a bug fix in CotEditor 3.7.4.
+- Fix an issue where the snippet texts were still occasionally not editable from the preferences pane.
 
 
 
