@@ -1586,10 +1586,10 @@
 			children = (
 				2A836F7E1D572A5D0044E8EC /* Main.storyboard */,
 				2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */,
+				2A149DAE19016AC500A9D6EF /* Preferences */,
 				2A2D6C1A1A602D7E002451FF /* Text Finder */,
 				2A436DDC1A426EAE00275FD4 /* Document Window */,
 				2AAEA6A01A4342A800A930CA /* Document Accessories */,
-				2A149DAE19016AC500A9D6EF /* Preferences */,
 				2A149DC81902BC2B00A9D6EF /* Panels */,
 			);
 			name = Storyboards;
