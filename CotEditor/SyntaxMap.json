@@ -593,7 +593,8 @@
   },
   "Swift": {
     "extensions": [
-      "swift"
+      "swift",
+      "swiftinterface"
     ],
     "filenames": [
 

@@ -7,7 +7,8 @@ Change Log
 
 ### Improvements
 
-- Underline URLs in printed document alsos if “Link URLs in document” option is enabled.
+- Update Swift syntax style to support Swift 5.1.
+- Underline URLs in printed document also if “Link URLs in document” option is enabled.
 
 
 ### Fixes
