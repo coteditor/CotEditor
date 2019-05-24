@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,20 +58,12 @@ final class DocumentToolbar: NSToolbar {
         //   -> It actually doesn't matter if "Use Small Size" menu item cannot be removed.
         //      What really matter is crash, or any other unwanted side effects. So, be careful.
         // cf. https://forums.developer.apple.com/thread/21887
-        
-        guard let contextMenu = self.window?.contentView?.superview?.menu else { return }
-        
-        // find "Use Small Size" menu item
-        guard let menuItem = contextMenu.items.first(where: { $0.action?.string == "toggleUsingSmallToolbarIcons:" }) else { return }
-        
-        // remove separator
-        let index = contextMenu.index(of: menuItem)
-        if let item = contextMenu.item(at: index + 1), item.isSeparatorItem {
-            contextMenu.removeItem(item)
+        if
+            let contextMenu = self.window?.contentView?.superview?.menu,
+            let menuItem = contextMenu.items.first(where: { $0.action?.string == "toggleUsingSmallToolbarIcons:" })
+        {
+            contextMenu.removeItem(menuItem)
         }
-        
-        // remove item
-        contextMenu.removeItem(menuItem)
     }
     
     
