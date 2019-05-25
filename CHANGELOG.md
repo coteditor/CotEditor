@@ -9,6 +9,7 @@ Change Log
 
 - Update Swift syntax style to support Swift 5.1.
 - Underline URLs in printed document also if “Link URLs in document” option is enabled.
+- [dev] Update Differ framework to 1.4.3.
 
 
 ### Fixes
