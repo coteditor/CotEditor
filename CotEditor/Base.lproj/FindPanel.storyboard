@@ -45,7 +45,6 @@
                     <connections>
                         <outlet property="fieldSplitViewItem" destination="fLf-rT-Hpl" id="Ysg-ma-MQV"/>
                         <outlet property="resultSplitViewItem" destination="QW9-eM-ZIB" id="vT0-nW-yHp"/>
-                        <outlet property="splitView" destination="jKV-b0-yX6" id="M8N-9P-AVt"/>
                         <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
                         <segue destination="2MH-SD-abc" kind="relationship" relationship="splitItems" id="Nvl-ZW-Th5"/>
                         <segue destination="gbq-TJ-lot" kind="relationship" relationship="splitItems" id="LIf-yS-NOX"/>

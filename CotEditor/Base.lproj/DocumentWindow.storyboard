@@ -613,7 +613,6 @@
                     <connections>
                         <outlet property="documentViewItem" destination="NAv-oU-Mey" id="lPe-qQ-5LB"/>
                         <outlet property="sidebarViewItem" destination="faM-S9-Ldc" id="txW-VA-3vb"/>
-                        <outlet property="splitView" destination="Xj1-1i-hd5" id="Pxt-ic-duH"/>
                         <segue destination="2gA-dj-5gh" kind="relationship" relationship="splitItems" id="49u-wK-kqV"/>
                         <segue destination="7te-2x-zAq" kind="relationship" relationship="splitItems" id="sB5-Yd-23U"/>
                     </connections>
