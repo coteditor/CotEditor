@@ -10,6 +10,7 @@ Change Log
 - Select the current editor's font in font panel when display it.
 - Update Swift syntax style to support Swift 5.1.
 - Underline URLs in printed document also if “Link URLs in document” option is enabled.
+- Improve stability.
 - [dev] Update Differ framework to 1.4.3.
 
 
