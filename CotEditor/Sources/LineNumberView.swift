@@ -385,11 +385,14 @@ final class LineNumberView: NSView {
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
+        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [unowned self] (notification) in
+            guard let textView = notification.object as? NSTextView else { return }
+            
             if self.orientation == .horizontal {
                 // -> Count only if really needed since the line counting is high workload, especially by large document.
-                self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
+                self.numberOfLines = max(textView.numberOfLines, 1)
             }
+            
             self.needsDisplay = true
         }
         
