@@ -1,5 +1,5 @@
 //
-//  DocumentToolbar.swift
+//  MonosizeToolbar.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class DocumentToolbar: NSToolbar {
+final class MonosizeToolbar: NSToolbar {
     
     // MARK: Private Properties
     
