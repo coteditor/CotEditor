@@ -2,6 +2,25 @@
 Change Log
 ==========================
 
+3.7.5 (353)
+--------------------------
+
+### Improvements
+
+- Select the current editor's font in font panel when display it.
+- Update Swift syntax style to support Swift 5.1.
+- Underline URLs in printed document also if “Link URLs in document” option is enabled.
+- Improve stability.
+- [dev] Update Differ framework to 1.4.3.
+
+
+### Fixes
+
+- Fix performance regression due to a bug fix in CotEditor 3.7.4.
+- Fix an issue where the snippet texts were still occasionally not editable from the preferences pane.
+
+
+
 3.7.4 (351)
 --------------------------
 

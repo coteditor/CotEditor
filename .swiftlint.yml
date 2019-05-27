@@ -1,5 +1,5 @@
-macOS_deployment_target:
-    10.12.2
+deployment_target:
+  macOS_deployment_target: 10.12.2
 
 included:
   - CotEditor/Sources
@@ -17,6 +17,7 @@ opt_in_rules:
   - empty_string
   - empty_xctest_method
   - explicit_init
+  - explicit_self
   - extension_access_modifier
   - fallthrough
   - file_header
@@ -25,24 +26,30 @@ opt_in_rules:
   - implicit_return
   - joined_default_parameter
   - last_where
+  - legacy_random
   - let_var_whitespace
+  - lower_acl_than_parent
   - multiline_function_chains
   - multiline_parameters
   - multiline_parameters_brackets
   - nimble_operator
+  - overridden_super_call
   - pattern_matching_keywords
   - private_outlet
   - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
+  - reduce_into
   - redundant_nil_coalescing
   - redundant_type_annotation
   - required_enum_case
+  - single_test_class
   - sorted_first_last
   - static_operator
   - toggle_bool
   - untyped_error_in_catch
+  - unused_import
   - unused_private_declaration
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher

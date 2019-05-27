@@ -140,6 +140,10 @@ final class EditorViewController: NSSplitViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
+        if textView.isAutomaticLinkDetectionEnabled {
+            textStorage.detectLink()
+        }
+        
         textView.layoutManager?.replaceTextStorage(textStorage)
         textView.didChangeText()  // notify to lineNumberView to drive initial line count
     }

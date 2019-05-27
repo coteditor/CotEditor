@@ -84,6 +84,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         self.maxSize = .infinite
         
+        self.linkTextAttributes = UserDefaults.standard[.autoLinkDetection]
+            ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
+            : [:]
+        
         // replace layoutManager
         let layoutManager = LayoutManager()
         layoutManager.delegate = self

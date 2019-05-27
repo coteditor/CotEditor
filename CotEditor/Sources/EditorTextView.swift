@@ -1127,7 +1127,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         textStorage.addAttributes(self.typingAttributes, range: range)
         (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
-        self.detectLinkIfNeeded()
     }
     
     
@@ -1423,20 +1422,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             else { return }
         
         // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
-        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let range = NSRange(..<textStorage.length)
-        
-        textStorage.removeAttribute(.link, range: range)
-        
-        detector.enumerateMatches(in: self.string, range: range) { (result, _, _) in
-            guard let result = result, let url = result.url else { return }
-            
-            textStorage.addAttribute(.link, value: url, range: result.range)
-        }
+        textStorage.detectLink()
         
         // ensure layout to avoid unwanted scroll with cursor move after pasting something
         // at the latter part of the document. (2018-10 macOS 10.14)
-        self.layoutManager?.ensureLayout(forCharacterRange: range)
+        self.layoutManager?.ensureLayout(forCharacterRange: NSRange(..<textStorage.length))
     }
     
     

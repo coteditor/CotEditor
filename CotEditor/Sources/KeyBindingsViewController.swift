@@ -156,6 +156,14 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     }
     
     
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        
+        // dummy implementation for SnippetKeyBindingsViewController.
+        // -> Otherwise, this delegate method in subclass is not called in release build.
+        //    (2019-05 Xcode 10.2, macOS 10.14, Swift 5.1)
+    }
+    
+    
     // NSTextFieldDelegate  < outlineView->ShortcutKeyField
     
     /// validate and apply new shortcut key input
@@ -331,7 +339,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     // NSOutlineViewDelegate  < outlineView
     
     /// change snippet array controller's selection
-    func outlineViewSelectionDidChange(_ notification: Notification) {
+    override func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard
             let arrayController = self.snippetArrayController,

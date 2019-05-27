@@ -284,7 +284,7 @@ private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
                     .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
                     .subtracting(registeredIndexes)
                 
-                guard indexes.count > 0 else { return }
+                guard !indexes.isEmpty else { return }
                 
                 registeredIndexes.formUnion(indexes)
                 dict[type] = indexes

@@ -900,8 +900,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             presentBlock()
         } else {
             weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (_) in
-                guard window.occlusionState.contains(.visible) else { return }
+            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (notification) in
+                guard
+                    let window = notification.object as? NSWindow,
+                    window.occlusionState.contains(.visible)
+                    else { return }
                 
                 if let observer = observer {
                     NotificationCenter.default.removeObserver(observer)
