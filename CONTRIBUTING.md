@@ -21,7 +21,7 @@ Pull-Request
 
 Bug fixes and improvements are welcome. If you want to add a new feature or the change is huge, it's better at first to ask the team whether your idea will be accepted.
 
-By adding code, please follow our coding style guide below. 
+By adding code, please follow our coding style guide below.
 
 
 ### Localization
@@ -48,9 +48,11 @@ Note that you don't need to localize the Unicode block names in the `Unicode.str
 Continuous maintenance of the localization is highly recommended when providing a new localization. Please tell us if you can work with us. We'll call you every time before releasing a new version when we have new strings to be localized, so that you can keep all your localized strings up to date.
 Currently, we already have maintainers for:
 
+- Japanese
 - Simplified Chinese
 - Italian
 - (Brazilian) Portuguese
+- French
 
 #### Localization for App Store
 
