@@ -54,11 +54,6 @@
 "What’s New in CotEditor %@" = "Cosa c’è di nuovo in CotEditor %@";  // %@ is version number
 
 
-// Share menu
-"Share" = "Condividi";
-"No Document" = "Nessun documento";
-
-
 
 /* MARK: AppDelegate */
 // Format - Syntax coloring menu item title

@@ -120,11 +120,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.buildThemeMenu()
         ScriptManager.shared.buildScriptMenu()
         
-        // manually insert Share menu on macOS 10.12 and earlier
-        if NSAppKitVersion.current < .macOS10_13 {
-            (DocumentController.shared as? DocumentController)?.insertLegacyShareMenu()
-        }
-        
         // observe setting list updates
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxMenu), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
