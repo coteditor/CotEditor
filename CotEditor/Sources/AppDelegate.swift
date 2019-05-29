@@ -318,8 +318,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
-        let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
-        NSApplication.shared.orderFrontStandardAboutPanel(options: [creditsKey: attrString])
+        NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
     
     

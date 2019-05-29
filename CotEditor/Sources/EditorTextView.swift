@@ -957,7 +957,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // on file drop
-        if pboard.name == .dragPboard,
+        if pboard.name == .drag,
             let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             self.insertDroppedFiles(urls)
         {
@@ -965,7 +965,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // paste a single string to all insertion points
-        if pboard.name == .generalPboard,
+        if pboard.name == .general,
             pboard.types?.contains(.multipleTextSelection) == false,
             let string = pboard.string(forType: .string),
             let ranges = self.rangesForUserTextChange as? [NSRange],

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -271,8 +271,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     private var canToggleSidebar: Bool {
         
         // cannot toggle in the tab overview mode
-        if #available(macOS 10.13, *),
-            let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
+        if let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
             let tabGroup = window.tabGroup {
             return !tabGroup.isOverviewVisible
         }

@@ -68,7 +68,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// automatically inserts Share menu (on macOS 10.13 and later)
+    /// automatically inserts Share menu
     override var allowsAutomaticShareMenu: Bool {
 
         return true
