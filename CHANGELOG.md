@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+3.7.6 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where an unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
+
+
+
+
 3.7.5 (353)
 --------------------------
 
