@@ -7,13 +7,13 @@ Change Log
 
 ### Improvements
 
-- Optimize performance of finding the matching brace to highlight.
+- Optimize the performance of finding the matching brace to highlight.
 
 
 ### Fixes
 
-- Fix an issue where an unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
-
+- Fix an issue where unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
+- Fix a possible crash on macOS 10.12.
 
 
 

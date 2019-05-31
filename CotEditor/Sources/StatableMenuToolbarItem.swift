@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,9 +45,12 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
             segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
             segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
         } else {
-            // jsut remove menu segment if the menu indicator is not supported
-            segmentedControl.segmentCount = 1
-            segmentedControl.setWidth(38, forSegment: 0)
+            // use normal button if the menu indicator is not supported
+            let image = segmentedControl.image(forSegment: 0)!
+            let button = NSButton(title: "", image: image, target: self.target, action: self.action)
+            button.frame.size = NSSize(width: 38, height: 24)
+            button.bezelStyle = .texturedRounded
+            self.view = button
             self.minSize.width = 44
             self.maxSize.width = 44
         }
@@ -64,10 +67,18 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
     override var image: NSImage? {
         
         get {
+            if #available(macOS 10.13, *) { } else {
+                return (self.control as? NSButton)?.image
+            }
+            
             return self.segmentedControl?.image(forSegment: 0)
         }
         
         set {
+            if #available(macOS 10.13, *) { } else {
+                (self.control as? NSButton)?.image = newValue
+            }
+            
             self.segmentedControl?.setImage(newValue, forSegment: 0)
         }
     }
