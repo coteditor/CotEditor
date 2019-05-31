@@ -338,6 +338,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // notify
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
             NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         }
@@ -962,8 +963,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
             
-            let completionHandler = { (didChange: Bool) in
-                if !didChange {
+            let completionHandler = { [weak self] (didChange: Bool) in
+                if !didChange, let self = self {
                     // reset toolbar selection for in case if the operation was invoked from the toolbar popup
                     NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
                 }
