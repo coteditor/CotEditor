@@ -152,6 +152,10 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             guard let textView = self.firstTextView else { return }
             
+            if key == .showOtherInvisibleChars {
+                let range = NSRange(0..<self.attributedString().length)
+                self.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)
+            }
             textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: (key != .showOtherInvisibleChars))
         }
     }

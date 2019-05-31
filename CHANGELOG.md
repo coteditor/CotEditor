@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Apply the change of “show other invisible characters” option immediately to the editors.
 - Optimize the performance of finding the matching brace to highlight.
 
 
