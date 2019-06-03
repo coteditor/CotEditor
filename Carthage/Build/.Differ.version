@@ -3,8 +3,8 @@
   "Mac" : [
     {
       "name" : "Differ",
-      "hash" : "f8215680dc31b891b318f3942d4c2831e6f14179c6b20a0fd4e27d633ed05975",
-      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
+      "hash" : "330908b9aa19e8c9a80ec3d29d102b29b0b4327460b6f032ae8cd1e11800d8af",
+      "swiftToolchainVersion" : "5.1 (swiftlang-1100.0.38.29 clang-1100.0.20.14)"
     }
   ]
 }

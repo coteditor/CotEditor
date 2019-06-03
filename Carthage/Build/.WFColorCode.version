@@ -3,7 +3,8 @@
   "Mac" : [
     {
       "name" : "ColorCode",
-      "hash" : "03298e910a38aed019a1e3aa1f36141a0dd53e0b3ea68b183d4a9516951192a3"
+      "hash" : "e9eb7800c6cad78687532cba2558a64f947eb89374ff585794121d25018e4c82",
+      "swiftToolchainVersion" : "5.1 (swiftlang-1100.0.38.29 clang-1100.0.20.14)"
     }
   ]
 }
