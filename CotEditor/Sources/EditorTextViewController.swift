@@ -143,3 +143,17 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
 }
+
+
+
+extension EditorTextViewController: NSFontChanging {
+    
+    // MARK: Font Changing Methods
+    
+    /// restrict items in the font panel toolbar
+    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+        
+        return [.collection, .face, .size]
+    }
+    
+}
