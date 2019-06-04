@@ -287,7 +287,7 @@ final class SyntaxManager: SettingFileManaging {
     
     var cachedSettings: [SettingName: Setting] {
         
-        get { return self._cachedSettings.value }
+        get { self._cachedSettings.value }
         set { self._cachedSettings.mutate { $0 = newValue } }
     }
     private let _cachedSettings = Atomic<[SettingName: Setting]>([:])

@@ -40,7 +40,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
      var target: NSTextView? {
         
         // keep LayoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
-        get { return _layoutManager?.firstTextView }
+        get { _layoutManager?.firstTextView }
         set { _layoutManager = newValue?.layoutManager }
     }
     private weak var _layoutManager: NSLayoutManager?
