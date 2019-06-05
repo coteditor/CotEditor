@@ -125,7 +125,7 @@ struct CharacterInfo {
         self.isComplex = isComplex
         
         self.pictureString = unicodes.count == 1  // ignore CRLF
-            ? unicodes.first?.pictureRepresentation.flatMap { String(Character($0)) }
+            ? unicodes.first?.pictureRepresentation.flatMap { String($0) }
             : nil
         
         self.localizedDescription = {
