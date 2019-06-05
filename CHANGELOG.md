@@ -17,6 +17,7 @@ Change Log
 - Fix an issue where unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
 - Fix an issue where the “Writing Direction” toolbar item did not work if it overflows from the visible toolbar area.
 - Fix an issue where `U+FEFF` cannot be input via “Input in Unicode hex” command.
+- Fix a possible crash with continuous `U+FEFF` characters.
 - Fix a possible crash on macOS 10.12.
 
 

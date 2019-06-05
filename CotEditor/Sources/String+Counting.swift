@@ -51,9 +51,10 @@ extension StringProtocol where Self.Index == String.Index {
         if self.isEmpty || range.isEmpty { return 0 }
         
         // workarond for Swift 5.0 that removes BOM at the beginning (2019-05 Swift 5.0).
-        if self[range.lowerBound] == "\u{FEFF}" {
-            range = self.index(after: range.lowerBound)..<range.upperBound
-            guard !range.isEmpty else { return 1 }
+        let bomCount = self[range].countPrefix { $0 == "\u{FEFF}" }
+        if bomCount > 0 {
+            range = self.index(range.lowerBound, offsetBy: bomCount)..<range.upperBound
+            guard !range.isEmpty else { return bomCount }
         }
         
         var count = 0
