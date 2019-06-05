@@ -15,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
+- Fix an issue where the “Writing Direction” toolbar item did not work if it overflows from the visible toolbar area. 
 - Fix a possible crash on macOS 10.12.
 
 
