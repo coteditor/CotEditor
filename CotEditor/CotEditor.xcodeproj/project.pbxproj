@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -466,12 +466,6 @@
 		2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
 		2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
 		2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
-		2AAC7490203FA2D200D91832 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; };
-		2AAC7491203FA2D200D91832 /* Differ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2AAC7492203FA2E200D91832 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; };
-		2AAC7493203FA2E200D91832 /* Differ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2AAC7495203FA37500D91832 /* Differ.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2AAC7494203FA35100D91832 /* Differ.framework.dSYM */; };
-		2AAC7496203FA38300D91832 /* Differ.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2AAC7494203FA35100D91832 /* Differ.framework.dSYM */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
@@ -559,6 +553,8 @@
 		2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
+		2ACD02B822A87C8000893051 /* Differ in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02B722A87C8000893051 /* Differ */; };
+		2ACD02BA22A87CB900893051 /* Differ in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02B922A87CB900893051 /* Differ */; };
 		2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */; };
 		2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
 		2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */; };
@@ -775,7 +771,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
-				2AAC7495203FA37500D91832 /* Differ.framework.dSYM in Copy dSYM Files */,
 				2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 				2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */,
 			);
@@ -789,7 +784,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */,
-				2AAC7491203FA2D200D91832 /* Differ.framework in Embed Frameworks */,
 				2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */,
 				2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */,
 			);
@@ -803,7 +797,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				2ACD68281D6B0F7300496B47 /* ColorCode.framework in Embed Frameworks */,
-				2AAC7493203FA2E200D91832 /* Differ.framework in Embed Frameworks */,
 				2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -816,7 +809,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				2ACD682D1D6B0F9400496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
-				2AAC7496203FA38300D91832 /* Differ.framework.dSYM in Copy dSYM Files */,
 				2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 			);
 			name = "Copy dSYM Files";
@@ -1195,8 +1187,6 @@
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		2AAC748F203FA2D100D91832 /* Differ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differ.framework; path = ../Carthage/Build/Mac/Differ.framework; sourceTree = "<group>"; };
-		2AAC7494203FA35100D91832 /* Differ.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Differ.framework.dSYM; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* String+FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FuzzyRange.swift"; sourceTree = "<group>"; };
@@ -1471,7 +1461,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACD68271D6B0F7300496B47 /* ColorCode.framework in Frameworks */,
-				2AAC7492203FA2E200D91832 /* Differ.framework in Frameworks */,
+				2ACD02BA22A87CB900893051 /* Differ in Frameworks */,
 				2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1481,8 +1471,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2ACD68201D6B0F0100496B47 /* ColorCode.framework in Frameworks */,
-				2AAC7490203FA2D200D91832 /* Differ.framework in Frameworks */,
 				2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */,
+				2ACD02B822A87C8000893051 /* Differ in Frameworks */,
 				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2256,7 +2246,6 @@
 			isa = PBXGroup;
 			children = (
 				2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */,
-				2AAC7494203FA35100D91832 /* Differ.framework.dSYM */,
 				2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */,
 				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
 			);
@@ -2344,7 +2333,6 @@
 			children = (
 				2ACD681F1D6B0E5C00496B47 /* dSYM */,
 				2A4810391D4D1ADF00F7D34C /* ColorCode.framework */,
-				2AAC748F203FA2D100D91832 /* Differ.framework */,
 				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
 				2A9246F01FCD20EF008DBC30 /* XPC */,
@@ -2390,6 +2378,9 @@
 			dependencies = (
 			);
 			name = "CotEditor -AppStore";
+			packageProductDependencies = (
+				2ACD02B922A87CB900893051 /* Differ */,
+			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
 			productReference = 2A6F0E071B5500E100C2D03C /* CotEditor.app */;
@@ -2432,6 +2423,9 @@
 			dependencies = (
 			);
 			name = CotEditor;
+			packageProductDependencies = (
+				2ACD02B722A87C8000893051 /* Differ */,
+			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
 			productReference = 8D15AC370486D014006FF6A4 /* CotEditor.app */;
@@ -2514,6 +2508,9 @@
 				fr,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
+			packageReferences = (
+				2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -4408,6 +4405,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tonyarnold/Differ";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2ACD02B722A87C8000893051 /* Differ */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */;
+			productName = Differ;
+		};
+		2ACD02B922A87CB900893051 /* Differ */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */;
+			productName = Differ;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 }
