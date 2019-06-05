@@ -98,7 +98,9 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
         guard let scalar = UnicodeScalar(longChar) else { return }
         
         self.isValid = true
-        self.characterString = String(scalar)
+        
+        // -> Workaround that Swift 5 omits U+FEFF at the beginning. (2019-06 macOS 10.14)
+        self.characterString = (scalar == UnicodeScalar("\u{feff}")) ? "\u{feff}\u{feff}" : String(scalar)
     }
     
     

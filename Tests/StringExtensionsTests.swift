@@ -29,6 +29,20 @@ import XCTest
 
 class StringExtensionsTests: XCTestCase {
     
+    /// Test if the U+FEFF omitting bug on Swift 5 still exists.
+    func testFEFF() {
+        
+        let bom = "\u{feff}"
+        
+        XCTAssertEqual(bom.count, 1)
+        XCTAssertEqual((bom + "abc").count, 4)
+        XCTAssertEqual(NSString(string: bom).length, 0)
+        XCTAssertEqual(NSString(string: bom + bom).length, 1)
+        XCTAssertEqual(NSString(string: bom + "abc").length, 3)
+        XCTAssertEqual(NSString(string: "a" + bom + "bc").length, 4)
+    }
+    
+    
     func testCharacterEscape() {
         
         let string = "a\\a\\\\aa"
