@@ -50,20 +50,19 @@ extension StringProtocol where Self.Index == String.Index {
         
         if self.isEmpty || range.isEmpty { return 0 }
         
-        // workarond for Swift 5.1 that removes BOM at the beginning (2019-05 Swift 5.1).
+        // workarond for Swift 5.0 that removes BOM at the beginning (2019-05 Swift 5.0).
         if self[range.lowerBound] == "\u{FEFF}" {
             range = self.index(after: range.lowerBound)..<range.upperBound
             guard !range.isEmpty else { return 1 }
         }
         
-        let substring = self[range]
         var count = 0
-        substring.enumerateSubstrings(in: substring.startIndex..<substring.endIndex, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
+        self[range].enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
             count += 1
         }
         
         if includingLastLineEnding,
-            let last = substring.unicodeScalars.last,
+            let last = self[range].unicodeScalars.last,
             CharacterSet.newlines.contains(last)
         {
             count += 1
