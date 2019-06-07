@@ -105,6 +105,10 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
         XCTAssertEqual("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
         XCTAssertEqual("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
+        
+        XCTAssertEqual("a\u{FEFF}\nb".numberOfLines, 2)
+        XCTAssertEqual("\u{FEFF}\nb".numberOfLines, 2)
+        XCTAssertEqual("\u{FEFF}0000000000000000".numberOfLines, 1)
     }
     
     
