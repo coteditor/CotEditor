@@ -5,6 +5,11 @@ Change Log
 3.7.6 (unreleased)
 --------------------------
 
+### New Features
+
+- Add new variable “file content” to FIle Drop feature to insert the file content when the dropped file is a text file. 
+
+
 ### Improvements
 
 - Apply the change of “show other invisible characters” option immediately to the editors.

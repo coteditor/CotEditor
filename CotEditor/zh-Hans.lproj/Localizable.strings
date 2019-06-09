@@ -549,6 +549,7 @@
 "The parent directory name of dropped file." = "拖拽的文件的上级目录";
 "(If the dropped file is an image) image width." = "图片宽度（如果拖拽文件是图像）";
 "(If the dropped file is an image) image height." = "图片高度（如果拖拽文件是图像）";
+"(If the dropped file is a text file) file content." = "(If the dropped file is a text file) file content.";  // FIXME: added
 
 
 

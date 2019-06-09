@@ -542,6 +542,7 @@
 "The parent directory name of dropped file." = "O nome do diretório superior do arquivo solto.";
 "(If the dropped file is an image) image width." = "Largura da imagem (se o arquivo solto for uma imagem).";
 "(If the dropped file is an image) image height." = "Altura da imagem (se o arquivo solto for uma imagem).";
+"(If the dropped file is a text file) file content." = "(If the dropped file is a text file) file content.";  // FIXME: added
 
 
 

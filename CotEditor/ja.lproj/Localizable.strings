@@ -549,6 +549,7 @@
 "The parent directory name of dropped file." = "ドロップ元ファイルのあるディレクトリ名";
 "(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
 
 
 

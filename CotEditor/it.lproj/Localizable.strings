@@ -549,6 +549,7 @@
 "The parent directory name of dropped file." = "Nome della cartella superiore del file trascinato.";
 "(If the dropped file is an image) image width." = "Larghezza dell’immagine (se il file trascinato è un’immagine).";
 "(If the dropped file is an image) image height." = "Altezza dell’immagine (se il file trascinato è un’immagine).";
+"(If the dropped file is a text file) file content." = "(If the dropped file is a text file) file content.";  // FIXME: added
 
 
 
