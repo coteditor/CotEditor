@@ -201,7 +201,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         // draw invisibles
         if self.showsInvisibles,
             let context = NSGraphicsContext.current?.cgContext,
-            let string = self.textStorage?.string
+            let string = self.textStorage?.string as NSString?
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
             let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
@@ -219,7 +219,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let codeUnit = (string as NSString).character(at: charIndex)
+                let codeUnit = string.character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine
