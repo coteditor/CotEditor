@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,6 +89,9 @@
 "Invalid regular expression" = "Expression régulière invalide";
 "Empty find string" = "Châine de recherche vide";
 "Input text to find." = "Texte à rechercher";
+
+// accessibility announcement
+"Search wrapped." = "Search wrapped.";  // FIXME: added
 
 
 /* MARK: FindPanelController */

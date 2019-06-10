@@ -185,11 +185,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfFound()
         
-        let message: String? = {
+        let message: String = {
             switch numberOfFound {
-            case -1:
-                return nil
-            case 0:
+            case ..<0:
                 return "Not Found".localized
             default:
                 return String(format: "%@ found".localized, String.localizedStringWithFormat("%li", numberOfFound))
@@ -210,17 +208,20 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.clearNumberOfReplaced()
         
-        let message: String? = {
+        let message: String = {
             switch numberOfReplaced {
-            case -1:
-                return nil
-            case 0:
+            case ..<0:
                 return "Not Replaced".localized
             default:
                 return String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
+        
+        // feedback for VoiceOver
+        if let window = NSApp.mainWindow {
+            NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
+        }
     }
 
     

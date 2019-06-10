@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -90,6 +90,9 @@
 "Invalid regular expression" = "Espressione regolare non valida";
 "Empty find string" = "Stringa di ricerca vuota";
 "Input text to find." = "Inserire il testo da cercare.";
+
+// accessibility announcement
+"Search wrapped." = "Search wrapped.";  // FIXME: added
 
 
 /* MARK: FindPanelController */

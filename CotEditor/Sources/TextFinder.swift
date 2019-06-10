@@ -446,11 +446,18 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
             
-            if result.wrapped, let view = textView.enclosingScrollView?.superview {
-                let hudController = HUDController.instantiate(storyboard: "HUDView")
-                hudController.symbol = .wrap
-                hudController.isReversed = !forward
-                hudController.show(in: view)
+            if result.wrapped {
+                if let view = textView.enclosingScrollView?.superview {
+                    let hudController = HUDController.instantiate(storyboard: "HUDView")
+                    hudController.symbol = .wrap
+                    hudController.isReversed = !forward
+                    hudController.show(in: view)
+                }
+                
+                if let window = NSApp.mainWindow {
+                    NSAccessibility.post(element: window, notification: .announcementRequested,
+                                         userInfo: [.announcement: "Search wrapped.".localized])
+                }
             }
         } else {
             NSSound.beep()

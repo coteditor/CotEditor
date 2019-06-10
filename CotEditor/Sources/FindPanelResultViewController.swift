@@ -140,7 +140,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         self.results = results
         
         let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
-        self.resultMessage = {
+        let resultMessage: String = {
             switch results.count {
             case 0:
                 return String(format: "No strings found in “%@”.".localized, documentName)
@@ -151,6 +151,12 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
                 return String(format: "Found %@ strings in “%@”.".localized, countStr, documentName)
             }
         }()
+        self.resultMessage = resultMessage
+        
+        // feedback for VoiceOver
+        if let findPanel = self.view.window {
+            NSAccessibility.post(element: findPanel, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
+        }
         
         self.tableView?.reloadData()
     }
