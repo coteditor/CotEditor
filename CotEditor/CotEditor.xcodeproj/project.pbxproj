@@ -708,6 +708,8 @@
 		2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */; };
 		2AFB5AE81D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */; };
 		2AFB5AE91D597ABB003895A7 /* DefaultSettings+Encodings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */; };
+		2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
+		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
@@ -1432,6 +1434,7 @@
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		2AFB5AE71D597ABB003895A7 /* DefaultSettings+Encodings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DefaultSettings+Encodings.swift"; sourceTree = "<group>"; };
+		2AFE848522AE71130001C4ED /* TextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextContainer.swift; sourceTree = "<group>"; };
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
@@ -1963,6 +1966,7 @@
 				2AA4F69F20A1C190003FD515 /* NSTextView+RoundedBackground.swift */,
 				2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */,
 				2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */,
+				2AFE848522AE71130001C4ED /* TextContainer.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
@@ -2955,6 +2959,7 @@
 				2A1814B921CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
 				2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
+				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
 				2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
@@ -3260,6 +3265,7 @@
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
 				2A1814B821CF8BD500602214 /* RegularExpressionFormatter.swift in Sources */,
 				2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */,
+				2AFE848622AE71130001C4ED /* TextContainer.swift in Sources */,
 				2A1856051D47E7FF008FA79E /* NSTextView+TextReplacement.swift in Sources */,
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,

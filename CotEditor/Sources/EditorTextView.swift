@@ -121,6 +121,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
         
         // setup layoutManager and textContainer
+        let textContainer = TextContainer()
+        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
+        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
+        self.replaceTextContainer(textContainer)
+        
         let layoutManager = LayoutManager()
         self.textContainer!.replaceLayoutManager(layoutManager)
         self.layoutManager?.allowsNonContiguousLayout = true
@@ -1120,13 +1125,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         assert(Thread.isMainThread)
         
         guard let textStorage = self.textStorage else { return assertionFailure() }
+        guard textStorage.length > 0 else { return }
         
-        let range = textStorage.mutableString.range
-        
-        guard !range.isEmpty else { return }
-        
-        textStorage.addAttributes(self.typingAttributes, range: range)
-        (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
+        textStorage.addAttributes(self.typingAttributes, range: NSRange(0..<textStorage.length))
     }
     
     
@@ -1615,19 +1616,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 }
                 
             case .enablesHangingIndent:
-                let wholeRange = self.string.nsRange
-                if !(new as! Bool) {
-                    if let paragraphStyle = self.defaultParagraphStyle {
-                        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
-                    } else {
-                        self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
-                    }
-                } else {
-                    (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
-                }
+                (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
                 
             case .hangingIndentWidth:
-                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: self.string.nsRange)
+                (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
                 
             default:
                 preconditionFailure()

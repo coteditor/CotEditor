@@ -16,6 +16,7 @@ Change Log
 - Add feedback about search in VoiceOver.
 - Optimize the performance of finding the matching brace to highlight.
 - Optimize the performance of line number drawing.
+- Optimize the performance of hanging indent calculation.
 - Hide meanless items in the font panel toolbar.
 
 
