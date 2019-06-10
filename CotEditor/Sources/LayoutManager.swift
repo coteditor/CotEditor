@@ -418,14 +418,14 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
-        let spaceFont = self.textFont ?? font
+        let textFont = self.textFont ?? font
         let fullWidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
         
-        return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
+        return InvisibleLines(space: self.invisibleLine(.space, font: textFont),
                               tab: self.invisibleLine(.tab, font: font),
                               newLine: self.invisibleLine(.newLine, font: font),
                               fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
-                              replacement: self.invisibleLine(.replacement, font: fullWidthFont))
+                              replacement: self.invisibleLine(.replacement, font: textFont))
     }
     
     
