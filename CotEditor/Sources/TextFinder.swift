@@ -438,8 +438,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
         
-        let result = textFind.find(forward: forward,
-                                   isWrap: UserDefaults.standard[.findIsWrap])
+        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap])
         
         // found feedback
         if let range = result.range {
