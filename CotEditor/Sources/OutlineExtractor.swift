@@ -98,7 +98,7 @@ struct OutlineExtractor {
 
 extension OutlineExtractor: Equatable {
     
-    static func == (lhs: OutlineExtractor, rhs: OutlineExtractor) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         
         return lhs.regex.pattern == rhs.regex.pattern &&
             lhs.regex.options == rhs.regex.options &&

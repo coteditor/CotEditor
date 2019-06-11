@@ -147,7 +147,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         }
         
         // manunally encode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
-        for keyPath in type(of: self).restorableStateKeyPaths {
+        for keyPath in Self.restorableStateKeyPaths {
             coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
         }
         
@@ -165,7 +165,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         }
         
         // manunally decode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
-        for keyPath in type(of: self).restorableStateKeyPaths where coder.containsValue(forKey: keyPath) {
+        for keyPath in Self.restorableStateKeyPaths where coder.containsValue(forKey: keyPath) {
             self.setValue(coder.decodeObject(forKey: keyPath), forKeyPath: keyPath)
         }
     }

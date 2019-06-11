@@ -279,7 +279,7 @@ final class LineNumberView: NSView {
         
         context.saveGState()
         
-        context.setFont(LineNumberView.lineNumberFont)
+        context.setFont(Self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.textColor().cgColor)
         context.setStrokeColor(self.textColor(.stroke).cgColor)
@@ -323,12 +323,12 @@ final class LineNumberView: NSView {
                     // draw
                     if isSelected {
                         context.setFillColor(self.textColor(.bold).cgColor)
-                        context.setFont(LineNumberView.boldLineNumberFont)
+                        context.setFont(Self.boldLineNumberFont)
                     }
                     context.showGlyphs(glyphs, at: positions)
                     if isSelected {
                         context.setFillColor(self.textColor().cgColor)
-                        context.setFont(LineNumberView.lineNumberFont)
+                        context.setFont(Self.lineNumberFont)
                     }
                 }
                 

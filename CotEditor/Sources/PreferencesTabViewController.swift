@@ -136,7 +136,7 @@ private extension PreferencesTabViewController {
         for item in self.tabViewItems {
             guard
                 let identifier = item.identifier as? String,
-                let ibIdentifier = type(of: self).ibIdentifiers[identifier]
+                let ibIdentifier = Self.ibIdentifiers[identifier]
                 else { assertionFailure(); continue }
             
             let key = ibIdentifier + ".label"

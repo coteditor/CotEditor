@@ -72,7 +72,7 @@ final class IntegrationPaneController: NSViewController {
         self.warning = nil
         
         // check only preferred link location
-        self.linkURL = type(of: self).preferredLinkURL
+        self.linkURL = Self.preferredLinkURL
         
         // not installed yet (= can install)
         if !self.linkURL.isReachable { return false }
@@ -83,10 +83,10 @@ final class IntegrationPaneController: NSViewController {
         if linkDestinationURL == self.linkURL { return true }
         
         // link to bundled cot is, of course, valid
-        if linkDestinationURL == type(of: self).commandURL { return true }
+        if linkDestinationURL == Self.commandURL { return true }
         
         // link to '/Applications/CotEditor.app' is always valid
-        if linkDestinationURL == type(of: self).preferredLinkTargetURL { return true }
+        if linkDestinationURL == Self.preferredLinkTargetURL { return true }
         
         // display warning for invalid link
         if linkDestinationURL.isReachable {

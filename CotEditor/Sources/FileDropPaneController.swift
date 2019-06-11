@@ -90,7 +90,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         guard control.identifier?.rawValue == FileDropComposer.SettingKey.extensions else { return true }
         
         // sanitize
-        fieldEditor.string = type(of: self).sanitize(extensionsString: fieldEditor.string)
+        fieldEditor.string = Self.sanitize(extensionsString: fieldEditor.string)
         
         self.saveSetting()
         

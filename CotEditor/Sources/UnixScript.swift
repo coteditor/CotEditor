@@ -151,7 +151,7 @@ final class UnixScript: Script {
                     else { return }
                 
                 do {
-                    try UnixScript.applyOutput(output, editor: document, type: outputType)
+                    try Self.applyOutput(output, editor: document, type: outputType)
                 } catch {
                     writeToConsole(message: error.localizedDescription, scriptName: scriptName)
                 }

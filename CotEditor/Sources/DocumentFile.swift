@@ -78,9 +78,9 @@ struct DocumentFile {
         let encoding: String.Encoding
         switch readingEncoding {
         case .autoDetection:
-            (content, encoding) = try DocumentFile.string(data: data, xattrEncoding: self.xattrEncoding,
-                                                          suggestedCFEncodings: defaults[.encodingList],
-                                                          refersToEncodingTag: defaults[.referToEncodingTag])
+            (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
+                                                  suggestedCFEncodings: defaults[.encodingList],
+                                                  refersToEncodingTag: defaults[.referToEncodingTag])
         default:
             encoding = readingEncoding
             if !data.isEmpty {

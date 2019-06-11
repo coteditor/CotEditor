@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -48,7 +48,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
             fatalError("MenuKeyBindingManager should be initialized after Main.storyboard is loaded.")
         }
         
-        _defaultKeyBindings = MenuKeyBindingManager.scanMenuKeyBindingRecurrently(menu: mainMenu)
+        _defaultKeyBindings = Self.scanMenuKeyBindingRecurrently(menu: mainMenu)
         
         super.init()
     }
@@ -234,7 +234,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func clearMenuKeyBindingRecurrently(menu: NSMenu) {
         
         menu.items.lazy
-            .filter(type(of: self).allowsModifying)
+            .filter(Self.allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     self.clearMenuKeyBindingRecurrently(menu: submenu)
@@ -251,7 +251,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func applyMenuKeyBindingRecurrently(menu: NSMenu) {
         
         menu.items.lazy
-            .filter(type(of: self).allowsModifying)
+            .filter(Self.allowsModifying)
             .forEach { menuItem in
                 if let submenu = menuItem.submenu {
                     self.applyMenuKeyBindingRecurrently(menu: submenu)
@@ -275,7 +275,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     private func outlineTree(menu: NSMenu, defaults usesDefaults: Bool) -> [NSTreeNode] {
         
         return menu.items.lazy
-            .filter(type(of: self).allowsModifying)
+            .filter(Self.allowsModifying)
             .compactMap { menuItem in
                 if let submenu = menuItem.submenu {
                     let node = NamedTreeNode(name: menuItem.title)
