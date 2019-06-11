@@ -93,10 +93,10 @@ final class EditorViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(selectPrevItemOfOutlineMenu)?:
+        case #selector(selectPrevItemOfOutlineMenu):
             return self.navigationBarController?.canSelectPrevItem ?? false
             
-        case #selector(selectNextItemOfOutlineMenu)?:
+        case #selector(selectNextItemOfOutlineMenu):
             return self.navigationBarController?.canSelectNextItem ?? false
             
         default: break

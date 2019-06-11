@@ -104,7 +104,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         let result = self.results[row]
         
         switch tableColumn?.identifier {
-        case NSUserInterfaceItemIdentifier("line")?:
+        case NSUserInterfaceItemIdentifier("line"):
             return result.lineNumber
             
         default:

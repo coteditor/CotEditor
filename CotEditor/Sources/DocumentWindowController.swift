@@ -119,7 +119,7 @@ extension DocumentWindowController: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(showOpacitySlider)?:
+        case #selector(showOpacitySlider):
             return self.window?.styleMask.contains(.fullScreen) == false
         default:
             return true

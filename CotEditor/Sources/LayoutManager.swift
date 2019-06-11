@@ -220,19 +220,19 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
                 
                 let line: CTLine
                 switch invisible {
-                case .space?:
+                case .space:
                     guard self.showsSpace else { continue }
                     line = self.invisibleLines.space
                     
-                case .tab?:
+                case .tab:
                     guard self.showsTab else { continue }
                     line = self.invisibleLines.tab
                     
-                case .newLine?:
+                case .newLine:
                     guard self.showsNewLine else { continue }
                     line = self.invisibleLines.newLine
                     
-                case .fullwidthSpace?:
+                case .fullwidthSpace:
                     guard self.showsFullwidthSpace else { continue }
                     line = self.invisibleLines.fullwidthSpace
                     

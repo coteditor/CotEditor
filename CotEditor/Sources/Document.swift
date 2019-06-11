@@ -742,14 +742,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
-        case #selector(changeEncoding(_:))?:
+        case #selector(changeEncoding(_:)):
             let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
             menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
-        case #selector(changeLineEnding(_:))?:
+        case #selector(changeLineEnding(_:)):
             menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
-        case #selector(changeSyntaxStyle(_:))?:
+        case #selector(changeSyntaxStyle(_:)):
             let name = self.syntaxParser.style.name
             menuItem.state = (menuItem.title == name) ? .on : .off
             

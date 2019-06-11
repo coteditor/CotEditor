@@ -98,19 +98,19 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 
                 let glyphString: NSAttributedString
                 switch invisible {
-                case .space?:
+                case .space:
                     guard showsSpace else { continue }
                     glyphString = space
                     
-                case .tab?:
+                case .tab:
                     guard showsTab else { continue }
                     glyphString = tab
                     
-                case .newLine?:
+                case .newLine:
                     guard showsNewLine else { continue }
                     glyphString = newLine
                     
-                case .fullwidthSpace?:
+                case .fullwidthSpace:
                     guard showsFullwidthSpace else { continue }
                     glyphString = fullwidthSpace
                     
