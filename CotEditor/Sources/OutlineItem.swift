@@ -43,14 +43,6 @@ struct OutlineItem: Equatable {
     var style: Style = []
     
     
-    init(title: String, range: NSRange, style: Style = []) {
-        
-        self.title = title
-        self.range = range
-        self.style = style
-    }
-    
-    
     var isSeparator: Bool {
         
         return self.title == .separator

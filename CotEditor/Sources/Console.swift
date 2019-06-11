@@ -31,16 +31,7 @@ final class Console {
         
         var message: String
         var title: String?
-        var date: Date
-        
-        
-        init(message: String, title: String?) {
-            
-            self.message = message
-            self.title = title
-            self.date = Date()
-        }
-        
+        var date: Date = .init()
     }
     
     
