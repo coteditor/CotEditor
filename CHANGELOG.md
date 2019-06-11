@@ -14,6 +14,7 @@ Change Log
 
 - Apply the change of “show other invisible characters” option immediately to the editors.
 - Add feedback about search in VoiceOver.
+- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:` .
 - Optimize the performance of finding the matching brace to highlight.
 - Optimize the performance of line number drawing.
 - Optimize the performance of hanging indent calculation.
