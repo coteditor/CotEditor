@@ -28,7 +28,6 @@ import Cocoa
 @objc protocol TextFinderClientProvider: AnyObject {
     
     func textFinderClient() -> NSTextView?
-    
 }
 
 
@@ -37,7 +36,6 @@ protocol TextFinderDelegate: AnyObject {
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView)
-    
 }
 
 
@@ -47,7 +45,6 @@ struct TextFindResult {
     var lineNumber: Int
     var attributedLineString: NSAttributedString
     var inlineRange: NSRange
-    
 }
 
 
@@ -55,7 +52,6 @@ private struct HighlightItem {
     
     var range: NSRange
     var color: NSColor
-    
 }
 
 
