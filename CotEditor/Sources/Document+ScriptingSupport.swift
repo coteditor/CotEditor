@@ -260,9 +260,9 @@ extension Document {
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         // perform find
-        let wholeString = self.string as NSString
-        guard let foundRange = wholeString.range(of: searchString, selectedRange: self.selectedRange,
-                                                 options: options, isWrapSearch: isWrapSearch)
+        let string = self.string as NSString
+        guard let foundRange = string.range(of: searchString, selectedRange: self.selectedRange,
+                                            options: options, isWrapSearch: isWrapSearch)
             else { return false }
         
         self.selectedRange = foundRange
