@@ -13,8 +13,8 @@ Change Log
 ### Improvements
 
 - Apply the change of “show other invisible characters” option immediately to the editors.
-- Add feedback about search in VoiceOver.
-- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:` .
+- Give feedback about the search result in VoiceOver.
+- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
 - Optimize the performance of finding the matching brace to highlight.
 - Optimize the performance of line number drawing.
 - Optimize the performance of hanging indent calculation.
@@ -24,6 +24,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
+- Fix an issue with scripting where regular expression anchors, such as `^` or `$`, did not much lines.
 - Fix an issue where the “Writing Direction” toolbar item did not work if it overflows from the visible toolbar area.
 - Fix an issue where `U+FEFF` cannot be input via “Input in Unicode hex” command.
 - Fix a possible crash with continuous `U+FEFF` characters.
