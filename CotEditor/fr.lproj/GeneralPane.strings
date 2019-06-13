@@ -72,8 +72,8 @@
 "3306.title" = "Ignorer les fins de ligne lors du comptage des caractères";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "Lier les URLs dans le document";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "Vérifier l'orthographe en tapant";
+/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
+"3300.title" = "Vérifier le document lors de la saisie";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Surligner les “()” “[]” “{}” associés";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */

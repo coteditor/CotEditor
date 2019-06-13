@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -73,8 +73,8 @@
 "3306.title" = "字符计数时忽略行尾";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "链接文档中的 URL";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "键入时检查拼写";
+/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
+"3300.title" = "输入时检查拼写";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "高亮配对括号“()” “[]” “{}”";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
