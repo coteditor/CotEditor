@@ -1130,12 +1130,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: "Update".localized)
             
             // mark the alert as critical in order to interpret other sheets already attached
-            if self.windowForSheet?.attachedSheet != nil {
+            guard let documentWindow = self.windowForSheet else {
+                activityCompletionHandler()
+                assertionFailure()
+                return
+            }
+            if documentWindow.attachedSheet != nil {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: self.windowForSheet!) { returnCode in
-                
+            alert.beginSheetModal(for: documentWindow) { returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revertWithoutAsking()
                 }
