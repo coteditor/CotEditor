@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Apply the change of “show other invisible characters” option immediately to the editors.
+- Use the system appearance in the input candidate window even when the theme has a dark background color.
 - Give feedback about the search result in VoiceOver.
 - Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
 - Optimize the performance of finding the matching brace to highlight.

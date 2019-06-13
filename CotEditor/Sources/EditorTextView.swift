@@ -1306,11 +1306,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // set scroller color considering background color
-        if #available(macOS 10.14, *) {
-            self.enclosingScrollView?.appearance = NSAppearance(named: theme.isDarkTheme ? .darkAqua : .aqua)
-        } else {
-            self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
-        }
+        self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
     }
