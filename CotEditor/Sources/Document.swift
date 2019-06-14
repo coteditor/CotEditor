@@ -520,19 +520,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// prepare save panel
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
-        // disable hide extension checkbox
-        // -> Because it doesn't work.
-        savePanel.isExtensionHidden = false
-        savePanel.canSelectHiddenExtension = false
-        
-        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.13)
+        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let fileType = self.fileType,
            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
             // set once allowedFileTypes, so that initial filename selection excludes the file extension
             savePanel.allowedFileTypes = [pathExtension]
             
-            // disable immediately in the next runloop to allow set other extensions
+            // disable it immediately in the next runloop to allow setting other extensions
             DispatchQueue.main.async {
                 savePanel.allowedFileTypes = nil
             }

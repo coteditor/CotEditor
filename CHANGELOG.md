@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Apply the change of “show other invisible characters” option immediately to the editors.
+- Add “Hide extension” option to the save dialog.
 - Use the system appearance in the input candidate window even when the theme has a dark background color.
 - Give feedback about the search result in VoiceOver.
 - Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
