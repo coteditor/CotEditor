@@ -15,12 +15,12 @@ Change Log
 - Apply the change of “show other invisible characters” option immediately to the editors.
 - Add “Hide extension” option to the save dialog.
 - Use the system appearance in the input candidate window even when the theme has a dark background color.
-- Give feedback about the search result in VoiceOver.
+- Give some feedback about the search result in VoiceOver.
 - Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
+- Hide unused items in the font panel toolbar.
 - Optimize the performance of finding the matching brace to highlight.
 - Optimize the performance of line number drawing.
 - Optimize the performance of hanging indent calculation.
-- Hide meanless items in the font panel toolbar.
 
 
 ### Fixes
