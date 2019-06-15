@@ -142,7 +142,7 @@ extension EditorTextView {
         // sample the first line
         let range = Range(self.selectedRange, in: self.string)!
         let location = range.isEmpty ? self.string.startIndex : range.lowerBound
-        let lineRange = self.string.lineRange(at: location, excludingLastLineEnding: true)
+        let lineRange = self.string.lineContentsRange(at: location)
         viewController.sampleLine = String(self.string[lineRange])
         viewController.sampleFontName = self.font?.fontName
         
@@ -171,7 +171,7 @@ extension NSTextView {
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
         let string = self.string as NSString
-        let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        let lineRange = string.lineContentsRange(for: range)
         
         guard !lineRange.isEmpty else { return }
         
@@ -293,7 +293,7 @@ private extension String {
     func sortLinesAscending(in range: NSRange) -> EditingInfo? {
         
         let string = self as NSString
-        let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        let lineRange = string.lineContentsRange(for: range)
         
         // do nothing with single line
         guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
@@ -312,7 +312,7 @@ private extension String {
     func reverseLines(in range: NSRange) -> EditingInfo? {
         
         let string = self as NSString
-        let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        let lineRange = string.lineContentsRange(for: range)
         
         // do nothing with single line
         guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
@@ -338,7 +338,7 @@ private extension String {
         
         // collect duplicate lines
         for range in ranges {
-            let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+            let lineRange = string.lineContentsRange(for: range)
             let targetString = string.substring(with: lineRange)
             let lines = targetString.components(separatedBy: .newlines)
             

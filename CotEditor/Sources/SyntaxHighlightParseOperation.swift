@@ -190,8 +190,9 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         if let delimiter = self.definition.inlineCommentDelimiter {
             positions += string.ranges(of: delimiter, range: self.parseRange)
                 .flatMap { range -> [QuoteCommentItem] in
-                    let lineRange = string.lineRange(for: range)
-                    let endRange = NSRange(location: lineRange.upperBound, length: 0)
+                    var lineEnd = 0
+                    string.getLineStart(nil, end: &lineEnd, contentsEnd: nil, for: range)
+                    let endRange = NSRange(location: lineEnd, length: 0)
                     
                     return [QuoteCommentItem(type: .comments, token: .inlineComment, role: .begin, range: range),
                             QuoteCommentItem(type: .comments, token: .inlineComment, role: .end, range: endRange)]

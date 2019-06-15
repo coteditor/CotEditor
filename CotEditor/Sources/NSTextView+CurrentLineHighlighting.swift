@@ -69,7 +69,7 @@ extension CurrentLineHighlighting {
         
         return self.rangesForUserTextChange?
             .map { $0.rangeValue }
-            .map { (self.string as NSString).lineRange(for: $0, excludingLastLineEnding: true) }
+            .map { (self.string as NSString).lineContentsRange(for: $0) }
             .unique
             .map { self.lineRect(for: $0) }
             ?? []

@@ -195,7 +195,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveParagraphForwardAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            (self.string as NSString).lineRange(at: self.string.index(after: $0), excludingLastLineEnding: true).upperBound
+            (self.string as NSString).lineContentsRange(at: self.string.index(after: $0)).upperBound
         }
     }
     
@@ -337,7 +337,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveToEndOfParagraph(sender) }
         
         self.moveCursors(affinity: .upstream) {
-            (self.string as NSString).lineRange(at: $0.upperBound, excludingLastLineEnding: true).upperBound
+            (self.string as NSString).lineContentsRange(at: $0.upperBound).upperBound
         }
     }
     
@@ -348,7 +348,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveToEndOfParagraphAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            (self.string as NSString).lineRange(at: $0, excludingLastLineEnding: true).upperBound
+            (self.string as NSString).lineContentsRange(at: $0).upperBound
         }
     }
     

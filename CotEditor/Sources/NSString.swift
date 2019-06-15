@@ -27,7 +27,7 @@ import Foundation
 
 extension String {
     
-    /// whole range in NSRange
+    /// Whole range in NSRange
     var nsRange: NSRange {
         
         return NSRange(..<(self as NSString).length)
@@ -89,6 +89,7 @@ extension NSRange {
 
 extension NSString {
     
+    /// Whole range in NSRange
     var range: NSRange {
         
         return NSRange(..<self.length)
@@ -154,25 +155,31 @@ extension NSString {
     
     
     /// line range containing a given location
-    func lineRange(at location: Int, excludingLastLineEnding: Bool = false) -> NSRange {
+    func lineRange(at location: Int) -> NSRange {
         
-        return self.lineRange(for: NSRange(location: location, length: 0), excludingLastLineEnding: excludingLastLineEnding)
+        return self.lineRange(for: NSRange(location..<location))
     }
     
     
-    /// line range adding ability to exclude last line ending character if exists
-    func lineRange(for range: NSRange, excludingLastLineEnding: Bool) -> NSRange {
+    /// line range containing a given location
+    func lineContentsRange(at location: Int) -> NSRange {
         
-        var lineRange = self.lineRange(for: range)
+        return self.lineContentsRange(for: NSRange(location..<location))
+    }
+    
+    
+    /// Return line range excluding last line ending character if exists.
+    ///
+    /// - Parameters:
+    ///   - range: A range within the receiver.
+    /// - Returns: The range of characters representing the line or lines containing a given range.
+    func lineContentsRange(for range: NSRange) -> NSRange {
         
-        guard excludingLastLineEnding else { return lineRange }
+        var start = 0
+        var contentsEnd = 0
+        self.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, for: range)
         
-        // ignore last line ending
-        if !lineRange.isEmpty, self.character(at: lineRange.upperBound - 1) == "\n".utf16.first! {
-            lineRange.length -= 1
-        }
-        
-        return lineRange
+        return NSRange(start..<contentsEnd)
     }
     
     
