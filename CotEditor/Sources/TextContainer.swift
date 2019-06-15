@@ -92,8 +92,7 @@ final class TextContainer: NSTextContainer {
         
         guard let layoutManager = self.layoutManager else { return }
         
-        let range = NSRange(0..<layoutManager.attributedString().length)
-        layoutManager.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)
+        layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
     }
     
 }

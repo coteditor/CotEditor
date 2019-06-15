@@ -211,7 +211,7 @@ extension String {
         let scanLength = min(self.utf16.count, maxLength)
         
         guard
-            let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
+            let match = regex.firstMatch(in: self, range: NSRange(..<scanLength)),
             let matchedRange = Range(match.range(at: 1), in: self)
             else { return nil }
         

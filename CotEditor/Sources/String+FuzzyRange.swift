@@ -67,7 +67,7 @@ extension String {
         let lineRanges = regex.matches(in: self, range: self.nsRange).map { $0.range }
         let count = lineRanges.count
 
-        guard location != 0 else { return NSRange(location: 0, length: 0) }
+        guard location != 0 else { return NSRange(0..<0) }
         guard location <= count else { return NSRange(location: self.utf16.count, length: 0) }
         
         let newLocation = (location > 0) ? location - 1 : (count + location)  // 1-based to 0-based

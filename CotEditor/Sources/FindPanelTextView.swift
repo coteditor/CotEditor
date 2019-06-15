@@ -84,7 +84,7 @@ class FindPanelTextView: NSTextView {
     override func resignFirstResponder() -> Bool {
         
         // clear current selection (standard NSTextField behavior)
-        self.selectedRange = NSRange(location: 0, length: 0)
+        self.selectedRange = NSRange(0..<0)
         
         return super.resignFirstResponder()
     }

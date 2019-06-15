@@ -149,7 +149,7 @@ extension SyntaxParser {
     /// parse outline
     private func parseOutline() {
         
-        let wholeRange = NSRange(0..<self.textStorage.length)
+        let wholeRange = self.textStorage.range
         guard !wholeRange.isEmpty else {
             self.outlineItems = []
             return
@@ -191,7 +191,7 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        let wholeRange = NSRange(0..<self.textStorage.length)
+        let wholeRange = self.textStorage.range
         
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.styleName == self.style.name, cache.string == self.textStorage.string {
@@ -221,7 +221,7 @@ extension SyntaxParser {
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = self.textStorage.string.immutable
         
-        let wholeRange = NSRange(0..<self.textStorage.length)
+        let wholeRange = self.textStorage.range
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange

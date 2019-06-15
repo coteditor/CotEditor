@@ -91,7 +91,7 @@ extension NSString {
     
     var range: NSRange {
         
-        return NSRange(location: 0, length: self.length)
+        return NSRange(..<self.length)
     }
     
     

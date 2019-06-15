@@ -520,7 +520,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
                 guard
                     !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(0..<range.location))
+                    let autoIndentRange = indentRange.intersection(NSRange(..<range.location))
                     else { return (range, "", 0) }
                 
                 var indent = (self.string as NSString).substring(with: autoIndentRange)
@@ -1127,7 +1127,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         guard let textStorage = self.textStorage else { return assertionFailure() }
         guard textStorage.length > 0 else { return }
         
-        textStorage.addAttributes(self.typingAttributes, range: NSRange(0..<textStorage.length))
+        textStorage.addAttributes(self.typingAttributes, range: textStorage.range)
     }
     
     
@@ -1423,7 +1423,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // ensure layout to avoid unwanted scroll with cursor move after pasting something
         // at the latter part of the document. (2018-10 macOS 10.14)
-        self.layoutManager?.ensureLayout(forCharacterRange: NSRange(..<textStorage.length))
+        self.layoutManager?.ensureLayout(forCharacterRange: textStorage.range)
     }
     
     
@@ -1584,7 +1584,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 if self.isAutomaticLinkDetectionEnabled {
                     self.detectLinkIfNeeded()
                 } else if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: NSRange(0..<textStorage.length))
+                    textStorage.removeAttribute(.link, range: textStorage.range)
                 }
                 
             case .pageGuideColumn:

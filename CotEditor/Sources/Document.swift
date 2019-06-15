@@ -268,7 +268,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // -> Taking performance issue into consideration,
         //    the selection ranges will be adjusted only when the content size is enough small.
         let string = self.textStorage.string
-        let range = NSRange(..<self.textStorage.length)
+        let range = self.textStorage.range
         let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
         let considersDiff = min(lastString.count, string.count) < maxLength
         
@@ -350,7 +350,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        self.textStorage.replaceCharacters(in: NSRange(..<self.textStorage.length), with: string)
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {

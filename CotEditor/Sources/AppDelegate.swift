@@ -392,7 +392,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // open as document
         guard let document = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false) as? Document else { return assertionFailure() }
         document.displayName = "Bug Report".localized(comment: "document title")
-        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
+        document.textStorage.replaceCharacters(in: NSRange(0..<0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()

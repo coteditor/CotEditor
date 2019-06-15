@@ -91,7 +91,7 @@ extension String {
         
         guard !self.isEmpty, location > 0 else { return 1 }
         
-        return self.numberOfLines(in: NSRange(0..<location), includingLastLineEnding: true)
+        return self.numberOfLines(in: NSRange(..<location), includingLastLineEnding: true)
     }
     
     

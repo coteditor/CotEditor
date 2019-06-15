@@ -38,7 +38,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         didSet {
             guard let textStorage = self.textStorage else { return assertionFailure() }
             
-            let wholeRange = NSRange(..<textStorage.length)
+            let wholeRange = textStorage.range
             
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
@@ -153,8 +153,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             guard let textView = self.firstTextView else { return }
             
             if key == .showOtherInvisibleChars {
-                let range = NSRange(0..<self.attributedString().length)
-                self.invalidateLayout(forCharacterRange: range, actualCharacterRange: nil)
+                self.invalidateLayout(forCharacterRange: self.attributedString().range, actualCharacterRange: nil)
             }
             textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: (key != .showOtherInvisibleChars))
         }

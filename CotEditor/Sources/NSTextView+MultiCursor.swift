@@ -77,8 +77,8 @@ extension MultiCursorEditing {
         
         guard self.shouldChangeText(inRanges: replacementRanges as [NSValue], replacementStrings: replacementStrings) else { return false }
         
-        let stringLength = string.nsRange.length
         let attributedString = NSAttributedString(string: string, attributes: self.typingAttributes)
+        let stringLength = attributedString.length
         var newInsertionLocations: [Int] = []
         var offset = 0
         

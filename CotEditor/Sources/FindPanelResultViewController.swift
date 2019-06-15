@@ -113,7 +113,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             // truncate
             let leadingOverflow = result.inlineRange.location - maxLeftMargin
             if leadingOverflow > 0 {
-                lineAttrString.replaceCharacters(in: NSRange(0..<leadingOverflow), with: "…")
+                lineAttrString.replaceCharacters(in: NSRange(..<leadingOverflow), with: "…")
             }
             if lineAttrString.length > maxMatchedStringLength {
                 lineAttrString.replaceCharacters(in: NSRange(maxMatchedStringLength..<lineAttrString.length), with: "…")
@@ -122,7 +122,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             // truncate tail
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineBreakMode = .byTruncatingTail
-            lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.string.nsRange)
+            lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.range)
             
             return lineAttrString
         }

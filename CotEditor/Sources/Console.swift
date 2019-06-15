@@ -132,21 +132,21 @@ final class ConsoleViewController: NSViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let lastLocation = textView.textStorage?.length ?? 0
+        let lastLocation = (textView.string as NSString).length
         let date = self.dateFormatter.string(from: log.date)
         let attrString = NSMutableAttributedString(string: "[" + date + "]")
         
         // append bold title
         if let title = log.title {
             let attrTitle = NSMutableAttributedString(string: " " + title)
-            attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 1, length: title.utf16.count))
+            attrTitle.applyFontTraits(.boldFontMask, range: NSRange(1..<attrTitle.length))
             attrString.append(attrTitle)
         }
         
         // append indented message
         let attrMessage = NSAttributedString(string: "\n" + log.message + "\n", attributes: [.paragraphStyle: self.messageParagraphStyle])
         attrString.append(attrMessage)
-        attrString.addAttributes([.foregroundColor: NSColor.labelColor], range: attrString.string.nsRange)
+        attrString.addAttributes([.foregroundColor: NSColor.labelColor], range: attrString.range)
         
         textView.textStorage?.append(attrString)
         NSAccessibility.post(element: textView, notification: .valueChanged)
