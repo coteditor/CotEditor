@@ -71,14 +71,7 @@ final class TextContainer: NSTextContainer {
         
         // remove hanging indent space from rect
         rect.size.width -= indent
-        switch baseWritingDirection {
-        case .leftToRight, .natural:
-            rect.origin.x += indent
-        case .rightToLeft:
-            break
-        @unknown default:
-            assertionFailure()
-        }
+        rect.origin.x += (baseWritingDirection != .rightToLeft) ? indent : 0
         
         return rect
     }
