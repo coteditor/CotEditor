@@ -92,7 +92,7 @@
 "Input text to find." = "Inserire il testo da cercare.";
 
 // accessibility announcement
-"Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.  // FIXME: added
+"Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -552,7 +552,7 @@
 "The parent directory name of dropped file." = "Nome della cartella superiore del file trascinato.";
 "(If the dropped file is an image) image width." = "Larghezza dell’immagine (se il file trascinato è un’immagine).";
 "(If the dropped file is an image) image height." = "Altezza dell’immagine (se il file trascinato è un’immagine).";
-"(If the dropped file is a text file) file content." = "(If the dropped file is a text file) file content.";  // FIXME: added
+"(If the dropped file is a text file) file content." = "(Se il file rilasciato è di testo) contenuto del file.";
 
 
 
