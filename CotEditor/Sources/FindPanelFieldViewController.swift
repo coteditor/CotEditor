@@ -76,7 +76,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         }
         
         self.defaultsObservers.forEach { $0.invalidate() }
-        self.defaultsObservers += [
+        self.defaultsObservers = [
             // sync history menus with user default
             UserDefaults.standard.observe(key: .findHistory, options: .initial) { [unowned self] _ in
                 self.updateFindHistoryMenu()

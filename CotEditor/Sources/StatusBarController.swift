@@ -62,6 +62,8 @@ final class StatusBarController: NSViewController {
         self.view.setAccessibilityLabel("status bar".localized)
         
         // observe change in defaults
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers = []
         let editorDefaultKeys: [DefaultKeys] = [
             .showStatusBarLines,
             .showStatusBarChars,
