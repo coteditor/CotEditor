@@ -25,12 +25,12 @@
 
 import Foundation
 
-extension StringProtocol where Self.Index == String.Index {
+extension String {
     
     /// whole range in NSRange
     var nsRange: NSRange {
         
-        return NSRange(..<self.endIndex, in: self)
+        return NSRange(..<(self as NSString).length)
     }
     
 }

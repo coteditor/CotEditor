@@ -37,7 +37,7 @@ extension NSTextView {
         let selectedRanges: [NSRange]? = {
             guard let selection = snippet.selection else { return nil }
             
-            let snippetLength = snippet.string.utf16.count
+            let snippetLength = (snippet.string as NSString).length
             return ranges.map { range in
                 let offset = ranges
                     .prefix { $0 != range }
