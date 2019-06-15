@@ -91,7 +91,7 @@
 "Input text to find." = "Gib den zu findenden Text ein.";
 
 // accessibility announcement
-"Search wrapped." = "Die Suche hat umgebrochen.";
+"Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */

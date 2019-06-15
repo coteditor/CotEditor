@@ -92,7 +92,7 @@
 "Input text to find." = "输入文本以查找。";
 
 // accessibility announcement
-"Search wrapped." = "Search wrapped.";  // FIXME: added
+"Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.  // FIXME: added
 
 
 /* MARK: FindPanelController */

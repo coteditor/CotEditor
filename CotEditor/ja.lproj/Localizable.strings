@@ -92,7 +92,7 @@
 "Input text to find." = "検索するテキストを入力してください。";
 
 // accessibility announcement
-"Search wrapped." = "検索が折り返されました。";
+"Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
