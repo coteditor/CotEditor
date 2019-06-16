@@ -24,6 +24,55 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.7.6</h1>
+	<p>release: <time>2019-06</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Add new variable “file content” to File Drop feature to insert the file content when the dropped file is a text file.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Apply the change of “show other invisible characters” option immediately to the editors.</li>
+	<li>Add “Hide extension” option to the save dialog.</li>
+	<li>Use the system appearance in the input candidate window even when the theme has a dark background color.</li>
+	<li>Give some feedback about the search result in VoiceOver.</li>
+	<li>Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as <code>.</code> and  <code>:</code>.</li>
+	<li>Hide unused items in the font panel toolbar.</li>
+	<li>Optimize the performance of finding the matching brace to highlight.</li>
+	<li>Optimize the performance of line number drawing.</li>
+	<li>Optimize the performance of hanging indent calculation.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where unwanted whitespace was added for variation selector <code>U+FE0E</code> when control characters are visible.</li>
+	<li>Fix an issue with scripting where regular expression anchors, such as <code>^</code> or <code>$</code>, did not much lines.</li>
+	<li>Fix an issue where the “Writing Direction” toolbar item did not work if it overflows from the visible toolbar area.</li>
+	<li>Fix an issue where <code>U+FEFF</code> cannot be input via “Input in Unicode hex” command.</li>
+	<li>Fix a possible crash with continuous <code>U+FEFF</code> characters.</li>
+	<li>Fix a possible crash on macOS 10.12.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.7.5</h1>
 	<p>release: <time>2019-05-27</time></p>
 </header>

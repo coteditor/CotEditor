@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add new variable “file content” to FIle Drop feature to insert the file content when the dropped file is a text file.
+- Add new variable “file content” to File Drop feature to insert the file content when the dropped file is a text file.
 
 
 ### Improvements
