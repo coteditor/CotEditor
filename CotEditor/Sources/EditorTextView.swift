@@ -1639,17 +1639,18 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
+        guard !self.string.isEmpty else { return range }
+        
         let firstSyntaxLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates
-        guard
-            !self.string.isEmpty,
-            let characterRange = Range(range, in: self.string),
-            let index = self.string[..<characterRange.upperBound].rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards)?.upperBound
-            else { return range }
+        let searchRange = NSRange(..<range.upperBound)
+        let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
         
-        return NSRange(index..<characterRange.upperBound, in: self.string)
+        guard invalidRange != .notFound else { return range }
+        
+        return NSRange(invalidRange.upperBound..<range.upperBound)
     }
     
     
