@@ -92,7 +92,7 @@
 "Input text to find." = "输入文本以查找。";
 
 // accessibility announcement
-"Search wrapped." = "搜索已换行";  // announced when the search restarted from the beginning.
+"Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
