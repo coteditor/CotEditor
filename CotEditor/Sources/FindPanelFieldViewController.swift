@@ -51,6 +51,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     // MARK: Lifecycle
     
     deinit {
+        self.scrollerStyleObserver?.invalidate()
         self.defaultsObservers.forEach { $0.invalidate() }
     }
     
@@ -65,6 +66,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // adjust clear button position according to the visiblity of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
+        self.scrollerStyleObserver?.invalidate()
         self.scrollerStyleObserver = scroller?.observe(\.scrollerStyle, options: .initial) { [weak self] (scroller, _) in
             var inset: CGFloat = 5
             if scroller.scrollerStyle == .legacy {
