@@ -78,12 +78,14 @@ extension NSLayoutManager {
     
     
     /// check if at least one temporary attribute for given attribute key exists
-    func hasTemporaryAttribute(for attrName: NSAttributedString.Key) -> Bool {
+    func hasTemporaryAttribute(for attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard let storage = self.textStorage else { return false }
         
+        let range = range ?? storage.range
+        
         var found = false
-        self.enumerateTemporaryAttribute(attrName, in: storage.range) { (_, _, stop) in
+        self.enumerateTemporaryAttribute(attrName, in: range) { (_, _, stop) in
             stop = true
             found = true
         }
