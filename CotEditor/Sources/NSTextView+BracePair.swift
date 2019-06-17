@@ -38,13 +38,15 @@ extension NSTextView {
             selectedRange.isEmpty,
             selectedRange.location != NSNotFound,
             selectedRange.location > 0,
-            let cursorIndex = Range(selectedRange, in: string)?.lowerBound
+            let cursorIndex = Range(selectedRange, in: string)?.lowerBound,
+            let visibleRange = self.visibleRange,
+            let range = Range(visibleRange, in: string)
             else { return }
         
         // check the character just before the cursor
         let lastIndex = string.index(before: cursorIndex)
         
-        guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates, ignoring: pairToIgnore) else { return }
+        guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates, in: range, ignoring: pairToIgnore) else { return }
         
         switch pairIndex {
         case .begin(let index), .end(let index):

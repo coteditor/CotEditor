@@ -68,7 +68,7 @@ extension Pair where T == Character {
 extension StringProtocol where Self.Index == String.Index {
     
     ///
-    func indexOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
+    func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
         
         guard !self.isCharacterEscaped(at: index) else { return nil }
         
@@ -78,11 +78,11 @@ extension StringProtocol where Self.Index == String.Index {
         
         switch character {
         case pair.begin:
-            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, ignoring: pairToIgnore) else { return .odd }
+            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore) else { return .odd }
             return .end(endIndex)
             
         case pair.end:
-            guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, ignoring: pairToIgnore) else { return .odd }
+            guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore) else { return .odd }
             return .begin(beginIndex)
             
         default: preconditionFailure()
@@ -91,11 +91,15 @@ extension StringProtocol where Self.Index == String.Index {
     
     
     /// find character index of matched opening brace before a given index.
-    func indexOfBracePair(endIndex: Index, pair: BracePair, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+    func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+        
+        let beginIndex = beginIndex ?? self.startIndex
+        
+        guard beginIndex < endIndex else { return nil }
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[..<endIndex]
+        let subsequence = self[beginIndex..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
             switch character {
@@ -125,27 +129,35 @@ extension StringProtocol where Self.Index == String.Index {
     
     
     /// find character index of matched closing brace after a given index.
-    func indexOfBracePair(beginIndex: Index, pair: BracePair, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+    func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
-        guard beginIndex != self.endIndex else { return nil }
+        let endIndex = endIndex ?? self.endIndex
+        
+        guard beginIndex < endIndex else { return nil }
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[self.index(after: beginIndex)...]
+        let subsequence = self[self.index(after: beginIndex)..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
-            guard !self.isCharacterEscaped(at: index) else { continue }
-            
             switch character {
             case pair.end where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 if nestDepth == 0 { return index }  // found
                 nestDepth -= 1
+                
             case pair.begin where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 nestDepth += 1
+                
             case pairToIgnore?.end:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth -= 1
+                
             case pairToIgnore?.begin:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth += 1
+                
             default: break
             }
         }
