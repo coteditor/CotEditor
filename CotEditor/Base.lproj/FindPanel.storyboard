@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +10,7 @@
         <scene sceneID="lwx-CG-VEr">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="2Yd-sK-nho" customClass="FindPanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
+                    <window key="window" identifier="findPanel" title="Find &amp; Replace" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Wal-Sg-6d6" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <rect key="contentRect" x="425" y="461" width="460" height="197"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
@@ -46,7 +45,6 @@
                     <connections>
                         <outlet property="fieldSplitViewItem" destination="fLf-rT-Hpl" id="Ysg-ma-MQV"/>
                         <outlet property="resultSplitViewItem" destination="QW9-eM-ZIB" id="vT0-nW-yHp"/>
-                        <outlet property="splitView" destination="jKV-b0-yX6" id="M8N-9P-AVt"/>
                         <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
                         <segue destination="2MH-SD-abc" kind="relationship" relationship="splitItems" id="Nvl-ZW-Th5"/>
                         <segue destination="gbq-TJ-lot" kind="relationship" relationship="splitItems" id="LIf-yS-NOX"/>
@@ -66,7 +64,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="460" height="146"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8gM-hc-HhV" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="20" y="82" width="420" height="44"/>
                                 <clipView key="contentView" id="vCs-g9-nGi" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
@@ -75,13 +73,15 @@
                                         <textView toolTip="Type the text to search for." importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" id="hxw-DS-gxQ" customClass="RegexFindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="10000000" height="10000000"/>
-                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="performsActionOnEnter" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <accessibility description="Find"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.findString" id="3sL-0v-4Cy">
                                                     <dictionary key="options">
@@ -101,16 +101,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="9IF-SN-YIL"/>
                                 </constraints>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="JOy-bP-bNy">
                                     <rect key="frame" x="1" y="29" width="418" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="MOp-wH-Ump">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="MOp-wH-Ump">
                                     <rect key="frame" x="405" y="1" width="14" height="42"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg">
+                            <scrollView focusRingType="exterior" verticalHuggingPriority="249" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" allowsMagnification="YES" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIf-o5-KHg" customClass="SynchronizedScrollView" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="20" y="28" width="420" height="44"/>
                                 <clipView key="contentView" id="vJP-0z-fPc" customClass="FindPanelTextClipView" customModule="CotEditor" customModuleProvider="target">
                                     <rect key="frame" x="1" y="1" width="418" height="42"/>
@@ -119,10 +119,12 @@
                                         <textView toolTip="Type the text to replace the found text." importsGraphics="NO" richText="NO" verticallyResizable="YES" allowsUndo="YES" allowsNonContiguousLayout="YES" id="qiQ-tb-XCa" customClass="RegexFindPanelTextView" customModule="CotEditor" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="418" height="42"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <size key="minSize" width="418" height="42"/>
                                             <size key="maxSize" width="10000000" height="10000000"/>
-                                            <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <accessibility description="Replace"/>
                                             <connections>
                                                 <binding destination="fdE-8e-ywb" name="value" keyPath="textFinder.replacementString" id="VUA-ld-ABD">
                                                     <dictionary key="options">
@@ -139,11 +141,11 @@
                                     </subviews>
                                     <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="pGV-vQ-vMo">
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="YES" id="pGV-vQ-vMo">
                                     <rect key="frame" x="1" y="29" width="418" height="14"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="xAh-LI-niW">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" controlSize="small" horizontal="NO" id="xAh-LI-niW">
                                     <rect key="frame" x="405" y="1" width="14" height="42"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -159,7 +161,7 @@
                                 </buttonCell>
                             </button>
                             <button toolTip="Select to ignore character case on search." verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="GvT-tD-Cbk">
-                                <rect key="frame" x="166" y="5" width="85" height="18"/>
+                                <rect key="frame" x="167" y="5" width="85" height="18"/>
                                 <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="4wg-Cz-ozb">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -169,7 +171,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Select to search text only from selection." verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="tu7-IT-dA3">
-                                <rect key="frame" x="254" y="5" width="84" height="18"/>
+                                <rect key="frame" x="255" y="5" width="84" height="18"/>
                                 <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="9bc-9Q-fhd">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -179,7 +181,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Set advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ESq-ws-6H3">
-                                <rect key="frame" x="407" y="-1" width="38" height="28"/>
+                                <rect key="frame" x="407" y="-1" width="38" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="YHA-bW-KOd"/>
                                 </constraints>
@@ -187,18 +189,19 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
+                                <accessibility description="Advanced options"/>
                                 <connections>
-                                    <action selector="showPreferences:" target="fdE-8e-ywb" id="fH6-fz-kav"/>
+                                    <segue destination="qrF-VN-jgm" kind="popover" popoverAnchorView="ESq-ws-6H3" popoverBehavior="t" preferredEdge="maxX" id="qwL-bu-RuM"/>
                                 </connections>
                             </button>
                             <button toolTip="Show quick reference for regular expression syntax." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i2l-7Z-Zmf">
-                                <rect key="frame" x="141" y="5" width="19" height="19"/>
+                                <rect key="frame" x="142" y="5" width="16" height="17"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="K85-R4-x2w">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="miniSystem"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="showRegexHelp:" target="fdE-8e-ywb" id="LmB-uw-LiE"/>
+                                    <segue destination="EHa-wl-4gS" kind="popover" popoverAnchorView="i2l-7Z-Zmf" popoverBehavior="t" preferredEdge="maxY" id="k5A-DB-ULq"/>
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="3ZH-bg-rl5" userLabel="Recent Searches">
@@ -223,6 +226,7 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <accessibility description="Recent Searches"/>
                             </popUpButton>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Hw7-zz-RG8" userLabel="Recent Replacements">
                                 <rect key="frame" x="17" y="53" width="35" height="17"/>
@@ -246,6 +250,7 @@
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <accessibility description="Recent Replacements"/>
                             </popUpButton>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kkq-6q-C63">
                                 <rect key="frame" x="358" y="107" width="59" height="14"/>
@@ -273,6 +278,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="hxw-DS-gxQ" id="ioP-wf-gEs"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="findTextView.isEmpty" id="onh-xf-by1"/>
@@ -288,6 +294,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Clear"/>
                                 <connections>
                                     <action selector="clear:" target="qiQ-tb-XCa" id="iuI-2d-soX"/>
                                     <binding destination="fdE-8e-ywb" name="hidden" keyPath="replacementTextView.isEmpty" id="Bay-Pn-9Re"/>
@@ -332,16 +339,34 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="findClearButtonConstraint" destination="He6-bE-vXU" id="nyr-Ay-xaI"/>
                         <outlet property="findHistoryMenu" destination="hj8-ZE-vCT" id="c5A-gt-012"/>
                         <outlet property="findResultField" destination="Kkq-6q-C63" id="egT-XH-XQa"/>
                         <outlet property="findTextView" destination="hxw-DS-gxQ" id="4Nw-RH-bWa"/>
                         <outlet property="replaceHistoryMenu" destination="vPb-fy-Hh6" id="TQo-Ah-NfI"/>
+                        <outlet property="replacementClearButtonConstraint" destination="gKz-iT-g2a" id="aQv-1I-oYD"/>
                         <outlet property="replacementResultField" destination="SSP-y6-YxI" id="UEW-Qa-UwC"/>
                         <outlet property="replacementTextView" destination="qiQ-tb-XCa" id="TeX-xf-XXK"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="773" y="444"/>
+        </scene>
+        <!--FindPreferencesView-->
+        <scene sceneID="otw-IE-cg6">
+            <objects>
+                <controllerPlaceholder storyboardName="FindPreferencesView" id="qrF-VN-jgm" sceneMemberID="viewController"/>
+                <customObject id="RCr-zH-1qK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1184" y="503"/>
+        </scene>
+        <!--RegexReferenceView-->
+        <scene sceneID="JHc-Ro-gvI">
+            <objects>
+                <controllerPlaceholder storyboardName="RegexReferenceView" id="EHa-wl-4gS" sceneMemberID="viewController"/>
+                <customObject id="yvX-k1-Q2J" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1185" y="444"/>
         </scene>
         <!--Find Panel Result View Controller-->
         <scene sceneID="Emr-ob-ZO3">
@@ -358,7 +383,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="460" height="133"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" headerView="sQa-6h-5pq" viewBased="YES" id="kbr-iQ-AQQ">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="sQa-6h-5pq" viewBased="YES" id="kbr-iQ-AQQ">
                                             <rect key="frame" x="0.0" y="0.0" width="460" height="110"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -383,12 +408,12 @@
                                                             <rect key="frame" x="1" y="1" width="42" height="14"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-nU-MWf">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rO3-nU-MWf" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="42" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="right" title="16" usesSingleLineMode="YES" id="8w9-f5-haz">
                                                                         <font key="font" metaFont="smallSystem"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="vg5-xP-Hs5" name="value" keyPath="objectValue" id="Mmb-H4-OSz"/>
@@ -428,8 +453,8 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="412" height="14"/>
                                                                     <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" title="Clarus says moof!" usesSingleLineMode="YES" id="RSI-QP-jZ1">
                                                                         <font key="font" metaFont="smallSystem"/>
-                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="ORp-qn-1S4" name="value" keyPath="objectValue" id="EBv-tM-eRo"/>
@@ -456,11 +481,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="4il-pN-ytW">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="4il-pN-ytW">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="bLD-Wn-XE2">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="bLD-Wn-XE2">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -470,7 +495,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button toolTip="Close find result." horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oC1-bN-UeN">
-                                <rect key="frame" x="17" y="151" width="25" height="23"/>
+                                <rect key="frame" x="17" y="152" width="25" height="21"/>
                                 <buttonCell key="cell" type="disclosure" bezelStyle="roundedDisclosure" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3b8-pp-fct">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="smallSystem"/>
@@ -484,7 +509,7 @@
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingMiddle" selectable="YES" sendsActionOnEndEditing="YES" title="Found 4 strings in “Document.txt”." usesSingleLineMode="YES" id="WJu-qO-b0n">
                                     <font key="font" metaFont="smallSystemBold"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="2MH-SD-abc" name="value" keyPath="resultMessage" id="LjY-os-9o7"/>
@@ -495,7 +520,7 @@
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="charWrapping" selectable="YES" sendsActionOnEndEditing="YES" title="Find string: Clarus" placeholderString="" id="t1S-wd-olE">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
                                     <binding destination="2MH-SD-abc" name="displayPatternValue1" keyPath="findString" id="2MH-SD-x1y">
@@ -520,6 +545,7 @@
                             <constraint firstAttribute="trailing" secondItem="t8U-kV-AgP" secondAttribute="trailing" constant="20" symbolic="YES" id="ySk-vQ-dLV"/>
                             <constraint firstItem="oC1-bN-UeN" firstAttribute="top" secondItem="XqS-F4-g0U" secondAttribute="top" constant="8" id="yie-t9-cqD"/>
                         </constraints>
+                        <accessibility description="Find result"/>
                     </view>
                     <connections>
                         <outlet property="disclosureButton" destination="oC1-bN-UeN" id="O5p-sj-pxT"/>

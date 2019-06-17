@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 
 import Cocoa
 
-final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, NSUserInterfaceValidations {
+final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
@@ -33,8 +33,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
-    private lazy var regexReferenceViewController = DetachablePopoverViewController(nibName: NSNib.Name("RegexReferenceView"), bundle: nil)
-    private lazy var preferencesViewController = NSViewController(nibName: NSNib.Name("FindPreferencesView"), bundle: nil)
+    private var scrollerStyleObserver: NSKeyValueObservation?
+    private var defaultsObservers: [UserDefaultsObservation] = []
     
     @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
     @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
@@ -42,6 +42,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
     @IBOutlet private weak var replacementResultField: NSTextField?
+    @IBOutlet private weak var findClearButtonConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var replacementClearButtonConstraint: NSLayoutConstraint?
     
     
     
@@ -49,8 +51,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue)
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue)
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -62,13 +63,37 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
         
         super.viewDidLoad()
         
-        // sync history menus with user default
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findHistory.rawValue, options: .initial, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.replaceHistory.rawValue, options: .initial, context: nil)
+        // adjust clear button position according to the visiblity of scroller area
+        let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
+        self.scrollerStyleObserver = scroller?.observe(\.scrollerStyle, options: .initial) { [weak self] (scroller, _) in
+            var inset: CGFloat = 5
+            if scroller.scrollerStyle == .legacy {
+                inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
+            }
+            
+            self?.findClearButtonConstraint?.constant = -inset
+            self?.replacementClearButtonConstraint?.constant = -inset
+        }
         
-        // sync text view states with user default
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findUsesRegularExpression.rawValue, options: .initial, context: nil)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findRegexUnescapesReplacementString.rawValue, options: .initial, context: nil)
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers = [
+            // sync history menus with user default
+            UserDefaults.standard.observe(key: .findHistory, options: .initial) { [unowned self] _ in
+                self.updateFindHistoryMenu()
+            },
+            UserDefaults.standard.observe(key: .replaceHistory, options: .initial) { [unowned self] _ in
+                self.updateReplaceHistoryMenu()
+            },
+            
+            // sync text view states with user default
+            UserDefaults.standard.observe(key: .findUsesRegularExpression, options: [.initial, .new]) { [unowned self] change in
+                self.findTextView?.isRegularExpressionMode = change.new!
+                self.replacementTextView?.isRegularExpressionMode = change.new!
+            },
+            UserDefaults.standard.observe(key: .findRegexUnescapesReplacementString, options: [.initial, .new]) { [unowned self] change in
+                self.replacementTextView?.parseMode = .replacement(unescapes: change.new!)
+            }
+        ]
     }
     
     
@@ -82,33 +107,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     }
     
     
-    /// observed user defaults are changed
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        guard let keyPath = keyPath else { return }
-        
-        switch keyPath {
-        case DefaultKeys.findHistory.rawValue:
-            self.updateFindHistoryMenu()
-        case DefaultKeys.replaceHistory.rawValue:
-            self.updateReplaceHistoryMenu()
-        case DefaultKeys.findUsesRegularExpression.rawValue:
-            self.findTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
-            self.replacementTextView?.isRegularExpressionMode = UserDefaults.standard[.findUsesRegularExpression]
-        case DefaultKeys.findRegexUnescapesReplacementString.rawValue:
-            self.replacementTextView?.mode = .replacement(unescapes: UserDefaults.standard[.findRegexUnescapesReplacementString])
-        default: break
-        }
-    }
-    
-    
     
     // MARK: Text View Delegate
     
     /// find string did change
     func textDidChange(_ notification: Notification) {
         
-        guard let textView = notification.object as? NSTextView else { return }
+        guard let textView = notification.object as? NSTextView else { return assertionFailure() }
         
         switch textView {
         case self.findTextView!:
@@ -124,82 +129,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     
     
     // MARK: Action Messages
-    
-    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
-        
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(smallerFont):
-            guard let scrollView = self.findTextView?.enclosingScrollView else { return false }
-            return scrollView.magnification > scrollView.minMagnification
-            
-        case #selector(biggerFont):
-            guard let scrollView = self.findTextView?.enclosingScrollView else { return false }
-            return scrollView.magnification < scrollView.maxMagnification
-            
-        default:
-            break
-        }
-        
-        return true
-    }
-    
-    
-    /// scale up
-    @IBAction func biggerFont(_ sender: Any?) {
-        
-        for textView in [self.findTextView, self.replacementTextView] {
-            textView?.enclosingScrollView?.animator().magnification += 0.2
-        }
-    }
-    
-    
-    /// scale down
-    @IBAction func smallerFont(_ sender: Any?) {
-        
-        for textView in [self.findTextView, self.replacementTextView] {
-            textView?.enclosingScrollView?.animator().magnification -= 0.2
-        }
-    }
-    
-    
-    /// reset scale and font to default
-    @IBAction func resetFont(_ sender: Any?) {
-        
-        for textView in [self.findTextView, self.replacementTextView] {
-            textView?.enclosingScrollView?.animator().magnification = 1.0
-        }
-    }
-    
-    
-    /// show regular expression reference as popover
-    @IBAction func showRegexHelp(_ sender: Any?) {
-        
-        if self.presentedViewControllers?.contains(self.regexReferenceViewController) ?? false {
-            self.dismissViewController(self.regexReferenceViewController)
-            
-        } else {
-            guard let senderView = sender as? NSView else { return }
-            
-            self.presentViewController(self.regexReferenceViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxY, behavior: .semitransient)
-        }
-    }
-    
-    
-    /// show find panel preferences as popover
-    @IBAction func showPreferences(_ sender: Any?) {
-        
-        if self.presentedViewControllers?.contains(self.preferencesViewController) ?? false {
-            self.dismissViewController(self.preferencesViewController)
-            
-        } else {
-            guard let senderView = sender as? NSView else { return }
-            
-            self.presentViewController(self.preferencesViewController, asPopoverRelativeTo: senderView.bounds, of: senderView, preferredEdge: .maxX, behavior: .transient)
-        }
-    }
-    
     
     /// set selected history string to find field
     @IBAction func selectFindHistory(_ sender: NSMenuItem?) {
@@ -256,11 +185,9 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
         
         self.clearNumberOfFound()
         
-        let message: String? = {
+        let message: String = {
             switch numberOfFound {
-            case -1:
-                return nil
-            case 0:
+            case ..<0:
                 return "Not Found".localized
             default:
                 return String(format: "%@ found".localized, String.localizedStringWithFormat("%li", numberOfFound))
@@ -269,6 +196,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
         
         // dismiss result either client text or find string did change
+        self.removeCurrentTargetObservers()
         self.currentResultMessageTarget = target.layoutManager
         NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
         NotificationCenter.default.addObserver(self, selector: #selector(clearNumberOfFound), name: NSWindow.willCloseNotification, object: target.window)
@@ -280,17 +208,20 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
         
         self.clearNumberOfReplaced()
         
-        let message: String? = {
+        let message: String = {
             switch numberOfReplaced {
-            case -1:
-                return nil
-            case 0:
+            case ..<0:
                 return "Not Replaced".localized
             default:
                 return String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)
+        
+        // feedback for VoiceOver
+        if let window = NSApp.mainWindow {
+            NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
+        }
     }
 
     
@@ -313,6 +244,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
     
     /// apply history to UI
     private func buildHistoryMenu(_ menu: NSMenu, defaultsKey key: DefaultKey<[String]>, action: Selector) {
+        
+        assert(Thread.isMainThread)
         
         // clear current history items
         menu.items
@@ -340,10 +273,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
         self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
         // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
-        if let target = self.currentResultMessageTarget?.firstTextView {
-            NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
-            NotificationCenter.default.removeObserver(self, name: NSWindow.willCloseNotification, object: target.window)
-        }
+        self.removeCurrentTargetObservers()
     }
     
     
@@ -363,6 +293,18 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate, 
         
         // add extra scroll margin to the right side of the textView, so that entire input can be read
         textView.enclosingScrollView?.contentView.contentInsets.right = textField.frame.width
+    }
+    
+    
+    /// remove observers for result message clear
+    private func removeCurrentTargetObservers() {
+        
+        guard let target = self.currentResultMessageTarget?.firstTextView else { return }
+        
+        NotificationCenter.default.removeObserver(self, name: NSTextStorage.didProcessEditingNotification, object: target.textStorage)
+        NotificationCenter.default.removeObserver(self, name: NSWindow.willCloseNotification, object: target.window)
+        
+        self.currentResultMessageTarget = nil
     }
     
 }

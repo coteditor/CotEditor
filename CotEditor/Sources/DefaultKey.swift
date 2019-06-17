@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,9 +42,9 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     }
     
     
-    var hashValue: Int {
+    func hash(into hasher: inout Hasher) {
         
-        return self.rawValue.hashValue
+        hasher.combine(self.rawValue)
     }
     
     
@@ -54,6 +54,7 @@ class DefaultKeys: RawRepresentable, Hashable, CustomStringConvertible {
     }
     
 }
+
 
 final class DefaultKey<T>: DefaultKeys { }
 
@@ -71,7 +72,7 @@ extension UserDefaults {
     /// return the initial value for key registered on `register(defaults:)`
     func registeredValue<T>(for key: DefaultKey<T>) -> T {
         
-        return UserDefaults.standard.volatileDomain(forName: "NSRegistrationDomain")[key.rawValue] as! T
+        return self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as! T
     }
     
     
@@ -125,6 +126,21 @@ extension UserDefaults {
         
         get { return self.array(forKey: key.rawValue) as? [T] ?? [] }
         set { self.set(newValue, forKey: key.rawValue) }
+    }
+    
+    
+    subscript<T>(key: DefaultKey<T>) -> T where T: RawRepresentable, T.RawValue == Int {
+        
+        get {
+            guard let value = T(rawValue: self.integer(forKey: key.rawValue)) else {
+                let defaultValue = self.volatileDomain(forName: UserDefaults.registrationDomain)[key.rawValue] as? Int ?? 0
+                return T(rawValue: defaultValue)!
+            }
+            
+            return value
+        }
+        
+        set { self.set(newValue.rawValue, forKey: key.rawValue) }
     }
     
 }

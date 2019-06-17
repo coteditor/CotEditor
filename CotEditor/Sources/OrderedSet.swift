@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,9 +23,9 @@
 //  limitations under the License.
 //
 
-struct OrderedSet<Element: Hashable> {
+struct OrderedSet<Element: Hashable>: RandomAccessCollection, Hashable {
     
-    typealias Index = Int
+    typealias Index = Array<Element>.Index
     
     private var elements: [Element] = []
     
@@ -43,6 +43,9 @@ struct OrderedSet<Element: Hashable> {
     }
     
     
+    
+    // MARK: Collection Methods
+    
     /// return the element at the specified position.
     subscript(_ index: Index) -> Element {
         
@@ -50,15 +53,26 @@ struct OrderedSet<Element: Hashable> {
     }
     
     
-    /// return the elements in the specified range.
-    subscript(_ range: Range<Index>) -> ArraySlice<Element> {
+    var startIndex: Index {
         
-        return self.elements[range]
+        return self.elements.startIndex
+    }
+    
+    
+    var endIndex: Index {
+        
+        return self.elements.endIndex
+    }
+    
+    
+    func index(after index: Index) -> Index {
+        
+        return self.elements.index(after: index)
     }
     
     
     
-    // MARK: Readonly Properties
+    // MARK: Methods
     
     var array: [Element] {
         
@@ -66,44 +80,9 @@ struct OrderedSet<Element: Hashable> {
     }
     
     
-    var count: Int {
+    var set: Set<Element> {
         
-        return self.elements.count
-    }
-    
-    
-    var isEmpty: Bool {
-        
-        return self.elements.isEmpty
-    }
-    
-    
-    var first: Element? {
-        
-        return self.elements.first
-    }
-    
-    
-    var last: Element? {
-        
-        return self.elements.last
-    }
-    
-    
-    
-    // MARK: Methods
-    
-    /// whether the set contains the given element.
-    func contains(_ element: Element) -> Bool {
-        
-        return self.elements.contains(element)
-    }
-    
-    
-    /// return the index where the specified element appears in the set.
-    func index(of element: Element) -> Index? {
-        
-        return self.elements.index(of: element)
+        return Set(self.elements)
     }
     
     
@@ -147,7 +126,7 @@ struct OrderedSet<Element: Hashable> {
     /// remove the elements of the set that aren’t also in the given sequence.
     mutating func formIntersection<S: Sequence>(_ other: S) where S.Element == Element {
         
-        self = self.intersection(other)
+        self.elements.removeAll { !other.contains($0) }
     }
     
     
@@ -161,7 +140,7 @@ struct OrderedSet<Element: Hashable> {
     /// remove the specified element from the set.
     mutating func remove(_ element: Element) {
         
-        guard let index = self.index(of: element) else { return }
+        guard let index = self.firstIndex(of: element) else { return }
         
         self.remove(at: index)
     }

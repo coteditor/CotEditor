@@ -31,7 +31,6 @@ enum Invisible {
     case tab
     case newLine
     case fullwidthSpace
-    case verticalTab
     case replacement
     
     
@@ -46,8 +45,6 @@ enum Invisible {
             return ["¶", "↩", "↵", "⏎"]
         case .fullwidthSpace:
             return ["□", "⊠", "■", "•"]
-        case .verticalTab:
-            return ["␋"]
         case .replacement:
             return ["�"]
         }
@@ -85,8 +82,6 @@ extension Invisible {
             self = .newLine
         case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. full-width space (JP)
             self = .fullwidthSpace
-        case 0x000B:  // LINE TABULATION a.k.a. vertical tab
-            self = .verticalTab
         default:
             // `.replacement` cannot be determined only with code unit
             return nil
@@ -119,7 +114,6 @@ extension Invisible {
             case .tab: return .invisibleTab
             case .newLine: return .invisibleNewLine
             case .fullwidthSpace: return .invisibleFullwidthSpace
-            case .verticalTab: return nil
             case .replacement: return nil
             }
     }

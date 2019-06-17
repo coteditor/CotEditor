@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,6 +45,8 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     /// keep tabViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
+        super.prepare(for: segue, sender: sender)
+        
         guard
             self.tabViewController == nil,
             let tabViewController = segue.destinationController as? NSTabViewController
@@ -71,10 +73,15 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     /// perform sort
     @IBAction func ok(_ sender: Any?) {
         
+        guard self.endEditing() else {
+            NSSound.beep()
+            return
+        }
+        
         guard
             let textView = self.representedObject as? NSTextView,
             let pattern = self.sortPattern
-            else { return }
+            else { return assertionFailure() }
         
         do {
             try pattern.validate()
@@ -117,11 +124,10 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     // MARK: Private Methods
     
-    // SortPattern currently edited
+    /// SortPattern currently edited
     private var sortPattern: SortPattern? {
         
-        return self.tabViewController?.tabViewItems[self.tabViewController!.selectedTabViewItemIndex]
-            .viewController?.representedObject as? SortPattern
+        return self.tabViewController?.tabView.selectedTabViewItem?.viewController?.representedObject as? SortPattern
     }
     
 }
@@ -143,16 +149,14 @@ final class SortPatternTabViewController: NSTabViewController {
             viewController.representedObject == nil
             else { return }
         
-        switch tabView.indexOfTabViewItem(item) {
-        case 0:
-            viewController.representedObject = EntireLineSortPattern()
-        case 1:
-            viewController.representedObject = CSVSortPattern()
-        case 2:
-            viewController.representedObject = RegularExpressionSortPattern()
-        default:
-            preconditionFailure()
-        }
+        viewController.representedObject = {
+            switch tabView.indexOfTabViewItem(item) {
+            case 0: return EntireLineSortPattern()
+            case 1: return CSVSortPattern()
+            case 2: return RegularExpressionSortPattern()
+            default: preconditionFailure()
+            }
+        }()
     }
     
 }
@@ -181,7 +185,7 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     
     
     /// text field value did change
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         self.valueDidUpdate(self)
     }
@@ -191,10 +195,28 @@ final class SortPatternViewController: NSViewController, NSTextFieldDelegate {
     /// notify value change to delegate
     @IBAction func valueDidUpdate(_ sender: Any?) {
         
-        guard let pattern = self.representedObject as? SortPattern else { return }
+        guard let pattern = self.representedObject as? SortPattern else { return assertionFailure() }
         
         self.delegate?.didUpdate(sortPattern: pattern)
     }
+
+}
+
+
+
+// MARK: -
+
+extension CSVSortPattern {
     
+    override func setNilValueForKey(_ key: String) {
+        
+        // avoid rising an exception when number field becomes empty
+        switch key {
+        case #keyPath(column):
+            self.column = 1
+        default:
+            super.setNilValueForKey(key)
+        }
+    }
     
 }

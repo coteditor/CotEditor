@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@
 /* Class = "NSMenuItem"; title = "Create New Document"; ObjectID = "i4c-DG-ADS"; */
 "i4c-DG-ADS.title" = "Neues Dokument erstellen";
 /* Class = "NSMenuItem"; title = "Show Open Dialog"; ObjectID = "hIX-mh-cG4"; */
-"hIX-mh-cG4.title" = "Dialogfenstern zum Öffnen anzeigen";
+"hIX-mh-cG4.title" = "„Datei öffnen“-Dialog anzeigen";
 /* Class = "NSMenuItem"; title = "Do Nothing"; ObjectID = "KgD-GV-alV"; */
 "KgD-GV-alV.title" = "Keine Aktion";
 
@@ -51,7 +51,7 @@
 /* Class = "NSButtonCell"; title = "Trim trailing whitespace on save"; ObjectID = "noP-hx-YeQ"; */
 "noP-hx-YeQ.title" = "Leerzeichen am Zeilenende beim Speichern entfernen";
 /* Class = "NSButtonCell"; title = "Including whitespace-only lines"; ObjectID = "Tma-Oh-F7v"; */
-"Tma-Oh-F7v.title" = "Nur aus Leerzeichen bestehenden Zeilen einschließen";
+"Tma-Oh-F7v.title" = "Nur aus Leerzeichen bestehende Zeilen einschließen";
 
 
 /* Class = "NSTextFieldCell"; title = "When document is modified by another application:"; ObjectID = "x4n-2n-I3p"; */
@@ -68,12 +68,12 @@
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
 "lzy-Ei-xlT.title" = "Inhaltsanalyse:";
 
-/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "Zeilenumbrüche als Zeichen zählen";
+/* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
+"3306.title" = "Zeilenumbrüche bei der Zeichenzählung ignorieren";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "URLs im Dokument verlinken";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "Rechtschreibung während der Eingabe prüfen";
+/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
+"3300.title" = "Rechtschreibung während der Texteingabe prüfen";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Übereinstimmende Klammern „()“ „[]“ „{}“ hervorheben";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
@@ -81,7 +81,7 @@
 /* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
 "Rcq-1K-8nz.title" = "Instanzen des ausgewählten Textes hervorheben";
 /* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
-"rOw-DD-kV5.title" = "Verspätung:";
+"rOw-DD-kV5.title" = "Verzögerung:";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
 "ebJ-vk-RME.title" = "Sekunden";
 

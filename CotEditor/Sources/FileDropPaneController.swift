@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
             menu.addItems(for: FileDropComposer.Token.pathTokens, target: self.formatTextView)
+            menu.addItem(.separator())
+            menu.addItems(for: FileDropComposer.Token.textTokens, target: self.formatTextView)
             menu.addItem(.separator())
             menu.addItems(for: FileDropComposer.Token.imageTokens, target: self.formatTextView)
         }
@@ -131,20 +133,6 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
     }
     
     
-    /// set action on swiping theme name
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        
-        guard edge == .trailing else { return [] }
-        
-        // delete
-        return [NSTableViewRowAction(style: .destructive,
-                                     title: "Delete".localized(comment: "table view action title"),
-                                     handler: { [weak self] (action: NSTableViewRowAction, row: Int) in
-                                        self?.deleteSetting(at: row)
-            })]
-    }
-    
-    
     // Text View Delegate < fromatTextView
     
     /// insertion format text view was edited
@@ -196,7 +184,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // check if the new setting is different from the default
         let defaultSetting = UserDefaults.standard.registeredValue(for: .fileDropArray)
         if defaultSetting.count == sanitized.count,
-            !zip(defaultSetting, sanitized).contains(where: { $0 != $1 }) {
+            zip(defaultSetting, sanitized).allSatisfy({ $0 == $1 }) {
             UserDefaults.standard.restore(key: .fileDropArray)
             return
         }

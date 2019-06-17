@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,14 +37,7 @@ struct Pair<T> {
 }
 
 
-extension Pair: Equatable where T: Equatable {
-    
-    static func == (lhs: Pair<T>, rhs: Pair<T>) -> Bool {
-        
-        return lhs.begin == rhs.begin && lhs.end == rhs.end
-    }
-    
-}
+extension Pair: Equatable where T: Equatable { }
 
 
 
@@ -72,7 +65,7 @@ extension Pair where T == Character {
 
 
 
-extension String {
+extension StringProtocol where Self.Index == String.Index {
     
     ///
     func indexOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
@@ -105,18 +98,24 @@ extension String {
         let subsequence = self[..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
-            guard !self.isCharacterEscaped(at: index) else { continue }
-            
             switch character {
             case pair.begin where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 if nestDepth == 0 { return index }  // found
                 nestDepth -= 1
+                
             case pair.end where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 nestDepth += 1
+                
             case pairToIgnore?.begin:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth -= 1
+                
             case pairToIgnore?.end:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth += 1
+                
             default: break
             }
         }

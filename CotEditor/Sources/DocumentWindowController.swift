@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2018 1024jp
+//  © 2013-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,6 +30,8 @@ final class DocumentWindowController: NSWindowController {
     
     // MARK: Private Properties
     
+    private var windowAlphaObserver: UserDefaultsObservation?
+    
     @IBOutlet private var toolbarController: ToolbarController?
     
     
@@ -38,19 +40,7 @@ final class DocumentWindowController: NSWindowController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue)
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    /// apply user defaults change
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == DefaultKeys.windowAlpha.rawValue {
-            (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
-        }
+        self.windowAlphaObserver?.invalidate()
     }
     
     
@@ -64,13 +54,14 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        self.windowFrameAutosaveName = NSWindow.FrameAutosaveName(rawValue: "document")
-        
-        // set background alpha
-        (self.window as! DocumentWindow).backgroundAlpha = UserDefaults.standard[.windowAlpha]
+        // -> Do not use "document" for autosave name because somehow windows forget the size with that name (2018-09)
+        self.windowFrameAutosaveName = "Document Window"
         
         // observe opacity setting change
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.windowAlpha.rawValue, context: nil)
+        self.windowAlphaObserver?.invalidate()
+        self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha, options: [.initial, .new]) { [weak self] change in
+            (self?.window as? DocumentWindow)?.backgroundAlpha = change.new!
+        }
     }
     
     
@@ -87,14 +78,49 @@ final class DocumentWindowController: NSWindowController {
             if document.isInViewingMode, let window = self.window as? DocumentWindow {
                 window.backgroundAlpha = 1.0
             }
-            
-            // workaround for that contentView origin can stack into toolbar on Sierra and earlier (2016-09 on macOS 10.12)
-            // -> cf. https://github.com/coteditor/CotEditor/issues/600
-            if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
-                if let window = self.window {
-                    window.contentView?.frame = window.contentRect(forFrameRect: NSRect(origin: .zero, size: window.frame.size))
-                }
-            }
+        }
+    }
+    
+    
+    
+    // MARK: Actions
+    
+    /// show editor opacity slider as popover
+    @IBAction func showOpacitySlider(_ sender: Any?) {
+        
+        guard
+            let window = self.window as? DocumentWindow,
+            let origin = sender as? NSView ?? self.contentViewController?.view,
+            let sliderViewController = self.storyboard?.instantiateController(withIdentifier: "Opacity Slider") as? NSViewController,
+            let contentViewController = self.contentViewController
+            else { return assertionFailure() }
+        
+        sliderViewController.representedObject = window.backgroundAlpha
+        
+        contentViewController.present(sliderViewController, asPopoverRelativeTo: .zero, of: origin,
+                                      preferredEdge: .maxY, behavior: .transient)
+    }
+    
+    
+    /// change editor opacity via toolbar
+    @IBAction func changeOpacity(_ sender: NSSlider) {
+        
+        (self.window as! DocumentWindow).backgroundAlpha = CGFloat(sender.doubleValue)
+    }
+    
+}
+
+
+
+extension DocumentWindowController: NSUserInterfaceValidations {
+    
+    func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
+        
+        switch item.action {
+        case #selector(showOpacitySlider)?:
+            return self.window?.styleMask.contains(.fullScreen) == false
+        default:
+            return true
         }
     }
     

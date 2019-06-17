@@ -57,7 +57,7 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // accept only self drag-and-drop
-        guard info.draggingSource() as? NSTableView == tableView else { return [] }
+        guard info.draggingSource as? NSTableView == tableView else { return [] }
         
         if dropOperation == .on {
             tableView.setDropRow(row, dropOperation: .above)
@@ -71,11 +71,11 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
         
         // accept only self drag-and-drop
-        guard info.draggingSource() as? NSTableView == tableView else { return false }
+        guard info.draggingSource as? NSTableView == tableView else { return false }
         
         // obtain original rows from paste board
         guard
-            let data = info.draggingPasteboard().data(forType: .rows),
+            let data = info.draggingPasteboard.data(forType: .rows),
             let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
         
         let draggingItems = (self.arrangedObjects as AnyObject).objects(at: sourceRows)

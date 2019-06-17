@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,6 +33,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Private Properties
     
+    private var appearanceObserver: NSKeyValueObservation?
+    private var defaultsObservers: [UserDefaultsObservation] = []
+    private weak var syntaxHighlightProgress: Progress?
+    
     @IBOutlet private weak var splitViewItem: NSSplitViewItem?
     @IBOutlet private weak var statusBarItem: NSSplitViewItem?
     
@@ -42,17 +46,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     // MARK: Split View Controller Methods
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.theme.rawValue)
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == DefaultKeys.theme.rawValue, let name = change?[.newKey] as? String {
-            DispatchQueue.main.async { [weak self] in
-                self?.setTheme(name: name)
-            }
-        }
+        self.appearanceObserver?.invalidate()
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -60,7 +55,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         super.viewDidLoad()
         
-        // setup status bar
+        // set user defaults
         let defaults = UserDefaults.standard
         self.isStatusBarShown = defaults[.showStatusBar]
         self.showsInvisibles = defaults[.showInvisibles]
@@ -69,22 +64,76 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
         
+        // set writing direction
+        switch defaults[.writingDirection] {
+        case .leftToRight:
+            break
+        case .rightToLeft:
+            self.writingDirection = .rightToLeft
+        case .vertical:
+            self.verticalLayoutOrientation = true
+        }
+        
+        // set theme
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        self.setTheme(name: themeName)
+        
         // observe theme change
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateTheme),
                                                name: didUpdateSettingNotification,
                                                object: ThemeManager.shared)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.theme.rawValue, options: .new, context: nil)
+        
+        // observe cursor
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
+                                               name: NSTextView.didChangeSelectionNotification,
+                                               object: self.editorViewControllers.first!.textView!)
+        
+        // observe defaults change
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers = [
+            UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
+                let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+                self.setTheme(name: themeName)
+            },
+            UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [unowned self] change in
+                self.showsInvisibles = change.new!
+            },
+            UserDefaults.standard.observe(key: .showLineNumbers, options: [.new]) { [unowned self] change in
+                self.showsLineNumber = change.new!
+            },
+            UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [unowned self] change in
+                self.showsPageGuide = change.new!
+            },
+            UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [unowned self] change in
+                self.wrapsLines = change.new!
+            },
+        ]
+        
+        // observe appearance change for theme toggle
+        self.appearanceObserver?.invalidate()
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
+            guard
+                self.view.window != nil,
+                let currentThemeName = self.theme?.name,
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: self.view.effectiveAppearance.isDark)
+                else { return }
+            
+            self.setTheme(name: themeName)
+        }
     }
     
     
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
-        return [#keyPath(isStatusBarShown),
-                #keyPath(showsNavigationBar),
-                #keyPath(showsLineNumber),
-                #keyPath(showsPageGuide),
-                #keyPath(showsInvisibles),
+        return super.restorableStateKeyPaths + [
+            #keyPath(showsLineNumber),
+            #keyPath(showsPageGuide),
+            #keyPath(showsInvisibles),
+            #keyPath(wrapsLines),
+            #keyPath(verticalLayoutOrientation),
+            #keyPath(writingDirection),
+            #keyPath(isAutoTabExpandEnabled),
         ]
     }
     
@@ -96,11 +145,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             coder.encode(themeName, forKey: "theme")
         }
         
+        // manunally encode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
+        for keyPath in type(of: self).restorableStateKeyPaths {
+            coder.encode(self.value(forKeyPath: keyPath), forKey: keyPath)
+        }
+        
         super.encodeRestorableState(with: coder)
     }
     
     
-    /// resume UI state
+    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -108,14 +162,27 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         if let themeName = coder.decodeObject(forKey: "theme") as? String {
             self.setTheme(name: themeName)
         }
+        
+        // manunally decode `restorableStateKeyPaths` since it doesn't work (macOS 10.14)
+        for keyPath in type(of: self).restorableStateKeyPaths where coder.containsValue(forKey: keyPath) {
+            self.setValue(coder.decodeObject(forKey: keyPath), forKeyPath: keyPath)
+        }
     }
     
     
     /// deliver document to child view controllers
     override var representedObject: Any? {
         
+        willSet {
+            guard let document = representedObject as? Document else { return }
+            
+            NotificationCenter.default.removeObserver(self, name: Document.didChangeSyntaxStyleNotification, object: document)
+        }
+        
         didSet {
             guard let document = representedObject as? Document else { return }
+            
+            // This setter can be invoked twice if the view was initially made for a transient document.
             
             (self.statusBarItem?.viewController as? StatusBarController)?.documentAnalyzer = document.analyzer
             
@@ -146,7 +213,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             // focus text view
             self.view.window?.makeFirstResponder(editorViewController.textView)
             
-            // observe syntax/theme change
+            // observe syntax change
             NotificationCenter.default.addObserver(self, selector: #selector(didChangeSyntaxStyle),
                                                    name: Document.didChangeSyntaxStyleNotification,
                                                    object: document)
@@ -164,135 +231,101 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// validate menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        guard let action = menuItem.action else { return false }
-        
-        switch action {
-        case #selector(recolorAll):
-            return self.syntaxParser?.canParse ?? false
-            
-        case #selector(toggleStatusBar):
-            let title = self.isStatusBarShown ? "Hide Status Bar" : "Show Status Bar"
-            menuItem.title = title.localized
-            
-        case #selector(toggleNavigationBar):
-            let title = self.showsNavigationBar ? "Hide Navigation Bar" : "Show Navigation Bar"
-            menuItem.title = title.localized
-            
-        case #selector(toggleLineNumber):
-            let title = self.showsLineNumber ? "Hide Line Numbers" : "Show Line Numbers"
-            menuItem.title = title.localized
-            
-        case #selector(toggleLineWrap):
-            let title = self.wrapsLines ? "Unwrap Lines" : "Wrap Lines"
-            menuItem.title = title.localized
-            
-        case #selector(togglePageGuide):
-            let title = self.showsPageGuide ? "Hide Page Guide" : "Show Page Guide"
-            menuItem.title = title.localized
-            
-        case #selector(toggleInvisibleChars):
-            let title = self.showsInvisibles ? "Hide Invisible Characters" : "Show Invisible Characters"
-            menuItem.title = title.localized
-            // disable button if item cannot be enable
-            if self.canActivateShowInvisibles {
-                menuItem.toolTip = "Show or hide invisible characters in document".localized
-            } else {
-                menuItem.toolTip = "To show invisible characters, set them in Preferences".localized
-                return false
-            }
-            
-        case #selector(toggleAutoTabExpand):
-            menuItem.state = self.isAutoTabExpandEnabled ? .on : .off
-            
-        case #selector(makeLayoutOrientationHorizontal):
-            menuItem.state = self.verticalLayoutOrientation ? .off : .on
-            
-        case #selector(makeLayoutOrientationVertical):
-            menuItem.state = self.verticalLayoutOrientation ? .on : .off
-            
-        case #selector(makeWritingDirectionLeftToRight):
-            menuItem.state = (self.writingDirection == .leftToRight) ? .on : .off
-            return !self.verticalLayoutOrientation
-            
-        case #selector(makeWritingDirectionRightToLeft):
-            menuItem.state = (self.writingDirection == .rightToLeft) ? .on : .off
-            return !self.verticalLayoutOrientation
-            
-        case #selector(toggleAntialias):
-            menuItem.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
-            
-        case #selector(changeTabWidth):
-            menuItem.state = (self.tabWidth == menuItem.tag) ? .on : .off
-            
-        case #selector(closeSplitTextView):
-            return ((self.splitViewController?.splitViewItems.count ?? 0) > 1)
-            
-        case #selector(changeTheme):
-            menuItem.state = (self.theme?.name == menuItem.title) ? .on : .off
-            
-        default: break
-        }
-        
-        return true
-    }
-    
-    
-    /// apply current state to related toolbar items
+    /// apply current state to related UI items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch (action, item) {
-        case (#selector(recolorAll), _):
+        switch item.action {
+        case #selector(recolorAll)?:
             return self.syntaxParser?.canParse ?? false
             
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(toggleLineWrap), let item as StatableToolbarItem):
-            item.state = self.wrapsLines ? .on : .off
-            
-        case (#selector(togglePageGuide), let item as StatableToolbarItem):
-            item.state = self.showsPageGuide ? .on : .off
-            
-        case (#selector(toggleInvisibleChars), let item as StatableToolbarItem):
-            item.state = self.showsInvisibles ? .on : .off
-            
-            // disable button if item cannot be enabled
-            if self.canActivateShowInvisibles {
-                item.toolTip = "Show or hide invisible characters in document".localized
-            } else {
-                item.toolTip = "To show invisible characters, set them in Preferences".localized
-                return false
+        case #selector(changeTheme)?:
+            if let item = item as? NSMenuItem {
+                item.state = (self.theme?.name == item.title) ? .on : .off
             }
             
-        case (#selector(toggleAutoTabExpand), let item as StatableToolbarItem):
-            item.state = self.isAutoTabExpandEnabled ? .on : .off
+        case #selector(toggleNavigationBar)?:
+            (item as? NSMenuItem)?.title = self.showsNavigationBar
+                ? "Hide Navigation Bar".localized
+                : "Show Navigation Bar".localized
             
-        case (#selector(changeWritingDirection), let item as SegmentedToolbarItem):
+        case #selector(toggleLineNumber)?:
+            (item as? NSMenuItem)?.title = self.showsLineNumber
+                ? "Hide Line Numbers".localized
+                : "Show Line Numbers".localized
+            
+        case #selector(toggleStatusBar)?:
+            (item as? NSMenuItem)?.title = self.isStatusBarShown
+                ? "Hide Status Bar".localized
+                : "Show Status Bar".localized
+            
+        case #selector(togglePageGuide)?:
+            (item as? NSMenuItem)?.title = self.showsPageGuide
+                ? "Hide Page Guide".localized
+                : "Show Page Guide".localized
+            (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
+            
+        case #selector(toggleLineWrap)?:
+            (item as? NSMenuItem)?.title = self.wrapsLines
+                ? "Unwrap Lines".localized
+                : "Wrap Lines".localized
+            (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
+            
+        case #selector(toggleInvisibleChars)?:
+            (item as? NSMenuItem)?.title = self.showsInvisibles
+                ? "Hide Invisible Characters".localized
+                : "Show Invisible Characters".localized
+            (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
+            
+            // disable if item cannot be enabled
+            item.toolTip = self.canActivateShowInvisibles
+                ? "Show or hide invisible characters in document".localized
+                : "To show invisible characters, set them in Preferences".localized
+            return self.canActivateShowInvisibles
+            
+        case #selector(toggleAntialias)?:
+            (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
+            
+        case #selector(toggleAutoTabExpand)?:
+            (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
+            
+        case #selector(changeTabWidth)?:
+            (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
+            
+        case #selector(makeLayoutOrientationHorizontal)?:
+            (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
+            
+        case #selector(makeLayoutOrientationVertical)?:
+            (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
+            
+        case #selector(makeWritingDirectionLeftToRight)?:
+            (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
+            return !self.verticalLayoutOrientation
+            
+        case #selector(makeWritingDirectionRightToLeft)?:
+            (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
+            return !self.verticalLayoutOrientation
+            
+        case #selector(changeWritingDirection)?:
             let tag: Int = {
                 switch (self.verticalLayoutOrientation, self.writingDirection) {
-                case (true, _):
-                    return 2
-                case (false, .rightToLeft):
-                    return 1
-                default:
-                    return 0
+                case (true, _): return 2
+                case (false, .rightToLeft): return 1
+                default: return 0
                 }
             }()
-            item.segmentedControl?.selectSegment(withTag: tag)
+            (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
             
-        case (#selector(changeOrientation), let item as SegmentedToolbarItem):
+        case #selector(changeOrientation)?:
             let tag = self.verticalLayoutOrientation ? 1 : 0
-            item.segmentedControl?.selectSegment(withTag: tag)
+            (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
+            
+        case #selector(closeSplitTextView)?:
+            return (self.splitViewController?.splitViewItems.count ?? 0) > 1
             
         default: break
         }
         
-        return true
+        return super.validateUserInterfaceItem(item)
     }
     
     
@@ -302,16 +335,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// text did edit
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
-        // ignore if only attributes did change
-        guard let textStorage = notification.object as? NSTextStorage,
-            textStorage.editedMask.contains(.editedCharacters) else { return }
-        
-        // don't update when input text is not yet fixed.
-        guard !(self.focusedTextView?.hasMarkedText() ?? false) else { return }
+        // ignore if only attributes did change or input text is not yet fixed.
+        guard
+            let textStorage = notification.object as? NSTextStorage,
+            textStorage.editedMask.contains(.editedCharacters),
+            self.focusedTextView?.hasMarkedText() != true
+            else { return }
         
         // update editor information
         // -> In case, if "Replace All" performed without moving caret.
         self.document?.analyzer.invalidateEditorInfo()
+        
+        // update incompatible characters list
+        self.document?.incompatibleCharacterScanner.invalidate()
         
         // parse syntax
         if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
@@ -320,14 +356,18 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                guard let progress = syntaxParser.highlight(around: editedRange) else { return }
-                
-                self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                if let progress = self?.syntaxHighlightProgress {
+                    // retry syntax highlight if the last highlightAll has not finished yet
+                    progress.cancel()
+                    self?.syntaxHighlightProgress = syntaxParser.highlightAll()
+                    
+                } else {
+                    if let progress = syntaxParser.highlight(around: editedRange) {
+                        self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
+                    }
+                }
             }
         }
-        
-        // update incompatible characters list
-        self.document?.incompatibleCharacterScanner.invalidate()
     }
     
     
@@ -337,7 +377,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineProgress = nil
             viewController.navigationBarController?.outlineItems = outlineItems
-            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need invoke it (2008-05-16)
+            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it (2008-05-16)
         }
     }
     
@@ -354,7 +394,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     // MARK: Notifications
     
     /// selection did change
-    @objc private func textViewDidChangeSelection(_ notification: Notification?) {
+    @objc private func textViewDidChangeSelection(_ notification: Notification) {
         
         // update document information
         self.document?.analyzer.invalidateEditorInfo()
@@ -362,14 +402,14 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// document updated syntax style
-    @objc private func didChangeSyntaxStyle(_ notification: Notification?) {
+    @objc private func didChangeSyntaxStyle(_ notification: Notification) {
         
-        guard let syntaxParser = self.syntaxParser else { return }
+        guard let syntaxParser = self.syntaxParser else { return assertionFailure() }
         
         syntaxParser.delegate = self
         
         for viewController in self.editorViewControllers {
-            viewController.apply(syntax: syntaxParser.style)
+            viewController.apply(style: syntaxParser.style)
             viewController.navigationBarController?.outlineItems = []
             viewController.navigationBarController?.outlineProgress = nil
         }
@@ -380,13 +420,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// theme did update
-    @objc private func didUpdateTheme(_ notification: Notification?) {
+    @objc private func didUpdateTheme(_ notification: Notification) {
         
         guard
-            let oldName = notification?.userInfo?[Notification.UserInfoKey.old] as? String,
+            let oldName = notification.userInfo?[Notification.UserInfoKey.old] as? String,
+            let newName = notification.userInfo?[Notification.UserInfoKey.new] as? String,
             oldName == self.theme?.name else { return }
-        
-        let newName = (notification?.userInfo?[Notification.UserInfoKey.new] as? String) ?? UserDefaults.standard[.theme]!
         
         self.setTheme(name: newName)
     }
@@ -424,10 +463,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// Whether status bar is visible
-    @objc var isStatusBarShown: Bool {
+    var isStatusBarShown: Bool {
         
         get {
-            return !(self.statusBarItem?.isCollapsed ?? true)
+            return self.statusBarItem?.isCollapsed == false
         }
         
         set {
@@ -438,7 +477,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// visibility of navigation bars
-    @objc var showsNavigationBar = false {
+    var showsNavigationBar = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -460,7 +499,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// if lines soft-wrap at window edge
-    var wrapsLines = false {
+    @objc var wrapsLines = false {
         
         didSet {
             for viewController in self.editorViewControllers {
@@ -496,7 +535,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @objc var verticalLayoutOrientation: Bool {
         
         get {
-            return self.document?.isVerticalText ?? false
+            guard let textView = self.focusedTextView else {
+                return UserDefaults.standard[.writingDirection] == .vertical
+            }
+            
+            return textView.layoutOrientation == .vertical
         }
         
         set {
@@ -511,7 +554,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    var writingDirection: NSWritingDirection {
+    @objc var writingDirection: NSWritingDirection {
         
         get {
             return self.focusedTextView?.baseWritingDirection ?? .leftToRight
@@ -541,7 +584,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     /// whether replace tab with spaces
-    var isAutoTabExpandEnabled: Bool {
+    @objc var isAutoTabExpandEnabled: Bool {
         
         get {
             return self.focusedTextView?.isAutomaticTabExpansionEnabled ?? UserDefaults.standard[.autoExpandTab]
@@ -565,14 +608,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Action Messages
     
-    /// toggle visibility of status bar with fancy animation
-    @IBAction func toggleStatusBar(_ sender: Any?) {
+    /// re-color whole document
+    @IBAction func recolorAll(_ sender: Any?) {
         
-        NSAnimationContext.current.withAnimation {
-            self.isStatusBarShown = !self.isStatusBarShown
-        }
+        self.invalidateSyntaxHighlight()
+    }
+    
+    
+    /// set new theme from menu item
+    @IBAction func changeTheme(_ sender: AnyObject?) {
         
-        UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
+        guard let name = sender?.title else { return assertionFailure() }
+        
+        self.setTheme(name: name)
     }
     
     
@@ -580,7 +628,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func toggleNavigationBar(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation {
-            self.showsNavigationBar = !self.showsNavigationBar
+            self.showsNavigationBar.toggle()
         }
         
         UserDefaults.standard[.showNavigationBar] = self.showsNavigationBar
@@ -590,14 +638,105 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle visibility of line number view
     @IBAction func toggleLineNumber(_ sender: Any?) {
         
-        self.showsLineNumber = !self.showsLineNumber
+        self.showsLineNumber.toggle()
+    }
+    
+    
+    /// toggle visibility of status bar with fancy animation
+    @IBAction func toggleStatusBar(_ sender: Any?) {
+        
+        NSAnimationContext.current.withAnimation {
+            self.isStatusBarShown.toggle()
+        }
+        
+        UserDefaults.standard[.showStatusBar] = self.isStatusBarShown
+    }
+    
+    
+    /// toggle visibility of page guide line in text view
+    @IBAction func togglePageGuide(_ sender: Any?) {
+        
+        self.showsPageGuide.toggle()
     }
     
     
     /// toggle if lines wrap at window edge
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
-        self.wrapsLines = !self.wrapsLines
+        self.wrapsLines.toggle()
+    }
+    
+    
+    /// toggle visibility of invisible characters in text view
+    @IBAction func toggleInvisibleChars(_ sender: Any?) {
+        
+        self.showsInvisibles.toggle()
+    }
+    
+    
+    /// toggle if antialias text in text view
+    @IBAction func toggleAntialias(_ sender: Any?) {
+        
+        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
+        
+        for viewController in self.editorViewControllers {
+            viewController.textView?.usesAntialias = !usesAntialias
+        }
+    }
+    
+    
+    /// toggle if text view expands tab input
+    @IBAction func toggleAutoTabExpand(_ sender: Any?) {
+        
+        self.isAutoTabExpandEnabled.toggle()
+    }
+    
+    
+    /// change tab width from the main menu
+    @IBAction func changeTabWidth(_ sender: NSMenuItem) {
+        
+        self.tabWidth = sender.tag
+    }
+    
+    
+    /// change tab width to desired number through a sheet
+    @IBAction func customizeTabWidth(_ sender: Any?) {
+        
+        let viewController = CustomTabWidthViewController.instantiate(storyboard: "CustomTabWidthView")
+        viewController.defaultWidth = self.tabWidth
+        viewController.completionHandler = { [weak self] (tabWidth) in
+            self?.tabWidth = tabWidth
+        }
+        
+        self.presentAsSheet(viewController)
+    }
+    
+    
+    /// make text layout orientation horizontal
+    @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = false
+    }
+    
+    
+    /// make text layout orientation vertical
+    @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
+        
+        self.verticalLayoutOrientation = true
+    }
+    
+    
+    /// make entire writing direction LTR
+    @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
+        
+        self.writingDirection = .leftToRight
+    }
+    
+    
+    /// make entire writing direction RTL
+    @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
+        
+        self.writingDirection = .rightToLeft
     }
     
     
@@ -634,102 +773,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// make text layout orientation horizontal
-    @IBAction func makeLayoutOrientationHorizontal(_ sender: Any?) {
-        
-        self.verticalLayoutOrientation = false
-    }
-    
-    
-    /// make text layout orientation vertical
-    @IBAction func makeLayoutOrientationVertical(_ sender: Any?) {
-        
-        self.verticalLayoutOrientation = true
-    }
-    
-    
-    /// make entire writing direction LTR
-    @IBAction func makeWritingDirectionLeftToRight(_ sender: Any?) {
-        
-        self.writingDirection = .leftToRight
-    }
-    
-    
-    /// make entire writing direction RTL
-    @IBAction func makeWritingDirectionRightToLeft(_ sender: Any?) {
-        
-        self.writingDirection = .rightToLeft
-    }
-    
-    
-    /// toggle if antialias text in text view
-    @IBAction func toggleAntialias(_ sender: Any?) {
-        
-        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return }
-        
-        for viewController in self.editorViewControllers {
-            viewController.textView?.usesAntialias = !usesAntialias
-        }
-    }
-    
-    
-    /// toggle visibility of invisible characters in text view
-    @IBAction func toggleInvisibleChars(_ sender: Any?) {
-        
-        self.showsInvisibles = !self.showsInvisibles
-    }
-    
-    
-    /// toggle visibility of page guide line in text view
-    @IBAction func togglePageGuide(_ sender: Any?) {
-        
-        self.showsPageGuide = !self.showsPageGuide
-    }
-    
-    
-    /// toggle if text view expands tab input
-    @IBAction func toggleAutoTabExpand(_ sender: Any?) {
-        
-        self.isAutoTabExpandEnabled = !self.isAutoTabExpandEnabled
-    }
-    
-    
-    /// change tab width from the main menu
-    @IBAction func changeTabWidth(_ sender: NSMenuItem) {
-        
-        self.tabWidth = sender.tag
-    }
-    
-    
-    /// change tab width to desired number through a sheet
-    @IBAction func customizeTabWidth(_ sender: Any?) {
-        
-        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomTabWidthView"), bundle: nil).instantiateInitialController() as! CustomTabWidthViewController
-        viewController.defaultWidth = self.tabWidth
-        viewController.completionHandler = { [weak self] (tabWidth) in
-            self?.tabWidth = tabWidth
-        }
-        
-        self.presentViewControllerAsSheet(viewController)
-    }
-    
-    
-    /// set new theme from menu item
-    @IBAction func changeTheme(_ sender: AnyObject?) {
-        
-        guard let name = sender?.title else { return }
-        
-        self.setTheme(name: name)
-    }
-    
-    
-    /// re-color whole document
-    @IBAction func recolorAll(_ sender: Any?) {
-        
-        self.invalidateSyntaxHighlight()
-    }
-    
-    
     /// split editor view
     @IBAction func openSplitTextView(_ sender: Any?) {
         
@@ -743,7 +786,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
-        let newEditorViewController = self.createEditorViewController(relativeTo: currentEditorViewController)
+        let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
+        self.splitViewController?.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
@@ -753,6 +797,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         newEditorViewController.textView?.selectedRange = currentEditorViewController.textView!.selectedRange
         currentEditorViewController.textView?.centerSelectionInVisibleArea(self)
         newEditorViewController.textView?.centerSelectionInVisibleArea(self)
+        
+        // observe cursor
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
+                                               name: NSTextView.didChangeSelectionNotification,
+                                               object: newEditorViewController.textView)
         
         // move focus to the new editor
         self.view.window?.makeFirstResponder(newEditorViewController.textView)
@@ -773,7 +822,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // move focus to the next text view if the view to close has a focus
         if splitViewController.focusedSubviewController == currentEditorViewController {
             let childViewControllers = self.editorViewControllers
-            let deleteIndex = childViewControllers.index(of: currentEditorViewController) ?? 0
+            let deleteIndex = childViewControllers.firstIndex(of: currentEditorViewController) ?? 0
             let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
             
             self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)
@@ -801,16 +850,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             defaults[.showInvisibleTab] ||
             defaults[.showInvisibleNewLine] ||
             defaults[.showInvisibleFullwidthSpace] ||
-            defaults[.showInvisibles])
+            defaults[.showOtherInvisibleChars])
     }
     
     
     /// re-highlight whole content
     private func invalidateSyntaxHighlight() {
         
+        self.syntaxHighlightProgress?.cancel()
+        self.syntaxHighlightProgress = self.syntaxParser?.highlightAll()
+        
         guard
-            let progress = self.syntaxParser?.highlightAll(),
-            let length = self.syntaxParser?.textStorage.length
+            let progress = self.syntaxHighlightProgress,
+            let length = self.textStorage?.length
             else { return }
         
         self.presentHighlightIndicator(progress: progress, highlightLength: length)
@@ -825,30 +877,34 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         guard threshold > 0, highlightLength > threshold else { return }
         
         guard let window = self.view.window else {
-            assertionFailure("Expeced window to be non-nil.")
+            assertionFailure("Expected window to be non-nil.")
             return
         }
         
         // display indicator first when window is visible
         let presentBlock = { [weak self, weak progress] in
             guard
+                let self = self,
                 let progress = progress,
                 !progress.isFinished, !progress.isCancelled
                 else { return }
             
             let message = "Coloring text…".localized
-            let indicator = ProgressViewController(progress: progress, message: message, closesWhenFinished: true)
+            let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+            indicator.setup(progress: progress, message: message, closesWhenFinished: true)
             
-            self?.presentViewControllerAsSheet(indicator)
+            self.presentAsSheet(indicator)
         }
         
         if window.occlusionState.contains(.visible) {
             presentBlock()
         } else {
             weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (_) in
-                
-                guard window.occlusionState.contains(.visible) else { return }
+            observer = NotificationCenter.default.addObserver(forName: NSWindow.didChangeOcclusionStateNotification, object: window, queue: .main) { (notification) in
+                guard
+                    let window = notification.object as? NSWindow,
+                    window.occlusionState.contains(.visible)
+                    else { return }
                 
                 if let observer = observer {
                     NotificationCenter.default.removeObserver(observer)
@@ -860,22 +916,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// create new (split) editor view
-    private func createEditorViewController(relativeTo otherEditorViewController: EditorViewController) -> EditorViewController {
-        
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("EditorView"), bundle: nil)
-        let editorViewController = storyboard.instantiateInitialController() as! EditorViewController
-        
-        self.splitViewController?.addSubview(for: editorViewController, relativeTo: otherEditorViewController)
-        
-        return editorViewController
-    }
-    
-    
     /// create and set-up new (split) editor view
     private func setup(editorViewController: EditorViewController, baseViewController: EditorViewController?) {
         
-        editorViewController.textStorage = self.textStorage
+        editorViewController.setTextStorage(self.textStorage!)
         
         editorViewController.textView?.wrapsLines = self.wrapsLines
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
@@ -884,8 +928,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
-        if let syntaxStyle = self.syntaxParser?.style {
-            editorViewController.apply(syntax: syntaxStyle)
+        if let syntaxParser = self.syntaxParser {
+            editorViewController.apply(style: syntaxParser.style)
         }
         
         // copy textView states
@@ -896,10 +940,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             textView.baseWritingDirection = baseTextView.baseWritingDirection
             textView.isAutomaticTabExpansionEnabled = baseTextView.isAutomaticTabExpansionEnabled
         }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(textViewDidChangeSelection),
-                                               name: NSTextView.didChangeSelectionNotification,
-                                               object: editorViewController.textView)
     }
     
     
@@ -927,7 +967,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.childViewControllers as? [EditorViewController] ?? []
+        return self.splitViewController?.children as? [EditorViewController] ?? []
     }
     
     
@@ -936,11 +976,15 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         assert(Thread.isMainThread)
         
-        guard let theme = ThemeManager.shared.setting(name: name) else { return }
+        guard
+            let theme = ThemeManager.shared.setting(name: name),
+            theme != self.theme
+            else { return }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme
         }
+        
         self.invalidateSyntaxHighlight()
         self.invalidateRestorableState()
     }

@@ -33,13 +33,21 @@
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Find"; ObjectID = "3sL-0v-4Cy"; */
 "3sL-0v-4Cy.ibShadowedIsNilPlaceholder" = "查找";
-/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
+/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to search for."; ObjectID = "hxw-DS-gxQ"; */
 "hxw-DS-gxQ.ibShadowedToolTip" = "输入要查找的文本。";
+/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Find"; ObjectID = "hxw-DS-gxQ"; */
+"hxw-DS-gxQ.ibExternalAccessibilityDescription" = "查找";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "ObJ-nS-x0g"; */
+"ObJ-nS-x0g.ibExternalAccessibilityDescription" = "清除";
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Replace"; ObjectID = "VUA-ld-ABD"; */
 "VUA-ld-ABD.ibShadowedIsNilPlaceholder" = "替换";
-/* Class = "NSScrollView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
+/* Class = "NSTextView"; ibShadowedToolTip = "Type the text to replace the found text."; ObjectID = "qiQ-tb-XCa"; */
 "qiQ-tb-XCa.ibShadowedToolTip" = "输入用来替换查找到的文本。";
+/* Class = "NSTextView"; ibExternalAccessibilityDescription = "Replace"; ObjectID = "qiQ-tb-XCa"; */
+"qiQ-tb-XCa.ibExternalAccessibilityDescription" = "替换";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Clear"; ObjectID = "Y5M-CG-n0V"; */
+"Y5M-CG-n0V.ibExternalAccessibilityDescription" = "清除";
 
 /* Class = "NSButtonCell"; title = "Regular Expression"; ObjectID = "brT-HP-GVL"; */
 "brT-HP-GVL.title" = "正则表达式";
@@ -80,11 +88,15 @@
 "u6p-Hz-aK5.ibShadowedToolTips[0]" = "查找前一个匹配。";  /* "Find previous match." */
 "u6p-Hz-aK5.ibShadowedToolTips[1]" = "查找后一个匹配。";  /* "Find next match." */
 
+/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Searches"; ObjectID = "3ZH-bg-rl5"; */
+"3ZH-bg-rl5.ibExternalAccessibilityDescription" = "最近查找";
 /* Class = "NSMenuItem"; title = "Recent Searches"; ObjectID = "cdV-rY-hCN"; */
 "cdV-rY-hCN.title" = "最近查找";
 /* Class = "NSMenuItem"; title = "Clear Recent Searches"; ObjectID = "vE8-oK-xlC"; */
 "vE8-oK-xlC.title" = "清除最近查找";
 
+/* Class = "NSPopUpButton"; ibExternalAccessibilityDescription = "Recent Replacements"; ObjectID = "Hw7-zz-RG8"; */
+"Hw7-zz-RG8.ibExternalAccessibilityDescription" = "最近替换";
 /* Class = "NSMenuItem"; title = "Recent Replacements"; ObjectID = "7cw-iQ-0LM"; */
 "7cw-iQ-0LM.title" = "最近替换";
 /* Class = "NSMenuItem"; title = "Clear Recent Replacements"; ObjectID = "vfK-an-Qnl"; */
@@ -92,6 +104,7 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "ESq-ws-6H3"; */
 "ESq-ws-6H3.ibShadowedToolTip" = "设置高级选项";
+"ESq-ws-6H3.ibExternalAccessibilityDescription" = "高级选项";
 
 
 // Find Result

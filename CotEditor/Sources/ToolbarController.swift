@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,6 +44,7 @@ extension LineEnding {
     
     
     var index: Int {
+        
         switch self {
         case .lf:
             return 0
@@ -92,12 +93,14 @@ final class ToolbarController: NSObject {
     
     // MARK: Private Properties
     
+    private var recentStyleNamesObserver: UserDefaultsObservation?
+    
     @IBOutlet private weak var toolbar: NSToolbar?
     @IBOutlet private weak var lineEndingPopupButton: NSPopUpButton?
     @IBOutlet private weak var encodingPopupButton: NSPopUpButton?
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
     
-    @IBOutlet private weak var shareButton: NSButton?
+    @IBOutlet private weak var shareToolbarItem: NSToolbarItem?
 
     
     
@@ -105,7 +108,7 @@ final class ToolbarController: NSObject {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.recentStyleNames.rawValue)
+        self.recentStyleNamesObserver?.invalidate()
     }
     
     
@@ -114,25 +117,27 @@ final class ToolbarController: NSObject {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         self.buildEncodingPopupButton()
         self.buildSyntaxPopupButton()
         
-        // share button action must be called on mouseDown
-        self.shareButton?.sendAction(on: .leftMouseDown)
+        // setup Share toolbar item
+        // -> Share button action must be called on mouseDown.
+        (self.shareToolbarItem!.view as! NSButton).sendAction(on: .leftMouseDown)
+        if #available(macOS 10.13, *) {
+            self.shareToolbarItem!.menuFormRepresentation = NSDocumentController.shared.standardShareMenuItem()
+        } else {
+            self.shareToolbarItem!.menuFormRepresentation = ShareMenuItem()
+        }
         
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(buildSyntaxPopupButton), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.recentStyleNames.rawValue, options: [], context: nil)
-    }
-    
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == DefaultKeys.recentStyleNames.rawValue {
-            DispatchQueue.main.async { [weak self] in
-                self?.buildSyntaxPopupButton()
-            }
+        self.recentStyleNamesObserver?.invalidate()
+        self.recentStyleNamesObserver = UserDefaults.standard.observe(key: .recentStyleNames) { [weak self] _ in
+            self?.buildSyntaxPopupButton()
         }
     }
     
@@ -194,7 +199,7 @@ final class ToolbarController: NSObject {
         
         let styleNames = SyntaxManager.shared.settingNames
         let recentStyleNames = UserDefaults.standard[.recentStyleNames]!
-        let action = #selector(Document.changeSyntaxStyle(_:))
+        let action = #selector(Document.changeSyntaxStyle)
         
         menu.removeAllItems()
         

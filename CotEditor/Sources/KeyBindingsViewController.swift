@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,9 +65,9 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     // MARK: -
     // MARK: View Controller Methods
     
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
         self.outlineTree = self.manager.outlineTree(defaults: false)
         self.isRestoreble = !self.manager.usesDefaultKeyBindings
@@ -156,14 +156,22 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     }
     
     
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        
+        // dummy implementation for SnippetKeyBindingsViewController.
+        // -> Otherwise, this delegate method in subclass is not called in release build.
+        //    (2019-05 Xcode 10.2, macOS 10.14, Swift 5.1)
+    }
+    
+    
     // NSTextFieldDelegate  < outlineView->ShortcutKeyField
     
     /// validate and apply new shortcut key input
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    func controlTextDidEndEditing(_ obj: Notification) {
         
         guard
             let textField = obj.object as? NSTextField,
-            let outlineView = self.outlineView else { return }
+            let outlineView = self.outlineView else { return assertionFailure() }
         
         let row = outlineView.row(for: textField)
         let column = outlineView.column(for: textField)
@@ -331,15 +339,16 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     // NSOutlineViewDelegate  < outlineView
     
     /// change snippet array controller's selection
-    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+    override func outlineViewSelectionDidChange(_ notification: Notification) {
         
-        if let arrayController = self.snippetArrayController {
-            let index = outlineView.row(forItem: item)
-            
-            arrayController.setSelectionIndex(index)
-        }
+        guard
+            let arrayController = self.snippetArrayController,
+            let outlineView = notification.object as? NSOutlineView
+            else { return assertionFailure() }
         
-        return true
+        guard outlineView.selectedRow >= 0 else { return }
+        
+        arrayController.setSelectionIndex(outlineView.selectedRow)
     }
     
     

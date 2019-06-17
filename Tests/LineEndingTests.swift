@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,20 +56,28 @@ class LineEndingTests: XCTestCase {
     }
     
     
+    func testCount() {
+        
+        XCTAssertEqual("".countExceptLineEnding, 0)
+        XCTAssertEqual("foo\nbar".countExceptLineEnding, 6)
+        XCTAssertEqual("\u{feff}".countExceptLineEnding, 1)
+        XCTAssertEqual("\u{feff}a".countExceptLineEnding, 2)
+    }
+    
+    
     func testReplacement() {
         
-        XCTAssertEqual("foo\nbar".removingLineEndings, "foobar")
         XCTAssertEqual("foo\r\nbar".replacingLineEndings(with: .cr), "foo\rbar")
     }
     
     
     func testRangeConversion() {
         
-        let lfToCrlfRange = "a\nb\nc".convert(from: .lf, to: .crlf, range: NSRange(location: 2, length: 2))
+        let lfToCrlfRange = "a\nb\nc".convert(range: NSRange(location: 2, length: 2), from: .lf, to: .crlf)
         XCTAssertEqual(lfToCrlfRange.location, 3)
         XCTAssertEqual(lfToCrlfRange.length, 3)
         
-        let implicitConvertedRange = "a\r\nb\r\nc".convert(to: .lf, range: NSRange(location: 3, length: 3))
+        let implicitConvertedRange = "a\r\nb\r\nc".convert(range: NSRange(location: 3, length: 3), to: .lf)
         XCTAssertEqual(implicitConvertedRange.location, 2)
         XCTAssertEqual(implicitConvertedRange.length, 2)
     }

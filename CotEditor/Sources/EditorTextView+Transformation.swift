@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,30 @@
 import Cocoa
 
 extension EditorTextView {
+    
+    // MARK: Action Messages (Case Transformations)
+    
+    /// transform to snake case
+    @IBAction func snakecaseWord(_ sender: Any?) {
+        
+        self.transformSelection(actionName: "To Snake Case") { $0.snakecased }
+    }
+    
+    
+    /// transform to snake case
+    @IBAction func camelcaseWord(_ sender: Any?) {
+        
+        self.transformSelection(actionName: "To Camel Case") { $0.camelcased }
+    }
+    
+    
+    /// transform to snake case
+    @IBAction func pascalcaseWord(_ sender: Any?) {
+        
+        self.transformSelection(actionName: "To Pascal Case") { $0.pascalcased }
+    }
+    
+    
     
     // MARK: Action Messages (Transformations)
     
@@ -159,19 +183,18 @@ private extension NSTextView {
     /// transform all selected strings and register to undo manager
     func transformSelection(actionName: String? = nil, block: (String) -> String) {
         
-        // transform word contains cursor if nothing is selected
-        if self.selectedRange.length == 0 {
+        // transform the word that contains the cursor if nothing is selected
+        if self.selectedRange.isEmpty {
             self.selectWord(self)
         }
         
         let selectedRanges = self.selectedRanges as! [NSRange]
-        var appliedRanges = [NSRange]()
         var strings = [String]()
+        var appliedRanges = [NSRange]()
         var newSelectedRanges = [NSRange]()
-        var success = false
         var deltaLocation = 0
         
-        for range in selectedRanges where range.length > 0 {
+        for range in selectedRanges where !range.isEmpty {
             let substring = (self.string as NSString).substring(with: range)
             let string = block(substring)
             let newRange = NSRange(location: range.location - deltaLocation, length: string.utf16.count)
@@ -179,11 +202,10 @@ private extension NSTextView {
             strings.append(string)
             appliedRanges.append(range)
             newSelectedRanges.append(newRange)
-            deltaLocation += substring.utf16.count - string.utf16.count
-            success = true
+            deltaLocation += range.length - newRange.length
         }
         
-        guard success else { return }
+        guard !strings.isEmpty else { return }
         
         self.replace(with: strings, ranges: appliedRanges, selectedRanges: newSelectedRanges, actionName: actionName)
         

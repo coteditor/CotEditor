@@ -25,13 +25,12 @@
 
 import Cocoa
 
-@available(macOS 10.12.2, *)
 private extension NSTouchBar.CustomizationIdentifier {
     
     static let documentView = NSTouchBar.CustomizationIdentifier("com.coteditor.CotEditor.touchBar.documentView")
 }
 
-@available(macOS 10.12.2, *)
+
 extension NSTouchBarItem.Identifier {
     
     static let invisibles = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.invisibles")
@@ -41,7 +40,6 @@ extension NSTouchBarItem.Identifier {
 
 
 
-@available(macOS 10.12.2, *)
 extension DocumentViewController: NSTouchBarDelegate {
     
     // MARK: View Controller Methods
@@ -117,7 +115,7 @@ extension DocumentViewController: NSTouchBarDelegate {
 }
 
 
-@available(macOS 10.12.2, *)
+
 extension DocumentViewController: TouchBarItemValidations {
     
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool {
@@ -149,7 +147,6 @@ extension DocumentViewController: TouchBarItemValidations {
 
 
 
-@available(macOS 10.12.2, *)
 extension NSDocument: NSSharingServicePickerTouchBarItemDelegate {
     
     public func items(for pickerTouchBarItem: NSSharingServicePickerTouchBarItem) -> [Any] {

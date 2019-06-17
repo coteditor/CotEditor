@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -88,24 +88,26 @@ extension EditorTextView: Indenting {
 
 // MARK: - Protocol
 
-protocol Indenting: AnyObject {
+protocol Indenting: NSTextView {
     
     var tabWidth: Int { get }
     var isAutomaticTabExpansionEnabled: Bool { get }
 }
 
 
-extension Indenting where Self: NSTextView {
+extension Indenting {
     
     /// increase indent level
     @discardableResult
     func indent() -> Bool {
         
-        guard self.tabWidth > 0 else { return false }
+        guard
+            self.tabWidth > 0,
+            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
+            else { return false }
         
         // get indent target
         let string = self.string as NSString
-        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // create indent string to prepend
         let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
@@ -134,11 +136,13 @@ extension Indenting where Self: NSTextView {
     @discardableResult
     func outdent() -> Bool {
         
-        guard self.tabWidth > 0 else { return false }
+        guard
+            self.tabWidth > 0,
+            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
+            else { return false }
         
-        // get range to process
+        // get indent target
         let string = self.string as NSString
-        let selectedRanges = self.selectedRanges as! [NSRange]
         
         // find ranges to remove
         let lineRanges = string.lineRanges(for: selectedRanges)
@@ -167,10 +171,11 @@ extension Indenting where Self: NSTextView {
         let newSelectedRanges = selectedRanges.map { selectedRange -> NSRange in
             let offset = droppedRanges
                 .prefix { $0.location < selectedRange.location }
-                .reduce(0) { $0 + (selectedRange.intersection($1) ?? $1).length }
+                .map { (selectedRange.intersection($0) ?? $0).length }
+                .reduce(0, +)
             let lengthDiff = droppedRanges
-                .compactMap { selectedRange.intersection($0) }
-                .reduce(0) { $0 + $1.length }
+                .compactMap { selectedRange.intersection($0)?.length }
+                .reduce(0, +)
             
             return NSRange(location: selectedRange.location - offset,
                            length: selectedRange.length - lengthDiff)
@@ -186,12 +191,8 @@ extension Indenting where Self: NSTextView {
         
         guard !self.string.isEmpty else { return }
         
-        let ranges: [NSRange] = {
-            if self.selectedRange.length == 0 {  // convert all if nothing selected
-                return [self.string.nsRange]
-            }
-            return self.selectedRanges as! [NSRange]
-        }()
+        // process whole document if no text selected
+        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : self.selectedRanges as! [NSRange]
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()

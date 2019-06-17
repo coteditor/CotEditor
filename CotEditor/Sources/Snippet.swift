@@ -25,7 +25,6 @@
 
 import Foundation
 
-
 struct Snippet {
     
     enum Variable: String, TokenRepresentable {
@@ -34,8 +33,6 @@ struct Snippet {
         static let suffix = ">>>"
         
         case cursor = "CURSOR"
-        
-        static let allCases: [Variable] = [.cursor]
         
         
         var description: String {

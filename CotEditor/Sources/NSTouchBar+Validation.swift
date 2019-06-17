@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,6 @@
 
 import Cocoa
 
-@available(macOS 10.12.2, *)
 protocol TouchBarItemValidations: AnyObject {
     
     func validateTouchBarItem(_ item: NSTouchBarItem) -> Bool
@@ -33,7 +32,6 @@ protocol TouchBarItemValidations: AnyObject {
 
 
 
-@available(macOS 10.12.2, *)
 extension NSTouchBar {
     
     /// flag to enable automatic touch bar item validation
@@ -76,7 +74,6 @@ extension NSTouchBar {
 
 // MARK: -
 
-@available(macOS 10.12.2, *)
 private final class TouchBarValidator {
     
     // MARK: Public Properties
@@ -203,7 +200,6 @@ private final class TouchBarValidator {
 
 // MARK: -
 
-@available(macOS 10.12.2, *)
 extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
     
     /// validate item if content view is NSControl
@@ -216,11 +212,12 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
             let validator = NSApp.target(forAction: action, to: control.target, from: self) as AnyObject?
             else { return }
         
-        // -> Casting from Any to AnyObject before putting it to `switch` statement is really important. Be careful if you wanna make a change. (2017-02-03 on SDK macOS 10.12)
         switch validator {
         case let validator as TouchBarItemValidations:
             control.isEnabled = validator.validateTouchBarItem(self)
         case let validator as NSUserInterfaceValidations:
+            control.isEnabled = validator.validateUserInterfaceItem(self)
+        case _ where validator.responds(to: #selector(NSUserInterfaceValidations.validateUserInterfaceItem)):  // workaround for macOS 10.12 and earier
             control.isEnabled = validator.validateUserInterfaceItem(self)
         default: break
         }

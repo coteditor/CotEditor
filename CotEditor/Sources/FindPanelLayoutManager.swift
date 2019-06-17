@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,12 +60,16 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let color = NSColor.tertiaryLabelColor
             
             let font = self.font
-            let fullWidthFont = NSFont(name: "HiraKakuProN-W3", size: font.pointSize) ?? font
+            let fullWidthFont = NSFont(named: .hiraginoSans, size: font.pointSize) ?? font
             
-            let attributes: [NSAttributedStringKey: Any] = [.font: font,
-                                                            .foregroundColor: color]
-            let fullwidthAttributes: [NSAttributedStringKey: Any] = [.font: fullWidthFont,
-                                                                     .foregroundColor: color]
+            let attributes: [NSAttributedString.Key: Any] = [
+                .font: font,
+                .foregroundColor: color
+            ]
+            let fullwidthAttributes: [NSAttributedString.Key: Any] = [
+                .font: fullWidthFont,
+                .foregroundColor: color
+            ]
             
             let defaults = UserDefaults.standard
             let showsSpace = defaults[.showInvisibleSpace]
@@ -78,13 +82,11 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let tab = NSAttributedString(string: Invisible.tab.usedSymbol, attributes: attributes)
             let newLine = NSAttributedString(string: Invisible.newLine.usedSymbol, attributes: attributes)
             let fullwidthSpace = NSAttributedString(string: Invisible.fullwidthSpace.usedSymbol, attributes: fullwidthAttributes)
-            let verticalTab = NSAttributedString(string: Invisible.verticalTab.usedSymbol, attributes: attributes)
             
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let utf16Index = String.UTF16Index(encodedOffset: charIndex)
-                let codeUnit = string.utf16[utf16Index]
+                let codeUnit = (string as NSString).character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
                 let glyphString: NSAttributedString
@@ -105,18 +107,14 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     guard showsFullwidthSpace else { continue }
                     glyphString = fullwidthSpace
                     
-                case .verticalTab?:
-                    guard showsOtherInvisibles else { continue }
-                    glyphString = verticalTab
-                    
                 default:
                     guard showsOtherInvisibles else { continue }
                     guard
-                        self.glyph(at: glyphIndex, isValidIndex: nil) == NSGlyph(NSControlGlyph),
+                        self.propertyForGlyph(at: glyphIndex) == .controlCharacter,
                         self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
                         else { continue }
                     
-                    let replaceFont = NSFont(name: "Lucida Grande", size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
+                    let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
                     let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)
                     let baseString = (string as NSString).substring(with: charRange)
                     

@@ -1,15 +1,10 @@
-# ref. http://docs.travis-ci.com/user/languages/objective-c/
-
-language: objective-c
-osx_image: xcode9.3
-
-before_install:
-  - gem install xcpretty
+language: swift
+osx_image: xcode10.2
 
 script:
   set -o pipefail &&
   travis_retry
-  xcodebuild test
+  xcodebuild build test
   -workspace CotEditor.xcworkspace
   -scheme CotEditor
   CODE_SIGN_IDENTITY=""

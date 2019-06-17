@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,13 +67,6 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     // MARK: -
     // MARK: View Controller Method
     
-    /// nib name
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("PrintPanelAccessory")
-    }
-    
-    
     /// printInfo did set (new print sheet will be displayed)
     override var representedObject: Any? {
         
@@ -87,25 +80,25 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                     case .blackWhite:
                         return ThemeName.blackAndWhite
                     case .sameAsDocument:
-                        return defaults[.theme] ?? ThemeName.blackAndWhite
+                        return ThemeManager.shared.userDefaultSettingName()
                     }
                 }
                 return defaults[.printTheme] ?? ThemeName.blackAndWhite
             }()
-            self.lineNumberMode = PrintLineNmuberMode(defaults[.printLineNumIndex])
-            self.invisibleCharsMode = PrintInvisiblesMode(defaults[.printInvisibleCharIndex])
+            self.lineNumberMode = defaults[.printLineNumIndex]
+            self.invisibleCharsMode = defaults[.printInvisibleCharIndex]
             
             self.printsHeader = defaults[.printHeader]
-            self.primaryHeaderContent = PrintInfoType(defaults[.primaryHeaderContent])
-            self.primaryHeaderAlignment = AlignmentType(defaults[.primaryHeaderAlignment])
-            self.secondaryHeaderContent = PrintInfoType(defaults[.secondaryHeaderContent])
-            self.secondaryHeaderAlignment = AlignmentType(defaults[.secondaryHeaderAlignment])
+            self.primaryHeaderContent = defaults[.primaryHeaderContent]
+            self.primaryHeaderAlignment = defaults[.primaryHeaderAlignment]
+            self.secondaryHeaderContent = defaults[.secondaryHeaderContent]
+            self.secondaryHeaderAlignment = defaults[.secondaryHeaderAlignment]
             
             self.printsFooter = defaults[.printFooter]
-            self.primaryFooterContent = PrintInfoType(defaults[.primaryFooterContent])
-            self.primaryFooterAlignment = AlignmentType(defaults[.primaryFooterAlignment])
-            self.secondaryFooterContent = PrintInfoType(defaults[.secondaryFooterContent])
-            self.secondaryFooterAlignment = AlignmentType(defaults[.secondaryFooterAlignment])
+            self.primaryFooterContent = defaults[.primaryFooterContent]
+            self.primaryFooterAlignment = defaults[.primaryFooterAlignment]
+            self.secondaryFooterContent = defaults[.secondaryFooterContent]
+            self.secondaryFooterAlignment = defaults[.secondaryFooterAlignment]
             
             // apply current theme
             self.setupColorMenu()
@@ -178,7 +171,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         
         let themeNames = ThemeManager.shared.settingNames
         
-        guard let popupButton = self.colorPopupButton else { return }
+        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
         
         popupButton.removeAllItems()
         
@@ -223,168 +216,104 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     /// print theme
     @objc dynamic var theme: String {
         
-        get {
-            return self.settingValue(forKey: .theme) as? String ?? ThemeName.blackAndWhite
-        }
-        
-        set {
-            self.setSettingValue(newValue, forKey: .theme)
-        }
+        get { return self.settingValue(forKey: .theme) as? String ?? ThemeName.blackAndWhite }
+        set { self.setSettingValue(newValue, forKey: .theme) }
     }
     
     
     /// whether draws line number
     @objc dynamic var lineNumberMode: PrintLineNmuberMode {
         
-        get {
-            return PrintLineNmuberMode(self.settingValue(forKey: .lineNumber) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .lineNumber)
-        }
+        get { return PrintLineNmuberMode(self.settingValue(forKey: .lineNumber) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .lineNumber) }
     }
     
     
     /// whether draws invisible characters
     @objc dynamic var invisibleCharsMode: PrintInvisiblesMode {
         
-        get {
-            return PrintInvisiblesMode(self.settingValue(forKey: .invisibles) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .invisibles)
-        }
+        get { return PrintInvisiblesMode(self.settingValue(forKey: .invisibles) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .invisibles) }
     }
     
     
     /// whether prints header
     @objc dynamic var printsHeader: Bool {
         
-        get {
-            return (self.settingValue(forKey: .printsHeader) as? Bool) ?? false
-        }
-        
-        set {
-            self.setSettingValue(newValue, forKey: .printsHeader)
-        }
+        get { return (self.settingValue(forKey: .printsHeader) as? Bool) ?? false }
+        set { self.setSettingValue(newValue, forKey: .printsHeader) }
     }
     
     
     /// primary header item content type
     @objc dynamic var primaryHeaderContent: PrintInfoType {
         
-        get {
-            return PrintInfoType(self.settingValue(forKey: .primaryHeaderContent) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderContent)
-        }
+        get { return PrintInfoType(self.settingValue(forKey: .primaryHeaderContent) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderContent) }
     }
     
     
     /// primary header item align
     @objc dynamic var primaryHeaderAlignment: AlignmentType {
         
-        get {
-            return AlignmentType(self.settingValue(forKey: .primaryHeaderAlignment) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderAlignment)
-        }
+        get { return AlignmentType(self.settingValue(forKey: .primaryHeaderAlignment) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .primaryHeaderAlignment) }
     }
     
     
     /// secondary header item content type
     @objc dynamic var secondaryHeaderContent: PrintInfoType {
         
-        get {
-            return PrintInfoType(self.settingValue(forKey: .secondaryHeaderContent) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderContent)
-        }
+        get { return PrintInfoType(self.settingValue(forKey: .secondaryHeaderContent) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderContent) }
     }
     
     
     /// secondary header item align
     @objc dynamic var secondaryHeaderAlignment: AlignmentType {
         
-        get {
-            return AlignmentType(self.settingValue(forKey: .secondaryHeaderAlignment) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderAlignment)
-        }
+        get { return AlignmentType(self.settingValue(forKey: .secondaryHeaderAlignment) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .secondaryHeaderAlignment) }
     }
     
     
     /// whether prints footer
     @objc dynamic var printsFooter: Bool {
         
-        get {
-            return (self.settingValue(forKey: .printsFooter) as? Bool) ?? false
-        }
-        
-        set {
-            self.setSettingValue(newValue, forKey: .printsFooter)
-        }
+        get { return (self.settingValue(forKey: .printsFooter) as? Bool) ?? false }
+        set { self.setSettingValue(newValue, forKey: .printsFooter) }
     }
     
     
     /// primary footer item content type
     @objc dynamic var primaryFooterContent: PrintInfoType {
         
-        get {
-            return PrintInfoType(self.settingValue(forKey: .primaryFooterContent) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .primaryFooterContent)
-        }
+        get { return PrintInfoType(self.settingValue(forKey: .primaryFooterContent) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .primaryFooterContent) }
     }
     
     
     /// primary footer item align
     @objc dynamic var primaryFooterAlignment: AlignmentType {
         
-        get {
-            return AlignmentType(self.settingValue(forKey: .primaryFooterAlignment) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .primaryFooterAlignment)
-        }
+        get { return AlignmentType(self.settingValue(forKey: .primaryFooterAlignment) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .primaryFooterAlignment) }
     }
     
     
     /// secondary footer item content type
     @objc dynamic var secondaryFooterContent: PrintInfoType {
         
-        get {
-            return PrintInfoType(self.settingValue(forKey: .secondaryFooterContent) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterContent)
-        }
+        get { return PrintInfoType(self.settingValue(forKey: .secondaryFooterContent) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterContent) }
     }
     
     
     /// secondary footer item align
     @objc dynamic var secondaryFooterAlignment: AlignmentType {
         
-        get {
-            return AlignmentType(self.settingValue(forKey: .secondaryFooterAlignment) as? Int)
-        }
-        
-        set {
-            self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterAlignment)
+        get { return AlignmentType(self.settingValue(forKey: .secondaryFooterAlignment) as? Int) }
+        set { self.setSettingValue(newValue.rawValue, forKey: .secondaryFooterAlignment)
         }
     }
     

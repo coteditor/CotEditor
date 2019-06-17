@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ extension NSTextView {
         
         guard
             !string.isEmpty,
-            selectedRange.length == 0,
+            selectedRange.isEmpty,
             selectedRange.location != NSNotFound,
             selectedRange.location > 0,
             let cursorIndex = Range(selectedRange, in: string)?.lowerBound
@@ -50,7 +50,7 @@ extension NSTextView {
         case .begin(let index), .end(let index):
             let range = NSRange(index...index, in: string)
             self.showFindIndicator(for: range)
-        case .odd: return
+        case .odd: break
         }
     }
     

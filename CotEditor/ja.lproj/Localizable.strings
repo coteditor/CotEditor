@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2018 1024jp
+ © 2014-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,6 +33,19 @@
 
 // Appending words in parentheses
 " (%@)" = "（%@）";
+
+
+
+// Accessibility labels
+"inspector" = "インスペクタ";
+"document inspector" = "書類情報";
+"outline" = "アウトライン";
+"incompatible characters" = "非互換文字";
+"status bar" = "ステータスバー";
+"editor" = "エディタ";
+"navigation bar" = "ナビゲーションバー";
+"line numbers" = "行番号";
+"find result" = "検索結果";
 
 
 
@@ -78,6 +91,9 @@
 "Empty find string" = "検索文字列が空です。";
 "Input text to find." = "検索するテキストを入力してください。";
 
+// accessibility announcement
+"Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
+
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "現在の選択範囲を置換テキストで置き換えてから、次の一致を検索";
@@ -93,6 +109,15 @@
 "No strings found in “%@”." = "“%@”内に見つかりませんでした。";
 "Found one string in “%@”." = "“%@”内に1件見つかりました。";
 "Found %@ strings in “%@”." = "“%2$@”内に%1$@件見つかりました。";
+
+
+
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "条件を追加";
+"Delete Rules" = "条件を削除";
+"Edit Rule" = "条件を編集";
+"Move Rules" = "条件を移動";
 
 
 
@@ -216,6 +241,9 @@
 "Convert Indentation" = "インデントを変換";
 "Comment Out" = "コメントアウト";
 "Uncomment" = "コメント解除";
+"To Snake Case" = "スネークケースに";
+"To Camel Case" = "キャメルケースに";
+"To Snake Case" = "パスカルケースに";
 "To Full-width" = "全角に";
 "To Half-width" = "半角に";
 "To Full-width Roman" = "全角英数に";
@@ -277,14 +305,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "行数";
-"Characters" = "文字数";
-"Length" = "文字長";
-"Words" = "単語数";
-"Location" = "位置";
-"Line" = "行";
-"Column" = "列";
+"Lines: " = "行数: ";
+"Characters: " = "文字数: ";
+"Length: " = "文字長: ";
+"Words: " = "単語数: ";
+"Location: " = "位置: ";
+"Line: " = "行: ";
+"Column: " = "列: ";
 
 
 
@@ -395,9 +422,10 @@
 "Syntax Validation" = "シンタックスの検証";
 
 // Syntax style validation results
-"No error was found." = "エラーはありませんでした。";
-"An error was found!" = "エラーがありました！";
-"%i errors were found!" = "%i個のエラーがありました！";
+"No error found." = "エラーはありません。";
+"An error found!" = "1個のエラーがあります！";
+"%i errors found!" = "%i個のエラーがあります！";
+"outline menu" = "アウトラインメニュー";
 
 
 
@@ -446,7 +474,7 @@
 "End string" = "終了文字列";
 "Regular expression" = "正規表現";
 "The same word is registered multiple times." = "重複して登録されています。";
-"Regular Expression Error: " = "正規表現エラー:";
+"Regular Expression: " = "正規表現: ";
 
 
 
@@ -524,6 +552,7 @@
 "The parent directory name of dropped file." = "ドロップ元ファイルのあるディレクトリ名";
 "(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
 
 
 

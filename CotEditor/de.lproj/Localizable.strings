@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,6 +32,19 @@
 
 // Appending words in parentheses
 " (%@)" = " (%@)";
+
+
+
+// Accessibility labels
+"inspector" = "Infofenster";
+"document inspector" = "Dokument-Informationen";
+"outline" = "Gliederung";
+"incompatible characters" = "Inkompatible Zeichen";
+"status bar" = "Statusleiste";
+"navigation bar" = "Navigationsleiste";
+"editor" = "Editor";
+"line numbers" = "Zeilennummern";
+"find result" = "Suchergebnis";
 
 
 
@@ -77,6 +90,9 @@
 "Empty find string" = "Leerer Suchbegriff";
 "Input text to find." = "Gib den zu findenden Text ein.";
 
+// accessibility announcement
+"Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
+
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Die aktuelle Auswahl durch den Ersetzungstext ersetzen, dann die nächste Übereinstimmung suchen.";
@@ -92,6 +108,15 @@
 "No strings found in “%@”." = "Keine Zeichenketten in „%@“ gefunden.";
 "Found one string in “%@”." = "Eine Zeichenkette in „%@“ gefunden.";
 "Found %@ strings in “%@”." = "%@ Zeichenketten „%@” in gefunden.";
+
+
+
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Regel hinzufügen";
+"Delete Rules" = "Regeln löschen";
+"Edit Rule" = "Regel bearbeiten";
+"Move Rules" = "Regeln verschieben";
 
 
 
@@ -129,7 +154,7 @@
 
 // Encoding change with unsaved changes alert
 "The document has unsaved changes." = "Das Dokument hat ungespeicherte Änderungen.";
-"Do you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen verwerfen und das Dokument mithilfe der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
+"Do you want to discard the changes and reopen the document using “%@”?" = "Möchtest du die Änderungen verwerfen und das Dokument in der Codierung „%@“ erneut öffnen?";  // %@ is an encoding name.
 "Discard Changes" = "Änderungen verwerfen";
 
 // Reinterpretation failed alert
@@ -153,7 +178,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
-"Invisibles" = "Unsichtbares";
+"Invisibles" = "Steuerzeichen";
 "Wrap Lines" = "Zeilen umbrechen";
 
 // Touch bar item labels -Text View
@@ -215,6 +240,9 @@
 "Convert Indentation" = "Einzug konvertieren";
 "Comment Out" = "Auskommentieren";
 "Uncomment" = "Unkommentieren";
+"To Snake Case" = "Zu Snakecase";
+"To Camel Case" = "Zu Camelcase";
+"To Pascal Case" = "Zu Pascalcase";
 "To Full-width" = "Zu vollbreiten Zeichen";
 "To Half-width" = "Zu halbbreiten Zeichen";
 "To Full-width Roman" = "Zu vollbreiten Zeichen";
@@ -276,14 +304,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "Zeilen";
-"Characters" = "Zeichen";
-"Length" = "Länge";
-"Words" = "Wörter";
-"Location" = "Position";
-"Line" = "Zeile";
-"Column" = "Spalte";
+"Lines: " = "Zeilen: ";
+"Characters: " = "Zeichen: ";
+"Length: " = "Länge: ";
+"Words: " = "Wörter: ";
+"Location: " = "Position: ";
+"Line: " = "Zeile: ";
+"Column: " = "Spalte: ";
 
 
 
@@ -394,9 +421,10 @@
 "Syntax Validation" = "Syntaxvalidierung";
 
 // Syntax style validation results
-"No error was found." = "Kein Fehler wurde gefunden.";
-"An error was found!" = "Ein Fehler wurde gefunden.";
-"%i errors were found!" = "%i Fehler wurden gefunden.";
+"No error found." = "Kein Fehler wurde gefunden.";
+"An error found!" = "Ein Fehler wurde gefunden.";
+"%i errors found!" = "%i Fehler wurden gefunden.";
+"outline menu" = "Gliederungsmenü";
 
 
 
@@ -445,7 +473,7 @@
 "End string" = "Endzeichenkette";
 "Regular expression" = "Regulärer Ausdruck";
 "The same word is registered multiple times." = "Mehrfach registriert.";
-"Regular Expression Error: " = "Regulärer Ausdruck Fehler: ";
+"Regular Expression: " = "Regulärer Ausdruck: ";
 
 
 
@@ -523,6 +551,7 @@
 "The parent directory name of dropped file." = "Der übergeordnete Ordnername der abgelegten Datei.";
 "(If the dropped file is an image) image width." = "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).";
 "(If the dropped file is an image) image height." = "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).";
+"(If the dropped file is a text file) file content." = "(nur wenn die abgelegte Datei eine Textdatai ist) Der Inhalt.";
 
 
 

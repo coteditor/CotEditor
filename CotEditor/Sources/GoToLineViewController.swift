@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,50 +27,38 @@ import Cocoa
 
 final class GoToLineViewController: NSViewController {
     
+    // MARK: Public Properties
+    
+    var textView: NSTextView? {
+        
+        didSet {
+            guard let textView = textView else { return }
+            
+            let string = textView.string
+            let lineNumber = string.lineNumber(at: textView.selectedRange.location)
+            let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
+            
+            self.location = String(lineNumber)
+            if lineCount > 1 {
+                self.location += ":" + String(lineCount)
+            }
+        }
+    }
+    
+    
     // MARK: Private Properties
     
-    private let textView: NSTextView
     @objc private dynamic var location: String = ""
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    required init?(textView: NSTextView) {
-        
-        self.textView = textView
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        let string = self.textView.string
-        let lineNumber = string.lineNumber(at: textView.selectedRange.location)
-        let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
-        
-        self.location = String(lineNumber)
-        if lineCount > 1 {
-            self.location += ":" + String(lineCount)
-        }
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("GoToLineView")
-    }
-    
-    
-    
     // MARK: Action Messages
     
     /// apply
     @IBAction func ok(_ sender: Any?) {
+        
+        self.endEditing()
         
         guard self.selectLocation() else {
             NSSound.beep()
@@ -87,17 +75,18 @@ final class GoToLineViewController: NSViewController {
     /// select location in textView
     private func selectLocation() -> Bool {
         
-        let loclen = self.location.components(separatedBy: ":")
+        let loclen = self.location.components(separatedBy: ":").map { Int($0) }
         
-        guard let location = Int(loclen[0]),
-              let length = (loclen.count > 1) ? Int(loclen[1]) : 0 else { return false }
+        guard
+            let location = loclen[0],
+            let length = (loclen.count > 1) ? loclen[1] : 0,
+            let textView = self.textView,
+            let range = textView.string.rangeForLine(location: location, length: length)
+            else { return false }
         
-        let string = self.textView.string
-        guard let range = string.rangeForLine(location: location, length: length) else { return false }
-        
-        self.textView.selectedRange = range
-        self.textView.scrollRangeToVisible(range)
-        self.textView.showFindIndicator(for: range)
+        textView.selectedRange = range
+        textView.scrollRangeToVisible(range)
+        textView.showFindIndicator(for: range)
         
         return true
     }

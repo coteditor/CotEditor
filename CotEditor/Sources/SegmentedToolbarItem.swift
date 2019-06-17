@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -35,6 +35,8 @@ final class SegmentedToolbarItem: ControlToolbarItem {
     // MARK: Toolbar Item Methods
     
     override func awakeFromNib() {
+        
+        super.awakeFromNib()
         
         // set menu for "Text Only" mode
         let item = NSMenuItem()
@@ -64,6 +66,8 @@ final class SegmentedToolbarItem: ControlToolbarItem {
             let isValid: Bool = {
                 switch validator {
                 case let validator as NSUserInterfaceValidations:
+                    return validator.validateUserInterfaceItem(item)
+                case _ where validator.responds(to: #selector(NSUserInterfaceValidations.validateUserInterfaceItem)):  // workaround for macOS 10.12 and earier
                     return validator.validateUserInterfaceItem(item)
                 default:
                     return validator.validateMenuItem(item)

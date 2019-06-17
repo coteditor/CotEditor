@@ -1,5 +1,5 @@
 //
-// AppearancePane.strings (Portuguese)
+// PreferencesWindow.strings (Portuguese)
 // 
 // CotEditor
 // https://coteditor.com
@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018 1024jp
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,41 +24,24 @@
 // limitations under the License.
 //
 
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
-"6.title" = "Preferências";
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "KjF-xP-N55"; */
+"KjF-xP-N55.title" = "Preferências";
 
-/* Class = "NSToolbarItem"; label = "General"; ObjectID = "HlR-fr-Hwd"; */
-"HlR-fr-Hwd.label" = "Geral";
-"HlR-fr-Hwd.paletteLabel" = "Geral";
-
-/* Class = "NSToolbarItem"; label = "Window"; ObjectID = "agm-iM-Y3j"; */
-"agm-iM-Y3j.label" = "Janela";
-"agm-iM-Y3j.paletteLabel" = "Janela";
-
-/* Class = "NSToolbarItem"; label = "Appearance"; ObjectID = "TSL-LZ-a98"; */
-"TSL-LZ-a98.label" = "Aparência";
-"TSL-LZ-a98.paletteLabel" = "Aparência";
-
-/* Class = "NSToolbarItem"; label = "Edit"; ObjectID = "bYW-oU-kKx"; */
-"bYW-oU-kKx.label" = "Edição";
-"bYW-oU-kKx.paletteLabel" = "Edição";
-
-/* Class = "NSToolbarItem"; label = "Format"; ObjectID = "Pxf-UL-fD9"; */
-"Pxf-UL-fD9.label" = "Formato";
-"Pxf-UL-fD9.paletteLabel" = "Formato";
-
-/* Class = "NSToolbarItem"; label = "File Drop"; ObjectID = "0c4-Jh-Er6"; */
-"0c4-Jh-Er6.label" = "Arquivos Soltos";
-"0c4-Jh-Er6.paletteLabel" = "Arquivos Soltos";
-
-/* Class = "NSToolbarItem"; label = "Key Bindings"; ObjectID = "WSf-8J-dN6"; */
-"WSf-8J-dN6.label" = "Atalhos";
-"WSf-8J-dN6.paletteLabel" = "Atalhos";
-
-/* Class = "NSToolbarItem"; label = "Print"; ObjectID = "uTl-fL-Jcq"; */
-"uTl-fL-Jcq.label" = "Impressão";
-"uTl-fL-Jcq.paletteLabel" = "Impressão";
-
-/* Class = "NSToolbarItem"; label = "Integration"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.label" = "Integração";
-"Bn7-e8-FVC.paletteLabel" = "Integração";
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
+"CNJ-6L-fga.label" = "Geral";
+/* Class = "NSTabViewItem"; label = "Window"; ObjectID = "5fL-58-BrZ"; */
+"5fL-58-BrZ.label" = "Janela";
+/* Class = "NSTabViewItem"; label = "Appearance"; ObjectID = "icK-P1-6ta"; */
+"icK-P1-6ta.label" = "Aparência";
+/* Class = "NSTabViewItem"; label = "Edit"; ObjectID = "sh3-xI-elX"; */
+"sh3-xI-elX.label" = "Edição";
+/* Class = "NSTabViewItem"; label = "Format"; ObjectID = "frU-Pc-xZT"; */
+"frU-Pc-xZT.label" = "Formato";
+/* Class = "NSTabViewItem"; label = "File Drop"; ObjectID = "aO6-oS-ZGt"; */
+"aO6-oS-ZGt.label" = "Arquivos Soltos";
+/* Class = "NSTabViewItem"; label = "Key Bindings"; ObjectID = "b8q-WN-1ls"; */
+"b8q-WN-1ls.label" = "Atalhos";
+/* Class = "NSTabViewItem"; label = "Print"; ObjectID = "UuB-iq-kOt"; */
+"UuB-iq-kOt.label" = "Impressão";
+/* Class = "NSTabViewItem"; label = "Integration"; ObjectID = "gEv-qP-tRM"; */
+"gEv-qP-tRM.label" = "Integração";

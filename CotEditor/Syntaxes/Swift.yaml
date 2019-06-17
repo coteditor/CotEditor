@@ -1,18 +1,19 @@
 extensions:
 - keyString: "swift"
+- keyString: "swiftinterface"
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "4.0.0"
-  description: "Based on Swift 4.1"
+  version: "4.2.0"
+  description: "Based on Swift 5.1"
   license: "Same as CotEditor"
-  lastModified: "2018-03-07"
+  lastModified: "2019-05-24"
 outlineMenu:
 - beginString: "//[ \\t]*(MARK:|TODO:|FIXME)[ \\t](.+)"
   keyString: "$2"
   description: "MARK/TODO/FIXME"
   bold: true
-- beginString: "^([ \\t]*)(@IBAction )?(override )?(?:open|public|internal|private)?(class )?func[ \\t]*(\\w*)\\((.*)\\)"
+- beginString: "^([ \\t]*)(@IBAction )?(override )?(open|public|internal|private)?(class )?func[ \\t]*(\\w*)\\((.*)\\)"
   keyString: "$1$2$3$4$5func $6($7)"
   description: "function"
 - beginString: "^([ \\t]*)(?:[a-z]* )*class[ \\t]+(\\w+)(?=[\\s:][^\\w])"
@@ -27,6 +28,7 @@ outlineMenu:
   description: "initializer"
 - beginString: "^([ \\t]*)(?:[a-z]* )*enum[ \\t]+(\\w+)"
   keyString: "$1enum $2"
+  bold: true
   description: "enum"
 - beginString: "^([ \\t]*)(?:[a-z]* )*extension[ \\t]+(\\w+)"
   keyString: "$1extension $2"
@@ -39,6 +41,7 @@ outlineMenu:
   italic: true
 - beginString: "^([ \\t]*)(?:[a-z]* )*struct[ \\t]+(\\w+)"
   keyString: "$1struct $2"
+  bold: true
   description: "struct"
 completions: []
 attributes:
@@ -46,12 +49,15 @@ attributes:
 - beginString: "@available"
 - beginString: "@convention"
 - beginString: "@discardableResult"
+- beginString: "@dynamicCallable"
+- beginString: "@dynamicMemberLookup"
 - beginString: "@escaping"
 - beginString: "@GKInspectable"
 - beginString: "@IBAction"
 - beginString: "@IBDesignable"
 - beginString: "@IBInspectable"
 - beginString: "@IBOutlet"
+- beginString: "@inlinable"
 - beginString: "@inline"
 - beginString: "@noescape"
 - beginString: "@nonobjc"
@@ -66,6 +72,8 @@ attributes:
 - beginString: "@requires_stored_property_inits"
 - beginString: "@testable"
 - beginString: "@UIApplicationMain"
+- beginString: "@unknown"
+- beginString: "@usableFromInline"
 - beginString: "@warn_unqualified_access"
 - beginString: "@warn_unused_result"
 characters:
@@ -129,6 +137,7 @@ types:
 - beginString: "Bool"
 - beginString: "BooleanLiteralConvertible"
 - beginString: "BooleanType"
+- beginString: "CaseIterable"
 - beginString: "Character"
 - beginString: "ClosedInterval"
 - beginString: "CollectionOfOne"
@@ -146,8 +155,6 @@ types:
 - beginString: "Dictionary"
 - beginString: "DictionaryGenerator"
 - beginString: "DictionaryIndex"
-- beginString: "DictionaryLiteral"
-- beginString: "DictionaryLiteralConvertible"
 - beginString: "Double"
 - beginString: "EmptyCollection"
 - beginString: "EmptyGenerator"
@@ -155,6 +162,7 @@ types:
 - beginString: "EnumerateSequence"
 - beginString: "Equatable"
 - beginString: "ErrorType"
+- beginString: "ExpressibleByDictionaryLiteral"
 - beginString: "ExtendedGraphemeClusterLiteralConvertible"
 - beginString: "FlattenBidirectionalCollection"
 - beginString: "FlattenBidirectionalCollectionIndex"
@@ -186,6 +194,7 @@ types:
 - beginString: "IntervalType"
 - beginString: "JoinGenerator"
 - beginString: "JoinSequence"
+- beginString: "KeyValuePairs"
 - beginString: "LazyCollection"
 - beginString: "LazyCollectionType"
 - beginString: "LazyFilterCollection"
@@ -201,8 +210,10 @@ types:
 - beginString: "ManagedBufferPointer"
 - beginString: "ManagedProtoBuffer"
 - beginString: "Mirror"
-- beginString: "Mirror.AncestorRepresentation"
-- beginString: "Mirror.DisplayStyle"
+- beginString: "(?<=Mirror\\.)AncestorRepresentation\\b"
+  regularExpression: true
+- beginString: "(?<=Mirror\\.)ADisplayStyle\\b"
+  regularExpression: true
 - beginString: "MirrorPathType"
 - beginString: "MutableCollectionType"
 - beginString: "MutableIndexable"
@@ -224,6 +235,7 @@ types:
 - beginString: "RawByte"
 - beginString: "RawRepresentable"
 - beginString: "Repeat"
+- beginString: "Result"
 - beginString: "ReverseCollection"
 - beginString: "ReverseIndex"
 - beginString: "ReverseIndexType"
@@ -246,15 +258,22 @@ types:
 - beginString: "StrideTo"
 - beginString: "StrideToGenerator"
 - beginString: "String"
-- beginString: "String.CharacterView"
-- beginString: "String.CharacterView.Index"
-- beginString: "String.UnicodeScalarView"
-- beginString: "String.UnicodeScalarView.Generator"
-- beginString: "String.UnicodeScalarView.Index"
-- beginString: "String.UTF16View"
-- beginString: "String.UTF16View.Index"
-- beginString: "String.UTF8View"
-- beginString: "String.UTF8View.Index"
+- beginString: "(?<=String\\.)Index\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.)UnicodeScalarView\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UnicodeScalarView\\.)Generator\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UnicodeScalarView\\.)Index\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.)UTF16View\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UTF16View\\.)Index\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.)UTF8View\\b"
+  regularExpression: true
+- beginString: "(?<=String\\.UTF8View\\.)Index\\b"
+  regularExpression: true
 - beginString: "StringInterpolationConvertible"
 - beginString: "StringLiteralConvertible"
 - beginString: "Substring"
@@ -293,6 +312,10 @@ numbers:
 strings:
 - beginString: "\""
   endString: "\""
+- beginString: "#\""
+  endString: "\"#"
+- beginString: "##\""
+  endString: "\"##"
 keywords:
 - beginString: "_"
 - beginString: "#available"
@@ -301,6 +324,7 @@ keywords:
 - beginString: "#else"
 - beginString: "#elseif"
 - beginString: "#endif"
+- beginString: "#error"
 - beginString: "#file"
 - beginString: "#fileLiteral"
 - beginString: "#function"
@@ -310,6 +334,7 @@ keywords:
 - beginString: "#line"
 - beginString: "#selector"
 - beginString: "#sourceLocation"
+- beginString: "#warning"
 - beginString: "as"
 - beginString: "assignment"
 - beginString: "associatedtype"
@@ -373,6 +398,7 @@ keywords:
 - beginString: "right"
 - beginString: "safe"
 - beginString: "set"
+- beginString: "some"
 - beginString: "static"
 - beginString: "struct"
 - beginString: "subscript"

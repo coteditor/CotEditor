@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -65,6 +65,7 @@ final class ThemeViewController: NSViewController {
     // MARK: Private Properties
     
     private var storedMetadata: NSDictionary?
+    private var observedKeys: Set<String> = []
     
     
     
@@ -73,6 +74,30 @@ final class ThemeViewController: NSViewController {
     
     deinit {
         self.endThemeObserving()
+    }
+    
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+    }
+    
+    
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        // workaround for macOS 10.12 where NSColorWell do not update while the view is hidden
+        // (2019-01 macOS 10.14)
+        if NSAppKitVersion.current < .macOS10_13 {
+            let theme = self.theme
+            self.theme = nil
+            self.theme = theme
+        }
     }
     
     
@@ -91,6 +116,8 @@ final class ThemeViewController: NSViewController {
     /// send data to metadata popover
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
+        super.prepare(for: segue, sender: sender)
+        
         guard let destinationController = segue.destinationController as? ThemeMetaDataViewController else { return }
         
         destinationController.representedObject = self.theme
@@ -100,7 +127,7 @@ final class ThemeViewController: NSViewController {
     
     
     /// metadata popover closed
-    override func dismissViewController(_ viewController: NSViewController) {
+    override func dismiss(_ viewController: NSViewController) {
         
         if viewController is ThemeMetaDataViewController,
             self.storedMetadata != self.theme?[DictionaryKey.metadata.rawValue]
@@ -108,29 +135,20 @@ final class ThemeViewController: NSViewController {
             self.notifyUpdate()
         }
         
-        super.dismissViewController(viewController)
+        super.dismiss(viewController)
     }
     
     
     /// theme is modified
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        self.notifyUpdate()
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// apply system highlight color to color well
-    @IBAction func applySystemSelectionColor(_ button: NSButton) {
-        
-        guard button.state == .on else { return }
-        
-        let color = NSColor.selectedTextBackgroundColor
-        let colorCode = color.usingColorSpaceName(.calibratedRGB)?.colorCode(type: .hex)
-        
-        self.theme?[Theme.CodingKeys.selection.rawValue]?[Theme.SelectionStyle.CodingKeys.color.rawValue] = colorCode
+        switch keyPath {
+        case let keyPath? where self.observedKeys.contains(keyPath):
+            self.notifyUpdate()
+            
+        default:
+            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+        }
     }
     
     
@@ -156,11 +174,13 @@ final class ThemeViewController: NSViewController {
         
         guard let theme = self.theme else { return }
         
+        self.observedKeys.removeAll()
         for (key, subdict) in theme {
             guard key != DictionaryKey.metadata.rawValue else { continue }
             
             for case let keyPath as String in subdict.allKeys {
                 subdict.addObserver(self, forKeyPath: keyPath, context: nil)
+                self.observedKeys.update(with: keyPath)
             }
         }
     }
@@ -171,6 +191,7 @@ final class ThemeViewController: NSViewController {
         
         guard let theme = self.theme else { return }
         
+        self.observedKeys.removeAll()
         for (key, subdict) in theme {
             guard key != DictionaryKey.metadata.rawValue else { continue }
             

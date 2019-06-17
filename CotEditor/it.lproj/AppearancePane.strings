@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,6 +43,15 @@
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "Modifica colore di sfondo";
 
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
+"NIq-Tj-KWB.title" = "Cursore:";
+/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
+"cnD-9F-CR4.title" = "Barra";
+/* Class = "NSButtonCell"; title = "Thick bar"; ObjectID = "rM6-JW-wau"; */
+"rM6-JW-wau.title" = "Barra spessa";
+/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
+"YG7-Y7-xzs.title" = "Riquadro";
+
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
 "oAZ-6U-Ba8.title" = "Invisibili:";
@@ -52,11 +61,11 @@
 "gcF-OM-SV0.title" = "Spazio";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
 "XSb-uU-5QP.title" = "Tab";
-/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "Ont-7L-Uf5"; */
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
 "Ont-7L-Uf5.title" = "Termine riga";
-/* Class = "NSButtonCell"; title = "Full-width Space"; ObjectID = "Bf2-rS-2zu"; */
+/* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
 "Bf2-rS-2zu.title" = "A tutta ampiezza";
-/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "sxg-F3-ely"; */
+/* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Altri caratteri invisibili";
 
 

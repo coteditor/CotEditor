@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,8 +68,10 @@ extension String {
         
         guard !self.canBeConverted(to: encoding) else { return [] }
         
-        let data = self.data(using: encoding, allowLossyConversion: true)!  // lossy conversion must success
-        let convertedString = String(data: data, encoding: encoding)!
+        guard
+            let data = self.data(using: encoding, allowLossyConversion: true),  // lossy conversion must always success
+            let convertedString = String(data: data, encoding: encoding)
+            else { assertionFailure(); return [] }
         
         guard convertedString.count == self.count else {
             // detect incompatible chars using Differ
@@ -82,13 +84,11 @@ extension String {
                 }
                 .map { (offset) in
                     let index = self.index(self.startIndex, offsetBy: offset)
-                    let location = index.samePosition(in: self.utf16)!.encodedOffset
+                    let location = NSRange(index..<index, in: self).location
                     let character = self[index]
-                    let converted: String? = {
-                        guard let data = String(character).data(using: encoding, allowLossyConversion: true) else { return nil }
-                        
-                        return String(data: data, encoding: encoding)
-                    }()
+                    let converted: String? = String(character)
+                        .data(using: encoding, allowLossyConversion: true)
+                        .flatMap { String(data: $0, encoding: encoding) }
                     
                     return IncompatibleCharacter(character: character,
                                                  convertedCharacter: converted,
@@ -101,7 +101,7 @@ extension String {
             .filter { $1.0 != $1.1 }
             .map { (index, characters) -> IncompatibleCharacter in
                 let (original, converted) = characters
-                let location = index.samePosition(in: self.utf16)!.encodedOffset
+                let location = NSRange(index..<index, in: self).location
                 
                 return IncompatibleCharacter(character: original,
                                              convertedCharacter: (original == "¥" && encoding.canConvertYenSign) ? "\\" : String(converted),

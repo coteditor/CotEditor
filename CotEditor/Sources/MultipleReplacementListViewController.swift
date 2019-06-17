@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,11 +26,11 @@
 import Cocoa
 import AudioToolbox
 
-final class MultipleReplacementListViewController: NSViewController, MultipleReplacementPanelViewControlling {
+final class MultipleReplacementListViewController: NSViewController, NSMenuItemValidation, MultipleReplacementPanelViewControlling {
     
     // MARK: Private Properties
     
-    fileprivate var settingNames = [String]()
+    private var settingNames = [String]()
     
     @IBOutlet private weak var tableView: NSTableView?
     
@@ -59,21 +59,28 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
                 NSAlert(error: error).beginSheetModal(for: self.view.window!)
             }
         }
-        self.tableView?.selectRowIndexes(IndexSet(integer: 0), byExtendingSelection: false)
+        
+        // select an item in list
+        let row: Int = {
+            guard
+                let lastSelectedName = UserDefaults.standard[.selectedMultipleReplacementSettingName],
+                let row = self.settingNames.firstIndex(of: lastSelectedName)
+                else { return 0 }
+            
+            return row
+            }()
+        self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe replacement setting list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
     }
     
     
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-    }
     
+    // MARK: Menu Item Validation
     
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.tableView?.menu)
         
@@ -139,7 +146,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         guard let tableView = self.tableView else { return }
         
         try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
-            let row = ReplacementManager.shared.settingNames.index(of: settingName) ?? 0
+            let row = ReplacementManager.shared.settingNames.firstIndex(of: settingName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
@@ -151,7 +158,11 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         
         guard let settingName = self.targetSettingName(for: sender) else { return }
         
-        try? ReplacementManager.shared.duplicateSetting(name: settingName)
+        do {
+            try ReplacementManager.shared.duplicateSetting(name: settingName)
+        } catch {
+            self.presentError(error)
+        }
     }
     
     
@@ -160,7 +171,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         
         guard
             let settingName = self.targetSettingName(for: sender),
-            let row = self.settingNames.index(of: settingName)
+            let row = self.settingNames.firstIndex(of: settingName)
             else { return }
         
         self.tableView?.editColumn(0, row: row, with: nil, select: false)
@@ -186,12 +197,16 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = "Export As:".localized
         savePanel.nameFieldStringValue = settingName
-        savePanel.allowedFileTypes = []
+        savePanel.allowedFileTypes = ReplacementManager.shared.filePathExtensions
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!)
+            do {
+                try ReplacementManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            } catch {
+                self.presentError(error)
+            }
         }
     }
     
@@ -237,7 +252,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
     // MARK: Private Methods
     
     /// return setting name which is currently selected in the list table
-    fileprivate var selectedSettingName: String? {
+    private var selectedSettingName: String? {
         
         let index = self.tableView?.selectedRow ?? 0
         
@@ -256,7 +271,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
     
     
     /// try to delete given setting
-    fileprivate func deleteSetting(name: String) {
+    private func deleteSetting(name: String) {
         
         let alert = NSAlert()
         alert.messageText = String(format: "Are you sure you want to delete “%@”?".localized, name)
@@ -265,7 +280,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         alert.addButton(withTitle: "Delete".localized)
         
         let window = self.view.window!
-        alert.beginSheetModal(for: window) { (returnCode: NSApplication.ModalResponse) in
+        alert.beginSheetModal(for: window) { [unowned self] (returnCode: NSApplication.ModalResponse) in
             guard returnCode == .alertSecondButtonReturn else { return }  // cancelled
             
             do {
@@ -289,7 +304,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
     
     
     /// try to import setting file at given URL
-    fileprivate func importSetting(fileURL: URL) {
+    private func importSetting(fileURL: URL) {
         
         do {
             try ReplacementManager.shared.importSetting(fileURL: fileURL)
@@ -310,7 +325,7 @@ final class MultipleReplacementListViewController: NSViewController, MultipleRep
         self.tableView?.reloadData()
         
         if let settingName = settingName,
-            let row = self.settingNames.index(of: settingName)
+            let row = self.settingNames.firstIndex(of: settingName)
         {
             self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
@@ -369,7 +384,7 @@ extension MultipleReplacementListViewController: NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
                                                    .urlReadingContentsConformToTypes: [DocumentType.replacement.UTType]])
@@ -429,6 +444,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
             else { return }
         
         self.mainViewController?.change(setting: setting)
+        UserDefaults.standard[.selectedMultipleReplacementSettingName] = settingName
     }
     
 }

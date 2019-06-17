@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,16 +37,11 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: Public Properties
     
-     weak var target: NSTextView? {
+     var target: NSTextView? {
         
         // keep LayoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
-        get {
-            return _layoutManager?.firstTextView
-        }
-        
-        set {
-            _layoutManager = newValue?.layoutManager
-        }
+        get { return _layoutManager?.firstTextView }
+        set { _layoutManager = newValue?.layoutManager }
     }
     private weak var _layoutManager: NSLayoutManager?
     
@@ -64,6 +59,16 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: -
     // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("find result".localized)
+    }
     
     /// prepare for display
     override func viewWillAppear() {
@@ -108,7 +113,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             // truncate
             let leadingOverflow = result.inlineRange.location - maxLeftMargin
             if leadingOverflow > 0 {
-                lineAttrString.replaceCharacters(in: NSRange(0..<leadingOverflow), with: "…")
+                lineAttrString.replaceCharacters(in: NSRange(..<leadingOverflow), with: "…")
             }
             if lineAttrString.length > maxMatchedStringLength {
                 lineAttrString.replaceCharacters(in: NSRange(maxMatchedStringLength..<lineAttrString.length), with: "…")
@@ -117,7 +122,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             // truncate tail
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.lineBreakMode = .byTruncatingTail
-            lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.string.nsRange)
+            lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.range)
             
             return lineAttrString
         }
@@ -135,7 +140,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         self.results = results
         
         let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
-        self.resultMessage = {
+        let resultMessage: String = {
             switch results.count {
             case 0:
                 return String(format: "No strings found in “%@”.".localized, documentName)
@@ -146,6 +151,12 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
                 return String(format: "Found %@ strings in “%@”.".localized, countStr, documentName)
             }
         }()
+        self.resultMessage = resultMessage
+        
+        // feedback for VoiceOver
+        if let findPanel = self.view.window {
+            NSAccessibility.post(element: findPanel, notification: .announcementRequested, userInfo: [.announcement: resultMessage])
+        }
         
         self.tableView?.reloadData()
     }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,10 +30,7 @@ extension MultipleReplacement {
     /// highlight all matches in the textView
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
-        guard
-            let textView = TextFinder.shared.client, textView.isEditable,
-            textView.window?.attachedSheet == nil
-            else {
+        guard let textView = TextFinder.shared.client else {
                 NSSound.beep()
                 return
             }
@@ -45,13 +42,14 @@ extension MultipleReplacement {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: "Highlight".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: "Highlight".localized)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
             
-            let result = strongSelf.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
+            let result = self.find(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
@@ -83,12 +81,9 @@ extension MultipleReplacement {
                     progress.localizedDescription = "Not Found".localized
                 }
                 
-                let resultMessage: String = {
-                    guard !result.isEmpty else { return "Not Found".localized }
-                    
-                    return String(format: "%@ found".localized,
-                                  String.localizedStringWithFormat("%li", result.count))
-                }()
+                let resultMessage = !result.isEmpty
+                    ? String(format: "%@ found".localized, String.localizedStringWithFormat("%li", result.count))
+                    : "Not Found".localized
                 
                 indicator.done()
                 
@@ -120,13 +115,14 @@ extension MultipleReplacement {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: "Replace All".localized)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
             
-            let result = strongSelf.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
+            let result = self.replace(string: string, ranges: selectedRanges, inSelection: inSelection) { (stop) in
                 guard !progress.isCancelled else {
                     stop = true
                     return
@@ -153,12 +149,9 @@ extension MultipleReplacement {
                     progress.localizedDescription = "Not Found".localized
                 }
                 
-                let resultMessage: String = {
-                    guard result.count > 0 else { return "Not Replaced".localized }
-                    
-                    return String(format: "%@ replaced".localized,
-                                  String.localizedStringWithFormat("%li", result.count))
-                }()
+                let resultMessage = (result.count > 0)
+                    ? String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", result.count))
+                    : "Not Replaced".localized
                 
                 indicator.done()
                 

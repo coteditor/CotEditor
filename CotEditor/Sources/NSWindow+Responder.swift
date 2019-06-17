@@ -56,9 +56,10 @@ extension NSWindow {
 extension NSViewController {
     
     /// end current editing and restore the current responder afterwards
-    func endEditing() {
+    @discardableResult
+    func endEditing() -> Bool {
         
-        self.view.window?.endEditing()
+        return self.view.window?.endEditing() ?? false
     }
     
 }

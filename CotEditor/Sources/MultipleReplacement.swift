@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,73 +31,34 @@ final class MultipleReplacement: Codable {
         
         var findString: String
         var replacementString: String
-        var usesRegularExpression: Bool
-        var ignoresCase: Bool
-        var isEnabled = true
+        var usesRegularExpression: Bool = false
+        var ignoresCase: Bool = false
         var description: String?
-        
-        
-        init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, description: String? = nil, isEnabled: Bool = true) {
-            
-            self.findString = findString
-            self.replacementString = replacementString
-            self.ignoresCase = ignoresCase
-            self.usesRegularExpression = usesRegularExpression
-            self.description = description
-            self.isEnabled = isEnabled
-        }
-        
-        
-        init() {
-            
-            self.findString = ""
-            self.replacementString = ""
-            self.ignoresCase = false
-            self.usesRegularExpression = false
-        }
+        var isEnabled = true
     }
     
     
-    struct Settings {
+    struct Settings: Equatable {
         
-        var textualOptions: NSString.CompareOptions
-        var regexOptions: NSRegularExpression.Options
-        var unescapesReplacementString: Bool
-        
-        
-        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], unescapesReplacementString: Bool = true) {
-            
-            self.textualOptions = textualOptions
-            self.regexOptions = regexOptions
-            self.unescapesReplacementString = unescapesReplacementString
-        }
+        var textualOptions: NSString.CompareOptions = []
+        var regexOptions: NSRegularExpression.Options = [.anchorsMatchLines]
+        var matchesFullWord: Bool = false
+        var unescapesReplacementString: Bool = true
     }
     
     
-    
-    var replacements: [Replacement]
-    var settings: Settings
-    
-    
-    init(replacements: [Replacement] = [], settings: Settings = Settings()) {
-        
-        self.replacements = replacements
-        self.settings = settings
-    }
-    
+    var replacements: [Replacement] = []
+    var settings: Settings = .init()
 }
 
 
 
-// MARK: - Equatable
-
-extension MultipleReplacement.Settings: Equatable {
+extension MultipleReplacement.Replacement {
     
-    static func == (lhs: MultipleReplacement.Settings, rhs: MultipleReplacement.Settings) -> Bool {
+    init() {
         
-        return lhs.textualOptions == rhs.textualOptions &&
-            lhs.regexOptions == rhs.regexOptions &&
-            lhs.unescapesReplacementString == rhs.unescapesReplacementString
+        self.findString = ""
+        self.replacementString = ""
     }
 }
 
@@ -241,7 +202,7 @@ private extension MultipleReplacement.Replacement {
         } else {
             let options = settings.textualOptions.union(self.ignoresCase ? [.caseInsensitive] : [])
             
-            return .textual(options: options)
+            return .textual(options: options, fullWord: settings.matchesFullWord)
         }
     }
     
@@ -253,20 +214,20 @@ private extension MultipleReplacement.Replacement {
 
 extension MultipleReplacement.Replacement {
     
-    /// check if replacement rule is valid
+    /// Check if replacement rule is valid.
     ///
-    /// - Throws: TextFindError
+    /// - Throws: `TextFind.Error`
     func validate(regexOptions: NSRegularExpression.Options = []) throws {
         
         guard !self.findString.isEmpty else {
-            throw TextFindError.emptyFindString
+            throw TextFind.Error.emptyFindString
         }
         
         if self.usesRegularExpression {
             do {
                 _ = try NSRegularExpression(pattern: self.findString, options: regexOptions)
             } catch {
-                throw TextFindError.regularExpression(reason: error.localizedDescription)
+                throw TextFind.Error.regularExpression(reason: error.localizedDescription)
             }
         }
     }

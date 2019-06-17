@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2017 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@
  limitations under the License.
  
  */
+
+// Descriptions for privacy authorization dialog
+"NSAppleEventsUsageDescription" = "CotEditor ha bisogno dell'autorizzazione per controllare altre applicazioni tramite AppleScript.";  // "CotEditor needs user approval to control other applications with AppleScript."
 
 // Document Types
 "Text document" = "Documento di testo";
@@ -53,6 +56,7 @@
 "JavaScript" = "JavaScript";
 "JSON" = "JSON";
 "Julia script" = "Script Julia";
+"Kotlin source" = "Codice Kotlin";
 "Lisp script" = "Script Lisp";
 "Lua script" = "Script Lua";
 "Markdown document" = "Documento Markdown";

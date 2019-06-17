@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,16 +29,27 @@ extension NSTextView {
     
     func insert(snippet: Snippet) {
         
-        let range = self.rangeForUserTextChange
+        guard !snippet.string.isEmpty else { return }
         
-        guard self.shouldChangeText(in: range, replacementString: snippet.string) else { return }
+        let ranges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
+        let strings = [String](repeating: snippet.string, count: ranges.count)
         
-        self.replaceCharacters(in: range, with: snippet.string)
-        self.didChangeText()
-        if let selection = snippet.selection {
-            self.selectedRange = NSRange(location: range.location + selection.location, length: selection.length)
-        }
-        self.undoManager?.setActionName("Insert Snippet".localized)
+        let selectedRanges: [NSRange]? = {
+            guard let selection = snippet.selection else { return nil }
+            
+            let snippetLength = (snippet.string as NSString).length
+            return ranges.map { range in
+                let offset = ranges
+                    .prefix { $0 != range }
+                    .map { snippetLength - $0.length }
+                    .reduce(range.location, +)
+
+                return selection.shifted(offset: offset)
+            }
+        }()
+        
+        self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
+        
     }
     
 }

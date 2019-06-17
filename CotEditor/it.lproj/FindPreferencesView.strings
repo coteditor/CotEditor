@@ -43,6 +43,11 @@
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "d1L-6X-N8c"; */
 "d1L-6X-N8c.title" = "Ricerca testuale";
 
+/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "Na3-Ur-cf8"; */
+"Na3-Ur-cf8.title" = "Solo parole intere";
+/* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "eqE-mg-d9b"; */
+"eqE-mg-d9b.ibShadowedToolTip" = "Limita i risultati della ricerca alle parole intere.";
+
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "mY4-am-wla"; */
 "mY4-am-wla.title" = "Distingui i caratteri con precisione";
 /* Class = "NSButton"; ibShadowedToolTip = "Exact character-by-character equivalence."; ObjectID = "KG4-LQ-sen"; */

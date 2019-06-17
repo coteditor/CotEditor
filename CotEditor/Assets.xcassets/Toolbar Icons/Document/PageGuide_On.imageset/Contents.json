@@ -1,0 +1,49 @@
+{
+  "images" : [
+    {
+      "idiom" : "universal",
+      "filename" : "PageGuide_On.pdf"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "PageGuide_OnDark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "PageGuide_OnHighContrast.pdf",
+      "appearances" : [
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ]
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "PageGuide_OnHighContrastDark.pdf",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        },
+        {
+          "appearance" : "contrast",
+          "value" : "high"
+        }
+      ]
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
+  }
+}

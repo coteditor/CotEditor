@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2019 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -35,9 +35,6 @@
 "10Z-Xd-CLV.title" = "Automaticamente";
 /* Class = "NSMenuItem"; title = "Manually"; ObjectID = "o1f-vR-aFm"; */
 "o1f-vR-aFm.title" = "Manualmente";  // The same as the popup menu selection in the System Preferences > "Dock"
-
-/* Class = "NSTextFieldCell"; title = "(Only on Sierra and later)"; ObjectID = "AaA-Nm-2CL"; */
-"AaA-Nm-2CL.title" = "(apenas no Sierra e posteriores)";
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
@@ -76,6 +73,16 @@
 "Bj6-2A-Nxj.title" = "Horizontal";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "sQC-O4-YON"; */
 "sQC-O4-YON.title" = "Vertical";
+
+
+/* Class = "NSTextFieldCell"; title = "Writing Direction:"; ObjectID = "RwN-73-I8c"; */
+"RwN-73-I8c.title" = "Direção da escrita:";
+/* Class = "NSButtonCell"; title = "Left to right"; ObjectID = "3Kb-bF-CW0"; */
+"3Kb-bF-CW0.title" = "Da esquerda para a direita";
+/* Class = "NSButtonCell"; title = "Right to left"; ObjectID = "USo-8p-Edc"; */
+"USo-8p-Edc.title" = "Da direita para a esquerda";
+/* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
+"Ge8-vU-lyg.title" = "Vertical";
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
 "7Nz-lv-JZb.title" = "Rolagem extra:";

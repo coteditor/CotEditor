@@ -30,11 +30,9 @@ extension FourCharCode {
     init(code string: String) {
         
         assert(string.utf16.count == 4, "FourCharCode must be made from 4 ASCII characters.")
-        assert(string.utf16.filter({ $0 > 0xFF }).isEmpty, "FourCharCode must contain only ASCII characters.")
+        assert(string.utf16.allSatisfy { $0 <= 0xFF }, "FourCharCode must contain only ASCII characters.")
         
-        self = string.utf16.reduce(0) { (code, character) -> FourCharCode in
-            (code << 8) + FourCharCode(character)
-        }
+        self = string.utf16.reduce(0) { (code, character) in (code << 8) + FourCharCode(character) }
     }
     
 }

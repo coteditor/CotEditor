@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ extension String {
     /// detect indent level of line at the location
     func indentLevel(at index: String.Index, tabWidth: Int) -> Int {
         
-        guard tabWidth > 0 else { return 0 }  // avoid to divide with zero
+        assert(tabWidth > 0)
         
         let indentRange = self.rangeOfIndent(at: index)
         
@@ -129,8 +129,9 @@ extension String {
     /// calculate column number at location in the line expanding tab (\t) character
     func column(of location: Int, tabWidth: Int) -> Int {
         
-        let index = String.UTF16Index(encodedOffset: location).samePosition(in: self)!
+        assert(tabWidth > 0)
         
+        let index = String.Index(utf16Offset: location, in: self)
         let lineRange = self.lineRange(at: index)
         let column = self.distance(from: lineRange.lowerBound, to: index)
         
@@ -167,6 +168,55 @@ extension String {
         }
         
         return indentRange
+    }
+    
+    
+    /// Range for deleting soft-tab or nil if the character to delete is not a space.
+    ///
+    /// - Parameters:
+    ///   - range: The range of selection.
+    ///   - tabWidth: The number of spaces for the soft tab.
+    /// - Returns: Range to delete or nil if the caracter to delete is not soft-tab.
+    func rangeForSoftTabDeletion(in range: NSRange, tabWidth: Int) -> NSRange? {
+        
+        assert(tabWidth > 0)
+        assert(range.location != NSNotFound)
+        
+        guard range.isEmpty else { return nil }
+        
+        let lineRange = (self as NSString).lineRange(at: range.location)
+        let forwardRange = NSRange(lineRange.location..<range.location)
+        guard (self as NSString).range(of: "^ +$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
+        
+        let column = self.column(of: range.location, tabWidth: tabWidth)
+        let targetLength = tabWidth - (column % tabWidth)
+        let targetRange = NSRange((range.location - targetLength)..<range.location)
+        
+        guard
+            range.location >= targetLength,
+            let range = Range(targetRange, in: self),
+            self[range].allSatisfy({ $0 == " " })
+            else { return nil }
+        
+        return targetRange
+    }
+    
+    
+    /// Soft-tab to add.
+    ///
+    /// - Parameters:
+    ///   - location: The location of insertion point.
+    ///   - tabWidth: The number of spaces for the soft tab.
+    /// - Returns: String to insert as the tab.
+    func softTab(at location: Int, tabWidth: Int) -> String {
+        
+        assert(tabWidth > 0)
+        assert(location >= 0)
+        
+        let column = self.column(of: location, tabWidth: tabWidth)
+        let length = tabWidth - (column % tabWidth)
+        
+        return String(repeating: " ", count: length)
     }
     
 }

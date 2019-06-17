@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import Cocoa
 @objc protocol TextFinderClientProvider: AnyObject {
     
     func textFinderClient() -> NSTextView?
-    
 }
 
 
@@ -37,7 +36,6 @@ protocol TextFinderDelegate: AnyObject {
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView)
-    
 }
 
 
@@ -47,7 +45,6 @@ struct TextFindResult {
     var lineNumber: Int
     var attributedLineString: NSAttributedString
     var inlineRange: NSRange
-    
 }
 
 
@@ -55,14 +52,13 @@ private struct HighlightItem {
     
     var range: NSRange
     var color: NSColor
-    
 }
 
 
 
 // MARK: -
 
-final class TextFinder: NSResponder {
+final class TextFinder: NSResponder, NSMenuItemValidation {
     
     static let shared = TextFinder()
     
@@ -82,8 +78,8 @@ final class TextFinder: NSResponder {
     
     // MARK: Private Properties
     
-    private lazy var findPanelController: FindPanelController = NSStoryboard(name: NSStoryboard.Name("FindPanel"), bundle: nil).instantiateInitialController() as! FindPanelController
-    private lazy var multipleReplacementPanelController: NSWindowController = NSStoryboard(name: NSStoryboard.Name("MultipleReplacementPanel"), bundle: nil).instantiateInitialController() as! NSWindowController
+    private lazy var findPanelController = FindPanelController.instantiate(storyboard: "FindPanel")
+    private lazy var multipleReplacementPanelController = NSWindowController.instantiate(storyboard: "MultipleReplacementPanel")
     
     
     
@@ -109,10 +105,10 @@ final class TextFinder: NSResponder {
     
     
     
-    // MARK: Responder Methods
+    // MARK: Menu Item Validation
     
     /// validate menu item
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         guard let action = menuItem.action else { return false }
         
@@ -181,7 +177,7 @@ final class TextFinder: NSResponder {
     
     
     /// activate multiple replacement panel
-    @IBAction func showMultipleReplacementPanel(_ sender: AnyObject?) {
+    @IBAction func showMultipleReplacementPanel(_ sender: Any?) {
         
         self.multipleReplacementPanelController.showWindow(sender)
     }
@@ -215,7 +211,7 @@ final class TextFinder: NSResponder {
     /// select all matched strings
     @IBAction func selectAllMatches(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
         var matchedRanges = [NSRange]()
         textFind.findAll { (matches: [NSRange], _) in
@@ -283,7 +279,7 @@ final class TextFinder: NSResponder {
     /// replace all matched strings with given string
     @IBAction func replaceAll(_ sender: Any?) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: true) else { return }
         
         textView.isEditable = false
         
@@ -291,11 +287,12 @@ final class TextFinder: NSResponder {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
-        let indicator = ProgressViewController(progress: progress, message: "Replace All".localized)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: "Replace All".localized)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
             
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacementString) { (flag, stop) in
                 guard !progress.isCancelled else {
@@ -337,13 +334,13 @@ final class TextFinder: NSResponder {
                 
                 if UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                    if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
                 
                 let count = Int(progress.completedUnitCount)
-                strongSelf.delegate?.textFinder(strongSelf, didReplace: count, textView: textView)
+                self.delegate?.textFinder(self, didReplace: count, textView: textView)
             }
         }
         
@@ -394,11 +391,11 @@ final class TextFinder: NSResponder {
     
     
     /// check Find can be performed and alert if needed
-    private func prepareTextFind() -> (NSTextView, TextFind)? {
+    private func prepareTextFind(forEditing: Bool) -> (NSTextView, TextFind)? {
         
         guard
             let textView = self.client,
-            textView.isEditable
+            (!forEditing || (textView.isEditable && textView.window?.attachedSheet == nil))
             else {
                 NSSound.beep()
                 return nil
@@ -418,7 +415,7 @@ final class TextFinder: NSResponder {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch {
             switch error {
-            case TextFindError.regularExpression:
+            case TextFind.Error.regularExpression:
                 self.findPanelController.showWindow(self)
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
             default: break
@@ -435,10 +432,9 @@ final class TextFinder: NSResponder {
     @discardableResult
     private func find(forward: Bool) -> Int {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return 0 }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
         
-        let result = textFind.find(forward: forward,
-                                   isWrap: UserDefaults.standard[.findIsWrap])
+        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap])
         
         // found feedback
         if let range = result.range {
@@ -446,10 +442,18 @@ final class TextFinder: NSResponder {
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
             
-            if result.wrapped, let view = textView.enclosingScrollView?.superview {
-                let hudController = HUDController(symbol: .wrap)!
-                hudController.isReversed = !forward
-                hudController.show(in: view)
+            if result.wrapped {
+                if let view = textView.enclosingScrollView?.superview {
+                    let hudController = HUDController.instantiate(storyboard: "HUDView")
+                    hudController.symbol = .wrap
+                    hudController.isReversed = !forward
+                    hudController.show(in: view)
+                }
+                
+                if let window = NSApp.mainWindow {
+                    NSAccessibility.post(element: window, notification: .announcementRequested,
+                                         userInfo: [.announcement: "Search wrapped.".localized])
+                }
             }
         } else {
             NSSound.beep()
@@ -468,7 +472,7 @@ final class TextFinder: NSResponder {
     private func replace() -> Bool {
         
         guard
-            let (textView, textFind) = self.prepareTextFind(),
+            let (textView, textFind) = self.prepareTextFind(forEditing: true),
             let result = textFind.replace(with: self.replacementString)
             else { return false }
         
@@ -482,7 +486,7 @@ final class TextFinder: NSResponder {
     /// find all matched strings and apply the result to views
     private func findAll(showsList: Bool, actionName: String) {
         
-        guard let (textView, textFind) = self.prepareTextFind() else { return }
+        guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return }
         
         textView.isEditable = false
         
@@ -491,11 +495,12 @@ final class TextFinder: NSResponder {
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
-        let indicator = ProgressViewController(progress: progress, message: actionName)
-        textView.viewControllerForSheet?.presentViewControllerAsSheet(indicator)
+        let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.setup(progress: progress, message: actionName)
+        textView.viewControllerForSheet?.presentAsSheet(indicator)
         
-        DispatchQueue.global().async { [weak self] in
-            guard let strongSelf = self else { return }
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            guard let self = self else { return }
             
             var highlights = [HighlightItem]()
             var results = [TextFindResult]()  // not used if showsList is false
@@ -508,7 +513,7 @@ final class TextFinder: NSResponder {
                 
                 // highlight
                 highlights += matches.enumerated()
-                    .filter { $0.element.length > 0 }
+                    .filter { !$0.element.isEmpty }
                     .map { HighlightItem(range: $0.element, color: highlightColors[$0.offset]) }
                 
                 // build TextFindResult for table
@@ -525,16 +530,15 @@ final class TextFinder: NSResponder {
                     let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
                     let lineString = (textFind.string as NSString).substring(with: lineRange)
                     let attrLineString = NSMutableAttributedString(string: lineString)
-                    for (index, range) in matches.enumerated() where range.length > 0 {
+                    for (index, range) in matches.enumerated() where !range.isEmpty {
                         let color = highlightColors[index]
-                        let inlineRange = NSRange(location: range.location - lineRange.location, length: range.length)
+                        let inlineRange = range.shifted(offset: -lineRange.location)
                         
                         attrLineString.addAttribute(.backgroundColor, value: color, range: inlineRange)
                     }
                     
                     // calculate inline range
-                    let inlineRange = NSRange(location: matchedRange.location - lineRange.location,
-                                              length: matchedRange.length)
+                    let inlineRange = matchedRange.shifted(offset: -lineRange.location)
                     
                     results.append(TextFindResult(range: matchedRange, lineNumber: lineNumber, attributedLineString: attrLineString, inlineRange: inlineRange))
                 }
@@ -551,9 +555,16 @@ final class TextFinder: NSResponder {
                 }
                 
                 // highlight
-                textView.layoutManager?.removeTemporaryAttribute(.backgroundColor, forCharacterRange: textFind.string.nsRange)
-                for highlight in highlights {
-                    textView.layoutManager?.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                if let layoutManager = textView.layoutManager {
+                    let wholeRange = textFind.string.nsRange
+                    
+                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = true
+                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
+                    for highlight in highlights {
+                        layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                    }
+                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = false
+                    layoutManager.invalidateDisplay(forCharacterRange: wholeRange)
                 }
                 
                 indicator.done()
@@ -564,13 +575,13 @@ final class TextFinder: NSResponder {
                 }
                 
                 if showsList {
-                    strongSelf.delegate?.textFinder(strongSelf, didFinishFindingAll: textFind.findString, results: results, textView: textView)
+                    self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
                 // -> close also if result view has been shown
                 if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
                     indicator.dismiss(nil)
-                    if let panel = strongSelf.findPanelController.window, panel.isVisible {
+                    if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
                     }
                 }
@@ -632,7 +643,7 @@ private extension TextFind.Mode {
             if defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
             if defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
             
-            self = .textual(options: options)
+            self = .textual(options: options, fullWord: defaults[.findMatchesFullWord])
         }
     }
     

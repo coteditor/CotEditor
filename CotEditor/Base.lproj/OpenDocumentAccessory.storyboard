@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="vOM-aK-O2P">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,12 +10,12 @@
         <scene sceneID="wFf-cg-u4q">
             <objects>
                 <viewController id="vOM-aK-O2P" customClass="OpenPanelAccessoryController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <customView key="view" horizontalCompressionResistancePriority="250" id="QJb-eU-19Y" userLabel="Open Document Accessory View">
+                    <view key="view" horizontalCompressionResistancePriority="250" id="QJb-eU-19Y">
                         <rect key="frame" x="0.0" y="0.0" width="408" height="63"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-MD-3B5">
-                                <rect key="frame" x="87" y="29" width="235" height="26"/>
+                                <rect key="frame" x="87" y="29" width="235" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="230" id="PQD-t5-lNm"/>
                                 </constraints>
@@ -48,7 +48,7 @@
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" userInterfaceLayoutDirection="rightToLeft" title="Encoding:" usesSingleLineMode="YES" id="voE-Mi-XZu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                         </subviews>
@@ -63,7 +63,7 @@
                             <constraint firstItem="ODB-Ry-beC" firstAttribute="top" secondItem="gw6-MD-3B5" secondAttribute="bottom" constant="8" symbolic="YES" id="ic0-qc-hkp"/>
                             <constraint firstItem="ODB-Ry-beC" firstAttribute="leading" secondItem="lFu-5f-V7p" secondAttribute="trailing" constant="8" symbolic="YES" id="sQr-9w-CwA"/>
                         </constraints>
-                    </customView>
+                    </view>
                     <connections>
                         <outlet property="encodingMenu" destination="gw6-MD-3B5" id="fdF-Xn-4Eg"/>
                     </connections>

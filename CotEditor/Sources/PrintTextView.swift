@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,14 +36,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let lineFragmentPadding: CGFloat = 20.0
     private let lineNumberPadding: CGFloat = 10.0
     private let headerFooterFontSize: CGFloat = 9.0
-    private let lineNumberFontName = "AvenirNextCondensed-Regular"
     
 
     // MARK: Public Properties
     
     var filePath: String?
     var documentName: String?
-    var theme: Theme?
+    private(set) var theme: Theme?
     private(set) lazy var syntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
     
@@ -85,6 +84,10 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         self.maxSize = .infinite
         
+        self.linkTextAttributes = UserDefaults.standard[.autoLinkDetection]
+            ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
+            : [:]
+        
         // replace layoutManager
         let layoutManager = LayoutManager()
         layoutManager.delegate = self
@@ -118,7 +121,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         super.beginDocument()
         
-        guard let printInfo = NSPrintOperation.current?.printInfo else { return }
+        guard let printInfo = NSPrintOperation.current?.printInfo else { return assertionFailure() }
         
         self.applyPrintSettings(printInfo: printInfo)
         self.resizeFrame(printInfo: printInfo)
@@ -138,15 +141,11 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         NSGraphicsContext.restoreGraphicsState()
         
         // draw line numbers if needed
-        if self.printsLineNumber,
-            let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
-        {
+        if self.printsLineNumber {
             // prepare text attributes for line numbers
             let fontSize = round(0.9 * (self.font?.pointSize ?? 12))
-            let font = NSFont(name: self.lineNumberFontName, size: fontSize) ?? NSFont.userFixedPitchFont(ofSize: fontSize)!
-            let attrs: [NSAttributedStringKey: Any] = [.font: font,
-                                                       .foregroundColor: self.textColor ?? .textColor]
+            let attrs: [NSAttributedString.Key: Any] = [.font: NSFont.lineNumberFont(ofSize: fontSize),
+                                                        .foregroundColor: self.textColor ?? .textColor]
             
             // calculate character width by treating the font as a mono-space font
             let charSize = NSAttributedString(string: "8", attributes: attrs).size()
@@ -159,59 +158,37 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             if isVerticalText {
                 // rotate axis
                 NSGraphicsContext.saveGraphicsState()
-                let transform = CGAffineTransform(rotationAngle: -CGFloat.pi / 2)
-                NSGraphicsContext.current?.cgContext.concatenate(transform)
+                NSGraphicsContext.current?.cgContext.rotate(by: -CGFloat.pi / 2)
             }
             
-            // get glyph range of which line number should be drawn
-            let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: dirtyRect, in: textContainer)
-            
-            // count up lines until visible
-            let undisplayedRange = NSRange(location: 0, length: layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location))
-            var lineNumber = max(self.string.numberOfLines(in: undisplayedRange, includingLastLineEnding: true), 1)  // start with 1
-            
-            // draw visible line numbers
-            var glyphCount = glyphRangeToDraw.location
-            var glyphIndex = glyphRangeToDraw.location
-            var lastLineNumber = 0
-            
-            while glyphIndex < glyphRangeToDraw.upperBound {  // count "real" lines
-                defer {
-                    lineNumber += 1
-                }
-                
-                let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-                let lineRange = (self.string as NSString).lineRange(at: charIndex)  // get NSRange
-                let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-                glyphIndex = lineGlyphRange.upperBound
-                
-                while glyphCount < glyphIndex {  // handle wrapped lines
-                    var range = NSRange.notFound
-                    let lineRect = layoutManager.lineFragmentRect(forGlyphAt: glyphCount, effectiveRange: &range, withoutAdditionalLayout: true)
-                    let isWrappedLine = (lastLineNumber == lineNumber)
-                    lastLineNumber = lineNumber
-                    glyphCount = range.upperBound
-                    
-                    if isVerticalText, isWrappedLine { continue }
-                    
-                    var numberString = isWrappedLine ? "-" : String(lineNumber)
-                    
-                    // adjust position to draw
-                    var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
-                    let digit = numberString.count
-                    if isVerticalText {
-                        numberString = (lineNumber == 1 || lineNumber % 5 == 0) ? numberString : "·"  // draw real number only in every 5 times
+            self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
+                guard let numberString: String = {
+                    switch line {
+                    case .new(let lineNumber, _):
+                        if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
+                            return "·"  // draw real number only in every 5 times
+                        }
+                        return String(lineNumber)
                         
-                        let width = (charSize.width * CGFloat(digit) + charSize.height)
-                        point = NSPoint(x: -point.y - width / 2,
-                                        y: point.x - charSize.height)
-                    } else {
-                        point.x -= CGFloat(digit) * charSize.width  // align right
+                    case .wrapped:
+                        if isVerticalText { return nil }
+                        return "-"
                     }
-                    
-                    // draw number
-                    NSAttributedString(string: numberString, attributes: attrs).draw(at: point)
+                    }() else { return }
+                
+                // adjust position to draw
+                var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
+                let digit = numberString.count
+                if isVerticalText {
+                    let width = charSize.width * CGFloat(digit) + charSize.height
+                    point = NSPoint(x: -point.y - width / 2,
+                                    y: point.x - charSize.height)
+                } else {
+                    point.x -= CGFloat(digit) * charSize.width  // align right
                 }
+                
+                // draw number
+                NSAttributedString(string: numberString, attributes: attrs).draw(at: point)
             }
             
             if isVerticalText {
@@ -264,7 +241,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
             // apply to current string
             if let textStorage = self.textStorage {
-                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: textStorage.string.nsRange)
+                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: textStorage.range)
             }
             
             // set font also to layout manager
@@ -278,7 +255,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Layout Manager Delegate
     
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedStringKey: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedStringKey: Any]? {
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
         return attrs
     }
@@ -290,7 +267,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// parse current print settings in printInfo
     private func applyPrintSettings(printInfo: NSPrintInfo) {
         
-        guard let layoutManager = self.layoutManager as? LayoutManager else { return }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
         let settings = printInfo.dictionary() as! [NSPrintInfo.AttributeKey: Any]
         
@@ -322,6 +299,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         }()
         
         // set theme
+        assert(settings[.theme] != nil)
         let lastThemeName = self.theme?.name
         let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
         let theme = ThemeManager.shared.setting(name: themeName)
@@ -364,6 +342,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         case .vertical:
             printSize.height -= printInfo.leftMargin + printInfo.rightMargin
             printSize.height /= printInfo.scalingFactor
+        @unknown default: fatalError()
         }
         
         // adjust frame size
@@ -375,6 +354,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             self.frame.size.height = usedHeight
         case .vertical:
             self.frame.size.width = usedHeight
+        @unknown default: fatalError()
         }
     }
     
@@ -428,7 +408,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     
     /// return attributes for header/footer string
-    private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedStringKey: Any] {
+    private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedString.Key: Any] {
     
         let paragraphStyle = NSParagraphStyle.default.mutable
         

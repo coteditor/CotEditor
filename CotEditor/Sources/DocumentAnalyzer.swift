@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,8 +120,9 @@ final class DocumentAnalyzer: NSObject {
         self.info.permission = attrs?[.posixPermissions] as? NSNumber
         self.info.isReadOnly = {
             guard !document.isInViewingMode else { return false }
+            guard let posix = attrs?[.posixPermissions] as? UInt16 else { return false }
             
-            return attrs?[.immutable] as? Bool ?? false
+            return !FilePermissions(mask: posix).user.contains(.write)
         }()
         
         NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateFileInfoNotification, object: self)
@@ -177,37 +178,39 @@ final class DocumentAnalyzer: NSObject {
             let textView = document.viewController?.focusedTextView,
             !textView.hasMarkedText() else { return }
         
-        let operation = EditorInfoCountOperation(string: document.textStorage.string.immutable,
+        let string = textView.string.immutable
+        let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
+        let operation = EditorInfoCountOperation(string: string,
                                                  lineEnding: document.lineEnding,
-                                                 selectedRange: textView.selectedRange,
+                                                 selectedRange: selectedRange,
                                                  requiredInfo: self.requiredInfoTypes,
+                                                 language: NSSpellChecker.shared.language(),
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
+        operation.qualityOfService = .utility
         
         operation.completionBlock = { [weak self, weak operation] in
-            guard
-                let operation = operation, !operation.isCancelled,
-                let info = self?.info else { return }
+            guard let operation = operation, !operation.isCancelled else { return }
             
             let result = operation.result
             
             DispatchQueue.main.async {
-                info.length = CountFormatter.format(result.length, selected: result.selectedLength)
-                info.chars = CountFormatter.format(result.characters, selected: result.selectedCharacters)
-                info.lines = CountFormatter.format(result.lines, selected: result.selectedLines)
-                info.words = CountFormatter.format(result.words, selected: result.selectedWords)
-                info.location = CountFormatter.format(result.location)
-                info.line = CountFormatter.format(result.line)
-                info.column = CountFormatter.format(result.column)
-                info.unicode = result.unicode
+                guard let self = self else { return }
+                
+                self.info.length = CountFormatter.format(result.length, selected: result.selectedLength)
+                self.info.chars = CountFormatter.format(result.characters, selected: result.selectedCharacters)
+                self.info.lines = CountFormatter.format(result.lines, selected: result.selectedLines)
+                self.info.words = CountFormatter.format(result.words, selected: result.selectedWords)
+                self.info.location = CountFormatter.format(result.location)
+                self.info.line = CountFormatter.format(result.line)
+                self.info.column = CountFormatter.format(result.column)
+                self.info.unicode = result.unicode
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
         }
         
-        // cancel waiting operations to avoid stacking large operations
-        self.editorInfoCountOperationQueue.operations
-            .filter { !$0.isExecuting }
-            .forEach { $0.cancel() }
+        // cancel waiting operations to avoid stuck large operations
+        self.editorInfoCountOperationQueue.cancelAllOperations()
         
         self.editorInfoCountOperationQueue.addOperation(operation)
     }

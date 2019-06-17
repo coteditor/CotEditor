@@ -57,7 +57,7 @@
 /* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
 "vlw-Tc-sLl.title" = "Installierte Syntaxstile:";
 
-/* Class = "NSImageView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
+/* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "Dieser Stil ist modifiziert.";
 
 /* Class = "NSButton"; ibShadowedToolTip = "Remove selected style"; ObjectID = "dI1-Dk-Mce"; */
@@ -66,6 +66,8 @@
 "Hma-8v-2gu.ibShadowedToolTip" = "Neuen Stil hinzufügen";
 /* Class = "NSButton"; ibShadowedToolTip = "Edit selected style"; ObjectID = "Q0c-oI-um3"; */
 "Q0c-oI-um3.ibShadowedToolTip" = "Ausgewählten Stil bearbeiten";
+/* Class = "NSButton"; ibExternalAccessibilityDescription = "Edit"; ObjectID = "Q0c-oI-um3"; */
+"Q0c-oI-um3.ibExternalAccessibilityDescription" = "Bearbeiten";
 
 
 /* Class = "NSMenuItem"; title = "Import…"; ObjectID = "1lj-x8-ouD"; */

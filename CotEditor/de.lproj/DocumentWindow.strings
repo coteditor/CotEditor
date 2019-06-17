@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -80,9 +80,9 @@
 "x2W-ye-BDw.title" = "Größer";
 
 /* Class = "NSToolbarItem"; ObjectID = "1zL-0E-fZd"; */
-"1zL-0E-fZd.label" = "Richtung beim Schreiben";  /* Writing Direction */
-"1zL-0E-fZd.paletteLabel" = "Richtung beim Schreiben";  /* Writing Direction */
-"1zL-0E-fZd.toolTip" = "Richtung beim Schreiben wechseln";  /* Change writing direction */
+"1zL-0E-fZd.label" = "Schreibrichtung";  /* Writing Direction */
+"1zL-0E-fZd.paletteLabel" = "Schreibrichtung";  /* Writing Direction */
+"1zL-0E-fZd.toolTip" = "Schreibrichtung wechseln";  /* Change writing direction */
 /* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
 "lad-Dh-atP.ibShadowedToolTips[0]" = "Von links nach rechts";  // "Left to Right"
 "lad-Dh-atP.ibShadowedToolTips[1]" = "Von rechts nach links";  // "Right to Left"
@@ -142,14 +142,19 @@
 "mGD-5P-MDq.toolTip" = "Zeilenumbruch ein/aus";  /* Toggle wrap lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "xbD-Up-YfQ"; */
-"xbD-Up-YfQ.label" = "Unsichtbares";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "Unsichtbares";  /* Invisibles */
-"xbD-Up-YfQ.toolTip" = "Unsichtbare Zeichen im Text ein-/ausblenden";  /* Show or hide invisible characters in text */
+"xbD-Up-YfQ.label" = "Steuerzeichen";  /* Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "Steuerzeichen";  /* Invisibles */
+"xbD-Up-YfQ.toolTip" = "Steuerzeichen im Text ein-/ausblenden";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "Seitenhilfslinie";  /* Page Guide */
 "GS6-aA-mgz.paletteLabel" = "Seitenhilfslinie";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Seitenhilfslinie ein-/ausblenden";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
+"LYl-ty-usA.label" = "Deckkraft";  /* Opacity */
+"LYl-ty-usA.paletteLabel" = "Deckkraft";  /* Opacity */
+"LYl-ty-usA.toolTip" = "Deckkraft des Editors wechseln";  /* Change editor’s opacity */
 
 /* Class = "NSToolbarItem"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Rechtschreibprüfung";  /* Spell Check */
@@ -159,7 +164,12 @@
 /* Class = "NSToolbarItem"; ObjectID = "Yx1-Tq-tfo"; */
 "Yx1-Tq-tfo.label" = "Farbcode";  /* Color Code */
 "Yx1-Tq-tfo.paletteLabel" = "Farbcode bearbeiten";  /* Edit Color Code */
-"Yx1-Tq-tfo.toolTip" = "Farbcode-Editor öffnen und die Auswahl als Farbcode einrichten";  /* Open Color Code Editor and set selection as color code */
+"Yx1-Tq-tfo.toolTip" = "Farbcode-Editor öffnen und Auswahl als Farbcode einrichten";  /* Open Color Code Editor and set selection as color code */
+
+/* Class = "NSToolbarItem"; label = "Emoji & Symbols"; ObjectID = "tek-D0-460"; */
+"tek-D0-460.label" = "Emoji & Symbole";  /* Emoji & Symbols */
+"tek-D0-460.paletteLabel" = "Emoji & Symbole";  /* Emoji & Symbols */
+"tek-D0-460.toolTip" = "Emoji- & Symbolpalette einblenden";  /* Show Emoji & Symbols palette */
 
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "Suchen";  /* Find */
@@ -179,7 +189,15 @@
 /* Class = "NSToolbarItem"; ObjectID = "vLf-la-9dL"; */
 "vLf-la-9dL.label" = "Schriften";  /* Fonts */
 "vLf-la-9dL.paletteLabel" = "Schriften";  /* Fonts */
-"vLf-la-9dL.toolTip" = "Schriftfenster anzeigen";  /* Show Font Panel */
+"vLf-la-9dL.toolTip" = "Schriftfenster einblenden";  /* Show Font Panel */
+
+
+/* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
+"Are-7I-6OR.title" = "Deckkraft des Editors";
+/* Class = "NSView"; ibShadowedToolTip = "Transparent"; ObjectID = "EVo-Ee-gQ1"; */
+"EVo-Ee-gQ1.ibShadowedToolTip" = "Durchsichtig";
+/* Class = "NSView"; ibShadowedToolTip = "Opaque"; ObjectID = "8NN-KX-RmA"; */
+"8NN-KX-RmA.ibShadowedToolTip" = "Undurchsichtig";
 
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */

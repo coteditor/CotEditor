@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,6 +29,8 @@ final class FindPanelButtonViewController: NSViewController {
     
     // MARK: Private Properties
     
+    private var findNextAfterReplaceObserver: UserDefaultsObservation?
+    
     @IBOutlet private weak var replaceButton: NSButton?
     
     
@@ -37,7 +39,7 @@ final class FindPanelButtonViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.findNextAfterReplace.rawValue)
+        self.findNextAfterReplaceObserver?.invalidate()
     }
     
     
@@ -52,14 +54,8 @@ final class FindPanelButtonViewController: NSViewController {
         self.invalidateReplaceButtonBehavior()
         
         // observe default change for the "Replace" button tooltip
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.findNextAfterReplace.rawValue, context: nil)
-    }
-    
-    
-    /// observed user defaults are changed
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == DefaultKeys.findNextAfterReplace.rawValue {
+        self.findNextAfterReplaceObserver?.invalidate()
+        self.findNextAfterReplaceObserver = UserDefaults.standard.observe(key: .findNextAfterReplace) { [unowned self] _ in
             self.invalidateReplaceButtonBehavior()
         }
     }
@@ -81,11 +77,9 @@ final class FindPanelButtonViewController: NSViewController {
     
     
     /// perform segmented Find Next/Previous button
-    @IBAction func clickSegmentedFindButton(_ sender: Any?) {
+    @IBAction func clickSegmentedFindButton(_ sender: NSSegmentedControl) {
         
-        guard let segmentedControl = sender as? NSSegmentedControl else { return }
-        
-        switch segmentedControl.selectedSegment {
+        switch sender.selectedSegment {
         case 0:
             TextFinder.shared.findPrevious(sender)
         case 1:

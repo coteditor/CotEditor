@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="yaW-ka-qKo">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="yaW-ka-qKo">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <development version="10000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,7 +11,7 @@
         <scene sceneID="j99-ea-IO6">
             <objects>
                 <viewController id="yaW-ka-qKo" sceneMemberID="viewController">
-                    <customView key="view" id="2gd-Li-J8K">
+                    <view key="view" id="2gd-Li-J8K">
                         <rect key="frame" x="0.0" y="0.0" width="206" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
@@ -32,7 +33,7 @@
                             <constraint firstAttribute="bottom" secondItem="nZM-DA-dgh" secondAttribute="bottom" constant="10" id="Vls-FA-Zx0"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nZM-DA-dgh" secondAttribute="trailing" constant="20" symbolic="YES" id="poh-BO-soJ"/>
                         </constraints>
-                    </customView>
+                    </view>
                 </viewController>
                 <customObject id="r0f-ks-8VQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

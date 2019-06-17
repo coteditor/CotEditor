@@ -31,6 +31,8 @@ final class PopUpToolbarItem: NSToolbarItem {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         let popUpButton = self.popUpButton!
         
         // setup popup menu for "Text Only" mode

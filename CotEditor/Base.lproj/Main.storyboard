@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -75,21 +75,11 @@
                                         <menuItem title="New Window" keyEquivalent="N" id="cTV-Rh-597">
                                             <connections>
                                                 <action selector="newDocumentAsWindow:" target="Ady-hI-5gd" id="O1V-BQ-IdO"/>
-                                                <binding destination="Voe-Tx-rLC" name="hidden" keyPath="supportsWindowTabbing" id="wEu-ms-ha8">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                    </dictionary>
-                                                </binding>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="New Tab" keyEquivalent="t" id="WCp-4v-OPR">
                                             <connections>
                                                 <action selector="newDocumentAsTab:" target="Ady-hI-5gd" id="S8W-T4-6Jr"/>
-                                                <binding destination="Voe-Tx-rLC" name="hidden" keyPath="supportsWindowTabbing" id="oPe-r3-ZV7">
-                                                    <dictionary key="options">
-                                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                                    </dictionary>
-                                                </binding>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="ahO-Ic-gXg"/>
@@ -127,7 +117,8 @@
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="xe3-FG-SLT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Revert to Saved" keyEquivalent="r" id="112">
+                                        <menuItem title="Revert to Saved" id="112">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="f6J-Sb-kOt"/>
                                             </connections>
@@ -207,6 +198,11 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                             <connections>
                                                 <action selector="selectParagraph:" target="Ady-hI-5gd" id="i5P-vu-hGU"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select Word" keyEquivalent="d" id="0HX-j9-5jF">
+                                            <connections>
+                                                <action selector="selectWord:" target="Ady-hI-5gd" id="hYk-Nd-XPC"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="630">
@@ -616,6 +612,13 @@ DQ
                                                 <action selector="closeSplitTextView:" target="Ady-hI-5gd" id="WOu-7F-Qgg"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="kAE-Tf-I6P"/>
+                                        <menuItem title="Change Editor’s Opacity…" id="367">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showOpacitySlider:" target="Ady-hI-5gd" id="VEp-dh-l6T"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="611">
                                             <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                         </menuItem>
@@ -774,9 +777,16 @@ CA
                                                             <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Brackets" keyEquivalent="{" id="Xoq-43-C1z">
+                                                    <menuItem title="Brackets" id="Xoq-43-C1z">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Square Brackets" id="cTU-2P-7Tp">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="surroundSelectionWithSquareBrackets:" target="Ady-hI-5gd" id="92J-nd-Mh7"/>
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="mRR-Qb-394"/>
@@ -820,6 +830,25 @@ CA
                                                         </connections>
                                                     </menuItem>
                                                     <menuItem isSeparatorItem="YES" id="HuN-8a-yXL"/>
+                                                    <menuItem title="Make Snake Case" id="F0I-F4-srF">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="snakecaseWord:" target="Ady-hI-5gd" id="sZO-xn-Orq"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Camel Case" id="nlp-Gj-W9G">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="camelcaseWord:" target="Ady-hI-5gd" id="6b5-Gh-Jmr"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Make Pascal Case" id="x1F-KX-2de">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="pascalcaseWord:" target="Ady-hI-5gd" id="CmK-JI-9Jm"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="kwE-D3-DED"/>
                                                     <menuItem title="Half-width to Full-width" id="dVK-1s-xJq">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
@@ -1082,7 +1111,7 @@ CA
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Script" image="ScriptTemplate" tag="800" id="617">
+                            <menuItem title="Script" image="ScriptTemplate" id="617">
                                 <menu key="submenu" title="Script" id="616"/>
                             </menuItem>
                             <menuItem title="Help" id="103">

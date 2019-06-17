@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2018 CotEditor Project
+ © 2018-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,6 +33,19 @@
 
 // Appending words in parentheses
 " (%@)" = " (%@)";
+
+
+
+// Accessibility labels
+"inspector" = "inspetor";
+"document inspector" = "inspetor do documento";
+"outline" = "plano";
+"incompatible characters" = "Caracteres Incompatíveis";
+"status bar" = "barra de estado";
+"editor" = "editor";
+"navigation bar" = "barra de navegação";
+"line numbers" = "números das linhas";
+"find result" = "resultados da busca";
 
 
 
@@ -78,6 +91,9 @@
 "Empty find string" = "String de busca vazia";
 "Input text to find." = "Digite o texto a buscar.";
 
+// accessibility announcement
+"Search wrapped." = "Search wrapped.";  // announced when the search restarted from the beginning.  // FIXME: added
+
 
 /* MARK: FindPanelController */
 "Replace the current selection with the replacement text, then find the next match." = "Substitua a seleção atual pelo texto de substituição e busque a ocorrência seguinte.";
@@ -93,6 +109,15 @@
 "No strings found in “%@”." = "Nenhuma string encontrada em “%@”.";
 "Found one string in “%@”." = "1 string encontrada em “%@”.";
 "Found %@ strings in “%@”." = "%@ strings encontradas em “%@”.";
+
+
+
+/* MARK: Multiple Replacement View Controller */
+// Undo action names
+"Insert Rule" = "Inserir Regra";
+"Delete Rules" = "Apagar Regras";
+"Edit Rule" = "Editar Regra";
+"Move Rules" = "Mover Regras";
 
 
 
@@ -216,6 +241,9 @@
 "Convert Indentation" = "Converter Recuo";
 "Comment Out" = "Adicionar Comentário";
 "Uncomment" = "Remover Comentário";
+"To Snake Case" = "Para Snake Case";
+"To Camel Case" = "Para Camel Case";
+"To Pascal Case" = "Para Pascal Case";
 "To Full-width" = "para Largura Completa";
 "To Half-width" = "para Meia Largura";
 "To Full-width Roman" = "para Latino de Largura Completa";
@@ -277,14 +305,13 @@
 
 
 /* MARK: StatusBarController */
-"%@: " = "%@: ";
-"Lines" = "Linhas";
-"Characters" = "Caracteres";
-"Length" = "Comprimento";
-"Words" = "Palavras";
-"Location" = "Localização";
-"Line" = "Linha";
-"Column" = "Coluna";
+"Lines: " = "Linhas: ";
+"Characters: " = "Caracteres: ";
+"Length: " = "Comprimento: ";
+"Words: " = "Palavras: ";
+"Location: " = "Localização: ";
+"Line: " = "Linha: ";
+"Column: " = "Coluna: ";
 
 
 
@@ -395,9 +422,10 @@
 "Syntax Validation" = "Validação da Sintaxe";
 
 // Syntax style validation results
-"No error was found." = "Nenhum erro encontrado.";
-"An error was found!" = "1 erro encontrado!";
-"%i errors were found!" = "%i erros encontrados!";
+"No error found." = "Nenhum erro encontrado.";
+"An error found!" = "1 erro encontrado!";
+"%i errors found!" = "%i erros encontrados!";
+"outline menu" = "menu de plano";
 
 
 
@@ -446,7 +474,7 @@
 "End string" = "String final";
 "Regular expression" = "Expressão regular";
 "The same word is registered multiple times." = "A mesma palavra está registrada várias vezes.";
-"Regular Expression Error: " = "Erro de Expressão Regular: ";
+"Regular Expression: " = "Expressão Regular: ";
 
 
 
@@ -517,6 +545,7 @@
 "The parent directory name of dropped file." = "O nome do diretório superior do arquivo solto.";
 "(If the dropped file is an image) image width." = "Largura da imagem (se o arquivo solto for uma imagem).";
 "(If the dropped file is an image) image height." = "Altura da imagem (se o arquivo solto for uma imagem).";
+"(If the dropped file is a text file) file content." = "(If the dropped file is a text file) file content.";  // FIXME: added
 
 
 

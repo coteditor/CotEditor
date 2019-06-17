@@ -59,7 +59,7 @@ final class CharacterFieldCell: NSTextFieldCell {
             NSBezierPath(rect: cellFrame).stroke()
         #endif
         
-        guard let context = NSGraphicsContext.current?.cgContext else { return }
+        guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
         
         let line = CTLineCreateWithAttributedString(self.attributedStringValue as CFAttributedString)
         let bounds = self.attributedStringValue.bounds.integral

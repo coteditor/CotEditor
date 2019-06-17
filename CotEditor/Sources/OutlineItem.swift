@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 import Foundation
 import AppKit.NSFont
 
-final class OutlineItem: NSObject {  // cannot be struct just because the outline inspector crashes under OS X 10.11
+struct OutlineItem: Equatable {
     
     struct Style: OptionSet {
         
@@ -38,9 +38,9 @@ final class OutlineItem: NSObject {  // cannot be struct just because the outlin
     }
     
 
-    let title: String
-    let range: NSRange
-    let style: Style
+    var title: String
+    var range: NSRange
+    var style: Style = []
     
     
     init(title: String, range: NSRange, style: Style = []) {
@@ -59,21 +59,9 @@ final class OutlineItem: NSObject {  // cannot be struct just because the outlin
 }
 
 
-extension OutlineItem {  // : Equatable
-    
-    static func == (lhs: OutlineItem, rhs: OutlineItem) -> Bool {
-        
-        return lhs.range == rhs.range &&
-            lhs.style == rhs.style &&
-            lhs.title == rhs.title
-    }
-    
-}
-
-
 extension OutlineItem {
     
-    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedStringKey: Any] = [:]) -> NSAttributedString {
+    func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
         
         var font = baseFont
         var attributes = attributes
@@ -85,7 +73,7 @@ extension OutlineItem {
             font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
         }
         if self.style.contains(.underline) {
-            attributes[.underlineStyle] = NSUnderlineStyle.styleSingle.rawValue
+            attributes[.underlineStyle] = NSUnderlineStyle.single.rawValue
         }
         attributes[.font] = font
         
@@ -95,15 +83,11 @@ extension OutlineItem {
 }
 
 
-extension Collection where Element == OutlineItem {
+extension Array where Element == OutlineItem {
     
     func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
         
-        return self.indices.reversed().first {
-            let item = self[$0]
-            
-            return item.range.location <= characterRange.location && (allowsSeparator || !item.isSeparator )
-        }
+        return self.lastIndex { $0.range.location <= characterRange.location && (allowsSeparator || !$0.isSeparator ) }
     }
     
 }

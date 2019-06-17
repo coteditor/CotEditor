@@ -52,4 +52,5 @@ enum MainMenu: Int {
         
         return NSApp.mainMenu?.item(at: self.rawValue)?.submenu
     }
+    
 }

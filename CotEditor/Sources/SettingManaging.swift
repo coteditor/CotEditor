@@ -45,12 +45,7 @@ extension SettingManaging {
     /// create user setting directory if not yet exist
     func prepareUserSettingDirectory() throws {
         
-        let url = self.userSettingDirectoryURL
-        let isDirectory = (try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory ?? false) ?? false
-        
-        guard !isDirectory else { return }
-        
-        try FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
+        try FileManager.default.createDirectory(at: self.userSettingDirectoryURL, withIntermediateDirectories: true)
     }
     
 }

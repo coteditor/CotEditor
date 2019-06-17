@@ -25,12 +25,10 @@
 
 import Foundation
 
-enum ScriptingFileType {
+enum ScriptingFileType: CaseIterable {
     
     case appleScript
     case unixScript
-    
-    static let allCases: [ScriptingFileType] = [.appleScript, .unixScript]
     
     
     var extensions: [String] {
@@ -105,11 +103,11 @@ struct ScriptDescriptor {
     
     let url: URL
     let name: String
+    let shortcut: Shortcut
+    let ordering: Int?
     let type: ScriptingFileType?
     let executionModel: ScriptingExecutionModel
     let eventTypes: [ScriptingEventType]
-    let shortcut: Shortcut
-    let ordering: Int?
     
     
     
@@ -120,10 +118,8 @@ struct ScriptDescriptor {
     ///
     /// `Contents/Info.plist` in the script at `url` will be read if they exist.
     ///
-    /// - parameter url: the location of an user script
+    /// - Parameter url: The location of an user script.
     init(at url: URL) {
-        
-        // Extract from URL
         
         self.url = url
         self.type = ScriptingFileType.allCases.first { $0.extensions.contains(url.pathExtension) }
@@ -135,12 +131,12 @@ struct ScriptDescriptor {
         } else {
             self.shortcut = shortcut
             
-            // Remove the shortcut specification from the script name
+            // remove the shortcut specification from the script name
             name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
         }
         
         if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
-            // Remove the parenthesis at last
+            // remove the parenthesis at last
             let orderingString = name[..<name.index(before: range.upperBound)]
             self.ordering = Int(orderingString)
             
@@ -164,7 +160,7 @@ struct ScriptDescriptor {
     
     /// Create and return an user script instance
     ///
-    /// - returns: An instance of `Script` created by the receiver.
+    /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
     func makeScript() -> Script? {
         

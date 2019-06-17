@@ -43,16 +43,15 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         super.viewDidLoad()
         
         // -> needs layer to mask rounded window corners
-        //                to redraw line number view background by thickness increase
+        //                to draw backgrounds of subviews correctly on macOS 10.12 (and macOS 10.13?)
         self.view.wantsLayer = true
         
         // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
         self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         
-        if UserDefaults.standard[.sidebarWidth] >= 100 {
-            self.sidebarThickness = UserDefaults.standard[.sidebarWidth]
-        }
-        self.isSidebarShown = UserDefaults.standard[.showInspector]
+        // apply user's preference manually (2018-08 macOS 10.13)
+        // -> Because the framework's autosave implementation doesn't work with autolayout.
+        self.restoreAutosavePositions()
         
         self.sidebarViewController?.delegate = self
     }
@@ -77,22 +76,8 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     override var representedObject: Any? {
         
         didSet {
-            for viewController in self.childViewControllers {
+            for viewController in self.children {
                 viewController.representedObject = representedObject
-            }
-        }
-    }
-    
-    
-    /// divider position did change
-    override func splitViewDidResizeSubviews(_ notification: Notification) {
-        
-        super.splitViewDidResizeSubviews(notification)
-        
-        if notification.userInfo?["NSSplitViewDividerIndex"] != nil {  // check wheter the change coused by user's divider dragging
-            // store current sidebar width
-            if self.isSidebarShown {
-                UserDefaults.standard[.sidebarWidth] = self.sidebarThickness
             }
         }
     }
@@ -162,7 +147,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     @IBAction func toggleInspector(_ sender: Any?) {
         
         NSAnimationContext.current.withAnimation(true) {
-            self.isSidebarShown = !self.isSidebarShown
+            self.isSidebarShown.toggle()
         }
     }
     
@@ -215,7 +200,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     private var isSidebarShown: Bool {
         
         get {
-            return !(self.sidebarViewItem?.isCollapsed ?? true)
+            return self.sidebarViewItem?.isCollapsed == false
         }
         
         set {
@@ -223,7 +208,9 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
             
             // close sidebar inward if it opened so (because of insufficient space to open outward)
             let currentWidth = self.splitView.frame.width
-            NSAnimationContext.current.completionHandler = {
+            NSAnimationContext.current.completionHandler = { [weak self] in
+                guard let self = self else { return }
+                
                 if newValue {
                     if self.splitView.frame.width == currentWidth {  // opened inward
                         self.siblings.forEach {
@@ -236,19 +223,17 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
                         $0.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
                     }
                 }
+                
+                // sync sidebar thickness among tabbed windows
+                self.siblings.filter { $0 != self }
+                    .forEach { $0.sidebarThickness = self.sidebarThickness }
             }
             
             // update current tab possibly with an animation
             self.sidebarViewItem?.isCollapsed = !newValue
-            
             // and then update background tabs
             self.siblings.filter { $0 != self }
-                .forEach {
-                    $0.sidebarViewItem?.isCollapsed = !newValue
-                    $0.sidebarThickness = self.sidebarThickness
-                }
-            
-            UserDefaults.standard[.showInspector] = newValue
+                .forEach { $0.sidebarViewItem?.isCollapsed = !newValue }
         }
     }
     
@@ -298,8 +283,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     
     /// window content view controllers in all tabs in the same window
     private var siblings: [WindowContentViewController] {
-        
-        guard #available(macOS 10.12, *) else { return [self] }
         
         return self.view.window?.tabbedWindows?.compactMap { ($0.windowController?.contentViewController as? WindowContentViewController) } ?? [self]
     }

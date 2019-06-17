@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -74,13 +74,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Private Properties
     
-    private lazy var printPanelAccessoryController = PrintPanelAccessoryController()
-    private lazy var savePanelAccessoryController: NSViewController = NSStoryboard(name: NSStoryboard.Name("SaveDocumentAccessory"), bundle: nil).instantiateInitialController() as! NSViewController
+    private lazy var printPanelAccessoryController = PrintPanelAccessoryController.instantiate(storyboard: "PrintPanelAccessory")
+    private lazy var savePanelAccessoryController = NSViewController.instantiate(storyboard: "SaveDocumentAccessory")
     
     private var readingEncoding: String.Encoding  // encoding to read document file
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
-    private var odbEventSender: ODBEventSender?
     private var shouldSaveXattr = true
     private var autosaveIdentifier: String
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
@@ -107,7 +106,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.lineEnding = LineEnding(index: UserDefaults.standard[.lineEndCharCode]) ?? .lf
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
-        self.isVerticalText = UserDefaults.standard[.layoutTextVertical]
         
         // use the encoding user selected in open panel, if exists
         if let accessorySelectedEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding {
@@ -153,7 +151,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             self.autosaveIdentifier = identifier
         }
         if let styleName = coder.decodeObject(forKey: SerializationKey.syntaxStyle) as? String {
-            self.setSyntaxStyle(name: styleName)
+            if self.syntaxParser.style.name != styleName {
+                self.setSyntaxStyle(name: styleName)
+            }
         }
         if coder.containsValue(forKey: SerializationKey.isVerticalText) {
             self.isVerticalText = coder.decodeBool(forKey: SerializationKey.isVerticalText)
@@ -182,9 +182,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // pretend as if iCloud storage is disabled to let system give up opening the open panel on launch (2018-02 macOS 10.13)
         if NSAppleEventManager.shared().isOpenEvent {
-            let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior])
-            
-            guard behavior == .openPanel else { return false }
+            guard UserDefaults.standard[.noDocumentOnLaunchBehavior] == .openPanel else { return false }
         }
         
         return super.usesUbiquitousStorage
@@ -216,8 +214,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // a transient document has already one
         guard self.windowControllers.isEmpty else { return }
         
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("DocumentWindow"), bundle: nil)
-        let windowController = storyboard.instantiateInitialController() as! NSWindowController
+        let windowController = NSWindowController.instantiate(storyboard: "DocumentWindow")
         
         self.addWindowController(windowController)
     }
@@ -271,6 +268,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // -> Taking performance issue into consideration,
         //    the selection ranges will be adjusted only when the content size is enough small.
         let string = self.textStorage.string
+        let range = self.textStorage.range
         let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
         let considersDiff = min(lastString.count, string.count) < maxLength
         
@@ -279,7 +277,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 guard considersDiff else {
                     // just cut extra ranges off
                     return state.ranges
-                        .map { $0.intersection(string.nsRange) ?? NSRange(location: string.nsRange.upperBound, length: 0) }
+                        .map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
                         .map { $0 as NSValue }
                 }
                 
@@ -340,6 +338,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // notify
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
             NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         }
@@ -351,12 +350,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        self.textStorage.replaceCharacters(in: self.textStorage.string.nsRange, with: string)
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
             let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
-            self.setSyntaxStyle(name: styleName)
+            self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
     
@@ -400,7 +399,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(Thread.isMainThread)
         if UserDefaults.standard[.trimsTrailingWhitespaceOnSave] {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
-            let keepsEditingPoint = (saveOperation == .autosaveInPlaceOperation || saveOperation == .autosaveElsewhereOperation)
+            let keepsEditingPoint = saveOperation.isAutoSaving
             let textView = self.textStorage.layoutManagers.lazy
                 .compactMap { $0.textViewForBeginningOfSelection }
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
@@ -454,18 +453,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 }
             }
             
-            switch saveOperation {
-            case .saveOperation, .saveAsOperation, .saveToOperation:
-                // update file information
+            if !saveOperation.isAutoSaving {
                 self.analyzer.invalidateFileInfo()
-                
-                // send file update notification for the external editor protocol (ODB Editor Suite)
-                let odbEventType: ODBEventSender.EventType = (saveOperation == .saveAsOperation) ? .newLocation : .modified
-                self.odbEventSender?.sendEvent(type: odbEventType, fileURL: url)
-                
                 ScriptManager.shared.dispatchEvent(documentSaved: self)
-                
-            case .autosaveAsOperation, .autosaveElsewhereOperation, .autosaveInPlaceOperation: break
             }
         }
     }
@@ -487,7 +477,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             try url.setExtendedAttribute(data: encoding.xattrEncodingData, for: FileExtendedAttributeName.encoding)
         }
         if UserDefaults.standard[.savesTextOrientation] {
-            try url.setExtendedAttribute(data: isVerticalText ? Data(bytes: [1]) : nil, for: FileExtendedAttributeName.verticalText)
+            try url.setExtendedAttribute(data: isVerticalText ? Data([1]) : nil, for: FileExtendedAttributeName.verticalText)
         }
         
         if saveOperation != .autosaveElsewhereOperation {
@@ -511,7 +501,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         var attributes = try super.fileAttributesToWrite(to: url, ofType: typeName, for: saveOperation, originalContentsURL: absoluteOriginalContentsURL)
         
         // give the execute permission if user requested
-        if self.isExecutable, (saveOperation == .saveOperation || saveOperation == .saveAsOperation) {
+        if self.isExecutable, !saveOperation.isAutoSaving {
             let permissions: UInt16 = (self.fileAttributes?[.posixPermissions] as? UInt16) ?? 0o644  // ???: Is the default permission really always 644?
             attributes[FileAttributeKey.posixPermissions.rawValue] = permissions | S_IXUSR
         }
@@ -530,19 +520,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// prepare save panel
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
-        // disable hide extension checkbox
-        // -> Because it doesn't work.
-        savePanel.isExtensionHidden = false
-        savePanel.canSelectHiddenExtension = false
-        
-        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.13)
+        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let fileType = self.fileType,
            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
             // set once allowedFileTypes, so that initial filename selection excludes the file extension
             savePanel.allowedFileTypes = [pathExtension]
             
-            // disable immediately in the next runloop to allow set other extensions
+            // disable it immediately in the next runloop to allow setting other extensions
             DispatchQueue.main.async {
                 savePanel.allowedFileTypes = nil
             }
@@ -560,24 +545,52 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// display dialogs about save before closing document
     override func canClose(withDelegate delegate: Any, shouldClose shouldCloseSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
         
-        // disable save dialog if content is empty and not saved
-        if self.fileURL == nil, self.textStorage.string.isEmpty {
+        var shouldClose = false
+        // disable save dialog if content is empty and not saved explicitly
+        if (self.isDraft || self.fileURL == nil), self.textStorage.string.isEmpty {
             self.updateChangeCount(.changeCleared)
+            
+            // remove auto-saved file if exists
+            if let url = self.fileURL {
+                var deletionError: NSError?
+                NSFileCoordinator(filePresenter: self).coordinate(writingItemAt: url, options: .forDeleting, error: &deletionError) { (url) in  // FILE_READ
+                    do {
+                        try FileManager.default.removeItem(at: url)
+                    } catch {
+                        // do nothing and let super's `.canClose(withDelegate:shouldClose:contextInfo:)` handle the stuff
+                        Swift.print("Failed empty file deletion: \(error)")
+                        return
+                    }
+                    
+                    shouldClose = true
+                    self.fileURL = nil
+                }
+            }
         }
         
-        super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+        // manually call delegate but only when you wanna modify `shouldClose` flag
+        guard
+            shouldClose,
+            let selector = shouldCloseSelector,
+            let context = contextInfo,
+            let object = delegate as? NSObject,
+            let objcClass = objc_getClass(object.className) as? AnyClass,
+            let method = class_getMethodImplementation(objcClass, selector)
+            else {
+                return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
+            }
+        
+        typealias Signature = @convention(c) (NSObject, Selector, NSDocument, Bool, UnsafeMutableRawPointer) -> Void
+        let function = unsafeBitCast(method, to: Signature.self)
+        
+        function(object, selector, self, shouldClose, context)
     }
     
     
     /// close document
     override func close() {
         
-        self.syntaxParser.invalidateCurrentParce()
-        
-        // send file close notification for the external editor protocol (ODB Editor Suite)
-        if let fileURL = self.fileURL {
-            self.odbEventSender?.sendEvent(type: .closed, fileURL: fileURL)
-        }
+        self.syntaxParser.invalidateCurrentParse()
         
         super.close()
     }
@@ -591,24 +604,25 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // create printView
         let printView = PrintTextView()
         printView.setLayoutOrientation(viewController.verticalLayoutOrientation ? .vertical : .horizontal)
-        printView.theme = viewController.theme
         printView.documentName = self.displayName
         printView.filePath = self.fileURL?.path
         printView.syntaxParser.style = self.syntaxParser.style
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber
+        printView.baseWritingDirection = viewController.writingDirection
         
         // set font for printing
-        printView.font = {
-            if UserDefaults.standard[.setPrintFont] {  // == use printing font
-                return NSFont(name: UserDefaults.standard[.printFontName]!,
-                              size: UserDefaults.standard[.printFontSize])
-            }
-            return viewController.font
-        }()
+        printView.font = UserDefaults.standard[.setPrintFont]
+            ? NSFont(name: UserDefaults.standard[.printFontName]!, size: UserDefaults.standard[.printFontSize])
+            : viewController.font
         
         // [caution] need to set string after setting other properties
         printView.string = self.textStorage.string
+        
+        // detect URLs manually (2019-05 macOS 10.14).
+        // -> TextView anyway links all URLs in the printed PDF even the auto URL detection is disabled,
+        //    but then, multiline-URLs over a page break would be broken. (cf. #958)
+        printView.textStorage?.detectLink()
         
         // create print operation
         let printOperation = NSPrintOperation(view: printView, printInfo: self.printInfo)
@@ -630,7 +644,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         get {
             let printInfo = super.printInfo
             
-            printInfo.horizontalPagination = .fitPagination
+            printInfo.horizontalPagination = .fit
             printInfo.isHorizontallyCentered = false
             printInfo.isVerticallyCentered = false
             printInfo.leftMargin = PrintTextView.horizontalPrintMargin
@@ -668,7 +682,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
-        let option = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption]) ?? .notify
+        let option = UserDefaults.standard[.documentConflictOption]
         
         guard
             option != .ignore,
@@ -678,7 +692,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         var didChange = false
         var fileModificationDate: Date?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { [unowned self] (newURL) in  // FILE_READ
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
             // ignore if file's modificationDate is the same as document's modificationDate
             fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
             guard fileModificationDate != self.fileModificationDate else { return }
@@ -720,17 +734,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// apply current state to menu items
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
-        
-        switch action {
-        case #selector(changeEncoding(_:)):
+        switch menuItem.action {
+        case #selector(changeEncoding(_:))?:
             let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
             menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
-        case #selector(changeLineEnding(_:)):
+        case #selector(changeLineEnding(_:))?:
             menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
-        case #selector(changeSyntaxStyle(_:)):
+        case #selector(changeSyntaxStyle(_:))?:
             let name = self.syntaxParser.style.name
             menuItem.state = (menuItem.title == name) ? .on : .off
             
@@ -748,13 +760,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // This method won't be invoked on Resume. (2015-01-26)
         
         ScriptManager.shared.dispatchEvent(documentOpened: self)
-    }
-    
-    
-    /// setup ODB editor event sender
-    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor) {
-        
-        self.odbEventSender = ODBEventSender(event: event)
     }
     
     
@@ -777,7 +782,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Public Methods
     
-    /// Return whole string in the current text storage which document's line endings are already applied to.  (Note: The internal text storage has always LF for its line ending.)
+    /// Return whole string in the current text storage which document's line endings are already applied to.
+    ///
+    /// - Note: The internal text storage has always LF for its line ending.
     var string: String {
         
         let editorString = self.textStorage.string.immutable  // line ending is always LF
@@ -822,7 +829,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     /// change file encoding registering process to the undo manager
     ///
-    /// `EncodingError` (Kind.lossyConversion) can be thorwn only if `lossy` flag is `true`.
+    /// - Throws: `EncodingError` (Kind.lossyConversion) can be thorwn but only if `lossy` flag is `true`.
     func changeEncoding(to encoding: String.Encoding, withUTF8BOM: Bool, lossy: Bool) throws {
         
         assert(Thread.isMainThread)
@@ -884,7 +891,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// change syntax style with style name
-    func setSyntaxStyle(name: String) {
+    func setSyntaxStyle(name: String, isInitial: Bool = false) {
         
         guard
             let syntaxStyle = SyntaxManager.shared.setting(name: name),
@@ -892,10 +899,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             else { return }
         
         // update
-        self.syntaxParser.invalidateCurrentParce()
+        self.syntaxParser.invalidateCurrentParse()
         self.syntaxParser.style = syntaxStyle
         
+        // skip notification when initial style was set on file open
+        // to avoid redundant highlight parse due to async notification.
+        guard !isInitial else { return }
+        
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             NotificationCenter.default.post(name: Document.didChangeSyntaxStyleNotification, object: self)
         }
     }
@@ -946,8 +958,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
             
-            let completionHandler = { (didChange: Bool) in
-                if !didChange {
+            let completionHandler = { [weak self] (didChange: Bool) in
+                if !didChange, let self = self {
                     // reset toolbar selection for in case if the operation was invoked from the toolbar popup
                     NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
                 }
@@ -999,7 +1011,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                         documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
                         let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
                         
-                        guard returnCode != .alertSecondButtonReturn else {  // = Cancel
+                        guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
                             completionHandler(false)
                             return
                         }
@@ -1060,7 +1072,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update view
         viewController.invalidateStyleInTextStorage()
-        viewController.verticalLayoutOrientation = self.isVerticalText
+        if self.isVerticalText {
+            viewController.verticalLayoutOrientation = true
+        }
     }
     
     
@@ -1111,12 +1125,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: "Update".localized)
             
             // mark the alert as critical in order to interpret other sheets already attached
-            if self.windowForSheet?.attachedSheet != nil {
+            guard let documentWindow = self.windowForSheet else {
+                activityCompletionHandler()
+                assertionFailure()
+                return
+            }
+            if documentWindow.attachedSheet != nil {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: self.windowForSheet!) { returnCode in
-                
+            alert.beginSheetModal(for: documentWindow) { returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revertWithoutAsking()
                 }

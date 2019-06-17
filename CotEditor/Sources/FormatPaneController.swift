@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,10 +33,11 @@ private enum StyleKey: String {
     case state
 }
 
+
 private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
-final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
 
     // MARK: Private Properties
     
@@ -81,8 +82,11 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     
+    
+    // MARK: Menu Item Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.syntaxTableMenu)
         
@@ -157,13 +161,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         
     
     
-    
     // MARK: Delegate & Data Source
     
     /// selected syntax style in "Installed styles" list table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView, object == self.syntaxTableView else { return }
+        guard notification.object as? NSTableView == self.syntaxTableView else { return }
         
         self.validateRemoveSyntaxStyleButton()
     }
@@ -211,7 +214,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let urls = pboard.readObjects(forClasses: [NSURL.self],
                                       options: [.urlReadingFileURLsOnly: true])?
             .compactMap { $0 as? URL }
@@ -281,17 +284,12 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     
-    /// show encoding list edit sheet
-    @IBAction func openEncodingEditSheet(_ sender: Any?) {
-        
-        self.presentViewControllerAsSheet(EncodingListViewController())
-    }
-    
-    
     /// show syntax mapping conflict error sheet
     @IBAction func openSyntaxMappingConflictSheet(_ sender: Any?) {
         
-        self.presentViewControllerAsSheet(SyntaxMappingConflictsViewController())
+        let viewController = NSViewController.instantiate(storyboard: "SyntaxMappingConflictsView")
+        
+        self.presentAsSheet(viewController)
     }
     
     
@@ -299,10 +297,10 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func editSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
+        let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
+        viewController.mode = .edit(styleName)
         
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: .edit) else { return }
-        
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -310,21 +308,19 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     @IBAction func duplicateSyntaxStyle(_ sender: Any?) {
         
         let styleName = self.targetStyleName(for: sender)
+        let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
+        viewController.mode = .copy(styleName)
         
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: .copy) else { return }
-        
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
     /// show syntax style edit sheet in new mode
     @IBAction func createSyntaxStyle(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
+        let viewController = SyntaxEditViewController.instantiate(storyboard: "SyntaxEditView")
         
-        guard let viewController = SyntaxEditViewController(style: styleName, mode: .new) else { return }
-        
-        self.presentViewControllerAsSheet(viewController)
+        self.presentAsSheet(viewController)
     }
     
     
@@ -349,19 +345,23 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     /// export selected syntax style
     @IBAction func exportSyntaxStyle(_ sender: Any?) {
         
-        let styleName = self.targetStyleName(for: sender)
+        let settingName = self.targetStyleName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = "Export As:".localized
-        savePanel.nameFieldStringValue = styleName
+        savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? SyntaxManager.shared.exportSetting(name: styleName, to: savePanel.url!)
+            do {
+                try SyntaxManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            } catch {
+                self.presentError(error)
+            }
         }
     }
     
@@ -397,7 +397,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
     }
     
     
-    @IBAction func reloadAllStyles(_ sender: AnyObject?) {
+    @IBAction func reloadAllStyles(_ sender: Any?) {
         
         SyntaxManager.shared.updateCache()
     }
@@ -412,7 +412,7 @@ final class FormatPaneController: NSViewController, NSTableViewDelegate, NSTable
         guard
             let inOpenMenu = self.inOpenEncodingMenu?.menu,
             let inNewMenu = self.inNewEncodingMenu?.menu
-            else { return }
+            else { return assertionFailure() }
         
         let menuItems = EncodingManager.shared.createEncodingMenuItems()
         

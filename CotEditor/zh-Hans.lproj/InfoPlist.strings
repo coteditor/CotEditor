@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,6 +25,9 @@
  limitations under the License.
  
  */
+
+// Descriptions for privacy authorization dialog
+"NSAppleEventsUsageDescription" = "CotEditor 需要用户授权使用 AppleScript 控制其他应用。";  // "CotEditor needs user approval to control other applications with AppleScript."
 
 // Document Types
 "Text document" = "文本文档";
@@ -53,6 +56,7 @@
 "JavaScript" = "JavaScript";
 "JSON" = "JSON";
 "Julia script" = "Julia 脚本";
+"Kotlin source" = "Kotlin 源码";
 "Lisp script" = "Lisp 脚本";
 "Lua script" = "Lua 脚本";
 "Markdown document" = "Markdown 文档";

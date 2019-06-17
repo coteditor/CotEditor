@@ -60,7 +60,7 @@ final class ReplacementManager: SettingFileManaging {
     // MARK: Public Methods
     
     /// save setting file
-    func save(setting: Setting, name: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
+    func save(setting: Setting, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -81,18 +81,18 @@ final class ReplacementManager: SettingFileManaging {
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
             
-            completionHandler?()
+            completionHandler()
         }
     }
     
     
     /// create a new untitled setting
-    func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
+    func createUntitledSetting(completionHandler: @escaping ((_ settingName: String) -> Void) = { _ in }) throws {
         
         let name = self.savableSettingName(for: "Untitled".localized)
         
         try self.save(setting: MultipleReplacement(), name: name) {
-            completionHandler?(name)
+            completionHandler(name)
         }
     }
     

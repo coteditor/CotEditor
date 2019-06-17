@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,13 +29,11 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private dynamic let progress: Progress
-    @objc private dynamic let message: String
+    @objc private dynamic var progress: Progress?
+    @objc private dynamic var message: String = ""
     
-    private var progressObserver: NSKeyValueObservation?
-    private var descriptionObserver: NSKeyValueObservation?
     private var finishObserver: NSKeyValueObservation?
-    private lazy var progressThrottle = DispatchQueue.main.throttle(delay: .milliseconds(200))
+    private var updateTimer: DispatchSourceTimer?
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
     @IBOutlet private weak var descriptionField: NSTextField?
@@ -46,64 +44,82 @@ final class ProgressViewController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    required init(progress: Progress, message: String, closesWhenFinished: Bool = false) {
-        
-        self.progress = progress
-        self.message = message
-        
-        super.init(nibName: nil, bundle: nil)
-        
-        self.progressObserver = progress.observe(\.fractionCompleted, options: .initial) { [weak self] (progress, _) in
-            guard !progress.isIndeterminate else { return }
-            
-            self?.progressThrottle {
-                self?.indicator?.doubleValue = progress.fractionCompleted
-            }
-        }
-        
-        self.descriptionObserver = progress.observe(\.localizedDescription, options: .initial) { [weak self] (progress, _) in
-            DispatchQueue.main.async {
-                self?.descriptionField?.stringValue = progress.localizedDescription
-            }
-        }
-        
-        self.finishObserver = progress.observe(\.isFinished) { [weak self] (progress, _) in
-            guard closesWhenFinished, progress.isFinished else { return }
-            
-            DispatchQueue.main.async {
-                self?.dismiss(nil)
-            }
-        }
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     deinit {
-        self.progressObserver?.invalidate()
-        self.descriptionObserver?.invalidate()
         self.finishObserver?.invalidate()
+        self.updateTimer?.cancel()
     }
     
     
-    override var nibName: NSNib.Name? {
+    
+    // MARK: View Controller Methods
+    
+    override func viewWillAppear() {
         
-        return NSNib.Name("ProgressView")
+        super.viewWillAppear()
+        
+        self.indicator?.doubleValue = self.progress!.fractionCompleted
+        self.descriptionField?.stringValue = self.progress!.localizedDescription
+        
+        // trigger a timer updating UI every 0.1 seconds.
+        // -> This is much more performance-efficient than KV-Observing `.fractionCompleted` or `.localizedDescription`. (2018-12 macOS 10.14)
+        let timer = DispatchSource.makeTimerSource(queue: .main)
+        timer.schedule(deadline: .now(), repeating: .milliseconds(100), leeway: .milliseconds(50))
+        timer.setEventHandler { [weak self] in self?.updateProgress() }
+        timer.resume()
+        self.updateTimer?.cancel()
+        self.updateTimer = timer
+    }
+    
+    
+    override func dismiss(_ sender: Any?) {
+        
+        self.updateTimer?.cancel()
+        
+        // close sheet in an old way
+        // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
+        //    if the receiver was presented and dismissed during another sheet is already presented. (2018-09 macOS 10.12)
+        if let parentWindow = self.presentingViewController?.view.window,
+            let sheetWindow = self.view.window,
+            parentWindow.sheets.count > 1 {
+            parentWindow.endSheet(sheetWindow)
+        }
+        
+        super.dismiss(sender)
     }
     
     
     
     // MARK: Public Methods
     
+    /// initialize view with given progress instance
+    func setup(progress: Progress, message: String, closesWhenFinished: Bool = false) {
+        
+        self.progress = progress
+        self.message = message
+        
+        self.finishObserver?.invalidate()
+        self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
+            guard progress.isFinished else { return }
+            
+            DispatchQueue.main.async {
+                self?.updateProgress()
+                
+                if closesWhenFinished {
+                    self?.dismiss(nil)
+                }
+            }
+        }
+    }
+    
+    
     /// change button to done
     func done() {
         
+        self.updateTimer?.cancel()
+        self.updateProgress()
+        
         self.button?.title = "OK".localized
-        self.button?.action = #selector(dismiss)
+        self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)
         self.button?.keyEquivalent = "\r"
     }
     
@@ -114,9 +130,22 @@ final class ProgressViewController: NSViewController {
     /// cancel current process
     @IBAction func cancel(_ sender: Any?) {
         
-        self.progress.cancel()
+        self.progress?.cancel()
         
         self.dismiss(sender)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// update progress UI
+    private func updateProgress() {
+        
+        guard let progress = self.progress else { return assertionFailure() }
+        
+        self.indicator?.doubleValue = progress.fractionCompleted
+        self.descriptionField?.stringValue = progress.localizedDescription
     }
     
 }

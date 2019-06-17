@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import AppKit.NSSpellChecker
 
 struct EditorInfoTypes: OptionSet {
     
@@ -53,9 +54,9 @@ final class EditorInfoCountOperation: Operation {
         var characters = 0
         var lines = 0
         var words = 0
-        var location = 0  // caret location from the beginning of document
+        var location = 1  // caret location from the beginning of document
         var line = 1      // current line
-        var column = 0    // caret location from the beginning of line
+        var column = 1    // caret location from the beginning of line
         var unicode: String?  // Unicode of selected single character (or surrogate-pair)
         
         var selectedLength = 0
@@ -74,9 +75,10 @@ final class EditorInfoCountOperation: Operation {
     
     private let string: String
     private let lineEnding: LineEnding
-    private let selectedRange: NSRange
+    private let selectedRange: Range<String.Index>
     
     private let requiredInfo: EditorInfoTypes
+    private let language: String
     private let countsLineEnding: Bool
     
     
@@ -84,12 +86,15 @@ final class EditorInfoCountOperation: Operation {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, lineEnding: LineEnding, selectedRange: NSRange, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
+    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, language: String, countsLineEnding: Bool) {
+        
+        assert(selectedRange.upperBound <= string.endIndex)
         
         self.string = string
         self.lineEnding = lineEnding
         self.selectedRange = selectedRange
         self.requiredInfo = requiredInfo
+        self.language = language
         self.countsLineEnding = countsLineEnding
         
         super.init()
@@ -103,19 +108,21 @@ final class EditorInfoCountOperation: Operation {
         
         guard !self.string.isEmpty else { return }
         
-        let nsString = self.string as NSString
-        let selectedString = nsString.substring(with: self.selectedRange)
-        let hasSelection = !selectedString.isEmpty
+        let selectedString = self.string[self.selectedRange]
+        let hasSelection = !self.selectedRange.isEmpty
+        let cursorLocation = self.selectedRange.lowerBound
         
         // count length
         if self.requiredInfo.contains(.length) {
             let isSingleLineEnding = (self.lineEnding.length == 1)
-            let stringForCounting = isSingleLineEnding ? self.string : self.string.replacingLineEndings(with: self.lineEnding)
-            self.result.length = stringForCounting.utf16.count
+            self.result.length = isSingleLineEnding
+                ? (self.string as NSString).length
+                : (self.string.replacingLineEndings(with: self.lineEnding) as NSString).length
             
             if hasSelection {
-                let stringForCounting = isSingleLineEnding ? selectedString : selectedString.replacingLineEndings(with: self.lineEnding)
-                self.result.selectedLength = stringForCounting.utf16.count
+                self.result.selectedLength = isSingleLineEnding
+                    ? (selectedString as NSString).length
+                    : (selectedString.replacingLineEndings(with: self.lineEnding) as NSString).length
             }
         }
         
@@ -123,12 +130,14 @@ final class EditorInfoCountOperation: Operation {
         
         // count characters
         if self.requiredInfo.contains(.characters) {
-            let stringForCounting = self.countsLineEnding ? self.string : self.string.removingLineEndings
-            self.result.characters = stringForCounting.count
+            self.result.characters = self.countsLineEnding
+                ? self.string.count
+                : self.string.countExceptLineEnding
             
             if hasSelection {
-                let stringForCounting = self.countsLineEnding ? selectedString : selectedString.removingLineEndings
-                self.result.selectedCharacters = stringForCounting.count
+                self.result.selectedCharacters = self.countsLineEnding
+                    ? selectedString.count
+                    : selectedString.countExceptLineEnding
             }
         }
         
@@ -137,6 +146,7 @@ final class EditorInfoCountOperation: Operation {
         // count lines
         if self.requiredInfo.contains(.lines) {
             self.result.lines = self.string.numberOfLines
+            
             if hasSelection {
                 self.result.selectedLines = selectedString.numberOfLines
             }
@@ -145,33 +155,43 @@ final class EditorInfoCountOperation: Operation {
         guard !self.isCancelled else { return }
         
         // count words
+        let dispatchGroup = DispatchGroup()
         if self.requiredInfo.contains(.words) {
-            self.result.words = self.string.numberOfWords
-            if hasSelection {
-                self.result.selectedWords = selectedString.numberOfWords
+            // perform on the main thraed to use shared NSSpellChecker (macOS 10.14)
+            dispatchGroup.enter()
+            DispatchQueue.main.async { [weak self] in
+                defer { dispatchGroup.leave() }
+                guard let self = self, !self.isCancelled else { return }
+                
+                self.result.words = NSSpellChecker.shared.countWords(in: self.string, language: self.language)
+                
+                if hasSelection {
+                    self.result.selectedWords = NSSpellChecker.shared.countWords(in: String(selectedString), language: self.language)
+                }
             }
         }
         
         // calculate current location
         if self.requiredInfo.contains(.location) {
-            let locString = nsString.substring(to: selectedRange.location)
-            let stringForCounting = self.countsLineEnding ? locString : locString.removingLineEndings
-            self.result.location = stringForCounting.count
+            let locString = self.string[..<cursorLocation]
+            self.result.location = self.countsLineEnding
+                ? locString.count + 1
+                : locString.countExceptLineEnding + 1
         }
         
         guard !self.isCancelled else { return }
         
         // calculate current line
         if self.requiredInfo.contains(.line) {
-            self.result.line = self.string.lineNumber(at: self.selectedRange.location)
+            self.result.line = self.string.lineNumber(at: cursorLocation)
         }
         
         guard !self.isCancelled else { return }
         
         // calculate current column
         if self.requiredInfo.contains(.column) {
-            let lineRange = nsString.lineRange(for: self.selectedRange)
-            self.result.column = nsString.substring(with: NSRange(lineRange.location..<self.selectedRange.location)).count
+            let lineStartIndex = self.string.lineRange(at: cursorLocation).lowerBound
+            self.result.column = self.string.distance(from: lineStartIndex, to: cursorLocation) + 1
         }
         
         // unicode
@@ -180,6 +200,9 @@ final class EditorInfoCountOperation: Operation {
                 self.result.unicode = selectedString.unicodeScalars.first?.codePoint
             }
         }
+        
+        // wait word count on the main thread
+        dispatchGroup.wait()
     }
     
 }

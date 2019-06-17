@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,72 +54,69 @@ extension String {
             .reduce(self) { (string, entity) in
                 entity.value.matches(in: string, range: string.nsRange)
                     .map { $0.range(at: 1) }
+                    .compactMap { Range($0, in: string) }
                     .reversed()
-                    .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: entity.key) }
+                    .reduce(string) { $0.replacingCharacters(in: $1, with: entity.key) }
             }
     }
     
+}
+
+
+
+extension StringProtocol where Self.Index == String.Index {
     
     /// range of the line containing a given index
-    func lineRange(at index: Index, excludingLastLineEnding: Bool = false) -> Range<Index> {
+    func lineRange(at index: Index) -> Range<Index> {
         
-        return self.lineRange(for: index..<index, excludingLastLineEnding: excludingLastLineEnding)
+        return self.lineRange(for: index..<index)
+    }
+    
+    /// range of the line containing a given index
+    func lineContentsRange(at index: Index) -> Range<Index> {
+        
+        return self.lineContentsRange(for: index..<index)
     }
     
     
-    /// line range adding ability to exclude last line ending character if exists
-    func lineRange(for range: Range<Index>, excludingLastLineEnding: Bool) -> Range<Index> {
+    /// Return line range excluding last line ending character if exists.
+    ///
+    /// - Parameters:
+    ///   - range: A range within the receiver.
+    /// - Returns: The range of characters representing the line or lines containing a given range.
+    func lineContentsRange(for range: Range<Index>) -> Range<Index> {
         
-        let lineRange = self.lineRange(for: range)
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: range)
         
-        guard excludingLastLineEnding,
-            let index = self.index(lineRange.upperBound, offsetBy: -1, limitedBy: lineRange.lowerBound),
-            self[index] == "\n" else { return lineRange }
-        
-        return lineRange.lowerBound..<self.index(before: lineRange.upperBound)
-    }
-    
-    
-    /**
-     Find the range in the String of the character sequence of a given character set contains a given index found in a given range.
-     
-     - parameter aSet:   A character set to find.
-     - parameter index:  The index of character to be contained to the result range. `index` must be within `aRange`.
-     - parameter aRange: The range in which to search. `aRange` must not exceed the bounds of the receiver.
-     
-     - returns: The range in the receiver of the first character found from aSet within aRange. Or `nil` if none of the characters in `aSet` are found.
-     */
-    func rangeOfCharacters(from aSet: CharacterSet, at index: Index, range aRange: Range<Index>? = nil) -> Range<Index>? {
-        
-        let range = aRange ?? self.startIndex..<self.endIndex
-        
-        guard range.contains(index) else { return nil }
-        
-        let characterSet = aSet.inverted
-        
-        let lowerBound = self.rangeOfCharacter(from: characterSet, options: .backwards, range: range.lowerBound..<index)?.upperBound ?? range.lowerBound
-        let upperBound = self.rangeOfCharacter(from: characterSet, range: index..<range.upperBound)?.lowerBound ?? range.upperBound
-        
-        return lowerBound..<upperBound
-    }
-    
-    
-    /// check if character at the location in UTF16 is escaped with backslash
-    func isCharacterEscaped(at location: Int) -> Bool {
-        
-        guard let locationIndex = String.UTF16Index(encodedOffset: location).samePosition(in: self) else { return false }
-        
-        return self.isCharacterEscaped(at: locationIndex)
+        return start..<contentsEnd
     }
     
     
     /// check if character at the index is escaped with backslash
     func isCharacterEscaped(at index: Index) -> Bool {
         
-        let seekCharacters = self[..<index].suffix(kMaxEscapesCheckLength)
-        let numberOfEscapes = seekCharacters.reversed().countPrefix { $0 == "\\" }
+        let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
         
-        return (numberOfEscapes % 2 == 1)
+        return !escapes.count.isMultiple(of: 2)
+    }
+    
+}
+
+
+
+// MARK: NSRange based
+
+extension String {
+    
+    /// check if character at the location in UTF16 is escaped with backslash
+    func isCharacterEscaped(at location: Int) -> Bool {
+        
+        let locationIndex = String.Index(utf16Offset: location, in: self)
+        
+        return self.isCharacterEscaped(at: locationIndex)
     }
     
 }

@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -67,24 +67,24 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Content parse:"; ObjectID = "lzy-Ei-xlT"; */
-"lzy-Ei-xlT.title" = "Content parse:";  // FIXME: changed
+"lzy-Ei-xlT.title" = "Analizza il contenuto:";
 
-/* Class = "NSButtonCell"; title = "Count each line ending as one character"; ObjectID = "3306"; */
-"3306.title" = "Conteggia ogni fine riga come un carattere";
+/* Class = "NSButtonCell"; title = "Ignore line endings when counting characters"; ObjectID = "3306"; */
+"3306.title" = "Ignora i fine riga nel conteggio dei caratteri";
 /* Class = "NSButtonCell"; title = "Link URLs in document"; ObjectID = "tPy-Ox-YpP"; */
 "tPy-Ox-YpP.title" = "Collegamenti agli URL nel documento";
-/* Class = "NSButtonCell"; title = "Check spelling as you type"; ObjectID = "3300"; */
-"3300.title" = "Controlla ortografia durante la digitazione";
+/* Class = "NSButtonCell"; title = "Check spelling while typing"; ObjectID = "3300"; */
+"3300.title" = "Controlla ortografia mentre scrivo";
 /* Class = "NSButtonCell"; title = "Highlight matching braces “()” “[]” “{}”"; ObjectID = "RrC-LL-hid"; */
 "RrC-LL-hid.title" = "Evidenzia le parentesi “()” “[]” “{}” accoppiate";
 /* Class = "NSButtonCell"; title = "Highlight “<>”"; ObjectID = "al9-WE-Rqy"; */
 "al9-WE-Rqy.title" = "Evidenzia “<>”";
 /* Class = "NSButtonCell"; title = "Highlight instances of selected text"; ObjectID = "Rcq-1K-8nz"; */
-"Rcq-1K-8nz.title" = "Highlight instances of selected text";  // FIXME: added
+"Rcq-1K-8nz.title" = "Evidenzia le istanze del testo selezionato";
 /* Class = "NSTextFieldCell"; title = "Delay:"; ObjectID = "rOw-DD-kV5"; */
-"rOw-DD-kV5.title" = "Delay:";  // FIXME: added
+"rOw-DD-kV5.title" = "Ritardo:";
 /* Class = "NSTextFieldCell"; title = "seconds"; ObjectID = "ebJ-vk-RME"; */
-"ebJ-vk-RME.title" = "seconds";  // FIXME: added
+"ebJ-vk-RME.title" = "secondi";
 
 
 /* Class = "NSTextFieldCell"; title = "Software update:"; ObjectID = "geU-63-sAC"; */

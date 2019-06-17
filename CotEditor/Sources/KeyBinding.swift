@@ -25,30 +25,14 @@
 
 import Foundation
 
-struct KeyBinding: Codable {
+struct KeyBinding: Hashable, Codable {
     
     let action: Selector
     let shortcut: Shortcut?
 }
 
 
-extension KeyBinding: Hashable {
-    
-    var hashValue: Int {
-        
-        return (self.shortcut?.hashValue ?? -1) ^ self.action.hashValue
-    }
-    
-}
-
-
 extension KeyBinding: Comparable {
-    
-    static func == (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
-        
-        return lhs.shortcut == rhs.shortcut && lhs.action == rhs.action
-    }
-    
     
     static func < (lhs: KeyBinding, rhs: KeyBinding) -> Bool {
         

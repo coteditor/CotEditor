@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,12 +33,19 @@ final class NavigationBarController: NSViewController {
     /// observe textView
     var textView: NSTextView? {  // NSTextView cannot be weak
         
+        willSet {
+            guard let textView = self.textView else { return }
+            
+            self.orientationObserver?.invalidate()
+            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+        }
+        
         didSet {
             guard let textView = self.textView else { return }
           
-            // -> DO NOT use block-based KVO for NSTextView sublcass
-            //    since it causes application crash on OS X 10.11 (but ok on macOS 10.12 and later 2018-02)
-            textView.addObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation), options: .initial, context: nil)
+            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
+                self.updateTextOrientation(to: textView.layoutOrientation)
+            }
             
             // observe text selection change to update outline menu selection
             NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
@@ -69,6 +76,8 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Properties
     
+    private var orientationObserver: NSKeyValueObservation?
+    
     private weak var prevButton: NSButton?
     private weak var nextButton: NSButton?
     
@@ -87,7 +96,7 @@ final class NavigationBarController: NSViewController {
     // MARK: -
     
     deinit {
-        self.textView?.removeObserver(self, forKeyPath: #keyPath(NSTextView.layoutOrientation))
+        self.orientationObserver?.invalidate()
     }
     
     
@@ -103,15 +112,13 @@ final class NavigationBarController: NSViewController {
         self.leftButton!.isHidden = true
         self.rightButton!.isHidden = true
         self.outlineMenu!.isHidden = true
-    }
-    
-    
-    /// observed key value did update
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
-        if keyPath == #keyPath(NSTextView.layoutOrientation), let orientation = self.textView?.layoutOrientation {
-            self.updateTextOrientation(to: orientation)
-        }
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("navigation bar".localized)
+        
+        self.outlineMenu?.setAccessibilityLabel("outline menu".localized)
     }
     
     
@@ -135,7 +142,7 @@ final class NavigationBarController: NSViewController {
             // add headding item
             let headdingItem = NSMenuItem()
             headdingItem.title = "<Outline Menu>".localized
-            headdingItem.representedObject = NSRange(location: 0, length: 0)
+            headdingItem.representedObject = NSRange(0..<0)
             menu.addItem(headdingItem)
             
             // add outline items
@@ -176,9 +183,7 @@ final class NavigationBarController: NSViewController {
         
         guard let menu = self.outlineMenu else { return false }
         
-        let nextRange = (menu.indexOfSelectedItem + 1)..<menu.numberOfItems
-        
-        return menu.itemArray[nextRange].contains { $0.representedObject != nil }
+        return menu.itemArray[(menu.indexOfSelectedItem + 1)...].contains { $0.representedObject != nil }
     }
     
     
@@ -204,9 +209,9 @@ final class NavigationBarController: NSViewController {
     // MARK: Action Messages
     
     /// select outline menu item via pupup menu
-    @IBAction func selectOutlineMenuItem(_ sender: AnyObject?) {
+    @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
-        guard let range = sender?.representedObject as? NSRange else { return }
+        guard let range = sender.representedObject as? NSRange else { return assertionFailure() }
         
         let textView = self.textView!
         
@@ -221,8 +226,8 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
         
-        let index = stride(from: popUp.indexOfSelectedItem - 1, to: 0, by: -1)
-            .first { popUp.item(at: $0)!.representedObject != nil } ?? 0
+        let index = popUp.itemArray[..<popUp.indexOfSelectedItem]
+            .lastIndex { $0.representedObject != nil } ?? 0
         
         popUp.menu!.performActionForItem(at: index)
     }
@@ -233,8 +238,8 @@ final class NavigationBarController: NSViewController {
         
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
         
-        let index = stride(from: popUp.indexOfSelectedItem + 1, to: popUp.numberOfItems, by: 1)
-            .first { popUp.item(at: $0)!.representedObject != nil }
+        let index = popUp.itemArray[(popUp.indexOfSelectedItem + 1)...]
+            .firstIndex { $0.representedObject != nil }
         
         if let index = index {
             popUp.menu!.performActionForItem(at: index)
@@ -269,13 +274,14 @@ final class NavigationBarController: NSViewController {
     @objc private func invalidateOutlineMenuSelection() {
         
         guard
+            let textView = self.textView,
             let popUp = self.outlineMenu, popUp.isEnabled,
             let items = popUp.menu?.items,
             let firstItem = items.first
             else { return }
         
-        let location = self.textView!.selectedRange.location
-        let selectedItem = items.reversed().first { menuItem in
+        let location = textView.selectedRange.location
+        let selectedItem = items.last { menuItem in
             guard
                 menuItem.isEnabled,
                 let itemRange = menuItem.representedObject as? NSRange
@@ -304,6 +310,8 @@ final class NavigationBarController: NSViewController {
             self.nextButton = self.leftButton
             self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
             self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
+            
+        @unknown default: fatalError()
         }
         
         self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu(_:))

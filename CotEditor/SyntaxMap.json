@@ -59,6 +59,7 @@
     "extensions": [
       "c++",
       "cpp",
+      "cxx",
       "cc",
       "hpp",
       "h++"
@@ -309,6 +310,19 @@
       "julia"
     ]
   },
+  "Kotlin": {
+    "extensions": [
+      "kt",
+      "kts"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+      "kotlin",
+      "kotlinc"
+    ]
+  },
   "LaTeX": {
     "extensions": [
       "tex",
@@ -430,6 +444,17 @@
   "Plain Text": {
     "extensions": [
       "txt"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "Properties": {
+    "extensions": [
+      "properties"
     ],
     "filenames": [
 
@@ -568,7 +593,19 @@
   },
   "Swift": {
     "extensions": [
-      "swift"
+      "swift",
+      "swiftinterface"
+    ],
+    "filenames": [
+
+    ],
+    "interpreters": [
+
+    ]
+  },
+  "TOML": {
+    "extensions": [
+      "toml"
     ],
     "filenames": [
 

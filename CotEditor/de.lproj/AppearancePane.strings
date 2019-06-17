@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@
 /* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
 "3289.title" = "Auswählen …";
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
-"3290.title" = "Text glätten";
+"3290.title" = "Schrift glätten";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Zeilenhöhe:";
@@ -42,20 +42,29 @@
 /* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
 "ba7-dE-zXz.title" = "Hintergrundfarbe ändern";
 
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
+"NIq-Tj-KWB.title" = "Cursor:";
+/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
+"cnD-9F-CR4.title" = "Strich";
+/* Class = "NSButtonCell"; title = "Thick bar"; ObjectID = "rM6-JW-wau"; */
+"rM6-JW-wau.title" = "Dicker Strich";
+/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
+"YG7-Y7-xzs.title" = "Block";
+
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
-"oAZ-6U-Ba8.title" = "Unsichtbares:";
+"oAZ-6U-Ba8.title" = "Steuerzeichen:";
 /* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
-"gqy-Io-eUU.title" = "Unsichtbare Zeichen anzeigen";
+"gqy-Io-eUU.title" = "Steuerzeichen anzeigen";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Leerzeichen";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
 "XSb-uU-5QP.title" = "Tabulator";
-/* Class = "NSButtonCell"; title = "Line Ending"; ObjectID = "Ont-7L-Uf5"; */
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
 "Ont-7L-Uf5.title" = "Zeilenumbruch";
-/* Class = "NSButtonCell"; title = "Full-width Space"; ObjectID = "Bf2-rS-2zu"; */
+/* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
 "Bf2-rS-2zu.title" = "Vollbreite Leerzeichen";
-/* Class = "NSButtonCell"; title = "Other Invisible Characters"; ObjectID = "sxg-F3-ely"; */
+/* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Andere unsichtbare Zeichen";
 
 

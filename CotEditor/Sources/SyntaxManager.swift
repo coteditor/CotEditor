@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,7 @@ import YAML
 
 @objc protocol SyntaxHolder: AnyObject {
     
-    func changeSyntaxStyle(_ sender: Any?)
+    func changeSyntaxStyle(_ sender: AnyObject?)
     func recolorAll(_ sender: Any?)
 }
 
@@ -71,11 +71,9 @@ final class SyntaxManager: SettingFileManaging {
     // MARK: Private Properties
     
     private let bundledMap: [SettingName: [String: [String]]]
-    private var mappingTables: [SyntaxKey: [String: [SettingName]]] = [.extensions: [:],
-                                                                       .filenames: [:],
-                                                                       .interpreters: [:]]
-    
-    private let propertyAccessQueue = DispatchQueue(label: "com.coteditor.CotEditor.SyntaxManager.property")  // like @synchronized(self)
+    private var mappingTables = Atomic<[SyntaxKey: [String: [SettingName]]]>([.extensions: [:],
+                                                                              .filenames: [:],
+                                                                              .interpreters: [:]])
     
     
     
@@ -111,7 +109,7 @@ final class SyntaxManager: SettingFileManaging {
     /// return style name corresponding to file name
     func settingName(documentFileName fileName: String) -> SettingName? {
         
-        let mappingTables = self.propertyAccessQueue.sync { self.mappingTables }
+        let mappingTables = self.mappingTables.value
         
         if let settingName = mappingTables[.filenames]?[fileName]?.first {
             return settingName
@@ -130,7 +128,7 @@ final class SyntaxManager: SettingFileManaging {
     func settingName(documentContent content: String) -> SettingName? {
         
         if let interpreter = content.scanInterpreterInShebang(),
-            let settingName = self.propertyAccessQueue.sync(execute: { self.mappingTables })[.interpreters]?[interpreter]?.first {
+            let settingName = self.mappingTables.value[.interpreters]?[interpreter]?.first {
             return settingName
         }
         
@@ -224,7 +222,7 @@ final class SyntaxManager: SettingFileManaging {
     /// conflicted maps
     var mappingConflicts: [SyntaxKey: [String: [SettingName]]] {
         
-        return self.mappingTables.mapValues { $0.filter { $0.value.count > 1 } }
+        return self.mappingTables.value.mapValues { $0.filter { $0.value.count > 1 } }
     }
     
     
@@ -289,15 +287,10 @@ final class SyntaxManager: SettingFileManaging {
     
     var cachedSettings: [SettingName: Setting] {
         
-        get {
-            return self.propertyAccessQueue.sync { self._cachedSettings }
-        }
-        
-        set {
-            self.propertyAccessQueue.sync { self._cachedSettings = newValue }
-        }
+        get { return self._cachedSettings.value }
+        set { self._cachedSettings.mutate { $0 = newValue } }
     }
-    private var _cachedSettings: [SettingName: Setting] = [:]
+    private let _cachedSettings = Atomic<[SettingName: Setting]>([:])
     
     
     /// load setting from the file at given URL
@@ -330,7 +323,7 @@ final class SyntaxManager: SettingFileManaging {
         self.settingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
         // remove styles not exist
-        UserDefaults.standard[.recentStyleNames] = UserDefaults.standard[.recentStyleNames]!.filter { self.settingNames.contains($0) }
+        UserDefaults.standard[.recentStyleNames]?.removeAll { !self.settingNames.contains($0) }
         
         // update file mapping tables
         let settingNames = self.settingNames.filter { !self.bundledSettingNames.contains($0) } + self.bundledSettingNames  // postpone bundled styles
@@ -343,9 +336,7 @@ final class SyntaxManager: SettingFileManaging {
                 }
             }
         }
-        self.propertyAccessQueue.sync {
-            self.mappingTables = tables
-        }
+        self.mappingTables.mutate { $0 = tables }
     }
     
     
@@ -354,8 +345,8 @@ final class SyntaxManager: SettingFileManaging {
     
     /// Load StyleDictionary at file URL.
     ///
-    /// - parameter fileURL: URL to a setting file.
-    /// - throws: CocoaError
+    /// - Parameter fileURL: URL to a setting file.
+    /// - Throws: `CocoaError`
     private func loadSettingDictionary(at fileURL: URL) throws -> StyleDictionary {
         
         let data = try Data(contentsOf: fileURL)
@@ -381,7 +372,7 @@ final class SyntaxManager: SettingFileManaging {
 
 
 
-private extension String {
+private extension StringProtocol where Self.Index == String.Index {
     
     /// try extracting used language from the shebang line
     func scanInterpreterInShebang() -> String? {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,11 +29,11 @@ extension DefaultKeys {
     
     // General
     static let quitAlwaysKeepsWindows = DefaultKey<Bool>("NSQuitAlwaysKeepsWindows")
-    static let noDocumentOnLaunchBehavior = DefaultKey<Int>("noDocumentOnLaunchBehavior")
+    static let noDocumentOnLaunchBehavior = DefaultKey<NoDocumentOnLaunchBehavior>("noDocumentOnLaunchBehavior")
     static let enablesAutosaveInPlace = DefaultKey<Bool>("enablesAutosaveInPlace")
     static let trimsTrailingWhitespaceOnSave = DefaultKey<Bool>("trimsTrailingWhitespaceOnSave")
     static let trimsWhitespaceOnlyLines = DefaultKey<Bool>("trimsWhitespaceOnlyLines")
-    static let documentConflictOption = DefaultKey<Int>("documentConflictOption")
+    static let documentConflictOption = DefaultKey<DocumentConflictOption>("documentConflictOption")
     static let countLineEndingAsChar = DefaultKey<Bool>("countLineEndingAsChar")
     static let autoLinkDetection = DefaultKey<Bool>("autoLinkDetectionKey")
     static let checkSpellingAsType = DefaultKey<Bool>("checkSpellingAsType")
@@ -59,6 +59,7 @@ extension DefaultKeys {
     static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
     static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
+    static let writingDirection = DefaultKey<WritingDirection>("writingDirection")
     static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
     static let windowAlpha = DefaultKey<CGFloat>("windowAlpha")
     
@@ -68,6 +69,7 @@ extension DefaultKeys {
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
+    static let cursorType = DefaultKey<CursorType>("cursorType")
     static let showInvisibles = DefaultKey<Bool>("showInvisibles")
     static let showInvisibleSpace = DefaultKey<Bool>("showInvisibleSpace")
     static let invisibleSpace = DefaultKey<Int>("invisibleSpace")
@@ -123,18 +125,18 @@ extension DefaultKeys {
     static let printFontSize = DefaultKey<CGFloat>("printFontSize")
     static let printColorIndex = DefaultKey<Int>("printColorIndex")
     static let printTheme = DefaultKey<String>("printTheme")
-    static let printLineNumIndex = DefaultKey<Int>("printLineNumIndex")
-    static let printInvisibleCharIndex = DefaultKey<Int>("printInvisibleCharIndex")
+    static let printLineNumIndex = DefaultKey<PrintLineNmuberMode>("printLineNumIndex")
+    static let printInvisibleCharIndex = DefaultKey<PrintInvisiblesMode>("printInvisibleCharIndex")
     static let printHeader = DefaultKey<Bool>("printHeader")
-    static let primaryHeaderContent = DefaultKey<Int>("headerOneStringIndex")
-    static let primaryHeaderAlignment = DefaultKey<Int>("headerOneAlignIndex")
-    static let secondaryHeaderContent = DefaultKey<Int>("headerTwoStringIndex")
-    static let secondaryHeaderAlignment = DefaultKey<Int>("headerTwoAlignIndex")
+    static let primaryHeaderContent = DefaultKey<PrintInfoType>("headerOneStringIndex")
+    static let primaryHeaderAlignment = DefaultKey<AlignmentType>("headerOneAlignIndex")
+    static let secondaryHeaderContent = DefaultKey<PrintInfoType>("headerTwoStringIndex")
+    static let secondaryHeaderAlignment = DefaultKey<AlignmentType>("headerTwoAlignIndex")
     static let printFooter = DefaultKey<Bool>("printFooter")
-    static let primaryFooterContent = DefaultKey<Int>("footerOneStringIndex")
-    static let primaryFooterAlignment = DefaultKey<Int>("footerOneAlignIndex")
-    static let secondaryFooterContent = DefaultKey<Int>("footerTwoStringIndex")
-    static let secondaryFooterAlignment = DefaultKey<Int>("footerTwoAlignIndex")
+    static let primaryFooterContent = DefaultKey<PrintInfoType>("footerOneStringIndex")
+    static let primaryFooterAlignment = DefaultKey<AlignmentType>("footerOneAlignIndex")
+    static let secondaryFooterContent = DefaultKey<PrintInfoType>("footerTwoStringIndex")
+    static let secondaryFooterAlignment = DefaultKey<AlignmentType>("footerTwoAlignIndex")
     
     
     // find panel
@@ -144,6 +146,7 @@ extension DefaultKeys {
     static let findIgnoresCase = DefaultKey<Bool>("findIgnoresCase")
     static let findInSelection = DefaultKey<Bool>("findInSelection")
     static let findIsWrap = DefaultKey<Bool>("findIsWrap")
+    static let findMatchesFullWord = DefaultKey<Bool>("findMatchesFullWord")
     static let findNextAfterReplace = DefaultKey<Bool>("findsNextAfterReplace")
     static let findClosesIndicatorWhenDone = DefaultKey<Bool>("findClosesIndicatorWhenDone")
     
@@ -158,10 +161,13 @@ extension DefaultKeys {
     // settings that are not in preferences
     static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
-    static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
-    static let showInspector = DefaultKey<Bool>("showInspector")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
+    static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
+    static let outlineViewFontSize = DefaultKey<CGFloat>("outlineViewFontSize")
+    static let selectedMultipleReplacementSettingName = DefaultKey<String>("selectedMultipleReplacementSettingName")
+    static let beginCustomSurroundString = DefaultKey<String>("beginCustomSurroundString")
+    static let endCustomSurroundString = DefaultKey<String>("endCustomSurroundString")
     
     // hidden settings
     static let headerFooterDateFormat = DefaultKey<String>("headerFooterDateFormat")
@@ -172,9 +178,10 @@ extension DefaultKeys {
     static let largeFileAlertThreshold = DefaultKey<Int>("largeFileAlertThreshold")
     static let autosavingDelay = DefaultKey<Double>("autosavingDelay")
     static let savesTextOrientation = DefaultKey<Bool>("savesTextOrientation")
-    static let layoutTextVertical = DefaultKey<Bool>("layoutTextVertical")
     static let enableSmartIndent = DefaultKey<Bool>("enableSmartIndent")
     static let maximumRecentStyleCount = DefaultKey<Int>("maximumRecentStyleCount")
+    static let maximumSelectionInstanceHighlightCount = DefaultKey<Int>("maximumSelectionInstanceHighlightCount")
+    static let minimumLengthForNonContiguousLayout = DefaultKey<Int>("minimumLengthForNonContiguousLayout")
     
     static let lastVersion = DefaultKey<String>("lastVersion")
     

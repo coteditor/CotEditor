@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,10 +26,9 @@
 
 import Cocoa
 
-protocol AdditionalDocumentPreparing: AnyObject {
+protocol AdditionalDocumentPreparing: NSDocument {
     
     func didMakeDocumentForExisitingFile(url: URL)
-    func registerDocumnentOpenEvent(_ event: NSAppleEventDescriptor)
 }
 
 
@@ -69,7 +68,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// automatically insert Shre menu (on macOS 10.13 and later)
+    /// automatically inserts Share menu (on macOS 10.13 and later)
     override var allowsAutomaticShareMenu: Bool {
 
         return true
@@ -78,10 +77,6 @@ final class DocumentController: NSDocumentController {
     
     /// open document
     override func openDocument(withContentsOf url: URL, display displayDocument: Bool, completionHandler: @escaping (NSDocument?, Bool, Error?) -> Void) {
-        
-        // listen document open event of the ODB editor protocol
-        // -> Need to fetch AppleEvent at this moment.
-        let openEvent = NSAppleEventManager.shared().currentAppleEvent
         
         // obtain transient document if exists
         self.transientDocumentLock.lock()
@@ -92,7 +87,7 @@ final class DocumentController: NSDocumentController {
         }
         self.transientDocumentLock.unlock()
         
-        super.openDocument(withContentsOf: url, display: false) { (document, documentWasAlreadyOpen, error) in
+        super.openDocument(withContentsOf: url, display: false) { [unowned self] (document, documentWasAlreadyOpen, error) in
             
             assert(Thread.isMainThread)
             
@@ -125,10 +120,6 @@ final class DocumentController: NSDocumentController {
             }
             
             completionHandler(document, documentWasAlreadyOpen, error)
-            
-            if let openEvent = openEvent {
-                (document as? AdditionalDocumentPreparing)?.registerDocumnentOpenEvent(openEvent)
-            }
         }
     }
     
@@ -189,7 +180,7 @@ final class DocumentController: NSDocumentController {
     /// add encoding menu to open panel
     override func beginOpenPanel(_ openPanel: NSOpenPanel, forTypes inTypes: [String]?, completionHandler: @escaping (Int) -> Void) {
         
-        let accessoryController = NSStoryboard(name: NSStoryboard.Name("OpenDocumentAccessory"), bundle: nil).instantiateInitialController() as! OpenPanelAccessoryController
+        let accessoryController = OpenPanelAccessoryController.instantiate(storyboard: "OpenDocumentAccessory")
         
         // initialize encoding menu and set the accessory view
         accessoryController.openPanel = openPanel
@@ -199,7 +190,7 @@ final class DocumentController: NSDocumentController {
         openPanel.isAccessoryViewDisclosed = true
         
         // run non-modal open panel
-        super.beginOpenPanel(openPanel, forTypes: inTypes) { (result: Int) in
+        super.beginOpenPanel(openPanel, forTypes: inTypes) { [unowned self] (result: Int) in
             
             if result == NSApplication.ModalResponse.OK.rawValue {
                 self.accessorySelectedEncoding = accessoryController.selectedEncoding
@@ -213,12 +204,8 @@ final class DocumentController: NSDocumentController {
     /// return enability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        if #available(macOS 10.12, *) {
-            if action == #selector(newDocumentAsTab) {
-                return self.currentDocument != nil
-            }
+        if item.action == #selector(newDocumentAsTab) {
+            return self.currentDocument != nil
         }
         
         return super.validateUserInterfaceItem(item)
@@ -243,7 +230,10 @@ final class DocumentController: NSDocumentController {
             return inSaveGroup && item.isSeparatorItem
         }?.offset ?? fileMenu.numberOfItems
         
-        fileMenu.insertItem(ShareMenuItem(), at: index)
+        let item = ShareMenuItem()
+        item.tag = MainMenu.MenuItemTag.sharingService.rawValue
+        
+        fileMenu.insertItem(item, at: index)
         fileMenu.insertItem(NSMenuItem.separator(), at: index)
     }
     
@@ -252,7 +242,6 @@ final class DocumentController: NSDocumentController {
     // MARK: Action Messages
     
     /// open a new document as new window
-    @available(macOS 10.12, *)
     @IBAction func newDocumentAsWindow(_ sender: Any?) {
         
         let document: NSDocument
@@ -271,7 +260,6 @@ final class DocumentController: NSDocumentController {
     
     
     /// open a new document as tab in the existing frontmost window
-    @available(macOS 10.12, *)
     @IBAction func newDocumentAsTab(_ sender: Any?) {
         
         let document: NSDocument
@@ -320,7 +308,7 @@ final class DocumentController: NSDocumentController {
         document.textStorage.layoutManagers
             .flatMap { $0.textContainers }
             .compactMap { $0.textView }
-            .forEach { NSAccessibilityPostNotification($0, .valueChanged) }
+            .forEach { NSAccessibility.post(element: $0, notification: .valueChanged) }
     }
     
     
@@ -329,7 +317,7 @@ final class DocumentController: NSDocumentController {
     /// - Parameters:
     ///   - url: The location of the new document object.
     ///   - typeName: The type of the document.
-    /// - Throws: DocumentReadError
+    /// - Throws: `DocumentReadError`
     private func checkOpeningSafetyOfDocument(at url: URL, typeName: String) throws {
         
         // check if the file is possible binary

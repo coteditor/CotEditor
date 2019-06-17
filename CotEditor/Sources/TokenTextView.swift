@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,10 +25,11 @@
 
 import AppKit
 
-private extension NSAttributedStringKey {
+private extension NSAttributedString.Key {
     
-    static let token = NSAttributedStringKey("token")
+    static let token = NSAttributedString.Key("token")
 }
+
 
 
 final class TokenTextView: NSTextView {
@@ -38,14 +39,25 @@ final class TokenTextView: NSTextView {
     
     
     
+    // MARK: -
     // MARK: Text View Methods
     
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
-        // set "control" text color manually for the dark mode (2017-06 on macOS 10.13 SDK)
-        self.textColor = .controlTextColor
+        guard self.window != nil else { return }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(invalidateTokens), name: NSColor.systemColorsDidChangeNotification, object: nil)
+    }
+    
+    
+    @available(macOS 10.14, *)
+    override func viewDidChangeEffectiveAppearance() {
+        
+        super.viewDidChangeEffectiveAppearance()
+        
+        self.invalidateTokens()
     }
     
     
@@ -69,7 +81,7 @@ final class TokenTextView: NSTextView {
     override func deleteBackward(_ sender: Any?) {
         
         guard
-            self.selectedRange.length == 0,
+            self.selectedRange.isEmpty,
             self.selectedRange.location > 0,
             let effectiveRange = self.layoutManager?.effectiveRange(of: .token, at: self.selectedRange.location - 1),
             effectiveRange.upperBound == self.selectedRange.location
@@ -115,12 +127,9 @@ final class TokenTextView: NSTextView {
     // MARK: Actions
     
     /// variable insertion menu was selected
-    @IBAction func insertVariable(_ sender: Any?) {
+    @IBAction func insertVariable(_ sender: NSMenuItem) {
         
-        guard
-            let menuItem = sender as? NSMenuItem,
-            let title = menuItem.representedObject as? String
-            else { return }
+        guard let title = sender.representedObject as? String else { return }
         
         let range = self.rangeForUserTextChange
         
@@ -135,16 +144,17 @@ final class TokenTextView: NSTextView {
     
     // MARK: Private Method
     
-    /// find tokens in contens and mark-up them
-    private func invalidateTokens() {
+    /// find tokens in contents and mark-up them
+    @objc private func invalidateTokens() {
         
         guard
             let tokenizer = self.tokenizer,
             let layoutManager = self.layoutManager
             else { return }
         
-        let textColor = self.tokenColor.darken(level: 0.7, for: self.effectiveAppearance)!
-        let braketColor = self.tokenColor.darken(level: 0.3, for: self.effectiveAppearance)!
+        let isDark = self.effectiveAppearance.isDark
+        let textColor = self.tokenColor.blended(withFraction: 0.7, of: isDark ? .white : .black)!
+        let braketColor = self.tokenColor.blended(withFraction: 0.3, of: isDark ? .white : .black)!
         let backgroundColor = self.tokenColor.withAlphaComponent(0.3)
         
         let wholeRange = self.string.nsRange

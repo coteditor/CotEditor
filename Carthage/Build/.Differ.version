@@ -1,9 +1,10 @@
 {
-  "commitish" : "1.2.3",
+  "commitish" : "1.4.3",
   "Mac" : [
     {
       "name" : "Differ",
-      "hash" : "599f41467e2dbfdb077ece9db4ae2b0ee36a18ac320d2d0fa385e6d89799dddb"
+      "hash" : "f8215680dc31b891b318f3942d4c2831e6f14179c6b20a0fd4e27d633ed05975",
+      "swiftToolchainVersion" : "5.0.1 (swiftlang-1001.0.82.4 clang-1001.0.46.5)"
     }
   ]
 }

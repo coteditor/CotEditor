@@ -29,51 +29,26 @@ final class SyntaxTermsEditViewController: NSViewController {
     
     // MARK: Private Properties
     
-    private var syntaxType: SyntaxType
-    
-    @IBOutlet private weak var termsController: NSArrayController?
+    @IBOutlet private var termsController: NSArrayController?
+    @IBOutlet private var tableViewDelegate: DefinitionTableViewDelegate?
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(syntaxType: SyntaxType) {
-        
-        self.syntaxType = syntaxType
-        
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     deinit {
         self.termsController?.unbind(.contentArray)
     }
     
     
-    override var nibName: NSNib.Name? {
+    override func viewWillAppear() {
         
-        return NSNib.Name("SyntaxTermsEditView")
-    }
-    
-    
-    
-    // MARK: View Controller Methods
-    
-    /// setup binding with desired key
-    override func viewDidLoad() {
+        super.viewWillAppear()
         
-        super.viewDidLoad()
-        
-        self.termsController!.bind(.contentArray,
-                                   to: self,
-                                   withKeyPath: "representedObject." + self.syntaxType.rawValue)
+        // set binding with desired key
+        let type = (self.parent as? NSTabViewController)?.tabViewItem(for: self)?.identifier as? String
+        self.termsController!.bind(.contentArray, to: self, withKeyPath: #keyPath(representedObject) + "." + type!)
     }
     
 }

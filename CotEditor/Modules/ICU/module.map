@@ -1,7 +1,0 @@
-module ICU [system] {
-    header "unicode/uchar.h"
-    header "unicode/unorm2.h"
-    header "unicode/ustring.h"
-    
-    export *
-}

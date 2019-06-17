@@ -33,23 +33,10 @@ final class WebDocumentViewController: NSViewController {
     override var representedObject: Any? {
         
         didSet {
-            guard let url = self.representedObject as? URL else { return }
+            guard let url = representedObject as? URL else { return }
             
             self.webView?.loadFileURL(url, allowingReadAccessTo: url)
         }
-    }
-    
-    
-    /// let webView load document file
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        // set webView programmatically
-        // -> WKWebView can be set in storyboard first on macOS 10.12
-        let webView = WKWebView(frame: self.view.frame)
-        self.view = webView
-        webView.navigationDelegate = self
     }
     
     
@@ -58,7 +45,9 @@ final class WebDocumentViewController: NSViewController {
         
         super.viewWillAppear()
         
-        self.view.window!.backgroundColor = .white
+        if !self.view.effectiveAppearance.isDark {
+            self.view.window!.backgroundColor = .white
+        }
     }
     
     
@@ -98,6 +87,10 @@ extension WebDocumentViewController: WKNavigationDelegate {
         #if APPSTORE
             webView.apply(styleSheet: ".Sparkle { display: none }")
         #endif
+        
+        if self.view.effectiveAppearance.isDark {
+            webView.evaluateJavaScript("document.body.classList.add('dark')")
+        }
     }
     
     
@@ -122,7 +115,7 @@ private extension WKWebView {
         
         let js = "var style = document.createElement('style'); style.innerHTML = '\(styleSheet)'; document.head.appendChild(style);"
         
-        self.evaluateJavaScript(js, completionHandler: nil)
+        self.evaluateJavaScript(js)
     }
     
 }

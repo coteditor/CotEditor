@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2018 1024jp
+//  © 2013-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import Cocoa
 
 private extension NSSound {
     
-    static let glass = NSSound(named: NSSound.Name("Glass"))
+    static let glass = NSSound(named: "Glass")
 }
 
 
@@ -54,16 +54,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    // MARK: Public Properties
-    
-    @objc dynamic let supportsWindowTabbing: Bool
-    
-    
     // MARK: Private Properties
+    
+    private lazy var preferencesWindowController = NSWindowController.instantiate(storyboard: "PreferencesWindow")
     
     private lazy var acknowledgmentsWindowController: NSWindowController = {
         
-        let windowController = NSStoryboard(name: NSStoryboard.Name("WebDocumentWindow"), bundle: nil).instantiateInitialController() as! NSWindowController
+        let windowController = NSWindowController.instantiate(storyboard: "WebDocumentWindow")
         windowController.contentViewController?.representedObject = Bundle.main.url(forResource: "Acknowledgments", withExtension: "html")
         return windowController
     }()
@@ -80,16 +77,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     override init() {
         
-        // add tab window
-        if #available(macOS 10.12, *) {
-            self.supportsWindowTabbing = true
-        } else {
-            self.supportsWindowTabbing = false
-        }
-        
         // register default setting values
-        UserDefaults.standard.register(defaults: DefaultSettings.defaults)
-        NSUserDefaultsController.shared.initialValues = DefaultSettings.defaults
+        let defaults = DefaultSettings.defaults.mapKeys { $0.rawValue }
+        UserDefaults.standard.register(defaults: defaults)
+        NSUserDefaultsController.shared.initialValues = defaults
         
         // instantiate DocumentController
         _ = DocumentController.shared
@@ -112,12 +103,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     override func awakeFromNib() {
         
+        super.awakeFromNib()
+        
         // store key bindings in MainMenu.xib before menu is modified
         MenuKeyBindingManager.shared.scanDefaultMenuKeyBindings()
         
         // append the current version number to "What’s New" menu item
-        let shortVersionRange = AppInfo.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
-        let shortVersion = String(AppInfo.shortVersion[shortVersionRange])
+        let shortVersionRange = Bundle.main.shortVersion.range(of: "^[0-9]+\\.[0-9]+", options: .regularExpression)!
+        let shortVersion = String(Bundle.main.shortVersion[shortVersionRange])
         self.whatsNewMenuItem?.title = String(format: "What’s New in CotEditor %@".localized, shortVersion)
         
         // build menus
@@ -127,7 +120,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ScriptManager.shared.buildScriptMenu()
         
         // manually insert Share menu on macOS 10.12 and earlier
-        if floor(NSAppKitVersion.current.rawValue) <= NSAppKitVersion.macOS10_12.rawValue {
+        if NSAppKitVersion.current < .macOS10_13 {
             (DocumentController.shared as? DocumentController)?.insertLegacyShareMenu()
         }
         
@@ -160,9 +153,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.servicesProvider = ServicesProvider()
         
         // setup touchbar
-        if #available(macOS 10.12.2, *) {
-            NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
-        }
+        NSApp.isAutomaticCustomizeTouchBarMenuItemEnabled = true
     }
     
     
@@ -171,7 +162,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // store the latest version
         //   -> The bundle version (build number) must be Int.
-        let thisVersion = AppInfo.bundleVersion
+        let thisVersion = Bundle.main.bundleVersion
         let isLatest: Bool = {
             guard
                 let lastVersionString = UserDefaults.standard[.lastVersion],
@@ -189,9 +180,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// creates a new blank document
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
-        let behavior = NoDocumentOnLaunchBehavior(rawValue: UserDefaults.standard[.noDocumentOnLaunchBehavior]) ?? .untitledDocument
-        
-        switch behavior {
+        switch UserDefaults.standard[.noDocumentOnLaunchBehavior] {
         case .untitledDocument:
             return true
         case .openPanel:
@@ -203,30 +192,24 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    /// drop multiple files
+    /// open multiple files at once
     func application(_ sender: NSApplication, openFiles filenames: [String]) {
         
-        let isAutomaticTabbing: Bool = {
-            if #available(macOS 10.12, *) {
-                return (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
-            }
-            return false
-        }()
-        
-        var remainingDocumentCount = filenames.count
+        let isAutomaticTabbing = (DocumentWindow.userTabbingPreference == .inFullScreen) && (filenames.count > 1)
+        let dispatchGroup = DispatchGroup()
         var firstWindowOpened = false
         
         for filename in filenames {
             guard !self.application(sender, openFile: filename) else {
-                remainingDocumentCount -= 1
                 continue
             }
             
             let url = URL(fileURLWithPath: filename)
             
+            dispatchGroup.enter()
             DocumentController.shared.openDocument(withContentsOf: url, display: true) { (document, documentWasAlreadyOpen, error) in
                 defer {
-                    remainingDocumentCount -= 1
+                    dispatchGroup.leave()
                 }
                 
                 if let error = error {
@@ -238,7 +221,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 
                 // on first window opened
                 // -> The first document needs to open a new window.
-                if #available(macOS 10.12, *), isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
+                if isAutomaticTabbing, !documentWasAlreadyOpen, document != nil, !firstWindowOpened {
                     DocumentWindow.tabbingPreference = .always
                     firstWindowOpened = true
                 }
@@ -246,13 +229,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         // reset tabbing setting
-        if #available(macOS 10.12, *), isAutomaticTabbing {
+        if isAutomaticTabbing {
             // wait until finish
-            while remainingDocumentCount > 0 {
-                RunLoop.current.run(mode: .defaultRunLoopMode, before: .distantFuture)
+            dispatchGroup.notify(queue: .main) {
+                DocumentWindow.tabbingPreference = nil
             }
-            
-            DocumentWindow.tabbingPreference = nil
         }
     }
     
@@ -321,34 +302,37 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// show standard about panel
     @IBAction func showAboutPanel(_ sender: Any?) {
      
-        var options: [NSApplication.AboutPanelOptionKey: Any] = [:]
-        #if APPSTORE
-            // Remove Sparkle from 3rd party code list
-            if let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html"),
-                let attrString = try? NSMutableAttributedString(url: creditsURL, documentAttributes: nil),
-                let range = attrString.string.range(of: "Sparkle.*\\n", options: .regularExpression)
-            {
-                attrString.replaceCharacters(in: NSRange(range, in: attrString.string), with: "")
-                let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
-                options[creditsKey] = attrString
-            }
+        let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
+        var html = try! String(contentsOf: creditsURL)
+        
+        #if APPSTORE  // Remove Sparkle from 3rd party code list
+        if let range = html.range(of: "Sparkle") {
+            html = html.replacingCharacters(in: html.lineRange(for: range), with: "")
+        }
         #endif
         
-        NSApplication.shared.orderFrontStandardAboutPanel(options: options)
+        // inverse text color in dark mode
+        if #available(macOS 10.14, *), NSApp.effectiveAppearance.isDark {
+            html = html.replacingOccurrences(of: "<body>", with: "<body style=\"color: white\">")
+        }
+        
+        let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
+        let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
+        NSApplication.shared.orderFrontStandardAboutPanel(options: [creditsKey: attrString])
     }
     
     
     /// show preferences window
     @IBAction func showPreferences(_ sender: Any?) {
         
-        PreferencesWindowController.shared.showWindow(sender)
+        self.preferencesWindowController.showWindow(sender)
     }
     
     
     /// show console panel
     @IBAction func showConsolePanel(_ sender: Any?) {
         
-        ConsolePanelController.shared.showWindow(sender)
+        Console.shared.panelController.showWindow(sender)
     }
     
     
@@ -372,12 +356,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open a specific page in Help contents
     @IBAction func openHelpAnchor(_ sender: AnyObject) {
         
-        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return }
+        guard let identifier = (sender as? NSUserInterfaceItemIdentification)?.identifier else { return assertionFailure() }
         
-        let anchorName = NSHelpManager.AnchorName(identifier.rawValue)
-        let bookName = NSHelpManager.BookName(rawValue: AppInfo.helpBookName)
-        
-        NSHelpManager.shared.openHelpAnchor(anchorName, inBook: bookName)
+        NSHelpManager.shared.openHelpAnchor(identifier.rawValue, inBook: Bundle.main.helpBookName)
     }
     
     
@@ -400,18 +381,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         // load template file
         let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md")!
-        guard let template = try? String(contentsOf: url) else { return }
+        guard let template = try? String(contentsOf: url) else { return assertionFailure() }
         
         // fill template with user environment info
         let report = template
-            .replacingOccurrences(of: "%BUNDLE_VERSION%", with: AppInfo.bundleVersion)
-            .replacingOccurrences(of: "%SHORT_VERSION%", with: AppInfo.shortVersion)
+            .replacingOccurrences(of: "%BUNDLE_VERSION%", with: Bundle.main.bundleVersion)
+            .replacingOccurrences(of: "%SHORT_VERSION%", with: Bundle.main.shortVersion)
             .replacingOccurrences(of: "%SYSTEM_VERSION%", with: ProcessInfo.processInfo.operatingSystemVersionString)
         
         // open as document
-        guard let document = (try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false)) as? Document else { return }
+        guard let document = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false) as? Document else { return assertionFailure() }
         document.displayName = "Bug Report".localized(comment: "document title")
-        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
+        document.textStorage.replaceCharacters(in: NSRange(0..<0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()

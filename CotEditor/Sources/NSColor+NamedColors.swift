@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,16 +31,33 @@ extension NSColor {
     static let textHighlighterColor = NSColor(calibratedHue: 0.24, saturation: 0.8, brightness: 0.8, alpha: 0.4)
     static let alternateDisabledControlTextColor = NSColor(white: 1.0, alpha: 0.75)
 }
-    
+
+
 
 extension NSColor {
     
-    /// Creates a new color object that represents a blend between the current color and the weaken color by considering appearance.
-    func darken(level: CGFloat, for appearance: NSAppearance) -> NSColor? {
+    /// Return CGColor of the receiver by converting system color correctly for the specific appearance.
+    ///
+    /// - Parameter appearance: The appearance to get the corresponding system color.
+    /// - Returns: A CGColor instance.
+    func cgColor(for appearance: NSAppearance) -> CGColor {
         
-        return appearance.isDark ? self.highlight(withLevel: level) : self.shadow(withLevel: level)
+        guard NSAppearance.current != appearance else { return self.cgColor }
+        
+        let currentAppearance = NSAppearance.current
+        NSAppearance.current = appearance
+        defer {
+            NSAppearance.current = currentAppearance
+        }
+        
+        return self.cgColor
     }
     
+}
+
+
+
+extension NSColor {
     
     /// return well distributed colors to highlight text
     static func textHighlighterColors(count: Int) -> [NSColor] {
@@ -68,21 +85,6 @@ extension NSColor {
             
             return NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
         }
-    }
-    
-}
-
-
-extension NSAppearance {
-    
-    var isDark: Bool {
-        
-        if self.name == .vibrantDark { return true }
-        
-        guard #available(macOS 10.14, *) else { return false }
-        
-//        return self.name == .darkAqua
-        return self.name.rawValue == "NSAppearanceNameDarkAqua"
     }
     
 }

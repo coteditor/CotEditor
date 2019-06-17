@@ -1,6 +1,6 @@
 /*
  
- PreferencsWindow.strings (Simplified Chinese)
+ PreferencesWindow.strings (Simplified Chinese)
  
  CotEditor
  https://coteditor.com
@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2015 CotEditor Project
+ © 2014-2018 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,41 +26,24 @@
  
  */
 
-/* Class = "NSWindow"; title = "Preferences"; ObjectID = "6"; */
-"6.title" = "Preferences";
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "KjF-xP-N55"; */
+"KjF-xP-N55.title" = "偏好设置";
 
-/* Class = "NSToolbarItem"; ObjectID = "HlR-fr-Hwd"; */
-"HlR-fr-Hwd.label" = "通用";  /* General */
-"HlR-fr-Hwd.paletteLabel" = "通用";  /* General */
-
-/* Class = "NSToolbarItem"; ObjectID = "agm-iM-Y3j"; */
-"agm-iM-Y3j.label" = "窗口";  /* Window */
-"agm-iM-Y3j.paletteLabel" = "窗口";  /* Window */
-
-/* Class = "NSToolbarItem"; ObjectID = "TSL-LZ-a98"; */
-"TSL-LZ-a98.label" = "外观";  /* Appearance */
-"TSL-LZ-a98.paletteLabel" = "外观";  /* Appearance */
-
-/* Class = "NSToolbarItem"; ObjectID = "bYW-oU-kKx"; */
-"bYW-oU-kKx.label" = "编辑";  /* Edit */
-"bYW-oU-kKx.paletteLabel" = "编辑";  /* Edit */
-
-/* Class = "NSToolbarItem"; ObjectID = "Pxf-UL-fD9"; */
-"Pxf-UL-fD9.label" = "格式";  /* Format  */
-"Pxf-UL-fD9.paletteLabel" = "格式";  /* Format  */
-
-/* Class = "NSToolbarItem"; ObjectID = "0c4-Jh-Er6"; */
-"0c4-Jh-Er6.label" = "文件拖拽";  /* File Drop */
-"0c4-Jh-Er6.paletteLabel" = "文件拖拽";  /* File Drop */
-
-/* Class = "NSToolbarItem"; ObjectID = "WSf-8J-dN6"; */
-"WSf-8J-dN6.label" = "按键绑定";  /* Key Bindings */
-"WSf-8J-dN6.paletteLabel" = "按键绑定";  /* Key Bindings */
-
-/* Class = "NSToolbarItem"; ObjectID = "uTl-fL-Jcq"; */
-"uTl-fL-Jcq.label" = "打印";  /* Print */
-"uTl-fL-Jcq.paletteLabel" = "打印";  /* Print */
-
-/* Class = "NSToolbarItem"; ObjectID = "Bn7-e8-FVC"; */
-"Bn7-e8-FVC.label" = "集成";  /* Integration */
-"Bn7-e8-FVC.paletteLabel" = "集成";  /* Integration */
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "CNJ-6L-fga"; */
+"CNJ-6L-fga.label" = "通用";
+/* Class = "NSTabViewItem"; label = "Window"; ObjectID = "5fL-58-BrZ"; */
+"5fL-58-BrZ.label" = "窗口";
+/* Class = "NSTabViewItem"; label = "Appearance"; ObjectID = "icK-P1-6ta"; */
+"icK-P1-6ta.label" = "外观";
+/* Class = "NSTabViewItem"; label = "Edit"; ObjectID = "sh3-xI-elX"; */
+"sh3-xI-elX.label" = "编辑";
+/* Class = "NSTabViewItem"; label = "Format"; ObjectID = "frU-Pc-xZT"; */
+"frU-Pc-xZT.label" = "格式";
+/* Class = "NSTabViewItem"; label = "File Drop"; ObjectID = "aO6-oS-ZGt"; */
+"aO6-oS-ZGt.label" = "文件拖拽";
+/* Class = "NSTabViewItem"; label = "Key Bindings"; ObjectID = "b8q-WN-1ls"; */
+"b8q-WN-1ls.label" = "按键绑定";
+/* Class = "NSTabViewItem"; label = "Print"; ObjectID = "UuB-iq-kOt"; */
+"UuB-iq-kOt.label" = "打印";
+/* Class = "NSTabViewItem"; label = "Integration"; ObjectID = "gEv-qP-tRM"; */
+"gEv-qP-tRM.label" = "集成";

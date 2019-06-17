@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Myb-sY-qpF">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Go To Line View Controller-->
+        <scene sceneID="XLF-zq-zzd">
+            <objects>
+                <viewController id="Myb-sY-qpF" customClass="GoToLineViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="c22-O7-iKe">
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="91"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I0q-j9-vwT">
+                                <rect key="frame" x="18" y="52" width="34" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Line:" id="R30-Wf-Rfd">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mSI-zk-I26" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                                <rect key="frame" x="58" y="49" width="142" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Line Number" drawsBackground="YES" id="F6K-QJ-Ox1">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="Myb-sY-qpF" name="value" keyPath="location" id="yIX-ZF-8vP">
+                                        <dictionary key="options">
+                                            <string key="NSNullPlaceholder">Line Number</string>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uvb-4S-TSI">
+                                <rect key="frame" x="66" y="13" width="82" height="32"/>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JUX-sh-0Ej">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissController:" target="Myb-sY-qpF" id="Mng-6D-vqq"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="njO-9y-ve9">
+                                <rect key="frame" x="148" y="13" width="58" height="32"/>
+                                <buttonCell key="cell" type="push" title="Go" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cuJ-kD-yiJ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="ok:" target="Myb-sY-qpF" id="0zI-yi-deK"/>
+                                </connections>
+                            </button>
+                            <button identifier="about_move_menu" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NJS-4L-qUW">
+                                <rect key="frame" x="18" y="16" width="25" height="25"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gq1-kB-rv8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="qHk-4g-vVb" id="32F-gf-50s"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="njO-9y-ve9" secondAttribute="trailing" constant="20" symbolic="YES" id="2xp-jz-IHO"/>
+                            <constraint firstAttribute="bottom" secondItem="NJS-4L-qUW" secondAttribute="bottom" constant="20" symbolic="YES" id="Bz1-Gv-rsW"/>
+                            <constraint firstItem="I0q-j9-vwT" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="LRQ-UD-iqg"/>
+                            <constraint firstAttribute="bottom" secondItem="uvb-4S-TSI" secondAttribute="bottom" constant="20" symbolic="YES" id="Rn7-w2-NZy"/>
+                            <constraint firstAttribute="bottom" secondItem="njO-9y-ve9" secondAttribute="bottom" constant="20" symbolic="YES" id="TE6-ht-Y9Z"/>
+                            <constraint firstItem="njO-9y-ve9" firstAttribute="top" secondItem="mSI-zk-I26" secondAttribute="bottom" constant="8" symbolic="YES" id="UpT-9q-eUt"/>
+                            <constraint firstItem="njO-9y-ve9" firstAttribute="leading" secondItem="uvb-4S-TSI" secondAttribute="trailing" constant="12" symbolic="YES" id="dEz-9n-LFB"/>
+                            <constraint firstItem="mSI-zk-I26" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="dPS-Vj-s3F"/>
+                            <constraint firstItem="uvb-4S-TSI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NJS-4L-qUW" secondAttribute="trailing" constant="12" symbolic="YES" id="dy6-ND-hgR"/>
+                            <constraint firstItem="NJS-4L-qUW" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="jFH-jj-Wry"/>
+                            <constraint firstItem="mSI-zk-I26" firstAttribute="baseline" secondItem="I0q-j9-vwT" secondAttribute="baseline" id="tyI-np-VUk"/>
+                            <constraint firstItem="mSI-zk-I26" firstAttribute="leading" secondItem="I0q-j9-vwT" secondAttribute="trailing" constant="8" symbolic="YES" id="uWQ-hn-Qwo"/>
+                            <constraint firstAttribute="trailing" secondItem="mSI-zk-I26" secondAttribute="trailing" constant="20" symbolic="YES" id="uzR-Ys-SBx"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="qHk-4g-vVb" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-212" y="-154"/>
+        </scene>
+    </scenes>
+</document>

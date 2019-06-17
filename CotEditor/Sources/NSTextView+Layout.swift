@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,7 +47,8 @@ extension NSTextView {
         
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return nil }
+            let textContainer = self.textContainer
+            else { return nil }
         
         let visibleRect = rect.offset(by: -self.textContainerOrigin)
         let glyphRange = layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
@@ -61,7 +62,8 @@ extension NSTextView {
         
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return nil }
+            let textContainer = self.textContainer
+            else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         var boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
@@ -82,7 +84,8 @@ extension NSTextView {
         
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return [] }
+            let textContainer = self.textContainer
+            else { return [] }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         
@@ -104,32 +107,26 @@ extension NSTextView {
 
 extension NSTextView {
     
-    // MARK: Notification Names
-    
-    static let didChangeScaleNotification = Notification.Name("TextViewDidChangeScale")
-    
-    
-    
     // MARK: Public Methods
     
     /// current zooming scale
-    var scale: CGFloat {
+    @objc var scale: CGFloat {
         
         get {
-            return self.convert(NSSize.unit, to: nil).width
+            return self.convert(.unit, to: nil).width
         }
         
         set {
-            guard
-                let layoutManager = self.layoutManager,
-                let textContainer = self.textContainer else { return }
-            
             // sanitize scale
             let scale: CGFloat = {
                 guard let scrollView = self.enclosingScrollView else { return newValue }
                 
-                return newValue.clamped(min: scrollView.minMagnification, max: scrollView.maxMagnification)
+                return newValue.clamped(to: scrollView.minMagnification...scrollView.maxMagnification)
             }()
+            
+            guard scale != self.scale else { return }
+            
+            self.willChangeValue(for: \.scale)
             
             // scale
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
@@ -142,16 +139,14 @@ extension NSTextView {
             self.minSize = self.visibleRect.size
             
             // ensure text layout
-            layoutManager.ensureLayout(for: textContainer)
+            if let textContainer = self.textContainer {
+                self.layoutManager?.ensureLayout(for: textContainer)
+            }
             self.sizeToFit()
             
-            // dummy reselection to force redrawing current line highlight
-            let selectedRanges = self.selectedRanges
-            self.selectedRanges = selectedRanges
+            self.didChangeValue(for: \.scale)
             
             self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            
-            NotificationCenter.default.post(name: NSTextView.didChangeScaleNotification, object: self)
         }
     }
     
@@ -161,13 +156,15 @@ extension NSTextView {
         
         let currentScale = self.scale
         
+        guard scale != currentScale else { return }
+        
         guard
-            scale != currentScale,
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer else { return }
+            let textContainer = self.textContainer
+            else { return assertionFailure() }
         
         // store current coordinate
-        let centerGlyphIndex = layoutManager.glyphIndex(for: point, in: textContainer)
+        let centerGlyphIndex = layoutManager.glyphIndex(for: point.offset(by: self.textContainerOrigin), in: textContainer)
         let isVertical = (self.layoutOrientation == .vertical)
         let visibleRect = self.visibleRect
         let visibleOrigin = NSPoint(x: visibleRect.minX, y: isVertical ? visibleRect.maxY : visibleRect.minY)
@@ -204,46 +201,45 @@ extension NSTextView {
     var wrapsLines: Bool {
         
         get {
-            guard let container = self.textContainer else { return false }
-            
-            return (container.size.width != self.infiniteSize.width)
+            return self.textContainer?.widthTracksTextView ?? false
         }
         
         set {
-            guard let scrollView = self.enclosingScrollView,
-                  let textContainer = self.textContainer else { return }
+            guard newValue != self.wrapsLines else { return }
+            
+            guard let textContainer = self.textContainer else { return assertionFailure() }
             
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
             
-            textContainer.widthTracksTextView = newValue
             if newValue {
-                let contentSize = scrollView.contentSize
-                textContainer.size.width = (contentSize.width / self.scale).rounded()
-                self.setConstrainedFrameSize(contentSize)
+                let width = self.visibleRect.width
+                self.frame.size[keyPath: isVertical ? \NSSize.height : \NSSize.width] = width * self.scale
+                textContainer.size.width = width
+                textContainer.widthTracksTextView = true
             } else {
+                textContainer.widthTracksTextView = false
                 textContainer.size = self.infiniteSize
             }
-            self.autoresizingMask = newValue ? (isVertical ? .height : .width) : .none
+            
             if isVertical {
-                scrollView.hasVerticalScroller = !newValue
                 self.isVerticallyResizable = !newValue
+                self.enclosingScrollView?.hasVerticalScroller = !newValue
             } else {
-                scrollView.hasHorizontalScroller = !newValue
                 self.isHorizontallyResizable = !newValue
+                self.enclosingScrollView?.hasHorizontalScroller = !newValue
             }
-            self.sizeToFit()
             
             if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {
                 visibleRect.size.width = 0
-                visibleRect = visibleRect.offset(by: -self.textContainerOrigin)
+                visibleRect = visibleRect.inset(by: -self.textContainerOrigin)
                 self.scrollToVisible(visibleRect)
             }
         }
     }
     
     
-    // return infinite size for textContainer considering writing orientation state
+    /// return infinite size for textContainer considering writing orientation state
     var infiniteSize: CGSize {
         
         // infinite size doesn't work with RTL (2018-01 macOS 10.13).

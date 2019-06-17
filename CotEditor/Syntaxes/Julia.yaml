@@ -4,8 +4,8 @@ filenames: []
 interpreters:
 - keyString: "julia"
 metadata:
-  version: "1.2.0"
-  lastModified: "2016-05-20"
+  version: "1.2.1"
+  lastModified: "2018-12-31"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Based on Julia 0.4.5"
@@ -535,7 +535,7 @@ commands:
 - beginString: "issocket"
 - beginString: "issorted"
 - beginString: "isspace"
-- beginString: "issparce"
+- beginString: "issparse"
 - beginString: "issticky"
 - beginString: "issubnormal"
 - beginString: "issubset"

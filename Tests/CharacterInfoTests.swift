@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,12 +31,19 @@ final class CharacterInfoTests: XCTestCase {
     
     // MARK: UTF32Char Extension Tests
     
+    func testBlockNameTable() {
+        
+        // check comprehensiveness of block name table
+        let keys = UTF32Char.blockNameTable.keys.sorted { $0.lowerBound < $1.lowerBound }
+        XCTAssertEqual(zip(keys, keys.dropFirst()).count(where: { $0.0.upperBound + 1 != $0.1.lowerBound }), 20)
+    }
+    
+    
     func testSingleSurrogate() {
         
         let character = UTF32Char(0xD83D)
         
         XCTAssertEqual(character.unicodeName, "<lead surrogate-D83D>")
-        XCTAssertEqual(character.categoryName, "Surrogate")
         XCTAssertEqual(character.blockName, "High Surrogates")
         
         XCTAssertNil(UnicodeScalar(character))
@@ -48,13 +55,11 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSingleChar() {
         
-        let unicode = UnicodeScalar("あ")!
-        
+        let unicode = UnicodeScalar("あ")
         XCTAssertEqual(unicode.codePoint, "U+3042")
         XCTAssertFalse(unicode.isSurrogatePair)
         XCTAssertNil(unicode.surrogateCodePoints)
         XCTAssertEqual(unicode.name, "HIRAGANA LETTER A")
-        XCTAssertEqual(unicode.categoryName, "Other Letter")
         XCTAssertEqual(unicode.blockName, "Hiragana")
         XCTAssertNotNil(unicode.localizedBlockName)
     }
@@ -62,13 +67,12 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSurrogateEmoji() {
         
-        let unicode = UnicodeScalar("😀")!
+        let unicode = UnicodeScalar("😀")
         
         XCTAssertEqual(unicode.codePoint, "U+1F600")
         XCTAssertTrue(unicode.isSurrogatePair)
         XCTAssertEqual(unicode.surrogateCodePoints!, ["U+D83D", "U+DE00"])
         XCTAssertEqual(unicode.name, "GRINNING FACE")
-        XCTAssertEqual(unicode.categoryName, "Other Symbol")
         XCTAssertEqual(unicode.blockName, "Emoticons")
         XCTAssertNotNil(unicode.localizedBlockName)
     }
@@ -76,7 +80,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testUnicodeBlockNameWithHyphen() {
         
-        let character = UnicodeScalar("﷽")!
+        let character = UnicodeScalar("﷽")
         
         XCTAssertEqual(character.codePoint, "U+FDFD")
         XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
@@ -103,7 +107,7 @@ final class CharacterInfoTests: XCTestCase {
         // test DELETE
         XCTAssertEqual(Int(ControlCharacter.deleteCharacter), NSDeleteCharacter)
         let deleteCharacter = UnicodeScalar(NSDeleteCharacter)!
-        let deletePictureCharacter = UnicodeScalar("␡")!
+        let deletePictureCharacter = UnicodeScalar("␡")
         XCTAssertEqual(deleteCharacter.name, "DELETE")
         XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
         XCTAssertEqual(deleteCharacter.pictureRepresentation, deletePictureCharacter)
@@ -119,13 +123,13 @@ final class CharacterInfoTests: XCTestCase {
     
     func testMultiCharString() {
         
-        XCTAssertNil(CharacterInfo(string: "foo"))
+        XCTAssertThrowsError(try CharacterInfo(string: "foo"))
     }
     
     
-    func testSingleCharWithVSInfo() {
+    func testSingleCharWithVSInfo() throws {
         
-        let charInfo = CharacterInfo(string: "☺︎")!
+        let charInfo = try CharacterInfo(string: "☺︎")
         
         XCTAssertEqual(charInfo.string, "☺︎")
         XCTAssertFalse(charInfo.isComplex)
@@ -135,9 +139,9 @@ final class CharacterInfoTests: XCTestCase {
     }
     
     
-    func testCombiningCharacterInfo() {
+    func testCombiningCharacterInfo() throws {
         
-        let charInfo = CharacterInfo(string: "1️⃣")!
+        let charInfo = try CharacterInfo(string: "1️⃣")
         
         XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+0031", "U+FE0F", "U+20E3"])
@@ -145,18 +149,18 @@ final class CharacterInfoTests: XCTestCase {
     }
     
     
-    func testNationalIndicatorInfo() {
+    func testNationalIndicatorInfo() throws {
         
-        let charInfo = CharacterInfo(string: "🇯🇵")!
+        let charInfo = try CharacterInfo(string: "🇯🇵")
         
         XCTAssertTrue(charInfo.isComplex)
         XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+1F1EF", "U+1F1F5"])
     }
     
     
-    func testControlCharacterInfo() {
+    func testControlCharacterInfo() throws {
         
-        let charInfo = CharacterInfo(string: " ")!
+        let charInfo = try CharacterInfo(string: " ")
         
         XCTAssertEqual(charInfo.string, " ")
         XCTAssertEqual(charInfo.pictureString, "␠")

@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit.NSBezierPath
 
 struct RectCorner: OptionSet {
     
@@ -51,7 +51,7 @@ extension NSBezierPath {
         
         self.init()
         
-        let radius = radius.clamped(min: 0, max: min(rect.width, rect.height) / 2)
+        let radius = radius.clamped(to: 0...(min(rect.width, rect.height) / 2))
         
         let topLeft = NSPoint(x: rect.minX, y: rect.minY)
         let topRight = NSPoint(x: rect.maxX, y: rect.minY)

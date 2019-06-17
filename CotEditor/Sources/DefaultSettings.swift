@@ -28,7 +28,7 @@ import AppKit.NSFont
 
 struct DefaultSettings {
     
-    private static let settings: [DefaultKeys: Any] = [
+    static let defaults: [DefaultKeys: Any] = [
         .quitAlwaysKeepsWindows: true,
         .noDocumentOnLaunchBehavior: NoDocumentOnLaunchBehavior.untitledDocument.rawValue,
         .enablesAutosaveInPlace: true,
@@ -59,6 +59,7 @@ struct DefaultSettings {
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
         .splitViewVertical: false,
+        .writingDirection: 0,
         .overscrollRate: 0,
         .windowAlpha: 1.0,
         
@@ -67,6 +68,7 @@ struct DefaultSettings {
         .shouldAntialias: true,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
+        .cursorType: CursorType.bar.rawValue,
         .showInvisibles: false,
         .showInvisibleSpace: false,
         .invisibleSpace: 0,
@@ -77,7 +79,7 @@ struct DefaultSettings {
         .showInvisibleFullwidthSpace: false,
         .invisibleFullwidthSpace: 0,
         .showOtherInvisibleChars: false,
-        .theme: "Dendrobates",
+//        .theme: "Dendrobates",  // -> The default theme is set dynamically by taking the current appearance into account.
         
         .smartInsertAndDelete: false,
         .balancesBrackets: false,
@@ -154,6 +156,7 @@ struct DefaultSettings {
         .findUsesRegularExpression: false,
         .findInSelection: false,
         .findIsWrap: true,
+        .findMatchesFullWord: false,
         .findNextAfterReplace: true,
         .findClosesIndicatorWhenDone: true,
         .findIgnoresCase: false,
@@ -167,13 +170,13 @@ struct DefaultSettings {
         
         // ------ settings not in preferences window ------
         .colorCodeType: 1,
-        .sidebarWidth: 220,
         .recentStyleNames: [],
-        .showInspector: false,
         .showStatusBar: true,
+        .selectedInspectorPaneIndex: 0,
+        .outlineViewFontSize: NSFont.smallSystemFontSize,
         
         // ------ hidden settings ------
-        .headerFooterDateFormat: "YYYY-MM-dd HH:mm",
+        .headerFooterDateFormat: "yyyy-MM-dd HH:mm",
         .headerFooterPathAbbreviatingWithTilde: true,
         .autoCompletionDelay: 0.25,
         .showColoringIndicatorTextLength: 75000,
@@ -181,13 +184,11 @@ struct DefaultSettings {
         .largeFileAlertThreshold: 50 * pow(1024, 2),  // 50 MB
         .autosavingDelay: 5.0,
         .savesTextOrientation: true,
-        .layoutTextVertical: false,
         .enableSmartIndent: true,
         .maximumRecentStyleCount: 6,
+        .maximumSelectionInstanceHighlightCount: 100,
+        .minimumLengthForNonContiguousLayout: 5_000_000,
         ]
-    
-    
-    static let defaults: [String: Any] = DefaultSettings.settings.mapKeys { $0.rawValue }
     
     
     private init() { }

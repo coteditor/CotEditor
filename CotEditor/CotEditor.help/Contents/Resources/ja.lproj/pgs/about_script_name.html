@@ -36,27 +36,27 @@
 
 <dl>
 	<dt>キーボードショートカット</dt>
-	<dd>ファイル名の拡張子の直前に『「.」+「モディファイヤキー」+「ショートカットキー」』を追加すると、キーボードショートカットを割り当てることができます。
+	<dd>ファイル名の拡張子の直前に『「.」+「修飾キー」+「ショートカットキー」』を追加すると、キーボードショートカットを割り当てることができます。
 		<table>
 			<caption>例2.</caption>
 			<tr><th>ファイル名</th><td>Insert String<strong>.@e</strong>.scpt</td></tr>
-			<tr><th>メニュータイトル</th><td>Insert String (Command + E)</td></tr>
+			<tr><th>メニュータイトル</th><td>Insert String (<kbd>Command</kbd> + <kbd>E</kbd>)</td></tr>
 		</table>
 		
 		<table>
 			<caption>例3.</caption>
 			<tr><th>ファイル名</th><td>03)Insert Date<strong>.@&#x007E;Y</strong>.scpt</td></tr>
-			<tr><th>メニュータイトル</th><td>Insert Date (Command + Option + Shift + Y)</td></tr>
+			<tr><th>メニュータイトル</th><td>Insert Date (<kbd>Command</kbd> + <kbd>Option</kbd> + <kbd>Shift</kbd> + <kbd>Y</kbd>)</td></tr>
 		</table>
 		<dl style="margin-top: 1em;">
-			<dt>モディファイヤキーの記述方法</dt>
+			<dt>修飾キーの記述方法</dt>
 			<dd>
 				<table>
 					<tr><th>表記</th><th>キー</th></tr>
-					<tr><td>^</td><td>Ctrl（コントロール）</td></tr>
-					<tr><td>$</td><td>Shift（シフト）</td></tr>
-					<tr><td>&#x007E;</td><td>Option（オプション）</td></tr>
-					<tr><td>@</td><td>Command（コマンド）</td></tr>
+					<tr><td>^</td><td><kbd>Control</kbd>（コントロール）</td></tr>
+					<tr><td>$</td><td><kbd>Shift</kbd>（シフト）</td></tr>
+					<tr><td>&#x007E;</td><td><kbd>Option</kbd>（オプション）</td></tr>
+					<tr><td>@</td><td><kbd>Command</kbd>（コマンド）</td></tr>
 				</table>
 			</dd>
 		</dl>
@@ -65,8 +65,8 @@
 
 
 <ul>
-	<li>ショートカットキー（モディファイヤキーでないキー、例2での「e」）は、通常小文字で記述します。大文字の場合は「シフトキーも同時に押す」として認識されます。</li>
-	<li>ショートカットキーは、モディファイヤキーのあとに書かなければなりません。また、1文字だけ指定できます。また、ファイル名に使えないキー（「F1」や「Delete」など）は割り当てられません。</li>
+	<li>ショートカットキー（修飾キーでないキー、例2での「e」）は、通常小文字で記述します。大文字の場合は「シフトキーも同時に押す」として認識されます。</li>
+	<li>ショートカットキーは、修飾キーのあとに書かなければなりません。また、1文字だけ指定できます。また、ファイル名に使えないキー（「F1」や「Delete」など）は割り当てられません。</li>
 	<li>指定したキーバインドがすでに他の機能に割り当てられている場合、スクリプトのキーバインドは無視されます。</li>
 </ul>
 

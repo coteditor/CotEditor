@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,14 +23,14 @@
 //  limitations under the License.
 //
 
-import Foundation
-
-extension Array where Element: Equatable {
+extension RangeReplaceableCollection where Element: Equatable {
     
-    /// Remove first collection element that is equal to the given `element`
+    /// Remove first collection element that is equal to the given `element`.
+    ///
+    /// - Parameter element: The element to be removed.
     mutating func remove(_ element: Element) {
         
-        if let index = index(of: element) {
+        if let index = self.firstIndex(of: element) {
             self.remove(at: index)
         }
     }
@@ -38,12 +38,31 @@ extension Array where Element: Equatable {
 }
 
 
-public extension Collection {
+
+extension Collection {
 
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
+    ///
+    /// - Parameter index: The position of the element to obtain.
     subscript(safe index: Index) -> Element? {
         
-        return indices.contains(index) ? self[index] : nil
+        return self.indices.contains(index) ? self[index] : nil
+    }
+    
+}
+
+
+
+extension Sequence where Element: Equatable {
+    
+    /// An array consists of unique elements of receiver keeping ordering.
+    var unique: [Element] {
+        
+        return self.reduce(into: []) { (unique, element) in
+            guard !unique.contains(element) else { return }
+            
+            unique.append(element)
+        }
     }
     
 }
@@ -79,13 +98,9 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate.
-    func count(_ predicate: (Element) -> Bool) -> Int {
+    func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        var count = 0
-        for element in self where predicate(element) {
-            count += 1
-        }
-        return count
+        return try self.reduce(0) { try predicate($1) ? $0 + 1 : $0 }
     }
     
     
@@ -95,51 +110,9 @@ extension Sequence {
     ///    - predicate: A closure that takes an element of the sequence as its argument
     ///                 and returns a Boolean value indicating whether the element should be counted.
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
-    func countPrefix(while predicate: (Element) -> Bool) -> Int {
+    func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        var count = 0
-        for element in self {
-            guard predicate(element) else { break }
-            
-            count += 1
-        }
-        return count
-    }
-    
-}
-
-
-
-// MARK: - IndexSet
-
-extension Array {
-    
-    /// Remove elements with IndexSet
-    mutating func remove(in indexes: IndexSet) {
-        
-        for index in indexes.reversed() {
-            self.remove(at: index)
-        }
-    }
-    
-    
-    /// Return subset at IndexSet
-    func elements(at indexes: IndexSet) -> [Element] {
-        
-        return indexes.compactMap { index in
-            guard index < self.count else { return nil }
-            
-            return self[index]
-        }
-    }
-    
-    
-    /// Insert elements at indexes
-    mutating func insert(_ elements: [Element], at indexes: IndexSet) {
-        
-        for (index, element) in zip(indexes, elements).reversed() {
-            self.insert(element, at: index)
-        }
+        return try self.lazy.prefix(while: predicate).count
     }
     
 }

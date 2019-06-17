@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -103,13 +103,14 @@ struct ScriptFileError: LocalizedError {
 }
 
 
-
-// MARK: - Private Functions
+// MARK: Functions
 
 func writeToConsole(message: String, scriptName: String) {
     
+    let log = Console.Log(message: message, title: scriptName)
+    
     DispatchQueue.main.async {
-        ConsolePanelController.shared.showWindow(nil)
-        ConsolePanelController.shared.append(message: message, title: scriptName)
+        Console.shared.panelController.showWindow(nil)
+        Console.shared.append(log: log)
     }
 }

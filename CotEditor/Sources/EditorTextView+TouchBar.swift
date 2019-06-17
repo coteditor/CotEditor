@@ -25,14 +25,12 @@
 
 import Cocoa
 
-@available(macOS 10.12.2, *)
 private extension NSTouchBar.CustomizationIdentifier {
     
     static let textView = NSTouchBar.CustomizationIdentifier("com.coteditor.CotEditor.touchBar.textView")
 }
 
 
-@available(macOS 10.12.2, *)
 extension NSTouchBarItem.Identifier {
     
     static let shift = NSTouchBarItem.Identifier("com.coteditor.CotEditor.TouchBarItem.shift")
@@ -42,7 +40,6 @@ extension NSTouchBarItem.Identifier {
 
 
 
-@available(macOS 10.12.2, *)
 extension EditorTextView {
     
     override func makeTouchBar() -> NSTouchBar? {
@@ -92,7 +89,6 @@ extension EditorTextView {
 
 
 
-@available(macOS 10.12.2, *)
 extension EditorTextView {
     
     // MARK: NSCandidateListTouchBarItemDelegate
@@ -115,7 +111,6 @@ extension EditorTextView {
 }
     
 
-@available(macOS 10.12.2, *)
 extension EditorTextViewController {
     
     // MARK: NSTextViewDelegate
@@ -124,7 +119,10 @@ extension EditorTextViewController {
     func textView(_ textView: NSTextView, candidatesForSelectedRange selectedRange: NSRange) -> [Any]? {
         
         var index = 0
-        guard let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index), !candidates.isEmpty else { return nil }
+        guard
+            let candidates = textView.completions(forPartialWordRange: textView.rangeForUserCompletion, indexOfSelectedItem: &index),
+            !candidates.isEmpty
+            else { return nil }
         
         return candidates
     }

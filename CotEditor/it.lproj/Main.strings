@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -56,7 +56,7 @@
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
 "134.title" = "Nascondi CotEditor";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
-"145.title" = "Nascendi altri";
+"145.title" = "Nascondi altri";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "Mostra tutto";
 
@@ -129,6 +129,8 @@
 "172.title" = "Seleziona tutto";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "Seleziona riga";
+/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
+"0HX-j9-5jF.title" = "Seleziona parola";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "Inserisci Backslash";
@@ -287,7 +289,7 @@
 /* Class = "NSMenuItem"; title = "Incompatible Characters"; ObjectID = "679"; */
 "679.title" = "Caratteri incompatibili";
 /* Class = "NSMenuItem"; title = "Show Inspector"; ObjectID = "I2p-KB-gxR"; */
-"I2p-KB-gxR.title" = "Show Inspector";  // FIXME: added
+"I2p-KB-gxR.title" = "Mostra Ispettore";
 
 /* Class = "NSMenuItem"; title = "Show Navigation Bar"; ObjectID = "681"; */
 "681.title" = "Mostra barra di navigazione";
@@ -309,6 +311,9 @@
 "u46-te-4c4.title" = "Allinea gli editor in verticale";
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Chiudi editor diviso";
+
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "Cambia la opacità dell’editor…";
 
 /* Class = "NSMenuItem"; title = "Enter Full Screen"; ObjectID = "4mh-0E-3RJ"; */
 "4mh-0E-3RJ.title" = "Vai a tutto schermo";
@@ -381,6 +386,8 @@
 "G3o-1h-GwR.title" = "Parentesi";
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "Parentesi graffe";
+/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Parentesi quadre";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "Personalizzato…";
 
@@ -398,6 +405,13 @@
 "ZrR-aL-1eB.title" = "Scrivi in lettere minuscole";
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
 "LC4-lg-eO0.title" = "Usa maiuscole";
+
+/* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
+"F0I-F4-srF.title" = "Usa notazione a serpente";
+/* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
+"nlp-Gj-W9G.title" = "Usa notazione a cammello";
+/* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
+"x1F-KX-2de.title" = "Usa notazione Pascal";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Da mezza ampiezza a tutta ampiezza";
@@ -479,7 +493,7 @@
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
 "HgR-ke-6gq.title" = "Cerca tutti";
 /* Class = "NSMenuItem"; title = "Select All Find Matches"; ObjectID = "ULf-cT-Xvb"; */
-"ULf-cT-Xvb.title" = "Select All Find Matches";  // FIXME: added
+"ULf-cT-Xvb.title" = "Seleziona tutte le corrispondenze";
 
 /* Class = "NSMenuItem"; title = "Use Selection for Find"; ObjectID = "hTx-ef-3T2"; */
 "hTx-ef-3T2.title" = "Usa selezione per cercare";

@@ -77,6 +77,20 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Public Methods
     
+    /// return default setting by taking the appearance state into consideration
+    func defaultSettingName(forDark: Bool = false) -> String {
+        
+        return forDark ? "Dendrobates (Dark)" : "Dendrobates"
+    }
+    
+    
+    /// return user default setting by taking the appearance state into consideration
+    func userDefaultSettingName(forDark: Bool = false) -> String {
+        
+        return UserDefaults.standard[.theme] ?? self.defaultSettingName(forDark: forDark)
+    }
+    
+    
     /// load theme dict in which objects are property list ready.
     func settingDictionary(name: String) -> ThemeDictionary? {
         
@@ -87,7 +101,7 @@ final class ThemeManager: SettingFileManaging {
     
     
     /// save setting file
-    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: (() -> Void)? = nil) throws {  // @escaping
+    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
@@ -103,20 +117,43 @@ final class ThemeManager: SettingFileManaging {
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
             
-            completionHandler?()
+            completionHandler()
         }
     }
     
     
     /// create a new untitled setting
-    func createUntitledSetting(completionHandler: ((_ settingName: String) -> Void)? = nil) throws {  // @escaping
+    func createUntitledSetting(completionHandler: @escaping ((_ settingName: String) -> Void) = { _ in }) throws {
         
         // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: "Untitled".localized)
         
         try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
-            completionHandler?(name)
+            completionHandler(name)
         }
+    }
+    
+    
+    /// return setting name of dark/light version of given one if any exists
+    func equivalentSettingName(to name: String, forDark: Bool) -> String? {
+        
+        let baseName: String
+        if let range = name.range(of: "^.+?(?=$| \\((?:Dark|Light)\\)$)", options: .regularExpression) {
+            baseName = String(name[range])
+        } else {
+            baseName = name
+        }
+        
+        let settingName = baseName + " " + (forDark ? "(Dark)" : "(Light)")
+        if self.settingNames.contains(settingName) {
+            return settingName
+        }
+        
+        if !forDark, self.settingNames.contains(baseName) {
+            return baseName
+        }
+        
+        return nil
     }
     
     
@@ -138,10 +175,12 @@ final class ThemeManager: SettingFileManaging {
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
         
-        self.settingNames = OrderedSet(self.bundledSettingNames + userSettingNames).array
+        self.settingNames = (self.bundledSettingNames + userSettingNames).unique
         
         // reset user default if not found
-        if !self.settingNames.contains(UserDefaults.standard[.theme]!) {
+        if let userSetting = UserDefaults.standard[.theme],
+            !self.settingNames.contains(userSetting)
+        {
             UserDefaults.standard.restore(key: .theme)
         }
     }
@@ -152,8 +191,8 @@ final class ThemeManager: SettingFileManaging {
     
     /// Load ThemeDictionary from a file at the URL.
     ///
-    /// - parameter fileURL: URL to a setting file.
-    /// - throws: CocoaError
+    /// - Parameter fileURL: URL to a setting file.
+    /// - Throws: `CocoaError`
     private func loadSettingDictionary(at fileURL: URL) throws -> ThemeDictionary {
         
         let data = try Data(contentsOf: fileURL)

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,47 +25,43 @@
 
 import Foundation
 
-extension String {
-    
-    /// number of words in the whole string
-    var numberOfWords: Int {
-        
-        guard !self.isEmpty else { return 0 }
-        
-        let range = CFRange(location: 0, length: CFStringGetLength(self as CFString))
-        let locale = CFLocaleCopyCurrent()
-        
-        guard let tokenizer = CFStringTokenizerCreate(nil, self as CFString, range, kCFStringTokenizerUnitWord, locale) else { return 0 }
-        
-        var count = 0
-        while !CFStringTokenizerAdvanceToNextToken(tokenizer).isEmpty {
-            count += 1
-        }
-        
-        return count
-    }
-    
+extension StringProtocol where Self.Index == String.Index {
     
     /// number of lines in the whole string ignoring the last new line character
     var numberOfLines: Int {
         
-        return self.numberOfLines(in: self.startIndex..<self.endIndex, includingLastLineEnding: false)
+        return self.numberOfLines(includingLastLineEnding: false)
+    }
+    
+    
+    /// count the number of lines at the character index (1-based).
+    func lineNumber(at index: Self.Index) -> Int {
+        
+        guard !self.isEmpty, index > self.startIndex else { return 1 }
+        
+        return self.numberOfLines(in: self.startIndex..<index, includingLastLineEnding: true)
     }
     
     
     /// count the number of lines in the range
-    func numberOfLines(in range: NSRange, includingLastLineEnding: Bool) -> Int {
+    func numberOfLines(in range: Range<String.Index>? = nil, includingLastLineEnding: Bool) -> Int {
         
-        guard let characterRange = Range(range, in: self) else { return 0 }
+        let range = range ?? self.startIndex..<self.endIndex
         
-        return self.numberOfLines(in: characterRange, includingLastLineEnding: includingLastLineEnding)
-    }
-    
-    
-    /// count the number of lines in the range
-    func numberOfLines(in range: Range<String.Index>, includingLastLineEnding: Bool) -> Int {
+        if self.isEmpty || range.isEmpty { return 0 }
         
-        guard !self.isEmpty, !range.isEmpty else { return 0 }
+        // workarond for the Swift 5 issue that removes BOM at the beginning (2019-05 Swift 5.0).
+        guard self.count > 16 || self.first != "\u{FEFF}" else {
+            let newlines = Set<Character>(["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"])
+            let count = self[range].count { newlines.contains($0) } + 1
+            
+            if !includingLastLineEnding,
+                let last = self[range].last,
+                newlines.contains(last) {
+                return count - 1
+            }
+            return count
+        }
         
         var count = 0
         self.enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
@@ -82,13 +78,29 @@ extension String {
         return count
     }
     
+}
+
+
+
+// MARK: NSRange based
+
+extension String {
     
     /// count the number of lines at the character index (1-based).
     func lineNumber(at location: Int) -> Int {
         
         guard !self.isEmpty, location > 0 else { return 1 }
         
-        return self.numberOfLines(in: NSRange(location: 0, length: location), includingLastLineEnding: true)
+        return self.numberOfLines(in: NSRange(..<location), includingLastLineEnding: true)
+    }
+    
+    
+    /// count the number of lines in the range
+    func numberOfLines(in range: NSRange, includingLastLineEnding: Bool) -> Int {
+        
+        guard let characterRange = Range(range, in: self) else { return 0 }
+        
+        return self.numberOfLines(in: characterRange, includingLastLineEnding: includingLastLineEnding)
     }
     
 }

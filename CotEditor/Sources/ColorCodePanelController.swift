@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,12 +32,6 @@ import ColorCode
 }
 
 
-private extension NSColorList.Name {
-    
-    static let stylesheet = NSColorList.Name("Stylesheet Keywords".localized)
-}
-
-
 
 // MARK: -
 
@@ -45,44 +39,34 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Public Properties
     
-    static let shared = ColorCodePanelController()
+    static let shared = ColorCodePanelController.instantiate(storyboard: "ColorCodePanelAccessory")
     
     @objc private(set) dynamic var colorCode: String?
     
     
     // MARK: Private Properties
     
+    private let stylesheetColorList: NSColorList = {
+        let colorList = NSColorList(name: "Stylesheet Keywords".localized)
+        for (keyword, color) in NSColor.stylesheetKeywordColors {
+            colorList.setColor(color, forKey: keyword)
+        }
+        return colorList
+    }()
+    
     private weak var panel: NSColorPanel?
-    private var stylesheetColorList: NSColorList
     @objc private dynamic var color: NSColor?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
+    // MARK: View Controller Methods
     
-    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+    override func viewDidLoad() {
         
-        // setup stylesheet color list
-        let colorList = NSColorList(name: .stylesheet)
-        for (keyword, color) in NSColor.stylesheetKeywordColors {
-            colorList.setColor(color, forKey: NSColor.Name(keyword))
-        }
-        self.stylesheetColorList = colorList
+        super.viewDidLoad()
         
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-    
-    
-    required init?(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override var nibName: NSNib.Name? {
-        
-        return NSNib.Name("ColorCodePanelAccessory")
+        self.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     
@@ -108,7 +92,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// panel will close
     func windowWillClose(_ notification: Notification) {
         
-        guard let panel = self.panel else { return }
+        guard let panel = self.panel else { return assertionFailure() }
     
         panel.delegate = nil
         panel.accessoryView = nil
@@ -184,8 +168,8 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         let codeType = self.selectedCodeType
         let color: NSColor? = {
-            if let colorSpaceName = self.color?.colorSpaceName, ![.calibratedRGB, .deviceRGB].contains(colorSpaceName) {
-                return self.color?.usingColorSpaceName(.calibratedRGB)
+            if let colorSpace = self.color?.colorSpace, ![NSColorSpace.genericRGB, .deviceRGB].contains(colorSpace) {
+                return self.color?.usingColorSpace(.genericRGB)
             }
             return self.color
         }()

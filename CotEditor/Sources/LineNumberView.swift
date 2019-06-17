@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,18 +27,73 @@
 import Cocoa
 import CoreText
 
-final class LineNumberView: NSRulerView {
+final class LineNumberView: NSView {
+    
+    private struct DrawingInfo {
+        
+        let fontSize: CGFloat
+        let charWidth: CGFloat
+        let ascent: CGFloat
+        let wrappedMarkGlyph: CGGlyph
+        let digitGlyphs: [CGGlyph]
+        let padding: CGFloat
+        let tickLength: CGFloat
+        
+        private let textFont: NSFont
+        private let scale: CGFloat
+        
+        
+        init(textFont: NSFont, scale: CGFloat) {
+            
+            self.textFont = textFont
+            self.scale = scale
+            
+            // calculate font size for number
+            self.fontSize = (LineNumberView.fontSizeFactor * scale * textFont.pointSize).round(interval: 0.5)
+            self.ascent = scale * textFont.ascender
+            
+            // prepare glyphs
+            let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
+            self.wrappedMarkGlyph = font.glyph(for: "-")
+            self.digitGlyphs = (0...9).map { font.glyph(for: Character(String($0))) }
+            
+            // calculate character width assuming the font is monospace
+            self.charWidth = font.advance(for: self.digitGlyphs[8]).width  // use '8' to get width
+            
+            // calculate margins
+            self.padding = self.charWidth
+            self.tickLength = ceil(self.charWidth)
+        }
+        
+        
+        func isSameSource(textFont: NSFont, scale: CGFloat) -> Bool {
+            
+            return (self.textFont == textFont) && (self.scale == scale)
+        }
+        
+    }
+    
+    
+    // MARK: Public Properties
+    
+    var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
+        
+        didSet {
+            self.invalidateDrawingInfoAndThickness()
+            self.invalidateIntrinsicContentSize()
+        }
+    }
+    
     
     // MARK: Constants
     
     private let minNumberOfDigits = 3
     private let minVerticalThickness: CGFloat = 32.0
     private let minHorizontalThickness: CGFloat = 20.0
-    private let lineNumberPadding: CGFloat = 4.0
-    private let fontSizeFactor: CGFloat = 0.9
     
-    private let lineNumberFont: CGFont = LineNumberFont.regular.cgFont
-    private let boldLineNumberFont: CGFont = LineNumberFont.bold.cgFont
+    private static let fontSizeFactor: CGFloat = 0.9
+    private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
+    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
         case normal = 0.75
@@ -49,46 +104,109 @@ final class LineNumberView: NSRulerView {
     
     // MARK: Private Properties
     
-    private var requiredNumberOfDigits = 0
-    private var needsRecountNumberOfDigits = true
+    private var numberOfLines = 1
+    private var drawingInfo: DrawingInfo?
+    private var textObserver: NSObjectProtocol?
+    private var selectionObserver: NSObjectProtocol?
+    private var frameObserver: NSObjectProtocol?
+    private var scrollObserver: NSObjectProtocol?
+    private var opacityObserver: NSObjectProtocol?
+    private var colorObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
+    
+    private var thickness: CGFloat = 32 {
+        
+        didSet {
+            guard thickness != oldValue else { return }
+            
+            self.invalidateIntrinsicContentSize()
+        }
+    }
+    
+    @IBOutlet private weak var textView: NSTextView? {
+        
+        didSet {
+            if let textView = self.textView {
+                self.observeTextView(textView)
+            }
+        }
+    }
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    override init(scrollView: NSScrollView?, orientation: NSRulerView.Orientation) {
+    deinit {
+        [self.textObserver,
+         self.selectionObserver,
+         self.frameObserver,
+         self.scrollObserver,
+         self.opacityObserver]
+            .compactMap { $0 }
+            .forEach { NotificationCenter.default.removeObserver($0) }
         
-        super.init(scrollView: scrollView, orientation: orientation)
+        self.colorObserver?.invalidate()
+    }
+    
+    
+    
+    // MARK: View Methods
+    
+    /// view name for VoiceOver
+    override func accessibilityLabel() -> String? {
         
-        // observe new textStorage change
-        if let textView = scrollView?.documentView as? NSTextView {
-            NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: NSText.didChangeNotification, object: textView)
+        return "line numbers".localized
+    }
+    
+    
+    /// make background transparent
+    override var isOpaque: Bool {
+        
+        return self.textView?.isOpaque ?? true
+    }
+    
+    
+    /// define the size
+    override var intrinsicContentSize: NSSize {
+        
+        switch self.orientation {
+        case .horizontal:
+            return NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
+        case .vertical:
+            return NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
+        @unknown default: fatalError()
         }
     }
     
-    
-    required init(coder: NSCoder) {
-        
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    // MARK: Ruler View Methods
     
     /// observe window opacity change
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
+        if let observer = self.opacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.opacityObserver = nil
+        }
+        
+        // ignore when detached
         guard let window = self.window else { return }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(didWindowOpacityChange),
-                                               name: DocumentWindow.didChangeOpacityNotification,
-                                               object: window)
+        // perform redraw on window opacity change
+        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+            self.setNeedsDisplay(self.visibleRect)
+        }
+    }
+    
+    
+    /// prepare line number drawing
+    override func viewWillDraw() {
+        
+        super.viewWillDraw()
+        
+        self.invalidateDrawingInfoAndThickness()
     }
     
     
@@ -101,255 +219,26 @@ final class LineNumberView: NSRulerView {
         self.backgroundColor.setFill()
         dirtyRect.fill()
         
-        // draw frame border (1px)
+        // draw divider (1px)
         self.textColor(.stroke).setStroke()
         switch self.orientation {
-        case .verticalRuler:
-            NSBezierPath.strokeLine(from: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.maxY),
-                                    to: NSPoint(x: self.frame.maxX - 0.5, y: dirtyRect.minY))
-        case .horizontalRuler:
-            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.frame.maxY - 0.5),
-                                    to: NSPoint(x: dirtyRect.maxX, y: self.frame.maxY - 0.5))
+        case .horizontal:
+            NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
+                                    to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
+        case .vertical:
+            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
+                                    to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
+        @unknown default: fatalError()
         }
         
         NSGraphicsContext.restoreGraphicsState()
         
-        self.drawHashMarksAndLabels(in: dirtyRect)
-    }
-    
-    
-    /// draw line numbers
-    override func drawHashMarksAndLabels(in rect: NSRect) {
-        
-        guard
-            let textView = self.textView,
-            let layoutManager = textView.layoutManager,
-            let textContainer = textView.textContainer,
-            let context = NSGraphicsContext.current?.cgContext
-            else { return }
-        
-        let string = textView.string
-        let length = (string as NSString).length
-        let isVerticalText = self.orientation == .horizontalRuler
-        let scale = textView.scale
-        
-        // save graphics context
-        context.saveGState()
-        
-        // setup font
-        let masterFont = textView.font ?? NSFont.systemFont(ofSize: 0)
-        let masterFontSize = scale * masterFont.pointSize
-        let fontSize = min(round(self.fontSizeFactor * masterFontSize), masterFontSize)
-        let font = CTFontCreateWithGraphicsFont(self.lineNumberFont, fontSize, nil, nil)
-        
-        context.setFont(self.lineNumberFont)
-        context.setFontSize(fontSize)
-        context.setFillColor(self.textColor().cgColor)
-        
-        // prepare glyphs
-        let wrappedMarkGlyph: CGGlyph = font.glyph(for: "-".utf16.first!)
-        let digitGlyphs: [CGGlyph] = (0...9).map { font.glyph(for: String($0).utf16.first!) }
-        
-        // calculate character width assuming the font is monospace
-        let charWidth: CGFloat = font.advance(for: digitGlyphs[8]).width
-        
-        // prepare frame width
-        let lineNumberPadding = round(scale * self.lineNumberPadding)
-        let tickLength = ceil(fontSize / 3)
-        
-        // adjust thickness
-        var ruleThickness: CGFloat
-        if isVerticalText {
-            ruleThickness = max(fontSize + 2.5 * tickLength, self.minHorizontalThickness)
-        } else {
-            if self.needsRecountNumberOfDigits {
-                // -> count only if really needed since the line counting is high workload, especially by large document
-                let numberOfLines = string.numberOfLines(in: string.range, includingLastLineEnding: true)
-                self.requiredNumberOfDigits = max(numberOfLines.numberOfDigits, self.minNumberOfDigits)
-                self.needsRecountNumberOfDigits = false
-            }
-            
-            // use the line number of whole string, namely the possible largest line number
-            // -> The view width depends on the number of digits of the total line numbers.
-            //    It's quite dengerous to change width of line number view on scrolling dynamically.
-            ruleThickness = max(CGFloat(self.requiredNumberOfDigits) * charWidth + 3 * lineNumberPadding, self.minVerticalThickness)
-        }
-        ruleThickness = ceil(ruleThickness)
-        if ruleThickness != self.ruleThickness {
-            self.ruleThickness = ruleThickness
-        }
-        
-        // adjust text drawing coordinate
-        context.textMatrix = {
-            let relativePoint = self.convert(NSPoint.zero, from: textView)
-            let inset = textView.textContainerOrigin.scaled(to: scale)
-            let masterAscent = scale * masterFont.ascender
-            let flip = CGAffineTransform(scaleX: 1.0, y: -1.0)
-            
-            return isVerticalText
-                ? flip.translatedBy(x: round(relativePoint.x - inset.y - masterAscent), y: -ruleThickness)
-                : flip.translatedBy(x: -lineNumberPadding, y: -relativePoint.y - inset.y - masterAscent)
-        }()
-        
-        // get multiple selections
-        let selectedLineRanges: [NSRange] = textView.selectedRanges.map { (string as NSString).lineRange(for: $0.rangeValue) }
-        
-        /// draw line number block
-        func drawLineNumber(_ lineNumber: Int, y: CGFloat, isBold: Bool) {
-            
-            let digit = lineNumber.numberOfDigits
-            
-            // calculate base position
-            let basePosition: CGPoint = isVerticalText
-                ? CGPoint(x: ceil(y + charWidth * CGFloat(digit) / 2), y: 2 * tickLength)
-                : CGPoint(x: ruleThickness, y: y)
-            
-            // get glyphs and positions
-            let positions: [CGPoint] = (0..<digit)
-                .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * charWidth) }
-            let glyphs: [CGGlyph] = (0..<digit)
-                .map { lineNumber.number(at: $0) }
-                .map { digitGlyphs[$0] }
-            
-            if isBold {
-                context.setFillColor(self.textColor(.bold).cgColor)
-                context.setFont(self.boldLineNumberFont)
-            }
-            
-            // draw
-            context.showGlyphs(glyphs, at: positions)
-            
-            if isBold {
-                // restore the regular font
-                context.setFillColor(self.textColor().cgColor)
-                context.setFont(self.lineNumberFont)
-            }
-        }
-        
-        /// draw wrapped mark (-)
-        func drawWrappedMark(y: CGFloat) {
-            
-            let position = CGPoint(x: ruleThickness - charWidth, y: y)
-            
-            context.showGlyphs([wrappedMarkGlyph], at: [position])
-        }
-        
-        /// draw ticks block for vertical text
-        func drawTick(y: CGFloat) {
-            
-            let x = round(y) + 0.5
-            
-            let tick = CGMutablePath()
-            tick.addLines(between: [CGPoint(x: x, y: 1), CGPoint(x: x, y: tickLength)], transform: context.textMatrix)
-            context.addPath(tick)
-        }
-        
-        // get glyph range of which line number should be drawn
-        let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: textView.visibleRect, in: textContainer)
-        
-        // count up lines until visible
-        let firstVisibleIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
-        var lineNumber = string.lineNumber(at: firstVisibleIndex)
-        
-        // draw visible line numbers
-        var glyphIndex = glyphRangeToDraw.location
-        var lastLineNumber = 0
-        
-        while glyphIndex < glyphRangeToDraw.upperBound {  // count "real" lines
-            defer {
-                lineNumber += 1
-            }
-            let charIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(at: charIndex)
-            let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            glyphIndex = lineGlyphRange.upperBound
-            
-            // check if line is selected
-            let isSelected = selectedLineRanges.contains { selectedRange in
-                (selectedRange.contains(lineRange.location) &&
-                    (!isVerticalText || (lineRange.location == selectedRange.location || lineRange.upperBound == selectedRange.upperBound)))
-            }
-            
-            var wrappedLineGlyphIndex = lineGlyphRange.location
-            while wrappedLineGlyphIndex < glyphIndex {  // handle wrapped lines
-                var range = NSRange.notFound
-                let lineRect = layoutManager.lineFragmentRect(forGlyphAt: wrappedLineGlyphIndex, effectiveRange: &range, withoutAdditionalLayout: true)
-                let y = scale * -lineRect.minY
-                let isWrappedLine = (lastLineNumber == lineNumber)
-                lastLineNumber = lineNumber
-                wrappedLineGlyphIndex = range.upperBound
-                
-                if isWrappedLine {
-                    guard !isVerticalText else { continue }
-                    
-                    drawWrappedMark(y: y)
-                    
-                } else {  // new line
-                    if isVerticalText {
-                        drawTick(y: y)
-                    }
-                    if !isVerticalText || lineNumber % 5 == 0 || lineNumber == 1 || isSelected ||
-                        (lineRange.upperBound == length && layoutManager.extraLineFragmentTextContainer == nil)  // last line for vertical text
-                    {
-                        drawLineNumber(lineNumber, y: y, isBold: isSelected)
-                    }
-                }
-            }
-        }
-        
-        // draw the last "extra" line number
-        let lineRect = layoutManager.extraLineFragmentUsedRect
-        if layoutManager.extraLineFragmentTextContainer != nil, lineRect.intersects(textView.visibleRect) {
-            let lastLineNumber = string.lineNumber(at: length)
-            let isSelected: Bool = {
-                guard let lastSelectedRange = selectedLineRanges.last else { return false }
-                
-                return (lastSelectedRange.length == 0) && (length == lastSelectedRange.upperBound)
-            }()
-            let y = scale * -lineRect.minY
-            
-            if isVerticalText {
-                drawTick(y: y)
-            }
-            drawLineNumber(lastLineNumber, y: y, isBold: isSelected)
-        }
-        
-        // draw vertical line ticks
-        if !context.isPathEmpty {
-            context.setStrokeColor(self.textColor(.stroke).cgColor)
-            context.strokePath()
-        }
-        
-        context.restoreGState()
-    }
-    
-    
-    /// make background transparent
-    override var isOpaque: Bool {
-        
-        return self.textView?.isOpaque ?? true
-    }
-    
-    
-    /// remove extra thickness
-    override var requiredThickness: CGFloat {
-        
-        if self.orientation == .horizontalRuler {
-            return self.ruleThickness
-        }
-        return max(self.minVerticalThickness, self.ruleThickness)
+        self.drawNumbers(in: dirtyRect)
     }
     
     
     
     // MARK: Private Methods
-    
-    /// return client view casting to textView
-    private var textView: NSTextView? {
-        
-        return self.scrollView?.documentView as? NSTextView
-    }
-    
     
     /// return text color considering current accesibility setting
     private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
@@ -364,7 +253,7 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// return coloring theme
+    /// return background color to fill
     private var backgroundColor: NSColor {
         
         let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
@@ -377,72 +266,150 @@ final class LineNumberView: NSRulerView {
     }
     
     
-    /// update total number of lines determining view thickness on holizontal text layout
-    @objc private func textDidChange(_ notification: Notification) {
+    /// draw line numbers
+    private func drawNumbers(in rect: NSRect) {
         
-        self.needsRecountNumberOfDigits = true
-    }
-    
-    
-    /// window's opacity did change
-    @objc private func didWindowOpacityChange(_ notification: Notification?) {
+        guard
+            let drawingInfo = self.drawingInfo,
+            let textView = self.textView,
+            let context = NSGraphicsContext.current?.cgContext
+            else { return assertionFailure() }
         
-        // redraw visible area
-        self.setNeedsDisplay(self.visibleRect)
-    }
-    
-}
-
-
-
-// MARK: Line Number Font
-
-private enum LineNumberFont {
-    
-    case regular
-    case bold
-    
-    
-    
-    var font: NSFont {
+        context.saveGState()
         
-        return NSFont(name: self.fontName, size: 0) ?? self.systemFont
-    }
-    
-    
-    var cgFont: CGFont {
+        context.setFont(LineNumberView.lineNumberFont)
+        context.setFontSize(drawingInfo.fontSize)
+        context.setFillColor(self.textColor().cgColor)
+        context.setStrokeColor(self.textColor(.stroke).cgColor)
         
-        return CTFontCopyGraphicsFont(self.font, nil)
-    }
-    
-    
-    /// name of the first candidate font
-    private var fontName: String {
+        let isVerticalText = textView.layoutOrientation == .vertical
+        let scale = textView.scale
         
-        switch self {
-        case .regular:
-            return "AvenirNextCondensed-Regular"
-        case .bold:
-            return "AvenirNextCondensed-DemiBold"
+        // adjust drawing coordinate
+        let relativePoint = self.convert(NSPoint.zero, from: textView)
+        let lineBase = textView.textContainerOrigin.scaled(to: scale).y + drawingInfo.ascent
+        switch textView.layoutOrientation {
+        case .horizontal:
+            context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
+        case .vertical:
+            context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
+        @unknown default: fatalError()
         }
+        
+        // draw labels
+        textView.enumerateLineFragments(in: textView.visibleRect) { (line, lineRect) in
+            let y = scale * -lineRect.minY
+            
+            switch line {
+            case .new(let lineNumber, let isSelected):
+                // draw line number
+                if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
+                    let digit = lineNumber.numberOfDigits
+                    
+                    // calculate base position
+                    let basePosition: CGPoint = isVerticalText
+                        ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
+                        : CGPoint(x: -drawingInfo.padding, y: y)
+                    
+                    // get glyphs and positions
+                    let positions: [CGPoint] = (0..<digit)
+                        .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
+                    let glyphs: [CGGlyph] = (0..<digit)
+                        .map { lineNumber.number(at: $0) }
+                        .map { drawingInfo.digitGlyphs[$0] }
+                    
+                    // draw
+                    if isSelected {
+                        context.setFillColor(self.textColor(.bold).cgColor)
+                        context.setFont(LineNumberView.boldLineNumberFont)
+                    }
+                    context.showGlyphs(glyphs, at: positions)
+                    if isSelected {
+                        context.setFillColor(self.textColor().cgColor)
+                        context.setFont(LineNumberView.lineNumberFont)
+                    }
+                }
+                
+                // draw tick
+                if isVerticalText {
+                    let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
+                    context.stroke(rect, width: 1)
+                }
+                
+            case .wrapped:
+                // draw wrapped mark (-)
+                if !isVerticalText {
+                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
+                    context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
+                }
+            }
+        }
+        
+        context.restoreGState()
     }
     
     
-    /// system font for fallback
-    private var systemFont: NSFont {
+    /// update parameters related to drawing and layout based on textView's status
+    private func invalidateDrawingInfoAndThickness() {
         
-        return .monospacedDigitSystemFont(ofSize: 0, weight: self.weight)
+        guard
+            let textFont = self.textView?.font,
+            let scale = self.textView?.scale
+            else { return assertionFailure() }
+        
+        let drawingInfo: DrawingInfo
+        if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
+            drawingInfo = lastDrawingInfo
+        } else {
+            // -> update drawing info only when needed
+            drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
+            self.drawingInfo = drawingInfo
+        }
+        
+        // adjust thickness
+        self.thickness = {
+            switch self.orientation {
+            case .horizontal:
+                let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
+                return max(ceil(thickness), self.minVerticalThickness)
+            case .vertical:
+                let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
+                return max(ceil(thickness), self.minHorizontalThickness)
+            @unknown default: fatalError()
+            }
+        }()
     }
     
     
-    /// font weight for system fonts
-    private var weight: NSFont.Weight {
+    /// observe textView's update to update line number drawing
+    private func observeTextView(_ textView: NSTextView) {
         
-        switch self {
-        case .regular:
-            return .regular
-        case .bold:
-            return .semibold
+        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [unowned self] (notification) in
+            guard let textView = notification.object as? NSTextView else { return }
+            
+            if self.orientation == .horizontal {
+                // -> Count only if really needed since the line counting is high workload, especially by large document.
+                self.numberOfLines = max(textView.numberOfLines, 1)
+            }
+            
+            self.needsDisplay = true
+        }
+        
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
+        }
+        
+        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
+        }
+        
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [unowned self] _ in
+            self.needsDisplay = true
+        }
+        
+        self.colorObserver = textView.observe(\.backgroundColor) { [unowned self] (_, _)  in
+            self.needsDisplay = true
         }
     }
     
@@ -451,6 +418,16 @@ private enum LineNumberFont {
 
 
 // MARK: Private Helper Extensions
+
+private extension NSTextView {
+    
+    var numberOfLines: Int {
+        
+        return self.string.numberOfLines(includingLastLineEnding: true)
+    }
+    
+}
+
 
 private extension Int {
     
@@ -466,29 +443,18 @@ private extension Int {
     /// number at the desired place
     func number(at place: Int) -> Int {
         
-        return ((self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place))))
+        return (self % Int(pow(10, Double(place + 1)))) / Int(pow(10, Double(place)))
     }
     
 }
 
 
-private extension CTFont {
+private extension FloatingPoint {
     
-    func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
+    func round(interval: Self) -> Self {
         
-        var advance = CGSize.zero
-        CTFontGetAdvancesForGlyphs(self, orientation, [glyph], &advance, 1)  // use '8' to get width
-        return advance
+        return (self / interval).rounded() * interval
     }
-    
-    
-    func glyph(for uniChar: UniChar) -> CGGlyph {
-        
-        var glyph = CGGlyph()
-        CTFontGetGlyphsForCharacters(self, [uniChar], &glyph, 1)
-        return glyph
-    }
-    
 }
 
 
@@ -512,18 +478,19 @@ extension LineNumberView {
         guard
             let window = self.window,
             let textView = self.textView
-            else { return }
+            else { return assertionFailure() }
         
         // get start point
-        let point = window.convertToScreen(NSRect(origin: event.locationInWindow, size: .zero)).origin
+        let point = window.convertPoint(toScreen: event.locationInWindow)
         let index = textView.characterIndex(for: point)
         
-        // repeat while dragging
-        self.draggingTimer = .scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(selectLines),
-                                             userInfo: DraggingInfo(index: index, selectedRanges: textView.selectedRanges as! [NSRange]),
-                                             repeats: true)
+        let selectedRanges = textView.selectedRanges.map { $0.rangeValue }
         
-        self.selectLines(nil)  // for single click event
+        // repeat while dragging
+        self.draggingTimer = .scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(selectLines),
+                                             userInfo: DraggingInfo(index: index, selectedRanges: selectedRanges),
+                                             repeats: true)
+        self.draggingTimer?.fire()  // for single click event
     }
     
     
@@ -531,12 +498,6 @@ extension LineNumberView {
     override func mouseUp(with event: NSEvent) {
         
         self.draggingTimer?.invalidate()
-        
-        // settle selection
-        //   -> in `selectLines:`, `stillSelecting` flag is always YES
-        if let ranges = self.textView?.selectedRanges {
-            self.textView?.selectedRanges = ranges
-        }
     }
     
     
@@ -544,25 +505,27 @@ extension LineNumberView {
     // MARK: Private Methods
     
     /// select lines while dragging event
-    @objc private func selectLines(_ timer: Timer?) {
+    @objc private func selectLines(_ timer: Timer) {
         
         guard
             let window = self.window,
-            let textView = self.textView
-            else { return }
-        
-        let string = textView.string as NSString
-        let draggingInfo = timer?.userInfo as? DraggingInfo
-        let point = NSEvent.mouseLocation  // screen based point
+            let textView = self.textView,
+            let draggingInfo = timer.userInfo as? DraggingInfo
+            else { return assertionFailure() }
         
         // scroll text view if needed
-        let pointedRect = window.convertFromScreen(NSRect(origin: point, size: .zero))
-        let targetRect = textView.convert(pointedRect, from: nil)
-        textView.scrollToVisible(targetRect)
+        let pointInScreen = NSEvent.mouseLocation
+        let pointInWindow = window.convertPoint(fromScreen: pointInScreen)
+        let point = textView.convert(pointInWindow, from: nil)  // textView-based
+        textView.scrollToVisible(NSRect(origin: point, size: .zero))
+        
+        // move focus to textView
+        window.makeFirstResponder(textView)
         
         // select lines
-        let currentIndex = textView.characterIndex(for: point)
-        let clickedIndex = draggingInfo?.index ?? currentIndex
+        let string = textView.string as NSString
+        let currentIndex = textView.characterIndex(for: pointInScreen)
+        let clickedIndex = draggingInfo.index
         let currentLineRange = string.lineRange(at: currentIndex)
         let clickedLineRange = string.lineRange(at: clickedIndex)
         var range = currentLineRange.union(clickedLineRange)
@@ -571,19 +534,18 @@ extension LineNumberView {
         
         // with Command key (add selection)
         if NSEvent.modifierFlags.contains(.command) {
-            let originalSelectedRanges = draggingInfo?.selectedRanges ?? textView.selectedRanges as! [NSRange]
             var selectedRanges = [NSRange]()
             var intersects = false
             
-            for selectedRange in originalSelectedRanges {
+            for selectedRange in draggingInfo.selectedRanges {
                 if selectedRange.location <= range.location, range.upperBound <= selectedRange.upperBound {  // exclude
                     let range1 = NSRange(selectedRange.location..<range.location)
                     let range2 = NSRange(range.upperBound..<selectedRange.upperBound)
                     
-                    if range1.length > 0 {
+                    if !range1.isEmpty {
                         selectedRanges.append(range1)
                     }
-                    if range2.length > 0 {
+                    if !range2.isEmpty {
                         selectedRanges.append(range2)
                     }
                     

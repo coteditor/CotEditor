@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@
 import Cocoa
 import AudioToolbox
 
-final class AppearancePaneController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
+final class AppearancePaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource, NSTextFieldDelegate, ThemeViewControllerDelegate {
     
     // MARK: Private Properties
     
@@ -37,9 +37,14 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
     
     private var themeNames = [String]()
+    private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
+    @IBOutlet private weak var lineHeightField: NSTextField?
+    @IBOutlet private weak var barCursorButton: NSButton?
+    @IBOutlet private weak var thickBarCursorButton: NSButton?
+    @IBOutlet private weak var blockCursorButton: NSButton?
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private var themeTableMenu: NSMenu?
     
@@ -59,6 +64,9 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         self.themeNames = ThemeManager.shared.settingNames
         
+        // set initial value as field's placeholder
+        self.lineHeightField?.bindNullPlaceholderToUserDefaults(.value)
+        
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
@@ -72,8 +80,18 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         self.setupFontFamilyNameAndSize()
         
-        let themeName = UserDefaults.standard[.theme]!
-        let row = self.themeNames.index(of: themeName) ?? 0
+        // select one of cursor type radio buttons
+        switch UserDefaults.standard[.cursorType] {
+        case .bar:
+            self.barCursorButton?.state = .on
+        case .thickBar:
+            self.thickBarCursorButton?.state = .on
+        case .block:
+            self.blockCursorButton?.state = .on
+        }
+        
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
@@ -81,14 +99,20 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// set delegate to ThemeViewController
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
         
+        super.prepare(for: segue, sender: sender)
+        
         if let destinationController = segue.destinationController as? ThemeViewController {
+            self.themeViewController = destinationController
             destinationController.delegate = self
         }
     }
     
     
+    
+    // MARK: User Interface Validation
+    
     /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+    func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         let isContextualMenu = (menuItem.menu == self.themeTableMenu)
         
@@ -184,7 +208,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
         
         // get file URLs from pasteboard
-        let pboard = info.draggingPasteboard()
+        let pboard = info.draggingPasteboard
         let objects = pboard.readObjects(forClasses: [NSURL.self],
                                          options: [.urlReadingFileURLsOnly: true,
                                                    .urlReadingContentsConformToTypes: [DocumentType.theme.UTType]])
@@ -228,7 +252,6 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// theme did update
     func didUpdate(theme: ThemeManager.ThemeDictionary) {
         
-        // save
         do {
             try ThemeManager.shared.save(settingDictionary: theme, name: self.selectedThemeName)
         } catch {
@@ -242,19 +265,25 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// selection of theme table did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let object = notification.object as? NSTableView, object == self.themeTableView else { return }
+        guard notification.object as? NSTableView == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
         let themeDict = ThemeManager.shared.settingDictionary(name: themeName)
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
-        if let oldThemeName = UserDefaults.standard[.theme], oldThemeName != themeName {
-            UserDefaults.standard[.theme] = themeName
+        if UserDefaults.standard[.theme] != themeName {
+            // do not store to UserDefautls if it's the default theme
+            if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
+                UserDefaults.standard.restore(key: .theme)
+            } else {
+                UserDefaults.standard[.theme] = themeName
+            }
         }
         
         self.themeViewController?.theme = themeDict
         self.themeViewController?.isBundled = isBundled
+        self.themeViewController?.view.setAccessibilityLabel(themeName)
         
         self.isBundled = isBundled
     }
@@ -344,13 +373,20 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     // MARK: Action Messages
     
+    /// A radio button of documentConflictOption was clicked
+    @IBAction func updateCursorTypeSetting(_ sender: NSButton) {
+        
+        UserDefaults.standard[.cursorType] = CursorType(rawValue: sender.tag)!
+    }
+    
+    
     /// add theme
     @IBAction func addTheme(_ sender: Any?) {
         
-        guard let tableView = self.themeTableView else { return }
+        guard let tableView = self.themeTableView else { return assertionFailure() }
         
         try? ThemeManager.shared.createUntitledSetting { themeName in
-            let row = ThemeManager.shared.settingNames.index(of: themeName) ?? 0
+            let row = ThemeManager.shared.settingNames.firstIndex(of: themeName) ?? 0
             
             tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         }
@@ -362,7 +398,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
         
         let themeName = self.targetThemeName(for: sender)
         
-        try? ThemeManager.shared.duplicateSetting(name: themeName)
+        do {
+            try ThemeManager.shared.duplicateSetting(name: themeName)
+        } catch {
+            self.presentError(error)
+        }
     }
     
     
@@ -370,7 +410,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     @IBAction func renameTheme(_ sender: Any?) {
         
         let themeName = self.targetThemeName(for: sender)
-        let row = self.themeNames.index(of: themeName) ?? 0
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
         
         self.themeTableView?.editColumn(0, row: row, with: nil, select: false)
     }
@@ -397,19 +437,23 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// export selected theme
     @IBAction func exportTheme(_ sender: Any?) {
         
-        let themeName = self.targetThemeName(for: sender)
+        let settingName = self.targetThemeName(for: sender)
         
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true
         savePanel.nameFieldLabel = "Export As:".localized
-        savePanel.nameFieldStringValue = themeName
+        savePanel.nameFieldStringValue = settingName
         savePanel.allowedFileTypes = [ThemeManager.shared.filePathExtension]
         
-        savePanel.beginSheetModal(for: self.view.window!) { (result: NSApplication.ModalResponse) in
+        savePanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }
             
-            try? ThemeManager.shared.exportSetting(name: themeName, to: savePanel.url!)
+            do {
+                try ThemeManager.shared.exportSetting(name: settingName, to: savePanel.url!, hidesExtension: savePanel.isExtensionHidden)
+            } catch {
+                self.presentError(error)
+            }
         }
     }
     
@@ -445,7 +489,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     }
     
     
-    @IBAction func reloadAllThemes(_ sender: AnyObject?) {
+    @IBAction func reloadAllThemes(_ sender: Any?) {
         
         ThemeManager.shared.updateCache()
     }
@@ -454,18 +498,11 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     
     // MARK: Private Methods
     
-    /// view controller for theme editor
-    private var themeViewController: ThemeViewController? {
-        
-        return self.childViewControllers.lazy.compactMap { $0 as? ThemeViewController }.first
-    }
-    
-    
     /// return theme name which is currently selected in the list table
     @objc private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView else {
-            return UserDefaults.standard[.theme]!
+            return ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         }
         return self.themeNames[tableView.selectedRow]
     }
@@ -553,12 +590,12 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
     /// update theme list
     @objc private func setupThemeList() {
         
-        let themeName = UserDefaults.standard[.theme]!
+        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
         
         self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()
         
-        let row = self.themeNames.index(of: themeName) ?? 0
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
@@ -568,7 +605,7 @@ final class AppearancePaneController: NSViewController, NSTableViewDelegate, NST
 
 // MARK: - Font Setting
 
-extension AppearancePaneController {
+extension AppearancePaneController: NSFontChanging {
     
     // MARK: View Controller Methods
     
@@ -580,6 +617,16 @@ extension AppearancePaneController {
         if NSFontManager.shared.target === self {
             NSFontManager.shared.target = nil
         }
+    }
+    
+    
+    
+    // MARK: Font Changing Methods
+    
+    /// restrict items in the font panel toolbar
+    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+        
+        return [.collection, .face, .size]
     }
     
     
@@ -600,11 +647,11 @@ extension AppearancePaneController {
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
+    @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let fontManager = sender as? NSFontManager else { return }
+        guard let sender = sender else { return assertionFailure() }
         
-        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        let newFont = sender.convert(.systemFont(ofSize: 0))
         
         UserDefaults.standard[.fontName] = newFont.fontName
         UserDefaults.standard[.fontSize] = newFont.pointSize

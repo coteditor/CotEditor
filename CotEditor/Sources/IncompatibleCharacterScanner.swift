@@ -34,7 +34,7 @@ protocol IncompatibleCharacterScannerDelegate: AnyObject {
 
 
 
-final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
+final class IncompatibleCharacterScanner {
     
     // MARK: Public Properties
     
@@ -59,12 +59,6 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
     }
     
     
-    var debugDescription: String {
-        
-        return "<\(self): \(self.document?.displayName ?? "NO DOCUMENT")>"
-    }
-    
-    
     
     // MARK: Public Methods
     
@@ -73,7 +67,8 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
         
         guard
             let document = self.document,
-            self.delegate?.needsUpdateIncompatibleCharacter(document) ?? false else { return }
+            self.delegate?.needsUpdateIncompatibleCharacter(document) == true
+            else { return }
         
         self.updateTask.schedule()
     }
@@ -88,6 +83,16 @@ final class IncompatibleCharacterScanner: CustomDebugStringConvertible {
         self.updateTask.cancel()
         
         self.delegate?.document(document, didUpdateIncompatibleCharacters: self.incompatibleCharacters)
+    }
+    
+}
+
+
+extension IncompatibleCharacterScanner: CustomDebugStringConvertible {
+    
+    var debugDescription: String {
+        
+        return "<\(self): \(self.document?.displayName ?? "NO DOCUMENT")>"
     }
     
 }

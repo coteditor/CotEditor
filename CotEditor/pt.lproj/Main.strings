@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2019 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -127,6 +127,8 @@
 "172.title" = "Selecionar Tudo";
 /* Class = "NSMenuItem"; title = "Select Line"; ObjectID = "Cwp-ys-LJc"; */
 "Cwp-ys-LJc.title" = "Selecionar Linha";
+/* Class = "NSMenuItem"; title = "Select Word"; ObjectID = "0HX-j9-5jF"; */
+"0HX-j9-5jF.title" = "Selecionar palavra";
 
 /* Class = "NSMenuItem"; title = "Input Backslash"; ObjectID = "631"; */
 "631.title" = "Inserir Barra Invertida";
@@ -308,6 +310,9 @@
 /* Class = "NSMenuItem"; title = "Close Split Editor"; ObjectID = "796"; */
 "796.title" = "Fechar Editor Dividido";
 
+/* Class = "NSMenuItem"; title = "Change Editor’s Opacity…"; ObjectID = "367"; */
+"367.title" = "Altere Opacidade do Editor…";
+
 
 
 // MARK: Text
@@ -376,6 +381,8 @@
 "G3o-1h-GwR.title" = "Parênteses";
 /* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
 "Xoq-43-C1z.title" = "Chaves";
+/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Colchetes";
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "Personalizar…";
 
@@ -393,6 +400,13 @@
 "ZrR-aL-1eB.title" = "Tudo em Minúsculas";
 /* Class = "NSMenuItem"; title = "Capitalize"; ObjectID = "LC4-lg-eO0"; */
 "LC4-lg-eO0.title" = "Letras Iniciais em Maiúsculas";
+
+/* Class = "NSMenuItem"; title = "Make Snake Case"; ObjectID = "F0I-F4-srF"; */
+"F0I-F4-srF.title" = "Tudo em Snake Case";
+/* Class = "NSMenuItem"; title = "Make Camel Case"; ObjectID = "nlp-Gj-W9G"; */
+"nlp-Gj-W9G.title" = "Tudo em Camel Case";
+/* Class = "NSMenuItem"; title = "Make Pascal Case"; ObjectID = "x1F-KX-2de"; */
+"x1F-KX-2de.title" = "Tudo em Pascal Case";
 
 /* Class = "NSMenuItem"; title = "Half-width to Full-width"; ObjectID = "dVK-1s-xJq"; */
 "dVK-1s-xJq.title" = "Meia Largura para Largura Completa";

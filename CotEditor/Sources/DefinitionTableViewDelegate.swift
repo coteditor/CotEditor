@@ -28,13 +28,6 @@ import Cocoa
 
 final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     
-    // MARK: Private Properties
-    
-    @IBOutlet private weak var arrayController: NSArrayController?
-    
-    
-    
-    // MARK: -
     // MARK: Delegate
     
     /// selection did change
@@ -58,27 +51,6 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
         
         tableView.scrollRowToVisible(row)
         tableView.editColumn(column, row: row, with: nil, select: true)
-    }
-    
-    
-    /// set action on swiping a table row
-    func tableView(_ tableView: NSTableView, rowActionsForRow row: Int, edge: NSTableView.RowActionEdge) -> [NSTableViewRowAction] {
-        
-        guard edge == .trailing else { return [] }
-        guard let arrayController = self.arrayController else { return [] }
-        
-        // delete
-        return [NSTableViewRowAction(style: .destructive,
-                                     title: "Delete".localized(comment: "table view action title"),
-                                     handler: { (action: NSTableViewRowAction, row: Int) in
-                                        NSAnimationContext.runAnimationGroup({ context in
-                                            // update UI
-                                            tableView.removeRows(at: IndexSet(integer: row), withAnimation: .slideLeft)
-                                            }, completionHandler: {
-                                                // update data
-                                                arrayController.remove(atArrangedObjectIndex: row)
-                                        })
-        })]
     }
     
     

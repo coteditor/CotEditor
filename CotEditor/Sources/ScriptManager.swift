@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,16 +39,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     private let scriptsDirectoryURL: URL
     private var scriptHandlersTable: [ScriptingEventType: [Script]] = [:]
-    private var menuBuildingTask: DispatchWorkItem?
     
-    
-    
-    // MARK: Private Enum
-    
-    private enum MenuItemTag: Int {
-        
-        case scriptsDefault = 8001  // not to list up in context menu
-    }
+    private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
     
     
     
@@ -61,7 +53,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         do {
             self.scriptsDirectoryURL = try FileManager.default.url(for: .applicationScriptsDirectory,
                                                                    in: .userDomainMask, appropriateFor: nil, create: true)
-        } catch _ {
+        } catch {
             // fallback directory creation for in case the app is not Sandboxed
             let bundleIdentifier = Bundle.main.bundleIdentifier!
             let libraryURL = try! FileManager.default.url(for: .libraryDirectory,
@@ -77,13 +69,10 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         // observe for script folder change
         NSFileCoordinator.addFilePresenter(self)
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: NSApplication.didBecomeActiveNotification, object: NSApp)
     }
     
     
     deinit {
-        self.menuBuildingTask?.cancel()
-        
         NSFileCoordinator.removeFilePresenter(self)
     }
     
@@ -104,16 +93,17 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// script folder did change
     func presentedSubitemDidChange(at url: URL) {
         
-        // schedule script menu build
-        self.menuBuildingTask?.cancel()
-        let newTask = DispatchWorkItem(qos: .background) { [weak self] in
-            self?.buildScriptMenu()
-        }
-        self.menuBuildingTask = newTask
-        
         if NSApp.isActive {
-            // perform with a delay
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: newTask)
+            self.menuBuildingTask.schedule()
+            
+        } else {
+            weak var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
+                if let observer = observer {
+                   NotificationCenter.default.removeObserver(observer)
+                }
+                self?.menuBuildingTask.perform()
+            }
         }
     }
     
@@ -124,15 +114,19 @@ final class ScriptManager: NSObject, NSFilePresenter {
     /// return menu for context menu
     var contexualMenu: NSMenu? {
         
-        let menu = NSMenu()
+        let items = MainMenu.script.menu!.items
+            .filter { $0.action != #selector(openScriptFolder) }
+            .map { $0.copy() as! NSMenuItem }
         
-        for item in MainMenu.script.menu!.items {
-            guard item.tag != MenuItemTag.scriptsDefault.rawValue else { continue }
-            
-            menu.addItem(item.copy() as! NSMenuItem)
+        guard !items.isEmpty else { return nil }
+        
+        let menu = NSMenu()
+//        menu.items = items  // <- this line fails on macOS 10.13 and earlier
+        for item in items {
+            menu.addItem(item)
         }
         
-        return (menu.numberOfItems > 0) ? menu : nil
+        return menu
     }
     
     
@@ -141,8 +135,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         assert(Thread.isMainThread)
         
-        self.menuBuildingTask?.cancel()
-        self.menuBuildingTask = nil
+        self.menuBuildingTask.cancel()
         self.scriptHandlersTable = [:]
         
         let menu = MainMenu.script.menu!
@@ -158,14 +151,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
         let openMenuItem = NSMenuItem(title: "Open Scripts Folder".localized,
                                       action: #selector(openScriptFolder), keyEquivalent: "")
         openMenuItem.target = self
-        openMenuItem.tag = MenuItemTag.scriptsDefault.rawValue
         menu.addItem(openMenuItem)
     }
     
     
     /// Dispatch an Apple event that notifies the given document was opened
     ///
-    /// - parameter document: the document that was opened
+    /// - Parameter document: The document that was opened.
     func dispatchEvent(documentOpened document: Document) {
         
         let eventType = ScriptingEventType.documentOpened
@@ -178,9 +170,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened
+    /// Dispatch an Apple event that notifies the given document was opened.
     ///
-    /// - parameter document: the document that was opened
+    /// - Parameter document: The document that was opened.
     func dispatchEvent(documentSaved document: Document) {
         
         let eventType = ScriptingEventType.documentSaved
@@ -197,9 +189,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     // MARK: Action Message
     
     /// launch script (invoked by menu item)
-    @IBAction func launchScript(_ sender: AnyObject?) {
+    @IBAction func launchScript(_ sender: NSMenuItem) {
         
-        guard let script = sender?.representedObject as? Script else { return }
+        guard let script = sender.representedObject as? Script else { return assertionFailure() }
         
         do {
             // change behavior if modifier key is pressed
@@ -214,7 +206,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 self.currentScriptName = script.descriptor.name
                 try script.run { [weak self] in
                     self?.currentScriptName = nil
-                
                 }
             }
             
@@ -234,26 +225,18 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Methods
     
-    /// update script menu if needed
-    @objc private func applicationDidBecomeActive(_ notification: Notification) {
-        
-        self.menuBuildingTask?.perform()
-    }
-    
-    
-    /// Create an Apple event caused by the given `Document`
+    /// Create an Apple event caused by the given `Document`.
     ///
-    /// - bug:
+    /// - Bug:
     ///   NSScriptObjectSpecifier.descriptor can be nil.
     ///   If `nil`, the error is propagated by passing a string in place of `Document`.
     ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
     ///
-    /// - parameters:
-    ///   - document: the document to dispatch an Apple event
-    ///   - eventID: the event ID to be set in the returned event
-    ///
-    /// - returns: a descriptor for an Apple event by the `Document`
-    private func createEvent(by document: Document, eventID: AEEventID) -> NSAppleEventDescriptor {
+    /// - Parameters:
+    ///   - document: The document to dispatch an Apple event.
+    ///   - eventID: The event ID to be set in the returned event.
+    /// - Returns: A descriptor for an Apple event by the `Document`.
+    private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
         
         let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
         let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
@@ -266,9 +249,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
     ///
-    /// - parameters:
-    ///   - event: the Apple event to be dispatched
-    ///   - scripts: AppleScripts handling the given Apple event
+    /// - Parameters:
+    ///   - event: The Apple event to be dispatched.
+    ///   - scripts: AppleScripts handling the given Apple event.
     private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [Script]) {
         
         for script in scripts {
@@ -308,9 +291,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
                     self.scriptHandlersTable[eventType, default: []].append(script)
                 }
                 
-                let shortcut = descriptor.shortcut
-                let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript), keyEquivalent: shortcut.keyEquivalent)
-                item.keyEquivalentModifierMask = shortcut.modifierMask
+                let item = NSMenuItem(title: descriptor.name, action: #selector(launchScript),
+                                      keyEquivalent: descriptor.shortcut.keyEquivalent)
+                item.keyEquivalentModifierMask = descriptor.shortcut.modifierMask
                 item.representedObject = script
                 item.target = self
                 item.toolTip = "“Option + click” to open script in editor.".localized
@@ -320,8 +303,8 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 let submenu = NSMenu(title: descriptor.name)
                 let item = NSMenuItem(title: descriptor.name, action: nil, keyEquivalent: "")
                 item.tag = MainMenu.MenuItemTag.scriptDirectory.rawValue
-                menu.addItem(item)
                 item.submenu = submenu
+                menu.addItem(item)
                 
                 self.addChildFileItem(to: submenu, in: url)
             }
@@ -329,8 +312,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// open script file in an editor
-    /// - throws: ScriptFileError
+    /// Open script file in an editor.
+    ///
+    /// - Throws: `ScriptFileError`
     private func editScript(at url: URL) throws {
         
         guard NSWorkspace.shared.open(url) else {
@@ -340,8 +324,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// reveal script file in Finder
-    /// - throws: ScriptFileError
+    /// Reveal script file in Finder.
+    ///
+    /// - Throws: `ScriptFileError`
     private func revealScript(at url: URL) throws {
         
         guard url.isReachable else {

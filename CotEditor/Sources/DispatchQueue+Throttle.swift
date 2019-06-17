@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,9 +25,19 @@
 
 import Dispatch
 
+extension DispatchTimeInterval {
+    
+    static func seconds(_ interval: Double) -> DispatchTimeInterval {
+        
+        return .milliseconds(Int(interval * 1000))
+    }
+}
+
+
+
 extension DispatchQueue {
     
-    /// perform action but never be called more than once each specified interval.
+    /// Perform action but never be called more than once each specified interval.
     ///
     /// - Parameters:
     ///    - delay: The time interval.

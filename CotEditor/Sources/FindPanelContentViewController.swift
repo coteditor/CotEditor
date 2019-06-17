@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -148,7 +148,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         guard
             let resultViewItem = self.resultSplitViewItem,
             let panel = self.splitView.window
-            else { return }
+            else { return assertionFailure() }
         
         let resultView = resultViewItem.viewController.view
         let height = resultView.bounds.height
@@ -188,11 +188,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// collapse result view if closed
     private func collapseResultViewIfNeeded() {
         
-        guard
-            let resultView = self.resultViewController?.view,
-            !resultView.isHidden,
-            resultView.visibleRect.isEmpty
-            else { return }
+        guard self.resultViewController?.view.isHiddenOrHasHiddenAncestor == false else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
         self.splitView.needsDisplay = true

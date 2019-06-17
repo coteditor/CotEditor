@@ -40,20 +40,23 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
     /// draw each segment
     override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView) {
         
-        // use another image on selected segment
-        //   -> From a universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one.
-        //      Some of users may hard to distinguish the selected state just by the color.
+        // use another image for selected segment
+        // -> From the universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one,
+        //    because some users may hard to distinguish the selected state just by the color.
         if self.isSelected(forSegment: segment) {
             // load "selected" icon template
             guard
                 let iconName = self.image(forSegment: segment)?.name(),
-                let selectedIcon = NSImage(named: NSImage.Name("Selected" + iconName.rawValue))
-                else {
-                    fatalError("No selected icon template for inspector tab view was found.")
-                }
+                let selectedIcon = NSImage(named: "Selected" + iconName)
+                else { fatalError("No selected icon template for inspector tab view was found.") }
             
             // tint icon
-            let tintColor = NSColor.accentColor(for: controlView)
+            let tintColor: NSColor
+            if #available(macOS 10.14, *) {
+                tintColor = .controlAccentColor
+            } else {
+                tintColor = .accentColor(for: controlView)
+            }
             let tintedIcon = selectedIcon.tinted(color: tintColor)
             
             // calculate area to draw

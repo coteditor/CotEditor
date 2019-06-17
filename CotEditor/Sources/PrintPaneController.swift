@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ final class PrintPaneController: NSViewController {
         let themeName = UserDefaults.standard[.printTheme]
         let themeNames = ThemeManager.shared.settingNames
         
-        guard let popupButton = self.colorPopupButton else { return }
+        guard let popupButton = self.colorPopupButton else { return assertionFailure() }
         
         popupButton.removeAllItems()
         
@@ -104,7 +104,7 @@ final class PrintPaneController: NSViewController {
 
 // MARK: - Font Setting
 
-extension PrintPaneController {
+extension PrintPaneController: NSFontChanging {
     
     // MARK: View Controller Methods
     
@@ -116,6 +116,16 @@ extension PrintPaneController {
         if NSFontManager.shared.target === self {
             NSFontManager.shared.target = nil
         }
+    }
+    
+    
+    
+    // MARK: Font Changing Methods
+    
+    /// restrict items in the font panel toolbar
+    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+        
+        return [.collection, .face, .size]
     }
     
     
@@ -136,11 +146,11 @@ extension PrintPaneController {
     
     
     /// font in font panel did update
-    @IBAction override func changeFont(_ sender: Any?) {
+    @IBAction func changeFont(_ sender: NSFontManager?) {
         
-        guard let fontManager = sender as? NSFontManager else { return }
+        guard let sender = sender else { return }
         
-        let newFont = fontManager.convert(.systemFont(ofSize: 0))
+        let newFont = sender.convert(.systemFont(ofSize: 0))
         
         UserDefaults.standard[.printFontName] = newFont.fontName
         UserDefaults.standard[.printFontSize] = newFont.pointSize

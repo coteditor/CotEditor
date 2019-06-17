@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import AppKit
+import AppKit.NSFont
 import CoreText
 
 extension NSFont {
@@ -41,42 +41,49 @@ extension NSFont {
     /// - Returns: Advancement of passed-in character.
     private func advancement(character: Character) -> NSSize {
         
-        if #available(macOS 10.13, *) {
-            return self.advancement(forCGGlyph: self.glyph(character: character))
+        let glyph = (self as CTFont).glyph(for: character)
+        
+        guard #available(macOS 10.13, *) else {
+            return (self as CTFont).advance(for: glyph)
         }
         
-        let attributedString = NSAttributedString(string: String(character), attributes: [.font: self])
-        let line = CTLineCreateWithAttributedString(attributedString)
-        
-        guard
-            let runs = CTLineGetGlyphRuns(line) as? [CTRun],
-            let run = runs.first,
-            CTRunGetGlyphCount(run) > 0
-            else {
-                assertionFailure("No glyph was created.")
-                return .zero
-            }
-        
-        var size = CGSize()
-        CTRunGetAdvances(run, CFRange(location: 0, length: 1), &size)
-        
-        return size
+        return self.advancement(forCGGlyph: glyph)
     }
     
+}
+
+
+
+extension CTFont {
     
-    /// Create CGGlyph from a character using CoreText.
+    /// Create CGGlyph from a character.
     ///
-    /// - Parameter character: A character to extract glhph.
+    /// - Parameter character: A character to extract glyph.
     /// - Returns: A CGGlyph for passed-in character based on the receiver font.
-    private func glyph(character: Character) -> CGGlyph {
+    func glyph(for character: Character) -> CGGlyph {
         
         assert(String(character).utf16.count == 1)
         
         var glyph = CGGlyph()
         let uniChar: UniChar = String(character).utf16.first!
-        CTFontGetGlyphsForCharacters(self as CTFont, [uniChar], &glyph, 1)
+        CTFontGetGlyphsForCharacters(self, [uniChar], &glyph, 1)
         
         return glyph
+    }
+    
+    
+    /// Get advancement of a glyph.
+    ///
+    /// - Parameters:
+    ///   - glyph: Glyph to calculate advancement.
+    ///   - orientation: Drawing orientation.
+    /// - Returns: Advancement of passed-in glyph.
+    func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
+        
+        var advance: CGSize = .zero
+        CTFontGetAdvancesForGlyphs(self, orientation, [glyph], &advance, 1)
+        
+        return advance
     }
     
 }

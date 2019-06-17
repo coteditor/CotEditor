@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,16 +24,15 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import Foundation
+import AppKit.NSEvent
 
-enum ModifierKey {
+enum ModifierKey: CaseIterable {
     
     case control
     case option
     case shift
     case command
-    
-    static let allCases: [ModifierKey] = [.control, .option, .shift, .command]
     
     
     var mask: NSEvent.ModifierFlags {
@@ -74,7 +73,7 @@ enum ModifierKey {
 
 
 
-struct Shortcut: Hashable, CustomStringConvertible {
+struct Shortcut: Hashable {
     
     let modifierMask: NSEvent.ModifierFlags
     let keyEquivalent: String
@@ -86,6 +85,8 @@ struct Shortcut: Hashable, CustomStringConvertible {
     init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
         self.modifierMask = {
+            let modifierMask = modifierMask.intersection([.shift, .control, .option, .command])
+            
             // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
             if let keyEquivalentScalar = keyEquivalent.unicodeScalars.last,
                 CharacterSet.uppercaseLetters.contains(keyEquivalentScalar) {
@@ -109,7 +110,7 @@ struct Shortcut: Hashable, CustomStringConvertible {
         let modifierCharacters = keySpecChars.dropLast()
         let modifierMask = ModifierKey.allCases
             .filter { key in modifierCharacters.contains(key.keySpecChar) }
-            .reduce(NSEvent.ModifierFlags()) { (mask, key) in mask.union(key.mask) }
+            .reduce(into: NSEvent.ModifierFlags()) { (mask, key) in mask.formUnion(key.mask) }
         
         self.init(modifierMask: modifierMask, keyEquivalent: String(keyEquivalent))
     }
@@ -135,7 +136,8 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     
     /// whether key combination is valid for a shortcut
-    /// - note: an empty shortcut is marked as invalid.
+    ///
+    /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {
         
         let keys = ModifierKey.allCases.filter { self.modifierMask.contains($0.mask) }
@@ -147,22 +149,10 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     // MARK: Protocols
     
-    /// shortcut string to display
-    var description: String {
+    func hash(into hasher: inout Hasher) {
         
-        return self.printableModifierMask + self.printableKeyEquivalent
-    }
-    
-    
-    var hashValue: Int {
-        
-        return self.modifierMask.rawValue.hashValue ^ self.keyEquivalent.hashValue
-    }
-    
-    
-    static func == (lhs: Shortcut, rhs: Shortcut) -> Bool {
-        
-        return lhs.keySpecChars == rhs.keySpecChars
+        hasher.combine(self.modifierMask.rawValue)
+        hasher.combine(self.keyEquivalent)
     }
     
     
@@ -193,49 +183,53 @@ struct Shortcut: Hashable, CustomStringConvertible {
     
     
     /// table for characters that cannot be displayed as is with their printable substitutions
-    private static let printableKeyEquivalents: [UnicodeScalar: String] = {
+    private static let printableKeyEquivalents: [UnicodeScalar: String] = [
+        NSUpArrowFunctionKey: "↑",
+        NSDownArrowFunctionKey: "↓",
+        NSLeftArrowFunctionKey: "←",
+        NSRightArrowFunctionKey: "→",
+        NSF1FunctionKey: "F1",
+        NSF2FunctionKey: "F2",
+        NSF3FunctionKey: "F3",
+        NSF4FunctionKey: "F4",
+        NSF5FunctionKey: "F5",
+        NSF6FunctionKey: "F6",
+        NSF7FunctionKey: "F7",
+        NSF8FunctionKey: "F8",
+        NSF9FunctionKey: "F9",
+        NSF10FunctionKey: "F10",
+        NSF11FunctionKey: "F11",
+        NSF12FunctionKey: "F12",
+        NSF13FunctionKey: "F13",
+        NSF14FunctionKey: "F14",
+        NSF15FunctionKey: "F15",
+        NSF16FunctionKey: "F16",
+        NSDeleteCharacter: "⌦",  // = "Delete forward" (do not use NSDeleteFunctionKey)
+        NSHomeFunctionKey: "↖",
+        NSEndFunctionKey: "↘",
+        NSPageUpFunctionKey: "⇞",
+        NSPageDownFunctionKey: "⇟",
+        NSClearLineFunctionKey: "⌧",
+        NSHelpFunctionKey: "Help",
+        0x20: "Space".localized(comment: "keyboard key name"),  // = Space
+        0x09: "⇥",  // = Tab
+        0x0d: "↩",  // = Return
+        0x08: "⌫",  // = Backspace, (delete backword)
+        0x03: "⌅",  // = Enter
+        0x31: "⇤",  // = Backtab
+        0x1b: "⎋",  // = Escape
+        ].mapKeys { UnicodeScalar($0)! }
+    
+}
+
+
+extension Shortcut: CustomStringConvertible {
+    
+    /// shortcut string to display
+    var description: String {
         
-        // keys:  unprintable key int
-        // value: printable representation
-        let table: [Int: String] = [
-            NSUpArrowFunctionKey: "↑",
-            NSDownArrowFunctionKey: "↓",
-            NSLeftArrowFunctionKey: "←",
-            NSRightArrowFunctionKey: "→",
-            NSF1FunctionKey: "F1",
-            NSF2FunctionKey: "F2",
-            NSF3FunctionKey: "F3",
-            NSF4FunctionKey: "F4",
-            NSF5FunctionKey: "F5",
-            NSF6FunctionKey: "F6",
-            NSF7FunctionKey: "F7",
-            NSF8FunctionKey: "F8",
-            NSF9FunctionKey: "F9",
-            NSF10FunctionKey: "F10",
-            NSF11FunctionKey: "F11",
-            NSF12FunctionKey: "F12",
-            NSF13FunctionKey: "F13",
-            NSF14FunctionKey: "F14",
-            NSF15FunctionKey: "F15",
-            NSF16FunctionKey: "F16",
-            NSDeleteCharacter: "⌦",  // = "Delete forward" (do not use NSDeleteFunctionKey)
-            NSHomeFunctionKey: "↖",
-            NSEndFunctionKey: "↘",
-            NSPageUpFunctionKey: "⇞",
-            NSPageDownFunctionKey: "⇟",
-            NSClearLineFunctionKey: "⌧",
-            NSHelpFunctionKey: "Help",
-            0x20: "Space".localized(comment: "keyboard key name"),  // = Space
-            0x09: "⇥",  // = Tab
-            0x0d: "↩",  // = Return
-            0x08: "⌫",  // = Backspace, (delete backword)
-            0x03: "⌅",  // = Enter
-            0x31: "⇤",  // = Backtab
-            0x1b: "⎋",  // = Escape
-        ]
-        
-        return table.mapKeys { UnicodeScalar($0)! }
-    }()
+        return self.printableModifierMask + self.printableKeyEquivalent
+    }
     
 }
 

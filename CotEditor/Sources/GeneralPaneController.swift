@@ -33,6 +33,8 @@ final class GeneralPaneController: NSViewController {
     @IBOutlet private weak var notifyConflictButton: NSButton?
     @IBOutlet private weak var revertConflictButton: NSButton?
     
+    @IBOutlet private weak var selectionInstanceHighlightDelayField: NSTextField?
+    
     
     
     // MARK: -
@@ -43,13 +45,15 @@ final class GeneralPaneController: NSViewController {
         
         super.viewDidLoad()
         
+        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults(.value)
+        
         // remove updater options if no Sparkle provided
         #if APPSTORE
             for subview in self.view.subviews where subview.tag < 0 {
                 subview.removeFromSuperview()
             }
         #endif
-        if !AppInfo.isPrerelease {
+        if !Bundle.main.isPrerelease {
             for subview in self.view.subviews where subview.tag == -2 {
                 subview.removeFromSuperview()
             }
@@ -63,8 +67,7 @@ final class GeneralPaneController: NSViewController {
         super.viewWillAppear()
         
         // select one of document conflict radio buttons
-        let conflictOption = DocumentConflictOption(rawValue: UserDefaults.standard[.documentConflictOption])!
-        switch conflictOption {
+        switch UserDefaults.standard[.documentConflictOption] {
         case .ignore:
             self.ignoreConflictButton?.state = .on
         case .notify:
@@ -96,9 +99,9 @@ final class GeneralPaneController: NSViewController {
     
     
     /// A radio button of documentConflictOption was clicked
-    @IBAction func updateDocumentConflictSetting(_ sender: NSControl) {
+    @IBAction func updateDocumentConflictSetting(_ sender: NSButton) {
         
-        UserDefaults.standard[.documentConflictOption] = sender.tag
+        UserDefaults.standard[.documentConflictOption] = DocumentConflictOption(rawValue: sender.tag)!
     }
     
     
@@ -122,7 +125,7 @@ final class GeneralPaneController: NSViewController {
             case .alertSecondButtonReturn:  // = Later
                 break  // do nothing
             case .alertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[defaultKey] = !UserDefaults.standard[defaultKey]  // revert state
+                UserDefaults.standard[defaultKey].toggle()  // revert state
             default:
                 preconditionFailure()
             }

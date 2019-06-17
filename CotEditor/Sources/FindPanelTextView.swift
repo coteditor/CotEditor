@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ class FindPanelTextView: NSTextView {
     override func resignFirstResponder() -> Bool {
         
         // clear current selection (standard NSTextField behavior)
-        self.selectedRange = NSRange(location: 0, length: 0)
+        self.selectedRange = NSRange(0..<0)
         
         return super.resignFirstResponder()
     }
@@ -136,25 +136,20 @@ class FindPanelTextView: NSTextView {
     override func insertText(_ string: Any, replacementRange: NSRange) {
         
         // cast input to String
-        var str: String = {
-            if let string = string as? NSAttributedString {
-                return string.string
-            }
-            return string as! String
-        }()
+        var string = String(anyString: string)
         
         // swap '¥' with '\' if needed
         if UserDefaults.standard[.swapYenAndBackSlash] {
-            switch str {
+            switch string {
             case "\\":
-                str = "¥"
+                string = "¥"
             case "¥":
-                str = "\\"
+                string = "\\"
             default: break
             }
         }
         
-        super.insertText(str, replacementRange: replacementRange)
+        super.insertText(string, replacementRange: replacementRange)
     }
     
     
@@ -166,6 +161,7 @@ class FindPanelTextView: NSTextView {
         
         guard self.shouldChangeText(in: self.string.nsRange, replacementString: "") else { return }
         
+        self.window?.makeFirstResponder(self)
         self.string = ""
         
         self.didChangeText()

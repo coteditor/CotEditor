@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     // MARK: Private Properties
     
-    private weak var scanner: IncompatibleCharacterScanner? {
+    private var scanner: IncompatibleCharacterScanner? {
         
         return self.representedObject as? IncompatibleCharacterScanner
     }
@@ -45,6 +45,17 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     // MARK: -
     // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("incompatible characters".localized)
+    }
+    
     
     /// update content before display
     override func viewWillAppear() {
@@ -142,7 +153,7 @@ private extension NSTextStorage {
         guard let color = self.layoutManagers.first?.firstTextView?.textColor?.withAlphaComponent(0.2) else { return }
         
         for range in ranges {
-            let viewRange = self.string.convert(from: lineEnding, to: .lf, range: range)
+            let viewRange = self.string.convert(range: range, from: lineEnding, to: .lf)
             
             for manager in self.layoutManagers {
                 manager.addTemporaryAttribute(.backgroundColor, value: color, forCharacterRange: viewRange)

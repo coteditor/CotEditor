@@ -1,0 +1,36 @@
+extensions:
+- keyString: "properties"
+interpreters: []
+filenames: []
+metadata:
+  version: "1.0.0"
+  lastModified: "2018-10-02"
+  author: "1024jp"
+  license: "Same as CotEditor"
+  distributionURL: "https://coteditor.com"
+  description: "Properties file format mainly used in Java"
+values: []
+completions: []
+outlineMenu: []
+numbers: []
+commentDelimiters:
+  inlineDelimiter: "#"
+characters:
+- beginString: "\\\\$"
+  regularExpression: true
+attributes: []
+strings: []
+commands: []
+keywords:
+- beginString: "^\\S+[ \\t\\f]+(?=\\w)"
+  description: "Key without symbols (= or :)"
+  regularExpression: true
+- beginString: "^\\S.*?(?=[=:])"
+  regularExpression: true
+variables:
+- beginString: "${"
+  endString: "}"
+types: []
+comments:
+- beginString: "^!.*"
+  regularExpression: true

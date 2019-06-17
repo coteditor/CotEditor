@@ -29,7 +29,7 @@ extension EditorTextView {
     
     // MARK: View Methods
     
-    /// change font size by pinch gesture
+    /// change scale by pinch gesture
     override func magnify(with event: NSEvent) {
         
         if event.phase.contains(.began) {
@@ -44,7 +44,7 @@ extension EditorTextView {
             (self.initialMagnificationScale <= 1.0 && scale >= 1.0)  // zoom-in
         {
             self.deferredMagnification += event.magnification
-            if fabs(self.deferredMagnification) > 0.4 {
+            if abs(self.deferredMagnification) > 0.4 {
                 scale = self.scale + self.deferredMagnification / 2
                 self.deferredMagnification = 0
                 self.initialMagnificationScale = scale
@@ -54,7 +54,7 @@ extension EditorTextView {
         }
         
         // sanitize final scale
-        if event.phase.contains(.ended), fabs(scale - 1.0) < 0.05 {
+        if event.phase.contains(.ended), abs(scale - 1.0) < 0.05 {
             scale = 1.0
         }
         
@@ -67,7 +67,7 @@ extension EditorTextView {
     }
     
     
-    /// reset font size by two-finger double tap
+    /// reset scale by two-finger double tap
     override func smartMagnify(with event: NSEvent) {
         
         let scale: CGFloat = (self.scale == 1.0) ? 1.5 : 1.0
@@ -117,6 +117,8 @@ extension EditorTextView {
         
         self.font = font
         self.setScaleKeepingVisibleArea(1.0)
+        
+        self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
     }
     
 }

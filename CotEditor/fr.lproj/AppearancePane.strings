@@ -1,0 +1,170 @@
+/*
+ 
+ AppearancePane.strings (French)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2019 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Font:"; ObjectID = "Z85-S9-uID"; */
+"Z85-S9-uID.title" = "Police :";
+/* Class = "NSButtonCell"; title = "Select…"; ObjectID = "3289"; */
+"3289.title" = "Choisir…";
+/* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
+"3290.title" = "Anticrénelage";
+
+/* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
+"r1c-v3-qW1.title" = "Hauteur de ligne :";
+/* Class = "NSTextFieldCell"; title = "times"; ObjectID = "VLD-jj-zzl"; */
+"VLD-jj-zzl.title" = "fois";
+
+/* Class = "NSTextFieldCell"; title = "Current line:"; ObjectID = "oKu-Fu-hRU"; */
+"oKu-Fu-hRU.title" = "Ligne courante :";
+/* Class = "NSButtonCell"; title = "Change background color"; ObjectID = "ba7-dE-zXz"; */
+"ba7-dE-zXz.title" = "Changer la couleur de fond";
+
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "NIq-Tj-KWB"; */
+"NIq-Tj-KWB.title" = "Curseur :";
+/* Class = "NSButtonCell"; title = "Bar"; ObjectID = "cnD-9F-CR4"; */
+"cnD-9F-CR4.title" = "Trait";
+/* Class = "NSButtonCell"; title = "Thick bar"; ObjectID = "rM6-JW-wau"; */
+"rM6-JW-wau.title" = "Trait épais";
+/* Class = "NSButtonCell"; title = "Block"; ObjectID = "YG7-Y7-xzs"; */
+"YG7-Y7-xzs.title" = "Bloc";
+
+
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "oAZ-6U-Ba8"; */
+"oAZ-6U-Ba8.title" = "Invisibles :";
+/* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
+"gqy-Io-eUU.title" = "Afficher les caractères invisibles";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "Espace";
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
+"XSb-uU-5QP.title" = "Tabulation";
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
+"Ont-7L-Uf5.title" = "Fin de ligne";
+/* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
+"Bf2-rS-2zu.title" = "Espace pleine chasse";
+/* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "Autres caractères invisibles";
+
+
+/* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
+"Avf-y8-wXG.headerCell.title" = "Thème";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "4B4-mq-8Fs"; */
+"4B4-mq-8Fs.title" = "Exporter…";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "gcs-B8-kPL"; */
+"gcs-B8-kPL.title" = "Importer…";
+/* Class = "NSButtonCell"; title = "Reload All Themes"; ObjectID = "7Yp-bg-3l6"; */
+"7Yp-bg-3l6.title" = "Recharger tous les thèmes";
+
+
+/* contextual menu */
+/* Class = "NSMenuItem"; title = "New Theme"; ObjectID = "sJb-7g-2FN"; */
+"sJb-7g-2FN.title" = "Nouveau thème";
+/* Class = "NSMenuItem"; title = "Rename"; ObjectID = "nWy-OL-CGi"; */
+"nWy-OL-CGi.title" = "Renommer";
+/* Class = "NSMenuItem"; title = "Duplicate"; ObjectID = "9LW-xw-HBP"; */
+"9LW-xw-HBP.title" = "Dupliquer";
+/* Class = "NSMenuItem"; title = "Restore"; ObjectID = "vTP-Fc-iBF"; */
+"vTP-Fc-iBF.title" = "Restaurer";
+/* Class = "NSMenuItem"; title = "Delete"; ObjectID = "WNG-Ai-RdG"; */
+"WNG-Ai-RdG.title" = "Supprimer";
+/* Class = "NSMenuItem"; title = "Export…"; ObjectID = "ueG-D7-DSV"; */
+"ueG-D7-DSV.title" = "Exporer…";
+/* Class = "NSMenuItem"; title = "Reveal in Finder"; ObjectID = "UMs-gY-YHE"; */
+"UMs-gY-YHE.title" = "Afficher dans le Finder";
+/* Class = "NSMenuItem"; title = "Import…"; ObjectID = "52n-xG-4ZL"; */
+"52n-xG-4ZL.title" = "Importer…";
+
+
+
+
+/* Theme View */
+
+/* Class = "NSTextFieldCell"; title = "Text:"; ObjectID = "kvy-vf-yva"; */
+"kvy-vf-yva.title" = "Texte :";
+/* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
+"Ljk-ky-fQH.title" = "Curseur :";
+/* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
+"IGx-p1-FHi.title" = "Invisibles :";
+/* Class = "NSTextFieldCell"; title = "Background:"; ObjectID = "tvj-DS-DVt"; */
+"tvj-DS-DVt.title" = "Fond :";
+/* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "yMW-lO-ILw"; */
+"yMW-lO-ILw.title" = "Ligne courante :";
+/* Class = "NSTextFieldCell"; title = "Selection:"; ObjectID = "PbY-c2-p4V"; */
+"PbY-c2-p4V.title" = "Sélection :";
+/* Class = "NSButtonCell"; title = "Use system color"; ObjectID = "0ZP-Zp-oBu"; */
+"0ZP-Zp-oBu.title" = "Couleur du système";
+
+
+/* Class = "NSTextFieldCell"; title = "Syntax"; ObjectID = "F64-8o-JYC"; */
+"F64-8o-JYC.title" = "Syntaxe";
+
+/* Class = "NSTextFieldCell"; title = "Keywords:"; ObjectID = "IU8-bd-gBv"; */
+"IU8-bd-gBv.title" = "Mots-clés :";
+/* Class = "NSTextFieldCell"; title = "Commands:"; ObjectID = "81x-je-JUf"; */
+"81x-je-JUf.title" = "Commandes :";
+/* Class = "NSTextFieldCell"; title = "Types:"; ObjectID = "ILi-Jt-MUc"; */
+"ILi-Jt-MUc.title" = "Types :";
+/* Class = "NSTextFieldCell"; title = "Attributes:"; ObjectID = "RQL-fz-3aq"; */
+"RQL-fz-3aq.title" = "Attributs :";
+/* Class = "NSTextFieldCell"; title = "Variables:"; ObjectID = "ZIr-1E-qZJ"; */
+"ZIr-1E-qZJ.title" = "Variables :";
+/* Class = "NSTextFieldCell"; title = "Values:"; ObjectID = "cVK-ET-QiD"; */
+"cVK-ET-QiD.title" = "Valeurs :";
+/* Class = "NSTextFieldCell"; title = "Numbers:"; ObjectID = "3wF-uc-Tfq"; */
+"3wF-uc-Tfq.title" = "Nombres :";
+/* Class = "NSTextFieldCell"; title = "Strings:"; ObjectID = "n04-r3-95l"; */
+"n04-r3-95l.title" = "Chaînes :";
+/* Class = "NSTextFieldCell"; title = "Characters:"; ObjectID = "hbk-iX-4VK"; */
+"hbk-iX-4VK.title" = "Caractères :";
+/* Class = "NSTextFieldCell"; title = "Comments:"; ObjectID = "AIG-rr-79V"; */
+"AIG-rr-79V.title" = "Commentaires :";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Show theme file info"; ObjectID = "8zj-4c-Hg4"; */
+"8zj-4c-Hg4.ibShadowedToolTip" = "Afficher les informations du thème";
+
+
+
+/* Metadata View */
+
+/* Class = "NSTextFieldCell"; title = "Author:"; ObjectID = "jbY-IC-CRS"; */
+"jbY-IC-CRS.title" = "Auteur :";
+/* Class = "NSTextFieldCell"; title = "URL:"; ObjectID = "xyY-jQ-kpJ"; */
+"xyY-jQ-kpJ.title" = "URL :";
+/* Class = "NSTextFieldCell"; title = "License:"; ObjectID = "iy5-9x-zGF"; */
+"iy5-9x-zGF.title" = "License :";
+/* Class = "NSTextFieldCell"; title = "Description:"; ObjectID = "Inh-Ci-NGp"; */
+"Inh-Ci-NGp.title" = "Description :";
+
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "8ur-1G-I4N"; */
+"8ur-1G-I4N.ibShadowedIsNilPlaceholder" = "Non défini";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "wN3-ao-X42"; */
+"wN3-ao-X42.ibShadowedIsNilPlaceholder" = "Non défini";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "AVc-Ci-UnL"; */
+"AVc-Ci-UnL.ibShadowedIsNilPlaceholder" = "Non défini";
+/* Class = "IBBindingConnection"; ibShadowedIsNilPlaceholder = "Not defined"; ObjectID = "r9S-sB-zfs"; */
+"r9S-sB-zfs.ibShadowedIsNilPlaceholder" = "Non défini";
+
+/* Class = "NSButton"; ibShadowedToolTip = "Jump to URL"; ObjectID = "Usu-Br-G0a"; */
+"Usu-Br-G0a.ibShadowedToolTip" = "Ouvrir l'URL";

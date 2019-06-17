@@ -23,52 +23,49 @@
 //  limitations under the License.
 //
 
-import Foundation
-
-extension String {
+extension StringProtocol {
     
     // MARK: Public Properties
     
     /// transform half-width roman to full-width
     var fullWidthRoman: String {
         
-        return self.unicodeScalars.lazy
+        return self.unicodeScalars
             .map { scalar -> UnicodeScalar in
-                guard CharacterSet.fullWidthAvailables.contains(scalar) else { return scalar }
+                guard UnicodeScalar.fullWidthAvailableRange.contains(scalar) else { return scalar }
                 
                 return UnicodeScalar(scalar.value + UnicodeScalar.characterWidthDistance)!
             }
-            .map { String($0) }
-            .joined()
+            .reduce(into: "") { (string, scalar) in
+                string.unicodeScalars.append(scalar)
+            }
     }
     
     
     /// transform full-width roman to half-width
     var halfWidthRoman: String {
         
-        return self.unicodeScalars.lazy
+        return self.unicodeScalars
             .map { scalar -> UnicodeScalar in
-                guard CharacterSet.fullWidths.contains(scalar) else { return scalar }
+                guard UnicodeScalar.fullWidthRange.contains(scalar) else { return scalar }
                 
                 return UnicodeScalar(scalar.value - UnicodeScalar.characterWidthDistance)!
             }
-            .map { String($0) }
-            .joined()
+            .reduce(into: "") { (string, scalar) in
+                string.unicodeScalars.append(scalar)
+            }
     }
     
 }
 
 
+
 // MARK: - Private Extensions
-
-private extension CharacterSet {
-    
-    static let fullWidths = CharacterSet(charactersIn: "！"..."～")
-    static let fullWidthAvailables = CharacterSet(charactersIn: "!"..."~")
-}
-
 
 private extension UnicodeScalar {
     
-    static let characterWidthDistance = UnicodeScalar("！").value - UnicodeScalar("!").value
+    static let fullWidthRange = UnicodeScalar("！")...UnicodeScalar("～")
+    static let fullWidthAvailableRange = UnicodeScalar("!")...UnicodeScalar("~")
+    
+    static let characterWidthDistance = UnicodeScalar.fullWidthRange.lowerBound.value - UnicodeScalar.fullWidthAvailableRange.lowerBound.value
 }

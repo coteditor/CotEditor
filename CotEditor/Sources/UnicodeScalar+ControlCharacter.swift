@@ -1,29 +1,27 @@
-/*
- 
- UnicodeScalar+ControlCharacter.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2015-12-29.
- 
- ------------------------------------------------------------------------------
- 
- © 2015-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  UnicodeScalar+ControlCharacter.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-12-29.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2015-2019 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Foundation
 
@@ -60,6 +58,8 @@ extension UTF32Char {
             return ControlCharacter.C1Names[index]
         case ControlCharacter.deleteCharacter:
             return ControlCharacter.deleteName
+        case ControlCharacter.zeroWidthNoBreakSpaceCharacter:
+            return ControlCharacter.zeroWidthNoBreakSpaceName
         default:
             return nil
         }
@@ -79,11 +79,13 @@ enum ControlCharacter {
     static let deleteCharacter = UInt32(0x007F)
     static let C0Range = UInt32(0x0000)...UInt32(0x0020)  // U+0020 is actually not in range of C0 control character. But they are often included in actual fact.
     static let C1Range = UInt32(0x0080)...UInt32(0x009F)
+    static let zeroWidthNoBreakSpaceCharacter = UInt32(0xFEFF)  // BOM
     
     
     // MARK: Names
     
     static let deleteName = "DELETE"
+    static let zeroWidthNoBreakSpaceName = "ZERO WIDTH NO-BREAK SPACE"
     
     static let C0Names = [
         "NULL",

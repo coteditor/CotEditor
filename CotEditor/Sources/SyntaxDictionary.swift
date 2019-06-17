@@ -25,7 +25,7 @@
 
 import Foundation
 
-enum SyntaxType: String {
+enum SyntaxType: String, CaseIterable {
     
     case keywords
     case commands
@@ -37,17 +37,6 @@ enum SyntaxType: String {
     case strings
     case characters
     case comments
-    
-    static let allCases: [SyntaxType] = [.keywords,
-                                         .commands,
-                                         .types,
-                                         .attributes,
-                                         .variables,
-                                         .values,
-                                         .numbers,
-                                         .strings,
-                                         .characters,
-                                         .comments]
     
     var localizedName: String {
         

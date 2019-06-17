@@ -25,18 +25,12 @@
 
 extension Comparable {
     
-    /**
-     Return clamped value to min/max values.
-     
-     - parameter minimum: Condition which receiver should not smaller than.
-     - parameter maximum: Condition which receiver should not larger than.
-     
-     - returns: Processed value.
-     */
-    func clamped(min minimum: Self, max maximum: Self) -> Self {
+    /// Return clamped value to min/max values.
+    ///
+    /// - Parameter range: Condition which receiver should be in between.
+    /// - Returns: Processed value.
+    func clamped(to range: ClosedRange<Self>) -> Self {
         
-        assert(minimum <= maximum)
-        
-        return max(minimum, min(self, maximum))
+        return max(range.lowerBound, min(self, range.upperBound))
     }
 }

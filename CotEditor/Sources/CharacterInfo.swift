@@ -1,29 +1,27 @@
-/*
- 
- CharacterInfo.swift
- 
- CotEditor
- https://coteditor.com
- 
- Created by 1024jp on 2015-11-19.
- 
- ------------------------------------------------------------------------------
- 
- © 2015-2018 1024jp
- 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
- 
- https://www.apache.org/licenses/LICENSE-2.0
- 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
- 
- */
+//
+//  CharacterInfo.swift
+//
+//  CotEditor
+//  https://coteditor.com
+//
+//  Created by 1024jp on 2015-11-19.
+//
+//  ---------------------------------------------------------------------------
+//
+//  © 2015-2019 1024jp
+//
+//  Licensed under the Apache License, Version 2.0 (the "License");
+//  you may not use this file except in compliance with the License.
+//  You may obtain a copy of the License at
+//
+//  https://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
 
 import Foundation
 
@@ -59,7 +57,13 @@ extension UnicodeScalar {
 
 // MARK: -
 
-struct CharacterInfo: CustomStringConvertible {
+struct CharacterInfo {
+    
+    enum `Error`: Swift.Error {
+        
+        case notSingleCharacter
+    }
+    
     
     // MARK: Public Properties
 
@@ -73,9 +77,11 @@ struct CharacterInfo: CustomStringConvertible {
     // MARK: -
     // MARK: Lifecycle
     
-    init?(string: String) {
+    init(string: String) throws {
         
-        guard string.count == 1 else { return nil }
+        guard string.count == 1 else {
+            throw Error.notSingleCharacter
+        }
         
         let unicodes = string.unicodeScalars
         
@@ -118,12 +124,9 @@ struct CharacterInfo: CustomStringConvertible {
         
         self.isComplex = isComplex
         
-        self.pictureString = {
-            guard unicodes.count == 1,  // ignore CRLF
-                let pictureCharacter = unicodes.first?.pictureRepresentation else { return nil }
-            
-            return String(Character(pictureCharacter))
-        }()
+        self.pictureString = unicodes.count == 1  // ignore CRLF
+            ? unicodes.first?.pictureRepresentation.flatMap { String($0) }
+            : nil
         
         self.localizedDescription = {
             // number of characters message
@@ -142,6 +145,11 @@ struct CharacterInfo: CustomStringConvertible {
         }()
     }
     
+}
+
+
+
+extension CharacterInfo: CustomStringConvertible {
     
     var description: String {
         

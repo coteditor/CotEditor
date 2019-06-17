@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,11 @@ final class PersistentOSAScript: Script {
     // MARK: Script Properties
     
     let descriptor: ScriptDescriptor
-    let script: OSAScript
+    
+    
+    // MARK: Private Properties
+    
+    private let script: OSAScript
     
     
     
@@ -51,7 +55,8 @@ final class PersistentOSAScript: Script {
     // MARK: Script Methods
     
     /// run script
-    /// - throws: Error by NSUserScriptTask
+    ///
+    /// - Throws: Error by `NSUserScriptTask`
     func run(completionHandler: (() -> Void)? = nil) throws {
         
         guard self.descriptor.url.isReachable else {
@@ -72,9 +77,8 @@ final class PersistentOSAScript: Script {
     ///
     /// Any script errors will be written to the console panel.
     ///
-    /// - parameter event: the apple event
-    ///
-    /// - throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
+    /// - Parameter event: The apple event.
+    /// - Throws: `ScriptFileError` and any errors by `NSUserScriptTask.init(url:)`
     func run(withAppleEvent event: NSAppleEventDescriptor?, completionHandler: (() -> Void)? = nil) throws {
         
         guard let event = event else {

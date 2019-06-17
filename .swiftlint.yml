@@ -1,3 +1,5 @@
+deployment_target:
+  macOS_deployment_target: 10.12.2
 
 included:
   - CotEditor/Sources
@@ -9,34 +11,49 @@ opt_in_rules:
   - attributes
   - closure_end_indentation
   - closure_spacing
+  - collection_alignment
   - contains_over_first_not_nil
   - discouraged_optional_boolean
   - empty_string
   - empty_xctest_method
   - explicit_init
+  - explicit_self
   - extension_access_modifier
   - fallthrough
   - file_header
   - first_where
+  - identical_operands
   - implicit_return
   - joined_default_parameter
+  - last_where
+  - legacy_multiple
+  - legacy_random
   - let_var_whitespace
   - lower_acl_than_parent
   - multiline_function_chains
   - multiline_parameters
+  - multiline_parameters_brackets
   - nimble_operator
+  - overridden_super_call
   - pattern_matching_keywords
   - private_outlet
   - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
+  - reduce_into
   - redundant_nil_coalescing
   - redundant_type_annotation
   - required_enum_case
+  - single_test_class
   - sorted_first_last
+  - static_operator
+  - toggle_bool
   - untyped_error_in_catch
+  - unused_import
+  - unused_private_declaration
   - vertical_parameter_alignment_on_call
+  - xct_specific_matcher
   - yoda_condition
 
 disabled_rules:
@@ -45,9 +62,14 @@ disabled_rules:
   - force_try
   - nesting
   - opening_brace
+  - pattern_matching_keywords
   - trailing_comma
   - unused_closure_parameter
+  - weak_delegate
 
+private_outlet:
+  allow_private_set: true
+  
 trailing_whitespace:
   ignores_empty_lines: true
 
@@ -58,7 +80,7 @@ vertical_whitespace:
   max_empty_lines: 4
 
 file_length:
-  warning: 1600
+  warning: 2000
   error: 3000
 
 line_length:
@@ -66,15 +88,15 @@ line_length:
   error: 2000
 
 type_body_length:
-  warning: 800
-  error: 1000
+  warning: 1000
+  error: 1500
 
 function_body_length:
-  warning: 120
-  error: 200
+  warning: 90
+  error: 100
 
 cyclomatic_complexity:
-  warning: 25
+  warning: 30
   error: 50
 
 large_tuple:

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -142,12 +142,9 @@ final class TextSelection: NSObject {
                 newValue?.count == 2,
                 let location = newValue?[0],
                 let length = newValue?[1],
-                let string = self.document?.string
+                let string = self.document?.string,
+                let range = string.range(location: location, length: length)
                 else { return }
-            
-            let range = string.range(location: location, length: length)
-            
-            guard range != .notFound else { return }
             
             self.document?.selectedRange = range
         }
@@ -255,7 +252,7 @@ final class TextSelection: NSObject {
     /// swap selected lines with the line just below
     @objc func handleUncomment(_ command: NSScriptCommand) {
         
-        self.textView?.uncomment(types: .both, fromLineHead: false)
+        self.textView?.uncomment(fromLineHead: false)
     }
     
     
@@ -298,7 +295,7 @@ final class TextSelection: NSObject {
     
     
     /// convert Japanese Hiragana in the selection to Katakana or vice versa
-    @objc func handleChangeKanaScript(_ command: NSScriptCommand) {
+    @objc func handleChangeKana(_ command: NSScriptCommand) {
         
         guard
             let argument = command.evaluatedArguments?["kanaType"] as? UInt32,

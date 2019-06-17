@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ final class ATSTypesetter: NSATSTypesetter {
         //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         //      挿入すると行間がズレる」問題が生じる。
         
-        guard let manager = self.layoutManager as? LayoutManager else { return }
+        guard let manager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
         lineRect.pointee.size.height = manager.lineHeight
         usedRect.pointee.size.height = manager.lineHeight
@@ -55,7 +55,8 @@ final class ATSTypesetter: NSATSTypesetter {
         
         if action.contains(.zeroAdvancementAction),
             let character = (self.attributedString?.string as NSString?)?.character(at: charIndex),
-            !UTF16.isTrailSurrogate(character)  // ignore one of surrogate
+            let unicode = Unicode.Scalar(character),
+            unicode.properties.generalCategory == .control
         {
             return .whitespaceAction  // -> Then, the glyph width can be modified on `boundingBox(forControlGlyphAt:...)`.
         }
@@ -67,11 +68,11 @@ final class ATSTypesetter: NSATSTypesetter {
     /// return bounding box for control glyph
     override func boundingBox(forControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        guard let manager = self.layoutManager as? LayoutManager, manager.showsOtherInvisibles, manager.showsInvisibles else {
-            // DON'T invoke super method here. If invoked, it can not continue drawing remaining lines any more on Mountain Lion (and possible other versions except El Capitan).
-            // Just passing zero rect is enough if you don't need to draw it.
-            return .zero
-        }
+        guard
+            let manager = self.layoutManager as? LayoutManager,
+            manager.showsOtherInvisibles,
+            manager.showsInvisibles
+            else { return .zero }
         
         // make blank space to draw a replacement character in LayoutManager later.
         var rect = proposedRect
@@ -87,9 +88,10 @@ final class ATSTypesetter: NSATSTypesetter {
         // -> Getting index fails when the code point is a part of surrogate pair.
         guard
             charIndex > 0,
-            let string = self.attributedString?.string,
-            let index = String.UTF16Index(encodedOffset: charIndex).samePosition(in: string)
+            let string = self.attributedString?.string
             else { return true }
+        
+        let index = String.Index(utf16Offset: charIndex, in: string)
         
         // check if the character is the first non-whitespace character after indent
         for character in string[..<index].reversed() {

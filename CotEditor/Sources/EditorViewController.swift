@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,15 +30,6 @@ final class EditorViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    var textStorage: NSTextStorage? {
-        
-        didSet {
-            guard let textStorage = textStorage else { return }
-            
-            self.textView?.layoutManager?.replaceTextStorage(textStorage)
-        }
-    }
-    
     var textView: EditorTextView? {
         
         return self.textViewController?.textView
@@ -58,7 +49,18 @@ final class EditorViewController: NSSplitViewController {
     
     
     // MARK: -
-    // MARK: Split View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        // detach layoutManager safely
+        guard
+            let textStorage = self.textView?.textStorage,
+            let layoutManager = self.textView?.layoutManager
+            else { return assertionFailure() }
+        
+        textStorage.removeLayoutManager(layoutManager)
+    }
+    
     
     /// setup UI
     override func viewDidLoad() {
@@ -66,8 +68,16 @@ final class EditorViewController: NSSplitViewController {
         super.viewDidLoad()
         
         self.navigationBarController?.textView = self.textView
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("editor".localized)
     }
     
+    
+    
+    // MARK: Split View Controller Methods
     
     /// avoid showing draggable cursor
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
@@ -82,13 +92,11 @@ final class EditorViewController: NSSplitViewController {
     /// validate actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
-        case #selector(selectPrevItemOfOutlineMenu):
+        switch item.action {
+        case #selector(selectPrevItemOfOutlineMenu)?:
             return self.navigationBarController?.canSelectPrevItem ?? false
             
-        case #selector(selectNextItemOfOutlineMenu):
+        case #selector(selectNextItemOfOutlineMenu)?:
             return self.navigationBarController?.canSelectNextItem ?? false
             
         default: break
@@ -118,7 +126,7 @@ final class EditorViewController: NSSplitViewController {
     var showsNavigationBar: Bool {
         
         get {
-            return !(self.navigationBarItem?.isCollapsed ?? true)
+            return self.navigationBarItem?.isCollapsed == false
         }
         
         set {
@@ -127,10 +135,28 @@ final class EditorViewController: NSSplitViewController {
     }
     
     
-    /// apply syntax style to inner text view
-    func apply(syntax: SyntaxStyle) {
+    /// set textStorage to inner text view
+    func setTextStorage(_ textStorage: NSTextStorage) {
         
-        self.textViewController?.syntaxStyle = syntax
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        if textView.isAutomaticLinkDetectionEnabled {
+            textStorage.detectLink()
+        }
+        
+        textView.layoutManager?.replaceTextStorage(textStorage)
+        textView.didChangeText()  // notify to lineNumberView to drive initial line count
+    }
+    
+    
+    /// apply syntax style to inner text view
+    func apply(style: SyntaxStyle) {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        textView.inlineCommentDelimiter = style.inlineCommentDelimiter
+        textView.blockCommentDelimiters = style.blockCommentDelimiters
+        textView.syntaxCompletionWords = style.completionWords
     }
     
     

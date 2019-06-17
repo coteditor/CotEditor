@@ -101,6 +101,7 @@
 
 /* Class = "NSButton"; ibShadowedToolTip = "Set advanced options"; ObjectID = "i8z-Xa-PxI"; */
 "i8z-Xa-PxI.ibShadowedToolTip" = "詳細オプションを設定";
+"i8z-Xa-PxI.ibExternalAccessibilityDescription" = "詳細オプション";
 
 
 /* Class = "NSButtonCell"; title = "In Selection"; ObjectID = "4lm-Fu-Fcf"; */
@@ -127,6 +128,11 @@
 
 /* Class = "NSTextFieldCell"; title = "Textual Search"; ObjectID = "GU2-Em-4lt"; */
 "GU2-Em-4lt.title" = "テキスト検索";
+
+/* Class = "NSButtonCell"; title = "Match only whole word"; ObjectID = "u12-3x-Oy6"; */
+"u12-3x-Oy6.title" = "単語に完全一致";
+/* Class = "NSButton"; ibShadowedToolTip = "Restrict search results to the whole words."; ObjectID = "lEO-tC-9zj"; */
+"lEO-tC-9zj.ibShadowedToolTip" = "入力した単語と完全に一致する単語のみに限定";
 
 /* Class = "NSButtonCell"; title = "Distinguish characters strictly"; ObjectID = "tv3-0Q-m6B"; */
 "tv3-0Q-m6B.title" = "文字を厳密に判別";

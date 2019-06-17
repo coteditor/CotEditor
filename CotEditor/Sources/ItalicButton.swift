@@ -1,5 +1,5 @@
 //
-//  ItalicButton.swift
+//  StyledButton.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,15 +25,39 @@
 
 import AppKit
 
-final class ItalicButton: NSButton {
+@IBDesignable
+final class StyledButton: NSButton {
     
-    override func viewDidMoveToSuperview() {
+    @IBInspectable var isItalic: Bool = false {
         
-        super.viewDidMoveToSuperview()
+        didSet {
+            guard let font = self.font else { return }
+            
+            self.font = {
+                if isItalic {
+                    return NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
+                } else {
+                    return NSFontManager.shared.convert(font, toNotHaveTrait: .italicFontMask)
+                }
+            }()
+        }
+    }
+    
+    
+    @IBInspectable var isUnderlined: Bool = false {
         
-        guard let font = self.font else { return }
-        
-        self.font = NSFontManager.shared.convert(font, toHaveTrait: .italicFontMask)
+        didSet {
+            let attributedTitle = self.attributedTitle.mutable
+            let range = NSRange(location: 0, length: attributedTitle.length)
+            
+            if self.isUnderlined {
+                attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+            } else {
+                attributedTitle.removeAttribute(.underlineStyle, range: range)
+            }
+            
+            self.attributedTitle = attributedTitle
+        }
     }
     
 }

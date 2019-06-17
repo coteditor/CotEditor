@@ -41,6 +41,22 @@ enum DocumentConflictOption: Int {
 }
 
 
+enum WritingDirection: Int {
+    
+    case leftToRight
+    case rightToLeft
+    case vertical
+}
+
+
+enum CursorType: Int {
+    
+    case bar
+    case thickBar
+    case block
+}
+
+
 @objc enum PrintColorMode: Int {
     
     case blackWhite

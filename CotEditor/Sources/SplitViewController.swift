@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -98,7 +98,7 @@ final class SplitViewController: NSSplitViewController {
         guard let textView = notification.object as? EditorTextView else { return }
         
         guard let viewController = {
-            self.childViewControllers.lazy
+            self.children.lazy
                 .compactMap { $0 as? EditorViewController }
                 .first { $0.textView == textView }
             }() else { return }
@@ -118,7 +118,7 @@ final class SplitViewController: NSSplitViewController {
         splitViewItem.holdingPriority = NSLayoutConstraint.Priority(251)
         
         if let otherEditorViewController = otherEditorViewController {
-            guard let baseIndex = self.childViewControllers.index(of: otherEditorViewController) else {
+            guard let baseIndex = self.children.firstIndex(of: otherEditorViewController) else {
                 assertionFailure("The base editor view is not belong to the same window.")
                 return
             }
@@ -129,6 +129,8 @@ final class SplitViewController: NSSplitViewController {
             self.addSplitViewItem(splitViewItem)
         }
         
+        self.splitView.layoutSubtreeIfNeeded()
+        
         self.invalidateOpenSplitEditorButtons()
         self.invalidateCloseSplitEditorButtons()
     }
@@ -137,7 +139,7 @@ final class SplitViewController: NSSplitViewController {
     /// find viewController for given subview
     func viewController(for subview: NSView) -> EditorViewController? {
         
-        return self.childViewControllers.lazy
+        return self.children.lazy
             .compactMap { $0 as? EditorViewController }
             .first { $0.splitView == subview }
     }
@@ -149,7 +151,7 @@ final class SplitViewController: NSSplitViewController {
     /// toggle divider orientation
     @IBAction func toggleSplitOrientation(_ sender: Any?) {
         
-        self.splitView.isVertical = !self.splitView.isVertical
+        self.splitView.isVertical.toggle()
         
         self.invalidateOpenSplitEditorButtons()
     }
@@ -178,7 +180,7 @@ final class SplitViewController: NSSplitViewController {
         
         guard count > 1 else { return }
         
-        let focusIndex = self.childViewControllers.index(of: self.focusedSubviewController!) ?? 0
+        let focusIndex = self.children.firstIndex(of: self.focusedSubviewController!) ?? 0
         let index: Int = {
             switch focusIndex {
             case 0 where !onNext:
@@ -190,7 +192,7 @@ final class SplitViewController: NSSplitViewController {
             }
         }()
         
-        guard let nextEditorViewController = self.childViewControllers[index] as? EditorViewController else { return }
+        guard let nextEditorViewController = self.children[index] as? EditorViewController else { return }
         
         self.view.window?.makeFirstResponder(nextEditorViewController.textView)
     }
@@ -201,7 +203,7 @@ final class SplitViewController: NSSplitViewController {
         
         let isVertical = self.splitView.isVertical
         
-        for case let viewController as EditorViewController in self.childViewControllers {
+        for case let viewController as EditorViewController in self.children {
             viewController.navigationBarController?.isSplitOrientationVertical = isVertical
         }
     }
@@ -212,7 +214,7 @@ final class SplitViewController: NSSplitViewController {
         
         let isEnabled = self.splitViewItems.count > 1
         
-        for case let viewController as EditorViewController in self.childViewControllers {
+        for case let viewController as EditorViewController in self.children {
             viewController.navigationBarController?.isCloseSplitButtonEnabled = isEnabled
         }
     }

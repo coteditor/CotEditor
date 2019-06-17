@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,12 +25,10 @@
 
 import Foundation
 
-protocol TokenRepresentable {
+protocol TokenRepresentable: CaseIterable {
     
     static var prefix: String { get }
     static var suffix: String { get }
-    
-    static var allCases: [Self] { get }
     
     var token: String { get }
     var description: String { get }
@@ -78,7 +76,7 @@ final class Tokenizer {
     
     init(tokens: [String], prefix: String, suffix: String) {
         
-        assert(!tokens.contains(where: { $0.isEmpty || $0 != NSRegularExpression.escapedPattern(for: $0) }))
+        assert(tokens.allSatisfy({ !$0.isEmpty && $0 == NSRegularExpression.escapedPattern(for: $0) }))
         
         self.tokens = tokens
         self.prefix = prefix
@@ -110,7 +108,8 @@ final class Tokenizer {
             
             guard let match = match else { return }
             
-            let token = String(string[Range(match.range(at: 1), in: string)!])
+            let range = Range(match.range(at: 1), in: string)
+            let token = String(string[range!])
             
             block(token, match.range, match.range(at: 1))
         }

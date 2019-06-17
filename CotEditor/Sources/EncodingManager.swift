@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,6 +45,10 @@ final class EncodingManager: NSObject {
     static let shared = EncodingManager()
     
     
+    // MARK: Private Properties
+    
+    private var encodingListObserver: UserDefaultsObservation?
+    
     
     // MARK: -
     // MARK: Lifecycle
@@ -59,25 +63,14 @@ final class EncodingManager: NSObject {
             self.sanitizeEncodingListSetting()
         }
         
-        UserDefaults.standard.addObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue, context: nil)
+        self.encodingListObserver = UserDefaults.standard.observe(key: .encodingList) { [weak self] _ in
+            NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
+        }
     }
     
     
     deinit {
-        UserDefaults.standard.removeObserver(self, forKeyPath: DefaultKeys.encodingList.rawValue)
-    }
-    
-    
-    
-    // MARK: KVO
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        
-        if keyPath == DefaultKeys.encodingList.rawValue {
-            DispatchQueue.main.async { [weak self] in
-                NotificationCenter.default.post(name: didUpdateSettingListNotification, object: self)
-            }
-        }
+        self.encodingListObserver?.invalidate()
     }
     
     

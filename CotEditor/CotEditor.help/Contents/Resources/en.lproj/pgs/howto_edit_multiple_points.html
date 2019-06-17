@@ -1,0 +1,53 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="multi cursor, multi insersion, multiple cursors, rectangular selection"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Editing multiple points</title>
+</head>
+
+<body>
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
+</ul></nav>
+
+
+<h1>Editing multiple points</h1>
+
+<p>In the multi-cursor editing, the same text can be input at multiple desired points at once.</p>
+
+<p>You can add your insertion points (cursors / selections) by the following ways:</p>
+<ul>
+	<li>To add an insertion point at the desired location, click or drag the point while pressing <kbd>Command</kbd>.</li>
+	<li>To add insertion points at the same column in multiple continuous lines, drag the area while pressing <kbd>Option</kbd> (rectangular selection).</li>
+	<li>To add an insertion point just above or below the current insertion point, press <kbd>Control</kbd>-<kbd>Shift</kbd>-<kbd>↑</kbd> or <kbd>Control</kbd>-<kbd>Shift</kbd>-<kbd>↓</kbd>.</li>
+</ul>
+
+
+<p>To remove one of the multiple insertion points:</p>
+<ul>
+	<li><kbd>Command</kbd>-click the insertion point to remove.</li>
+</ul>
+
+
+<p>To end the multi-cursor editing mode:</p>
+<ul>
+	<li>Click or drag somewhere in the editor without modifier keys by setting a single insertion point at the location.</li>
+	<li>Press <kbd>Esc</kbd> key and all insertion points except the top one are discarded.</li>
+</ul>
+
+<p>The multi-curor editing currently doesn't support the text input that requires user selection after input, such as Japanese. In such cases, multi-cursor editing finishes automatically when typed and text is input only at a single point.</p>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/howto_rectangular_selection.html">Selecting rectangular area</a></li>
+</ul>
+</section>
+
+</body>
+</html>

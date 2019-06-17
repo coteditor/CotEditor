@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,8 +29,8 @@ final class CustomSurroundStringViewController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private dynamic var beginString: String = ""
-    @objc private dynamic var endString: String = ""
+    @objc dynamic var beginString: String = ""
+    @objc dynamic var endString: String = ""
     
     @IBOutlet private weak var beginStringField: NSTextField?
     @IBOutlet private weak var endStringField: NSTextField?
@@ -38,6 +38,18 @@ final class CustomSurroundStringViewController: NSViewController {
     
     
     // MARK: -
+    // MARK: Lifecycle
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.beginString = UserDefaults.standard[.beginCustomSurroundString] ?? ""
+        self.endString = UserDefaults.standard[.endCustomSurroundString] ?? ""
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// apply
@@ -57,6 +69,10 @@ final class CustomSurroundStringViewController: NSViewController {
         
         textView.surroundSelections(begin: self.beginString, end: endString)
         
+        // store last used string pair
+        UserDefaults.standard[.beginCustomSurroundString] = self.beginString
+        UserDefaults.standard[.endCustomSurroundString] = self.endString
+        
         self.dismiss(sender)
     }
     
@@ -66,7 +82,7 @@ final class CustomSurroundStringViewController: NSViewController {
 extension CustomSurroundStringViewController: NSTextFieldDelegate {
     
     /// keep setting beginString to the placeholder of endStringField
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         
         self.endStringField?.placeholderString = self.beginStringField?.stringValue
     }

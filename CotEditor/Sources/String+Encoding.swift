@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@ private let ISO2022JPEscapeSequences: [Data] = [
     [0x1B, 0x24, 0x40],  // 1978
     [0x1B, 0x24, 0x42],  // 1983
     [0x1B, 0x24, 0x28, 0x44],  // JISX0212
-    ].map { Data(bytes: $0) }
+    ].map { Data($0) }
 
 
 private let maxDetectionLength = 1024 * 8
@@ -111,6 +111,16 @@ extension String.Encoding {
 
 extension String {
     
+    /// decode data and remove UTF-8 BOM if exists
+    init?(bomCapableData data: Data, encoding: String.Encoding) {
+        
+        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: UTF8.bom))
+        let bomFreeData = hasUTF8WithBOM ? data[UTF8.bom.count...] : data
+        
+        self.init(data: bomFreeData, encoding: encoding)
+    }
+    
+    
     /// obtain string from Data with intelligent encoding detection
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
@@ -118,7 +128,7 @@ extension String {
         if !data.isEmpty {
             // check UTF-8 BOM
             if data.starts(with: UTF8.bom) {
-                if let string = String(data: data, encoding: .utf8) {
+                if let string = String(bomCapableData: data, encoding: .utf8) {
                     usedEncoding = .utf8
                     self = string
                     return
@@ -198,10 +208,10 @@ extension String {
         let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
         let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let scanLength = min(self.utf16.endIndex.encodedOffset, maxLength)
+        let scanLength = min(self.utf16.count, maxLength)
         
         guard
-            let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
+            let match = regex.firstMatch(in: self, range: NSRange(..<scanLength)),
             let matchedRange = Range(match.range(at: 1), in: self)
             else { return nil }
         
@@ -301,7 +311,7 @@ extension Data {
     /// return Data by adding UTF-8 BOM
     var addingUTF8BOM: Data {
         
-        return Data(bytes: UTF8.bom) + self
+        return Data(UTF8.bom) + self
     }
     
     

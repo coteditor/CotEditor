@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,14 +29,16 @@ import Foundation
 private struct QuoteCommentItem {
     
     let type: SyntaxType
-    let token: String
+    let token: Token
     let role: Role
     let range: NSRange
     
     
-    enum Token {
-        static let inlineComment = "inlineComment"
-        static let blockComment = "blockComment"
+    enum Token: Equatable {
+        
+        case inlineComment
+        case blockComment
+        case string(String)
     }
     
     
@@ -70,24 +72,24 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     let string: String
     let progress: Progress  // can be updated from a background thread
     
+    private(set) var highlights: [SyntaxType: [NSRange]]?
+    
     
     // MARK: Private Properties
     
     private let definition: ParseDefinition
     private let parseRange: NSRange
-    private let highlightBlock: ([SyntaxType: [NSRange]]) -> Void
     
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    required init(definition: ParseDefinition, string: String, range parseRange: NSRange, highlightBlock: @escaping ([SyntaxType: [NSRange]]) -> Void = { _ in }) {
+    required init(definition: ParseDefinition, string: String, range parseRange: NSRange) {
         
         self.definition = definition
         self.string = string
         self.parseRange = parseRange
-        self.highlightBlock = highlightBlock
         
         // +1 for extractCommentsWithQuotes()
         // +1 for highlighting
@@ -114,15 +116,11 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
         
-        let results = self.extractHighlights()
+        self.highlights = self.extractHighlights()
         
         guard !self.isCancelled else { return }
         
         self.progress.localizedDescription = "Applying colors to text".localized
-        
-        self.highlightBlock(results)
-        
-        self.progress.completedUnitCount += 1
     }
     
     
@@ -135,29 +133,28 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         var highlights = [SyntaxType: [NSRange]]()
         
         // extract standard highlight ranges
-        let rangesQueue = DispatchQueue(label: "com.coteditor.CotEdiotor.syntax.ranges", attributes: .concurrent)
         for syntaxType in SyntaxType.allCases {
             guard let extractors = self.definition.extractors[syntaxType] else { continue }
             
             self.progress.localizedDescription = String(format: "Extracting %@…".localized, syntaxType.localizedName)
             
             let childProgress = Progress(totalUnitCount: Int64(extractors.count), parent: self.progress, pendingUnitCount: 1)
-            
-            var ranges = [NSRange]()
+            let atomicRanges = Atomic<[NSRange]>([], attributes: .concurrent)
             
             DispatchQueue.concurrentPerform(iterations: extractors.count) { (index: Int) in
-                guard !self.isCancelled else { return }
+                guard !childProgress.isCancelled else { return }
                 
-                let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange)
+                let extractedRanges = extractors[index].ranges(in: self.string, range: self.parseRange) { (stop) in
+                    stop = childProgress.isCancelled
+                }
                 
-                rangesQueue.async(flags: .barrier) {
+                atomicRanges.asyncMutate {
+                    $0 += extractedRanges
                     childProgress.completedUnitCount += 1
-                    ranges += extractedRanges
                 }
             }
             
-            highlights[syntaxType] = rangesQueue.sync { ranges }
-            
+            highlights[syntaxType] = atomicRanges.value
             childProgress.completedUnitCount = childProgress.totalUnitCount
         }
         
@@ -169,7 +166,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         
         guard !self.isCancelled else { return [:] }
         
-        let sanitized = sanitize(highlights: highlights)
+        let sanitized = highlights.sanitized()
         
         self.progress.completedUnitCount += 1
         
@@ -185,37 +182,38 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         
         if let delimiters = self.definition.blockCommentDelimiters {
             positions += string.ranges(of: delimiters.begin, range: self.parseRange)
-                .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .begin, range: $0) }
+                .map { QuoteCommentItem(type: .comments, token: .blockComment, role: .begin, range: $0) }
             positions += string.ranges(of: delimiters.end, range: self.parseRange)
-                .map { QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.blockComment, role: .end, range: $0) }
+                .map { QuoteCommentItem(type: .comments, token: .blockComment, role: .end, range: $0) }
         }
         
         if let delimiter = self.definition.inlineCommentDelimiter {
             positions += string.ranges(of: delimiter, range: self.parseRange)
                 .flatMap { range -> [QuoteCommentItem] in
-                    let lineRange = string.lineRange(for: range)
-                    let endRange = NSRange(location: lineRange.upperBound, length: 0)
+                    var lineEnd = 0
+                    string.getLineStart(nil, end: &lineEnd, contentsEnd: nil, for: range)
+                    let endRange = NSRange(location: lineEnd, length: 0)
                     
-                    return [QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.inlineComment, role: .begin, range: range),
-                            QuoteCommentItem(type: .comments, token: QuoteCommentItem.Token.inlineComment, role: .end, range: endRange)]
+                    return [QuoteCommentItem(type: .comments, token: .inlineComment, role: .begin, range: range),
+                            QuoteCommentItem(type: .comments, token: .inlineComment, role: .end, range: endRange)]
                 }
         }
         
         for (quote, type) in self.definition.pairedQuoteTypes {
             positions += string.ranges(of: quote, range: self.parseRange)
-                .map { QuoteCommentItem(type: type, token: quote, role: [.begin, .end], range: $0) }
+                .map { QuoteCommentItem(type: type, token: .string(quote), role: [.begin, .end], range: $0) }
         }
         
-        // filter escaped ones
-        positions = positions.filter { !self.string.isCharacterEscaped(at: $0.range.location) }
+        // remove escaped ones
+        positions.removeAll { self.string.isCharacterEscaped(at: $0.range.location) }
         
         // sort by location
         positions.sort {
             if $0.range.location < $1.range.location { return true }
             if $0.range.location > $1.range.location { return false }
             
-            if $0.range.length == 0 { return true }
-            if $1.range.length == 0 { return false }
+            if $0.range.isEmpty { return true }
+            if $1.range.isEmpty { return false }
             
             guard $0.role.rawValue == $1.role.rawValue else {
                 return $0.role.rawValue > $1.role.rawValue
@@ -262,33 +260,37 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
 
 
 
-// MARK: Private Functions
+// MARK: - Private Functions
 
-/// Remove duplicated coloring ranges.
-///
-/// This sanitization will reduce performance time of `applyHighlights:highlights:layoutManager:` significantly.
-/// Adding temporary attribute to a layoutManager is quite sluggish,
-/// so we want to remove useless highlighting ranges as many as possible beforehand.
-private func sanitize(highlights: [SyntaxType: [NSRange]]) -> [SyntaxType: [NSRange]] {
+private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     
-    var sanitizedHighlights = [SyntaxType: [NSRange]]()
-    let highlightedIndexes = NSMutableIndexSet()
-    
-    for type in SyntaxType.allCases.reversed() {
-        guard let ranges = highlights[type] else { continue }
-        var sanitizedRanges = [NSRange]()
+    /// Remove duplicated ranges.
+    ///
+    /// - Note:
+    /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
+    /// Adding temporary attribute to a layoutManager is quite sluggish,
+    /// so we want to remove useless highlighting ranges as many as possible beforehand.
+    ///
+    /// - Returns: Sanitized syntax highlight dictionary.
+    func sanitized() -> [SyntaxType: [NSRange]] {
         
-        for range in ranges {
-            guard !highlightedIndexes.contains(in: range) else { continue }
-            
-            sanitizedRanges.append(range)
-            highlightedIndexes.add(in: range)
-        }
+        var registeredIndexes = IndexSet()
         
-        guard !sanitizedRanges.isEmpty else { continue }
-        
-        sanitizedHighlights[type] = sanitizedRanges
+        return SyntaxType.allCases.reversed()
+            .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
+                guard let ranges = self[type] else { return }
+                
+                let indexes = ranges
+                    .compactMap { Range<Int>($0) }
+                    .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+                    .subtracting(registeredIndexes)
+                
+                guard !indexes.isEmpty else { return }
+                
+                registeredIndexes.formUnion(indexes)
+                dict[type] = indexes
+            }
+            .mapValues { $0.rangeView.map { NSRange($0) } }
     }
     
-    return sanitizedHighlights
 }

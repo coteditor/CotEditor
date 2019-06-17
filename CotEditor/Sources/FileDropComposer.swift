@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,12 +51,13 @@ final class FileDropComposer {
         case fileExtensionLowercase = "FILEEXTENSION-LOWER"
         case fileExtensionUppercase = "FILEEXTENSION-UPPER"
         case directory = "DIRECTORY"
+        case fileContent = "FILECONTENT"
         case imageWidth = "IMAGEWIDTH"
         case imageHeight = "IMAGEHEIGHT"
         
         static let pathTokens: [Token] = [.absolutePath, .relativePath, .filename, .filenameWithoutExtension, .fileExtension, .fileExtensionLowercase, .fileExtensionUppercase, .directory]
+        static let textTokens: [Token] = [.fileContent]
         static let imageTokens: [Token] = [.imageWidth, .imageHeight]
-        static let allCases = Token.pathTokens + Token.imageTokens
         
         
         var description: String {
@@ -85,6 +86,9 @@ final class FileDropComposer {
                 
             case .directory:
                 return "The parent directory name of dropped file."
+                
+            case .fileContent:
+                return "(If the dropped file is a text file) file content."
                 
             case .imageWidth:
                 return "(If the dropped file is an image) image width."
@@ -149,6 +153,13 @@ final class FileDropComposer {
                     .replacingOccurrences(of: Token.imageWidth.token, with: String(imageRep.pixelsWide))
                     .replacingOccurrences(of: Token.imageHeight.token, with: String(imageRep.pixelsHigh))
             }
+        }
+        
+        // get text content if needed
+        // -> Replace this at last because the file content can contain other tokens.
+        if template.contains(Token.fileContent.token) {
+            let content = try? String(contentsOf: droppedFileURL)
+            dropText = dropText.replacingOccurrences(of: Token.fileContent.token, with: content ?? "")
         }
         
         return dropText

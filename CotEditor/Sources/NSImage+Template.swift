@@ -29,17 +29,16 @@ extension NSImage {
     
     /// Return a copy of the image tinted with the color.
     ///
-    ///  - parameter color: The color to tint the image.
-    ///
-    ///  - returns: A tinted image.
+    /// - Parameter color: The color to tint the image.
+    /// - Returns: A tinted image.
     func tinted(color: NSColor) -> NSImage {
         
         assert(self.isTemplate, "A image to tint should be a template image.")
         
         return NSImage(size: self.size, flipped: false, drawingHandler: { [weak self] dstRect -> Bool in
-            guard let strongSelf = self else { return false }
+            guard let self = self else { return false }
             
-            strongSelf.draw(in: dstRect)
+            self.draw(in: dstRect)
             
             color.setFill()
             dstRect.fill(using: .sourceIn)

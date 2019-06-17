@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,6 +42,8 @@ final class OutlineViewController: NSViewController {
     private var selectionObserver: NSObjectProtocol?
     private var isOwnSelectionChange = false
     
+    private var fontSizeObserver: UserDefaultsObservation?
+    
     @IBOutlet private weak var outlineView: NSOutlineView?
     
     
@@ -59,6 +61,8 @@ final class OutlineViewController: NSViewController {
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }
+        
+        self.fontSizeObserver?.invalidate()
     }
     
     
@@ -69,6 +73,22 @@ final class OutlineViewController: NSViewController {
             self.observeSyntaxStyle()
             
             self.outlineView?.reloadData()
+        }
+    }
+    
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityElement(true)
+        self.view.setAccessibilityRole(.group)
+        self.view.setAccessibilityLabel("outline".localized)
+        
+        self.fontSizeObserver?.invalidate()
+        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
+            self?.outlineView?.reloadData()
         }
     }
     
@@ -84,6 +104,7 @@ final class OutlineViewController: NSViewController {
         //      it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
         }
         
         self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [unowned self] (notification) in
@@ -103,6 +124,7 @@ final class OutlineViewController: NSViewController {
         
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
         }
     }
     
@@ -171,9 +193,10 @@ final class OutlineViewController: NSViewController {
         
         if let observer = self.documentObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.documentObserver = nil
         }
         
-        guard let document = self.document else { return }
+        guard let document = self.document else { return assertionFailure() }
         
         self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [unowned self] _ in
             self.observeSyntaxStyle()
@@ -189,9 +212,10 @@ final class OutlineViewController: NSViewController {
         
         if let observer = self.syntaxStyleObserver {
             NotificationCenter.default.removeObserver(observer)
+            self.syntaxStyleObserver = nil
         }
         
-        guard let syntaxParser = self.document?.syntaxParser else { return }
+        guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
         self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [unowned self] _ in
             self.outlineView?.reloadData()
@@ -282,13 +306,42 @@ extension OutlineViewController: NSOutlineViewDataSource {
         
         switch identifier {
         case .title:
-            let font: NSFont = outlineView.font ?? .systemFont(ofSize: NSFont.smallSystemFontSize)
+            let fontSize = UserDefaults.standard[.outlineViewFontSize]
+            let font = outlineView.font.flatMap { NSFont(name: $0.fontName, size: fontSize) } ?? .systemFont(ofSize: fontSize)
             
             return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
             
         default:
             preconditionFailure()
         }
+    }
+    
+}
+
+
+
+extension OutlineViewController {
+    
+    /// Increase outline view's font size.
+    @IBAction func biggerFont(_ sender: Any?) {
+        
+        UserDefaults.standard[.outlineViewFontSize] += 1
+    }
+    
+    
+    /// Decrease outline view's font size.
+    @IBAction func smallerFont(_ sender: Any?) {
+        
+        guard UserDefaults.standard[.outlineViewFontSize] > NSFont.smallSystemFontSize else { return }
+        
+        UserDefaults.standard[.outlineViewFontSize] -= 1
+    }
+    
+    
+    /// Restore outline view's font size to default.
+    @IBAction func resetFont(_ sender: Any?) {
+        
+        UserDefaults.standard.restore(key: .outlineViewFontSize)
     }
     
 }

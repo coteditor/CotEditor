@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,7 +32,14 @@ final class WindowPaneController: NSViewController {
     private lazy var titleForRespectSystemSetting: String = self.tabbingOptionMenu!.items.first!.title
     
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
-    @IBOutlet private weak var tabbingSupportCaution: NSTextField?
+    
+    @IBOutlet private weak var pageGuideColumnField: NSTextField?
+    @IBOutlet private weak var overscrollField: NSTextField?
+    @IBOutlet private weak var editorOpacityField: NSTextField?
+    
+    @IBOutlet private weak var ltrWritingDirectionButton: NSButton?
+    @IBOutlet private weak var rtlWritingDirectionButton: NSButton?
+    @IBOutlet private weak var verticalWritingDirectionButton: NSButton?
     
     @objc private dynamic var editorOpaque: Bool = (UserDefaults.standard[.windowAlpha] == 1.0)
     
@@ -45,9 +52,10 @@ final class WindowPaneController: NSViewController {
         
         super.viewDidLoad()
         
-        if (NSApp.delegate as! AppDelegate).supportsWindowTabbing {
-            self.tabbingSupportCaution!.removeFromSuperview()
-        }
+        // set initial values as fields' placeholder
+        self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults(.value)
+        self.overscrollField?.bindNullPlaceholderToUserDefaults(.value)
+        self.editorOpacityField?.bindNullPlaceholderToUserDefaults(.value)
     }
     
     
@@ -55,18 +63,25 @@ final class WindowPaneController: NSViewController {
         
         super.viewWillAppear()
         
-        guard #available(macOS 10.12, *) else { return }
-        
         // display the current system-wide user setting for window tabbing in "Respect System Setting" menu item.
         let menu = self.tabbingOptionMenu!
         let systemSettingLabel = menu.item(withTag: NSWindow.userTabbingPreference.rawValue)!.title
-        let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting,
-                                           attributes: [.font: menu.font])
+        let attributes: [NSAttributedString.Key: Any] = [.font: menu.font].compactMapValues { $0 }
+        let attrLabel = NSAttributedString(string: self.titleForRespectSystemSetting, attributes: attributes)
         let userSettingLabel = NSAttributedString(string: String(format: " (%@)".localized, systemSettingLabel),
-                                                  attributes: [.font: menu.font,
-                                                               .foregroundColor: NSColor.secondaryLabelColor])
+                                                  attributes: [.foregroundColor: NSColor.secondaryLabelColor].merging(attributes) { $1 })
         
         menu.items.first!.attributedTitle = attrLabel + userSettingLabel
+        
+        // select one of writing direction radio buttons
+        switch UserDefaults.standard[.writingDirection] {
+        case .leftToRight:
+            self.ltrWritingDirectionButton?.state = .on
+        case .rightToLeft:
+            self.rtlWritingDirectionButton?.state = .on
+        case .vertical:
+            self.verticalWritingDirectionButton?.state = .on
+        }
     }
     
     
@@ -77,6 +92,13 @@ final class WindowPaneController: NSViewController {
     @IBAction func changeEditorOpaque(_ sender: NSControl) {
         
         self.editorOpaque = (sender.doubleValue == 1.0)
+    }
+    
+    
+    /// A radio button of writingDirection was clicked
+    @IBAction func updateWritingDirectionSetting(_ sender: NSControl) {
+        
+        UserDefaults.standard[.writingDirection] = WritingDirection(rawValue: sender.tag)!
     }
     
 }

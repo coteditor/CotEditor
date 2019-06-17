@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,13 +44,24 @@ final class DocumentInspectorViewController: NSViewController {
     // MARK: -
     // MARK: View Controller Methods
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        // set accessibility
+        self.view.setAccessibilityLabel("document insepector".localized)
+    }
+    
+    
     /// let documentAnalyzer autoupdate
-    override func viewWillAppear() {
+    override func viewDidAppear() {
+        
+        super.viewDidAppear()
+        
+        assert(self.analyzer != nil)
         
         self.analyzer?.needsUpdateEditorInfo = true
         self.analyzer?.invalidateEditorInfo()
-        
-        super.viewWillAppear()
     }
     
     
@@ -68,14 +79,16 @@ final class DocumentInspectorViewController: NSViewController {
         
         willSet {
             guard newValue is DocumentAnalyzer else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className)")
+                assertionFailure("representedObject of \(self.className) must be an instance of \(String(describing: DocumentAnalyzer.self))")
                 return
             }
             self.analyzer?.needsUpdateEditorInfo = false
         }
         
         didSet {
-            self.analyzer?.needsUpdateEditorInfo = !self.view.isHidden
+            if self.isViewLoaded {
+                self.analyzer?.needsUpdateEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
+            }
         }
     }
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,40 +30,46 @@ extension EditorTextView {
     // MARK: Action Messages
     
     /// insert ' around selections
-    @IBAction func surroundSelectionWithSingleQuotes(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithSingleQuotes(_ sender: Any?) {
         
         self.surroundSelections(begin: "'", end: "'")
     }
     
     
     /// insert " around selections
-    @IBAction func surroundSelectionWithDoubleQuotes(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithDoubleQuotes(_ sender: Any?) {
         
         self.surroundSelections(begin: "\"", end: "\"")
     }
     
     
     /// insert () around selections
-    @IBAction func surroundSelectionWithParenthesis(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithParenthesis(_ sender: Any?) {
         
         self.surroundSelections(begin: "(", end: ")")
     }
     
     
     /// insert {} around selections
-    @IBAction func surroundSelectionWithBraces(_ sender: AnyObject?) {
+    @IBAction func surroundSelectionWithBraces(_ sender: Any?) {
         
         self.surroundSelections(begin: "{", end: "}")
+    }
+    
+    
+    /// insert [] around selections
+    @IBAction func surroundSelectionWithSquareBrackets(_ sender: Any?) {
+        
+        self.surroundSelections(begin: "[", end: "]")
     }
     
     
     /// show custom surround sheet
     @IBAction func surroundSelection(_ sender: Any?) {
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("CustomSurroundStringView"), bundle: nil).instantiateInitialController() as! CustomSurroundStringViewController
-        viewController.representedObject = self
+        self.customSurroundStringViewController.representedObject = self
         
-        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
+        self.viewControllerForSheet?.presentAsSheet(self.customSurroundStringViewController)
     }
     
 }
@@ -76,14 +82,13 @@ extension NSTextView {
     @discardableResult
     func surroundSelections(begin: String, end: String) -> Bool {
         
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return false }
+        
         let string = self.string as NSString
-        let selectedRanges = self.selectedRanges as! [NSRange]
         
         let replacementStrings = selectedRanges.map { begin + string.substring(with: $0) + end }
-        let newSelectedRanges = selectedRanges.enumerated().map { item -> NSRange in
-            let range = item.element
-            return NSRange(location: (item.offset + 1) * begin.utf16.count + range.location + item.offset * end.utf16.count,
-                           length: range.length)
+        let newSelectedRanges = selectedRanges.enumerated().map { (offset, range) in
+            range.shifted(offset: (offset + 1) * begin.utf16.count + offset * end.utf16.count)
         }
         
         return self.replace(with: replacementStrings, ranges: selectedRanges, selectedRanges: newSelectedRanges)

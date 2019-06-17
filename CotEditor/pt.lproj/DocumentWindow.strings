@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2019 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -150,6 +150,11 @@
 "GS6-aA-mgz.paletteLabel" = "Guia da Página";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Mostre ou oculte a linha de guia da página";  /* Show or hide page guide line */
 
+/* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
+"LYl-ty-usA.label" = "Opacidade";  /* Opacity */
+"LYl-ty-usA.paletteLabel" = "Opacidade";  /* Opacity */
+"LYl-ty-usA.toolTip" = "Altere Opacidade do Editor";  /* Change editor’s opacity */
+
 /* Class = "NSToolbarItem"; label = "Spell Check"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Verificar Ortografia";  /* Spell Check */
 "Ply-Nr-aOE.paletteLabel" = "Verificar Ortografia";  /* Spell Check */
@@ -159,6 +164,11 @@
 "Yx1-Tq-tfo.label" = "Código de Cor";  /* Color Code */
 "Yx1-Tq-tfo.paletteLabel" = "Editar Código de Cor"; */  /* Edit Color Code */
 "Yx1-Tq-tfo.toolTip" = "Abra o Editor de Código de Cor e defina a seleção como um código de cor";  /* Open Color Code Editor and set selection as color code */
+
+/* Class = "NSToolbarItem"; label = "Emoji & Symbols"; ObjectID = "tek-D0-460"; */
+"tek-D0-460.label" = "Emoji e símbolos";  /* Emoji & Symbols */
+"tek-D0-460.paletteLabel" = "Emoji e símbolos";  /* Emoji & Symbols */
+"tek-D0-460.toolTip" = "Mostrar Paleta de Emojis e Símbolos";  /* Show Emoji & Symbols palette */
 
 /* Class = "NSToolbarItem"; ObjectID = "ACV-s4-QzY"; */
 "ACV-s4-QzY.label" = "Buscar";  /* Find */
@@ -179,6 +189,14 @@
 "vLf-la-9dL.label" = "Fontes";  /* Fonts */
 "vLf-la-9dL.paletteLabel" = "Fontes";  /* Fonts */
 "vLf-la-9dL.toolTip" = "Exibir Painel de Fontes";  /* Show Font Panel */
+
+
+/* Class = "NSTextFieldCell"; title = "Editor’s Opacity"; ObjectID = "Are-7I-6OR"; */
+"Are-7I-6OR.title" = "Opacidade do Editor";
+/* Class = "NSView"; ibShadowedToolTip = "Transparent"; ObjectID = "EVo-Ee-gQ1"; */
+"EVo-Ee-gQ1.ibShadowedToolTip" = "Transparente";
+/* Class = "NSView"; ibShadowedToolTip = "Opaque"; ObjectID = "8NN-KX-RmA"; */
+"8NN-KX-RmA.ibShadowedToolTip" = "Opaco";
 
 /* Class = "NSImageView"; ibShadowedToolTip = "This document is read only."; ObjectID = "hXt-K8-Jwk"; */
 "hXt-K8-Jwk.ibShadowedToolTip" = "Este documento é somente leitura.";

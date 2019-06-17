@@ -27,7 +27,7 @@ import Foundation
 
 protocol HighlightExtractable {
     
-    func ranges(in: String, range: NSRange) -> [NSRange]
+    func ranges(in: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange]
 }
 
 
@@ -35,18 +35,19 @@ extension HighlightDefinition {
     
     func extractor() throws -> HighlightExtractable {
         
-        if self.isRegularExpression {
-            if let endString = self.endString {
-                return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
-            } else {
-                return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
-            }
-        } else {
-            if let endString = self.endString {
-                return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
-            } else {
-                preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
-            }
+        switch (self.isRegularExpression, self.endString) {
+        case (true, .some(let endString)):
+            return try BeginEndRegularExpressionExtractor(beginPattern: self.beginString, endPattern: endString, ignoresCase: self.ignoreCase)
+            
+        case (true, .none):
+            return try RegularExpressionExtractor(pattern: self.beginString, ignoresCase: self.ignoreCase)
+            
+        case (false, .some(let endString)):
+            return BeginEndStringExtractor(beginString: self.beginString, endString: endString, ignoresCase: self.ignoreCase)
+            
+        case (false, .none):
+            preconditionFailure("non-regex words should be preprocessed at SyntaxStyle.init()")
+            
         }
     }
     
@@ -69,7 +70,7 @@ private struct BeginEndStringExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) -> [NSRange] {
+    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
         var ranges = [NSRange]()
         
@@ -119,9 +120,9 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) -> [NSRange] {
+    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
-        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range).lazy
+        return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
             .map { $0.range }
     }
     
@@ -147,9 +148,9 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     }
     
     
-    func ranges(in string: String, range: NSRange) -> [NSRange] {
+    func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
-        return self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range).lazy
+        return self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
             .map { $0.range }
             .compactMap { beginRange in
                 let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],

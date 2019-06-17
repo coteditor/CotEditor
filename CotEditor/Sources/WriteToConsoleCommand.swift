@@ -34,9 +34,10 @@ final class WriteToConsoleCommand: NSScriptCommand {
             else { return false }
         
         let title = ScriptManager.shared.currentScriptName
+        let log = Console.Log(message: message, title: title)
         
-        ConsolePanelController.shared.showWindow(nil)
-        ConsolePanelController.shared.append(message: message, title: title)
+        Console.shared.panelController.showWindow(self)
+        Console.shared.append(log: log)
         
         return true
     }

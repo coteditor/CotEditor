@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,31 +32,183 @@ extension EditorTextView {
     /// move selected line up
     @IBAction func moveLineUp(_ sender: Any?) {
         
-        guard let textStorage = self.textStorage else { return }
+        guard
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let editingInfo = self.string.moveLineUp(in: ranges)
+            else {
+                NSSound.beep()
+                return
+            }
         
-        // get line ranges to process
-        let lineRanges = self.selectedLineRanges
+        self.edit(with: editingInfo, actionName: "Move Line".localized)
+    }
+    
+    
+    /// move selected line down
+    @IBAction func moveLineDown(_ sender: Any?) {
         
-        // cannot perform Move Line Up if one of the selections is already in the first line
-        guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else {
+        guard
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            let editingInfo = self.string.moveLineDown(in: ranges)
+            else {
+                NSSound.beep()
+                return
+            }
+        
+        self.edit(with: editingInfo, actionName: "Move Line".localized)
+    }
+    
+    
+    /// sort selected lines (only in the first selection) ascending
+    @IBAction func sortLinesAscending(_ sender: Any?) {
+        
+        // process whole document if no text selected
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        
+        guard let editingInfo = self.string.sortLinesAscending(in: range) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Sort Lines".localized)
+    }
+    
+    
+    /// reverse selected lines (only in the first selection)
+    @IBAction func reverseLines(_ sender: Any?) {
+        
+        // process whole document if no text selected
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        
+        guard let editingInfo = self.string.reverseLines(in: range) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Reverse Lines".localized)
+    }
+    
+    
+    /// delete duplicate lines in selection
+    @IBAction func deleteDuplicateLine(_ sender: Any?) {
+        
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        
+        // process whole document if no text selected
+        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : selectedRanges
+        
+        guard let editingInfo = self.string.deleteDuplicateLine(in: ranges) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Delete Duplicate Lines".localized)
+    }
+    
+    
+    /// duplicate selected lines below
+    @IBAction func duplicateLine(_ sender: Any?) {
+        
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        
+        guard let editingInfo = self.string.duplicateLine(in: selectedRanges) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Duplicate Line".localized)
+    }
+    
+    
+    /// remove selected lines
+    @IBAction func deleteLine(_ sender: Any?) {
+        
+        guard let selectedRanges = self.rangesForUserTextChange as? [NSRange] else { return }
+        
+        guard let editingInfo = self.string.deleteLine(in: selectedRanges) else { return }
+        
+        self.edit(with: editingInfo, actionName: "Delete Line".localized)
+    }
+    
+    
+    /// trim all trailing whitespace
+    @IBAction func trimTrailingWhitespace(_ sender: Any?) {
+        
+        let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
+        
+        self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
+    }
+    
+    
+    /// show pattern sort sheet
+    @IBAction func patternSort(_ sender: Any?) {
+        
+        guard self.isEditable else {
             NSSound.beep()
             return
         }
         
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
+        viewController.representedObject = self
         
-        // register redo for text selection
-        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges] target in
-            target.setSelectedRangesWithUndo(selectedRanges as! [NSRange])
-        }
+        // sample the first line
+        let range = Range(self.selectedRange, in: self.string)!
+        let location = range.isEmpty ? self.string.startIndex : range.lowerBound
+        let lineRange = self.string.lineContentsRange(at: location)
+        viewController.sampleLine = String(self.string[lineRange])
+        viewController.sampleFontName = self.font?.fontName
         
-        var newSelectedRanges = [NSRange]()
+        self.viewControllerForSheet?.presentAsSheet(viewController)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// replace content according to EditingInfo
+    private func edit(with info: String.EditingInfo, actionName: String) {
+        
+        self.replace(with: info.strings, ranges: info.ranges, selectedRanges: info.selectedRanges, actionName: actionName)
+    }
+    
+}
+
+
+
+extension NSTextView {
+    
+    func sortLines(pattern: SortPattern, options: SortOptions) {
+        
+        // process whole document if no text selected
+        let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
+        
+        let string = self.string as NSString
+        let lineRange = string.lineContentsRange(for: range)
+        
+        guard !lineRange.isEmpty else { return }
+        
+        let newString = pattern.sort(string.substring(with: lineRange), options: options)
+        
+        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
+                     actionName: "Sort Lines".localized)
+    }
+    
+}
+
+
+
+
+// MARK: -
+
+private extension String {
+    
+    typealias EditingInfo = (strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?)
+    
+    
+    
+    /// move selected line up
+    func moveLineUp(in ranges: [NSRange]) -> EditingInfo? {
+        
+        // get line ranges to process
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        
+        // cannot perform Move Line Up if one of the selections is already in the first line
+        guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else { return nil }
+        
+        var string = self as NSString
+        var replacementRange = NSRange()
+        var selectedRanges = [NSRange]()
         
         // swap lines
-        textStorage.beginEditing()
         for lineRange in lineRanges {
-            let string = textStorage.string as NSString
-            
             let upperLineRange = string.lineRange(at: lineRange.location - 1)
             var lineString = string.substring(with: lineRange)
             var upperLineString = string.substring(with: upperLineRange)
@@ -67,63 +219,43 @@ extension EditorTextView {
                 upperLineString = upperLineString.trimmingCharacters(in: .newlines)
             }
             
-            let replacementString = lineString + upperLineString
-            let editRange = NSRange(location: upperLineRange.location, length: replacementString.utf16.count)
-            
             // swap
-            guard self.shouldChangeText(in: editRange, replacementString: replacementString) else { continue }
-            
-            textStorage.replaceCharacters(in: editRange, with: replacementString)
-            self.didChangeText()
+            let editRange = lineRange.union(upperLineRange)
+            string = string.replacingCharacters(in: editRange, with: lineString + upperLineString) as NSString
+            replacementRange.formUnion(editRange)
             
             // move selected ranges in the line to move
-            for selectedRange in selectedRanges {
+            for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    newSelectedRanges.append(NSRange(location: intersectionRange.location - upperLineRange.length,
-                                                     length: intersectionRange.length))
+                    selectedRanges.append(intersectionRange.shifted(offset: -upperLineRange.length))
                     
                 } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
-                    newSelectedRanges.append(NSRange(location: selectedRange.location - upperLineRange.length,
-                                                     length: selectedRange.length))
+                    selectedRanges.append(selectedRange.shifted(offset: -upperLineRange.length))
                 }
             }
         }
-        textStorage.endEditing()
         
-        self.setSelectedRangesWithUndo(newSelectedRanges)
+        let replacementString = string.substring(with: replacementRange)
         
-        self.undoManager?.setActionName("Move Line".localized)
+        return (strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
     }
     
     
     /// move selected line down
-    @IBAction func moveLineDown(_ sender: Any?) {
-        
-        guard let textStorage = self.textStorage else { return }
+    func moveLineDown(in ranges: [NSRange]) -> EditingInfo? {
         
         // get line ranges to process
-        let lineRanges = self.selectedLineRanges
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != textStorage.length else {
-            NSSound.beep()
-            return
-        }
+        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.nsRange.upperBound else { return nil }
         
-        let selectedRanges = self.selectedRanges as! [NSRange]
-        
-        // register redo for text selection
-        self.undoManager?.registerUndo(withTarget: self) { [selectedRanges = self.selectedRanges] target in
-            target.setSelectedRangesWithUndo(selectedRanges as! [NSRange])
-        }
-        
-        var newSelectedRanges = [NSRange]()
+        var string = self as NSString
+        var replacementRange = NSRange()
+        var selectedRanges = [NSRange]()
         
         // swap lines
-        textStorage.beginEditing()
         for lineRange in lineRanges.reversed() {
-            let string = textStorage.string as NSString
-            
             var lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
@@ -135,129 +267,78 @@ extension EditorTextView {
                 lowerLineRange.length += 1
             }
             
-            let replacementString = lowerLineString + lineString
-            let editRange = NSRange(location: lineRange.location, length: replacementString.utf16.count)
-            
             // swap
-            guard self.shouldChangeText(in: editRange, replacementString: replacementString) else { continue }
-            
-            textStorage.replaceCharacters(in: editRange, with: replacementString)
-            self.didChangeText()
+            let editRange = lineRange.union(lowerLineRange)
+            string = string.replacingCharacters(in: editRange, with: lowerLineString + lineString) as NSString
+            replacementRange.formUnion(editRange)
             
             // move selected ranges in the line to move
-            for selectedRange in selectedRanges {
+            for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    newSelectedRanges.append(NSRange(location: intersectionRange.location + lowerLineRange.length,
-                                                     length: intersectionRange.length))
+                    selectedRanges.append(intersectionRange.shifted(offset: lowerLineRange.length))
                     
                 } else if editRange.contains(selectedRange.location) {
-                    newSelectedRanges.append(NSRange(location: selectedRange.location + lowerLineRange.length,
-                                                     length: selectedRange.length))
+                    selectedRanges.append(selectedRange.shifted(offset: lowerLineRange.length))
                 }
             }
         }
-        textStorage.endEditing()
         
-        self.setSelectedRangesWithUndo(newSelectedRanges)
+        let replacementString = string.substring(with: replacementRange)
         
-        self.undoManager?.setActionName("Move Line".localized)
+        return (strings: [replacementString], ranges: [replacementRange], selectedRanges: selectedRanges)
     }
     
     
-    /// sort selected lines (only in the first selection) ascending
-    @IBAction func sortLinesAscending(_ sender: Any?) {
+    /// sort selected lines ascending
+    func sortLinesAscending(in range: NSRange) -> EditingInfo? {
         
-        let string = self.string as NSString
+        let string = self as NSString
+        let lineRange = string.lineContentsRange(for: range)
         
-        // process whole document if no text selected
-        if self.selectedRange.length == 0 {
-            self.selectedRange = string.range
-        }
+        // do nothing with single line
+        guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
         
-        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
-        
-        guard lineRange.length > 0 else { return }
-        
-        let lines = string
+        let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+            .joined(separator: "\n")
         
-        // do nothing with single line
-        guard lines.count > 1 else { return }
-        
-        let newString = lines.joined(separator: "\n")
-        
-        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: "Sort Lines".localized)
+        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
     
     
-    /// show pattern sort sheet
-    @IBAction func patternSort(_ sender: Any?) {
+    /// reverse selected lines
+    func reverseLines(in range: NSRange) -> EditingInfo? {
         
-        let viewController = NSStoryboard(name: NSStoryboard.Name("PatternSortView"), bundle: nil).instantiateInitialController() as! PatternSortViewController
-        viewController.representedObject = self
-        
-        // sample the first line
-        let string = self.string
-        let range = Range(self.selectedRange, in: string)!
-        let location = range.isEmpty ? string.startIndex : range.lowerBound
-        let lineRange = string.lineRange(at: location, excludingLastLineEnding: true)
-        viewController.sampleLine = String(string[lineRange])
-        viewController.sampleFontName = (self.layoutManager as? LayoutManager)?.textFont?.fontName
-        
-        self.viewControllerForSheet?.presentViewControllerAsSheet(viewController)
-    }
-    
-    
-    /// reverse selected lines (only in the first selection)
-    @IBAction func reverseLines(_ sender: Any?) {
-        
-        let string = self.string as NSString
-        
-        // process whole document if no text selected
-        if self.selectedRange.length == 0 {
-            self.selectedRange = string.range
-        }
-        
-        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
-        
-        guard lineRange.length > 0 else { return }
-        
-        let lines = string.substring(with: lineRange).components(separatedBy: .newlines)
+        let string = self as NSString
+        let lineRange = string.lineContentsRange(for: range)
         
         // do nothing with single line
-        guard lines.count > 1 else { return }
+        guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
         
-        // make new string
-        let newString = lines.reversed().joined(separator: "\n")
+        let newString = string
+            .substring(with: lineRange)
+            .components(separatedBy: .newlines)
+            .reversed()
+            .joined(separator: "\n")
         
-        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: "Reverse Lines".localized)
+        return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
     }
     
     
     /// delete duplicate lines in selection
-    @IBAction func deleteDuplicateLine(_ sender: Any?) {
+    func deleteDuplicateLine(in ranges: [NSRange]) -> EditingInfo? {
         
-        let string = self.string as NSString
-        
-        // process whole document if no text selected
-        if self.selectedRange.length == 0 {
-            self.selectedRange = string.range
-        }
-        
-        guard self.selectedRange.length > 0 else { return }
-        
-        var replacementRanges = [NSRange]()
+        let string = self as NSString
         var replacementStrings = [String]()
+        var replacementRanges = [NSRange]()
         var uniqueLines = OrderedSet<String>()
         var processedCount = 0
         
         // collect duplicate lines
-        for range in self.selectedRanges as! [NSRange] {
-            let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        for range in ranges {
+            let lineRange = string.lineContentsRange(for: range)
             let targetString = string.substring(with: lineRange)
             let lines = targetString.components(separatedBy: .newlines)
             
@@ -276,23 +357,22 @@ extension EditorTextView {
             replacementRanges.append(lineRange)
         }
         
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: "Delete Duplicate Lines".localized)
+        guard processedCount > 0 else { return nil }
+        
+        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
     }
     
     
     /// duplicate selected lines below
-    @IBAction func duplicateLine(_ sender: Any?) {
+    func duplicateLine(in ranges: [NSRange]) -> EditingInfo? {
         
-        var replacementRanges = [NSRange]()
+        let string = self as NSString
         var replacementStrings = [String]()
+        var replacementRanges = [NSRange]()
+        var selectedRanges = [NSRange]()
         
-        let string = self.string as NSString
-        let selectedRanges = self.selectedRanges as! [NSRange]
-        
-        // get lines to process
-        for selectedRange in selectedRanges {
-            let lineRange = string.lineRange(for: selectedRange)
+        for range in ranges {
+            let lineRange = string.lineRange(for: range)
             let replacementRange = NSRange(location: lineRange.location, length: 0)
             var lineString = string.substring(with: lineRange)
             
@@ -301,74 +381,34 @@ extension EditorTextView {
                 lineString += "\n"
             }
             
-            replacementRanges.append(replacementRange)
+            let offset = (replacementStrings + [lineString]).map { ($0 as NSString).length }.reduce(0, +)
+            let selectedRange = range.shifted(offset: offset)
+            
             replacementStrings.append(lineString)
+            replacementRanges.append(replacementRange)
+            selectedRanges.append(selectedRange)
         }
         
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: "Duplicate Line".localized)
+        return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
     
     /// remove selected lines
-    @IBAction func deleteLine(_ sender: Any?) {
+    func deleteLine(in ranges: [NSRange]) -> EditingInfo? {
         
-        let replacementRanges = self.selectedLineRanges
+        guard !ranges.isEmpty else { return nil }
         
-        // on empty last line
-        guard !replacementRanges.isEmpty else { return }
+        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        let replacementStrings = [String](repeating: "", count: lineRanges.count)
         
-        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
-        
-        self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: nil,
-                     actionName: "Delete Line".localized)
-    }
-    
-    
-    /// trim all trailing whitespace
-    @IBAction func trimTrailingWhitespace(_ sender: Any?) {
-        
-        let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
-        
-        self.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines)
-    }
-    
-}
-
-
-extension NSTextView {
-    
-    func sortLines(pattern: SortPattern, options: SortOptions) {
-        
-        let string = self.string as NSString
-        
-        // process whole document if no text selected
-        if self.selectedRange.length == 0 {
-            self.selectedRange = string.range
+        var selectedRanges = [NSRange]()
+        var offset = 0
+        for range in lineRanges {
+            selectedRanges.append(NSRange(location: range.location + offset, length: 0))
+            offset -= range.length
         }
         
-        let lineRange = string.lineRange(for: self.selectedRange, excludingLastLineEnding: true)
-        
-        guard lineRange.length > 0 else { return }
-        
-        let newString = pattern.sort(string.substring(with: lineRange), options: options)
-        
-        self.replace(with: newString, range: lineRange, selectedRange: lineRange,
-                     actionName: "Sort Lines".localized)
-    }
-    
-}
-
-
-
-// MARK: Private NSTextView Extension
-
-private extension NSTextView {
-    
-    /// extract line by line line ranges which selected ranges include
-    var selectedLineRanges: [NSRange] {
-        
-        return (self.string as NSString).lineRanges(for: self.selectedRanges as! [NSRange])
+        return (strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
     
 }

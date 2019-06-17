@@ -37,27 +37,31 @@ final class ShortcutKeyField: NSTextField {
     // MARK: -
     // MARK: Text Field Methods
     
+    deinit {
+        if let monitor = self.keyDownMonitor {
+            NSEvent.removeMonitor(monitor)
+        }
+    }
+    
+    
     /// text field turns into edit mode
     override func becomeFirstResponder() -> Bool {
         
         guard super.becomeFirstResponder() else { return false }
         
         // hide insertion point
-        (self.currentEditor() as? NSTextView)?.insertionPointColor = .textBackgroundColor
+        (self.currentEditor() as? NSTextView)?.insertionPointColor = .clear
         
-        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown, handler: { [weak self] (event: NSEvent) -> NSEvent? in
-            
+        self.keyDownMonitor = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { [unowned self] (event: NSEvent) -> NSEvent? in
             guard
                 var charsIgnoringModifiers = event.charactersIgnoringModifiers,
-                !charsIgnoringModifiers.isEmpty
+                let char = charsIgnoringModifiers.unicodeScalars.first
                 else { return event }
-            
-            var modifierMask = event.modifierFlags
             
             // correct Backspace and Delete keys
             //  -> "backspace" key:        the key above "return"
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
-            switch Int(charsIgnoringModifiers.utf16.first!) {
+            switch Int(char.value) {
             case NSDeleteCharacter:
                 charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter)!)
             case NSDeleteFunctionKey:
@@ -67,22 +71,19 @@ final class ShortcutKeyField: NSTextField {
             
             // remove unwanted Shift
             let ignoringShiftSet = CharacterSet(charactersIn: "`~!@#$%^&()_{}|\":<>?=/*-+.'")
-            if ignoringShiftSet.contains(charsIgnoringModifiers.unicodeScalars.first!), modifierMask.contains(.shift) {
-                modifierMask.remove(.shift)
-            }
+            let ignoringMask: NSEvent.ModifierFlags = ignoringShiftSet.contains(char) ? .shift : []
+            let modifierMask = event.modifierFlags.subtracting(ignoringMask)
             
             // set input shortcut string to field
+            // -> single NSDeleteCharacter works as delete
             let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
-            self?.objectValue = {
-                guard keySpecChars != "\u{8}" else { return nil }  // single NSDeleteCharacter works as delete
-                return keySpecChars
-            }()
+            self.objectValue = (keySpecChars == "\u{8}") ? nil : keySpecChars
             
             // end editing
-            self?.window?.endEditing(for: nil)
+            self.window?.endEditing(for: nil)
             
             return nil
-        })
+        }
         
         return true
     }

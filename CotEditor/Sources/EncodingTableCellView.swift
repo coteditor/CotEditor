@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,13 +31,13 @@ final class EncodingTableCellView: NSTableCellView {
     override var backgroundStyle: NSView.BackgroundStyle {
         
         didSet {
-            guard let textField = self.textField else { return }
+            guard let textField = self.textField else { return assertionFailure() }
             
             let highlighted = (backgroundStyle == .dark)
             let attrString = textField.attributedStringValue
             let mutableAttrString = attrString.mutable
             
-            attrString.enumerateAttribute(.foregroundColor, in: NSRange(location: 0, length: attrString.length))
+            attrString.enumerateAttribute(.foregroundColor, in: attrString.range)
             { (value: Any?, range: NSRange, stop: UnsafeMutablePointer<ObjCBool>) in
                 
                 let color = value as? NSColor
