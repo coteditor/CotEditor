@@ -92,7 +92,7 @@
 "Input text to find." = "Digite o texto a buscar.";
 
 // accessibility announcement
-"Search wrapped." = "A busca voltou ao início.";
+"Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
