@@ -40,7 +40,7 @@ extension Collection where Element == String {
         let (rootName, baseCount): (String, Int?) = {
             let regex = try! NSRegularExpression(pattern: spaceSuffix + "( ([0-9]+))?$")
             
-            guard let result = regex.firstMatch(in: proposedName, range: NSRange(location: 0, length: proposedName.utf16.count)) else { return (proposedName, nil) }
+            guard let result = regex.firstMatch(in: proposedName, range: proposedName.nsRange) else { return (proposedName, nil) }
             
             let root = (proposedName as NSString).substring(to: result.range.location)
             

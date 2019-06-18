@@ -54,7 +54,7 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        // -> Do not use "document" for autosave name because homehow windows forget the size with that name (2018-09)
+        // -> Do not use "document" for autosave name because somehow windows forget the size with that name (2018-09)
         self.windowFrameAutosaveName = "Document Window"
         
         // observe opacity setting change

@@ -29,6 +29,20 @@ import XCTest
 
 class StringExtensionsTests: XCTestCase {
     
+    /// Test if the U+FEFF omitting bug on Swift 5 still exists.
+    func testFEFF() {
+        
+        let bom = "\u{feff}"
+        
+        XCTAssertEqual(bom.count, 1)
+        XCTAssertEqual((bom + "abc").count, 4)
+        XCTAssertEqual(NSString(string: bom).length, 0)
+        XCTAssertEqual(NSString(string: bom + bom).length, 1)
+        XCTAssertEqual(NSString(string: bom + "abc").length, 3)
+        XCTAssertEqual(NSString(string: "a" + bom + "bc").length, 4)
+    }
+    
+    
     func testCharacterEscape() {
         
         let string = "a\\a\\\\aa"
@@ -90,6 +104,11 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("\u{FEFF}".numberOfLines(in: NSRange(0..<1), includingLastLineEnding: false), 1)  // "\u{FEFF}"
         XCTAssertEqual("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
         XCTAssertEqual("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
+        XCTAssertEqual("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
+        
+        XCTAssertEqual("a\u{FEFF}\nb".numberOfLines, 2)
+        XCTAssertEqual("\u{FEFF}\nb".numberOfLines, 2)
+        XCTAssertEqual("\u{FEFF}0000000000000000".numberOfLines, 1)
     }
     
     
@@ -157,18 +176,18 @@ class StringExtensionsTests: XCTestCase {
         
         let string = "foo\nbar\n"
         
-        XCTAssertEqual(string.lineRange(for: string.startIndex..<string.endIndex, excludingLastLineEnding: true),
+        XCTAssertEqual(string.lineContentsRange(for: string.startIndex..<string.endIndex),
                        string.startIndex..<string.index(before: string.endIndex))
         
         XCTAssertEqual(string.lineRange(for: string.startIndex..<string.index(after: string.startIndex)),
                        string.startIndex..<string.index(string.startIndex, offsetBy: 4))
-        XCTAssertEqual(string.lineRange(for: string.startIndex..<string.index(after: string.startIndex), excludingLastLineEnding: true),
+        XCTAssertEqual(string.lineContentsRange(for: string.startIndex..<string.index(after: string.startIndex)),
                        string.startIndex..<string.index(string.startIndex, offsetBy: 3))
         
         let emptyString = ""
         let emptyRange = emptyString.startIndex..<emptyString.endIndex
         
-        XCTAssertEqual(emptyString.lineRange(for: emptyRange, excludingLastLineEnding: true), emptyRange)
+        XCTAssertEqual(emptyString.lineContentsRange(for: emptyRange), emptyRange)
     }
     
     

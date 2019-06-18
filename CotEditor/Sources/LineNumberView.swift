@@ -386,7 +386,7 @@ final class LineNumberView: NSView {
     private func observeTextView(_ textView: NSTextView) {
         
         self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [unowned self] (notification) in
-            guard let textView = notification.object as? NSTextView else { return }
+            guard let textView = notification.object as? NSTextView else { return assertionFailure() }
             
             if self.orientation == .horizontal {
                 // -> Count only if really needed since the line counting is high workload, especially by large document.

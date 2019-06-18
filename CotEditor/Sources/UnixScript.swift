@@ -238,7 +238,7 @@ final class UnixScript: Script {
         case .newDocument:
             let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Editable
             document.insert(string: output, at: .replaceAll)
-            document.selectedRange = NSRange(location: 0, length: 0)
+            document.selectedRange = NSRange(0..<0)
             
         case .pasteBoard:
             NSPasteboard.general.declareTypes([.string], owner: nil)

@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2018 1024jp
+ © 2014-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -90,6 +90,9 @@
 "Invalid regular expression" = "無効な正規表現です。";
 "Empty find string" = "検索文字列が空です。";
 "Input text to find." = "検索するテキストを入力してください。";
+
+// accessibility announcement
+"Search wrapped." = "検索が折り返されました。";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -549,6 +552,7 @@
 "The parent directory name of dropped file." = "ドロップ元ファイルのあるディレクトリ名";
 "(If the dropped file is an image) image width." = "イメージの幅（ドロップ元ファイルが画像ファイルのときのみ有効）";
 "(If the dropped file is an image) image height." = "イメージの高さ（ドロップ元ファイルが画像ファイルのときのみ有効）";
+"(If the dropped file is a text file) file content." = "ファイル内容（ドロップ元ファイルがテキストファイルのときのみ有効）";
 
 
 

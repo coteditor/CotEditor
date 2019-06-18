@@ -41,8 +41,8 @@ extension NSTextView {
         // avoid invoking heavy-duty `range(for:)` as possible
         guard
             let layoutManager = self.layoutManager,
-            layoutManager.hasTemporaryAttribute(for: .roundedBackgroundColor),
-            let dirtyRange = self.range(for: dirtyRect)
+            let dirtyRange = self.range(for: dirtyRect),
+            layoutManager.hasTemporaryAttribute(for: .roundedBackgroundColor, in: dirtyRange)
             else { return }
         
         NSGraphicsContext.saveGraphicsState()

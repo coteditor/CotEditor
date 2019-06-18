@@ -121,6 +121,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
         
         // setup layoutManager and textContainer
+        let textContainer = TextContainer()
+        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
+        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
+        self.replaceTextContainer(textContainer)
+        
         let layoutManager = LayoutManager()
         self.textContainer!.replaceLayoutManager(layoutManager)
         self.layoutManager?.allowsNonContiguousLayout = true
@@ -515,7 +520,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
                 guard
                     !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(0..<range.location))
+                    let autoIndentRange = indentRange.intersection(NSRange(..<range.location))
                     else { return (range, "", 0) }
                 
                 var indent = (self.string as NSString).substring(with: autoIndentRange)
@@ -1120,13 +1125,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         assert(Thread.isMainThread)
         
         guard let textStorage = self.textStorage else { return assertionFailure() }
+        guard textStorage.length > 0 else { return }
         
-        let range = textStorage.mutableString.range
-        
-        guard !range.isEmpty else { return }
-        
-        textStorage.addAttributes(self.typingAttributes, range: range)
-        (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
+        textStorage.addAttributes(self.typingAttributes, range: textStorage.range)
     }
     
     
@@ -1305,11 +1306,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // set scroller color considering background color
-        if #available(macOS 10.14, *) {
-            self.enclosingScrollView?.appearance = NSAppearance(named: theme.isDarkTheme ? .darkAqua : .aqua)
-        } else {
-            self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
-        }
+        self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
     }
@@ -1426,7 +1423,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // ensure layout to avoid unwanted scroll with cursor move after pasting something
         // at the latter part of the document. (2018-10 macOS 10.14)
-        self.layoutManager?.ensureLayout(forCharacterRange: NSRange(..<textStorage.length))
+        self.layoutManager?.ensureLayout(forCharacterRange: textStorage.range)
     }
     
     
@@ -1587,7 +1584,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 if self.isAutomaticLinkDetectionEnabled {
                     self.detectLinkIfNeeded()
                 } else if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: NSRange(0..<textStorage.length))
+                    textStorage.removeAttribute(.link, range: textStorage.range)
                 }
                 
             case .pageGuideColumn:
@@ -1615,19 +1612,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 }
                 
             case .enablesHangingIndent:
-                let wholeRange = self.string.nsRange
-                if !(new as! Bool) {
-                    if let paragraphStyle = self.defaultParagraphStyle {
-                        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
-                    } else {
-                        self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
-                    }
-                } else {
-                    (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
-                }
+                (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
                 
             case .hangingIndentWidth:
-                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: self.string.nsRange)
+                (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
                 
             default:
                 preconditionFailure()
@@ -1651,17 +1639,18 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
+        guard !self.string.isEmpty else { return range }
+        
         let firstSyntaxLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates
-        guard
-            !self.string.isEmpty,
-            let characterRange = Range(range, in: self.string),
-            let index = self.string[..<characterRange.upperBound].rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards)?.upperBound
-            else { return range }
+        let searchRange = NSRange(..<range.upperBound)
+        let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
         
-        return NSRange(index..<characterRange.upperBound, in: self.string)
+        guard invalidRange != .notFound else { return range }
+        
+        return NSRange(invalidRange.upperBound..<range.upperBound)
     }
     
     

@@ -116,13 +116,13 @@ final class EditorInfoCountOperation: Operation {
         if self.requiredInfo.contains(.length) {
             let isSingleLineEnding = (self.lineEnding.length == 1)
             self.result.length = isSingleLineEnding
-                ? self.string.utf16.count
-                : self.string.replacingLineEndings(with: self.lineEnding).utf16.count
+                ? (self.string as NSString).length
+                : (self.string.replacingLineEndings(with: self.lineEnding) as NSString).length
             
             if hasSelection {
                 self.result.selectedLength = isSingleLineEnding
-                    ? selectedString.utf16.count
-                    : selectedString.replacingLineEndings(with: self.lineEnding).utf16.count
+                    ? (selectedString as NSString).length
+                    : (selectedString.replacingLineEndings(with: self.lineEnding) as NSString).length
             }
         }
         

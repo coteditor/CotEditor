@@ -268,7 +268,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // -> Taking performance issue into consideration,
         //    the selection ranges will be adjusted only when the content size is enough small.
         let string = self.textStorage.string
-        let range = NSRange(..<self.textStorage.length)
+        let range = self.textStorage.range
         let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
         let considersDiff = min(lastString.count, string.count) < maxLength
         
@@ -338,6 +338,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // notify
         DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
             NotificationCenter.default.post(name: Document.didChangeLineEndingNotification, object: self)
         }
@@ -349,7 +350,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // update textStorage
         assert(self.textStorage.layoutManagers.isEmpty || Thread.isMainThread)
-        self.textStorage.replaceCharacters(in: NSRange(..<self.textStorage.length), with: string)
+        self.textStorage.replaceCharacters(in: self.textStorage.range, with: string)
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
@@ -519,19 +520,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// prepare save panel
     override func prepareSavePanel(_ savePanel: NSSavePanel) -> Bool {
         
-        // disable hide extension checkbox
-        // -> Because it doesn't work.
-        savePanel.isExtensionHidden = false
-        savePanel.canSelectHiddenExtension = false
-        
-        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.13)
+        // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
         if let fileType = self.fileType,
            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
             // set once allowedFileTypes, so that initial filename selection excludes the file extension
             savePanel.allowedFileTypes = [pathExtension]
             
-            // disable immediately in the next runloop to allow set other extensions
+            // disable it immediately in the next runloop to allow setting other extensions
             DispatchQueue.main.async {
                 savePanel.allowedFileTypes = nil
             }
@@ -962,8 +958,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // change encoding interactively
         self.performActivity(withSynchronousWaiting: true) { [unowned self] (activityCompletionHandler) in
             
-            let completionHandler = { (didChange: Bool) in
-                if !didChange {
+            let completionHandler = { [weak self] (didChange: Bool) in
+                if !didChange, let self = self {
                     // reset toolbar selection for in case if the operation was invoked from the toolbar popup
                     NotificationCenter.default.post(name: Document.didChangeEncodingNotification, object: self)
                 }
@@ -1129,12 +1125,16 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             alert.addButton(withTitle: "Update".localized)
             
             // mark the alert as critical in order to interpret other sheets already attached
-            if self.windowForSheet?.attachedSheet != nil {
+            guard let documentWindow = self.windowForSheet else {
+                activityCompletionHandler()
+                assertionFailure()
+                return
+            }
+            if documentWindow.attachedSheet != nil {
                 alert.alertStyle = .critical
             }
             
-            alert.beginSheetModal(for: self.windowForSheet!) { returnCode in
-                
+            alert.beginSheetModal(for: documentWindow) { returnCode in
                 if returnCode == .alertSecondButtonReturn {  // == Revert
                     self.revertWithoutAsking()
                 }

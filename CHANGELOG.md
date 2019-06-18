@@ -2,6 +2,38 @@
 Change Log
 ==========================
 
+3.7.6 (355)
+--------------------------
+
+### New Features
+
+- Add new variable “file content” to File Drop feature to insert the file content when the dropped file is a text file.
+
+
+### Improvements
+
+- Apply the change of “show other invisible characters” option immediately to the editors.
+- Add “Hide extension” option to the save dialog.
+- Use the system appearance in the input candidate window even when the theme has a dark background color.
+- Give some feedback about the search result in VoiceOver.
+- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
+- Hide unused items in the font panel toolbar.
+- Optimize the performance of finding the matching brace to highlight.
+- Optimize the performance of line number drawing.
+- Optimize the performance of hanging indent calculation.
+
+
+### Fixes
+
+- Fix an issue where unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
+- Fix an issue with scripting where regular expression anchors, such as `^` or `$`, did not match lines.
+- Fix an issue where the “Writing Direction” toolbar item did not work if it overflows from the visible toolbar area.
+- Fix an issue where `U+FEFF` cannot be input via “Input in Unicode hex” command.
+- Fix a possible crash with continuous `U+FEFF` characters.
+- Fix a possible crash on macOS 10.12.
+
+
+
 3.7.5 (353)
 --------------------------
 

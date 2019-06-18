@@ -89,11 +89,11 @@ extension Editable {
             case .replaceAll:
                 return textView.string.nsRange
             case .afterAll:
-                return NSRange(location: textView.string.utf16.count, length: 0)
+                return NSRange(location: (textView.string as NSString).length, length: 0)
             }
             }()
         
-        let selectedRange = NSRange(location: replacementRange.location, length: string.utf16.count)
+        let selectedRange = NSRange(location: replacementRange.location, length: (string as NSString).length)
         
         textView.replace(with: string, range: replacementRange, selectedRange: selectedRange,
                          actionName: "Insert Text".localized)

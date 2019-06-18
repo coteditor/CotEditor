@@ -108,24 +108,24 @@ extension Document {
         get {
             switch self.lineEnding {
             case .lf:
-                return OSALineEnding.lf
+                return .lf
             case .cr:
-                return OSALineEnding.cr
+                return .cr
             case .crlf:
-                return OSALineEnding.crlf
+                return .crlf
             default:
-                return OSALineEnding.lf
+                return .lf
             }
         }
         
         set {
             let type: LineEnding = {
                 switch newValue {
-                case OSALineEnding.lf:
+                case .lf:
                     return .lf
-                case OSALineEnding.cr:
+                case .cr:
                     return .cr
-                case OSALineEnding.crlf:
+                case .crlf:
                     return .crlf
                 default:
                     return .lf
@@ -256,16 +256,13 @@ extension Document {
             let searchString = arguments["targetString"] as? String, !searchString.isEmpty
             else { return false }
         
-        let wholeString = self.string
-        
-        guard !wholeString.isEmpty else { return false }
-        
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         
         // perform find
-        guard let foundRange = (wholeString as NSString).range(of: searchString, selectedRange: self.selectedRange,
-                                                               options: options, isWrapSearch: isWrapSearch)
+        let string = self.string as NSString
+        guard let foundRange = string.range(of: searchString, selectedRange: self.selectedRange,
+                                            options: options, isWrapSearch: isWrapSearch)
             else { return false }
         
         self.selectedRange = foundRange
@@ -283,41 +280,48 @@ extension Document {
             let replacementString = arguments["newString"] as? String
             else { return 0 }
         
-        let wholeString = self.string
-        
-        guard !wholeString.isEmpty else { return 0 }
-        
         let options = NSString.CompareOptions(scriptingArguments: arguments)
         let isWrapSearch = (arguments["wrapSearch"] as? Bool) ?? false
         let isAll = (arguments["all"] as? Bool) ?? false
         
+        let string = self.string
+        
+        guard !string.isEmpty else { return 0 }
+        
         // perform replacement
         if isAll {
-            let newWholeString = NSMutableString(string: wholeString)
-            let numberOfReplacements = newWholeString.replaceOccurrences(of: searchString, with: replacementString,
-                                                                         options: options, range: wholeString.nsRange)
+            let mutableString = NSMutableString(string: string)
+            let count: Int
+            if options.contains(.regularExpression) {
+                let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? [.caseInsensitive] : []
+                guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else { return 0 }
+                
+                count = regex.replaceMatches(in: mutableString, range: string.nsRange, withTemplate: replacementString)
+            } else {
+                count = mutableString.replaceOccurrences(of: searchString, with: replacementString, options: options, range: string.nsRange)
+            }
             
-            guard numberOfReplacements > 0 else { return 0 }
+            guard count > 0 else { return 0 }
             
-            self.insert(string: newWholeString as String, at: .replaceAll)
+            self.insert(string: mutableString as String, at: .replaceAll)
             self.selectedRange = NSRange()
             
-            return numberOfReplacements as NSNumber
+            return count as NSNumber
             
         } else {
-            guard let foundRange = (wholeString as NSString).range(of: searchString, selectedRange: self.selectedRange,
-                                                                   options: options, isWrapSearch: isWrapSearch)
+            guard let foundRange = (string as NSString).range(of: searchString, selectedRange: self.selectedRange,
+                                                              options: options, isWrapSearch: isWrapSearch)
                 else { return 0 }
             
             let replacedString: String
             if options.contains(.regularExpression) {
                 let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
                 guard
-                    let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions),
-                    let match = regex.firstMatch(in: wholeString, options: .withoutAnchoringBounds, range: foundRange)
+                    let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)),
+                    let match = regex.firstMatch(in: string, options: .withoutAnchoringBounds, range: foundRange)
                     else { return 0 }
                 
-                replacedString = regex.replacementString(for: match, in: wholeString, offset: 0, template: replacementString)
+                replacedString = regex.replacementString(for: match, in: string, offset: 0, template: replacementString)
             } else {
                 replacedString = replacementString
             }
@@ -386,16 +390,37 @@ private extension NSString.CompareOptions {
 
 private extension NSString {
     
-    /// find and return the range of the first occurrence starting from the given selectedRange
+    /// Find the range of the first occurrence starting from the given selectedRange.
+    ///
+    /// - Parameters:
+    ///   - searchString: The string to search for.
+    ///   - selectedRange: The range to search in.
+    ///   - options: The search option.
+    ///   - isWrapSearch: Whether the search should wrap.
+    /// - Returns: The range of found or `nil` if not found.
     func range(of searchString: String, selectedRange: NSRange, options: NSString.CompareOptions, isWrapSearch: Bool) -> NSRange? {
         
+        guard self.length > 0 else { return nil }
+        
         let targetRange = (options.contains(.backwards) && !options.contains(.regularExpression))
-            ? NSRange(0..<selectedRange.location)
+            ? NSRange(..<selectedRange.lowerBound)
             : NSRange(selectedRange.upperBound..<self.length)
         
-        var foundRange = self.range(of: searchString, options: options, range: targetRange)
-        if foundRange.location == NSNotFound, isWrapSearch {
-            foundRange = self.range(of: searchString, options: options)
+        var foundRange: NSRange = .notFound
+        if options.contains(.regularExpression) {
+            let regexOptions: NSRegularExpression.Options = options.contains(.caseInsensitive) ? .caseInsensitive : []
+            guard let regex = try? NSRegularExpression(pattern: searchString, options: regexOptions.union(.anchorsMatchLines)) else { return nil }
+            
+            foundRange = regex.rangeOfFirstMatch(in: self as String, options: .withoutAnchoringBounds, range: targetRange)
+            if foundRange == .notFound, isWrapSearch {
+                foundRange = regex.rangeOfFirstMatch(in: self as String, options: .withoutAnchoringBounds, range: self.range)
+            }
+            
+        } else {
+            foundRange = self.range(of: searchString, options: options, range: targetRange)
+            if foundRange == .notFound, isWrapSearch {
+                foundRange = self.range(of: searchString, options: options)
+            }
         }
         
         guard foundRange.location != NSNotFound else { return nil }

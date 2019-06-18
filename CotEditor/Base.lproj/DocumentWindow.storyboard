@@ -516,14 +516,23 @@
                 </menu>
                 <menu id="g7Y-51-eyh">
                     <items>
+                        <menuItem title="Left to Right" id="Tul-RE-xpJ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="makeWritingDirectionLeftToRight:" target="klO-m3-n5X" id="Aod-DU-nUZ"/>
+                            </connections>
+                        </menuItem>
                         <menuItem title="Right to Left" id="7iT-zZ-mIj">
                             <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Laft to Right" id="Tul-RE-xpJ">
-                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="makeWritingDirectionRightToLeft:" target="klO-m3-n5X" id="hD6-ba-I9N"/>
+                            </connections>
                         </menuItem>
                         <menuItem title="Vertical" id="5v4-ft-RRo">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="makeLayoutOrientationVertical:" target="klO-m3-n5X" id="klC-Wt-iIL"/>
+                            </connections>
                         </menuItem>
                     </items>
                 </menu>

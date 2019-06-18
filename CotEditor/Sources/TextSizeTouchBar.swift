@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         
         // observe scale for slider
         self.scaleObserver = textView.observe(\.scale) { [unowned self] (textView, _) in
+            guard self.isVisible else { return }
             guard let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return assertionFailure() }
             
             item.slider.doubleValue = Double(textView.scale)

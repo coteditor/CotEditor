@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -90,6 +90,9 @@
 "Invalid regular expression" = "Espressione regolare non valida";
 "Empty find string" = "Stringa di ricerca vuota";
 "Input text to find." = "Inserire il testo da cercare.";
+
+// accessibility announcement
+"Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -549,6 +552,7 @@
 "The parent directory name of dropped file." = "Nome della cartella superiore del file trascinato.";
 "(If the dropped file is an image) image width." = "Larghezza dell’immagine (se il file trascinato è un’immagine).";
 "(If the dropped file is an image) image height." = "Altezza dell’immagine (se il file trascinato è un’immagine).";
+"(If the dropped file is a text file) file content." = "(Se il file rilasciato è di testo) contenuto del file.";
 
 
 

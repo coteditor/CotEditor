@@ -149,16 +149,14 @@ final class SortPatternTabViewController: NSTabViewController {
             viewController.representedObject == nil
             else { return }
         
-        switch tabView.indexOfTabViewItem(item) {
-        case 0:
-            viewController.representedObject = EntireLineSortPattern()
-        case 1:
-            viewController.representedObject = CSVSortPattern()
-        case 2:
-            viewController.representedObject = RegularExpressionSortPattern()
-        default:
-            preconditionFailure()
-        }
+        viewController.representedObject = {
+            switch tabView.indexOfTabViewItem(item) {
+            case 0: return EntireLineSortPattern()
+            case 1: return CSVSortPattern()
+            case 2: return RegularExpressionSortPattern()
+            default: preconditionFailure()
+            }
+        }()
     }
     
 }

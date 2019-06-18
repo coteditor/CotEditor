@@ -48,7 +48,7 @@ extension NSLayoutManager {
     /// return range of given attribute if the location is in it, otherwise nil.
     func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
         
-        let range = range ?? NSRange(location: 0, length: self.attributedString().length)
+        let range = range ?? self.attributedString().range
         var effectiveRange = NSRange.notFound
         
         guard self.temporaryAttribute(attrName, atCharacterIndex: location, longestEffectiveRange: &effectiveRange, in: range) != nil else { return nil }
@@ -78,12 +78,14 @@ extension NSLayoutManager {
     
     
     /// check if at least one temporary attribute for given attribute key exists
-    func hasTemporaryAttribute(for attrName: NSAttributedString.Key) -> Bool {
+    func hasTemporaryAttribute(for attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard let storage = self.textStorage else { return false }
         
+        let range = range ?? storage.range
+        
         var found = false
-        self.enumerateTemporaryAttribute(attrName, in: NSRange(..<storage.length)) { (_, _, stop) in
+        self.enumerateTemporaryAttribute(attrName, in: range) { (_, _, stop) in
             stop = true
             found = true
         }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,13 +28,11 @@ import AppKit
 extension NSDocument {
     
     /// show Share Service menu (invoked by a toolbar item)
-    @IBAction func showShareMenu(_ sender: Any?) {
-        
-        guard let view = sender as? NSView else { return }
+    @IBAction func showShareMenu(_ sender: NSView) {
         
         let sharingServicePicker = NSSharingServicePicker(items: [self])
         
-        sharingServicePicker.show(relativeTo: view.bounds, of: view, preferredEdge: .minY)
+        sharingServicePicker.show(relativeTo: sender.bounds, of: sender, preferredEdge: .minY)
     }
     
 }

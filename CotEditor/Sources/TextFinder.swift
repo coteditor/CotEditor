@@ -28,7 +28,6 @@ import Cocoa
 @objc protocol TextFinderClientProvider: AnyObject {
     
     func textFinderClient() -> NSTextView?
-    
 }
 
 
@@ -37,7 +36,6 @@ protocol TextFinderDelegate: AnyObject {
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView)
-    
 }
 
 
@@ -47,7 +45,6 @@ struct TextFindResult {
     var lineNumber: Int
     var attributedLineString: NSAttributedString
     var inlineRange: NSRange
-    
 }
 
 
@@ -55,7 +52,6 @@ private struct HighlightItem {
     
     var range: NSRange
     var color: NSColor
-    
 }
 
 
@@ -438,8 +434,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
         
-        let result = textFind.find(forward: forward,
-                                   isWrap: UserDefaults.standard[.findIsWrap])
+        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap])
         
         // found feedback
         if let range = result.range {
@@ -447,11 +442,18 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
             
-            if result.wrapped, let view = textView.enclosingScrollView?.superview {
-                let hudController = HUDController.instantiate(storyboard: "HUDView")
-                hudController.symbol = .wrap
-                hudController.isReversed = !forward
-                hudController.show(in: view)
+            if result.wrapped {
+                if let view = textView.enclosingScrollView?.superview {
+                    let hudController = HUDController.instantiate(storyboard: "HUDView")
+                    hudController.symbol = .wrap
+                    hudController.isReversed = !forward
+                    hudController.show(in: view)
+                }
+                
+                if let window = NSApp.mainWindow {
+                    NSAccessibility.post(element: window, notification: .announcementRequested,
+                                         userInfo: [.announcement: "Search wrapped.".localized])
+                }
             }
         } else {
             NSSound.beep()

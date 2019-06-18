@@ -55,7 +55,8 @@ final class ATSTypesetter: NSATSTypesetter {
         
         if action.contains(.zeroAdvancementAction),
             let character = (self.attributedString?.string as NSString?)?.character(at: charIndex),
-            !UTF16.isTrailSurrogate(character)  // ignore one of surrogate
+            let unicode = Unicode.Scalar(character),
+            unicode.properties.generalCategory == .control
         {
             return .whitespaceAction  // -> Then, the glyph width can be modified on `boundingBox(forControlGlyphAt:...)`.
         }

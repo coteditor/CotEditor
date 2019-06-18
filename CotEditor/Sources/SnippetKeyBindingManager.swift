@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -120,8 +120,10 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     /// return snippet string for key binding if exists
     func snippet(keyEquivalent: String?, modifierMask: NSEvent.ModifierFlags) -> Snippet? {
         
-        guard let keyEquivalent = keyEquivalent else { return nil }
-        guard !modifierMask.contains(.deviceIndependentFlagsMask) else { return nil }  // check modifier key is pressed  (just in case)
+        guard
+            let keyEquivalent = keyEquivalent,
+            !modifierMask.contains(.deviceIndependentFlagsMask)  // check modifier key is pressed  (just in case)
+            else { return nil }
         
         // selector string for the key press
         let shortcut = Shortcut(modifierMask: modifierMask, keyEquivalent: keyEquivalent)
@@ -169,7 +171,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         let regex = try! NSRegularExpression(pattern: "^insertCustomText_([0-9]{2}):$")
         let result = regex.firstMatch(in: selectorString, range: selectorString.nsRange)
         
-        guard let numberRange = result?.range(at: 1), numberRange.location != NSNotFound else { return nil }
+        guard let numberRange = result?.range(at: 1) else { return nil }
         
         return Int((selectorString as NSString).substring(with: numberRange))
     }

@@ -203,7 +203,7 @@ extension Commenting {
         
         if let delimiter = self.inlineCommentDelimiter {
             let predicate: ((String) -> Bool) = { $0.hasPrefix(delimiter) }
-            let lines = targets.flatMap { $0.components(separatedBy: "\n") }
+            let lines = targets.flatMap { $0.components(separatedBy: .newlines) }
             
             if partly ? lines.contains(where: predicate) : lines.allSatisfy(predicate) {
                 return true
@@ -222,7 +222,7 @@ extension Commenting {
         
         return (self.rangesForUserTextChange ?? [])
             .map { $0.rangeValue }
-            .map { fromLineHead ? self.string.lineRange(for: $0, excludingLastLineEnding: true) : $0 }
+            .map { fromLineHead ? self.string.lineContentsRange(for: $0) : $0 }
             .unique
     }
     

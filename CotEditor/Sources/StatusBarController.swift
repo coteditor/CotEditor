@@ -62,6 +62,8 @@ final class StatusBarController: NSViewController {
         self.view.setAccessibilityLabel("status bar".localized)
         
         // observe change in defaults
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers = []
         let editorDefaultKeys: [DefaultKeys] = [
             .showStatusBarLines,
             .showStatusBarChars,
@@ -177,7 +179,7 @@ final class StatusBarController: NSViewController {
         // truncate tail
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        status.addAttribute(.paragraphStyle, value: paragraphStyle, range: status.string.nsRange)
+        status.addAttribute(.paragraphStyle, value: paragraphStyle, range: status.range)
         
         self.editorStatus = status
     }

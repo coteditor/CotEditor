@@ -67,22 +67,31 @@ extension String {
 extension StringProtocol where Self.Index == String.Index {
     
     /// range of the line containing a given index
-    func lineRange(at index: Index, excludingLastLineEnding: Bool = false) -> Range<Index> {
+    func lineRange(at index: Index) -> Range<Index> {
         
-        return self.lineRange(for: index..<index, excludingLastLineEnding: excludingLastLineEnding)
+        return self.lineRange(for: index..<index)
+    }
+    
+    /// range of the line containing a given index
+    func lineContentsRange(at index: Index) -> Range<Index> {
+        
+        return self.lineContentsRange(for: index..<index)
     }
     
     
-    /// line range adding ability to exclude last line ending character if exists
-    func lineRange(for range: Range<Index>, excludingLastLineEnding: Bool) -> Range<Index> {
+    /// Return line range excluding last line ending character if exists.
+    ///
+    /// - Parameters:
+    ///   - range: A range within the receiver.
+    /// - Returns: The range of characters representing the line or lines containing a given range.
+    func lineContentsRange(for range: Range<Index>) -> Range<Index> {
         
-        let lineRange = self.lineRange(for: range)
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: range)
         
-        guard excludingLastLineEnding,
-            let index = self.index(lineRange.upperBound, offsetBy: -1, limitedBy: lineRange.lowerBound),
-            self[index] == "\n" else { return lineRange }
-        
-        return lineRange.lowerBound..<self.index(before: lineRange.upperBound)
+        return start..<contentsEnd
     }
     
     

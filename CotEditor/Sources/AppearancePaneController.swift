@@ -621,6 +621,16 @@ extension AppearancePaneController: NSFontChanging {
     
     
     
+    // MARK: Font Changing Methods
+    
+    /// restrict items in the font panel toolbar
+    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+        
+        return [.collection, .face, .size]
+    }
+    
+    
+    
     // MARK: Action Messages
     
     /// show font panel

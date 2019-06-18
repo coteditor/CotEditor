@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -90,6 +90,9 @@
 "Invalid regular expression" = "无效的正则表达式";
 "Empty find string" = "空的搜索字符串";
 "Input text to find." = "输入文本以查找。";
+
+// accessibility announcement
+"Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -549,6 +552,7 @@
 "The parent directory name of dropped file." = "拖拽的文件的上级目录";
 "(If the dropped file is an image) image width." = "图片宽度（如果拖拽文件是图像）";
 "(If the dropped file is an image) image height." = "图片高度（如果拖拽文件是图像）";
+"(If the dropped file is a text file) file content." = "文件内容（如果拖拽文件是文本文件）";
 
 
 

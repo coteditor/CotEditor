@@ -38,7 +38,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         didSet {
             guard let textStorage = self.textStorage else { return assertionFailure() }
             
-            let wholeRange = NSRange(..<textStorage.length)
+            let wholeRange = textStorage.range
             
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
@@ -152,6 +152,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             guard let textView = self.firstTextView else { return }
             
+            if key == .showOtherInvisibleChars {
+                self.invalidateLayout(forCharacterRange: self.attributedString().range, actualCharacterRange: nil)
+            }
             textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: (key != .showOtherInvisibleChars))
         }
     }
@@ -197,7 +200,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         // draw invisibles
         if self.showsInvisibles,
             let context = NSGraphicsContext.current?.cgContext,
-            let string = self.textStorage?.string
+            let string = self.textStorage?.string as NSString?
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
             let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
@@ -215,7 +218,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let codeUnit = (string as NSString).character(at: charIndex)
+                let codeUnit = string.character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine
@@ -271,18 +274,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     }
     
     
-    /// textStorage did update
-    override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
-        
-        // invalidate wrapping line indent in editRange if needed
-        if editMask.contains(.editedCharacters) {
-            self.invalidateIndent(in: newCharRange)
-        }
-        
-        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
-    }
-    
-    
     /// fill background rectangles with a color
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
@@ -323,76 +314,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     }
     
     
-    /// invalidate indent of wrapped lines
-    func invalidateIndent(in range: NSRange) {
-        
-        assert(Thread.isMainThread)
-        
-        guard UserDefaults.standard[.enablesHangingIndent] else { return }
-        
-        guard
-            let textStorage = self.textStorage,
-            let textView = self.firstTextView
-            else { return assertionFailure() }
-        
-        // only on focused editor
-        if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }
-        
-        let string = textStorage.string as NSString
-        let lineRange = string.lineRange(for: range)
-        
-        guard !lineRange.isEmpty else { return }
-        
-        let hangingIndent = self.spaceWidth * CGFloat(UserDefaults.standard[.hangingIndentWidth])
-        let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
-        
-        // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
-        let defaultParagraphStyle = textView.defaultParagraphStyle ?? .default
-        let indentAttributes: [NSAttributedString.Key: Any] = {
-            let typingParagraphStyle = (textView.typingAttributes[.paragraphStyle] as? NSParagraphStyle)?.mutable
-            typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
-            
-            return [.font: self.textFont,
-                    .paragraphStyle: typingParagraphStyle,
-                ].compactMapValues { $0 }
-        }()
-        
-        var cache = [String: CGFloat]()
-        
-        // process line by line
-        textStorage.beginEditing()
-        string.enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
-            guard let substring = substring else { return }
-            
-            var indent = hangingIndent
-            
-            // add base indent
-            let baseIndentRange = regex.rangeOfFirstMatch(in: substring, range: substring.nsRange)
-            if baseIndentRange.location != NSNotFound {
-                let indentString = (substring as NSString).substring(with: baseIndentRange)
-                if let width = cache[indentString] {
-                    indent += width
-                } else {
-                    let width = NSAttributedString(string: indentString, attributes: indentAttributes).size().width
-                    cache[indentString] = width
-                    indent += width
-                }
-            }
-            
-            // apply new indent only if needed
-            let paragraphStyle = textStorage.attribute(.paragraphStyle, at: substringRange.location, effectiveRange: nil) as? NSParagraphStyle
-            if indent != paragraphStyle?.headIndent {
-                let mutableParagraphStyle = (paragraphStyle ?? defaultParagraphStyle).mutable
-                mutableParagraphStyle.headIndent = indent
-                
-                textStorage.addAttribute(.paragraphStyle, value: mutableParagraphStyle, range: substringRange)
-            }
-        }
-        
-        textStorage.endEditing()
-    }
-    
-    
     
     // MARK: Private Methods
     
@@ -414,14 +335,14 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
-        let spaceFont = self.textFont ?? font
+        let textFont = self.textFont ?? font
         let fullWidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
         
-        return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
+        return InvisibleLines(space: self.invisibleLine(.space, font: textFont),
                               tab: self.invisibleLine(.tab, font: font),
                               newLine: self.invisibleLine(.newLine, font: font),
                               fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
-                              replacement: self.invisibleLine(.replacement, font: fullWidthFont))
+                              replacement: self.invisibleLine(.replacement, font: textFont))
     }
     
     

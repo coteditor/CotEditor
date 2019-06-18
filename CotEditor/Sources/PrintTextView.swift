@@ -241,7 +241,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             
             // apply to current string
             if let textStorage = self.textStorage {
-                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(..<textStorage.length))
+                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: textStorage.range)
             }
             
             // set font also to layout manager

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -89,6 +89,9 @@
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 "Empty find string" = "Leerer Suchbegriff";
 "Input text to find." = "Gib den zu findenden Text ein.";
+
+// accessibility announcement
+"Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -548,6 +551,7 @@
 "The parent directory name of dropped file." = "Der übergeordnete Ordnername der abgelegten Datei.";
 "(If the dropped file is an image) image width." = "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).";
 "(If the dropped file is an image) image height." = "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).";
+"(If the dropped file is a text file) file content." = "(nur wenn die abgelegte Datei eine Textdatai ist) Der Inhalt.";
 
 
 

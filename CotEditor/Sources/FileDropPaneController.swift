@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,6 +54,8 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
             menu.addItems(for: FileDropComposer.Token.pathTokens, target: self.formatTextView)
+            menu.addItem(.separator())
+            menu.addItems(for: FileDropComposer.Token.textTokens, target: self.formatTextView)
             menu.addItem(.separator())
             menu.addItems(for: FileDropComposer.Token.imageTokens, target: self.formatTextView)
         }
