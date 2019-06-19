@@ -269,6 +269,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// update state of text formatting NSTouchBarItems such as NSTouchBarItemIdentifierTextStyle and NSTouchBarItemIdentifierTextAlignment
+    override func updateTextTouchBarItems() {
+        
+        // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
+        //   -> This workaround must be applicable to EditorTextView because this method
+        //      seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
+//        super.updateTextTouchBarItems()
+    }
+    
+    
     /// update cursor (invoked when cursor needs to update without moving mouse)
     override func cursorUpdate(with event: NSEvent) {
         

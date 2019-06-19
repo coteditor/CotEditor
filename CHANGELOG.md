@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.7 (unreleased)
+--------------------------
+
+### Fixes
+
+- Workaround the issue where an editor resizing required too long time.
+
+
+
 3.7.6 (355)
 --------------------------
 
