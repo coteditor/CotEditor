@@ -57,9 +57,11 @@ final class DocumentWindowController: NSWindowController {
         // -> Do not use "document" for autosave name because somehow windows forget the size with that name (2018-09)
         self.windowFrameAutosaveName = "Document Window"
         
+        (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]
+        
         // observe opacity setting change
         self.windowAlphaObserver?.invalidate()
-        self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha, options: [.initial, .new]) { [weak self] change in
+        self.windowAlphaObserver = UserDefaults.standard.observe(key: .windowAlpha, options: [.new]) { [weak self] change in
             (self?.window as? DocumentWindow)?.backgroundAlpha = change.new!
         }
     }

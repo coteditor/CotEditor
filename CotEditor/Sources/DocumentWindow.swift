@@ -95,6 +95,15 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Window Methods
     
+    /// keys to be restored from the last session
+    override class var restorableStateKeyPaths: [String] {
+        
+        return super.restorableStateKeyPaths + [
+            #keyPath(backgroundAlpha),
+        ]
+    }
+    
+    
     /// notify about opacity change
     override var isOpaque: Bool {
         

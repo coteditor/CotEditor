@@ -5,6 +5,11 @@ Change Log
 3.7.7 (unreleased)
 --------------------------
 
+### Improvements
+
+- Keep last opacity state of restored document windows.
+
+
 ### Fixes
 
 - Fix an issue where find results was unwantedly collapsed when resizing the find panel.
