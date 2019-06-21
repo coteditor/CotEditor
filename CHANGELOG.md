@@ -13,6 +13,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where find results was unwantedly collapsed when resizing the find panel.
+- Fix an issue where hanging indent was not applied to printed document.
 - Workaround the issue where an editor resizing required too long time.
 - Fix an possible crash in Appearance preferences pane.
 - Improve stability.

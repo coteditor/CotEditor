@@ -72,15 +72,23 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         self.lineHeight = UserDefaults.standard[.lineHeight]
         
-        // dirty workaround to obtain auto-generated textContainer (2016-07 on OS X 10.11)
-        // cf. https://stackoverflow.com/questions/34616892/
-        let dummyTextView = NSTextView()
+        // setup textContainer
+        let textContainer = TextContainer()
+        textContainer.widthTracksTextView = true
+        textContainer.isHangingIndentEnabled = UserDefaults.standard[.enablesHangingIndent]
+        textContainer.hangingIndentWidth = UserDefaults.standard[.hangingIndentWidth]
         
-        super.init(frame: .zero, textContainer: dummyTextView.textContainer)
+        // setup textView components
+        let textStorage = NSTextStorage()
+        let layoutManager = LayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        layoutManager.addTextContainer(textContainer)
+        
+        super.init(frame: .zero, textContainer: textContainer)
         
         // specify text container padding
         // -> If padding is changed while printing, print area can be cropped due to text wrapping
-        self.textContainer?.lineFragmentPadding = self.lineFragmentPadding
+        self.textContainer!.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
         
@@ -88,10 +96,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
             : [:]
         
-        // replace layoutManager
-        let layoutManager = LayoutManager()
-        layoutManager.delegate = self
-        self.textContainer!.replaceLayoutManager(layoutManager)
+        self.layoutManager!.delegate = self
     }
     
     
