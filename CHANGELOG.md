@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where find results was unwantedly collapsed when resizing the find panel.
 - Workaround the issue where an editor resizing required too long time.
 
 
