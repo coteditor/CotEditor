@@ -48,6 +48,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     deinit {
         self.appearanceObserver?.invalidate()
         self.defaultsObservers.forEach { $0.invalidate() }
+        NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: nil)
     }
     
     

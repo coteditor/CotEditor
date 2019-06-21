@@ -88,6 +88,7 @@ final class DocumentWindow: NSWindow {
     
     deinit {
         self.appearanceObserver?.invalidate()
+        NotificationCenter.default.removeObserver(self)
     }
     
     
