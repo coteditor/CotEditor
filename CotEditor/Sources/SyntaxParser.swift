@@ -323,7 +323,9 @@ extension SyntaxParser {
             
             DispatchQueue.main.async { [progress = operation.progress] in
                 defer {
-                    NotificationCenter.default.removeObserver(modificationObserver)
+                    if let observer = modificationObserver {
+                        NotificationCenter.default.removeObserver(observer)
+                    }
                     completionHandler()
                 }
                 
