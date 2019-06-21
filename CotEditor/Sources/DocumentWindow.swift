@@ -75,20 +75,11 @@ final class DocumentWindow: NSWindow {
         self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
             self?.invalidateTitlebarOpacity()
         }
-        
-        // observe toggling fullscreen mode
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterFullScreenNotification, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: NSWindow.willExitFullScreenNotification, object: self)
-        
-        // observe toggling Versions browsing
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterOpaqueMode), name: NSWindow.willEnterVersionBrowserNotification, object: self)
-        NotificationCenter.default.addObserver(self, selector: #selector(willExitOpaqueMode), name: NSWindow.willExitVersionBrowserNotification, object: self)
     }
     
     
     deinit {
         self.appearanceObserver?.invalidate()
-        NotificationCenter.default.removeObserver(self)
     }
     
     
@@ -151,23 +142,6 @@ final class DocumentWindow: NSWindow {
         }
         
         return super.validateMenuItem(menuItem)
-    }
-    
-    
-    
-    // MARK: Notifications
-    
-    /// entering Versions
-    @objc private func willEnterOpaqueMode(_ notification: Notification) {
-        
-        self.isOpaque = true
-    }
-    
-    
-    /// exiting Versions
-    @objc private func willExitOpaqueMode(_ notification: Notification) {
-        
-        self.isOpaque = (self.backgroundAlpha == 1)
     }
     
     

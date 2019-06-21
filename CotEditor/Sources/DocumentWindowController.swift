@@ -130,4 +130,42 @@ extension DocumentWindowController: NSUserInterfaceValidations {
 
 
 
-extension DocumentWindowController: NSWindowDelegate { }
+extension DocumentWindowController: NSWindowDelegate {
+    
+    /// MARK: Window Delegate
+    
+    func windowWillEnterFullScreen(_ notification: Notification) {
+        
+        self.window?.isOpaque = true
+    }
+    
+    
+    func windowWillEnterVersionBrowser(_ notification: Notification) {
+        
+        self.window?.isOpaque = true
+    }
+    
+    
+    func windowWillExitFullScreen(_ notification: Notification) {
+        
+        self.restoreWindowOpacity()
+    }
+    
+    
+    func windowWillExitVersionBrowser(_ notification: Notification) {
+        
+        self.restoreWindowOpacity()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func restoreWindowOpacity() {
+        
+        guard let window = self.window as? DocumentWindow else { return }
+        
+        window.isOpaque = (window.backgroundAlpha == 1)
+    }
+    
+}
