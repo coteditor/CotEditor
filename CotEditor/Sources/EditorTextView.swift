@@ -166,6 +166,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         layoutManager.textFont = font
         layoutManager.usesAntialias = defaults[.shouldAntialias]
         
+        self.ligature = defaults[.ligature] ? .standard : .none
         self.invalidateDefaultParagraphStyle()
         
         // observe change in defaults
@@ -1537,6 +1538,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             .enableSmartIndent,
             .balancesBrackets,
             .shouldAntialias,
+            .ligature,
             .smartInsertAndDelete,
             .enableSmartQuotes,
             .enableSmartDashes,
@@ -1576,6 +1578,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case .shouldAntialias:
                 self.usesAntialias = new as! Bool
+                
+            case .ligature:
+                self.ligature = (new as! Bool) ? .standard : .none
                 
             case .smartInsertAndDelete:
                 self.smartInsertDeleteEnabled = new as! Bool

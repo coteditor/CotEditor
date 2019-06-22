@@ -31,6 +31,8 @@
 "3289.title" = "選択...";
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
 "3290.title" = "アンチエイリアス適用";
+/* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
+"g3S-3v-6ZA.title" = "リガチャ";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "行の高さ:";

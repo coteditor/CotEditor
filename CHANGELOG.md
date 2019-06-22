@@ -5,6 +5,11 @@ Change Log
 3.7.7 (unreleased)
 --------------------------
 
+### New Features
+
+- Add a new option to the Appearance pane to disable ligatures.
+
+
 ### Improvements
 
 - Keep last opacity state of restored document windows.

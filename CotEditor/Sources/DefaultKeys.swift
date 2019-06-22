@@ -67,6 +67,7 @@ extension DefaultKeys {
     static let fontName = DefaultKey<String>("fontName")
     static let fontSize = DefaultKey<CGFloat>("fontSize")
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
+    static let ligature = DefaultKey<Bool>("ligature")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
     static let cursorType = DefaultKey<CursorType>("cursorType")

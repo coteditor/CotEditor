@@ -32,6 +32,8 @@
 "3289.title" = "Select…";
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
 "3290.title" = "Anti-aliasing";
+/* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
+"g3S-3v-6ZA.title" = "Ligature";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Altezza riga:";

@@ -66,6 +66,7 @@ struct DefaultSettings {
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
         .fontSize: NSFont.systemFontSize,
         .shouldAntialias: true,
+        .ligature: true,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
         .cursorType: CursorType.bar.rawValue,
