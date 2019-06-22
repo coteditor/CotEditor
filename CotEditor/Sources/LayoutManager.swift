@@ -37,6 +37,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         
         didSet {
             guard let textStorage = self.textStorage else { return assertionFailure() }
+            guard showsInvisibles != oldValue else { return }
             
             let wholeRange = textStorage.range
             
