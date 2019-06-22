@@ -54,7 +54,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Private Properties
     
-    private var lineHeight: CGFloat
+    private let tabWidth: Int
+    private let lineHeight: CGFloat
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
     private let dateFormatter: DateFormatter
@@ -70,6 +71,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         self.dateFormatter = DateFormatter()
         self.dateFormatter.dateFormat = UserDefaults.standard[.headerFooterDateFormat]
         
+        self.tabWidth = UserDefaults.standard[.tabWidth]
         self.lineHeight = UserDefaults.standard[.lineHeight]
         
         // setup textContainer
@@ -237,10 +239,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         willSet {
             // set tab width
             let paragraphStyle = NSParagraphStyle.default.mutable
-            let tabWidth = UserDefaults.standard[.tabWidth]
             
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(tabWidth) * (newValue?.spaceWidth ?? 0)
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * (newValue?.spaceWidth ?? 0)
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             
@@ -303,25 +304,18 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             }
         }()
         
-        // set theme
+        // create theme
         assert(settings[.theme] != nil)
-        let lastThemeName = self.theme?.name
         let themeName = (settings[.theme] as? String) ?? ThemeName.blackAndWhite
-        let theme = ThemeManager.shared.setting(name: themeName)
-        if let theme = theme {
-            self.theme = theme
-            self.textColor = theme.text.color
-            self.backgroundColor = theme.background.color
-            layoutManager.invisiblesColor = theme.invisibles.color
-            
-        } else {  // black and white
-            self.theme = nil
-            self.textColor = .textColor
-            self.backgroundColor = .textBackgroundColor
-            layoutManager.invisiblesColor = .secondaryLabelColor
-        }
+        let theme = ThemeManager.shared.setting(name: themeName)  // nil for Black and White
         
-        guard lastThemeName != theme?.name else { return }
+        guard self.theme?.name != theme?.name else { return }
+        
+        // set theme
+        self.theme = theme
+        self.textColor = theme?.text.color ?? .textColor
+        self.backgroundColor = theme?.background.color ?? .textBackgroundColor  // expensive task
+        layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
         // perform syntax highlight
         weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
@@ -414,29 +408,23 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     /// return attributes for header/footer string
     private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedString.Key: Any] {
+        
+        let font = NSFont.userFont(ofSize: self.headerFooterFontSize)
     
         let paragraphStyle = NSParagraphStyle.default.mutable
-        
-        // alignment for two lines
+        paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.alignment = alignment.textAlignment
         
-        // tab stops for double-sided alignment (imitation of [super pageHeader])
+        // tab stops for double-sided alignment (imitation of super.pageHeader)
         if let printInfo = NSPrintOperation.current?.printInfo {
-            let rightTabLocation = printInfo.paperSize.width - printInfo.topMargin / 2
-            paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: rightTabLocation / 2),
-                                       NSTextTab(type: .rightTabStopType, location: rightTabLocation)]
+            let xMax = printInfo.paperSize.width - printInfo.topMargin / 2
+            paragraphStyle.tabStops = [NSTextTab(type: .centerTabStopType, location: xMax / 2),
+                                       NSTextTab(type: .rightTabStopType, location: xMax)]
         }
         
-        // line break mode to truncate middle
-        paragraphStyle.lineBreakMode = .byTruncatingMiddle
-        
-        // font
-        guard let font = NSFont.userFont(ofSize: self.headerFooterFontSize) else {
-            return [.paragraphStyle: paragraphStyle]
-        }
-        
-        return [.paragraphStyle: paragraphStyle,
-                .font: font]
+        return [.font: font,
+                .paragraphStyle: paragraphStyle]
+            .compactMapValues { $0 }
     }
     
     
