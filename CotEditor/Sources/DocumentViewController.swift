@@ -678,10 +678,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle if antialias text in text view
     @IBAction func toggleAntialias(_ sender: Any?) {
         
-        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
-        
         for viewController in self.editorViewControllers {
-            viewController.textView?.usesAntialias = !usesAntialias
+            viewController.textView?.usesAntialias.toggle()
         }
     }
     
