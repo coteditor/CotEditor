@@ -224,6 +224,8 @@
 "574.title" = "Auf Standard zurücksetzen";
 /* Class = "NSMenuItem"; title = "Anti-aliasing"; ObjectID = "745"; */
 "745.title" = "Text glätten";
+/* Class = "NSMenuItem"; title = "Ligatures"; ObjectID = "viH-Eo-wKz"; */
+"viH-Eo-wKz.title" = "Ligaturen";
 
 /* Class = "NSMenuItem"; title = "Tab Width"; ObjectID = "djM-fI-MkN"; */
 "djM-fI-MkN.title" = "Tabulatorbreite";

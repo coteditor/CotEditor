@@ -286,6 +286,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         case #selector(toggleAntialias)?:
             (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
             
+        case #selector(toggleLigatures)?:
+            (item as? StatableItem)?.state = (self.focusedTextView?.ligature != .none) ? .on : .off
+            
         case #selector(toggleAutoTabExpand)?:
             (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
             
@@ -680,6 +683,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         for viewController in self.editorViewControllers {
             viewController.textView?.usesAntialias.toggle()
+        }
+    }
+    
+    
+    /// toggle ligature mode in text view
+    @IBAction func toggleLigatures(_ sender: Any?) {
+        
+        for viewController in self.editorViewControllers {
+            guard let textView = viewController.textView else { continue }
+            
+            textView.ligature = (textView.ligature == .none) ? .standard : .none
         }
     }
     
