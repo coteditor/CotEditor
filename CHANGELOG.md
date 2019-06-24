@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Keep last opacity state of restored document windows.
+- Update behavior of Opt+Arrow shortcut series. 
 
 
 ### Fixes

@@ -140,7 +140,7 @@ extension EditorTextView {
         //    and it doesn't stop at punctuation marks, such as `.` and `:` (2019-06).
         
         self.moveCursors(affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0.lowerBound, forward: self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0.lowerBound, forward: self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -151,7 +151,7 @@ extension EditorTextView {
         // find word boundary by ownself (cf. moveWordLeft(_:))
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0), delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -162,7 +162,7 @@ extension EditorTextView {
         // find word boundary by ownself (cf. moveWordLeft(_:))
         
         self.moveCursors(affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -173,7 +173,7 @@ extension EditorTextView {
         // find word boundary by ownself (cf. moveWordLeft(_:))
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0), delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
         }
     }
     
@@ -359,7 +359,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveWordBackward(sender) }
         
         self.moveCursors(affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0.lowerBound, forward: false, delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0.lowerBound, forward: false, delimiters: .additionalWordSeparators)
         }
     }
     
@@ -370,7 +370,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveWordBackwardAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
-            self.textStorage!.nextWord(from: $0, forward: false, delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0, forward: false, delimiters: .additionalWordSeparators)
         }
     }
     
@@ -381,7 +381,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveWordForward(sender) }
         
         self.moveCursors(affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0.upperBound, forward: true, delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0.upperBound, forward: true, delimiters: .additionalWordSeparators)
         }
     }
     
@@ -392,7 +392,7 @@ extension EditorTextView {
         guard self.hasMultipleInsertions else { return super.moveWordForwardAndModifySelection(sender) }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
-            self.textStorage!.nextWord(from: $0, forward: true, delimiters: .punctuationCharacters)
+            self.textStorage!.nextWord(from: $0, forward: true, delimiters: .additionalWordSeparators)
         }
     }
     
@@ -581,6 +581,13 @@ extension EditorTextView {
         self.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
     }
     
+}
+
+
+
+private extension CharacterSet {
+    
+    static let additionalWordSeparators = CharacterSet(charactersIn: ".")
 }
 
 
