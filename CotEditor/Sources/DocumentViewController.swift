@@ -112,11 +112,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // observe appearance change for theme toggle
         self.appearanceObserver?.invalidate()
-        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (view, _) in
             guard
-                self.view.window != nil,
+                view.window != nil,
                 let currentThemeName = self.theme?.name,
-                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: self.view.effectiveAppearance.isDark)
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: view.effectiveAppearance.isDark)
                 else { return }
             
             self.setTheme(name: themeName)
