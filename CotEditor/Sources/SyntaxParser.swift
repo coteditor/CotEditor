@@ -297,11 +297,16 @@ extension SyntaxParser {
         
         // give up if the editor's string is changed from the parsed string
         let isModified = Atomic(false)
-        let modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
+        weak var modificationObserver: NSObjectProtocol?
+        modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
             guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
             
             isModified.mutate { $0 = true }
             operation?.cancel()
+            
+            if let observer = modificationObserver {
+                NotificationCenter.default.removeObserver(observer)
+            }
         }
         
         operation.completionBlock = { [weak self, weak operation] in
@@ -310,13 +315,17 @@ extension SyntaxParser {
                 let highlights = operation.highlights,
                 !operation.isCancelled
                 else {
-                    NotificationCenter.default.removeObserver(modificationObserver)
+                    if let observer = modificationObserver {
+                        NotificationCenter.default.removeObserver(observer)
+                    }
                     return completionHandler()
                 }
             
             DispatchQueue.main.async { [progress = operation.progress] in
                 defer {
-                    NotificationCenter.default.removeObserver(modificationObserver)
+                    if let observer = modificationObserver {
+                        NotificationCenter.default.removeObserver(observer)
+                    }
                     completionHandler()
                 }
                 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -543,6 +543,16 @@
                                     <action selector="updateCursorTypeSetting:" target="WBM-EY-ENr" id="Ai3-zA-evF"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4cD-mR-vJc">
+                                <rect key="frame" x="215" y="542" width="79" height="18"/>
+                                <buttonCell key="cell" type="check" title="Ligatures" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="g3S-3v-6ZA">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <binding destination="IE5-39-jAY" name="value" keyPath="values.ligature" id="BcZ-Pb-BN1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="112-i3-na3" firstAttribute="baseline" secondItem="uyp-Xk-mRF" secondAttribute="baseline" id="0ZB-56-kAu"/>
@@ -550,6 +560,7 @@
                             <constraint firstItem="iqn-kw-8py" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="4bD-zo-hEC" secondAttribute="trailing" constant="8" symbolic="YES" id="1pA-ty-2Q0"/>
                             <constraint firstItem="icl-ar-8yG" firstAttribute="centerY" secondItem="wT1-jD-6aC" secondAttribute="centerY" id="2Da-qS-ndH"/>
                             <constraint firstItem="nqX-jr-n2L" firstAttribute="baseline" secondItem="REw-fm-8pq" secondAttribute="baseline" id="2nt-4v-dcz"/>
+                            <constraint firstItem="4cD-mR-vJc" firstAttribute="leading" secondItem="I9r-vj-2gy" secondAttribute="trailing" constant="20" id="3ap-7B-c2c"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I9r-vj-2gy" secondAttribute="trailing" constant="20" symbolic="YES" id="3jM-oH-o1R"/>
                             <constraint firstItem="nMR-L3-OOw" firstAttribute="top" secondItem="QiH-I6-BXd" secondAttribute="top" id="560-FH-NJM"/>
                             <constraint firstItem="Yzg-b2-Ep1" firstAttribute="leading" secondItem="Cq3-kO-Ned" secondAttribute="trailing" constant="6" symbolic="YES" id="58C-V5-ZWQ"/>
@@ -576,6 +587,7 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="I05-Ks-5uR" secondAttribute="trailing" constant="20" symbolic="YES" id="Jgr-0Z-HNG"/>
                             <constraint firstItem="ywA-ws-Ayf" firstAttribute="top" secondItem="nqX-jr-n2L" secondAttribute="bottom" constant="9" id="JsK-EY-lgT"/>
                             <constraint firstItem="uyp-Xk-mRF" firstAttribute="leading" secondItem="iqn-kw-8py" secondAttribute="leading" id="KFw-Bk-2DM"/>
+                            <constraint firstItem="4cD-mR-vJc" firstAttribute="firstBaseline" secondItem="I9r-vj-2gy" secondAttribute="firstBaseline" id="O95-SU-su2"/>
                             <constraint firstItem="4bD-zo-hEC" firstAttribute="width" secondItem="REw-fm-8pq" secondAttribute="width" id="P3r-wJ-JCa"/>
                             <constraint firstItem="c80-NU-o7Z" firstAttribute="leading" secondItem="izZ-9S-QaW" secondAttribute="trailing" constant="8" symbolic="YES" id="PaT-Me-qZB"/>
                             <constraint firstItem="x9R-2Y-F6b" firstAttribute="baseline" secondItem="xAb-JZ-6Pr" secondAttribute="baseline" id="Rgk-EV-cbB"/>

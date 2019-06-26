@@ -166,6 +166,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         layoutManager.textFont = font
         layoutManager.usesAntialias = defaults[.shouldAntialias]
         
+        self.ligature = defaults[.ligature] ? .standard : .none
         self.invalidateDefaultParagraphStyle()
         
         // observe change in defaults
@@ -266,6 +267,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         super.setFrameSize(newSize)
         
         self.needsUpdateLineHighlight = true
+    }
+    
+    
+    /// update state of text formatting NSTouchBarItems such as NSTouchBarItemIdentifierTextStyle and NSTouchBarItemIdentifierTextAlignment
+    override func updateTextTouchBarItems() {
+        
+        // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
+        //   -> This workaround must be applicable to EditorTextView because this method
+        //      seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
+//        super.updateTextTouchBarItems()
     }
     
     
@@ -1527,6 +1538,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             .enableSmartIndent,
             .balancesBrackets,
             .shouldAntialias,
+            .ligature,
             .smartInsertAndDelete,
             .enableSmartQuotes,
             .enableSmartDashes,
@@ -1566,6 +1578,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case .shouldAntialias:
                 self.usesAntialias = new as! Bool
+                
+            case .ligature:
+                self.ligature = (new as! Bool) ? .standard : .none
                 
             case .smartInsertAndDelete:
                 self.smartInsertDeleteEnabled = new as! Bool

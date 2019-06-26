@@ -48,6 +48,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     deinit {
         self.appearanceObserver?.invalidate()
         self.defaultsObservers.forEach { $0.invalidate() }
+        NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: nil)
     }
     
     
@@ -111,11 +112,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // observe appearance change for theme toggle
         self.appearanceObserver?.invalidate()
-        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (_, _) in
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (view, _) in
             guard
-                self.view.window != nil,
+                view.window != nil,
                 let currentThemeName = self.theme?.name,
-                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: self.view.effectiveAppearance.isDark)
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: view.effectiveAppearance.isDark)
                 else { return }
             
             self.setTheme(name: themeName)
@@ -284,6 +285,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
         case #selector(toggleAntialias)?:
             (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
+            
+        case #selector(toggleLigatures)?:
+            (item as? StatableItem)?.state = (self.focusedTextView?.ligature != .none) ? .on : .off
             
         case #selector(toggleAutoTabExpand)?:
             (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
@@ -677,10 +681,19 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// toggle if antialias text in text view
     @IBAction func toggleAntialias(_ sender: Any?) {
         
-        guard let usesAntialias = self.focusedTextView?.usesAntialias else { return assertionFailure() }
+        for viewController in self.editorViewControllers {
+            viewController.textView?.usesAntialias.toggle()
+        }
+    }
+    
+    
+    /// toggle ligature mode in text view
+    @IBAction func toggleLigatures(_ sender: Any?) {
         
         for viewController in self.editorViewControllers {
-            viewController.textView?.usesAntialias = !usesAntialias
+            guard let textView = viewController.textView else { continue }
+            
+            textView.ligature = (textView.ligature == .none) ? .standard : .none
         }
     }
     

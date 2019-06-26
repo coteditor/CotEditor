@@ -610,6 +610,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.documentShowsInvisibles = viewController.showsInvisibles
         printView.documentShowsLineNumber = viewController.showsLineNumber
         printView.baseWritingDirection = viewController.writingDirection
+        printView.ligature = UserDefaults.standard[.ligature] ? .standard : .none
         
         // set font for printing
         printView.font = UserDefaults.standard[.setPrintFont]

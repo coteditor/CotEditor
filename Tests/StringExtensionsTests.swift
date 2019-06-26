@@ -174,15 +174,18 @@ class StringExtensionsTests: XCTestCase {
     
     func testLineRange() {
         
-        let string = "foo\nbar\n"
+        let string = "foo\n\rbar\n\r"
         
         XCTAssertEqual(string.lineContentsRange(for: string.startIndex..<string.endIndex),
                        string.startIndex..<string.index(before: string.endIndex))
         
-        XCTAssertEqual(string.lineRange(for: string.startIndex..<string.index(after: string.startIndex)),
+        XCTAssertEqual(string.lineRange(at: string.index(after: string.startIndex)),
                        string.startIndex..<string.index(string.startIndex, offsetBy: 4))
         XCTAssertEqual(string.lineContentsRange(for: string.startIndex..<string.index(after: string.startIndex)),
                        string.startIndex..<string.index(string.startIndex, offsetBy: 3))
+        
+        XCTAssertEqual((string as NSString).lineContentsRange(for: NSRange(..<1)), NSRange(..<3))
+        XCTAssertEqual((string as NSString).lineContentsRange(at: 5), NSRange(5..<8))
         
         let emptyString = ""
         let emptyRange = emptyString.startIndex..<emptyString.endIndex

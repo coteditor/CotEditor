@@ -2,6 +2,30 @@
 Change Log
 ==========================
 
+3.7.7 (358)
+--------------------------
+
+### New Features
+
+- Add a new option to the Appearance pane to disable ligatures.
+
+
+### Improvements
+
+- Keep last opacity state of restored document windows.
+- Update behavior of Opt+Arrow shortcut series. 
+
+
+### Fixes
+
+- Fix an issue where find result was unwantedly collapsed when resizing the find panel.
+- Fix an issue where hanging indent was not applied to the printed document.
+- Workaround the issue where an editor resizing required a too long time.
+- Fix a possible crash in the Appearance preferences pane.
+- Improve stability.
+
+
+
 3.7.6 (355)
 --------------------------
 

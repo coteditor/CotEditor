@@ -388,9 +388,6 @@ Gw
                                                             <action selector="smallerFont:" target="Ady-hI-5gd" id="Uds-lf-yjO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="576">
-                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                    </menuItem>
                                                     <menuItem title="Reset to Default" keyEquivalent="=" id="574">
                                                         <connections>
                                                             <action selector="resetFont:" target="Ady-hI-5gd" id="NPb-Jj-Ev0"/>
@@ -402,6 +399,11 @@ Gw
                                                     <menuItem title="Anti-aliasing" id="745">
                                                         <connections>
                                                             <action selector="toggleAntialias:" target="Ady-hI-5gd" id="TW0-Ns-jgv"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Ligatures" id="viH-Eo-wKz">
+                                                        <connections>
+                                                            <action selector="toggleLigatures:" target="Ady-hI-5gd" id="rpC-YT-9Zh"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
