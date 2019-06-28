@@ -122,6 +122,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // setup layoutManager and textContainer
         let textContainer = TextContainer()
+        textContainer.widthTracksTextView = true
         textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
         textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
         self.replaceTextContainer(textContainer)
