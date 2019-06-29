@@ -149,6 +149,7 @@ final class LineNumberView: NSView {
             .forEach { NotificationCenter.default.removeObserver($0) }
         
         self.colorObserver?.invalidate()
+        self.draggingTimer?.invalidate()
     }
     
     
