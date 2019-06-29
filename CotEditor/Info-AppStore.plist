@@ -7,8 +7,6 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array/>
 			<key>CFBundleTypeIconFile</key>
@@ -19,6 +17,8 @@
 			<string>Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.text</string>
@@ -31,8 +31,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>txt</string>
@@ -47,6 +45,8 @@
 			<string>Plain text</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.plain-text</string>
@@ -57,8 +57,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cottheme</string>
@@ -81,8 +79,6 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cotrpl</string>
@@ -105,8 +101,6 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>bib</string>
@@ -117,14 +111,14 @@
 			<string>BibTeX</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>conf</string>
@@ -135,14 +129,14 @@
 			<string>Configuration</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>h</string>
@@ -155,6 +149,8 @@
 			<string>C header</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.c-header</string>
@@ -165,8 +161,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>c</string>
@@ -177,6 +171,8 @@
 			<string>C source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.c-source</string>
@@ -187,8 +183,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cp</string>
@@ -203,6 +197,8 @@
 			<string>C++ source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.c-plus-plus-source</string>
@@ -213,8 +209,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>hpp</string>
@@ -227,6 +221,8 @@
 			<string>C++ header</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.c-plus-plus-header</string>
@@ -237,8 +233,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cs</string>
@@ -249,14 +243,14 @@
 			<string>C# source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>coffee</string>
@@ -271,14 +265,14 @@
 			<string>CoffeeScript</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>css</string>
@@ -293,6 +287,8 @@
 			<string>Cascading Style Sheet</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.css</string>
@@ -303,8 +299,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>d</string>
@@ -315,14 +309,14 @@
 			<string>D source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dart</string>
@@ -333,14 +327,14 @@
 			<string>Dart script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>diff</string>
@@ -353,14 +347,14 @@
 			<string>Diff</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dtd</string>
@@ -373,14 +367,14 @@
 			<string>Document Type Definition</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>f</string>
@@ -396,14 +390,14 @@
 			<string>Fortran Source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>go</string>
@@ -414,14 +408,14 @@
 			<string>Go script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>hs</string>
@@ -433,14 +427,14 @@
 			<string>Haskell script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>html</string>
@@ -456,6 +450,8 @@
 			<string>HTML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.html</string>
@@ -466,8 +462,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ini</string>
@@ -478,14 +472,14 @@
 			<string>INI</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>java</string>
@@ -496,6 +490,8 @@
 			<string>Java source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.sun.java-source</string>
@@ -506,8 +502,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>js</string>
@@ -522,6 +516,8 @@
 			<string>JavaScript</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.netscape.javascript-source</string>
@@ -532,8 +528,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>json</string>
@@ -548,6 +542,8 @@
 			<string>JSON</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.json</string>
@@ -558,8 +554,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>jl</string>
@@ -570,14 +564,14 @@
 			<string>Julia script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>kt</string>
@@ -589,6 +583,8 @@
 			<string>Kotlin source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.kotlinlang.source</string>
@@ -599,8 +595,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lisp</string>
@@ -612,14 +606,14 @@
 			<string>Lisp script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lua</string>
@@ -630,6 +624,8 @@
 			<string>Lua script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.lua.lua-source</string>
@@ -640,8 +636,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>mkd</string>
@@ -656,6 +650,8 @@
 			<string>Markdown document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>net.daringfireball.markdown</string>
@@ -666,8 +662,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
@@ -684,6 +678,8 @@
 			<string>Perl script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.perl-script</string>
@@ -694,8 +690,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>php</string>
@@ -711,6 +705,8 @@
 			<string>PHP script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.php-script</string>
@@ -721,8 +717,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>py</string>
@@ -738,6 +732,8 @@
 			<string>Python script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.python-script</string>
@@ -748,8 +744,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rst</string>
@@ -761,14 +755,14 @@
 			<string>reStructured Text document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
@@ -783,6 +777,8 @@
 			<string>Ruby script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.ruby-script</string>
@@ -793,8 +789,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rs</string>
@@ -806,14 +800,14 @@
 			<string>Rust script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>svg</string>
@@ -828,6 +822,8 @@
 			<string>Scalable Vector Graphics</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.svg-image</string>
@@ -838,8 +834,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>scala</string>
@@ -850,14 +844,14 @@
 			<string>Scala script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>scm</string>
@@ -869,14 +863,14 @@
 			<string>Scheme script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>sh</string>
@@ -887,6 +881,8 @@
 			<string>Shell script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.shell-script</string>
@@ -897,8 +893,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>sql</string>
@@ -911,6 +905,8 @@
 			<string>SQL source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>org.iso.sql</string>
@@ -921,8 +917,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>swift</string>
@@ -933,6 +927,8 @@
 			<string>Swift source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.swift-source</string>
@@ -943,8 +939,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tex</string>
@@ -957,14 +951,14 @@
 			<string>TeX</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>textile</string>
@@ -975,14 +969,14 @@
 			<string>Textile document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tcl</string>
@@ -993,14 +987,14 @@
 			<string>Tcl source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>toml</string>
@@ -1011,14 +1005,14 @@
 			<string>TOML</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>v</string>
@@ -1029,14 +1023,14 @@
 			<string>Verilog source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>xml</string>
@@ -1077,6 +1071,8 @@
 			<string>XML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>public.xml</string>
@@ -1087,8 +1083,6 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>yaml</string>
@@ -1100,6 +1094,8 @@
 			<string>YAML</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
@@ -1123,13 +1119,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.7.8-beta</string>
+	<string>3.7.8</string>
 	<key>CFBundleSignature</key>
 	<string>cEd1</string>
 	<key>CFBundleSpokenName</key>
 	<string>Cot editor</string>
 	<key>CFBundleVersion</key>
-	<string>359</string>
+	<string>361</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
