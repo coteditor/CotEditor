@@ -57,8 +57,8 @@ extension Collection where Element == String {
         
         guard baseCount != nil || self.contains(baseName) else { return baseName }
         
-        return sequence(first: baseCount ?? 2) { $0 + 1 }.lazy
-            .map { (count: Int) -> String in baseName + " " + String(count) }
+        return ((baseCount ?? 2)...).lazy
+            .map { baseName + " " + String($0) }
             .first { !self.contains($0) }!
     }
     
