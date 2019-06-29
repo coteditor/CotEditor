@@ -7,6 +7,8 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array/>
 			<key>CFBundleTypeIconFile</key>
@@ -29,6 +31,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>txt</string>
@@ -53,6 +57,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cottheme</string>
@@ -75,6 +81,8 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cotrpl</string>
@@ -97,6 +105,8 @@
 			<integer>0</integer>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>bib</string>
@@ -113,6 +123,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>conf</string>
@@ -129,6 +141,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>h</string>
@@ -151,6 +165,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>c</string>
@@ -171,6 +187,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cp</string>
@@ -195,6 +213,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>hpp</string>
@@ -217,6 +237,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>cs</string>
@@ -233,6 +255,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>coffee</string>
@@ -253,6 +277,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>css</string>
@@ -277,6 +303,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>d</string>
@@ -293,6 +321,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dart</string>
@@ -309,6 +339,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>diff</string>
@@ -327,6 +359,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>dtd</string>
@@ -345,6 +379,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>f</string>
@@ -366,6 +402,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>go</string>
@@ -382,6 +420,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>hs</string>
@@ -399,6 +439,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>html</string>
@@ -424,6 +466,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ini</string>
@@ -440,6 +484,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>java</string>
@@ -460,6 +506,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>js</string>
@@ -484,6 +532,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>json</string>
@@ -508,6 +558,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>jl</string>
@@ -524,6 +576,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>kt</string>
@@ -545,6 +599,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lisp</string>
@@ -562,6 +618,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lua</string>
@@ -582,6 +640,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>mkd</string>
@@ -606,6 +666,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
@@ -632,6 +694,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>php</string>
@@ -657,6 +721,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>py</string>
@@ -682,6 +748,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rst</string>
@@ -699,6 +767,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
@@ -723,6 +793,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rs</string>
@@ -740,6 +812,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>svg</string>
@@ -764,6 +838,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>scala</string>
@@ -780,6 +856,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>scm</string>
@@ -797,6 +875,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>sh</string>
@@ -817,6 +897,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>sql</string>
@@ -839,6 +921,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>swift</string>
@@ -859,6 +943,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tex</string>
@@ -877,6 +963,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>textile</string>
@@ -893,6 +981,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tcl</string>
@@ -909,6 +999,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>toml</string>
@@ -925,6 +1017,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>v</string>
@@ -941,6 +1035,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>xml</string>
@@ -991,6 +1087,8 @@
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>yaml</string>
