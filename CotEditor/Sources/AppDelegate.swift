@@ -380,8 +380,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func createBugReport(_ sender: Any?) {
         
         // load template file
-        let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md")!
-        guard let template = try? String(contentsOf: url) else { return assertionFailure() }
+        guard
+            let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md"),
+            let template = try? String(contentsOf: url)
+            else { return assertionFailure() }
         
         // fill template with user environment info
         let report = template
