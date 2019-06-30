@@ -45,6 +45,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Enums
     
     private enum AppWebURL: String {
+        
         case website = "https://coteditor.com"
         case issueTracker = "https://github.com/coteditor/CotEditor/issues"
         

@@ -88,14 +88,15 @@ final class LineNumberView: NSView {
     // MARK: Constants
     
     private let minNumberOfDigits = 3
-    private let minVerticalThickness: CGFloat = 32.0
-    private let minHorizontalThickness: CGFloat = 20.0
+    private let minVerticalThickness: CGFloat = 32
+    private let minHorizontalThickness: CGFloat = 20
     
     private static let fontSizeFactor: CGFloat = 0.9
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
+        
         case normal = 0.75
         case bold = 0.9
         case stroke = 0.2
