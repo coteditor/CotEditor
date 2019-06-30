@@ -46,6 +46,8 @@ extension NSPrintInfo.AttributeKey {
 struct ThemeName {
     
     static let blackAndWhite = "Black and White".localized
+    
+    private init() { }
 }
 
 
