@@ -194,25 +194,25 @@ private extension SnippetKeyBindingManager {
             !self.keyBindingSettingFileURL.isReachable
             else { return }
         
-        self.migrate()
+        // -> just abort if failed
+        try? self.migrate()
     }
     
     
     /// migrate snippet shortcuts file to CotEditor 3 format (2016-09)
-    private func migrate() {
+    private func migrate() throws {
         
         let legacySettingsURL = self.userSettingDirectoryURL.appendingPathComponent("TextKeyBindings.plist")
         
-        // -> just abort if failed
-        guard
-            legacySettingsURL.isReachable,
-            let legacyData = try? Data(contentsOf: legacySettingsURL),
-            let keyBindings = try? self.keyBindings(migratingFrom: legacyData),
-            let data = try? PropertyListEncoder().encode(keyBindings.sorted())
-            else { return }
+        guard legacySettingsURL.isReachable else { return }
+        
+        let legacyData = try Data(contentsOf: legacySettingsURL)
+        let keyBindings = try self.keyBindings(migratingFrom: legacyData)
+        let data = try PropertyListEncoder().encode(keyBindings.sorted())
+        
         
         // save new format file
-        try? data.write(to: self.keyBindingSettingFileURL, options: .atomic)
+        try data.write(to: self.keyBindingSettingFileURL, options: .atomic)
     }
     
     

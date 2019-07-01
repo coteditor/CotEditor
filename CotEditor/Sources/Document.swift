@@ -33,6 +33,8 @@ private struct SerializationKey {
     static let autosaveIdentifier = "autosaveIdentifier"
     static let isVerticalText = "isVerticalText"
     static let isTransient = "isTransient"
+    
+    private init() { }
 }
 
 
