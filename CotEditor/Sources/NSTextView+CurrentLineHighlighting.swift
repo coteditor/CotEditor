@@ -84,15 +84,42 @@ extension CurrentLineHighlighting {
         
         guard
             let textContainer = self.textContainer,
-            let rect = self.boundingRect(for: range)
+            let layoutManager = self.layoutManager
             else { assertionFailure(); return .zero }
+        
+        let rect = layoutManager.lineFragmentsRect(for: range)
         
         return NSRect(x: 0,
                       y: rect.minY,
                       width: textContainer.size.width,
                       height: rect.height)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
+            .offset(by: self.textContainerOrigin)
             .integral
+    }
+    
+}
+
+
+
+private extension NSLayoutManager {
+    
+    func lineFragmentsRect(for range: NSRange) -> NSRect {
+        
+        let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        
+        guard glyphRange.lowerBound < self.numberOfGlyphs || self.extraLineFragmentTextContainer == nil else {
+            return self.extraLineFragmentRect
+        }
+        
+        var effectiveRange: NSRange = .notFound
+        let lowerRect = self.lineFragmentRect(forGlyphAt: glyphRange.lowerBound, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+        
+        guard !effectiveRange.contains(glyphRange.upperBound) else { return lowerRect }
+        
+        let upperRect = self.lineFragmentRect(forGlyphAt: glyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
+        
+        return lowerRect.union(upperRect)
     }
     
 }
