@@ -28,10 +28,10 @@ import Foundation
 extension NSMutableAttributedString {
     
     /// Detect and tag URLs in the receiver.
-    func detectLink() {
+    func detectLink(in range: NSRange? = nil) {
         
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let range = NSRange(..<self.length)
+        let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? NSRange(..<self.length)
         
         self.removeAttribute(.link, range: range)
         

@@ -1421,7 +1421,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     
     /// make URL-like text clickable
-    private func detectLinkIfNeeded() {
+    private func detectLinkIfNeeded(in range: NSRange? = nil) {
         
         assert(Thread.isMainThread)
         
@@ -1430,12 +1430,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let textStorage = self.textStorage
             else { return }
         
+        let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? textStorage.range
+        
         // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
-        textStorage.detectLink()
+        textStorage.detectLink(in: range)
         
         // ensure layout to avoid unwanted scroll with cursor move after pasting something
         // at the latter part of the document. (2018-10 macOS 10.14)
-        self.layoutManager?.ensureLayout(forCharacterRange: textStorage.range)
+        self.layoutManager?.ensureLayout(forCharacterRange: range)
     }
     
     
