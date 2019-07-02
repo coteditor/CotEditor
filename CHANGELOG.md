@@ -5,6 +5,11 @@ Change Log
 3.7.8 (361)
 --------------------------
 
+### Improvements
+
+- Optimize performance of text layout calcuration.
+
+
 ### Fixes
 
 - Fix an issue where the editor could not scroll horizontally under specific conditions.

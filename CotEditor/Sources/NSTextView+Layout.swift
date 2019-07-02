@@ -38,12 +38,12 @@ extension NSTextView {
     /// calculate visible range
     var visibleRange: NSRange? {
         
-        return self.range(for: self.visibleRect)
+        return self.range(for: self.visibleRect, withoutAdditionalLayout: true)
     }
     
     
     /// calculate range of characters in rect
-    func range(for rect: NSRect) -> NSRange? {
+    func range(for rect: NSRect, withoutAdditionalLayout: Bool = false) -> NSRange? {
         
         guard
             let layoutManager = self.layoutManager,
@@ -51,7 +51,9 @@ extension NSTextView {
             else { return nil }
         
         let visibleRect = rect.offset(by: -self.textContainerOrigin)
-        let glyphRange = layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
+        let glyphRange = withoutAdditionalLayout
+            ? layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
+            : layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
         
         return layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
     }
