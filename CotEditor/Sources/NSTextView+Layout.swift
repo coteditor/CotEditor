@@ -175,7 +175,8 @@ extension NSTextView {
         // adjust scroller to keep position of the glyph at the passed-in center point
         if self.scale != currentScale {
             let newCenterFromClipOrigin = centerFromClipOrigin.scaled(to: 1.0 / self.scale)
-            let newCenter = layoutManager.boundingRect(forGlyphRange: NSRange(location: centerGlyphIndex, length: 1), in: textContainer)
+            let glyphRange = NSRange(location: centerGlyphIndex, length: 1)
+            let newCenter = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
             let scrollPoint = NSPoint(x: round(point.x - newCenterFromClipOrigin.x),
                                       y: round(newCenter.midY - newCenterFromClipOrigin.y))
             self.scroll(scrollPoint)
