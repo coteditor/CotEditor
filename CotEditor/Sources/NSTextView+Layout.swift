@@ -173,8 +173,8 @@ extension NSTextView {
             let newCenterFromClipOrigin = centerFromClipOrigin.scaled(to: 1.0 / self.scale)
             let glyphRange = NSRange(location: centerGlyphIndex, length: 1)
             let newCenter = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-            let scrollPoint = NSPoint(x: round(point.x - newCenterFromClipOrigin.x),
-                                      y: round(newCenter.midY - newCenterFromClipOrigin.y))
+            let scrollPoint = NSPoint(x: point.x, y: newCenter.midY)
+                .offset(by: -newCenterFromClipOrigin)
             self.scroll(scrollPoint)
         }
     }
