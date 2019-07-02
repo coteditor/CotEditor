@@ -140,15 +140,9 @@ extension NSTextView {
             // reset minimum size for unwrap mode
             self.minSize = self.visibleRect.size
             
-            // ensure text layout
-            if let textContainer = self.textContainer {
-                self.layoutManager?.ensureLayout(for: textContainer)
-            }
-            self.sizeToFit()
-            
             self.didChangeValue(for: \.scale)
             
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            self.setNeedsDisplay(self.visibleRect)
         }
     }
     
