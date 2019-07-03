@@ -140,6 +140,11 @@ extension NSTextView {
             // reset minimum size for unwrap mode
             self.minSize = self.visibleRect.size
             
+            // update view size
+            // -> For in case the view becomes bigger than text content width when pinch out
+            //    but doesn't strech enough to the right edge of the scroll view.
+            self.sizeToFit()
+            
             self.didChangeValue(for: \.scale)
             
             self.setNeedsDisplay(self.visibleRect)
