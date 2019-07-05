@@ -149,9 +149,9 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     /// a new color was selected on the panel
-    @IBAction func selectColor(_ sender: NSColorPanel?) {
+    @IBAction func selectColor(_ sender: NSColorPanel) {
         
-        self.color = sender?.color
+        self.color = sender.color
         self.updateCode(sender)
     }
     
