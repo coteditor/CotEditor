@@ -144,7 +144,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
-        self.importsGraphics = false
         self.usesFindPanel = true
         self.acceptsGlyphInfo = true
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
