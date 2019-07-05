@@ -82,13 +82,13 @@ extension EditorTextView: ColorCodeReceiver {
         
         let range = self.rangeForUserTextChange
         
-        if self.shouldChangeText(in: range, replacementString: colorCode) {
-            self.replaceCharacters(in: range, with: colorCode)
-            self.didChangeText()
-            self.undoManager?.setActionName("Insert Color Code".localized)
-            self.selectedRange = NSRange(location: range.location, length: colorCode.utf16.count)
-            self.centerSelectionInVisibleArea(self)
-        }
+        guard self.shouldChangeText(in: range, replacementString: colorCode) else { return }
+        
+        self.replaceCharacters(in: range, with: colorCode)
+        self.didChangeText()
+        self.undoManager?.setActionName("Insert Color Code".localized)
+        self.selectedRange = NSRange(location: range.location, length: colorCode.utf16.count)
+        self.centerSelectionInVisibleArea(self)
     }
     
 }
