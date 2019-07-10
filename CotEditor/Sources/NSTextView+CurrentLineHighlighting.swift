@@ -117,7 +117,8 @@ private extension NSLayoutManager {
         
         guard !effectiveRange.contains(glyphRange.upperBound) else { return lowerRect }
         
-        let upperRect = self.lineFragmentRect(forGlyphAt: glyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
+        let upperBound = min(glyphRange.upperBound, self.numberOfGlyphs - 1)
+        let upperRect = self.lineFragmentRect(forGlyphAt: upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
         
         return lowerRect.union(upperRect)
     }
