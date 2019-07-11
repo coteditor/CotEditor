@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.7.9 (unreleased)
+--------------------------
+
+### Improvements
+
+- Adjust drawing of the alternative character for invisible control characters.
+
+
+
 3.7.8 (361)
 --------------------------
 

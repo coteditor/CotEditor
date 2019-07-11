@@ -59,21 +59,17 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
         //    Japansete text is input nevertheless the font that user specified dosen't support it.
         didSet {
+            guard let textFont = self.textFont else { return }
+            
             // cache metric values to fix line height
-            if let textFont = self.textFont {
-                self.defaultLineHeight = self.defaultLineHeight(for: textFont)
-                self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
-                
-                // cache width of space char for hanging indent width calculation
-                self.spaceWidth = textFont.spaceWidth
-                
-                // cache replacement glyph width for ATS Typesetter
-                let invisibleFont = NSFont(named: .lucidaGrande, size: textFont.pointSize) ?? textFont  // use current text font for fallback
-                let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
-                self.replacementGlyphWidth = invisibleFont.boundingRect(forGlyph: replacementGlyph).width
-            }
+            self.defaultLineHeight = self.defaultLineHeight(for: textFont)
+            self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
+            
+            // cache width of space char for hanging indent width calculation
+            self.spaceWidth = textFont.spaceWidth
             
             self.invisibleLines = self.generateInvisibleLines()
+            self.replacementGlyphWidth = self.invisibleLines.replacement.bounds().width
         }
     }
     
