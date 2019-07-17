@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Adjust drawing of the alternative character for invisible control characters.
+- Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
 
 
 
