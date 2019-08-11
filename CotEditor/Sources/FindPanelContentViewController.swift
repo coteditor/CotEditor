@@ -89,12 +89,10 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// complemention notification for "Find All"
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView) {
         
-        // set to result table
         self.fieldViewController?.updateResultCount(results.count, target: textView)
+        self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         guard !results.isEmpty else { return }
-        
-        self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         self.setResultShown(true, animate: true)
         self.splitView.window?.windowController?.showWindow(self)
