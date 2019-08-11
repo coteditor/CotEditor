@@ -76,6 +76,9 @@ trailing_whitespace:
 attributes:
   always_on_same_line: ["@IBAction", "@objc"]
 
+function_parameter_count:
+  warning: 7
+
 vertical_whitespace:
   max_empty_lines: 4
 

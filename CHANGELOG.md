@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Adjust drawing of the alternative character for invisible control characters.
+- Adjust text baseline of input fields in the find panel when a fallback font is used.
 - Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
 
 
