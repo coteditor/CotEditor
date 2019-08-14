@@ -55,9 +55,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     var textFont: NSFont? {
         
-        // keep body text font to avoid the issue where the line height can be different by composite font
-        // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
-        //    Japansete text is input nevertheless the font that user specified dosen't support it.
+        // store text font to avoid the issue where the line height can be different by composite font
+        // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't suuport
+        //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
             guard let textFont = self.textFont else { return }
             
