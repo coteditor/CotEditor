@@ -287,7 +287,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
             
         case #selector(toggleLigatures)?:
-            (item as? StatableItem)?.state = (self.focusedTextView?.ligature != .none) ? .on : .off
+            (item as? StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
             
         case #selector(toggleAutoTabExpand)?:
             (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
