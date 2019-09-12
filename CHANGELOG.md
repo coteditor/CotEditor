@@ -12,8 +12,9 @@ Change Log
 - Adjust drawing of the alternative character for invisible control characters.
 - Adjust text baseline of input fields in the find panel when a fallback font is used.
 - Always enable Left to Right button in Writing Direction toolbar button.
-- Change way to count words for stability.
+- Change the way to count words for stability.
 - Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
+- [dev] Update build environment to Xcode 11 (Swift 5.1).
 
 
 
