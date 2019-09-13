@@ -11,6 +11,7 @@ Change Log
 - Update the result table of “Find All” even when no substring was found.
 - Adjust drawing of the alternative character for invisible control characters.
 - Adjust text baseline of input fields in the find panel when a fallback font is used.
+- Always enable Left to Right button in Writing Direction toolbar button.
 - Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
 
 

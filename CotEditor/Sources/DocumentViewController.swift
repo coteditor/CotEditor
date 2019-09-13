@@ -303,7 +303,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
         case #selector(makeWritingDirectionLeftToRight):
             (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
-            return !self.verticalLayoutOrientation
             
         case #selector(makeWritingDirectionRightToLeft):
             (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
