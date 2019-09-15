@@ -24,7 +24,6 @@
 //
 
 import Foundation
-import AppKit.NSSpellChecker
 
 struct EditorInfoTypes: OptionSet {
     
@@ -78,7 +77,6 @@ final class EditorInfoCountOperation: Operation {
     private let selectedRange: Range<String.Index>
     
     private let requiredInfo: EditorInfoTypes
-    private let language: String
     private let countsLineEnding: Bool
     
     
@@ -86,7 +84,7 @@ final class EditorInfoCountOperation: Operation {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, language: String, countsLineEnding: Bool) {
+    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
         
         assert(selectedRange.upperBound <= string.endIndex)
         
@@ -94,7 +92,6 @@ final class EditorInfoCountOperation: Operation {
         self.lineEnding = lineEnding
         self.selectedRange = selectedRange
         self.requiredInfo = requiredInfo
-        self.language = language
         self.countsLineEnding = countsLineEnding
         
         super.init()
@@ -156,21 +153,14 @@ final class EditorInfoCountOperation: Operation {
         
         // count words
         if self.requiredInfo.contains(.words) {
-            // perform on the main thraed to use shared NSSpellChecker (macOS 10.14)
-            let dispatchGroup = DispatchGroup()
-            dispatchGroup.enter()
-            DispatchQueue.main.async { [weak self] in
-                defer { dispatchGroup.leave() }
-                guard let self = self, !self.isCancelled else { return }
-                
-                self.result.words = NSSpellChecker.shared.countWords(in: self.string, language: self.language)
-                
-                if hasSelection {
-                    self.result.selectedWords = NSSpellChecker.shared.countWords(in: String(selectedString), language: self.language)
-                }
+            self.result.words = self.string.numberOfWords
+            
+            if hasSelection {
+                self.result.selectedWords = selectedString.numberOfWords
             }
-            dispatchGroup.wait()
         }
+        
+        guard !self.isCancelled else { return }
         
         // calculate current location
         if self.requiredInfo.contains(.location) {
