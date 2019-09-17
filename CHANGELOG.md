@@ -19,7 +19,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the Acknowledge appearance was not updated when user changed it after the launch.
+- Fix an issue where the appearance of Acknowledgements window was not updated when user changed it after the launch.
 
 
 
