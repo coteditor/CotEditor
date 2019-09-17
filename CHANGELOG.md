@@ -16,6 +16,10 @@ Change Log
 - Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
 - [dev] Update build environment to Xcode 11 (Swift 5.1).
 
+### Fixes
+
+- Fix an issue where the Acknowledge appearance was not updated when user changed it after the launch.
+
 
 
 3.7.8 (361)

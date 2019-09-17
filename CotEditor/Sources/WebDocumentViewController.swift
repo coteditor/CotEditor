@@ -28,7 +28,19 @@ import WebKit
 
 final class WebDocumentViewController: NSViewController {
     
+    // MARK: Private Properties
+    
+    private var appearanceObserver: NSKeyValueObservation?
+    
+    
+    
+    // MARK: -
     // MARK: View Controller Methods
+    
+    deinit {
+        self.appearanceObserver?.invalidate()
+    }
+    
     
     override var representedObject: Any? {
         
@@ -39,6 +51,21 @@ final class WebDocumentViewController: NSViewController {
         }
     }
     
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.appearanceObserver?.invalidate()
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (_, _) in
+            guard let self = self else { return }
+
+            let isDark = self.view.effectiveAppearance.isDark
+            let command = isDark ? "add('dark')" : "remove('dark')"
+            self.webView?.evaluateJavaScript("document.body.classList." + command)
+            self.view.window?.backgroundColor = isDark ? nil : .white
+        }
+    }
     
     /// set window background programmatically
     override func viewWillAppear() {
