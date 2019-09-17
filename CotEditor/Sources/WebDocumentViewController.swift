@@ -67,6 +67,7 @@ final class WebDocumentViewController: NSViewController {
         }
     }
     
+    
     /// set window background programmatically
     override func viewWillAppear() {
         
