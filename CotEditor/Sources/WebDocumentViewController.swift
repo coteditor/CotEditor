@@ -52,30 +52,25 @@ final class WebDocumentViewController: NSViewController {
     }
     
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        self.appearanceObserver?.invalidate()
-        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (_, _) in
-            guard let self = self else { return }
-
-            let isDark = self.view.effectiveAppearance.isDark
-            let command = isDark ? "add('dark')" : "remove('dark')"
-            self.webView?.evaluateJavaScript("document.body.classList." + command)
-            self.view.window?.backgroundColor = isDark ? nil : .white
-        }
-    }
-    
-    
-    /// set window background programmatically
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
-        if !self.view.effectiveAppearance.isDark {
-            self.view.window!.backgroundColor = .white
+        // set window background manually here as `self.view.window` is still nil in `viewDidLoad()`.
+        self.view.window?.backgroundColor = .textBackgroundColor
+        
+        self.appearanceObserver?.invalidate()
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance, options: .initial) { [weak self] (_, _) in
+            self?.updateAppearance()
         }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.appearanceObserver?.invalidate()
     }
     
     
@@ -86,6 +81,16 @@ final class WebDocumentViewController: NSViewController {
     private var webView: WKWebView? {
         
         return self.view as? WKWebView
+    }
+    
+    
+    /// apply current appearance to webView
+    private func updateAppearance() {
+        
+        let isDark = self.view.effectiveAppearance.isDark
+        let command = isDark ? "add('dark')" : "remove('dark')"
+        
+        self.webView?.evaluateJavaScript("document.body.classList." + command)
     }
 
 }
@@ -116,9 +121,7 @@ extension WebDocumentViewController: WKNavigationDelegate {
             webView.apply(styleSheet: ".Sparkle { display: none }")
         #endif
         
-        if self.view.effectiveAppearance.isDark {
-            webView.evaluateJavaScript("document.body.classList.add('dark')")
-        }
+        self.updateAppearance()
     }
     
     

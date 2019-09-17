@@ -29,7 +29,7 @@ a:not([href])             { color: hsla( 0, 0%, 0%,0.60) }
 blockquote pre            { color: hsla( 0, 0%, 0%,0.50) ; border-color: hsla( 0, 0%, 0%,0.1) }
 h3 span                   { color: hsla( 0, 0%, 0%,0.50) }
 
-body.dark                 { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,20%) }
+body.dark                 { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,12%) }
 body.dark a:link,
 body.dark a:visited       { color: hsl(90,55%,55%) }
 body.dark a:not([href])   { color: hsla( 0, 0%,100%,0.60) }
