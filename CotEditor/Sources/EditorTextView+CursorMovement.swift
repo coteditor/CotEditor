@@ -135,7 +135,7 @@ extension EditorTextView {
     /// move cursor to the beginning of the word continuasly (opt←)
     override func moveWordLeft(_ sender: Any?) {
         
-        // find word boundary by ownself
+        // find word boundary myself
         // -> The super.moveWordLef(_:) uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and it doesn't stop at punctuation marks, such as `.` and `:` (2019-06).
         
@@ -148,7 +148,7 @@ extension EditorTextView {
     /// move cursor to the beginning of the word and modify selection continuasly (⇧opt←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
-        // find word boundary by ownself (cf. moveWordLeft(_:))
+        // find word boundary myself (cf. moveWordLeft(_:))
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
             self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
@@ -159,7 +159,7 @@ extension EditorTextView {
     /// move cursor to the end of the word continuasly (opt→)
     override func moveWordRight(_ sender: Any?) {
         
-        // find word boundary by ownself (cf. moveWordLeft(_:))
+        // find word boundary myself (cf. moveWordLeft(_:))
         
         self.moveCursors(affinity: .upstream) {
             self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .additionalWordSeparators)
@@ -170,7 +170,7 @@ extension EditorTextView {
     /// move cursor to the end of the word and modify selection continuasly (⇧opt→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
-        // find word boundary by ownself (cf. moveWordLeft(_:))
+        // find word boundary myself (cf. moveWordLeft(_:))
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
             self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
