@@ -14,7 +14,7 @@ Change Log
 - Always enable Left to Right button in Writing Direction toolbar button.
 - Change the way to count words for stability.
 - Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
-- [dev] Update build environment to Xcode 11 (Swift 5.1).
+- [dev] Update build environment to Xcode 11.1 (Swift 5.1).
 
 
 ### Fixes
