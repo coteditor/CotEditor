@@ -171,6 +171,7 @@ struct DefaultSettings {
         .findRegexUnescapesReplacementString: true,
         
         // ------ settings not in preferences window ------
+        .pinsThemeAppearance: false,
         .colorCodeType: 1,
         .recentStyleNames: [],
         .showStatusBar: true,

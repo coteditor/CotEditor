@@ -82,7 +82,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
                     case .blackWhite:
                         return ThemeName.blackAndWhite
                     case .sameAsDocument:
-                        return ThemeManager.shared.userDefaultSettingName()
+                        return ThemeManager.shared.userDefaultSettingName
                     }
                 }
                 return defaults[.printTheme] ?? ThemeName.blackAndWhite

@@ -161,6 +161,7 @@ extension DefaultKeys {
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
     // settings that are not in preferences
+    static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")

@@ -13,6 +13,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 10.13 High Sierra and later__.
+- Improve the theme switching algorithm between light and dark appearance.
 - Update the result table of “Find All” even when no substring was found.
 - Adjust drawing of the alternative character for invisible control characters.
 - Adjust text baseline of input fields in the find panel when a fallback font is used.

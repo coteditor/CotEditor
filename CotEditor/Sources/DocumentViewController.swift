@@ -76,7 +76,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         }
         
         // set theme
-        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        let themeName = ThemeManager.shared.userDefaultSettingName
         self.setTheme(name: themeName)
         
         // observe theme change
@@ -93,7 +93,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = [
             UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
-                let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+                let themeName = ThemeManager.shared.userDefaultSettingName
                 self.setTheme(name: themeName)
             },
             UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [unowned self] change in
@@ -114,9 +114,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.appearanceObserver?.invalidate()
         self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (view, _) in
             guard
+                !UserDefaults.standard[.pinsThemeAppearance],
                 view.window != nil,
                 let currentThemeName = self.theme?.name,
-                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: view.effectiveAppearance.isDark)
+                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: view.effectiveAppearance.isDark),
+                currentThemeName != themeName
                 else { return }
             
             self.setTheme(name: themeName)
