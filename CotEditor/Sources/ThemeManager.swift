@@ -80,7 +80,9 @@ final class ThemeManager: SettingFileManaging {
     /// return default setting by taking the appearance state into consideration
     func defaultSettingName(forDark: Bool = false) -> String {
         
-        return forDark ? "Dendrobates (Dark)" : "Dendrobates"
+        let defaultSettingName = DefaultSettings.defaults[.theme] as! String
+        
+        return self.equivalentSettingName(to: defaultSettingName, forDark: forDark)!
     }
     
     

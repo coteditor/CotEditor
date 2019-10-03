@@ -81,7 +81,7 @@ struct DefaultSettings {
         .invisibleFullwidthSpace: 0,
         .showOtherInvisibleChars: false,
         .documentAppearance: AppearanceMode.default.rawValue,
-//        .theme: "Dendrobates",  // -> The default theme is set dynamically by taking the current appearance into account.
+        .theme: "Dendrobates",
         
         .smartInsertAndDelete: false,
         .balancesBrackets: false,
