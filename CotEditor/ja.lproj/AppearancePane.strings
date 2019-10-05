@@ -70,7 +70,7 @@
 "sxg-F3-ely.title" = "ほかの不可視文字";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
-"6KG-3a-ZuU.title" = "アピアランス:";
+"6KG-3a-ZuU.title" = "外観モード:";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
 "apQ-au-gOC.title" = "システムに合わせる";
 /* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
