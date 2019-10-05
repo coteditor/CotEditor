@@ -7,13 +7,13 @@ Change Log
 
 ### New Features
 
-- Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only for macOS 10.14 and later).
+- Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only on macOS 10.14 and later).
 
 
 ### Improvements
 
 - Change the system requirement to __macOS 10.13 High Sierra and later__.
-- Improve the theme switching algorithm between light and dark appearance.
+- Improve the theme switching algorithm between light and dark appearances.
 - Keep multiple cursors after pasting multiple lines.
 - Update the result table of “Find All” even when no substring was found.
 - Adjust drawing of the alternative character for invisible control characters.
@@ -21,14 +21,14 @@ Change Log
 - Always enable Left to Right button in Writing Direction toolbar button.
 - Change the way to count words for stability.
 - Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
-- [dev] Update build environment to Xcode 11.1 (Swift 5.1).
+- [dev] Update build environment to Xcode 11.1 (Swift 5.1, macOS 10.15 SDK).
 
 
 ### Fixes
 
-- Fix cursor movement after `⇧opt←` or `⇧opt→` shortcut.
+- Fix the selection movement direction after `⌥⇧←` or `⌥⇧→` shortcut.
 - Fix an issue where scripting commands `convert` and `reinterpret` failed.
-- Fix an issue where the appearance of Acknowledgements window was not updated when user changed it after the launch.
+- Fix an issue where the appearance of Acknowledgements window was not updated when user changed the system appearance after the launch.
 
 
 

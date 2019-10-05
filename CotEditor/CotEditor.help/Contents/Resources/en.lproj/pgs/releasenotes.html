@@ -24,6 +24,53 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.8.0</h1>
+	<p>release: <time>2019-10</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only on macOS 10.14 and later).</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Change the system requirement to __macOS 10.13 High Sierra and later__.</li>
+	<li>Improve the theme switching algorithm between light and dark appearances.</li>
+	<li>Keep multiple cursors after pasting multiple lines.</li>
+	<li>Update the result table of “Find All” even when no substring was found.</li>
+	<li>Adjust drawing of the alternative character for invisible control characters.</li>
+	<li>Adjust text baseline of input fields in the find panel when a fallback font is used.</li>
+	<li>Always enable Left to Right button in Writing Direction toolbar button.</li>
+	<li>Change the way to count words for stability.</li>
+	<li>Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)</li>
+	<li><span class="trivial">dev</span>: Update build environment to Xcode 11.1 (Swift 5.1, macOS 10.15 SDK).</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix the selection movement direction after <kbd>⌥⇧←</kbd> or <kbd>⌥⇧→</kbd> shortcut.</li>
+	<li>Fix an issue where scripting commands <code>convert</code> and <code>reinterpret</code> failed.</li>
+	<li>Fix an issue where the appearance of Acknowledgements window was not updated when user changed the system appearance after the launch.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.7.8</h1>
 	<p>release: <time>2019-06-30</time></p>
 </header>
