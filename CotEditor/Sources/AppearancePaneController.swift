@@ -42,9 +42,16 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     @IBOutlet private weak var fontField: AntialiasingTextField?
     @IBOutlet private weak var lineHeightField: NSTextField?
+    
     @IBOutlet private weak var barCursorButton: NSButton?
     @IBOutlet private weak var thickBarCursorButton: NSButton?
     @IBOutlet private weak var blockCursorButton: NSButton?
+    
+    @IBOutlet private weak var appearanceLabelField: NSTextField?
+    @IBOutlet private weak var defaultAppearanceButton: NSButton?
+    @IBOutlet private weak var lightAppearanceButton: NSButton?
+    @IBOutlet private weak var darkAppearanceButton: NSButton?
+    
     @IBOutlet private weak var themeTableView: NSTableView?
     @IBOutlet private var themeTableMenu: NSMenu?
     
@@ -66,6 +73,14 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // set initial value as field's placeholder
         self.lineHeightField?.bindNullPlaceholderToUserDefaults(.value)
+        
+        // remove appearance controls on macOS 10.13 or earlier
+        if NSAppKitVersion.current <= .macOS10_13 {
+            self.appearanceLabelField?.removeFromSuperview()
+            self.defaultAppearanceButton?.removeFromSuperview()
+            self.lightAppearanceButton?.removeFromSuperview()
+            self.darkAppearanceButton?.removeFromSuperview()
+        }
         
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
@@ -90,7 +105,17 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             self.blockCursorButton?.state = .on
         }
         
-        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        // select one of appearance radio buttons
+        switch UserDefaults.standard[.documentAppearance] {
+        case .default:
+            self.defaultAppearanceButton?.state = .on
+        case .light:
+            self.lightAppearanceButton?.state = .on
+        case .dark:
+            self.darkAppearanceButton?.state = .on
+        }
+        
+        let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
@@ -274,10 +299,13 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         // update default theme setting
         if UserDefaults.standard[.theme] != themeName {
             // do not store to UserDefautls if it's the default theme
-            if ThemeManager.shared.defaultSettingName(forDark: self.view.effectiveAppearance.isDark) == themeName {
+            if ThemeManager.shared.defaultSettingName == themeName {
                 UserDefaults.standard.restore(key: .theme)
+                UserDefaults.standard[.pinsThemeAppearance] = false
             } else {
+                let isDarkTheme = ThemeManager.shared.isDark(name: themeName)
                 UserDefaults.standard[.theme] = themeName
+                UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != NSAppearance.current.isDark)
             }
         }
         
@@ -377,6 +405,13 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBAction func updateCursorTypeSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.cursorType] = CursorType(rawValue: sender.tag)!
+    }
+    
+    
+    /// A radio button of documentAppearance was clicked
+    @IBAction func updateAppearanceSetting(_ sender: NSButton) {
+        
+        UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
     }
     
     
@@ -502,7 +537,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private dynamic var selectedThemeName: String {
         
         guard let tableView = self.themeTableView, tableView.selectedRow >= 0 else {
-            return ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+            return ThemeManager.shared.userDefaultSettingName
         }
         return self.themeNames[tableView.selectedRow]
     }
@@ -590,7 +625,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     /// update theme list
     @objc private func setupThemeList() {
         
-        let themeName = ThemeManager.shared.userDefaultSettingName(forDark: self.view.effectiveAppearance.isDark)
+        let themeName = ThemeManager.shared.userDefaultSettingName
         
         self.themeNames = ThemeManager.shared.settingNames
         self.themeTableView?.reloadData()

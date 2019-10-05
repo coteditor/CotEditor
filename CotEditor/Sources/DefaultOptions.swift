@@ -57,6 +57,14 @@ enum CursorType: Int {
 }
 
 
+enum AppearanceMode: Int {
+    
+    case `default`
+    case light
+    case dark
+}
+
+
 @objc enum PrintColorMode: Int {
     
     case blackWhite
