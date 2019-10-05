@@ -95,6 +95,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         self.setupFontFamilyNameAndSize()
         
+        self.updateThemeSelection()
+        
         // select one of cursor type radio buttons
         switch UserDefaults.standard[.cursorType] {
         case .bar:
@@ -412,6 +414,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBAction func updateAppearanceSetting(_ sender: NSButton) {
         
         UserDefaults.standard[.documentAppearance] = AppearanceMode(rawValue: sender.tag)!
+        
+        self.updateThemeSelection()
     }
     
     
@@ -631,6 +635,16 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeTableView?.reloadData()
         
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
+        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+    }
+    
+    
+    /// update selection of theme table
+    private func updateThemeSelection() {
+        
+        let themeName = ThemeManager.shared.userDefaultSettingName
+        let row = self.themeNames.firstIndex(of: themeName) ?? 0
+        
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
     }
     
