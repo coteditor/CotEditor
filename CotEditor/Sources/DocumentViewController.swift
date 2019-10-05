@@ -162,7 +162,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         super.restoreState(with: coder)
         
-        if let themeName = coder.decodeObject(forKey: "theme") as? String {
+        if let storedThemeName = coder.decodeObject(forKey: "theme") as? String {
+            let themeName = UserDefaults.standard[.pinsThemeAppearance]
+                ? storedThemeName
+                : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
+        
             self.setTheme(name: themeName)
         }
         
