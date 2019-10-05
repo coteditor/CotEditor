@@ -329,7 +329,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
         }
         
-        // add/remove insrtion point at clicked point
+        // add/remove insertion point at clicked point
         if event.modifierFlags.contains(.command), event.clickCount == 1, !isDragged {
             self.modifyInsertionPoint(at: point)
         }
