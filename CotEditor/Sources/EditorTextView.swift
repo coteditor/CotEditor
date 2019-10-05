@@ -975,6 +975,38 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return self.insertText(string, replacementRanges: ranges)
         }
         
+        // keep multiple cursors after pasting mutliple text
+        if pboard.name == .general,
+            let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
+            let string = pboard.string(forType: .string),
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            ranges.count > 1
+        {
+            let lines = string.components(separatedBy: .newlines)
+            let multipleTexts: [String] = groupCounts
+                .reduce(into: [Range<Int>]()) { (groupRanges, groupCount) in
+                    if groupRanges.count >= ranges.count, let last = groupRanges.last {
+                        groupRanges[groupRanges.endIndex - 1] = last.lowerBound..<(last.upperBound + groupCount)
+                    } else {
+                        groupRanges.append(groupRanges.count..<(groupRanges.count + groupCount))
+                    }
+                }
+                .map { lines[$0].joined(separator: "\n") }
+            let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
+            let strings = multipleTexts + blanks
+            
+            var offset = 0
+            let selectedRanges: [NSRange] = zip(ranges, strings).map { (range, string) in
+                let length = string.utf16.count
+                let location = range.lowerBound + offset + length
+                offset += length - range.length
+            
+                return NSRange(location: location, length: 0)
+            }
+            
+            return self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges)
+        }
+        
         return super.readSelection(from: pboard, type: type)
     }
     
