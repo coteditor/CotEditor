@@ -97,9 +97,13 @@ final class ThemeManager: SettingFileManaging {
             return settingName
         }
         
-        let forDark = self.usesDarkAppearance
+        if let equivalentSettingName = self.equivalentSettingName(to: settingName, forDark: self.usesDarkAppearance) {
+            return equivalentSettingName
+        }
         
-        return self.equivalentSettingName(to: settingName, forDark: forDark) ?? self.defaultSettingName
+        guard self.settingNames.contains(settingName) else { return self.defaultSettingName }
+        
+        return settingName
     }
     
     
