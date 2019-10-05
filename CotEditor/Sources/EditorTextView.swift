@@ -312,7 +312,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
         //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
         
-        guard let window = self.window else { return }
+        guard let window = self.window else { return assertionFailure() }
         
         let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
         let point = self.convert(pointInWindow, from: nil)
