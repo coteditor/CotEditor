@@ -27,6 +27,7 @@ Change Log
 ### Fixes
 
 - Fix cursor movement after `⇧opt←` or `⇧opt→` shortcut.
+- Fix an issue where scripting commands `convert` and `reinterpret` failed.
 - Fix an issue where the appearance of Acknowledgements window was not updated when user changed it after the launch.
 
 
