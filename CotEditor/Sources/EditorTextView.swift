@@ -1345,15 +1345,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.backgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
-        self.lineHighLightColor = theme.lineHighlight.color
+        self.lineHighLightColor = self.isOpaque
+            ? theme.lineHighlight.color
+            : theme.lineHighlight.color.withAlphaComponent(0.7)
         self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
-        
-        if !self.isOpaque {
-            self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(0.7)
-        }
         
         // set scroller color considering background color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
