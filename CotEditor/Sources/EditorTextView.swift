@@ -1348,7 +1348,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.lineHighLightColor = self.isOpaque
             ? theme.lineHighlight.color
             : theme.lineHighlight.color.withAlphaComponent(0.7)
-        self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+        self.insertionPointColor = (self.cursorType == .block)
+            ? theme.insertionPoint.color.withAlphaComponent(0.5)
+            : theme.insertionPoint.color
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
