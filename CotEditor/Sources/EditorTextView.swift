@@ -1337,9 +1337,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         
+        // set textColor only when really required
+        // to avoid returning textColor to NSColorPanel (especially for theme editor). (macOS 10.14)
+        if theme.text.color != self.textColor {
+            self.textColor = theme.text.color
+        }
+        
         self.backgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
-        self.textColor = theme.text.color
         self.lineHighLightColor = theme.lineHighlight.color
         self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]

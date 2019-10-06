@@ -28,6 +28,7 @@ Change Log
 
 - Fix the selection movement direction after `⌥⇧←` or `⌥⇧→` shortcut.
 - Fix an issue where scripting commands `convert` and `reinterpret` failed.
+- Fix an issue where the color panel for theme editing could occasionally not change.
 - Fix an issue where the appearance of Acknowledgements window was not updated when user changed the system appearance after the launch.
 
 
