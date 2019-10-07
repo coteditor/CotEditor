@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only on macOS 10.14 and later).
+- Add a new theme “Anura (Dark)”.
 
 
 ### Improvements
