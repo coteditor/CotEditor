@@ -70,7 +70,7 @@
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Aparência:";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
-"apQ-au-gOC.title" = "Match System";  // FIXME: added
+"apQ-au-gOC.title" = "Mesma do sistema";
 /* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
 "FwU-oj-kwc.title" = "Clara";
 /* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
