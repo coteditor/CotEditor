@@ -144,7 +144,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
-        self.importsGraphics = false
         self.usesFindPanel = true
         self.acceptsGlyphInfo = true
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
@@ -313,7 +312,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
         //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
         
-        guard let window = self.window else { return }
+        guard let window = self.window else { return assertionFailure() }
         
         let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
         let point = self.convert(pointInWindow, from: nil)
@@ -330,7 +329,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
         }
         
-        // add/remove insrtion point at clicked point
+        // add/remove insertion point at clicked point
         if event.modifierFlags.contains(.command), event.clickCount == 1, !isDragged {
             self.modifyInsertionPoint(at: point)
         }
@@ -950,13 +949,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// read pasted/dropped item from NSPaseboard (involed in `performDragOperation(_:)`)
     override func readSelection(from pboard: NSPasteboard, type: NSPasteboard.PasteboardType) -> Bool {
         
-        // apply link to pasted string
+        // link URLs in pasted string
         defer {
-            self.detectLinkIfNeeded()
+            if self.isAutomaticLinkDetectionEnabled {
+                self.textStorage?.detectLink()
+            }
         }
         
         // on file drop
-        if pboard.name == .dragPboard,
+        if pboard.name == .drag,
             let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             self.insertDroppedFiles(urls)
         {
@@ -964,7 +965,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // paste a single string to all insertion points
-        if pboard.name == .generalPboard,
+        if pboard.name == .general,
             pboard.types?.contains(.multipleTextSelection) == false,
             let string = pboard.string(forType: .string),
             let ranges = self.rangesForUserTextChange as? [NSRange],
@@ -972,6 +973,38 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             string.rangeOfCharacter(from: .newlines) == nil
         {
             return self.insertText(string, replacementRanges: ranges)
+        }
+        
+        // keep multiple cursors after pasting mutliple text
+        if pboard.name == .general,
+            let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
+            let string = pboard.string(forType: .string),
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            ranges.count > 1
+        {
+            let lines = string.components(separatedBy: .newlines)
+            let multipleTexts: [String] = groupCounts
+                .reduce(into: [Range<Int>]()) { (groupRanges, groupCount) in
+                    if groupRanges.count >= ranges.count, let last = groupRanges.last {
+                        groupRanges[groupRanges.endIndex - 1] = last.lowerBound..<(last.upperBound + groupCount)
+                    } else {
+                        groupRanges.append(groupRanges.count..<(groupRanges.count + groupCount))
+                    }
+                }
+                .map { lines[$0].joined(separator: "\n") }
+            let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
+            let strings = multipleTexts + blanks
+            
+            var offset = 0
+            let selectedRanges: [NSRange] = zip(ranges, strings).map { (range, string) in
+                let length = string.utf16.count
+                let location = range.lowerBound + offset + length
+                offset += length - range.length
+            
+                return NSRange(location: location, length: 0)
+            }
+            
+            return self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges)
         }
         
         return super.readSelection(from: pboard, type: type)
@@ -1304,18 +1337,23 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         
+        // set textColor only when really required
+        // to avoid returning textColor to NSColorPanel (especially for theme editor). (macOS 10.14)
+        if theme.text.color != self.textColor {
+            self.textColor = theme.text.color
+        }
+        
         self.backgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
-        self.textColor = theme.text.color
-        self.lineHighLightColor = theme.lineHighlight.color
-        self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+        self.lineHighLightColor = self.isOpaque
+            ? theme.lineHighlight.color
+            : theme.lineHighlight.color.withAlphaComponent(0.7)
+        self.insertionPointColor = (self.cursorType == .block)
+            ? theme.insertionPoint.color.withAlphaComponent(0.5)
+            : theme.insertionPoint.color
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
-        
-        if !self.isOpaque {
-            self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(0.7)
-        }
         
         // set scroller color considering background color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
@@ -1417,25 +1455,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.textContainerInset.height = height
         self.sizeToFit()
-    }
-    
-    
-    /// make URL-like text clickable
-    private func detectLinkIfNeeded() {
-        
-        assert(Thread.isMainThread)
-        
-        guard
-            self.isAutomaticLinkDetectionEnabled,
-            let textStorage = self.textStorage
-            else { return }
-        
-        // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
-        textStorage.detectLink()
-        
-        // ensure layout to avoid unwanted scroll with cursor move after pasting something
-        // at the latter part of the document. (2018-10 macOS 10.14)
-        self.layoutManager?.ensureLayout(forCharacterRange: textStorage.range)
     }
     
     
@@ -1597,10 +1616,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case .autoLinkDetection:
                 self.isAutomaticLinkDetectionEnabled = new as! Bool
-                if self.isAutomaticLinkDetectionEnabled {
-                    self.detectLinkIfNeeded()
-                } else if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: textStorage.range)
+                if let textStorage = self.textStorage {
+                    if self.isAutomaticLinkDetectionEnabled {
+                        textStorage.detectLink()
+                    } else {
+                        textStorage.removeAttribute(.link, range: textStorage.range)
+                    }
                 }
                 
             case .pageGuideColumn:

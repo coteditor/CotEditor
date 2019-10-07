@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,16 +31,7 @@ final class Console {
         
         var message: String
         var title: String?
-        var date: Date
-        
-        
-        init(message: String, title: String?) {
-            
-            self.message = message
-            self.title = title
-            self.date = Date()
-        }
-        
+        var date: Date = .init()
     }
     
     
@@ -119,7 +110,7 @@ final class ConsoleViewController: NSViewController {
         
         super.viewDidLoad()
         
-        self.textView!.font = .messageFont(ofSize: type(of: self).fontSize)
+        self.textView!.font = .messageFont(ofSize: Self.fontSize)
         self.textView!.textContainerInset = NSSize(width: 0, height: 4)
     }
     

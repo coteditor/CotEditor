@@ -55,25 +55,21 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     var textFont: NSFont? {
         
-        // keep body text font to avoid the issue where the line height can be different by composite font
-        // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
-        //    Japansete text is input nevertheless the font that user specified dosen't support it.
+        // store text font to avoid the issue where the line height can be different by composite font
+        // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't suuport
+        //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
+            guard let textFont = self.textFont else { return }
+            
             // cache metric values to fix line height
-            if let textFont = self.textFont {
-                self.defaultLineHeight = self.defaultLineHeight(for: textFont)
-                self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
-                
-                // cache width of space char for hanging indent width calculation
-                self.spaceWidth = textFont.spaceWidth
-                
-                // cache replacement glyph width for ATS Typesetter
-                let invisibleFont = NSFont(named: .lucidaGrande, size: textFont.pointSize) ?? textFont  // use current text font for fallback
-                let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
-                self.replacementGlyphWidth = invisibleFont.boundingRect(forGlyph: replacementGlyph).width
-            }
+            self.defaultLineHeight = self.defaultLineHeight(for: textFont)
+            self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
+            
+            // cache width of space char for hanging indent width calculation
+            self.spaceWidth = textFont.spaceWidth
             
             self.invisibleLines = self.generateInvisibleLines()
+            self.replacementGlyphWidth = self.invisibleLines.replacement.bounds().width
         }
     }
     
@@ -224,19 +220,19 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
                 
                 let line: CTLine
                 switch invisible {
-                case .space?:
+                case .space:
                     guard self.showsSpace else { continue }
                     line = self.invisibleLines.space
                     
-                case .tab?:
+                case .tab:
                     guard self.showsTab else { continue }
                     line = self.invisibleLines.tab
                     
-                case .newLine?:
+                case .newLine:
                     guard self.showsNewLine else { continue }
                     line = self.invisibleLines.newLine
                     
-                case .fullwidthSpace?:
+                case .fullwidthSpace:
                     guard self.showsFullwidthSpace else { continue }
                     line = self.invisibleLines.fullwidthSpace
                     

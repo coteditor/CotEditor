@@ -72,6 +72,7 @@ extension StringProtocol where Self.Index == String.Index {
         return self.lineRange(for: index..<index)
     }
     
+    
     /// range of the line containing a given index
     func lineContentsRange(at index: Index) -> Range<Index> {
         

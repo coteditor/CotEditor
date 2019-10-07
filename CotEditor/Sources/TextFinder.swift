@@ -659,14 +659,14 @@ private extension NSPasteboard {
     class var findString: String? {
         
         get {
-            let pasteboard = NSPasteboard(name: .findPboard)
+            let pasteboard = NSPasteboard(name: .find)
             return pasteboard.string(forType: .string)
         }
         
         set {
             guard let string = newValue, !string.isEmpty else { return }
             
-            let pasteboard = NSPasteboard(name: .findPboard)
+            let pasteboard = NSPasteboard(name: .find)
             
             pasteboard.declareTypes([.string], owner: nil)
             pasteboard.setString(string, forType: .string)

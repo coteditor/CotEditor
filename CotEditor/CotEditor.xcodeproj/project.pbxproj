@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -237,8 +237,6 @@
 		2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13121D1EE8FF00D38E6A /* HUDController.swift */; };
 		2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
 		2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */; };
-		2A5D13191D1EFE4B00D38E6A /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */; };
-		2A5D131A1D1EFE4B00D38E6A /* ShareMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */; };
 		2A5D13221D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */; };
 		2A5D13231D1F9B7F00D38E6A /* PopUpToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */; };
 		2A5D13251D1F9D4100D38E6A /* StatableToolbarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */; };
@@ -468,12 +466,6 @@
 		2AAB4BFD1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
 		2AAB4BFF1D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
 		2AAB4C001D2444930049A68B /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */; };
-		2AAC7490203FA2D200D91832 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; };
-		2AAC7491203FA2D200D91832 /* Differ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2AAC7492203FA2E200D91832 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; };
-		2AAC7493203FA2E200D91832 /* Differ.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2AAC748F203FA2D100D91832 /* Differ.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2AAC7495203FA37500D91832 /* Differ.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2AAC7494203FA35100D91832 /* Differ.framework.dSYM */; };
-		2AAC7496203FA38300D91832 /* Differ.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2AAC7494203FA35100D91832 /* Differ.framework.dSYM */; };
 		2AACB1CD1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AACB1CE1D195ABD0073775B /* ShortcutKeyField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */; };
 		2AAD61EC1D2A4CE5008FE772 /* Shortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */; };
@@ -561,21 +553,19 @@
 		2ACC5E4A1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC5E4B1E7B20AA00109ABC /* ThemeMetaDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */; };
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
-		2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */; };
+		2ACD02B822A87C8000893051 /* Differ in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02B722A87C8000893051 /* Differ */; };
+		2ACD02BA22A87CB900893051 /* Differ in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02B922A87CB900893051 /* Differ */; };
+		2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BC22A87EFD00893051 /* ColorCode */; };
+		2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BE22A87F0400893051 /* ColorCode */; };
 		2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
 		2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */; };
-		2ACD68201D6B0F0100496B47 /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
 		2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
 		2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; };
-		2ACD68271D6B0F7300496B47 /* ColorCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; };
-		2ACD68281D6B0F7300496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
 		2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ACD682D1D6B0F9400496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */; };
 		2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
 		2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A4810391D4D1ADF00F7D34C /* ColorCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
@@ -776,8 +766,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				2ACD68171D6B0E1200496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
-				2AAC7495203FA37500D91832 /* Differ.framework.dSYM in Copy dSYM Files */,
 				2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 				2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */,
 			);
@@ -790,8 +778,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2ACD68321D6B114400496B47 /* ColorCode.framework in Embed Frameworks */,
-				2AAC7491203FA2D200D91832 /* Differ.framework in Embed Frameworks */,
 				2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */,
 				2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */,
 			);
@@ -804,8 +790,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2ACD68281D6B0F7300496B47 /* ColorCode.framework in Embed Frameworks */,
-				2AAC7493203FA2E200D91832 /* Differ.framework in Embed Frameworks */,
 				2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -817,8 +801,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				2ACD682D1D6B0F9400496B47 /* ColorCode.framework.dSYM in Copy dSYM Files */,
-				2AAC7496203FA38300D91832 /* Differ.framework.dSYM in Copy dSYM Files */,
 				2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 			);
 			name = "Copy dSYM Files";
@@ -1032,7 +1014,6 @@
 		2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringTextFieldCell.swift; sourceTree = "<group>"; };
 		2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultKey+Observation.swift"; sourceTree = "<group>"; };
 		2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSValidatedUserInterfaceItem.swift; sourceTree = "<group>"; };
-		2A4810391D4D1ADF00F7D34C /* ColorCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ColorCode.framework; path = ../Carthage/Build/Mac/ColorCode.framework; sourceTree = "<group>"; };
 		2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Dark.swift"; sourceTree = "<group>"; };
 		2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFindPanelTextView.swift; sourceTree = "<group>"; };
 		2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonosizeToolbar.swift; sourceTree = "<group>"; };
@@ -1049,7 +1030,6 @@
 		2A5D130F1D1EE66500D38E6A /* ProgressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressViewController.swift; sourceTree = "<group>"; };
 		2A5D13121D1EE8FF00D38E6A /* HUDController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUDController.swift; sourceTree = "<group>"; };
 		2A5D13151D1EF5AA00D38E6A /* GoToLineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoToLineViewController.swift; sourceTree = "<group>"; };
-		2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareMenuItem.swift; sourceTree = "<group>"; };
 		2A5D13211D1F9B7F00D38E6A /* PopUpToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13241D1F9D4000D38E6A /* StatableToolbarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatableToolbarItem.swift; sourceTree = "<group>"; };
 		2A5D13271D1F9EEB00D38E6A /* ToolbarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolbarController.swift; sourceTree = "<group>"; };
@@ -1198,8 +1178,6 @@
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		2AAC748F203FA2D100D91832 /* Differ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Differ.framework; path = ../Carthage/Build/Mac/Differ.framework; sourceTree = "<group>"; };
-		2AAC7494203FA35100D91832 /* Differ.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Differ.framework.dSYM; sourceTree = "<group>"; };
 		2AACB1CC1D195ABD0073775B /* ShortcutKeyField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShortcutKeyField.swift; sourceTree = "<group>"; };
 		2AAD61EB1D2A4CE5008FE772 /* Shortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shortcut.swift; sourceTree = "<group>"; };
 		2AAD61EF1D2B0856008FE772 /* String+FuzzyRange.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+FuzzyRange.swift"; sourceTree = "<group>"; };
@@ -1321,7 +1299,6 @@
 		2ACC5E401E7B08D300109ABC /* MultipleReplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementViewController.swift; sourceTree = "<group>"; };
 		2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMetaDataViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
-		2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = ColorCode.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = YAML.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
@@ -1473,8 +1450,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACD68271D6B0F7300496B47 /* ColorCode.framework in Frameworks */,
-				2AAC7492203FA2E200D91832 /* Differ.framework in Frameworks */,
+				2ACD02BA22A87CB900893051 /* Differ in Frameworks */,
+				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
 				2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1483,10 +1460,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACD68201D6B0F0100496B47 /* ColorCode.framework in Frameworks */,
-				2AAC7490203FA2D200D91832 /* Differ.framework in Frameworks */,
 				2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */,
+				2ACD02B822A87C8000893051 /* Differ in Frameworks */,
 				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
+				2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1991,7 +1968,6 @@
 				2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */,
 				2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */,
 				2AD69B841D3E42F700FBD998 /* TextSelection.swift */,
-				2A5D13181D1EFE4B00D38E6A /* ShareMenuItem.swift */,
 				2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */,
 				2AD69B871D3E4FCD00FBD998 /* Editable.swift */,
 			);
@@ -2259,8 +2235,6 @@
 		2ACD681F1D6B0E5C00496B47 /* dSYM */ = {
 			isa = PBXGroup;
 			children = (
-				2ACD68161D6B0E1200496B47 /* ColorCode.framework.dSYM */,
-				2AAC7494203FA35100D91832 /* Differ.framework.dSYM */,
 				2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */,
 				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
 			);
@@ -2347,8 +2321,6 @@
 			isa = PBXGroup;
 			children = (
 				2ACD681F1D6B0E5C00496B47 /* dSYM */,
-				2A4810391D4D1ADF00F7D34C /* ColorCode.framework */,
-				2AAC748F203FA2D100D91832 /* Differ.framework */,
 				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
 				2A9246F01FCD20EF008DBC30 /* XPC */,
@@ -2394,6 +2366,10 @@
 			dependencies = (
 			);
 			name = "CotEditor -AppStore";
+			packageProductDependencies = (
+				2ACD02B922A87CB900893051 /* Differ */,
+				2ACD02BE22A87F0400893051 /* ColorCode */,
+			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
 			productReference = 2A6F0E071B5500E100C2D03C /* CotEditor.app */;
@@ -2436,6 +2412,10 @@
 			dependencies = (
 			);
 			name = CotEditor;
+			packageProductDependencies = (
+				2ACD02B722A87C8000893051 /* Differ */,
+				2ACD02BC22A87EFD00893051 /* ColorCode */,
+			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
 			productReference = 8D15AC370486D014006FF6A4 /* CotEditor.app */;
@@ -2450,7 +2430,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {
@@ -2504,7 +2484,7 @@
 				};
 			};
 			buildConfigurationList = 8C71D95708640EDF00C9C0BD /* Build configuration list for PBXProject "CotEditor" */;
-			compatibilityVersion = "Xcode 10.0";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -2518,6 +2498,10 @@
 				fr,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* CotEditor */;
+			packageReferences = (
+				2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */,
+				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
+			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2896,7 +2880,6 @@
 				2A5D13391D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
 				2A359DFF1DAE93EE00FEF7AA /* NSWindow+Responder.swift in Sources */,
-				2A5D131A1D1EFE4B00D38E6A /* ShareMenuItem.swift in Sources */,
 				2A231A2E1E7BE8B700C2A909 /* TextFindProgress.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AD551E520D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */,
@@ -3275,7 +3258,6 @@
 				2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */,
 				2A5DCE4F1D185F1B00D5D74C /* CharacterField.swift in Sources */,
 				2ACDC09A1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
-				2A5D13191D1EFE4B00D38E6A /* ShareMenuItem.swift in Sources */,
 				2A91C31E1D1C3963007CF8BE /* PrintPaneController.swift in Sources */,
 				2A17A3131D2D16F1001DD717 /* WindowContentViewController.swift in Sources */,
 				2ACDC0A61D17350A009B72D6 /* InspectorTabView.swift in Sources */,
@@ -4109,9 +4091,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-AppStore.plist";
+				MARKETING_VERSION = "3.8.0-beta";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -4123,9 +4108,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-AppStore.plist";
+				MARKETING_VERSION = "3.8.0-beta";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -4185,9 +4173,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
+				MARKETING_VERSION = "3.8.0-beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4198,9 +4189,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
+				MARKETING_VERSION = "3.8.0-beta";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4265,7 +4259,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-D DEBUG";
 				RUN_CLANG_STATIC_ANALYZER = YES;
@@ -4334,7 +4328,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -4410,6 +4404,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tonyarnold/Differ";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.3;
+			};
+		};
+		2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/1024jp/WFColorCode.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2ACD02B722A87C8000893051 /* Differ */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */;
+			productName = Differ;
+		};
+		2ACD02B922A87CB900893051 /* Differ */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ACD02B622A87C8000893051 /* XCRemoteSwiftPackageReference "Differ" */;
+			productName = Differ;
+		};
+		2ACD02BC22A87EFD00893051 /* ColorCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */;
+			productName = ColorCode;
+		};
+		2ACD02BE22A87F0400893051 /* ColorCode */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */;
+			productName = ColorCode;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 }

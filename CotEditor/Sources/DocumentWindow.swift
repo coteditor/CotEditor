@@ -128,23 +128,6 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    /// apply current state to menu items
-    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
-        
-        // manually update the Japanese menu item title for toolbar visibility toggle
-        // since it doesn't work on macOS 10.12 and earlier (2018-05).
-        if NSAppKitVersion.current < .macOS10_13,
-            menuItem.action == #selector(toggleToolbarShown),
-            Locale.preferredLanguages.first == "ja",
-            let toolbar = self.toolbar
-        {
-            menuItem.title = toolbar.isVisible ? "ツールバーを非表示" : "ツールバーを表示"
-        }
-        
-        return super.validateMenuItem(menuItem)
-    }
-    
-    
     
     // MARK: Private Methods
     
@@ -203,11 +186,7 @@ extension DocumentWindow {
         // prefer existing shortcut that user might define
         guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
         
-        if #available(macOS 10.13, *) {
-            window.tabGroup?.selectedWindow = window
-        } else {
-            window.orderFront(nil)
-        }
+        window.tabGroup?.selectedWindow = window
         
         return true
     }

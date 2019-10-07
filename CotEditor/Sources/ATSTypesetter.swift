@@ -33,12 +33,14 @@ final class ATSTypesetter: NSATSTypesetter {
     /// adjust vertical position to keep line height even with composed font
     override func willSetLineFragmentRect(_ lineRect: UnsafeMutablePointer<NSRect>, forGlyphRange glyphRange: NSRange, usedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>) {
         
-        // avoid being line height different by composite font
+        // avoid being line height inconsistent by a composite font
         //   -> LayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
         //      通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない。
         //   -> EditorTextView で、NSParagraphStyle の lineHeightMultiple を設定しても行間は制御できるが、
         //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
         //      挿入すると行間がズレる」問題が生じる。
+        //   -> `baselineOffset` also shifts when a character height is higher than the fixed line height,
+        //      such as 𓆏.
         
         guard let manager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         

@@ -69,6 +69,15 @@
 /* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Autres caractères invisibles";
 
+/* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
+"6KG-3a-ZuU.title" = "Mode d’apparence:";
+/* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
+"apQ-au-gOC.title" = "Comme le système";
+/* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
+"FwU-oj-kwc.title" = "Clair";
+/* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
+"1Cg-21-kjr.title" = "Sombre";
+
 
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */
 "Avf-y8-wXG.headerCell.title" = "Thème";

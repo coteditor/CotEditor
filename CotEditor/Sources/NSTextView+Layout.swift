@@ -38,12 +38,12 @@ extension NSTextView {
     /// calculate visible range
     var visibleRange: NSRange? {
         
-        return self.range(for: self.visibleRect)
+        return self.range(for: self.visibleRect, withoutAdditionalLayout: true)
     }
     
     
     /// calculate range of characters in rect
-    func range(for rect: NSRect) -> NSRange? {
+    func range(for rect: NSRect, withoutAdditionalLayout: Bool = false) -> NSRange? {
         
         guard
             let layoutManager = self.layoutManager,
@@ -51,7 +51,9 @@ extension NSTextView {
             else { return nil }
         
         let visibleRect = rect.offset(by: -self.textContainerOrigin)
-        let glyphRange = layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
+        let glyphRange = withoutAdditionalLayout
+            ? layoutManager.glyphRange(forBoundingRectWithoutAdditionalLayout: visibleRect, in: textContainer)
+            : layoutManager.glyphRange(forBoundingRect: visibleRect, in: textContainer)
         
         return layoutManager.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
     }
@@ -138,15 +140,14 @@ extension NSTextView {
             // reset minimum size for unwrap mode
             self.minSize = self.visibleRect.size
             
-            // ensure text layout
-            if let textContainer = self.textContainer {
-                self.layoutManager?.ensureLayout(for: textContainer)
-            }
+            // update view size
+            // -> For in case the view becomes bigger than text content width when pinch out
+            //    but doesn't strech enough to the right edge of the scroll view.
             self.sizeToFit()
             
             self.didChangeValue(for: \.scale)
             
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            self.setNeedsDisplay(self.visibleRect)
         }
     }
     
@@ -175,9 +176,10 @@ extension NSTextView {
         // adjust scroller to keep position of the glyph at the passed-in center point
         if self.scale != currentScale {
             let newCenterFromClipOrigin = centerFromClipOrigin.scaled(to: 1.0 / self.scale)
-            let newCenter = layoutManager.boundingRect(forGlyphRange: NSRange(location: centerGlyphIndex, length: 1), in: textContainer)
-            let scrollPoint = NSPoint(x: round(point.x - newCenterFromClipOrigin.x),
-                                      y: round(newCenter.midY - newCenterFromClipOrigin.y))
+            let glyphRange = NSRange(location: centerGlyphIndex, length: 1)
+            let newCenter = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
+            let scrollPoint = NSPoint(x: point.x, y: newCenter.midY)
+                .offset(by: -newCenterFromClipOrigin)
             self.scroll(scrollPoint)
         }
     }

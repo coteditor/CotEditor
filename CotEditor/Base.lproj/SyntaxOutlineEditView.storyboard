@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="lwP-3N-c9s">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="lwP-3N-c9s">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,13 +15,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGp-6x-e5X">
-                                <rect key="frame" x="8" y="117" width="434" height="190"/>
+                                <rect key="frame" x="8" y="115" width="434" height="193"/>
                                 <clipView key="contentView" id="kWo-dQ-dd2">
-                                    <rect key="frame" x="1" y="0.0" width="432" height="189"/>
+                                    <rect key="frame" x="1" y="0.0" width="432" height="192"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="Ekv-v1-FdT" viewBased="YES" id="2bp-d9-mTT">
-                                            <rect key="frame" x="0.0" y="0.0" width="432" height="166"/>
+                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="Ekv-v1-FdT" viewBased="YES" id="2bp-d9-mTT">
+                                            <rect key="frame" x="0.0" y="0.0" width="432" height="169"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -77,11 +77,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="MDh-Ha-Hyc">
-                                                            <rect key="frame" x="31" y="1" width="253" height="17"/>
+                                                            <rect key="frame" x="31" y="1" width="253" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8NB-AU-ecw" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="253" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" usesSingleLineMode="YES" id="RCz-qR-02w">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -118,11 +118,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="gL1-K8-zYn">
-                                                            <rect key="frame" x="287" y="1" width="143" height="17"/>
+                                                            <rect key="frame" x="287" y="1" width="143" height="16"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e1M-tw-2hv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="143" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="note" usesSingleLineMode="YES" id="NIK-yi-b5J">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -169,7 +169,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fiO-0i-ClJ">
-                                <rect key="frame" x="8" y="87" width="24" height="23"/>
+                                <rect key="frame" x="8" y="85" width="24" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="0TS-E7-cbt"/>
                                     <constraint firstAttribute="height" constant="21" id="arb-wd-fX8"/>
@@ -184,7 +184,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="keq-g7-p76">
-                                <rect key="frame" x="31" y="87" width="24" height="23"/>
+                                <rect key="frame" x="31" y="85" width="24" height="23"/>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="in5-c6-yDg">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="miniSystem"/>
@@ -195,7 +195,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CHs-4y-PqE">
-                                <rect key="frame" x="6" y="315" width="306" height="17"/>
+                                <rect key="frame" x="6" y="316" width="306" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Regular expressions to extract outline menu items" id="cBA-MO-VzQ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -203,7 +203,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QHn-ch-mKE">
-                                <rect key="frame" x="6" y="63" width="112" height="17"/>
+                                <rect key="frame" x="6" y="62" width="112" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Menu title pattern" usesSingleLineMode="YES" id="nnO-qN-dYF">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -211,7 +211,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w6W-sD-KWD" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="8" y="37" width="434" height="22"/>
+                                <rect key="frame" x="8" y="37" width="434" height="21"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="dtm-Tz-oCa">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -270,7 +270,7 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qm1-Hn-B3D">
-                                <rect key="frame" x="122" y="63" width="177" height="14"/>
+                                <rect key="frame" x="122" y="62" width="177" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="(blank matches the whole string)" id="rqP-22-G2u">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

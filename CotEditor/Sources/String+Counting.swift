@@ -27,6 +27,18 @@ import Foundation
 
 extension StringProtocol where Self.Index == String.Index {
     
+    /// number of words in the whole string
+    var numberOfWords: Int {
+        
+        var count = 0
+        self.enumerateSubstrings(in: self.startIndex..<self.endIndex, options: [.byWords, .localized, .substringNotRequired]) { (_, _, _, _) in
+            count += 1
+        }
+        
+        return count
+    }
+    
+    
     /// number of lines in the whole string ignoring the last new line character
     var numberOfLines: Int {
         

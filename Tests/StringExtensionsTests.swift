@@ -75,6 +75,15 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testWordsCount() {
+        
+        XCTAssertEqual("Clarus says moof!".numberOfWords, 3)
+        XCTAssertEqual("plain-text".numberOfWords, 2)
+        XCTAssertEqual("!".numberOfWords, 0)
+        XCTAssertEqual("".numberOfWords, 0)
+    }
+    
+    
     func testLinesCount() {
         
         XCTAssertEqual("".numberOfLines, 0)

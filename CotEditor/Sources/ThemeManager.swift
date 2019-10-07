@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,7 @@
 //
 
 import Foundation
+import AppKit.NSAppearance
 
 @objc protocol ThemeHolder: AnyObject {
     
@@ -64,7 +65,7 @@ final class ThemeManager: SettingFileManaging {
     private init() {
         
         // cache bundled setting names
-        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: ThemeManager.directoryName)!
+        self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: Self.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
             .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
@@ -77,17 +78,32 @@ final class ThemeManager: SettingFileManaging {
     
     // MARK: Public Methods
     
-    /// return default setting by taking the appearance state into consideration
-    func defaultSettingName(forDark: Bool = false) -> String {
+    /// default setting by taking the appearance state into consideration
+    var defaultSettingName: String {
         
-        return forDark ? "Dendrobates (Dark)" : "Dendrobates"
+        let defaultSettingName = DefaultSettings.defaults[.theme] as! String
+        let forDark = self.usesDarkAppearance
+        
+        return self.equivalentSettingName(to: defaultSettingName, forDark: forDark)!
     }
     
     
-    /// return user default setting by taking the appearance state into consideration
-    func userDefaultSettingName(forDark: Bool = false) -> String {
+    /// user default setting by taking the appearance state into consideration
+    var userDefaultSettingName: String {
         
-        return UserDefaults.standard[.theme] ?? self.defaultSettingName(forDark: forDark)
+        let settingName = UserDefaults.standard[.theme]!
+        
+        if UserDefaults.standard[.pinsThemeAppearance] || NSAppKitVersion.current < .macOS10_13 {
+            return settingName
+        }
+        
+        if let equivalentSettingName = self.equivalentSettingName(to: settingName, forDark: self.usesDarkAppearance) {
+            return equivalentSettingName
+        }
+        
+        guard self.settingNames.contains(settingName) else { return self.defaultSettingName }
+        
+        return settingName
     }
     
     
@@ -131,6 +147,13 @@ final class ThemeManager: SettingFileManaging {
         try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
             completionHandler(name)
         }
+    }
+    
+    
+    /// return whether given setting name is dark theme
+    func isDark(name: String) -> Bool {
+        
+        return name.range(of: "(Dark)", options: [.anchored, .backwards]) != nil
     }
     
     
@@ -188,6 +211,20 @@ final class ThemeManager: SettingFileManaging {
     
     
     // MARK: Private Methods
+    
+    /// Whether user prefers using dark mode window.
+    private var usesDarkAppearance: Bool {
+        
+        switch UserDefaults.standard[.documentAppearance] {
+        case .default:
+            return NSAppearance.current.isDark
+        case .light:
+            return false
+        case .dark:
+            return true
+        }
+    }
+        
     
     /// Load ThemeDictionary from a file at the URL.
     ///

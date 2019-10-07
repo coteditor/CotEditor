@@ -206,7 +206,7 @@ extension Document {
     // MARK: AppleScript Handler
     
     /// handle the Convert AppleScript by changing the text encoding and converting the text
-    @objc func handleConvert(_ command: NSScriptCommand) -> Bool {
+    @objc func handleConvert(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,
@@ -231,7 +231,7 @@ extension Document {
     
     
     /// handle the Convert AppleScript by changing the text encoding and reinterpreting the text
-    @objc func handleReinterpret(_ command: NSScriptCommand) -> Bool {
+    @objc func handleReinterpret(_ command: NSScriptCommand) -> NSNumber {
         
         guard
             let arguments = command.evaluatedArguments,

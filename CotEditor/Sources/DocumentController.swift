@@ -68,7 +68,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// automatically inserts Share menu (on macOS 10.13 and later)
+    /// automatically inserts Share menu
     override var allowsAutomaticShareMenu: Bool {
 
         return true
@@ -209,32 +209,6 @@ final class DocumentController: NSDocumentController {
         }
         
         return super.validateUserInterfaceItem(item)
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// insert hand-made Share menu to the File menu
-    func insertLegacyShareMenu() {
-        
-        let fileMenu = MainMenu.file.menu!
-        
-        // insert at the end of the group of Save/Close
-        var inSaveGroup = false
-        let index = fileMenu.items.enumerated().first { (_, item) in
-            if item.action == #selector(NSWindow.performClose) {
-                inSaveGroup = true
-            }
-            
-            return inSaveGroup && item.isSeparatorItem
-        }?.offset ?? fileMenu.numberOfItems
-        
-        let item = ShareMenuItem()
-        item.tag = MainMenu.MenuItemTag.sharingService.rawValue
-        
-        fileMenu.insertItem(item, at: index)
-        fileMenu.insertItem(NSMenuItem.separator(), at: index)
     }
     
     

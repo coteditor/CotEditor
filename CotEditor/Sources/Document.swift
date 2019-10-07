@@ -33,6 +33,8 @@ private struct SerializationKey {
     static let autosaveIdentifier = "autosaveIdentifier"
     static let isVerticalText = "isVerticalText"
     static let isTransient = "isTransient"
+    
+    private init() { }
 }
 
 
@@ -124,15 +126,19 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// store internal document state
-    override func encodeRestorableState(with coder: NSCoder) {
+    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
         
-        coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
-        coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
-        coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
-        coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
-        coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
+        super.encodeRestorableState(with: coder, backgroundQueue: queue)
         
-        super.encodeRestorableState(with: coder)
+        queue.addOperation { [weak self] in
+            guard let self = self else { return }
+            
+            coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
+            coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
+            coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
+            coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
+            coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
+        }
     }
     
     
@@ -736,14 +742,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
-        case #selector(changeEncoding(_:))?:
+        case #selector(changeEncoding(_:)):
             let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
             menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
-        case #selector(changeLineEnding(_:))?:
+        case #selector(changeLineEnding(_:)):
             menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
-        case #selector(changeSyntaxStyle(_:))?:
+        case #selector(changeSyntaxStyle(_:)):
             let name = self.syntaxParser.style.name
             menuItem.state = (menuItem.title == name) ? .on : .off
             

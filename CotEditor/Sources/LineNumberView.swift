@@ -88,14 +88,15 @@ final class LineNumberView: NSView {
     // MARK: Constants
     
     private let minNumberOfDigits = 3
-    private let minVerticalThickness: CGFloat = 32.0
-    private let minHorizontalThickness: CGFloat = 20.0
+    private let minVerticalThickness: CGFloat = 32
+    private let minHorizontalThickness: CGFloat = 20
     
     private static let fontSizeFactor: CGFloat = 0.9
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
+        
         case normal = 0.75
         case bold = 0.9
         case stroke = 0.2
@@ -148,6 +149,7 @@ final class LineNumberView: NSView {
             .forEach { NotificationCenter.default.removeObserver($0) }
         
         self.colorObserver?.invalidate()
+        self.draggingTimer?.invalidate()
     }
     
     
@@ -277,7 +279,7 @@ final class LineNumberView: NSView {
         
         context.saveGState()
         
-        context.setFont(LineNumberView.lineNumberFont)
+        context.setFont(Self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.textColor().cgColor)
         context.setStrokeColor(self.textColor(.stroke).cgColor)
@@ -321,12 +323,12 @@ final class LineNumberView: NSView {
                     // draw
                     if isSelected {
                         context.setFillColor(self.textColor(.bold).cgColor)
-                        context.setFont(LineNumberView.boldLineNumberFont)
+                        context.setFont(Self.boldLineNumberFont)
                     }
                     context.showGlyphs(glyphs, at: positions)
                     if isSelected {
                         context.setFillColor(self.textColor().cgColor)
-                        context.setFont(LineNumberView.lineNumberFont)
+                        context.setFont(Self.lineNumberFont)
                     }
                 }
                 

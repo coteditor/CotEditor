@@ -135,7 +135,7 @@ extension EditorTextView {
     /// move cursor to the beginning of the word continuasly (opt←)
     override func moveWordLeft(_ sender: Any?) {
         
-        // find word boundary by ownself
+        // find word boundary myself
         // -> The super.moveWordLef(_:) uses `textStorage.nextWord(from: $0.lowerBound, forward: isRTL)`
         //    and it doesn't stop at punctuation marks, such as `.` and `:` (2019-06).
         
@@ -148,7 +148,7 @@ extension EditorTextView {
     /// move cursor to the beginning of the word and modify selection continuasly (⇧opt←).
     override func moveWordLeftAndModifySelection(_ sender: Any?) {
         
-        // find word boundary by ownself (cf. moveWordLeft(_:))
+        guard self.hasMultipleInsertions else { return self.moveWordAndModifySelection(sender, left: true) }
         
         self.moveCursorsAndModifySelection(forward: false, affinity: .downstream) {
             self.textStorage!.nextWord(from: $0, forward: self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
@@ -159,7 +159,7 @@ extension EditorTextView {
     /// move cursor to the end of the word continuasly (opt→)
     override func moveWordRight(_ sender: Any?) {
         
-        // find word boundary by ownself (cf. moveWordLeft(_:))
+        // find word boundary myself (cf. moveWordLeft(_:))
         
         self.moveCursors(affinity: .upstream) {
             self.textStorage!.nextWord(from: $0.upperBound, forward: !self.layoutManager!.isRTL(at: $0.upperBound), delimiters: .additionalWordSeparators)
@@ -170,7 +170,7 @@ extension EditorTextView {
     /// move cursor to the end of the word and modify selection continuasly (⇧opt→).
     override func moveWordRightAndModifySelection(_ sender: Any?) {
         
-        // find word boundary by ownself (cf. moveWordLeft(_:))
+        guard self.hasMultipleInsertions else { return self.moveWordAndModifySelection(sender, left: false) }
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
             self.textStorage!.nextWord(from: $0, forward: !self.layoutManager!.isRTL(at: $0), delimiters: .additionalWordSeparators)
@@ -196,6 +196,57 @@ extension EditorTextView {
         
         self.moveCursorsAndModifySelection(forward: true, affinity: .upstream) {
             (self.string as NSString).lineContentsRange(at: self.string.index(after: $0)).upperBound
+        }
+    }
+    
+    
+    /// Expand/reduce single selection to next word boundary by taking additional word separators into consideration.
+    ///
+    /// - Parameter sender: The sender of the action.
+    /// - Parameter isLeft: `true` if this method is invoked from `moveWordLeftAndModifySelection(_:)`, otherwise `false`.
+    ///
+    /// - Note:
+    /// Because the other selection modification keybindings for single cursor use the textView's methods,
+    /// this method changes the selection by using only super's slection modification methods
+    /// to let the textView remember the correct cursor origin for following single selection modification.
+    private func moveWordAndModifySelection(_ sender: Any?, left isLeft: Bool) {
+        
+        assert(!self.hasMultipleInsertions)
+        
+        // let super change the selection to figure out the direction to expand (or reduce)
+        let currentRange = self.selectedRange
+        if isLeft {
+            super.moveWordLeftAndModifySelection(sender)
+        } else {
+            super.moveWordRightAndModifySelection(sender)
+        }
+        let superRange = self.selectedRange
+        
+        // do nothing if the cursor has already reached the beginning/end
+        guard currentRange != superRange else { return }
+        
+        // find selection direction
+        let isLowerOrigin = (currentRange.lowerBound == superRange.lowerBound)
+        let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
+        let origin = isLowerOrigin ? currentRange.lowerBound : currentRange.upperBound
+        
+        //  skip modifiying selection in RTL text as it is too complex
+        // -> Additional word boundaries may be not so nessessory in RTL text.
+        guard !self.layoutManager!.isRTL(at: cursor) else { return }
+        
+        // calculate original selected range by taking additional word separators into consideration
+        let newCursor = self.textStorage!.nextWord(from: cursor, forward: !isLeft, delimiters: .additionalWordSeparators)
+        let newRange = (origin < newCursor) ? NSRange(origin..<newCursor) : NSRange(newCursor..<origin)
+        
+        // adjust selection range character by character
+        while self.selectedRange != newRange {
+            if (self.selectedRange.upperBound > newRange.upperBound) ||
+               (self.selectedRange.lowerBound > newRange.lowerBound)
+            {
+                super.moveBackwardAndModifySelection(self)
+            } else {
+                super.moveForwardAndModifySelection(self)
+            }
         }
     }
     

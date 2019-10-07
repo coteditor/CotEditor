@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JG1-NR-KT5">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,7 +11,7 @@
             <objects>
                 <viewController id="JG1-NR-KT5" customClass="GeneralPaneController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" horizontalHuggingPriority="750" verticalCompressionResistancePriority="250" id="T5J-Ml-0Oc">
-                        <rect key="frame" x="0.0" y="0.0" width="560" height="629"/>
+                        <rect key="frame" x="0.0" y="0.0" width="560" height="626"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-ng-N5P">
@@ -29,7 +29,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oN2-0G-iXz">
-                                <rect key="frame" x="130" y="503" width="212" height="18"/>
+                                <rect key="frame" x="130" y="502" width="212" height="18"/>
                                 <buttonCell key="cell" type="check" title="Enable Auto Save with Versions" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="SGo-FL-Pax">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -50,16 +50,16 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" tag="-1" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lSi-dW-Eg4">
-                                <rect key="frame" x="18" y="108" width="108" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Software update:" usesSingleLineMode="YES" id="geU-63-sAC">
+                                <rect key="frame" x="18" y="108" width="108" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Software update:" usesSingleLineMode="YES" id="geU-63-sAC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goq-md-y5e">
-                                <rect key="frame" x="24" y="504" width="102" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Document save:" usesSingleLineMode="YES" id="Ki4-3Y-AZL">
+                                <rect key="frame" x="24" y="503" width="102" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Document save:" usesSingleLineMode="YES" id="Ki4-3Y-AZL">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -97,7 +97,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C4l-rJ-eqF">
-                                <rect key="frame" x="18" y="378" width="316" height="17"/>
+                                <rect key="frame" x="18" y="378" width="316" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When document is modified by another application:" usesSingleLineMode="YES" id="x4n-2n-I3p">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -116,7 +116,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XmK-Ev-21D">
-                                <rect key="frame" x="148" y="459" width="394" height="42"/>
+                                <rect key="frame" x="148" y="458" width="394" height="42"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" id="sOa-Ea-zt9">
                                     <font key="font" metaFont="smallSystem"/>
                                     <string key="title">A system feature that automatically overwrites your files while editing. Even if it turned off, CotEditor creates backup covertly for unexpected crash.</string>
@@ -143,7 +143,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mjX-zy-HeG">
-                                <rect key="frame" x="130" y="435" width="216" height="18"/>
+                                <rect key="frame" x="130" y="434" width="216" height="18"/>
                                 <buttonCell key="cell" type="check" title="Trim trailing whitespace on save" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="noP-hx-YeQ">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -183,7 +183,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oj1-KV-koj">
-                                <rect key="frame" x="150" y="413" width="213" height="18"/>
+                                <rect key="frame" x="150" y="412" width="213" height="18"/>
                                 <buttonCell key="cell" type="check" title="Including whitespace-only lines" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Tma-Oh-F7v">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -194,7 +194,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jK0-pT-HTR">
-                                <rect key="frame" x="130" y="591" width="231" height="18"/>
+                                <rect key="frame" x="130" y="589" width="231" height="18"/>
                                 <buttonCell key="cell" type="check" title="Reopen windows from last session" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QX9-BI-SIL">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -215,7 +215,7 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NjY-HB-hDH">
-                                <rect key="frame" x="130" y="568" width="168" height="17"/>
+                                <rect key="frame" x="130" y="567" width="168" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="When nothing else is open:" id="wmw-xg-bSt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -223,7 +223,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihY-NN-wRt">
-                                <rect key="frame" x="53" y="592" width="73" height="17"/>
+                                <rect key="frame" x="53" y="590" width="73" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="On startup:" usesSingleLineMode="YES" id="zDW-aW-9G8">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -231,15 +231,15 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Af4-HM-9hW">
-                                <rect key="frame" x="32" y="279" width="94" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Content parse:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
+                                <rect key="frame" x="32" y="279" width="94" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Content parse:" usesSingleLineMode="YES" id="lzy-Ei-xlT">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sMb-to-ljF">
-                                <rect key="frame" x="150" y="536" width="205" height="25"/>
+                                <rect key="frame" x="150" y="535" width="205" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="lBm-Ck-DzR"/>
                                 </constraints>

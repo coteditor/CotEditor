@@ -81,6 +81,7 @@ extension DefaultKeys {
     static let showInvisibleFullwidthSpace = DefaultKey<Bool>("showInvisibleZenkakuSpace")
     static let invisibleFullwidthSpace = DefaultKey<Int>("invisibleZenkakuSpace")
     static let showOtherInvisibleChars = DefaultKey<Bool>("showOtherInvisibleChars")
+    static let documentAppearance = DefaultKey<AppearanceMode>("appearance")
     static let theme = DefaultKey<String>("defaultTheme")
     
     // Edit
@@ -160,6 +161,7 @@ extension DefaultKeys {
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
     // settings that are not in preferences
+    static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")

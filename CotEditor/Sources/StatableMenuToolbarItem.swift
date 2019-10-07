@@ -41,19 +41,8 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
         let segmentedControl = self.segmentedControl!
         
         // set menu to the last segment
-        if #available(macOS 10.13, *) {
-            segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
-            segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
-        } else {
-            // use normal button if the menu indicator is not supported
-            let image = segmentedControl.image(forSegment: 0)!
-            let button = NSButton(title: "", image: image, target: self.target, action: self.action)
-            button.frame.size = NSSize(width: 38, height: 24)
-            button.bezelStyle = .texturedRounded
-            self.view = button
-            self.minSize.width = 44
-            self.maxSize.width = 44
-        }
+        segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
+        segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
         
         // set menu for "Text Only" mode
         let item = NSMenuItem()
@@ -67,18 +56,10 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
     override var image: NSImage? {
         
         get {
-            if #available(macOS 10.13, *) { } else {
-                return (self.control as? NSButton)?.image
-            }
-            
             return self.segmentedControl?.image(forSegment: 0)
         }
         
         set {
-            if #available(macOS 10.13, *) { } else {
-                (self.control as? NSButton)?.image = newValue
-            }
-            
             self.segmentedControl?.setImage(newValue, forSegment: 0)
         }
     }

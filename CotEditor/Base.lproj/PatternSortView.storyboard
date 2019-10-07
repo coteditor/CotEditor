@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -89,7 +89,7 @@ Gw
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="751" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CQO-oZ-nKa">
-                                <rect key="frame" x="18" y="148" width="76" height="17"/>
+                                <rect key="frame" x="18" y="148" width="76" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Sort option:" usesSingleLineMode="YES" id="eio-Wb-V6q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -107,13 +107,13 @@ Gw
                                 </connections>
                             </button>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="dBa-xL-w0w">
-                                <rect key="frame" x="100" y="169" width="392" height="97"/>
+                                <rect key="frame" x="100" y="168" width="392" height="101"/>
                                 <connections>
                                     <segue destination="UQP-be-J0h" kind="embed" id="Jqt-CD-otV"/>
                                 </connections>
                             </containerView>
                             <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-zl-dSu">
-                                <rect key="frame" x="184" y="265" width="69" height="18"/>
+                                <rect key="frame" x="184" y="268" width="69" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Column" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="pKE-GY-bD6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -123,7 +123,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="bN6-xc-HWj">
-                                <rect key="frame" x="262" y="265" width="137" height="18"/>
+                                <rect key="frame" x="262" y="268" width="137" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Regular expression" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Ase-N7-QHB">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -133,8 +133,8 @@ Gw
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="oqP-25-2rA">
-                                <rect key="frame" x="36" y="266" width="58" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sort key:" usesSingleLineMode="YES" id="bKb-oj-ekR">
+                                <rect key="frame" x="36" y="269" width="58" height="16"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Sort key:" usesSingleLineMode="YES" id="bKb-oj-ekR">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -161,7 +161,7 @@ Gw
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XDJ-2v-jYy">
-                                <rect key="frame" x="18" y="338" width="53" height="17"/>
+                                <rect key="frame" x="18" y="339" width="53" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Sample:" id="I06-xc-WQt">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -169,7 +169,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Sample line to check which part in a line will be used for sort comparison." horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="W2m-Jf-7Yj">
-                                <rect key="frame" x="20" y="308" width="452" height="22"/>
+                                <rect key="frame" x="20" y="310" width="452" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Dog, 🐕, 1" drawsBackground="YES" usesSingleLineMode="YES" id="UjO-61-yKu">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -180,7 +180,7 @@ Gw
                                 </connections>
                             </textField>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="AE3-Op-b7T">
-                                <rect key="frame" x="20" y="297" width="452" height="5"/>
+                                <rect key="frame" x="20" y="299" width="452" height="5"/>
                             </box>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AJK-RI-bCK">
                                 <rect key="frame" x="98" y="103" width="215" height="18"/>
@@ -203,7 +203,7 @@ Gw
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sc1-QB-34d">
-                                <rect key="frame" x="97" y="265" width="82" height="18"/>
+                                <rect key="frame" x="97" y="268" width="82" height="18"/>
                                 <buttonCell key="cell" type="radio" title="Entire line" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="roe-rP-gfg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -316,11 +316,11 @@ Gw
             <objects>
                 <viewController id="SbM-Fx-692" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="x8j-Bb-Jbh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="38"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WfQ-XO-PFW">
-                                <rect key="frame" x="-2" y="11" width="62" height="17"/>
+                                <rect key="frame" x="-2" y="11" width="62" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Delimiter:" id="CLj-6v-R1R">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -328,7 +328,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RfX-SH-kDN">
-                                <rect key="frame" x="66" y="8" width="56" height="22"/>
+                                <rect key="frame" x="66" y="8" width="56" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="56" id="GY1-jg-Kce"/>
                                 </constraints>
@@ -348,7 +348,7 @@ Gw
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ikb-3W-LqX">
-                                <rect key="frame" x="136" y="11" width="57" height="17"/>
+                                <rect key="frame" x="136" y="11" width="57" height="16"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Position:" id="HE1-PS-8J3">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -356,7 +356,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-o6-6xl">
-                                <rect key="frame" x="232" y="6" width="19" height="27"/>
+                                <rect key="frame" x="232" y="5" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="fin-vh-3BV"/>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="SbM-Fx-692" id="H9e-7q-e0f"/>
@@ -364,7 +364,7 @@ Gw
                                 </connections>
                             </stepper>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0pT-9w-gVH" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="199" y="8" width="32" height="22"/>
+                                <rect key="frame" x="199" y="8" width="32" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="AKY-UZ-q58"/>
                                 </constraints>
@@ -417,11 +417,11 @@ Gw
             <objects>
                 <viewController id="mza-P2-Q5P" customClass="SortPatternViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="7vg-Vr-uMI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kD8-MY-cO8" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="56" y="50" width="244" height="22"/>
+                                <rect key="frame" x="56" y="50" width="244" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Regular Expression" drawsBackground="YES" usesSingleLineMode="YES" id="Ia7-Mb-FNn">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -449,7 +449,7 @@ Gw
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vol-xC-ylG" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="151" y="4" width="32" height="22"/>
+                                <rect key="frame" x="151" y="4" width="32" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="iIX-ng-qKl"/>
                                 </constraints>
@@ -474,7 +474,7 @@ Gw
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ooD-sC-3Cd">
-                                <rect key="frame" x="184" y="2" width="19" height="27"/>
+                                <rect key="frame" x="184" y="1" width="19" height="27"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>
@@ -495,8 +495,8 @@ Gw
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="AxG-SI-oKl">
-                                <rect key="frame" x="-2" y="53" width="52" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Pattern:" id="d12-uy-VE0">
+                                <rect key="frame" x="-2" y="53" width="52" height="16"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Pattern:" id="d12-uy-VE0">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

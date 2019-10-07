@@ -2,8 +2,45 @@
 Change Log
 ==========================
 
+3.8.0-beta (371)
+--------------------------
+
+### New Features
+
+- Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only on macOS 10.14 and later).
+- Add a new theme “Anura (Dark)”.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 10.13 High Sierra and later__.
+- Improve the theme switching algorithm between light and dark appearances.
+- Keep multiple cursors after pasting multiple lines.
+- Update the result table of “Find All” even when no substring was found.
+- Adjust drawing of the alternative character for invisible control characters.
+- Adjust text baseline of input fields in the find panel when a fallback font is used.
+- Always enable Left to Right button in Writing Direction toolbar button.
+- Change the way to count words for stability.
+- Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
+- [dev] Update build environment to Xcode 11.1 (Swift 5.1, macOS 10.15 SDK).
+
+
+### Fixes
+
+- Fix the selection movement direction after `⌥⇧←` or `⌥⇧→` shortcut.
+- Fix an issue where scripting commands `convert` and `reinterpret` failed.
+- Fix an issue where the color panel for theme editing could occasionally not change.
+- Fix an issue where the appearance of Acknowledgements window was not updated when user changed the system appearance after the launch.
+
+
+
 3.7.8 (361)
 --------------------------
+
+### Improvements
+
+- Optimize performance of text layout calcuration.
+
 
 ### Fixes
 

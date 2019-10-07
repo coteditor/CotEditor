@@ -73,13 +73,6 @@ extension MultipleReplacement {
         var string: String
         var selectedRanges: [NSRange]?
         var count = 0
-        
-        
-        fileprivate init(string: String, selectedRanges: [NSRange]?) {
-            
-            self.string = string
-            self.selectedRanges = selectedRanges
-        }
     }
     
     

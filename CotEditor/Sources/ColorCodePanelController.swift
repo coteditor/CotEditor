@@ -149,9 +149,9 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     /// a new color was selected on the panel
-    @IBAction func selectColor(_ sender: NSColorPanel?) {
+    @IBAction func selectColor(_ sender: NSColorPanel) {
         
-        self.color = sender?.color
+        self.color = sender.color
         self.updateCode(sender)
     }
     
@@ -167,13 +167,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     @IBAction func updateCode(_ sender: Any?) {
         
         let codeType = self.selectedCodeType
-        let color: NSColor? = {
-            if let colorSpace = self.color?.colorSpace, ![NSColorSpace.genericRGB, .deviceRGB].contains(colorSpace) {
-                return self.color?.usingColorSpace(.genericRGB)
-            }
-            return self.color
-        }()
-        
+        let color = self.color?.usingColorSpace(.genericRGB)
         var code = color?.colorCode(type: codeType)
         
         // keep lettercase if current Hex code is uppercase

@@ -54,11 +54,6 @@
 "What’s New in CotEditor %@" = "CotEditor %@の新機能";  // %@ is version number
 
 
-// Share menu
-"Share" = "共有";
-"No Document" = "書類なし";
-
-
 
 /* MARK: AppDelegate */
 // Format - Syntax coloring menu item title

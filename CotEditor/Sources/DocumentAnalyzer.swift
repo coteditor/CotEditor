@@ -184,7 +184,6 @@ final class DocumentAnalyzer: NSObject {
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: selectedRange,
                                                  requiredInfo: self.requiredInfoTypes,
-                                                 language: NSSpellChecker.shared.language(),
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
         operation.qualityOfService = .utility
         

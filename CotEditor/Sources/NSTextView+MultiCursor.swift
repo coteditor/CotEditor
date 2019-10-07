@@ -394,8 +394,10 @@ extension NSTextView {
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
             .offset(by: self.textContainerOrigin)
+        let scale = self.scale
+        let minX = floor(rect.minX * scale) / scale
         
-        return NSRect(x: floor(rect.minX), y: rect.minY, width: 1 / self.scale, height: rect.height)
+        return NSRect(x: minX, y: rect.minY, width: 1 / scale, height: rect.height)
     }
     
     

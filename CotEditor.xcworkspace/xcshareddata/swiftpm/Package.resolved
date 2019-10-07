@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Differ",
+        "repositoryURL": "https://github.com/tonyarnold/Differ",
+        "state": {
+          "branch": null,
+          "revision": "e2cca36e7258dd8add88ae46b5ea56509b066e21",
+          "version": "1.4.3"
+        }
+      },
+      {
+        "package": "ColorCode",
+        "repositoryURL": "https://github.com/1024jp/WFColorCode.git",
+        "state": {
+          "branch": null,
+          "revision": "c1887d3550e0887efb087f61d1651613c08d68a2",
+          "version": "2.5.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

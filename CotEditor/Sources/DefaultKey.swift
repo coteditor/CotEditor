@@ -78,53 +78,53 @@ extension UserDefaults {
     
     subscript(key: DefaultKey<Bool>) -> Bool {
         
-        get { return self.bool(forKey: key.rawValue) }
+        get { self.bool(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     
     subscript(key: DefaultKey<Int>) -> Int {
         
-        get { return self.integer(forKey: key.rawValue) }
+        get { self.integer(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     
     subscript(key: DefaultKey<UInt>) -> UInt {
         
-        get { return UInt(exactly: self.integer(forKey: key.rawValue)) ?? 0 }
+        get { UInt(exactly: self.integer(forKey: key.rawValue)) ?? 0 }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     
     subscript(key: DefaultKey<Double>) -> Double {
         
-        get { return self.double(forKey: key.rawValue) }
+        get { self.double(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     
     subscript(key: DefaultKey<CGFloat>) -> CGFloat {
         
-        get { return CGFloat(self.double(forKey: key.rawValue)) }
+        get { CGFloat(self.double(forKey: key.rawValue)) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript(key: DefaultKey<String>) -> String? {
         
-        get { return self.string(forKey: key.rawValue) }
+        get { self.string(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript(key: DefaultKey<[String]>) -> [String]? {
         
-        get { return self.stringArray(forKey: key.rawValue) }
+        get { self.stringArray(forKey: key.rawValue) }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     
     subscript<T>(key: DefaultKey<[T]>) -> [T] {
         
-        get { return self.array(forKey: key.rawValue) as? [T] ?? [] }
+        get { self.array(forKey: key.rawValue) as? [T] ?? [] }
         set { self.set(newValue, forKey: key.rawValue) }
     }
     

@@ -46,7 +46,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
     
     override private init() {
         
-        _defaultKeyBindings = [KeyBinding(action: SnippetKeyBindingManager.action(index: 0),
+        _defaultKeyBindings = [KeyBinding(action: Self.action(index: 0),
                                           shortcut: Shortcut(modifierMask: .shift, keyEquivalent: "\r"))]
         self.defaultSnippets = UserDefaults.standard.registeredValue(for: .insertCustomTextArray)
         
@@ -83,7 +83,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         return (0..<count).map { index in
             let title = String(format: "Insert Text %li".localized, index)
-            let action = type(of: self).action(index: index)
+            let action = Self.action(index: index)
             let keyBinding = keyBindings.first { $0.action == action }
             
             let item = KeyBindingItem(action: action, shortcut: keyBinding?.shortcut, defaultShortcut: .none)
@@ -130,7 +130,7 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         
         guard
             let keyBinding = self.keyBindings.first(where: { $0.shortcut == shortcut }),
-            let index = type(of: self).snippetIndex(for: keyBinding.action),
+            let index = Self.snippetIndex(for: keyBinding.action),
             let snippetString = self.snippets[safe: index]
             else { return nil }
         
@@ -194,25 +194,25 @@ private extension SnippetKeyBindingManager {
             !self.keyBindingSettingFileURL.isReachable
             else { return }
         
-        self.migrate()
+        // -> just abort if failed
+        try? self.migrate()
     }
     
     
     /// migrate snippet shortcuts file to CotEditor 3 format (2016-09)
-    private func migrate() {
+    private func migrate() throws {
         
         let legacySettingsURL = self.userSettingDirectoryURL.appendingPathComponent("TextKeyBindings.plist")
         
-        // -> just abort if failed
-        guard
-            legacySettingsURL.isReachable,
-            let legacyData = try? Data(contentsOf: legacySettingsURL),
-            let keyBindings = try? self.keyBindings(migratingFrom: legacyData),
-            let data = try? PropertyListEncoder().encode(keyBindings.sorted())
-            else { return }
+        guard legacySettingsURL.isReachable else { return }
+        
+        let legacyData = try Data(contentsOf: legacySettingsURL)
+        let keyBindings = try self.keyBindings(migratingFrom: legacyData)
+        let data = try PropertyListEncoder().encode(keyBindings.sorted())
+        
         
         // save new format file
-        try? data.write(to: self.keyBindingSettingFileURL, options: .atomic)
+        try data.write(to: self.keyBindingSettingFileURL, options: .atomic)
     }
     
     
