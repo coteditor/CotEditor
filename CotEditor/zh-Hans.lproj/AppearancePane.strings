@@ -73,7 +73,7 @@
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "外观：";
 /* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
-"apQ-au-gOC.title" = "Match System";  // FIXME: added
+"apQ-au-gOC.title" = "匹配系统";
 /* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
 "FwU-oj-kwc.title" = "浅色";
 /* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
