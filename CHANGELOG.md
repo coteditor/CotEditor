@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.0-beta.2 (372)
+--------------------------
+
+### Fixes
+
+- [beta] Fix a crash when changing the window appearance setting.
+
+
+
 3.8.0-beta (371)
 --------------------------
 
