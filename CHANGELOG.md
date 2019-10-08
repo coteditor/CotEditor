@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.0-beta.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Fix a crash when changing window apperance setting.
+
+
+
 3.8.0-beta (371)
 --------------------------
 

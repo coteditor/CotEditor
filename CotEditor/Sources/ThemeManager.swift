@@ -161,7 +161,7 @@ final class ThemeManager: SettingFileManaging {
     func equivalentSettingName(to name: String, forDark: Bool) -> String? {
         
         let baseName: String
-        if let range = name.range(of: "^.+?(?=$| \\((?:Dark|Light)\\)$)", options: .regularExpression) {
+        if let range = name.range(of: "^.+(?= \\((?:Dark|Light)\\)$)", options: .regularExpression) {
             baseName = String(name[range])
         } else {
             baseName = name
