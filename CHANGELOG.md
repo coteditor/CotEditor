@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.1 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue that the documents opened together were not opened as a sigle window with multiple tabs.
+
+
+
 3.8.0 (373)
 --------------------------
 
