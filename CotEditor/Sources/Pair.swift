@@ -101,7 +101,10 @@ extension StringProtocol where Self.Index == String.Index {
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[beginIndex..<endIndex]
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let subsequence = (endIndex == self.endIndex)
+            ? self[beginIndex...]
+            : self[beginIndex..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
             switch character {
@@ -141,7 +144,10 @@ extension StringProtocol where Self.Index == String.Index {
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[self.index(after: beginIndex)..<endIndex]
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let subsequence = (endIndex == self.endIndex)
+               ? self[self.index(after: beginIndex)...]
+               : self[self.index(after: beginIndex)..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
             switch character {

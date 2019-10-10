@@ -96,7 +96,8 @@ final class ATSTypesetter: NSATSTypesetter {
         let index = String.Index(utf16Offset: charIndex, in: string)
         
         // check if the character is the first non-whitespace character after indent
-        for character in string[..<index].reversed() {
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        for character in string.substring(with: string.startIndex..<index).reversed() {
             switch character {
             case " ", "\t":
                 continue

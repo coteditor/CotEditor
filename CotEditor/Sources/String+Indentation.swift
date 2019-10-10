@@ -119,7 +119,8 @@ extension String {
         
         guard !indentRange.isEmpty else { return 0 }
         
-        let indent = self[indentRange]
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let indent = self.substring(with: indentRange)
         let numberOfTabs = indent.components(separatedBy: "\t").count - 1
         
         return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
@@ -136,7 +137,8 @@ extension String {
         let column = self.distance(from: lineRange.lowerBound, to: index)
         
         // count tab width
-        let beforeInsertion = self[lineRange.lowerBound..<index]
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let beforeInsertion = self.substring(with: lineRange.lowerBound..<index)
         let numberOfTabs = beforeInsertion.components(separatedBy: "\t").count - 1
         
         return column + numberOfTabs * (tabWidth - 1)
@@ -194,8 +196,7 @@ extension String {
         
         guard
             range.location >= targetLength,
-            let range = Range(targetRange, in: self),
-            self[range].allSatisfy({ $0 == " " })
+            (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " })
             else { return nil }
         
         return targetRange
