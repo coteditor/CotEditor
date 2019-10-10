@@ -93,6 +93,8 @@ extension StringProtocol where Self.Index == String.Index {
     /// find character index of matched opening brace before a given index.
     func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
+        assert(endIndex <= self.endIndex)
+        
         let beginIndex = beginIndex ?? self.startIndex
         
         guard beginIndex < endIndex else { return nil }
@@ -130,6 +132,8 @@ extension StringProtocol where Self.Index == String.Index {
     
     /// find character index of matched closing brace after a given index.
     func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+        
+        assert(beginIndex >= self.startIndex)
         
         let endIndex = endIndex ?? self.endIndex
         
