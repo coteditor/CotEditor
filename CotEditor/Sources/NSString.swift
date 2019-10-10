@@ -33,6 +33,12 @@ extension String {
         return NSRange(..<(self as NSString).length)
     }
     
+    
+    var length: Int {
+        
+        return self.utf16.count
+    }
+    
 }
 
 

@@ -43,7 +43,7 @@ extension String {
     /// - Returns: A character range, or `nil` if the given values are out of range.
     func range(location: Int, length: Int) -> NSRange? {
         
-        let wholeLength = self.utf16.count
+        let wholeLength = self.length
         let newLocation = (location >= 0) ? location : (wholeLength + location)
         let newLength = (length >= 0) ? length : (wholeLength - newLocation + length)
         
@@ -68,7 +68,7 @@ extension String {
         let count = lineRanges.count
 
         guard location != 0 else { return NSRange(0..<0) }
-        guard location <= count else { return NSRange(location: self.utf16.count, length: 0) }
+        guard location <= count else { return NSRange(location: self.length, length: 0) }
         
         let newLocation = (location > 0) ? location - 1 : (count + location)  // 1-based to 0-based
         let newLength: Int = {

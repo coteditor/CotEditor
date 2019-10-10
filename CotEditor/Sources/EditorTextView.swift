@@ -997,7 +997,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             var offset = 0
             let selectedRanges: [NSRange] = zip(ranges, strings).map { (range, string) in
-                let length = string.utf16.count
+                let length = string.length
                 let location = range.lowerBound + offset + length
                 offset += length - range.length
             

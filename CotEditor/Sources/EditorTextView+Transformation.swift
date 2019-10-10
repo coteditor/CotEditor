@@ -197,7 +197,7 @@ private extension NSTextView {
         for range in selectedRanges where !range.isEmpty {
             let substring = (self.string as NSString).substring(with: range)
             let string = block(substring)
-            let newRange = NSRange(location: range.location - deltaLocation, length: string.utf16.count)
+            let newRange = NSRange(location: range.location - deltaLocation, length: string.length)
             
             strings.append(string)
             appliedRanges.append(range)

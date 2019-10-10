@@ -111,7 +111,7 @@ extension Indenting {
         
         // create indent string to prepend
         let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        let indentLength = indent.utf16.count
+        let indentLength = indent.length
         
         // create shifted string
         let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)

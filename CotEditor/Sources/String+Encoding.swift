@@ -208,7 +208,7 @@ extension String {
         let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
         let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let scanLength = min(self.utf16.count, maxLength)
+        let scanLength = min(self.length, maxLength)
         
         guard
             let match = regex.firstMatch(in: self, range: NSRange(..<scanLength)),
