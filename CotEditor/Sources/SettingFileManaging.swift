@@ -136,7 +136,8 @@ extension SettingFileManaging {
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {
         
-        return fileURL.deletingPathExtension().lastPathComponent
+        // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+        return fileURL.deletingPathExtension().lastPathComponent.immutable
     }
     
     

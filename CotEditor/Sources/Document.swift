@@ -360,7 +360,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
+            // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+            let fileName = url.lastPathComponent.immutable
+            let styleName = SyntaxManager.shared.settingName(documentFileName: fileName, content: string)
             self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
@@ -449,7 +451,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
-                let fileName = url.lastPathComponent
+                // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+                let fileName = url.lastPathComponent.immutable
                 if let styleName = SyntaxManager.shared.settingName(documentFileName: fileName)
                     ?? SyntaxManager.shared.settingName(documentContent: self.string)
                     // -> Due to the async-saving, self.string can be changed from the actual saved contents.

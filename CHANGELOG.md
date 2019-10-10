@@ -7,6 +7,7 @@ Change Log
 
 ### Fixes
 
+- Fix a critical issue where the application could crash on launch under macOS 10.14.
 - Fix an issue that the documents opened together were not opened as a sigle window with multiple tabs.
 
 
