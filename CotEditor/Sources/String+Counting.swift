@@ -65,10 +65,12 @@ extension StringProtocol where Self.Index == String.Index {
         // workarond for the Swift 5 issue that removes BOM at the beginning (2019-05 Swift 5.0).
         guard self.first != "\u{FEFF}" || self.count > 16 else {
             let newlines = Set<Character>(["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"])
-            let count = self[range].count { newlines.contains($0) } + 1
+            // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+            let substring = self.substring(with: range)
+            let count = substring.count { newlines.contains($0) } + 1
             
             if !includingLastLineEnding,
-                let last = self[range].last,
+                let last = substring.last,
                 newlines.contains(last) {
                 return count - 1
             }
@@ -81,7 +83,8 @@ extension StringProtocol where Self.Index == String.Index {
         }
         
         if includingLastLineEnding,
-            let last = self[range].unicodeScalars.last,
+            // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+            let last = self.substring(with: range).unicodeScalars.last,
             CharacterSet.newlines.contains(last)
         {
             count += 1

@@ -93,13 +93,18 @@ extension StringProtocol where Self.Index == String.Index {
     /// find character index of matched opening brace before a given index.
     func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
+        assert(endIndex <= self.endIndex)
+        
         let beginIndex = beginIndex ?? self.startIndex
         
         guard beginIndex < endIndex else { return nil }
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[beginIndex..<endIndex]
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let subsequence = (endIndex == self.endIndex)
+            ? self[beginIndex...]
+            : self[beginIndex..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
             switch character {
@@ -131,13 +136,18 @@ extension StringProtocol where Self.Index == String.Index {
     /// find character index of matched closing brace after a given index.
     func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
+        assert(beginIndex >= self.startIndex)
+        
         let endIndex = endIndex ?? self.endIndex
         
         guard beginIndex < endIndex else { return nil }
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[self.index(after: beginIndex)..<endIndex]
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let subsequence = (endIndex == self.endIndex)
+               ? self[self.index(after: beginIndex)...]
+               : self[self.index(after: beginIndex)..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
             switch character {

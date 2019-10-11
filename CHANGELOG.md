@@ -2,6 +2,16 @@
 Change Log
 ==========================
 
+3.8.1 (375)
+--------------------------
+
+### Fixes
+
+- Address a critical issue where the application could crash under macOS 10.14.
+- Fix an issue that the documents opened together were not opened as a single window with multiple tabs.
+
+
+
 3.8.0 (373)
 --------------------------
 

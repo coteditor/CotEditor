@@ -478,7 +478,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,
-                                selectedRange: NSRange(location: result.range.location, length: result.string.utf16.count),
+                                selectedRange: NSRange(location: result.range.location,
+                                                       length: result.string.length),
                                 actionName: "Replace".localized)
     }
     

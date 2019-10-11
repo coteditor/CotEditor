@@ -997,7 +997,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             var offset = 0
             let selectedRanges: [NSRange] = zip(ranges, strings).map { (range, string) in
-                let length = string.utf16.count
+                let length = string.length
                 let location = range.lowerBound + offset + length
                 offset += length - range.length
             
@@ -1535,7 +1535,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let range = Range(self.selectedRange, in: self.string)
             else { return }
         
-        let substring = String(self.string[range])
+        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+        let substring = self.string.substring(with: range)
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: self.string, range: self.string.nsRange)

@@ -100,10 +100,10 @@ extension StringProtocol where Self.Index == String.Index {
     var detectedLineEnding: LineEnding? {
         
         // We don't use `CharacterSet.newlines` because it contains more characters than we need.
-        guard
-            let range = self.rangeOfCharacter(from: LineEnding.characterSet),
-            let character = self[range].first  // Swift treats "\r\n" also as a single character.
-            else { return nil }
+        guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
+        
+        // Swift treats "\r\n" also as a single character.
+        let character = self[range.lowerBound]
         
         return LineEnding(rawValue: character)
     }

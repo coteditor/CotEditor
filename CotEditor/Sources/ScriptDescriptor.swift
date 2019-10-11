@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -123,7 +123,8 @@ struct ScriptDescriptor {
         
         self.url = url
         self.type = ScriptingFileType.allCases.first { $0.extensions.contains(url.pathExtension) }
-        var name = url.deletingPathExtension().lastPathComponent
+        var name = url.deletingPathExtension().lastPathComponent.immutable
+        // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
         
         let shortcut = Shortcut(keySpecChars: url.deletingPathExtension().pathExtension)
         if shortcut.modifierMask.isEmpty {
@@ -132,7 +133,8 @@ struct ScriptDescriptor {
             self.shortcut = shortcut
             
             // remove the shortcut specification from the script name
-            name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent
+            // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+            name = URL(fileURLWithPath: name).deletingPathExtension().lastPathComponent.immutable
         }
         
         if let range = name.range(of: "^[0-9]+\\)", options: .regularExpression) {
