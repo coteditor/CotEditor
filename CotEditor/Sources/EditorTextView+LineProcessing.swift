@@ -143,8 +143,7 @@ extension EditorTextView {
         let range = Range(self.selectedRange, in: self.string)!
         let location = range.isEmpty ? self.string.startIndex : range.lowerBound
         let lineRange = self.string.lineContentsRange(at: location)
-        // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
-        viewController.sampleLine = self.string.substring(with: lineRange)
+        viewController.sampleLine = String(self.string[workaround: lineRange])
         viewController.sampleFontName = self.font?.fontName
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
