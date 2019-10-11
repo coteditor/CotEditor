@@ -115,6 +115,8 @@ extension StringProtocol where Self.Index == String.Index {
     /// check if character at the index is escaped with backslash
     func isCharacterEscaped(at index: Index) -> Bool {
         
+        assert((self as AnyObject).className != "NSBigMutableString")
+        
         let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
         
         return !escapes.count.isMultiple(of: 2)
