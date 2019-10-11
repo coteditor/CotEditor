@@ -66,7 +66,9 @@ extension StringProtocol where Self.Index == String.Index {
         guard self.first != "\u{FEFF}" || self.count > 16 else {
             let newlines = Set<Character>(["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"])
             // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
-            let substring = self.substring(with: range)
+            let substring = (range.upperBound == self.endIndex)
+                ? self[range.lowerBound...]
+                : self[range]
             let count = substring.count { newlines.contains($0) } + 1
             
             if !includingLastLineEnding,
