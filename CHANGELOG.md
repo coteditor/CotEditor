@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- Add an additonal workaround to detor bug in macOS 10.14 that crashes/freezes the application.
+
+
+
 3.8.1 (375)
 --------------------------
 
