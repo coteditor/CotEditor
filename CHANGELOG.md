@@ -7,7 +7,7 @@ Change Log
 
 ### Fixes
 
-- Add an additonal workaround to detor bug in macOS 10.14 that crashes/freezes the application.
+- Add an additional workaround to detour the bug in macOS 10.14 that crashes/freezes the application.
 
 
 
