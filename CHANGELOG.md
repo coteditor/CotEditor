@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- Update JSON syntax style by adding “.resolved” extension.
+
+
+
 3.8.2 (unreleased)
 --------------------------
 
