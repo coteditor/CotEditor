@@ -10,6 +10,11 @@ Change Log
 - Update JSON syntax style by adding “.resolved” extension.
 
 
+### Fixes
+
+- [trivial] Fix French localizataion.
+
+
 
 3.8.2 (377)
 --------------------------
