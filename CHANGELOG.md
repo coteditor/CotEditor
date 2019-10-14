@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.2 (377)
+--------------------------
+
+### Fixes
+
+- Add an additional workaround to detour the bug in macOS 10.14 that crashes/freezes the application.
+
+
+
 3.8.1 (375)
 --------------------------
 
