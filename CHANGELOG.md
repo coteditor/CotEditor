@@ -11,7 +11,7 @@ Change Log
 
 
 
-3.8.2 (unreleased)
+3.8.2 (377)
 --------------------------
 
 ### Fixes
@@ -103,7 +103,7 @@ no change.
 ### Improvements
 
 - Keep last opacity state of restored document windows.
-- Update behavior of Opt+Arrow shortcut series. 
+- Update behavior of Opt+Arrow shortcut series.
 
 
 ### Fixes
