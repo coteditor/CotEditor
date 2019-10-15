@@ -126,25 +126,6 @@ extension String {
     }
     
     
-    /// calculate column number at location in the line expanding tab (\t) character
-    func column(of location: Int, tabWidth: Int) -> Int {
-        
-        assert(tabWidth > 0)
-        
-        let index = String.Index(utf16Offset: location, in: self)
-        let lineRange = self.lineRange(at: index)
-        
-        return self[workaround: lineRange.lowerBound..<index].lazy
-            .map {
-                switch $0 {
-                case "\t": return tabWidth
-                default:   return $0.utf16.count
-                }
-            }
-            .reduce(0, +)
-    }
-    
-    
     /// range of indent characters in line at the location
     func rangeOfIndent(at location: Int) -> NSRange {
         
@@ -218,6 +199,23 @@ extension String {
         let length = tabWidth - (column % tabWidth)
         
         return String(repeating: " ", count: length)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// calculate column number at location in the line expanding tab (\t) character
+    private func column(of location: Int, tabWidth: Int) -> Int {
+        
+        assert(tabWidth > 0)
+        
+        let index = String.Index(utf16Offset: location, in: self)
+        let lineRange = self.lineRange(at: index)
+        
+        return self[workaround: lineRange.lowerBound..<index].lazy
+            .map { $0 == "\t" ? tabWidth : $0.utf16.count }
+            .reduce(0, +)
     }
     
 }
