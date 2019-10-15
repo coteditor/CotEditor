@@ -133,13 +133,15 @@ extension String {
         
         let index = String.Index(utf16Offset: location, in: self)
         let lineRange = self.lineRange(at: index)
-        let column = self.distance(from: lineRange.lowerBound, to: index)
         
-        // count tab width
-        let beforeInsertion = self[workaround: lineRange.lowerBound..<index]
-        let numberOfTabs = beforeInsertion.components(separatedBy: "\t").count - 1
-        
-        return column + numberOfTabs * (tabWidth - 1)
+        return self[workaround: lineRange.lowerBound..<index].lazy
+            .map {
+                switch $0 {
+                case "\t": return tabWidth
+                default:   return $0.utf16.count
+                }
+            }
+            .reduce(0, +)
     }
     
     

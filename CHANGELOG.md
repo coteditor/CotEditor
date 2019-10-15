@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where spaces at the end of the document could not be deleted by delete key.
 - [trivial] Fix French localizataion.
 
 
