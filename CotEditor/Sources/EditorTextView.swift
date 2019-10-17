@@ -46,6 +46,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
     
     
+    // MARK: Structs
+    
+    private struct SerializationKey {
+        
+        static let insertionLocations = "insertionLocations"
+        
+        private init() { }
+    }
+    
+    
     // MARK: Public Properties
     
     var isAutomaticTabExpansionEnabled = false
@@ -192,6 +202,26 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             #keyPath(scale),
             #keyPath(tabWidth),
         ]
+    }
+    
+    
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        super.encodeRestorableState(with: coder)
+        
+        coder.encode(self.insertionLocations, forKey: SerializationKey.insertionLocations)
+    }
+    
+    
+    /// restore UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if let insertionLocations = coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int] {
+            self.insertionLocations = insertionLocations
+        }
     }
     
     

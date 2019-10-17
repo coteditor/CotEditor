@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Restore all of last cursors on the window restoration.
 - Update JSON syntax style by adding “.resolved” extension.
 
 
