@@ -84,6 +84,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     // MARK: Private Properties
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
+    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightMatchingBrace() }  // NSTextView cannot be weak
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -551,9 +552,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             else { return super.insertNewline(sender) }
         
         let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        
         let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
-        self.setSelectedRangesWithUndo(ranges)
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
@@ -570,7 +569,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 // smart indent
                 if self.isSmartIndentEnabled {
                     let lastCharacter = self.character(before: range)
-                    let nextCharacter = self.character(after: self.rangeForUserTextChange)
+                    let nextCharacter = self.character(after: range)
                     let indentBase = indent
                     
                     // increase indent level
@@ -709,8 +708,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
-                let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-                self.highligtMatchingBrace(candidates: bracePairs)
+                self.braceHighlightTask.schedule()
             }
             
             // invalidate current instances highlight
@@ -1548,6 +1546,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             else { return layoutManager.spaceWidth }
         
         return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
+    }
+    
+    
+    /// highlight the brace matching to the brace next to the cursor
+    private func highlightMatchingBrace() {
+        
+        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+        
+        self.highligtMatchingBrace(candidates: bracePairs)
     }
     
     
