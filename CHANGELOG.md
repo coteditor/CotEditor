@@ -12,8 +12,9 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where spaces at the end of the document could not be deleted by delete key.
-- [trivial] Fix French localizataion.
+- Fix an issue on macOS 10.14 where spaces at the end of the document could not be deleted by delete key.
+- Fix an issue on macOS 10.14 where performing return key just after an open bracket at the end of the document made the application freeze.
+- [trivial] Fix French localization.
 
 
 
