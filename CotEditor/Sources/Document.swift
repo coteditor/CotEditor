@@ -26,18 +26,6 @@
 
 import Cocoa
 
-private struct SerializationKey {
-    
-    static let readingEncoding = "readingEncoding"
-    static let syntaxStyle = "syntaxStyle"
-    static let autosaveIdentifier = "autosaveIdentifier"
-    static let isVerticalText = "isVerticalText"
-    static let isTransient = "isTransient"
-    
-    private init() { }
-}
-
-
 private let uniqueFileIDLength = 13
 
 
@@ -51,7 +39,20 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     static let didChangeEncodingNotification = Notification.Name("DocumentDidChangeEncoding")
     static let didChangeLineEndingNotification = Notification.Name("DocumentDidChangeLineEnding")
     static let didChangeSyntaxStyleNotification = Notification.Name("DocumentDidChangeSyntaxStyle")
+    
+    
+    // MARK: Structs
 
+    private struct SerializationKey {
+        
+        static let readingEncoding = "readingEncoding"
+        static let syntaxStyle = "syntaxStyle"
+        static let autosaveIdentifier = "autosaveIdentifier"
+        static let isVerticalText = "isVerticalText"
+        static let isTransient = "isTransient"
+        
+        private init() { }
+    }
     
     
     // MARK: Public Properties
@@ -142,7 +143,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     }
     
     
-    /// resume UI state
+    /// restore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)

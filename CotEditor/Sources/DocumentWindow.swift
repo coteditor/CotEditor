@@ -108,7 +108,7 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    /// store UI state
+    /// resore UI state
     override func restoreState(with coder: NSCoder) {
         
         super.restoreState(with: coder)
@@ -119,7 +119,7 @@ final class DocumentWindow: NSWindow {
     }
     
     
-    /// resume UI state
+    /// store UI state
     override func encodeRestorableState(with coder: NSCoder) {
         
         super.encodeRestorableState(with: coder)
