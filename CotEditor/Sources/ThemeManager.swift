@@ -24,7 +24,7 @@
 //
 
 import Foundation
-import AppKit.NSAppearance
+import AppKit
 
 @objc protocol ThemeHolder: AnyObject {
     
@@ -217,7 +217,10 @@ final class ThemeManager: SettingFileManaging {
         
         switch UserDefaults.standard[.documentAppearance] {
         case .default:
-            return NSAppearance.current.isDark
+            guard #available(macOS 10.14, *) else { return false }
+            // -> NSApperance.current doesn't return the latest apperance when the system appearance
+            //    was changed after the app launch (macOS 10.14).
+            return NSApp.effectiveAppearance.isDark
         case .light:
             return false
         case .dark:
