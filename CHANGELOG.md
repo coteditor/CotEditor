@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Restore all of last cursors on the window restoration.
+- Highlight matching braces for all cursors.
 - Update JSON syntax style by adding “.resolved” extension.
 
 
