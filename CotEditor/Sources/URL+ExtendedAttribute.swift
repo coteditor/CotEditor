@@ -93,6 +93,6 @@ private extension POSIXError {
         
         self = NSError(domain: POSIXError.errorDomain, code: Int(err),
                        userInfo: [NSLocalizedDescriptionKey: description]) as! POSIXError
-        
     }
+    
 }

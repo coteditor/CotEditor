@@ -79,7 +79,6 @@ final class Debouncer {
         self.currentWorkItem = workItem
         
         self.queue.asyncAfter(deadline: .now() + delay, execute: workItem)
-        
     }
     
     

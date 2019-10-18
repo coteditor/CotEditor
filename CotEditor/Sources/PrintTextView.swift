@@ -132,7 +132,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         self.applyPrintSettings(printInfo: printInfo)
         self.resizeFrame(printInfo: printInfo)
-        
     }
     
     

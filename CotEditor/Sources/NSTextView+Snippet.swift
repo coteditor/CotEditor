@@ -49,7 +49,6 @@ extension NSTextView {
         }()
         
         self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
-        
     }
     
 }
