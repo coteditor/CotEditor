@@ -15,6 +15,7 @@ Change Log
 
 ### Fixes
 
+- Fix printing area especially for macOS 10.15 Catalina.
 - Fix an issue on macOS 10.14 where spaces at the end of the document could not be deleted by delete key.
 - Fix an issue on macOS 10.14 where performing return key just after an open bracket at the end of the document made the application freeze.
 - Fix an issue where the teditor theme for newly opened windows did not match to the window apperance when the system appearance was changed after the application launch.

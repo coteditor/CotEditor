@@ -33,7 +33,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     static let verticalPrintMargin: CGFloat = 56.0    // default 90.0
     static let horizontalPrintMargin: CGFloat = 24.0  // default 72.0
     
-    private let lineFragmentPadding: CGFloat = 20.0
+    private let lineFragmentPadding: CGFloat = 18.0
     private let lineNumberPadding: CGFloat = 10.0
     private let headerFooterFontSize: CGFloat = 9.0
     
@@ -59,6 +59,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private var printsLineNumber = false
     private var xOffset: CGFloat = 0
     private let dateFormatter: DateFormatter
+    private var lastPaperContentSize: NSSize = .zero
     
     
     
@@ -125,15 +126,22 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     }
     
     
-    /// prepare for drawing
-    override func beginDocument() {
+    /// return the number of pages available for printing
+    override func knowsPageRange(_ range: NSRangePointer) -> Bool {
         
-        super.beginDocument()
+        // apply print settings
+        self.applyPrintSettings()
         
-        guard let printInfo = NSPrintOperation.current?.printInfo else { return assertionFailure() }
+        // adjust content size based on print setting
+        if let paperContentSize = NSPrintOperation.current?.printInfo.paperContentSize,
+            self.lastPaperContentSize != paperContentSize
+        {
+            self.lastPaperContentSize = paperContentSize
+            self.frame.size = paperContentSize
+            self.doForegroundLayout()
+        }
         
-        self.applyPrintSettings(printInfo: printInfo)
-        self.resizeFrame(printInfo: printInfo)
+        return super.knowsPageRange(range)
     }
     
     
@@ -272,11 +280,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     // MARK: Private Methods
     
     /// parse current print settings in printInfo
-    private func applyPrintSettings(printInfo: NSPrintInfo) {
+    private func applyPrintSettings() {
         
-        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
-        
-        let settings = printInfo.dictionary() as! [NSPrintInfo.AttributeKey: Any]
+        guard
+            let layoutManager = self.layoutManager as? LayoutManager,
+            let settings = NSPrintOperation.current?.printInfo.dictionary() as? [NSPrintInfo.AttributeKey: Any]
+            else { return assertionFailure() }
         
         // check whether print line numbers
         self.printsLineNumber = {
@@ -326,23 +335,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                 
                 controller.needsUpdatePreview = true
             }
-        }
-    }
-    
-    
-    /// resize frame considering layout orientation
-    private func resizeFrame(printInfo: NSPrintInfo) {
-        
-        self.frame.size = printInfo.paperContentSize
-        self.sizeToFit()
-        
-        let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
-        switch self.layoutOrientation {
-        case .horizontal:
-            self.frame.size.height = usedHeight
-        case .vertical:
-            self.frame.size.width = usedHeight
-        @unknown default: fatalError()
         }
     }
     
@@ -446,6 +438,37 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         case .none:
             return nil
         }
+    }
+    
+}
+
+
+
+private extension NSTextView {
+    
+    /// This method causes the text to be laid out in the foreground (approximately) up to the indicated character index.
+    ///
+    /// - Parameter characterIndex: The maximum character index to be layout. If omit this paramater, the whole content will be layed out.
+    ///
+    /// - Note: This method is based on `textEditDoForegroundLayoutToCharacterIndex:` in Apple's TextView.app sourece code.
+    func doForegroundLayout(to characterIndex: Int = .max) {
+        
+        guard
+            let textStorage = self.textStorage,
+            let layoutManager = self.layoutManager,
+            characterIndex > 0,
+            textStorage.length > 0
+            else { return }
+        
+        // find out which glyph index the desired character index corresponds to
+        let location = min(characterIndex, textStorage.length - 1)
+        let characterRange = NSRange(location: location, length: 1)
+        let glyphRange = layoutManager.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
+        
+        guard glyphRange.location > 0 else { return }
+        
+        // cause layout by asking a question which has to determine where the glyph is
+        layoutManager.textContainer(forGlyphAt: glyphRange.location - 1, effectiveRange: nil)
     }
     
 }
