@@ -692,6 +692,8 @@
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
 		2AF97C1921A9532B00733FB7 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF97C1721A9532B00733FB7 /* ProgressView.storyboard */; };
 		2AF97C1A21A9532B00733FB7 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF97C1721A9532B00733FB7 /* ProgressView.storyboard */; };
+		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
+		2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9B23D208E24D50057DD21 /* Metadata.swift */; };
 		2AF9B23F208E24D50057DD21 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9B23D208E24D50057DD21 /* Metadata.swift */; };
 		2AFAFD4A1D41487600F1458F /* PrintTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFAFD491D41487600F1458F /* PrintTextView.swift */; };
@@ -1410,6 +1412,7 @@
 		2AF97C1D21A9541300733FB7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AF97C1E21A9541400733FB7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AF97C1F21A9541500733FB7 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AF9B23D208E24D50057DD21 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
 		2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
@@ -1766,6 +1769,7 @@
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */,
+				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
 				2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */,
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
 				2ABF86BC208C3C630082D52B /* AudioToolbox.swift */,
@@ -2948,6 +2952,7 @@
 				2AA4F6A120A1C190003FD515 /* NSTextView+RoundedBackground.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */,
+				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A91C3221D1C40E4007CF8BE /* FileDropPaneController.swift in Sources */,
 				2A4257BA1D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
 				2A71BC7C1DDC50530085AE1C /* DocumentViewController+TouchBar.swift in Sources */,
@@ -3129,6 +3134,7 @@
 				2A91C31B1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2AE73F43203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
 				2A64F2451D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */,
+				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2A0BF8A81DD8E7F90088961B /* TextSizeTouchBar.swift in Sources */,
 				2A1235462121B106002E9C53 /* UTF32Char+BlockName.swift in Sources */,
 				2A9082F21D32A9B500228F50 /* ThemeManager.swift in Sources */,

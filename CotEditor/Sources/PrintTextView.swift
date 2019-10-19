@@ -93,6 +93,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         self.textContainer!.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
+        self.isHorizontallyResizable = false
+        self.isVerticallyResizable = true
         
         self.linkTextAttributes = UserDefaults.standard[.autoLinkDetection]
             ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
@@ -331,21 +333,9 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// resize frame considering layout orientation
     private func resizeFrame(printInfo: NSPrintInfo) {
         
-        // calculate view size for print considering text orientation
-        var printSize = printInfo.paperSize
-        switch self.layoutOrientation {
-        case .horizontal:
-            printSize.width -= printInfo.leftMargin + printInfo.rightMargin
-            printSize.width /= printInfo.scalingFactor
-        case .vertical:
-            printSize.height -= printInfo.leftMargin + printInfo.rightMargin
-            printSize.height /= printInfo.scalingFactor
-        @unknown default: fatalError()
-        }
-        
-        // adjust frame size
-        self.frame.size = printSize
+        self.frame.size = printInfo.paperContentSize
         self.sizeToFit()
+        
         let usedHeight = self.layoutManager!.usedRect(for: self.textContainer!).height
         switch self.layoutOrientation {
         case .horizontal:

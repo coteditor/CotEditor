@@ -9,6 +9,7 @@ Change Log
 
 - Restore all of last cursors on the window restoration.
 - Highlight matching braces for all cursors.
+- Adjust the printing area of vertical text orientation.
 - Update JSON syntax style by adding “.resolved” extension.
 
 
