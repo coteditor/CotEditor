@@ -2,23 +2,23 @@
 Change Log
 ==========================
 
-3.8.3 (unreleased)
+3.8.3 (379)
 --------------------------
 
 ### Improvements
 
-- Restore all of last cursors on the window restoration.
+- Restore all of the last cursors on the window restoration.
 - Highlight matching braces for all cursors.
-- Adjust the printing area of vertical text orientation.
+- Adjust the printing area by the vertical text orientation.
 - Update JSON syntax style by adding “.resolved” extension.
 
 
 ### Fixes
 
-- Fix printing area especially for macOS 10.15 Catalina.
+- Fix area to draw text on printing, especially for macOS 10.15 Catalina.
 - Fix an issue on macOS 10.14 where spaces at the end of the document could not be deleted by delete key.
 - Fix an issue on macOS 10.14 where performing return key just after an open bracket at the end of the document made the application freeze.
-- Fix an issue where the teditor theme for newly opened windows did not match to the window apperance when the system appearance was changed after the application launch.
+- Fix an issue where the editor theme for newly opened windows did not match to the window appearance when the system appearance was changed after the application launch.
 - Fix an issue where a highlighting indicator showed up at a wrong location when pressing the enter key just before a closing bracket.
 - [trivial] Fix French localization.
 
