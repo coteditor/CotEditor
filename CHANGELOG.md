@@ -13,7 +13,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue on macOS 10.13-14 where the application became instabil with some specific actions when the cursor locates the end of the document.
+- Fix an issue on macOS 10.13-14 where the application became unstable with some specific actions when the cursor locates the end of the document.
 
 
 
