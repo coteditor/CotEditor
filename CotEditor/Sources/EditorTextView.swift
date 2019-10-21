@@ -524,10 +524,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return
         }
         
-        if self.isAutomaticTabExpansionEnabled {
-            let softTab = self.string.softTab(at: self.rangeForUserTextChange.location, tabWidth: self.tabWidth)
+        // insert soft tab
+        if
+            self.isAutomaticTabExpansionEnabled,
+            let insertionRanges = rangesForUserTextChange as? [NSRange]
+        {
+            let softTabs = insertionRanges
+                .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
             
-            return super.insertText(softTab, replacementRange: self.rangeForUserTextChange)
+           self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
+           return
         }
         
         super.insertTab(sender)
@@ -1027,16 +1033,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
             let strings = multipleTexts + blanks
             
-            var offset = 0
-            let selectedRanges: [NSRange] = zip(ranges, strings).map { (range, string) in
-                let length = string.length
-                let location = range.lowerBound + offset + length
-                offset += length - range.length
-            
-                return NSRange(location: location, length: 0)
-            }
-            
-            return self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges)
+            return self.replace(with: strings, ranges: ranges, selectedRanges: nil)
         }
         
         return super.readSelection(from: pboard, type: type)
