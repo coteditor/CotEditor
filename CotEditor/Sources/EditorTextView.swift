@@ -220,8 +220,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         super.restoreState(with: coder)
         
-        if let insertionLocations = coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int] {
-            self.insertionLocations = insertionLocations
+        if
+            let insertionLocations = coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int],
+            !insertionLocations.isEmpty
+        {
+            let length = self.textStorage?.length ?? 0
+            self.insertionLocations = insertionLocations.filter { $0 <= length }
         }
     }
     
