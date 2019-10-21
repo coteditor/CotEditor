@@ -34,9 +34,11 @@ extension StringProtocol where Self.Index == String.Index {
         
         if #available(macOS 10.15, *) { return self[range] }
         
-        return (range.upperBound == self.endIndex)
-            ? self[range.lowerBound...]
-            : self[range]
+        guard range.upperBound == self.endIndex else { return self[range] }
+        
+        return (range.lowerBound == self.endIndex)
+            ? self[self.endIndex...]
+            : self[range.lowerBound...]
     }
     
 }

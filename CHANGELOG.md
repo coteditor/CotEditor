@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.4 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue on macOS 10.13-14 where the application became instabil with some specific actions when the cursor locates the end of the document.
+
+
+
 3.8.3 (379)
 --------------------------
 
