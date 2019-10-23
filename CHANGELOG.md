@@ -10,7 +10,6 @@ Change Log
 - Insert soft tabs to all insertion points when typing the tab key.
 
 
-
 ### Fixes
 
 - Fix an issue on macOS 10.13-14 that the application became unstable with some specific actions when the cursor locates the end of the document.
