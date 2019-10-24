@@ -31,12 +31,10 @@ extension FileAttributeKey {
 }
 
 
-struct FileExtendedAttributeName {
+enum FileExtendedAttributeName {
     
     static let encoding = "com.apple.TextEncoding"
     static let verticalText = "com.coteditor.VerticalText"
-    
-    private init() { }
 }
 
 

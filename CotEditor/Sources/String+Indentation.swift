@@ -32,12 +32,10 @@ enum IndentStyle {
 }
 
 
-private struct DetectionLines {
+private enum DetectionLines {
     
     static let min = 5
     static let max = 100
-    
-    private init() { }
 }
 
 

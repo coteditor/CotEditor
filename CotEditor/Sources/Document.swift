@@ -43,15 +43,13 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Structs
 
-    private struct SerializationKey {
+    private enum SerializationKey {
         
         static let readingEncoding = "readingEncoding"
         static let syntaxStyle = "syntaxStyle"
         static let autosaveIdentifier = "autosaveIdentifier"
         static let isVerticalText = "isVerticalText"
         static let isTransient = "isTransient"
-        
-        private init() { }
     }
     
     

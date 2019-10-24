@@ -32,15 +32,13 @@ extension UnicodeScalar {
     static let emojiSequence = UnicodeScalar(0xFE0F)!
     
     
-    struct SkinToneModifier {
+    enum SkinToneModifier {
         
         static let type12 = UnicodeScalar(0x1F3FB)!  // 🏻 Light
         static let type3 = UnicodeScalar(0x1F3FC)!  // 🏼 Medium Light
         static let type4 = UnicodeScalar(0x1F3FD)!  // 🏽 Medium
         static let type5 = UnicodeScalar(0x1F3FE)!  // 🏾 Medium Dark
         static let type6 = UnicodeScalar(0x1F3FF)!  // 🏿 Dark
-        
-        private init() { }
     }
     
     

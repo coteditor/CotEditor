@@ -48,11 +48,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Structs
     
-    private struct SerializationKey {
+    private enum SerializationKey {
         
         static let insertionLocations = "insertionLocations"
-        
-        private init() { }
     }
     
     
