@@ -380,7 +380,7 @@ extension SyntaxParser {
                         }
                     }
                 }
-           }
+            }
         }
     }
     
