@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,12 +37,12 @@ import Foundation
 func moof(_ items: Any..., function: String = #function) {
     
     let icon = Thread.isMainThread ? "🐕" : "🐄"
-    let prefix = icon + " " + function + " "
+    let prefix = icon + " " + function
     
     if items.isEmpty {
         Swift.print(prefix)
     } else {
-        Swift.print(prefix, terminator: "")
+        Swift.print(prefix, terminator: " ")
         Swift.debugPrint(items)
     }
 }
