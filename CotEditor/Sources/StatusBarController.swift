@@ -32,6 +32,9 @@ final class StatusBarController: NSViewController {
     private var defaultsObservers: [UserDefaultsObservation] = []
     private let byteCountFormatter = ByteCountFormatter()
     
+    @available(macOS, deprecated: 10.15)
+    private var appearanceObserver: NSKeyValueObservation?
+    
     @objc private dynamic var editorStatus: NSAttributedString?
     @objc private dynamic var documentStatus: NSAttributedString?
     @objc private dynamic var showsReadOnly = false
@@ -43,6 +46,7 @@ final class StatusBarController: NSViewController {
     
     deinit {
         self.defaultsObservers.forEach { $0.invalidate() }
+        self.appearanceObserver?.invalidate()
     }
     
     
@@ -95,6 +99,13 @@ final class StatusBarController: NSViewController {
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
         self.documentAnalyzer?.invalidateEditorInfo()
+        
+        if #available(macOS 10.15, *) { } else {
+            self.appearanceObserver?.invalidate()
+            self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (_, _) in
+                self?.updateEditorStatus()
+            }
+        }
     }
     
     
@@ -104,6 +115,8 @@ final class StatusBarController: NSViewController {
         super.viewDidDisappear()
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
+        
+        self.appearanceObserver?.invalidate()
     }
     
     

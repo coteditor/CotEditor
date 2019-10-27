@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.5 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the label color in the status bar was sometimes not updated immediately after switching window apperance.
+
+
+
 3.8.4 (381)
 --------------------------
 
