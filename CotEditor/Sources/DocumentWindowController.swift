@@ -148,7 +148,7 @@ extension DocumentWindowController: NSUserInterfaceValidations {
 
 extension DocumentWindowController: NSWindowDelegate {
     
-    /// MARK: Window Delegate
+    // MARK: Window Delegate
     
     func windowWillEnterFullScreen(_ notification: Notification) {
         
