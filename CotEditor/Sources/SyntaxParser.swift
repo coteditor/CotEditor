@@ -34,13 +34,6 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
-protocol ValidationIgnorable: NSLayoutManager {
-    
-    var ignoresDisplayValidation: Bool { get set }
-}
-
-
-
 final class SyntaxParser {
     
     static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
@@ -357,37 +350,24 @@ extension SyntaxParser {
         assert(Thread.isMainThread)
         
         for layoutManager in self.textStorage.layoutManagers {
-            // disable display validation during applying attributes
-            // -> According to the implementation of NSLayoutManager in GNUstep,
-            //    `invalidateDisplayForCharacterRange:` is invoked every time inside of `addTemporaryAttribute:value:forCharacterRange:`.
-            //    Ignoring that process during highlight reduces the application time,
-            //    which shows the rainbow cursor because of a main thread task, significantly.
-            //    See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
-            //    (2018-12 macOS 10.14)
-            if let layoutManager = layoutManager as? ValidationIgnorable {
-                layoutManager.ignoresDisplayValidation = true
-            }
-            defer {
-                if let layoutManager = layoutManager as? ValidationIgnorable {
-                    layoutManager.ignoresDisplayValidation = false
-                    layoutManager.invalidateDisplay(forCharacterRange: highlightRange)
-                }
-            }
+            guard let layoutManager = layoutManager as? ValidationIgnorable else { return assertionFailure() }
             
-            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
-            
-            guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
-            
-            for type in SyntaxType.allCases {
-                guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+            layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
+                layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
                 
-                if let color = theme.style(for: type)?.color {
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                    }
-                } else {
-                    for range in ranges {
-                        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { return }
+                
+                for type in SyntaxType.allCases {
+                    guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+                    
+                    if let color = theme.style(for: type)?.color {
+                        for range in ranges {
+                            layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                        }
+                    } else {
+                        for range in ranges {
+                            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                        }
                     }
                 }
             }
