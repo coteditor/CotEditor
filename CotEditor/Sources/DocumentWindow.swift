@@ -73,7 +73,9 @@ final class DocumentWindow: NSWindow {
         super.init(contentRect: contentRect, styleMask: style, backing: bufferingType, defer: flag)
         
         self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
-            self?.invalidateTitlebarOpacity()
+            guard let self = self, !self.isOpaque else { return }
+            
+            self.invalidateTitlebarOpacity()
         }
     }
     
@@ -134,9 +136,11 @@ final class DocumentWindow: NSWindow {
     /// make sure window title bar (incl. toolbar) is opaque
     private func invalidateTitlebarOpacity() {
         
+        guard let titlebarView = self.titlebarView else { return }
+        
         // dirty manupulation to avoid the title bar being dyed in the window background color (2016-01).
-        self.titlebarView?.wantsLayer = !self.isOpaque
-        self.titlebarView?.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
+        titlebarView.wantsLayer = !self.isOpaque
+        titlebarView.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
     }
 
 }
