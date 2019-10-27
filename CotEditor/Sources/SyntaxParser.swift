@@ -34,6 +34,13 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
+extension NSAttributedString.Key {
+    
+    static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
+}
+
+
+
 final class SyntaxParser {
     
     static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")
@@ -354,6 +361,7 @@ extension SyntaxParser {
             
             layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
+                layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
                 
                 guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { return }
                 
@@ -363,12 +371,45 @@ extension SyntaxParser {
                     if let color = theme.style(for: type)?.color {
                         for range in ranges {
                             layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                            layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
                         }
                     } else {
                         for range in ranges {
                             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                            layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
                         }
                     }
+                }
+           }
+        }
+    }
+    
+}
+
+
+
+extension NSLayoutManager {
+    
+    /// Apply the theme based on the current `syntaxType` attributes.
+    ///
+    /// - Parameter theme: The theme to apply.
+    /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
+    func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
+        
+        assert(Thread.isMainThread)
+        
+        guard let self = self as? ValidationIgnorable else { return assertionFailure() }
+        
+        let wholeRange = range ?? self.attributedString().range
+        
+        self.groupTemporaryAttributesUpdate(in: wholeRange) {
+            self.enumerateTemporaryAttribute(.syntaxType, in: wholeRange) { (type, range, _) in
+                guard let type = type as? SyntaxType else { return }
+                
+                if let color = theme.style(for: type)?.color {
+                    self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                } else {
+                    self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
                 }
             }
         }

@@ -1001,9 +1001,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme
+            viewController.textView?.layoutManager?.invalidateHighlight(theme: theme)
         }
         
-        self.invalidateSyntaxHighlight()
         self.invalidateRestorableState()
     }
     

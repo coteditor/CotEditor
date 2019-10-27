@@ -5,6 +5,11 @@ Change Log
 3.8.5 (unreleased)
 --------------------------
 
+### Improvements
+
+- Avoid re-parsing syntax highlight when the appearance is switched.
+
+
 ### Fixes
 
 - Fix an issue where the label color in the status bar was sometimes not updated immediately after switching window apperance.
