@@ -67,7 +67,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         super.init()
         
-        // observe for script folder change
+        // observe script folder change
         NSFileCoordinator.addFilePresenter(self)
     }
     
@@ -80,7 +80,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: File Presenter Protocol
     
-    var presentedItemOperationQueue = OperationQueue.main
+    var presentedItemOperationQueue: OperationQueue = .main
     
     
     /// URL to observe
@@ -142,7 +142,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         
         menu.removeAllItems()
         
-        self.addChildFileItem(to: menu, in: self.scriptsDirectoryURL)
+        self.addChildFileItem(in: self.scriptsDirectoryURL, to: menu)
         
         if !menu.items.isEmpty {
             menu.addItem(.separator())
@@ -155,7 +155,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened
+    /// Dispatch an Apple Event that notifies the given document was opened
     ///
     /// - Parameter document: The document that was opened.
     func dispatchEvent(documentOpened document: Document) {
@@ -170,7 +170,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple event that notifies the given document was opened.
+    /// Dispatch an Apple Event that notifies the given document was opened.
     ///
     /// - Parameter document: The document that was opened.
     func dispatchEvent(documentSaved document: Document) {
@@ -215,7 +215,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// open Script Menu folder in Finder
+    /// open Script menu folder in Finder
     @IBAction func openScriptFolder(_ sender: Any?) {
         
         NSWorkspace.shared.activateFileViewerSelecting([self.scriptsDirectoryURL])
@@ -225,7 +225,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Private Methods
     
-    /// Create an Apple event caused by the given `Document`.
+    /// Create an Apple Event caused by the given `Document`.
     ///
     /// - Bug:
     ///   NSScriptObjectSpecifier.descriptor can be nil.
@@ -233,12 +233,16 @@ final class ScriptManager: NSObject, NSFilePresenter {
     ///   [#649](https://github.com/coteditor/CotEditor/pull/649)
     ///
     /// - Parameters:
-    ///   - document: The document to dispatch an Apple event.
+    ///   - document: The document to dispatch an Apple Event.
     ///   - eventID: The event ID to be set in the returned event.
-    /// - Returns: A descriptor for an Apple event by the `Document`.
+    /// - Returns: A descriptor for an Apple Event by the `Document`.
     private func createEvent(by document: NSDocument, eventID: AEEventID) -> NSAppleEventDescriptor {
         
-        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"), eventID: eventID, targetDescriptor: nil, returnID: AEReturnID(kAutoGenerateReturnID), transactionID: AETransactionID(kAnyTransactionID))
+        let event = NSAppleEventDescriptor(eventClass: AEEventClass(code: "cEd1"),
+                                           eventID: eventID,
+                                           targetDescriptor: nil,
+                                           returnID: AEReturnID(kAutoGenerateReturnID),
+                                           transactionID: AETransactionID(kAnyTransactionID))
         let documentDescriptor = document.objectSpecifier.descriptor ?? NSAppleEventDescriptor(string: "BUG: document.objectSpecifier.descriptor was nil")
         
         event.setParam(documentDescriptor, forKeyword: keyDirectObject)
@@ -247,11 +251,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Cause the given Apple event to be dispatched to AppleScripts at given URLs.
+    /// Cause the given Apple Event to be dispatched to AppleScripts at given URLs.
     ///
     /// - Parameters:
-    ///   - event: The Apple event to be dispatched.
-    ///   - scripts: AppleScripts handling the given Apple event.
+    ///   - event: The Apple Event to be dispatched.
+    ///   - scripts: AppleScripts handling the given Apple Event.
     private func dispatch(_ event: NSAppleEventDescriptor, handlers scripts: [Script]) {
         
         for script in scripts {
@@ -265,7 +269,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     
     /// read files and create/add menu items
-    private func addChildFileItem(to menu: NSMenu, in directoryURL: URL) {
+    private func addChildFileItem(in directoryURL: URL, to menu: NSMenu) {
         
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
                                                                       includingPropertiesForKeys: [.fileResourceTypeKey],
@@ -306,7 +310,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
                 item.submenu = submenu
                 menu.addItem(item)
                 
-                self.addChildFileItem(to: submenu, in: url)
+                self.addChildFileItem(in: url, to: submenu)
             }
         }
     }
@@ -318,7 +322,6 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private func editScript(at url: URL) throws {
         
         guard NSWorkspace.shared.open(url) else {
-            // display alert if cannot open/select the script file
             throw ScriptFileError(kind: .open, url: url)
         }
     }
