@@ -16,6 +16,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the label color in the status bar was sometimes not updated immediately after switching window apperance.
+- Fix an issue where parsing syntax style files could failed.
 
 
 
