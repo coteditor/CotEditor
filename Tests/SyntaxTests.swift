@@ -50,7 +50,7 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
         // load XML style
         let styleURL = bundle.url(forResource: "HTML", withExtension: styleExtension, subdirectory: styleDirectoryName)
         let data = try! Data(contentsOf: styleURL!)
-        let dict = try! YAMLSerialization.object(withYAMLData: data, options: []) as! [String: Any]
+        let dict = try! YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
         self.htmlStyle = SyntaxStyle(dictionary: dict, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
