@@ -64,7 +64,7 @@ HookingScript.scptd
 <p>CotEditorのスクリプトフックに対応させるためには、まず、`Info.plist`にフックしたいイベントの一覧を記載する必要があります。
 `plist`ファイルはプロパティリストと呼ばれ、その内容は以下に示すようなXML形式で記述されたバンドルのメタデータです。</p>
 
-<div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<pre class="highlight source"><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="cp">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span>
 <span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;dict&gt;</span>
@@ -76,16 +76,16 @@ HookingScript.scptd
     <span class="nt">&lt;string&gt;</span>1.0<span class="nt">&lt;/string&gt;</span>
   <span class="nt">&lt;/dict&gt;</span>
 <span class="nt">&lt;/plist&gt;</span>
-</pre></div>
+</pre>
 
 <p>フックしたいイベントの一覧は、キー`CotEditorHandlers`に文字列の配列として記載します。以下にその一例を示します。</p>
 
-<div class="highlight"><pre><span></span><span class="nt">&lt;key&gt;</span>CotEditorHandlers<span class="nt">&lt;/key&gt;</span>
+<pre class="highlight source"><span></span><span class="nt">&lt;key&gt;</span>CotEditorHandlers<span class="nt">&lt;/key&gt;</span>
 <span class="nt">&lt;array&gt;</span>
   <span class="nt">&lt;string&gt;</span>document opened<span class="nt">&lt;/string&gt;</span>
   <span class="nt">&lt;string&gt;</span>document saved<span class="nt">&lt;/string&gt;</span>
 <span class="nt">&lt;/array&gt;</span>
-</pre></div>
+</pre>
 
 <h2>イベントハンドラ</h2>
 
@@ -96,7 +96,7 @@ HookingScript.scptd
 
 <p>AppleScriptでスクリプトを記述する場合、`using terms from`ブロックと`on`ブロックを組み合わせることで、ハンドラを作成します。</p>
 
-<div class="highlight"><pre><span></span><span class="k">using terms from</span> <span class="nb">application</span> <span class="s2">&quot;CotEditor&quot;</span>
+<pre class="highlight source"><span></span><span class="k">using terms from</span> <span class="nb">application</span> <span class="s2">&quot;CotEditor&quot;</span>
     <span class="nb">on</span> <span class="na">document</span> <span class="nv">opened</span> <span class="nv">theDocument</span>
         <span class="k">set</span> <span class="nv">thePath</span> <span class="k">to</span> <span class="nv">file</span> <span class="k">of</span> <span class="nv">theDocument</span>
         <span class="nb">display alert</span> <span class="s2">&quot;Opened &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
@@ -107,13 +107,13 @@ HookingScript.scptd
         <span class="nb">display alert</span> <span class="s2">&quot;Saved &quot;</span> <span class="o">&amp;</span> <span class="nv">thePath</span>
     <span class="k">end</span> <span class="na">document</span> <span class="nv">saved</span>
 <span class="k">end</span> <span class="k">using terms from</span>
-</pre></div>
+</pre>
 
 <h3>JavaScript for Automation (JXA)</h3>
 
 <p>JXAでスクリプトを記述する場合、`function`文を用いてハンドラを作成します。関数はグローバルオブジェクト上で定義する必要があります。</p>
 
-<div class="highlight"><pre><span></span><span class="nx">CotEditor</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">currentApplication</span><span class="p">()</span>
+<pre class="highlight source"><span></span><span class="nx">CotEditor</span> <span class="o">=</span> <span class="nx">Application</span><span class="p">.</span><span class="nx">currentApplication</span><span class="p">()</span>
 <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">includeStandardAdditions</span> <span class="o">=</span> <span class="kc">true</span>
 
 <span class="kd">function</span> <span class="nx">documentOpened</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
@@ -123,7 +123,7 @@ HookingScript.scptd
 <span class="kd">function</span> <span class="nx">documentSaved</span><span class="p">(</span><span class="nb">document</span><span class="p">)</span> <span class="p">{</span>
   <span class="nx">CotEditor</span><span class="p">.</span><span class="nx">displayAlert</span><span class="p">(</span><span class="s2">&quot;Saved &quot;</span> <span class="o">+</span> <span class="nb">document</span><span class="p">.</span><span class="nx">file</span><span class="p">().</span><span class="nx">toString</span><span class="p">())</span>
 <span class="p">}</span>
-</pre></div>
+</pre>
 
 <section id="cf">
 <h2>関連項目</h2>

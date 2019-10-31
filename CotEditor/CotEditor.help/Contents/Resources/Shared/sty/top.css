@@ -6,20 +6,19 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2018 CotEditor Project
+ © 2006-2019 CotEditor Project
 */
 
 
-html {
+:root {
 	-webkit-text-size-adjust: 100%;
 	font: 10pt/1.5 -apple-system, -apple-system-font, 'Helvetica Neue', sans-serif;
+	color: -apple-system-label;
 }
 body {
-	color: hsla(0, 0%, 0%, 0.7);
 	margin: 1em auto;
 	padding: 0 1em;
 	max-width: 7in;
-	font-weight: 300;
 }
 
 a {
@@ -44,7 +43,7 @@ section#rightbox {
 	width: 260px;
 	padding-left: 30px;
 	margin-left: 20px;
-	border-left: 1px solid hsl(0, 0%, 85%);
+	border-left: 1px solid -apple-system-quaternary-label;
 }
 
 #leftbox h1 {
@@ -60,4 +59,11 @@ dt {
 }
 dd {
 	margin-left: 0;
+}
+
+
+/* dark mode */
+
+:root {
+	color-scheme: light dark;
 }

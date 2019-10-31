@@ -9,6 +9,7 @@ Change Log
 
 - Accept importing custom syntax styles with “.yml” extension.
 - Avoid re-parsing syntax highlight when the appearance is switched.
+- Supprt Dark Mode in the help.
 - [non-AppStore ver.] Update Sparkle framework.
 
 
