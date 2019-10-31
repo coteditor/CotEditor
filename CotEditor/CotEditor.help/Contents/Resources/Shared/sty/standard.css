@@ -217,19 +217,24 @@ table caption {
 	text-align: left;
 	margin: 0.4em 0;
 }
-table thead tr:first-child > * {
-	border-top: none;
-}
-table thead tr:last-child > * {
-	border-bottom: 1px solid -apple-system-tertiary-label;
-}
-
 th,
 td {
 	border-top: 1px solid -apple-system-quaternary-label;
 	border-bottom: 1px solid -apple-system-quaternary-label;
 	margin: 0;
 	padding: 0.4em 0.5em;
+}
+table thead tr th {
+	font-weight: 500;
+}
+table thead tr:first-child > * {
+	border-top: none;
+}
+table  tr:first-child > * {
+	border-top-color: -apple-system-secondary-label;
+}
+table  tr:last-child > * {
+	border-bottom-color: -apple-system-secondary-label;
 }
 th {
 	font-weight: normal;
