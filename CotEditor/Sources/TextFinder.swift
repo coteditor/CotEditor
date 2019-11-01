@@ -413,14 +413,18 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let textFind: TextFind
         do {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
-        } catch {
+        } catch let error as TextFind.Error {
             switch error {
-            case TextFind.Error.regularExpression:
+            case .regularExpression, .emptyInSelectionSearch:
                 self.findPanelController.showWindow(self)
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
-            default: break
+            case .emptyFindString:
+                break
             }
             NSSound.beep()
+            return nil
+        } catch {
+            assertionFailure()
             return nil
         }
         

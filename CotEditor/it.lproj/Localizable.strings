@@ -84,7 +84,9 @@
 "%@ strings replaced." = "%@ stringhe sostituite.";
 "Invalid regular expression" = "Espressione regolare non valida";
 "Empty find string" = "Stringa di ricerca vuota";
+"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
 "Input text to find." = "Inserire il testo da cercare.";
+"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";  // FIXME: added
 
 // accessibility announcement
 "Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.

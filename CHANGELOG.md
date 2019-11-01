@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Raise an alert when performing find (or replacement) with “in selection” option while no text is selected.
 - Accept importing custom syntax styles with “.yml” extension.
 - Avoid re-parsing syntax highlight when the appearance is switched.
 - Supprt Dark Mode in the help.
