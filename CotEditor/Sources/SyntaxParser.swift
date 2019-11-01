@@ -356,6 +356,8 @@ extension SyntaxParser {
         
         assert(Thread.isMainThread)
         
+        guard self.textStorage.length > 0 else { return }
+        
         for layoutManager in self.textStorage.layoutManagers {
             guard let layoutManager = layoutManager as? ValidationIgnorable else { return assertionFailure() }
             
