@@ -134,8 +134,8 @@
 "631.title" = "Inserir Barra Invertida";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Inserir Sinal de Iene";
-/* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Inserir Caractere em Unicode Hexadecimal…";
+/* Class = "NSMenuItem"; title = "Input Char in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Inserir Caractere em Unicode Hexadecimal…";  // FIXME: [updated] hex -> code point
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Ortografia e Gramática";

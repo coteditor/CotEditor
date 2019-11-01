@@ -218,7 +218,7 @@ Gw
                                                 <action selector="inputYenMark:" target="Ady-hI-5gd" id="4HI-qU-zlg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Input in Unicode Hex…" id="tWx-pj-3PL">
+                                        <menuItem title="Input in Unicode Code Point…" id="tWx-pj-3PL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>

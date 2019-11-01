@@ -12,7 +12,7 @@ Change Log
 - Avoid re-parsing syntax highlight when the appearance is switched.
 - Support Dark Mode in the help.
 - [non-AppStore ver.] Update Sparkle framework.
-- [trivial] Fix terminology for “{}” and  “[]” symbols.
+- [trivial] Tweak some terminology in menu.
 
 
 ### Fixes
