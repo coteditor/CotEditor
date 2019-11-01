@@ -25,7 +25,7 @@
 //
 
 import XCTest
-import YAML
+import Yams
 @testable import CotEditor
 
 let styleDirectoryName = "Syntaxes"
@@ -51,9 +51,9 @@ final class SyntaxTests: XCTestCase {
         // load styles
         let dictsWithNames = try bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
             .map { url -> (String, SyntaxManager.StyleDictionary) in
-                let data = try Data(contentsOf: url)
+                let string = try! String(contentsOf: url)
                 let name = url.deletingPathExtension().lastPathComponent
-                let dict = try YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
+                let dict = try! Yams.load(yaml: string) as! [String: Any]
                 
                 return (name, dict)
             }
