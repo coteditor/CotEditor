@@ -230,7 +230,7 @@ extension Commenting {
 
 
 
-private extension NSRange {
+extension NSRange {
     
     struct InsertionItem: Equatable {
         
@@ -289,7 +289,7 @@ private extension NSRange {
 }
 
 
-private extension String {
+extension String {
     
     /// Return editing information to comment out given `ranges` by appending inline-style comment delimiters
     /// and spacers after delimiters.
