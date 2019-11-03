@@ -194,7 +194,10 @@ extension Commenting {
         guard !targets.isEmpty else { return false }
         
         if let delimiters = self.blockCommentDelimiters {
-            let predicate: ((String) -> Bool) = { $0.hasPrefix(delimiters.begin) && $0.hasSuffix(delimiters.end) }
+            let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
+            let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
+            let pattern = "\\A[ \t]*" + beginPattern + ".*" + endPattern + "[ \t]*\\Z"
+            let predicate: ((String) -> Bool) = { $0.range(of: pattern, options: [.regularExpression]) != nil }
             
             if partly ? targets.contains(where: predicate) : targets.allSatisfy(predicate) {
                 return true
@@ -202,7 +205,8 @@ extension Commenting {
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            let predicate: ((String) -> Bool) = { $0.hasPrefix(delimiter) }
+            let pattern = "\\A[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
+            let predicate: ((String) -> Bool) = { $0.range(of: pattern, options: [.regularExpression]) != nil }
             let lines = targets.flatMap { $0.components(separatedBy: .newlines) }
             
             if partly ? lines.contains(where: predicate) : lines.allSatisfy(predicate) {
@@ -342,11 +346,11 @@ extension String {
         
         let delimiterPattern = NSRegularExpression.escapedPattern(for: delimiter)
         let spacerPattern = spacer.isEmpty ? "" : "(?:" + spacer + ")?"
-        let pattern = "^" + delimiterPattern + spacerPattern
+        let pattern = "^[ \t]*(" + delimiterPattern + spacerPattern + ")"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
-            .map { $0.range }
+            .map { $0.range(at: 1) }
     }
     
     
@@ -368,7 +372,7 @@ extension String {
         let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
         let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
         let spacerPattern = spacer.isEmpty ? "" : "(?:" + spacer + ")?"
-        let pattern = "\\A(" + beginPattern + spacerPattern + ").*?(" + spacerPattern + endPattern + ")\\Z"
+        let pattern = "\\A[ \t]*(" + beginPattern + spacerPattern + ").*?(" + spacerPattern + endPattern + ")[ \t]*\\Z"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }

@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Uncomment comment lines even if the delimiters are placed after indent.
 - Raise an alert when performing find (or replacement) with “in selection” option while no text is selected.
 - Accept importing custom syntax styles with “.yml” extension.
 - Avoid re-parsing syntax highlight when the appearance is switched.
