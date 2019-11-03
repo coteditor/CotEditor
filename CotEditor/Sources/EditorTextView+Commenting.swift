@@ -124,7 +124,7 @@ extension Commenting {
         
         let spacer = self.appendsCommentSpacer ? " " : ""
         let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
-        let items: [(string: String, location: Int, forward: Bool)] = {
+        let items: [NSRange.InsertionItem] = {
             if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
                 return self.string.inlineCommentOut(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
             }
@@ -139,7 +139,7 @@ extension Commenting {
         let newStrings = items.map { $0.string }
         let replacementRanges = items.map { NSRange($0.location..<$0.location) }
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
-            .map { $0.rangeValue.move(inserting: items) }
+            .map { $0.rangeValue.inserted(items: items) }
         
         self.replace(with: newStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
                      actionName: "Comment Out".localized)
@@ -171,7 +171,7 @@ extension Commenting {
         
         let newStrings = [String](repeating: "", count: deletionRanges.count)
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
-            .map { $0.rangeValue.move(deleting: deletionRanges) }
+            .map { $0.rangeValue.deleted(ranges: deletionRanges) }
         
         self.replace(with: newStrings, ranges: deletionRanges, selectedRanges: selectedRanges,
                      actionName: "Uncomment".localized)
@@ -232,11 +232,19 @@ extension Commenting {
 
 private extension NSRange {
     
+    struct InsertionItem: Equatable {
+        
+        var string: String
+        var location: Int
+        var forward: Bool
+    }
+    
+    
     /// Return a new range by assuming the indices of the given items are inserted.
     ///
     /// - Parameter items: An array of items to be inserted.
     /// - Returns: A new range that the receiver moved.
-    func move(inserting items: [(string: String, location: Int, forward: Bool)]) -> NSRange {
+    func inserted(items: [Self.InsertionItem]) -> NSRange {
         
         var location = items
             .prefix { $0.location < self.lowerBound }  //  || ($0.location == self.lowerBound && $0.forward)
@@ -266,11 +274,11 @@ private extension NSRange {
     
     /// Return a new range by assuming the indexes in the given ranges are removed.
     ///
-    /// - Parameter deletingRanges: An array of NSRange where the indexes are emoved.
+    /// - Parameter ranges: An array of NSRange where the indexes are emoved.
     /// - Returns: A new range that the receiver moved.
-    func move(deleting deletingRanges: [NSRange]) -> NSRange {
+    func deleted(ranges: [NSRange]) -> NSRange {
         
-        let indices = deletingRanges.reduce(into: IndexSet()) { $0.insert(integersIn: Range($1)!) }
+        let indices = ranges.reduce(into: IndexSet()) { $0.insert(integersIn: Range($1)!) }
         
         let location = self.location - indices.count(in: ..<self.lowerBound)
         let length = self.length - indices.count(in: Range(self)!)
@@ -291,14 +299,14 @@ private extension String {
     ///   - spacer: The spacer between delimiter and string.
     ///   - ranges: The ranges where to comment out.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func inlineCommentOut(delimiter: String, spacer: String, ranges: [NSRange]) -> [(string: String, location: Int, forward: Bool)] {
+    func inlineCommentOut(delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange.InsertionItem] {
         
         let regex = try! NSRegularExpression(pattern: "^", options: [.anchorsMatchLines])
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
             .map { $0.range.location }
             .unique
-            .map { (delimiter + spacer, $0, true) }
+            .map { NSRange.InsertionItem(string: delimiter + spacer, location: $0, forward: true) }
     }
     
     
@@ -310,9 +318,12 @@ private extension String {
     ///   - spacer: The spacer between delimiter and string.
     ///   - ranges: The ranges where to comment out.
     /// - Returns: Items that contain editing information to insert comment delimiters.
-    func blockCommentOut(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [(string: String, location: Int, forward: Bool)] {
+    func blockCommentOut(delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange.InsertionItem] {
         
-        return ranges.flatMap { [(delimiters.begin + spacer, $0.lowerBound, true), (spacer + delimiters.end, $0.upperBound, false)] }
+        return ranges.flatMap {
+            [NSRange.InsertionItem(string: delimiters.begin + spacer, location: $0.lowerBound, forward: true),
+             NSRange.InsertionItem(string: spacer + delimiters.end, location: $0.upperBound, forward: false)]
+        }
     }
     
     
