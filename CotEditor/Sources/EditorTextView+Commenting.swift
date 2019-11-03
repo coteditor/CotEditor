@@ -122,9 +122,10 @@ extension Commenting {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return }
         
-        let spacer = self.appendsCommentSpacer ? " " : ""
-        let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
         let items: [NSRange.InsertionItem] = {
+            let spacer = self.appendsCommentSpacer ? " " : ""
+            let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
+            
             if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
                 return self.string.inlineCommentOut(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
             }
@@ -154,15 +155,17 @@ extension Commenting {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return }
         
-        let spacer = self.appendsCommentSpacer ? " " : ""
-        let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
         let deletionRanges: [NSRange] = {
+            let spacer = self.appendsCommentSpacer ? " " : ""
+            let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
+            
             if let delimiters = self.blockCommentDelimiters {
-                let indices = self.string.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges)
-                if !indices.isEmpty { return indices }
+                let ranges = self.string.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges)
+                if !ranges.isEmpty { return ranges }
             }
             if let delimiter = self.inlineCommentDelimiter {
-                return self.string.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges)
+                let ranges = self.string.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges)
+                if !ranges.isEmpty { return ranges }
             }
             return []
         }()
@@ -178,10 +181,10 @@ extension Commenting {
     }
     
     
-    /// Whether given range can be uncommented.
+    /// Whether selected ranges can be uncommented.
     ///
     /// - Parameter partly: When `true`, the method returns true when a part of slections is commented-out,
-    ///                     otherwise only when the entire selections are commented out.
+    ///                     otherwise only when the entire selections can be commented out.
     /// - Returns: `true` when selection can be uncommented.
     func canUncomment(partly: Bool) -> Bool {
         
@@ -224,7 +227,7 @@ extension Commenting {
     /// return commenting target range
     private func commentingRanges(fromLineHead: Bool) -> [NSRange] {
         
-        return (self.rangesForUserTextChange ?? [])
+        return (self.rangesForUserTextChange ?? self.selectedRanges)
             .map { $0.rangeValue }
             .map { fromLineHead ? self.string.lineContentsRange(for: $0) : $0 }
             .unique
