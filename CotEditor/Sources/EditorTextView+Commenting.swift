@@ -190,27 +190,30 @@ extension Commenting {
         
         guard self.blockCommentDelimiters != nil || self.inlineCommentDelimiter != nil else { return false }
         
-        let targets = self.commentingRanges(fromLineHead: self.commentsAtLineHead)
+        let targetRanges = self.commentingRanges(fromLineHead: self.commentsAtLineHead)
             .filter { !$0.isEmpty }
-            .map { (self.string as NSString).substring(with: $0) }
         
-        guard !targets.isEmpty else { return false }
+        guard !targetRanges.isEmpty else { return false }
         
         if let delimiters = self.blockCommentDelimiters {
             let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
             let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
-            let pattern = "\\A[ \t]*" + beginPattern + ".*" + endPattern + "[ \t]*\\Z"
-            let predicate: ((String) -> Bool) = { $0.range(of: pattern, options: [.regularExpression]) != nil }
+            let pattern = "\\A[ \t]*" + beginPattern + ".*?" + endPattern + "[ \t]*\\Z"
+            let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
+            let predicate: ((NSRange) -> Bool) = { regex.firstMatch(in: self.string, range: $0) != nil }
             
-            if partly ? targets.contains(where: predicate) : targets.allSatisfy(predicate) {
+            if partly ? targetRanges.contains(where: predicate) : targetRanges.allSatisfy(predicate) {
                 return true
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
-            let pattern = "\\A[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
-            let predicate: ((String) -> Bool) = { $0.range(of: pattern, options: [.regularExpression]) != nil }
-            let lines = targets.flatMap { $0.components(separatedBy: .newlines) }
+            let pattern = "^[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
+            let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
+            let lines = targetRanges
+                .map { (self.string as NSString).substring(with: $0) }
+                .flatMap { $0.components(separatedBy: .newlines) }
+            let predicate: ((String) -> Bool) = { regex.firstMatch(in: $0, range: $0.nsRange) != nil }
             
             if partly ? lines.contains(where: predicate) : lines.allSatisfy(predicate) {
                 return true
