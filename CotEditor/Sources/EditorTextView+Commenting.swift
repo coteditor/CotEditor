@@ -200,22 +200,20 @@ extension Commenting {
             let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
             let pattern = "\\A[ \t]*" + beginPattern + ".*?" + endPattern + "[ \t]*\\Z"
             let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
-            let predicate: ((NSRange) -> Bool) = { regex.firstMatch(in: self.string, range: $0) != nil }
             
+            let predicate: ((NSRange) -> Bool) = { regex.firstMatch(in: self.string, range: $0) != nil }
             if partly ? targetRanges.contains(where: predicate) : targetRanges.allSatisfy(predicate) {
                 return true
             }
         }
         
         if let delimiter = self.inlineCommentDelimiter {
+            let lineRanges = targetRanges.flatMap { self.string.lineRanges(for: $0) }
             let pattern = "^[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
-            let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
-            let lines = targetRanges
-                .map { (self.string as NSString).substring(with: $0) }
-                .flatMap { $0.components(separatedBy: .newlines) }
-            let predicate: ((String) -> Bool) = { regex.firstMatch(in: $0, range: $0.nsRange) != nil }
+            let regex = try! NSRegularExpression(pattern: pattern)
             
-            if partly ? lines.contains(where: predicate) : lines.allSatisfy(predicate) {
+            let predicate: ((NSRange) -> Bool) = { regex.firstMatch(in: self.string, range: $0) != nil }
+            if partly ? lineRanges.contains(where: predicate) : lineRanges.allSatisfy(predicate) {
                 return true
             }
         }
@@ -383,6 +381,18 @@ extension String {
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
             .flatMap { [$0.range(at: 1), $0.range(at: 2)] }
+    }
+    
+    
+    /// Divide the given range into logical line ranges.
+    ///
+    /// - Parameter range: The range to divide.
+    /// - Returns: Logical line ranges.
+    func lineRanges(for range: NSRange) -> [NSRange] {
+        
+        let regex = try! NSRegularExpression(pattern: "^.*$", options: [.anchorsMatchLines])
+        
+        return regex.matches(in: self, range: range).map { $0.range }
     }
     
 }

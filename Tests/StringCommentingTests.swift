@@ -190,6 +190,30 @@ class StringCommentingTests: XCTestCase {
         XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
     }
     
+    
+    func testUncommentability() {
+        
+        let textView = CommentingTextView()
+        
+        textView.string = """
+        // foo
+        //
+        // foo bar
+        """
+        textView.selectedRange = textView.string.nsRange
+        XCTAssertTrue(textView.canUncomment(partly: false))
+        XCTAssertTrue(textView.canUncomment(partly: true))
+        
+        textView.string = """
+        // foo
+        
+        // foo bar
+        """
+        textView.selectedRange = textView.string.nsRange
+        XCTAssertFalse(textView.canUncomment(partly: false))
+        XCTAssertTrue(textView.canUncomment(partly: true))
+    }
+    
 }
 
 
