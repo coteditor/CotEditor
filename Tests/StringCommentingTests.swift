@@ -111,6 +111,7 @@ class StringCommentingTests: XCTestCase {
         
         XCTAssertEqual("// foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<12)]), [NSRange(0..<3), NSRange(7..<9)])
         XCTAssertEqual(" //foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<12)]), [NSRange(1..<3), NSRange(7..<9)])
+        XCTAssertEqual(" //foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<3), NSRange(0..<6)]), [NSRange(1..<3)])
         
         XCTAssertEqual("// foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<5), NSRange(7..<12)]), [NSRange(0..<3), NSRange(7..<9)])
     }
