@@ -130,6 +130,19 @@ extension StringProtocol where Self.Index == String.Index {
 
 extension String {
     
+    /// Divide the given range into logical line contents ranges.
+    ///
+    /// - Parameter range: The range to divide or `nil`.
+    /// - Returns: Logical line ranges.
+    func lineContentsRanges(for range: NSRange? = nil) -> [NSRange] {
+        
+        let range = range ?? self.nsRange
+        let regex = try! NSRegularExpression(pattern: "^.*", options: [.anchorsMatchLines])
+        
+        return regex.matches(in: self, range: range).map { $0.range }
+    }
+    
+    
     /// check if character at the location in UTF16 is escaped with backslash
     func isCharacterEscaped(at location: Int) -> Bool {
         

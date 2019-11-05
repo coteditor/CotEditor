@@ -126,10 +126,10 @@ extension Commenting {
             let spacer = self.appendsCommentSpacer ? " " : ""
             let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
             
-            if let delimiter = self.inlineCommentDelimiter, types.contains(.inline) {
+            if types.contains(.inline), let delimiter = self.inlineCommentDelimiter {
                 return self.string.inlineCommentOut(delimiter: delimiter, spacer: spacer, ranges: targetRanges)
             }
-            if let delimiters = self.blockCommentDelimiters, types.contains(.block) {
+            if types.contains(.block), let delimiters = self.blockCommentDelimiters {
                 return self.string.blockCommentOut(delimiters: delimiters, spacer: spacer, ranges: targetRanges)
             }
             return []
@@ -160,12 +160,14 @@ extension Commenting {
             let targetRanges = self.commentingRanges(fromLineHead: fromLineHead)
             
             if let delimiters = self.blockCommentDelimiters {
-                let ranges = self.string.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges)
-                if !ranges.isEmpty { return ranges }
+                if let ranges = self.string.rangesOfBlockDelimiters(delimiters, spacer: spacer, ranges: targetRanges) {
+                    return ranges
+                }
             }
             if let delimiter = self.inlineCommentDelimiter {
-                let ranges = self.string.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges)
-                if !ranges.isEmpty { return ranges }
+                if let ranges = self.string.rangesOfInlineDelimiter(delimiter, spacer: spacer, ranges: targetRanges) {
+                    return ranges
+                }
             }
             return []
         }()
@@ -196,25 +198,14 @@ extension Commenting {
         guard !targetRanges.isEmpty else { return false }
         
         if let delimiters = self.blockCommentDelimiters {
-            let beginPattern = NSRegularExpression.escapedPattern(for: delimiters.begin)
-            let endPattern = NSRegularExpression.escapedPattern(for: delimiters.end)
-            let pattern = "\\A[ \t]*" + beginPattern + ".*?" + endPattern + "[ \t]*\\Z"
-            let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
-            
-            let predicate: ((NSRange) -> Bool) = { regex.firstMatch(in: self.string, range: $0) != nil }
-            if partly ? targetRanges.contains(where: predicate) : targetRanges.allSatisfy(predicate) {
-                return true
+            if let ranges = self.string.rangesOfBlockDelimiters(delimiters, spacer: "", ranges: targetRanges) {
+                return partly ? true : (ranges.count == (2 * targetRanges.count))
             }
         }
-        
         if let delimiter = self.inlineCommentDelimiter {
-            let lineRanges = targetRanges.flatMap { self.string.lineRanges(for: $0) }
-            let pattern = "^[ \t]*" + NSRegularExpression.escapedPattern(for: delimiter)
-            let regex = try! NSRegularExpression(pattern: pattern)
-            
-            let predicate: ((NSRange) -> Bool) = { regex.firstMatch(in: self.string, range: $0) != nil }
-            if partly ? lineRanges.contains(where: predicate) : lineRanges.allSatisfy(predicate) {
-                return true
+            if let ranges = self.string.rangesOfInlineDelimiter(delimiter, spacer: "", ranges: targetRanges) {
+                let lineRanges = targetRanges.flatMap { self.string.lineContentsRanges(for: $0) }.unique
+                return partly ? true : (ranges.count == lineRanges.count)
             }
         }
         
@@ -341,8 +332,8 @@ extension String {
     ///   - delimiter: The inline delimiter to find.
     ///   - spacer: The spacer between delimiter and string.
     ///   - ranges: The ranges where to find.
-    /// - Returns: Ranges where delimiters and spacers are.
-    func rangesOfInlineDelimiter(_ delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange] {
+    /// - Returns: Ranges where delimiters and spacers are, or `nil` when no delimiters was found.
+    func rangesOfInlineDelimiter(_ delimiter: String, spacer: String, ranges: [NSRange]) -> [NSRange]? {
         
         let ranges = ranges.filter { !$0.isEmpty }
         
@@ -353,8 +344,11 @@ extension String {
         let pattern = "^[ \t]*(" + delimiterPattern + spacerPattern + ")"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.anchorsMatchLines])
         
-        return ranges.flatMap { regex.matches(in: self, range: $0) }
+        let delimiterRanges = ranges
+            .flatMap { regex.matches(in: self, range: $0) }
             .map { $0.range(at: 1) }
+            
+        return delimiterRanges.isEmpty ? nil : delimiterRanges
     }
     
     
@@ -366,8 +360,8 @@ extension String {
     ///   - delimiters: The pair of block delimiters to find.
     ///   - spacer: The spacer between delimiter and string.
     ///   - ranges: The ranges where to find.
-    /// - Returns: Ranges where delimiters and spacers are.
-    func rangesOfBlockDelimiters(_ delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange] {
+    /// - Returns: Ranges where delimiters and spacers are, or `nil` when no delimiters was found.
+    func rangesOfBlockDelimiters(_ delimiters: Pair<String>, spacer: String, ranges: [NSRange]) -> [NSRange]? {
         
         let ranges = ranges.filter { !$0.isEmpty }
         
@@ -379,20 +373,11 @@ extension String {
         let pattern = "\\A[ \t]*(" + beginPattern + spacerPattern + ").*?(" + spacerPattern + endPattern + ")[ \t]*\\Z"
         let regex = try! NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
         
-        return ranges.flatMap { regex.matches(in: self, range: $0) }
+        let delimiterRanges = ranges
+            .flatMap { regex.matches(in: self, range: $0) }
             .flatMap { [$0.range(at: 1), $0.range(at: 2)] }
-    }
-    
-    
-    /// Divide the given range into logical line ranges.
-    ///
-    /// - Parameter range: The range to divide.
-    /// - Returns: Logical line ranges.
-    func lineRanges(for range: NSRange) -> [NSRange] {
         
-        let regex = try! NSRegularExpression(pattern: "^.*$", options: [.anchorsMatchLines])
-        
-        return regex.matches(in: self, range: range).map { $0.range }
+        return delimiterRanges.isEmpty ? nil : delimiterRanges
     }
     
 }

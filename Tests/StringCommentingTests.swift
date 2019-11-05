@@ -105,8 +105,8 @@ class StringCommentingTests: XCTestCase {
         XCTAssertEqual("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<5)]), [NSRange(0..<3)])
         
         XCTAssertEqual("  //foo".rangesOfInlineDelimiter("//", spacer: "", ranges: [NSRange(0..<7)]), [NSRange(2..<4)])
-        XCTAssertEqual("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<1)]), [])
-        XCTAssertEqual("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(1..<3)]), [])
+        XCTAssertNil("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<1)]))
+        XCTAssertNil("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(1..<3)]))
         XCTAssertEqual("// foo".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<2)]), [NSRange(0..<2)])
         
         XCTAssertEqual("// foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<12)]), [NSRange(0..<3), NSRange(7..<9)])
@@ -127,12 +127,12 @@ class StringCommentingTests: XCTestCase {
         XCTAssertEqual("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<9)]), [NSRange(0..<3), NSRange(6..<9)])
         
         XCTAssertEqual(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<9)]), [NSRange(1..<3), NSRange(6..<8)])
-        XCTAssertEqual(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(1..<7)]), [])
+        XCTAssertNil(" <-foo-> ".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(1..<7)]))
         
         // ok, this is currently in spec, but not a good one...
         XCTAssertEqual("<-foo-><-bar->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: "", ranges: [NSRange(0..<14)]), [NSRange(0..<2), NSRange(12..<14)])
         
-        XCTAssertEqual("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<3), NSRange(6..<9)]), [])
+        XCTAssertNil("<- foo ->".rangesOfBlockDelimiters(Pair("<-", "->"), spacer: " ", ranges: [NSRange(0..<3), NSRange(6..<9)]))
     }
     
     
