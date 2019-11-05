@@ -47,14 +47,14 @@ extension StringProtocol where Self.Index == String.Index {
 
 extension String {
     
-    /// return copied string to make sure the string is not a kind of NSMutableString.
+    /// Copied string to make sure the string is not a kind of NSMutableString.
     var immutable: String {
         
         return NSString(string: self) as String
     }
     
     
-    /// unescape backslashes
+    /// Unescaped version of the string by unescaing the characters with backslashes.
     var unescaped: String {
         
         // -> According to the following sentence in the Swift 3 documentation, these are the all combinations with backslash.
@@ -84,14 +84,20 @@ extension String {
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// range of the line containing a given index
+    /// Range of the line containing a given index.
+    ///
+    /// - Parameter index: The character index within the receiver.
+    /// - Returns: The characer range of the line.
     func lineRange(at index: Index) -> Range<Index> {
         
         return self.lineRange(for: index..<index)
     }
     
     
-    /// range of the line containing a given index
+    /// Range of the line containing a given index.
+    ///
+    /// - Parameter index: The character index within the receiver.
+    /// - Returns: The characer range of the line contents.
     func lineContentsRange(at index: Index) -> Range<Index> {
         
         return self.lineContentsRange(for: index..<index)
@@ -100,8 +106,7 @@ extension StringProtocol where Self.Index == String.Index {
     
     /// Return line range excluding last line ending character if exists.
     ///
-    /// - Parameters:
-    ///   - range: A range within the receiver.
+    /// - Parameter range: A range within the receiver.
     /// - Returns: The range of characters representing the line or lines containing a given range.
     func lineContentsRange(for range: Range<Index>) -> Range<Index> {
         
@@ -114,7 +119,10 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// check if character at the index is escaped with backslash
+    /// Check if character at the index is escaped with backslash.
+    ///
+    /// - Parameter index: The index of the character to check.
+    /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at index: Index) -> Bool {
         
         let escapes = self[workaround: self.startIndex..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
@@ -143,7 +151,10 @@ extension String {
     }
     
     
-    /// check if character at the location in UTF16 is escaped with backslash
+    /// Check if character at the location in UTF16 is escaped with backslash.
+    ///
+    /// - Parameter location: The UTF16-based location of the character to check.
+    /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at location: Int) -> Bool {
         
         let locationIndex = String.Index(utf16Offset: location, in: self)
