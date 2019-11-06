@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EcT-zs-4uz">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EcT-zs-4uz">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -95,7 +95,7 @@
                     </connections>
                 </viewController>
                 <customObject id="RSJ-fj-Hpl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <textFinder incrementalSearchingEnabled="YES" id="hzY-Bm-wcu">
+                <textFinder incrementalSearchingEnabled="YES" incrementalSearchingShouldDimContentView="YES" id="hzY-Bm-wcu">
                     <connections>
                         <outlet property="client" destination="NIi-Kj-Qca" id="Mhr-Dc-cvz"/>
                         <outlet property="findBarContainer" destination="pbR-PK-wLW" id="RbM-S5-OKQ"/>
