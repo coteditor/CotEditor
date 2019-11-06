@@ -1164,7 +1164,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                                        <menuItem title="Create Issue Report…" id="iHn-Ed-A8u">
+                                        <menuItem title="Create Issue Report" id="iHn-Ed-A8u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="createBugReport:" target="Voe-Tx-rLC" id="eYU-u3-aNG"/>
