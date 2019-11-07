@@ -15,6 +15,7 @@ Change Log
 - Support Dark Mode in the help.
 - [non-AppStore ver.] Update Sparkle framework.
 - [trivial] Tweak some terminology in menu.
+- [trivial] Adjust pinch-zoom pitch.
 
 
 ### Fixes
