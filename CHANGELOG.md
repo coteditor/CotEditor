@@ -23,6 +23,7 @@ Change Log
 - Fix an issue where the label color in the status bar was sometimes not updated immediately after switching window appearance.
 - Fix an issue where parsing syntax style files could fail.
 - Fix an issue where uncommenting a inline comment failed when multiple cursors locate in the same line.
+- Update PHP and Julia syntax styles to remove duplicated keyword.
 
 
 

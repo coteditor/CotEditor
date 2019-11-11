@@ -4,8 +4,8 @@ filenames: []
 interpreters:
 - keyString: "julia"
 metadata:
-  version: "1.2.1"
-  lastModified: "2018-12-31"
+  version: "1.2.2"
+  lastModified: "2019-11-11"
   author: "1024jp"
   license: "Same as CotEditor"
   description: "Based on Julia 0.4.5"
@@ -477,7 +477,6 @@ commands:
 - beginString: "iround"
 - beginString: "is"
 - beginString: "is_assigned_char"
-- beginString: "isvalid"
 - beginString: "isa"
 - beginString: "isabspath"
 - beginString: "isalnum"
