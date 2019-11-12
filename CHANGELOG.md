@@ -7,24 +7,24 @@ Change Log
 
 ### Improvements
 
-- Uncomment comment lines even if the delimiters are placed after indent.
+- Uncomment comment lines even if the delimiters locate after some indent.
 - Raise an alert when performing find (or replacement) with “in selection” option while no text is selected.
 - Change the Console font to monospaced.
-- Dim Console content area while incremental search.
+- Dim the Console content area during the incremental search.
 - Accept importing custom syntax styles with “.yml” extension.
 - Avoid re-parsing syntax highlight when the appearance is switched.
 - Support Dark Mode in the help.
 - [non-AppStore ver.] Update Sparkle framework.
-- [trivial] Tweak some terminology in menu.
-- [trivial] Adjust pinch-zoom pitch.
+- [trivial] Tweak some terminology in the menu.
+- [trivial] Adjust the pinch-zoom pitch.
 
 
 ### Fixes
 
-- Fix an issue where the label color in the status bar was sometimes not updated immediately after switching window appearance.
+- Fix an issue where the text color in the status bar was sometimes not updated immediately after switching window appearance.
 - Fix an issue where parsing syntax style files could fail.
-- Fix an issue where uncommenting a inline comment failed when multiple cursors locate in the same line.
-- Update PHP and Julia syntax styles to remove duplicated keyword.
+- Fix an issue where uncommenting inline comments failed when multiple cursors locate in the same line.
+- Update PHP and Julia syntax styles to remove duplicated keywords.
 
 
 
