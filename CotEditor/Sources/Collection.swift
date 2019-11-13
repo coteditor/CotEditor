@@ -124,6 +124,8 @@ extension Sequence {
     
     /// Performance efficient way to compare the number of elements with the given number.
     ///
+    /// - Note: This method takes advantage especially when counting elements is heavy (such as String count) and the number to compare is small.
+    ///
     /// - Parameter number: The number of elements to test.
     /// - Returns: The result whether the number of the elements in the receiver is less than, equal, or more than the given number.
     func compareCount(with number: Int) -> QuantityComparisonResult {

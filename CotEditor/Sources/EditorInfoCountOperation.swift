@@ -188,7 +188,7 @@ final class EditorInfoCountOperation: Operation {
         
         // unicode
         if self.requiredInfo.contains(.unicode) {
-            if selectedString.unicodeScalars.count == 1 {
+            if selectedString.unicodeScalars.compareCount(with: 1) == .equal {
                 self.result.unicode = selectedString.unicodeScalars.first?.codePoint
             }
         }
