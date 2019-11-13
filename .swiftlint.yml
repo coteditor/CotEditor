@@ -25,6 +25,7 @@ opt_in_rules:
   - fallthrough
   - file_header
   - first_where
+  - flatmap_over_map_reduce
   - identical_operands
   - implicit_return
   - joined_default_parameter
@@ -44,6 +45,7 @@ opt_in_rules:
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
+  - raw_value_for_camel_cased_codable_enum
   - reduce_into
   - redundant_nil_coalescing
   - redundant_type_annotation

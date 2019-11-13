@@ -209,6 +209,8 @@
 		2A47CD3621D20E6F0094F62F /* DefaultKey+Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */; };
 		2A47CD3821D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
 		2A47CD3921D340040094F62F /* NSValidatedUserInterfaceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */; };
+		2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
+		2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */; };
 		2A48982D215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */; };
 		2A48982E215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */; };
 		2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */; };
@@ -381,6 +383,7 @@
 		2A8DA9451D286C53003D0C4B /* ScriptManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9431D286C53003D0C4B /* ScriptManager.swift */; };
 		2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
 		2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8DA9461D28ED93003D0C4B /* URL.swift */; };
+		2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */; };
 		2A9082E21D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
 		2A9082E31D32456300228F50 /* NSTextView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E11D32456300228F50 /* NSTextView+Layout.swift */; };
 		2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9082E41D324D9A00228F50 /* Geometry.swift */; };
@@ -1016,6 +1019,7 @@
 		2A479C811D8C15A600EEEFC2 /* CenteringTextFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenteringTextFieldCell.swift; sourceTree = "<group>"; };
 		2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DefaultKey+Observation.swift"; sourceTree = "<group>"; };
 		2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSValidatedUserInterfaceItem.swift; sourceTree = "<group>"; };
+		2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+ValidationIgnorable.swift"; sourceTree = "<group>"; };
 		2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSCursor+Dark.swift"; sourceTree = "<group>"; };
 		2A4AF76620759BE500C47606 /* RegexFindPanelTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegexFindPanelTextView.swift; sourceTree = "<group>"; };
 		2A4CB9911D79F38A000D6ADA /* MonosizeToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonosizeToolbar.swift; sourceTree = "<group>"; };
@@ -1132,6 +1136,7 @@
 		2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacter.swift; sourceTree = "<group>"; };
 		2A8DA9431D286C53003D0C4B /* ScriptManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScriptManager.swift; sourceTree = "<group>"; };
 		2A8DA9461D28ED93003D0C4B /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringCommentingTests.swift; sourceTree = "<group>"; };
 		2A9082E11D32456300228F50 /* NSTextView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextView+Layout.swift"; sourceTree = "<group>"; };
 		2A9082E41D324D9A00228F50 /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Scaling.swift"; sourceTree = "<group>"; };
@@ -1767,6 +1772,7 @@
 				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
+				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
@@ -2201,6 +2207,7 @@
 				2AE12DFD1E7DB7D200681F72 /* StringCollectionTests.swift */,
 				2AC71DE11BF0BDBC002E1434 /* StringExtensionsTests.swift */,
 				2AA2E0251C0454730087BDD6 /* StringIndentationTests.swift */,
+				2A902B99236E3AA600A6A9BB /* StringCommentingTests.swift */,
 				2A18A5BC1C4A730D00BAD817 /* EncodingDetectionTests.swift */,
 				2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */,
 				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
@@ -2442,12 +2449,10 @@
 					};
 					2A3F18F6203270BE002F1CA7 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
 						TestTargetID = 8D15AC270486D014006FF6A4;
 					};
 					2A6F0D4E1B5500E100C2D03C = {
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
 								enabled = 1;
@@ -2467,12 +2472,10 @@
 					2AC71DDE1BF0BDBC002E1434 = {
 						CreatedOnToolsVersion = 7.1;
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
 						TestTargetID = 8D15AC270486D014006FF6A4;
 					};
 					8D15AC270486D014006FF6A4 = {
 						LastSwiftMigration = 0900;
-						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.HardenedRuntime = {
 								enabled = 1;
@@ -2800,6 +2803,7 @@
 				2A4CCBB51D45173000294067 /* EditorTextView+LineProcessing.swift in Sources */,
 				2A4E638120ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift in Sources */,
 				2A44321D219AC1F8008A0A6B /* PreferencesTabViewController.swift in Sources */,
+				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2ACC21B31E52B7920078241F /* DefaultOptions.swift in Sources */,
 				2A231A291E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift in Sources */,
 				2A1311D72127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift in Sources */,
@@ -3064,6 +3068,7 @@
 				2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */,
 				2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */,
 				2A9C07561CF9F982006D672D /* IncompatibleCharacterTests.swift in Sources */,
+				2A902B9A236E3AA600A6A9BB /* StringCommentingTests.swift in Sources */,
 				2A63CEC41D0B06D800ED8186 /* SyntaxTests.swift in Sources */,
 				2A9082EF1D325ED900228F50 /* GeometryTests.swift in Sources */,
 				2A1893AD1FFF6A0100AD244F /* LineSortTests.swift in Sources */,
@@ -3185,6 +3190,7 @@
 				2A6FD9DB1D38F93300A59784 /* EditorTextView+Indenting.swift in Sources */,
 				2AE7A8D920450FE600830830 /* OutlineViewController.swift in Sources */,
 				2AF073F41D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
+				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */,
 				2AC3845320C929950003F213 /* OpacitySampleView.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
@@ -4072,10 +4078,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "../UI Tests/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_TARGET_NAME = CotEditor;
 			};
 			name = Debug;
@@ -4084,10 +4093,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "../UI Tests/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_TARGET_NAME = CotEditor;
 			};
 			name = Release;
@@ -4098,14 +4110,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CURRENT_PROJECT_VERSION = 381;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 384;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-AppStore.plist";
-				MARKETING_VERSION = 3.8.4;
+				MARKETING_VERSION = 3.8.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4115,14 +4129,16 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CURRENT_PROJECT_VERSION = 381;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 384;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-AppStore.plist";
-				MARKETING_VERSION = 3.8.4;
+				MARKETING_VERSION = 3.8.5;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
@@ -4144,6 +4160,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4153,6 +4171,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Debug;
@@ -4161,6 +4180,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4170,6 +4191,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CotEditor.app/Contents/MacOS/CotEditor";
 			};
 			name = Release;
@@ -4180,13 +4202,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CURRENT_PROJECT_VERSION = 381;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 384;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 3.8.4;
+				MARKETING_VERSION = 3.8.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -4196,13 +4220,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CURRENT_PROJECT_VERSION = 381;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 384;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 3.8.4;
+				MARKETING_VERSION = 3.8.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

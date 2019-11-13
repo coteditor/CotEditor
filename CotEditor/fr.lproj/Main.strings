@@ -135,8 +135,8 @@
 "631.title" = "Insérer un Backslash";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Insérer le symbole Yen";
-/* Class = "NSMenuItem"; title = "Input in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Insérer un code hexa Unicode...";
+/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Insérer un code hexa Unicode...";  // FIXME: [updated] hex -> code point
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Orthographe et grammaire";
@@ -384,11 +384,11 @@
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "Guillemets doubles";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "Parenthèses";
-/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "Accolades";
-/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "Crochets";
+"G3o-1h-GwR.title" = "Parenthèses";  // ()
+/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "Accolades";  // {}
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Crochets";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "Personnalisé…";
 
@@ -582,8 +582,8 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Remerciements";
 
-/* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "Signaler un problème…";
+/* Class = "NSMenuItem"; title = "Create Issue Report"; ObjectID = "iHn-Ed-A8u"; */
+"iHn-Ed-A8u.title" = "Signaler un problème";
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "Signaler un problème";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */

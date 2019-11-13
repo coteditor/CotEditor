@@ -135,8 +135,8 @@
 "631.title" = "バックスラッシュを入力";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "半角円マークを入力";
-/* Class = "NSMenuItem"; title = "Input in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Unicode 16進数で入力...";
+/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Unicodeコードポイントで入力...";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "スペルと文法";
@@ -384,11 +384,11 @@
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "二重引用符";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "丸括弧";
-/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "波括弧";
-/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "角括弧";
+"G3o-1h-GwR.title" = "丸括弧";  // ()
+/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "波括弧";  // {}
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "角括弧";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "カスタム...";
 
@@ -582,8 +582,8 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "謝辞";
 
-/* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "不具合レポートを作成...";
+/* Class = "NSMenuItem"; title = "Create Issue Report"; ObjectID = "iHn-Ed-A8u"; */
+"iHn-Ed-A8u.title" = "不具合レポートを作成";
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "不具合を報告";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */

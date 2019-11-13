@@ -15,7 +15,7 @@ CotEditor is a lightweight plain-text editor for macOS.
 Source Code
 -----------------------------
 
-[![Build Status](https://travis-ci.org/coteditor/CotEditor.svg?branch=develop)](https://travis-ci.org/coteditor/CotEditor)
+[![Build Status](https://travis-ci.com/coteditor/CotEditor.svg?branch=develop)](https://travis-ci.com/coteditor/CotEditor)
 [![GitHub release](https://img.shields.io/github/release/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/releases/latest)
 
 CotEditor is a pure document-based Cocoa application written in Swift.
@@ -24,7 +24,7 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 ### Development Environment
 
 - macOS 10.14 Mojave
-- Xcode 11.1
+- Xcode 11.2
 - Swift 5.1
 - Sandbox enabled
 

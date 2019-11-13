@@ -34,9 +34,9 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
-protocol ValidationIgnorable: NSLayoutManager {
+extension NSAttributedString.Key {
     
-    var ignoresDisplayValidation: Bool { get set }
+    static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
 }
 
 
@@ -356,39 +356,62 @@ extension SyntaxParser {
         
         assert(Thread.isMainThread)
         
+        guard self.textStorage.length > 0 else { return }
+        
         for layoutManager in self.textStorage.layoutManagers {
-            // disable display validation during applying attributes
-            // -> According to the implementation of NSLayoutManager in GNUstep,
-            //    `invalidateDisplayForCharacterRange:` is invoked every time inside of `addTemporaryAttribute:value:forCharacterRange:`.
-            //    Ignoring that process during highlight reduces the application time,
-            //    which shows the rainbow cursor because of a main thread task, significantly.
-            //    See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
-            //    (2018-12 macOS 10.14)
-            if let layoutManager = layoutManager as? ValidationIgnorable {
-                layoutManager.ignoresDisplayValidation = true
-            }
-            defer {
-                if let layoutManager = layoutManager as? ValidationIgnorable {
-                    layoutManager.ignoresDisplayValidation = false
-                    layoutManager.invalidateDisplay(forCharacterRange: highlightRange)
+            guard let layoutManager = layoutManager as? ValidationIgnorable else { return assertionFailure() }
+            
+            layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
+                layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
+                layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
+                
+                guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { return }
+                
+                for type in SyntaxType.allCases {
+                    guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+                    
+                    if let color = theme.style(for: type)?.color {
+                        for range in ranges {
+                            layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                            layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
+                        }
+                    } else {
+                        for range in ranges {
+                            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                            layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
+                        }
+                    }
                 }
             }
-            
-            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
-            
-            guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
-            
-            for type in SyntaxType.allCases {
-                guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+        }
+    }
+    
+}
+
+
+
+extension NSLayoutManager {
+    
+    /// Apply the theme based on the current `syntaxType` attributes.
+    ///
+    /// - Parameter theme: The theme to apply.
+    /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
+    func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
+        
+        assert(Thread.isMainThread)
+        
+        guard let self = self as? ValidationIgnorable else { return assertionFailure() }
+        
+        let wholeRange = range ?? self.attributedString().range
+        
+        self.groupTemporaryAttributesUpdate(in: wholeRange) {
+            self.enumerateTemporaryAttribute(.syntaxType, in: wholeRange) { (type, range, _) in
+                guard let type = type as? SyntaxType else { return }
                 
                 if let color = theme.style(for: type)?.color {
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                    }
+                    self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
                 } else {
-                    for range in ranges {
-                        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                    }
+                    self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
                 }
             }
         }

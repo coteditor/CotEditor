@@ -70,8 +70,8 @@ final class DocumentWindowController: NSWindowController {
         // observe appearance setting change
         if #available(macOS 10.14, *) {
             self.appearanceModeObserver?.invalidate()
-            self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: [.initial, .new]) { [unowned self] change in
-                self.window?.appearance = {
+            self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: [.initial, .new]) { [weak self] _ in
+                self?.window?.appearance = {
                     switch UserDefaults.standard[.documentAppearance] {
                     case .default: return nil
                     case .light:   return NSAppearance(named: .aqua)
@@ -148,7 +148,7 @@ extension DocumentWindowController: NSUserInterfaceValidations {
 
 extension DocumentWindowController: NSWindowDelegate {
     
-    /// MARK: Window Delegate
+    // MARK: Window Delegate
     
     func windowWillEnterFullScreen(_ notification: Notification) {
         

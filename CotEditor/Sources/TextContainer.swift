@@ -56,13 +56,15 @@ final class TextContainer: NSTextContainer {
             else { return rect }
         
         let string = storage.string as NSString
-        let lineRange = string.lineRange(for: NSRange(characterIndex..<characterIndex))
+        var lineStartIndex = 0
+        string.getLineStart(&lineStartIndex, end: nil, contentsEnd: nil, for: NSRange(characterIndex..<characterIndex))
         
         // no hanging indent for new line
-        guard lineRange.location < characterIndex else { return rect }
+        guard lineStartIndex < characterIndex else { return rect }
         
         // get base indent
-        let indentRange = string.range(of: "[ \t]+", options: [.regularExpression, .anchored], range: lineRange)
+        let searchRange = NSRange(lineStartIndex..<characterIndex)
+        let indentRange = string.range(of: "[ \t]+", options: [.regularExpression, .anchored], range: searchRange)
         let baseIndent = (indentRange == .notFound) ? 0 : storage.attributedSubstring(from: indentRange).size().width
         
         // calculate hanging indent

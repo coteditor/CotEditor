@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -218,7 +218,7 @@ Gw
                                                 <action selector="inputYenMark:" target="Ady-hI-5gd" id="4HI-qU-zlg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Input in Unicode Hex…" id="tWx-pj-3PL">
+                                        <menuItem title="Input in Unicode Code Point…" id="tWx-pj-3PL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>
@@ -779,13 +779,13 @@ CA
                                                             <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Brackets" id="Xoq-43-C1z">
+                                                    <menuItem title="Braces" id="Xoq-43-C1z">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Square Brackets" id="cTU-2P-7Tp">
+                                                    <menuItem title="Brackets" id="cTU-2P-7Tp">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="surroundSelectionWithSquareBrackets:" target="Ady-hI-5gd" id="92J-nd-Mh7"/>
@@ -1164,7 +1164,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                                        <menuItem title="Create Issue Report…" id="iHn-Ed-A8u">
+                                        <menuItem title="Create Issue Report" id="iHn-Ed-A8u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="createBugReport:" target="Voe-Tx-rLC" id="eYU-u3-aNG"/>

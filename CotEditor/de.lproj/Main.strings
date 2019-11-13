@@ -135,8 +135,8 @@
 "631.title" = "Backslash eingeben";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Yen-Zeichen eingeben";
-/* Class = "NSMenuItem"; title = "Input in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "In Unicode-Hex eingeben …";
+/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "In Unicode-Codepunkt eingeben …";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Rechtschreibung und Grammatik";
@@ -384,11 +384,11 @@
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "Doppelten Anführungszeichen";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "Runden Klammern";
-/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "Geschweiften Klammern";
-/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "Eckige Klammern";
+"G3o-1h-GwR.title" = "Runden Klammern";  // ()
+/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "Geschweiften Klammern";  // {}
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Eckige Klammern";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "Konfigurieren …";
 
@@ -582,8 +582,8 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Anmerkungen";
 
-/* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "Fehlerbericht erstellen …";
+/* Class = "NSMenuItem"; title = "Create Issue Report"; ObjectID = "iHn-Ed-A8u"; */
+"iHn-Ed-A8u.title" = "Fehlerbericht erstellen";
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "Fehler berichten";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */

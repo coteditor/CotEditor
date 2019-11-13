@@ -137,7 +137,7 @@
 "631.title" = "输入反斜杠";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "输入日元符号";
-/* Class = "NSMenuItem"; title = "Input in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
+/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
 "tWx-pj-3PL.title" = "用 Unicode 输入…";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
@@ -385,11 +385,11 @@
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "双引号";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "圆括号";
-/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "大括号";
-/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "方括号";
+"G3o-1h-GwR.title" = "圆括号";  // ()
+/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "大括号";  // {}
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "方括号";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "自定义…";
 
@@ -583,8 +583,8 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "致谢";
 
-/* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "创建问题报告…";
+/* Class = "NSMenuItem"; title = "Create Issue Report"; ObjectID = "iHn-Ed-A8u"; */
+"iHn-Ed-A8u.title" = "创建问题报告";
 /* Class = "NSMenuItem"; title = "Report Issue"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "报告问题";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */

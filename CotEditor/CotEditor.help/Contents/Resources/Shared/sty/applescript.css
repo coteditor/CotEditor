@@ -79,3 +79,9 @@ ul.tree li li::before {
 	content: '- ';
 	color: hsl(0, 0%, 50%);
 }
+
+
+/* dark mode */
+
+@media (prefers-color-scheme: dark) {
+}

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,6 +38,21 @@ class CollectionTests: XCTestCase {
         XCTAssertEqual([1, 2, 0, -1, 3].countPrefix(while: { $0 > 0 }), 2)
         XCTAssertEqual([0, 1, 2, 0, -1].countPrefix(while: { $0 > 0 }), 0)
         XCTAssertEqual([1, 2, 3, 4, 5].countPrefix(while: { $0 > 0 }), 5)
+    }
+    
+    
+    func testCountComparison() {
+        
+        XCTAssertEqual("".compareCount(with: 0), .equal)
+        XCTAssertEqual("".compareCount(with: 1), .less)
+        
+        XCTAssertEqual("a".compareCount(with: 1), .equal)
+        XCTAssertEqual("🐕".compareCount(with: 1), .equal)
+        XCTAssertEqual("🐕‍🦺".compareCount(with: 1), .equal)
+        
+        XCTAssertEqual("🐶🐱".compareCount(with: 3), .less)
+        XCTAssertEqual("🐶🐱".compareCount(with: 2), .equal)
+        XCTAssertEqual("🐶🐱".compareCount(with: 1), .greater)
     }
     
     

@@ -85,13 +85,13 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     func setup() {
         
         guard let updater = self.controller.updater else {
-            assertionFailure("no SPUUpdater instance could obtain")
+            assertionFailure("No SPUUpdater instance could be obtained.")
             return
         }
         
         // insert "Check for Updates…" menu item
         guard let applicationMenu = MainMenu.application.menu else {
-            preconditionFailure("no menu can be found to attach update menu item.")
+            preconditionFailure("No menu could be found to attach update menu item.")
         }
         let menuItem = NSMenuItem(title: "Check for Updates…".localized,
                                   action: #selector(SPUUpdater.checkForUpdates),
@@ -110,7 +110,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     /// return AppCast file URL dinamically
     func feedURLString(for updater: SPUUpdater) -> String? {
         
-        // force checking beta if the currently runnning one is a beta.
+        // force into checking beta if the currently runnning one is a beta.
         let checksBeta = (Bundle.main.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         

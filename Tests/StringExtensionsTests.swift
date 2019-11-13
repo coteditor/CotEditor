@@ -203,6 +203,16 @@ class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testLineRanges() {
+
+        XCTAssertEqual("foo\nbar".lineContentsRanges(for: NSRange(1..<1)), [NSRange(1..<1)])
+        XCTAssertEqual("foo\nbar".lineContentsRanges(), [NSRange(0..<3), NSRange(4..<7)])
+        XCTAssertEqual("foo\nbar\n".lineContentsRanges(), [NSRange(0..<3), NSRange(4..<7)])
+        XCTAssertEqual("foo\r\nbar".lineContentsRanges(), [NSRange(0..<3), NSRange(5..<8)])
+        XCTAssertEqual("foo\r\r\rbar".lineContentsRanges().count, 4)
+    }
+    
+    
     func testRangeOfCharacter() {
         
         let set = CharacterSet(charactersIn: "._")

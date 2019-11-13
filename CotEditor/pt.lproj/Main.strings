@@ -134,8 +134,8 @@
 "631.title" = "Inserir Barra Invertida";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Inserir Sinal de Iene";
-/* Class = "NSMenuItem"; title = "Input Char in Unicode Hex…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Inserir Caractere em Unicode Hexadecimal…";
+/* Class = "NSMenuItem"; title = "Input Char in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Inserir Caractere em Unicode Hexadecimal…";  // FIXME: [updated] hex -> code point
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Ortografia e Gramática";
@@ -380,11 +380,11 @@
 /* Class = "NSMenuItem"; title = "Double Quotes"; ObjectID = "O8z-C9-ECD"; */
 "O8z-C9-ECD.title" = "Aspas Duplas";
 /* Class = "NSMenuItem"; title = "Parenthesis"; ObjectID = "G3o-1h-GwR"; */
-"G3o-1h-GwR.title" = "Parênteses";
-/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "Xoq-43-C1z"; */
-"Xoq-43-C1z.title" = "Chaves";
-/* Class = "NSMenuItem"; title = "Square Brackets"; ObjectID = "cTU-2P-7Tp"; */
-"cTU-2P-7Tp.title" = "Colchetes";
+"G3o-1h-GwR.title" = "Parênteses";  // ()
+/* Class = "NSMenuItem"; title = "Braces"; ObjectID = "Xoq-43-C1z"; */
+"Xoq-43-C1z.title" = "Chaves";  // {}
+/* Class = "NSMenuItem"; title = "Brackets"; ObjectID = "cTU-2P-7Tp"; */
+"cTU-2P-7Tp.title" = "Colchetes";  // []
 /* Class = "NSMenuItem"; title = "Custom…"; ObjectID = "3VX-DL-PgT"; */
 "3VX-DL-PgT.title" = "Personalizar…";
 
@@ -578,8 +578,8 @@
 /* Class = "NSMenuItem"; title = "Acknowledgments"; ObjectID = "824"; */
 "824.title" = "Reconhecimentos";
 
-/* Class = "NSMenuItem"; title = "Create Issue Report…"; ObjectID = "iHn-Ed-A8u"; */
-"iHn-Ed-A8u.title" = "Criar Relatório de Problema…";
+/* Class = "NSMenuItem"; title = "Create Issue Report"; ObjectID = "iHn-Ed-A8u"; */
+"iHn-Ed-A8u.title" = "Criar Relatório de Problema";
 /* Class = "NSMenuItem"; title = "Report Bug"; ObjectID = "Bk3-xx-uft"; */
 "Bk3-xx-uft.title" = "Comunicar Problema";
 /* Class = "NSMenuItem"; title = "CotEditor Website"; ObjectID = "g34-YV-E6o"; */

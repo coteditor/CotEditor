@@ -2,13 +2,39 @@
 Change Log
 ==========================
 
+3.8.5 (unreleased)
+--------------------------
+
+### Improvements
+
+- Uncomment comment lines even if the delimiters locate after some indent.
+- Raise an alert when performing find (or replacement) with “in selection” option while no text is selected.
+- Change the Console font to monospaced.
+- Dim the Console content area during the incremental search.
+- Accept importing custom syntax styles with “.yml” extension.
+- Avoid re-parsing syntax highlight when the appearance is switched.
+- Support Dark Mode in the help.
+- [non-AppStore ver.] Update Sparkle framework.
+- [trivial] Tweak some terminology in the menu.
+- [trivial] Adjust the pinch-zoom pitch.
+
+
+### Fixes
+
+- Fix an issue where the text color in the status bar was sometimes not updated immediately after switching window appearance.
+- Fix an issue where parsing syntax style files could fail.
+- Fix an issue where uncommenting inline comments failed when multiple cursors locate in the same line.
+- Avoid rainbow cursor when about to display the Text menu while selecting large number of text.
+- Update PHP and Julia syntax styles to remove duplicated keywords.
+
+
+
 3.8.4 (381)
 --------------------------
 
 ### Improvements
 
 - Insert soft tabs to all insertion points when typing the tab key.
-
 
 
 ### Fixes
@@ -31,8 +57,8 @@ Change Log
 ### Fixes
 
 - Fix area to draw text on printing, especially for macOS 10.15 Catalina.
-- Fix an issue on macOS 10.14 where spaces at the end of the document could not be deleted by delete key.
-- Fix an issue on macOS 10.14 where performing return key just after an open bracket at the end of the document made the application freeze.
+- Fix an issue on macOS 10.13-14 where spaces at the end of the document could not be deleted by delete key.
+- Fix an issue on macOS 10.13-14 where performing return key just after an open bracket at the end of the document made the application freeze.
 - Fix an issue where the editor theme for newly opened windows did not match to the window appearance when the system appearance was changed after the application launch.
 - Fix an issue where a highlighting indicator showed up at a wrong location when pressing the enter key just before a closing bracket.
 - [trivial] Fix French localization.
@@ -44,7 +70,7 @@ Change Log
 
 ### Fixes
 
-- Add an additional workaround to detour the bug in macOS 10.14 that crashes/freezes the application.
+- Add an additional workaround to detour the bug in macOS 10.13-14 that crashes/freezes the application.
 
 
 
@@ -53,7 +79,7 @@ Change Log
 
 ### Fixes
 
-- Address a critical issue where the application could crash under macOS 10.14.
+- Address a critical issue where the application could crash under macOS 10.13-14.
 - Fix an issue that the documents opened together were not opened as a single window with multiple tabs.
 
 

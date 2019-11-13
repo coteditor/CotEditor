@@ -374,7 +374,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         openPanel.resolvesAliases = true
         openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
-        openPanel.allowedFileTypes = [SyntaxManager.shared.filePathExtension, "plist"]
+        openPanel.allowedFileTypes = SyntaxManager.shared.filePathExtensions + ["plist"]
         
         openPanel.beginSheetModal(for: self.view.window!) { [unowned self] (result: NSApplication.ModalResponse) in
             guard result == .OK else { return }

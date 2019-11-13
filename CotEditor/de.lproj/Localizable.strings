@@ -83,7 +83,9 @@
 "%@ strings replaced." = "%@ Zeichenketten ersetzt.";
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 "Empty find string" = "Leerer Suchbegriff";
+"The option “in selection” is enabled, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
 "Input text to find." = "Gib den zu findenden Text ein.";
+"Select the search scope in document or disable “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
 
 // accessibility announcement
 "Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
