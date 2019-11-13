@@ -63,7 +63,7 @@ extension StringProtocol where Self.Index == String.Index {
         if self.isEmpty || range.isEmpty { return 0 }
         
         // workarond for the Swift 5 issue that removes BOM at the beginning (2019-05 Swift 5.0).
-        guard self.first != "\u{FEFF}" || self.count > 16 else {
+        guard self.first != "\u{FEFF}" || self.compareCount(with: 16) == .greater else {
             let newlines = Set<Character>(["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"])
             let substring = self[workaround: range]
             let count = substring.count { newlines.contains($0) } + 1

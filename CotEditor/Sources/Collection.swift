@@ -90,6 +90,12 @@ extension Dictionary {
 
 // MARK: - Count
 
+enum QuantityComparisonResult {
+    
+    case less, equal, greater
+}
+
+
 extension Sequence {
     
     /// Count up elements that satisfy the given predicate.
@@ -113,6 +119,26 @@ extension Sequence {
     func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
         return try self.lazy.prefix(while: predicate).count
+    }
+    
+    
+    /// Performance efficient way to compare the number of elements with the given number.
+    ///
+    /// - Parameter number: The number of elements to test.
+    /// - Returns: The result whether the number of the elements in the receiver is less than, equal, or more than the given number.
+    func compareCount(with number: Int) -> QuantityComparisonResult {
+        
+        assert(number >= 0, "The count number to compare should be a natural number.")
+        
+        guard number >= 0 else { return .greater }
+        
+        var count = 0
+        for _ in self {
+            count += 1
+            if count > number { return .greater }
+        }
+        
+        return (count == number) ? .equal : .less
     }
     
 }
