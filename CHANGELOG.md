@@ -13,7 +13,6 @@ Change Log
 - Dim the Console content area during the incremental search.
 - Accept importing custom syntax styles with “.yml” extension.
 - Avoid re-parsing syntax highlight when the appearance is switched.
-- Avoid rainbow cursor when about to display the Text menu while selecting large number of text.
 - Support Dark Mode in the help.
 - [non-AppStore ver.] Update Sparkle framework.
 - [trivial] Tweak some terminology in the menu.
@@ -25,6 +24,7 @@ Change Log
 - Fix an issue where the text color in the status bar was sometimes not updated immediately after switching window appearance.
 - Fix an issue where parsing syntax style files could fail.
 - Fix an issue where uncommenting inline comments failed when multiple cursors locate in the same line.
+- Avoid rainbow cursor when about to display the Text menu while selecting large number of text.
 - Update PHP and Julia syntax styles to remove duplicated keywords.
 
 

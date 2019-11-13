@@ -25,7 +25,7 @@
 <article>
 <header>
     <h1>CotEditor 3.8.5</h1>
-    <p>release: <time>2019-11</time></p>
+    <p>release: <time>2019-11-14</time></p>
 </header>
 
 
@@ -33,7 +33,16 @@
 <h2>Improvements</h2>
 
 <ul>
-    <li></li>
+	<li>Uncomment comment lines even if the delimiters locate after some indent.</li>
+	<li>Raise an alert when performing find (or replacement) with “in selection” option while no text is selected.</li>
+	<li>Change the Console font to monospaced.</li>
+	<li>Dim the Console content area during the incremental search.</li>
+	<li>Accept importing custom syntax styles with “.yml” extension.</li>
+	<li>Avoid re-parsing syntax highlight when the appearance is switched.</li>
+	<li>Support Dark Mode in the help.</li>
+	<li><span class="label">non-AppStore ver.</span>: Update Sparkle framework.</li>
+	<li><span class="trivial">trivial</span>: Tweak some terminology in the menu.</li>
+	<li><span class="trivial">trivial</span>: Adjust the pinch-zoom pitch.</li>
 </ul>
 </section>
 
@@ -42,7 +51,11 @@
 <h2>Fixes</h2>
 
 <ul>
-    <li></li>
+	<li>Fix an issue where the text color in the status bar was sometimes not updated immediately after switching window appearance.</li>
+	<li>Fix an issue where parsing syntax style files could fail.</li>
+	<li>Fix an issue where uncommenting inline comments failed when multiple cursors locate in the same line.</li>
+	<li>Avoid rainbow cursor when about to display the Text menu while selecting large number of text.</li>
+	<li>Update PHP and Julia syntax styles to remove duplicated keywords.</li>
 </ul>
 </section>
 </article>
