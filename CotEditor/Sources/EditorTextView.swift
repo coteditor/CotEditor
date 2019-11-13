@@ -751,7 +751,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if (self.string as NSString).substring(with: self.selectedRange).count == 1 {
+        if (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal {
             menu.insertItem(withTitle: "Inspect Character".localized,
                             action: #selector(showSelectionInfo(_:)),
                             keyEquivalent: "",
@@ -1084,7 +1084,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return !self.selectedRange.isEmpty
             
         case #selector(showSelectionInfo):
-            return (self.string as NSString).substring(with: self.selectedRange).count == 1
+            return (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {

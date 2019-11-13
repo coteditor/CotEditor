@@ -77,7 +77,7 @@ struct CharacterInfo {
     
     init(string: String) throws {
         
-        guard string.count == 1 else {
+        guard string.compareCount(with: 1) == .equal else {
             throw Error.notSingleCharacter
         }
         
