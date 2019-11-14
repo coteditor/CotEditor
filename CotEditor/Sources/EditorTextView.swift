@@ -784,17 +784,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override var font: NSFont? {
         
         get {
-            // make sure to return by user defined font
+            // make sure to return the font defined by user
             return (self.layoutManager as? LayoutManager)?.textFont ?? super.font
         }
         
         set {
             guard let font = newValue else { return }
             
-            // let LayoutManager have the font too to avoid the issue where the line height can be inconsistance by a composite font
-            // -> Because `textView.font` can return a Japanese font
-            //    when the font is for one-bites and the first character of the content is Japanese one,
-            //    LayoutManager should not use `textView.font`.
+            // let LayoutManager keep the set font to avoid an inconsistent line height
+            // -> Because NSTextView's .font returns the font used for the first character of .string when it exists,
+            //    not the font defined by user but a fallback font is returned through this property
+            //    when the set font doesn't have a glyph for the first character.
             (self.layoutManager as? LayoutManager)?.textFont = font
             
             super.font = font
