@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.6 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where creating multiple cursors by rectangular selection failed under macOS 10.15 Catalina.
+
+
+
 3.8.5 (384)
 --------------------------
 

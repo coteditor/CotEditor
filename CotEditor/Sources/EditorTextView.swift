@@ -687,15 +687,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // interrupt rectangular selection
         if self.isPerformingRectangularSelection {
-            if stillSelectingFlag {
-                if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
-                    ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
-                    self.insertionLocations = Array(locations[1...])
-                } else {
-                    self.insertionLocations = []
-                }
+            if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
+                ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
+                self.insertionLocations = Array(locations[1...])
             } else {
-                ranges = ranges.isEmpty ? self.selectedRanges : ranges
+                self.insertionLocations = []
+            }
+            
+            if !stillSelectingFlag, ranges.isEmpty {
+                ranges = self.selectedRanges
             }
         }
         
