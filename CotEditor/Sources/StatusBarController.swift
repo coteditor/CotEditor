@@ -100,7 +100,7 @@ final class StatusBarController: NSViewController {
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
         self.documentAnalyzer?.invalidateEditorInfo()
         
-        if #available(macOS 10.15, *) { } else {
+        if NSAppKitVersion.current < .macOS10_15 {
             self.appearanceObserver?.invalidate()
             self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (_, _) in
                 self?.updateEditorStatus()

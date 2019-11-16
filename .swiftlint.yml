@@ -74,7 +74,7 @@ disabled_rules:
 
 private_outlet:
   allow_private_set: true
-  
+
 trailing_whitespace:
   ignores_empty_lines: true
 
@@ -122,6 +122,7 @@ identifier_name:
     - y
     - shiftJIS_X0213
     - version3_0
+    - macOS10_15
 
 
 custom_rules:
