@@ -2351,7 +2351,6 @@
 			buildConfigurationList = 2A3F18FE203270BE002F1CA7 /* Build configuration list for PBXNativeTarget "UI Tests" */;
 			buildPhases = (
 				2A3F18F3203270BE002F1CA7 /* Sources */,
-				2A3F18F5203270BE002F1CA7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -2527,13 +2526,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2A3F18F5203270BE002F1CA7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2A6F0D541B5500E100C2D03C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
