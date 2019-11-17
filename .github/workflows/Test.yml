@@ -1,9 +1,9 @@
-name: CI
+name: Test
 
 on: [push, pull_request]
 
 jobs:
-  Test:
+  macOS:
     runs-on: macOS-latest
 
     steps:
