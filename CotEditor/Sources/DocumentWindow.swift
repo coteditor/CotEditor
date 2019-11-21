@@ -177,8 +177,7 @@ extension DocumentWindow {
         
         guard !super.performKeyEquivalent(with: event) else { return true }
         
-        // select tabbed window with `⌘+number`
-        // -> select last tab with `⌘0`
+        // select tabbed window with `⌘+number` (`⌘9` for the last tab)
         guard
             event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
             let characters = event.charactersIgnoringModifiers,
