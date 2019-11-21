@@ -15,6 +15,7 @@ Change Log
 
 - Fix an issue where creating multiple cursors by rectangular selection failed under macOS 10.15.
 - Fix an issue where the selection highlight color in inactive windows could make text hard to read under macOS 10.14–10.15.
+- Fix a possible crash when invalid color code is input to the color code panel.
 
 
 
