@@ -388,7 +388,7 @@ Gw
                                                             <action selector="smallerFont:" target="Ady-hI-5gd" id="Uds-lf-yjO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Reset to Default" keyEquivalent="=" id="574">
+                                                    <menuItem title="Reset to Default" keyEquivalent="0" id="574">
                                                         <connections>
                                                             <action selector="resetFont:" target="Ady-hI-5gd" id="NPb-Jj-Ev0"/>
                                                         </connections>

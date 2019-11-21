@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Change the default shortcut for Format > Font > “Reset to Default” command to `⌘0` and let “Bigger” command accept also `⌘=`.
 - [trivial] Modifty the design of the regular expression syntax reference.
 
 
