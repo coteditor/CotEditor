@@ -117,6 +117,7 @@ final class StatusBarController: NSViewController {
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
         
         self.appearanceObserver?.invalidate()
+        self.appearanceObserver = nil
     }
     
     

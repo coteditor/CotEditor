@@ -34,10 +34,12 @@ final class NavigationBarController: NSViewController {
     var textView: NSTextView? {  // NSTextView cannot be weak
         
         willSet {
-            guard let textView = self.textView else { return }
-            
             self.orientationObserver?.invalidate()
-            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+            self.orientationObserver = nil
+            
+            if let textView = self.textView {
+                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+            }
         }
         
         didSet {

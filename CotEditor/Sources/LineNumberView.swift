@@ -107,11 +107,11 @@ final class LineNumberView: NSView {
     
     private var numberOfLines = 1
     private var drawingInfo: DrawingInfo?
+    private var opacityObserver: NSObjectProtocol?
     private var textObserver: NSObjectProtocol?
     private var selectionObserver: NSObjectProtocol?
     private var frameObserver: NSObjectProtocol?
     private var scrollObserver: NSObjectProtocol?
-    private var opacityObserver: NSObjectProtocol?
     private var colorObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
@@ -140,15 +140,12 @@ final class LineNumberView: NSView {
     // MARK: Lifecycle
     
     deinit {
-        [self.textObserver,
-         self.selectionObserver,
-         self.frameObserver,
-         self.scrollObserver,
-         self.opacityObserver]
-            .compactMap { $0 }
-            .forEach { NotificationCenter.default.removeObserver($0) }
+        self.removeTextViewObservers()
         
-        self.colorObserver?.invalidate()
+        if let observer = self.opacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
         self.draggingTimer?.invalidate()
     }
     
@@ -183,15 +180,27 @@ final class LineNumberView: NSView {
     }
     
     
-    /// observe window opacity change
-    override func viewDidMoveToWindow() {
+    /// receiver is about to be attached to / detached from a window
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
         
-        super.viewDidMoveToWindow()
+        super.viewWillMove(toWindow: newWindow)
+        
+        // remove observations before all observed objects are deallocated
+        if newWindow == nil {
+            self.removeTextViewObservers()
+        }
         
         if let observer = self.opacityObserver {
             NotificationCenter.default.removeObserver(observer)
             self.opacityObserver = nil
         }
+    }
+    
+    
+    /// observe window opacity change
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
         
         // ignore when detached
         guard let window = self.window else { return }
@@ -410,9 +419,46 @@ final class LineNumberView: NSView {
             self.needsDisplay = true
         }
         
+        self.colorObserver?.invalidate()
         self.colorObserver = textView.observe(\.backgroundColor) { [unowned self] (_, _)  in
             self.needsDisplay = true
         }
+    }
+    
+    
+    /// remove observers observing textView
+    private func removeTextViewObservers() {
+        
+        if let observer = self.textObserver {
+            assert(self.textView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.textObserver = nil
+        }
+        
+        if let observer = self.selectionObserver {
+            assert(self.textView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
+        }
+        
+        if let observer = self.frameObserver {
+            assert(self.textView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.frameObserver = nil
+        }
+        
+        if let observer = self.scrollObserver {
+            assert(self.textView?.enclosingScrollView?.contentView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.scrollObserver = nil
+        }
+        
+        self.colorObserver?.invalidate()
+        self.colorObserver = nil
     }
     
 }

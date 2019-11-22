@@ -251,16 +251,25 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// textView was attached to a window
+    /// textView is about to be attached to / detached from a window
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
+        
+        super.viewWillMove(toWindow: window)
+        
+        // remove observations before all observed objects are deallocated
+        if newWindow == nil {
+            self.removeNotificationObservers()
+        }
+    }
+    
+    
+    /// textView was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
         // textView will be removed from the window
-        guard let window = self.window else {
-            self.removeNotificationObservers()
-            return
-        }
+        guard let window = self.window else { return }
         
         // apply theme to window
         self.applyTheme()
@@ -1326,14 +1335,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private func removeNotificationObservers() {
         
         if let observer = self.windowOpacityObserver {
+            assert(self.window != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.windowOpacityObserver = nil
         }
+        
         if let observer = self.scrollObserver {
+            assert(self.enclosingScrollView?.contentView != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.scrollObserver = nil
         }
+        
         if let observer = self.resizeObserver {
+            assert(self.enclosingScrollView?.contentView != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.resizeObserver = nil
         }
