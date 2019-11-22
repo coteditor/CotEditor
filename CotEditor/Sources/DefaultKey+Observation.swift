@@ -27,7 +27,16 @@ import Foundation
 
 extension UserDefaults {
     
-    func observe<Value>(key: DefaultKey<Value>, queue: OperationQueue? = .main, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (UserDefaultsObservation.Change<Value>) -> Void) -> UserDefaultsObservation {
+    /// Register the observer object to observe UserDefaults value change.
+    ///
+    /// - Parameters:
+    ///   - key: The typed UserDefaults key to obseve the change of its value.
+    ///   - queue: The operation queue where to perform the `changeHandler`.
+    ///   - options: A combination of the NSKeyValueObservingOptions values that specifies what is included in observation notifications.
+    ///   - changeHandler: The block to be executed when the observerd the observed deafault is updated.
+    ///   - change: The information about the change.
+    /// - Returns: An observer object.
+    func observe<Value>(key: DefaultKey<Value>, queue: OperationQueue? = .main, options: NSKeyValueObservingOptions = [], changeHandler: @escaping (_ change: UserDefaultsObservation.Change<Value>) -> Void) -> UserDefaultsObservation {
         
         let observation = UserDefaultsObservation(object: self, key: key.rawValue, queue: queue) { (change) in
             
@@ -115,7 +124,7 @@ final class UserDefaultsObservation: NSObject {
                                  indexes: change[.indexesKey] as! IndexSet?,
                                  isPrior: change[.notificationIsPriorKey] as? Bool ?? false)
         
-        if let queue = self.queue {
+        if let queue = self.queue, queue != OperationQueue.current {
             queue.addOperation { [handler = self.changeHandler] in
                 handler(typedChange)
             }
