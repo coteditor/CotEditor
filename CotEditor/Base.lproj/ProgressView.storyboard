@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pOm-Jt-raG">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="pOm-Jt-raG">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,19 +11,19 @@
             <objects>
                 <viewController id="pOm-Jt-raG" customClass="ProgressViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Gmd-ZI-UeZ">
-                        <rect key="frame" x="0.0" y="0.0" width="420" height="86"/>
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="70"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <progressIndicator verticalHuggingPriority="750" maxValue="1" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="YTj-ob-Ly1">
-                                <rect key="frame" x="20" y="39" width="380" height="12"/>
+                                <rect key="frame" x="20" y="28" width="358" height="12"/>
                                 <connections>
                                     <binding destination="pOm-Jt-raG" name="isIndeterminate" keyPath="progress.indeterminate" id="zNb-ZJ-Fct"/>
                                 </connections>
                             </progressIndicator>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="QRW-zP-YZ4">
-                                <rect key="frame" x="18" y="59" width="100" height="17"/>
+                                <rect key="frame" x="18" y="44" width="98" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Coloring text…" id="Ckd-Ag-fZZ">
-                                    <font key="font" metaFont="systemBold"/>
+                                    <font key="font" metaFont="systemSemibold" size="13"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -32,19 +32,16 @@
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6wC-fK-qvF">
-                                <rect key="frame" x="18" y="17" width="124" height="14"/>
+                                <rect key="frame" x="18" y="10" width="124" height="14"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="04u-QX-U6h">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <font key="font" metaFont="toolTip"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <button horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8F8-Xs-904">
-                                <rect key="frame" x="288" y="3" width="118" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="106" id="7RT-Zh-12G"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="58">
+                                <rect key="frame" x="386" y="27" width="14" height="14"/>
+                                <buttonCell key="cell" type="bevel" title="Cancel" bezelStyle="rounded" image="NSStopProgressFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="58">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <string key="keyEquivalent" base64-UTF8="YES">
@@ -57,16 +54,16 @@ Gw
                             </button>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="8F8-Xs-904" firstAttribute="top" secondItem="YTj-ob-Ly1" secondAttribute="bottom" constant="8" id="2Vj-9Y-FSf"/>
                             <constraint firstItem="QRW-zP-YZ4" firstAttribute="top" secondItem="Gmd-ZI-UeZ" secondAttribute="top" constant="10" id="4KX-w4-E5w"/>
-                            <constraint firstItem="6wC-fK-qvF" firstAttribute="top" secondItem="YTj-ob-Ly1" secondAttribute="bottom" constant="8" symbolic="YES" id="7VT-j5-KgV"/>
+                            <constraint firstItem="8F8-Xs-904" firstAttribute="centerY" secondItem="YTj-ob-Ly1" secondAttribute="centerY" id="5xR-ai-dLO"/>
+                            <constraint firstItem="6wC-fK-qvF" firstAttribute="top" secondItem="YTj-ob-Ly1" secondAttribute="bottom" constant="4" id="7VT-j5-KgV"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QRW-zP-YZ4" secondAttribute="trailing" constant="20" symbolic="YES" id="CuN-2a-F3F"/>
-                            <constraint firstAttribute="bottom" secondItem="8F8-Xs-904" secondAttribute="bottom" constant="10" id="OvF-g8-UdA"/>
+                            <constraint firstAttribute="bottom" secondItem="6wC-fK-qvF" secondAttribute="bottom" constant="10" id="Kt9-za-Snk"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6wC-fK-qvF" secondAttribute="trailing" constant="20" symbolic="YES" id="Med-eh-gxf"/>
+                            <constraint firstItem="8F8-Xs-904" firstAttribute="leading" secondItem="YTj-ob-Ly1" secondAttribute="trailing" constant="8" symbolic="YES" id="XgD-UQ-PCN"/>
                             <constraint firstAttribute="trailing" secondItem="8F8-Xs-904" secondAttribute="trailing" constant="20" symbolic="YES" id="bE9-mJ-mQD"/>
-                            <constraint firstAttribute="trailing" secondItem="YTj-ob-Ly1" secondAttribute="trailing" constant="20" symbolic="YES" id="cdk-Ys-oev"/>
-                            <constraint firstItem="YTj-ob-Ly1" firstAttribute="top" secondItem="QRW-zP-YZ4" secondAttribute="bottom" constant="8" symbolic="YES" id="g6I-M2-OJx"/>
-                            <constraint firstItem="6wC-fK-qvF" firstAttribute="leading" secondItem="YTj-ob-Ly1" secondAttribute="leading" id="jdx-0l-ilb"/>
-                            <constraint firstItem="8F8-Xs-904" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6wC-fK-qvF" secondAttribute="trailing" constant="8" symbolic="YES" id="r42-Ay-hcg"/>
+                            <constraint firstItem="YTj-ob-Ly1" firstAttribute="top" secondItem="QRW-zP-YZ4" secondAttribute="bottom" constant="4" id="g6I-M2-OJx"/>
+                            <constraint firstItem="YTj-ob-Ly1" firstAttribute="leading" secondItem="Gmd-ZI-UeZ" secondAttribute="leading" constant="20" symbolic="YES" id="q8a-M4-bkk"/>
                             <constraint firstItem="6wC-fK-qvF" firstAttribute="leading" secondItem="QRW-zP-YZ4" secondAttribute="leading" id="unf-iR-4U3"/>
                             <constraint firstItem="QRW-zP-YZ4" firstAttribute="leading" secondItem="Gmd-ZI-UeZ" secondAttribute="leading" constant="20" symbolic="YES" id="z9L-ba-ydt"/>
                         </constraints>
@@ -82,4 +79,7 @@ Gw
             <point key="canvasLocation" x="327" y="-87"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+    </resources>
 </document>
