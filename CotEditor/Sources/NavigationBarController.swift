@@ -45,8 +45,8 @@ final class NavigationBarController: NSViewController {
         didSet {
             guard let textView = self.textView else { return }
           
-            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
-                self.updateTextOrientation(to: textView.layoutOrientation)
+            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
+                self?.updateTextOrientation(to: textView.layoutOrientation)
             }
             
             // observe text selection change to update outline menu selection

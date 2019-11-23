@@ -206,7 +206,9 @@ final class LineNumberView: NSView {
         guard let window = self.window else { return }
         
         // perform redraw on window opacity change
-        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
+            guard let self = self else { return assertionFailure() }
+            
             self.setNeedsDisplay(self.visibleRect)
         }
     }
@@ -396,8 +398,11 @@ final class LineNumberView: NSView {
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [unowned self] (notification) in
-            guard let textView = notification.object as? NSTextView else { return assertionFailure() }
+        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] (notification) in
+            guard
+                let self = self,
+                let textView = notification.object as? NSTextView
+                else { return assertionFailure() }
             
             if self.orientation == .horizontal {
                 // -> Count only if really needed since the line counting is high workload, especially by large document.
@@ -407,21 +412,21 @@ final class LineNumberView: NSView {
             self.needsDisplay = true
         }
         
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [unowned self] _ in
-            self.needsDisplay = true
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
-        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [unowned self] _ in
-            self.needsDisplay = true
+        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [unowned self] _ in
-            self.needsDisplay = true
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
         self.colorObserver?.invalidate()
-        self.colorObserver = textView.observe(\.backgroundColor) { [unowned self] (_, _)  in
-            self.needsDisplay = true
+        self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
+            self?.needsDisplay = true
         }
     }
     

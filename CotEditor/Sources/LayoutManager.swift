@@ -143,7 +143,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             .showOtherInvisibleChars,
             ]
-        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [unowned self] (key, _) in
+        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [weak self] (key, _) in
+            guard let self = self else { return assertionFailure() }
+            
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             

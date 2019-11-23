@@ -76,16 +76,16 @@ final class StatusBarController: NSViewController {
             .showStatusBarLine,
             .showStatusBarColumn,
             ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: editorDefaultKeys) { [unowned self] (_, _) in
-            self.updateEditorStatus()
+        self.defaultsObservers += UserDefaults.standard.observe(keys: editorDefaultKeys) { [weak self] (_, _) in
+            self?.updateEditorStatus()
         }
         let documentDefaultKeys: [DefaultKeys] = [
             .showStatusBarEncoding,
             .showStatusBarLineEndings,
             .showStatusBarFileSize,
             ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [unowned self] (_, _) in
-            self.updateDocumentStatus()
+        self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [weak self] (_, _) in
+            self?.updateDocumentStatus()
         }
     }
     
