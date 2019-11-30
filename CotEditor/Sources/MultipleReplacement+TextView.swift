@@ -43,6 +43,7 @@ extension MultipleReplacement {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         indicator.setup(progress: progress, message: "Highlight".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
@@ -61,10 +62,7 @@ extension MultipleReplacement {
             DispatchQueue.main.async {
                 textView.isEditable = true
                 
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
+                guard !progress.isCancelled else { return }
                 
                 if !result.isEmpty {
                     // apply to the text view
@@ -86,10 +84,6 @@ extension MultipleReplacement {
                     : "Not Found".localized
                 
                 indicator.done()
-                
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                }
                 
                 completionHandler(resultMessage)
             }
@@ -116,6 +110,7 @@ extension MultipleReplacement {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
@@ -134,10 +129,7 @@ extension MultipleReplacement {
             DispatchQueue.main.async {
                 textView.isEditable = true
                 
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
+                guard !progress.isCancelled else { return }
                 
                 if result.count > 0 {
                     // apply to the text view
@@ -154,10 +146,6 @@ extension MultipleReplacement {
                     : "Not Replaced".localized
                 
                 indicator.done()
-                
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                }
                 
                 completionHandler(resultMessage)
             }

@@ -909,8 +909,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 else { return }
             
             let message = "Coloring text…".localized
-            let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
-            indicator.setup(progress: progress, message: message, closesWhenFinished: true)
+            let indicator = ProgressViewController.instantiate(storyboard: "CompactProgressView")
+            indicator.setup(progress: progress, message: message)
             
             self.presentAsSheet(indicator)
         }
