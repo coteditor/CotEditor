@@ -9,6 +9,7 @@ jobs:
     steps:
     - name: Show environments
       run: |
+        sw_vers
         xcodebuild -version
         swift --version
     - uses: actions/checkout@v1
