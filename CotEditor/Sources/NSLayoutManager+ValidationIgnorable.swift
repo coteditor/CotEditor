@@ -32,22 +32,37 @@ protocol ValidationIgnorable: NSLayoutManager {
 }
 
 
-extension ValidationIgnorable {
+extension NSLayoutManager {
     
-    ///  Perform batch task updating temporary attributes performance efficiently by disabling display validation between each process.
+    /// Perform batch task updating temporary attributes performance efficiently by disabling display validation between each process.
     ///
-    /// - Parameter range: The overall range in which temporary attributes are updated.
-    /// - Parameter work: The work to do while the display validation is disabled.
+    /// By using this method, conforming to `ValidationIgnorable` protocol is expected;
+    /// otherwise, just run `work` block and no optimization is performed.
+    ///
+    /// See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
+    /// (2018-12 macOS 10.14)
     ///
     /// - Note:
     ///     According to the implementation of `NSLayoutManager` in GNUstep,
-    ///     `invalidateDisplayForCharacterRange:` is invoked every time inside of `addTemporaryAttribute:value:forCharacterRange:`.
+    ///     `invalidateDisplayForCharacterRange:` is invoked every time
+    ///     inside of `addTemporaryAttribute:value:forCharacterRange:`.
     ///     Ignoring that process during updating attributes reduces the application time,
     ///     which shows the rainbow cursor because of a main thread task, significantly.
-    ///     See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
-    ///     (2018-12 macOS 10.14)
+    ///
+    ///     Even the temporary attributes are limited to those that do not affect layout,
+    ///     invalidating display by a temporary attributes update is yet needed for in case
+    ///     that an attribute is applied only to a part of a single glyph.
+    ///     Because in some specific languages, it can cause a change of the glyph shape.
+    ///
+    /// - Parameter range: The overall range in which temporary attributes are updated.
+    /// - Parameter work: The work to do while the display validation is disabled..
     func groupTemporaryAttributesUpdate(in range: NSRange, work: () -> Void) {
-
+        
+        guard let self = self as? ValidationIgnorable else {
+            assertionFailure("Conforming to ValidationIgnorable protocol is expected when using groupTemporaryAttributesUpdate(in:work:).")
+            return work()
+        }
+        
         self.ignoresDisplayValidation = true
         
         work()

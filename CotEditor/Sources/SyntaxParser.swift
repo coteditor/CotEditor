@@ -361,8 +361,6 @@ extension SyntaxParser {
         let hasHighlight = highlights.values.contains { !$0.isEmpty }
         
         for layoutManager in self.textStorage.layoutManagers {
-            guard let layoutManager = layoutManager as? ValidationIgnorable else { return assertionFailure() }
-            
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
             guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
             
@@ -404,8 +402,6 @@ extension NSLayoutManager {
     func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
         
         assert(Thread.isMainThread)
-        
-        guard let self = self as? ValidationIgnorable else { return assertionFailure() }
         
         let wholeRange = range ?? self.attributedString().range
         

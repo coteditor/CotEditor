@@ -555,14 +555,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 // highlight
                 if let layoutManager = textView.layoutManager {
                     let wholeRange = textFind.string.nsRange
-                    
-                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = true
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
-                    for highlight in highlights {
-                        layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                    layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
+                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
+                        for highlight in highlights {
+                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                        }
                     }
-                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = false
-                    layoutManager.invalidateDisplay(forCharacterRange: wholeRange)
                 }
                 
                 if highlights.isEmpty {
