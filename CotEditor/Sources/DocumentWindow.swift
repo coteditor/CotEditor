@@ -194,6 +194,21 @@ extension DocumentWindow {
         return true
     }
     
+    
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        
+        // programmatically set the shortcut for "Show/Hide Tab Bar", which is inserted by AppKit automatically.
+        switch menuItem.action {
+        case #selector(toggleTabBar):
+            menuItem.keyEquivalentModifierMask = [.command, .shift]
+            menuItem.keyEquivalent = "t"
+        default:
+            break
+        }
+        
+        return super.validateMenuItem(menuItem)
+    }
+    
 }
 
 
