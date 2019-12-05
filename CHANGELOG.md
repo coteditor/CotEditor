@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Change the default shortcut for Format > Font > “Reset to Default” command to `⌘0` and let “Bigger” command accept also `⌘=`.
+- Add shortcut `⌘/` to “Show/Hide Status Bar” command.
 - Avoid showing rainbow cursor when cancelling the initial syntax highlight.
 - [trivial] Modifty the layout of the progress dialog and the regular expression syntax reference.
 
