@@ -12,6 +12,7 @@ Change Log
 - Add shortcut `⌘⇧T` to “Show/Hide Tab Bar” command.
 - Avoid showing rainbow cursor when cancelling the initial syntax highlight.
 - [trivial] Modifty the layout of the progress dialog and the regular expression syntax reference.
+- [trivial] Let input fields in the Edit pane accept values without a parcent sign.
 
 
 ### Fixes
