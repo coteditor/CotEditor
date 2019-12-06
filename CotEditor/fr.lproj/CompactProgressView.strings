@@ -25,5 +25,5 @@
  
  */
 
-/* Class = "NSButtonCell"; title = "CancCancel operation.el"; ObjectID = "3ti-Fq-4CU"; */
+/* Class = "NSButtonCell"; title = "Cancel operation."; ObjectID = "3ti-Fq-4CU"; */
 "3ti-Fq-4CU.toolTip" = "Annuler";  // FIXME: added
