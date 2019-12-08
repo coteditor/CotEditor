@@ -580,6 +580,8 @@
       ".profile",
       ".bash_profile",
       ".bashrc",
+      ".zlogin",
+      ".zprofile",
       ".zshrc",
       ".zshenv"
     ],

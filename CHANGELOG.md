@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Revert shortcut `⌘/` to comment-out toggle.
+- Add “.zprofile” and “.zlogin” extensions to “Shell Script” syntax style.
 
 
 
