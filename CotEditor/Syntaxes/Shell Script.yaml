@@ -5,6 +5,8 @@ filenames:
 - keyString: ".profile"
 - keyString: ".bash_profile"
 - keyString: ".bashrc"
+- keyString: ".zlogin"
+- keyString: ".zprofile"
 - keyString: ".zshrc"
 - keyString: ".zshenv"
 interpreters:
@@ -17,9 +19,9 @@ interpreters:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "3.2.0"
+  version: "3.2.1"
   license: "Same as CotEditor"
-  lastModified: "2016-02-04"
+  lastModified: "2019-12-08"
 keywords:
 - beginString: "break"
 - beginString: "breaksw"
