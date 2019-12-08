@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.8.6 (unreleased)
+3.8.7 (unreleased)
 --------------------------
 
 ### Improvements
