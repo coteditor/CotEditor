@@ -1,14 +1,14 @@
 //
-//  Comparable.swift
+//  NSAppKitVersion.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2016-06-25.
+//  Created by 1024jp on 2019-11-17.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,15 +23,9 @@
 //  limitations under the License.
 //
 
-extension Comparable {
+import AppKit
+
+extension NSAppKitVersion {
     
-    /// Return clamped value to min/max values.
-    ///
-    /// - Parameter range: Condition which receiver should be in between.
-    /// - Returns: Processed value.
-    func clamped(to range: ClosedRange<Self>) -> Self {
-        
-        return max(range.lowerBound, min(self, range.upperBound))
-    }
-    
+    static var macOS10_15 = NSAppKitVersion(rawValue: 1894)
 }

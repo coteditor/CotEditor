@@ -92,28 +92,29 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // observe defaults change
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = [
-            UserDefaults.standard.observe(key: .theme) { [unowned self] _ in
+            UserDefaults.standard.observe(key: .theme) { [weak self] _ in
                 let themeName = ThemeManager.shared.userDefaultSettingName
-                self.setTheme(name: themeName)
+                self?.setTheme(name: themeName)
             },
-            UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [unowned self] change in
-                self.showsInvisibles = change.new!
+            UserDefaults.standard.observe(key: .showInvisibles, options: [.new]) { [weak self] change in
+                self?.showsInvisibles = change.new!
             },
-            UserDefaults.standard.observe(key: .showLineNumbers, options: [.new]) { [unowned self] change in
-                self.showsLineNumber = change.new!
+            UserDefaults.standard.observe(key: .showLineNumbers, options: [.new]) { [weak self] change in
+                self?.showsLineNumber = change.new!
             },
-            UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [unowned self] change in
-                self.showsPageGuide = change.new!
+            UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [weak self] change in
+                self?.showsPageGuide = change.new!
             },
-            UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [unowned self] change in
-                self.wrapsLines = change.new!
+            UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [weak self] change in
+                self?.wrapsLines = change.new!
             },
         ]
         
         // observe appearance change for theme toggle
         self.appearanceObserver?.invalidate()
-        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [unowned self] (view, _) in
+        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (view, _) in
             guard
+                let self = self,
                 !UserDefaults.standard[.pinsThemeAppearance],
                 view.window != nil,
                 let currentThemeName = self.theme?.name,
@@ -908,8 +909,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 else { return }
             
             let message = "Coloring text…".localized
-            let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
-            indicator.setup(progress: progress, message: message, closesWhenFinished: true)
+            let indicator = ProgressViewController.instantiate(storyboard: "CompactProgressView")
+            indicator.setup(progress: progress, message: message)
             
             self.presentAsSheet(indicator)
         }

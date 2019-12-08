@@ -217,8 +217,6 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
             control.isEnabled = validator.validateTouchBarItem(self)
         case let validator as NSUserInterfaceValidations:
             control.isEnabled = validator.validateUserInterfaceItem(self)
-        case _ where validator.responds(to: #selector(NSUserInterfaceValidations.validateUserInterfaceItem)):  // workaround for macOS 10.12 and earier
-            control.isEnabled = validator.validateUserInterfaceItem(self)
         default: break
         }
     }

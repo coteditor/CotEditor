@@ -1,0 +1,25 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  macOS:
+    runs-on: macOS-latest
+
+    steps:
+    - name: Show environments
+      run: |
+        sw_vers
+        xcodebuild -version
+        swift --version
+    - uses: actions/checkout@v1
+    - name: Checkout submodules
+      run: git submodule update --init
+    - name: Lint Swift
+      run: |
+        brew install swiftlint
+        swiftlint
+    - name: Unit Test
+      run: |
+        set -o pipefail
+        xcodebuild test -workspace CotEditor.xcworkspace -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c

@@ -30,9 +30,9 @@ extension RangeReplaceableCollection where Element: Equatable {
     /// - Parameter element: The element to be removed.
     mutating func remove(_ element: Element) {
         
-        if let index = self.firstIndex(of: element) {
-            self.remove(at: index)
-        }
+        guard let index = self.firstIndex(of: element) else { return }
+        
+        self.remove(at: index)
     }
     
 }

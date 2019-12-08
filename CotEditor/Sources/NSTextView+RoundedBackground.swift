@@ -42,7 +42,7 @@ extension NSTextView {
         guard
             let layoutManager = self.layoutManager,
             let dirtyRange = self.range(for: dirtyRect, withoutAdditionalLayout: true),
-            layoutManager.hasTemporaryAttribute(for: .roundedBackgroundColor, in: dirtyRange)
+            layoutManager.hasTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange)
             else { return }
         
         NSGraphicsContext.saveGraphicsState()

@@ -143,7 +143,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             .showOtherInvisibleChars,
             ]
-        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [unowned self] (key, _) in
+        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [weak self] (key, _) in
+            guard let self = self else { return assertionFailure() }
+            
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             
@@ -274,10 +276,10 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     /// fill background rectangles with a color
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
-        // modify selected highlight color when document is inactive
-        // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable in a dark theme.
-        if NSAppKitVersion.current <= .macOS10_13,
-            color == .secondarySelectedControlColor,  // check if inactive
+        // modify selected highlight color when the window is inactive
+        // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable
+        //    when the window appearance and theme is inconsistent.
+        if color == .secondarySelectedControlColor,  // check if inactive
             let theme = (self.textViewForBeginningOfSelection as? Themable)?.theme,
             let secondarySelectionColor = theme.secondarySelectionColor
         {

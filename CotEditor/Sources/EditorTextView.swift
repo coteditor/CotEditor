@@ -125,7 +125,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         super.init(coder: coder)
         
-        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
+        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13–10.15).
         self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
         self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
         
@@ -251,16 +251,25 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// textView was attached to a window
+    /// textView is about to be attached to / detached from a window
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
+        
+        super.viewWillMove(toWindow: window)
+        
+        // remove observations before all observed objects are deallocated
+        if newWindow == nil {
+            self.removeNotificationObservers()
+        }
+    }
+    
+    
+    /// textView was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
         // textView will be removed from the window
-        guard let window = self.window else {
-            self.removeNotificationObservers()
-            return
-        }
+        guard let window = self.window else { return }
         
         // apply theme to window
         self.applyTheme()
@@ -687,15 +696,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // interrupt rectangular selection
         if self.isPerformingRectangularSelection {
-            if stillSelectingFlag {
+            if NSAppKitVersion.current >= .macOS10_15 || stillSelectingFlag {
                 if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
                     ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
                     self.insertionLocations = Array(locations[1...])
                 } else {
                     self.insertionLocations = []
                 }
-            } else {
-                ranges = ranges.isEmpty ? self.selectedRanges : ranges
+            } else if ranges.isEmpty {
+                ranges = self.selectedRanges
             }
         }
         
@@ -784,17 +793,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override var font: NSFont? {
         
         get {
-            // make sure to return by user defined font
+            // make sure to return the font defined by user
             return (self.layoutManager as? LayoutManager)?.textFont ?? super.font
         }
         
         set {
             guard let font = newValue else { return }
             
-            // let LayoutManager have the font too to avoid the issue where the line height can be inconsistance by a composite font
-            // -> Because `textView.font` can return a Japanese font
-            //    when the font is for one-bites and the first character of the content is Japanese one,
-            //    LayoutManager should not use `textView.font`.
+            // let LayoutManager keep the set font to avoid an inconsistent line height
+            // -> Because NSTextView's .font returns the font used for the first character of .string when it exists,
+            //    not the font defined by user but a fallback font is returned through this property
+            //    when the set font doesn't have a glyph for the first character.
             (self.layoutManager as? LayoutManager)?.textFont = font
             
             super.font = font
@@ -1326,14 +1335,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private func removeNotificationObservers() {
         
         if let observer = self.windowOpacityObserver {
+            assert(self.window != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.windowOpacityObserver = nil
         }
+        
         if let observer = self.scrollObserver {
+            assert(self.enclosingScrollView?.contentView != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.scrollObserver = nil
         }
+        
         if let observer = self.resizeObserver {
+            assert(self.enclosingScrollView?.contentView != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.resizeObserver = nil
         }

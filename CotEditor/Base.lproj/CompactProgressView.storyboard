@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="khZ-cv-7hF">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Progress View Controller-->
+        <scene sceneID="g26-bp-ZzD">
+            <objects>
+                <viewController id="khZ-cv-7hF" customClass="ProgressViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="D6U-4m-nKG">
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="48"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <progressIndicator wantsLayer="YES" verticalHuggingPriority="750" maxValue="1" bezeled="NO" indeterminate="YES" controlSize="small" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="eAj-fJ-Nz1">
+                                <rect key="frame" x="106" y="24" width="272" height="12"/>
+                                <connections>
+                                    <binding destination="khZ-cv-7hF" name="isIndeterminate" keyPath="progress.indeterminate" id="7nk-vj-hNi"/>
+                                </connections>
+                            </progressIndicator>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="TcN-BZ-pGA">
+                                <rect key="frame" x="104" y="8" width="124" height="14"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Please wait for a while." id="Ofw-jF-u35">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button toolTip="Cancel operation." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jua-5O-j1x">
+                                <rect key="frame" x="386" y="23" width="14" height="14"/>
+                                <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSStopProgressFreestandingTemplate" imagePosition="overlaps" alignment="center" controlSize="small" imageScaling="proportionallyDown" inset="2" id="TEV-Ma-n8M">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancel:" target="khZ-cv-7hF" id="4wp-kM-nVp"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="jdb-7P-h6Y">
+                                <rect key="frame" x="18" y="22" width="82" height="16"/>
+                                <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Processing…" id="htr-NC-LBz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="khZ-cv-7hF" name="value" keyPath="message" id="qts-bT-4Gz"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Jua-5O-j1x" firstAttribute="leading" secondItem="eAj-fJ-Nz1" secondAttribute="trailing" constant="8" symbolic="YES" id="9AR-sN-wNT"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TcN-BZ-pGA" secondAttribute="trailing" constant="20" symbolic="YES" id="WmF-2u-Ihy"/>
+                            <constraint firstItem="jdb-7P-h6Y" firstAttribute="leading" secondItem="D6U-4m-nKG" secondAttribute="leading" constant="20" symbolic="YES" id="XUP-El-IZg"/>
+                            <constraint firstAttribute="trailing" secondItem="Jua-5O-j1x" secondAttribute="trailing" constant="20" symbolic="YES" id="b7p-9E-mzb"/>
+                            <constraint firstItem="TcN-BZ-pGA" firstAttribute="top" secondItem="eAj-fJ-Nz1" secondAttribute="bottom" constant="2" id="gfB-KX-sgp"/>
+                            <constraint firstItem="eAj-fJ-Nz1" firstAttribute="leading" secondItem="TcN-BZ-pGA" secondAttribute="leading" id="j5L-nm-xcl"/>
+                            <constraint firstItem="eAj-fJ-Nz1" firstAttribute="centerY" secondItem="jdb-7P-h6Y" secondAttribute="centerY" id="jHc-W3-7pQ"/>
+                            <constraint firstItem="Jua-5O-j1x" firstAttribute="centerY" secondItem="eAj-fJ-Nz1" secondAttribute="centerY" id="lm1-Sb-7n4"/>
+                            <constraint firstItem="eAj-fJ-Nz1" firstAttribute="leading" secondItem="jdb-7P-h6Y" secondAttribute="trailing" constant="8" symbolic="YES" id="qNG-0j-0tQ"/>
+                            <constraint firstItem="jdb-7P-h6Y" firstAttribute="top" secondItem="D6U-4m-nKG" secondAttribute="top" constant="10" id="uqu-cV-9Oc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionField" destination="TcN-BZ-pGA" id="YIN-1k-1Qw"/>
+                        <outlet property="indicator" destination="eAj-fJ-Nz1" id="SJY-MV-XAL"/>
+                    </connections>
+                </viewController>
+                <customObject id="dX0-Hj-zVt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="327" y="62"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="NSStopProgressFreestandingTemplate" width="14" height="14"/>
+    </resources>
+</document>

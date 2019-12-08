@@ -71,6 +71,7 @@ final class WebDocumentViewController: NSViewController {
         super.viewDidDisappear()
         
         self.appearanceObserver?.invalidate()
+        self.appearanceObserver = nil
     }
     
     

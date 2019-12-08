@@ -34,17 +34,19 @@ final class NavigationBarController: NSViewController {
     var textView: NSTextView? {  // NSTextView cannot be weak
         
         willSet {
-            guard let textView = self.textView else { return }
-            
             self.orientationObserver?.invalidate()
-            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+            self.orientationObserver = nil
+            
+            if let textView = self.textView {
+                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+            }
         }
         
         didSet {
             guard let textView = self.textView else { return }
           
-            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
-                self.updateTextOrientation(to: textView.layoutOrientation)
+            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
+                self?.updateTextOrientation(to: textView.layoutOrientation)
             }
             
             // observe text selection change to update outline menu selection

@@ -137,6 +137,8 @@
 		2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */; };
 		2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */; };
 		2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */; };
+		2A2CCF732380584E00FAC851 /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2CCF722380584E00FAC851 /* NSAppKitVersion.swift */; };
+		2A2CCF742380584E00FAC851 /* NSAppKitVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2CCF722380584E00FAC851 /* NSAppKitVersion.swift */; };
 		2A33D07E1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */; };
 		2A33D07F1D1C75B8005977B9 /* SyntaxValidationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */; };
 		2A33D0811D1C7935005977B9 /* SyntaxTermsEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */; };
@@ -279,6 +281,11 @@
 		2A63FBE41D1D90E70081C84E /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */; };
 		2A6416A31D2F9F7200FA9E1A /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */; };
 		2A6416A41D2F9F7200FA9E1A /* LineNumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */; };
+		2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
+		2A642CD22390C11D00BCA4C4 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */; };
+		2A642CDB2392192100BCA4C4 /* CompactProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */; };
+		2A642CDC2392192100BCA4C4 /* CompactProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */; };
+		2A64A2362387754000646BE4 /* UserDefaultsObservationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */; };
 		2A64F2421D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
 		2A64F2431D256FCB001B229F /* MenuKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */; };
 		2A64F2451D259E49001B229F /* SnippetKeyBindingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */; };
@@ -373,6 +380,7 @@
 		2A887A9120FA1D19002BFA34 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A887A8F20FA1D19002BFA34 /* String+Localization.swift */; };
 		2A88E7711E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
 		2A88E7721E81A2C7000019C6 /* OrderedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A88E7701E81A2C7000019C6 /* OrderedSet.swift */; };
+		2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */; };
 		2A8961921DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
 		2A8961931DB76A3400E9E0EC /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8961911DB76A3400E9E0EC /* MainMenu.swift */; };
 		2A8C338C1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */; };
@@ -693,8 +701,6 @@
 		2AF45E221E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
 		2AF45E231E6C17700030CD60 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF45E211E6C17700030CD60 /* OperationQueue.swift */; };
 		2AF5C3BE1A55072E00C972B5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AF5C3BC1A55072E00C972B5 /* InfoPlist.strings */; };
-		2AF97C1921A9532B00733FB7 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF97C1721A9532B00733FB7 /* ProgressView.storyboard */; };
-		2AF97C1A21A9532B00733FB7 /* ProgressView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AF97C1721A9532B00733FB7 /* ProgressView.storyboard */; };
 		2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9961F235ACDD60041872E /* NSPrintInfo.swift */; };
 		2AF9B23E208E24D50057DD21 /* Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF9B23D208E24D50057DD21 /* Metadata.swift */; };
@@ -827,7 +833,6 @@
 		0D51D5712274EAD900A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/OpenDocumentAccessory.strings; sourceTree = "<group>"; };
 		0D51D5722274EADA00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SaveDocumentAccessory.strings; sourceTree = "<group>"; };
 		0D51D5732274EADB00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PrintPanelAccessory.strings; sourceTree = "<group>"; };
-		0D51D5742274EADB00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		0D51D5752274EADC00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		0D51D5762274EADC00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		0D51D5772274EADC00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CustomSurroundStringView.strings; sourceTree = "<group>"; };
@@ -952,6 +957,7 @@
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
 		2A2948B02197FCE0001DCE1E /* ImageRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRadioButton.swift; sourceTree = "<group>"; };
+		2A2CCF722380584E00FAC851 /* NSAppKitVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAppKitVersion.swift; sourceTree = "<group>"; };
 		2A33D07D1D1C75B8005977B9 /* SyntaxValidationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxValidationViewController.swift; sourceTree = "<group>"; };
 		2A33D0801D1C7935005977B9 /* SyntaxTermsEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTermsEditViewController.swift; sourceTree = "<group>"; };
 		2A33D0831D1C7B46005977B9 /* SyntaxEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxEditViewController.swift; sourceTree = "<group>"; };
@@ -1063,6 +1069,21 @@
 		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
 		2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineNumberView.swift; sourceTree = "<group>"; };
+		2A642CD02390C11C00BCA4C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProgressView.storyboard; sourceTree = "<group>"; };
+		2A642CD32390EC9F00BCA4C4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		2A642CD42390ECA200BCA4C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressView.strings"; sourceTree = "<group>"; };
+		2A642CD52390ECA500BCA4C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		2A642CD62390ECA900BCA4C4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		2A642CD72390ECAD00BCA4C4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		2A642CD82390ECB200BCA4C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ProgressView.strings; sourceTree = "<group>"; };
+		2A642CDA2392192100BCA4C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/CompactProgressView.storyboard; sourceTree = "<group>"; };
+		2A642CDD2392195000BCA4C4 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
+		2A642CDE2392195A00BCA4C4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CompactProgressView.strings"; sourceTree = "<group>"; };
+		2A642CDF2392195D00BCA4C4 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
+		2A642CE02392196200BCA4C4 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
+		2A642CE12392196600BCA4C4 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
+		2A642CE22392196A00BCA4C4 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CompactProgressView.strings; sourceTree = "<group>"; };
+		2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsObservationTests.swift; sourceTree = "<group>"; };
 		2A64F2411D256FCB001B229F /* MenuKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuKeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F2441D259E49001B229F /* SnippetKeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnippetKeyBindingManager.swift; sourceTree = "<group>"; };
 		2A64F2471D26327C001B229F /* KeyBindingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyBindingManager.swift; sourceTree = "<group>"; };
@@ -1131,6 +1152,7 @@
 		2A885E321D5C3A1B00288723 /* Comparable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comparable.swift; sourceTree = "<group>"; };
 		2A887A8F20FA1D19002BFA34 /* String+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		2A88E7701E81A2C7000019C6 /* OrderedSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedSet.swift; sourceTree = "<group>"; };
+		2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutManagerTests.swift; sourceTree = "<group>"; };
 		2A8961911DB76A3400E9E0EC /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		2A8C338B1D3E16B00005B0B7 /* IncompatibleCharacterScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacterScanner.swift; sourceTree = "<group>"; };
 		2A8C338E1D3E1C040005B0B7 /* IncompatibleCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharacter.swift; sourceTree = "<group>"; };
@@ -1411,12 +1433,6 @@
 		2AF4F57F1DE60B4200703525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = "zh-Hans"; path = "zh-Hans.lproj/Credits.html"; sourceTree = "<group>"; };
 		2AF5C3BD1A55072E00C972B5 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		2AF5C3BF1A5510F600C972B5 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
-		2AF97C1821A9532B00733FB7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ProgressView.storyboard; sourceTree = "<group>"; };
-		2AF97C1B21A9541100733FB7 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2AF97C1C21A9541200733FB7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ProgressView.strings"; sourceTree = "<group>"; };
-		2AF97C1D21A9541300733FB7 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2AF97C1E21A9541400733FB7 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/ProgressView.strings; sourceTree = "<group>"; };
-		2AF97C1F21A9541500733FB7 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/ProgressView.strings; sourceTree = "<group>"; };
 		2AF9961F235ACDD60041872E /* NSPrintInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSPrintInfo.swift; sourceTree = "<group>"; };
 		2AF9B23D208E24D50057DD21 /* Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metadata.swift; sourceTree = "<group>"; };
 		2AFAFD491D41487600F1458F /* PrintTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrintTextView.swift; sourceTree = "<group>"; };
@@ -1756,6 +1772,7 @@
 		2A359E001DAEA0EE00FEF7AA /* AppKit */ = {
 			isa = PBXGroup;
 			children = (
+				2A2CCF722380584E00FAC851 /* NSAppKitVersion.swift */,
 				2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */,
 				2ADD0AEA2184AB6F00F78732 /* NSControl+Binding.swift */,
 				2ACA0C9C21A2A47500723073 /* NSStoryboard+Instantiation.swift */,
@@ -2166,7 +2183,8 @@
 				2AC60696204169F800F9C839 /* OpenDocumentAccessory.storyboard */,
 				2A86C47D2037312900B9357C /* SaveDocumentAccessory.storyboard */,
 				2ACA0C9321A2A03D00723073 /* PrintPanelAccessory.storyboard */,
-				2AF97C1721A9532B00733FB7 /* ProgressView.storyboard */,
+				2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */,
+				2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */,
 				2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */,
 				2A1893A21FFF15E000AD244F /* PatternSortView.storyboard */,
 				2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */,
@@ -2212,6 +2230,7 @@
 				2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */,
 				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
 				2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */,
+				2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2229,6 +2248,7 @@
 				2AED46721E43942300751C45 /* TextFindTests.swift */,
 				2A1893AC1FFF6A0100AD244F /* LineSortTests.swift */,
 				2A7135821CFFDC6600ADA555 /* FormattersTests.swift */,
+				2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -2347,7 +2367,6 @@
 			buildConfigurationList = 2A3F18FE203270BE002F1CA7 /* Build configuration list for PBXNativeTarget "UI Tests" */;
 			buildPhases = (
 				2A3F18F3203270BE002F1CA7 /* Sources */,
-				2A3F18F5203270BE002F1CA7 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -2523,13 +2542,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		2A3F18F5203270BE002F1CA7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		2A6F0D541B5500E100C2D03C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2548,7 +2560,6 @@
 				2A6F0D5B1B5500E100C2D03C /* SyntaxMap.json in Resources */,
 				2A80C65F1CEE33C100AA664D /* Credits.html in Resources */,
 				2AC20A721E70819E0093B9C6 /* GeneralPane.storyboard in Resources */,
-				2AF97C1A21A9532B00733FB7 /* ProgressView.storyboard in Resources */,
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
@@ -2571,6 +2582,7 @@
 				2A10D1311E7152F30027192A /* EditPane.storyboard in Resources */,
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A10D1011E7088B00027192A /* WindowPane.storyboard in Resources */,
+				2A642CDC2392192100BCA4C4 /* CompactProgressView.storyboard in Resources */,
 				2A10D1211E713BE60027192A /* PrintPane.storyboard in Resources */,
 				2AB2242A21A7D51800F6201F /* SyntaxCompletionsEditView.storyboard in Resources */,
 				2AC60699204169F800F9C839 /* OpenDocumentAccessory.storyboard in Resources */,
@@ -2592,6 +2604,7 @@
 				2AB2245521A809A000F6201F /* SyntaxEditView.storyboard in Resources */,
 				2ADD0AE421800E2F00F78732 /* ConsolePanel.storyboard in Resources */,
 				2A9784A02034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
+				2A642CD22390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
 				2A4144BD201397D70061F653 /* DocumentInspectorView.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2642,7 +2655,6 @@
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
 				2A4144B8201397150061F653 /* IncompatibleCharactersView.storyboard in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
-				2AF97C1921A9532B00733FB7 /* ProgressView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
 				2A443220219AC235008A0A6B /* PreferencesWindow.storyboard in Resources */,
 				2A3D63FB1E769DDF00F538E1 /* MultipleReplacementPanel.storyboard in Resources */,
@@ -2667,6 +2679,8 @@
 				2A10D1301E7152F30027192A /* EditPane.storyboard in Resources */,
 				2A10D1281E714D230027192A /* AppearancePane.storyboard in Resources */,
 				2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */,
+				2A642CDB2392192100BCA4C4 /* CompactProgressView.storyboard in Resources */,
+				2A642CD12390C11D00BCA4C4 /* ProgressView.storyboard in Resources */,
 				2ABC828821A950AC008F9229 /* HUDView.storyboard in Resources */,
 				2ACA0C8C21A29D4800723073 /* FindPreferencesView.storyboard in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
@@ -2949,6 +2963,7 @@
 				2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
 				2AA4D3751D1AA0AC001D261D /* KeyBindingsViewController.swift in Sources */,
 				2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
+				2A2CCF742380584E00FAC851 /* NSAppKitVersion.swift in Sources */,
 				2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */,
 				2AFB30E01E4B8F5B00BFAEF3 /* Debouncer.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
@@ -3058,6 +3073,7 @@
 				2AE12DFE1E7DB7D200681F72 /* StringCollectionTests.swift in Sources */,
 				2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */,
 				2AF0C1281D3DA6F800B6FCB6 /* FourCharCodeTests.swift in Sources */,
+				2A64A2362387754000646BE4 /* UserDefaultsObservationTests.swift in Sources */,
 				2ABFF6D71D02856A00BE2795 /* ShortcutTests.swift in Sources */,
 				2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */,
 				2AA2E0261C0454730087BDD6 /* StringIndentationTests.swift in Sources */,
@@ -3074,6 +3090,7 @@
 				2A1893AD1FFF6A0100AD244F /* LineSortTests.swift in Sources */,
 				2AC39F731E8AC80E009F97D5 /* CollectionTests.swift in Sources */,
 				2A54BE2C1D40EB24000816B0 /* LineEndingTests.swift in Sources */,
+				2A89160C2394B87100AC13EE /* NSLayoutManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3085,6 +3102,7 @@
 				2A63FBE31D1D90E70081C84E /* ThemeViewController.swift in Sources */,
 				2A1856121D48AFEA008FA79E /* PrintPanelAccessoryController.swift in Sources */,
 				2A4AF76720759BE500C47606 /* RegexFindPanelTextView.swift in Sources */,
+				2A2CCF732380584E00FAC851 /* NSAppKitVersion.swift in Sources */,
 				2AE3F3181D3F8A1F005B8724 /* NSAttributedString.swift in Sources */,
 				2A9C370B1D66E99400774BA4 /* Pair.swift in Sources */,
 				2A78BF9F1D1AF82A00A583D2 /* IntegrationPaneController.swift in Sources */,
@@ -3594,6 +3612,34 @@
 			name = EditorView.storyboard;
 			sourceTree = "<group>";
 		};
+		2A642CCF2390C11C00BCA4C4 /* ProgressView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A642CD02390C11C00BCA4C4 /* Base */,
+				2A642CD32390EC9F00BCA4C4 /* ja */,
+				2A642CD42390ECA200BCA4C4 /* zh-Hans */,
+				2A642CD52390ECA500BCA4C4 /* de */,
+				2A642CD62390ECA900BCA4C4 /* it */,
+				2A642CD72390ECAD00BCA4C4 /* pt */,
+				2A642CD82390ECB200BCA4C4 /* fr */,
+			);
+			name = ProgressView.storyboard;
+			sourceTree = "<group>";
+		};
+		2A642CD92392192100BCA4C4 /* CompactProgressView.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A642CDA2392192100BCA4C4 /* Base */,
+				2A642CDD2392195000BCA4C4 /* ja */,
+				2A642CDE2392195A00BCA4C4 /* zh-Hans */,
+				2A642CDF2392195D00BCA4C4 /* de */,
+				2A642CE02392196200BCA4C4 /* it */,
+				2A642CE12392196600BCA4C4 /* pt */,
+				2A642CE22392196A00BCA4C4 /* fr */,
+			);
+			name = CompactProgressView.storyboard;
+			sourceTree = "<group>";
+		};
 		2A6602CE1D05BD72003E8D87 /* DocumentWindow.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -4043,20 +4089,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		2AF97C1721A9532B00733FB7 /* ProgressView.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2AF97C1821A9532B00733FB7 /* Base */,
-				2AF97C1B21A9541100733FB7 /* ja */,
-				2AF97C1C21A9541200733FB7 /* zh-Hans */,
-				2AF97C1D21A9541300733FB7 /* de */,
-				2AF97C1E21A9541400733FB7 /* it */,
-				2AF97C1F21A9541500733FB7 /* pt */,
-				0D51D5742274EADB00A5D747 /* fr */,
-			);
-			name = ProgressView.storyboard;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -4111,11 +4143,11 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 384;
+				CURRENT_PROJECT_VERSION = 387;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-AppStore.plist";
-				MARKETING_VERSION = 3.8.5;
+				MARKETING_VERSION = 3.8.6;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -4130,11 +4162,11 @@
 				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 384;
+				CURRENT_PROJECT_VERSION = 387;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-AppStore.plist";
-				MARKETING_VERSION = 3.8.5;
+				MARKETING_VERSION = 3.8.6;
 				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
@@ -4203,11 +4235,11 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 384;
+				CURRENT_PROJECT_VERSION = 387;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 3.8.5;
+				MARKETING_VERSION = 3.8.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4221,11 +4253,11 @@
 				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 384;
+				CURRENT_PROJECT_VERSION = 387;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = 3.8.5;
+				MARKETING_VERSION = 3.8.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";

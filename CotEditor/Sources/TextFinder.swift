@@ -288,6 +288,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
@@ -311,10 +312,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             DispatchQueue.main.sync {
                 textView.isEditable = true
                 
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
+                guard !progress.isCancelled else { return }
                 
                 if !replacementItems.isEmpty {
                     let replacementStrings = replacementItems.map { $0.string }
@@ -325,18 +323,15 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                                      actionName: "Replace All".localized)
                 }
                 
-                indicator.done()
-                
                 if replacementItems.isEmpty {
                     NSSound.beep()
                     progress.localizedDescription = "Not Found".localized
                 }
                 
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                    if let panel = self.findPanelController.window, panel.isVisible {
-                        panel.makeKey()
-                    }
+                indicator.done()
+                
+                if indicator.closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
+                    panel.makeKey()
                 }
                 
                 let count = Int(progress.completedUnitCount)
@@ -501,6 +496,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         indicator.setup(progress: progress, message: actionName)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
@@ -554,37 +550,32 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             DispatchQueue.main.sync {
                 textView.isEditable = true
                 
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
+                guard !progress.isCancelled else { return }
                 
                 // highlight
                 if let layoutManager = textView.layoutManager {
                     let wholeRange = textFind.string.nsRange
-                    
-                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = true
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
-                    for highlight in highlights {
-                        layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                    layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
+                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
+                        for highlight in highlights {
+                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                        }
                     }
-                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = false
-                    layoutManager.invalidateDisplay(forCharacterRange: wholeRange)
                 }
-                
-                indicator.done()
                 
                 if highlights.isEmpty {
                     NSSound.beep()
                     progress.localizedDescription = "Not Found".localized
                 }
                 
+                indicator.done()
+                
                 if showsList {
                     self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
                 // -> close also if result view has been shown
-                if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
+                if indicator.closesAutomatically || !results.isEmpty {
                     indicator.dismiss(nil)
                     if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()

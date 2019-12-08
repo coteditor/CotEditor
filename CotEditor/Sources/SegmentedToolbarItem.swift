@@ -67,8 +67,6 @@ final class SegmentedToolbarItem: ControlToolbarItem {
                 switch validator {
                 case let validator as NSUserInterfaceValidations:
                     return validator.validateUserInterfaceItem(item)
-                case _ where validator.responds(to: #selector(NSUserInterfaceValidations.validateUserInterfaceItem)):  // workaround for macOS 10.12 and earier
-                    return validator.validateUserInterfaceItem(item)
                 default:
                     return validator.validateMenuItem(item)
                 }

@@ -27,6 +27,9 @@
 import Foundation
 import AppKit.NSEvent
 
+/// Modifier keys for keyboard shortcut.
+///
+/// The order of cases (control, option, shift, and command) is determined in the HIG.
 enum ModifierKey: CaseIterable {
     
     case control
@@ -85,7 +88,7 @@ struct Shortcut: Hashable {
     init(modifierMask: NSEvent.ModifierFlags, keyEquivalent: String) {
         
         self.modifierMask = {
-            let modifierMask = modifierMask.intersection([.shift, .control, .option, .command])
+            let modifierMask = modifierMask.intersection([.control, .option, .shift, .command])
             
             // -> For in case that a modifierMask taken from a menu item can lack Shift definition if the combination is "Shift + alphabet character" keys.
             if let keyEquivalentScalar = keyEquivalent.unicodeScalars.last,
@@ -128,14 +131,14 @@ struct Shortcut: Hashable {
     }
     
     
-    /// whether is empty
+    /// whether the shortcut key is empty
     var isEmpty: Bool {
         
         return self.keyEquivalent.isEmpty && self.modifierMask.isEmpty
     }
     
     
-    /// whether key combination is valid for a shortcut
+    /// Whether key combination is valid for a shortcut.
     ///
     /// - Note: An empty shortcut is marked as invalid.
     var isValid: Bool {

@@ -177,8 +177,7 @@ extension DocumentWindow {
         
         guard !super.performKeyEquivalent(with: event) else { return true }
         
-        // select tabbed window with `⌘+number`
-        // -> select last tab with `⌘0`
+        // select tabbed window with `⌘+number` (`⌘9` for the last tab)
         guard
             event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
             let characters = event.charactersIgnoringModifiers,
@@ -193,6 +192,21 @@ extension DocumentWindow {
         window.tabGroup?.selectedWindow = window
         
         return true
+    }
+    
+    
+    override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+        
+        // programmatically set the shortcut for "Show/Hide Tab Bar", which is inserted by AppKit automatically.
+        switch menuItem.action {
+        case #selector(toggleTabBar):
+            menuItem.keyEquivalentModifierMask = [.command, .shift]
+            menuItem.keyEquivalent = "t"
+        default:
+            break
+        }
+        
+        return super.validateMenuItem(menuItem)
     }
     
 }
