@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.6 (unreleased)
+--------------------------
+
+### Improvements
+
+- Revert shortcut `⌘/` to comment-out toggle.
+
+
+
 3.8.6 (387)
 --------------------------
 

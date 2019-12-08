@@ -565,7 +565,8 @@ Gw
                                                 <action selector="toggleLineNumber:" target="Ady-hI-5gd" id="0ux-pU-v0B"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Show Status Bar" keyEquivalent="/" id="325">
+                                        <menuItem title="Show Status Bar" id="325">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
                                             </connections>
