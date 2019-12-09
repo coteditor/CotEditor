@@ -32,10 +32,6 @@ private extension NSAttributedString.Key {
 }
 
 
-private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
-
-
-
 // MARK: -
 
 final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
@@ -80,6 +76,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     
     // MARK: Private Properties
+    
+    private static let textContainerInset = NSSize(width: 0, height: 4)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
     private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightMatchingBrace() }  // NSTextView cannot be weak
@@ -146,7 +144,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
         self.autoresizingMask = .width
-        self.textContainerInset = kTextContainerInset
+        self.textContainerInset = Self.textContainerInset
         
         // set NSTextView behaviors
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
@@ -231,7 +229,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// append inset only to the bottom for overscroll
     override var textContainerOrigin: NSPoint {
         
-        return NSPoint(x: super.textContainerOrigin.x, y: kTextContainerInset.height)
+        return NSPoint(x: super.textContainerOrigin.x, y: Self.textContainerInset.height)
     }
     
     
@@ -1492,7 +1490,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
-        let height = max(floor(inset / 2), kTextContainerInset.height)
+        let height = max(floor(inset / 2), Self.textContainerInset.height)
         
         // avoid high-loaded `sizeToFit()` if not required
         guard height != self.textContainerInset.height else { return }
