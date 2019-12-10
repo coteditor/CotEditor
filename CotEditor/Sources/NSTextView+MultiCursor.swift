@@ -202,7 +202,7 @@ extension MultiCursorEditing {
         var ranges = self.insertionRanges
         
         if let clicked = ranges.first(where: { $0.touches(location) }) {
-            ranges.remove(clicked)
+            ranges.removeFirst(clicked)
         } else {
             ranges.append(NSRange(location..<location))
         }

@@ -607,7 +607,7 @@ private extension UserDefaults {
         
         // append new string to history
         var history = self[key] ?? []
-        history.remove(string)  // remove duplicated item
+        history.removeFirst(string)  // remove duplicated item
         history.append(string)
         if history.count > UserDefaults.MaxHistorySize {  // remove overflow
             history.removeFirst(history.count - UserDefaults.MaxHistorySize)

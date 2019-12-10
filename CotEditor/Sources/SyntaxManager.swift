@@ -277,7 +277,7 @@ final class SyntaxManager: SettingFileManaging {
         // add to recent styles list
         let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
         var recentStyleNames = UserDefaults.standard[.recentStyleNames]!
-        recentStyleNames.remove(name)
+        recentStyleNames.removeFirst(name)
         recentStyleNames.insert(name, at: 0)
         UserDefaults.standard[.recentStyleNames] = Array(recentStyleNames.prefix(maximumRecentStyleCount))
         
