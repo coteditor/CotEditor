@@ -1,5 +1,6 @@
 //
 //  LineSortTests.swift
+//  Tests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class LineSortTests: XCTestCase {
+final class LineSortTests: XCTestCase {
 
     let lines = """
             dog, 🐕, 2, イヌ

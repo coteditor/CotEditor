@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class CollectionTests: XCTestCase {
+final class CollectionTests: XCTestCase {
     
     func testCount() {
         

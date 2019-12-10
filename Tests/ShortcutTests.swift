@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class ShortcutTests: XCTestCase {
+final class ShortcutTests: XCTestCase {
     
     func testKeySpecCharsCreation() {
         

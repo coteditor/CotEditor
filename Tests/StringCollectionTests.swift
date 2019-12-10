@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class StringCollectionTests: XCTestCase {
+final class StringCollectionTests: XCTestCase {
     
     func testAvailableNameCreation() {
         

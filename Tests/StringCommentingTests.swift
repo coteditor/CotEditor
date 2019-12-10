@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class StringCommentingTests: XCTestCase {
+final class StringCommentingTests: XCTestCase {
     
     // MARK: NSRange extension Tests
     

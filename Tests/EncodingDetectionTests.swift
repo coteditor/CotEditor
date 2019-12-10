@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class EncodingDetectionTests: XCTestCase {
+final class EncodingDetectionTests: XCTestCase {
     
     var bundle: Bundle?
     
@@ -221,9 +221,12 @@ class EncodingDetectionTests: XCTestCase {
         XCTAssertEqual(String.Encoding.isoLatin1.ianaCharSetName, "iso-8859-1")
     }
     
+}
     
     
     // MARK: Private Methods
+    
+private extension EncodingDetectionTests {
     
     func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) throws -> String {
         

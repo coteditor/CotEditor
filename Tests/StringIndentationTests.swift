@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class StringIndentationTests: XCTestCase {
+final class StringIndentationTests: XCTestCase {
     
     // MARK: Indentation Style Detection Tests
     

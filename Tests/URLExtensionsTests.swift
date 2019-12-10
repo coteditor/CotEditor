@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class URLExtensionsTests: XCTestCase {
+final class URLExtensionsTests: XCTestCase {
     
     func testRelativeURLCreation() {
         

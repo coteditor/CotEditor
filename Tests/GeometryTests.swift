@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class GeometryTests: XCTestCase {
+final class GeometryTests: XCTestCase {
 
     func testScaling() {
         
