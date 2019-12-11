@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class BracePairTests: XCTestCase {
+final class BracePairTests: XCTestCase {
     
     func testIndexFind() {
         

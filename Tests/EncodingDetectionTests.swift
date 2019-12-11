@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class EncodingDetectionTests: XCTestCase {
+final class EncodingDetectionTests: XCTestCase {
     
     var bundle: Bundle?
     
@@ -173,14 +173,14 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func textEncodingInitialization() {
+    func testEncodingInitialization() {
         
-        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.utf8)
-        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.shiftJIS)
+        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.dosJapanese), String.Encoding.shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.shiftJIS)
         XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213), String.Encoding.shiftJIS)
         
-        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.utf8)
-        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.shiftJIS)
+        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)), String.Encoding.shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.shiftJIS)
         XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)), String.Encoding.shiftJIS)
     }
     
@@ -221,9 +221,12 @@ class EncodingDetectionTests: XCTestCase {
         XCTAssertEqual(String.Encoding.isoLatin1.ianaCharSetName, "iso-8859-1")
     }
     
+}
     
     
     // MARK: Private Methods
+    
+private extension EncodingDetectionTests {
     
     func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) throws -> String {
         

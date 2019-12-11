@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class FormattersTests: XCTestCase {
+final class FormattersTests: XCTestCase {
     
     func testFilePermissions() {
         

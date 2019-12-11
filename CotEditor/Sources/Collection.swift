@@ -28,11 +28,15 @@ extension RangeReplaceableCollection where Element: Equatable {
     /// Remove first collection element that is equal to the given `element`.
     ///
     /// - Parameter element: The element to be removed.
-    mutating func remove(_ element: Element) {
+    /// - Returns: The index of the removed element, or `nil` if not contains.
+    @discardableResult
+    mutating func removeFirst(_ element: Element) -> Index? {
         
-        guard let index = self.firstIndex(of: element) else { return }
+        guard let index = self.firstIndex(of: element) else { return nil }
         
         self.remove(at: index)
+        
+        return index
     }
     
 }

@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class FontExtensionTests: XCTestCase {
+final class FontExtensionTests: XCTestCase {
     
     func testFontSize() {
         

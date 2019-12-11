@@ -67,7 +67,14 @@ extension Pair where T == Character {
 
 extension StringProtocol where Self.Index == String.Index {
     
+    /// Find the mate of a brace pair.
     ///
+    /// - Parameters:
+    ///   - index: The character index of the brace character to find the mate.
+    ///   - candidates: Brace pairs to find.
+    ///   - range: The range of characters to find in.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    /// - Returns: The character index of the matched pair.
     func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
         
         guard !self.isCharacterEscaped(at: index) else { return nil }
@@ -90,10 +97,21 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// find character index of matched opening brace before a given index.
+    /// Find character index of matched opening brace before a given index.
+    ///
+    /// This method ignores escaped characters.
+    ///
+    /// - Parameters:
+    ///   - endIndex: The character index of the closing brace of the pair to find.
+    ///   - pair: The brace pair to find.
+    ///   - beginIndex: The lower boundary of the find range.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    /// - Returns: The character index of the matched opening brace, or `nil` if not found.
     func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
         assert(endIndex <= self.endIndex)
+        assert(self[endIndex] == pair.end)
+        assert(pair != pairToIgnore)
         
         let beginIndex = beginIndex ?? self.startIndex
         
@@ -130,10 +148,21 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// find character index of matched closing brace after a given index.
+    /// Find character index of matched closing brace after a given index.
+    ///
+    /// This method ignores escaped characters.
+    ///
+    /// - Parameters:
+    ///   - beginIndex: The character index of the opening brace of the pair to find.
+    ///   - pair: The brace pair to find.
+    ///   - endIndex: The upper boundary of the find range.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    /// - Returns: The character index of the matched closing brace, or `nil` if not found.
     func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
         assert(beginIndex >= self.startIndex)
+        assert(self[beginIndex] == pair.begin)
+        assert(pair != pairToIgnore)
         
         let endIndex = endIndex ?? self.endIndex
         

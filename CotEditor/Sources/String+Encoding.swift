@@ -71,10 +71,6 @@ private extension CFStringEncoding {
 
 extension String.Encoding {
     
-    private static let shiftJIS = String.Encoding(cfEncodings: .shiftJIS)
-    private static let shiftJIS_X0213 = String.Encoding(cfEncodings: .shiftJIS_X0213)
-    
-    
     init(cfEncodings: CFStringEncodings) {
         
         self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue)))

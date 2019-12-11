@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class StringExtensionsTests: XCTestCase {
+final class StringExtensionsTests: XCTestCase {
     
     /// Test if the U+FEFF omitting bug on Swift 5 still exists.
     func testFEFF() {

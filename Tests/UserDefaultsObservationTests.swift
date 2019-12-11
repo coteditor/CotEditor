@@ -1,5 +1,6 @@
 //
 //  UserDefaultsObservationTests.swift
+//  Tests
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class UserDefaultsObservationTests: XCTestCase {
+final class UserDefaultsObservationTests: XCTestCase {
 
     private static let key = DefaultKey<Bool>("TestKey")
     

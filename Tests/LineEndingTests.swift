@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class LineEndingTests: XCTestCase {
+final class LineEndingTests: XCTestCase {
     
     func testLineEnding() {
         

@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class FourCharCodeTests: XCTestCase {
+final class FourCharCodeTests: XCTestCase {
 
     func testInitializerr() {
         

@@ -32,7 +32,7 @@ let styleDirectoryName = "Syntaxes"
 let styleExtension = "yaml"
 
 
-class SyntaxTests: XCTestCase, SyntaxParserDelegate {
+final class SyntaxTests: XCTestCase {
     
     var styleDicts: [String: SyntaxManager.StyleDictionary] = [:]
     var htmlStyle: SyntaxStyle?
@@ -128,9 +128,14 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
         self.waitForExpectations(timeout: 1)
     }
     
-    
-    // MARK: Syntax Parser Delegate
-    
+}
+
+
+
+// MARK: Syntax Parser Delegate
+
+extension SyntaxTests: SyntaxParserDelegate {
+
     func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
         
     }

@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class DataTests: XCTestCase {
+final class DataTests: XCTestCase {
 
     func testComponents() {
         
