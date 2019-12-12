@@ -45,6 +45,7 @@ final class RegexTextField: NSTextField {
         }
     }
     
+    
     // MARK: Private Properties
     
     @IBInspectable private var isReplacement: Bool = false
