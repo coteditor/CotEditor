@@ -160,21 +160,20 @@ struct ScriptDescriptor {
     
     // MARK: Public Methods
     
-    /// Create and return an user script instance
+    /// Create and return an user script instance.
     ///
     /// - Returns: An instance of `Script` created by the receiver.
     ///            Returns `nil` if the script type is unsupported.
     func makeScript() -> Script? {
         
-        guard let type = self.type else { return nil }
-        
-        switch type {
+        switch self.type {
         case .appleScript:
             switch self.executionModel {
             case .unrestricted: return AppleScript(descriptor: self)
             case .persistent: return PersistentOSAScript(descriptor: self)
             }
         case .unixScript: return UnixScript(descriptor: self)
+        case .none: return nil
         }
     }
     
