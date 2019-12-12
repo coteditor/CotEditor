@@ -279,7 +279,7 @@ final class TextFind {
     /// - Parameters:
     ///   - block: The Block enumerates the matches.
     ///   - matches: The array of matches including group matches.
-    ///   - stop: The Block can set the value to true to stop further processing of the array.   
+    ///   - stop: The Block can set the value to true to stop further processing of the array.
     func findAll(using block: (_ matches: [NSRange], _ stop: inout Bool) -> Void) {
         
         let numberOfGroups = self.numberOfCaptureGroups

@@ -110,7 +110,6 @@ extension StringProtocol where Self.Index == String.Index {
     func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
         assert(endIndex <= self.endIndex)
-        assert(self[endIndex] == pair.end)
         
         let beginIndex = beginIndex ?? self.startIndex
         
@@ -160,7 +159,6 @@ extension StringProtocol where Self.Index == String.Index {
     func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
         assert(beginIndex >= self.startIndex)
-        assert(self[beginIndex] == pair.begin)
         
         let endIndex = endIndex ?? self.endIndex
         
