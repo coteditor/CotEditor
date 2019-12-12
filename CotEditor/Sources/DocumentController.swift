@@ -34,10 +34,12 @@ protocol AdditionalDocumentPreparing: NSDocument {
 
 final class DocumentController: NSDocumentController {
     
-    private(set) lazy var autosaveDirectoryURL: URL =  try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                                    in: .userDomainMask,
-                                                                                    appropriateFor: nil,
-                                                                                    create: true)
+    // MARK: Public Properties
+    
+    private(set) lazy var autosaveDirectoryURL: URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                                   in: .userDomainMask,
+                                                                                   appropriateFor: nil,
+                                                                                   create: true)
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
@@ -329,6 +331,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         case binaryFile(type: String)
         case tooLarge(size: Int)
     }
+    
     
     let kind: ErrorKind
     let url: URL
