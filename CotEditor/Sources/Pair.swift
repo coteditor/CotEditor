@@ -111,7 +111,6 @@ extension StringProtocol where Self.Index == String.Index {
         
         assert(endIndex <= self.endIndex)
         assert(self[endIndex] == pair.end)
-        assert(pair != pairToIgnore)
         
         let beginIndex = beginIndex ?? self.startIndex
         
@@ -162,7 +161,6 @@ extension StringProtocol where Self.Index == String.Index {
         
         assert(beginIndex >= self.startIndex)
         assert(self[beginIndex] == pair.begin)
-        assert(pair != pairToIgnore)
         
         let endIndex = endIndex ?? self.endIndex
         
