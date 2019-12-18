@@ -72,7 +72,7 @@ extension String {
         return (try! NSRegularExpression(pattern: pattern))
             .matches(in: self, range: self.nsRange)
             .map { $0.range }
-            .compactMap { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }
+            .map { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }
     }
     
 }
