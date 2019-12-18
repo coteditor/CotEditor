@@ -126,14 +126,17 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("AbcDefg Hij".snakecased, "abc_defg hij")
         XCTAssertEqual("abcDefg Hij".snakecased, "abc_defg hij")
         XCTAssertEqual("_abcDefg Hij".snakecased, "_abc_defg hij")
+        XCTAssertEqual("AA\u{0308}".snakecased, "a_a\u{0308}")
         
         XCTAssertEqual("abc_defg Hij".camelcased, "abcDefg hij")
         XCTAssertEqual("AbcDefg Hij".camelcased, "abcDefg hij")
         XCTAssertEqual("_abcDefg Hij".camelcased, "_abcDefg hij")
+        XCTAssertEqual("a_a\u{0308}".camelcased, "aA\u{0308}")
         
         XCTAssertEqual("abc_defg Hij".pascalcased, "AbcDefg Hij")
         XCTAssertEqual("abcDefg Hij".pascalcased, "AbcDefg Hij")
         XCTAssertEqual("_abcDefg Hij".pascalcased, "_abcDefg Hij")
+        XCTAssertEqual("a_a\u{0308}".pascalcased, "AA\u{0308}")
     }
     
     

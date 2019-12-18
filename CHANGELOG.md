@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.8 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix a possible crash when transforming the case of selection that includes specific a character order.
+
+
+
 3.8.7 (389)
 --------------------------
 

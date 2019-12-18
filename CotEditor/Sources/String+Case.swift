@@ -27,18 +27,18 @@ import Foundation
 
 extension String {
     
-    /// transform all camel and pascal case words to snake case
+    /// Transform all camel and pascal case words to snake case.
     var snakecased: String {
         
-        return self.ranges(pattern: "(?<=\\w)[A-Z]")
+        return self.ranges(pattern: "(?<=\\w)(?=[A-Z])")
             .reversed()
             .reduce(self.lowercased()) { (string, range) in
-                string.replacingCharacters(in: range, with: "_" + string[range])
+                string.replacingCharacters(in: range, with: "_")
             }
     }
     
     
-    /// transform all snake and pascal case words to camel case
+    /// Transform all snake and pascal case words to camel case.
     var camelcased: String {
         
         return self.ranges(pattern: "(?<=\\w)(?:[A-Z]|_\\w)")
@@ -51,7 +51,7 @@ extension String {
     }
     
     
-    /// transform all snake and pascal case words to pascal case
+    /// Transform all snake and pascal case words to pascal case.
     var pascalcased: String {
         
         return self.ranges(pattern: "(?:\\b|(?<=\\w)_)\\w")
@@ -71,7 +71,8 @@ extension String {
         
         return (try! NSRegularExpression(pattern: pattern))
             .matches(in: self, range: self.nsRange)
-            .map { Range($0.range, in: self)! }
+            .map { $0.range }
+            .compactMap { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }
     }
     
 }
