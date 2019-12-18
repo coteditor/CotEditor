@@ -150,7 +150,7 @@ extension MultiCursorEditing {
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         
         var locations: [Int] = []
-        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { (_, usedRect, _, glyphRange, stop) in
+        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, glyphRange, stop) in
             let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
             let point = NSPoint(x: startPoint.x, y: rect.midY)
             
