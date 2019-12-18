@@ -5,6 +5,11 @@ Change Log
 3.8.8 (unreleased)
 --------------------------
 
+### Improvements
+
+- [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “"”2.x”.
+
+
 ### Fixes
 
 - Fix a possible crash when transforming the case of selection that includes specific a character order.
