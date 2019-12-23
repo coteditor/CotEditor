@@ -158,6 +158,12 @@
 "yN3-iT-4Lq.title" = "Sostituzioni";
 /* Class = "NSMenu"; title = "Substitutions"; ObjectID = "2wy-A5-6kZ"; */
 "2wy-A5-6kZ.title" = "Sostituzioni";
+/* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
+"7NX-1r-Wq7.title" = "Sostituisci virgolette";
+/* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
+"hMS-qd-BCS.title" = "Sostituisci trattini";
+/* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
+"ue7-85-H8l.title" = "Sostituisci testo";
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
 "gqI-2M-XIx.title" = "Mostra sostituzioni";
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */

@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit > Substituions menu.
 - [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
 
 
