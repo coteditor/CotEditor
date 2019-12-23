@@ -273,6 +273,12 @@ Gw
                                                             <action selector="replaceQuotesInSelection:" target="Ady-hI-5gd" id="yj0-7q-gLA"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Straighten Quotes" id="9gl-1h-Yit">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="straightenQuotesInSelection:" target="Ady-hI-5gd" id="ERO-GK-a6I"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem title="Replace Dashes" id="hMS-qd-BCS">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

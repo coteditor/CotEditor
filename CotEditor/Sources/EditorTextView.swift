@@ -783,6 +783,20 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                             at: pasteIndex + 1)
         }
         
+        // add "Straighten Quotes" menu item in Substitutions submenu
+        for item in menu.items {
+            guard let submenu = item.submenu else { continue }
+            
+            let index = submenu.indexOfItem(withTarget: nil, andAction: Selector(("replaceQuotesInSelection:")))
+            
+            guard index >= 0 else { continue }  // -1 == not found
+            
+            submenu.insertItem(withTitle: "Straighten Quotes".localized,
+                               action: #selector(straightenQuotesInSelection(_:)),
+                               keyEquivalent: "",
+                               at: index + 1)
+        }
+        
         return menu
     }
     
@@ -1088,6 +1102,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         switch action {
         case #selector(copyWithStyle):
+            return !self.selectedRange.isEmpty
+            
+        case #selector(straightenQuotesInSelection):
+            // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
+            //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
             return !self.selectedRange.isEmpty
             
         case #selector(showSelectionInfo):
