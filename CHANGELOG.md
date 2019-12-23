@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “"”2.x”.
+- [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
 
 
 ### Fixes
