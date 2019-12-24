@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ enum HUDSymbol {
 
 private extension NSUserInterfaceItemIdentifier {
     
-    static let HUD = NSUserInterfaceItemIdentifier("HUD")
+    static let hud = NSUserInterfaceItemIdentifier("HUD")
 }
 
 
@@ -74,7 +74,7 @@ final class HUDController: NSViewController {
         
         super.viewWillAppear()
         
-        self.view.identifier = .HUD
+        self.view.identifier = .hud
         self.view.layer?.cornerRadius = self.cornerRadius
         self.view.layer?.opacity = 0.0
         
@@ -94,7 +94,7 @@ final class HUDController: NSViewController {
     func show(in clientView: NSView) {
         
         // remove previous HUD
-        for subview in clientView.subviews where subview.identifier == .HUD {
+        for subview in clientView.subviews where subview.identifier == .hud {
             subview.fadeOut(duration: self.fadeDuration / 2.0, delay: 0)  // fade quickly
         }
         
