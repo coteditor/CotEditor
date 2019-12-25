@@ -74,11 +74,14 @@ final class HUDController: NSViewController {
         
         super.viewWillAppear()
         
-        self.view.identifier = .hud
-        self.view.layer?.cornerRadius = self.cornerRadius
-        self.view.layer?.opacity = 0.0
-        
         self.symbolImage = self.symbol.image
+        self.view.identifier = .hud
+        
+        self.view.layer?.cornerRadius = self.cornerRadius
+        self.view.layer?.opacity = 0
+        if #available(macOS 10.15, *) {
+            self.view.layer?.cornerCurve = .continuous
+        }
         
         // set rotate symbol
         if self.isReversed {
