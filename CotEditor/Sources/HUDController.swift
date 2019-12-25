@@ -28,15 +28,17 @@ import QuartzCore
 
 enum HUDSymbol {
     
-    case wrap
+    case wrap(reversed: Bool = false)
+    
     
     var image: NSImage {
         
         switch self {
-        case .wrap:
-            return #imageLiteral(resourceName: "WrapTemplate")
+        case .wrap(let reversed):
+            return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
         }
     }
+    
 }
 
 
@@ -50,8 +52,7 @@ final class HUDController: NSViewController {
     
     // MARK: Public Properties
     
-    var isReversed = false
-    var symbol: HUDSymbol = .wrap
+    var symbol: HUDSymbol = .wrap()
     
     
     // MARK: Private Properties
@@ -81,11 +82,6 @@ final class HUDController: NSViewController {
         self.view.layer?.opacity = 0
         if #available(macOS 10.15, *) {
             self.view.layer?.cornerCurve = .continuous
-        }
-        
-        // set rotate symbol
-        if self.isReversed {
-            self.symbolView?.rotate(byDegrees: 180)
         }
     }
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,16 +27,53 @@ import Cocoa
 
 extension NSImage {
     
+    /// Return rotated image by the specified degrees around the center.
+    ///
+    /// The `angle` must be a multiple of 90°; otherwise, parts of the rotated image may be drawn outside the image bounds.
+    ///
+    /// - Parameter angle: The rotation angle, measured in degrees.
+    /// - Returns: A rotated image.
+    func rotated(by angle: CGFloat) -> Self {
+        
+        let rotatedSize: NSSize
+        switch angle.remainder(dividingBy: 180) {
+        case 0:
+            rotatedSize = self.size
+        case -90, 90:
+            rotatedSize = self.size.rotated
+        default:
+            assertionFailure("The angle is assumed to be a multiple of 90°.")
+            rotatedSize = self.size
+        }
+        
+        let image = Self(size: rotatedSize, flipped: false) { [unowned self] (dstRect) -> Bool in
+            
+            let transform = NSAffineTransform()
+            transform.translateX(by: dstRect.width / 2, yBy: dstRect.height / 2)
+            transform.rotate(byDegrees: angle)
+            transform.translateX(by: -dstRect.width / 2, yBy: -dstRect.height / 2)
+            transform.concat()
+            
+            self.draw(in: dstRect)
+            
+            return true
+        }
+        
+        image.isTemplate = self.isTemplate
+        
+        return image
+    }
+    
+    
     /// Return a copy of the image tinted with the color.
     ///
     /// - Parameter color: The color to tint the image.
     /// - Returns: A tinted image.
-    func tinted(color: NSColor) -> NSImage {
+    func tinted(color: NSColor) -> Self {
         
         assert(self.isTemplate, "A image to tint should be a template image.")
         
-        return NSImage(size: self.size, flipped: false, drawingHandler: { [weak self] dstRect -> Bool in
-            guard let self = self else { return false }
+        return Self(size: self.size, flipped: false) { [unowned self] (dstRect) -> Bool in
             
             self.draw(in: dstRect)
             
@@ -44,7 +81,7 @@ extension NSImage {
             dstRect.fill(using: .sourceIn)
             
             return true
-        })
+        }
     }
     
 }
