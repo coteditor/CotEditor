@@ -31,7 +31,7 @@ enum HUDSymbol {
     case wrap(reversed: Bool = false)
     
     
-    var image: NSImage {
+    fileprivate var image: NSImage {
         
         switch self {
         case .wrap(let reversed):
@@ -63,23 +63,19 @@ final class HUDController: NSViewController {
     
     @objc private dynamic var symbolImage: NSImage?
     
-    @IBOutlet private weak var symbolView: NSImageView?
-    
     
     
     // MARK: -
     // MARK: Lifecycle
     
-    /// setup UI
-    override func viewWillAppear() {
+    override func viewDidLoad() {
         
-        super.viewWillAppear()
+        super.viewDidLoad()
         
         self.symbolImage = self.symbol.image
         self.view.identifier = .hud
         
         self.view.layer?.cornerRadius = self.cornerRadius
-        self.view.layer?.opacity = 0
         if #available(macOS 10.15, *) {
             self.view.layer?.cornerCurve = .continuous
         }
@@ -89,21 +85,25 @@ final class HUDController: NSViewController {
     
     // MARK: Public Methods
     
-    /// show HUD for view
+    /// Show HUD in the given view.
+    ///
+    /// - Parameter clientView: The client view where the HUD appear.
     func show(in clientView: NSView) {
         
-        // remove previous HUD
+        // remove previous HUD if any
         for subview in clientView.subviews where subview.identifier == .hud {
-            subview.fadeOut(duration: self.fadeDuration / 2.0, delay: 0)  // fade quickly
+            subview.fadeOut(duration: self.fadeDuration / 2)  // fade quickly
         }
         
         clientView.addSubview(self.view)
         
         // center
-        clientView.addConstraints([NSLayoutConstraint(item: self.view, attribute: .centerX, relatedBy: .equal,
-                                                      toItem: clientView, attribute: .centerX, multiplier: 1.0, constant: 0),
-                                   NSLayoutConstraint(item: self.view, attribute: .centerY, relatedBy: .equal,
-                                                      toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0)])  // shift a bit upper
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: self.view, attribute: .centerX, relatedBy: .equal,
+                               toItem: clientView, attribute: .centerX, multiplier: 1.0, constant: 0),
+            NSLayoutConstraint(item: self.view, attribute: .centerY, relatedBy: .equal,
+                               toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0)
+        ])
         
         // fade-in
         self.view.fadeIn(duration: self.fadeDuration * 0.8)
@@ -129,31 +129,40 @@ private extension NSView {
     /// fade-in view
     func fadeIn(duration: TimeInterval) {
         
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.toValue = 1.0
+        guard let layer = self.layer else { return assertionFailure() }
+        
+        let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        animation.fromValue = 0
+        animation.toValue = 1
         animation.duration = duration
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
-        self.layer?.add(animation, forKey: AnimationIdentifier.fadeIn)
+        
+        layer.add(animation, forKey: AnimationIdentifier.fadeIn)
     }
     
     
     /// fade-out view
-    func fadeOut(duration: TimeInterval, delay: TimeInterval) {
+    func fadeOut(duration: TimeInterval, delay: TimeInterval = 0) {
+        
+        guard let layer = self.layer else { return assertionFailure() }
         
         CATransaction.begin()
         
         CATransaction.setCompletionBlock { [weak self] in
+            guard self?.superview != nil else { return }
+            
             self?.removeFromSuperview()
         }
         
-        let animation = CABasicAnimation(keyPath: "opacity")
-        animation.toValue = 0.0
+        let animation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        animation.toValue = 0
         animation.duration = duration
         animation.beginTime = CACurrentMediaTime() + delay
         animation.fillMode = .forwards
         animation.isRemovedOnCompletion = false
-        self.layer?.add(animation, forKey: AnimationIdentifier.fadeOut)
+        
+        layer.add(animation, forKey: AnimationIdentifier.fadeOut)
         
         CATransaction.commit()
     }
