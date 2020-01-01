@@ -52,7 +52,12 @@ final class HUDController: NSViewController {
     
     // MARK: Public Properties
     
-    var symbol: HUDSymbol = .wrap()
+    var symbol: HUDSymbol = .wrap() {
+        
+        didSet {
+            self.symbolImage = self.symbol.image
+        }
+    }
     
     
     // MARK: Private Properties
@@ -72,7 +77,6 @@ final class HUDController: NSViewController {
         
         super.viewDidLoad()
         
-        self.symbolImage = self.symbol.image
         self.view.identifier = .hud
         
         self.view.layer?.cornerRadius = self.cornerRadius
@@ -102,7 +106,7 @@ final class HUDController: NSViewController {
             NSLayoutConstraint(item: self.view, attribute: .centerX, relatedBy: .equal,
                                toItem: clientView, attribute: .centerX, multiplier: 1.0, constant: 0),
             NSLayoutConstraint(item: self.view, attribute: .centerY, relatedBy: .equal,
-                               toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0)
+                               toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0),
         ])
         
         // fade-in
