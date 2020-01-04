@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2019 1024jp
+//  © 2013-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -70,7 +70,7 @@ final class DocumentWindowController: NSWindowController {
         // observe appearance setting change
         if #available(macOS 10.14, *) {
             self.appearanceModeObserver?.invalidate()
-            self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: [.initial, .new]) { [weak self] _ in
+            self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: .initial) { [weak self] _ in
                 self?.window?.appearance = {
                     switch UserDefaults.standard[.documentAppearance] {
                     case .default: return nil
