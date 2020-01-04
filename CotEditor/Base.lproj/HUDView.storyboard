@@ -16,14 +16,6 @@
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sdb-r3-JI7">
                                 <rect key="frame" x="28" y="28" width="72" height="72"/>
-                                <backgroundFilters>
-                                    <ciFilter name="CIGaussianBlur">
-                                        <configuration>
-                                            <null key="inputImage"/>
-                                            <real key="inputRadius" value="10"/>
-                                        </configuration>
-                                    </ciFilter>
-                                </backgroundFilters>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="WrapTemplate" id="20L-ay-Yzb"/>
                                 <connections>
                                     <binding destination="056-gI-SF2" name="value" keyPath="symbolImage" id="HHs-ub-N4m"/>

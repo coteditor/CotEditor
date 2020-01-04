@@ -15,7 +15,8 @@ Change Log
 
 ### Fixes
 
-- Fix a possible crash when transforming the case of selection that includes specific a character order.
+- Fix an issue on macOS 10.15 where document windows had a glitch when a search is wrapped.
+- Fix a possible crash when transforming the case of selection that includes specific character order.
 
 
 
