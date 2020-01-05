@@ -19,6 +19,7 @@ opt_in_rules:
   - empty_collection_literal
   - empty_string
   - empty_xctest_method
+  - enum_case_associated_value_count
   - explicit_init
   - explicit_self
   - extension_access_modifier
@@ -34,12 +35,15 @@ opt_in_rules:
   - legacy_random
   - let_var_whitespace
   - lower_acl_than_parent
+  - missing_docs
   - multiline_function_chains
   - multiline_parameters
   - multiline_parameters_brackets
   - nimble_operator
+  - optional_enum_case_matching
   - overridden_super_call
   - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
   - private_outlet
   - prohibited_super_call
   - quick_discouraged_call
@@ -55,8 +59,8 @@ opt_in_rules:
   - static_operator
   - toggle_bool
   - untyped_error_in_catch
+  - unused_declaration
   - unused_import
-  - unused_private_declaration
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher
   - yoda_condition
