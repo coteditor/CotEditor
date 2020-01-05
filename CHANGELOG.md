@@ -18,6 +18,7 @@ Change Log
 
 - Fix an issue on macOS 10.15 where document windows had a glitch when a search is wrapped.
 - Fix a possible crash when transforming the case of selection that includes specific character order.
+- Fix a possible crash when a document file is modified by another process.
 
 
 
