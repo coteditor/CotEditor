@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,25 +27,53 @@ import AppKit
 
 extension NSSplitViewController {
     
-    /// restore divider positions based on the autosaved data
+    /// Restore divider positions based on the autosaved data.
     func restoreAutosavePositions() {
         
+        assert(self.splitView.isVertical)
+        
         guard
-            let autosaveName = self.splitView.autosaveName,
-            let subviewFrames = UserDefaults.standard.stringArray(forKey: "NSSplitView Subview Frames " + autosaveName),
-            subviewFrames.count == self.splitViewItems.count
+            let subviewStates = self.splitView.autosavingSubviewStates,
+            subviewStates.count == self.splitViewItems.count
             else { return }
         
-        guard subviewFrames.allSatisfy({ !NSRectFromString($0).isEmpty }) else { return }
-        
-        for (item, frameString) in zip(self.splitViewItems, subviewFrames) {
-            // set divider position
-            item.viewController.view.frame = NSRectFromString(frameString)
-            
-            // set visibility
-            if let value = frameString.components(separatedBy: ", ")[safe: 4] {
-                item.isCollapsed = (value as NSString).boolValue
+        for (item, state) in zip(self.splitViewItems, subviewStates) {
+            if !state.isCollapsed, !state.frame.isEmpty {
+                item.viewController.view.frame.size = state.frame.size
             }
+            item.isCollapsed = state.isCollapsed
+        }
+    }
+    
+}
+
+
+
+private extension NSSplitView {
+    
+     struct AutosavingSubviewState {
+        
+        var frame: NSRect
+        var isCollapsed: Bool
+    }
+    
+    
+    var autosavingSubviewStates: [AutosavingSubviewState]? {
+        
+        guard
+            let autosaveName = self.autosaveName,
+            let subviewFrames = UserDefaults.standard.stringArray(forKey: "NSSplitView Subview Frames " + autosaveName)
+            else { return nil }
+        
+        return subviewFrames.map { string in
+            let components = string.components(separatedBy: ", ")
+            let isCollapsed = (components[safe: 4] as NSString?)?.boolValue ?? false
+            
+            assert(components.count == 6)
+            assert(components[4] == "YES" || components[4] == "NO")
+            assert(components[5] == "YES" || components[5] == "NO")
+            
+            return AutosavingSubviewState(frame: NSRectFromString(string), isCollapsed: isCollapsed)
         }
     }
     
