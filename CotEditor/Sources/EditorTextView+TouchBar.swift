@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,13 +63,13 @@ extension EditorTextView {
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = "Shift".localized(comment: "touch bar item")
             item.view = NSSegmentedControl(images: [#imageLiteral(resourceName: "ShiftLeftTemplate"), #imageLiteral(resourceName: "ShiftRightTemplate")], trackingMode: .momentary,
-                                           target: self, action: #selector(shift(_:)))
+                                           target: self, action: #selector(shift))
             return item
             
         case .comment:
             let item = NSCustomTouchBarItem(identifier: identifier)
             item.customizationLabel = "Comment".localized(comment: "touch bar item")
-            item.view = NSButton(image: #imageLiteral(resourceName: "CommentTemplate"), target: self, action: #selector(toggleComment(_:)))
+            item.view = NSButton(image: #imageLiteral(resourceName: "CommentTemplate"), target: self, action: #selector(toggleComment))
             return item
             
         case .textSize:

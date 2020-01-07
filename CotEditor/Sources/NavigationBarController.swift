@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -316,10 +316,10 @@ final class NavigationBarController: NSViewController {
         @unknown default: fatalError()
         }
         
-        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu(_:))
+        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu)
         self.prevButton?.toolTip = "Jump to previous outline item".localized
         
-        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu(_:))
+        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu)
         self.nextButton?.toolTip = "Jump to next outline item".localized
         
         self.updatePrevNextButtonEnabled()

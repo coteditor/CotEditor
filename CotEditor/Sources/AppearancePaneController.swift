@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -164,10 +164,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             (isBundled, isCustomized) = (false, false)
         }
         
-        guard let action = menuItem.action else { return false }
-        
         // append target setting name to menu titles
-        switch action {
+        switch menuItem.action {
         case #selector(addTheme), #selector(importTheme(_:)):
             menuItem.isHidden = (isContextualMenu && itemSelected)
             
@@ -207,7 +205,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             }
             return (!isBundled || isCustomized)
             
-        default: break
+        case nil:
+            return false
+            
+        default:
+            break
         }
         
         return true

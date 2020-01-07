@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -117,10 +117,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             (isBundled, isCustomized) = (false, false)
         }
         
-        guard let action = menuItem.action else { return false }
-        
         // append target setting name to menu titles
-        switch action {
+        switch menuItem.action {
         case #selector(openSyntaxMappingConflictSheet(_:)):
             return SyntaxManager.shared.mappingConflicts.contains { !$0.value.isEmpty }
             
@@ -153,7 +151,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             }
             return (!isBundled || isCustomized)
             
-        default: break
+        case nil:
+            return false
+            
+        default:
+            break
         }
         
         return true

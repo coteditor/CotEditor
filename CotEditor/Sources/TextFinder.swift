@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -110,9 +110,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// validate menu item
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
-        
-        switch action {
+        switch menuItem.action {
         case #selector(findNext(_:)),
              #selector(findPrevious(_:)),
              #selector(findSelectedText(_:)),
@@ -128,6 +126,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             
         case #selector(useSelectionForFind(_:)):
             return self.selectedString != nil
+            
+        case nil:
+            return false
             
         default:
             return true

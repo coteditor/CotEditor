@@ -143,6 +143,8 @@ extension DocumentWindowController: NSUserInterfaceValidations {
         switch item.action {
         case #selector(showOpacitySlider):
             return self.window?.styleMask.contains(.fullScreen) == false
+        case nil:
+            return false
         default:
             return true
         }

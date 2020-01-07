@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -760,7 +760,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // add "Inspect Character" menu item if single character is selected
         if (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal {
             menu.insertItem(withTitle: "Inspect Character".localized,
-                            action: #selector(showSelectionInfo(_:)),
+                            action: #selector(showSelectionInfo),
                             keyEquivalent: "",
                             at: 1)
         }
@@ -769,7 +769,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let copyIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(copy(_:)))
         if copyIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Copy as Rich Text".localized,
-                            action: #selector(copyWithStyle(_:)),
+                            action: #selector(copyWithStyle),
                             keyEquivalent: "",
                             at: copyIndex + 1)
         }
@@ -778,7 +778,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
         if pasteIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Select All".localized,
-                            action: #selector(selectAll(_:)),
+                            action: #selector(selectAll),
                             keyEquivalent: "",
                             at: pasteIndex + 1)
         }
@@ -792,7 +792,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             guard index >= 0 else { continue }  // -1 == not found
             
             submenu.insertItem(withTitle: "Straighten Quotes".localized,
-                               action: #selector(straightenQuotesInSelection(_:)),
+                               action: #selector(straightenQuotesInSelection),
                                keyEquivalent: "",
                                at: index + 1)
         }
@@ -1098,9 +1098,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// apply current state to related menu items and toolbar items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(copyWithStyle):
             return !self.selectedRange.isEmpty
             

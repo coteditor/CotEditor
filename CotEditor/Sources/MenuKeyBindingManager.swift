@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -176,29 +176,27 @@ final class MenuKeyBindingManager: KeyBindingManager {
         }
         
         // specific actions
-        if let action = menuItem.action {
-            switch action {
-            case #selector(EncodingHolder.changeEncoding),
-                 #selector(SyntaxHolder.changeSyntaxStyle),
-                 #selector(ThemeHolder.changeTheme),
-                 #selector(Document.changeLineEnding(_:)),
-                 #selector(DocumentViewController.changeTabWidth),
-                 #selector(ScriptManager.launchScript),
-                 #selector(AppDelegate.openHelpAnchor),
-                 #selector(NSWindow.makeKeyAndOrderFront),
-                 #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
-                 return false
-                
-            // window tabbing actions
-            // -> Because they cannot be set correctly.
-            case #selector(NSWindow.selectNextTab(_:)),
-                 #selector(NSWindow.selectPreviousTab(_:)),
-                 #selector(NSWindow.moveTabToNewWindow(_:)),
-                 #selector(NSWindow.mergeAllWindows(_:)):
-                return false
-                
-            default: break
-            }
+        switch menuItem.action {
+        case #selector(EncodingHolder.changeEncoding),
+             #selector(SyntaxHolder.changeSyntaxStyle),
+             #selector(ThemeHolder.changeTheme),
+             #selector(Document.changeLineEnding(_:)),
+             #selector(DocumentViewController.changeTabWidth),
+             #selector(ScriptManager.launchScript),
+             #selector(AppDelegate.openHelpAnchor),
+             #selector(NSWindow.makeKeyAndOrderFront),
+             #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
+             return false
+            
+        // window tabbing actions
+        // -> Because they cannot be set correctly.
+        case #selector(NSWindow.selectNextTab),
+             #selector(NSWindow.selectPreviousTab),
+             #selector(NSWindow.moveTabToNewWindow),
+             #selector(NSWindow.mergeAllWindows):
+            return false
+            
+        default: break
         }
         
         return true
