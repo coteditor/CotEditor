@@ -405,7 +405,7 @@
                                         </textField>
                                         <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-i2-FuC">
                                             <rect key="frame" x="31" y="323" width="50" height="14"/>
-                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="Full Path" usesSingleLineMode="YES" id="zwU-xo-iZu">
+                                            <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="justified" title="Full Path" usesSingleLineMode="YES" id="zwU-xo-iZu">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
