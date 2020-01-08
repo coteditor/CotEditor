@@ -496,7 +496,7 @@
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
 "NwE-Cf-L9F.title" = "Rechercher le suivant";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
-"wiV-Hh-7xU.title" = "Recherchr le précédent";
+"wiV-Hh-7xU.title" = "Rechercher le précédent";
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
 "l33-Nz-UAw.title" = "Rechercher la sélection";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */
