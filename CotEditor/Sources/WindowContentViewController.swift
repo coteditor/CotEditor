@@ -65,7 +65,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         super.viewDidAppear()
         
         // adjust sidebar visibility if this new window was just added to an existing window
-        if let other = self.siblings.first(where: { $0 != self }) {
+        if let other = self.siblings.first(where: { $0 != self }), other.isSidebarShown {
             self.sidebarThickness = other.sidebarThickness
             self.setSidebarShown(other.isSidebarShown, index: other.sidebarViewController!.selectedTabIndex)
         }
