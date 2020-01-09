@@ -1,5 +1,5 @@
 //
-//  NSSplitViewController+Autosave.swift
+//  NSSplitView+Autosave.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,31 +25,7 @@
 
 import AppKit
 
-extension NSSplitViewController {
-    
-    /// Restore divider positions based on the autosaved data.
-    func restoreAutosavePositions() {
-        
-        assert(self.splitView.isVertical)
-        
-        guard
-            let subviewStates = self.splitView.autosavingSubviewStates,
-            subviewStates.count == self.splitViewItems.count
-            else { return }
-        
-        for (item, state) in zip(self.splitViewItems, subviewStates) {
-            if !state.isCollapsed, !state.frame.isEmpty {
-                item.viewController.view.frame.size = state.frame.size
-            }
-            item.isCollapsed = state.isCollapsed
-        }
-    }
-    
-}
-
-
-
-private extension NSSplitView {
+extension NSSplitView {
     
      struct AutosavingSubviewState {
         
@@ -58,6 +34,7 @@ private extension NSSplitView {
     }
     
     
+    /// The divider configuration that was automatically saved last time, if exists.
     var autosavingSubviewStates: [AutosavingSubviewState]? {
         
         guard

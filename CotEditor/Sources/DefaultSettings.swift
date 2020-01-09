@@ -175,6 +175,7 @@ struct DefaultSettings {
         // ------ settings not in preferences window ------
         .pinsThemeAppearance: false,
         .colorCodeType: 1,
+        .sidebarWidth: 220,
         .recentStyleNames: [],
         .showStatusBar: true,
         .selectedInspectorPaneIndex: 0,

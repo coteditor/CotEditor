@@ -469,8 +469,8 @@
 		2AA79C7921CB7251005AD6AD /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA79C7721CB7251005AD6AD /* PreferencesWindow.swift */; };
 		2AA7E97D1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
 		2AA7E97E1DBAAC950083B7ED /* Script.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA7E97C1DBAAC950083B7ED /* Script.swift */; };
-		2AA86282212ED91400BB75C9 /* NSSplitViewController+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */; };
-		2AA86283212ED91400BB75C9 /* NSSplitViewController+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */; };
+		2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */; };
+		2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */; };
 		2AAB4BF91D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFA1D2435AC0049A68B /* DocumentInspectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */; };
 		2AAB4BFC1D2437EA0049A68B /* IncompatibleCharactersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */; };
@@ -1202,7 +1202,7 @@
 		2AA761391D457BD500031AAF /* String+Indentation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Indentation.swift"; sourceTree = "<group>"; };
 		2AA79C7721CB7251005AD6AD /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		2AA7E97C1DBAAC950083B7ED /* Script.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Script.swift; sourceTree = "<group>"; };
-		2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSplitViewController+Autosave.swift"; sourceTree = "<group>"; };
+		2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSSplitView+Autosave.swift"; sourceTree = "<group>"; };
 		2AAB4BF81D2435AC0049A68B /* DocumentInspectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentInspectorViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFB1D2437EA0049A68B /* IncompatibleCharactersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncompatibleCharactersViewController.swift; sourceTree = "<group>"; };
 		2AAB4BFE1D2444930049A68B /* SidebarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
@@ -1791,7 +1791,7 @@
 				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2A05081223D6B9E900602F5E /* NSViewController.swift */,
-				2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */,
+				2AA86281212ED91400BB75C9 /* NSSplitView+Autosave.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
 				2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */,
 				2A47CD3721D340030094F62F /* NSValidatedUserInterfaceItem.swift */,
@@ -3002,7 +3002,7 @@
 				2AD69B891D3E4FCD00FBD998 /* Editable.swift in Sources */,
 				2AF0C1261D3DA44900B6FCB6 /* FourCharCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
-				2AA86283212ED91400BB75C9 /* NSSplitViewController+Autosave.swift in Sources */,
+				2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
@@ -3199,7 +3199,7 @@
 				2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */,
 				2AAD61F01D2B0856008FE772 /* FuzzyRange.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
-				2AA86282212ED91400BB75C9 /* NSSplitViewController+Autosave.swift in Sources */,
+				2AA86282212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2A9082EC1D325BEC00228F50 /* UserDefaults.swift in Sources */,
 				2A5D13481D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
 				2A1FAD5820A74D0A00566D7C /* MutableCopying.swift in Sources */,

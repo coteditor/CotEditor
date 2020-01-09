@@ -49,6 +49,8 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: Private Properties
     
+    private var frameObserver: NSKeyValueObservation?
+    
     @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
     @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
     @IBOutlet private weak var incompatibleCharactersTabViewItem: NSTabViewItem?
@@ -56,7 +58,12 @@ final class SidebarViewController: NSTabViewController {
     
     
     // MARK: -
-    // MARK: Tab View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        self.frameObserver?.invalidate()
+    }
+    
     
     /// prepare tabs
     override func viewDidLoad() {
@@ -69,12 +76,27 @@ final class SidebarViewController: NSTabViewController {
         // bind segmentedControl manually  (2016-09 on macOS 10.12)
         (self.tabView as! InspectorTabView).segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
         
+        // restore thickness first when the view is loaded
+        let sidebarWidth = UserDefaults.standard[.sidebarWidth]
+        if sidebarWidth > 0 {
+            self.view.frame.size.width = sidebarWidth
+            // apply also to .tabView that is the only child of .view
+            self.view.layoutSubtreeIfNeeded()
+        }
+        self.frameObserver?.invalidate()
+        self.frameObserver = self.view.observe(\.frame) { (view, _) in
+            UserDefaults.standard[.sidebarWidth] = view.frame.width
+        }
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("inspector".localized)
     }
     
+    
+    
+    // MARK: Tab View Controller Methods
     
     /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {

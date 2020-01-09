@@ -63,6 +63,7 @@ final class DocumentWindowController: NSWindowController {
         let contentSize = NSSize(width: UserDefaults.standard[.windowWidth],
                                  height: UserDefaults.standard[.windowHeight])
         self.window!.setContentSize(contentSize)
+        (self.contentViewController as! WindowContentViewController).restoreAutosavingState()
         
         // set background alpha
         (self.window as? DocumentWindow)?.backgroundAlpha = UserDefaults.standard[.windowAlpha]

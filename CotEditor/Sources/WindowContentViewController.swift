@@ -49,10 +49,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
         self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         
-        // apply user's preference manually (2018-08 macOS 10.13)
-        // -> Because the framework's autosave implementation doesn't work with autolayout.
-        self.restoreAutosavePositions()
-        
         self.sidebarViewController?.delegate = self
     }
     
@@ -135,6 +131,27 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     func showSidebarPane(index: SidebarViewController.TabIndex) {
         
         self.setSidebarShown(true, index: index, animate: true)
+    }
+    
+
+    /// rsestore visibility of inspector but keeping the window width
+    func restoreAutosavingState() {
+        
+        assert(self.sidebarViewItem!.isCollapsed)
+        assert(self.sidebarViewItem == self.splitViewItems[1])
+        assert(!self.view.window!.isVisible)
+        
+        guard let sidebarViewItem = self.sidebarViewItem else { return assertionFailure() }
+        guard self.splitView.autosavingSubviewStates?[safe: 1]?.isCollapsed == false else { return }
+        
+        let originalSize = self.view.frame.size
+        
+        sidebarViewItem.isCollapsed = false
+        
+        // adjust contentView shape
+        let newWidth = originalSize.width + sidebarViewItem.viewController.view.frame.width
+        self.view.window?.setContentSize(NSSize(width: newWidth, height: originalSize.height))
+        self.splitView.setPosition(originalSize.width, ofDividerAt: 0)
     }
     
     
