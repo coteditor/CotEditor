@@ -34,6 +34,7 @@ final class FuzzyRangeTests: XCTestCase {
         
         XCTAssertEqual(string.range(in: FuzzyRange(location: 2, length: 2)), NSRange(location: 2, length: 2))
         XCTAssertEqual(string.range(in: FuzzyRange(location: -1, length: 1)), NSRange(location: 9, length: 1))
+        XCTAssertEqual(string.range(in: FuzzyRange(location: 3, length: -1)), NSRange(3..<9))
         XCTAssertEqual(string.range(in: FuzzyRange(location: 3, length: -2)), NSRange(location: 3, length: "45678".utf16.count))
     }
         
@@ -79,6 +80,7 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertEqual(FuzzyRange(string: "-1:-1")!, FuzzyRange(location: -1, length: -1))
         XCTAssertNil(FuzzyRange(string: "abc"))
         XCTAssertNil(FuzzyRange(string: "1:a"))
+        XCTAssertNil(FuzzyRange(string: "1:1:1"))
     }
 
 }

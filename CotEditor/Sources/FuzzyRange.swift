@@ -43,6 +43,7 @@ extension FuzzyRange {
         let components = string.components(separatedBy: ":").map { Int($0) }
         
         guard
+            (1...2).contains(components.count),
             let location = components[0],
             let length = (components.count > 1) ? components[1] : 0
             else { return nil }
@@ -68,26 +69,29 @@ extension FuzzyRange {
 
 extension String {
     
-    /// Convert FuzzyRange that allows negative values to valid NSRange.
+    /// Convert FuzzyRange that allows negative values to the valid NSRange.
     ///
     /// - Note:
-    ///   A negative location accesses an element from the end of the elements counting backwards.
+    ///   A negative location accesses the element by counting backwards from the end.
     ///   For example, `location == -1` is the last character.
     ///
     ///   Likewise, a negative length can be used to select rest elements except the last one element.
-    ///   e.g. `location: 3`, `length: -1` where string has 10 lines.
-    ///   -> element 3 to 9 (NSRange(3, 6)) will be returned
+    ///   e.g. Passing `FuzzyRange(location: 3, length: -1)` to a string that has 10 characters returns `NSRange(3..<9)`.
     ///
     /// - Parameters:
-    ///   - fuzzyRange: The character range that allows also negative values.
+    ///   - range: The character range that allows also negative values.
     /// - Returns: A character range, or `nil` if the given value is out of range.
-    func range(in fuzzyRange: FuzzyRange) -> NSRange? {
+    func range(in range: FuzzyRange) -> NSRange? {
         
         let wholeLength = self.length
-        let newLocation = (fuzzyRange.location >= 0) ? fuzzyRange.location : (wholeLength + fuzzyRange.location)
-        let newLength = (fuzzyRange.length >= 0) ? fuzzyRange.length : (wholeLength - newLocation + fuzzyRange.length)
+        let newLocation = (range.location >= 0) ? range.location : (wholeLength + range.location)
+        let newLength = (range.length >= 0) ? range.length : (wholeLength - newLocation + range.length)
         
-        guard newLocation >= 0, newLength >= 0, newLocation <= wholeLength else { return nil }
+        guard
+            newLocation >= 0,
+            newLength >= 0,
+            newLocation <= wholeLength
+            else { return nil }
         
         return NSRange(newLocation..<min(newLocation + newLength, wholeLength))
     }
@@ -100,26 +104,26 @@ extension String {
     ///   The last new line character will be included to the return value.
     ///
     /// - Parameters:
-    ///   - fuzzyRange: The character range that allows also negative values.
+    ///   - lineRange: The line range that allows also negative values.
     /// - Returns: A character range, or `nil` if the given value is out of range.
-    func rangeForLine(in fuzzyRange: FuzzyRange) -> NSRange? {
+    func rangeForLine(in lineRange: FuzzyRange) -> NSRange? {
         
         let regex = try! NSRegularExpression(pattern: "^.*(?:\\R|\\z)", options: .anchorsMatchLines)
         let lineRanges = regex.matches(in: self, range: self.nsRange).map { $0.range }
         let count = lineRanges.count
 
-        guard fuzzyRange.location != 0 else { return NSRange(0..<0) }
-        guard fuzzyRange.location <= count else { return NSRange(location: self.length, length: 0) }
+        guard lineRange.location != 0 else { return NSRange(0..<0) }
+        guard lineRange.location <= count else { return NSRange(location: self.length, length: 0) }
         
-        let newLocation = (fuzzyRange.location > 0) ? fuzzyRange.location - 1 : (count + fuzzyRange.location)  // 1-based to 0-based
+        let newLocation = (lineRange.location > 0) ? lineRange.location - 1 : (count + lineRange.location)  // 1-based to 0-based
         let newLength: Int = {
-            switch fuzzyRange.length {
-            case .min..<0:
-                return count - newLocation + fuzzyRange.length - 1
+            switch lineRange.length {
+            case ..<0:
+                return count - newLocation + lineRange.length - 1
             case 0:
                 return 0
             default:
-                return fuzzyRange.length - 1
+                return lineRange.length - 1
             }
         }()
         
