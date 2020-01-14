@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -137,7 +137,6 @@ extension EditorTextView {
         }
         
         let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
-        viewController.representedObject = self
         
         // sample the first line
         let range = Range(self.selectedRange, in: self.string)!
@@ -145,6 +144,10 @@ extension EditorTextView {
         let lineRange = self.string.lineContentsRange(at: location)
         viewController.sampleLine = String(self.string[workaround: lineRange])
         viewController.sampleFontName = self.font?.fontName
+        
+        viewController.completionHandler = { [weak self] (pattern, options) in
+            self?.sortLines(pattern: pattern, options: options)
+        }
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
     }
@@ -159,13 +162,13 @@ extension EditorTextView {
         self.replace(with: info.strings, ranges: info.ranges, selectedRanges: info.selectedRanges, actionName: actionName)
     }
     
-}
-
-
-
-extension NSTextView {
     
-    func sortLines(pattern: SortPattern, options: SortOptions) {
+    /// Sort lines in the text content.
+    ///
+    /// - Parameters:
+    ///   - pattern: The sort pattern.
+    ///   - options: The sort options.
+    private func sortLines(pattern: SortPattern, options: SortOptions) {
         
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange

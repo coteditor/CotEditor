@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="uia-jw-3Md">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,7 +26,7 @@
                     <tabView key="tabView" misplaced="YES" drawsBackground="NO" type="noTabsNoBorder" id="cOs-MN-hMm">
                         <rect key="frame" x="0.0" y="0.0" width="280" height="120"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
+                        <font key="font" metaFont="system"/>
                         <connections>
                             <outlet property="delegate" destination="UQP-be-J0h" id="x9y-n2-ncX"/>
                         </connections>
@@ -62,7 +62,7 @@ DQ
 </string>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="ok:" target="uia-jw-3Md" id="suZ-dc-7FA"/>
+                                    <action selector="apply:" target="uia-jw-3Md" id="9hu-Gr-1Bj"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGp-tE-DiD">
@@ -356,7 +356,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0AM-o6-6xl">
-                                <rect key="frame" x="232" y="5" width="19" height="27"/>
+                                <rect key="frame" x="232" y="5" width="19" height="28"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" minValue="1" maxValue="100" doubleValue="1" id="fin-vh-3BV"/>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="SbM-Fx-692" id="H9e-7q-e0f"/>
@@ -441,7 +441,7 @@ Gw
                                 <rect key="frame" x="53" y="27" width="85" height="18"/>
                                 <buttonCell key="cell" type="check" title="Ignore Case" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="GS5-w5-IIt">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="2H8-Ji-7t5"/>
@@ -474,7 +474,7 @@ Gw
                                 </connections>
                             </textField>
                             <stepper horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ooD-sC-3Cd">
-                                <rect key="frame" x="184" y="1" width="19" height="27"/>
+                                <rect key="frame" x="184" y="1" width="19" height="28"/>
                                 <stepperCell key="cell" continuous="YES" alignment="left" maxValue="100" doubleValue="1" id="d8b-fu-EvK"/>
                                 <connections>
                                     <action selector="valueDidUpdate:" target="mza-P2-Q5P" id="qXg-uN-WUq"/>

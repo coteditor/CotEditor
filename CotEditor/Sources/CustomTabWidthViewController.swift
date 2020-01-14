@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,10 +51,15 @@ final class CustomTabWidthViewController: NSViewController {
     }
     
     
+    
+    // MARK: Action Messages
+    
     /// apply
     @IBAction func apply(_ sender: Any?) {
         
-        self.endEditing()
+        assert(self.completionHandler != nil)
+        
+        guard self.endEditing() else { return NSSound.beep() }
         
         let fieldValue = self.tabWidthField!.integerValue
         let width = (fieldValue > 0) ? fieldValue : self.defaultWidth

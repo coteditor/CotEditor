@@ -127,8 +127,25 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     /// show Go To sheet
     @IBAction func gotoLocation(_ sender: Any?) {
         
+        guard let textView = self.textView else { return assertionFailure() }
+        
         let viewController = GoToLineViewController.instantiate(storyboard: "GoToLineView")
-        viewController.textView = self.textView
+        
+        let string = textView.string
+        let lineNumber = string.lineNumber(at: textView.selectedRange.location)
+        let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
+        viewController.lineRange = (lineNumber, lineCount)
+        
+        viewController.completionHandler = { (lineRange) in
+           guard let range = textView.string.rangeForLine(location: lineRange.location, length: lineRange.length)
+            else { return false }
+            
+            textView.selectedRange = range
+            textView.scrollRangeToVisible(range)
+            textView.showFindIndicator(for: range)
+            
+            return true
+        }
         
         self.presentAsSheet(viewController)
     }
