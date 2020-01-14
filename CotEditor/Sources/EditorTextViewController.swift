@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -134,11 +134,10 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         let string = textView.string
         let lineNumber = string.lineNumber(at: textView.selectedRange.location)
         let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
-        viewController.lineRange = (lineNumber, lineCount)
+        viewController.lineRange = FuzzyRange(location: lineNumber, length: lineCount)
         
         viewController.completionHandler = { (lineRange) in
-           guard let range = textView.string.rangeForLine(location: lineRange.location, length: lineRange.length)
-            else { return false }
+            guard let range = textView.string.rangeForLine(in: lineRange) else { return false }
             
             textView.selectedRange = range
             textView.scrollRangeToVisible(range)

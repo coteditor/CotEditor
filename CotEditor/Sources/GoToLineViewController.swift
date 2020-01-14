@@ -27,34 +27,14 @@ import Cocoa
 
 final class GoToLineViewController: NSViewController {
     
-    typealias LineRange = (location: Int, length: Int)
-    
-    
     // MARK: Public Properties
     
-    var completionHandler: ((_ lineRange: LineRange) -> Bool)?
+    var completionHandler: ((_ lineRange: FuzzyRange) -> Bool)?
     
-    var lineRange: LineRange? {
+    var lineRange: FuzzyRange? {
         
-        get {
-            let loclen = self.location.components(separatedBy: ":").map { Int($0) }
-            
-            guard
-                let location = loclen[0],
-                let length = (loclen.count > 1) ? loclen[1] : 0
-                else { return nil }
-            
-            return (location: location, length: length)
-        }
-        
-        set {
-            guard let newValue = newValue else { return assertionFailure() }
-            
-            self.location = String(newValue.location)
-            if newValue.length > 1 {
-                self.location += ":" + String(newValue.length)
-            }
-        }
+        get { FuzzyRange(string: self.location) }
+        set { self.location = newValue?.string ?? "" }
     }
     
     
