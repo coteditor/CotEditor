@@ -78,6 +78,7 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertEqual(FuzzyRange(string: "1:2")!, FuzzyRange(location: 1, length: 2))
         XCTAssertEqual(FuzzyRange(string: "-1")!, FuzzyRange(location: -1, length: 0))
         XCTAssertEqual(FuzzyRange(string: "-1:-1")!, FuzzyRange(location: -1, length: -1))
+        XCTAssertNil(FuzzyRange(string: ""))
         XCTAssertNil(FuzzyRange(string: "abc"))
         XCTAssertNil(FuzzyRange(string: "1:a"))
         XCTAssertNil(FuzzyRange(string: "1:1:1"))
