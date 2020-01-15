@@ -46,8 +46,8 @@ struct Snippet {
     }
     
     
-    let string: String
-    let selection: NSRange?
+    var string: String
+    var selections: [NSRange]
     
     
     
@@ -56,15 +56,12 @@ struct Snippet {
     
     init(_ string: String) {
         
-        // cursor position
-        if let range = string.range(of: Variable.cursor.token) {
-            let location = range.lowerBound.utf16Offset(in: string)
-            
-            self.string = string.replacingCharacters(in: range, with: "")
-            self.selection = NSRange(location: location, length: 0)
-        } else {
-            self.string = string
-            self.selection = nil
-        }
+        let tokenRanges = (string as NSString).ranges(of: Variable.cursor.token)
+        
+        self.string = tokenRanges.reversed()
+            .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: "") }
+        self.selections = tokenRanges.enumerated()
+            .map { $0.element.location - $0.offset * $0.element.length }
+            .map { NSRange($0..<$0) }
     }
 }
