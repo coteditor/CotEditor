@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -201,7 +201,7 @@ extension NSString {
         
         if includingLastEmptyLine,
             ranges == [NSRange(location: self.length, length: 0)],
-            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first!) {
+            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first) {
             return ranges
         }
         

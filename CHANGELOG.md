@@ -21,6 +21,7 @@ Change Log
 - Fix a possible crash when transforming the case of selection that includes specific character order.
 - Fix a possible crash when a document file is modified by another process.
 - [trivial] Fix a typo in French (Thanks to Arnaud Tanchoux!).
+- Improve stability.
 
 
 
