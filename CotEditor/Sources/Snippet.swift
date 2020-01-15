@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,18 +56,15 @@ struct Snippet {
     
     init(_ string: String) {
         
-        var string = string
-        
         // cursor position
         if let range = string.range(of: Variable.cursor.token) {
-            let nsRange = NSRange(range, in: string)
+            let location = range.lowerBound.utf16Offset(in: string)
             
-            string = string.replacingCharacters(in: range, with: "")
-            self.selection = NSRange(location: nsRange.location, length: 0)
+            self.string = string.replacingCharacters(in: range, with: "")
+            self.selection = NSRange(location: location, length: 0)
         } else {
+            self.string = string
             self.selection = nil
         }
-        
-        self.string = string
     }
 }

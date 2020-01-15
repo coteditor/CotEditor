@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ extension NSTextView {
         let cursorIndexes = selectedRanges
             .filter { $0.isEmpty }
             .filter { $0.location > 0 }
-            .compactMap { Range($0, in: self.string)?.lowerBound }
+            .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
         
         guard
             !cursorIndexes.isEmpty,

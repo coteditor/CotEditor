@@ -490,9 +490,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // smart outdent with '}'
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.isEmpty,
-            plainString == "}",
-            let insertionIndex = Range(self.rangeForUserTextChange, in: self.string)?.upperBound
+            plainString == "}"
         {
+            let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
             let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
@@ -1599,11 +1599,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.selectedRanges.count == 1,
             !self.selectedRange.isEmpty,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
-                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil,
-            let range = Range(self.selectedRange, in: self.string)
+                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
             else { return }
         
-        let substring = String(self.string[workaround: range])
+        let substring = (self.string as NSString).substring(with: self.selectedRange)
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: self.string, range: self.string.nsRange)
@@ -1911,10 +1910,10 @@ extension EditorTextView {
         
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
-            range.length == 1,  // clicked character can be a brace
-            let characterIndex = Range(range, in: self.string)?.lowerBound  // just in case
+            range.length == 1  // clicked character can be a brace
             else { return range }
         
+        let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text

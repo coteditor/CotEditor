@@ -139,8 +139,9 @@ extension EditorTextView {
         let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
         
         // sample the first line
-        let range = Range(self.selectedRange, in: self.string)!
-        let location = range.isEmpty ? self.string.startIndex : range.lowerBound
+        let location = self.selectedRange.isEmpty
+            ? self.string.startIndex
+            : String.Index(utf16Offset: self.selectedRange.location, in: self.string)
         let lineRange = self.string.lineContentsRange(at: location)
         viewController.sampleLine = String(self.string[workaround: lineRange])
         viewController.sampleFontName = self.font?.fontName
