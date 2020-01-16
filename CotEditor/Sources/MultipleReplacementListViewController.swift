@@ -46,8 +46,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         self.mainViewController?.delegate = self
         
         // register droppable types
-        let draggedType = NSPasteboard.PasteboardType(kUTTypeFileURL as String)
-        self.tableView?.registerForDraggedTypes([draggedType])
+        self.tableView?.registerForDraggedTypes([.fileURL])
         
         self.settingNames = ReplacementManager.shared.settingNames
         
@@ -68,7 +67,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
                 else { return 0 }
             
             return row
-            }()
+        }()
         self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe replacement setting list change

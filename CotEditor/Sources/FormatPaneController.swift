@@ -63,8 +63,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
         
-        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
-        self.syntaxTableView?.registerForDraggedTypes([draggedType])
+        self.syntaxTableView?.registerForDraggedTypes([.fileURL])
         
         NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: didUpdateSettingListNotification, object: EncodingManager.shared)
         NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)

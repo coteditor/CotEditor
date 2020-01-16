@@ -66,8 +66,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewDidLoad()
         
         // register droppable types
-        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
-        self.themeTableView?.registerForDraggedTypes([draggedType])
+        self.themeTableView?.registerForDraggedTypes([.fileURL])
         
         self.themeNames = ThemeManager.shared.settingNames
         
