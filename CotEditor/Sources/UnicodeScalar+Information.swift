@@ -92,7 +92,7 @@ extension UTF32Char {
         }
         
         // get Unicode name from property
-        if let name = Unicode.Scalar(self)?.properties.name {
+        if let name = Unicode.Scalar(self)?.properties.nameAlias {
             return name
         }
         
