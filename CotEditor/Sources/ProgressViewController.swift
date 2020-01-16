@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -112,7 +112,7 @@ final class ProgressViewController: NSViewController {
         self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
             guard progress.isFinished else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 self?.done()
             }
         }
@@ -121,7 +121,7 @@ final class ProgressViewController: NSViewController {
         self.cancelObserver = progress.observe(\.isCancelled, options: .initial) { [weak self] (progress, _) in
             guard progress.isCancelled else { return }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
                 self?.dismiss(nil)
             }
         }

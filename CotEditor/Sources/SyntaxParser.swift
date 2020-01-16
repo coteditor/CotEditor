@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -321,7 +321,7 @@ extension SyntaxParser {
                     return completionHandler()
                 }
             
-            DispatchQueue.main.async { [progress = operation.progress] in
+            DispatchQueue.main.async { [weak self, progress = operation.progress] in
                 defer {
                     if let observer = modificationObserver {
                         NotificationCenter.default.removeObserver(observer)
