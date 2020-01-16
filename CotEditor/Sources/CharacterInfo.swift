@@ -23,8 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 extension UnicodeScalar {
     
     // variant selectors
