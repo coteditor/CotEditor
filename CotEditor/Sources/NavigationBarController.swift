@@ -31,7 +31,7 @@ final class NavigationBarController: NSViewController {
     // MARK: Public Properties
     
     /// observe textView
-    var textView: NSTextView? {  // NSTextView cannot be weak
+    weak var textView: NSTextView? {
         
         willSet {
             self.orientationObserver?.invalidate()

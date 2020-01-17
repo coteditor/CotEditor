@@ -80,7 +80,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private static let textContainerInset = NSSize(width: 0, height: 4)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
-    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightMatchingBrace() }  // NSTextView cannot be weak
+    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightMatchingBrace() }
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -90,12 +90,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var mouseDownPoint: NSPoint = .zero
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightInstance() }
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?

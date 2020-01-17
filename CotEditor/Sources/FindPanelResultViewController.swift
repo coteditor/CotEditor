@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,13 +37,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     
     // MARK: Public Properties
     
-     var target: NSTextView? {
-        
-        // keep LayoutManager as `weak` instaed to avoid handling unsafe_unretained TextView
-        get { _layoutManager?.firstTextView }
-        set { _layoutManager = newValue?.layoutManager }
-    }
-    private weak var _layoutManager: NSLayoutManager?
+    weak var target: NSTextView?
     
     
     // MARK: Private Properties

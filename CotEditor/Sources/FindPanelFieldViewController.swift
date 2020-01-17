@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,8 +36,8 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     private var scrollerStyleObserver: NSKeyValueObservation?
     private var defaultsObservers: [UserDefaultsObservation] = []
     
-    @IBOutlet private var findTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
-    @IBOutlet private var replacementTextView: RegexFindPanelTextView?  // NSTextView cannot be weak
+    @IBOutlet private weak var findTextView: RegexFindPanelTextView?
+    @IBOutlet private weak var replacementTextView: RegexFindPanelTextView?
     @IBOutlet private weak var findHistoryMenu: NSMenu?
     @IBOutlet private weak var replaceHistoryMenu: NSMenu?
     @IBOutlet private weak var findResultField: NSTextField?
