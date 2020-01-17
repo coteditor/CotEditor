@@ -66,7 +66,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewDidLoad()
         
         // register droppable types
-        self.themeTableView?.registerForDraggedTypes([.fileURL])
+        self.themeTableView?.registerForDraggedTypes([.URL])
         
         self.themeNames = ThemeManager.shared.settingNames
         
