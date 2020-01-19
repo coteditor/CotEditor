@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,9 +54,9 @@ final class DocumentInspectorViewController: NSViewController {
     
     
     /// let documentAnalyzer autoupdate
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         assert(self.analyzer != nil)
         
@@ -68,9 +68,9 @@ final class DocumentInspectorViewController: NSViewController {
     /// stop autoupdate documentAnalyzer
     override func viewDidDisappear() {
         
-        self.analyzer?.needsUpdateEditorInfo = false
-        
         super.viewDidDisappear()
+        
+        self.analyzer?.needsUpdateEditorInfo = false
     }
     
     

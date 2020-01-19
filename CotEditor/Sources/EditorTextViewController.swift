@@ -60,9 +60,9 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
         // observe text orientation for line number view
         self.orientationObserver?.invalidate()
@@ -79,6 +79,16 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
             
             self.lineNumberView?.orientation = textView.layoutOrientation
         }
+    }
+    
+    
+    /// stop observations for UI update
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.orientationObserver?.invalidate()
+        self.orientationObserver = nil
     }
     
     

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,6 +64,18 @@ final class StatusBarController: NSViewController {
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("status bar".localized)
+    }
+    
+    
+    /// request analyzer to update editor info
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        assert(self.documentAnalyzer != nil)
+        
+        self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
+        self.documentAnalyzer?.invalidateEditorInfo()
         
         // observe change in defaults
         self.defaultsObservers.forEach { $0.invalidate() }
@@ -87,18 +99,6 @@ final class StatusBarController: NSViewController {
         self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [weak self] (_, _) in
             self?.updateDocumentStatus()
         }
-    }
-    
-    
-    /// request analyzer to update editor info
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        assert(self.documentAnalyzer != nil)
-        
-        self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
-        self.documentAnalyzer?.invalidateEditorInfo()
         
         if NSAppKitVersion.current < .macOS10_15 {
             self.appearanceObserver?.invalidate()
@@ -115,6 +115,9 @@ final class StatusBarController: NSViewController {
         super.viewDidDisappear()
         
         self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
+        
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers = []
         
         self.appearanceObserver?.invalidate()
         self.appearanceObserver = nil

@@ -30,30 +30,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Public Properties
     
-    /// observe textView
-    weak var textView: NSTextView? {
-        
-        willSet {
-            self.orientationObserver?.invalidate()
-            self.orientationObserver = nil
-            
-            if let textView = self.textView {
-                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
-            }
-        }
-        
-        didSet {
-            guard let textView = self.textView else { return }
-          
-            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-                self?.updateTextOrientation(to: textView.layoutOrientation)
-            }
-            
-            // observe text selection change to update outline menu selection
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
-        }
-    }
-    
+    weak var textView: NSTextView?
     
     weak var outlineProgress: Progress? {
         
@@ -110,17 +87,41 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
-        // hide outline navigations
-        self.leftButton!.isHidden = true
-        self.rightButton!.isHidden = true
-        self.outlineMenu!.isHidden = true
-        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("navigation bar".localized)
         
         self.outlineMenu?.setAccessibilityLabel("outline menu".localized)
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        guard let textView = self.textView else { return assertionFailure() }
+
+        self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
+          self?.updateTextOrientation(to: textView.layoutOrientation)
+        }
+
+        // observe text selection change to update outline menu selection
+        self.invalidateOutlineMenuSelection()
+        NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.orientationObserver?.invalidate()
+        self.orientationObserver = nil
+        
+        if let textView = self.textView {
+            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+        }
     }
     
     

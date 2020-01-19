@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,17 +85,12 @@ final class OutlineViewController: NSViewController {
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("outline".localized)
-        
-        self.fontSizeObserver?.invalidate()
-        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
-            self?.outlineView?.reloadData()
-        }
     }
     
     
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         self.invalidateCurrentLocation()
         
@@ -104,9 +99,7 @@ final class OutlineViewController: NSViewController {
         //      it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
-            self.selectionObserver = nil
         }
-        
         self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [weak self] (notification) in
             guard
                 let self = self,
@@ -116,6 +109,11 @@ final class OutlineViewController: NSViewController {
             guard textView.window == self.view.window else { return }
             
             self.invalidateCurrentLocation(textView: textView)
+        }
+        
+        self.fontSizeObserver?.invalidate()
+        self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
+            self?.outlineView?.reloadData()
         }
     }
     
@@ -128,6 +126,9 @@ final class OutlineViewController: NSViewController {
             NotificationCenter.default.removeObserver(observer)
             self.selectionObserver = nil
         }
+        
+        self.fontSizeObserver?.invalidate()
+        self.fontSizeObserver = nil
     }
     
     

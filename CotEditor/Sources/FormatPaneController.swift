@@ -64,10 +64,6 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.syntaxTableView?.target = self
         
         self.syntaxTableView?.registerForDraggedTypes([.URL])
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
     }
     
     
@@ -78,6 +74,20 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         self.setupEncodingMenus()
         self.setupSyntaxStyleMenus()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
+    }
+    
+    
+    /// stop observations for UI update
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
     }
     
     

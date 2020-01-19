@@ -80,10 +80,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             self.lightAppearanceButton?.removeFromSuperview()
             self.darkAppearanceButton?.removeFromSuperview()
         }
-        
-        // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
     }
     
     
@@ -119,6 +115,20 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        
+        // observe theme list change
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
+    }
+    
+    
+    /// stop observations for UI update
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
     }
     
     

@@ -79,8 +79,10 @@ final class LineNumberView: NSView {
     var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
         
         didSet {
-            self.invalidateDrawingInfoAndThickness()
-            self.invalidateIntrinsicContentSize()
+            if !self.isHiddenOrHasHiddenAncestor {
+                self.invalidateDrawingInfoAndThickness()
+                self.invalidateIntrinsicContentSize()
+            }
         }
     }
     
