@@ -11,6 +11,7 @@ Change Log
 - Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit > Substituions menu.
 - Restore the default window size setting in Window pane.
 - Enable setting multiple cursor points in snippets.
+- Optimize performance when some specific views are hidden.
 - [trivial] Tweak the visual notification for wrapping search.
 - [dev] Update Differ framework to 1.4.4.
 - [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
