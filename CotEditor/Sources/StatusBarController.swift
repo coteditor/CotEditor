@@ -142,9 +142,7 @@ final class StatusBarController: NSViewController {
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            if self.isViewLoaded {
-                analyzer.needsUpdateStatusEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
-            }
+            analyzer.needsUpdateStatusEditorInfo = self.isViewShown
             
             NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -165,8 +163,7 @@ final class StatusBarController: NSViewController {
         assert(Thread.isMainThread)
         
         guard
-            self.isViewLoaded,
-            !self.view.isHiddenOrHasHiddenAncestor,
+            self.isViewShown,
             let info = self.documentAnalyzer?.info
             else { return }
         
@@ -208,8 +205,7 @@ final class StatusBarController: NSViewController {
         assert(Thread.isMainThread)
         
         guard
-            self.isViewLoaded,
-            !self.view.isHiddenOrHasHiddenAncestor,
+            self.isViewShown,
             let info = self.documentAnalyzer?.info
             else { return }
         

@@ -188,8 +188,7 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
         
         guard
             let resultViewController = self.resultViewController,
-            resultViewController.isViewLoaded,
-            resultViewController.view.isHiddenOrHasHiddenAncestor,
+            resultViewController.isViewShown,
             resultViewController.view.visibleRect.isEmpty
             else { return }
         

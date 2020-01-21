@@ -98,7 +98,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     /// update list constantly only if the table is visible
     func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool {
         
-        return self.isViewLoaded && !self.view.isHiddenOrHasHiddenAncestor
+        return self.isViewShown
     }
     
     

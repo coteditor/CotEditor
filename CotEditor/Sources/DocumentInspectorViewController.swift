@@ -34,12 +34,6 @@ final class DocumentInspectorViewController: NSViewController {
     @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
     
     
-    private var analyzer: DocumentAnalyzer? {
-        
-        return self.representedObject as? DocumentAnalyzer
-    }
-    
-    
     
     // MARK: -
     // MARK: View Controller Methods
@@ -78,18 +72,24 @@ final class DocumentInspectorViewController: NSViewController {
     override var representedObject: Any? {
         
         willSet {
-            guard newValue is DocumentAnalyzer else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(String(describing: DocumentAnalyzer.self))")
-                return
-            }
             self.analyzer?.needsUpdateEditorInfo = false
         }
         
         didSet {
-            if self.isViewLoaded {
-                self.analyzer?.needsUpdateEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
-            }
+            assert(representedObject == nil || representedObject is DocumentAnalyzer,
+                   "representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className())")
+            
+            self.analyzer?.needsUpdateEditorInfo = self.isViewShown
         }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private var analyzer: DocumentAnalyzer? {
+        
+        return self.representedObject as? DocumentAnalyzer
     }
     
 }

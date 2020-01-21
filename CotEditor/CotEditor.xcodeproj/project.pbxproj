@@ -33,6 +33,8 @@
 
 /* Begin PBXBuildFile section */
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
+		2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
+		2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
 		2A0778622072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
 		2A07E8481DF160600022FF9C /* NSTouchBar+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */; };
@@ -863,6 +865,7 @@
 		0D51D5912274EF4A00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		0D51D5922274EF5300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Unicode.strings; sourceTree = "<group>"; };
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
+		2A05081223D6B9E900602F5E /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
 		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
 		2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTouchBar+Validation.swift"; sourceTree = "<group>"; };
 		2A08C889228E72DC002DC184 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = fr; path = fr.lproj/Credits.html; sourceTree = "<group>"; };
@@ -1790,6 +1793,7 @@
 				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
 				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
+				2A05081223D6B9E900602F5E /* NSViewController.swift */,
 				2AA86281212ED91400BB75C9 /* NSSplitViewController+Autosave.swift */,
 				2AF9961F235ACDD60041872E /* NSPrintInfo.swift */,
 				2A48982C215B2BFD00A6CE8A /* NSCursor+Dark.swift */,
@@ -3007,6 +3011,7 @@
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
+				2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A6FD9DA1D38F93100A59784 /* EditorTextView+Indenting.swift in Sources */,
 				2A6FD9E81D394F5900A59784 /* LayoutManager.swift in Sources */,
 				2AAD61FD1D2BD102008FE772 /* String+Additions.swift in Sources */,
@@ -3243,6 +3248,7 @@
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A4714E9209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */,
 				2A5D13381D1FCBDE00D38E6A /* FindPanelResultViewController.swift in Sources */,
+				2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */,
 				2A6FD9F31D3ACEB500A59784 /* DefaultKey.swift in Sources */,
 				2ACA0C9D21A2A47500723073 /* NSStoryboard+Instantiation.swift in Sources */,
 				2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
