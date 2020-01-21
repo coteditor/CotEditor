@@ -69,13 +69,13 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         self.orientationObserver = self.textView!.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
             guard let self = self else { return assertionFailure() }
             
-            switch textView.layoutOrientation {
-            case .horizontal:
-                self.stackView?.orientation = .horizontal
-            case .vertical:
-                self.stackView?.orientation = .vertical
-            @unknown default: fatalError()
-            }
+            self.stackView?.orientation = {
+                switch textView.layoutOrientation {
+                case .horizontal: return .horizontal
+                case .vertical: return .vertical
+                @unknown default: fatalError()
+                }
+            }()
             
             self.lineNumberView?.orientation = textView.layoutOrientation
         }
