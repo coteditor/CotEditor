@@ -40,9 +40,8 @@ final class OutlineViewController: NSViewController {
     private var documentObserver: NSObjectProtocol?
     private var syntaxStyleObserver: NSObjectProtocol?
     private var selectionObserver: NSObjectProtocol?
-    private var isOwnSelectionChange = false
-    
     private var fontSizeObserver: UserDefaultsObservation?
+    private var isOwnSelectionChange = false
     
     @IBOutlet private weak var outlineView: NSOutlineView?
     
@@ -69,6 +68,9 @@ final class OutlineViewController: NSViewController {
     override var representedObject: Any? {
         
         didSet {
+            assert(representedObject == nil || representedObject is Document,
+                   "representedObject of \(self.className) must be an instance of \(Document.className())")
+            
             self.observeDocument()
             self.observeSyntaxStyle()
             
@@ -205,8 +207,8 @@ final class OutlineViewController: NSViewController {
             guard let self = self else { return assertionFailure() }
             
             self.observeSyntaxStyle()
-            self.outlineView?.reloadData()
             
+            self.outlineView?.reloadData()
             self.invalidateCurrentLocation()
         }
     }
@@ -234,7 +236,10 @@ final class OutlineViewController: NSViewController {
     /// update row selection to synchronize with editor's cursor location
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
-        guard let outlineView = self.outlineView else { return }
+        guard
+            self.isViewShown,
+            let outlineView = self.outlineView
+            else { return }
         
         guard
             let textView = textView ?? self.document?.textView,
