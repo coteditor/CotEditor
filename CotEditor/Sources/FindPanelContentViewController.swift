@@ -187,9 +187,10 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     private func collapseResultViewIfNeeded() {
         
         guard
-            let resultView = self.resultViewController?.view,
-            !resultView.isHiddenOrHasHiddenAncestor,
-            resultView.visibleRect.isEmpty
+            let resultViewController = self.resultViewController,
+            resultViewController.isViewLoaded,
+            resultViewController.view.isHiddenOrHasHiddenAncestor,
+            resultViewController.view.visibleRect.isEmpty
             else { return }
         
         self.resultSplitViewItem?.isCollapsed = true
