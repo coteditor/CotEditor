@@ -54,7 +54,7 @@ final class DocumentInspectorViewController: NSViewController {
         
         assert(self.analyzer != nil)
         
-        self.analyzer?.needsUpdateEditorInfo = true
+        self.analyzer?.shouldUpdateEditorInfo = true
         self.analyzer?.invalidateEditorInfo()
     }
     
@@ -64,7 +64,7 @@ final class DocumentInspectorViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.analyzer?.needsUpdateEditorInfo = false
+        self.analyzer?.shouldUpdateEditorInfo = false
     }
     
     
@@ -72,14 +72,14 @@ final class DocumentInspectorViewController: NSViewController {
     override var representedObject: Any? {
         
         willSet {
-            self.analyzer?.needsUpdateEditorInfo = false
+            self.analyzer?.shouldUpdateEditorInfo = false
         }
         
         didSet {
             assert(representedObject == nil || representedObject is DocumentAnalyzer,
                    "representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className())")
             
-            self.analyzer?.needsUpdateEditorInfo = self.isViewShown
+            self.analyzer?.shouldUpdateEditorInfo = self.isViewShown
         }
     }
     

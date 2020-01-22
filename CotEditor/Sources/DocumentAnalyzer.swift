@@ -28,29 +28,39 @@ import Cocoa
 
 final class DocumentInfo: NSObject {
     
-    // file info
-    @objc dynamic var creationDate: Date?
-    @objc dynamic var modificationDate: Date?
-    @objc dynamic var fileSize: NSNumber?
-    @objc dynamic var filePath: URL?
-    @objc dynamic var owner: String?
-    @objc dynamic var permission: NSNumber?
-    @objc dynamic var isReadOnly = false
+    final class FileInfo: NSObject {
+        
+        @objc dynamic var creationDate: Date?
+        @objc dynamic var modificationDate: Date?
+        @objc dynamic var fileSize: NSNumber?
+        @objc dynamic var filePath: URL?
+        @objc dynamic var owner: String?
+        @objc dynamic var permission: NSNumber?
+        @objc dynamic var isReadOnly = false
+    }
     
-    // mode info
-    @objc dynamic var encoding: String?
-    @objc dynamic var charsetName: String?
-    @objc dynamic var lineEndings: String?
+    final class ModeInfo: NSObject {
+        
+        @objc dynamic var encoding: String?
+        @objc dynamic var lineEndings: String?
+    }
     
-    // editor info
-    @objc dynamic var lines: String?
-    @objc dynamic var chars: String?
-    @objc dynamic var words: String?
-    @objc dynamic var length: String?    // character length as UTF-16 string
-    @objc dynamic var location: String?  // caret location from the beginning of document
-    @objc dynamic var line: String?      // current line
-    @objc dynamic var column: String?    // caret location from the beginning of line
-    @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+    final class EditorInfo: NSObject {
+        
+        @objc dynamic var lines: String?
+        @objc dynamic var chars: String?
+        @objc dynamic var words: String?
+        @objc dynamic var length: String?    // character length as UTF-16 string
+        @objc dynamic var location: String?  // caret location from the beginning of document
+        @objc dynamic var line: String?      // current line
+        @objc dynamic var column: String?    // caret location from the beginning of line
+        @objc dynamic var unicode: String?   // Unicode of selected single character (or surrogate-pair)
+    }
+    
+    
+    @objc dynamic var file = FileInfo()
+    @objc dynamic var mode = ModeInfo()
+    @objc dynamic var editor = EditorInfo()
 }
 
 
@@ -68,8 +78,8 @@ final class DocumentAnalyzer: NSObject {
     
     // MARK: Public Properties
     
-    var needsUpdateEditorInfo = false  // need to update all editor info
-    var needsUpdateStatusEditorInfo = false  // need only to update editor info in satus bar
+    var shouldUpdateEditorInfo = false  // need to update all editor info
+    var shouldUpdateStatusEditorInfo = false  // need only to update editor info in satus bar
     
     @objc private(set) dynamic var info = DocumentInfo()
     
@@ -108,22 +118,9 @@ final class DocumentAnalyzer: NSObject {
     /// update file info
     func invalidateFileInfo() {
         
-        guard let document = self.document else { return }
+        guard let document = self.document else { return assertionFailure() }
         
-        let attrs = document.fileAttributes
-        
-        self.info.creationDate = attrs?[.creationDate] as? Date
-        self.info.modificationDate = attrs?[.modificationDate] as? Date
-        self.info.fileSize = attrs?[.size] as? NSNumber
-        self.info.filePath = document.fileURL
-        self.info.owner = attrs?[.ownerAccountName] as? String
-        self.info.permission = attrs?[.posixPermissions] as? NSNumber
-        self.info.isReadOnly = {
-            guard !document.isInViewingMode else { return false }
-            guard let posix = attrs?[.posixPermissions] as? UInt16 else { return false }
-            
-            return !FilePermissions(mask: posix).user.contains(.write)
-        }()
+        self.info.file = document.fileInfo
         
         NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateFileInfoNotification, object: self)
     }
@@ -132,20 +129,18 @@ final class DocumentAnalyzer: NSObject {
     /// update current encoding and line endings
     func invalidateModeInfo() {
         
-        guard let document = self.document else { return }
+        guard let document = self.document else { return assertionFailure() }
         
-        self.info.encoding = String.localizedName(of: document.encoding, withUTF8BOM: document.hasUTF8BOM)
-        self.info.charsetName = document.encoding.ianaCharSetName
-        self.info.lineEndings = document.lineEnding.name
+        self.info.mode = document.modeInfo
         
         NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateModeInfoNotification, object: self)
     }
     
     
     /// update editor info (only if really needed)
-    func invalidateEditorInfo() {
+    func invalidateEditorInfo(onlySelection: Bool = false) {
         
-        guard self.needsUpdateEditorInfo || self.needsUpdateStatusEditorInfo else { return }
+        guard self.shouldUpdateEditorInfo || self.shouldUpdateStatusEditorInfo else { return }
         
         self.editorUpdateTask.schedule()
     }
@@ -157,7 +152,7 @@ final class DocumentAnalyzer: NSObject {
     /// info types needed to be calculated
     private var requiredInfoTypes: EditorInfoTypes {
         
-        if self.needsUpdateEditorInfo { return .all }
+        if self.shouldUpdateEditorInfo { return .all }
         
         var types = EditorInfoTypes()
         if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
@@ -195,14 +190,7 @@ final class DocumentAnalyzer: NSObject {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
-                self.info.length = CountFormatter.format(result.length, selected: result.selectedLength)
-                self.info.chars = CountFormatter.format(result.characters, selected: result.selectedCharacters)
-                self.info.lines = CountFormatter.format(result.lines, selected: result.selectedLines)
-                self.info.words = CountFormatter.format(result.words, selected: result.selectedWords)
-                self.info.location = CountFormatter.format(result.location)
-                self.info.line = CountFormatter.format(result.line)
-                self.info.column = CountFormatter.format(result.column)
-                self.info.unicode = result.unicode
+                self.info.editor = result.info
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
@@ -218,17 +206,80 @@ final class DocumentAnalyzer: NSObject {
 
 
 
-private struct CountFormatter {
+
+// MARK: -
+
+private extension Document {
     
-    private init() { }
-    
-    
-    /// format count number with selection
-    static func format(_ count: Int, selected selectedCount: Int? = nil) -> String {
+    var fileInfo: DocumentInfo.FileInfo {
         
-        if let selectedCount = selectedCount, selectedCount > 0 {
+        let attrs = self.fileAttributes
+        
+        let info = DocumentInfo.FileInfo()
+        info.creationDate = attrs?[.creationDate] as? Date
+        info.modificationDate = attrs?[.modificationDate] as? Date
+        info.fileSize = attrs?[.size] as? NSNumber
+        info.filePath = self.fileURL
+        info.owner = attrs?[.ownerAccountName] as? String
+        info.permission = attrs?[.posixPermissions] as? NSNumber
+        info.isReadOnly = {
+            guard !self.isInViewingMode else { return false }
+            guard let posix = attrs?[.posixPermissions] as? UInt16 else { return false }
+            
+            return !FilePermissions(mask: posix).user.contains(.write)
+        }()
+        
+        return info
+    }
+    
+    
+    var modeInfo: DocumentInfo.ModeInfo {
+        
+        let info = DocumentInfo.ModeInfo()
+        info.encoding = String.localizedName(of: self.encoding, withUTF8BOM: self.hasUTF8BOM)
+        info.lineEndings = self.lineEnding.name
+        
+        return info
+    }
+    
+}
+
+
+
+private extension EditorCountResult {
+    
+    var info: DocumentInfo.EditorInfo {
+
+        let info = DocumentInfo.EditorInfo()
+        info.length = self.format(\.length)
+        info.chars = self.format(\.characters)
+        info.lines = self.format(\.lines)
+        info.words = self.format(\.words)
+        info.location = self.format(\.location)
+        info.line = self.format(\.line)
+        info.column = self.format(\.column)
+        info.unicode = self.unicode
+        
+        return info
+    }
+    
+    
+    private func format(_ keyPath: KeyPath<Count, Int>) -> String {
+        
+        let count = self.count[keyPath: keyPath]
+        let selectedCount = self.selectedCount[keyPath: keyPath]
+        
+        if selectedCount > 0 {
             return String.localizedStringWithFormat("%li (%li)", count, selectedCount)
         }
+        
+        return String.localizedStringWithFormat("%li", count)
+    }
+    
+    
+    private func format(_ keyPath: KeyPath<Cursor, Int>) -> String {
+        
+        let count = self.cursor[keyPath: keyPath]
         
         return String.localizedStringWithFormat("%li", count)
     }

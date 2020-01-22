@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,32 +42,39 @@ struct EditorInfoTypes: OptionSet {
 }
 
 
-
-// MARK: -
-
-final class EditorInfoCountOperation: Operation {
+struct EditorCountResult: Equatable {
     
-    struct Result {
+    struct Count: Equatable {
         
         var length = 0
         var characters = 0
         var lines = 0
         var words = 0
+    }
+    
+    struct Cursor: Equatable {
+        
         var location = 1  // caret location from the beginning of document
         var line = 1      // current line
         var column = 1    // caret location from the beginning of line
-        var unicode: String?  // Unicode of selected single character (or surrogate-pair)
-        
-        var selectedLength = 0
-        var selectedCharacters = 0
-        var selectedLines = 0
-        var selectedWords = 0
     }
     
     
+    var count = Count()
+    var selectedCount = Count()
+    var cursor = Cursor()
+    var unicode: String?  // Unicode of selected single character (or surrogate-pair)
+}
+
+
+
+// MARK: -
+
+final class EditorInfoCountOperation: Operation {
+    
     // MARK: Public Properties
     
-    private(set) var result = Result()
+    private(set) var result = EditorCountResult()
     
     
     // MARK: Private Properties
@@ -104,94 +111,94 @@ final class EditorInfoCountOperation: Operation {
     
     override func main() {
         
-        guard !self.string.isEmpty else { return }
+        self.result.count = self.count()
         
-        let selectedString = self.string[self.selectedRange]
-        let hasSelection = !self.selectedRange.isEmpty
-        let cursorLocation = self.selectedRange.lowerBound
+        guard !self.isCancelled else { return }
         
-        // count length
+        self.result.cursor = self.locate(location: self.selectedRange.lowerBound)
+        
+        guard !self.isCancelled else { return }
+        
+        // calculate selected string
+        if !self.selectedRange.isEmpty {
+            self.result.selectedCount = self.count(in: self.selectedRange)
+            
+            if self.requiredInfo.contains(.unicode) {
+                let selectedString = self.string[self.selectedRange]
+                if selectedString.unicodeScalars.compareCount(with: 1) == .equal {
+                    self.result.unicode = selectedString.unicodeScalars.first?.codePoint
+                }
+            }
+        }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func count(in range: Range<String.Index>? = nil) -> EditorCountResult.Count {
+        
+        let string = range.flatMap { self.string[$0] } ?? self.string[...]
+        var count = EditorCountResult.Count()
+        
         if self.requiredInfo.contains(.length) {
-            let isSingleLineEnding = (self.lineEnding.length == 1)
-            self.result.length = isSingleLineEnding
-                ? (self.string as NSString).length
-                : (self.string.replacingLineEndings(with: self.lineEnding) as NSString).length
-            
-            if hasSelection {
-                self.result.selectedLength = isSingleLineEnding
-                    ? (selectedString as NSString).length
-                    : (selectedString.replacingLineEndings(with: self.lineEnding) as NSString).length
-            }
+            count.length = (self.lineEnding.length == 1)
+                ? (string as NSString).length
+                : (string.replacingLineEndings(with: self.lineEnding) as NSString).length
         }
         
-        guard !self.isCancelled else { return }
+        guard !self.isCancelled else { return count }
         
-        // count characters
         if self.requiredInfo.contains(.characters) {
-            self.result.characters = self.countsLineEnding
-                ? self.string.count
-                : self.string.countExceptLineEnding
-            
-            if hasSelection {
-                self.result.selectedCharacters = self.countsLineEnding
-                    ? selectedString.count
-                    : selectedString.countExceptLineEnding
-            }
+            count.characters = self.countsLineEnding
+                ? string.count
+                : string.countExceptLineEnding
         }
         
-        guard !self.isCancelled else { return }
+        guard !self.isCancelled else { return count }
         
-        // count lines
         if self.requiredInfo.contains(.lines) {
-            self.result.lines = self.string.numberOfLines
-            
-            if hasSelection {
-                self.result.selectedLines = selectedString.numberOfLines
-            }
+            count.lines = string.numberOfLines
         }
         
-        guard !self.isCancelled else { return }
+        guard !self.isCancelled else { return count }
         
-        // count words
         if self.requiredInfo.contains(.words) {
-            self.result.words = self.string.numberOfWords
-            
-            if hasSelection {
-                self.result.selectedWords = selectedString.numberOfWords
-            }
+            count.words = string.numberOfWords
         }
         
-        guard !self.isCancelled else { return }
+        return count
+    }
+    
+    
+    private func locate(location: String.Index) -> EditorCountResult.Cursor {
+        
+        var cursor = EditorCountResult.Cursor()
         
         // calculate current location
         if self.requiredInfo.contains(.location) {
-            let locString = self.string[..<cursorLocation]
-            self.result.location = self.countsLineEnding
+            let locString = self.string[..<location]
+            cursor.location = self.countsLineEnding
                 ? locString.count + 1
                 : locString.countExceptLineEnding + 1
         }
         
-        guard !self.isCancelled else { return }
+        guard !self.isCancelled else { return cursor }
         
         // calculate current line
         if self.requiredInfo.contains(.line) {
-            self.result.line = self.string.lineNumber(at: cursorLocation)
+            cursor.line = self.string.lineNumber(at: location)
         }
         
-        guard !self.isCancelled else { return }
+        guard !self.isCancelled else { return cursor }
         
         // calculate current column
         if self.requiredInfo.contains(.column) {
-            let lineStartIndex = self.string.lineRange(at: cursorLocation).lowerBound
-            self.result.column = self.string.distance(from: lineStartIndex, to: cursorLocation) + 1
+            let lineStartIndex = self.string.lineRange(at: location).lowerBound
+            cursor.column = self.string.distance(from: lineStartIndex, to: location) + 1
         }
         
-        // unicode
-        if self.requiredInfo.contains(.unicode) {
-            if selectedString.unicodeScalars.compareCount(with: 1) == .equal {
-                self.result.unicode = selectedString.unicodeScalars.first?.codePoint
-            }
-        }
+        return cursor
     }
     
 }

@@ -96,7 +96,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     // MARK: Scanner Delegate
     
     /// update list constantly only if the table is visible
-    func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool {
+    func shouldUpdateIncompatibleCharacter(_ document: Document) -> Bool {
         
         return self.isViewShown
     }

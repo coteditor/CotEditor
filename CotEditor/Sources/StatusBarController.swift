@@ -74,7 +74,7 @@ final class StatusBarController: NSViewController {
         
         assert(self.documentAnalyzer != nil)
         
-        self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
+        self.documentAnalyzer?.shouldUpdateStatusEditorInfo = true
         self.documentAnalyzer?.invalidateEditorInfo()
         
         // observe change in defaults
@@ -114,7 +114,7 @@ final class StatusBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
+        self.documentAnalyzer?.shouldUpdateStatusEditorInfo = false
         
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = []
@@ -132,7 +132,7 @@ final class StatusBarController: NSViewController {
         willSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            analyzer.needsUpdateStatusEditorInfo = false
+            analyzer.shouldUpdateStatusEditorInfo = false
             
             NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -142,7 +142,7 @@ final class StatusBarController: NSViewController {
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            analyzer.needsUpdateStatusEditorInfo = self.isViewShown
+            analyzer.shouldUpdateStatusEditorInfo = self.isViewShown
             
             NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -164,7 +164,7 @@ final class StatusBarController: NSViewController {
         
         guard
             self.isViewShown,
-            let info = self.documentAnalyzer?.info
+            let info = self.documentAnalyzer?.info.editor
             else { return }
         
         let defaults = UserDefaults.standard
@@ -213,18 +213,18 @@ final class StatusBarController: NSViewController {
         let status = NSMutableAttributedString()
         
         if defaults[.showStatusBarEncoding] {
-            status.appendFormattedState(value: info.encoding, label: nil)
+            status.appendFormattedState(value: info.mode.encoding, label: nil)
         }
         if defaults[.showStatusBarLineEndings] {
-            status.appendFormattedState(value: info.lineEndings, label: nil)
+            status.appendFormattedState(value: info.mode.lineEndings, label: nil)
         }
         if defaults[.showStatusBarFileSize] {
-            let fileSize = self.byteCountFormatter.string(for: info.fileSize)
+            let fileSize = self.byteCountFormatter.string(for: info.file.fileSize)
             status.appendFormattedState(value: fileSize, label: nil)
         }
         
         self.documentStatus = status
-        self.showsReadOnly = info.isReadOnly
+        self.showsReadOnly = info.file.isReadOnly
     }
     
 }
