@@ -85,7 +85,7 @@ attributes:
   always_on_same_line: ["@IBAction", "@objc"]
 
 function_parameter_count:
-  warning: 7
+  warning: 6
 
 vertical_whitespace:
   max_empty_lines: 4
@@ -103,7 +103,7 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 90
+  warning: 80
   error: 100
 
 cyclomatic_complexity:
