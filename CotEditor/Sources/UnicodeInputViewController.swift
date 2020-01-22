@@ -31,9 +31,6 @@ import Cocoa
 }
 
 
-
-// MARK: -
-
 final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     
     // MARK: Public Properties
@@ -63,17 +60,28 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     }
     
     
-    override func viewDidLoad() {
+    override func viewWillAppear() {
         
-        super.viewDidLoad()
+        super.viewWillAppear()
         
+        if let observer = self.windowObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
         self.windowObserver = NotificationCenter.default.addObserver(forName: NSWindow.didResignMainNotification, object: nil, queue: .main) { [unowned self] _ in
-            guard
-                NSApp.isActive,
-                NSDocumentController.shared.documents.count <= 1  // The 1 is the document now resigning.
-                else { return }
+            guard NSDocumentController.shared.documents.count <= 1 else { return }  // The 1 is the document now resigning.
             
             self.view.window?.performClose(self)
+        }
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        if let observer = self.windowObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.windowObserver = nil
         }
     }
     
