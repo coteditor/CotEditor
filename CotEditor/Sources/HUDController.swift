@@ -79,6 +79,7 @@ final class HUDController: NSViewController {
         
         self.view.identifier = .hud
         
+        assert(self.view.layer != nil)
         self.view.layer?.cornerRadius = self.cornerRadius
         if #available(macOS 10.15, *) {
             self.view.layer?.cornerCurve = .continuous
