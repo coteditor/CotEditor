@@ -35,7 +35,7 @@ final class NavigationBarController: NSViewController {
     var outlineItems: [OutlineItem] = [] {
         
         didSet {
-            guard self.isViewShown else { return }
+            guard self.isViewShown, outlineItems != oldValue else { return }
             
             self.updateOutlineMenu()
         }

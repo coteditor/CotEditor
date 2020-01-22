@@ -32,10 +32,19 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-
 final class OutlineViewController: NSViewController {
     
     // MARK: Private Properties
+    
+    private var outlineItems: [OutlineItem] = [] {
+        
+        didSet {
+            guard outlineItems != oldValue, self.isViewShown else { return }
+            
+            self.outlineView?.reloadData()
+            self.invalidateCurrentLocation()
+        }
+    }
     
     private var documentObserver: NSObjectProtocol?
     private var syntaxStyleObserver: NSObjectProtocol?
@@ -74,7 +83,7 @@ final class OutlineViewController: NSViewController {
             self.observeDocument()
             self.observeSyntaxStyle()
             
-            self.outlineView?.reloadData()
+            self.outlineItems = (self.representedObject as? Document)?.syntaxParser.outlineItems ?? []
         }
     }
     
@@ -93,6 +102,8 @@ final class OutlineViewController: NSViewController {
     override func viewWillAppear() {
         
         super.viewWillAppear()
+        
+        self.outlineItems = self.document?.syntaxParser.outlineItems ?? []
         
         self.invalidateCurrentLocation()
         
@@ -116,6 +127,7 @@ final class OutlineViewController: NSViewController {
         self.fontSizeObserver?.invalidate()
         self.fontSizeObserver = UserDefaults.standard.observe(key: .outlineViewFontSize) { [weak self] _ in
             self?.outlineView?.reloadData()
+            self?.invalidateCurrentLocation()
         }
     }
     
@@ -137,7 +149,7 @@ final class OutlineViewController: NSViewController {
     
     // MARK: Actions
     
-    /// item in outlineView was clicked
+    /// Item in outlineView was clicked.
     @IBAction func selectOutlineItem(_ outlineView: NSOutlineView) {
         
         self.selectOutlineItem(at: outlineView.clickedRow)
@@ -147,21 +159,14 @@ final class OutlineViewController: NSViewController {
     
     // MARK: Private Methods
     
-    /// current outline items
-    private var outlineItems: [OutlineItem] {
-        
-        return self.document?.syntaxParser.outlineItems ?? []
-    }
-    
-    
-    /// current outline items
+    /// Current outline items.
     private var document: Document? {
         
         return self.representedObject as? Document
     }
     
     
-    /// paragraph style for outline items
+    /// Paragraph style for outline items.
     private var itemParagraphStyle: NSParagraphStyle = {
         
         let paragraphStyle = NSParagraphStyle.default.mutable
@@ -171,7 +176,9 @@ final class OutlineViewController: NSViewController {
     }()
     
     
-    /// select current outline item in textView
+    /// Select correspondence range of the outline item in textView.
+    ///
+    /// - Parameter row: The index of outline items to select.
     private func selectOutlineItem(at row: Int) {
         
         guard
@@ -179,21 +186,19 @@ final class OutlineViewController: NSViewController {
             item.title != .separator
             else { return }
         
-        let range = item.range
-        
         // abandon if text became shorter than range to select
         guard
             let textView = self.document?.textView,
-            textView.string.nsRange.upperBound >= range.upperBound
+            textView.string.nsRange.upperBound >= item.range.upperBound
             else { return }
         
-        textView.selectedRange = range
-        textView.scrollRangeToVisible(range)
-        textView.showFindIndicator(for: range)
+        textView.selectedRange = item.range
+        textView.scrollRangeToVisible(item.range)
+        textView.showFindIndicator(for: item.range)
     }
     
     
-    /// update document observation for syntax style
+    /// Update document observation for syntax style
     private func observeDocument() {
         
         if let observer = self.documentObserver {
@@ -203,18 +208,16 @@ final class OutlineViewController: NSViewController {
         
         guard let document = self.document else { return assertionFailure() }
         
-        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] _ in
-            guard let self = self else { return assertionFailure() }
+        self.documentObserver = NotificationCenter.default.addObserver(forName: Document.didChangeSyntaxStyleNotification, object: document, queue: .main) { [weak self] notification in
+            guard let self = self, let document = notification.object as? Document else { return assertionFailure() }
             
             self.observeSyntaxStyle()
-            
-            self.outlineView?.reloadData()
-            self.invalidateCurrentLocation()
+            self.outlineItems = document.syntaxParser.outlineItems
         }
     }
     
     
-    /// update syntax style observation for outline menus
+    /// Update syntax style observation for outline menus
     private func observeSyntaxStyle() {
         
         if let observer = self.syntaxStyleObserver {
@@ -224,16 +227,17 @@ final class OutlineViewController: NSViewController {
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         
-        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [weak self] _ in
-            guard let self = self else { return assertionFailure() }
+        self.syntaxStyleObserver = NotificationCenter.default.addObserver(forName: SyntaxParser.didUpdateOutlineNotification, object: syntaxParser, queue: .main) { [weak self] notification in
+            guard let self = self, let parser = notification.object as? SyntaxParser else { return assertionFailure() }
             
-            self.outlineView?.reloadData()
-            self.invalidateCurrentLocation()
+            self.outlineItems = parser.outlineItems
         }
     }
     
     
-    /// update row selection to synchronize with editor's cursor location
+    /// Update row selection to synchronize with editor's cursor location.
+    ///
+    /// - Parameter textView: The text view to apply the selection. when nil, the current focused editor will be used (the document can have multiple editors).
     private func invalidateCurrentLocation(textView: NSTextView? = nil) {
         
         guard
