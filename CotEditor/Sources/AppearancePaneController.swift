@@ -320,8 +320,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 let isDarkAppearance: Bool = {
                     switch UserDefaults.standard[.documentAppearance] {
                     case .default: return NSAppearance.current.isDark
-                    case .light:   return false
-                    case .dark:   return true
+                    case .light: return false
+                    case .dark: return true
                     }
                 }()
                 UserDefaults.standard[.theme] = themeName
