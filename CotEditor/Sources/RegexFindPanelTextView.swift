@@ -29,19 +29,8 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
-    var parseMode: RegularExpressionParseMode = .search {
-        
-        didSet {
-            self.invalidateRegularExpression()
-        }
-    }
-    
-    var isRegularExpressionMode: Bool = false {
-        
-        didSet {
-            self.invalidateRegularExpression()
-        }
-    }
+    var parseMode: RegularExpressionParseMode = .search  { didSet { self.invalidateRegularExpression() } }
+    var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
     
     // MARK: -

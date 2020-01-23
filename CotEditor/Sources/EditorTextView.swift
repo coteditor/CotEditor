@@ -52,6 +52,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Properties
     
+    var theme: Theme?  { didSet { self.applyTheme() } }
+    
     var isAutomaticTabExpansionEnabled = false
     
     var inlineCommentDelimiter: String?
@@ -62,7 +64,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
-    var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
+    var insertionLocations: [Int] = []  { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
@@ -1137,25 +1139,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Accessors
     
-    /// coloring settings
-    var theme: Theme? {
-        
-        didSet {
-            self.applyTheme()
-        }
-    }
-    
-    
     /// tab width in number of spaces
     @objc var tabWidth: Int {
         
         didSet {
-            if tabWidth <= 0 {
-                tabWidth = oldValue
-            }
+            tabWidth = max(oldValue, 0)
+            
             guard tabWidth != oldValue else { return }
             
-            // apply to view
             self.invalidateDefaultParagraphStyle()
         }
     }
@@ -1165,12 +1156,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHeight: CGFloat {
         
         didSet {
-            if lineHeight <= 0 {
-                lineHeight = oldValue
-            }
+            lineHeight = max(oldValue, 0)
+            
             guard lineHeight != oldValue else { return }
             
-            // apply to view
             self.invalidateDefaultParagraphStyle()
         }
     }

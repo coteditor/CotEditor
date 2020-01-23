@@ -29,8 +29,8 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Public Properties
     
-    var isHangingIndentEnabled = false { didSet { self.invalidateLayout() } }
-    var hangingIndentWidth = 0 { didSet { self.invalidateLayout() } }
+    var isHangingIndentEnabled = false  { didSet { self.invalidateLayout() } }
+    var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
     
     
     
