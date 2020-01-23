@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2019 1024jp
+//  © 2013-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -303,7 +303,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         #if APPSTORE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
-            html = html.replacingCharacters(in: html.lineRange(for: range), with: "")
+            html.replaceSubrange(html.lineRange(for: range), with: "")
         }
         #endif
         

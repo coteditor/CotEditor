@@ -74,7 +74,7 @@ extension String {
                     .map { $0.range(at: 1) }
                     .compactMap { Range($0, in: string) }
                     .reversed()
-                    .reduce(string) { $0.replacingCharacters(in: $1, with: entity.key) }
+                    .reduce(into: string) { $0.replaceSubrange($1, with: entity.key) }
             }
     }
     

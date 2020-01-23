@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -56,8 +56,7 @@ final class TextContainer: NSTextContainer {
             else { return rect }
         
         let string = storage.string as NSString
-        var lineStartIndex = 0
-        string.getLineStart(&lineStartIndex, end: nil, contentsEnd: nil, for: NSRange(characterIndex..<characterIndex))
+        let lineStartIndex = string.lineStartIndex(at: characterIndex)
         
         // no hanging indent for new line
         guard lineStartIndex < characterIndex else { return rect }
