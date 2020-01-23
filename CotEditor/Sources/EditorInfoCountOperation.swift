@@ -76,6 +76,8 @@ final class EditorInfoCountOperation: Operation {
     
     private(set) var result = EditorCountResult()
     
+    let countsWholeText: Bool
+    
     
     // MARK: Private Properties
     
@@ -91,7 +93,7 @@ final class EditorInfoCountOperation: Operation {
     // MARK: -
     // MARK: Lifecycle
     
-    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool) {
+    init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool, countsWholeText: Bool) {
         
         assert(selectedRange.upperBound <= string.endIndex)
         assert((string as AnyObject).className != "NSBigMutableString")
@@ -102,6 +104,8 @@ final class EditorInfoCountOperation: Operation {
         self.requiredInfo = requiredInfo
         self.countsLineEnding = countsLineEnding
         
+        self.countsWholeText = countsWholeText
+        
         super.init()
     }
     
@@ -111,7 +115,9 @@ final class EditorInfoCountOperation: Operation {
     
     override func main() {
         
-        self.result.count = self.count()
+        if self.countsWholeText {
+            self.result.count = self.count()
+        }
         
         guard !self.isCancelled else { return }
         

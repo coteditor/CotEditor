@@ -352,7 +352,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             else { return }
         
         // update editor information
-        // -> In case, if "Replace All" performed without moving caret.
         self.document?.analyzer.invalidateEditorInfo()
         
         // update incompatible characters list

@@ -80,6 +80,7 @@ final class DocumentAnalyzer: NSObject {
     
     var shouldUpdateEditorInfo = false  // need to update all editor info
     var shouldUpdateStatusEditorInfo = false  // need only to update editor info in satus bar
+    var needsCountWholeText = true
     
     @objc private(set) dynamic var info = DocumentInfo()
     
@@ -87,6 +88,7 @@ final class DocumentAnalyzer: NSObject {
     // MARK: Private Properties
     
     private weak var document: Document?  // weak to avoid cycle retain
+    private var lastEidorCountResult = EditorCountResult()
     
     private lazy var editorUpdateTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.updateEditorInfo() }
     private let editorInfoCountOperationQueue = OperationQueue(name: "com.coteditor.CotEditor.EditorInfoCountOperationQueue",
@@ -140,6 +142,10 @@ final class DocumentAnalyzer: NSObject {
     /// update editor info (only if really needed)
     func invalidateEditorInfo(onlySelection: Bool = false) {
         
+        if !onlySelection {
+            self.needsCountWholeText = true
+        }
+        
         guard self.shouldUpdateEditorInfo || self.shouldUpdateStatusEditorInfo else { return }
         
         self.editorUpdateTask.schedule()
@@ -161,6 +167,7 @@ final class DocumentAnalyzer: NSObject {
         if UserDefaults.standard[.showStatusBarLocation] { types.update(with: .location) }
         if UserDefaults.standard[.showStatusBarLine]     { types.update(with: .line) }
         if UserDefaults.standard[.showStatusBarColumn]   { types.update(with: .column) }
+        
         return types
     }
     
@@ -179,18 +186,26 @@ final class DocumentAnalyzer: NSObject {
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: selectedRange,
                                                  requiredInfo: self.requiredInfoTypes,
-                                                 countsLineEnding: UserDefaults.standard[.countLineEndingAsChar])
+                                                 countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],
+                                                 countsWholeText: self.needsCountWholeText)
         operation.qualityOfService = .utility
         
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
             let result = operation.result
+            let didCountWholeText = operation.countsWholeText
             
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
-                self.info.editor = result.info
+                if didCountWholeText {
+                    self.lastEidorCountResult.count = result.count
+                    self.needsCountWholeText = false
+                }
+                self.lastEidorCountResult.selectedCount = result.selectedCount
+                self.lastEidorCountResult.cursor = result.cursor
+                self.info.editor = self.lastEidorCountResult.info
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
