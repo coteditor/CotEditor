@@ -50,6 +50,8 @@ struct EditorCountResult: Equatable {
         var characters = 0
         var lines = 0
         var words = 0
+        
+        var isEmpty: Bool { self.characters == 0 && self.length == 0 && self.lines == 0 && self.words == 0 }
     }
     
     struct Cursor: Equatable {

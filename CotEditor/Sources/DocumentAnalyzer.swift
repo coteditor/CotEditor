@@ -178,14 +178,24 @@ final class DocumentAnalyzer: NSObject {
         guard
             let document = self.document,
             let textView = document.viewController?.focusedTextView,
-            !textView.hasMarkedText() else { return }
+            !textView.hasMarkedText()
+            else { return }
+        
+        let requiredInfoTypes = self.requiredInfoTypes
+        
+        // do nothing if only cursor is moved but no need to calculate the cursor location.
+        if !self.needsCountWholeText,
+            requiredInfoTypes.isDisjoint(with: [.location, .line, .column]),
+            textView.selectedRange.isEmpty,
+            self.lastEidorCountResult.selectedCount.isEmpty
+            { return }
         
         let string = textView.string.immutable
         let selectedRange = Range(textView.selectedRange, in: string) ?? string.startIndex..<string.startIndex
         let operation = EditorInfoCountOperation(string: string,
                                                  lineEnding: document.lineEnding,
                                                  selectedRange: selectedRange,
-                                                 requiredInfo: self.requiredInfoTypes,
+                                                 requiredInfo: requiredInfoTypes,
                                                  countsLineEnding: UserDefaults.standard[.countLineEndingAsChar],
                                                  countsWholeText: self.needsCountWholeText)
         operation.qualityOfService = .utility
