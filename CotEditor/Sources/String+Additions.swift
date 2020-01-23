@@ -119,6 +119,42 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
+    /// Return the index of the first character of the line touched by the given index.
+    ///
+    /// - Note: Unlike NSString's one, this method does not have the performance advantage.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line start.
+    /// - Returns: The character index of the nearest line start.
+    func lineStartIndex(at index: Index) -> Index {
+        
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
+        
+        return start
+    }
+    
+    
+    /// Return the index of the last character before the line ending of the line touched by the given index.
+    ///
+    /// - Note: Unlike NSString's one, this method does not have the performance advantage.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line contents end.
+    /// - Returns: The character index of the nearest line contents end.
+    func lineContentsEndIndex(at index: Index) -> Index {
+        
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
+        
+        return contentsEnd
+    }
+    
+    
     /// Check if character at the index is escaped with backslash.
     ///
     /// - Parameter index: The index of the character to check.

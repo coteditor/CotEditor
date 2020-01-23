@@ -194,7 +194,7 @@ final class EditorInfoCountOperation: Operation {
         
         // calculate current column
         if self.requiredInfo.contains(.column) {
-            let lineStartIndex = self.string.lineRange(at: location).lowerBound
+            let lineStartIndex = self.string.lineStartIndex(at: location)
             cursor.column = self.string.distance(from: lineStartIndex, to: location) + 1
         }
         

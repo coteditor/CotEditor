@@ -189,6 +189,34 @@ extension NSString {
     }
     
     
+    /// Return the index of the first character of the line touched by the given index.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line start.
+    /// - Returns: The character index of the nearest line start.
+    func lineStartIndex(at index: Int) -> Int {
+        
+        var start = 0
+        self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(index..<index))
+        
+        return start
+    }
+    
+    
+    /// Return the index of the last character before the line ending of the line touched by the given index.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line contents end.
+    /// - Returns: The character index of the nearest line contents end.
+    func lineContentsEndIndex(at index: Int) -> Int {
+        
+        var contentsEnd = 0
+        self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(index..<index))
+        
+        return contentsEnd
+    }
+    
+    
     /// Calculate line-by-line ranges that given ranges include.
     ///
     /// - Parameters:
