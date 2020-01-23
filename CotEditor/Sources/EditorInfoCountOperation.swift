@@ -51,7 +51,7 @@ struct EditorCountResult: Equatable {
         var lines = 0
         var words = 0
         
-        var isEmpty: Bool { self.characters == 0 && self.length == 0 && self.lines == 0 && self.words == 0 }
+        var isEmpty: Bool { self.length == 0 && self.characters == 0 && self.lines == 0 && self.words == 0 }
     }
     
     struct Cursor: Equatable {
@@ -105,7 +105,6 @@ final class EditorInfoCountOperation: Operation {
         self.selectedRange = selectedRange
         self.requiredInfo = requiredInfo
         self.countsLineEnding = countsLineEnding
-        
         self.countsWholeText = countsWholeText
         
         super.init()
@@ -127,7 +126,6 @@ final class EditorInfoCountOperation: Operation {
         
         guard !self.isCancelled else { return }
         
-        // calculate selected string
         if !self.selectedRange.isEmpty {
             self.result.selectedCount = self.count(in: self.selectedRange)
             
@@ -183,7 +181,6 @@ final class EditorInfoCountOperation: Operation {
         
         var cursor = EditorCountResult.Cursor()
         
-        // calculate current location
         if self.requiredInfo.contains(.location) {
             let locString = self.string[..<location]
             cursor.location = self.countsLineEnding
@@ -193,14 +190,12 @@ final class EditorInfoCountOperation: Operation {
         
         guard !self.isCancelled else { return cursor }
         
-        // calculate current line
         if self.requiredInfo.contains(.line) {
             cursor.line = self.string.lineNumber(at: location)
         }
         
         guard !self.isCancelled else { return cursor }
         
-        // calculate current column
         if self.requiredInfo.contains(.column) {
             let lineStartIndex = self.string.lineStartIndex(at: location)
             cursor.column = self.string.distance(from: lineStartIndex, to: location) + 1
