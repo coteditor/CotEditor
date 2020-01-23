@@ -61,7 +61,7 @@ final class OpenPanelAccessoryController: NSViewController {
     
     
     
-    // MARK: Action Messags
+    // MARK: Action Messages
     
     /// toggle visivility of hidden files
     @IBAction func toggleShowsHidenFiles(_ sender: NSButton) {
