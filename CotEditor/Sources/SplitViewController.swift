@@ -59,7 +59,7 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
-    /// workaround for crash on macOS 10.12 (2016-09) and on macOS 10.13 (2018-05)
+    /// workaround for crash on macOS 10.12 – macOS 10.15.
     override func splitView(_ splitView: NSSplitView, shouldHideDividerAt dividerIndex: Int) -> Bool {
         
         return false
