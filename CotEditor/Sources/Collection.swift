@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,6 +51,21 @@ extension Collection {
     subscript(safe index: Index) -> Element? {
         
         return self.indices.contains(index) ? self[index] : nil
+    }
+    
+    
+    /// Split receiver into buffer sized chunks.
+    ///
+    /// - Parameter length: The buffer size to split.
+    /// - Returns: Split subsequences.
+    func components(length: Int) -> [SubSequence] {
+        
+        return stride(from: 0, to: self.count, by: length).map {
+            let start = self.index(self.startIndex, offsetBy: $0)
+            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
+            
+            return self[start..<end]
+        }
     }
     
 }

@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,6 +28,15 @@ import XCTest
 @testable import CotEditor
 
 final class CollectionTests: XCTestCase {
+    
+    func testComponents() {
+        
+        let data = Data([0, 1, 2, 3, 4, 5, 6])
+        let subdata = data.components(length: 3)
+        
+        XCTAssertEqual(subdata, [Data([0, 1, 2]), Data([3, 4, 5]), Data([6])])
+    }
+    
     
     func testCount() {
         
