@@ -13,6 +13,7 @@ Change Log
 - Enable setting multiple cursor points in snippets.
 - Optimize timing of view updating in some specific views.
 - Optimize some background jobs.
+- Fold license descriptions in the acknowledgements
 - [trivial] Tweak the visual notification for wrapping search.
 - [dev] Replace Differ framework with DifferenceKit.
 - [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
