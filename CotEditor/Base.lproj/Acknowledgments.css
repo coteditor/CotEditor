@@ -30,7 +30,7 @@ blockquote pre    { color: hsla( 0, 0%, 0%,0.60) ; border-color: hsla( 0, 0%, 0%
 h3 span           { color: hsla( 0, 0%, 0%,0.50) }
 
 details           { margin-top: 0.5em }
-details summary   { color: hsla( 0, 0%, 0%,0.67); font-weight: 600; outline: none }
+details summary   { color: hsla( 0, 0%, 0%,0.67); font-weight: 600; cursor: pointer; outline: none }
 
 body.dark                 { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,12%) }
 body.dark a:link,
