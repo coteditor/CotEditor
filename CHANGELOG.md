@@ -12,8 +12,9 @@ Change Log
 - Restore the default window size setting in Window pane.
 - Enable setting multiple cursor points in snippets.
 - Optimize timing of view updating in some specific views.
+- Optimize some background jobs.
 - [trivial] Tweak the visual notification for wrapping search.
-- [dev] Update Differ framework to 1.4.4.
+- [dev] Replace Differ framework with DifferenceKit.
 - [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
 
 

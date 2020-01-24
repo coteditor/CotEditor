@@ -2,12 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Differ",
-        "repositoryURL": "https://github.com/tonyarnold/Differ",
+        "package": "DifferenceKit",
+        "repositoryURL": "https://github.com/ra1028/DifferenceKit/",
         "state": {
           "branch": null,
-          "revision": "dd5d4bfb1c27012d4790e877b29847d2ab9d989b",
-          "version": "1.4.4"
+          "revision": "14c66681e12a38b81045f44c6c29724a0d4b0e72",
+          "version": "1.1.5"
         }
       },
       {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,11 +24,11 @@
 //
 
 import Foundation
-import Differ
+import DifferenceKit
 
 extension String {
     
-    /// Calculate equivalent ranges in the receiver to the given ranges in the given string using Differ.
+    /// Calculate equivalent ranges in the receiver to the given ranges in the given string using DifferenceKit.
     ///
     /// - Parameters:
     ///   - ranges: The original ranges to be based on.
@@ -37,7 +37,7 @@ extension String {
     func equivalentRanges(to ranges: [NSRange], in other: String) -> [NSRange] {
         
         // -> Use UTF16View instead of Character due to performance issue
-        let diff = other.utf16.diff(self.utf16)
+        let diff = StagedChangeset(source: Array(other.utf16), target: Array(self.utf16))
         
         return ranges.map { NSRange(diff.move($0.lowerBound)..<diff.move($0.upperBound)) }
     }
@@ -48,30 +48,18 @@ extension String {
 
 // MARK: -
 
-private extension Diff {
+extension String.UTF16View.Element: Differentiable { }
+
+private extension StagedChangeset {
     
     func move(_ index: Int) -> Int {
+            
+        let insertionCount = self.flatMap { $0.elementInserted }
+            .countPrefix { $0.element < index }
+        let removalCount = self.flatMap { $0.elementDeleted }
+            .countPrefix { $0.element < index }
         
-        return self
-            .prefix { $0.offset < index }
-            .reduce(into: index) {
-                switch $1 {
-                case .insert: $0 += 1
-                case .delete: $0 -= 1
-                }
-            }
-    }
-    
-}
-
-
-private extension Diff.Element {
-    
-    var offset: Int {
-        
-        switch self {
-        case .insert(let offset), .delete(let offset): return offset
-        }
+        return index + insertionCount - removalCount
     }
     
 }
