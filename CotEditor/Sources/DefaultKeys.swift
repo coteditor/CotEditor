@@ -166,6 +166,7 @@ extension DefaultKeys {
     static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
+    static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
