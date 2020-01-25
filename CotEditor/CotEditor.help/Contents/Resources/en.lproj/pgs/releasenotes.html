@@ -24,6 +24,49 @@
 
 <article>
 <header>
+    <h1>CotEditor 3.8.8</h1>
+    <p>release: <time>2020-01</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Add new “Straighten Quotes” command to Edit &gt; Substitutions menu.</li>
+	<li>Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit &gt; Substitutions menu.</li>
+	<li>Restore the default window size setting in the Window preferences pane.</li>
+	<li>Enable setting multiple cursor points in snippets.</li>
+	<li>Optimize the timing of view updating in some specific views.</li>
+	<li>Optimize some background jobs.</li>
+	<li>Fold license descriptions in the acknowledgments.</li>
+	<li><span class="trivial">trivial</span>: Tweak the visual notification for wrapping search.</li>
+	<li><span class="trivial">dev</span>: Replace Differ framework with DifferenceKit.</li>
+	<li><span class="trivial">dev</span> <span class="label">non-AppStore ver.</span>: Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue on macOS 10.15 where document windows had a glitch when a search is wrapped.</li>
+	<li>Fix an issue where the font size of the line number view was occasionally not updated even when text size is changed.</li>
+	<li>Fix an issue where <kbd>⌘⇧T</kbd> shortcut key assigned for “Show/Hide Tab Bar”  was ignored under specific conditions</li>
+	<li>Fix an issue where the width of the inspector was occasionally not properly set.</li>
+	<li>Fix a possible crash when transforming the case of selection that includes specific character order.</li>
+	<li>Fix a possible crash when a document file is modified by another process.</li>
+	<li><span class="trivial">trivial</span>: Fix a typo in French (Thanks to Arnaud Tanchoux!).</li>
+	<li>Improve stability.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
     <h1>CotEditor 3.8.7</h1>
     <p>release: <time>2019-12-09</time></p>
 </header>

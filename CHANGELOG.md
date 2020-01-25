@@ -7,13 +7,13 @@ Change Log
 
 ### Improvements
 
-- Add “Straighten Quotes” command to Edit > Substituions menu.
-- Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit > Substituions menu.
-- Restore the default window size setting in Window pane.
+- Add new “Straighten Quotes” command to Edit > Substitutions menu.
+- Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit > Substitutions menu.
+- Restore the default window size setting in the Window preferences pane.
 - Enable setting multiple cursor points in snippets.
-- Optimize timing of view updating in some specific views.
+- Optimize the timing of view updating in some specific views.
 - Optimize some background jobs.
-- Fold license descriptions in the acknowledgements
+- Fold license descriptions in the acknowledgments.
 - [trivial] Tweak the visual notification for wrapping search.
 - [dev] Replace Differ framework with DifferenceKit.
 - [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
@@ -23,8 +23,8 @@ Change Log
 
 - Fix an issue on macOS 10.15 where document windows had a glitch when a search is wrapped.
 - Fix an issue where the font size of the line number view was occasionally not updated even when text size is changed.
-- Fix an issue where “⌘⇧T” shortcut key for “Show/Hide Tab Bar” was occasionally ignored.
-- Fix an issue where the width of inspector was occasionally not properly set.
+- Fix an issue where “⌘⇧T” shortcut key assigned for “Show/Hide Tab Bar” was ignored under specific conditions.
+- Fix an issue where the width of the inspector was occasionally not properly set.
 - Fix a possible crash when transforming the case of selection that includes specific character order.
 - Fix a possible crash when a document file is modified by another process.
 - [trivial] Fix a typo in French (Thanks to Arnaud Tanchoux!).
