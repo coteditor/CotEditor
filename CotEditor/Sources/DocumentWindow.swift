@@ -177,21 +177,31 @@ extension DocumentWindow {
         
         guard !super.performKeyEquivalent(with: event) else { return true }
         
+        // prefer existing shortcut that user might define
+        guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
+        
+        let modifierFlags = event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad)
+        
+        // toggle tab bar with ⌘⇧T`
+        // -> This is needed under the case when "Show/Hide Tab Bar" menu item is not yet added to the View menu. (2020-01)
+        if modifierFlags == [.command, .shift], event.characters == "t" {
+            self.toggleTabBar(nil)
+            return true
+        }
+        
         // select tabbed window with `⌘+number` (`⌘9` for the last tab)
-        guard
-            event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad) == .command,
+        if
+            modifierFlags == [.command],
             let characters = event.charactersIgnoringModifiers,
             let number = Int(characters), number > 0,
             let windows = self.tabbedWindows,
             let window = (number == 9) ? windows.last : windows[safe: number - 1]  // 1-based to 0-based
-            else { return false }
+        {
+            window.tabGroup?.selectedWindow = window
+            return true
+        }
         
-        // prefer existing shortcut that user might define
-        guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
-        
-        window.tabGroup?.selectedWindow = window
-        
-        return true
+        return false
     }
     
     
