@@ -269,8 +269,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     private var canToggleSidebar: Bool {
         
         // cannot toggle in the tab overview mode
-        if let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
-            let tabGroup = window.tabGroup {
+        if let tabGroup = self.view.window?.tabGroup {
             return !tabGroup.isOverviewVisible
         }
         
