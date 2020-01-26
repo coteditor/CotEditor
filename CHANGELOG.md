@@ -5,9 +5,13 @@ Change Log
 3.8.8 (unreleased)
 --------------------------
 
-### Improvements
+### New Features
 
 - Add new “Straighten Quotes” command to Edit > Substitutions menu.
+
+
+### Improvements
+
 - Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit > Substitutions menu.
 - Restore the default window size setting in the Window preferences pane.
 - Enable setting multiple cursor points in snippets.
