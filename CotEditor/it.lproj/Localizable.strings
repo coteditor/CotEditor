@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2019 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -84,9 +84,9 @@
 "%@ strings replaced." = "%@ stringhe sostituite.";
 "Invalid regular expression" = "Espressione regolare non valida";
 "Empty find string" = "Stringa di ricerca vuota";
-"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
+"The option “in selection” is enabled, although nothing is selected." = "L’opzione “nella selezione” è attiva, ma non è stato selezionato nulla.";
 "Input text to find." = "Inserire il testo da cercare.";
-"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";  // FIXME: added
+"Select the search scope in document or disable “in selection” option." = "Selezionare l’ambito di ricerca nel documento, oppure disabilitare l’opzione “nella selezione”.";
 
 // accessibility announcement
 "Search wrapped." = "Ricerca dall'inizio";  // announced when the search restarted from the beginning.
