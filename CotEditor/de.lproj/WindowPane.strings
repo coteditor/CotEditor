@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2019 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -68,6 +68,16 @@
 "ikB-dS-c4S.title" = "Dateigröße";
 
 
+/* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
+"JZ8-uq-7Kg.title" = "Fensterbreite:";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
+"u8r-OW-Z1O.title" = "px";
+/* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
+"Zhk-Nt-kiD.title" = "-höhe:";
+/* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
+"VCx-PO-Fnr.title" = "px";
+
+
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */
 "dug-hV-7hj.title" = "Editor teilen:";
 /* Class = "NSButtonCell"; title = "Horizontal"; ObjectID = "Bj6-2A-Nxj"; */
@@ -84,6 +94,7 @@
 "USo-8p-Edc.title" = "Von rechts nach links";
 /* Class = "NSButtonCell"; title = "Vertical"; ObjectID = "Ge8-vU-lyg"; */
 "Ge8-vU-lyg.title" = "Vertikal";
+
 
 /* Class = "NSTextFieldCell"; title = "Overscroll:"; ObjectID = "7Nz-lv-JZb"; */
 "7Nz-lv-JZb.title" = "überscrollen:";

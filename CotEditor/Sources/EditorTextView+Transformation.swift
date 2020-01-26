@@ -172,6 +172,19 @@ extension EditorTextView {
         }
     }
     
+    
+    
+    // MARK: Action Messages (Smart Quotes)
+    
+    /// Straighten all curly quotes.
+    @IBAction func straightenQuotesInSelection(_ sender: Any?) {
+        
+        self.transformSelection {
+            $0.replacingOccurrences(of: "[“”‟„]", with: "\"", options: .regularExpression)
+              .replacingOccurrences(of: "[‘’‛‚]", with: "'", options: .regularExpression)
+        }
+    }
+    
 }
 
 
@@ -197,7 +210,7 @@ private extension NSTextView {
         for range in selectedRanges where !range.isEmpty {
             let substring = (self.string as NSString).substring(with: range)
             let string = block(substring)
-            let newRange = NSRange(location: range.location - deltaLocation, length: string.utf16.count)
+            let newRange = NSRange(location: range.location - deltaLocation, length: string.length)
             
             strings.append(string)
             appliedRanges.append(range)

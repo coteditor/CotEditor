@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,62 +31,35 @@ final class MultipleReplacement: Codable {
         
         var findString: String
         var replacementString: String
-        var usesRegularExpression: Bool
-        var ignoresCase: Bool
-        var isEnabled = true
+        var usesRegularExpression: Bool = false
+        var ignoresCase: Bool = false
         var description: String?
-        
-        
-        init(findString: String, replacementString: String, usesRegularExpression: Bool, ignoresCase: Bool, description: String? = nil, isEnabled: Bool = true) {
-            
-            self.findString = findString
-            self.replacementString = replacementString
-            self.ignoresCase = ignoresCase
-            self.usesRegularExpression = usesRegularExpression
-            self.description = description
-            self.isEnabled = isEnabled
-        }
-        
-        
-        init() {
-            
-            self.findString = ""
-            self.replacementString = ""
-            self.ignoresCase = false
-            self.usesRegularExpression = false
-        }
+        var isEnabled = true
     }
     
     
     struct Settings: Equatable {
         
-        var textualOptions: NSString.CompareOptions
-        var regexOptions: NSRegularExpression.Options
-        var matchesFullWord: Bool
-        var unescapesReplacementString: Bool
-        
-        
-        init(textualOptions: NSString.CompareOptions = [], regexOptions: NSRegularExpression.Options = [.anchorsMatchLines], matchesFullWord: Bool = false, unescapesReplacementString: Bool = true) {
-            
-            self.textualOptions = textualOptions
-            self.regexOptions = regexOptions
-            self.matchesFullWord = matchesFullWord
-            self.unescapesReplacementString = unescapesReplacementString
-        }
+        var textualOptions: NSString.CompareOptions = []
+        var regexOptions: NSRegularExpression.Options = [.anchorsMatchLines]
+        var matchesFullWord: Bool = false
+        var unescapesReplacementString: Bool = true
     }
     
     
+    var replacements: [Replacement] = []
+    var settings: Settings = .init()
+}
+
+
+
+extension MultipleReplacement.Replacement {
     
-    var replacements: [Replacement]
-    var settings: Settings
-    
-    
-    init(replacements: [Replacement] = [], settings: Settings = Settings()) {
+    init() {
         
-        self.replacements = replacements
-        self.settings = settings
+        self.findString = ""
+        self.replacementString = ""
     }
-    
 }
 
 
@@ -100,13 +73,6 @@ extension MultipleReplacement {
         var string: String
         var selectedRanges: [NSRange]?
         var count = 0
-        
-        
-        fileprivate init(string: String, selectedRanges: [NSRange]?) {
-            
-            self.string = string
-            self.selectedRanges = selectedRanges
-        }
     }
     
     

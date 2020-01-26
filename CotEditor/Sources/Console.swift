@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,16 +31,7 @@ final class Console {
         
         var message: String
         var title: String?
-        var date: Date
-        
-        
-        init(message: String, title: String?) {
-            
-            self.message = message
-            self.title = title
-            self.date = Date()
-        }
-        
+        var date: Date = .init()
     }
     
     
@@ -92,6 +83,14 @@ final class ConsoleViewController: NSViewController {
     
     private static let fontSize: CGFloat = 11
     
+    private let messageFont: NSFont = {
+        if #available(macOS 10.15, *) {
+            return .monospacedSystemFont(ofSize: ConsoleViewController.fontSize, weight: .regular)
+        } else {
+            return NSFont(named: .menlo, size: ConsoleViewController.fontSize)!
+        }
+    }()
+    
     private let messageParagraphStyle: NSParagraphStyle = {
         // indent for message body
         let paragraphStyle = NSParagraphStyle.default.mutable
@@ -106,7 +105,7 @@ final class ConsoleViewController: NSViewController {
         return formatter
     }()
     
-    @IBOutlet private var textView: NSTextView?  // NSTextView cannot be weak
+    @IBOutlet private weak var textView: NSTextView?
     @IBOutlet private weak var textFinder: NSTextFinder?
     
     
@@ -119,7 +118,6 @@ final class ConsoleViewController: NSViewController {
         
         super.viewDidLoad()
         
-        self.textView!.font = .messageFont(ofSize: type(of: self).fontSize)
         self.textView!.textContainerInset = NSSize(width: 0, height: 4)
     }
     
@@ -132,21 +130,24 @@ final class ConsoleViewController: NSViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        let lastLocation = textView.textStorage?.length ?? 0
+        let lastLocation = (textView.string as NSString).length
         let date = self.dateFormatter.string(from: log.date)
         let attrString = NSMutableAttributedString(string: "[" + date + "]")
         
         // append bold title
         if let title = log.title {
             let attrTitle = NSMutableAttributedString(string: " " + title)
-            attrTitle.applyFontTraits(.boldFontMask, range: NSRange(location: 1, length: title.utf16.count))
+            attrTitle.applyFontTraits(.boldFontMask, range: NSRange(1..<attrTitle.length))
             attrString.append(attrTitle)
         }
         
         // append indented message
-        let attrMessage = NSAttributedString(string: "\n" + log.message + "\n", attributes: [.paragraphStyle: self.messageParagraphStyle])
+        let attributes: [NSAttributedString.Key: Any] = [.paragraphStyle: self.messageParagraphStyle,
+                                                         .font: self.messageFont]
+        let attrMessage = NSAttributedString(string: "\n" + log.message + "\n", attributes: attributes)
         attrString.append(attrMessage)
-        attrString.addAttributes([.foregroundColor: NSColor.labelColor], range: attrString.string.nsRange)
+        
+        attrString.addAttribute(.foregroundColor, value: NSColor.labelColor, range: attrString.range)
         
         textView.textStorage?.append(attrString)
         NSAccessibility.post(element: textView, notification: .valueChanged)

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,9 +34,9 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
-protocol ValidationIgnorable: NSLayoutManager {
+extension NSAttributedString.Key {
     
-    var ignoresDisplayValidation: Bool { get set }
+    static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
 }
 
 
@@ -149,7 +149,7 @@ extension SyntaxParser {
     /// parse outline
     private func parseOutline() {
         
-        let wholeRange = NSRange(0..<self.textStorage.length)
+        let wholeRange = self.textStorage.range
         guard !wholeRange.isEmpty else {
             self.outlineItems = []
             return
@@ -191,7 +191,7 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        let wholeRange = NSRange(0..<self.textStorage.length)
+        let wholeRange = self.textStorage.range
         
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.styleName == self.style.name, cache.string == self.textStorage.string {
@@ -221,7 +221,7 @@ extension SyntaxParser {
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = self.textStorage.string.immutable
         
-        let wholeRange = NSRange(0..<self.textStorage.length)
+        let wholeRange = self.textStorage.range
         let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
@@ -297,11 +297,16 @@ extension SyntaxParser {
         
         // give up if the editor's string is changed from the parsed string
         let isModified = Atomic(false)
-        let modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
+        weak var modificationObserver: NSObjectProtocol?
+        modificationObserver = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self.textStorage, queue: nil) { [weak operation] (note) in
             guard (note.object as! NSTextStorage).editedMask.contains(.editedCharacters) else { return }
             
             isModified.mutate { $0 = true }
             operation?.cancel()
+            
+            if let observer = modificationObserver {
+                NotificationCenter.default.removeObserver(observer)
+            }
         }
         
         operation.completionBlock = { [weak self, weak operation] in
@@ -310,13 +315,17 @@ extension SyntaxParser {
                 let highlights = operation.highlights,
                 !operation.isCancelled
                 else {
-                    NotificationCenter.default.removeObserver(modificationObserver)
+                    if let observer = modificationObserver {
+                        NotificationCenter.default.removeObserver(observer)
+                    }
                     return completionHandler()
                 }
             
-            DispatchQueue.main.async { [progress = operation.progress] in
+            DispatchQueue.main.async { [weak self, progress = operation.progress] in
                 defer {
-                    NotificationCenter.default.removeObserver(modificationObserver)
+                    if let observer = modificationObserver {
+                        NotificationCenter.default.removeObserver(observer)
+                    }
                     completionHandler()
                 }
                 
@@ -347,39 +356,63 @@ extension SyntaxParser {
         
         assert(Thread.isMainThread)
         
+        guard self.textStorage.length > 0 else { return }
+        
+        let hasHighlight = highlights.values.contains { !$0.isEmpty }
+        
         for layoutManager in self.textStorage.layoutManagers {
-            // disable display validation during applying attributes
-            // -> According to the implementation of NSLayoutManager in GNUstep,
-            //    `invalidateDisplayForCharacterRange:` is invoked every time inside of `addTemporaryAttribute:value:forCharacterRange:`.
-            //    Ignoring that process during highlight reduces the application time,
-            //    which shows the rainbow cursor because of a main thread task, significantly.
-            //    See `LayoutManager.invalidateDisplay(forCharacterRange:)` for the LayoutManager-side implementation.
-            //    (2018-12 macOS 10.14)
-            if let layoutManager = layoutManager as? ValidationIgnorable {
-                layoutManager.ignoresDisplayValidation = true
-            }
-            defer {
-                if let layoutManager = layoutManager as? ValidationIgnorable {
-                    layoutManager.ignoresDisplayValidation = false
-                    layoutManager.invalidateDisplay(forCharacterRange: highlightRange)
+            // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
+            guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
+            
+            layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
+                layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
+                layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
+                
+                guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { return }
+                
+                for type in SyntaxType.allCases {
+                    guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+                    
+                    if let color = theme.style(for: type)?.color {
+                        for range in ranges {
+                            layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
+                            layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
+                        }
+                    } else {
+                        for range in ranges {
+                            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
+                            layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
+                        }
+                    }
                 }
             }
-            
-            layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
-            
-            guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { continue }
-            
-            for type in SyntaxType.allCases {
-                guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+        }
+    }
+    
+}
+
+
+
+extension NSLayoutManager {
+    
+    /// Apply the theme based on the current `syntaxType` attributes.
+    ///
+    /// - Parameter theme: The theme to apply.
+    /// - Parameter range: The range to invalidate. If `nil`, whole string will be invalidated.
+    func invalidateHighlight(theme: Theme, range: NSRange? = nil) {
+        
+        assert(Thread.isMainThread)
+        
+        let wholeRange = range ?? self.attributedString().range
+        
+        self.groupTemporaryAttributesUpdate(in: wholeRange) {
+            self.enumerateTemporaryAttribute(.syntaxType, in: wholeRange) { (type, range, _) in
+                guard let type = type as? SyntaxType else { return }
                 
                 if let color = theme.style(for: type)?.color {
-                    for range in ranges {
-                        layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                    }
+                    self.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
                 } else {
-                    for range in ranges {
-                        layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                    }
+                    self.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
                 }
             }
         }

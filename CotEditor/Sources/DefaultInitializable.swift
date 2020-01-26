@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,15 +23,15 @@
 //  limitations under the License.
 //
 
-protocol DefaultInitializable {
+protocol DefaultInitializable: RawRepresentable {
     
     static var defaultValue: Self { get }
 }
 
 
-extension DefaultInitializable where Self: RawRepresentable {
+extension DefaultInitializable {
     
-    /// non-optional initializer by setting the defaultValue if failed
+    /// Non-optional initializer by setting the defaultValue if failed.
     init(_ rawValue: RawValue?) {
         
         self = Self(rawValue: rawValue ?? Self.defaultValue.rawValue) ?? Self.defaultValue

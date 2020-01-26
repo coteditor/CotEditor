@@ -6,14 +6,14 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2018 CotEditor Project
+ © 2006-2019 CotEditor Project
 */
 
 
 .topic {
 	padding: 1em;
 	min-height: 200px;
-	border: solid 1px hsl(0,0%,80%);
+	border: solid 1px -apple-system-container-border;
 	margin-bottom: 2em;
 	border-radius: 3px;
 }
@@ -24,7 +24,7 @@
 
 .topic img.snapshot {
 	width: 200px;
-	border: 0.5px solid hsla(0,0%,0%,.4);
+	border: 0.5px solid -apple-system-secondary-label;
 	border-radius: 3px;
 }
 

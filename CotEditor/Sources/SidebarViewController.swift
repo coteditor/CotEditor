@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,10 +44,12 @@ final class SidebarViewController: NSTabViewController {
     // MARK: Public Properties
     
     weak var delegate: TabViewControllerDelegate?
-    var selectedTabIndex: TabIndex { return TabIndex(rawValue: self.selectedTabViewItemIndex) ?? .documentInspector }
+    var selectedTabIndex: TabIndex { TabIndex(rawValue: self.selectedTabViewItemIndex) ?? .documentInspector }
     
     
     // MARK: Private Properties
+    
+    private var frameObserver: NSKeyValueObservation?
     
     @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
     @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
@@ -56,20 +58,35 @@ final class SidebarViewController: NSTabViewController {
     
     
     // MARK: -
-    // MARK: Tab View Controller Methods
+    // MARK: Lifecycle
+    
+    deinit {
+        self.frameObserver?.invalidate()
+    }
+    
     
     /// prepare tabs
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        // bind segmentedControl manually  (2016-09 on macOS 10.12)
-        if let segmentedControl = (self.tabView as? InspectorTabView)?.segmentedControl {
-            segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
-        }
-        
         // select last used pane
         self.selectedTabViewItemIndex = UserDefaults.standard[.selectedInspectorPaneIndex]
+        
+        // bind segmentedControl manually  (2016-09 on macOS 10.12)
+        (self.tabView as! InspectorTabView).segmentedControl.bind(.selectedIndex, to: self, withKeyPath: #keyPath(selectedTabViewItemIndex))
+        
+        // restore thickness first when the view is loaded
+        let sidebarWidth = UserDefaults.standard[.sidebarWidth]
+        if sidebarWidth > 0 {
+            self.view.frame.size.width = sidebarWidth
+            // apply also to .tabView that is the only child of .view
+            self.view.layoutSubtreeIfNeeded()
+        }
+        self.frameObserver?.invalidate()
+        self.frameObserver = self.view.observe(\.frame) { (view, _) in
+            UserDefaults.standard[.sidebarWidth] = view.frame.width
+        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -78,7 +95,10 @@ final class SidebarViewController: NSTabViewController {
     }
     
     
-    /// restore last state
+    
+    // MARK: Tab View Controller Methods
+    
+    /// keys to be restored from the last session
     override class var restorableStateKeyPaths: [String] {
         
         return super.restorableStateKeyPaths + [

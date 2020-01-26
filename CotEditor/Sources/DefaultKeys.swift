@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import CoreGraphics
 
 extension DefaultKeys {
     
@@ -58,6 +58,8 @@ extension DefaultKeys {
     static let showStatusBarEncoding = DefaultKey<Bool>("showStatusBarEncoding")
     static let showStatusBarLineEndings = DefaultKey<Bool>("showStatusBarLineEndings")
     static let showStatusBarFileSize = DefaultKey<Bool>("showStatusBarFileSize")
+    static let windowWidth = DefaultKey<CGFloat>("windowWidth")
+    static let windowHeight = DefaultKey<CGFloat>("windowHeight")
     static let splitViewVertical = DefaultKey<Bool>("splitViewVertical")
     static let writingDirection = DefaultKey<WritingDirection>("writingDirection")
     static let overscrollRate = DefaultKey<CGFloat>("overscrollRate")
@@ -67,6 +69,7 @@ extension DefaultKeys {
     static let fontName = DefaultKey<String>("fontName")
     static let fontSize = DefaultKey<CGFloat>("fontSize")
     static let shouldAntialias = DefaultKey<Bool>("shouldAntialias")
+    static let ligature = DefaultKey<Bool>("ligature")
     static let lineHeight = DefaultKey<CGFloat>("lineHeight")
     static let highlightCurrentLine = DefaultKey<Bool>("highlightCurrentLine")
     static let cursorType = DefaultKey<CursorType>("cursorType")
@@ -80,6 +83,7 @@ extension DefaultKeys {
     static let showInvisibleFullwidthSpace = DefaultKey<Bool>("showInvisibleZenkakuSpace")
     static let invisibleFullwidthSpace = DefaultKey<Int>("invisibleZenkakuSpace")
     static let showOtherInvisibleChars = DefaultKey<Bool>("showOtherInvisibleChars")
+    static let documentAppearance = DefaultKey<AppearanceMode>("appearance")
     static let theme = DefaultKey<String>("defaultTheme")
     
     // Edit
@@ -159,11 +163,14 @@ extension DefaultKeys {
     static let findRegexUnescapesReplacementString = DefaultKey<Bool>("regexUnescapesReplacementString")
     
     // settings that are not in preferences
+    static let pinsThemeAppearance = DefaultKey<Bool>("pinsThemeAppearance")
     static let lastPreferencesPaneIdentifier = DefaultKey<String>("lastPreferencesPaneIdentifier")
     static let colorCodeType = DefaultKey<Int>("colorCodeType")
+    static let sidebarWidth = DefaultKey<CGFloat>("sidebarWidth")
     static let recentStyleNames = DefaultKey<[String]>("recentStyleNames")
     static let showStatusBar = DefaultKey<Bool>("showStatusArea")
     static let selectedInspectorPaneIndex = DefaultKey<Int>("selectedInspectorPaneIndex")
+    static let outlineViewFontSize = DefaultKey<CGFloat>("outlineViewFontSize")
     static let selectedMultipleReplacementSettingName = DefaultKey<String>("selectedMultipleReplacementSettingName")
     static let beginCustomSurroundString = DefaultKey<String>("beginCustomSurroundString")
     static let endCustomSurroundString = DefaultKey<String>("endCustomSurroundString")

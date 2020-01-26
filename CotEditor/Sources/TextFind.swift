@@ -54,6 +54,7 @@ final class TextFind {
         
         case regularExpression(reason: String)
         case emptyFindString
+        case emptyInSelectionSearch
         
         
         var errorDescription: String? {
@@ -63,6 +64,8 @@ final class TextFind {
                 return "Invalid regular expression".localized
             case .emptyFindString:
                 return "Empty find string".localized
+            case .emptyInSelectionSearch:
+                return "The option “in selection” is enabled, although nothing is selected.".localized
             }
         }
         
@@ -74,6 +77,8 @@ final class TextFind {
                 return reason
             case .emptyFindString:
                 return "Input text to find.".localized
+            case .emptyInSelectionSearch:
+                return "Select the search scope in document or disable “in selection” option.".localized
             }
         }
         
@@ -117,6 +122,10 @@ final class TextFind {
         
         guard !findString.isEmpty else {
             throw TextFind.Error.emptyFindString
+        }
+        
+        guard !inSelection || selectedRanges.contains(where: { !$0.isEmpty }) else {
+            throw TextFind.Error.emptyInSelectionSearch
         }
         
         switch mode {
@@ -221,6 +230,8 @@ final class TextFind {
     ///   - wrapped: Whether the search was wrapped to find the result.
     func findInSelection(forward: Bool) -> (range: NSRange?, count: Int, wrapped: Bool) {
         
+        assert(self.inSelection)
+        
         var matches = [NSRange]()
         self.enumerateMatchs(in: self.selectedRanges, using: { (matchedRange, _, _) in
             matches.append(matchedRange)
@@ -265,7 +276,7 @@ final class TextFind {
     
     /// Find all matches in the scopes.
     ///
-    /// - Parameter
+    /// - Parameters:
     ///   - block: The Block enumerates the matches.
     ///   - matches: The array of matches including group matches.
     ///   - stop: The Block can set the value to true to stop further processing of the array.

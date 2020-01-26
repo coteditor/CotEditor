@@ -27,7 +27,10 @@ import AppKit
 
 extension NSLayoutManager {
     
-    /// calculate visual (wrapped) line range
+    /// Calculate visual (wrapped) line range.
+    ///
+    /// - Parameter charIndex: The index of the character for which to return the line fragment range.
+    /// - Returns: The range of characters that locate in the same line fragment of the given character.
     func lineFragmentRange(at charIndex: Int) -> NSRange {
         
         let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
@@ -37,18 +40,31 @@ extension NSLayoutManager {
         
         var range = self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
         
-        // strip last line ending character
+        // strip the last line ending character
         let lineEndingRange = (self.attributedString().string as NSString).rangeOfCharacter(from: .newlines, options: .backwards, range: range)
         range.length -= lineEndingRange.length
         
         return range
     }
+        
+}
+
+
+
+// MARK: - Temporary Atttributes
+
+extension NSLayoutManager {
     
-    
-    /// return range of given attribute if the location is in it, otherwise nil.
+    /// Return range of given attribute if the location is in it, otherwise nil.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of a temporary attribute.
+    ///   - location: The index for which to check attributes. This value must not exceed the bounds of the receiver.
+    ///   - range: The range over which to search for continuous presence of attrName. This value must not exceed the bounds of the receiver.
+    /// - Returns: A range contains the maximum range over which the named attribute’s value applies, clipped to rangeLimit. Or `nil` if no attribute value exists.
     func effectiveRange(of attrName: NSAttributedString.Key, at location: Int, in range: NSRange? = nil) -> NSRange? {
         
-        let range = range ?? NSRange(location: 0, length: self.attributedString().length)
+        let range = range ?? self.attributedString().range
         var effectiveRange = NSRange.notFound
         
         guard self.temporaryAttribute(attrName, atCharacterIndex: location, longestEffectiveRange: &effectiveRange, in: range) != nil else { return nil }
@@ -57,13 +73,21 @@ extension NSLayoutManager {
     }
     
     
-    /// enumerate range and value of given temporary attribute
-    func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange, using block: (_ value: Any, _ range: NSRange, _ stop: inout Bool) -> Void) {
+    /// Enumerate range and value of given temporary attribute.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of the temporary attribute to enumerate.
+    ///   - enumerationRange: The range over which the attribute values are enumerated.
+    ///   - block: A closure to apply to ranges of the specified attribute in the receiver.
+    ///   - value: The value for the specified attribute.
+    ///   - range: The range of the attribute value in the receiver.
+    ///   - stop: A reference to a Boolean value, which you can set to true within the closure to stop further processing of the attribute enumeration.
+    func enumerateTemporaryAttribute(_ attrName: NSAttributedString.Key, in enumerationRange: NSRange, using block: (_ value: Any, _ range: NSRange, _ stop: inout Bool) -> Void) {
         
-        var characterIndex = range.location
-        while characterIndex < range.upperBound {
+        var characterIndex = enumerationRange.location
+        while characterIndex < enumerationRange.upperBound {
             var effectiveRange: NSRange = .notFound
-            let value = self.temporaryAttribute(attrName, atCharacterIndex: characterIndex, longestEffectiveRange: &effectiveRange, in: range)
+            let value = self.temporaryAttribute(attrName, atCharacterIndex: characterIndex, longestEffectiveRange: &effectiveRange, in: enumerationRange)
             
             if let value = value {
                 var stop = false
@@ -77,24 +101,31 @@ extension NSLayoutManager {
     }
     
     
-    /// check if at least one temporary attribute for given attribute key exists
-    func hasTemporaryAttribute(for attrName: NSAttributedString.Key) -> Bool {
+    /// Check if at least one temporary attribute for given attribute key exists.
+    ///
+    /// - Parameters:
+    ///   - attrName: The name of temporary attribute key to check.
+    ///   - range: The range where to check. When `nil`, search the entire range.
+    /// - Returns: Wheather the given attribute key exists.
+    func hasTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard let storage = self.textStorage else { return false }
         
-        var found = false
-        self.enumerateTemporaryAttribute(attrName, in: NSRange(..<storage.length)) { (_, _, stop) in
-            stop = true
-            found = true
-        }
-        return found
+        let range = range ?? storage.range
+        
+        assert(range.upperBound <= storage.range.upperBound)
+        
+        var effectiveRange: NSRange = .notFound
+        let value = self.temporaryAttribute(attrName, atCharacterIndex: range.location, effectiveRange: &effectiveRange)
+        
+        return value != nil || effectiveRange.upperBound < range.upperBound
     }
     
 }
 
 
 
-// MARK: - Bidi-Text Helpers
+// MARK: - Bidi-Text
 
 extension NSLayoutManager {
     

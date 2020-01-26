@@ -71,10 +71,6 @@ private extension CFStringEncoding {
 
 extension String.Encoding {
     
-    private static let shiftJIS = String.Encoding(cfEncodings: .shiftJIS)
-    private static let shiftJIS_X0213 = String.Encoding(cfEncodings: .shiftJIS_X0213)
-    
-    
     init(cfEncodings: CFStringEncodings) {
         
         self.init(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue)))
@@ -208,10 +204,10 @@ extension String {
         let tags = ["charset=", "encoding=", "@charset", "encoding:", "coding:"]
         let pattern = "\\b(?:" + tags.joined(separator: "|") + ")[\"' ]*([-_a-zA-Z0-9]+)[\"' </>\n\r]"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let scanLength = min(self.utf16.count, maxLength)
+        let scanLength = min(self.length, maxLength)
         
         guard
-            let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
+            let match = regex.firstMatch(in: self, range: NSRange(..<scanLength)),
             let matchedRange = Range(match.range(at: 1), in: self)
             else { return nil }
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,26 +55,23 @@ final class OpenPanelAccessoryController: NSViewController {
     /// encoding selected by user
     var selectedEncoding: String.Encoding {
         
-        get {
-            return String.Encoding(rawValue: self._selectedEncoding)
-        }
-        
-        set {
-            self._selectedEncoding = newValue.rawValue
-        }
+        get { String.Encoding(rawValue: self._selectedEncoding) }
+        set { self._selectedEncoding = newValue.rawValue }
     }
     
     
     
-    // MARK: Action Messags
+    // MARK: Action Messages
     
     /// toggle visivility of hidden files
     @IBAction func toggleShowsHidenFiles(_ sender: NSButton) {
         
+        guard let openPanel = self.openPanel else { return assertionFailure() }
+        
         let showsHiddenFiles = (sender.integerValue == 1)
         
-        self.openPanel?.showsHiddenFiles = showsHiddenFiles
-        self.openPanel?.treatsFilePackagesAsDirectories = showsHiddenFiles
+        openPanel.showsHiddenFiles = showsHiddenFiles
+        openPanel.treatsFilePackagesAsDirectories = showsHiddenFiles
     }
     
     
@@ -93,9 +90,13 @@ final class OpenPanelAccessoryController: NSViewController {
         menu.addItem(autoDetectItem)
         menu.addItem(.separator())
         
-        let items = EncodingManager.shared.createEncodingMenuItems()
-        for item in items {
-            menu.addItem(item)
+        if #available(macOS 10.14, *) {
+            menu.items = EncodingManager.shared.createEncodingMenuItems()
+        } else {
+            let items = EncodingManager.shared.createEncodingMenuItems()
+            for item in items {
+                menu.addItem(item)
+            }
         }
         
         self.selectedEncoding = .autoDetection

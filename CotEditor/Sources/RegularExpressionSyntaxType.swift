@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,11 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
-
-/// regex pattern to avoid matching escaped character
-private let escapeIgnorer = "(?<!\\\\)(?:\\\\\\\\)*"
-
+import Foundation.NSRegularExpression
 
 enum RegularExpressionParseMode {
     
@@ -78,6 +74,9 @@ enum RegularExpressionSyntaxType {
     // MARK: Private Methods
     
     private func patterns(for mode: RegularExpressionParseMode) -> [String] {
+
+        // regex pattern to avoid matching escaped character
+        let escapeIgnorer = "(?<!\\\\)(?:\\\\\\\\)*"
         
         switch mode {
         case .search:
@@ -142,9 +141,9 @@ enum RegularExpressionSyntaxType {
 
 
 
-private extension StringProtocol where Self.Index == String.Index {
+private extension StringProtocol {
     
-    /// ranges of inside most outer pairs of brace
+    /// ranges of inside of the most outer pairs of brace
     func ranges(bracePair: BracePair) -> [Range<Index>] {
         
         var index = self.startIndex

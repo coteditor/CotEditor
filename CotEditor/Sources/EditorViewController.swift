@@ -93,10 +93,10 @@ final class EditorViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(selectPrevItemOfOutlineMenu)?:
+        case #selector(selectPrevItemOfOutlineMenu):
             return self.navigationBarController?.canSelectPrevItem ?? false
             
-        case #selector(selectNextItemOfOutlineMenu)?:
+        case #selector(selectNextItemOfOutlineMenu):
             return self.navigationBarController?.canSelectNextItem ?? false
             
         default: break
@@ -139,6 +139,10 @@ final class EditorViewController: NSSplitViewController {
     func setTextStorage(_ textStorage: NSTextStorage) {
         
         guard let textView = self.textView else { return assertionFailure() }
+        
+        if textView.isAutomaticLinkDetectionEnabled {
+            textStorage.detectLink()
+        }
         
         textView.layoutManager?.replaceTextStorage(textStorage)
         textView.didChangeText()  // notify to lineNumberView to drive initial line count

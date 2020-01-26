@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,10 +57,14 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
         
         // observe scale for slider
-        self.scaleObserver = textView.observe(\.scale) { [unowned self] (textView, _) in
-            guard let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return assertionFailure() }
+        self.scaleObserver = textView.observe(\.scale, options: .new) { [unowned self] (_, change) in
+            guard self.isVisible else { return }
+            guard
+                let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem,
+                let scale = change.newValue
+                else { return assertionFailure() }
             
-            item.slider.doubleValue = Double(textView.scale)
+            item.doubleValue = Double(scale)
         }
     }
     
@@ -91,17 +95,22 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
             guard let textView = self.textView else { return nil }
             
             let item = NSSliderTouchBarItem(identifier: identifier)
-            item.slider.doubleValue = Double(textView.scale)
+            item.target = self
+            item.action = #selector(textSizeSliderChanged)
+            item.doubleValue = Double(textView.scale)
             item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
             item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
             item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
             item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
-            item.target = self
-            item.action = #selector(textSizeSliderChanged)
             
-            let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]", metrics: nil,
-                                                             views: ["slider": item.slider])
-            NSLayoutConstraint.activate(constraints)
+            if #available(macOS 10.15, *) {
+                item.maximumSliderWidth = 300
+            } else {
+                let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]",
+                                                                 metrics: nil,
+                                                                 views: ["slider": item.slider])
+                NSLayoutConstraint.activate(constraints)
+            }
             
             return item
             
@@ -116,12 +125,11 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(resetTextSize):
             return (self.textView?.scale != 1.0)
-            
+        case nil:
+            return false
         default:
             return true
         }
@@ -134,7 +142,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     /// text size slider was moved
     @IBAction func textSizeSliderChanged(_ sliderItem: NSSliderTouchBarItem) {
         
-        let scale = CGFloat(sliderItem.slider.doubleValue)
+        let scale = CGFloat(sliderItem.doubleValue)
         
         self.textView?.setScaleKeepingVisibleArea(scale)
     }

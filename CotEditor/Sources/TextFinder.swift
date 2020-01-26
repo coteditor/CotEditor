@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,6 @@ import Cocoa
 @objc protocol TextFinderClientProvider: AnyObject {
     
     func textFinderClient() -> NSTextView?
-    
 }
 
 
@@ -37,7 +36,6 @@ protocol TextFinderDelegate: AnyObject {
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didFind numberOfFound: Int, textView: NSTextView)
     func textFinder(_ textFinder: TextFinder, didReplace numberOfReplaced: Int, textView: NSTextView)
-    
 }
 
 
@@ -47,7 +45,6 @@ struct TextFindResult {
     var lineNumber: Int
     var attributedLineString: NSAttributedString
     var inlineRange: NSRange
-    
 }
 
 
@@ -55,7 +52,6 @@ private struct HighlightItem {
     
     var range: NSRange
     var color: NSColor
-    
 }
 
 
@@ -114,9 +110,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// validate menu item
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
-        guard let action = menuItem.action else { return false }
-        
-        switch action {
+        switch menuItem.action {
         case #selector(findNext(_:)),
              #selector(findPrevious(_:)),
              #selector(findSelectedText(_:)),
@@ -132,6 +126,9 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             
         case #selector(useSelectionForFind(_:)):
             return self.selectedString != nil
+            
+        case nil:
+            return false
             
         default:
             return true
@@ -292,6 +289,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // setup progress sheet
         let progress = TextFindProgress(format: .replacement)
         let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         indicator.setup(progress: progress, message: "Replace All".localized)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
@@ -315,10 +313,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             DispatchQueue.main.sync {
                 textView.isEditable = true
                 
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
+                guard !progress.isCancelled else { return }
                 
                 if !replacementItems.isEmpty {
                     let replacementStrings = replacementItems.map { $0.string }
@@ -329,18 +324,15 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                                      actionName: "Replace All".localized)
                 }
                 
-                indicator.done()
-                
                 if replacementItems.isEmpty {
                     NSSound.beep()
                     progress.localizedDescription = "Not Found".localized
                 }
                 
-                if UserDefaults.standard[.findClosesIndicatorWhenDone] {
-                    indicator.dismiss(nil)
-                    if let panel = self.findPanelController.window, panel.isVisible {
-                        panel.makeKey()
-                    }
+                indicator.done()
+                
+                if indicator.closesAutomatically, let panel = self.findPanelController.window, panel.isVisible {
+                    panel.makeKey()
                 }
                 
                 let count = Int(progress.completedUnitCount)
@@ -417,14 +409,18 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let textFind: TextFind
         do {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
-        } catch {
+        } catch let error as TextFind.Error {
             switch error {
-            case TextFind.Error.regularExpression:
+            case .regularExpression, .emptyInSelectionSearch:
                 self.findPanelController.showWindow(self)
                 self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
-            default: break
+            case .emptyFindString:
+                break
             }
             NSSound.beep()
+            return nil
+        } catch {
+            assertionFailure()
             return nil
         }
         
@@ -438,8 +434,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         guard let (textView, textFind) = self.prepareTextFind(forEditing: false) else { return 0 }
         
-        let result = textFind.find(forward: forward,
-                                   isWrap: UserDefaults.standard[.findIsWrap])
+        let result = textFind.find(forward: forward, isWrap: UserDefaults.standard[.findIsWrap])
         
         // found feedback
         if let range = result.range {
@@ -447,11 +442,17 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textView.scrollRangeToVisible(range)
             textView.showFindIndicator(for: range)
             
-            if result.wrapped, let view = textView.enclosingScrollView?.superview {
-                let hudController = HUDController.instantiate(storyboard: "HUDView")
-                hudController.symbol = .wrap
-                hudController.isReversed = !forward
-                hudController.show(in: view)
+            if result.wrapped {
+                if let view = textView.enclosingScrollView?.superview {
+                    let hudController = HUDController.instantiate(storyboard: "HUDView")
+                    hudController.symbol = .wrap(reversed: !forward)
+                    hudController.show(in: view)
+                }
+                
+                if let window = NSApp.mainWindow {
+                    NSAccessibility.post(element: window, notification: .announcementRequested,
+                                         userInfo: [.announcement: "Search wrapped.".localized])
+                }
             }
         } else {
             NSSound.beep()
@@ -476,7 +477,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         // apply replacement to text view
         return textView.replace(with: result.string, range: result.range,
-                                selectedRange: NSRange(location: result.range.location, length: result.string.utf16.count),
+                                selectedRange: NSRange(location: result.range.location,
+                                                       length: result.string.length),
                                 actionName: "Replace".localized)
     }
     
@@ -494,6 +496,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
         let indicator = ProgressViewController.instantiate(storyboard: "ProgressView")
+        indicator.closesAutomatically = UserDefaults.standard[.findClosesIndicatorWhenDone]
         indicator.setup(progress: progress, message: actionName)
         textView.viewControllerForSheet?.presentAsSheet(indicator)
         
@@ -547,37 +550,32 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             DispatchQueue.main.sync {
                 textView.isEditable = true
                 
-                guard !progress.isCancelled else {
-                    indicator.dismiss(nil)
-                    return
-                }
+                guard !progress.isCancelled else { return }
                 
                 // highlight
                 if let layoutManager = textView.layoutManager {
                     let wholeRange = textFind.string.nsRange
-                    
-                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = true
-                    layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
-                    for highlight in highlights {
-                        layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                    layoutManager.groupTemporaryAttributesUpdate(in: wholeRange) {
+                        layoutManager.removeTemporaryAttribute(.backgroundColor, forCharacterRange: wholeRange)
+                        for highlight in highlights {
+                            layoutManager.addTemporaryAttribute(.backgroundColor, value: highlight.color, forCharacterRange: highlight.range)
+                        }
                     }
-                    (layoutManager as? ValidationIgnorable)?.ignoresDisplayValidation = false
-                    layoutManager.invalidateDisplay(forCharacterRange: wholeRange)
                 }
-                
-                indicator.done()
                 
                 if highlights.isEmpty {
                     NSSound.beep()
                     progress.localizedDescription = "Not Found".localized
                 }
                 
+                indicator.done()
+                
                 if showsList {
                     self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
                 // -> close also if result view has been shown
-                if !results.isEmpty || UserDefaults.standard[.findClosesIndicatorWhenDone] {
+                if indicator.closesAutomatically || !results.isEmpty {
                     indicator.dismiss(nil)
                     if let panel = self.findPanelController.window, panel.isVisible {
                         panel.makeKey()
@@ -609,7 +607,7 @@ private extension UserDefaults {
         
         // append new string to history
         var history = self[key] ?? []
-        history.remove(string)  // remove duplicated item
+        history.removeFirst(string)  // remove duplicated item
         history.append(string)
         if history.count > UserDefaults.MaxHistorySize {  // remove overflow
             history.removeFirst(history.count - UserDefaults.MaxHistorySize)
@@ -657,14 +655,14 @@ private extension NSPasteboard {
     class var findString: String? {
         
         get {
-            let pasteboard = NSPasteboard(name: .findPboard)
+            let pasteboard = NSPasteboard(name: .find)
             return pasteboard.string(forType: .string)
         }
         
         set {
             guard let string = newValue, !string.isEmpty else { return }
             
-            let pasteboard = NSPasteboard(name: .findPboard)
+            let pasteboard = NSPasteboard(name: .find)
             
             pasteboard.declareTypes([.string], owner: nil)
             pasteboard.setString(string, forType: .string)

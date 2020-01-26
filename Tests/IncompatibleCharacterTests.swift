@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,8 +32,7 @@ final class IncompatibleCharacterTests: XCTestCase {
     func testIncompatibleCharacterScan() {
         
         let string = "abc\\ \n ¥ \n ~"
-        let encoding = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
-        let incompatibles = string.scanIncompatibleCharacters(for: encoding)
+        let incompatibles = string.scanIncompatibleCharacters(for: .plainShiftJIS)
         
         XCTAssertEqual(incompatibles.count, 2)
         
@@ -53,7 +52,23 @@ final class IncompatibleCharacterTests: XCTestCase {
     }
     
     
-    func testIncompatibleCharacterScanUsingDiff() {
+    func testSequencialIncompatibleCharactersScan() {
+        
+        let string = "~~"
+        let incompatibles = string.scanIncompatibleCharacters(for: .plainShiftJIS)
+        
+        XCTAssertEqual(incompatibles.count, 2)
+        
+        let tilde = incompatibles[1]
+        
+        XCTAssertEqual(tilde.character, "~")
+        XCTAssertEqual(tilde.convertedCharacter, "?")
+        XCTAssertEqual(tilde.location, 1)
+        XCTAssertEqual(tilde.lineNumber, 1)
+    }
+    
+    
+    func testIncompatibleCharacterScanWithLengthShift() {
         
         let string = "family 👨‍👨‍👦 with 🐕"
         let incompatibles = string.scanIncompatibleCharacters(for: .japaneseEUC)
@@ -71,4 +86,11 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(incompatibles[1].lineNumber, 1)
     }
 
+}
+
+
+
+private extension String.Encoding {
+    
+    static let plainShiftJIS = String.Encoding(rawValue: CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)))
 }

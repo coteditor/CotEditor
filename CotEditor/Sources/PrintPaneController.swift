@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -40,6 +40,8 @@ final class PrintPaneController: NSViewController {
     
     /// apply current settings to UI
     override func viewWillAppear() {
+        
+        super.viewWillAppear()
         
         self.setupFontFamilyNameAndSize()
         self.setupColorMenu()
@@ -116,6 +118,16 @@ extension PrintPaneController: NSFontChanging {
         if NSFontManager.shared.target === self {
             NSFontManager.shared.target = nil
         }
+    }
+    
+    
+    
+    // MARK: Font Changing Methods
+    
+    /// restrict items in the font panel toolbar
+    func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+        
+        return [.collection, .face, .size]
     }
     
     

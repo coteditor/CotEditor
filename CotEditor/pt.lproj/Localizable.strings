@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2018 CotEditor Project
+ © 2018-2019 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,11 +54,6 @@
 "What’s New in CotEditor %@" = "Novidades do CotEditor %@";  // %@ is version number
 
 
-// Share menu
-"Share" = "Compartilhar";
-"No Document" = "Nenhum Documento";
-
-
 
 /* MARK: AppDelegate */
 // Format - Syntax coloring menu item title
@@ -89,7 +84,12 @@
 "%@ strings replaced." = "%@ strings substituídas.";
 "Invalid regular expression" = "Expressão regular inválida";
 "Empty find string" = "String de busca vazia";
+"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
 "Input text to find." = "Digite o texto a buscar.";
+"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";  // FIXME: added
+
+// accessibility announcement
+"Search wrapped." = "A busca voltou ao início.";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -542,6 +542,7 @@
 "The parent directory name of dropped file." = "O nome do diretório superior do arquivo solto.";
 "(If the dropped file is an image) image width." = "Largura da imagem (se o arquivo solto for uma imagem).";
 "(If the dropped file is an image) image height." = "Altura da imagem (se o arquivo solto for uma imagem).";
+"(If the dropped file is a text file) file content." = "Conteúdo do arquivo (se o arquivo solto for um arquivo de texto).";
 
 
 

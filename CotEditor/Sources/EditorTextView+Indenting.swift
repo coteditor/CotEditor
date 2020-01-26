@@ -88,14 +88,14 @@ extension EditorTextView: Indenting {
 
 // MARK: - Protocol
 
-protocol Indenting: AnyObject {
+protocol Indenting: NSTextView {
     
     var tabWidth: Int { get }
     var isAutomaticTabExpansionEnabled: Bool { get }
 }
 
 
-extension Indenting where Self: NSTextView {
+extension Indenting {
     
     /// increase indent level
     @discardableResult
@@ -111,7 +111,7 @@ extension Indenting where Self: NSTextView {
         
         // create indent string to prepend
         let indent = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        let indentLength = indent.utf16.count
+        let indentLength = indent.length
         
         // create shifted string
         let lineRanges = string.lineRanges(for: selectedRanges, includingLastEmptyLine: true)
@@ -149,9 +149,9 @@ extension Indenting where Self: NSTextView {
         let lines = lineRanges.map { string.substring(with: $0) }
         let dropCounts = lines.map { line -> Int in
             switch line.first {
-            case "\t"?:
+            case "\t":
                 return 1
-            case " "?:
+            case " ":
                 return line.prefix(self.tabWidth).countPrefix { $0 == " " }
             default:
                 return 0

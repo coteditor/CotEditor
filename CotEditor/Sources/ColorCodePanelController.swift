@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -60,6 +60,17 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     // MARK: -
+    // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.view.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    
+    
     // MARK: Public Methods
     
     /// set color to color panel from color code
@@ -103,7 +114,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         panel.isRestorable = false
         
         panel.delegate = self
-        panel.setAction(#selector(selectColor(_:)))
+        panel.setAction(#selector(selectColor))
         panel.setTarget(self)
         
         // make position of accessory view center
@@ -128,7 +139,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         guard self.colorCode != nil else { return }
         
-        guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode(_:))) as? ColorCodeReceiver else {
+        guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode)) as? ColorCodeReceiver else {
             NSSound.beep()
             return
         }
@@ -138,9 +149,9 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     
     /// a new color was selected on the panel
-    @IBAction func selectColor(_ sender: NSColorPanel?) {
+    @IBAction func selectColor(_ sender: NSColorPanel) {
         
-        self.color = sender?.color
+        self.color = sender.color
         self.updateCode(sender)
     }
     
@@ -156,13 +167,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     @IBAction func updateCode(_ sender: Any?) {
         
         let codeType = self.selectedCodeType
-        let color: NSColor? = {
-            if let colorSpace = self.color?.colorSpace, ![NSColorSpace.genericRGB, .deviceRGB].contains(colorSpace) {
-                return self.color?.usingColorSpace(.genericRGB)
-            }
-            return self.color
-        }()
-        
+        let color = self.color?.usingColorSpace(.genericRGB)
         var code = color?.colorCode(type: codeType)
         
         // keep lettercase if current Hex code is uppercase

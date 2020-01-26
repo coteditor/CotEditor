@@ -27,10 +27,10 @@
 import XCTest
 @testable import CotEditor
 
-let themeDirectoryName = "Themes"
+private let themeDirectoryName = "Themes"
 
 
-class ThemeTests: XCTestCase {
+final class ThemeTests: XCTestCase {
     
     var bundle: Bundle?
     
@@ -87,8 +87,11 @@ class ThemeTests: XCTestCase {
         }
     }
     
-    
-    // MARK: Private Methods
+}
+
+
+
+private extension ThemeTests {
     
     func loadThemeWithName(_ name: String) throws -> Theme? {
         

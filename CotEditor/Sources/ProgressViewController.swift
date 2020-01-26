@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,12 +27,18 @@ import Cocoa
 
 final class ProgressViewController: NSViewController {
     
+    // MARK: Public Properties
+    
+    var closesAutomatically = true
+    
+    
     // MARK: Private Properties
     
     @objc private dynamic var progress: Progress?
     @objc private dynamic var message: String = ""
     
     private var finishObserver: NSKeyValueObservation?
+    private var cancelObserver: NSKeyValueObservation?
     private var updateTimer: DispatchSourceTimer?
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
@@ -46,6 +52,7 @@ final class ProgressViewController: NSViewController {
     
     deinit {
         self.finishObserver?.invalidate()
+        self.cancelObserver?.invalidate()
         self.updateTimer?.cancel()
     }
     
@@ -74,6 +81,7 @@ final class ProgressViewController: NSViewController {
     override func dismiss(_ sender: Any?) {
         
         self.updateTimer?.cancel()
+        self.updateTimer = nil
         
         // close sheet in an old way
         // -> Otherwise, a meanless empty sheet shows up after another sheet is closed
@@ -91,8 +99,11 @@ final class ProgressViewController: NSViewController {
     
     // MARK: Public Methods
     
-    /// initialize view with given progress instance
-    func setup(progress: Progress, message: String, closesWhenFinished: Bool = false) {
+    /// Initialize view with given progress instance.
+    /// - Parameters:
+    ///   - progress: The progress instance to indicate.
+    ///   - message: The text to display as the message label of the indicator.
+    func setup(progress: Progress, message: String) {
         
         self.progress = progress
         self.message = message
@@ -101,51 +112,71 @@ final class ProgressViewController: NSViewController {
         self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
             guard progress.isFinished else { return }
             
-            DispatchQueue.main.async {
-                self?.updateProgress()
-                
-                if closesWhenFinished {
-                    self?.dismiss(nil)
-                }
+            DispatchQueue.main.async { [weak self] in
+                self?.done()
+            }
+        }
+        
+        self.cancelObserver?.invalidate()
+        self.cancelObserver = progress.observe(\.isCancelled, options: .initial) { [weak self] (progress, _) in
+            guard progress.isCancelled else { return }
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.dismiss(nil)
             }
         }
     }
     
     
-    /// change button to done
+    /// Change the state of progress to finished.
     func done() {
         
         self.updateTimer?.cancel()
-        self.updateProgress()
+        self.updateTimer = nil
         
-        self.button?.title = "OK".localized
-        self.button?.action = #selector(dismiss(_:) as (Any?) -> Void)
-        self.button?.keyEquivalent = "\r"
+        if self.closesAutomatically {
+            self.dismiss(self)
+            
+        } else {
+            self.updateProgress()
+            
+            guard let button = self.button else { return assertionFailure() }
+            
+            button.title = "OK".localized
+            button.action = #selector(dismiss(_:) as (Any?) -> Void)
+            button.keyEquivalent = "\r"
+            button.isHidden = false
+        }
     }
     
     
     
     // MARK: Actions
     
-    /// cancel current process
+    /// Cancel current process.
     @IBAction func cancel(_ sender: Any?) {
         
         self.progress?.cancel()
-        
-        self.dismiss(sender)
     }
     
     
     
     // MARK: Private Methods
     
-    /// update progress UI
+    /// Apply the latest progress state to UI.
     private func updateProgress() {
         
-        guard let progress = self.progress else { return assertionFailure() }
+        guard
+            let progress = self.progress,
+            let indicator = self.indicator
+            else { return assertionFailure() }
         
-        self.indicator?.doubleValue = progress.fractionCompleted
-        self.descriptionField?.stringValue = progress.localizedDescription
+        if indicator.doubleValue != progress.fractionCompleted {
+            indicator.doubleValue = progress.fractionCompleted
+        }
+        if self.descriptionField?.stringValue != progress.localizedDescription {
+            self.descriptionField?.stringValue = progress.localizedDescription
+        }
     }
     
 }

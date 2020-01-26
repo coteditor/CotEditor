@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -137,14 +137,18 @@ extension EditorTextView {
         }
         
         let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
-        viewController.representedObject = self
         
         // sample the first line
-        let range = Range(self.selectedRange, in: self.string)!
-        let location = range.isEmpty ? self.string.startIndex : range.lowerBound
-        let lineRange = self.string.lineRange(at: location, excludingLastLineEnding: true)
-        viewController.sampleLine = String(self.string[lineRange])
+        let location = self.selectedRange.isEmpty
+            ? self.string.startIndex
+            : String.Index(utf16Offset: self.selectedRange.location, in: self.string)
+        let lineRange = self.string.lineContentsRange(at: location)
+        viewController.sampleLine = String(self.string[workaround: lineRange])
         viewController.sampleFontName = self.font?.fontName
+        
+        viewController.completionHandler = { [weak self] (pattern, options) in
+            self?.sortLines(pattern: pattern, options: options)
+        }
         
         self.viewControllerForSheet?.presentAsSheet(viewController)
     }
@@ -159,19 +163,19 @@ extension EditorTextView {
         self.replace(with: info.strings, ranges: info.ranges, selectedRanges: info.selectedRanges, actionName: actionName)
     }
     
-}
-
-
-
-extension NSTextView {
     
-    func sortLines(pattern: SortPattern, options: SortOptions) {
+    /// Sort lines in the text content.
+    ///
+    /// - Parameters:
+    ///   - pattern: The sort pattern.
+    ///   - options: The sort options.
+    private func sortLines(pattern: SortPattern, options: SortOptions) {
         
         // process whole document if no text selected
         let range = self.selectedRange.isEmpty ? self.string.nsRange : self.selectedRange
         
         let string = self.string as NSString
-        let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        let lineRange = string.lineContentsRange(for: range)
         
         guard !lineRange.isEmpty else { return }
         
@@ -293,7 +297,7 @@ private extension String {
     func sortLinesAscending(in range: NSRange) -> EditingInfo? {
         
         let string = self as NSString
-        let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        let lineRange = string.lineContentsRange(for: range)
         
         // do nothing with single line
         guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
@@ -312,7 +316,7 @@ private extension String {
     func reverseLines(in range: NSRange) -> EditingInfo? {
         
         let string = self as NSString
-        let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+        let lineRange = string.lineContentsRange(for: range)
         
         // do nothing with single line
         guard string.rangeOfCharacter(from: .newlines, range: lineRange) != .notFound else { return nil }
@@ -338,7 +342,7 @@ private extension String {
         
         // collect duplicate lines
         for range in ranges {
-            let lineRange = string.lineRange(for: range, excludingLastLineEnding: true)
+            let lineRange = string.lineContentsRange(for: range)
             let targetString = string.substring(with: lineRange)
             let lines = targetString.components(separatedBy: .newlines)
             

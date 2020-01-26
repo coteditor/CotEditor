@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2013-2019 1024jp
+//  © 2013-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,6 +45,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Enums
     
     private enum AppWebURL: String {
+        
         case website = "https://coteditor.com"
         case issueTracker = "https://github.com/coteditor/CotEditor/issues"
         
@@ -118,11 +119,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         self.buildSyntaxMenu()
         self.buildThemeMenu()
         ScriptManager.shared.buildScriptMenu()
-        
-        // manually insert Share menu on macOS 10.12 and earlier
-        if NSAppKitVersion.current < .macOS10_13 {
-            (DocumentController.shared as? DocumentController)?.insertLegacyShareMenu()
-        }
         
         // observe setting list updates
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingMenu), name: didUpdateSettingListNotification, object: EncodingManager.shared)
@@ -307,7 +303,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         
         #if APPSTORE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
-            html = html.replacingCharacters(in: html.lineRange(for: range), with: "")
+            html.replaceSubrange(html.lineRange(for: range), with: "")
         }
         #endif
         
@@ -317,8 +313,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
-        let creditsKey = NSApplication.AboutPanelOptionKey(rawValue: "Credits")  // macOS 10.13
-        NSApplication.shared.orderFrontStandardAboutPanel(options: [creditsKey: attrString])
+        NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
     
     
@@ -380,8 +375,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func createBugReport(_ sender: Any?) {
         
         // load template file
-        let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md")!
-        guard let template = try? String(contentsOf: url) else { return assertionFailure() }
+        guard
+            let url = Bundle.main.url(forResource: "ReportTemplate", withExtension: "md"),
+            let template = try? String(contentsOf: url)
+            else { return assertionFailure() }
         
         // fill template with user environment info
         let report = template
@@ -392,7 +389,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // open as document
         guard let document = try? NSDocumentController.shared.openUntitledDocumentAndDisplay(false) as? Document else { return assertionFailure() }
         document.displayName = "Bug Report".localized(comment: "document title")
-        document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: report)
+        document.textStorage.replaceCharacters(in: NSRange(0..<0), with: report)
         document.setSyntaxStyle(name: BundledStyleName.markdown)
         document.makeWindowControllers()
         document.showWindows()

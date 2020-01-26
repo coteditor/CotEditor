@@ -1,0 +1,78 @@
+/*
+ 
+ RegexReferencePopover.strings (French)
+ 
+ CotEditor
+ https://coteditor.com
+ 
+ Created by Aurélien Roy on 2019-04-26.
+ Localized by Aurélien Roy
+ ------------------------------------------------------------------------------
+ 
+ © 2015-2019 CotEditor Project
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+ https://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ 
+ */
+
+/* Class = "NSTextFieldCell"; title = "Basic Regular Expression Syntax"; ObjectID = "QgQ-JJ-6Nx"; */
+"QgQ-JJ-6Nx.title" = "Syntaxe de base des expressions régulières";
+
+
+
+/* Note: All of the following elements are NSTextFieldCell. */
+
+"3AR-qs-5m4.title" = "Caractères";  // "Characters"
+
+"RD2-4i-6hI.title" = "N'importe quel caractère";  // "any character"
+"9KK-2o-0gf.title" = "Nouvelle ligne";  // "new line character"
+"IEP-BD-aIL.title" = "Tabulation";  // "tab character"
+"KDl-AT-6pW.title" = "Mot";  // "word character"
+"Xh9-Al-Lgr.title" = "Espace";  // "whitespace character"
+"nh9-3w-PRK.title" = "Pas un espace";  // "non whitespace character"
+"U6Y-db-fiT.title" = "Chiffre";  // "decimal number"
+"Ufv-VB-C8Z.title" = "Caractère entre A et Z";  // "any character in range A to Z"
+"11L-Hs-8G7.title" = "Tout sauf un caractère entre A et Z";  // "any character not in range A to Z"
+
+
+
+"8WL-Ap-X8c.title" = "Ancrages";  // "Anchors"
+
+"KTm-Ze-veX.title" = "Début de la ligne";  // "beginning of the line"
+"aka-du-qpm.title" = "Fin de la ligne";  // "end of the line"
+"PTJ-Gu-IWW.title" = "Début ou fin de mot";  // "word boundary"
+
+
+
+"nVK-6t-0P3.title" = "Quantificateurs";  // "Quantifier"
+
+"w4Q-Z2-YET.title" = "1 fois ou 0";  // "1 or 0 times"
+"2wE-GY-9nf.title" = "0 fois ou plus";  // "0 or more times"
+"Woe-Vu-PcP.title" = "1 fois ou plus";
+"H6L-Hz-GQ7.title" = "Au moins n mais pas plus de m fois";  // "at least n but not more than m times"
+"MFd-BY-MC4.title" = "Au moins n fois";  // "at least n times"
+"ga2-ht-6SL.title" = "Au moins 0 fois mais plus de n fois";  // "at least 0 but not more than n times"
+"akB-l0-a4P.title" = "n fois";  // "n times"
+
+
+
+"RAi-kK-gW5.title" = "Groupes étendus";  // "Extended Groups"
+
+"8Hg-0T-mMw.title" = "Test avant";  // "look-ahead"
+"Fic-V5-VYk.title" = "Test arrière";  // "look-behind"
+
+
+
+"EwZ-Li-jaY.title" = "Références passées";  // "Back Reference"
+
+"LXc-Qv-9sn.title" = "Première correspondance";  // "first match"

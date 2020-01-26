@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2019 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -53,11 +53,6 @@
 "What’s New in CotEditor %@" = "Was ist neu in CotEditor %@";  // %@ is version number
 
 
-// Share menu
-"Share" = "Bereitstellen";
-"No Document" = "Kein Dokument";
-
-
 
 /* MARK: AppDelegate */
 // Format - Syntax coloring menu item title
@@ -88,7 +83,12 @@
 "%@ strings replaced." = "%@ Zeichenketten ersetzt.";
 "Invalid regular expression" = "Ungültiger regulärer Ausdruck";
 "Empty find string" = "Leerer Suchbegriff";
+"The option “in selection” is enabled, although nothing is selected." = "Die Option „In Auswahl“ ist aktiviert, obwohl nichts ausgewählt ist.";
 "Input text to find." = "Gib den zu findenden Text ein.";
+"Select the search scope in document or disable “in selection” option." = "Wähle den Suchbereich im Dokument oder deaktiviere die Option „In Auswahl“.";
+
+// accessibility announcement
+"Search wrapped." = "Die Suche hat umgebrochen.";  // announced when the search restarted from the beginning.
 
 
 /* MARK: FindPanelController */
@@ -548,6 +548,7 @@
 "The parent directory name of dropped file." = "Der übergeordnete Ordnername der abgelegten Datei.";
 "(If the dropped file is an image) image width." = "Die Bildbreite (nur wenn die abgelegte Datei ein Bild ist).";
 "(If the dropped file is an image) image height." = "Die Bildhöhe (nur wenn die abgelegte Datei ein Bild ist).";
+"(If the dropped file is a text file) file content." = "(nur wenn die abgelegte Datei eine Textdatai ist) Der Inhalt.";
 
 
 

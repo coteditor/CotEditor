@@ -59,6 +59,28 @@ extension NSTextView {
         if let actionName = actionName {
             self.undoManager?.setActionName(actionName)
         }
+
+        // manually calculate the cursor locations after the replacement for multiple insertions
+        let selectedRanges: [NSRange]? = {
+            // use ones when explicitly specified
+            if let selectedRanges = selectedRanges { return selectedRanges }
+            
+            // let NSTextView culculate by single insertion editing
+            guard
+                let insertionRanges = self.rangesForUserTextChange as? [NSRange],
+                insertionRanges.count > 1,
+                insertionRanges == ranges
+                else { return nil }
+            
+            var offset = 0
+            return zip(ranges, strings).map { (range, string) in
+                let length = string.length
+                let location = range.lowerBound + offset + length
+                offset += length - range.length
+            
+                return NSRange(location: location, length: 0)
+            }
+        }()
         
         textStorage.beginEditing()
         // use a backward enumeration to skip adjustment of applying location
@@ -82,7 +104,7 @@ extension NSTextView {
     /// set undoable selection change
     func setSelectedRangesWithUndo(_ ranges: [NSValue]) {
         
-        if let self = self as? NSTextView & MultiCursorEditing,
+        if let self = self as? MultiCursorEditing,
             let ranges = ranges as? [NSRange],
             let set = self.prepareForSelectionUpdate(ranges)
         {

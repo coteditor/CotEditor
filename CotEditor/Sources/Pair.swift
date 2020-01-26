@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -67,8 +67,15 @@ extension Pair where T == Character {
 
 extension StringProtocol where Self.Index == String.Index {
     
+    /// Find the mate of a brace pair.
     ///
-    func indexOfBracePair(at index: Index, candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
+    /// - Parameters:
+    ///   - index: The character index of the brace character to find the mate.
+    ///   - candidates: Brace pairs to find.
+    ///   - range: The range of characters to find in.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    /// - Returns: The character index of the matched pair.
+    func indexOfBracePair(at index: Index, candidates: [BracePair], in range: Range<Index>? = nil, ignoring pairToIgnore: BracePair? = nil) -> BracePair.PairIndex? {
         
         guard !self.isCharacterEscaped(at: index) else { return nil }
         
@@ -78,11 +85,11 @@ extension StringProtocol where Self.Index == String.Index {
         
         switch character {
         case pair.begin:
-            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, ignoring: pairToIgnore) else { return .odd }
+            guard let endIndex = self.indexOfBracePair(beginIndex: index, pair: pair, until: range?.upperBound, ignoring: pairToIgnore) else { return .odd }
             return .end(endIndex)
             
         case pair.end:
-            guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, ignoring: pairToIgnore) else { return .odd }
+            guard let beginIndex = self.indexOfBracePair(endIndex: index, pair: pair, until: range?.lowerBound, ignoring: pairToIgnore) else { return .odd }
             return .begin(beginIndex)
             
         default: preconditionFailure()
@@ -90,26 +97,47 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// find character index of matched opening brace before a given index.
-    func indexOfBracePair(endIndex: Index, pair: BracePair, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+    /// Find character index of matched opening brace before a given index.
+    ///
+    /// This method ignores escaped characters.
+    ///
+    /// - Parameters:
+    ///   - endIndex: The character index of the closing brace of the pair to find.
+    ///   - pair: The brace pair to find.
+    ///   - beginIndex: The lower boundary of the find range.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    /// - Returns: The character index of the matched opening brace, or `nil` if not found.
+    func indexOfBracePair(endIndex: Index, pair: BracePair, until beginIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+        
+        assert(endIndex <= self.endIndex)
+        
+        let beginIndex = beginIndex ?? self.startIndex
+        
+        guard beginIndex < endIndex else { return nil }
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[..<endIndex]
+        let subsequence = self[workaround: beginIndex..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence).reversed() {
-            guard !self.isCharacterEscaped(at: index) else { continue }
-            
             switch character {
             case pair.begin where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 if nestDepth == 0 { return index }  // found
                 nestDepth -= 1
+                
             case pair.end where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 nestDepth += 1
+                
             case pairToIgnore?.begin:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth -= 1
+                
             case pairToIgnore?.end:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth += 1
+                
             default: break
             }
         }
@@ -118,28 +146,47 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// find character index of matched closing brace after a given index.
-    func indexOfBracePair(beginIndex: Index, pair: BracePair, ignoring pairToIgnore: BracePair? = nil) -> Index? {
+    /// Find character index of matched closing brace after a given index.
+    ///
+    /// This method ignores escaped characters.
+    ///
+    /// - Parameters:
+    ///   - beginIndex: The character index of the opening brace of the pair to find.
+    ///   - pair: The brace pair to find.
+    ///   - endIndex: The upper boundary of the find range.
+    ///   - pairToIgnore: The brace pair in which brace characters should be ignored.
+    /// - Returns: The character index of the matched closing brace, or `nil` if not found.
+    func indexOfBracePair(beginIndex: Index, pair: BracePair, until endIndex: Index? = nil, ignoring pairToIgnore: BracePair? = nil) -> Index? {
         
-        guard beginIndex != self.endIndex else { return nil }
+        assert(beginIndex >= self.startIndex)
+        
+        let endIndex = endIndex ?? self.endIndex
+        
+        guard beginIndex < endIndex else { return nil }
         
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[self.index(after: beginIndex)...]
+        let subsequence = self[workaround: self.index(after: beginIndex)..<endIndex]
         
         for (index, character) in zip(subsequence.indices, subsequence) {
-            guard !self.isCharacterEscaped(at: index) else { continue }
-            
             switch character {
             case pair.end where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 if nestDepth == 0 { return index }  // found
                 nestDepth -= 1
+                
             case pair.begin where ignoredNestDepth == 0:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 nestDepth += 1
+                
             case pairToIgnore?.end:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth -= 1
+                
             case pairToIgnore?.begin:
+                guard !self.isCharacterEscaped(at: index) else { continue }
                 ignoredNestDepth += 1
+                
             default: break
             }
         }

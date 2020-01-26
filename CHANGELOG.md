@@ -2,18 +2,342 @@
 Change Log
 ==========================
 
-3.7.2 (unreleased)
+3.8.8 (unreleased)
 --------------------------
 
 ### Improvements
 
-- Use monospace numbers for line numbers in Find All result table.
-- Optimize performance highlighting found matches.
-- [dev] Update build environment to Xcode 10.2 (Swift 5, macOS 10.14 SDK).
+- Add new “Straighten Quotes” command to Edit > Substitutions menu.
+- Add “Replace Quotes,” “Replace Dashes,” and “Replace Text” commands to Edit > Substitutions menu.
+- Restore the default window size setting in the Window preferences pane.
+- Enable setting multiple cursor points in snippets.
+- Optimize the timing of view updating in some specific views.
+- Optimize some background jobs.
+- Fold license descriptions in the acknowledgments.
+- [trivial] Tweak the visual notification for wrapping search.
+- [dev] Replace Differ framework with DifferenceKit.
+- [dev][non-AppStore ver.] Change the Sparkle branch from “ui-separation-and-xpc” to “2.x”.
 
 
 ### Fixes
 
+- Fix an issue on macOS 10.15 where document windows had a glitch when a search is wrapped.
+- Fix an issue where the font size of the line number view was occasionally not updated even when text size is changed.
+- Fix an issue where “⌘⇧T” shortcut key assigned for “Show/Hide Tab Bar” was ignored under specific conditions.
+- Fix an issue where the width of the inspector was occasionally not properly set.
+- Fix a possible crash when transforming the case of selection that includes specific character order.
+- Fix a possible crash when a document file is modified by another process.
+- [trivial] Fix a typo in French (Thanks to Arnaud Tanchoux!).
+- Improve stability.
+
+
+
+3.8.7 (389)
+--------------------------
+
+### Improvements
+
+- Revert shortcut `⌘/` to comment-out toggle.
+- Add “.zprofile” and “.zlogin” extensions to “Shell Script” syntax style.
+
+
+
+3.8.6 (387)
+--------------------------
+
+### Improvements
+
+- Change the default shortcut for Format > Font > “Reset to Default” command to `⌘0` and let “Bigger” command accept also `⌘=`.
+- Add shortcut `⌘/` to “Show/Hide Status Bar” command.
+- Add shortcut `⌘⇧T` to “Show/Hide Tab Bar” command.
+- Avoid showing rainbow cursor when canceling the initial syntax highlight.
+- [trivial] Modify the layout of the progress dialog and the regular expression syntax reference.
+- [trivial] Let input fields in the Edit pane accept values without a percent sign.
+
+
+### Fixes
+
+- Fix an issue where creating multiple cursors by rectangular selection failed under macOS 10.15.
+- Fix an issue where the selection highlight color in inactive windows could make text hard to read under macOS 10.14–10.15.
+- Fix an issue where the progress message by find/replacement was not updated when no occurrence found.
+- Fix a possible crash when an invalid color code is input to the color code panel.
+- Improve stability.
+
+
+
+3.8.5 (384)
+--------------------------
+
+### Improvements
+
+- Uncomment comment lines even if the delimiters locate after some indent.
+- Raise an alert when performing find (or replacement) with “in selection” option while no text is selected.
+- Change the Console font to monospaced.
+- Dim the Console content area during the incremental search.
+- Accept importing custom syntax styles with “.yml” extension.
+- Avoid re-parsing syntax highlight when the appearance is switched.
+- Support Dark Mode in the help.
+- [non-AppStore ver.] Update Sparkle framework.
+- [trivial] Tweak some terminology in the menu.
+- [trivial] Adjust the pinch-zoom pitch.
+
+
+### Fixes
+
+- Fix an issue where the text color in the status bar was sometimes not updated immediately after switching window appearance.
+- Fix an issue where parsing syntax style files could fail.
+- Fix an issue where uncommenting inline comments failed when multiple cursors locate in the same line.
+- Avoid rainbow cursor when about to display the Text menu while selecting large number of text.
+- Update PHP and Julia syntax styles to remove duplicated keywords.
+
+
+
+3.8.4 (381)
+--------------------------
+
+### Improvements
+
+- Insert soft tabs to all insertion points when typing the tab key.
+
+
+### Fixes
+
+- Fix an issue on macOS 10.13-14 that the application became unstable with some specific actions when the cursor locates the end of the document.
+
+
+
+3.8.3 (379)
+--------------------------
+
+### Improvements
+
+- Restore all of the last cursors on the window restoration.
+- Highlight matching braces for all cursors.
+- Adjust the printing area by the vertical text orientation.
+- Update JSON syntax style by adding “.resolved” extension.
+
+
+### Fixes
+
+- Fix area to draw text on printing, especially for macOS 10.15 Catalina.
+- Fix an issue on macOS 10.13-14 where spaces at the end of the document could not be deleted by delete key.
+- Fix an issue on macOS 10.13-14 where performing return key just after an open bracket at the end of the document made the application freeze.
+- Fix an issue where the editor theme for newly opened windows did not match to the window appearance when the system appearance was changed after the application launch.
+- Fix an issue where a highlighting indicator showed up at a wrong location when pressing the enter key just before a closing bracket.
+- [trivial] Fix French localization.
+
+
+
+3.8.2 (377)
+--------------------------
+
+### Fixes
+
+- Add an additional workaround to detour the bug in macOS 10.13-14 that crashes/freezes the application.
+
+
+
+3.8.1 (375)
+--------------------------
+
+### Fixes
+
+- Address a critical issue where the application could crash under macOS 10.13-14.
+- Fix an issue that the documents opened together were not opened as a single window with multiple tabs.
+
+
+
+3.8.0 (373)
+--------------------------
+
+no change.
+
+
+
+3.8.0-beta.2 (372)
+--------------------------
+
+### Fixes
+
+- [beta] Fix a crash when changing the window appearance setting.
+
+
+
+3.8.0-beta (371)
+--------------------------
+
+### New Features
+
+- Add “Appearance” option in the Appearance preferences pane to change document window appearance whatever the system appearance is (only on macOS 10.14 and later).
+- Add a new theme “Anura (Dark)”.
+
+
+### Improvements
+
+- Change the system requirement to __macOS 10.13 High Sierra and later__.
+- Improve the theme switching algorithm between light and dark appearances.
+- Keep multiple cursors after pasting multiple lines.
+- Update the result table of “Find All” even when no substring was found.
+- Adjust drawing of the alternative character for invisible control characters.
+- Adjust text baseline of input fields in the find panel when a fallback font is used.
+- Always enable Left to Right button in Writing Direction toolbar button.
+- Change the way to count words for stability.
+- Update “TOML” syntax style to support array of tables (Thanks to Takuto ASAKURA!)
+- [dev] Update build environment to Xcode 11.1 (Swift 5.1, macOS 10.15 SDK).
+
+
+### Fixes
+
+- Fix the selection movement direction after `⌥⇧←` or `⌥⇧→` shortcut.
+- Fix an issue where scripting commands `convert` and `reinterpret` failed.
+- Fix an issue where the color panel for theme editing could occasionally not change.
+- Fix an issue where the appearance of Acknowledgements window was not updated when user changed the system appearance after the launch.
+
+
+
+3.7.8 (361)
+--------------------------
+
+### Improvements
+
+- Optimize performance of text layout calcuration.
+
+
+### Fixes
+
+- Fix an issue where the editor could not scroll horizontally under specific conditions.
+
+
+
+3.7.7 (358)
+--------------------------
+
+### New Features
+
+- Add a new option to the Appearance pane to disable ligatures.
+
+
+### Improvements
+
+- Keep last opacity state of restored document windows.
+- Update behavior of Opt+Arrow shortcut series.
+
+
+### Fixes
+
+- Fix an issue where find result was unwantedly collapsed when resizing the find panel.
+- Fix an issue where hanging indent was not applied to the printed document.
+- Workaround the issue where an editor resizing required a too long time.
+- Fix a possible crash in the Appearance preferences pane.
+- Improve stability.
+
+
+
+3.7.6 (355)
+--------------------------
+
+### New Features
+
+- Add new variable “file content” to File Drop feature to insert the file content when the dropped file is a text file.
+
+
+### Improvements
+
+- Apply the change of “show other invisible characters” option immediately to the editors.
+- Add “Hide extension” option to the save dialog.
+- Use the system appearance in the input candidate window even when the theme has a dark background color.
+- Give some feedback about the search result in VoiceOver.
+- Improve the behavior of Opt+Arrow shortcut series to stop the by punctuation marks, such as `.` and  `:`.
+- Hide unused items in the font panel toolbar.
+- Optimize the performance of finding the matching brace to highlight.
+- Optimize the performance of line number drawing.
+- Optimize the performance of hanging indent calculation.
+
+
+### Fixes
+
+- Fix an issue where unwanted whitespace was added for variation selector `U+FE0E` when control characters are visible.
+- Fix an issue with scripting where regular expression anchors, such as `^` or `$`, did not match lines.
+- Fix an issue where the “Writing Direction” toolbar item did not work if it overflows from the visible toolbar area.
+- Fix an issue where `U+FEFF` cannot be input via “Input in Unicode hex” command.
+- Fix a possible crash with continuous `U+FEFF` characters.
+- Fix a possible crash on macOS 10.12.
+
+
+
+3.7.5 (353)
+--------------------------
+
+### Improvements
+
+- Select the current editor's font in font panel when display it.
+- Update Swift syntax style to support Swift 5.1.
+- Underline URLs in printed document also if “Link URLs in document” option is enabled.
+- Improve stability.
+- [dev] Update Differ framework to 1.4.3.
+
+
+### Fixes
+
+- Fix performance regression due to a bug fix in CotEditor 3.7.4.
+- Fix an issue where the snippet texts were still occasionally not editable from the preferences pane.
+
+
+
+3.7.4 (351)
+--------------------------
+
+### New Features
+
+- Add French localization (thanks to Aurélien Roy!).
+
+
+### Fixes
+- Fix an issue where the snippet texts were occasionally not editable from the preferences pane.
+- Fix an issue where the Unicode character name for `U+FEFF` (ZERO WIDTH NO-BREAK SPACE) was empty.
+- Fix an issue where the application did crash when the selected text contains some specific control characters.
+- Fix an issue where the word completion suggested words start with letters in the middle of the typed word.
+- Fix an issue where needless live document analysis performed even when the status bar and inspector are invisible.
+- Fix missing localization.
+- Improve stability.
+
+
+
+3.7.3 (349)
+--------------------------
+
+### Improvements
+
+- “Input in unicode hex” now supports multi-cursor editing.
+- Make font size of outline view customizable.
+
+
+### Fixes
+
+- Fix an issue where user settings could not be overwritten to export when the same filename already exists.
+- Fix an issue where clear buttons in the find panel's text fields could overlap with scroll bar areas.
+- Fix syntax style validator.
+- Improve stability.
+
+
+
+3.7.2 (347)
+--------------------------
+
+### Improvements
+
+- Make the i-beam cursor legible in vertical text orientation and dark background theme.
+- Use monospace numbers for line numbers in Find All result table.
+- Optimize performance highlighting found matches.
+- [dev] Update build environment to Xcode 10.2 (Swift 5).
+- [dev] Update Differ framework to 1.4.0.
+
+
+### Fixes
+
+- Fix an issue under macOS 10.12 where application hung up if “Text Orientation” toolbar item is visible.
+- Fix an issue where the “Discard Changes” and “Cancel” buttons in the dialog for encoding reinterpretation performed oppositely (Thanks to Aurélien Roy!).
+- Fix an issue where color code editor was invisible under macOS 10.12.
 - Fix an issue where the Go to Line command did not jump to the input number of line when performed by clicking “Go” button.
 - Fix an issue where `change kana` scripting command did not work.
 

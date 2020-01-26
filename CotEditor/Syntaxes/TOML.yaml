@@ -3,15 +3,18 @@ extensions:
 filenames: []
 interpreters: []
 metadata:
-  version: "1.0.0"
+  version: "1.0.1"
   author: "1024jp"
   license: "Same as CotEditor"
-  lastModified: "2018-12-05"
+  lastModified: "2019-07-16"
   distributionURL: "https://coteditor.com"
 commentDelimiters:
   inlineDelimiter: "#"
 keywords:
-- beginString: "(?<=\\[)[^\\],]+(?=\\])"
+- beginString: "(?<=\\[\\[)[^\\],]+(?=\\]\\])"
+  description: "array of tables"
+  regularExpression: true
+- beginString: "(?<!\\[\\[)(?<=\\[)[^\\],]+(?=\\])(?!\\]\\])"
   description: "table"
   regularExpression: true
 attributes: []

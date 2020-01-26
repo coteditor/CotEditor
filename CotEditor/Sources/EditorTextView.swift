@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,10 +32,6 @@ private extension NSAttributedString.Key {
 }
 
 
-private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
-
-
-
 // MARK: -
 
 final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
@@ -46,7 +42,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
     
     
+    // MARK: Structs
+    
+    private enum SerializationKey {
+        
+        static let insertionLocations = "insertionLocations"
+    }
+    
+    
     // MARK: Public Properties
+    
+    var theme: Theme?  { didSet { self.applyTheme() } }
     
     var isAutomaticTabExpansionEnabled = false
     
@@ -58,7 +64,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
-    var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
+    var insertionLocations: [Int] = []  { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
@@ -73,7 +79,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Private Properties
     
+    private static let textContainerInset = NSSize(width: 0, height: 4)
+    
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
+    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightMatchingBrace() }
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -83,12 +92,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var mouseDownPoint: NSPoint = .zero
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightInstance() }
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
@@ -116,11 +125,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         super.init(coder: coder)
         
-        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13).
+        // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13–10.15).
         self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
         self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
         
         // setup layoutManager and textContainer
+        let textContainer = TextContainer()
+        textContainer.widthTracksTextView = true
+        textContainer.isHangingIndentEnabled = defaults[.enablesHangingIndent]
+        textContainer.hangingIndentWidth = defaults[.hangingIndentWidth]
+        self.replaceTextContainer(textContainer)
+        
         let layoutManager = LayoutManager()
         self.textContainer!.replaceLayoutManager(layoutManager)
         self.layoutManager?.allowsNonContiguousLayout = true
@@ -131,14 +146,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
         self.autoresizingMask = .width
-        self.textContainerInset = kTextContainerInset
+        self.textContainerInset = Self.textContainerInset
         
         // set NSTextView behaviors
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
         self.allowsDocumentBackgroundColorChange = false
         self.allowsUndo = true
         self.isRichText = false
-        self.importsGraphics = false
         self.usesFindPanel = true
         self.acceptsGlyphInfo = true
         self.linkTextAttributes = [.cursor: NSCursor.pointingHand,
@@ -161,6 +175,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         layoutManager.textFont = font
         layoutManager.usesAntialias = defaults[.shouldAntialias]
         
+        self.ligature = defaults[.ligature] ? .standard : .none
         self.invalidateDefaultParagraphStyle()
         
         // observe change in defaults
@@ -189,10 +204,34 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// store UI state
+    override func encodeRestorableState(with coder: NSCoder) {
+        
+        super.encodeRestorableState(with: coder)
+        
+        coder.encode(self.insertionLocations, forKey: SerializationKey.insertionLocations)
+    }
+    
+    
+    /// restore UI state
+    override func restoreState(with coder: NSCoder) {
+        
+        super.restoreState(with: coder)
+        
+        if
+            let insertionLocations = coder.decodeObject(forKey: SerializationKey.insertionLocations) as? [Int],
+            !insertionLocations.isEmpty
+        {
+            let length = self.textStorage?.length ?? 0
+            self.insertionLocations = insertionLocations.filter { $0 <= length }
+        }
+    }
+    
+    
     /// append inset only to the bottom for overscroll
     override var textContainerOrigin: NSPoint {
         
-        return NSPoint(x: super.textContainerOrigin.x, y: kTextContainerInset.height)
+        return NSPoint(x: super.textContainerOrigin.x, y: Self.textContainerInset.height)
     }
     
     
@@ -212,16 +251,25 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// textView was attached to a window
+    /// textView is about to be attached to / detached from a window
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
+        
+        super.viewWillMove(toWindow: window)
+        
+        // remove observations before all observed objects are deallocated
+        if newWindow == nil {
+            self.removeNotificationObservers()
+        }
+    }
+    
+    
+    /// textView was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
         // textView will be removed from the window
-        guard let window = self.window else {
-            self.removeNotificationObservers()
-            return
-        }
+        guard let window = self.window else { return }
         
         // apply theme to window
         self.applyTheme()
@@ -264,6 +312,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// update state of text formatting NSTouchBarItems such as NSTouchBarItemIdentifierTextStyle and NSTouchBarItemIdentifierTextAlignment
+    override func updateTextTouchBarItems() {
+        
+        // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
+        //   -> This workaround must be applicable to EditorTextView because this method
+        //      seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
+//        super.updateTextTouchBarItems()
+    }
+    
+    
     /// update cursor (invoked when cursor needs to update without moving mouse)
     override func cursorUpdate(with event: NSEvent) {
         
@@ -296,7 +354,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // -> After `super.mouseDown(with:)` is actually the timing of `mouseUp(with:)`,
         //    which doesn't work in NSTextView subclasses. (2019-01 macOS 10.14)
         
-        guard let window = self.window else { return }
+        guard let window = self.window else { return assertionFailure() }
         
         let pointInWindow = window.convertPoint(fromScreen: NSEvent.mouseLocation)
         let point = self.convert(pointInWindow, from: nil)
@@ -313,7 +371,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.insertionLocations = (self.insertionLocations + [selectedRange.location]).sorted()
         }
         
-        // add/remove insrtion point at clicked point
+        // add/remove insertion point at clicked point
         if event.modifierFlags.contains(.command), event.clickCount == 1, !isDragged {
             self.modifyInsertionPoint(at: point)
         }
@@ -434,9 +492,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // smart outdent with '}'
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.isEmpty,
-            plainString == "}",
-            let insertionIndex = Range(self.rangeForUserTextChange, in: self.string)?.upperBound
+            plainString == "}"
         {
+            let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
             let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
@@ -473,10 +531,16 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             return
         }
         
-        if self.isAutomaticTabExpansionEnabled {
-            let softTab = self.string.softTab(at: self.rangeForUserTextChange.location, tabWidth: self.tabWidth)
+        // insert soft tab
+        if
+            self.isAutomaticTabExpansionEnabled,
+            let insertionRanges = rangesForUserTextChange as? [NSRange]
+        {
+            let softTabs = insertionRanges
+                .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
             
-            return super.insertText(softTab, replacementRange: self.rangeForUserTextChange)
+           self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
+           return
         }
         
         super.insertTab(sender)
@@ -505,9 +569,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             else { return super.insertNewline(sender) }
         
         let tab = self.isAutomaticTabExpansionEnabled ? String(repeating: " ", count: self.tabWidth) : "\t"
-        
         let ranges = self.rangesForUserTextChange as? [NSRange] ?? [self.rangeForUserTextChange]
-        self.setSelectedRangesWithUndo(ranges)
         
         let indents: [(range: NSRange, indent: String, insertion: Int)] = ranges
             .map { range in
@@ -515,7 +577,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
                 guard
                     !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(0..<range.location))
+                    let autoIndentRange = indentRange.intersection(NSRange(..<range.location))
                     else { return (range, "", 0) }
                 
                 var indent = (self.string as NSString).substring(with: autoIndentRange)
@@ -524,7 +586,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 // smart indent
                 if self.isSmartIndentEnabled {
                     let lastCharacter = self.character(before: range)
-                    let nextCharacter = self.character(after: self.rangeForUserTextChange)
+                    let nextCharacter = self.character(after: range)
                     let indentBase = indent
                     
                     // increase indent level
@@ -634,15 +696,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // interrupt rectangular selection
         if self.isPerformingRectangularSelection {
-            if stillSelectingFlag {
+            if NSAppKitVersion.current >= .macOS10_15 || stillSelectingFlag {
                 if let locations = self.insertionLocations(from: self.mouseDownPoint, candidates: ranges) {
                     ranges = [NSRange(location: locations[0], length: 0)] as [NSValue]
                     self.insertionLocations = Array(locations[1...])
                 } else {
                     self.insertionLocations = []
                 }
-            } else {
-                ranges = ranges.isEmpty ? self.selectedRanges : ranges
+            } else if ranges.isEmpty {
+                ranges = self.selectedRanges
             }
         }
         
@@ -663,8 +725,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         if !stillSelectingFlag, !self.isShowingCompletion {
             // highlight matching brace
             if UserDefaults.standard[.highlightBraces] {
-                let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
-                self.highligtMatchingBrace(candidates: bracePairs)
+                self.braceHighlightTask.schedule()
             }
             
             // invalidate current instances highlight
@@ -699,9 +760,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // add "Inspect Character" menu item if single character is selected
-        if (self.string as NSString).substring(with: self.selectedRange).count == 1 {
+        if (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal {
             menu.insertItem(withTitle: "Inspect Character".localized,
-                            action: #selector(showSelectionInfo(_:)),
+                            action: #selector(showSelectionInfo),
                             keyEquivalent: "",
                             at: 1)
         }
@@ -710,7 +771,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let copyIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(copy(_:)))
         if copyIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Copy as Rich Text".localized,
-                            action: #selector(copyWithStyle(_:)),
+                            action: #selector(copyWithStyle),
                             keyEquivalent: "",
                             at: copyIndex + 1)
         }
@@ -719,9 +780,23 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
         if pasteIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Select All".localized,
-                            action: #selector(selectAll(_:)),
+                            action: #selector(selectAll),
                             keyEquivalent: "",
                             at: pasteIndex + 1)
+        }
+        
+        // add "Straighten Quotes" menu item in Substitutions submenu
+        for item in menu.items {
+            guard let submenu = item.submenu else { continue }
+            
+            let index = submenu.indexOfItem(withTarget: nil, andAction: Selector(("replaceQuotesInSelection:")))
+            
+            guard index >= 0 else { continue }  // -1 == not found
+            
+            submenu.insertItem(withTitle: "Straighten Quotes".localized,
+                               action: #selector(straightenQuotesInSelection),
+                               keyEquivalent: "",
+                               at: index + 1)
         }
         
         return menu
@@ -732,17 +807,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override var font: NSFont? {
         
         get {
-            // make sure to return by user defined font
+            // make sure to return the font defined by user
             return (self.layoutManager as? LayoutManager)?.textFont ?? super.font
         }
         
         set {
             guard let font = newValue else { return }
             
-            // let LayoutManager have the font too to avoid the issue where the line height can be inconsistance by a composite font
-            // -> Because `textView.font` can return a Japanese font
-            //    when the font is for one-bites and the first character of the content is Japanese one,
-            //    LayoutManager should not use `textView.font`.
+            // let LayoutManager keep the set font to avoid an inconsistent line height
+            // -> Because NSTextView's .font returns the font used for the first character of .string when it exists,
+            //    not the font defined by user but a fallback font is returned through this property
+            //    when the set font doesn't have a glyph for the first character.
             (self.layoutManager as? LayoutManager)?.textFont = font
             
             super.font = font
@@ -774,7 +849,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func setNeedsDisplay(_ invalidRect: NSRect) {
         
         // expand rect as a workaroud for thick or multiple cursors (2018-11 macOS 10.14)
-        super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        if self.cursorType != .bar || self.hasMultipleInsertions {
+            super.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+        }
         
         super.setNeedsDisplay(invalidRect)
     }
@@ -931,13 +1008,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// read pasted/dropped item from NSPaseboard (involed in `performDragOperation(_:)`)
     override func readSelection(from pboard: NSPasteboard, type: NSPasteboard.PasteboardType) -> Bool {
         
-        // apply link to pasted string
+        // link URLs in pasted string
         defer {
-            self.detectLinkIfNeeded()
+            if self.isAutomaticLinkDetectionEnabled {
+                self.textStorage?.detectLink()
+            }
         }
         
         // on file drop
-        if pboard.name == .dragPboard,
+        if pboard.name == .drag,
             let urls = pboard.readObjects(forClasses: [NSURL.self]) as? [URL],
             self.insertDroppedFiles(urls)
         {
@@ -945,7 +1024,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         }
         
         // paste a single string to all insertion points
-        if pboard.name == .generalPboard,
+        if pboard.name == .general,
             pboard.types?.contains(.multipleTextSelection) == false,
             let string = pboard.string(forType: .string),
             let ranges = self.rangesForUserTextChange as? [NSRange],
@@ -953,6 +1032,29 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             string.rangeOfCharacter(from: .newlines) == nil
         {
             return self.insertText(string, replacementRanges: ranges)
+        }
+        
+        // keep multiple cursors after pasting mutliple text
+        if pboard.name == .general,
+            let groupCounts = pboard.propertyList(forType: .multipleTextSelection) as? [Int],
+            let string = pboard.string(forType: .string),
+            let ranges = self.rangesForUserTextChange as? [NSRange],
+            ranges.count > 1
+        {
+            let lines = string.components(separatedBy: .newlines)
+            let multipleTexts: [String] = groupCounts
+                .reduce(into: [Range<Int>]()) { (groupRanges, groupCount) in
+                    if groupRanges.count >= ranges.count, let last = groupRanges.last {
+                        groupRanges[groupRanges.endIndex - 1] = last.lowerBound..<(last.upperBound + groupCount)
+                    } else {
+                        groupRanges.append(groupRanges.count..<(groupRanges.count + groupCount))
+                    }
+                }
+                .map { lines[$0].joined(separator: "\n") }
+            let blanks = [String](repeating: "", count: ranges.count - multipleTexts.count)
+            let strings = multipleTexts + blanks
+            
+            return self.replace(with: strings, ranges: ranges, selectedRanges: nil)
         }
         
         return super.readSelection(from: pboard, type: type)
@@ -998,14 +1100,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// apply current state to related menu items and toolbar items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(copyWithStyle):
             return !self.selectedRange.isEmpty
             
+        case #selector(straightenQuotesInSelection):
+            // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
+            //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
+            return !self.selectedRange.isEmpty
+            
         case #selector(showSelectionInfo):
-            return (self.string as NSString).substring(with: self.selectedRange).count == 1
+            return (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
             
         case #selector(toggleComment):
             if let menuItem = item as? NSMenuItem {
@@ -1034,25 +1139,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Accessors
     
-    /// coloring settings
-    var theme: Theme? {
-        
-        didSet {
-            self.applyTheme()
-        }
-    }
-    
-    
     /// tab width in number of spaces
     @objc var tabWidth: Int {
         
         didSet {
-            if tabWidth <= 0 {
-                tabWidth = oldValue
-            }
+            tabWidth = max(oldValue, 0)
+            
             guard tabWidth != oldValue else { return }
             
-            // apply to view
             self.invalidateDefaultParagraphStyle()
         }
     }
@@ -1062,12 +1156,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHeight: CGFloat {
         
         didSet {
-            if lineHeight <= 0 {
-                lineHeight = oldValue
-            }
+            lineHeight = max(oldValue, 0)
+            
             guard lineHeight != oldValue else { return }
             
-            // apply to view
             self.invalidateDefaultParagraphStyle()
         }
     }
@@ -1118,14 +1210,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         assert(Thread.isMainThread)
         
         guard let textStorage = self.textStorage else { return assertionFailure() }
+        guard textStorage.length > 0 else { return }
         
-        let range = textStorage.mutableString.range
-        
-        guard !range.isEmpty else { return }
-        
-        textStorage.addAttributes(self.typingAttributes, range: range)
-        (self.layoutManager as? LayoutManager)?.invalidateIndent(in: range)
-        self.detectLinkIfNeeded()
+        textStorage.addAttributes(self.typingAttributes, range: textStorage.range)
     }
     
     
@@ -1252,14 +1339,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private func removeNotificationObservers() {
         
         if let observer = self.windowOpacityObserver {
+            assert(self.window != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.windowOpacityObserver = nil
         }
+        
         if let observer = self.scrollObserver {
+            assert(self.enclosingScrollView?.contentView != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.scrollObserver = nil
         }
+        
         if let observer = self.resizeObserver {
+            assert(self.enclosingScrollView?.contentView != nil)
+            
             NotificationCenter.default.removeObserver(observer)
             self.resizeObserver = nil
         }
@@ -1290,25 +1385,26 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
         
+        // set textColor only when really required
+        // to avoid returning textColor to NSColorPanel (especially for theme editor). (macOS 10.14)
+        if theme.text.color != self.textColor {
+            self.textColor = theme.text.color
+        }
+        
         self.backgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color
-        self.textColor = theme.text.color
-        self.lineHighLightColor = theme.lineHighlight.color
-        self.insertionPointColor = theme.insertionPoint.color.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+        self.lineHighLightColor = self.isOpaque
+            ? theme.lineHighlight.color
+            : theme.lineHighlight.color.withAlphaComponent(0.7)
+        self.insertionPointColor = (self.cursorType == .block)
+            ? theme.insertionPoint.color.withAlphaComponent(0.5)
+            : theme.insertionPoint.color
         self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
         
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
-        if !self.isOpaque {
-            self.lineHighLightColor = self.lineHighLightColor?.withAlphaComponent(0.7)
-        }
-        
         // set scroller color considering background color
-        if #available(macOS 10.14, *) {
-            self.enclosingScrollView?.appearance = NSAppearance(named: theme.isDarkTheme ? .darkAqua : .aqua)
-        } else {
-            self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
-        }
+        self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
     }
@@ -1372,13 +1468,19 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// use legible white-based custom i-beam cursor for dark theme
     private func invalidateCursor() {
         
-        guard
-            NSAppKitVersion.current <= .macOS10_13,  // i-beam is enough findable with dark background since Mojave
-            self.theme?.isDarkTheme == true,
-            NSCursor.current == .iBeam
-            else { return }
+        guard self.theme?.isDarkTheme == true else { return }
         
-        NSCursor.lightIBeam.set()
+        switch NSCursor.current {
+        case .iBeam where NSAppKitVersion.current <= .macOS10_13:
+            // -> i-beam is enough findable with dark background since Mojave
+            NSCursor.lightIBeam.set()
+            
+        case .iBeamCursorForVerticalLayout:
+            NSCursor.lightIBeamCursorForVerticalLayout.set()
+            
+        default:
+            break
+        }
     }
     
     
@@ -1394,41 +1496,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
-        let height = max(floor(inset / 2), kTextContainerInset.height)
+        let height = max(floor(inset / 2), Self.textContainerInset.height)
         
         // avoid high-loaded `sizeToFit()` if not required
         guard height != self.textContainerInset.height else { return }
         
         self.textContainerInset.height = height
         self.sizeToFit()
-    }
-    
-    
-    /// make URL-like text clickable
-    private func detectLinkIfNeeded() {
-        
-        assert(Thread.isMainThread)
-        
-        guard
-            self.isAutomaticLinkDetectionEnabled,
-            let textStorage = self.textStorage
-            else { return }
-        
-        // -> use own dataDetector instead of `checkTextInDocument(_:)` due to performance issue (2018-07)
-        let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let range = NSRange(..<textStorage.length)
-        
-        textStorage.removeAttribute(.link, range: range)
-        
-        detector.enumerateMatches(in: self.string, range: range) { (result, _, _) in
-            guard let result = result, let url = result.url else { return }
-            
-            textStorage.addAttribute(.link, value: url, range: result.range)
-        }
-        
-        // ensure layout to avoid unwanted scroll with cursor move after pasting something
-        // at the latter part of the document. (2018-10 macOS 10.14)
-        self.layoutManager?.ensureLayout(forCharacterRange: range)
     }
     
     
@@ -1495,6 +1569,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
+    /// highlight the brace matching to the brace next to the cursor
+    private func highlightMatchingBrace() {
+        
+        let bracePairs = BracePair.braces + (UserDefaults.standard[.highlightLtGt] ? [.ltgt] : [])
+        
+        self.highligtMatchingBrace(candidates: bracePairs)
+    }
+    
+    
     /// highlight all instances of the selection
     private func highlightInstance() {
         
@@ -1505,11 +1588,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.selectedRanges.count == 1,
             !self.selectedRange.isEmpty,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
-                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil,
-            let range = Range(self.selectedRange, in: self.string)
+                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
             else { return }
         
-        let substring = String(self.string[range])
+        let substring = (self.string as NSString).substring(with: self.selectedRange)
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: self.string, range: self.string.nsRange)
@@ -1532,6 +1614,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             .enableSmartIndent,
             .balancesBrackets,
             .shouldAntialias,
+            .ligature,
             .smartInsertAndDelete,
             .enableSmartQuotes,
             .enableSmartDashes,
@@ -1572,6 +1655,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             case .shouldAntialias:
                 self.usesAntialias = new as! Bool
                 
+            case .ligature:
+                self.ligature = (new as! Bool) ? .standard : .none
+                
             case .smartInsertAndDelete:
                 self.smartInsertDeleteEnabled = new as! Bool
                 
@@ -1586,10 +1672,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case .autoLinkDetection:
                 self.isAutomaticLinkDetectionEnabled = new as! Bool
-                if self.isAutomaticLinkDetectionEnabled {
-                    self.detectLinkIfNeeded()
-                } else if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.link, range: NSRange(0..<textStorage.length))
+                if let textStorage = self.textStorage {
+                    if self.isAutomaticLinkDetectionEnabled {
+                        textStorage.detectLink()
+                    } else {
+                        textStorage.removeAttribute(.link, range: textStorage.range)
+                    }
                 }
                 
             case .pageGuideColumn:
@@ -1617,19 +1705,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 }
                 
             case .enablesHangingIndent:
-                let wholeRange = self.string.nsRange
-                if !(new as! Bool) {
-                    if let paragraphStyle = self.defaultParagraphStyle {
-                        self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: wholeRange)
-                    } else {
-                        self.textStorage?.removeAttribute(.paragraphStyle, range: wholeRange)
-                    }
-                } else {
-                    (self.layoutManager as? LayoutManager)?.invalidateIndent(in: wholeRange)
-                }
+                (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
                 
             case .hangingIndentWidth:
-                (self.layoutManager as? LayoutManager)?.invalidateIndent(in: self.string.nsRange)
+                (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
                 
             default:
                 preconditionFailure()
@@ -1653,18 +1732,18 @@ extension EditorTextView {
         
         let range = super.rangeForUserCompletion
         
-        let firstLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
-        let firstLetterSet = CharacterSet(firstLetters)
+        guard !self.string.isEmpty else { return range }
+        
+        let firstSyntaxLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
+        let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates
-        guard
-            !firstLetterSet.isEmpty,
-            !self.string.isEmpty,
-            let characterRange = Range(range, in: self.string),
-            let index = self.string[..<characterRange.upperBound].rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards)?.upperBound
-            else { return range }
+        let searchRange = NSRange(..<range.upperBound)
+        let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
         
-        return NSRange(index..<characterRange.upperBound, in: self.string)
+        guard invalidRange != .notFound else { return range }
+        
+        return NSRange(invalidRange.upperBound..<range.upperBound)
     }
     
     
@@ -1820,10 +1899,10 @@ extension EditorTextView {
         
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
-            range.length == 1,  // clicked character can be a brace
-            let characterIndex = Range(range, in: self.string)?.lowerBound  // just in case
+            range.length == 1  // clicked character can be a brace
             else { return range }
         
+        let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text

@@ -6,7 +6,7 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2018 CotEditor Project
+ © 2006-2019 CotEditor Project
 */
 
 
@@ -20,6 +20,6 @@ ul {
 }
 
 body > ul li {
-	border-bottom: 1px solid hsl(0,0%,85%);
+	border-bottom: 0.5px solid -apple-system-tertiary-label;
 	padding: 0.3em 0;
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,6 +27,12 @@ import AppKit
 
 protocol StoryboardInstantiatable: AnyObject {
     
+    /// Instantinate control from a storyboard.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the storyboard.
+    ///   - bundle: The bundle where the storyboard file exists. When nil, the app’s main bundle will be used.
+    /// - Returns: A instance of the receiver class that is instantiated from the storyboard.
     static func instantiate(storyboard: NSStoryboard.Name, bundle: Bundle?) -> Self
 }
 

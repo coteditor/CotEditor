@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -41,16 +41,8 @@ final class StatableMenuToolbarItem: StatableToolbarItem {
         let segmentedControl = self.segmentedControl!
         
         // set menu to the last segment
-        if #available(macOS 10.13, *) {
-            segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
-            segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
-        } else {
-            // jsut remove menu segment if the menu indicator is not supported
-            segmentedControl.segmentCount = 1
-            segmentedControl.setWidth(38, forSegment: 0)
-            self.minSize.width = 44
-            self.maxSize.width = 44
-        }
+        segmentedControl.setShowsMenuIndicator(true, forSegment: 1)
+        segmentedControl.setMenu(self.segmentMenu, forSegment: 1)
         
         // set menu for "Text Only" mode
         let item = NSMenuItem()

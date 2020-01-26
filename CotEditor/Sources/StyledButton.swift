@@ -44,7 +44,7 @@ final class StyledButton: NSButton {
         
         didSet {
             let attributedTitle = self.attributedTitle.mutable
-            let range = NSRange(location: 0, length: attributedTitle.length)
+            let range = attributedTitle.range
             
             if isUnderlined {
                 attributedTitle.addAttribute(.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)

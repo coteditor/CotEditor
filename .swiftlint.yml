@@ -1,5 +1,5 @@
-macOS_deployment_target:
-    10.12.2
+deployment_target:
+  macOS_deployment_target: 10.13
 
 included:
   - CotEditor/Sources
@@ -12,38 +12,54 @@ opt_in_rules:
   - closure_end_indentation
   - closure_spacing
   - collection_alignment
+  - contains_over_filter_count
+  - contains_over_filter_is_empty
   - contains_over_first_not_nil
   - discouraged_optional_boolean
+  - empty_collection_literal
   - empty_string
   - empty_xctest_method
+  - enum_case_associated_value_count
   - explicit_init
+  - explicit_self
   - extension_access_modifier
   - fallthrough
   - file_header
   - first_where
+  - flatmap_over_map_reduce
   - identical_operands
-  - implicit_return
   - joined_default_parameter
   - last_where
+  - legacy_multiple
+  - legacy_random
   - let_var_whitespace
+  - lower_acl_than_parent
+  - missing_docs
   - multiline_function_chains
   - multiline_parameters
   - multiline_parameters_brackets
   - nimble_operator
+  - optional_enum_case_matching
+  - overridden_super_call
   - pattern_matching_keywords
+  - prefer_self_type_over_type_of_self
   - private_outlet
   - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
   - quick_discouraged_pending_test
+  - raw_value_for_camel_cased_codable_enum
+  - reduce_into
   - redundant_nil_coalescing
   - redundant_type_annotation
   - required_enum_case
+  - single_test_class
   - sorted_first_last
   - static_operator
   - toggle_bool
   - untyped_error_in_catch
-  - unused_private_declaration
+  - unused_declaration
+  - unused_import
   - vertical_parameter_alignment_on_call
   - xct_specific_matcher
   - yoda_condition
@@ -61,12 +77,15 @@ disabled_rules:
 
 private_outlet:
   allow_private_set: true
-  
+
 trailing_whitespace:
   ignores_empty_lines: true
 
 attributes:
   always_on_same_line: ["@IBAction", "@objc"]
+
+function_parameter_count:
+  warning: 6
 
 vertical_whitespace:
   max_empty_lines: 4
@@ -84,7 +103,7 @@ type_body_length:
   error: 1500
 
 function_body_length:
-  warning: 90
+  warning: 80
   error: 100
 
 cyclomatic_complexity:
@@ -106,6 +125,7 @@ identifier_name:
     - y
     - shiftJIS_X0213
     - version3_0
+    - macOS10_15
 
 
 custom_rules:

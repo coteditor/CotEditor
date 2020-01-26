@@ -153,7 +153,7 @@
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "Opacidade";  /* Opacity */
 "LYl-ty-usA.paletteLabel" = "Opacidade";  /* Opacity */
-"LYl-ty-usA.toolTip" = "Altere Opacidade do Editor";  /* Change editor’s opacity */
+"LYl-ty-usA.toolTip" = "Altere a opacidade do editor";  /* Change editor’s opacity */
 
 /* Class = "NSToolbarItem"; label = "Spell Check"; ObjectID = "Ply-Nr-aOE"; */
 "Ply-Nr-aOE.label" = "Verificar Ortografia";  /* Spell Check */

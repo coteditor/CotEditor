@@ -27,16 +27,34 @@ import Foundation
 
 private let kMaxEscapesCheckLength = 8
 
+extension StringProtocol where Self.Index == String.Index {
+
+    // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+    subscript(workaround range: Range<Index>) -> SubSequence {
+        
+        if #available(macOS 10.15, *) { return self[range] }
+        
+        guard range.upperBound == self.endIndex else { return self[range] }
+        
+        return (range.lowerBound == self.endIndex)
+            ? self[self.endIndex...]
+            : self[range.lowerBound...]
+    }
+    
+}
+
+
+
 extension String {
     
-    /// return copied string to make sure the string is not a kind of NSMutableString.
+    /// Copied string to make sure the string is not a kind of NSMutableString.
     var immutable: String {
         
         return NSString(string: self) as String
     }
     
     
-    /// unescape backslashes
+    /// Unescaped version of the string by unescaing the characters with backslashes.
     var unescaped: String {
         
         // -> According to the following sentence in the Swift 3 documentation, these are the all combinations with backslash.
@@ -56,7 +74,7 @@ extension String {
                     .map { $0.range(at: 1) }
                     .compactMap { Range($0, in: string) }
                     .reversed()
-                    .reduce(string) { $0.replacingCharacters(in: $1, with: entity.key) }
+                    .reduce(into: string) { $0.replaceSubrange($1, with: entity.key) }
             }
     }
     
@@ -66,30 +84,84 @@ extension String {
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// range of the line containing a given index
-    func lineRange(at index: Index, excludingLastLineEnding: Bool = false) -> Range<Index> {
+    /// Range of the line containing a given index.
+    ///
+    /// - Parameter index: The character index within the receiver.
+    /// - Returns: The characer range of the line.
+    func lineRange(at index: Index) -> Range<Index> {
         
-        return self.lineRange(for: index..<index, excludingLastLineEnding: excludingLastLineEnding)
+        return self.lineRange(for: index..<index)
     }
     
     
-    /// line range adding ability to exclude last line ending character if exists
-    func lineRange(for range: Range<Index>, excludingLastLineEnding: Bool) -> Range<Index> {
+    /// Range of the line containing a given index.
+    ///
+    /// - Parameter index: The character index within the receiver.
+    /// - Returns: The characer range of the line contents.
+    func lineContentsRange(at index: Index) -> Range<Index> {
         
-        let lineRange = self.lineRange(for: range)
-        
-        guard excludingLastLineEnding,
-            let index = self.index(lineRange.upperBound, offsetBy: -1, limitedBy: lineRange.lowerBound),
-            self[index] == "\n" else { return lineRange }
-        
-        return lineRange.lowerBound..<self.index(before: lineRange.upperBound)
+        return self.lineContentsRange(for: index..<index)
     }
     
     
-    /// check if character at the index is escaped with backslash
+    /// Return line range excluding last line ending character if exists.
+    ///
+    /// - Parameter range: A range within the receiver.
+    /// - Returns: The range of characters representing the line or lines containing a given range.
+    func lineContentsRange(for range: Range<Index>) -> Range<Index> {
+        
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: range)
+        
+        return start..<contentsEnd
+    }
+    
+    
+    /// Return the index of the first character of the line touched by the given index.
+    ///
+    /// - Note: Unlike NSString's one, this method does not have the performance advantage.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line start.
+    /// - Returns: The character index of the nearest line start.
+    func lineStartIndex(at index: Index) -> Index {
+        
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
+        
+        return start
+    }
+    
+    
+    /// Return the index of the last character before the line ending of the line touched by the given index.
+    ///
+    /// - Note: Unlike NSString's one, this method does not have the performance advantage.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line contents end.
+    /// - Returns: The character index of the nearest line contents end.
+    func lineContentsEndIndex(at index: Index) -> Index {
+        
+        var start = self.startIndex
+        var end = self.startIndex
+        var contentsEnd = self.startIndex
+        self.getLineStart(&start, end: &end, contentsEnd: &contentsEnd, for: index..<index)
+        
+        return contentsEnd
+    }
+    
+    
+    /// Check if character at the index is escaped with backslash.
+    ///
+    /// - Parameter index: The index of the character to check.
+    /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at index: Index) -> Bool {
         
-        let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
+        let escapes = self[workaround: self.startIndex..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
         
         return !escapes.count.isMultiple(of: 2)
     }
@@ -102,7 +174,23 @@ extension StringProtocol where Self.Index == String.Index {
 
 extension String {
     
-    /// check if character at the location in UTF16 is escaped with backslash
+    /// Divide the given range into logical line contents ranges.
+    ///
+    /// - Parameter range: The range to divide or `nil`.
+    /// - Returns: Logical line ranges.
+    func lineContentsRanges(for range: NSRange? = nil) -> [NSRange] {
+        
+        let range = range ?? self.nsRange
+        let regex = try! NSRegularExpression(pattern: "^.*", options: [.anchorsMatchLines])
+        
+        return regex.matches(in: self, range: range).map { $0.range }
+    }
+    
+    
+    /// Check if character at the location in UTF16 is escaped with backslash.
+    ///
+    /// - Parameter location: The UTF16-based location of the character to check.
+    /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at location: Int) -> Bool {
         
         let locationIndex = String.Index(utf16Offset: location, in: self)

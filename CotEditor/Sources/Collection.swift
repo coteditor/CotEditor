@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,11 +28,15 @@ extension RangeReplaceableCollection where Element: Equatable {
     /// Remove first collection element that is equal to the given `element`.
     ///
     /// - Parameter element: The element to be removed.
-    mutating func remove(_ element: Element) {
+    /// - Returns: The index of the removed element, or `nil` if not contains.
+    @discardableResult
+    mutating func removeFirst(_ element: Element) -> Index? {
         
-        if let index = self.firstIndex(of: element) {
-            self.remove(at: index)
-        }
+        guard let index = self.firstIndex(of: element) else { return nil }
+        
+        self.remove(at: index)
+        
+        return index
     }
     
 }
@@ -47,6 +51,21 @@ extension Collection {
     subscript(safe index: Index) -> Element? {
         
         return self.indices.contains(index) ? self[index] : nil
+    }
+    
+    
+    /// Split receiver into buffer sized chunks.
+    ///
+    /// - Parameter length: The buffer size to split.
+    /// - Returns: Split subsequences.
+    func components(length: Int) -> [SubSequence] {
+        
+        return stride(from: 0, to: self.count, by: length).map {
+            let start = self.index(self.startIndex, offsetBy: $0)
+            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
+            
+            return self[start..<end]
+        }
     }
     
 }
@@ -90,6 +109,12 @@ extension Dictionary {
 
 // MARK: - Count
 
+enum QuantityComparisonResult {
+    
+    case less, equal, greater
+}
+
+
 extension Sequence {
     
     /// Count up elements that satisfy the given predicate.
@@ -112,7 +137,29 @@ extension Sequence {
     /// - Returns: The number of elements that satisfies the given predicate and are sequentially from the first index.
     func countPrefix(while predicate: (Element) throws -> Bool) rethrows -> Int {
         
-        return try self.prefix(while: predicate).count
+        return try self.lazy.prefix(while: predicate).count
+    }
+    
+    
+    /// Performance efficient way to compare the number of elements with the given number.
+    ///
+    /// - Note: This method takes advantage especially when counting elements is heavy (such as String count) and the number to compare is small.
+    ///
+    /// - Parameter number: The number of elements to test.
+    /// - Returns: The result whether the number of the elements in the receiver is less than, equal, or more than the given number.
+    func compareCount(with number: Int) -> QuantityComparisonResult {
+        
+        assert(number >= 0, "The count number to compare should be a natural number.")
+        
+        guard number >= 0 else { return .greater }
+        
+        var count = 0
+        for _ in self {
+            count += 1
+            if count > number { return .greater }
+        }
+        
+        return (count == number) ? .equal : .less
     }
     
 }

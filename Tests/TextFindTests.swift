@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class TextFindTests: XCTestCase {
+final class TextFindTests: XCTestCase {
     
     func testCaptureGroupCount() throws {
         

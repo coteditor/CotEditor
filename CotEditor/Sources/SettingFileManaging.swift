@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -136,7 +136,8 @@ extension SettingFileManaging {
     /// create setting name from a URL (don't care if it exists)
     func settingName(from fileURL: URL) -> String {
         
-        return fileURL.deletingPathExtension().lastPathComponent
+        // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+        return fileURL.deletingPathExtension().lastPathComponent.immutable
     }
     
     
@@ -311,6 +312,9 @@ extension SettingFileManaging {
         { (newReadingURL, newWritingURL) in
             
             do {
+                if newWritingURL.isReachable {
+                    try FileManager.default.removeItem(at: newWritingURL)
+                }
                 try FileManager.default.copyItem(at: newReadingURL, to: newWritingURL)
                 
                 var newWritingURL = newWritingURL

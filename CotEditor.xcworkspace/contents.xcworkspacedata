@@ -7,4 +7,14 @@
    <FileRef
       location = "group:CotEditor/CotEditor.xcodeproj">
    </FileRef>
+   <Group
+      location = "container:CotEditor/CotEditor.help/Contents/Resources"
+      name = "Release Notes">
+      <FileRef
+         location = "group:en.lproj/pgs/releasenotes.html">
+      </FileRef>
+      <FileRef
+         location = "group:ja.lproj/pgs/releasenotes.html">
+      </FileRef>
+   </Group>
 </Workspace>

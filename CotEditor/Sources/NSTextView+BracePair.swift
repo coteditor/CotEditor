@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,31 +27,36 @@ import Cocoa
 
 extension NSTextView {
     
-    /// find the matching brace for the character before the cursor and highlight it
+    /// find the matching braces for the character before the cursors and highlight them
     func highligtMatchingBrace(candidates: [BracePair], ignoring pairToIgnore: BracePair? = nil) {
         
-        let string = self.string
-        let selectedRange = self.selectedRange
-        
         guard
-            !string.isEmpty,
-            selectedRange.isEmpty,
-            selectedRange.location != NSNotFound,
-            selectedRange.location > 0,
-            let cursorIndex = Range(selectedRange, in: string)?.lowerBound
+            !self.string.isEmpty,
+            let selectedRanges = self.rangesForUserTextChange as? [NSRange]
             else { return }
         
-        // check the character just before the cursor
-        let lastIndex = string.index(before: cursorIndex)
+        let cursorIndexes = selectedRanges
+            .filter { $0.isEmpty }
+            .filter { $0.location > 0 }
+            .map { String.Index(utf16Offset: $0.lowerBound, in: self.string) }
         
-        guard let pairIndex = string.indexOfBracePair(at: lastIndex, candidates: candidates, ignoring: pairToIgnore) else { return }
+        guard
+            !cursorIndexes.isEmpty,
+            let visibleRange = self.visibleRange,
+            let range = Range(visibleRange, in: self.string)
+            else { return }
         
-        switch pairIndex {
-        case .begin(let index), .end(let index):
-            let range = NSRange(index...index, in: string)
-            self.showFindIndicator(for: range)
-        case .odd: break
-        }
+        cursorIndexes
+            .map { self.string.index(before: $0) }
+            .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
+            .compactMap { pairIndex in
+                switch pairIndex {
+                case .begin(let index), .end(let index): return index
+                case .odd: return nil
+                }
+            }
+            .map { NSRange($0...$0, in: self.string) }
+            .forEach { self.showFindIndicator(for: $0) }
     }
     
 }

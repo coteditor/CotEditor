@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,25 +29,27 @@ extension NSTextView {
     
     func insert(snippet: Snippet) {
         
-        let ranges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
-        let strings = [String](repeating: snippet.string, count: ranges.count)
+        guard
+            !snippet.string.isEmpty,
+            let insertionRanges = self.rangesForUserTextChange as? [NSRange]
+            else { return }
+        
+        let strings = [String](repeating: snippet.string, count: insertionRanges.count)
         
         let selectedRanges: [NSRange]? = {
-            guard let selection = snippet.selection else { return nil }
+            guard !snippet.selections.isEmpty else { return nil }
             
-            let snippetLength = snippet.string.utf16.count
-            return ranges.map { range in
-                let offset = ranges
-                    .prefix { $0 != range }
-                    .map { snippetLength - $0.length }
-                    .reduce(range.location, +)
-
-                return selection.shifted(offset: offset)
-            }
+            return insertionRanges
+                .map { range in
+                    insertionRanges
+                        .prefix { $0 != range }
+                        .map { snippet.string.length - $0.length }
+                        .reduce(range.location, +)
+                }
+                .flatMap { offset in snippet.selections.map { $0.shifted(offset: offset) } }
         }()
         
-        self.replace(with: strings, ranges: ranges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
-        
+        self.replace(with: strings, ranges: insertionRanges, selectedRanges: selectedRanges, actionName: "Insert Snippet".localized)
     }
     
 }

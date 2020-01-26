@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -117,7 +117,8 @@
                                                 <action selector="saveDocumentAs:" target="Ady-hI-5gd" id="xe3-FG-SLT"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Revert to Saved" keyEquivalent="r" id="112">
+                                        <menuItem title="Revert to Saved" id="112">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="f6J-Sb-kOt"/>
                                             </connections>
@@ -217,7 +218,7 @@ Gw
                                                 <action selector="inputYenMark:" target="Ady-hI-5gd" id="4HI-qU-zlg"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Input in Unicode Hex…" id="tWx-pj-3PL">
+                                        <menuItem title="Input in Unicode Code Point…" id="tWx-pj-3PL">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showUnicodeInputPanel:" target="Ady-hI-5gd" id="c4v-c9-nMK"/>
@@ -266,6 +267,31 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Substitutions" id="2wy-A5-6kZ">
                                                 <items>
+                                                    <menuItem title="Replace Quotes" id="7NX-1r-Wq7">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="replaceQuotesInSelection:" target="Ady-hI-5gd" id="yj0-7q-gLA"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Straighten Quotes" id="9gl-1h-Yit">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="straightenQuotesInSelection:" target="Ady-hI-5gd" id="ERO-GK-a6I"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Replace Dashes" id="hMS-qd-BCS">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="replaceDashesInSelection:" target="Ady-hI-5gd" id="j6d-Ei-Z9e"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Replace Text" id="ue7-85-H8l">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="replaceTextInSelection:" target="Ady-hI-5gd" id="Eik-PZ-k8e"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="BFQ-h9-EMW"/>
                                                     <menuItem title="Show Substitutions" id="gqI-2M-XIx">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
@@ -387,10 +413,7 @@ Gw
                                                             <action selector="smallerFont:" target="Ady-hI-5gd" id="Uds-lf-yjO"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem isSeparatorItem="YES" id="576">
-                                                        <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                                    </menuItem>
-                                                    <menuItem title="Reset to Default" keyEquivalent="=" id="574">
+                                                    <menuItem title="Reset to Default" keyEquivalent="0" id="574">
                                                         <connections>
                                                             <action selector="resetFont:" target="Ady-hI-5gd" id="NPb-Jj-Ev0"/>
                                                         </connections>
@@ -401,6 +424,11 @@ Gw
                                                     <menuItem title="Anti-aliasing" id="745">
                                                         <connections>
                                                             <action selector="toggleAntialias:" target="Ady-hI-5gd" id="TW0-Ns-jgv"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Ligatures" id="viH-Eo-wKz">
+                                                        <connections>
+                                                            <action selector="toggleLigatures:" target="Ady-hI-5gd" id="rpC-YT-9Zh"/>
                                                         </connections>
                                                     </menuItem>
                                                 </items>
@@ -563,6 +591,7 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show Status Bar" id="325">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleStatusBar:" target="Ady-hI-5gd" id="pjH-8E-CJp"/>
                                             </connections>
@@ -776,13 +805,13 @@ CA
                                                             <action selector="surroundSelectionWithParenthesis:" target="Ady-hI-5gd" id="iPh-IV-WH0"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Brackets" id="Xoq-43-C1z">
+                                                    <menuItem title="Braces" id="Xoq-43-C1z">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="surroundSelectionWithBraces:" target="Ady-hI-5gd" id="LTH-8s-duP"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="Square Brackets" id="cTU-2P-7Tp">
+                                                    <menuItem title="Brackets" id="cTU-2P-7Tp">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="surroundSelectionWithSquareBrackets:" target="Ady-hI-5gd" id="92J-nd-Mh7"/>
@@ -1161,7 +1190,7 @@ CA
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="rfZ-hc-oJE"/>
-                                        <menuItem title="Create Issue Report…" id="iHn-Ed-A8u">
+                                        <menuItem title="Create Issue Report" id="iHn-Ed-A8u">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="createBugReport:" target="Voe-Tx-rLC" id="eYU-u3-aNG"/>

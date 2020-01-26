@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -44,7 +44,7 @@ final class ServicesProvider: NSObject {
         }
         
         if let document = document as? Document {
-            document.textStorage.replaceCharacters(in: NSRange(location: 0, length: 0), with: selection)
+            document.textStorage.replaceCharacters(in: NSRange(0..<0), with: selection)
             document.makeWindowControllers()
             document.showWindows()
         }

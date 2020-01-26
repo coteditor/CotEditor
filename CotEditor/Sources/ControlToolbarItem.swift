@@ -57,8 +57,6 @@ class ControlToolbarItem: NSToolbarItem {
                 return validator.validateToolbarItem(self)
             case let validator as NSUserInterfaceValidations:
                 return validator.validateUserInterfaceItem(self)
-            case _ where validator.responds(to: #selector(NSUserInterfaceValidations.validateUserInterfaceItem)):  // workaround for macOS 10.12 and earier
-                return validator.validateUserInterfaceItem(self)
             default:
                 return true
             }

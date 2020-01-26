@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     private var isUncollapsing = false
     
-    @IBOutlet private var fieldSplitViewItem: NSSplitViewItem?
-    @IBOutlet private var resultSplitViewItem: NSSplitViewItem?
+    @IBOutlet private weak var fieldSplitViewItem: NSSplitViewItem?
+    @IBOutlet private weak var resultSplitViewItem: NSSplitViewItem?
     
     
     
@@ -89,12 +89,10 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     /// complemention notification for "Find All"
     func textFinder(_ textFinder: TextFinder, didFinishFindingAll findString: String, results: [TextFindResult], textView: NSTextView) {
         
-        // set to result table
         self.fieldViewController?.updateResultCount(results.count, target: textView)
+        self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         guard !results.isEmpty else { return }
-        
-        self.resultViewController?.setResults(results, findString: findString, target: textView)
         
         self.setResultShown(true, animate: true)
         self.splitView.window?.windowController?.showWindow(self)
@@ -189,9 +187,9 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     private func collapseResultViewIfNeeded() {
         
         guard
-            let resultView = self.resultViewController?.view,
-            !resultView.isHidden,
-            resultView.visibleRect.isEmpty
+            let resultViewController = self.resultViewController,
+            resultViewController.isViewShown,
+            resultViewController.view.visibleRect.isEmpty
             else { return }
         
         self.resultSplitViewItem?.isCollapsed = true

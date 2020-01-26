@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -91,16 +91,11 @@ extension UTF32Char {
             return name
         }
         
-        // get unicode name from CFStringTransform API
-        if let scalar = Unicode.Scalar(self) {
-            // -> Avoid using `String(scalar).applyingTransform(.toUnicodeName, reverse: false)`
-            //    because it cannot name simple digit number (2018-08 macOS 10.13).
-            let mutable = NSMutableString(string: String(scalar))
-            CFStringTransform(mutable as CFMutableString, nil, "Any-Name" as CFString, false)
-            
-            return mutable
-                .replacingOccurrences(of: "\\N{", with: "")
-                .replacingOccurrences(of: "}", with: "")
+        // get Unicode name from property
+        if let properties = Unicode.Scalar(self)?.properties,
+           let name = properties.nameAlias ?? properties.name
+        {
+            return name
         }
         
         // create single surrogate character by ownself
@@ -137,12 +132,9 @@ private func sanitize(blockName: String) -> String {
     
     return blockName
         .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-        .replacingOccurrences(of: "Extension-", with: "Ext. ")
-        .replacingOccurrences(of: " And ", with: " and ")
-        .replacingOccurrences(of: " For ", with: " for ")
-        .replacingOccurrences(of: " Mathematical ", with: " Math ")
-        .replacingOccurrences(of: "Supplementary ", with: "Supp. ")
-        .replacingOccurrences(of: "Latin 1", with: "Latin-1")  // only for "Latin-1
+        .replacingOccurrences(of: "Mathematical", with: "Math")
+        .replacingOccurrences(of: "Supplement", with: "Supp.")
+        .replacingOccurrences(of: "Description", with: "Desc.")
 }
 
 

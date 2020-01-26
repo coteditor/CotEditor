@@ -30,6 +30,8 @@
 "3289.title" = "Selecionar…";
 /* Class = "NSButtonCell"; title = "Anti-aliasing"; ObjectID = "3290"; */
 "3290.title" = "Antisserrilhado";
+/* Class = "NSButtonCell"; title = "Ligatures"; ObjectID = "g3S-3v-6ZA"; */
+"g3S-3v-6ZA.title" = "Ligadures";
 
 /* Class = "NSTextFieldCell"; title = "Line height:"; ObjectID = "r1c-v3-qW1"; */
 "r1c-v3-qW1.title" = "Altura da linha:";
@@ -64,6 +66,15 @@
 "Bf2-rS-2zu.title" = "Espaço Inteiro";
 /* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Outros Caracteres Invisíveis";
+
+/* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
+"6KG-3a-ZuU.title" = "Aparência:";
+/* Class = "NSButtonCell"; title = "Match System"; ObjectID = "apQ-au-gOC"; */
+"apQ-au-gOC.title" = "Mesma do sistema";
+/* Class = "NSButtonCell"; title = "Light"; ObjectID = "FwU-oj-kwc"; */
+"FwU-oj-kwc.title" = "Clara";
+/* Class = "NSButtonCell"; title = "Dark"; ObjectID = "1Cg-21-kjr"; */
+"1Cg-21-kjr.title" = "Escura";
 
 
 /* Class = "NSTableColumn"; headerCell.title = "Theme"; ObjectID = "Avf-y8-wXG"; */

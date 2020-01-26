@@ -30,26 +30,33 @@ final class FindPanelLayoutManager: NSLayoutManager {
     // MARK: Private Properties
 
     private let font = NSFont.systemFont(ofSize: 0)
+    private var lineHeight: CGFloat = 0
+    private var baselineOffset: CGFloat = 0
     
     
     
     // MARK: -
-    // MARK: Layout Manager Methods
+    // MARK: Lifecycle
     
-    /// fix line height for mixed font
-    override func setLineFragmentRect(_ fragmentRect: NSRect, forGlyphRange glyphRange: NSRange, usedRect: NSRect) {
+    override init() {
         
-        let lineHeight = self.defaultLineHeight(for: self.font)
+        super.init()
         
-        var fragmentRect = fragmentRect
-        fragmentRect.size.height = lineHeight
+        self.lineHeight = self.defaultLineHeight(for: self.font)
+        self.baselineOffset = self.defaultBaselineOffset(for: self.font)
         
-        var usedRect = usedRect
-        usedRect.size.height = lineHeight
-        
-        super.setLineFragmentRect(fragmentRect, forGlyphRange: glyphRange, usedRect: usedRect)
+        self.delegate = self
     }
     
+    
+    required init?(coder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    
+    // MARK: Layout Manager Methods
     
     /// draw invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
@@ -91,19 +98,19 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 
                 let glyphString: NSAttributedString
                 switch invisible {
-                case .space?:
+                case .space:
                     guard showsSpace else { continue }
                     glyphString = space
                     
-                case .tab?:
+                case .tab:
                     guard showsTab else { continue }
                     glyphString = tab
                     
-                case .newLine?:
+                case .newLine:
                     guard showsNewLine else { continue }
                     glyphString = newLine
                     
-                case .fullwidthSpace?:
+                case .fullwidthSpace:
                     guard showsFullwidthSpace else { continue }
                     glyphString = fullwidthSpace
                     
@@ -140,6 +147,22 @@ final class FindPanelLayoutManager: NSLayoutManager {
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
+    }
+    
+}
+
+
+
+extension FindPanelLayoutManager: NSLayoutManagerDelegate {
+    
+    /// adjust line height to be all the same
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<NSRect>, lineFragmentUsedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>, in textContainer: NSTextContainer, forGlyphRange glyphRange: NSRange) -> Bool {
+        
+        lineFragmentRect.pointee.size.height = self.lineHeight
+        lineFragmentUsedRect.pointee.size.height = self.lineHeight
+        baselineOffset.pointee = self.baselineOffset
+        
+        return true
     }
     
 }

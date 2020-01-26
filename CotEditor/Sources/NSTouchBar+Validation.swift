@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -115,7 +115,6 @@ private final class TouchBarValidator {
     
     
     deinit {
-        self.isEnabled = false  // remove observer if needed
         self.validationTimer?.invalidate()
     }
     
@@ -209,7 +208,7 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
         guard
             let control = self.control,
             let action = control.action,
-            let validator = NSApp.target(forAction: action, to: control.target, from: self)
+            let validator = NSApp.target(forAction: action, to: control.target, from: self) as AnyObject?
             else { return }
         
         switch validator {

@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,6 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     
     @objc private dynamic var incompatibleCharacters: [IncompatibleCharacter] = []
     @objc private dynamic var characterAvailable = false
-    private var isVisible = false
     
     @IBOutlet private var incompatibleCharsController: NSArrayController?
     
@@ -60,20 +59,18 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     /// update content before display
     override func viewWillAppear() {
         
-        self.isVisible = true
-        self.scanner?.scan()
-        
         super.viewWillAppear()
+        
+        self.scanner?.scan()
     }
     
     
     /// clear incompatible characters markup
     override func viewDidDisappear() {
         
-        self.isVisible = false
-        self.scanner?.document?.textStorage.clearAllMarkup()
-        
         super.viewDidDisappear()
+        
+        self.scanner?.document?.textStorage.clearAllMarkup()
     }
     
     
@@ -99,9 +96,9 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
     // MARK: Scanner Delegate
     
     /// update list constantly only if the table is visible
-    func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool {
+    func shouldUpdateIncompatibleCharacter(_ document: Document) -> Bool {
         
-        return self.isVisible
+        return self.isViewShown
     }
     
     

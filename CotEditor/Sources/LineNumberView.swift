@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,8 +79,10 @@ final class LineNumberView: NSView {
     var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
         
         didSet {
-            self.invalidateDrawingInfoAndThickness()
-            self.invalidateIntrinsicContentSize()
+            if !self.isHiddenOrHasHiddenAncestor {
+                self.invalidateDrawingInfoAndThickness()
+                self.invalidateIntrinsicContentSize()
+            }
         }
     }
     
@@ -88,14 +90,15 @@ final class LineNumberView: NSView {
     // MARK: Constants
     
     private let minNumberOfDigits = 3
-    private let minVerticalThickness: CGFloat = 32.0
-    private let minHorizontalThickness: CGFloat = 20.0
+    private let minVerticalThickness: CGFloat = 32
+    private let minHorizontalThickness: CGFloat = 20
     
     private static let fontSizeFactor: CGFloat = 0.9
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
     private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
+        
         case normal = 0.75
         case bold = 0.9
         case stroke = 0.2
@@ -106,12 +109,13 @@ final class LineNumberView: NSView {
     
     private var numberOfLines = 1
     private var drawingInfo: DrawingInfo?
+    private var opacityObserver: NSObjectProtocol?
     private var textObserver: NSObjectProtocol?
     private var selectionObserver: NSObjectProtocol?
     private var frameObserver: NSObjectProtocol?
     private var scrollObserver: NSObjectProtocol?
-    private var opacityObserver: NSObjectProtocol?
     private var colorObserver: NSKeyValueObservation?
+    private var scaleObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
     
@@ -139,15 +143,13 @@ final class LineNumberView: NSView {
     // MARK: Lifecycle
     
     deinit {
-        [self.textObserver,
-         self.selectionObserver,
-         self.frameObserver,
-         self.scrollObserver,
-         self.opacityObserver]
-            .compactMap { $0 }
-            .forEach { NotificationCenter.default.removeObserver($0) }
+        self.removeTextViewObservers()
         
-        self.colorObserver?.invalidate()
+        if let observer = self.opacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        
+        self.draggingTimer?.invalidate()
     }
     
     
@@ -181,21 +183,35 @@ final class LineNumberView: NSView {
     }
     
     
-    /// observe window opacity change
-    override func viewDidMoveToWindow() {
+    /// receiver is about to be attached to / detached from a window
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
         
-        super.viewDidMoveToWindow()
+        super.viewWillMove(toWindow: newWindow)
+        
+        // remove observations before all observed objects are deallocated
+        if newWindow == nil {
+            self.removeTextViewObservers()
+        }
         
         if let observer = self.opacityObserver {
             NotificationCenter.default.removeObserver(observer)
             self.opacityObserver = nil
         }
+    }
+    
+    
+    /// observe window opacity change
+    override func viewDidMoveToWindow() {
+        
+        super.viewDidMoveToWindow()
         
         // ignore when detached
         guard let window = self.window else { return }
         
         // perform redraw on window opacity change
-        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] _ in
+        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
+            guard let self = self else { return assertionFailure() }
+            
             self.setNeedsDisplay(self.visibleRect)
         }
     }
@@ -277,7 +293,7 @@ final class LineNumberView: NSView {
         
         context.saveGState()
         
-        context.setFont(LineNumberView.lineNumberFont)
+        context.setFont(Self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
         context.setFillColor(self.textColor().cgColor)
         context.setStrokeColor(self.textColor(.stroke).cgColor)
@@ -321,12 +337,12 @@ final class LineNumberView: NSView {
                     // draw
                     if isSelected {
                         context.setFillColor(self.textColor(.bold).cgColor)
-                        context.setFont(LineNumberView.boldLineNumberFont)
+                        context.setFont(Self.boldLineNumberFont)
                     }
                     context.showGlyphs(glyphs, at: positions)
                     if isSelected {
                         context.setFillColor(self.textColor().cgColor)
-                        context.setFont(LineNumberView.lineNumberFont)
+                        context.setFont(Self.lineNumberFont)
                     }
                 }
                 
@@ -385,29 +401,80 @@ final class LineNumberView: NSView {
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: nil) { [unowned self] _ in
+        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] (notification) in
+            guard
+                let self = self,
+                let textView = notification.object as? NSTextView
+                else { return assertionFailure() }
+            
             if self.orientation == .horizontal {
                 // -> Count only if really needed since the line counting is high workload, especially by large document.
-                self.numberOfLines = max(self.textView?.numberOfLines ?? 0, 1)
+                self.numberOfLines = max(textView.numberOfLines, 1)
             }
+            
             self.needsDisplay = true
         }
         
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [unowned self] _ in
-            self.needsDisplay = true
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
-        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [unowned self] _ in
-            self.needsDisplay = true
+        self.frameObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: textView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
-        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [unowned self] _ in
-            self.needsDisplay = true
+        self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
-        self.colorObserver = textView.observe(\.backgroundColor) { [unowned self] (_, _)  in
-            self.needsDisplay = true
+        self.colorObserver?.invalidate()
+        self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
+            self?.needsDisplay = true
         }
+        
+        self.scaleObserver?.invalidate()
+        self.scaleObserver = textView.observe(\.scale) { [weak self] (_, _)  in
+            self?.needsDisplay = true
+        }
+    }
+    
+    
+    /// remove observers observing textView
+    private func removeTextViewObservers() {
+        
+        if let observer = self.textObserver {
+            assert(self.textView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.textObserver = nil
+        }
+        
+        if let observer = self.selectionObserver {
+            assert(self.textView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
+        }
+        
+        if let observer = self.frameObserver {
+            assert(self.textView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.frameObserver = nil
+        }
+        
+        if let observer = self.scrollObserver {
+            assert(self.textView?.enclosingScrollView?.contentView != nil)
+            
+            NotificationCenter.default.removeObserver(observer)
+            self.scrollObserver = nil
+        }
+        
+        self.colorObserver?.invalidate()
+        self.colorObserver = nil
+        
+        self.scaleObserver?.invalidate()
+        self.scaleObserver = nil
     }
     
 }

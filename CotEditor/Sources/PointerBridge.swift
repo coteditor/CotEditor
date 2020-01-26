@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,13 +53,13 @@ func bridgeUnwrapped<T: Any>(_ ptr: UnsafeRawPointer) -> T {
 }
 
 
-func bridgeRetained<T: AnyObject>(_ obj: T) -> UnsafeMutableRawPointer {
+private func bridgeRetained<T: AnyObject>(_ obj: T) -> UnsafeMutableRawPointer {
     
     return Unmanaged.passRetained(obj).toOpaque()
 }
 
 
-func bridgeTransfer<T: AnyObject>(_ ptr: UnsafeRawPointer) -> T {
+private func bridgeTransfer<T: AnyObject>(_ ptr: UnsafeRawPointer) -> T {
     
     return Unmanaged<T>.fromOpaque(ptr).takeRetainedValue()
 }

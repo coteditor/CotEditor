@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,8 +23,6 @@
 //  limitations under the License.
 //
 
-import Foundation
-
 extension UnicodeScalar {
     
     // variant selectors
@@ -32,23 +30,13 @@ extension UnicodeScalar {
     static let emojiSequence = UnicodeScalar(0xFE0F)!
     
     
-    struct SkinToneModifier {
+    enum SkinToneModifier {
         
         static let type12 = UnicodeScalar(0x1F3FB)!  // 🏻 Light
         static let type3 = UnicodeScalar(0x1F3FC)!  // 🏼 Medium Light
         static let type4 = UnicodeScalar(0x1F3FD)!  // 🏽 Medium
         static let type5 = UnicodeScalar(0x1F3FE)!  // 🏾 Medium Dark
         static let type6 = UnicodeScalar(0x1F3FF)!  // 🏿 Dark
-        
-        private init() { }
-    }
-    
-    
-    var isVariantSelector: Bool {
-        
-        return (0xE0100...0xE01EF).contains(self.value) ||
-            (0x180B...0x180D).contains(self.value) ||
-            (0xFE00...0xFE0F).contains(self.value)
     }
     
 }
@@ -79,7 +67,7 @@ struct CharacterInfo {
     
     init(string: String) throws {
         
-        guard string.count == 1 else {
+        guard string.compareCount(with: 1) == .equal else {
             throw Error.notSingleCharacter
         }
         
@@ -113,7 +101,7 @@ struct CharacterInfo {
             case UnicodeScalar.SkinToneModifier.type6:
                 return "Skin Tone VI"
                 
-            case let unicode where unicode.isVariantSelector:
+            case let unicode where unicode.properties.isVariationSelector:
                 return "Variant"
                 
             default:
@@ -124,12 +112,9 @@ struct CharacterInfo {
         
         self.isComplex = isComplex
         
-        self.pictureString = {
-            guard unicodes.count == 1,  // ignore CRLF
-                let pictureCharacter = unicodes.first?.pictureRepresentation else { return nil }
-            
-            return String(Character(pictureCharacter))
-        }()
+        self.pictureString = unicodes.count == 1  // ignore CRLF
+            ? unicodes.first?.pictureRepresentation.flatMap { String($0) }
+            : nil
         
         self.localizedDescription = {
             // number of characters message
@@ -156,7 +141,7 @@ extension CharacterInfo: CustomStringConvertible {
     
     var description: String {
         
-        return "\(self.string)"
+        return self.string
     }
     
 }

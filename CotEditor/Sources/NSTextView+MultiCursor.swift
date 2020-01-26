@@ -25,7 +25,7 @@
 
 import Cocoa
 
-protocol MultiCursorEditing: AnyObject {
+protocol MultiCursorEditing: NSTextView {
     
     var insertionLocations: [Int] { get set }
     var selectionOrigins: [Int] { get set }
@@ -36,7 +36,7 @@ protocol MultiCursorEditing: AnyObject {
 }
 
 
-extension MultiCursorEditing where Self: NSTextView {
+extension MultiCursorEditing {
     
     /// Whether the receiver has multiple points to insert text.
     var hasMultipleInsertions: Bool {
@@ -77,8 +77,8 @@ extension MultiCursorEditing where Self: NSTextView {
         
         guard self.shouldChangeText(inRanges: replacementRanges as [NSValue], replacementStrings: replacementStrings) else { return false }
         
-        let stringLength = string.nsRange.length
         let attributedString = NSAttributedString(string: string, attributes: self.typingAttributes)
+        let stringLength = attributedString.length
         var newInsertionLocations: [Int] = []
         var offset = 0
         
@@ -114,7 +114,7 @@ extension MultiCursorEditing where Self: NSTextView {
                 guard range.location > 0 else { return range }
                 guard range.isEmpty else { return range }
                 
-                if let self = self as? NSTextView & Indenting,
+                if let self = self as? Indenting,
                     self.isAutomaticTabExpansionEnabled,
                     let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }
@@ -150,7 +150,7 @@ extension MultiCursorEditing where Self: NSTextView {
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         
         var locations: [Int] = []
-        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { (_, usedRect, _, glyphRange, stop) in
+        layoutManager.enumerateLineFragments(forGlyphRange: glyphRange) { [unowned self] (_, usedRect, _, glyphRange, stop) in
             let rect = usedRect.offset(by: self.textContainerOrigin)  // to view-based
             let point = NSPoint(x: startPoint.x, y: rect.midY)
             
@@ -202,7 +202,7 @@ extension MultiCursorEditing where Self: NSTextView {
         var ranges = self.insertionRanges
         
         if let clicked = ranges.first(where: { $0.touches(location) }) {
-            ranges.remove(clicked)
+            ranges.removeFirst(clicked)
         } else {
             ranges.append(NSRange(location..<location))
         }
@@ -394,8 +394,10 @@ extension NSTextView {
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
         let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
             .offset(by: self.textContainerOrigin)
+        let scale = self.scale
+        let minX = floor(rect.minX * scale) / scale
         
-        return NSRect(x: floor(rect.minX), y: rect.minY, width: 1 / self.scale, height: rect.height)
+        return NSRect(x: minX, y: rect.minY, width: 1 / scale, height: rect.height)
     }
     
     

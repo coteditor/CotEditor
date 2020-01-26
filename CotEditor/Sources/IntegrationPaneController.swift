@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,28 +72,21 @@ final class IntegrationPaneController: NSViewController {
         self.warning = nil
         
         // check only preferred link location
-        self.linkURL = type(of: self).preferredLinkURL
+        self.linkURL = Self.preferredLinkURL
         
         // not installed yet (= can install)
         if !self.linkURL.isReachable { return false }
         
-        // ???: `resolvingSymlinksInPath` doesn't work correctly on OS X 10.10 SDK, so I use a legacy way (2015-08).
-        let linkDestinationURL: URL = {
-            if #available(macOS 10.13, *) {
-                return self.linkURL.resolvingSymlinksInPath()
-            }
-            let linkDestinationPath = try! FileManager.default.destinationOfSymbolicLink(atPath: self.linkURL.path)
-            return URL(fileURLWithPath: linkDestinationPath)
-        }()
+        let linkDestinationURL = self.linkURL.resolvingSymlinksInPath()
         
         // treat symlink as "installed"
         if linkDestinationURL == self.linkURL { return true }
         
         // link to bundled cot is, of course, valid
-        if linkDestinationURL == type(of: self).commandURL { return true }
+        if linkDestinationURL == Self.commandURL { return true }
         
         // link to '/Applications/CotEditor.app' is always valid
-        if linkDestinationURL == type(of: self).preferredLinkTargetURL { return true }
+        if linkDestinationURL == Self.preferredLinkTargetURL { return true }
         
         // display warning for invalid link
         if linkDestinationURL.isReachable {

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,8 +108,7 @@ final class Tokenizer {
             
             guard let match = match else { return }
             
-            let range = Range(match.range(at: 1), in: string)
-            let token = String(string[range!])
+            let token = (string as NSString).substring(with: match.range(at: 1))
             
             block(token, match.range, match.range(at: 1))
         }

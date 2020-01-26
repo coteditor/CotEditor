@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="2Yd-sK-nho">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -45,7 +45,6 @@
                     <connections>
                         <outlet property="fieldSplitViewItem" destination="fLf-rT-Hpl" id="Ysg-ma-MQV"/>
                         <outlet property="resultSplitViewItem" destination="QW9-eM-ZIB" id="vT0-nW-yHp"/>
-                        <outlet property="splitView" destination="jKV-b0-yX6" id="M8N-9P-AVt"/>
                         <segue destination="fdE-8e-ywb" kind="relationship" relationship="splitItems" id="JbM-yi-0lo"/>
                         <segue destination="2MH-SD-abc" kind="relationship" relationship="splitItems" id="Nvl-ZW-Th5"/>
                         <segue destination="gbq-TJ-lot" kind="relationship" relationship="splitItems" id="LIf-yS-NOX"/>
@@ -340,10 +339,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="findClearButtonConstraint" destination="He6-bE-vXU" id="nyr-Ay-xaI"/>
                         <outlet property="findHistoryMenu" destination="hj8-ZE-vCT" id="c5A-gt-012"/>
                         <outlet property="findResultField" destination="Kkq-6q-C63" id="egT-XH-XQa"/>
                         <outlet property="findTextView" destination="hxw-DS-gxQ" id="4Nw-RH-bWa"/>
                         <outlet property="replaceHistoryMenu" destination="vPb-fy-Hh6" id="TQo-Ah-NfI"/>
+                        <outlet property="replacementClearButtonConstraint" destination="gKz-iT-g2a" id="aQv-1I-oYD"/>
                         <outlet property="replacementResultField" destination="SSP-y6-YxI" id="UEW-Qa-UwC"/>
                         <outlet property="replacementTextView" destination="qiQ-tb-XCa" id="TeX-xf-XXK"/>
                     </connections>

@@ -33,7 +33,7 @@ final class CharacterField: NSTextField {
     /// required size
     override var intrinsicContentSize: NSSize {
         
-        return self.attributedStringValue.bounds.integral.size
+        return self.attributedStringValue.pathBounds.integral.size
     }
     
     
@@ -62,7 +62,7 @@ final class CharacterFieldCell: NSTextFieldCell {
         guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
         
         let line = CTLineCreateWithAttributedString(self.attributedStringValue as CFAttributedString)
-        let bounds = self.attributedStringValue.bounds.integral
+        let bounds = self.attributedStringValue.pathBounds.integral
         
         context.saveGState()
         
@@ -79,7 +79,7 @@ final class CharacterFieldCell: NSTextFieldCell {
 
 private extension NSAttributedString {
     
-    var bounds: NSRect {
+    var pathBounds: NSRect {
         
         let line = CTLineCreateWithAttributedString(self as CFAttributedString)
         

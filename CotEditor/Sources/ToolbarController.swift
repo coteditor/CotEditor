@@ -125,11 +125,7 @@ final class ToolbarController: NSObject {
         // setup Share toolbar item
         // -> Share button action must be called on mouseDown.
         (self.shareToolbarItem!.view as! NSButton).sendAction(on: .leftMouseDown)
-        if #available(macOS 10.13, *) {
-            self.shareToolbarItem!.menuFormRepresentation = NSDocumentController.shared.standardShareMenuItem()
-        } else {
-            self.shareToolbarItem!.menuFormRepresentation = ShareMenuItem()
-        }
+        self.shareToolbarItem!.menuFormRepresentation = NSDocumentController.shared.standardShareMenuItem()
         
         // observe popup menu line-up change
         NotificationCenter.default.addObserver(self, selector: #selector(buildEncodingPopupButton), name: didUpdateSettingListNotification, object: EncodingManager.shared)

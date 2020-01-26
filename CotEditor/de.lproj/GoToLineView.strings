@@ -27,8 +27,11 @@
 
 /* Class = "NSTextFieldCell"; title = "Line:"; ObjectID = "R30-Wf-Rfd"; */
 "R30-Wf-Rfd.title" = "Zeile:";
-/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "IQL-eH-PaH"; */
-"IQL-eH-PaH.ibShadowedIsNilPlaceholder" = "Zeilennummer";
+/* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Line Number"; ObjectID = "yIX-ZF-8vP"; */
+"yIX-ZF-8vP.ibShadowedIsNilPlaceholder" = "Zeilennummer";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Line Number"; ObjectID = "F6K-QJ-Ox1"; */
+"F6K-QJ-Ox1.placeholderString" = "Zeilennummer";
 
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "JUX-sh-0Ej"; */
 "JUX-sh-0Ej.title" = "Abbrechen";

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,6 +39,8 @@ extension Array {
     /// Return subset at IndexSet
     func elements(at indexes: IndexSet) -> [Element] {
         
+        assert((indexes.max() ?? .max) <= self.count)
+        
         return indexes
             .filter { $0 < self.count }
             .map { self[$0] }
@@ -47,6 +49,8 @@ extension Array {
     
     /// Insert elements at indexes
     mutating func insert(_ elements: [Element], at indexes: IndexSet) {
+        
+        assert(elements.count == indexes.count)
         
         for (index, element) in zip(indexes, elements).reversed() {
             self.insert(element, at: index)

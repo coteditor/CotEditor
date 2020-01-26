@@ -281,7 +281,7 @@ struct SyntaxStyle {
 
 extension SyntaxStyle: Equatable {
     
-    static func == (lhs: SyntaxStyle, rhs: SyntaxStyle) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         
         return lhs.name == rhs.name &&
             lhs.extensions == rhs.extensions &&

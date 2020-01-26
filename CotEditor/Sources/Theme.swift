@@ -112,7 +112,8 @@ struct Theme: Equatable, Codable {
         
         self = try decoder.decode(Theme.self, from: data)
         
-        self.name = fileURL.deletingPathExtension().lastPathComponent
+        // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+        self.name = fileURL.deletingPathExtension().lastPathComponent.immutable
     }
     
     

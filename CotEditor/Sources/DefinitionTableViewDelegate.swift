@@ -42,7 +42,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
             row + 1 == tableView.numberOfRows,  // the last row is selected
             let rowView = tableView.rowView(atRow: row, makeIfNecessary: true),
             let (column, textField) = (0 ..< rowView.numberOfColumns).lazy  // find the leftmost text field column
-                .compactMap ({ (column) -> (Int, NSTextField)? in
+                .compactMap({ (column) -> (Int, NSTextField)? in
                     guard let textField = (rowView.view(atColumn: column) as? NSTableCellView)?.textField else { return nil }
                     return (column, textField)
                 }).first,

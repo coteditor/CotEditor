@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -30,28 +30,16 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Public Properties
     
-    /// observe textView
-    var textView: NSTextView? {  // NSTextView cannot be weak
-        
-        willSet {
-            guard let textView = self.textView else { return }
-            
-            self.orientationObserver?.invalidate()
-            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
-        }
+    weak var textView: NSTextView?
+    
+    var outlineItems: [OutlineItem] = [] {
         
         didSet {
-            guard let textView = self.textView else { return }
-          
-            self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [unowned self] (textView, _) in
-                self.updateTextOrientation(to: textView.layoutOrientation)
-            }
+            guard self.isViewShown, outlineItems != oldValue else { return }
             
-            // observe text selection change to update outline menu selection
-            NotificationCenter.default.addObserver(self, selector: #selector(invalidateOutlineMenuSelection), name: NSTextView.didChangeSelectionNotification, object: textView)
+            self.updateOutlineMenu()
         }
     }
-    
     
     weak var outlineProgress: Progress? {
         
@@ -77,6 +65,7 @@ final class NavigationBarController: NSViewController {
     // MARK: Private Properties
     
     private var orientationObserver: NSKeyValueObservation?
+    private var selectionObserver: NSObjectProtocol?
     
     private weak var prevButton: NSButton?
     private weak var nextButton: NSButton?
@@ -97,21 +86,19 @@ final class NavigationBarController: NSViewController {
     
     deinit {
         self.orientationObserver?.invalidate()
+        
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
     
     // MARK: View Controller Methods
     
-    /// setup UI
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        // hide outline navigations
-        self.leftButton!.isHidden = true
-        self.rightButton!.isHidden = true
-        self.outlineMenu!.isHidden = true
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -122,54 +109,45 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    
-    // MARK: Public Methods
-    
-    /// build outline menu from given array
-    var outlineItems: [OutlineItem] = [] {
+    override func viewWillAppear() {
         
-        didSet {
-            self.outlineMenu!.removeAllItems()
-            
-            self.prevButton!.isHidden = outlineItems.isEmpty
-            self.nextButton!.isHidden = outlineItems.isEmpty
-            self.outlineMenu!.isHidden = outlineItems.isEmpty
-            
-            guard !outlineItems.isEmpty else { return }
-            
-            let menu = self.outlineMenu!.menu!
-            
-            // add headding item
-            let headdingItem = NSMenuItem()
-            headdingItem.title = "<Outline Menu>".localized
-            headdingItem.representedObject = NSRange(0..<0)
-            menu.addItem(headdingItem)
-            
-            // add outline items
-            for outlineItem in self.outlineItems {
-                switch outlineItem.title {
-                case .separator:
-                    menu.addItem(.separator())
-                    
-                    // add a dummy item to avoid merging series separators to a single separator
-                    let menuItem = NSMenuItem()
-                    menuItem.view = NSView()
-                    menu.addItem(menuItem)
-                    
-                default:
-                    let menuItem = NSMenuItem()
-                    menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
-                    menuItem.representedObject = outlineItem.range
-                    menu.addItem(menuItem)
-                }
-            }
-            
-            self.invalidateOutlineMenuSelection()
+        super.viewWillAppear()
+        
+        guard let textView = self.textView else { return assertionFailure() }
+
+        self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
+          self?.updateTextOrientation(to: textView.layoutOrientation)
+        }
+
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
+            self?.invalidateOutlineMenuSelection()
+        }
+        
+        self.updateOutlineMenu()
+    }
+    
+    
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        self.orientationObserver?.invalidate()
+        self.orientationObserver = nil
+        
+        if let observer = self.selectionObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.selectionObserver = nil
         }
     }
     
     
-    /// can select prev item in outline menu?
+    
+    // MARK: Public Methods
+    
+    /// Can select the prev item in outline menu?
     var canSelectPrevItem: Bool {
         
         guard let menu = self.outlineMenu else { return false }
@@ -178,7 +156,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// can select next item in outline menu?
+    /// Can select the next item in outline menu?
     var canSelectNextItem: Bool {
         
         guard let menu = self.outlineMenu else { return false }
@@ -187,7 +165,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// set closeSplitButton enabled or disabled
+    /// Set closeSplitButton enabled or disabled.
     var isCloseSplitButtonEnabled: Bool = false {
         
         didSet {
@@ -196,7 +174,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// set image of open split view button
+    /// Set the image of the open split view button.
     var isSplitOrientationVertical: Bool = false {
         
         didSet {
@@ -208,7 +186,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Action Messages
     
-    /// select outline menu item via pupup menu
+    /// Select outline menu item from the popup menu.
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
         guard let range = sender.representedObject as? NSRange else { return assertionFailure() }
@@ -221,7 +199,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// select previous outline menu item
+    /// Select the previous outline menu item.
     @IBAction func selectPrevItemOfOutlineMenu(_ sender: Any?) {
         
         guard let popUp = self.outlineMenu, self.canSelectPrevItem else { return }
@@ -233,7 +211,7 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// select next outline menu item
+    /// Select the next outline menu item.
     @IBAction func selectNextItemOfOutlineMenu(_ sender: Any?) {
         
         guard let popUp = self.outlineMenu, self.canSelectNextItem else { return }
@@ -262,7 +240,7 @@ final class NavigationBarController: NSViewController {
     }()
     
     
-    /// update enabilities of jump buttons
+    /// Update enabilities of jump buttons.
     private func updatePrevNextButtonEnabled() {
         
         self.prevButton!.isEnabled = self.canSelectPrevItem
@@ -270,8 +248,50 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// set outline menu selection
-    @objc private func invalidateOutlineMenuSelection() {
+    /// Build outline menu from `outlineItems`.
+    private func updateOutlineMenu() {
+        
+        self.outlineMenu!.removeAllItems()
+        
+        self.leftButton!.isHidden = self.outlineItems.isEmpty
+        self.rightButton!.isHidden = self.outlineItems.isEmpty
+        self.outlineMenu!.isHidden = self.outlineItems.isEmpty
+        
+        guard !self.outlineItems.isEmpty else { return }
+        
+        let menu = self.outlineMenu!.menu!
+        
+        // add headding item
+        let headdingItem = NSMenuItem()
+        headdingItem.title = "<Outline Menu>".localized
+        headdingItem.representedObject = NSRange(0..<0)
+        menu.addItem(headdingItem)
+        
+        // add outline items
+        for outlineItem in self.outlineItems {
+            switch outlineItem.title {
+            case .separator:
+                menu.addItem(.separator())
+                
+                // add a dummy item to avoid merging series separators to a single separator
+                let menuItem = NSMenuItem()
+                menuItem.view = NSView()
+                menu.addItem(menuItem)
+                
+            default:
+                let menuItem = NSMenuItem()
+                menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
+                menuItem.representedObject = outlineItem.range
+                menu.addItem(menuItem)
+            }
+        }
+        
+        self.invalidateOutlineMenuSelection()
+    }
+    
+    
+    /// Select the proper item in outline menu based on the current selection in the text view.
+    private func invalidateOutlineMenuSelection() {
         
         guard
             let textView = self.textView,
@@ -295,7 +315,9 @@ final class NavigationBarController: NSViewController {
     }
     
     
-    /// update menu item arrows
+    /// Update the direction of the menu item arrows.
+    ///
+    /// - Parameter orientation: The text orientation in the text view.
     private func updateTextOrientation(to orientation: NSLayoutManager.TextLayoutOrientation) {
         
         switch orientation {
@@ -314,10 +336,10 @@ final class NavigationBarController: NSViewController {
         @unknown default: fatalError()
         }
         
-        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu(_:))
+        self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu)
         self.prevButton?.toolTip = "Jump to previous outline item".localized
         
-        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu(_:))
+        self.nextButton?.action = #selector(selectNextItemOfOutlineMenu)
         self.nextButton?.toolTip = "Jump to next outline item".localized
         
         self.updatePrevNextButtonEnabled()

@@ -27,7 +27,7 @@
 import XCTest
 @testable import CotEditor
 
-class EncodingDetectionTests: XCTestCase {
+final class EncodingDetectionTests: XCTestCase {
     
     var bundle: Bundle?
     
@@ -40,64 +40,71 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func testUTF8BOM() {
+    func testUTF8BOM() throws {
         
         // -> String(data:encoding:) preserves BOM since Swift 5 (2019-03)
-        let data = self.dataForFileName("UTF-8 BOM")
+        let data = try self.dataForFileName("UTF-8 BOM")
         XCTAssertEqual(String(data: data, encoding: .utf8), "\u{FEFF}0")
         XCTAssertEqual(String(bomCapableData: data, encoding: .utf8), "0")
         
         var encoding: String.Encoding?
-        let string = self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)
+        let string = try self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, String.Encoding.utf8)
     }
     
     
-    func testUTF16() {
+    func testUTF16() throws {
         
         var encoding: String.Encoding?
-        let string = self.encodedStringForFileName("UTF-16", usedEncoding: &encoding)
+        let string = try self.encodedStringForFileName("UTF-16", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, String.Encoding.utf16)
     }
     
     
-    func testUTF32() {
+    func testUTF32() throws {
         
         var encoding: String.Encoding?
-        let string = self.encodedStringForFileName("UTF-32", usedEncoding: &encoding)
+        let string = try self.encodedStringForFileName("UTF-32", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, String.Encoding.utf32)
     }
 
     
-    func testISO2022() {
+    func testISO2022() throws {
         
         var encoding: String.Encoding?
-        let string = self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
+        let string = try self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "dog犬")
         XCTAssertEqual(encoding, String.Encoding.iso2022JP)
     }
     
     
-    func testUTF8() {  // this should fail
+    func testUTF8() throws {
+        
+        let data = try self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
-        let string = self.encodedStringForFileName("UTF-8", usedEncoding: &encoding)
+        do {
+            _ = try String(data: data, suggestedCFEncodings: [], usedEncoding: &encoding)
+        } catch let error as CocoaError {
+            XCTAssertEqual(error.code, .fileReadUnknownStringEncoding)
+        } catch _ {
+            XCTFail("Caught incorrect error.")
+        }
         
-        XCTAssertNil(string)
         XCTAssertNil(encoding)
     }
 
     
     func testSuggestedCFEncoding() throws {
         
-        let data = self.dataForFileName("UTF-8")
+        let data = try self.dataForFileName("UTF-8")
         
         var encoding: String.Encoding?
         let invalidInt = UInt32(kCFStringEncodingInvalidId)
@@ -131,12 +138,12 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func testUTF8BOMData() {
+    func testUTF8BOMData() throws {
         
-        let withBOMData = self.dataForFileName("UTF-8 BOM")
+        let withBOMData = try self.dataForFileName("UTF-8 BOM")
         XCTAssertTrue(withBOMData.hasUTF8BOM)
         
-        let data = self.dataForFileName("UTF-8")
+        let data = try self.dataForFileName("UTF-8")
         XCTAssertFalse(data.hasUTF8BOM)
         XCTAssertTrue(data.addingUTF8BOM.hasUTF8BOM)
     }
@@ -166,14 +173,14 @@ class EncodingDetectionTests: XCTestCase {
     }
     
     
-    func textEncodingInitialization() {
+    func testEncodingInitialization() {
         
-        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.utf8)
-        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.shiftJIS)
+        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.dosJapanese), String.Encoding.shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.shiftJIS)
         XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213), String.Encoding.shiftJIS)
         
-        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.utf8)
-        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.shiftJIS)
+        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)), String.Encoding.shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.shiftJIS)
         XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)), String.Encoding.shiftJIS)
     }
     
@@ -214,26 +221,26 @@ class EncodingDetectionTests: XCTestCase {
         XCTAssertEqual(String.Encoding.isoLatin1.ianaCharSetName, "iso-8859-1")
     }
     
+}
     
     
     // MARK: Private Methods
     
-    func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) -> String? {
+private extension EncodingDetectionTests {
+    
+    func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) throws -> String {
         
-        let data = self.dataForFileName(fileName)
+        let data = try self.dataForFileName(fileName)
         
-        return try? String(data: data, suggestedCFEncodings: [], usedEncoding: &usedEncoding)
+        return try String(data: data, suggestedCFEncodings: [], usedEncoding: &usedEncoding)
     }
     
     
-    func dataForFileName(_ fileName: String) -> Data {
+    func dataForFileName(_ fileName: String) throws -> Data {
         
         let fileURL = self.bundle!.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
-        let data = try? Data(contentsOf: fileURL!)
         
-        XCTAssertNotNil(data)
-        
-        return data!
+        return try Data(contentsOf: fileURL!)
     }
     
     

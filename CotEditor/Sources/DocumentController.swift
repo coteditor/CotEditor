@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 
 import Cocoa
 
-protocol AdditionalDocumentPreparing: AnyObject {
+protocol AdditionalDocumentPreparing: NSDocument {
     
     func didMakeDocumentForExisitingFile(url: URL)
 }
@@ -34,10 +34,12 @@ protocol AdditionalDocumentPreparing: AnyObject {
 
 final class DocumentController: NSDocumentController {
     
-    private(set) lazy var autosaveDirectoryURL: URL =  try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                                    in: .userDomainMask,
-                                                                                    appropriateFor: nil,
-                                                                                    create: true)
+    // MARK: Public Properties
+    
+    private(set) lazy var autosaveDirectoryURL: URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                                   in: .userDomainMask,
+                                                                                   appropriateFor: nil,
+                                                                                   create: true)
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
@@ -68,7 +70,7 @@ final class DocumentController: NSDocumentController {
     
     // MARK: Document Controller Methods
     
-    /// automatically insert Shre menu (on macOS 10.13 and later)
+    /// automatically inserts Share menu
     override var allowsAutomaticShareMenu: Bool {
 
         return true
@@ -87,7 +89,7 @@ final class DocumentController: NSDocumentController {
         }
         self.transientDocumentLock.unlock()
         
-        super.openDocument(withContentsOf: url, display: false) { (document, documentWasAlreadyOpen, error) in
+        super.openDocument(withContentsOf: url, display: false) { [unowned self] (document, documentWasAlreadyOpen, error) in
             
             assert(Thread.isMainThread)
             
@@ -190,7 +192,7 @@ final class DocumentController: NSDocumentController {
         openPanel.isAccessoryViewDisclosed = true
         
         // run non-modal open panel
-        super.beginOpenPanel(openPanel, forTypes: inTypes) { (result: Int) in
+        super.beginOpenPanel(openPanel, forTypes: inTypes) { [unowned self] (result: Int) in
             
             if result == NSApplication.ModalResponse.OK.rawValue {
                 self.accessorySelectedEncoding = accessoryController.selectedEncoding
@@ -204,37 +206,14 @@ final class DocumentController: NSDocumentController {
     /// return enability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        if item.action == #selector(newDocumentAsTab) {
+        switch item.action {
+        case #selector(newDocumentAsTab):
             return self.currentDocument != nil
+        default:
+            break
         }
         
         return super.validateUserInterfaceItem(item)
-    }
-    
-    
-    
-    // MARK: Public Methods
-    
-    /// insert hand-made Share menu to the File menu
-    func insertLegacyShareMenu() {
-        
-        let fileMenu = MainMenu.file.menu!
-        
-        // insert at the end of the group of Save/Close
-        var inSaveGroup = false
-        let index = fileMenu.items.enumerated().first { (_, item) in
-            if item.action == #selector(NSWindow.performClose) {
-                inSaveGroup = true
-            }
-            
-            return inSaveGroup && item.isSeparatorItem
-        }?.offset ?? fileMenu.numberOfItems
-        
-        let item = ShareMenuItem()
-        item.tag = MainMenu.MenuItemTag.sharingService.rawValue
-        
-        fileMenu.insertItem(item, at: index)
-        fileMenu.insertItem(NSMenuItem.separator(), at: index)
     }
     
     
@@ -355,6 +334,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         case binaryFile(type: String)
         case tooLarge(size: Int)
     }
+    
     
     let kind: ErrorKind
     let url: URL

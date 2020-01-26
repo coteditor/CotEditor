@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -38,17 +38,9 @@ struct OutlineItem: Equatable {
     }
     
 
-    let title: String
-    let range: NSRange
-    let style: Style
-    
-    
-    init(title: String, range: NSRange, style: Style = []) {
-        
-        self.title = title
-        self.range = range
-        self.style = style
-    }
+    var title: String
+    var range: NSRange
+    var style: Style = []
     
     
     var isSeparator: Bool {
@@ -62,6 +54,8 @@ struct OutlineItem: Equatable {
 extension OutlineItem {
     
     func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
+        
+        assert(!self.isSeparator)
         
         var font = baseFont
         var attributes = attributes

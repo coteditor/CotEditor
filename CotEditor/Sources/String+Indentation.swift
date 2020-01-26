@@ -32,12 +32,10 @@ enum IndentStyle {
 }
 
 
-private struct DetectionLines {
+private enum DetectionLines {
     
     static let min = 5
     static let max = 100
-    
-    private init() { }
 }
 
 
@@ -119,27 +117,10 @@ extension String {
         
         guard !indentRange.isEmpty else { return 0 }
         
-        let indent = self[indentRange]
+        let indent = self[workaround: indentRange]
         let numberOfTabs = indent.components(separatedBy: "\t").count - 1
         
         return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
-    }
-    
-    
-    /// calculate column number at location in the line expanding tab (\t) character
-    func column(of location: Int, tabWidth: Int) -> Int {
-        
-        assert(tabWidth > 0)
-        
-        let index = String.Index(utf16Offset: location, in: self)
-        let lineRange = self.lineRange(at: index)
-        let column = self.distance(from: lineRange.lowerBound, to: index)
-        
-        // count tab width
-        let beforeInsertion = self[lineRange.lowerBound..<index]
-        let numberOfTabs = beforeInsertion.components(separatedBy: "\t").count - 1
-        
-        return column + numberOfTabs * (tabWidth - 1)
     }
     
     
@@ -194,8 +175,7 @@ extension String {
         
         guard
             range.location >= targetLength,
-            let range = Range(targetRange, in: self),
-            self[range].allSatisfy({ $0 == " " })
+            (self as NSString).substring(with: targetRange).allSatisfy({ $0 == " " })
             else { return nil }
         
         return targetRange
@@ -217,6 +197,23 @@ extension String {
         let length = tabWidth - (column % tabWidth)
         
         return String(repeating: " ", count: length)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// calculate column number at location in the line expanding tab (\t) character
+    private func column(of location: Int, tabWidth: Int) -> Int {
+        
+        assert(tabWidth > 0)
+        
+        let index = String.Index(utf16Offset: location, in: self)
+        let lineRange = self.lineRange(at: index)
+        
+        return self[workaround: lineRange.lowerBound..<index].lazy
+            .map { $0 == "\t" ? tabWidth : $0.utf16.count }
+            .reduce(0, +)
     }
     
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,12 +25,18 @@
 
 import Foundation
 
-extension StringProtocol where Self.Index == String.Index {
+extension String {
     
-    /// whole range in NSRange
+    /// Whole range in NSRange
     var nsRange: NSRange {
         
-        return NSRange(..<self.endIndex, in: self)
+        return NSRange(..<(self as NSString).length)
+    }
+    
+    
+    var length: Int {
+        
+        return self.utf16.count
     }
     
 }
@@ -89,9 +95,10 @@ extension NSRange {
 
 extension NSString {
     
+    /// Whole range in NSRange
     var range: NSRange {
         
-        return NSRange(location: 0, length: self.length)
+        return NSRange(..<self.length)
     }
     
     
@@ -154,25 +161,59 @@ extension NSString {
     
     
     /// line range containing a given location
-    func lineRange(at location: Int, excludingLastLineEnding: Bool = false) -> NSRange {
+    func lineRange(at location: Int) -> NSRange {
         
-        return self.lineRange(for: NSRange(location: location, length: 0), excludingLastLineEnding: excludingLastLineEnding)
+        return self.lineRange(for: NSRange(location..<location))
     }
     
     
-    /// line range adding ability to exclude last line ending character if exists
-    func lineRange(for range: NSRange, excludingLastLineEnding: Bool) -> NSRange {
+    /// line range containing a given location
+    func lineContentsRange(at location: Int) -> NSRange {
         
-        var lineRange = self.lineRange(for: range)
+        return self.lineContentsRange(for: NSRange(location..<location))
+    }
+    
+    
+    /// Return line range excluding last line ending character if exists.
+    ///
+    /// - Parameters:
+    ///   - range: A range within the receiver.
+    /// - Returns: The range of characters representing the line or lines containing a given range.
+    func lineContentsRange(for range: NSRange) -> NSRange {
         
-        guard excludingLastLineEnding else { return lineRange }
+        var start = 0
+        var contentsEnd = 0
+        self.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, for: range)
         
-        // ignore last line ending
-        if !lineRange.isEmpty, self.character(at: lineRange.upperBound - 1) == "\n".utf16.first! {
-            lineRange.length -= 1
-        }
+        return NSRange(start..<contentsEnd)
+    }
+    
+    
+    /// Return the index of the first character of the line touched by the given index.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line start.
+    /// - Returns: The character index of the nearest line start.
+    func lineStartIndex(at index: Int) -> Int {
         
-        return lineRange
+        var start = 0
+        self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(index..<index))
+        
+        return start
+    }
+    
+    
+    /// Return the index of the last character before the line ending of the line touched by the given index.
+    ///
+    /// - Parameters:
+    ///   - index: The index of character for finding the line contents end.
+    /// - Returns: The character index of the nearest line contents end.
+    func lineContentsEndIndex(at index: Int) -> Int {
+        
+        var contentsEnd = 0
+        self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(index..<index))
+        
+        return contentsEnd
     }
     
     
@@ -188,7 +229,7 @@ extension NSString {
         
         if includingLastEmptyLine,
             ranges == [NSRange(location: self.length, length: 0)],
-            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first!) {
+            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first) {
             return ranges
         }
         

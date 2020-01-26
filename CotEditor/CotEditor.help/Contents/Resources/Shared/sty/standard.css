@@ -10,12 +10,12 @@
 */
 
 
-html {
+:root {
 	-webkit-text-size-adjust: 100%;
 	font: 10pt/1.5 -apple-system, -apple-system-font, 'Helvetica Neue', sans-serif;
+	color: -apple-system-label;
 }
 body {
-	color: hsla(0, 0%, 0%, 0.8);
 	margin: 1em auto;
 	padding: 0 1em;
 	max-width: 7in;
@@ -38,7 +38,7 @@ b {
 kbd {
 	padding: 0 0.2em;
 	border-radius: 0.2em;
-	border: 1px solid hsla(0, 0%, 0%, .2);
+	border: 1px solid -apple-system-tertiary-label;
 	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .05);
 }
 
@@ -103,7 +103,7 @@ h4 + * {
 
 article+article {
 	margin: 2em 0;
-	border-top: 1px solid #ddd;
+	border-top: 1px solid -apple-system-separator;
 }
 
 ol,
@@ -117,7 +117,7 @@ pre {
 }
 pre.source {
 	background: hsl(0, 0%, 98%);
-	border: 1px solid hsl(0, 0%, 80%);
+	border: 1px solid -apple-system-tertiary-label;
 	border-radius: 3px;
 	max-width: 50em;
 	padding: 0.2em 0.5em;
@@ -162,7 +162,6 @@ ul.topicbox {
 	padding: 0;
 	margin: 0;
 	border: none;
-	background-color: white;
 }
 
 p.point {
@@ -218,19 +217,24 @@ table caption {
 	text-align: left;
 	margin: 0.4em 0;
 }
+th,
+td {
+	border-top: 1px solid -apple-system-quaternary-label;
+	border-bottom: 1px solid -apple-system-quaternary-label;
+	margin: 0;
+	padding: 0.4em 0.5em;
+}
+table thead tr th {
+	font-weight: 500;
+}
 table thead tr:first-child > * {
 	border-top: none;
 }
-table thead tr:last-child > * {
-	border-bottom: 1px solid #888;
+table  tr:first-child > * {
+	border-top-color: -apple-system-secondary-label;
 }
-
-th,
-td {
-	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
-	margin: 0;
-	padding: 0.4em 0.5em;
+table  tr:last-child > * {
+	border-bottom-color: -apple-system-secondary-label;
 }
 th {
 	font-weight: normal;
@@ -268,7 +272,7 @@ body > nav {
 	z-index: 10;
 }
 body > nav a {
-	color: hsl(0, 0%, 40%);
+	color: -apple-system-secondary-label;
 }
 body > nav ul {
 	border: none;
@@ -291,4 +295,23 @@ span.keyword {
 }
 span.string {
 	color: hsl(0, 0%, 50%);
+}
+
+/* dark mode */
+
+:root {
+	color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+	body > nav {
+		border-bottom-color: hsl(0, 0%, 20%);
+		background: hsl(0, 0%, 10%);
+	}
+	pre.source {
+		background: hsl(0, 0%, 10%);
+	}
+	code.AppleScript {
+		color: hsl(230, 50%, 60%);
+	}
 }

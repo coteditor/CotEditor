@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ private enum AppCastURL {
     /// URL for app cast
     var url: String {
         
-        return AppCastURL.host + self.filename
+        return Self.host + self.filename
     }
     
     
@@ -85,13 +85,13 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     func setup() {
         
         guard let updater = self.controller.updater else {
-            assertionFailure("no SPUUpdater instance could obtain")
+            assertionFailure("No SPUUpdater instance could be obtained.")
             return
         }
         
         // insert "Check for Updates…" menu item
         guard let applicationMenu = MainMenu.application.menu else {
-            preconditionFailure("no menu can be found to attach update menu item.")
+            preconditionFailure("No menu could be found to attach update menu item.")
         }
         let menuItem = NSMenuItem(title: "Check for Updates…".localized,
                                   action: #selector(SPUUpdater.checkForUpdates),
@@ -110,7 +110,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     /// return AppCast file URL dinamically
     func feedURLString(for updater: SPUUpdater) -> String? {
         
-        // force checking beta if the currently runnning one is a beta.
+        // force into checking beta if the currently runnning one is a beta.
         let checksBeta = (Bundle.main.isPrerelease || UserDefaults.standard[.checksUpdatesForBeta])
         let appCast: AppCastURL = checksBeta ? .beta : .stable
         

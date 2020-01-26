@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -96,22 +96,29 @@ private extension LineEnding {
 
 extension StringProtocol where Self.Index == String.Index {
     
-    /// the first line ending type
+    /// The first line ending type.
     var detectedLineEnding: LineEnding? {
         
         // We don't use `CharacterSet.newlines` because it contains more characters than we need.
         guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
+        
+        // Swift treats "\r\n" also as a single character.
         let character = self[range.lowerBound]
-        // -> This is enough because Swift (at least Swift 3) treats "\r\n" as a single character.
         
         return LineEnding(rawValue: character)
     }
     
     
-    /// string removing all kind of line ending characters in the receiver
-    var removingLineEndings: String {
+    /// Count characters in the receiver but except all kinds of line endings.
+    var countExceptLineEnding: Int {
         
-        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression)
+        // workarond for Swift 5.1 that removes BOM at the beginning (2019-05 Swift 5.1).
+        if self.starts(with: "\u{FEFF}") {
+            let startIndex = self.index(after: self.startIndex)
+            return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
+        }
+        
+        return self.replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count
     }
     
     
@@ -139,7 +146,7 @@ extension StringProtocol where Self.Index == String.Index {
         
         let string = self.replacingLineEndings(with: currentLineEnding)
         let regex = try! NSRegularExpression(pattern: LineEnding.regexPattern)
-        let locationRange = NSRange(location: 0, length: range.location)
+        let locationRange = NSRange(..<range.location)
         
         let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
         let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)

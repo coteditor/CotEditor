@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -276,8 +276,8 @@ final class SyntaxManager: SettingFileManaging {
         
         // add to recent styles list
         let maximumRecentStyleCount = max(0, UserDefaults.standard[.maximumRecentStyleCount])
-        var recentStyleNames = UserDefaults.standard[.recentStyleNames]!
-        recentStyleNames.remove(name)
+        var recentStyleNames = UserDefaults.standard[.recentStyleNames] ?? []
+        recentStyleNames.removeFirst(name)
         recentStyleNames.insert(name, at: 0)
         UserDefaults.standard[.recentStyleNames] = Array(recentStyleNames.prefix(maximumRecentStyleCount))
         
@@ -287,13 +287,8 @@ final class SyntaxManager: SettingFileManaging {
     
     var cachedSettings: [SettingName: Setting] {
         
-        get {
-            return self._cachedSettings.value
-        }
-        
-        set {
-            self._cachedSettings.mutate { $0 = newValue }
-        }
+        get { self._cachedSettings.value }
+        set { self._cachedSettings.mutate { $0 = newValue } }
     }
     private let _cachedSettings = Atomic<[SettingName: Setting]>([:])
     

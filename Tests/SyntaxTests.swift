@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2019 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,8 +32,9 @@ let styleDirectoryName = "Syntaxes"
 let styleExtension = "yaml"
 
 
-class SyntaxTests: XCTestCase, SyntaxParserDelegate {
+final class SyntaxTests: XCTestCase {
     
+    var styleDicts: [String: SyntaxManager.StyleDictionary] = [:]
     var htmlStyle: SyntaxStyle?
     var htmlSource: String?
     
@@ -47,11 +48,19 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
         
         let bundle = Bundle(for: type(of: self))
         
-        // load XML style
-        let styleURL = bundle.url(forResource: "HTML", withExtension: styleExtension, subdirectory: styleDirectoryName)
-        let data = try! Data(contentsOf: styleURL!)
-        let dict = try! YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
-        self.htmlStyle = SyntaxStyle(dictionary: dict, name: "HTML")
+        // load styles
+        let dictsWithNames = bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
+            .map { url -> (String, SyntaxManager.StyleDictionary) in
+                let data = try! Data(contentsOf: url)
+                let name = url.deletingPathExtension().lastPathComponent
+                let dict = try! YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
+                
+                return (name, dict)
+            }
+        self.styleDicts = .init(uniqueKeysWithValues: dictsWithNames)
+        
+        // create HTML style
+        self.htmlStyle = SyntaxStyle(dictionary: self.styleDicts["HTML"]!, name: "HTML")
         
         XCTAssertNotNil(self.htmlStyle)
         
@@ -60,6 +69,16 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
         self.htmlSource = try? String(contentsOf: sourceURL!, encoding: .utf8)
         
         XCTAssertNotNil(self.htmlSource)
+    }
+    
+    
+    func testAllSyntaxStyles() {
+        
+        for (name, dict) in self.styleDicts {
+            for error in SyntaxStyleValidator.validate(dict) {
+                XCTFail("\(name) \(error.errorDescription!) -> \(error.failureReason!)")
+            }
+        }
     }
     
     
@@ -109,9 +128,14 @@ class SyntaxTests: XCTestCase, SyntaxParserDelegate {
         self.waitForExpectations(timeout: 1)
     }
     
-    
-    // MARK: Syntax Parser Delegate
-    
+}
+
+
+
+// MARK: Syntax Parser Delegate
+
+extension SyntaxTests: SyntaxParserDelegate {
+
     func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
         
     }

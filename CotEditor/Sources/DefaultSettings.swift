@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,6 +58,8 @@ struct DefaultSettings {
         .showStatusBarEncoding: false,
         .showStatusBarLineEndings: false,
         .showStatusBarFileSize: true,
+        .windowWidth: 600.0,
+        .windowHeight: 620.0,
         .splitViewVertical: false,
         .writingDirection: 0,
         .overscrollRate: 0,
@@ -66,6 +68,7 @@ struct DefaultSettings {
         .fontName: (NSFont.userFont(ofSize: 0) ?? NSFont.systemFont(ofSize: 0)).fontName,
         .fontSize: NSFont.systemFontSize,
         .shouldAntialias: true,
+        .ligature: true,
         .lineHeight: 1.2,
         .highlightCurrentLine: false,
         .cursorType: CursorType.bar.rawValue,
@@ -79,7 +82,8 @@ struct DefaultSettings {
         .showInvisibleFullwidthSpace: false,
         .invisibleFullwidthSpace: 0,
         .showOtherInvisibleChars: false,
-//        .theme: "Dendrobates",  // -> The default theme is set dynamically by taking the current appearance into account.
+        .documentAppearance: AppearanceMode.default.rawValue,
+        .theme: "Dendrobates",
         
         .smartInsertAndDelete: false,
         .balancesBrackets: false,
@@ -169,10 +173,13 @@ struct DefaultSettings {
         .findRegexUnescapesReplacementString: true,
         
         // ------ settings not in preferences window ------
+        .pinsThemeAppearance: false,
         .colorCodeType: 1,
+        .sidebarWidth: 220,
         .recentStyleNames: [],
         .showStatusBar: true,
         .selectedInspectorPaneIndex: 0,
+        .outlineViewFontSize: NSFont.smallSystemFontSize,
         
         // ------ hidden settings ------
         .headerFooterDateFormat: "yyyy-MM-dd HH:mm",

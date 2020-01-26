@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,7 +33,7 @@ final class SynchronizedScrollView: NSScrollView {
     override func magnify(with event: NSEvent) {
         
         let lastMagnification = self.magnification
-        let magnification = self.magnification + event.magnification
+        let magnification = self.magnification * (1 + event.magnification)
         let location = self.contentView.convert(event.locationInWindow, from: nil)
         
         for scrollView in self.siblings {
@@ -81,15 +81,13 @@ extension SynchronizedScrollView: NSUserInterfaceValidations {
     
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(smallerFont):
             return self.magnification > self.minMagnification
-            
         case #selector(biggerFont):
             return self.magnification < self.maxMagnification
-            
+        case nil:
+            return false
         default:
             return true
         }

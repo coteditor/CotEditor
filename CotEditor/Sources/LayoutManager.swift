@@ -37,8 +37,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         
         didSet {
             guard let textStorage = self.textStorage else { return assertionFailure() }
+            guard showsInvisibles != oldValue else { return }
             
-            let wholeRange = NSRange(..<textStorage.length)
+            let wholeRange = textStorage.range
             
             if self.showsOtherInvisibles {
                 // -> force recaluculate layout in order to make spaces for control characters drawing
@@ -54,25 +55,21 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     var textFont: NSFont? {
         
-        // keep body text font to avoid the issue where the line height can be different by composite font
-        // -> DO NOT use `self.firstTextView.font`, because it may return another font in case for example:
-        //    Japansete text is input nevertheless the font that user specified dosen't support it.
+        // store text font to avoid the issue where the line height can be different by composite font
+        // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't suuport
+        //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
+            guard let textFont = self.textFont else { return }
+            
             // cache metric values to fix line height
-            if let textFont = self.textFont {
-                self.defaultLineHeight = self.defaultLineHeight(for: textFont)
-                self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
-                
-                // cache width of space char for hanging indent width calculation
-                self.spaceWidth = textFont.spaceWidth
-                
-                // cache replacement glyph width for ATS Typesetter
-                let invisibleFont = NSFont(named: .lucidaGrande, size: textFont.pointSize) ?? textFont  // use current text font for fallback
-                let replacementGlyph = invisibleFont.glyph(withName: "replacement")  // U+FFFD
-                self.replacementGlyphWidth = invisibleFont.boundingRect(forGlyph: replacementGlyph).width
-            }
+            self.defaultLineHeight = self.defaultLineHeight(for: textFont)
+            self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
+            
+            // cache width of space char for hanging indent width calculation
+            self.spaceWidth = textFont.spaceWidth
             
             self.invisibleLines = self.generateInvisibleLines()
+            self.replacementGlyphWidth = self.invisibleLines.replacement.bounds().width
         }
     }
     
@@ -146,12 +143,17 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             .showOtherInvisibleChars,
             ]
-        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [unowned self] (key, _) in
+        self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [weak self] (key, _) in
+            guard let self = self else { return assertionFailure() }
+            
             self.applyDefaultInvisiblesSetting()
             self.invisibleLines = self.generateInvisibleLines()
             
             guard let textView = self.firstTextView else { return }
             
+            if key == .showOtherInvisibleChars {
+                self.invalidateLayout(forCharacterRange: self.attributedString().range, actualCharacterRange: nil)
+            }
             textView.setNeedsDisplay(textView.visibleRect, avoidAdditionalLayout: (key != .showOtherInvisibleChars))
         }
     }
@@ -197,7 +199,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         // draw invisibles
         if self.showsInvisibles,
             let context = NSGraphicsContext.current?.cgContext,
-            let string = self.textStorage?.string
+            let string = self.textStorage?.string as NSString?
         {
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
             let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
@@ -215,24 +217,24 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             // draw invisibles glyph by glyph
             for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
                 let charIndex = self.characterIndexForGlyph(at: glyphIndex)
-                let codeUnit = (string as NSString).character(at: charIndex)
+                let codeUnit = string.character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
                 let line: CTLine
                 switch invisible {
-                case .space?:
+                case .space:
                     guard self.showsSpace else { continue }
                     line = self.invisibleLines.space
                     
-                case .tab?:
+                case .tab:
                     guard self.showsTab else { continue }
                     line = self.invisibleLines.tab
                     
-                case .newLine?:
+                case .newLine:
                     guard self.showsNewLine else { continue }
                     line = self.invisibleLines.newLine
                     
-                case .fullwidthSpace?:
+                case .fullwidthSpace:
                     guard self.showsFullwidthSpace else { continue }
                     line = self.invisibleLines.fullwidthSpace
                     
@@ -271,25 +273,13 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     }
     
     
-    /// textStorage did update
-    override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
-        
-        // invalidate wrapping line indent in editRange if needed
-        if editMask.contains(.editedCharacters) {
-            self.invalidateIndent(in: newCharRange)
-        }
-        
-        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
-    }
-    
-    
     /// fill background rectangles with a color
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
-        // modify selected highlight color when document is inactive
-        // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable in a dark theme.
-        if NSAppKitVersion.current <= .macOS10_13,
-            color == .secondarySelectedControlColor,  // check if inactive
+        // modify selected highlight color when the window is inactive
+        // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable
+        //    when the window appearance and theme is inconsistent.
+        if color == .secondarySelectedControlColor,  // check if inactive
             let theme = (self.textViewForBeginningOfSelection as? Themable)?.theme,
             let secondarySelectionColor = theme.secondarySelectionColor
         {
@@ -323,76 +313,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     }
     
     
-    /// invalidate indent of wrapped lines
-    func invalidateIndent(in range: NSRange) {
-        
-        assert(Thread.isMainThread)
-        
-        guard UserDefaults.standard[.enablesHangingIndent] else { return }
-        
-        guard
-            let textStorage = self.textStorage,
-            let textView = self.firstTextView
-            else { return assertionFailure() }
-        
-        // only on focused editor
-        if let window = textView.window, !self.layoutManagerOwnsFirstResponder(in: window) { return }
-        
-        let string = textStorage.string as NSString
-        let lineRange = string.lineRange(for: range)
-        
-        guard !lineRange.isEmpty else { return }
-        
-        let hangingIndent = self.spaceWidth * CGFloat(UserDefaults.standard[.hangingIndentWidth])
-        let regex = try! NSRegularExpression(pattern: "^[ \\t]+(?!$)")
-        
-        // get dummy attributes to make calculation of indent width the same as layoutManager's calculation (2016-04)
-        let defaultParagraphStyle = textView.defaultParagraphStyle ?? .default
-        let indentAttributes: [NSAttributedString.Key: Any] = {
-            let typingParagraphStyle = (textView.typingAttributes[.paragraphStyle] as? NSParagraphStyle)?.mutable
-            typingParagraphStyle?.headIndent = 1.0  // dummy indent value for size calculation (2016-04)
-            
-            return [.font: self.textFont,
-                    .paragraphStyle: typingParagraphStyle,
-                ].compactMapValues { $0 }
-        }()
-        
-        var cache = [String: CGFloat]()
-        
-        // process line by line
-        textStorage.beginEditing()
-        string.enumerateSubstrings(in: lineRange, options: .byLines) { (substring: String?, substringRange, enclosingRange, stop) in
-            guard let substring = substring else { return }
-            
-            var indent = hangingIndent
-            
-            // add base indent
-            let baseIndentRange = regex.rangeOfFirstMatch(in: substring, range: substring.nsRange)
-            if baseIndentRange.location != NSNotFound {
-                let indentString = (substring as NSString).substring(with: baseIndentRange)
-                if let width = cache[indentString] {
-                    indent += width
-                } else {
-                    let width = NSAttributedString(string: indentString, attributes: indentAttributes).size().width
-                    cache[indentString] = width
-                    indent += width
-                }
-            }
-            
-            // apply new indent only if needed
-            let paragraphStyle = textStorage.attribute(.paragraphStyle, at: substringRange.location, effectiveRange: nil) as? NSParagraphStyle
-            if indent != paragraphStyle?.headIndent {
-                let mutableParagraphStyle = (paragraphStyle ?? defaultParagraphStyle).mutable
-                mutableParagraphStyle.headIndent = indent
-                
-                textStorage.addAttribute(.paragraphStyle, value: mutableParagraphStyle, range: substringRange)
-            }
-        }
-        
-        textStorage.endEditing()
-    }
-    
-    
     
     // MARK: Private Methods
     
@@ -414,14 +334,14 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
-        let spaceFont = self.textFont ?? font
+        let textFont = self.textFont ?? font
         let fullWidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
         
-        return InvisibleLines(space: self.invisibleLine(.space, font: spaceFont),
+        return InvisibleLines(space: self.invisibleLine(.space, font: textFont),
                               tab: self.invisibleLine(.tab, font: font),
                               newLine: self.invisibleLine(.newLine, font: font),
                               fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
-                              replacement: self.invisibleLine(.replacement, font: fullWidthFont))
+                              replacement: self.invisibleLine(.replacement, font: textFont))
     }
     
     

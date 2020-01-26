@@ -266,6 +266,7 @@
     "extensions": [
       "json",
       "geojson",
+      "resolved",
       "cottheme",
       "cotrpl"
     ],
@@ -579,6 +580,8 @@
       ".profile",
       ".bash_profile",
       ".bashrc",
+      ".zlogin",
+      ".zprofile",
       ".zshrc",
       ".zshenv"
     ],
@@ -593,7 +596,8 @@
   },
   "Swift": {
     "extensions": [
-      "swift"
+      "swift",
+      "swiftinterface"
     ],
     "filenames": [
 
