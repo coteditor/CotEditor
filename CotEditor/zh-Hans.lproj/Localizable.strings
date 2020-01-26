@@ -84,9 +84,9 @@
 "%@ strings replaced." = "已替换 %@ 个匹配";
 "Invalid regular expression" = "无效的正则表达式";
 "Empty find string" = "空的搜索字符串";
-"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
+"The option “in selection” is enabled, although nothing is selected." = "“在选择中搜索”选项被激活，但是并没有内容被选中。";
 "Input text to find." = "输入文本以查找。";
-"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";  // FIXME: added
+"Select the search scope in document or disable “in selection” option." = "在文档中选择搜索范围，或者禁用“在选择中搜索”。";
 
 // accessibility announcement
 "Search wrapped." = "已从头搜索";  // announced when the search restarted from the beginning.
