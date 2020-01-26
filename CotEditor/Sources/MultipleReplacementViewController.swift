@@ -441,7 +441,9 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
         
         // update all selected checkboxes in the same column
         let rowIndex = IndexSet(integer: row)
-        let rowIndexes = (sender is NSButton) ? rowIndex.union(tableView.selectedRowIndexes) : rowIndex
+        let rowIndexes = (sender is NSButton && tableView.selectedRowIndexes.contains(row))
+            ? rowIndex.union(tableView.selectedRowIndexes)
+            : rowIndex
         
         let identifier = tableView.tableColumns[column].identifier
         
