@@ -69,13 +69,13 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Window width:"; ObjectID = "JZ8-uq-7Kg"; */
-"JZ8-uq-7Kg.title" = "Window width:";  // FIXME: added
+"JZ8-uq-7Kg.title" = "Largeur de la fenêtre :";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "u8r-OW-Z1O"; */
-"u8r-OW-Z1O.title" = "px";  // FIXME: added
+"u8r-OW-Z1O.title" = "px";
 /* Class = "NSTextFieldCell"; title = "height:"; ObjectID = "Zhk-Nt-kiD"; */
-"Zhk-Nt-kiD.title" = "height:";  // FIXME: added
+"Zhk-Nt-kiD.title" = "Hauteur :";
 /* Class = "NSTextFieldCell"; title = "px"; ObjectID = "VCx-PO-Fnr"; */
-"VCx-PO-Fnr.title" = "px";  // FIXME: added
+"VCx-PO-Fnr.title" = "px";
 
 
 /* Class = "NSTextFieldCell"; title = "Split editor:"; ObjectID = "dug-hV-7hj"; */

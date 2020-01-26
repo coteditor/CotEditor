@@ -136,7 +136,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Insérer le symbole Yen";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Insérer un code hexa Unicode...";  // FIXME: [updated] hex -> code point
+"tWx-pj-3PL.title" = "Insérer un point de code Unicode...";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Orthographe et grammaire";
@@ -160,7 +160,7 @@
 /* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
 "7NX-1r-Wq7.title" = "Remplacer les guillemets";
 /* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
-"9gl-1h-Yit.title" = "Straighten Quotes";  // FIXME: added
+"9gl-1h-Yit.title" = "Redresser les guillemets";
 /* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
 "hMS-qd-BCS.title" = "Remplacer les tirets";
 /* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */

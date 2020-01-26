@@ -83,10 +83,9 @@
 "%@ strings replaced." = "%@ éléments remplacés.";
 "Invalid regular expression" = "Expression régulière invalide";
 "Empty find string" = "Châine de recherche vide";
-"The option “in selection” is enabled, although nothing is selected." = "The option “in selection” is enabled, although nothing is selected.";  // FIXME: added
+"The option “in selection” is enabled, although nothing is selected." = "L’option « Dans la sélection » est activée mais il n’y a aucune sélection.";
 "Input text to find." = "Texte à rechercher";
-"Select the search scope in document or disable “in selection” option." = "Select the search scope in document or disable “in selection” option.";  // FIXME: added
-
+"Select the search scope in document or disable “in selection” option." = "Sélectionnez le périmètre de recherche dans le document ou désactivez l'option « dans la sélection ».";
 // accessibility announcement
 "Search wrapped." = "Retour au début.";  // announced when the search restarted from the beginning.
 
