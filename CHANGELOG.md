@@ -25,6 +25,7 @@ Change Log
 - Fix an issue where the font size of the line number view was occasionally not updated even when text size is changed.
 - Fix an issue where “⌘⇧T” shortcut key assigned for “Show/Hide Tab Bar” was ignored under specific conditions.
 - Fix an issue where the width of the inspector was occasionally not properly set.
+- Fix an issue where the wrong warning message displayed in the multiple replacement panel even when there is no invalid condition.
 - Fix a possible crash when transforming the case of selection that includes specific character order.
 - Fix a possible crash when a document file is modified by another process.
 - [trivial] Fix a typo in French (Thanks to Arnaud Tanchoux!).
