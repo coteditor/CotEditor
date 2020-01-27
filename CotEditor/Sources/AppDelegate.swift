@@ -307,11 +307,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         #endif
         
-        // inverse text color in dark mode
-        if #available(macOS 10.14, *), NSApp.effectiveAppearance.isDark {
-            html = html.replacingOccurrences(of: "<body>", with: "<body style=\"color: white\">")
-        }
-        
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
         NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
