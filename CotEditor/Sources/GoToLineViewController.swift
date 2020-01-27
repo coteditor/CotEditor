@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,20 +29,12 @@ final class GoToLineViewController: NSViewController {
     
     // MARK: Public Properties
     
-    var textView: NSTextView? {
+    var completionHandler: ((_ lineRange: FuzzyRange) -> Bool)?
+    
+    var lineRange: FuzzyRange? {
         
-        didSet {
-            guard let textView = textView else { return }
-            
-            let string = textView.string
-            let lineNumber = string.lineNumber(at: textView.selectedRange.location)
-            let lineCount = (string as NSString).substring(with: textView.selectedRange).numberOfLines
-            
-            self.location = String(lineNumber)
-            if lineCount > 1 {
-                self.location += ":" + String(lineCount)
-            }
-        }
+        get { FuzzyRange(string: self.location) }
+        set { self.location = newValue?.string ?? "" }
     }
     
     
@@ -56,39 +48,17 @@ final class GoToLineViewController: NSViewController {
     // MARK: Action Messages
     
     /// apply
-    @IBAction func ok(_ sender: Any?) {
+    @IBAction func apply(_ sender: Any?) {
         
-        self.endEditing()
-        
-        guard self.selectLocation() else {
-            NSSound.beep()
-            return
-        }
-        
-        self.dismiss(sender)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// select location in textView
-    private func selectLocation() -> Bool {
-        
-        let loclen = self.location.components(separatedBy: ":").map { Int($0) }
+        assert(self.completionHandler != nil)
         
         guard
-            let location = loclen[0],
-            let length = (loclen.count > 1) ? loclen[1] : 0,
-            let textView = self.textView,
-            let range = textView.string.rangeForLine(location: location, length: length)
-            else { return false }
+            self.endEditing(),
+            let lineRange = self.lineRange,
+            self.completionHandler?(lineRange) ?? false
+            else { return NSSound.beep() }
         
-        textView.selectedRange = range
-        textView.scrollRangeToVisible(range)
-        textView.showFindIndicator(for: range)
-        
-        return true
+        self.dismiss(sender)
     }
     
 }

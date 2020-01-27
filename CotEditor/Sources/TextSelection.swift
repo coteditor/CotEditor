@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -143,7 +143,7 @@ final class TextSelection: NSObject {
                 let location = newValue?[0],
                 let length = newValue?[1],
                 let string = self.document?.string,
-                let range = string.range(location: location, length: length)
+                let range = string.range(in: FuzzyRange(location: location, length: length))
                 else { return }
             
             self.document?.selectedRange = range
@@ -167,16 +167,12 @@ final class TextSelection: NSObject {
         }
         
         set {
-            let location: Int
-            let length: Int
-            
+            let fuzzyRange: FuzzyRange
             switch newValue {
             case let number as Int:
-                location = number
-                length = 1
+                fuzzyRange = FuzzyRange(location: number, length: 1)
             case let range as [Int] where range.count == 2:
-                location = range[0]
-                length = range[1]
+                fuzzyRange = FuzzyRange(location: range[0], length: range[1])
             default:
                 return
             }
@@ -184,7 +180,7 @@ final class TextSelection: NSObject {
             // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
             guard let string = self.textView?.string else { return }
             
-            guard let range = string.rangeForLine(location: location, length: length) else { return }
+            guard let range = string.rangeForLine(in: fuzzyRange) else { return }
             
             self.document?.selectedRange = range
         }

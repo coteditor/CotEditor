@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         self.mainViewController?.delegate = self
         
         // register droppable types
-        let draggedType = NSPasteboard.PasteboardType(kUTTypeFileURL as String)
-        self.tableView?.registerForDraggedTypes([draggedType])
+        self.tableView?.registerForDraggedTypes([.fileURL])
         
         self.settingNames = ReplacementManager.shared.settingNames
         
@@ -68,7 +67,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
                 else { return 0 }
             
             return row
-            }()
+        }()
         self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
         
         // observe replacement setting list change
@@ -97,10 +96,8 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         let itemSelected = (representedSettingName != nil)
         
-        guard let action = menuItem.action else { return false }
-        
         // append target setting name to menu titles
-        switch action {
+        switch menuItem.action {
         case #selector(addSetting), #selector(importSetting(_:)):
             menuItem.isHidden = (isContextualMenu && itemSelected)
             
@@ -130,7 +127,11 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
                 menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
             }
             
-        default: break
+        case nil:
+            return false
+            
+        default:
+            break
         }
         
         return true

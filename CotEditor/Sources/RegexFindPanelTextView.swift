@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,19 +29,8 @@ final class RegexFindPanelTextView: FindPanelTextView {
     
     // MARK: Public Properties
     
-    var parseMode: RegularExpressionParseMode = .search {
-        
-        didSet {
-            self.invalidateRegularExpression()
-        }
-    }
-    
-    var isRegularExpressionMode: Bool = false {
-        
-        didSet {
-            self.invalidateRegularExpression()
-        }
-    }
+    var parseMode: RegularExpressionParseMode = .search  { didSet { self.invalidateRegularExpression() } }
+    var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
     
     // MARK: -
@@ -69,7 +58,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
             range.length == 1  // clicked character can be a brace
             else { return range }
         
-        let characterIndex = Range(range, in: self.string)!.lowerBound
+        let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         
         // select inside of brackets
         if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]")) {

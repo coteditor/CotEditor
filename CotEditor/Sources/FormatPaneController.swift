@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,12 +63,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         self.syntaxTableView?.doubleAction = #selector(editSyntaxStyle)
         self.syntaxTableView?.target = self
         
-        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
-        self.syntaxTableView?.registerForDraggedTypes([draggedType])
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: didUpdateSettingListNotification, object: EncodingManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
+        self.syntaxTableView?.registerForDraggedTypes([.URL])
     }
     
     
@@ -79,6 +74,20 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         self.setupEncodingMenus()
         self.setupSyntaxStyleMenus()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(setupEncodingMenus), name: didUpdateSettingListNotification, object: EncodingManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingListNotification, object: SyntaxManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(setupSyntaxStyleMenus), name: didUpdateSettingNotification, object: SyntaxManager.shared)
+    }
+    
+    
+    /// stop observations for UI update
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
     }
     
     
@@ -117,10 +126,8 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             (isBundled, isCustomized) = (false, false)
         }
         
-        guard let action = menuItem.action else { return false }
-        
         // append target setting name to menu titles
-        switch action {
+        switch menuItem.action {
         case #selector(openSyntaxMappingConflictSheet(_:)):
             return SyntaxManager.shared.mappingConflicts.contains { !$0.value.isEmpty }
             
@@ -153,7 +160,11 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             }
             return (!isBundled || isCustomized)
             
-        default: break
+        case nil:
+            return false
+            
+        default:
+            break
         }
         
         return true

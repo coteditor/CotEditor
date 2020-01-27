@@ -136,7 +136,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Insérer le symbole Yen";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Insérer un code hexa Unicode...";  // FIXME: [updated] hex -> code point
+"tWx-pj-3PL.title" = "Insérer un point de code Unicode...";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Orthographe et grammaire";
@@ -157,6 +157,14 @@
 "yN3-iT-4Lq.title" = "Substitutions";
 /* Class = "NSMenu"; title = "Substitutions"; ObjectID = "2wy-A5-6kZ"; */
 "2wy-A5-6kZ.title" = "Substitutions";
+/* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
+"7NX-1r-Wq7.title" = "Remplacer les guillemets";
+/* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
+"9gl-1h-Yit.title" = "Redresser les guillemets";
+/* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
+"hMS-qd-BCS.title" = "Remplacer les tirets";
+/* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
+"ue7-85-H8l.title" = "Remplacer texte";
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
 "gqI-2M-XIx.title" = "Afficher les substitutions";
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */
@@ -488,7 +496,7 @@
 /* Class = "NSMenuItem"; title = "Find Next"; ObjectID = "NwE-Cf-L9F"; */
 "NwE-Cf-L9F.title" = "Rechercher le suivant";
 /* Class = "NSMenuItem"; title = "Find Previous"; ObjectID = "wiV-Hh-7xU"; */
-"wiV-Hh-7xU.title" = "Recherchr le précédent";
+"wiV-Hh-7xU.title" = "Rechercher le précédent";
 /* Class = "NSMenuItem"; title = "Find Selected Text"; ObjectID = "l33-Nz-UAw"; */
 "l33-Nz-UAw.title" = "Rechercher la sélection";
 /* Class = "NSMenuItem"; title = "Find All"; ObjectID = "HgR-ke-6gq"; */

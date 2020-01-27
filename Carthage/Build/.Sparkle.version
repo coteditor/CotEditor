@@ -1,18 +1,9 @@
 {
+  "commitish" : "a045f1a50be6cfde34674e3deb86efea83bef86d",
   "Mac" : [
     {
       "name" : "Sparkle",
-      "hash" : "79c67f254b8c43fc4e846e2a3b9b6d39a6518641a4cdf5f12eb3af15b795dc4f"
+      "hash" : "cb8b77e4159fed4bad33e0481234a47edfb3c23274ffaabf8a18d986382a0ae6"
     }
-  ],
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "commitish" : "d9cce796cb8525f26a36388daf9616bbe79322b9",
-  "iOS" : [
-
   ]
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -22,8 +22,6 @@
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
 //
-
-import Foundation
 
 extension UnicodeScalar {
     
@@ -39,14 +37,6 @@ extension UnicodeScalar {
         static let type4 = UnicodeScalar(0x1F3FD)!  // 🏽 Medium
         static let type5 = UnicodeScalar(0x1F3FE)!  // 🏾 Medium Dark
         static let type6 = UnicodeScalar(0x1F3FF)!  // 🏿 Dark
-    }
-    
-    
-    var isVariantSelector: Bool {
-        
-        return (0xE0100...0xE01EF).contains(self.value) ||
-            (0x180B...0x180D).contains(self.value) ||
-            (0xFE00...0xFE0F).contains(self.value)
     }
     
 }
@@ -111,7 +101,7 @@ struct CharacterInfo {
             case UnicodeScalar.SkinToneModifier.type6:
                 return "Skin Tone VI"
                 
-            case let unicode where unicode.isVariantSelector:
+            case let unicode where unicode.properties.isVariationSelector:
                 return "Variant"
                 
             default:
@@ -151,7 +141,7 @@ extension CharacterInfo: CustomStringConvertible {
     
     var description: String {
         
-        return "\(self.string)"
+        return self.string
     }
     
 }

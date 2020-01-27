@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,12 +34,6 @@ final class DocumentInspectorViewController: NSViewController {
     @IBOutlet private var filePermissionsFormatter: FilePermissionsFormatter?
     
     
-    private var analyzer: DocumentAnalyzer? {
-        
-        return self.representedObject as? DocumentAnalyzer
-    }
-    
-    
     
     // MARK: -
     // MARK: View Controller Methods
@@ -54,13 +48,13 @@ final class DocumentInspectorViewController: NSViewController {
     
     
     /// let documentAnalyzer autoupdate
-    override func viewDidAppear() {
+    override func viewWillAppear() {
         
-        super.viewDidAppear()
+        super.viewWillAppear()
         
         assert(self.analyzer != nil)
         
-        self.analyzer?.needsUpdateEditorInfo = true
+        self.analyzer?.shouldUpdateEditorInfo = true
         self.analyzer?.invalidateEditorInfo()
     }
     
@@ -68,9 +62,9 @@ final class DocumentInspectorViewController: NSViewController {
     /// stop autoupdate documentAnalyzer
     override func viewDidDisappear() {
         
-        self.analyzer?.needsUpdateEditorInfo = false
-        
         super.viewDidDisappear()
+        
+        self.analyzer?.shouldUpdateEditorInfo = false
     }
     
     
@@ -78,18 +72,24 @@ final class DocumentInspectorViewController: NSViewController {
     override var representedObject: Any? {
         
         willSet {
-            guard newValue is DocumentAnalyzer else {
-                assertionFailure("representedObject of \(self.className) must be an instance of \(String(describing: DocumentAnalyzer.self))")
-                return
-            }
-            self.analyzer?.needsUpdateEditorInfo = false
+            self.analyzer?.shouldUpdateEditorInfo = false
         }
         
         didSet {
-            if self.isViewLoaded {
-                self.analyzer?.needsUpdateEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
-            }
+            assert(representedObject == nil || representedObject is DocumentAnalyzer,
+                   "representedObject of \(self.className) must be an instance of \(DocumentAnalyzer.className())")
+            
+            self.analyzer?.shouldUpdateEditorInfo = self.isViewShown
         }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private var analyzer: DocumentAnalyzer? {
+        
+        return self.representedObject as? DocumentAnalyzer
     }
     
 }

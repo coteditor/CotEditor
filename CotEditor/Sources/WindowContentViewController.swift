@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,10 +49,6 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         // set behavior to glow window size on sidebar toggling rather than opening sidebar inward
         self.sidebarViewItem?.collapseBehavior = .preferResizingSplitViewWithFixedSiblings
         
-        // apply user's preference manually (2018-08 macOS 10.13)
-        // -> Because the framework's autosave implementation doesn't work with autolayout.
-        self.restoreAutosavePositions()
-        
         self.sidebarViewController?.delegate = self
     }
     
@@ -65,7 +61,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         super.viewDidAppear()
         
         // adjust sidebar visibility if this new window was just added to an existing window
-        if let other = self.siblings.first(where: { $0 != self }) {
+        if let other = self.siblings.first(where: { $0 != self }), other.isSidebarShown {
             self.sidebarThickness = other.sidebarThickness
             self.setSidebarShown(other.isSidebarShown, index: other.sidebarViewController!.selectedTabIndex)
         }
@@ -86,9 +82,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     /// disable toggling sidebar in the tab overview mode
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(toggleInspector):
             let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
             (item as? NSMenuItem)?.title = title.localized
@@ -137,6 +131,27 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     func showSidebarPane(index: SidebarViewController.TabIndex) {
         
         self.setSidebarShown(true, index: index, animate: true)
+    }
+    
+
+    /// rsestore visibility of inspector but keeping the window width
+    func restoreAutosavingState() {
+        
+        assert(self.sidebarViewItem!.isCollapsed)
+        assert(self.sidebarViewItem == self.splitViewItems[1])
+        assert(!self.view.window!.isVisible)
+        
+        guard let sidebarViewItem = self.sidebarViewItem else { return assertionFailure() }
+        guard self.splitView.autosavingSubviewStates?[safe: 1]?.isCollapsed == false else { return }
+        
+        let originalSize = self.view.frame.size
+        
+        sidebarViewItem.isCollapsed = false
+        
+        // adjust contentView shape
+        let newWidth = originalSize.width + sidebarViewItem.viewController.view.frame.width
+        self.view.window?.setContentSize(NSSize(width: newWidth, height: originalSize.height))
+        self.splitView.setPosition(originalSize.width, ofDividerAt: 0)
     }
     
     
@@ -271,8 +286,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     private var canToggleSidebar: Bool {
         
         // cannot toggle in the tab overview mode
-        if let window = self.view.window, window.isVisible,  // check visiblity to avoid the window position cascading bug
-            let tabGroup = window.tabGroup {
+        if let tabGroup = self.view.window?.tabGroup {
             return !tabGroup.isOverviewVisible
         }
         

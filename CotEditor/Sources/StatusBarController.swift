@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,6 +64,18 @@ final class StatusBarController: NSViewController {
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
         self.view.setAccessibilityLabel("status bar".localized)
+    }
+    
+    
+    /// request analyzer to update editor info
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        assert(self.documentAnalyzer != nil)
+        
+        self.documentAnalyzer?.shouldUpdateStatusEditorInfo = true
+        self.documentAnalyzer?.invalidateEditorInfo()
         
         // observe change in defaults
         self.defaultsObservers.forEach { $0.invalidate() }
@@ -87,18 +99,6 @@ final class StatusBarController: NSViewController {
         self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [weak self] (_, _) in
             self?.updateDocumentStatus()
         }
-    }
-    
-    
-    /// request analyzer to update editor info
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        assert(self.documentAnalyzer != nil)
-        
-        self.documentAnalyzer?.needsUpdateStatusEditorInfo = true
-        self.documentAnalyzer?.invalidateEditorInfo()
         
         if NSAppKitVersion.current < .macOS10_15 {
             self.appearanceObserver?.invalidate()
@@ -114,7 +114,10 @@ final class StatusBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.documentAnalyzer?.needsUpdateStatusEditorInfo = false
+        self.documentAnalyzer?.shouldUpdateStatusEditorInfo = false
+        
+        self.defaultsObservers.forEach { $0.invalidate() }
+        self.defaultsObservers = []
         
         self.appearanceObserver?.invalidate()
         self.appearanceObserver = nil
@@ -129,7 +132,7 @@ final class StatusBarController: NSViewController {
         willSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            analyzer.needsUpdateStatusEditorInfo = false
+            analyzer.shouldUpdateStatusEditorInfo = false
             
             NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.removeObserver(self, name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -139,9 +142,7 @@ final class StatusBarController: NSViewController {
         didSet {
             guard let analyzer = documentAnalyzer else { return }
             
-            if self.isViewLoaded {
-                analyzer.needsUpdateStatusEditorInfo = !self.view.isHiddenOrHasHiddenAncestor
-            }
+            analyzer.shouldUpdateStatusEditorInfo = self.isViewShown
             
             NotificationCenter.default.addObserver(self, selector: #selector(updateEditorStatus), name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: analyzer)
             NotificationCenter.default.addObserver(self, selector: #selector(updateDocumentStatus), name: DocumentAnalyzer.didUpdateFileInfoNotification, object: analyzer)
@@ -162,9 +163,8 @@ final class StatusBarController: NSViewController {
         assert(Thread.isMainThread)
         
         guard
-            self.isViewLoaded,
-            !self.view.isHiddenOrHasHiddenAncestor,
-            let info = self.documentAnalyzer?.info
+            self.isViewShown,
+            let info = self.documentAnalyzer?.info.editor
             else { return }
         
         let defaults = UserDefaults.standard
@@ -205,8 +205,7 @@ final class StatusBarController: NSViewController {
         assert(Thread.isMainThread)
         
         guard
-            self.isViewLoaded,
-            !self.view.isHiddenOrHasHiddenAncestor,
+            self.isViewShown,
             let info = self.documentAnalyzer?.info
             else { return }
         
@@ -214,18 +213,18 @@ final class StatusBarController: NSViewController {
         let status = NSMutableAttributedString()
         
         if defaults[.showStatusBarEncoding] {
-            status.appendFormattedState(value: info.encoding, label: nil)
+            status.appendFormattedState(value: info.mode.encoding, label: nil)
         }
         if defaults[.showStatusBarLineEndings] {
-            status.appendFormattedState(value: info.lineEndings, label: nil)
+            status.appendFormattedState(value: info.mode.lineEndings, label: nil)
         }
         if defaults[.showStatusBarFileSize] {
-            let fileSize = self.byteCountFormatter.string(for: info.fileSize)
+            let fileSize = self.byteCountFormatter.string(for: info.file.fileSize)
             status.appendFormattedState(value: fileSize, label: nil)
         }
         
         self.documentStatus = status
-        self.showsReadOnly = info.isReadOnly
+        self.showsReadOnly = info.file.isReadOnly
     }
     
 }

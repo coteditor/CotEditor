@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,10 +58,10 @@ extension CTFont {
     /// - Returns: A CGGlyph for passed-in character based on the receiver font.
     func glyph(for character: Character) -> CGGlyph {
         
-        assert(String(character).utf16.count == 1)
+        assert(character.utf16.count == 1)
         
         var glyph = CGGlyph()
-        let uniChar: UniChar = String(character).utf16.first!
+        let uniChar: UniChar = character.utf16.first!
         CTFontGetGlyphsForCharacters(self, [uniChar], &glyph, 1)
         
         return glyph

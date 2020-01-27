@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -64,13 +64,10 @@ extension StringProtocol where Self.Index == String.Index {
         
         // workarond for the Swift 5 issue that removes BOM at the beginning (2019-05 Swift 5.0).
         guard self.first != "\u{FEFF}" || self.compareCount(with: 16) == .greater else {
-            let newlines = Set<Character>(["\n", "\r", "\r\n", "\u{0085}", "\u{2028}", "\u{2029}"])
             let substring = self[workaround: range]
-            let count = substring.count { newlines.contains($0) } + 1
+            let count = substring.count { $0.isNewline } + 1
             
-            if !includingLastLineEnding,
-                let last = substring.last,
-                newlines.contains(last) {
+            if !includingLastLineEnding, substring.last?.isNewline == true {
                 return count - 1
             }
             return count
@@ -81,10 +78,7 @@ extension StringProtocol where Self.Index == String.Index {
             count += 1
         }
         
-        if includingLastLineEnding,
-            let last = self[workaround: range].unicodeScalars.last,
-            CharacterSet.newlines.contains(last)
-        {
+        if includingLastLineEnding, self[workaround: range].last?.isNewline == true {
             count += 1
         }
         

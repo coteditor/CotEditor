@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -66,8 +66,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         super.viewDidLoad()
         
         // register droppable types
-        let draggedType = NSPasteboard.PasteboardType(kUTTypeURL as String)
-        self.themeTableView?.registerForDraggedTypes([draggedType])
+        self.themeTableView?.registerForDraggedTypes([.URL])
         
         self.themeNames = ThemeManager.shared.settingNames
         
@@ -81,10 +80,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             self.lightAppearanceButton?.removeFromSuperview()
             self.darkAppearanceButton?.removeFromSuperview()
         }
-        
-        // observe theme list change
-        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
-        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
     }
     
     
@@ -120,6 +115,20 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
         self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        
+        // observe theme list change
+        NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(themeDidUpdate), name: didUpdateSettingNotification, object: ThemeManager.shared)
+    }
+    
+    
+    /// stop observations for UI update
+    override func viewDidDisappear() {
+        
+        super.viewDidDisappear()
+        
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingListNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: didUpdateSettingNotification, object: nil)
     }
     
     
@@ -164,10 +173,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             (isBundled, isCustomized) = (false, false)
         }
         
-        guard let action = menuItem.action else { return false }
-        
         // append target setting name to menu titles
-        switch action {
+        switch menuItem.action {
         case #selector(addTheme), #selector(importTheme(_:)):
             menuItem.isHidden = (isContextualMenu && itemSelected)
             
@@ -207,7 +214,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             }
             return (!isBundled || isCustomized)
             
-        default: break
+        case nil:
+            return false
+            
+        default:
+            break
         }
         
         return true
@@ -309,8 +320,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 let isDarkAppearance: Bool = {
                     switch UserDefaults.standard[.documentAppearance] {
                     case .default: return NSAppearance.current.isDark
-                    case .light:   return false
-                    case .dark:   return true
+                    case .light: return false
+                    case .dark: return true
                     }
                 }()
                 UserDefaults.standard[.theme] = themeName

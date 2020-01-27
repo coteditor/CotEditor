@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import Differ
+import DifferenceKit
 
 final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArrayController
     
@@ -61,6 +61,8 @@ final class IncompatibleCharacter: NSObject {  // -> inherit NSObject for NSArra
 
 // MARK: -
 
+extension Character: Differentiable { }
+
 extension String {
     
     /// list-up characters cannot be converted to the passed-in encoding
@@ -73,38 +75,20 @@ extension String {
             let convertedString = String(data: data, encoding: encoding)
             else { assertionFailure(); return [] }
         
-        guard convertedString.count == self.count else {
-            // detect incompatible chars using Differ
-            return self.diff(convertedString)
-                .compactMap { (element) -> Int? in
-                    switch element {
-                    case .delete(at: let offset): return offset
-                    case .insert: return nil
-                    }
-                }
-                .map { (offset) in
-                    let index = self.index(self.startIndex, offsetBy: offset)
-                    let location = NSRange(index..<index, in: self).location
-                    let character = self[index]
-                    let converted: String? = String(character)
-                        .data(using: encoding, allowLossyConversion: true)
-                        .flatMap { String(data: $0, encoding: encoding) }
-                    
-                    return IncompatibleCharacter(character: character,
-                                                 convertedCharacter: converted,
-                                                 location: location,
-                                                 lineNumber: self.lineNumber(at: location))
-                }
-        }
-        
-        return zip(self.indices, zip(self, convertedString))
-            .filter { $1.0 != $1.1 }
-            .map { (index, characters) -> IncompatibleCharacter in
-                let (original, converted) = characters
-                let location = NSRange(index..<index, in: self).location
+        // detect incompatible chars using DifferenceKit
+        return StagedChangeset(source: self, target: convertedString)
+            .flatMap { $0.elementDeleted }
+            .map { $0.element }
+            .compactMap { (offset) in
+                let index = self.index(self.startIndex, offsetBy: offset)
+                let location = index.utf16Offset(in: self)
+                let character = self[index]
+                let converted: String? = String(character)
+                    .data(using: encoding, allowLossyConversion: true)
+                    .flatMap { String(data: $0, encoding: encoding) }
                 
-                return IncompatibleCharacter(character: original,
-                                             convertedCharacter: (original == "¥" && encoding.canConvertYenSign) ? "\\" : String(converted),
+                return IncompatibleCharacter(character: character,
+                                             convertedCharacter: converted,
                                              location: location,
                                              lineNumber: self.lineNumber(at: location))
             }

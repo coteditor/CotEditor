@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
-    /// workaround for crash on macOS 10.12 (2016-09) and on macOS 10.13 (2018-05)
+    /// workaround for crash on macOS 10.12 – macOS 10.15.
     override func splitView(_ splitView: NSSplitView, shouldHideDividerAt dividerIndex: Int) -> Bool {
         
         return false
@@ -69,9 +69,7 @@ final class SplitViewController: NSSplitViewController {
     /// apply current state to related menu items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(toggleSplitOrientation):
             if let item = item as? NSMenuItem {
                 let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"

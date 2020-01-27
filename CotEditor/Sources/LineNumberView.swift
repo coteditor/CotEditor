@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -79,8 +79,10 @@ final class LineNumberView: NSView {
     var orientation: NSLayoutManager.TextLayoutOrientation = .horizontal {
         
         didSet {
-            self.invalidateDrawingInfoAndThickness()
-            self.invalidateIntrinsicContentSize()
+            if !self.isHiddenOrHasHiddenAncestor {
+                self.invalidateDrawingInfoAndThickness()
+                self.invalidateIntrinsicContentSize()
+            }
         }
     }
     
@@ -113,6 +115,7 @@ final class LineNumberView: NSView {
     private var frameObserver: NSObjectProtocol?
     private var scrollObserver: NSObjectProtocol?
     private var colorObserver: NSKeyValueObservation?
+    private var scaleObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
     
@@ -428,6 +431,11 @@ final class LineNumberView: NSView {
         self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
             self?.needsDisplay = true
         }
+        
+        self.scaleObserver?.invalidate()
+        self.scaleObserver = textView.observe(\.scale) { [weak self] (_, _)  in
+            self?.needsDisplay = true
+        }
     }
     
     
@@ -464,6 +472,9 @@ final class LineNumberView: NSView {
         
         self.colorObserver?.invalidate()
         self.colorObserver = nil
+        
+        self.scaleObserver?.invalidate()
+        self.scaleObserver = nil
     }
     
 }

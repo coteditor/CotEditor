@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="sY9-RN-jMg">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -46,7 +46,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
+                            <button hidden="YES" toolTip="Jump to previous outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="BUj-TD-scp">
                                 <rect key="frame" x="31" y="-2" width="21" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="21" id="NdS-0U-G6w"/>
@@ -73,7 +73,7 @@
                                     <action selector="openSplitTextView:" target="OuY-Pd-2q9" id="gJ1-uN-P5E"/>
                                 </connections>
                             </button>
-                            <button toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
+                            <button hidden="YES" toolTip="Jump to next outline item" verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="MlW-Dz-FOk">
                                 <rect key="frame" x="350" y="-2" width="21" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="21" id="rrS-MJ-wb5"/>
@@ -86,7 +86,7 @@
                                     <action selector="selectNextItemOfOutlineMenu:" target="KjS-UJ-AjC" id="b7v-Xr-hG7"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
+                            <popUpButton hidden="YES" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
                                 <rect key="frame" x="51" y="-2" width="300" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="EMV-iW-vsD"/>

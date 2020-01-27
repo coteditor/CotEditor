@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,9 +108,10 @@ private extension NSLayoutManager {
         
         let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         
-        guard glyphRange.lowerBound < self.numberOfGlyphs || self.extraLineFragmentTextContainer == nil else {
-            return self.extraLineFragmentRect
-        }
+        guard
+            self.isValidGlyphIndex(glyphRange.lowerBound),
+            (glyphRange.lowerBound < self.numberOfGlyphs || self.extraLineFragmentTextContainer == nil)
+            else { return self.extraLineFragmentRect }
         
         var effectiveRange: NSRange = .notFound
         let lowerRect = self.lineFragmentRect(forGlyphAt: glyphRange.lowerBound, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)

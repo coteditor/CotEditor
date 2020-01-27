@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -203,7 +203,10 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     /// validate current setting
     @objc private func validateObject() {
         
-        self.hasInvalidSetting = self.definition.replacements.contains { (try? $0.validate()) != nil }
+        self.hasInvalidSetting = self.definition.replacements.contains {
+            do { try $0.validate() } catch { return true }
+            return false
+        }
     }
     
     
@@ -438,7 +441,9 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
         
         // update all selected checkboxes in the same column
         let rowIndex = IndexSet(integer: row)
-        let rowIndexes = (sender is NSButton) ? rowIndex.union(tableView.selectedRowIndexes) : rowIndex
+        let rowIndexes = (sender is NSButton && tableView.selectedRowIndexes.contains(row))
+            ? rowIndex.union(tableView.selectedRowIndexes)
+            : rowIndex
         
         let identifier = tableView.tableColumns[column].identifier
         

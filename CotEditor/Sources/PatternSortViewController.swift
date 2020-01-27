@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,11 @@
 import Cocoa
 
 final class PatternSortViewController: NSViewController, SortPatternViewControllerDelegate {
+    
+    // MARK: Public Properties
+    
+    var completionHandler: ((_ pattern: SortPattern, _ options: SortOptions) -> Void)?
+    
     
     // MARK: Private Properties
     
@@ -61,7 +66,7 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     
     
-    // MARK: Actions
+    // MARK: Action Messages
     
     /// switch sort key setting (tab) view
     @IBAction func changeSortPattern(_ sender: NSButton) {
@@ -71,27 +76,21 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     
     /// perform sort
-    @IBAction func ok(_ sender: Any?) {
+    @IBAction func apply(_ sender: Any?) {
         
-        guard self.endEditing() else {
-            NSSound.beep()
-            return
-        }
+        assert(self.completionHandler != nil)
         
-        guard
-            let textView = self.representedObject as? NSTextView,
-            let pattern = self.sortPattern
-            else { return assertionFailure() }
+        guard self.endEditing() else { return NSSound.beep() }
         
+        guard let pattern = self.sortPattern else { return assertionFailure() }
         do {
             try pattern.validate()
         } catch {
             NSAlert(error: error).beginSheetModal(for: self.view.window!)
-            NSSound.beep()
-            return
+            return NSSound.beep()
         }
         
-        textView.sortLines(pattern: pattern, options: self.sortOptions)
+        self.completionHandler?(pattern, self.sortOptions)
         
         self.dismiss(sender)
     }

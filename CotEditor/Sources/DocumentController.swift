@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,10 +34,12 @@ protocol AdditionalDocumentPreparing: NSDocument {
 
 final class DocumentController: NSDocumentController {
     
-    private(set) lazy var autosaveDirectoryURL: URL =  try! FileManager.default.url(for: .autosavedInformationDirectory,
-                                                                                    in: .userDomainMask,
-                                                                                    appropriateFor: nil,
-                                                                                    create: true)
+    // MARK: Public Properties
+    
+    private(set) lazy var autosaveDirectoryURL: URL = try! FileManager.default.url(for: .autosavedInformationDirectory,
+                                                                                   in: .userDomainMask,
+                                                                                   appropriateFor: nil,
+                                                                                   create: true)
     private(set) var accessorySelectedEncoding: String.Encoding?
     
     
@@ -204,8 +206,11 @@ final class DocumentController: NSDocumentController {
     /// return enability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        if item.action == #selector(newDocumentAsTab) {
+        switch item.action {
+        case #selector(newDocumentAsTab):
             return self.currentDocument != nil
+        default:
+            break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -329,6 +334,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         case binaryFile(type: String)
         case tooLarge(size: Int)
     }
+    
     
     let kind: ErrorKind
     let url: URL

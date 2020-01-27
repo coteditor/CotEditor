@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -283,8 +283,8 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     @objc dynamic var snippets = [SnippetItem]()
     
     @IBOutlet private var snippetArrayController: NSArrayController?
-    @IBOutlet private var formatTextView: TokenTextView?
-    @IBOutlet private var variableInsertionMenu: NSPopUpButton?
+    @IBOutlet private weak var formatTextView: TokenTextView?
+    @IBOutlet private weak var variableInsertionMenu: NSPopUpButton?
     
     
     

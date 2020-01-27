@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -267,6 +267,31 @@ Gw
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Substitutions" id="2wy-A5-6kZ">
                                                 <items>
+                                                    <menuItem title="Replace Quotes" id="7NX-1r-Wq7">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="replaceQuotesInSelection:" target="Ady-hI-5gd" id="yj0-7q-gLA"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Straighten Quotes" id="9gl-1h-Yit">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="straightenQuotesInSelection:" target="Ady-hI-5gd" id="ERO-GK-a6I"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Replace Dashes" id="hMS-qd-BCS">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="replaceDashesInSelection:" target="Ady-hI-5gd" id="j6d-Ei-Z9e"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Replace Text" id="ue7-85-H8l">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="replaceTextInSelection:" target="Ady-hI-5gd" id="Eik-PZ-k8e"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="BFQ-h9-EMW"/>
                                                     <menuItem title="Show Substitutions" id="gqI-2M-XIx">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>

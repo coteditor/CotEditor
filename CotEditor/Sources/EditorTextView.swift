@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,10 +32,6 @@ private extension NSAttributedString.Key {
 }
 
 
-private let kTextContainerInset = NSSize(width: 0.0, height: 4.0)
-
-
-
 // MARK: -
 
 final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
@@ -56,6 +52,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Properties
     
+    var theme: Theme?  { didSet { self.applyTheme() } }
+    
     var isAutomaticTabExpansionEnabled = false
     
     var inlineCommentDelimiter: String?
@@ -66,7 +64,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
-    var insertionLocations: [Int] = [] { didSet { self.updateInsertionPointTimer() } }
+    var insertionLocations: [Int] = []  { didSet { self.updateInsertionPointTimer() } }
     var selectionOrigins: [Int] = []
     var insertionPointTimer: DispatchSourceTimer?
     var insertionPointOn = false
@@ -81,8 +79,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Private Properties
     
+    private static let textContainerInset = NSSize(width: 0, height: 4)
+    
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
-    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightMatchingBrace() }  // NSTextView cannot be weak
+    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightMatchingBrace() }
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -92,12 +92,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var mouseDownPoint: NSPoint = .zero
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.highlightInstance() }  // NSTextView cannot be weak
+    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightInstance() }
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [unowned self] in self.performCompletion() }  // NSTextView cannot be weak
+    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
@@ -146,7 +146,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         self.isHorizontallyResizable = false
         self.isVerticallyResizable = true
         self.autoresizingMask = .width
-        self.textContainerInset = kTextContainerInset
+        self.textContainerInset = Self.textContainerInset
         
         // set NSTextView behaviors
         self.baseWritingDirection = .leftToRight  // default is fixed in LTR
@@ -231,7 +231,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// append inset only to the bottom for overscroll
     override var textContainerOrigin: NSPoint {
         
-        return NSPoint(x: super.textContainerOrigin.x, y: kTextContainerInset.height)
+        return NSPoint(x: super.textContainerOrigin.x, y: Self.textContainerInset.height)
     }
     
     
@@ -492,9 +492,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // smart outdent with '}'
         if self.isAutomaticIndentEnabled, self.isSmartIndentEnabled, replacementRange.isEmpty,
-            plainString == "}",
-            let insertionIndex = Range(self.rangeForUserTextChange, in: self.string)?.upperBound
+            plainString == "}"
         {
+            let insertionIndex = String.Index(utf16Offset: self.rangeForUserTextChange.upperBound, in: self.string)
             let lineRange = self.string.lineRange(at: insertionIndex)
             
             // decrease indent level if the line is consists of only whitespaces
@@ -762,7 +762,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // add "Inspect Character" menu item if single character is selected
         if (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal {
             menu.insertItem(withTitle: "Inspect Character".localized,
-                            action: #selector(showSelectionInfo(_:)),
+                            action: #selector(showSelectionInfo),
                             keyEquivalent: "",
                             at: 1)
         }
@@ -771,7 +771,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let copyIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(copy(_:)))
         if copyIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Copy as Rich Text".localized,
-                            action: #selector(copyWithStyle(_:)),
+                            action: #selector(copyWithStyle),
                             keyEquivalent: "",
                             at: copyIndex + 1)
         }
@@ -780,9 +780,23 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let pasteIndex = menu.indexOfItem(withTarget: nil, andAction: #selector(paste(_:)))
         if pasteIndex >= 0 {  // -1 == not found
             menu.insertItem(withTitle: "Select All".localized,
-                            action: #selector(selectAll(_:)),
+                            action: #selector(selectAll),
                             keyEquivalent: "",
                             at: pasteIndex + 1)
+        }
+        
+        // add "Straighten Quotes" menu item in Substitutions submenu
+        for item in menu.items {
+            guard let submenu = item.submenu else { continue }
+            
+            let index = submenu.indexOfItem(withTarget: nil, andAction: Selector(("replaceQuotesInSelection:")))
+            
+            guard index >= 0 else { continue }  // -1 == not found
+            
+            submenu.insertItem(withTitle: "Straighten Quotes".localized,
+                               action: #selector(straightenQuotesInSelection),
+                               keyEquivalent: "",
+                               at: index + 1)
         }
         
         return menu
@@ -1086,10 +1100,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// apply current state to related menu items and toolbar items
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
-        guard let action = item.action else { return false }
-        
-        switch action {
+        switch item.action {
         case #selector(copyWithStyle):
+            return !self.selectedRange.isEmpty
+            
+        case #selector(straightenQuotesInSelection):
+            // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
+            //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
             return !self.selectedRange.isEmpty
             
         case #selector(showSelectionInfo):
@@ -1122,25 +1139,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     // MARK: Public Accessors
     
-    /// coloring settings
-    var theme: Theme? {
-        
-        didSet {
-            self.applyTheme()
-        }
-    }
-    
-    
     /// tab width in number of spaces
     @objc var tabWidth: Int {
         
         didSet {
-            if tabWidth <= 0 {
-                tabWidth = oldValue
-            }
+            tabWidth = max(oldValue, 0)
+            
             guard tabWidth != oldValue else { return }
             
-            // apply to view
             self.invalidateDefaultParagraphStyle()
         }
     }
@@ -1150,12 +1156,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHeight: CGFloat {
         
         didSet {
-            if lineHeight <= 0 {
-                lineHeight = oldValue
-            }
+            lineHeight = max(oldValue, 0)
+            
             guard lineHeight != oldValue else { return }
             
-            // apply to view
             self.invalidateDefaultParagraphStyle()
         }
     }
@@ -1492,7 +1496,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
-        let height = max(floor(inset / 2), kTextContainerInset.height)
+        let height = max(floor(inset / 2), Self.textContainerInset.height)
         
         // avoid high-loaded `sizeToFit()` if not required
         guard height != self.textContainerInset.height else { return }
@@ -1584,11 +1588,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.selectedRanges.count == 1,
             !self.selectedRange.isEmpty,
             (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
-                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil,
-            let range = Range(self.selectedRange, in: self.string)
+                .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
             else { return }
         
-        let substring = String(self.string[workaround: range])
+        let substring = (self.string as NSString).substring(with: self.selectedRange)
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: self.string, range: self.string.nsRange)
@@ -1896,10 +1899,10 @@ extension EditorTextView {
         
         guard
             proposedCharRange.isEmpty,  // not on expanding selection
-            range.length == 1,  // clicked character can be a brace
-            let characterIndex = Range(range, in: self.string)?.lowerBound  // just in case
+            range.length == 1  // clicked character can be a brace
             else { return range }
         
+        let characterIndex = String.Index(utf16Offset: range.lowerBound, in: self.string)
         let clickedCharacter = self.string[characterIndex]
         
         // select (syntax-highlighted) quoted text

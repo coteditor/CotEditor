@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2019 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -158,6 +158,14 @@
 "yN3-iT-4Lq.title" = "Sostituzioni";
 /* Class = "NSMenu"; title = "Substitutions"; ObjectID = "2wy-A5-6kZ"; */
 "2wy-A5-6kZ.title" = "Sostituzioni";
+/* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
+"7NX-1r-Wq7.title" = "Sostituisci virgolette";
+/* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
+"9gl-1h-Yit.title" = "Raddrizza virgolette";
+/* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
+"hMS-qd-BCS.title" = "Sostituisci trattini";
+/* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
+"ue7-85-H8l.title" = "Sostituisci testo";
 /* Class = "NSMenuItem"; title = "Show Substitutions"; ObjectID = "gqI-2M-XIx"; */
 "gqI-2M-XIx.title" = "Mostra sostituzioni";
 /* Class = "NSMenuItem"; title = "Smart Copy/Paste"; ObjectID = "QKD-ue-EQp"; */

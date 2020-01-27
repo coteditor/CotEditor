@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,6 +25,16 @@
 
 import Foundation
 
+enum DictionaryKey: String {
+    
+    case metadata
+}
+
+
+/// Metadata dict keys for themes and syntax styles
+typealias MetadataKey = Metadata.CodingKeys
+
+
 final class Metadata: NSObject, Codable {
     
     @objc dynamic var author: String?
@@ -39,7 +49,7 @@ final class Metadata: NSObject, Codable {
     }
     
     
-    private enum CodingKeys: String, CodingKey {
+    enum CodingKeys: String, CodingKey {
         
         case author
         case distributionURL

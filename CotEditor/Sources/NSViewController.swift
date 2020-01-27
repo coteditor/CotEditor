@@ -1,14 +1,14 @@
 //
-//  Data.swift
+//  NSViewController.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2017-10-29.
+//  Created by 1024jp on 2020-01-21.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,22 +23,17 @@
 //  limitations under the License.
 //
 
-import Foundation
+import AppKit
 
-extension Data {
+extension NSViewController {
     
-    /// Split receiver into buffer sized chunks
+    /// A Boolean value indicating whether the view is hidden.
     ///
-    /// - Parameter length: The buffer size to split.
-    /// - Returns: Split subsequences.
-    func components(length: Int) -> [SubSequence] {
+    /// This computed property avoid unwanted view loading when the view is not yet loaded.
+    /// However, it does not check whether the view is actually visible. For that, see the discussion part of `isHiddenOrHasHiddenAncestor`.
+    var isViewShown: Bool {
         
-        return stride(from: 0, to: self.count, by: length).map {
-            let start = self.index(self.startIndex, offsetBy: $0)
-            let end = self.index(start, offsetBy: length, limitedBy: self.endIndex) ?? self.endIndex
-            
-            return self[start..<end]
-        }
+        return self.isViewLoaded && !self.view.isHiddenOrHasHiddenAncestor
     }
     
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -114,7 +114,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         panel.isRestorable = false
         
         panel.delegate = self
-        panel.setAction(#selector(selectColor(_:)))
+        panel.setAction(#selector(selectColor))
         panel.setTarget(self)
         
         // make position of accessory view center
@@ -139,7 +139,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         guard self.colorCode != nil else { return }
         
-        guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode(_:))) as? ColorCodeReceiver else {
+        guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode)) as? ColorCodeReceiver else {
             NSSound.beep()
             return
         }

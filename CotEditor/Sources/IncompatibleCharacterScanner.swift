@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,7 +27,7 @@ import AppKit
 
 protocol IncompatibleCharacterScannerDelegate: AnyObject {
     
-    func needsUpdateIncompatibleCharacter(_ document: Document) -> Bool
+    func shouldUpdateIncompatibleCharacter(_ document: Document) -> Bool
     
     func document(_ document: Document, didUpdateIncompatibleCharacters incompatibleCharacters: [IncompatibleCharacter])
 }
@@ -67,7 +67,7 @@ final class IncompatibleCharacterScanner {
         
         guard
             let document = self.document,
-            self.delegate?.needsUpdateIncompatibleCharacter(document) == true
+            self.delegate?.shouldUpdateIncompatibleCharacter(document) == true
             else { return }
         
         self.updateTask.schedule()

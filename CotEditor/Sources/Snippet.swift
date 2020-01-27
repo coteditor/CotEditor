@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,8 +46,8 @@ struct Snippet {
     }
     
     
-    let string: String
-    let selection: NSRange?
+    var string: String
+    var selections: [NSRange]
     
     
     
@@ -56,18 +56,12 @@ struct Snippet {
     
     init(_ string: String) {
         
-        var string = string
+        let tokenRanges = (string as NSString).ranges(of: Variable.cursor.token)
         
-        // cursor position
-        if let range = string.range(of: Variable.cursor.token) {
-            let nsRange = NSRange(range, in: string)
-            
-            string = string.replacingCharacters(in: range, with: "")
-            self.selection = NSRange(location: nsRange.location, length: 0)
-        } else {
-            self.selection = nil
-        }
-        
-        self.string = string
+        self.string = tokenRanges.reversed()
+            .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: "") }
+        self.selections = tokenRanges.enumerated()
+            .map { $0.element.location - $0.offset * $0.element.length }
+            .map { NSRange($0..<$0) }
     }
 }

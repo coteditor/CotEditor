@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -52,23 +52,24 @@ extension NSLayoutManager {
     ///     Even the temporary attributes are limited to those that do not affect layout,
     ///     invalidating display by a temporary attributes update is yet needed for in case
     ///     that an attribute is applied only to a part of a single glyph.
-    ///     Because in some specific languages, it can cause a change of the glyph shape.
+    ///     Because, in some specific languages, it can cause a change of the glyph shape.
     ///
     /// - Parameter range: The overall range in which temporary attributes are updated.
     /// - Parameter work: The work to do while the display validation is disabled..
-    func groupTemporaryAttributesUpdate(in range: NSRange, work: () -> Void) {
+    func groupTemporaryAttributesUpdate(in range: NSRange, work: () throws -> Void) rethrows {
         
         guard let self = self as? ValidationIgnorable else {
             assertionFailure("Conforming to ValidationIgnorable protocol is expected when using groupTemporaryAttributesUpdate(in:work:).")
-            return work()
+            return try work()
         }
         
         self.ignoresDisplayValidation = true
+        defer {
+            self.ignoresDisplayValidation = false
+            self.invalidateDisplay(forCharacterRange: range)
+        }
         
-        work()
-        
-        self.ignoresDisplayValidation = false
-        self.invalidateDisplay(forCharacterRange: range)
+        try work()
     }
     
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,6 +26,11 @@
 import Cocoa
 
 final class CustomSurroundStringViewController: NSViewController {
+    
+    // MARK: Public Properties
+    
+    var completionHandler: ((_ pair: Pair<String>) -> Void)?
+    
     
     // MARK: Private Properties
     
@@ -53,21 +58,19 @@ final class CustomSurroundStringViewController: NSViewController {
     // MARK: Action Messages
     
     /// apply
-    @IBAction func ok(_ sender: Any?) {
+    @IBAction func apply(_ sender: Any?) {
         
-        self.endEditing()
+        assert(self.completionHandler != nil)
         
         guard
-            let textView = self.representedObject as? NSTextView,
-            !self.beginString.isEmpty else {
-                NSSound.beep()
-                return
-        }
+            self.endEditing(),
+            !self.beginString.isEmpty
+            else { return NSSound.beep() }
         
         // use beginString also for end delimiter if endString is empty
         let endString = self.endString.isEmpty ? self.beginString : self.endString
         
-        textView.surroundSelections(begin: self.beginString, end: endString)
+        self.completionHandler?(Pair(self.beginString, endString))
         
         // store last used string pair
         UserDefaults.standard[.beginCustomSurroundString] = self.beginString

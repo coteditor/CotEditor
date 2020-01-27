@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     
     private var isUncollapsing = false
     
-    @IBOutlet private var fieldSplitViewItem: NSSplitViewItem?
-    @IBOutlet private var resultSplitViewItem: NSSplitViewItem?
+    @IBOutlet private weak var fieldSplitViewItem: NSSplitViewItem?
+    @IBOutlet private weak var resultSplitViewItem: NSSplitViewItem?
     
     
     
@@ -187,9 +187,9 @@ final class FindPanelContentViewController: NSSplitViewController, TextFinderDel
     private func collapseResultViewIfNeeded() {
         
         guard
-            let resultView = self.resultViewController?.view,
-            !resultView.isHiddenOrHasHiddenAncestor,
-            resultView.visibleRect.isEmpty
+            let resultViewController = self.resultViewController,
+            resultViewController.isViewShown,
+            resultViewController.view.visibleRect.isEmpty
             else { return }
         
         self.resultSplitViewItem?.isCollapsed = true

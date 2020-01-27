@@ -9,14 +9,17 @@ em    { font-weight: 600; font-style: normal }
 ul    { padding-left: 1.5em }
 ul li { margin: 0 0 0.4em; list-style-type: circle }
 
-a:hover         { text-decoration: none }
+a:hover           { text-decoration: none }
 
-section         { margin: 2em 0 1em }
-section+section { margin-top: 3em }
-blockquote pre  { font: 90%/1.3 -apple-system, sans-serif;
-                  margin: 1em 0.5em; white-space: pre-wrap;
-                  border-left: 3px solid; padding-left: 1em }
-h3 span         { font-size: 90%; font-weight: normal }
+section           { margin: 2em 0 1em }
+section+section   { margin-top: 1.5em }
+blockquote pre    { font: 90%/1.3 -apple-system, sans-serif;
+                    margin: 1em 0.5em; white-space: pre-wrap;
+                    border-left: 3px solid; padding-left: 1em }
+h3 span           { font-size: 90%; font-weight: normal }
+
+details           { margin-top: 0.5em }
+details summary   { font-weight: 600; cursor: pointer; outline: none }
 
 #Libraries    h3::before { content: '📦 ' }
 #InfoSource   h2::before { content: '📚 ' }
@@ -24,14 +27,16 @@ h3 span         { font-size: 90%; font-weight: normal }
 #Project      h2::before { content: '🔨 ' }
 
 a:link,
-a:visited                 { color: hsl(90,45%,45%) }
-a:not([href])             { color: hsla( 0, 0%, 0%,0.60) }
-blockquote pre            { color: hsla( 0, 0%, 0%,0.50) ; border-color: hsla( 0, 0%, 0%,0.1) }
-h3 span                   { color: hsla( 0, 0%, 0%,0.50) }
+a:visited         { color: hsl(90,45%,45%) }
+a:not([href])     { color: hsla( 0, 0%, 0%,0.60) }
+blockquote pre    { color: hsla( 0, 0%, 0%,0.60) ; border-color: hsla( 0, 0%, 0%,0.1) }
+h3 span           { color: hsla( 0, 0%, 0%,0.50) }
+details summary   { color: hsla( 0, 0%, 0%,0.67) }
 
 body.dark                 { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,12%) }
 body.dark a:link,
 body.dark a:visited       { color: hsl(90,55%,55%) }
 body.dark a:not([href])   { color: hsla( 0, 0%,100%,0.60) }
-body.dark blockquote pre  { color: hsla( 0, 0%,100%,0.50) ; border-color: hsla( 0, 0%,100%,0.1) }
+body.dark blockquote pre  { color: hsla( 0, 0%,100%,0.60) ; border-color: hsla( 0, 0%,100%,0.1) }
 body.dark h3 span         { color: hsla( 0, 0%,100%,0.50) }
+body.dark details summary { color: hsla( 0, 0%,100%,0.67) }

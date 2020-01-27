@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -228,10 +228,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         }
         
         let oldName: String? = {
-            switch self.mode {
-            case .edit(let name): return name
-            default: return nil
-            }
+            guard case .edit(let name) = self.mode else { return nil }
+            return name
         }()
         
         do {
@@ -259,10 +257,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         if case .edit(let name) = self.mode, (styleName.caseInsensitiveCompare(name) == .orderedSame) { return true }
         
         let originalName: String? = {
-            switch self.mode {
-            case .edit(let name): return name
-            default: return nil
-            }
+            guard case .edit(let name) = self.mode else { return nil }
+            return name
         }()
         
         do {

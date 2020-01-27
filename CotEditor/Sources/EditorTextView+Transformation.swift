@@ -172,6 +172,19 @@ extension EditorTextView {
         }
     }
     
+    
+    
+    // MARK: Action Messages (Smart Quotes)
+    
+    /// Straighten all curly quotes.
+    @IBAction func straightenQuotesInSelection(_ sender: Any?) {
+        
+        self.transformSelection {
+            $0.replacingOccurrences(of: "[“”‟„]", with: "\"", options: .regularExpression)
+              .replacingOccurrences(of: "[‘’‛‚]", with: "'", options: .regularExpression)
+        }
+    }
+    
 }
 
 

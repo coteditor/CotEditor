@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -349,10 +349,9 @@ extension Document {
             let rangeArray = arguments["range"] as? [Int], rangeArray.count == 2
             else { return nil }
         
-        let location = rangeArray[0]
-        let length = max(rangeArray[1], 1)
+        let fuzzyRange = FuzzyRange(location: rangeArray[0], length: max(rangeArray[1], 1))
         
-        guard let range = string.range(location: location, length: length) else { return nil }
+        guard let range = string.range(in: fuzzyRange) else { return nil }
         
         return (self.string as NSString).substring(with: range)
     }

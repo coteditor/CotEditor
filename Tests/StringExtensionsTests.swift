@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -126,14 +126,17 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("AbcDefg Hij".snakecased, "abc_defg hij")
         XCTAssertEqual("abcDefg Hij".snakecased, "abc_defg hij")
         XCTAssertEqual("_abcDefg Hij".snakecased, "_abc_defg hij")
+        XCTAssertEqual("AA\u{0308}".snakecased, "a_a\u{0308}")
         
         XCTAssertEqual("abc_defg Hij".camelcased, "abcDefg hij")
         XCTAssertEqual("AbcDefg Hij".camelcased, "abcDefg hij")
         XCTAssertEqual("_abcDefg Hij".camelcased, "_abcDefg hij")
+        XCTAssertEqual("a_a\u{0308}".camelcased, "aA\u{0308}")
         
         XCTAssertEqual("abc_defg Hij".pascalcased, "AbcDefg Hij")
         XCTAssertEqual("abcDefg Hij".pascalcased, "AbcDefg Hij")
         XCTAssertEqual("_abcDefg Hij".pascalcased, "_abcDefg Hij")
+        XCTAssertEqual("a_a\u{0308}".pascalcased, "AA\u{0308}")
     }
     
     
@@ -143,41 +146,6 @@ final class StringExtensionsTests: XCTestCase {
         
         XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
         XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog 123 123")
-    }
-    
-    
-    func testRange() {
-        
-        let string = "0123456789"
-        
-        XCTAssertEqual(string.range(location: 2, length: 2), NSRange(location: 2, length: 2))
-        XCTAssertEqual(string.range(location: -1, length: 1), NSRange(location: 9, length: 1))
-        XCTAssertEqual(string.range(location: 3, length: -2), NSRange(location: 3, length: "45678".utf16.count))
-    }
-        
-        
-    func testRangeForLine() {
-        
-        let string = "1\r\n2\r\n3\r\n4"  // 1 based
-        var range: NSRange
-        
-        range = string.rangeForLine(location: 1, length: 2)!
-        XCTAssertEqual((string as NSString).substring(with: range), "1\r\n2\r\n")
-        
-        range = string.rangeForLine(location: 4, length: 1)!
-        XCTAssertEqual((string as NSString).substring(with: range), "4")
-        
-        range = string.rangeForLine(location: 3, length: 0)!
-        XCTAssertEqual((string as NSString).substring(with: range), "3\r\n")
-
-        range = string.rangeForLine(location: -1, length: 1)!
-        XCTAssertEqual((string as NSString).substring(with: range), "4")
-
-        range = string.rangeForLine(location: -2, length: 1)!
-        XCTAssertEqual((string as NSString).substring(with: range), "3\r\n")
-
-        range = string.rangeForLine(location: 2, length: -2)!
-        XCTAssertEqual((string as NSString).substring(with: range), "2\r\n")
     }
     
     
