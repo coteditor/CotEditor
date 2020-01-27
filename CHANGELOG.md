@@ -7,7 +7,7 @@ Change Log
 
 ### New Features
 
-- Add new “Straighten Quotes” command to Edit > Substitutions menu.
+- Add a new “Straighten Quotes” command to Edit > Substitutions menu.
 
 
 ### Improvements
@@ -17,7 +17,7 @@ Change Log
 - Enable setting multiple cursor points in snippets.
 - Optimize the timing of view updating in some specific views.
 - Optimize some background jobs.
-- Toggle only the ckeckbox in a table that the user actually clicked and ignore others when the clicked checkbox is not contained to the selected rows.
+- Toggle only the checkbox in a table that the user actually clicked and ignore others when the clicked checkbox is not contained to the selected rows.
 - Fold license descriptions in the acknowledgments.
 - [trivial] Tweak the visual notification for wrapping search.
 - [dev] Replace Differ framework with DifferenceKit.
