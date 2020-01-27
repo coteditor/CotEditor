@@ -34,11 +34,11 @@ h3 span           { color: hsla( 0, 0%, 0%,0.50) }
 details summary   { color: hsla( 0, 0%, 0%,0.67) }
 
 @media (prefers-color-scheme: dark) {
-    body                 { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,12%) }
-    body a:link,
-    body a:visited       { color: hsl(90,55%,55%) }
-    body a:not([href])   { color: hsla( 0, 0%,100%,0.60) }
-    body blockquote pre  { color: hsla( 0, 0%,100%,0.60) ; border-color: hsla( 0, 0%,100%,0.1) }
-    body h3 span         { color: hsla( 0, 0%,100%,0.50) }
-    body details summary { color: hsla( 0, 0%,100%,0.67) }
+    body            { color: hsla(0,0%,100%,0.95); background: hsl( 0, 0%,12%) }
+    a:link,
+    a:visited       { color: hsl(90,55%,55%) }
+    a:not([href])   { color: hsla( 0, 0%,100%,0.60) }
+    blockquote pre  { color: hsla( 0, 0%,100%,0.60) ; border-color: hsla( 0, 0%,100%,0.1) }
+    h3 span         { color: hsla( 0, 0%,100%,0.50) }
+    details summary { color: hsla( 0, 0%,100%,0.67) }
 }
