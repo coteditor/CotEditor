@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [trivial] Optimize hanging indent calculation.
+- Significantly reduce the time of the rainbow cursor after the opening of a large document by optimizing hanging indent calculation.
 
 
 

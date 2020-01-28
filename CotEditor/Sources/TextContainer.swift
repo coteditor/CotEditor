@@ -35,6 +35,7 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Properties
     
+    private var lastLineStartIndex = 0
     private var indentWidthCache: [NSAttributedString: CGFloat] = [:]
     private lazy var indentRegex = try! NSRegularExpression(pattern: "[ \t]+")
     
@@ -62,13 +63,23 @@ final class TextContainer: NSTextContainer {
             else { return rect }
         
         let string = storage.string as NSString
-        let lineStartIndex = string.lineStartIndex(at: characterIndex)
         
         // no hanging indent for new line
-        guard lineStartIndex < characterIndex else { return rect }
+        if characterIndex == 0 || string.character(at: characterIndex - 1) == NSNewlineCharacter {
+            self.lastLineStartIndex = characterIndex
+            return rect
+        }
+        
+        // find line start index only really needed
+        if characterIndex < self.lastLineStartIndex {
+            self.lastLineStartIndex = string.lineStartIndex(at: characterIndex)
+        }
+        
+        assert(characterIndex > 10_000 || self.lastLineStartIndex == string.lineStartIndex(at: characterIndex),
+               "Wrong line start index estimation at \(characterIndex).")
         
         // get base indent
-        let searchRange = NSRange(lineStartIndex..<characterIndex)
+        let searchRange = NSRange(self.lastLineStartIndex..<characterIndex)
         let indentRange = self.indentRegex.rangeOfFirstMatch(in: storage.string, options: .anchored, range: searchRange)
         let baseIndent: CGFloat
         if indentRange != .notFound {
