@@ -33,6 +33,12 @@ final class TextContainer: NSTextContainer {
     var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
     
     
+    // MARK: Private Properties
+    
+    private var indentWidthCache: [NSAttributedString: CGFloat] = [:]
+    private lazy var indentRegex = try! NSRegularExpression(pattern: "[ \t]+")
+    
+    
     
     // MARK: -
     // MARK: Text Container Methods
@@ -63,8 +69,15 @@ final class TextContainer: NSTextContainer {
         
         // get base indent
         let searchRange = NSRange(lineStartIndex..<characterIndex)
-        let indentRange = string.range(of: "[ \t]+", options: [.regularExpression, .anchored], range: searchRange)
-        let baseIndent = (indentRange == .notFound) ? 0 : storage.attributedSubstring(from: indentRange).size().width
+        let indentRange = self.indentRegex.rangeOfFirstMatch(in: storage.string, options: .anchored, range: searchRange)
+        let baseIndent: CGFloat
+        if indentRange != .notFound {
+            let attrIndent = storage.attributedSubstring(from: indentRange)
+            baseIndent = self.indentWidthCache[attrIndent] ?? attrIndent.size().width
+            self.indentWidthCache[attrIndent] = baseIndent
+        } else {
+            baseIndent = 0
+        }
         
         // calculate hanging indent
         let hangingIndent = CGFloat(self.hangingIndentWidth) * layoutManager.spaceWidth

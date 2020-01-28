@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.9 (unreleased)
+--------------------------
+
+### Improvements
+
+- [trivial] Optimize hanging indent calculation.
+
+
+
 3.8.8 (391)
 --------------------------
 
