@@ -46,9 +46,9 @@ final class WebDocumentViewController: NSViewController {
     
     override func viewWillAppear() {
         
-        assert(self.view.window != nil)
-        
         super.viewWillAppear()
+        
+        assert(self.view.window != nil)
         
         // set window here since `self.view.window` is still nil in `viewDidLoad()`.
         self.view.window?.backgroundColor = .textBackgroundColor
@@ -59,7 +59,9 @@ final class WebDocumentViewController: NSViewController {
             let url = self.representedObject as? URL
             else { return assertionFailure() }
         
-        webView.loadFileURL(url, allowingReadAccessTo: url)
+        if webView.url != url {
+            webView.loadFileURL(url, allowingReadAccessTo: url)
+        }
     }
     
     
