@@ -11,6 +11,11 @@ Change Log
 - [trivial] Optimize current line highlighting.
 
 
+### Fixes
+
+- Fix an issue where the progress indicator for outline menu in the navigation bar could rarely remain.
+
+
 
 3.8.8 (391)
 --------------------------

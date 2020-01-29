@@ -46,17 +46,13 @@ final class NavigationBarController: NSViewController {
         didSet {
             assert(Thread.isMainThread)
             
-            guard let progress = self.outlineProgress else {
-                self.outlineIndicator?.stopAnimation(nil)
-                self.outlineLoadingMessage?.isHidden = true
-                return
-            }
+            self.outlineIndicator?.stopAnimation(nil)
+            self.outlineLoadingMessage?.isHidden = true
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200)) { [weak self] in
-                guard !progress.isFinished else { return }
-                
-                self?.outlineIndicator?.startAnimation(nil)
-                self?.outlineLoadingMessage?.isHidden = false
+            if let progress = outlineProgress, !progress.isFinished {
+                self.indicatorTask.schedule()
+            } else {
+                self.indicatorTask.cancel()
             }
         }
     }
@@ -66,6 +62,13 @@ final class NavigationBarController: NSViewController {
     
     private var orientationObserver: NSKeyValueObservation?
     private var selectionObserver: NSObjectProtocol?
+    
+    private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
+        guard let progress = self?.outlineProgress, !progress.isFinished else { return }
+        
+        self?.outlineIndicator?.startAnimation(nil)
+        self?.outlineLoadingMessage?.isHidden = false
+    }
     
     private weak var prevButton: NSButton?
     private weak var nextButton: NSButton?
