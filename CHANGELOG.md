@@ -13,6 +13,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the application could rarely immediately after opening a document window under some very specific conditions.
 - Fix an issue where the progress indicator for outline menu in the navigation bar could rarely remain.
 
 
