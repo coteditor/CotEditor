@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Significantly reduce the time of the rainbow cursor after the opening of a large document by optimizing hanging indent calculation.
+- [trivial] Optimize current line highlighting.
 
 
 

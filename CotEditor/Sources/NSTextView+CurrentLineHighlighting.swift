@@ -106,13 +106,11 @@ private extension NSLayoutManager {
     
     func lineFragmentsRect(for range: NSRange) -> NSRect {
         
-        let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        
         guard
-            self.isValidGlyphIndex(glyphRange.lowerBound),
-            (glyphRange.lowerBound < self.numberOfGlyphs || self.extraLineFragmentTextContainer == nil)
+            self.extraLineFragmentTextContainer == nil || range.lowerBound < self.attributedString().length
             else { return self.extraLineFragmentRect }
         
+        let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         var effectiveRange: NSRange = .notFound
         let lowerRect = self.lineFragmentRect(forGlyphAt: glyphRange.lowerBound, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
         

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -534,7 +534,7 @@ private extension NSLayoutManager {
                 effectiveRange.formUnion(localEffectiveRange)
                 
             } else {
-                if glyphRange.location != self.numberOfGlyphs || self.extraLineFragmentTextContainer == nil {
+                if self.extraLineFragmentTextContainer == nil || glyphRange.location != self.numberOfGlyphs {
                     // -> clamp the bound with `numberOfGlyphs - 1`
                     //    Because passing `numberOfGlyphs` to `lineFragmentUsedRect(forGlyphAt:effectiveRange:)` is invalid
                     //    and causes the warning: `_NSLayoutTreeLineFragmentUsedRectForGlyphAtIndex`. (2019-02)
