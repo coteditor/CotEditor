@@ -70,18 +70,14 @@ final class NavigationBarController: NSViewController {
         self?.outlineLoadingMessage?.isHidden = false
     }
     
-    private weak var prevButton: NSButton?
-    private weak var nextButton: NSButton?
-    
-    @IBOutlet private weak var outlineMenu: NSPopUpButton?
     @IBOutlet private weak var leftButton: NSButton?
     @IBOutlet private weak var rightButton: NSButton?
+    @IBOutlet private weak var outlineMenu: NSPopUpButton?
+    @IBOutlet private weak var outlineIndicator: NSProgressIndicator?
+    @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     @IBOutlet private weak var openSplitButton: NSButton?
     @IBOutlet private weak var closeSplitButton: NSButton?
-    
-    @IBOutlet private weak var outlineIndicator: NSProgressIndicator?
-    @IBOutlet private weak var outlineLoadingMessage: NSTextField?
     
     
     
@@ -192,9 +188,10 @@ final class NavigationBarController: NSViewController {
     /// Select outline menu item from the popup menu.
     @IBAction func selectOutlineMenuItem(_ sender: NSMenuItem) {
         
-        guard let range = sender.representedObject as? NSRange else { return assertionFailure() }
-        
-        let textView = self.textView!
+        guard
+            let range = sender.representedObject as? NSRange,
+            let textView = self.textView
+            else { return assertionFailure() }
         
         textView.selectedRange = range
         textView.centerSelectionInVisibleArea(self)
@@ -243,11 +240,15 @@ final class NavigationBarController: NSViewController {
     }()
     
     
-    /// Update enabilities of jump buttons.
-    private func updatePrevNextButtonEnabled() {
+    private var prevButton: NSButton? {
         
-        self.prevButton!.isEnabled = self.canSelectPrevItem
-        self.nextButton!.isEnabled = self.canSelectNextItem
+        return (self.textView?.layoutOrientation == .vertical) ? self.rightButton : self.leftButton
+    }
+    
+    
+    private var nextButton: NSButton? {
+        
+        return (self.textView?.layoutOrientation == .vertical) ? self.leftButton : self.rightButton
     }
     
     
@@ -311,7 +312,9 @@ final class NavigationBarController: NSViewController {
         } ?? popUp.itemArray.first
         
         popUp.select(selectedItem)
-        self.updatePrevNextButtonEnabled()
+        
+        self.prevButton?.isEnabled = self.canSelectPrevItem
+        self.nextButton?.isEnabled = self.canSelectNextItem
     }
     
     
@@ -322,27 +325,22 @@ final class NavigationBarController: NSViewController {
         
         switch orientation {
         case .horizontal:
-            self.prevButton = self.leftButton
-            self.nextButton = self.rightButton
             self.leftButton?.image = #imageLiteral(resourceName: "UpArrowTemplate")
             self.rightButton?.image = #imageLiteral(resourceName: "DownArrowTemplate")
-            
         case .vertical:
-            self.prevButton = self.rightButton
-            self.nextButton = self.leftButton
             self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
             self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
-            
-        @unknown default: fatalError()
+        @unknown default:
+            fatalError()
         }
         
         self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu)
         self.prevButton?.toolTip = "Jump to previous outline item".localized
+        self.prevButton?.isEnabled = self.canSelectPrevItem
         
         self.nextButton?.action = #selector(selectNextItemOfOutlineMenu)
         self.nextButton?.toolTip = "Jump to next outline item".localized
-        
-        self.updatePrevNextButtonEnabled()
+        self.nextButton?.isEnabled = self.canSelectNextItem
     }
     
 }
