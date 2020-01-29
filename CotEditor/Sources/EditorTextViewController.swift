@@ -32,17 +32,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     @IBOutlet private(set) weak var textView: EditorTextView?
     
-    var showsLineNumber: Bool {
-        
-        get {
-            return !(self.lineNumberView?.isHidden ?? true)
-        }
-        
-        set {
-            self.lineNumberView?.isHidden = !newValue
-        }
-    }
-    
     
     // MARK: Private Properties
     
@@ -82,7 +71,6 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
-    /// stop observations for UI update
     override func viewDidDisappear() {
         
         super.viewDidDisappear()
@@ -157,6 +145,16 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         }
         
         self.presentAsSheet(viewController)
+    }
+    
+    
+    
+    // MARK: Public Methods
+    
+    var showsLineNumber: Bool {
+        
+        get { self.lineNumberView?.isHidden == false }
+        set { self.lineNumberView?.isHidden = !newValue }
     }
     
     
