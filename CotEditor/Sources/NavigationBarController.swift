@@ -297,21 +297,18 @@ final class NavigationBarController: NSViewController {
     private func invalidateOutlineMenuSelection() {
         
         guard
-            let textView = self.textView,
-            let popUp = self.outlineMenu, popUp.isEnabled,
-            let items = popUp.menu?.items,
-            let firstItem = items.first
+            let location = self.textView?.selectedRange.location,
+            let popUp = self.outlineMenu, popUp.isEnabled
             else { return }
         
-        let location = textView.selectedRange.location
-        let selectedItem = items.last { menuItem in
+        let selectedItem = popUp.itemArray.last { menuItem in
             guard
                 menuItem.isEnabled,
                 let itemRange = menuItem.representedObject as? NSRange
                 else { return false }
             
             return itemRange.location <= location
-        } ?? firstItem
+        } ?? popUp.itemArray.first
         
         popUp.select(selectedItem)
         self.updatePrevNextButtonEnabled()
