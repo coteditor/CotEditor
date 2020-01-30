@@ -2,12 +2,28 @@
 Change Log
 ==========================
 
+3.8.9 (394)
+--------------------------
+
+### Improvements
+
+- Significantly reduce the time of the rainbow cursor after the opening of a large document by optimizing hanging indent calculation.
+- [trivial] Optimize current line highlighting.
+
+
+### Fixes
+
+- Fix an issue on CotEditor 3.8.8 where the application could rarely immediately after opening a document window under some very specific conditions.
+- Fix an issue where the progress indicator for the outline menu in the navigation bar could rarely remain.
+
+
+
 3.8.8 (391)
 --------------------------
 
 ### New Features
 
-- Add new “Straighten Quotes” command to Edit > Substitutions menu.
+- Add a new “Straighten Quotes” command to Edit > Substitutions menu.
 
 
 ### Improvements
@@ -17,7 +33,7 @@ Change Log
 - Enable setting multiple cursor points in snippets.
 - Optimize the timing of view updating in some specific views.
 - Optimize some background jobs.
-- Toggle only the ckeckbox in a table that the user actually clicked and ignore others when the clicked checkbox is not contained to the selected rows.
+- Toggle only the checkbox in a table that the user actually clicked and ignore others when the clicked checkbox is not contained to the selected rows.
 - Fold license descriptions in the acknowledgments.
 - [trivial] Tweak the visual notification for wrapping search.
 - [dev] Replace Differ framework with DifferenceKit.

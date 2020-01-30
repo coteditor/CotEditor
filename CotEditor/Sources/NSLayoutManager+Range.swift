@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -137,7 +137,7 @@ extension NSLayoutManager {
         
         let glyphIndex = self.glyphIndexForCharacter(at: index)
         
-        guard glyphIndex < self.numberOfGlyphs else { return false }
+        guard self.isValidGlyphIndex(glyphIndex) else { return false }
         
         var bidiLevels: [UInt8] = [0]
         self.getGlyphs(in: NSRange(glyphIndex..<(glyphIndex + 1)), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
