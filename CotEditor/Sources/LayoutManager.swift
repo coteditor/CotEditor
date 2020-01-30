@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -210,7 +210,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             }
             
             // flip coordinate if needed
-            if NSGraphicsContext.current?.isFlipped ?? false {
+            if NSGraphicsContext.current?.isFlipped == true {
                 context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
             }
             
