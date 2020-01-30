@@ -209,14 +209,14 @@ final class DocumentAnalyzer: NSObject {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
+                var result = result
                 if didCountWholeText {
-                    self.lastEidorCountResult.count = result.count
                     self.needsCountWholeText = false
+                } else {
+                    result.count = self.lastEidorCountResult.count
                 }
-                self.lastEidorCountResult.selectedCount = result.selectedCount
-                self.lastEidorCountResult.cursor = result.cursor
-                self.lastEidorCountResult.unicode = result.unicode
-                self.info.editor = self.lastEidorCountResult.info
+                self.lastEidorCountResult = result
+                self.info.editor = result.info
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
