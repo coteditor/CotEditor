@@ -215,6 +215,7 @@ final class DocumentAnalyzer: NSObject {
                 }
                 self.lastEidorCountResult.selectedCount = result.selectedCount
                 self.lastEidorCountResult.cursor = result.cursor
+                self.lastEidorCountResult.unicode = result.unicode
                 self.info.editor = self.lastEidorCountResult.info
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)

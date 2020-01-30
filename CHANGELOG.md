@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.10 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”
+
+
+
 3.8.9 (unreleased)
 --------------------------
 
