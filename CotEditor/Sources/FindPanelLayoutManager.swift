@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -91,8 +91,8 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let fullwidthSpace = NSAttributedString(string: Invisible.fullwidthSpace.usedSymbol, attributes: fullwidthAttributes)
             
             // draw invisibles glyph by glyph
-            for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
-                let charIndex = self.characterIndexForGlyph(at: glyphIndex)
+            let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+            for charIndex in characterRange.lowerBound..<characterRange.upperBound {
                 let codeUnit = (string as NSString).character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
@@ -114,16 +114,15 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     guard showsFullwidthSpace else { continue }
                     glyphString = fullwidthSpace
                     
-                default:
+                case .otherControl:
                     guard showsOtherInvisibles else { continue }
                     guard
-                        self.propertyForGlyph(at: glyphIndex) == .controlCharacter,
                         self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
                         else { continue }
                     
                     let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
-                    let charRange = self.characterRange(forGlyphRange: NSRange(location: glyphIndex, length: 1), actualGlyphRange: nil)
-                    let baseString = (string as NSString).substring(with: charRange)
+                    let controlRange = NSRange(location: charIndex, length: 1)
+                    let baseString = (string as NSString).substring(with: controlRange)
                     
                     guard let glyphInfo = NSGlyphInfo(glyphName: "replacement", for: replaceFont, baseString: baseString) else { continue }
                     
@@ -132,11 +131,15 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     //      (2015-09 by 1024jp)
                     self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
                                                      .font: replaceFont,
-                                                     .foregroundColor: color], range: charRange)
+                                                     .foregroundColor: color], range: controlRange)
+                    continue
+                        
+                case .none:
                     continue
                 }
 
                 // calculate position to draw glyph
+                let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
                 let point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x)

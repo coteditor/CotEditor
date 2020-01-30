@@ -5,6 +5,11 @@ Change Log
 3.8.10 (unreleased)
 --------------------------
 
+### Improvements
+
+- Optimize invisible character drawing.
+
+
 ### Fixes
 
 - Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ enum Invisible {
     case tab
     case newLine
     case fullwidthSpace
-    case replacement
+    case otherControl
     
     
     var candidates: [String] {
@@ -45,7 +45,7 @@ enum Invisible {
             return ["¶", "↩", "↵", "⏎"]
         case .fullwidthSpace:
             return ["□", "⊠", "■", "•"]
-        case .replacement:
+        case .otherControl:
             return ["�"]
         }
     }
@@ -82,8 +82,11 @@ extension Invisible {
             self = .newLine
         case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. full-width space (JP)
             self = .fullwidthSpace
+        case 0x0000...0x001F, 0x0080...0x009F, 0x200B:  // C0, C1, ZERO WIDTH SPACE
+            // -> NSGlyphGenerator generates NSControlGlyph for all characters
+            //    in the Unicode General Category C* and U+200B (ZERO WIDTH SPACE).
+            self = .otherControl
         default:
-            // `.replacement` cannot be determined only with code unit
             return nil
         }
     }
@@ -114,7 +117,7 @@ extension Invisible {
             case .tab: return .invisibleTab
             case .newLine: return .invisibleNewLine
             case .fullwidthSpace: return .invisibleFullwidthSpace
-            case .replacement: return nil
+            case .otherControl: return nil
             }
     }
     

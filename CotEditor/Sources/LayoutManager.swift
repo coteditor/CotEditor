@@ -69,7 +69,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             self.spaceWidth = textFont.spaceWidth
             
             self.invisibleLines = self.generateInvisibleLines()
-            self.replacementGlyphWidth = self.invisibleLines.replacement.bounds().width
+            self.replacementGlyphWidth = self.invisibleLines.otherControl.bounds().width
         }
     }
     
@@ -106,7 +106,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         let tab: CTLine
         let newLine: CTLine
         let fullwidthSpace: CTLine
-        let replacement: CTLine
+        let otherControl: CTLine
     }
     
     
@@ -215,8 +215,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             }
             
             // draw invisibles glyph by glyph
-            for glyphIndex in glyphsToShow.location..<glyphsToShow.upperBound {
-                let charIndex = self.characterIndexForGlyph(at: glyphIndex)
+            let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+            for charIndex in characterRange.lowerBound..<characterRange.upperBound {
                 let codeUnit = string.character(at: charIndex)
                 let invisible = Invisible(codeUnit: codeUnit)
                 
@@ -238,13 +238,16 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
                     guard self.showsFullwidthSpace else { continue }
                     line = self.invisibleLines.fullwidthSpace
                     
-                default:
+                case .otherControl:
                     guard self.showsOtherInvisibles else { continue }
-                    guard self.propertyForGlyph(at: glyphIndex) == .controlCharacter else { continue }
-                    line = self.invisibleLines.replacement
+                    line = self.invisibleLines.otherControl
+                    
+                case .none:
+                    continue
                 }
                 
                 // calculate position to draw glyph
+                let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
                 var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x,
@@ -341,7 +344,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
                               tab: self.invisibleLine(.tab, font: font),
                               newLine: self.invisibleLine(.newLine, font: font),
                               fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
-                              replacement: self.invisibleLine(.replacement, font: textFont))
+                              otherControl: self.invisibleLine(.otherControl, font: textFont))
     }
     
     
