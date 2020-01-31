@@ -64,7 +64,10 @@ final class NavigationBarController: NSViewController {
     private var selectionObserver: NSObjectProtocol?
     
     private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
-        guard let progress = self?.outlineProgress, !progress.isFinished else { return }
+        guard
+            let progress = self?.outlineProgress, !progress.isFinished,
+            self?.outlineMenu?.isHidden ?? true
+            else { return }
         
         self?.outlineIndicator?.startAnimation(nil)
         self?.outlineLoadingMessage?.isHidden = false
@@ -98,6 +101,11 @@ final class NavigationBarController: NSViewController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        if self.outlineProgress?.isFinished != false {
+            self.outlineIndicator?.startAnimation(nil)
+            self.outlineLoadingMessage?.isHidden = false
+        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
