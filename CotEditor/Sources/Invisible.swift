@@ -97,20 +97,23 @@ extension Invisible {
 
 // MARK: User Defaults
 
-extension Invisible {
+extension UserDefaults {
     
-    var usedSymbol: String {
+    func invisibleSymbol(for invisible: Invisible) -> String {
         
         guard
-            let key = self.defaultTypeKey,
-            let symbol = self.candidates[safe: UserDefaults.standard[key]]
-            else { return self.candidates.first! }
+            let key = invisible.defaultTypeKey,
+            let symbol = invisible.candidates[safe: self[key]]
+            else { return invisible.candidates[0] }
         
         return symbol
     }
+}
+
+
+private extension Invisible {
     
-    
-    private var defaultTypeKey: DefaultKey<Int>? {
+    var defaultTypeKey: DefaultKey<Int>? {
         
             switch self {
             case .space: return .invisibleSpace

@@ -351,7 +351,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     /// create CTLine for given invisible type
     private func invisibleLine(_ invisible: Invisible, font: NSFont) -> CTLine {
         
-        return CTLine.create(string: invisible.usedSymbol, color: self.invisiblesColor, font: font)
+        return CTLine.create(string: UserDefaults.standard.invisibleSymbol(for: invisible),
+                             color: self.invisiblesColor,
+                             font: font)
     }
     
 }

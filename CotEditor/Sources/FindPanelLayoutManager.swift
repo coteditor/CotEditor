@@ -85,10 +85,10 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
             let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
             
-            let space = NSAttributedString(string: Invisible.space.usedSymbol, attributes: attributes)
-            let tab = NSAttributedString(string: Invisible.tab.usedSymbol, attributes: attributes)
-            let newLine = NSAttributedString(string: Invisible.newLine.usedSymbol, attributes: attributes)
-            let fullwidthSpace = NSAttributedString(string: Invisible.fullwidthSpace.usedSymbol, attributes: fullwidthAttributes)
+            let space = NSAttributedString(string: defaults.invisibleSymbol(for: .space), attributes: attributes)
+            let tab = NSAttributedString(string: defaults.invisibleSymbol(for: .tab), attributes: attributes)
+            let newLine = NSAttributedString(string: defaults.invisibleSymbol(for: .newLine), attributes: attributes)
+            let fullwidthSpace = NSAttributedString(string: defaults.invisibleSymbol(for: .fullwidthSpace), attributes: fullwidthAttributes)
             
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
