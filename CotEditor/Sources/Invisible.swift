@@ -25,6 +25,12 @@
 
 import Foundation
 
+extension Unicode.Scalar {
+    
+    static let zeroWidthSpace = Unicode.Scalar(0x200B)!
+}
+
+
 enum Invisible {
     
     case space

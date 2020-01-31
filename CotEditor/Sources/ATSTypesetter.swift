@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -58,7 +58,7 @@ final class ATSTypesetter: NSATSTypesetter {
         if action.contains(.zeroAdvancementAction),
             let character = (self.attributedString?.string as NSString?)?.character(at: charIndex),
             let unicode = Unicode.Scalar(character),
-            unicode.properties.generalCategory == .control
+            unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
         {
             return .whitespaceAction  // -> Then, the glyph width can be modified on `boundingBox(forControlGlyphAt:...)`.
         }

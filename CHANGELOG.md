@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Optimize invisible character drawing.
+- Make space to draw the invisible symbol for ZERO WIDTH SPACE (U+200B) when “other invisible characters” option is enabled.
 
 
 ### Fixes
