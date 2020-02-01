@@ -14,6 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”
+- Fix an issue where the editor's line height in the opened windows did not update even the setting is changed.
 
 
 

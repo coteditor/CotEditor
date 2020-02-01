@@ -1156,7 +1156,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHeight: CGFloat {
         
         didSet {
-            lineHeight = max(oldValue, 0)
+            lineHeight = max(lineHeight, 0)
             
             guard lineHeight != oldValue else { return }
             
