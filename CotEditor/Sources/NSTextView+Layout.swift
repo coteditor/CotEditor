@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ extension NSTextView {
         
         // adjust size if the substring of the given range is single vertical tab character.
         if glyphRange.length == 1, layoutManager.glyph(at: glyphRange.location) == .verticalTab {
-            let lineHeight = layoutManager.lineFragmentRect(forGlyphAt: range.location, effectiveRange: nil).height
+            let lineHeight = layoutManager.lineFragmentRect(forGlyphAt: glyphRange.location, effectiveRange: nil).height
             
             boundingRect.size = CGSize(width: lineHeight / 2, height: lineHeight)
         }
