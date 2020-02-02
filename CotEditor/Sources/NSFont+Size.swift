@@ -28,22 +28,13 @@ import CoreText
 
 extension NSFont {
     
-    /// width of SPACE character
+    /// Width of SPACE character.
     var spaceWidth: CGFloat {
         
-        return self.advancement(character: " ").width
-    }
-    
-    
-    /// Calculate advancement of a character using CoreText.
-    ///
-    /// - Parameter character: Character to calculate advancement.
-    /// - Returns: Advancement of passed-in character.
-    private func advancement(character: Character) -> NSSize {
+        let glyph = (self as CTFont).glyph(for: " ")
+        let advancement = self.advancement(forCGGlyph: glyph)
         
-        let glyph = (self as CTFont).glyph(for: character)
-        
-        return self.advancement(forCGGlyph: glyph)
+        return advancement.width
     }
     
 }
@@ -54,7 +45,7 @@ extension CTFont {
     
     /// Create CGGlyph from a character.
     ///
-    /// - Parameter character: A character to extract glyph.
+    /// - Parameter character: The character to extract glyph.
     /// - Returns: A CGGlyph for passed-in character based on the receiver font.
     func glyph(for character: Character) -> CGGlyph {
         
@@ -71,7 +62,7 @@ extension CTFont {
     /// Get advancement of a glyph.
     ///
     /// - Parameters:
-    ///   - glyph: Glyph to calculate advancement.
+    ///   - glyph: The glyph to calculate advancement.
     ///   - orientation: Drawing orientation.
     /// - Returns: Advancement of passed-in glyph.
     func advance(for glyph: CGGlyph, orientation: CTFontOrientation = .horizontal) -> CGSize {
