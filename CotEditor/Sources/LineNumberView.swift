@@ -49,7 +49,7 @@ final class LineNumberView: NSView {
             self.scale = scale
             
             // calculate font size for number
-            self.fontSize = (LineNumberView.fontSizeFactor * scale * textFont.pointSize).round(interval: 0.5)
+            self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).round(interval: 0.5)
             self.ascent = scale * textFont.ascender
             
             // prepare glyphs
@@ -303,7 +303,7 @@ final class LineNumberView: NSView {
         
         // adjust drawing coordinate
         let relativePoint = self.convert(NSPoint.zero, from: textView)
-        let lineBase = textView.textContainerOrigin.scaled(to: scale).y + drawingInfo.ascent
+        let lineBase = (scale * textView.textContainerOrigin.y) + drawingInfo.ascent
         switch textView.layoutOrientation {
         case .horizontal:
             context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)

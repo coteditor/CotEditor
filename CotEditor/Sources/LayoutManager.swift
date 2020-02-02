@@ -140,7 +140,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             .showInvisibleTab,
             .showInvisibleNewLine,
             .showInvisibleFullwidthSpace,
-            
             .showOtherInvisibleChars,
             ]
         self.defaultsObservers = UserDefaults.standard.observe(keys: defaultKeys) { [weak self] (key, _) in
@@ -307,7 +306,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     
     // MARK: Public Methods
     
-    /// return fixed line height to avoid having different line height by composite font
+    /// fixed line height to avoid having different line height by composite font
     var lineHeight: CGFloat {
         
         let multiple = self.firstTextView?.defaultParagraphStyle?.lineHeightMultiple ?? 1.0
