@@ -525,7 +525,7 @@ private extension NSLayoutManager {
         effectiveRange = glyphRanges.first!
         
         for glyphRange in glyphRanges {
-            if glyphRange.length > 0 {
+            if !glyphRange.isEmpty {
                 var localEffectiveRange = glyphRange
                 self.enumerateLineFragments(forGlyphRange: glyphRange) { (_, usedRect, _, effectiveLineRange, _) in
                     rects.append(usedRect)
@@ -533,23 +533,21 @@ private extension NSLayoutManager {
                 }
                 effectiveRange.formUnion(localEffectiveRange)
                 
+            } else if self.extraLineFragmentTextContainer != nil, !self.isValidGlyphIndex(glyphRange.location) {
+                rects.append(self.extraLineFragmentUsedRect)
+                effectiveRange.formUnion(glyphRange)
+                
             } else {
-                if self.extraLineFragmentTextContainer == nil || glyphRange.location != self.numberOfGlyphs {
-                    // -> clamp the bound with `numberOfGlyphs - 1`
-                    //    Because passing `numberOfGlyphs` to `lineFragmentUsedRect(forGlyphAt:effectiveRange:)` is invalid
-                    //    and causes the warning: `_NSLayoutTreeLineFragmentUsedRectForGlyphAtIndex`. (2019-02)
-                    let safeGlyphIndex = min(glyphRange.location, self.numberOfGlyphs - 1)
-                    
-                    var effectiveLineRange: NSRange = .notFound
-                    let usedRect = self.lineFragmentUsedRect(forGlyphAt: safeGlyphIndex, effectiveRange: &effectiveLineRange, withoutAdditionalLayout: true)
-                    
-                    rects.append(usedRect)
-                    effectiveRange.formUnion(effectiveLineRange)
-                    
-                } else {
-                    rects.append(self.extraLineFragmentUsedRect)
-                    effectiveRange.formUnion(glyphRange)
-                }
+                // clamp the bound with `numberOfGlyphs - 1`
+                // -> Because passing `numberOfGlyphs` to `lineFragmentUsedRect(forGlyphAt:effectiveRange:)` is invalid
+                //    and causes the warning: `_NSLayoutTreeLineFragmentUsedRectForGlyphAtIndex`. (2019-02)
+                let safeGlyphIndex = min(glyphRange.location, self.numberOfGlyphs - 1)
+                
+                var effectiveLineRange: NSRange = .notFound
+                let usedRect = self.lineFragmentUsedRect(forGlyphAt: safeGlyphIndex, effectiveRange: &effectiveLineRange, withoutAdditionalLayout: true)
+                
+                rects.append(usedRect)
+                effectiveRange.formUnion(effectiveLineRange)
             }
         }
         assert(!rects.isEmpty)
