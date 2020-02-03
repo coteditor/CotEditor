@@ -34,7 +34,7 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
-extension NSAttributedString.Key {
+private extension NSAttributedString.Key {
     
     static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
 }
@@ -195,7 +195,7 @@ extension SyntaxParser {
         
         // use cache if the content of the whole document is the same as the last
         if let cache = self.highlightCache, cache.styleName == self.style.name, cache.string == self.textStorage.string {
-            self.apply(highlights: cache.highlights, range: wholeRange)
+            self.textStorage.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler()
             return nil
         }
@@ -279,7 +279,7 @@ extension SyntaxParser {
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
-            self.apply(highlights: [:], range: highlightRange)
+            self.textStorage.apply(highlights: [:], range: highlightRange)
             completionHandler()
             return nil
         }
@@ -339,7 +339,7 @@ extension SyntaxParser {
                     self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
                 }
                 
-                self?.apply(highlights: highlights, range: highlightRange)
+                self?.textStorage.apply(highlights: highlights, range: highlightRange)
                 
                 progress.completedUnitCount += 1
             }
@@ -350,38 +350,45 @@ extension SyntaxParser {
         return operation.progress
     }
     
+}
+
+
+
+private extension NSTextStorage {
     
     /// apply highlights to the document
-    private func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
+    func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
         
         assert(Thread.isMainThread)
         
-        guard self.textStorage.length > 0 else { return }
+        guard self.length > 0 else { return }
         
         let hasHighlight = highlights.values.contains { !$0.isEmpty }
         
-        for layoutManager in self.textStorage.layoutManagers {
+        for layoutManager in self.layoutManagers {
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
             guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
+            
+            let theme = (layoutManager.firstTextView as? Themable)?.theme
             
             layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
                 layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
                 
-                guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { return }
-                
                 for type in SyntaxType.allCases {
                     guard let ranges = highlights[type], !ranges.isEmpty else { continue }
                     
-                    if let color = theme.style(for: type)?.color {
+                    for range in ranges {
+                        layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
+                    }
+                    
+                    if let color = theme?.style(for: type)?.color {
                         for range in ranges {
                             layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                            layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
                         }
                     } else {
                         for range in ranges {
                             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                            layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
                         }
                     }
                 }
