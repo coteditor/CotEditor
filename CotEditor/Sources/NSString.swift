@@ -229,7 +229,8 @@ extension NSString {
         
         if includingLastEmptyLine,
             ranges == [NSRange(location: self.length, length: 0)],
-            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first) {
+            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first)
+        {
             return ranges
         }
         
@@ -241,7 +242,6 @@ extension NSString {
             
             // store each line to process
             self.enumerateSubstrings(in: linesRange, options: [.byLines, .substringNotRequired]) { (_, _, enclosingRange, _) in
-                
                 lineRanges.append(enclosingRange)
             }
         }
