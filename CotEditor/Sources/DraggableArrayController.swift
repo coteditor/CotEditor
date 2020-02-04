@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -46,7 +46,8 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
         
         // store row index info to pasteboard
-        let rows = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
+        guard let rows = try? NSKeyedArchiver.archivedData(withRootObject: rowIndexes, requiringSecureCoding: true) else { return false }
+        
         pboard.setData(rows, forType: .rows)
         
         return true
@@ -76,7 +77,8 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // obtain original rows from paste board
         guard
             let data = info.draggingPasteboard.data(forType: .rows),
-            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet else { return false }
+            let sourceRows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
+            else { return false }
         
         let draggingItems = (self.arrangedObjects as AnyObject).objects(at: sourceRows)
         
