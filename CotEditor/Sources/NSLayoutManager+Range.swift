@@ -106,7 +106,7 @@ extension NSLayoutManager {
     /// - Parameters:
     ///   - attrName: The name of temporary attribute key to check.
     ///   - range: The range where to check. When `nil`, search the entire range.
-    /// - Returns: Wheather the given attribute key exists.
+    /// - Returns: Whether the given attribute key exists.
     func hasTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
         guard let storage = self.textStorage else { return false }
