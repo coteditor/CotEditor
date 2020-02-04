@@ -30,22 +30,20 @@ final class Typesetter: NSATSTypesetter {
     
     // MARK: ATS Typesetter Methods
     
-    /// adjust vertical position to keep line height even with composed font
+    /// adjust vertical position to keep line height always even
     override func willSetLineFragmentRect(_ lineRect: UnsafeMutablePointer<NSRect>, forGlyphRange glyphRange: NSRange, usedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>) {
-        
-        // avoid being line height inconsistent by a composite font
-        //   -> LayoutManager の関連メソッドをオーバーライドしてあれば、このメソッドをオーバーライドしなくても
-        //      通常の入力では行間が一定になるが、フォントや行間を変更したときに適正に描画されない。
-        //   -> EditorTextView で、NSParagraphStyle の lineHeightMultiple を設定しても行間は制御できるが、
-        //      「文書の1文字目に1バイト文字（または2バイト文字）を入力してある状態で先頭に2バイト文字（または1バイト文字）を
-        //      挿入すると行間がズレる」問題が生じる。
-        //   -> `baselineOffset` also shifts when a character height is higher than the fixed line height,
-        //      such as 𓆏.
         
         guard let manager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
+        // avoid inconsistent line height by a composite font
+        // -> The line height by normal input keeps consistant when overriding the related methods in NSLayoutManager.
+        //    but then, the drawing won't be update properly when the font or line hight is changed.
+        // -> NSParagraphStyle's `.lineheightMultiple` can also control the line height,
+        //    but it causes an issue when the first character of the string uses a fallback font.
         lineRect.pointee.size.height = manager.lineHeight
         usedRect.pointee.size.height = manager.lineHeight
+        
+        // avoid baseline shifting when the glyph height is higher than the fixed line height, such as 𓆏.
         baselineOffset.pointee = manager.defaultBaselineOffset
     }
     
