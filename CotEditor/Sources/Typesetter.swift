@@ -1,5 +1,5 @@
 //
-//  ATSTypesetter.swift
+//  Typesetter.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class ATSTypesetter: NSATSTypesetter {
+final class Typesetter: NSATSTypesetter {
     
     // MARK: ATS Typesetter Methods
     

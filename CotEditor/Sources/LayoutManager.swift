@@ -127,7 +127,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         // this flag is actually not so necessary as I thougth. Thus, treat carefully this.
         self.showsControlCharacters = false
         
-        self.typesetter = ATSTypesetter()
+        self.typesetter = Typesetter()
         
         // observe change in defaults
         let defaultKeys: [DefaultKeys] = [
@@ -175,7 +175,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     /// adjust rect of last empty line
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
-        // -> height of the extra line fragment should be the same as normal other fragments that are likewise customized in ATSTypesetter
+        // -> height of the extra line fragment should be the same as normal other fragments that are likewise customized in Typesetter
         var fragmentRect = fragmentRect
         fragmentRect.size.height = self.lineHeight
         var usedRect = usedRect

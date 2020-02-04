@@ -319,8 +319,8 @@
 		2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */; };
 		2A6FD9DA1D38F93100A59784 /* EditorTextView+Indenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */; };
 		2A6FD9DB1D38F93300A59784 /* EditorTextView+Indenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */; };
-		2A6FD9DD1D392EFF00A59784 /* ATSTypesetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */; };
-		2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */; };
+		2A6FD9DD1D392EFF00A59784 /* Typesetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */; };
+		2A6FD9DE1D392EFF00A59784 /* Typesetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */; };
 		2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */; };
 		2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */; };
 		2A6FD9E71D394F5900A59784 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E61D394F5900A59784 /* LayoutManager.swift */; };
@@ -1105,7 +1105,7 @@
 		2A6F0E091B55043800C2D03C /* CotEditor-AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-AppStore.entitlements"; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
 		2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Indenting.swift"; sourceTree = "<group>"; };
-		2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ATSTypesetter.swift; sourceTree = "<group>"; };
+		2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typesetter.swift; sourceTree = "<group>"; };
 		2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2A6FD9E61D394F5900A59784 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Commenting.swift"; sourceTree = "<group>"; };
@@ -1974,7 +1974,7 @@
 				2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */,
 				2AFE848522AE71130001C4ED /* TextContainer.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
-				2A6FD9DC1D392EFF00A59784 /* ATSTypesetter.swift */,
+				2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
 			);
 			name = "Text View";
@@ -2980,7 +2980,7 @@
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2A1FAD5920A74D0A00566D7C /* MutableCopying.swift in Sources */,
 				2A1B7E76216CBBEA002C7395 /* SynchronizedScrollView.swift in Sources */,
-				2A6FD9DE1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
+				2A6FD9DE1D392EFF00A59784 /* Typesetter.swift in Sources */,
 				2A5D13491D1FEF9900D38E6A /* FindPanelFieldViewController.swift in Sources */,
 				2ACC5E421E7B08D300109ABC /* MultipleReplacementViewController.swift in Sources */,
 				2A5D13461D1FE66300D38E6A /* FindPanelButtonViewController.swift in Sources */,
@@ -3150,7 +3150,7 @@
 				2A9BF3CB1D3842FA00E3D3E2 /* String+Normalization.swift in Sources */,
 				2A7725641D50401300A53C09 /* SyntaxStyleValidator.swift in Sources */,
 				2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */,
-				2A6FD9DD1D392EFF00A59784 /* ATSTypesetter.swift in Sources */,
+				2A6FD9DD1D392EFF00A59784 /* Typesetter.swift in Sources */,
 				2AE12E001E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2AE73F43203E753C00D8903B /* NSTextView+Selection.swift in Sources */,
