@@ -84,26 +84,25 @@ final class Typesetter: NSATSTypesetter {
     }
     
     
-    /// avoid soft warpping just after an indent
+    /// avoid soft wrapping just after an indent
     override func shouldBreakLine(byWordBeforeCharacterAt charIndex: Int) -> Bool {
         
-        // -> Getting index fails when the code point is a part of surrogate pair.
         guard
             charIndex > 0,
-            let string = self.attributedString?.string
+            let string = self.attributedString?.string as NSString?
             else { return true }
         
-        let index = String.Index(utf16Offset: charIndex, in: string)
-        
         // check if the character is the first non-whitespace character after indent
-        for character in string[workaround: string.startIndex..<index].reversed() {
+        for index in stride(from: charIndex, through: 0, by: -1) {
+            let character = string.character(at: index)
+            
             switch character {
-            case " ", "\t":
+            case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
                 continue
-            case "\n":  // the line ended before hitting to any indent characters
-                return false
-            default:  // hit to non-indent character
-                return true
+            case 0x000A:  // LINE FEED
+                return false  // the line ended before hitting to any indent characters
+            default:
+                return true  // hit to non-indent character
             }
         }
         
