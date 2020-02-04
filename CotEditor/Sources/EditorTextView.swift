@@ -1143,7 +1143,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     @objc var tabWidth: Int {
         
         didSet {
-            tabWidth = max(oldValue, 0)
+            tabWidth = max(tabWidth, 0)
             
             guard tabWidth != oldValue else { return }
             
