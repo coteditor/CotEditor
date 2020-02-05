@@ -14,6 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”
+- Fix an issue where unescaping replacement string in the regular expression replacement failed with specific text patterns.
 - Fix an issue where the editor's line height and tab width in the opened windows did not update even the setting is changed.
 - Fix an issue in scripting where settings some properties, such as `tab width`, `tab expands` and `wrap lines`, in the document creation phase were ignored.
 - Improve stability.

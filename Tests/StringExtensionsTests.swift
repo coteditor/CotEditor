@@ -58,6 +58,7 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual("foo\\\\\\nbar".unescaped, "foo\\\\\nbar")
         XCTAssertEqual("\\foo\\\\\\0bar\\".unescaped, "\\foo\\\\\u{0}bar\\")
         XCTAssertEqual("\\\\\\\\foo".unescaped, "\\\\\\\\foo")
+        XCTAssertEqual(#"foo：\n\n1"#.unescaped, "foo：\n\n1")
     }
     
     

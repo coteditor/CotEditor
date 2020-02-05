@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -57,25 +57,17 @@ extension String {
     /// Unescaped version of the string by unescaing the characters with backslashes.
     var unescaped: String {
         
-        // -> According to the following sentence in the Swift 3 documentation, these are the all combinations with backslash.
-        //    > The escaped special characters \0 (null character), \\ (backslash), \t (horizontal tab), \n (line feed), \r (carriage return), \" (double quote) and \' (single quote)
-        let entities = ["\0": "0",
-                        "\t": "t",
-                        "\n": "n",
-                        "\r": "r",
-                        "\"": "\"",
-                        "\'": "'",
+        // -> According to the Swift documentation, these are the all combinations with backslash except for \\ itself.
+        //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
+        let entities = ["\0": "0",   // null character
+                        "\t": "t",   // horizontal tab
+                        "\n": "n",   // line feed
+                        "\r": "r",   // carriage return
+                        "\"": "\"",  // double quotation mark
+                        "\'": "'",   // single quotation mark
                         ]
         
-        return entities
-            .mapValues { try! NSRegularExpression(pattern: "(?<!\\\\)(?:\\\\\\\\)*(\\\\" + $0 + ")") }
-            .reduce(self) { (string, entity) in
-                entity.value.matches(in: string, range: string.nsRange)
-                    .map { $0.range(at: 1) }
-                    .compactMap { Range($0, in: string) }
-                    .reversed()
-                    .reduce(into: string) { $0.replaceSubrange($1, with: entity.key) }
-            }
+        return entities.reduce(self) { $0.replacingOccurrences(of: #"(?<!\\)((?:\\\\)*)\\"# + $1.value, with: "$1" + $1.key, options: .regularExpression) }
     }
     
 }
