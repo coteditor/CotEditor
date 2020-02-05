@@ -121,10 +121,11 @@ final class FindPanelLayoutManager: NSLayoutManager {
                         else { continue }
                     
                     let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
+                    let glyph = replaceFont.cgFont.getGlyphWithGlyphName(name: "replacement" as CFString)
                     let controlRange = NSRange(location: charIndex, length: 1)
                     let baseString = (string as NSString).substring(with: controlRange)
                     
-                    guard let glyphInfo = NSGlyphInfo(glyphName: "replacement", for: replaceFont, baseString: baseString) else { continue }
+                    guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: replaceFont, baseString: baseString) else { assertionFailure(); continue }
                     
                     // !!!: The following line can cause crash by binary document.
                     //      It's actually dangerous and to be detoured to modify textStorage while drawing.
