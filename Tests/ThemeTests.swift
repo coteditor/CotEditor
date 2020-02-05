@@ -49,10 +49,10 @@ final class ThemeTests: XCTestCase {
         let theme = try self.loadThemeWithName(themeName)!
         
         XCTAssertEqual(theme.name, themeName)
-        XCTAssertEqual(theme.text.color, NSColor.black.usingColorSpaceName(.calibratedRGB))
-        XCTAssertEqual(theme.insertionPoint.color, NSColor.black.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.text.color, NSColor.black.usingColorSpace(.genericRGB))
+        XCTAssertEqual(theme.insertionPoint.color, NSColor.black.usingColorSpace(.genericRGB))
         XCTAssertEqual(theme.invisibles.color.brightnessComponent, 0.72, accuracy: 0.01)
-        XCTAssertEqual(theme.background.color, NSColor.white.usingColorSpaceName(.calibratedRGB))
+        XCTAssertEqual(theme.background.color, NSColor.white.usingColorSpace(.genericRGB))
         XCTAssertEqual(theme.lineHighlight.color.brightnessComponent, 0.94, accuracy: 0.01)
         XCTAssertNil(theme.secondarySelectionColor)
         
