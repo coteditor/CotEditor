@@ -161,12 +161,12 @@ final class DocumentAnalyzer: NSObject {
         if self.shouldUpdateEditorInfo { return .all }
         
         var types = EditorInfoTypes()
-        if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
-        if UserDefaults.standard[.showStatusBarLines]    { types.update(with: .lines) }
-        if UserDefaults.standard[.showStatusBarWords]    { types.update(with: .words) }
-        if UserDefaults.standard[.showStatusBarLocation] { types.update(with: .location) }
-        if UserDefaults.standard[.showStatusBarLine]     { types.update(with: .line) }
-        if UserDefaults.standard[.showStatusBarColumn]   { types.update(with: .column) }
+        if UserDefaults.standard[.showStatusBarChars]    { types.formUnion(.characters) }
+        if UserDefaults.standard[.showStatusBarLines]    { types.formUnion(.lines) }
+        if UserDefaults.standard[.showStatusBarWords]    { types.formUnion(.words) }
+        if UserDefaults.standard[.showStatusBarLocation] { types.formUnion(.location) }
+        if UserDefaults.standard[.showStatusBarLine]     { types.formUnion(.line) }
+        if UserDefaults.standard[.showStatusBarColumn]   { types.formUnion(.column) }
         
         return types
     }

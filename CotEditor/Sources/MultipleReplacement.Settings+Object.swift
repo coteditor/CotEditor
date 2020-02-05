@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -63,14 +63,14 @@ extension MultipleReplacement.Settings {
         var settings: MultipleReplacement.Settings {
             
             var textualOptions = NSString.CompareOptions()
-            if self.textIsLiteralSearch        { textualOptions.update(with: .literal) }
-            if self.textIgnoresDiacriticMarks  { textualOptions.update(with: .diacriticInsensitive) }
-            if self.textIgnoresWidth           { textualOptions.update(with: .widthInsensitive) }
+            if self.textIsLiteralSearch        { textualOptions.formUnion(.literal) }
+            if self.textIgnoresDiacriticMarks  { textualOptions.formUnion(.diacriticInsensitive) }
+            if self.textIgnoresWidth           { textualOptions.formUnion(.widthInsensitive) }
             
             var regexOptions = NSRegularExpression.Options()
-            if self.regexIsSingleline          { regexOptions.update(with: .dotMatchesLineSeparators) }
-            if self.regexIsMultiline           { regexOptions.update(with: .anchorsMatchLines) }
-            if self.regexUsesUnicodeBoundaries { regexOptions.update(with: .useUnicodeWordBoundaries) }
+            if self.regexIsSingleline          { regexOptions.formUnion(.dotMatchesLineSeparators) }
+            if self.regexIsMultiline           { regexOptions.formUnion(.anchorsMatchLines) }
+            if self.regexUsesUnicodeBoundaries { regexOptions.formUnion(.useUnicodeWordBoundaries) }
             
             return MultipleReplacement.Settings(textualOptions: textualOptions,
                                                 regexOptions: regexOptions,

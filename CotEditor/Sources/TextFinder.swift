@@ -625,19 +625,19 @@ private extension TextFind.Mode {
         
         if defaults[.findUsesRegularExpression] {
             var options = NSRegularExpression.Options()
-            if defaults[.findIgnoresCase]                { options.update(with: .caseInsensitive) }
-            if defaults[.findRegexIsSingleline]          { options.update(with: .dotMatchesLineSeparators) }
-            if defaults[.findRegexIsMultiline]           { options.update(with: .anchorsMatchLines) }
-            if defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
+            if defaults[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
+            if defaults[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
+            if defaults[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
+            if defaults[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
             
             self = .regularExpression(options: options, unescapesReplacement: defaults[.findRegexUnescapesReplacementString])
             
         } else {
             var options = NSString.CompareOptions()
-            if defaults[.findIgnoresCase]               { options.update(with: .caseInsensitive) }
-            if defaults[.findTextIsLiteralSearch]       { options.update(with: .literal) }
-            if defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
-            if defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
+            if defaults[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
+            if defaults[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
+            if defaults[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
+            if defaults[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
             
             self = .textual(options: options, fullWord: defaults[.findMatchesFullWord])
         }

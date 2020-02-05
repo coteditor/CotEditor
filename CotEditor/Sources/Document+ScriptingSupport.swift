@@ -410,13 +410,13 @@ private extension NSString.CompareOptions {
         self.init()
         
         if isRegex {
-            self.update(with: .regularExpression)
+            self.formUnion(.regularExpression)
         }
         if ignoresCase {
-            self.update(with: .caseInsensitive)
+            self.formUnion(.caseInsensitive)
         }
         if isBackwards {
-            self.update(with: .backwards)
+            self.formUnion(.backwards)
         }
     }
     
