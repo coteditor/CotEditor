@@ -986,9 +986,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
         // -> need to send KVO notification manually on Swift (2016-09-12 on macOS 10.12 SDK)
-        self.willChangeValue(forKey: #keyPath(layoutOrientation))
+        self.willChangeValue(for: \.layoutOrientation)
         super.setLayoutOrientation(orientation)
-        self.didChangeValue(forKey: #keyPath(layoutOrientation))
+        self.didChangeValue(for: \.layoutOrientation)
         
         self.invalidateNonContiguousLayout()
         
