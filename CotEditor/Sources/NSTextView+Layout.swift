@@ -76,19 +76,15 @@ extension NSTextView {
     /// return bounding rectangles (in text view coordinates) enclosing all the given character range
     func boundingRects(for range: NSRange) -> [NSRect] {
         
+        var count = 0
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
+            let textContainer = self.textContainer,
+            let rectArray = layoutManager.rectArray(forCharacterRange: range, withinSelectedCharacterRange: range,
+                                                    in: textContainer, rectCount: &count)
             else { return [] }
         
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        
-        var rects: [NSRect] = []
-        layoutManager.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: glyphRange, in: textContainer) { (rect, _) in
-            rects.append(rect)
-        }
-        
-        return rects.map { $0.offset(by: self.textContainerOrigin) }
+        return (0..<count).map { rectArray[$0].offset(by: self.textContainerOrigin) }
     }
     
 }
