@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -33,13 +33,16 @@ extension NSMutableAttributedString {
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? NSRange(..<self.length)
         
-        self.removeAttribute(.link, range: range)
+        self.beginEditing()
         
+        self.removeAttribute(.link, range: range)
         detector.enumerateMatches(in: self.string, range: range) { (result, _, _) in
             guard let result = result, let url = result.url else { return }
             
             self.addAttribute(.link, value: url, range: result.range)
         }
+        
+        self.endEditing()
     }
     
 }
