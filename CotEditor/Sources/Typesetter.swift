@@ -85,15 +85,13 @@ final class Typesetter: NSATSTypesetter {
     override func shouldBreakLine(byWordBeforeCharacterAt charIndex: Int) -> Bool {
         
         guard
-            charIndex > 0,
+            charIndex > 1,
             let string = self.attributedString?.string as NSString?
             else { return true }
         
         // check if the character is the first non-whitespace character after indent
-        for index in stride(from: charIndex, through: 0, by: -1) {
-            let character = string.character(at: index)
-            
-            switch character {
+        for index in stride(from: charIndex - 1, through: 0, by: -1) {
+            switch string.character(at: index) {
             case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
                 continue
             case 0x000A:  // LINE FEED
