@@ -54,6 +54,9 @@ final class Typesetter: NSATSTypesetter {
         let action = super.actionForControlCharacter(at: charIndex)
         
         if action.contains(.zeroAdvancementAction),
+            let manager = self.layoutManager as? LayoutManager,
+            manager.showsOtherInvisibles,
+            manager.showsInvisibles,
             let character = (self.attributedString?.string as NSString?)?.character(at: charIndex),
             let unicode = Unicode.Scalar(character),
             unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
@@ -68,11 +71,7 @@ final class Typesetter: NSATSTypesetter {
     /// return bounding box for control glyph
     override func boundingBox(forControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        guard
-            let manager = self.layoutManager as? LayoutManager,
-            manager.showsOtherInvisibles,
-            manager.showsInvisibles
-            else { return .zero }
+        guard let manager = self.layoutManager as? LayoutManager else { return .zero }
         
         // make blank space to draw a replacement character in LayoutManager later.
         var rect = proposedRect
