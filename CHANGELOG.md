@@ -9,6 +9,7 @@ Change Log
 
 - Optimize invisible character drawing.
 - Make space to draw the invisible symbol for ZERO WIDTH SPACE (U+200B) when “other invisible characters” option is enabled.
+- [trivial] Optimize the performance of hanging indent calculation.
 
 
 ### Fixes

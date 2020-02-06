@@ -37,7 +37,6 @@ final class TextContainer: NSTextContainer {
     
     private var lastLineStartIndex = 0
     private var indentWidthCache: [NSAttributedString: CGFloat] = [:]
-    private lazy var indentRegex = try! NSRegularExpression(pattern: "[ \t]+")
     
     
     
@@ -79,10 +78,9 @@ final class TextContainer: NSTextContainer {
                "Wrong line start index estimation at \(characterIndex).")
         
         // get base indent
-        let searchRange = NSRange(self.lastLineStartIndex..<characterIndex)
-        let indentRange = self.indentRegex.rangeOfFirstMatch(in: storage.string, options: .anchored, range: searchRange)
+        let indentRange = string.rangeOfIndent(from: self.lastLineStartIndex, limitedBy: characterIndex)
         let baseIndent: CGFloat
-        if indentRange != .notFound {
+        if !indentRange.isEmpty {
             let attrIndent = storage.attributedSubstring(from: indentRange)
             baseIndent = self.indentWidthCache[attrIndent] ?? attrIndent.size().width
             self.indentWidthCache[attrIndent] = baseIndent
@@ -113,4 +111,33 @@ final class TextContainer: NSTextContainer {
         layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
     }
     
+}
+
+
+
+private extension NSString {
+    
+    /// The fast way to find the range of indent charaters at the beginning of the given range.
+    ///
+    /// - Parameters:
+    ///   - startIndex: The character index where start the indent search.
+    ///   - limitIndex: The upper threshold to find indent.
+    /// - Returns: The range of indent charaters at the beginning of the given range.
+    func rangeOfIndent(from startIndex: Int, limitedBy limitIndex: Int? = nil) -> NSRange {
+        
+        assert(self.lineStartIndex(at: startIndex) == startIndex)
+        
+        let limitIndex = limitIndex ?? self.length
+        
+        for index in startIndex..<limitIndex {
+            switch self.character(at: index) {
+            case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
+                continue
+            default:
+                return NSRange(startIndex..<index)
+            }
+        }
+        
+        return NSRange(startIndex..<startIndex)
+    }
 }
