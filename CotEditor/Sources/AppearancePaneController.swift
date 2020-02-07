@@ -324,8 +324,8 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                     case .dark: return true
                     }
                 }()
-                UserDefaults.standard[.theme] = themeName
                 UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)
+                UserDefaults.standard[.theme] = themeName
             }
         }
         
