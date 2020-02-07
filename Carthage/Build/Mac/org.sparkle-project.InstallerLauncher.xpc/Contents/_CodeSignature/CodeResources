@@ -10,19 +10,19 @@
 		<dict>
 			<key>cdhash</key>
 			<data>
-			S2K5UY6X0dViSrBuUklQT+bC4RY=
+			WFMaXpKFqNHi19DF9c0Zi3P42L4=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"29dcc570478eda6115a14dfdee376329118f7fd5" or cdhash H"4b62b9518e97d1d5624ab06e5249504fe6c2e116"</string>
+			<string>cdhash H"7d71ce6874f68928328c7c713526b68461e8bf13" or cdhash H"58531a5e9285a8d1e2d7d0c5f5cd198b73f8d8be"</string>
 		</dict>
 		<key>MacOS/Updater.app</key>
 		<dict>
 			<key>cdhash</key>
 			<data>
-			pG6tM62pXiLgkUek6LRgGd0a/v8=
+			/pCYfwqGO+wxmc0iEyq2KPOuqaw=
 			</data>
 			<key>requirement</key>
-			<string>cdhash H"3b3666ee60bb45adce5e5bcb712749fdb14ab18e" or cdhash H"a46ead33ada95e22e09147a4e8b46019dd1afeff"</string>
+			<string>cdhash H"b0f4a4674c516ca8d8e03bf265ebc87288f9c8bc" or cdhash H"fe90987f0a863bec3199cd22132ab628f3aea9ac"</string>
 		</dict>
 	</dict>
 	<key>rules</key>
