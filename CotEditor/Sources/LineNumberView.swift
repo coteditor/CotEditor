@@ -409,7 +409,7 @@ final class LineNumberView: NSView {
             
             if self.orientation == .horizontal {
                 // -> Count only if really needed since the line counting is high workload, especially by large document.
-                self.numberOfLines = max(textView.numberOfLines, 1)
+                self.numberOfLines = (textView.string as NSString).lineNumber(at: textView.string.length)
             }
             
             self.needsDisplay = true
@@ -482,16 +482,6 @@ final class LineNumberView: NSView {
 
 
 // MARK: Private Helper Extensions
-
-private extension NSTextView {
-    
-    var numberOfLines: Int {
-        
-        return self.string.numberOfLines(includingLastLineEnding: true)
-    }
-    
-}
-
 
 private extension Int {
     

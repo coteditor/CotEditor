@@ -111,6 +111,14 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(testString.lineNumber(at: 6), 3)
         XCTAssertEqual(testString.lineNumber(at: 7), 4)
         
+        let nsString = testString as NSString
+        XCTAssertEqual(nsString.lineNumber(at: 0), testString.lineNumber(at: 0))
+        XCTAssertEqual(nsString.lineNumber(at: 1), testString.lineNumber(at: 1))
+        XCTAssertEqual(nsString.lineNumber(at: 2), testString.lineNumber(at: 2))
+        XCTAssertEqual(nsString.lineNumber(at: 5), testString.lineNumber(at: 5))
+        XCTAssertEqual(nsString.lineNumber(at: 6), testString.lineNumber(at: 6))
+        XCTAssertEqual(nsString.lineNumber(at: 7), testString.lineNumber(at: 7))
+        
         XCTAssertEqual("\u{FEFF}".numberOfLines(in: NSRange(0..<1), includingLastLineEnding: false), 1)  // "\u{FEFF}"
         XCTAssertEqual("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
         XCTAssertEqual("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"

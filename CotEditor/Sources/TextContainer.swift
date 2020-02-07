@@ -117,24 +117,6 @@ final class TextContainer: NSTextContainer {
 
 // MARK: -
 
-private extension unichar {
-    
-    /// A Boolean value indicating whether this character represents a newline.
-    ///
-    /// cf. https://developer.apple.com/documentation/swift/character/3127014-isnewline
-    var isNewline: Bool {
-        
-        switch self {
-        case 0x000A, 0x000B, 0x000C, 0x000D, 0x0085, 0x2028, 0x2029:
-            return true
-        default:
-            return false
-        }
-    }
-    
-}
-
-
 private extension NSString {
     
     /// The fast way to find the range of indent charaters at the beginning of the given range.

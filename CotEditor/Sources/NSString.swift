@@ -229,7 +229,7 @@ extension NSString {
         
         if includingLastEmptyLine,
             ranges == [NSRange(location: self.length, length: 0)],
-            (self.length == 0 || self.character(at: self.length - 1) == "\n".utf16.first)
+            (self.length == 0 || self.character(at: self.length - 1).isNewline)
         {
             return ranges
         }
@@ -247,6 +247,34 @@ extension NSString {
         }
         
         return lineRanges.array
+    }
+    
+    
+    /// Fast way to count the number of lines at the character index (1-based).
+    ///
+    /// Counting in this way is significantly faster than other ways such as `enumerateSubstrings(in:options:.byLines)`,
+    /// `components(separatedBy: .newlines)`, or even just counting `\n` in `.utf16`. (2020-02, Swift 5.1)
+    ///
+    /// - Parameter location: NSRange-based character index.
+    /// - Returns: The number of lines (1-based).
+    func lineNumber(at location: Int) -> Int {
+        
+        assert(location == 0 || location <= self.length)
+        
+        guard self.length > 0, location > 0 else { return 1 }
+        
+        var count = 0
+        var index = 0
+        while index < location {
+            self.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
+            count += 1
+        }
+        
+        if self.character(at: location - 1).isNewline {
+            count += 1
+        }
+        
+        return count
     }
     
     
@@ -270,6 +298,24 @@ extension NSString {
         let upperBound = (upperDelimiterRange != .notFound) ? upperDelimiterRange.lowerBound : range.upperBound
         
         return NSRange(lowerBound..<upperBound)
+    }
+    
+}
+
+
+extension unichar {
+    
+    /// A Boolean value indicating whether this character represents a newline.
+    ///
+    /// cf. https://developer.apple.com/documentation/swift/character/3127014-isnewline
+    var isNewline: Bool {
+        
+        switch self {
+        case 0x000A, 0x000B, 0x000C, 0x000D, 0x0085, 0x2028, 0x2029:
+            return true
+        default:
+            return false
+        }
     }
     
 }

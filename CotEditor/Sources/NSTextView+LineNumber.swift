@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ extension NSTextView {
         
         // count up lines until the interested area
         let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
-        var lineNumber = self.string.lineNumber(at: firstIndex)
+        var lineNumber = (self.string as NSString).lineNumber(at: firstIndex)
         
         // enumerate visible line numbers
         var glyphIndex = glyphRangeToDraw.location
@@ -92,7 +92,9 @@ extension NSTextView {
             (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
             else { return }
         
-        let lastLineNumber = max(self.string.numberOfLines(includingLastLineEnding: true), 1)
+        let lastLineNumber = (lineNumber > 1)
+            ? lineNumber
+            : (self.string as NSString).lineNumber(at: self.string.length)
         let isSelected = (selectedLineRanges.last?.location == (self.string as NSString).length)
         
         body(.new(lastLineNumber, isSelected), extraLineRect)
