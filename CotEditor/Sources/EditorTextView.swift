@@ -730,8 +730,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             // invalidate current instances highlight
             if UserDefaults.standard[.highlightSelectionInstance] {
+                if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
+                    layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                }
                 let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 self.instanceHighlightTask.schedule(delay: .seconds(delay))
             }
         }
