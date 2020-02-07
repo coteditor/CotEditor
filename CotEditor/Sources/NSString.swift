@@ -27,10 +27,10 @@ import Foundation
 
 extension String {
     
-    /// Whole range in NSRange
+    /// Whole range in NSRange.
     var nsRange: NSRange {
         
-        return NSRange(..<(self as NSString).length)
+        return NSRange(location: 0, length: (self as NSString).length)
     }
     
     
@@ -48,7 +48,7 @@ extension NSRange {
     static let notFound = NSRange(location: NSNotFound, length: 0)
     
     
-    /// A Boolean value indicating whether the range contains no elements.
+    /// A boolean value indicating whether the range contains no elements.
     var isEmpty: Bool {
         
         return (self.length == 0)
@@ -98,7 +98,7 @@ extension NSString {
     /// Whole range in NSRange
     var range: NSRange {
         
-        return NSRange(..<self.length)
+        return NSRange(location: 0, length: self.length)
     }
     
     
@@ -163,14 +163,14 @@ extension NSString {
     /// line range containing a given location
     func lineRange(at location: Int) -> NSRange {
         
-        return self.lineRange(for: NSRange(location..<location))
+        return self.lineRange(for: NSRange(location: location, length: 0))
     }
     
     
     /// line range containing a given location
     func lineContentsRange(at location: Int) -> NSRange {
         
-        return self.lineContentsRange(for: NSRange(location..<location))
+        return self.lineContentsRange(for: NSRange(location: location, length: 0))
     }
     
     
@@ -197,7 +197,7 @@ extension NSString {
     func lineStartIndex(at index: Int) -> Int {
         
         var start = 0
-        self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(index..<index))
+        self.getLineStart(&start, end: nil, contentsEnd: nil, for: NSRange(location: index, length: 0))
         
         return start
     }
@@ -211,7 +211,7 @@ extension NSString {
     func lineContentsEndIndex(at index: Int) -> Int {
         
         var contentsEnd = 0
-        self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(index..<index))
+        self.getLineStart(nil, end: nil, contentsEnd: &contentsEnd, for: NSRange(location: index, length: 0))
         
         return contentsEnd
     }
@@ -259,7 +259,7 @@ extension NSString {
     /// - Returns: The found character range.
     func rangeOfCharacter(until set: CharacterSet, at index: Int, range: NSRange? = nil) -> NSRange {
         
-        let range = range ?? NSRange(..<self.length)
+        let range = range ?? self.range
         
         assert(range.contains(index))
         

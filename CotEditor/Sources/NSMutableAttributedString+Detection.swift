@@ -31,7 +31,7 @@ extension NSMutableAttributedString {
     func detectLink(in range: NSRange? = nil) {
         
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? NSRange(..<self.length)
+        let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? self.range
         
         self.beginEditing()
         

@@ -30,7 +30,7 @@ extension NSAttributedString {
     /// whole range
     var range: NSRange {
         
-        return NSRange(..<self.length)
+        return NSRange(location: 0, length: self.length)
     }
     
     
