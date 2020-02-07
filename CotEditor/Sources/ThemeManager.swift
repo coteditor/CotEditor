@@ -93,7 +93,7 @@ final class ThemeManager: SettingFileManaging {
         
         let settingName = UserDefaults.standard[.theme]!
         
-        if UserDefaults.standard[.pinsThemeAppearance] || NSAppKitVersion.current < .macOS10_13 {
+        if UserDefaults.standard[.pinsThemeAppearance] || NSAppKitVersion.current <= .macOS10_13 {
             return settingName
         }
         
