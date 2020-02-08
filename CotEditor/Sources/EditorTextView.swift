@@ -1171,7 +1171,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var showsPageGuide = false {
         
         didSet {
-            self.setNeedsDisplay(self.bounds, avoidAdditionalLayout: true)
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         }
     }
     
