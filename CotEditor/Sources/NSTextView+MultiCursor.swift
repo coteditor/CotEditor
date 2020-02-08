@@ -311,7 +311,8 @@ extension MultiCursorEditing {
             let textContainer = self.textContainer
             else { assertionFailure(); return }
         
-        let glyphRanges = self.insertionRanges.map { layoutManager.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
+        let insertionRanges = self.insertionRanges
+        let glyphRanges = insertionRanges.map { layoutManager.glyphRange(forCharacterRange: $0, actualCharacterRange: nil) }
         var effectiveGlyphRange: NSRange = .notFound
         let lineFragmentUsedRects = layoutManager.lineFragmentUsedRects(inSelectedGlyphRanges: glyphRanges, effectiveRange: &effectiveGlyphRange)
         
@@ -320,7 +321,7 @@ extension MultiCursorEditing {
             !(affinity == .downstream && effectiveGlyphRange.lowerBound == 0),
             !(affinity == .upstream && (
                 (layoutManager.extraLineFragmentTextContainer == nil && effectiveGlyphRange.upperBound == layoutManager.numberOfGlyphs) ||
-                (layoutManager.extraLineFragmentTextContainer != nil && glyphRanges.last?.lowerBound == layoutManager.numberOfGlyphs)))
+                (layoutManager.extraLineFragmentTextContainer != nil && insertionRanges.last?.lowerBound == self.string.length)))
             else { return }
         
         // get new visual line to append
@@ -329,7 +330,7 @@ extension MultiCursorEditing {
             switch affinity {
             case .downstream:
                 return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.lowerBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
-            case .upstream where effectiveGlyphRange.upperBound < layoutManager.numberOfGlyphs:
+            case .upstream where layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound):
                 return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
             case .upstream:
                 return layoutManager.extraLineFragmentRect
