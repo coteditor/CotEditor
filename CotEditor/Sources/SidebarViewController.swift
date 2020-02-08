@@ -125,10 +125,10 @@ final class SidebarViewController: NSTabViewController {
         didSet {
             guard selectedTabViewItemIndex != oldValue else { return }
             
-            self.delegate?.tabViewController(self, didSelect: self.selectedTabViewItemIndex)
+            self.delegate?.tabViewController(self, didSelect: selectedTabViewItemIndex)
             
             if self.isViewLoaded {  // avoid storing initial state (set in the storyboard)
-                UserDefaults.standard[.selectedInspectorPaneIndex] = self.selectedTabViewItemIndex
+                UserDefaults.standard[.selectedInspectorPaneIndex] = selectedTabViewItemIndex
             }
         }
     }

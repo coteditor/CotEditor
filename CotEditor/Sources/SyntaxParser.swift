@@ -65,7 +65,7 @@ final class SyntaxParser {
         
         didSet {
             // inform about outline items update
-            DispatchQueue.main.async { [weak self, items = self.outlineItems] in
+            DispatchQueue.main.async { [weak self, items = outlineItems] in
                 guard let self = self else { return assertionFailure() }
                 
                 self.delegate?.syntaxParser(self, didParseOutline: items)

@@ -131,9 +131,9 @@ final class LineNumberView: NSView {
     @IBOutlet private weak var textView: NSTextView? {
         
         didSet {
-            if let textView = self.textView {
-                self.observeTextView(textView)
-            }
+            guard let textView = textView else { return }
+            
+            self.observeTextView(textView)
         }
     }
     

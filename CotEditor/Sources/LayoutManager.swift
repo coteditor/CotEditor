@@ -50,7 +50,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't support
         //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
-            guard let textFont = self.textFont else { return }
+            guard let textFont = textFont else { return }
             
             // cache metric values to fix line height
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)

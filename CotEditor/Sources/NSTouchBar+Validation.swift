@@ -84,9 +84,9 @@ private final class TouchBarValidator {
     var isEnabled: Bool = false {
         
         didSet {
-            guard self.isEnabled != oldValue else { return }
+            guard isEnabled != oldValue else { return }
             
-            if self.isEnabled {
+            if isEnabled {
                 NotificationCenter.default.addObserver(self, selector: #selector(applicationDidUpdate(_:)), name: NSApplication.didUpdateNotification, object: nil)
             } else {
                 NotificationCenter.default.removeObserver(self, name: NSApplication.didUpdateNotification, object: nil)

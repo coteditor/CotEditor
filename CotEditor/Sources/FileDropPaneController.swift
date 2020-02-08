@@ -37,7 +37,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         didSet {
             // set tokenizer for format text view
-            self.formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
+            formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
         }
     }
     

@@ -68,7 +68,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     @objc dynamic var findString = "" {
         
         didSet {
-            NSPasteboard.findString = self.findString
+            NSPasteboard.findString = findString
         }
     }
     @objc dynamic var replacementString = ""
