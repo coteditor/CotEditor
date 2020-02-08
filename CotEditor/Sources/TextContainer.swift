@@ -31,12 +31,13 @@ final class TextContainer: NSTextContainer {
     
     var isHangingIndentEnabled = false  { didSet { self.invalidateLayout() } }
     var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
+    var indentAttributes: [NSAttributedString.Key: Any] = [:] { didSet { self.indentWidthCache = [:] } }
     
     
     // MARK: Private Properties
     
     private var lastLineStartIndex = 0
-    private var indentWidthCache: [NSAttributedString: CGFloat] = [:]
+    private var indentWidthCache: [String: CGFloat] = [:]
     
     
     
@@ -78,14 +79,15 @@ final class TextContainer: NSTextContainer {
                "Wrong line start index estimation at \(characterIndex).")
         
         // get base indent
-        let indentRange = string.rangeOfIndent(from: self.lastLineStartIndex, limitedBy: characterIndex)
+        let indentString = string.indentString(from: self.lastLineStartIndex, limitedBy: characterIndex)
         let baseIndent: CGFloat
-        if !indentRange.isEmpty {
-            let attrIndent = storage.attributedSubstring(from: indentRange)
-            baseIndent = self.indentWidthCache[attrIndent] ?? attrIndent.size().width
-            self.indentWidthCache[attrIndent] = baseIndent
-        } else {
+        if indentString.isEmpty {
             baseIndent = 0
+        } else if let cache = self.indentWidthCache[indentString] {
+            baseIndent = cache
+        } else {
+            baseIndent = (indentString as NSString).size(withAttributes: self.indentAttributes).width
+            self.indentWidthCache[indentString] = baseIndent
         }
         
         // calculate hanging indent
@@ -119,27 +121,30 @@ final class TextContainer: NSTextContainer {
 
 private extension NSString {
     
-    /// The fast way to find the range of indent charaters at the beginning of the given range.
+    /// The fast way to find the indent charaters at the beginning of the given range.
     ///
     /// - Parameters:
-    ///   - startIndex: The character index where start the indent search.
+    ///   - startIndex: The character index where the indent search startss.
     ///   - limitIndex: The upper threshold to find indent.
-    /// - Returns: The range of indent charaters at the beginning of the given range.
-    func rangeOfIndent(from startIndex: Int, limitedBy limitIndex: Int? = nil) -> NSRange {
+    /// - Returns: The indent part of the string at the beginning of the given range.
+    func indentString(from startIndex: Int, limitedBy limitIndex: Int? = nil) -> String {
         
         assert(self.lineStartIndex(at: startIndex) == startIndex)
         
         let limitIndex = limitIndex ?? self.length
+        var characters: [unichar] = []
         
         for index in startIndex..<limitIndex {
-            switch self.character(at: index) {
+            let character = self.character(at: index)
+            
+            switch character {
             case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
-                continue
+                characters.append(character)
             default:
-                return NSRange(startIndex..<index)
+                return String(utf16CodeUnits: characters, count: characters.count)
             }
         }
         
-        return NSRange(startIndex..<startIndex)
+        return ""
     }
 }

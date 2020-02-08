@@ -1211,6 +1211,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         assert(Thread.isMainThread)
         
+        (self.textContainer as? TextContainer)?.indentAttributes = self.typingAttributes
+        
         guard let textStorage = self.textStorage else { return assertionFailure() }
         guard textStorage.length > 0 else { return }
         
