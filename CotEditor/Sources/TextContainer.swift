@@ -31,18 +31,39 @@ final class TextContainer: NSTextContainer {
     
     var isHangingIndentEnabled = false  { didSet { self.invalidateLayout() } }
     var hangingIndentWidth = 0  { didSet { self.invalidateLayout() } }
-    var indentAttributes: [NSAttributedString.Key: Any] = [:] { didSet { self.indentWidthCache = [:] } }
     
     
     // MARK: Private Properties
     
     private var lastLineStartIndex = 0
     private var indentWidthCache: [String: CGFloat] = [:]
+    private var indentAttributes: [NSAttributedString.Key: Any] = [:]
+    private var typingAttributesObserver: NSKeyValueObservation?
     
     
     
     // MARK: -
     // MARK: Text Container Methods
+    
+    deinit {
+        self.typingAttributesObserver?.invalidate()
+    }
+    
+    
+    override weak var textView: NSTextView? {
+        
+        willSet {
+            self.typingAttributesObserver?.invalidate()
+        }
+        
+        didSet {
+            self.typingAttributesObserver = textView?.observe(\.typingAttributes, options: [.initial, .new]) { [weak self] (_, change) in
+                self?.indentAttributes = change.newValue ?? [:]
+                self?.indentWidthCache.removeAll()
+            }
+        }
+    }
+    
     
     override var isSimpleRectangularTextContainer: Bool {
         
