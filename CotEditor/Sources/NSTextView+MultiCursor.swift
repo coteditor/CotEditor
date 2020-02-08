@@ -320,7 +320,7 @@ extension MultiCursorEditing {
         guard
             !(affinity == .downstream && effectiveGlyphRange.lowerBound == 0),
             !(affinity == .upstream && (
-                (layoutManager.extraLineFragmentTextContainer == nil && effectiveGlyphRange.upperBound == layoutManager.numberOfGlyphs) ||
+                (layoutManager.extraLineFragmentTextContainer == nil && !layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound)) ||
                 (layoutManager.extraLineFragmentTextContainer != nil && insertionRanges.last?.lowerBound == self.string.length)))
             else { return }
         
@@ -340,8 +340,9 @@ extension MultiCursorEditing {
         
         // get base selection rects in the origin line
         let baseIndex = (affinity == .downstream) ? glyphRanges.last!.lowerBound : glyphRanges.first!.upperBound
+        let safeBaseIndex = layoutManager.isValidGlyphIndex(baseIndex) ? baseIndex : baseIndex - 1
         var baseLineRange: NSRange = .notFound
-        layoutManager.lineFragmentRect(forGlyphAt: min(baseIndex, layoutManager.numberOfGlyphs - 1), effectiveRange: &baseLineRange, withoutAdditionalLayout: true)
+        layoutManager.lineFragmentRect(forGlyphAt: safeBaseIndex, effectiveRange: &baseLineRange, withoutAdditionalLayout: true)
         let rowBounds = glyphRanges
             .filter { baseLineRange.touches($0) }
             .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
@@ -539,10 +540,7 @@ private extension NSLayoutManager {
                 effectiveRange.formUnion(glyphRange)
                 
             } else {
-                // clamp the bound with `numberOfGlyphs - 1`
-                // -> Because passing `numberOfGlyphs` to `lineFragmentUsedRect(forGlyphAt:effectiveRange:)` is invalid
-                //    and causes the warning: `_NSLayoutTreeLineFragmentUsedRectForGlyphAtIndex`. (2019-02)
-                let safeGlyphIndex = min(glyphRange.location, self.numberOfGlyphs - 1)
+                let safeGlyphIndex = self.isValidGlyphIndex(glyphRange.location) ? glyphRange.location : glyphRange.location - 1
                 
                 var effectiveLineRange: NSRange = .notFound
                 let usedRect = self.lineFragmentUsedRect(forGlyphAt: safeGlyphIndex, effectiveRange: &effectiveLineRange, withoutAdditionalLayout: true)
