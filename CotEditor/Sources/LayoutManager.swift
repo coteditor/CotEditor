@@ -32,16 +32,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
     // MARK: Public Properties
     
     var ignoresDisplayValidation = false
-    
-    var showsInvisibles = false {
-        
-        didSet {
-            guard showsInvisibles != oldValue else { return }
-            
-            self.invalidateInvisibleDisplay(includingControls: self.showsOtherInvisibles)
-        }
-    }
-    
     var usesAntialias = true
     
     var textFont: NSFont? {
@@ -61,6 +51,15 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
             
             self.invisibleLines = self.generateInvisibleLines()
             self.replacementGlyphWidth = self.invisibleLines.otherControl.bounds().width
+        }
+    }
+    
+    var showsInvisibles = false {
+        
+        didSet {
+            guard showsInvisibles != oldValue else { return }
+            
+            self.invalidateInvisibleDisplay(includingControls: self.showsOtherInvisibles)
         }
     }
     
