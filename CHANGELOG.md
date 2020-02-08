@@ -17,6 +17,7 @@ Change Log
 - Fix an issue where default theme change in the preferences was not applied to opened documents under specific conditions.
 - Fix an issue where unescaping replacement string in the regular expression replacement failed with specific text patterns.
 - Fix an issue where the editor's line height and tab width in the opened windows did not update even the setting is changed.
+- Fix an issue where the application crashed when moving lines down under specific conditions.
 - Fix an issue in scripting where settings some properties, such as `tab width`, `tab expands` and `wrap lines`, in the document creation phase were ignored.
 - Improve stability.
 

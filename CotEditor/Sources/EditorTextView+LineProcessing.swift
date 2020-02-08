@@ -205,7 +205,7 @@ private extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Up if one of the selections is already in the first line
-        guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else { return nil }
+        guard !lineRanges.isEmpty, lineRanges.first?.lowerBound != 0 else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()
@@ -252,7 +252,7 @@ private extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.nsRange.upperBound else { return nil }
+        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.length else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()
@@ -260,7 +260,7 @@ private extension String {
         
         // swap lines
         for lineRange in lineRanges.reversed() {
-            var lowerLineRange = string.lineRange(at: lineRange.upperBound)
+            let lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
             
@@ -268,7 +268,6 @@ private extension String {
             if !lowerLineString.hasSuffix("\n") {
                 lineString = lineString.trimmingCharacters(in: .newlines)
                 lowerLineString += "\n"
-                lowerLineRange.length += 1
             }
             
             // swap
