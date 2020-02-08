@@ -57,8 +57,7 @@ final class Typesetter: NSATSTypesetter {
             let manager = self.layoutManager as? LayoutManager,
             manager.showsOtherInvisibles,
             manager.showsInvisibles,
-            let character = (self.attributedString?.string as NSString?)?.character(at: charIndex),
-            let unicode = Unicode.Scalar(character),
+            let unicode = Unicode.Scalar((manager.attributedString().string as NSString).character(at: charIndex)),
             unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
         {
             return .whitespaceAction  // -> Then, the glyph width can be modified on `boundingBox(forControlGlyphAt:...)`.
