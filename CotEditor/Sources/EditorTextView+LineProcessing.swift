@@ -202,10 +202,10 @@ private extension String {
     func moveLineUp(in ranges: [NSRange]) -> EditingInfo? {
         
         // get line ranges to process
-        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        let lineRanges = (self as NSString).lineRanges(for: ranges, includingLastEmptyLine: true)
         
         // cannot perform Move Line Up if one of the selections is already in the first line
-        guard !lineRanges.isEmpty, lineRanges.first?.lowerBound != 0 else { return nil }
+        guard !lineRanges.isEmpty, lineRanges.first!.lowerBound != 0 else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()
@@ -233,7 +233,7 @@ private extension String {
                 if let intersectionRange = selectedRange.intersection(editRange) {
                     selectedRanges.append(intersectionRange.shifted(offset: -upperLineRange.length))
                     
-                } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
+                } else if editRange.touches(selectedRange.location) {
                     selectedRanges.append(selectedRange.shifted(offset: -upperLineRange.length))
                 }
             }
@@ -252,7 +252,7 @@ private extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.length else { return nil }
+        guard !lineRanges.isEmpty, (lineRanges.last!.upperBound != self.length || self.last?.isNewline == true) else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()
@@ -278,9 +278,10 @@ private extension String {
             // move selected ranges in the line to move
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(intersectionRange.shifted(offset: lowerLineRange.length))
+                    let offset = lineString.hasSuffix("\n") ? lowerLineRange.length : lowerLineRange.length + 1
+                    selectedRanges.append(intersectionRange.shifted(offset: offset))
                     
-                } else if editRange.contains(selectedRange.location) {
+                } else if editRange.touches(selectedRange.location) {
                     selectedRanges.append(selectedRange.shifted(offset: lowerLineRange.length))
                 }
             }
