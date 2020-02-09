@@ -967,20 +967,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // scroll line by line if an arrow key is pressed
         // -> Perform only when the scroll target is near by the visible area.
-        //    Otherwise with the noncontiguous layout:
-        //    - Scroll jumps when the cursor is initially in the end part of document.
-        //    - Scroll doesn't reach to the bottom with command+down arrow.
-        //    (2018-12 macOS 10.14)
-        if NSEvent.modifierFlags.contains(.numericPad),
-            let rect = self.boundingRect(for: range),
-            let lineHeight = self.enclosingScrollView?.lineScroll,
-            self.visibleRect.insetBy(dx: -lineHeight, dy: -lineHeight).intersects(rect)
-        {
-            super.scrollToVisible(rect)  // move minimum distance
-            return
-        }
+        //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
+        //    in the noncontiguous layout mode. (2018-12 macOS 10.14)
+        guard NSEvent.modifierFlags.contains(.numericPad),
+            range.lowerBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
+            let rect = self.boundingRect(for: range)
+            else { return super.scrollRangeToVisible(range) }
         
-        super.scrollRangeToVisible(range)
+        super.scrollToVisible(rect)  // move minimum distance
     }
     
     
