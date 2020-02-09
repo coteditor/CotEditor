@@ -266,6 +266,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
+        // do nothing if already no textView exists
+        guard editorStates.isEmpty else { return }
+        
         // apply to UI
         self.applyContentToWindow()
         
@@ -691,10 +694,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
-        let option = UserDefaults.standard[.documentConflictOption]
-        
         guard
-            option != .ignore,
+            UserDefaults.standard[.documentConflictOption] != .ignore,
             !self.isExternalUpdateAlertShown,  // don't check twice if already notified
             let fileURL = self.fileURL
             else { return }
@@ -728,7 +729,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // notify about external file update
         DispatchQueue.main.async { [weak self] in
-            switch option {
+            switch UserDefaults.standard[.documentConflictOption] {
             case .ignore:
                 assertionFailure()
             case .notify:
