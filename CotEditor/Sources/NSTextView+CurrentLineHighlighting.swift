@@ -111,8 +111,9 @@ private extension NSLayoutManager {
             else { return self.extraLineFragmentRect }
         
         let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        let safeLowerIndex = self.isValidGlyphIndex(glyphRange.lowerBound) ? glyphRange.lowerBound : glyphRange.lowerBound - 1
         var effectiveRange: NSRange = .notFound
-        let lowerRect = self.lineFragmentRect(forGlyphAt: glyphRange.lowerBound, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+        let lowerRect = self.lineFragmentRect(forGlyphAt: safeLowerIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
         
         guard !effectiveRange.contains(glyphRange.upperBound) else { return lowerRect }
         
