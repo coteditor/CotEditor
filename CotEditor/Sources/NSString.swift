@@ -307,7 +307,7 @@ extension unichar {
     
     /// A Boolean value indicating whether this character represents a newline.
     ///
-    /// cf. https://developer.apple.com/documentation/swift/character/3127014-isnewline
+    /// cf. <https://developer.apple.com/documentation/swift/character/3127014-isnewline>
     var isNewline: Bool {
         
         switch self {

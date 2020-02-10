@@ -30,6 +30,8 @@ import XCTest
 final class StringExtensionsTests: XCTestCase {
     
     /// Test if the U+FEFF omitting bug on Swift 5 still exists.
+    ///
+    /// cf. <https://bugs.swift.org/browse/SR-10896>
     func testFEFF() {
         
         let bom = "\u{feff}"

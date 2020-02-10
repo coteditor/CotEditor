@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -108,6 +108,8 @@ extension String.Encoding {
 extension String {
     
     /// decode data and remove UTF-8 BOM if exists
+    ///
+    /// cf. <https://bugs.swift.org/browse/SR-10173>
     init?(bomCapableData data: Data, encoding: String.Encoding) {
         
         let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: UTF8.bom))
