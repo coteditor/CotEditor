@@ -54,24 +54,24 @@ extension Sequence where Element == String {
 
 extension Collection where Element == String {
     
-    /// Create a name adding a number suffix not to be contained in the receiver.
+    /// Create a unique name from the receiver's elements by adding the suffix and also a number if needed.
     ///
     /// - Parameters:
     ///   - proposedName: The name candidate.
-    ///   - suffix: The suffix string being appended before the number.
-    /// - Returns: The created name.
+    ///   - suffix: The name suffix to be appended before the number.
+    /// - Returns: An unique name.
     func createAvailableName(for proposedName: String, suffix: String? = nil) -> String {
         
         let spaceSuffix = suffix.flatMap { " " + $0 } ?? ""
         
         let (rootName, baseCount): (String, Int?) = {
             let suffixPattern = NSRegularExpression.escapedPattern(for: spaceSuffix)
-            let regex = try! NSRegularExpression(pattern: suffixPattern + "( ([0-9]+))?$")
+            let regex = try! NSRegularExpression(pattern: suffixPattern + "(?: ([0-9]+))?$")
             
             guard let result = regex.firstMatch(in: proposedName, range: proposedName.nsRange) else { return (proposedName, nil) }
             
             let root = (proposedName as NSString).substring(to: result.range.location)
-            let numberRange = result.range(at: 2)
+            let numberRange = result.range(at: 1)
             
             guard numberRange != .notFound else { return (root, nil) }
             
