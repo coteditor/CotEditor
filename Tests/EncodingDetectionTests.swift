@@ -51,7 +51,7 @@ final class EncodingDetectionTests: XCTestCase {
         let string = try self.encodedStringForFileName("UTF-8 BOM", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, String.Encoding.utf8)
+        XCTAssertEqual(encoding, .utf8)
     }
     
     
@@ -61,7 +61,7 @@ final class EncodingDetectionTests: XCTestCase {
         let string = try self.encodedStringForFileName("UTF-16", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, String.Encoding.utf16)
+        XCTAssertEqual(encoding, .utf16)
     }
     
     
@@ -71,7 +71,7 @@ final class EncodingDetectionTests: XCTestCase {
         let string = try self.encodedStringForFileName("UTF-32", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, String.Encoding.utf32)
+        XCTAssertEqual(encoding, .utf32)
     }
 
     
@@ -81,7 +81,7 @@ final class EncodingDetectionTests: XCTestCase {
         let string = try self.encodedStringForFileName("ISO 2022-JP", usedEncoding: &encoding)
         
         XCTAssertEqual(string, "dog犬")
-        XCTAssertEqual(encoding, String.Encoding.iso2022JP)
+        XCTAssertEqual(encoding, .iso2022JP)
     }
     
     
@@ -112,7 +112,7 @@ final class EncodingDetectionTests: XCTestCase {
         let string = try String(data: data, suggestedCFEncodings: [invalidInt, utf8Int], usedEncoding: &encoding)
         
         XCTAssertEqual(string, "0")
-        XCTAssertEqual(encoding, String.Encoding.utf8)
+        XCTAssertEqual(encoding, .utf8)
     }
     
     
@@ -169,36 +169,36 @@ final class EncodingDetectionTests: XCTestCase {
         
         XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128,
                                                                            suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
-                       String.Encoding.utf8)
+                       .utf8)
     }
     
     
     func testEncodingInitialization() {
         
-        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.dosJapanese), String.Encoding.shiftJIS)
-        XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), String.Encoding.shiftJIS)
-        XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213), String.Encoding.shiftJIS)
+        XCTAssertEqual(String.Encoding(cfEncodings: CFStringEncodings.dosJapanese), .shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS), .shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213), .shiftJIS)
         
-        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)), String.Encoding.shiftJIS)
-        XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), String.Encoding.shiftJIS)
-        XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)), String.Encoding.shiftJIS)
+        XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)), .shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), .shiftJIS)
+        XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)), .shiftJIS)
     }
     
     
     func testXattrEncoding() {
         
-        let utf8Data = "utf-8;134217984".data(using: String.Encoding.utf8)
+        let utf8Data = "utf-8;134217984".data(using: .utf8)
         
         XCTAssertEqual(String.Encoding.utf8.xattrEncodingData, utf8Data)
-        XCTAssertEqual(utf8Data?.decodingXattrEncoding, String.Encoding.utf8)
-        XCTAssertEqual("utf-8".data(using: String.Encoding.utf8)?.decodingXattrEncoding, String.Encoding.utf8)
+        XCTAssertEqual(utf8Data?.decodingXattrEncoding, .utf8)
+        XCTAssertEqual("utf-8".data(using: .utf8)?.decodingXattrEncoding, .utf8)
         
         
-        let eucJPData = "euc-jp;2336".data(using: String.Encoding.utf8)
+        let eucJPData = "euc-jp;2336".data(using: .utf8)
         
         XCTAssertEqual(String.Encoding.japaneseEUC.xattrEncodingData, eucJPData)
-        XCTAssertEqual(eucJPData?.decodingXattrEncoding, String.Encoding.japaneseEUC)
-        XCTAssertEqual("euc-jp".data(using: String.Encoding.utf8)?.decodingXattrEncoding, String.Encoding.japaneseEUC)
+        XCTAssertEqual(eucJPData?.decodingXattrEncoding, .japaneseEUC)
+        XCTAssertEqual("euc-jp".data(using: .utf8)?.decodingXattrEncoding, .japaneseEUC)
     }
     
     
