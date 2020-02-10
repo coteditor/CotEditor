@@ -49,7 +49,7 @@ extension MultiCursorEditing {
     var insertionRanges: [NSRange] {
         
         let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
-        return ((self.selectedRanges as! [NSRange]) + insertionRanges).sorted { $0.location < $1.location }
+        return ((self.selectedRanges as! [NSRange]) + insertionRanges).sorted(\.location)
     }
     
     
@@ -173,7 +173,7 @@ extension MultiCursorEditing {
         
         guard !ranges.isEmpty else { return nil }
         
-        let ranges = ranges.unique.sorted { $0.location < $1.location }
+        let ranges = ranges.unique.sorted(\.location)
         let selectionSet = ranges
             .map { Range<Int>($0)! }
             .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }

@@ -73,4 +73,18 @@ final class CollectionTests: XCTestCase {
         XCTAssertEqual(mapped, ["10": 1, "20": 2, "30": 3])
     }
     
+    
+    func testSorting() {
+        
+        for _ in (0..<10) {
+            var array: [Int] = (0..<10).map { _ in .random(in: 0..<100) }
+            let sorted = array.sorted { $0 < $1 }
+            
+            XCTAssertEqual(array.sorted(), sorted)
+            
+            array.sort()
+            XCTAssertEqual(array, sorted)
+        }
+    }
+    
 }
