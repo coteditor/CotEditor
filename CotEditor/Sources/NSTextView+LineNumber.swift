@@ -49,8 +49,8 @@ extension NSTextView {
             let textContainer = self.textContainer
             else { return assertionFailure() }
         
-        let selectedLineRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
-            .map { (self.string as NSString).lineRange(for: $0.rangeValue) }
+        let string = self.string as NSString
+        let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
         
         // get glyph range of which line number should be drawn
         // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
@@ -59,15 +59,15 @@ extension NSTextView {
         
         // count up lines until the interested area
         let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
-        var lineNumber = (self.string as NSString).lineNumber(at: firstIndex)
+        var lineNumber = string.lineNumber(at: firstIndex)
         
         // enumerate visible line numbers
         var glyphIndex = glyphRangeToDraw.location
         while glyphIndex < glyphRangeToDraw.upperBound {  // process logical lines
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = self.string.lineRange(at: characterIndex)
+            let lineRange = string.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            let isSelected = selectedLineRanges.contains { $0.intersection(lineRange) != nil }
+            let isSelected = selectedRanges.contains { $0.intersection(lineRange) != nil }
             glyphIndex = lineGlyphRange.upperBound
             
             var wrappedLineGlyphIndex = max(lineGlyphRange.location, glyphRangeToDraw.lowerBound)
@@ -92,10 +92,8 @@ extension NSTextView {
             (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
             else { return }
         
-        let lastLineNumber = (lineNumber > 1)
-            ? lineNumber
-            : (self.string as NSString).lineNumber(at: self.string.length)
-        let isSelected = (selectedLineRanges.last?.location == (self.string as NSString).length)
+        let lastLineNumber = (lineNumber > 1) ? lineNumber : string.lineNumber(at: string.length)
+        let isSelected = (selectedRanges.last?.location == string.length)
         
         body(.new(lastLineNumber, isSelected), extraLineRect)
     }
