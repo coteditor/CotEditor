@@ -27,11 +27,19 @@
 import Cocoa
 import CoreText
 
-final class LayoutManager: NSLayoutManager, ValidationIgnorable {
+final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCacheable {
+    
+    // MARK: Protocol Properties
+    
+    var ignoresDisplayValidation = false
+    
+    var string: String  { self.attributedString().string }
+    var lineStartIndexes = IndexSet()
+    var firstLineUncoundedIndex = 0
+    
     
     // MARK: Public Properties
     
-    var ignoresDisplayValidation = false
     var usesAntialias = true
     
     var textFont: NSFont? {
@@ -286,6 +294,16 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable {
         if self.ignoresDisplayValidation { return }
         
         super.invalidateDisplay(forCharacterRange: charRange)
+    }
+    
+    
+    override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
+        
+        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
+        
+        if editMask.contains(.editedCharacters) {
+            self.invalidateLineNumbers(from: invalidatedCharRange.location)
+        }
     }
     
     

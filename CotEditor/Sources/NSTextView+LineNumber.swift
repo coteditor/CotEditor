@@ -34,6 +34,30 @@ extension NSTextView {
     }
     
     
+    /// The 1-based line number at the given character index.
+    ///
+    /// This method has a performance advantage if the receiver's layoutManager confroms LineRangeCacheable.
+    ///
+    /// - Parameter location: NSRange-based character index.
+    /// - Returns: The number of lines (1-based).
+    func lineNumber(at location: Int) -> Int {
+        
+        return (self.layoutManager as? LineRangeCacheable)?.lineNumber(at: location) ?? (self.string as NSString).lineNumber(at: location)
+    }
+    
+    
+    /// The 1-based line number at the given character index.
+    ///
+    /// This method has a performance advantage if the receiver's layoutManager confroms LineRangeCacheable.
+    ///
+    /// - Parameter location: NSRange-based character index.
+    /// - Returns: The number of lines (1-based).
+    func lineRange(at location: Int) -> NSRange {
+        
+        return (self.layoutManager as? LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
+    }
+    
+    
     /// enumerate line fragments in area with line numbers
     ///
     /// - Parameters:
@@ -59,13 +83,13 @@ extension NSTextView {
         
         // count up lines until the interested area
         let firstIndex = layoutManager.characterIndexForGlyph(at: glyphRangeToDraw.location)
-        var lineNumber = string.lineNumber(at: firstIndex)
+        var lineNumber = self.lineNumber(at: firstIndex)
         
         // enumerate visible line numbers
         var glyphIndex = glyphRangeToDraw.location
         while glyphIndex < glyphRangeToDraw.upperBound {  // process logical lines
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
-            let lineRange = string.lineRange(at: characterIndex)
+            let lineRange = self.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
             let isSelected = selectedRanges.contains { $0.intersection(lineRange) != nil }
             glyphIndex = lineGlyphRange.upperBound
@@ -92,7 +116,7 @@ extension NSTextView {
             (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
             else { return }
         
-        let lastLineNumber = (lineNumber > 1) ? lineNumber : string.lineNumber(at: string.length)
+        let lastLineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
         let isSelected = (selectedRanges.last?.location == string.length)
         
         body(.new(lastLineNumber, isSelected), extraLineRect)
