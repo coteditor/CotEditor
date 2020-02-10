@@ -305,7 +305,7 @@ private extension String {
         let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
-            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+            .localizedCaseInsensitiveSorted()
             .joined(separator: "\n")
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
