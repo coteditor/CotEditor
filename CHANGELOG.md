@@ -36,7 +36,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue on CotEditor 3.8.8 where the application could rarely immediately after opening a document window under some very specific conditions.
+- Fix an issue on CotEditor 3.8.8 where the application could rarely crash immediately after opening a document window under some very specific conditions.
 - Fix an issue where the progress indicator for the outline menu in the navigation bar could rarely remain.
 
 
