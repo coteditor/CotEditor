@@ -344,7 +344,7 @@ extension MultiCursorEditing {
         var baseLineRange: NSRange = .notFound
         layoutManager.lineFragmentRect(forGlyphAt: safeBaseIndex, effectiveRange: &baseLineRange, withoutAdditionalLayout: true)
         let rowBounds = glyphRanges
-            .filter { baseLineRange.touches($0) }
+            .filter { baseLineRange.intersection($0) != nil }
             .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
         
         let newRanges = (lineFragmentUsedRects + [newLineRect])

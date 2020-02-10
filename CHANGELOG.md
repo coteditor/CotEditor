@@ -15,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”
+- Fix an issue where insertion points multiplied too many when adding them with `^⇧↑` or `^⇧↓` shortcut under specific conditions.
 - Fix an issue where default theme change in the preferences was not applied to opened documents under specific conditions.
 - Fix an issue where unescaping replacement string in the regular expression replacement failed with specific text patterns.
 - Fix an issue where the editor's line height and tab width in the opened windows did not update even the setting is changed.
