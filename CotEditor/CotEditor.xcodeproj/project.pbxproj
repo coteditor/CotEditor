@@ -1980,8 +1980,9 @@
 				2AFE848522AE71130001C4ED /* TextContainer.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */,
-				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
 				2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */,
+				2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */,
+				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -2299,7 +2300,6 @@
 				2AA45A4A1D2E871900A1A401 /* EditorViewController.swift */,
 				2AA45A501D2E938500A1A401 /* NavigationBarController.swift */,
 				2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */,
-				2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */,
 			);
 			name = "Editor Controller";
 			sourceTree = "<group>";
