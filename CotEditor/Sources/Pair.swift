@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -115,12 +115,14 @@ extension StringProtocol where Self.Index == String.Index {
         
         guard beginIndex < endIndex else { return nil }
         
+        var index = endIndex
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[workaround: beginIndex..<endIndex]
         
-        for (index, character) in zip(subsequence.indices, subsequence).reversed() {
-            switch character {
+        while index > beginIndex {
+            index = self.index(before: index)
+            
+            switch self[index] {
             case pair.begin where ignoredNestDepth == 0:
                 guard !self.isCharacterEscaped(at: index) else { continue }
                 if nestDepth == 0 { return index }  // found
@@ -160,16 +162,21 @@ extension StringProtocol where Self.Index == String.Index {
         
         assert(beginIndex >= self.startIndex)
         
-        let endIndex = endIndex ?? self.endIndex
+        // avoid (endIndex == self.startIndex)
+        guard !self.isEmpty, endIndex.flatMap({ $0 > self.startIndex }) != false else { return nil }
+        
+        let endIndex = self.index(before: endIndex ?? self.endIndex)
         
         guard beginIndex < endIndex else { return nil }
         
+        var index = beginIndex
         var nestDepth = 0
         var ignoredNestDepth = 0
-        let subsequence = self[workaround: self.index(after: beginIndex)..<endIndex]
         
-        for (index, character) in zip(subsequence.indices, subsequence) {
-            switch character {
+        while index < endIndex {
+            index = self.index(after: index)
+            
+            switch self[index] {
             case pair.end where ignoredNestDepth == 0:
                 guard !self.isCharacterEscaped(at: index) else { continue }
                 if nestDepth == 0 { return index }  // found
