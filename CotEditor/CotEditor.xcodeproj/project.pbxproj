@@ -69,6 +69,9 @@
 		2A10D1391E715E5B0027192A /* FormatPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1361E715E5B0027192A /* FormatPane.storyboard */; };
 		2A10D1481E7477D30027192A /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* StyledButton.swift */; };
 		2A10D1491E7477D30027192A /* StyledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10D1471E7477D30027192A /* StyledButton.swift */; };
+		2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */; };
+		2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
+		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* UTF32Char+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */; };
@@ -913,6 +916,8 @@
 		2A10D13C1E71B63C0027192A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/FormatPane.strings; sourceTree = "<group>"; };
 		2A10D13D1E71B63D0027192A /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/FormatPane.strings; sourceTree = "<group>"; };
 		2A10D1471E7477D30027192A /* StyledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
+		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
+		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTF32Char+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
@@ -1976,6 +1981,7 @@
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
 				2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
+				2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */,
 			);
 			name = "Text View";
 			sourceTree = "<group>";
@@ -2248,6 +2254,7 @@
 				2A64A2352387754000646BE4 /* UserDefaultsObservationTests.swift */,
 				2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */,
 				2ABEFB6923DC0CA0008769F4 /* EditorInfoCountOperationTests.swift */,
+				2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -3004,6 +3011,7 @@
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
 				2AA86283212ED91400BB75C9 /* NSSplitView+Autosave.swift in Sources */,
 				2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */,
+				2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
 				2A33D0881D1C9148005977B9 /* SyntaxDictionary.swift in Sources */,
 				2A2792991D1E57DA00F3FC5D /* FormatPaneController.swift in Sources */,
 				2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */,
@@ -3078,6 +3086,7 @@
 				2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */,
 				2AC71DE21BF0BDBC002E1434 /* StringExtensionsTests.swift in Sources */,
 				2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */,
+				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FormattersTests.swift in Sources */,
 				2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */,
 				2ABEFB6A23DC0CA0008769F4 /* EditorInfoCountOperationTests.swift in Sources */,
@@ -3191,6 +3200,7 @@
 				2A887A9020FA1D19002BFA34 /* String+Localization.swift in Sources */,
 				2A44321C219AC1F8008A0A6B /* PreferencesTabViewController.swift in Sources */,
 				2A18560B1D47FA37008FA79E /* TextFinder.swift in Sources */,
+				2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */,
 				2ACC21B51E52B8C50078241F /* DefaultKeys.swift in Sources */,
 				2A71BC7E1DDC70A80085AE1C /* NSImage+Template.swift in Sources */,
 				2A36CE7C1FF654C000020702 /* NSTextView+Snippet.swift in Sources */,

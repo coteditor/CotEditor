@@ -409,7 +409,7 @@ final class LineNumberView: NSView {
             
             if self.orientation == .horizontal {
                 // -> Count only if really needed since the line counting is high workload, especially by large document.
-                self.numberOfLines = (textView.string as NSString).lineNumber(at: textView.string.length)
+                self.numberOfLines = textView.lineNumber(at: textView.string.length)
             }
             
             self.needsDisplay = true
@@ -577,11 +577,10 @@ extension LineNumberView {
         window.makeFirstResponder(textView)
         
         // select lines
-        let string = textView.string as NSString
         let currentIndex = textView.characterIndex(for: pointInScreen)
         let clickedIndex = draggingInfo.index
-        let currentLineRange = string.lineRange(at: currentIndex)
-        let clickedLineRange = string.lineRange(at: clickedIndex)
+        let currentLineRange = textView.lineRange(at: currentIndex)
+        let clickedLineRange = textView.lineRange(at: clickedIndex)
         var range = currentLineRange.union(clickedLineRange)
         
         let affinity: NSSelectionAffinity = (currentIndex < clickedIndex) ? .upstream : .downstream

@@ -35,7 +35,6 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Properties
     
-    private var lastLineStartIndex = 0
     private var indentWidthCache: [String: CGFloat] = [:]
     private var indentAttributes: [NSAttributedString.Key: Any] = [:]
     private var typingAttributesObserver: NSKeyValueObservation?
@@ -79,28 +78,17 @@ final class TextContainer: NSTextContainer {
         
         guard
             self.isHangingIndentEnabled,
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let storage = layoutManager.textStorage
+            let layoutManager = self.layoutManager as? LayoutManager
             else { return rect }
         
-        let string = storage.string as NSString
+        let lineStartIndex = layoutManager.lineStartIndex(at: characterIndex)
         
         // no hanging indent for new line
-        if characterIndex == 0 || string.character(at: characterIndex - 1).isNewline {
-            self.lastLineStartIndex = characterIndex
-            return rect
-        }
-        
-        // find line start index only really needed
-        if characterIndex < self.lastLineStartIndex {
-            self.lastLineStartIndex = string.lineStartIndex(at: characterIndex)
-        }
-        
-        assert(characterIndex > 10_000 || self.lastLineStartIndex == string.lineStartIndex(at: characterIndex),
-               "Wrong line start index estimation at \(characterIndex).")
+        guard characterIndex != lineStartIndex else { return rect }
         
         // get base indent
-        let indentString = string.indentString(from: self.lastLineStartIndex, limitedBy: characterIndex)
+        let string = layoutManager.attributedString().string as NSString
+        let indentString = string.indentString(from: lineStartIndex, limitedBy: characterIndex)
         let baseIndent: CGFloat
         if indentString.isEmpty {
             baseIndent = 0
