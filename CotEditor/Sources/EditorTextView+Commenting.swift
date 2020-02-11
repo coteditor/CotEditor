@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -138,7 +138,7 @@ extension Commenting {
         guard !items.isEmpty else { return }
         
         let newStrings = items.map { $0.string }
-        let replacementRanges = items.map { NSRange($0.location..<$0.location) }
+        let replacementRanges = items.map { NSRange(location: $0.location, length: 0) }
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
             .map { $0.rangeValue.inserted(items: items) }
         

@@ -577,7 +577,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
                 guard
                     !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(..<range.location))
+                    let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
                     else { return (range, "", 0) }
                 
                 var indent = (self.string as NSString).substring(with: autoIndentRange)
@@ -612,12 +612,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         for (range, indent, insertion) in indents {
             let location = range.lowerBound + 1 + offset  // +1 for new line character
             
-            super.insertText(indent, replacementRange: NSRange(location..<location))
+            super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
             
             offset += -range.length + 1 + indent.count
             locations.append(location + insertion)
         }
-        self.setSelectedRangesWithUndo(locations.map { NSRange($0..<$0) })
+        self.setSelectedRangesWithUndo(locations.map { NSRange(location: $0, length: 0) })
     }
     
     
@@ -664,7 +664,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // keep insertion points after cut
         let ranges = insertionRanges.enumerated()
             .map { insertionRanges[..<$0.offset].reduce(into: $0.element.location) { $0 -= $1.length } }
-            .map { NSRange($0..<$0) }
+            .map { NSRange(location: $0, length: 0) }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return }
         
@@ -1561,7 +1561,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
             else { return layoutManager.spaceWidth }
         
-        return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
+        return layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer).width
     }
     
     
@@ -1734,7 +1734,7 @@ extension EditorTextView {
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates
-        let searchRange = NSRange(..<range.upperBound)
+        let searchRange = NSRange(location: 0, length: range.upperBound)
         let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
         
         guard invalidRange != .notFound else { return range }
@@ -1939,7 +1939,7 @@ extension EditorTextView {
     /// word range that includes location
     func wordRange(at location: Int) -> NSRange {
         
-        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location..<location), granularity: .selectByWord)
+        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
         
         guard proposedWordRange.contains(location) else { return proposedWordRange }
         

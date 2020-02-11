@@ -62,6 +62,6 @@ struct Snippet {
             .reduce(string) { ($0 as NSString).replacingCharacters(in: $1, with: "") }
         self.selections = tokenRanges.enumerated()
             .map { $0.element.location - $0.offset * $0.element.length }
-            .map { NSRange($0..<$0) }
+            .map { NSRange(location: $0, length: 0) }
     }
 }

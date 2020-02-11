@@ -95,7 +95,7 @@ final class RegularExpressionFormatter: Formatter {
                 
                 let symbol = UserDefaults.standard.invisibleSymbol(for: invisible)
                 let attributedInvisible = NSAttributedString(string: symbol, attributes: attributes)
-                attributedString.replaceCharacters(in: NSRange(index...index), with: attributedInvisible)
+                attributedString.replaceCharacters(in: NSRange(location: index, length: 1), with: attributedInvisible)
             }
         }
         

@@ -204,7 +204,7 @@ extension MultiCursorEditing {
         if let clicked = ranges.first(where: { $0.touches(location) }) {
             ranges.removeFirst(clicked)
         } else {
-            ranges.append(NSRange(location..<location))
+            ranges.append(NSRange(location: location, length: 0))
         }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return false }
@@ -224,7 +224,7 @@ extension MultiCursorEditing {
     ///   - range: The range of each insertion.
     func moveCursors(affinity: NSSelectionAffinity, using block: (_ range: NSRange) -> Int) {
         
-        let ranges = self.insertionRanges.map(block).map { NSRange($0..<$0) }
+        let ranges = self.insertionRanges.map(block).map { NSRange(location: $0, length: 0) }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return assertionFailure() }
         
@@ -394,7 +394,7 @@ extension NSTextView {
             else { assertionFailure(); return .zero }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
             .offset(by: self.textContainerOrigin)
         let scale = self.scale
         let minX = floor(rect.minX * scale) / scale
@@ -415,7 +415,7 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
             .offset(by: self.textContainerOrigin)
         let point = NSPoint(x: rect.minX, y: rect.minY - 1)
         
@@ -435,7 +435,7 @@ extension NSTextView {
             else { assertionFailure(); return 0 }
         
         let glyphIndex = layoutManager.glyphIndexForCharacter(at: index)
-        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex..<glyphIndex), in: textContainer)
+        let rect = layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 0), in: textContainer)
             .offset(by: self.textContainerOrigin)
         let point = NSPoint(x: rect.minX, y: rect.maxY + 1)
         

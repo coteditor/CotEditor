@@ -147,7 +147,7 @@ extension StringProtocol where Self.Index == String.Index {
         
         let string = self.replacingLineEndings(with: currentLineEnding)
         let regex = try! NSRegularExpression(pattern: LineEnding.regexPattern)
-        let locationRange = NSRange(..<range.location)
+        let locationRange = NSRange(location: 0, length: range.location)
         
         let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
         let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)
