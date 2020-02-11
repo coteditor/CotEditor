@@ -73,6 +73,18 @@ extension LineRangeCacheable {
     }
     
     
+    func lineStartIndex(at index: Int) -> Int {
+        
+        assert(index <= self.string.length)
+        
+        if index >= self.firstLineUncoundedIndex {
+            self.parseLineNumber(upto: index)
+        }
+        
+        return self.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
+    }
+    
+    
     /// Invalidate line number cache.
     ///
     /// This method must be invoked every time when the string is updated.
