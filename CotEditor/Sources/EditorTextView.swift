@@ -101,7 +101,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
-    private var scrollObserver: NSObjectProtocol?
     private var resizeObserver: NSObjectProtocol?
     
     
@@ -257,9 +256,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         super.viewWillMove(toWindow: window)
         
         // remove observations before all observed objects are deallocated
-        if newWindow == nil {
-            self.removeNotificationObservers()
-        }
+        self.removeNotificationObservers()
     }
     
     
@@ -284,17 +281,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.didChangeWindowOpacity(to: window.isOpaque)
         }
         
-        if let scrollView = self.enclosingScrollView {
-            // observe scorolling to fix drawing area on non-opaque view
-            self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
-                if !self.drawsBackground {
-                    // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                }
-            }
-            
+        if let clipView = self.enclosingScrollView?.contentView {
             // observe resizing for overscroll amount update
-            self.resizeObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
+            self.resizeObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: clipView, queue: .main) { [unowned self] _ in
                 self.invalidateOverscrollRate()
             }
         } else {
@@ -309,6 +298,21 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         super.setFrameSize(newSize)
         
         self.needsUpdateLineHighlight = true
+    }
+    
+    
+    /// encrosing scroll view did scroll
+    override func adjustScroll(_ newVisible: NSRect) -> NSRect {
+        
+        let newVisible = super.adjustScroll(newVisible)
+
+        // fix drawing area on non-opaque view
+        if !self.drawsBackground {
+            // -> Needs display visible rect since the drawing area will be modified in draw(_ dirtyFrame:)
+            self.setNeedsDisplay(newVisible, avoidAdditionalLayout: true)
+        }
+        
+        return newVisible
     }
     
     
@@ -1339,13 +1343,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             NotificationCenter.default.removeObserver(observer)
             self.windowOpacityObserver = nil
-        }
-        
-        if let observer = self.scrollObserver {
-            assert(self.enclosingScrollView?.contentView != nil)
-            
-            NotificationCenter.default.removeObserver(observer)
-            self.scrollObserver = nil
         }
         
         if let observer = self.resizeObserver {
