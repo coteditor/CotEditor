@@ -46,7 +46,7 @@ extension NSTextView {
     }
     
     
-    /// enumerate line fragments in area with line numbers
+    /// Enumerate line fragments in area with line numbers.
     ///
     /// - Parameters:
     ///   - rect: The bounding rectangle for which to process lines.
