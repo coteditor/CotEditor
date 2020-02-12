@@ -299,11 +299,11 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
-        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
-        
         if editMask.contains(.editedCharacters) {
             self.invalidateLineRanges(from: invalidatedCharRange.location)
         }
+        
+        super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
     }
     
     
