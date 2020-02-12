@@ -86,6 +86,14 @@ final class LineRangeCacheableTests: XCTestCase {
     
     func testStringInvalidation() {
         
+        let lineString = LineString("\n🐶")
+        let lineNumber = lineString.lineNumber(at: 1)
+        let lineRange = lineString.lineRange(at: 1)
+        lineString.invalidateLineRanges(from: 1)
+        XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
+        XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
+        XCTAssertEqual(lineString.lineStartIndexes.count, 1)
+        
         for _ in (0..<10) {
             let lineString = LineString(String(" 🐶 \n 🐱 \n 🐮 \n".shuffled()))
             
@@ -93,7 +101,7 @@ final class LineRangeCacheableTests: XCTestCase {
                 let lineNumber = lineString.lineNumber(at: index)
                 let lineRange = lineString.lineRange(at: index)
                 
-                lineString.invalidateLineNumbers(from: Int.random(in: 0..<lineString.string.length))
+                lineString.invalidateLineRanges(from: Int.random(in: 0..<lineString.string.length))
                 
                 XCTAssertEqual(lineString.lineNumber(at: index), lineNumber, "At \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineRange(at: index), lineRange, "At \(index) with string \"\(lineString.string)\"")
@@ -103,6 +111,15 @@ final class LineRangeCacheableTests: XCTestCase {
 
     
     func testStringModification() {
+        
+        let string = "\n🐶"
+        let lineString = LineString(string)
+        _ = lineString.lineNumber(at: 1)
+        lineString.string.replaceSubrange(Range(NSRange(1..<3), in: string)!, with: "a\nb")
+        lineString.invalidateLineRanges(from: 1)
+        XCTAssertEqual(lineString.lineNumber(at: 1), 2)
+        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
+        XCTAssertEqual(lineString.lineStartIndexes.count, 2)
         
         for _ in (0..<10) {
             let string = String(" dog \n cat \n cow \n".shuffled())
@@ -116,7 +133,7 @@ final class LineRangeCacheableTests: XCTestCase {
             let replacement = String("ab\nc".shuffled())
             
             lineString.string.replaceSubrange(Range(range, in: string)!, with: replacement)
-            lineString.invalidateLineNumbers(from: range.location)
+            lineString.invalidateLineRanges(from: range.location)
 
             for index in (0..<lineString.string.length).shuffled() {
                 XCTAssertEqual(lineString.lineNumber(at: index), (lineString.string as NSString).lineNumber(at: index))

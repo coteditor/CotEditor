@@ -302,7 +302,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
         
         if editMask.contains(.editedCharacters) {
-            self.invalidateLineNumbers(from: invalidatedCharRange.location)
+            self.invalidateLineRanges(from: invalidatedCharRange.location)
         }
     }
     

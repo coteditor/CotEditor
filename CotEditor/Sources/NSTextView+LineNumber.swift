@@ -46,18 +46,6 @@ extension NSTextView {
     }
     
     
-    /// The 1-based line number at the given character index.
-    ///
-    /// This method has a performance advantage if the receiver's layoutManager confroms LineRangeCacheable.
-    ///
-    /// - Parameter location: NSRange-based character index.
-    /// - Returns: The number of lines (1-based).
-    func lineRange(at location: Int) -> NSRange {
-        
-        return (self.layoutManager as? LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
-    }
-    
-    
     /// enumerate line fragments in area with line numbers
     ///
     /// - Parameters:
@@ -120,6 +108,21 @@ extension NSTextView {
         let isSelected = (selectedRanges.last?.location == string.length)
         
         body(.new(lastLineNumber, isSelected), extraLineRect)
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// The 1-based line number at the given character index.
+    ///
+    /// This method has a performance advantage if the receiver's layoutManager confroms LineRangeCacheable.
+    ///
+    /// - Parameter location: NSRange-based character index.
+    /// - Returns: The number of lines (1-based).
+    private func lineRange(at location: Int) -> NSRange {
+        
+        return (self.layoutManager as? LineRangeCacheable)?.lineRange(at: location) ?? (self.string as NSString).lineRange(at: location)
     }
     
 }
