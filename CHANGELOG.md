@@ -23,6 +23,7 @@ Change Log
 - Fix an isue where the rainbow cursor could appear when finding the brace pair in the latter part of a large document.
 - Fix an issue where the application crashed when moving lines down under specific conditions.
 - Fix an issue where the “Sort by Pattern” with column sort key dropped the last character from the sort key string.
+- Fix an issue where the current line highlight remained when quickly moving selection by dragging.
 - Fix an issue in scripting where settings some properties, such as `tab width`, `tab expands` and `wrap lines`, in the document creation phase were ignored.
 - Improve stability.
 

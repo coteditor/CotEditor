@@ -95,7 +95,6 @@ extension CurrentLineHighlighting {
                       height: rect.height)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
             .offset(by: self.textContainerOrigin)
-            .integral
     }
     
 }
