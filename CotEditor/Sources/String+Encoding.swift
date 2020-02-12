@@ -26,7 +26,7 @@
 
 import Foundation
 
-private extension UTF8 {
+extension UTF8 {
     
     static let bom: [UInt8] = [0xEF, 0xBB, 0xBF]
 }
@@ -258,7 +258,6 @@ extension Data {
     /// decode `com.apple.TextEncoding` extended file attribute to encoding
     var decodingXattrEncoding: String.Encoding? {
         
-        // parse value
         guard let string = String(data: self, encoding: .utf8) else { return nil }
         
         let components = string.components(separatedBy: ";")
@@ -294,29 +293,6 @@ extension String.Encoding {
         let string = String(format: "%@;%u", ianaCharSetName as String, cfEncoding)
         
         return string.data(using: .utf8)
-    }
-    
-}
-
-
-
-// MARK: - UTF8
-
-extension Data {
-    
-    // MARK: Public Methods
-    
-    /// return Data by adding UTF-8 BOM
-    var addingUTF8BOM: Data {
-        
-        return Data(UTF8.bom) + self
-    }
-    
-    
-    /// check if data starts with UTF-8 BOM
-    var hasUTF8BOM: Bool {
-        
-        return self.starts(with: UTF8.bom)
     }
     
 }
