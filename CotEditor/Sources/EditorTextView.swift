@@ -1483,13 +1483,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// calculate overscrolling amount
     private func invalidateOverscrollRate() {
         
-        guard
-            let scrollView = self.enclosingScrollView,
-            let layoutManager = self.layoutManager as? LayoutManager
-            else { return assertionFailure() }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
+        let visibleRect = self.visibleRect
         let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
-        let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
+        let inset = rate * (visibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
         let height = max(floor(inset / 2), Self.textContainerInset.height)
@@ -1499,6 +1497,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         self.textContainerInset.height = height
         self.frame.size.height += 2 * diff
+        
+        self.scrollToVisible(visibleRect)
     }
     
     
