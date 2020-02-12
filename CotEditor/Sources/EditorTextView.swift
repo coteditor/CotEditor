@@ -101,7 +101,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
-    private var resizeObserver: NSObjectProtocol?
     
     
     
@@ -185,7 +184,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     deinit {
         self.insertionPointTimer?.cancel()
         self.defaultsObservers.forEach { $0.invalidate() }
-        self.removeNotificationObservers()
+        
+        if let observer = self.windowOpacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
@@ -250,22 +252,25 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// textView is about to be attached to / detached from a window
+    /// the receiver is about to be attached to / detached from a window
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         
         super.viewWillMove(toWindow: window)
         
-        // remove observations before all observed objects are deallocated
-        self.removeNotificationObservers()
+        // remove observation before the observed object is deallocated
+        if let observer = self.windowOpacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.windowOpacityObserver = nil
+        }
     }
     
     
-    /// textView was attached to / detached from a window
+    /// the receiver was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
-        // textView will be removed from the window
+        // textView was detached from the window
         guard let window = self.window else { return }
         
         // apply theme to window
@@ -273,21 +278,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
-        
-        // observe window opacity flag
-        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] (notification) in
+        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] (notification) in
             guard let window = notification.object as? NSWindow else { return assertionFailure() }
             
-            self.didChangeWindowOpacity(to: window.isOpaque)
-        }
-        
-        if let clipView = self.enclosingScrollView?.contentView {
-            // observe resizing for overscroll amount update
-            self.resizeObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: clipView, queue: .main) { [unowned self] _ in
-                self.invalidateOverscrollRate()
-            }
-        } else {
-            assertionFailure("failed starting observing the visible rect change")
+            self?.didChangeWindowOpacity(to: window.isOpaque)
         }
     }
     
@@ -298,6 +292,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         super.setFrameSize(newSize)
         
         self.needsUpdateLineHighlight = true
+    }
+    
+    
+    /// visible area did chage
+    override func viewDidEndLiveResize() {
+        
+        super.viewDidEndLiveResize()
+        
+        self.invalidateOverscrollRate()
     }
     
     
@@ -1332,25 +1335,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     private var document: Document? {
         
         return self.window?.windowController?.document as? Document
-    }
-    
-    
-    /// remove notification observers
-    private func removeNotificationObservers() {
-        
-        if let observer = self.windowOpacityObserver {
-            assert(self.window != nil)
-            
-            NotificationCenter.default.removeObserver(observer)
-            self.windowOpacityObserver = nil
-        }
-        
-        if let observer = self.resizeObserver {
-            assert(self.enclosingScrollView?.contentView != nil)
-            
-            NotificationCenter.default.removeObserver(observer)
-            self.resizeObserver = nil
-        }
     }
     
     
