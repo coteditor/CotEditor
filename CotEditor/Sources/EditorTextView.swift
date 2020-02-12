@@ -1493,12 +1493,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // halve inset since the input value will be added to both top and bottom
         let height = max(floor(inset / 2), Self.textContainerInset.height)
+        let diff = height - self.textContainerInset.height
         
-        // avoid high-loaded `sizeToFit()` if not required
-        guard height != self.textContainerInset.height else { return }
+        guard diff != 0 else { return }
         
         self.textContainerInset.height = height
-        self.sizeToFit()
+        self.frame.size.height += 2 * diff
     }
     
     
