@@ -61,13 +61,14 @@ extension String {
         
         // -> According to the Swift documentation, these are the all combinations with backslash except for \\ itself.
         //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
-        let entities = ["\0": "0",   // null character
-                        "\t": "t",   // horizontal tab
-                        "\n": "n",   // line feed
-                        "\r": "r",   // carriage return
-                        "\"": "\"",  // double quotation mark
-                        "\'": "'",   // single quotation mark
-                        ]
+        let entities = [
+            "\0": "0",   // null character
+            "\t": "t",   // horizontal tab
+            "\n": "n",   // line feed
+            "\r": "r",   // carriage return
+            "\"": "\"",  // double quotation mark
+            "\'": "'",   // single quotation mark
+        ]
         
         return entities.reduce(self) { $0.replacingOccurrences(of: #"(?<!\\)((?:\\\\)*)\\"# + $1.value, with: "$1" + $1.key, options: .regularExpression) }
     }
@@ -187,9 +188,11 @@ extension String {
     /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at location: Int) -> Bool {
         
-        let locationIndex = String.Index(utf16Offset: location, in: self)
+        let escape = 0x005C
+        let index = UTF16View.Index(utf16Offset: location, in: self)
+        let escapes = self.utf16[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == escape }
         
-        return self.isCharacterEscaped(at: locationIndex)
+        return !escapes.count.isMultiple(of: 2)
     }
     
 }
