@@ -102,7 +102,7 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
-        if self.outlineProgress?.isFinished != false {
+        if let progress = self.outlineProgress, (!progress.isFinished || !progress.isCancelled) {
             self.outlineIndicator?.startAnimation(nil)
             self.outlineLoadingMessage?.isHidden = false
         }
