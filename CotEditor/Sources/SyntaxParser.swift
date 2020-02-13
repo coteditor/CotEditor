@@ -104,14 +104,14 @@ final class SyntaxParser {
     
     // MARK: Public Methods
     
-    /// whether enable parsing syntax
+    /// Whether syntax should be parsed.
     var canParse: Bool {
         
         return UserDefaults.standard[.enableSyntaxHighlight] && !self.style.isNone
     }
     
     
-    /// cancel all syntax parse
+    /// Cancel all syntax parse including ones in the queues.
     func invalidateCurrentParse() {
         
         self.highlightCache = nil
@@ -128,7 +128,7 @@ final class SyntaxParser {
 
 extension SyntaxParser {
     
-    /// parse outline with delay
+    /// Parse outline with delay.
     func invalidateOutline() {
         
         guard
@@ -146,7 +146,7 @@ extension SyntaxParser {
     
     // MARK: Private Methods
     
-    /// parse outline
+    /// Perform outline parse.
     private func parseOutline() {
         
         let wholeRange = self.textStorage.range
@@ -183,8 +183,11 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// update whole document highlights
-    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    /// Update whole syntax highlights.
+    ///
+    /// - Parameter completionHandler: The block to execute when the process completes.
+    /// - Returns: The progress of the async highlight task if performed.
+    func highlightAll(forcesParsing: Bool = false, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         assert(Thread.isMainThread)
         
@@ -194,7 +197,11 @@ extension SyntaxParser {
         let wholeRange = self.textStorage.range
         
         // use cache if the content of the whole document is the same as the last
-        if let cache = self.highlightCache, cache.styleName == self.style.name, cache.string == self.textStorage.string {
+        if
+            let cache = self.highlightCache,
+            cache.styleName == self.style.name,
+            cache.string == self.textStorage.string
+        {
             self.textStorage.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler()
             return nil
@@ -210,7 +217,10 @@ extension SyntaxParser {
     }
     
     
-    /// update highlights around passed-in range
+    /// Update highlights around passed-in range.
+    ///
+    /// - Parameter editedRange: The character range that was edited.
+    /// - Returns: The progress of the async highlight task if performed.
     func highlight(around editedRange: NSRange) -> Progress? {
         
         assert(Thread.isMainThread)
@@ -218,15 +228,15 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        // make sure that string is immutable (see `highlightAll()` for details)
-        let string = self.textStorage.string.immutable
-        
         let wholeRange = self.textStorage.range
-        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
         guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
         
+        // make sure that string is immutable (see `highlightAll()` for details)
+        let string = self.textStorage.string.immutable
+        
+        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         var highlightRange = editedRange
         
         // highlight whole if string is enough short
@@ -235,13 +245,11 @@ extension SyntaxParser {
             
         } else {
             // highlight whole visible area if edited point is visible
-            for layoutManager in self.textStorage.layoutManagers {
-                guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
-                
-                highlightRange.formUnion(visibleRange)
-            }
+            highlightRange = self.textStorage.layoutManagers
+                .compactMap { $0.textViewForBeginningOfSelection?.visibleRange }
+                .filter { $0.intersection(highlightRange) != nil }
+                .reduce(into: highlightRange) { $0.formUnion($1) }
             
-            highlightRange = highlightRange.intersection(wholeRange) ?? wholeRange
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color
