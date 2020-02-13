@@ -793,18 +793,18 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// split editor view
     @IBAction func openSplitTextView(_ sender: Any?) {
         
-        guard (self.splitViewController?.splitViewItems.count ?? 0) < maximumNumberOfSplitEditors else {
-            NSSound.beep()
-            return
-        }
+        guard
+            let splitViewController = self.splitViewController,
+            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
+            else { return assertionFailure() }
         
-        guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
+        guard splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
-        self.splitViewController?.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
+        splitViewController.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
