@@ -135,7 +135,6 @@ final class EditorViewController: NSSplitViewController {
         }
         
         textView.layoutManager?.replaceTextStorage(textStorage)
-        textView.didChangeText()  // notify to lineNumberView to drive initial line count
     }
     
     
