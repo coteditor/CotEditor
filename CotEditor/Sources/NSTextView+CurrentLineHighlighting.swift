@@ -106,6 +106,7 @@ private extension NSLayoutManager {
     func lineFragmentsRect(for range: NSRange) -> NSRect {
         
         guard
+            self.attributedString().length > 0,
             self.extraLineFragmentTextContainer == nil || range.lowerBound < self.attributedString().length
             else { return self.extraLineFragmentRect }
         
