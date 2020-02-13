@@ -30,7 +30,7 @@ final class SplitViewController: NSSplitViewController {
     
     // MARK: Public Properties
     
-    private(set) weak var focusedSubviewController: EditorViewController?
+    private(set) weak var focusedChild: EditorViewController?
     
     
     
@@ -101,7 +101,7 @@ final class SplitViewController: NSSplitViewController {
                 .first { $0.textView == textView }
             }() else { return }
         
-        self.focusedSubviewController = viewController
+        self.focusedChild = viewController
     }
     
     
@@ -174,7 +174,7 @@ final class SplitViewController: NSSplitViewController {
         
         guard count > 1 else { return }
         
-        let focusIndex = self.children.firstIndex(of: self.focusedSubviewController!) ?? 0
+        let focusIndex = self.children.firstIndex(of: self.focusedChild!) ?? 0
         let index: Int = {
             switch focusIndex {
             case 0 where !onNext:
