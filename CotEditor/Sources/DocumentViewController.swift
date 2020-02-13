@@ -364,7 +364,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                if let progress = self?.syntaxHighlightProgress {
+                if let progress = self?.syntaxHighlightProgress, !progress.isFinished {
                     // retry syntax highlight if the last highlightAll has not finished yet
                     progress.cancel()
                     self?.syntaxHighlightProgress = syntaxParser.highlightAll()
@@ -984,7 +984,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.children as? [EditorViewController] ?? []
+        return self.splitViewController?.children.compactMap { $0 as? EditorViewController } ?? []
     }
     
     
@@ -1012,7 +1012,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard
             let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
+            let editorView = sequence(first: view, next: { $0.superview })
+                .first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
             else { return nil }
         
         return self.splitViewController?.viewController(for: editorView)
@@ -1026,7 +1027,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
 
 extension DocumentViewController: TextFinderClientProvider {
     
-    /// tell text finder in which text view should it find text
+    /// tell text finder in which text view it should find text
     func textFinderClient() -> NSTextView? {
         
         return self.focusedTextView

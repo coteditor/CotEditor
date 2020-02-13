@@ -10,6 +10,7 @@ Change Log
 - Optimize the performance of the invisible character drawing, the hanging indent calculation, and the line number view drawing.
 - Make space to draw the invisible symbol for ZERO WIDTH SPACE (U+200B) when the “other invisible characters” option is enabled.
 - Enable “Move Line Down” and “Move Line Up” commands swap lines with the last empty line.
+- Improve general performance while typing.
 - [tirivial] Keep the visible area after resizing document window even if overscrolling is enabled.
 - [trivial] Adjust the theme “Note”.
 
