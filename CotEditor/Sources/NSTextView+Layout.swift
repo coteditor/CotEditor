@@ -107,23 +107,23 @@ extension NSTextView {
         }
         
         set {
-            // sanitize scale
-            let scale: CGFloat = {
-                guard let scrollView = self.enclosingScrollView else { return newValue }
-                
-                return newValue.clamped(to: scrollView.minMagnification...scrollView.maxMagnification)
-            }()
+            // sanitize value
+            let scale = self.enclosingScrollView
+                .flatMap { $0.minMagnification...$0.maxMagnification }
+                .map { newValue.clamped(to: $0) } ?? newValue
             
             guard scale != self.scale else { return }
             
-            self.willChangeValue(for: \.scale)
-            
             // scale
+            self.willChangeValue(for: \.scale)
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
+            self.didChangeValue(for: \.scale)
             
             // ensure bounds origin is {0, 0} for vertical text orientation
-            self.translateOrigin(to: self.bounds.origin)
+            if self.layoutOrientation == .vertical {
+                self.translateOrigin(to: self.bounds.origin)
+            }
             
             // reset minimum size for unwrap mode
             self.minSize = self.visibleRect.size
@@ -132,8 +132,6 @@ extension NSTextView {
             // -> For in case the view becomes bigger than text content width when pinch out
             //    but doesn't strech enough to the right edge of the scroll view.
             self.sizeToFit()
-            
-            self.didChangeValue(for: \.scale)
             
             self.setNeedsDisplay(self.visibleRect)
         }
