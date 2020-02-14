@@ -47,7 +47,7 @@ final class TextFindTests: XCTestCase {
         XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
     }
     
-
+    
     func testSingleFind() throws {
         
         let text = "abcdefg abcdefg ABCDEFG"

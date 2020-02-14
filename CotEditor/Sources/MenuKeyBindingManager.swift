@@ -186,7 +186,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
              #selector(AppDelegate.openHelpAnchor),
              #selector(NSWindow.makeKeyAndOrderFront),
              #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
-             return false
+            return false
             
         // window tabbing actions
         // -> Because they cannot be set correctly.

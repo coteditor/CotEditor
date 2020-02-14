@@ -31,7 +31,7 @@ final class EncodingDetectionTests: XCTestCase {
     
     var bundle: Bundle?
     
-
+    
     override func setUp() {
         
         super.setUp()
@@ -74,7 +74,7 @@ final class EncodingDetectionTests: XCTestCase {
         XCTAssertEqual(string, "0")
         XCTAssertEqual(encoding, .utf32)
     }
-
+    
     
     func testISO2022() throws {
         
@@ -101,7 +101,7 @@ final class EncodingDetectionTests: XCTestCase {
         
         XCTAssertNil(encoding)
     }
-
+    
     
     func testSuggestedCFEncoding() throws {
         
@@ -131,7 +131,7 @@ final class EncodingDetectionTests: XCTestCase {
         } catch {
             XCTFail(error.localizedDescription)
         }
-
+        
         XCTAssertTrue(didCatchError, "String+Encoding didn't throw error.")
         XCTAssertNil(string)
         XCTAssertNil(encoding)
@@ -222,10 +222,10 @@ final class EncodingDetectionTests: XCTestCase {
     }
     
 }
-    
-    
-    // MARK: Private Methods
-    
+
+
+// MARK: Private Methods
+
 private extension EncodingDetectionTests {
     
     func encodedStringForFileName(_ fileName: String, usedEncoding: inout String.Encoding?) throws -> String {

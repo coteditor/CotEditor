@@ -310,7 +310,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func adjustScroll(_ newVisible: NSRect) -> NSRect {
         
         let newVisible = super.adjustScroll(newVisible)
-
+        
         // fix drawing area on non-opaque view
         if !self.drawsBackground {
             // -> Needs display visible rect since the drawing area will be modified in draw(_ dirtyFrame:)
@@ -548,8 +548,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let softTabs = insertionRanges
                 .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
             
-           self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
-           return
+            self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
+            return
         }
         
         super.insertTab(sender)
@@ -1574,7 +1574,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: self.string, range: self.string.nsRange)
-            
+        
         guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
         
         matches
@@ -1609,7 +1609,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             .highlightSelectionInstance,
             .enablesHangingIndent,
             .hangingIndentWidth,
-            ]
+        ]
         
         return UserDefaults.standard.observe(keys: keys, options: [.new]) { [unowned self] (key, change) in
             

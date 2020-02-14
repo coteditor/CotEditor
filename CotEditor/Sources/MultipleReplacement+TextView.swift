@@ -31,9 +31,8 @@ extension MultipleReplacement {
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
         guard let textView = TextFinder.shared.client else {
-                NSSound.beep()
-                return
-            }
+            return NSSound.beep()
+        }
         
         let string = textView.string.immutable
         let selectedRanges = textView.selectedRanges as! [NSRange]

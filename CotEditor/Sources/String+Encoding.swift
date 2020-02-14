@@ -196,7 +196,7 @@ extension String {
         return String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"),
                       String.localizedName(of: .utf8))
     }
-
+    
     
     /// scan encoding declaration in string
     func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {

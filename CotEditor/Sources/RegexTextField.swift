@@ -68,7 +68,7 @@ final class RegexTextField: NSTextField {
         formatter.showsError = self.showsError
         formatter.showsInvisibles = self.showsInvisibles
         self.formatter = formatter
-
+        
         // bind with cellView's objectValue
         if !self.bindingKeyPath.isEmpty  {
             guard let tableCellView = self.superview as? NSTableCellView else { return assertionFailure() }

@@ -43,7 +43,7 @@ final class ImageRadioButton: NSButton {
         
         // prepend image to the label
         let attachment = NSTextAttachment(image: self.leadingImage!)
-       
+        
         self.attributedTitle = NSAttributedString(attachment: attachment)
             + NSAttributedString(string: " ")
             + self.attributedTitle

@@ -42,7 +42,7 @@ final class ThemeTests: XCTestCase {
         self.bundle = Bundle(for: type(of: self))
     }
     
-
+    
     func testDefaultTheme() throws {
         
         let themeName = "Dendrobates"

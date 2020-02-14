@@ -55,7 +55,7 @@ final class LineRangeCacheableTests: XCTestCase {
         }
     }
     
-
+    
     func testLineRangeCalculation() {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
@@ -82,7 +82,7 @@ final class LineRangeCacheableTests: XCTestCase {
             }
         }
     }
-
+    
     
     func testStringInvalidation() {
         
@@ -108,7 +108,7 @@ final class LineRangeCacheableTests: XCTestCase {
             }
         }
     }
-
+    
     
     func testStringModification() {
         
@@ -134,7 +134,7 @@ final class LineRangeCacheableTests: XCTestCase {
             
             lineString.string.replaceSubrange(Range(range, in: string)!, with: replacement)
             lineString.invalidateLineRanges(from: range.location)
-
+            
             for index in (0..<lineString.string.length).shuffled() {
                 XCTAssertEqual(lineString.lineNumber(at: index), (lineString.string as NSString).lineNumber(at: index))
                 XCTAssertEqual(lineString.lineRange(at: index), (lineString.string as NSString).lineRange(at: index))

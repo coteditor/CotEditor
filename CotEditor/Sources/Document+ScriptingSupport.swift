@@ -385,7 +385,7 @@ extension Document {
             guard let viewController = self?.viewController else { return }
             
             if let observer = observer {
-               NotificationCenter.default.removeObserver(observer)
+                NotificationCenter.default.removeObserver(observer)
             }
             
             viewController[keyPath: keyPath] = value

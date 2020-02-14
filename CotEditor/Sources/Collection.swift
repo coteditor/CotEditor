@@ -44,7 +44,7 @@ extension RangeReplaceableCollection where Element: Equatable {
 
 
 extension Collection {
-
+    
     /// Return the element at the specified index only if it is within bounds, otherwise nil.
     ///
     /// - Parameter index: The position of the element to obtain.
@@ -97,7 +97,7 @@ extension Dictionary {
     func mapKeys<T>(transform: (Key) throws -> T) rethrows -> [T: Value] {
         
         let keysWithValues = try self.map { (key, value) -> (T, Value) in
-             (try transform(key), value)
+            (try transform(key), value)
         }
         
         return [T: Value](uniqueKeysWithValues: keysWithValues)
@@ -110,7 +110,7 @@ extension Dictionary {
 // MARK: - Sort
 
 extension Sequence {
-        
+    
     /// Return the elements of the sequence, sorted using the value that the given key path refers as the comparison between elements.
     ///
     /// - Parameter keyPath: The key path to the value to compare.

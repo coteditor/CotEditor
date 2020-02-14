@@ -121,7 +121,7 @@ enum ControlCharacter {
         "RECORD SEPARATOR",
         "UNIT SEPARATOR",
         "SPACE",
-        ]
+    ]
     
     static let C1Names = [
         "PADDING CHARACTER",
@@ -156,6 +156,6 @@ enum ControlCharacter {
         "OPERATING SYSTEM COMMAND",
         "PRIVACY MESSAGE",
         "APPLICATION PROGRAM COMMAND",
-        ]
+    ]
     
 }

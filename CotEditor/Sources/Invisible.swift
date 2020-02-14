@@ -123,13 +123,13 @@ private extension Invisible {
     
     var defaultTypeKey: DefaultKey<Int>? {
         
-            switch self {
-            case .space: return .invisibleSpace
-            case .tab: return .invisibleTab
-            case .newLine: return .invisibleNewLine
-            case .fullwidthSpace: return .invisibleFullwidthSpace
-            case .otherControl: return nil
-            }
+        switch self {
+        case .space: return .invisibleSpace
+        case .tab: return .invisibleTab
+        case .newLine: return .invisibleNewLine
+        case .fullwidthSpace: return .invisibleFullwidthSpace
+        case .otherControl: return nil
+        }
     }
     
 }

@@ -430,7 +430,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build theme menu in the main menu
-     @objc private func buildThemeMenu() {
+    @objc private func buildThemeMenu() {
         
         let menu = self.themesMenu!
         

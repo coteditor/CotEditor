@@ -47,7 +47,7 @@ extension SortPattern {
         
         var lines = string.components(separatedBy: .newlines)
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
-            
+        
         lines = lines
             .map { line -> (line: String, key: String?) in
                 (line: line, key: self.sortKey(for: line))

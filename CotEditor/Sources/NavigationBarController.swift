@@ -121,11 +121,11 @@ final class NavigationBarController: NSViewController {
         super.viewWillAppear()
         
         guard let textView = self.textView else { return assertionFailure() }
-
+        
         self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-          self?.updateTextOrientation(to: textView.layoutOrientation)
+            self?.updateTextOrientation(to: textView.layoutOrientation)
         }
-
+        
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }

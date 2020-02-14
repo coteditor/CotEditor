@@ -100,7 +100,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             weak var observer: NSObjectProtocol?
             observer = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
                 if let observer = observer {
-                   NotificationCenter.default.removeObserver(observer)
+                    NotificationCenter.default.removeObserver(observer)
                 }
                 self?.menuBuildingTask.perform()
             }

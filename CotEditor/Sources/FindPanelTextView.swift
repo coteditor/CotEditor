@@ -113,7 +113,7 @@ class FindPanelTextView: NSTextView {
         
         // perform Find Next in find string field (standard NSTextField behavior)
         if performsActionOnEnter {
-           TextFinder.shared.findNext(self)
+            TextFinder.shared.findNext(self)
         }
     }
     

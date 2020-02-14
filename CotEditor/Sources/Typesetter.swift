@@ -87,7 +87,7 @@ final class Typesetter: NSATSTypesetter {
         
         // avoid creating CharacterSet every time
         struct NonIndent { static let characterSet = CharacterSet(charactersIn: " \t").inverted }
-
+        
         // check if the character is the first non-whitespace character after indent
         let string = layoutManager.string as NSString
         let lineStartIndex = layoutManager.lineStartIndex(at: charIndex)

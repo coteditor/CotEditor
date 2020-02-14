@@ -33,7 +33,7 @@ extension NSAlert {
         self.beginSheetModal(for: sheetWindow) { (returnCode: NSApplication.ModalResponse) in
             NSApp.stopModal(withCode: returnCode)
         }
-
+        
         return NSApp.runModal(for: self.window)
     }
     

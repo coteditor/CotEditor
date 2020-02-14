@@ -76,7 +76,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
     /// remove also find result highlights in the text view when result view disappear
     override func viewWillDisappear() {
         
-         self.unhighlight()
+        self.unhighlight()
     }
     
     
