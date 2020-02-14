@@ -348,10 +348,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// set selected string to find field
     @IBAction func useSelectionForFind(_ sender: Any?) {
         
-        guard let selectedString = self.selectedString else {
-            NSSound.beep()
-            return
-        }
+        guard let selectedString = self.selectedString else { return NSSound.beep() }
         
         self.findString = selectedString
         

@@ -35,10 +35,7 @@ extension EditorTextView {
         guard
             let ranges = self.rangesForUserTextChange as? [NSRange],
             let editingInfo = self.string.moveLineUp(in: ranges)
-            else {
-                NSSound.beep()
-                return
-            }
+            else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
@@ -50,10 +47,7 @@ extension EditorTextView {
         guard
             let ranges = self.rangesForUserTextChange as? [NSRange],
             let editingInfo = self.string.moveLineDown(in: ranges)
-            else {
-                NSSound.beep()
-                return
-            }
+            else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
@@ -131,10 +125,7 @@ extension EditorTextView {
     /// show pattern sort sheet
     @IBAction func patternSort(_ sender: Any?) {
         
-        guard self.isEditable else {
-            NSSound.beep()
-            return
-        }
+        guard self.isEditable else { return NSSound.beep() }
         
         let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
         

@@ -122,8 +122,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
         guard self.characterString?.isEmpty == false else { return }
         
         guard let receiver = NSApp.target(forAction: #selector(UnicodeInputReceiver.insertUnicodeCharacter)) as? UnicodeInputReceiver else {
-            NSSound.beep()
-            return
+            return NSSound.beep()
         }
         
         receiver.insertUnicodeCharacter(self)

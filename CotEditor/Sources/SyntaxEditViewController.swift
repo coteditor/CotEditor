@@ -184,10 +184,8 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         guard
             let metadata = self.style[DictionaryKey.metadata.rawValue] as? [String: Any],
             let urlString = metadata[MetadataKey.distributionURL.rawValue] as? String,
-            let url = URL(string: urlString) else {
-                NSSound.beep()
-                return
-        }
+            let url = URL(string: urlString)
+            else { return NSSound.beep() }
         
         NSWorkspace.shared.open(url)
     }

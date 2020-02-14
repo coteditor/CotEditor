@@ -1227,10 +1227,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// copy selection with syntax highlight and font style
     @IBAction func copyWithStyle(_ sender: Any?) {
         
-        guard !self.selectedRange.isEmpty else {
-            NSSound.beep()
-            return
-        }
+        guard !self.selectedRange.isEmpty else { return NSSound.beep() }
         
         let string = self.string
         var selections = [NSAttributedString]()

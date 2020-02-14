@@ -140,8 +140,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         guard self.colorCode != nil else { return }
         
         guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode)) as? ColorCodeReceiver else {
-            NSSound.beep()
-            return
+            return NSSound.beep()
         }
         
         receiver.insertColorCode(self)
