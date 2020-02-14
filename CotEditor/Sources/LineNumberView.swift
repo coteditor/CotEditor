@@ -107,8 +107,9 @@ final class LineNumberView: NSView {
     
     // MARK: Private Properties
     
-    private var numberOfLines = 1
     private var drawingInfo: DrawingInfo?
+    private var thickness: CGFloat = 32
+    
     private var opacityObserver: NSObjectProtocol?
     private var textObserver: NSObjectProtocol?
     private var selectionObserver: NSObjectProtocol?
@@ -118,15 +119,6 @@ final class LineNumberView: NSView {
     private var scaleObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
-    
-    private var thickness: CGFloat = 32 {
-        
-        didSet {
-            guard thickness != oldValue else { return }
-            
-            self.invalidateIntrinsicContentSize()
-        }
-    }
     
     @IBOutlet private weak var textView: NSTextView? {
         
@@ -210,9 +202,7 @@ final class LineNumberView: NSView {
         
         // perform redraw on window opacity change
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
-            guard let self = self else { return assertionFailure() }
-            
-            self.setNeedsDisplay(self.visibleRect)
+            self?.needsDisplay = true
         }
     }
     
@@ -255,6 +245,17 @@ final class LineNumberView: NSView {
     
     
     // MARK: Private Methods
+    
+    /// total number of lines in the text view
+    private var numberOfLines: Int {
+        
+        guard let textView = self.textView else { return 1 }
+        
+        assert(textView.layoutManager is LineRangeCacheable)
+        
+        return textView.lineNumber(at: textView.string.length)
+    }
+    
     
     /// return text color considering current accesibility setting
     private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
@@ -383,7 +384,7 @@ final class LineNumberView: NSView {
         }
         
         // adjust thickness
-        self.thickness = {
+        let thickness: CGFloat = {
             switch self.orientation {
             case .horizontal:
                 let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
@@ -395,24 +396,18 @@ final class LineNumberView: NSView {
             @unknown default: fatalError()
             }
         }()
+        if thickness != self.thickness {
+            self.thickness = thickness
+            self.invalidateIntrinsicContentSize()
+        }
     }
     
     
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] (notification) in
-            guard
-                let self = self,
-                let textView = notification.object as? NSTextView
-                else { return assertionFailure() }
-            
-            if self.orientation == .horizontal {
-                // -> Count only if really needed since the line counting is high workload, especially by large document.
-                self.numberOfLines = textView.lineNumber(at: textView.string.length)
-            }
-            
-            self.needsDisplay = true
+        self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] _ in
+            self?.needsDisplay = true
         }
         
         self.selectionObserver = NotificationCenter.default.addObserver(forName: EditorTextView.didLiveChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
