@@ -109,14 +109,14 @@ extension NSLayoutManager {
     /// - Returns: Whether the given attribute key exists.
     func hasTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
-        guard let storage = self.textStorage else { return false }
+        guard self.attributedString().length > 0 else { return false }
         
-        let range = range ?? storage.range
+        let range = range ?? self.attributedString().range
         
-        assert(range.upperBound <= storage.range.upperBound)
+        assert(range.upperBound <= self.attributedString().length)
         
         var effectiveRange: NSRange = .notFound
-        let value = self.temporaryAttribute(attrName, atCharacterIndex: range.location, effectiveRange: &effectiveRange)
+        let value = self.temporaryAttribute(attrName, atCharacterIndex: range.location, longestEffectiveRange: &effectiveRange, in: range)
         
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
