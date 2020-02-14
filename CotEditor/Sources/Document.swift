@@ -269,30 +269,26 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         try super.revert(toContentsOf: url, ofType: typeName)
         
         // do nothing if already no textView exists
-        guard editorStates.isEmpty else { return }
+        guard !editorStates.isEmpty else { return }
         
         // apply to UI
         self.applyContentToWindow()
         
         // select previous ranges again
         // -> Taking performance issue into consideration,
-        //    the selection ranges will be adjusted only when the content size is enough small.
+        //    the selection ranges will be adjusted only when the content size is enough small;
+        //    otherwise, just cut extra ranges off.
         let string = self.textStorage.string
         let range = self.textStorage.range
         let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
-        let considersDiff = (lastString as NSString).length < maxLength || (string as NSString).length < maxLength
+        let considersDiff = lastString.length < maxLength || string.length < maxLength
         
         for state in editorStates {
-            state.textView.selectedRanges = {
-                guard considersDiff else {
-                    // just cut extra ranges off
-                    return state.ranges
-                        .map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
-                        .map { $0 as NSValue }
-                }
-                
-                return string.equivalentRanges(to: state.ranges, in: lastString) as [NSValue]
-            }()
+            let selectedRanges = considersDiff
+                ? string.equivalentRanges(to: state.ranges, in: lastString)
+                : state.ranges.map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
+            
+            state.textView.selectedRanges = selectedRanges.unique as [NSValue]
         }
     }
     
