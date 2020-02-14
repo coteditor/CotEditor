@@ -11,7 +11,8 @@ Change Log
 - Make space to draw the invisible symbol for ZERO WIDTH SPACE (U+200B) when the “other invisible characters” option is enabled.
 - Enable “Move Line Down” and “Move Line Up” commands swap lines with the last empty line.
 - Improve general performance while typing.
-- [tirivial] Keep the visible area after resizing a document window even if overscrolling is enabled.
+- Update “CSS” syntax style.
+- [trivial] Keep the visible area after resizing a document window even if overscrolling is enabled.
 - [trivial] Adjust the theme “Note”.
 
 

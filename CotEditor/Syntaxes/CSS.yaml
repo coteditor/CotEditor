@@ -4,13 +4,13 @@ filenames: []
 metadata:
   author: "CotEditor Project"
   distributionURL: "https://coteditor.com"
-  version: "2.0.4"
+  version: "2.1.0"
   description: "Support CSS3 partly."
   license: "Same as CotEditor"
-  lastModified: "2017-10-21"
+  lastModified: "2020-02-14"
 completions: []
 outlineMenu:
-- beginString: "\\@(media|page)\\b(.+)(?=($|\\{))"
+- beginString: "\\@(media|page)\\b(.+?)(?=($|\\{))"
   keyString: "@$1 $2"
   description: "at-rule block"
 commands:
@@ -184,6 +184,8 @@ values:
 - beginString: "(?<![\\-a-z#.])right(?!\\s*:)"
   regularExpression: true
 - beginString: "(?<![\\-a-z#.])top(?!\\s*:)"
+  regularExpression: true
+- beginString: "(?<=\\W)-apple-system(-[-a-z]+)?"
   regularExpression: true
 - beginString: "absolute"
 - beginString: "aliceblue"
@@ -643,7 +645,7 @@ numbers:
 - beginString: "#[0-9a-f]{6}(?=[ \\n\\t\\);,])"
   ignoreCase: true
   regularExpression: true
-- beginString: "(?<![a-zA-Z0-9\\._\\-\\+])\\-?(?!\\s)(?:[0-9\\.]+)?[0-9]*(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\\w)"
+- beginString: "(?<![a-zA-Z0-9\\._\\-\\+])\\-?([0-9]+(\\.[0-9]*)?|\\.[0-9]+)(?:%|em|ex|px|rem|vw|vh|vmin|vmax|mm|cm|in|pt|pc|deg|grad|rad|ms|s|Hz|kHz|dpi|dpcm|dppx)?(?!\\w)"
   regularExpression: true
 strings:
 - beginString: "\""
@@ -660,6 +662,9 @@ keywords:
 - beginString: "\\bcontent(?=\\s*:)"
   regularExpression: true
 - beginString: "\\btop(?=\\s*:)"
+  regularExpression: true
+- beginString: "\\s--[a-z_][a-z0-9_]+\\s*(?=:)"
+  ignoreCase: true
   regularExpression: true
 - beginString: "align-content"
 - beginString: "align-items"
@@ -724,6 +729,7 @@ keywords:
 - beginString: "break-before"
 - beginString: "break-inside"
 - beginString: "caption-side"
+- beginString: "caret-color"
 - beginString: "clear"
 - beginString: "clip"
 - beginString: "color"
@@ -738,6 +744,7 @@ keywords:
 - beginString: "column-span"
 - beginString: "column-width"
 - beginString: "columns"
+- beginString: "content"
 - beginString: "counter-increment"
 - beginString: "counter-reset"
 - beginString: "cue"
@@ -776,11 +783,30 @@ keywords:
 - beginString: "font-variant-numeric"
 - beginString: "font-variant-position"
 - beginString: "font-weight"
+- beginString: "grid"
+- beginString: "grid-area"
+- beginString: "grid-auto-columns"
+- beginString: "grid-auto-flow"
+- beginString: "grid-auto-rows"
+- beginString: "grid-column"
+- beginString: "grid-column-end"
+- beginString: "grid-column-gap"
+- beginString: "grid-column-start"
+- beginString: "grid-gap"
+- beginString: "grid-row"
+- beginString: "grid-row-end"
+- beginString: "grid-row-gap"
+- beginString: "grid-row-start"
+- beginString: "grid-template"
+- beginString: "grid-template-areas"
+- beginString: "grid-template-columns"
+- beginString: "grid-template-rows"
 - beginString: "hanging-punctuation"
 - beginString: "height"
 - beginString: "hyphens"
 - beginString: "icon"
 - beginString: "image-orientation"
+- beginString: "image-rendering"
 - beginString: "image-resolution"
 - beginString: "ime-mode"
 - beginString: "isolation"
@@ -841,6 +867,7 @@ keywords:
 - beginString: "pause-before"
 - beginString: "perspective"
 - beginString: "perspective-origin"
+- beginString: "pointer-events"
 - beginString: "position"
 - beginString: "quotes"
 - beginString: "reset"
@@ -848,6 +875,7 @@ keywords:
 - beginString: "reset-before"
 - beginString: "resize"
 - beginString: "right"
+- beginString: "scroll-behavior"
 - beginString: "shape-image-threshold"
 - beginString: "shape-margin"
 - beginString: "shape-outside"
@@ -886,6 +914,7 @@ keywords:
 - beginString: "transition-timing-function"
 - beginString: "unicode-bidi"
 - beginString: "unicode-range"
+- beginString: "user-select"
 - beginString: "vertical-align"
 - beginString: "visibility"
 - beginString: "voice-balance"
@@ -909,6 +938,9 @@ variables:
   regularExpression: true
 - beginString: "\\.-?[_a-z][_a-z0-9-]*"
   ignoreCase: true
+  regularExpression: true
+- beginString: "\\bvar\\(--"
+  endString: "\\)"
   regularExpression: true
 commentDelimiters:
   endDelimiter: "*/"
