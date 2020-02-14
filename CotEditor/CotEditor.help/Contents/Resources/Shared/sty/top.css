@@ -6,13 +6,13 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2019 CotEditor Project
+ © 2006-2020 CotEditor Project
 */
 
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 10pt/1.5 -apple-system, -apple-system-font, 'Helvetica Neue', sans-serif;
+	font: 10pt/1.5 -apple-system, sans-serif;
 	color: -apple-system-label;
 }
 body {
