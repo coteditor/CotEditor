@@ -44,6 +44,7 @@ opt_in_rules:
   - pattern_matching_keywords
   - prefer_self_type_over_type_of_self
   - private_outlet
+  - prohibited_nan_comparison
   - prohibited_super_call
   - quick_discouraged_call
   - quick_discouraged_focused_test
@@ -53,14 +54,17 @@ opt_in_rules:
   - redundant_nil_coalescing
   - redundant_type_annotation
   - required_enum_case
+  - return_value_from_void_function
   - single_test_class
   - sorted_first_last
   - static_operator
   - toggle_bool
+  - tuple_pattern
   - untyped_error_in_catch
   - unused_declaration
   - unused_import
   - vertical_parameter_alignment_on_call
+  - void_function_in_ternary
   - xct_specific_matcher
   - yoda_condition
 
