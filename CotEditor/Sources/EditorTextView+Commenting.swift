@@ -284,7 +284,7 @@ extension NSRange {
         
         return NSRange(location: location, length: length)
     }
-
+    
 }
 
 
@@ -348,7 +348,7 @@ extension String {
             .flatMap { regex.matches(in: self, range: $0) }
             .map { $0.range(at: 1) }
             .unique
-            
+        
         return delimiterRanges.isEmpty ? nil : delimiterRanges
     }
     

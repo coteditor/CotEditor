@@ -28,7 +28,7 @@ import Foundation
 private let kMaxEscapesCheckLength = 8
 
 extension StringProtocol where Self.Index == String.Index {
-
+    
     /// workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
     ///
     /// cf. <https://bugs.swift.org/browse/SR-11605>

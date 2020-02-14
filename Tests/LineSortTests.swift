@@ -28,7 +28,7 @@ import XCTest
 @testable import CotEditor
 
 final class LineSortTests: XCTestCase {
-
+    
     let lines = """
             dog, 🐕, 2, イヌ
             cat, 🐈, 1, ねこ
@@ -102,5 +102,5 @@ final class LineSortTests: XCTestCase {
         pattern.column = 2
         XCTAssertEqual(pattern.range(for: csvString), Range(NSRange(8..<15), in: csvString))
     }
-
+    
 }

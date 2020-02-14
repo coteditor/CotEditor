@@ -28,7 +28,7 @@ import Cocoa
 final class FindPanelLayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
-
+    
     private let font = NSFont.systemFont(ofSize: 0)
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
@@ -134,11 +134,11 @@ final class FindPanelLayoutManager: NSLayoutManager {
                                                      .font: replaceFont,
                                                      .foregroundColor: color], range: controlRange)
                     continue
-                        
+                    
                 case .none:
                     continue
                 }
-
+                
                 // calculate position to draw glyph
                 let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin

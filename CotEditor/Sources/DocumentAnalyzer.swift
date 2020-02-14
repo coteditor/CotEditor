@@ -275,7 +275,7 @@ private extension Document {
 private extension EditorCountResult {
     
     var info: DocumentInfo.EditorInfo {
-
+        
         let info = DocumentInfo.EditorInfo()
         info.length = self.format(\.length)
         info.chars = self.format(\.characters)

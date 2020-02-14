@@ -93,7 +93,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         
         guard let panel = self.panel else { return assertionFailure() }
-    
+        
         panel.delegate = nil
         panel.accessoryView = nil
         panel.detachColorList(self.stylesheetColorList)

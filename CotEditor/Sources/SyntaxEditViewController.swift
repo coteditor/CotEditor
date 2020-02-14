@@ -170,7 +170,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             case .edit(let name) = self.mode,
             let style = SyntaxManager.shared.bundledSettingDictionary(name: name)
             else { return }
-
+        
         self.style.setDictionary(style)
         
         // update validation result if displayed

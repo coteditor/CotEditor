@@ -166,7 +166,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let themeName = UserDefaults.standard[.pinsThemeAppearance]
                 ? storedThemeName
                 : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
-        
+            
             self.setTheme(name: themeName)
         }
         
@@ -848,7 +848,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // close
         if let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController) {
             splitViewController.removeSplitViewItem(splitViewItem)
-        
+            
             if let textView = currentEditorViewController.textView {
                 NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
             }

@@ -227,7 +227,7 @@ final class ThemeManager: SettingFileManaging {
             return true
         }
     }
-        
+    
     
     /// Load ThemeDictionary from a file at the URL.
     ///

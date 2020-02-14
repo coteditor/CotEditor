@@ -48,5 +48,5 @@ final class URLExtensionsTests: XCTestCase {
         
         XCTAssertEqual(url.path(relativeTo: baseUrl), "file1.txt")
     }
-
+    
 }

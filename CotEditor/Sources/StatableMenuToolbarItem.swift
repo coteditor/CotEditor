@@ -26,7 +26,7 @@
 import Cocoa
 
 final class StatableMenuToolbarItem: StatableToolbarItem {
-
+    
     @IBOutlet private weak var segmentMenu: NSMenu?
     
     

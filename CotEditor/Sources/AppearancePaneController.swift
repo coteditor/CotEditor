@@ -475,7 +475,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     /// delete selected theme
     @IBAction func deleteTheme(_ sender: Any?) {
-     
+        
         let themeName = self.targetThemeName(for: sender)
         
         self.deleteTheme(name: themeName)

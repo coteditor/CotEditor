@@ -101,7 +101,7 @@ final class ToolbarController: NSObject {
     @IBOutlet private weak var syntaxPopupButton: NSPopUpButton?
     
     @IBOutlet private weak var shareToolbarItem: NSToolbarItem?
-
+    
     
     
     // MARK: -

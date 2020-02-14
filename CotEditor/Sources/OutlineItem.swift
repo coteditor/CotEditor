@@ -37,7 +37,7 @@ struct OutlineItem: Equatable {
         static let underline = Style(rawValue: 1 << 2)
     }
     
-
+    
     var title: String
     var range: NSRange
     var style: Style = []

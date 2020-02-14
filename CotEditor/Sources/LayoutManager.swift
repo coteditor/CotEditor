@@ -181,7 +181,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     /// draw glyphs
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
-    
+        
         NSGraphicsContext.saveGraphicsState()
         
         // set anti-alias state on screen drawing
@@ -281,7 +281,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         {
             secondarySelectionColor.setFill()
         }
-    
+        
         super.fillBackgroundRectArray(rectArray, count: rectCount, forCharacterRange: charRange, color: color)
     }
     
@@ -326,7 +326,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     ///
     /// - Parameter includingControls: Whether invalidate layout also so that control characters can fit.
     private func invalidateInvisibleDisplay(includingControls: Bool) {
-
+        
         let wholeRange = self.attributedString().range
         
         self.invalidateDisplay(forCharacterRange: wholeRange)

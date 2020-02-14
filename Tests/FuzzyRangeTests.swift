@@ -83,5 +83,5 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertNil(FuzzyRange(string: "1:a"))
         XCTAssertNil(FuzzyRange(string: "1:1:1"))
     }
-
+    
 }

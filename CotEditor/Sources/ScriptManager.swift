@@ -280,7 +280,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
         for url in urls {
             // ignore files/folders of which name starts with "_"
             if url.lastPathComponent.hasPrefix("_") { continue }
-        
+            
             let descriptor = ScriptDescriptor(at: url)
             
             if descriptor.name == String.separator {

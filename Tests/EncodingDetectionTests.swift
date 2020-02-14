@@ -249,5 +249,5 @@ private extension EncodingDetectionTests {
         let rawValue = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(cfEncodings.rawValue))
         return String.Encoding(rawValue: rawValue)
     }
-
+    
 }

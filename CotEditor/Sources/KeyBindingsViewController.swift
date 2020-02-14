@@ -111,8 +111,10 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     /// return suitable item for cell to display
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         
-        guard let identifier = tableColumn?.identifier,
-              let node = item as? NamedTreeNode else { return "" }
+        guard
+            let identifier = tableColumn?.identifier,
+            let node = item as? NamedTreeNode
+            else { return "" }
         
         switch identifier {
         case .title:
@@ -252,7 +254,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     /// return child items of passed-in item
     private func children(of item: Any?) -> [NSTreeNode]? {
-    
+        
         guard let node = item as? NSTreeNode else { return self.outlineTree }
         
         return node.isLeaf ? nil : node.children

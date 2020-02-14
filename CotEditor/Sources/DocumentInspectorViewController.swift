@@ -26,7 +26,7 @@
 import Cocoa
 
 final class DocumentInspectorViewController: NSViewController {
-        
+    
     // MARK: Private Properties
     
     @IBOutlet private var dateFormatter: DateFormatter?

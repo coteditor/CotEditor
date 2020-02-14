@@ -45,5 +45,5 @@ final class NSLayoutManagerTests: XCTestCase {
         XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(6..<8)))
         XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<textStorage.length)))
     }
-
+    
 }

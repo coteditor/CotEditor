@@ -48,5 +48,5 @@ final class OutlineMenuButtonCell: NSPopUpButtonCell {
         let interiorFrame = cellFrame.offsetBy(dx: 0, dy: 1.0)
         self.drawInterior(withFrame: interiorFrame, in: controlView)
     }
-
+    
 }

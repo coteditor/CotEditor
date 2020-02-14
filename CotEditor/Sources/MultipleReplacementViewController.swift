@@ -195,7 +195,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     /// notify update to delegate
     private func notifyUpdate() {
-    
+        
         self.delegate?.didUpdate(setting: self.definition)
     }
     

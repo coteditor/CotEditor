@@ -133,7 +133,7 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
         self.setSidebarShown(true, index: index, animate: true)
     }
     
-
+    
     /// rsestore visibility of inspector but keeping the window width
     func restoreAutosavingState() {
         

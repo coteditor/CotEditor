@@ -42,7 +42,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     // MARK: Structs
-
+    
     private enum SerializationKey {
         
         static let readingEncoding = "readingEncoding"
@@ -531,8 +531,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
-        if let fileType = self.fileType,
-           let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
+        if
+            let fileType = self.fileType,
+            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation)
+        {
             // set once allowedFileTypes, so that initial filename selection excludes the file extension
             savePanel.allowedFileTypes = [pathExtension]
             
@@ -585,9 +587,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let object = delegate as? NSObject,
             let objcClass = objc_getClass(object.className) as? AnyClass,
             let method = class_getMethodImplementation(objcClass, selector)
-            else {
-                return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
-            }
+            else { return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo) }
         
         typealias Signature = @convention(c) (NSObject, Selector, NSDocument, Bool, UnsafeMutableRawPointer) -> Void
         let function = unsafeBitCast(method, to: Signature.self)
@@ -665,7 +665,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             return printInfo
         }
-
+        
         set {
             super.printInfo = newValue
         }

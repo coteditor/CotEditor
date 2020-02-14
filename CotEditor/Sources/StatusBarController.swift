@@ -87,7 +87,7 @@ final class StatusBarController: NSViewController {
             .showStatusBarLocation,
             .showStatusBarLine,
             .showStatusBarColumn,
-            ]
+        ]
         self.defaultsObservers += UserDefaults.standard.observe(keys: editorDefaultKeys) { [weak self] (_, _) in
             self?.updateEditorStatus()
         }
@@ -95,7 +95,7 @@ final class StatusBarController: NSViewController {
             .showStatusBarEncoding,
             .showStatusBarLineEndings,
             .showStatusBarFileSize,
-            ]
+        ]
         self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [weak self] (_, _) in
             self?.updateDocumentStatus()
         }

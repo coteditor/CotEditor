@@ -76,7 +76,7 @@ enum Invisible {
 // MARK: Code Unit
 
 extension Invisible {
-
+    
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
         switch codeUnit {

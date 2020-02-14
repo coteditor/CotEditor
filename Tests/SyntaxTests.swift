@@ -135,7 +135,7 @@ final class SyntaxTests: XCTestCase {
 // MARK: Syntax Parser Delegate
 
 extension SyntaxTests: SyntaxParserDelegate {
-
+    
     func syntaxParser(_ syntaxParser: SyntaxParser, didStartParsingOutline progress: Progress) {
         
     }

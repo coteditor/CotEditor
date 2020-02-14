@@ -142,7 +142,7 @@ final class MenuKeyBindingManager: KeyBindingManager {
     
     
     // MARK: Private Methods
-
+    
     /// return key bindings for selector
     private func shortcut(for action: Selector, defaults usesDefaults: Bool) -> Shortcut {
         

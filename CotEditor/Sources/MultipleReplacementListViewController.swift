@@ -192,7 +192,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
     @IBAction func exportSetting(_ sender: Any?) {
         
         guard let settingName = self.targetSettingName(for: sender) else { return }
-       
+        
         let savePanel = NSSavePanel()
         savePanel.canCreateDirectories = true
         savePanel.canSelectHiddenExtension = true

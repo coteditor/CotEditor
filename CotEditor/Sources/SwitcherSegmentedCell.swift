@@ -71,5 +71,5 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
             super.drawSegment(segment, inFrame: frame, with: controlView)
         }
     }
-
+    
 }

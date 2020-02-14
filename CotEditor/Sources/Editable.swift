@@ -91,7 +91,7 @@ extension Editable {
             case .afterAll:
                 return NSRange(location: (textView.string as NSString).length, length: 0)
             }
-            }()
+        }()
         
         let selectedRange = NSRange(location: replacementRange.location, length: (string as NSString).length)
         

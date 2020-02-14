@@ -37,7 +37,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let lineNumberPadding: CGFloat = 10.0
     private let headerFooterFontSize: CGFloat = 9.0
     
-
+    
     // MARK: Public Properties
     
     var filePath: String?
@@ -387,7 +387,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedString.Key: Any] {
         
         let font = NSFont.userFont(ofSize: self.headerFooterFontSize)
-    
+        
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.alignment = alignment.textAlignment

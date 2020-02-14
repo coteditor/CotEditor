@@ -225,7 +225,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
             NSAccessibility.post(element: window, notification: .announcementRequested, userInfo: [.announcement: message])
         }
     }
-
+    
     
     
     // MARK: Private Methods

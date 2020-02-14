@@ -27,7 +27,7 @@ import XCTest
 @testable import CotEditor
 
 final class LineRangeCacheableTests: XCTestCase {
-
+    
     func testLineNumberCalculation() {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
@@ -141,7 +141,7 @@ final class LineRangeCacheableTests: XCTestCase {
             }
         }
     }
-
+    
 }
 
 

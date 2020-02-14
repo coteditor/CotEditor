@@ -242,7 +242,7 @@ final class StringExtensionsTests: XCTestCase {
             """
         XCTAssertEqual(trimmedIgnoringEmptyLines, expectedTrimmedIgnoringEmptyLines)
     }
-
+    
 }
 
 

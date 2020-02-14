@@ -657,7 +657,7 @@ private extension NSAttributedString {
         assert(location >= 0)
         assert(location <= self.length)
         
-        guard (isForward && location < self.length) || (!isForward && location > 0) else  { return location }
+        guard (isForward && location < self.length) || (!isForward && location > 0) else { return location }
         
         let nextIndex = self.nextWord(from: location, forward: isForward)
         

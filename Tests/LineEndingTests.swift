@@ -81,5 +81,5 @@ final class LineEndingTests: XCTestCase {
         XCTAssertEqual(implicitConvertedRange.location, 2)
         XCTAssertEqual(implicitConvertedRange.length, 2)
     }
-
+    
 }
