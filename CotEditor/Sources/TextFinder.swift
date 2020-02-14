@@ -488,7 +488,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.isEditable = false
         
         let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
-        let lineRegex = try! NSRegularExpression(pattern: "\n")
+        let lineCounter = LineCounter(textFind.string)
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
@@ -519,10 +519,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     let matchedRange = matches[0]
                     
                     // calculate line number
-                    let lastLineNumber = results.last?.lineNumber ?? 1
-                    let lastLocation = results.last?.range.location ?? 0
-                    let diffRange = NSRange(lastLocation..<matchedRange.location)
-                    let lineNumber = lastLineNumber + lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
+                    let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
                     
                     // build a highlighted line string for result table
                     let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
@@ -582,6 +579,24 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         }
         
         UserDefaults.standard.appendHistory(self.findString, forKey: .findHistory)
+    }
+    
+}
+
+
+
+// MARK: -
+
+private class LineCounter: LineRangeCacheable {
+    
+    let string: String
+    var lineStartIndexes = IndexSet()
+    var firstLineUncoundedIndex = 0
+    
+    
+    init(_ string: String) {
+        
+        self.string = string
     }
     
 }
