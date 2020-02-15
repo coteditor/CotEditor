@@ -46,7 +46,7 @@ extension NSLayoutManager {
         
         return range
     }
-        
+    
 }
 
 
@@ -106,17 +106,17 @@ extension NSLayoutManager {
     /// - Parameters:
     ///   - attrName: The name of temporary attribute key to check.
     ///   - range: The range where to check. When `nil`, search the entire range.
-    /// - Returns: Wheather the given attribute key exists.
+    /// - Returns: Whether the given attribute key exists.
     func hasTemporaryAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
         
-        guard let storage = self.textStorage else { return false }
+        guard self.attributedString().length > 0 else { return false }
         
-        let range = range ?? storage.range
+        let range = range ?? self.attributedString().range
         
-        assert(range.upperBound <= storage.range.upperBound)
+        assert(range.upperBound <= self.attributedString().length)
         
         var effectiveRange: NSRange = .notFound
-        let value = self.temporaryAttribute(attrName, atCharacterIndex: range.location, effectiveRange: &effectiveRange)
+        let value = self.temporaryAttribute(attrName, atCharacterIndex: range.location, longestEffectiveRange: &effectiveRange, in: range)
         
         return value != nil || effectiveRange.upperBound < range.upperBound
     }
@@ -140,7 +140,7 @@ extension NSLayoutManager {
         guard self.isValidGlyphIndex(glyphIndex) else { return false }
         
         var bidiLevels: [UInt8] = [0]
-        self.getGlyphs(in: NSRange(glyphIndex..<(glyphIndex + 1)), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
+        self.getGlyphs(in: NSRange(location: glyphIndex, length: 1), glyphs: nil, properties: nil, characterIndexes: nil, bidiLevels: &bidiLevels)
         
         return !bidiLevels[0].isMultiple(of: 2)
     }

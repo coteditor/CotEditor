@@ -47,8 +47,8 @@ enum RegularExpressionSyntaxType {
         .symbol,
         .quantifier,
         .anchor,
-        ]
-
+    ]
+    
     
     
     // MARK: Public Methods
@@ -74,7 +74,7 @@ enum RegularExpressionSyntaxType {
     // MARK: Private Methods
     
     private func patterns(for mode: RegularExpressionParseMode) -> [String] {
-
+        
         // regex pattern to avoid matching escaped character
         let escapeIgnorer = "(?<!\\\\)(?:\\\\\\\\)*"
         

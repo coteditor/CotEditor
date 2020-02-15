@@ -161,12 +161,12 @@ final class DocumentAnalyzer: NSObject {
         if self.shouldUpdateEditorInfo { return .all }
         
         var types = EditorInfoTypes()
-        if UserDefaults.standard[.showStatusBarChars]    { types.update(with: .characters) }
-        if UserDefaults.standard[.showStatusBarLines]    { types.update(with: .lines) }
-        if UserDefaults.standard[.showStatusBarWords]    { types.update(with: .words) }
-        if UserDefaults.standard[.showStatusBarLocation] { types.update(with: .location) }
-        if UserDefaults.standard[.showStatusBarLine]     { types.update(with: .line) }
-        if UserDefaults.standard[.showStatusBarColumn]   { types.update(with: .column) }
+        if UserDefaults.standard[.showStatusBarChars]    { types.formUnion(.characters) }
+        if UserDefaults.standard[.showStatusBarLines]    { types.formUnion(.lines) }
+        if UserDefaults.standard[.showStatusBarWords]    { types.formUnion(.words) }
+        if UserDefaults.standard[.showStatusBarLocation] { types.formUnion(.location) }
+        if UserDefaults.standard[.showStatusBarLine]     { types.formUnion(.line) }
+        if UserDefaults.standard[.showStatusBarColumn]   { types.formUnion(.column) }
         
         return types
     }
@@ -209,13 +209,14 @@ final class DocumentAnalyzer: NSObject {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 
+                var result = result
                 if didCountWholeText {
-                    self.lastEidorCountResult.count = result.count
                     self.needsCountWholeText = false
+                } else {
+                    result.count = self.lastEidorCountResult.count
                 }
-                self.lastEidorCountResult.selectedCount = result.selectedCount
-                self.lastEidorCountResult.cursor = result.cursor
-                self.info.editor = self.lastEidorCountResult.info
+                self.lastEidorCountResult = result
+                self.info.editor = result.info
                 
                 NotificationCenter.default.post(name: DocumentAnalyzer.didUpdateEditorInfoNotification, object: self)
             }
@@ -274,7 +275,7 @@ private extension Document {
 private extension EditorCountResult {
     
     var info: DocumentInfo.EditorInfo {
-
+        
         let info = DocumentInfo.EditorInfo()
         info.length = self.format(\.length)
         info.chars = self.format(\.characters)

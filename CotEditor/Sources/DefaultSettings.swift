@@ -194,7 +194,7 @@ struct DefaultSettings {
         .maximumRecentStyleCount: 6,
         .maximumSelectionInstanceHighlightCount: 100,
         .minimumLengthForNonContiguousLayout: 5_000_000,
-        ]
+    ]
     
     
     private init() { }

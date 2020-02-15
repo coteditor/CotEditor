@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -100,7 +100,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
             weak var observer: NSObjectProtocol?
             observer = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
                 if let observer = observer {
-                   NotificationCenter.default.removeObserver(observer)
+                    NotificationCenter.default.removeObserver(observer)
                 }
                 self?.menuBuildingTask.perform()
             }
@@ -274,13 +274,13 @@ final class ScriptManager: NSObject, NSFilePresenter {
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
                                                                       includingPropertiesForKeys: [.fileResourceTypeKey],
                                                                       options: [.skipsHiddenFiles])
-            .sorted(by: { $0.lastPathComponent < $1.lastPathComponent })
+            .sorted(\.lastPathComponent)
             else { return }
         
         for url in urls {
             // ignore files/folders of which name starts with "_"
             if url.lastPathComponent.hasPrefix("_") { continue }
-        
+            
             let descriptor = ScriptDescriptor(at: url)
             
             if descriptor.name == String.separator {

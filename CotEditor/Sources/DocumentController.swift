@@ -72,7 +72,7 @@ final class DocumentController: NSDocumentController {
     
     /// automatically inserts Share menu
     override var allowsAutomaticShareMenu: Bool {
-
+        
         return true
     }
     

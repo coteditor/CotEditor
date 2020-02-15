@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -113,6 +113,7 @@ extension StringProtocol where Self.Index == String.Index {
     var countExceptLineEnding: Int {
         
         // workarond for Swift 5.1 that removes BOM at the beginning (2019-05 Swift 5.1).
+        // cf. https://bugs.swift.org/browse/SR-10896
         if self.starts(with: "\u{FEFF}") {
             let startIndex = self.index(after: self.startIndex)
             return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
@@ -146,7 +147,7 @@ extension StringProtocol where Self.Index == String.Index {
         
         let string = self.replacingLineEndings(with: currentLineEnding)
         let regex = try! NSRegularExpression(pattern: LineEnding.regexPattern)
-        let locationRange = NSRange(..<range.location)
+        let locationRange = NSRange(location: 0, length: range.location)
         
         let locationDelta = delta * regex.numberOfMatches(in: string, range: locationRange)
         let lengthDelta = delta * regex.numberOfMatches(in: string, range: range)

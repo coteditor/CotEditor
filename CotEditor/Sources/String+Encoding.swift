@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
 
 import Foundation
 
-private extension UTF8 {
+extension UTF8 {
     
     static let bom: [UInt8] = [0xEF, 0xBB, 0xBF]
 }
@@ -108,6 +108,8 @@ extension String.Encoding {
 extension String {
     
     /// decode data and remove UTF-8 BOM if exists
+    ///
+    /// cf. <https://bugs.swift.org/browse/SR-10173>
     init?(bomCapableData data: Data, encoding: String.Encoding) {
         
         let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: UTF8.bom))
@@ -194,7 +196,7 @@ extension String {
         return String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"),
                       String.localizedName(of: .utf8))
     }
-
+    
     
     /// scan encoding declaration in string
     func scanEncodingDeclaration(upTo maxLength: Int, suggestedCFEncodings: [CFStringEncoding]) -> String.Encoding? {
@@ -207,7 +209,7 @@ extension String {
         let scanLength = min(self.length, maxLength)
         
         guard
-            let match = regex.firstMatch(in: self, range: NSRange(..<scanLength)),
+            let match = regex.firstMatch(in: self, range: NSRange(location: 0, length: scanLength)),
             let matchedRange = Range(match.range(at: 1), in: self)
             else { return nil }
         
@@ -256,7 +258,6 @@ extension Data {
     /// decode `com.apple.TextEncoding` extended file attribute to encoding
     var decodingXattrEncoding: String.Encoding? {
         
-        // parse value
         guard let string = String(data: self, encoding: .utf8) else { return nil }
         
         let components = string.components(separatedBy: ";")
@@ -292,29 +293,6 @@ extension String.Encoding {
         let string = String(format: "%@;%u", ianaCharSetName as String, cfEncoding)
         
         return string.data(using: .utf8)
-    }
-    
-}
-
-
-
-// MARK: - UTF8
-
-extension Data {
-    
-    // MARK: Public Methods
-    
-    /// return Data by adding UTF-8 BOM
-    var addingUTF8BOM: Data {
-        
-        return Data(UTF8.bom) + self
-    }
-    
-    
-    /// check if data starts with UTF-8 BOM
-    var hasUTF8BOM: Bool {
-        
-        return self.starts(with: UTF8.bom)
     }
     
 }

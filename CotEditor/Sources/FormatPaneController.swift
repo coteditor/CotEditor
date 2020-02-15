@@ -38,7 +38,7 @@ private let isUTF8WithBOMFlag = "UTF-8 with BOM"
 
 
 final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTableViewDelegate, NSTableViewDataSource {
-
+    
     // MARK: Private Properties
     
     @IBOutlet private weak var inOpenEncodingMenu: NSPopUpButton?
@@ -169,7 +169,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         return true
     }
-        
+    
     
     
     // MARK: Delegate & Data Source

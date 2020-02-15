@@ -195,7 +195,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     /// notify update to delegate
     private func notifyUpdate() {
-    
+        
         self.delegate?.didUpdate(setting: self.definition)
     }
     
@@ -511,7 +511,8 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
         tableView.selectRowIndexes(rowIndexes, byExtendingSelection: false)
         
         // store row index info to pasteboard
-        let rows = NSKeyedArchiver.archivedData(withRootObject: rowIndexes)
+        guard let rows = try? NSKeyedArchiver.archivedData(withRootObject: rowIndexes, requiringSecureCoding: true) else { return false }
+        
         pboard.setData(rows, forType: .rows)
         
         return true
@@ -541,7 +542,7 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
         // obtain original rows from paste board
         guard
             let data = info.draggingPasteboard.data(forType: .rows),
-            let sourceRows = NSKeyedUnarchiver.unarchiveObject(with: data) as? IndexSet
+            let sourceRows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
             else { return false }
         
         let destinationRow = row - sourceRows.count(in: 0...row)  // real insertion point after removing items to move

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,8 +28,10 @@ import Foundation
 private let kMaxEscapesCheckLength = 8
 
 extension StringProtocol where Self.Index == String.Index {
-
-    // workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+    
+    /// workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+    ///
+    /// cf. <https://bugs.swift.org/browse/SR-11605>
     subscript(workaround range: Range<Index>) -> SubSequence {
         
         if #available(macOS 10.15, *) { return self[range] }
@@ -57,25 +59,18 @@ extension String {
     /// Unescaped version of the string by unescaing the characters with backslashes.
     var unescaped: String {
         
-        // -> According to the following sentence in the Swift 3 documentation, these are the all combinations with backslash.
-        //    > The escaped special characters \0 (null character), \\ (backslash), \t (horizontal tab), \n (line feed), \r (carriage return), \" (double quote) and \' (single quote)
-        let entities = ["\0": "0",
-                        "\t": "t",
-                        "\n": "n",
-                        "\r": "r",
-                        "\"": "\"",
-                        "\'": "'",
-                        ]
+        // -> According to the Swift documentation, these are the all combinations with backslash except for \\ itself.
+        //    cf. https://docs.swift.org/swift-book/LanguageGuide/StringsAndCharacters.html#ID295
+        let entities = [
+            "\0": "0",   // null character
+            "\t": "t",   // horizontal tab
+            "\n": "n",   // line feed
+            "\r": "r",   // carriage return
+            "\"": "\"",  // double quotation mark
+            "\'": "'",   // single quotation mark
+        ]
         
-        return entities
-            .mapValues { try! NSRegularExpression(pattern: "(?<!\\\\)(?:\\\\\\\\)*(\\\\" + $0 + ")") }
-            .reduce(self) { (string, entity) in
-                entity.value.matches(in: string, range: string.nsRange)
-                    .map { $0.range(at: 1) }
-                    .compactMap { Range($0, in: string) }
-                    .reversed()
-                    .reduce(into: string) { $0.replaceSubrange($1, with: entity.key) }
-            }
+        return entities.reduce(self) { $0.replacingOccurrences(of: #"(?<!\\)((?:\\\\)*)\\"# + $1.value, with: "$1" + $1.key, options: .regularExpression) }
     }
     
 }
@@ -193,9 +188,11 @@ extension String {
     /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at location: Int) -> Bool {
         
-        let locationIndex = String.Index(utf16Offset: location, in: self)
+        let escape = 0x005C
+        let index = UTF16View.Index(utf16Offset: location, in: self)
+        let escapes = self.utf16[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == escape }
         
-        return self.isCharacterEscaped(at: locationIndex)
+        return !escapes.count.isMultiple(of: 2)
     }
     
 }

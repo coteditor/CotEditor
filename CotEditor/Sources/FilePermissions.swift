@@ -77,7 +77,7 @@ struct FilePermissions {
 
 
 extension FilePermissions: CustomStringConvertible {
-
+    
     var description: String {
         
         return self.humanReadable

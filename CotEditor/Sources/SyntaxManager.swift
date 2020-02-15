@@ -87,7 +87,7 @@ final class SyntaxManager: SettingFileManaging {
         let data = try! Data(contentsOf: url)
         let map = try! JSONDecoder().decode([SettingName: [String: [String]]].self, from: data)
         self.bundledMap = map
-        self.bundledSettingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        self.bundledSettingNames = map.keys.localizedCaseInsensitiveSorted()
         
         // cache user styles
         self.checkUserSettings()
@@ -320,8 +320,7 @@ final class SyntaxManager: SettingFileManaging {
         let map = self.bundledMap.merging(userMap) { (_, new) in new }
         
         // sort styles alphabetically
-        self.settingNames = map.keys.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
-        
+        self.settingNames = map.keys.localizedCaseInsensitiveSorted()
         // remove styles not exist
         UserDefaults.standard[.recentStyleNames]?.removeAll { !self.settingNames.contains($0) }
         

@@ -83,7 +83,7 @@ final class OutlineViewController: NSViewController {
             self.observeDocument()
             self.observeSyntaxStyle()
             
-            self.outlineItems = (self.representedObject as? Document)?.syntaxParser.outlineItems ?? []
+            self.outlineItems = (representedObject as? Document)?.syntaxParser.outlineItems ?? []
         }
     }
     
@@ -261,7 +261,7 @@ final class OutlineViewController: NSViewController {
 
 
 extension OutlineViewController: NSOutlineViewDelegate {
-
+    
     /// selection changed
     func outlineViewSelectionDidChange(_ notification: Notification) {
         

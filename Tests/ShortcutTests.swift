@@ -65,5 +65,5 @@ final class ShortcutTests: XCTestCase {
         let delete = String(UnicodeScalar(NSDeleteCharacter)!)
         XCTAssertEqual(Shortcut(keySpecChars: "@" + delete).description, "⌘⌦")
     }
-
+    
 }

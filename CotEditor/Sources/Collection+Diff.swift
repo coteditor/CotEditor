@@ -53,7 +53,7 @@ extension String.UTF16View.Element: Differentiable { }
 private extension StagedChangeset {
     
     func move(_ index: Int) -> Int {
-            
+        
         let insertionCount = self.flatMap { $0.elementInserted }
             .countPrefix { $0.element < index }
         let removalCount = self.flatMap { $0.elementDeleted }

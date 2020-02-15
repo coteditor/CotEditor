@@ -37,8 +37,8 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertEqual(string.range(in: FuzzyRange(location: 3, length: -1)), NSRange(3..<9))
         XCTAssertEqual(string.range(in: FuzzyRange(location: 3, length: -2)), NSRange(location: 3, length: "45678".utf16.count))
     }
-        
-        
+    
+    
     func testFuzzyLineRange() {
         
         let string = "1\r\n2\r\n3\r\n4"  // 1 based
@@ -52,13 +52,13 @@ final class FuzzyRangeTests: XCTestCase {
         
         range = string.rangeForLine(in: FuzzyRange(location: 3, length: 0))!
         XCTAssertEqual((string as NSString).substring(with: range), "3\r\n")
-
+        
         range = string.rangeForLine(in: FuzzyRange(location: -1, length: 1))!
         XCTAssertEqual((string as NSString).substring(with: range), "4")
-
+        
         range = string.rangeForLine(in: FuzzyRange(location: -2, length: 1))!
         XCTAssertEqual((string as NSString).substring(with: range), "3\r\n")
-
+        
         range = string.rangeForLine(in: FuzzyRange(location: 2, length: -2))!
         XCTAssertEqual((string as NSString).substring(with: range), "2\r\n")
     }
@@ -83,5 +83,5 @@ final class FuzzyRangeTests: XCTestCase {
         XCTAssertNil(FuzzyRange(string: "1:a"))
         XCTAssertNil(FuzzyRange(string: "1:1:1"))
     }
-
+    
 }

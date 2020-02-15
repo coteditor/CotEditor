@@ -95,7 +95,6 @@ extension CurrentLineHighlighting {
                       height: rect.height)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
             .offset(by: self.textContainerOrigin)
-            .integral
     }
     
 }
@@ -107,17 +106,18 @@ private extension NSLayoutManager {
     func lineFragmentsRect(for range: NSRange) -> NSRect {
         
         guard
+            self.attributedString().length > 0,
             self.extraLineFragmentTextContainer == nil || range.lowerBound < self.attributedString().length
             else { return self.extraLineFragmentRect }
         
         let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
+        let safeLowerIndex = self.isValidGlyphIndex(glyphRange.lowerBound) ? glyphRange.lowerBound : glyphRange.lowerBound - 1
         var effectiveRange: NSRange = .notFound
-        let lowerRect = self.lineFragmentRect(forGlyphAt: glyphRange.lowerBound, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+        let lowerRect = self.lineFragmentRect(forGlyphAt: safeLowerIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
         
         guard !effectiveRange.contains(glyphRange.upperBound) else { return lowerRect }
         
-        let upperBound = min(glyphRange.upperBound, self.numberOfGlyphs - 1)
-        let upperRect = self.lineFragmentRect(forGlyphAt: upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
+        let upperRect = self.lineFragmentRect(forGlyphAt: glyphRange.upperBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
         
         return lowerRect.union(upperRect)
     }

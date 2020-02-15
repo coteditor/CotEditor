@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -264,7 +264,7 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
 
 private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     
-    /// Remove duplicated ranges.
+    /// Remove overlapped ranges.
     ///
     /// - Note:
     /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
@@ -272,7 +272,7 @@ private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     /// so we want to remove useless highlighting ranges as many as possible beforehand.
     ///
     /// - Returns: Sanitized syntax highlight dictionary.
-    func sanitized() -> [SyntaxType: [NSRange]] {
+    func sanitized() -> Self {
         
         var registeredIndexes = IndexSet()
         

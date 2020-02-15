@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -118,7 +118,7 @@ extension String {
         guard !indentRange.isEmpty else { return 0 }
         
         let indent = self[workaround: indentRange]
-        let numberOfTabs = indent.components(separatedBy: "\t").count - 1
+        let numberOfTabs = indent.count { $0 == "\t" }
         
         return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
     }
@@ -128,7 +128,6 @@ extension String {
     func rangeOfIndent(at location: Int) -> NSRange {
         
         let lineRange = (self as NSString).lineRange(at: location)
-        
         let range = (self as NSString).range(of: "^[ \\t]+", options: .regularExpression, range: lineRange)
         
         guard range.location != NSNotFound else {
@@ -144,11 +143,7 @@ extension String {
         
         let lineRange = self.lineRange(at: index)
         
-        guard let indentRange = self.range(of: "^[ \\t]+", options: .regularExpression, range: lineRange) else {
-            return index..<index
-        }
-        
-        return indentRange
+        return self.range(of: "^[ \\t]+", options: .regularExpression, range: lineRange) ?? index..<index
     }
     
     
@@ -165,13 +160,14 @@ extension String {
         
         guard range.isEmpty else { return nil }
         
-        let lineRange = (self as NSString).lineRange(at: range.location)
-        let forwardRange = NSRange(lineRange.location..<range.location)
+        let lineStartIndex = (self as NSString).lineStartIndex(at: range.location)
+        let forwardRange = NSRange(lineStartIndex..<range.location)
+        
         guard (self as NSString).range(of: "^ +$", options: .regularExpression, range: forwardRange).length > 1 else { return nil }
         
         let column = self.column(of: range.location, tabWidth: tabWidth)
         let targetLength = tabWidth - (column % tabWidth)
-        let targetRange = NSRange((range.location - targetLength)..<range.location)
+        let targetRange = NSRange(location: range.location - targetLength, length: targetLength)
         
         guard
             range.location >= targetLength,
@@ -209,9 +205,9 @@ extension String {
         assert(tabWidth > 0)
         
         let index = String.Index(utf16Offset: location, in: self)
-        let lineRange = self.lineRange(at: index)
+        let lineStartIndex = self.lineStartIndex(at: index)
         
-        return self[workaround: lineRange.lowerBound..<index].lazy
+        return self[workaround: lineStartIndex..<index].lazy
             .map { $0 == "\t" ? tabWidth : $0.utf16.count }
             .reduce(0, +)
     }

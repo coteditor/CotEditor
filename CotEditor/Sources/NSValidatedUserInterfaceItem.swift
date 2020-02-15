@@ -25,7 +25,7 @@
 
 import AppKit
 
- protocol StatableItem: AnyObject {
+protocol StatableItem: AnyObject {
     
     var state: NSControl.StateValue { get set }
 }

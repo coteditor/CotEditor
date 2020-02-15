@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -39,11 +39,13 @@ final class NSLayoutManagerTests: XCTestCase {
         XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<0)))
         
         layoutManager.addTemporaryAttribute(.foregroundColor, value: NSColor.green, forCharacterRange: NSRange(4..<7))
+        layoutManager.addTemporaryAttribute(.backgroundColor, value: NSColor.white, forCharacterRange: NSRange(6..<8))
         XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor))
         XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(..<4)))
         XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(3..<6)))
         XCTAssertTrue(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(6..<8)))
+        XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<7)))
         XCTAssertFalse(layoutManager.hasTemporaryAttribute(.foregroundColor, in: NSRange(7..<textStorage.length)))
     }
-
+    
 }

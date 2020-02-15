@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     // MARK: Structs
-
+    
     private enum SerializationKey {
         
         static let readingEncoding = "readingEncoding"
@@ -185,9 +185,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// whether documents use iCloud storage
     override class var usesUbiquitousStorage: Bool {
         
-        // pretend as if iCloud storage is disabled to let system give up opening the open panel on launch (2018-02 macOS 10.13)
-        if NSAppleEventManager.shared().isOpenEvent {
-            guard UserDefaults.standard[.noDocumentOnLaunchBehavior] == .openPanel else { return false }
+        // pretend as if iCloud storage is disabled to let the system give up opening the open panel on launch (2018-02 macOS 10.13)
+        if UserDefaults.standard[.noDocumentOnLaunchBehavior] != .openPanel,
+            NSAppleEventManager.shared().isOpenEvent
+        {
+            return false
         }
         
         return super.usesUbiquitousStorage
@@ -229,7 +231,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override var fileURL: URL? {
         
         didSet {
-            guard self.fileURL != oldValue else { return }
+            guard fileURL != oldValue else { return }
             
             DispatchQueue.main.async { [weak self] in
                 self?.analyzer.invalidateFileInfo()
@@ -266,28 +268,27 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
+        // do nothing if already no textView exists
+        guard !editorStates.isEmpty else { return }
+        
         // apply to UI
         self.applyContentToWindow()
         
         // select previous ranges again
         // -> Taking performance issue into consideration,
-        //    the selection ranges will be adjusted only when the content size is enough small.
+        //    the selection ranges will be adjusted only when the content size is enough small;
+        //    otherwise, just cut extra ranges off.
         let string = self.textStorage.string
         let range = self.textStorage.range
         let maxLength = 50_000  // takes ca. 1.3 sec. with MacBook Pro 13-inch late 2016 (3.3 GHz)
-        let considersDiff = min(lastString.count, string.count) < maxLength
+        let considersDiff = lastString.length < maxLength || string.length < maxLength
         
         for state in editorStates {
-            state.textView.selectedRanges = {
-                guard considersDiff else {
-                    // just cut extra ranges off
-                    return state.ranges
-                        .map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
-                        .map { $0 as NSValue }
-                }
-                
-                return string.equivalentRanges(to: state.ranges, in: lastString) as [NSValue]
-            }()
+            let selectedRanges = considersDiff
+                ? string.equivalentRanges(to: state.ranges, in: lastString)
+                : state.ranges.map { $0.intersection(range) ?? NSRange(location: range.upperBound, length: 0) }
+            
+            state.textView.selectedRanges = selectedRanges.unique as [NSValue]
         }
     }
     
@@ -389,7 +390,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // add UTF-8 BOM if needed
         if needsUTF8BOM {
-            data = data.addingUTF8BOM
+            data.insert(contentsOf: UTF8.bom, at: 0)
         }
         
         // keep to swap later with `fileData`, but only when succeed
@@ -530,8 +531,10 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // set default file extension in a hacky way (2018-02 on macOS 10.13 SDK for macOS 10.11 - 10.14)
         savePanel.allowedFileTypes = nil  // nil allows setting any extension
-        if let fileType = self.fileType,
-           let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation) {
+        if
+            let fileType = self.fileType,
+            let pathExtension = self.fileNameExtension(forType: fileType, saveOperation: .saveOperation)
+        {
             // set once allowedFileTypes, so that initial filename selection excludes the file extension
             savePanel.allowedFileTypes = [pathExtension]
             
@@ -584,9 +587,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let object = delegate as? NSObject,
             let objcClass = objc_getClass(object.className) as? AnyClass,
             let method = class_getMethodImplementation(objcClass, selector)
-            else {
-                return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo)
-            }
+            else { return super.canClose(withDelegate: delegate, shouldClose: shouldCloseSelector, contextInfo: contextInfo) }
         
         typealias Signature = @convention(c) (NSObject, Selector, NSDocument, Bool, UnsafeMutableRawPointer) -> Void
         let function = unsafeBitCast(method, to: Signature.self)
@@ -664,7 +665,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             return printInfo
         }
-
+        
         set {
             super.printInfo = newValue
         }
@@ -691,24 +692,31 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // [caution] DO NOT invoke `super.presentedItemDidChange()` that reverts document automatically if autosavesInPlace is enable.
 //        super.presentedItemDidChange()
         
-        let option = UserDefaults.standard[.documentConflictOption]
-        
         guard
-            option != .ignore,
+            UserDefaults.standard[.documentConflictOption] != .ignore,
             !self.isExternalUpdateAlertShown,  // don't check twice if already notified
             let fileURL = self.fileURL
             else { return }
         
         var didChange = false
         var fileModificationDate: Date?
-        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil) { (newURL) in  // FILE_READ
-            // ignore if file's modificationDate is the same as document's modificationDate
-            fileModificationDate = (try? FileManager.default.attributesOfItem(atPath: newURL.path))?[.modificationDate] as? Date
-            guard fileModificationDate != self.fileModificationDate else { return }
-            
-            // check if file contents was changed from the stored file data
-            let data = try? Data(contentsOf: newURL)
+        var coordinatorError: NSError?
+        NSFileCoordinator(filePresenter: self).coordinate(readingItemAt: fileURL, options: .withoutChanges, error: &coordinatorError) { (newURL) in  // FILE_READ
+            let data: Data
+            do {
+                // ignore if file's modificationDate is the same as document's modificationDate
+                fileModificationDate = try FileManager.default.attributesOfItem(atPath: newURL.path)[.modificationDate] as? Date
+                guard fileModificationDate != self.fileModificationDate else { return }
+                
+                // check if file contents was changed from the stored file data
+                data = try Data(contentsOf: newURL)
+            } catch {
+                return assertionFailure(error.localizedDescription)
+            }
             didChange = (data != self.fileData)
+        }
+        if let error = coordinatorError {
+            assertionFailure(error.localizedDescription)
         }
         
         guard didChange else {
@@ -728,7 +736,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // notify about external file update
         DispatchQueue.main.async { [weak self] in
-            switch option {
+            switch UserDefaults.standard[.documentConflictOption] {
             case .ignore:
                 assertionFailure()
             case .notify:

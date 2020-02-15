@@ -166,5 +166,5 @@ final class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(charInfo.pictureString, "␠")
         XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.name! }, ["SPACE"])
     }
-
+    
 }

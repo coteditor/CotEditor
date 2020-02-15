@@ -24,6 +24,50 @@
 
 <article>
 <header>
+    <h1>CotEditor 3.8.10</h1>
+    <p>release: <time>2020-02-15</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Optimize the performance of the invisible character drawing, the hanging indent calculation, and the line number view drawing.</li>
+	<li>Make space to draw the invisible symbol for ZERO WIDTH SPACE (U+200B) when the “other invisible characters” option is enabled.</li>
+	<li>Enable “Move Line Down” and “Move Line Up” commands swap lines with the last empty line.</li>
+	<li>Improve general performance while typing.</li>
+	<li>Update “CSS” syntax style.</li>
+	<li><span class="trivial">trivial</span>: Keep the visible area after resizing a document window even if overscrolling is enabled.</li>
+	<li><span class="trivial">trivial</span>: Adjust the theme “Note”.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”</li>
+	<li>Fix an issue where insertion points multiplied too many when adding them with <kbd>^⇧↑</kbd> or <kbd>^⇧↓</kbd> shortcut under specific conditions.</li>
+	<li>Fix an issue where default theme change in the preferences was not applied to opened documents under specific conditions.</li>
+	<li>Fix an issue where unescaping replacement string in the regular expression replacement failed with specific text patterns.</li>
+	<li>Fix an issue where the editor's line height and tab width in the opened windows did not update even the setting is changed.</li>
+	<li>Fix an issue where the rainbow cursor could appear when finding the brace pair in the latter part of a large document.</li>
+	<li>Fix an issue where the application crashed when moving lines down under specific conditions.</li>
+	<li>Fix an issue where the “Sort by Pattern” with column sort key dropped the last character from the sort key string.</li>
+	<li>Fix an issue where the current line highlight remained when quickly moving selection by dragging.</li>
+	<li>Fix an issue where the writable area of newly added split editors shrank.</li>
+	<li>Fix an issue in scripting where settings some properties, such as <code>tab width</code>, <code>tab expands</code> and <code>wrap lines</code>, in the document creation phase were ignored.</li>
+	<li>Improve stability.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
     <h1>CotEditor 3.8.9</h1>
     <p>release: <time>2020-01-30</time></p>
 </header>
@@ -43,7 +87,7 @@
 <h2>Fixes</h2>
 
 <ul>
-	<li>Fix an issue on CotEditor 3.8.8 where the application could rarely immediately after opening a document window under some very specific conditions.</li>
+	<li>Fix an issue on CotEditor 3.8.8 where the application could rarely crash immediately after opening a document window under some very specific conditions.</li>
 	<li>Fix an issue where the progress indicator for the outline menu in the navigation bar could rarely remain.</li>
 </ul>
 </section>

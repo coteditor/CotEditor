@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,7 +28,7 @@ import XCTest
 @testable import CotEditor
 
 final class LineSortTests: XCTestCase {
-
+    
     let lines = """
             dog, 🐕, 2, イヌ
             cat, 🐈, 1, ねこ
@@ -86,5 +86,21 @@ final class LineSortTests: XCTestCase {
         
         XCTAssertEqual(pattern.sort(self.lines, options: options), result)
     }
-
+    
+    
+    func testTargetRange() {
+        
+        let string = "dog"
+        XCTAssertEqual(EntireLineSortPattern().range(for: string), string.startIndex..<string.endIndex)
+        XCTAssertEqual(CSVSortPattern().range(for: string), string.startIndex..<string.endIndex)
+        XCTAssertNil(RegularExpressionSortPattern().range(for: string))
+        
+        XCTAssertEqual(CSVSortPattern().range(for: ""), Range(NSRange(0..<0), in: ""))
+        
+        let csvString = " dog  , dog cow "
+        let pattern = CSVSortPattern()
+        pattern.column = 2
+        XCTAssertEqual(pattern.range(for: csvString), Range(NSRange(8..<15), in: csvString))
+    }
+    
 }

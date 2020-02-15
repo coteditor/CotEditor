@@ -35,10 +35,7 @@ extension EditorTextView {
         guard
             let ranges = self.rangesForUserTextChange as? [NSRange],
             let editingInfo = self.string.moveLineUp(in: ranges)
-            else {
-                NSSound.beep()
-                return
-            }
+            else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
@@ -50,10 +47,7 @@ extension EditorTextView {
         guard
             let ranges = self.rangesForUserTextChange as? [NSRange],
             let editingInfo = self.string.moveLineDown(in: ranges)
-            else {
-                NSSound.beep()
-                return
-            }
+            else { return NSSound.beep() }
         
         self.edit(with: editingInfo, actionName: "Move Line".localized)
     }
@@ -131,10 +125,7 @@ extension EditorTextView {
     /// show pattern sort sheet
     @IBAction func patternSort(_ sender: Any?) {
         
-        guard self.isEditable else {
-            NSSound.beep()
-            return
-        }
+        guard self.isEditable else { return NSSound.beep() }
         
         let viewController = PatternSortViewController.instantiate(storyboard: "PatternSortView")
         
@@ -202,10 +193,10 @@ private extension String {
     func moveLineUp(in ranges: [NSRange]) -> EditingInfo? {
         
         // get line ranges to process
-        let lineRanges = (self as NSString).lineRanges(for: ranges)
+        let lineRanges = (self as NSString).lineRanges(for: ranges, includingLastEmptyLine: true)
         
         // cannot perform Move Line Up if one of the selections is already in the first line
-        guard !lineRanges.isEmpty, lineRanges.first?.location != 0 else { return nil }
+        guard !lineRanges.isEmpty, lineRanges.first!.lowerBound != 0 else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()
@@ -233,7 +224,7 @@ private extension String {
                 if let intersectionRange = selectedRange.intersection(editRange) {
                     selectedRanges.append(intersectionRange.shifted(offset: -upperLineRange.length))
                     
-                } else if editRange.contains(selectedRange.location) || selectedRange.upperBound == editRange.upperBound {
+                } else if editRange.touches(selectedRange.location) {
                     selectedRanges.append(selectedRange.shifted(offset: -upperLineRange.length))
                 }
             }
@@ -252,7 +243,7 @@ private extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         
         // cannot perform Move Line Down if one of the selections is already in the last line
-        guard !lineRanges.isEmpty, lineRanges.last?.upperBound != self.nsRange.upperBound else { return nil }
+        guard !lineRanges.isEmpty, (lineRanges.last!.upperBound != self.length || self.last?.isNewline == true) else { return nil }
         
         var string = self as NSString
         var replacementRange = NSRange()
@@ -260,7 +251,7 @@ private extension String {
         
         // swap lines
         for lineRange in lineRanges.reversed() {
-            var lowerLineRange = string.lineRange(at: lineRange.upperBound)
+            let lowerLineRange = string.lineRange(at: lineRange.upperBound)
             var lineString = string.substring(with: lineRange)
             var lowerLineString = string.substring(with: lowerLineRange)
             
@@ -268,7 +259,6 @@ private extension String {
             if !lowerLineString.hasSuffix("\n") {
                 lineString = lineString.trimmingCharacters(in: .newlines)
                 lowerLineString += "\n"
-                lowerLineRange.length += 1
             }
             
             // swap
@@ -279,9 +269,10 @@ private extension String {
             // move selected ranges in the line to move
             for selectedRange in ranges {
                 if let intersectionRange = selectedRange.intersection(editRange) {
-                    selectedRanges.append(intersectionRange.shifted(offset: lowerLineRange.length))
+                    let offset = lineString.hasSuffix("\n") ? lowerLineRange.length : lowerLineRange.length + 1
+                    selectedRanges.append(intersectionRange.shifted(offset: offset))
                     
-                } else if editRange.contains(selectedRange.location) {
+                } else if editRange.touches(selectedRange.location) {
                     selectedRanges.append(selectedRange.shifted(offset: lowerLineRange.length))
                 }
             }
@@ -305,7 +296,7 @@ private extension String {
         let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
-            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+            .localizedCaseInsensitiveSorted()
             .joined(separator: "\n")
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])

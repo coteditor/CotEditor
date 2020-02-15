@@ -28,7 +28,7 @@ import XCTest
 @testable import CotEditor
 
 final class GeometryTests: XCTestCase {
-
+    
     func testScaling() {
         
         XCTAssertEqual(CGSize.unit.scaled(to: 0.5), CGSize(width: 0.5, height: 0.5))
@@ -56,5 +56,5 @@ final class GeometryTests: XCTestCase {
         XCTAssertEqual(CGFloat(2.555).rounded(to: 1), 2.6)
         XCTAssertEqual(CGFloat(2.444).rounded(to: 2), 2.44)
     }
-
+    
 }

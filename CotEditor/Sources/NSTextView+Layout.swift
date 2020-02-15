@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -26,12 +26,6 @@
 import AppKit
 
 // MARK: Range
-
-private extension NSGlyph {
-    
-    static let verticalTab = NSGlyph(16777215)
-}
-
 
 extension NSTextView {
     
@@ -71,10 +65,8 @@ extension NSTextView {
         var boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         
         // adjust size if the substring of the given range is single vertical tab character.
-        if glyphRange.length == 1, layoutManager.glyph(at: glyphRange.location) == .verticalTab {
-            let lineHeight = layoutManager.lineFragmentRect(forGlyphAt: range.location, effectiveRange: nil).height
-            
-            boundingRect.size = CGSize(width: lineHeight / 2, height: lineHeight)
+        if range.length == 1, (self.string as NSString).character(at: range.location) == 0x000B {
+            boundingRect.size.width = boundingRect.height / 2
         }
         
         return boundingRect.offset(by: self.textContainerOrigin)
@@ -84,19 +76,15 @@ extension NSTextView {
     /// return bounding rectangles (in text view coordinates) enclosing all the given character range
     func boundingRects(for range: NSRange) -> [NSRect] {
         
+        var count = 0
         guard
             let layoutManager = self.layoutManager,
-            let textContainer = self.textContainer
+            let textContainer = self.textContainer,
+            let rectArray = layoutManager.rectArray(forCharacterRange: range, withinSelectedCharacterRange: range,
+                                                    in: textContainer, rectCount: &count)
             else { return [] }
         
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        
-        var rects: [NSRect] = []
-        layoutManager.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: glyphRange, in: textContainer) { (rect, _) in
-            rects.append(rect)
-        }
-        
-        return rects.map { $0.offset(by: self.textContainerOrigin) }
+        return (0..<count).map { rectArray[$0].offset(by: self.textContainerOrigin) }
     }
     
 }
@@ -119,23 +107,23 @@ extension NSTextView {
         }
         
         set {
-            // sanitize scale
-            let scale: CGFloat = {
-                guard let scrollView = self.enclosingScrollView else { return newValue }
-                
-                return newValue.clamped(to: scrollView.minMagnification...scrollView.maxMagnification)
-            }()
+            // sanitize value
+            let scale = self.enclosingScrollView
+                .flatMap { $0.minMagnification...$0.maxMagnification }
+                .map { newValue.clamped(to: $0) } ?? newValue
             
             guard scale != self.scale else { return }
             
-            self.willChangeValue(for: \.scale)
-            
             // scale
+            self.willChangeValue(for: \.scale)
             self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
             self.scaleUnitSquare(to: NSSize(width: scale, height: scale))
+            self.didChangeValue(for: \.scale)
             
             // ensure bounds origin is {0, 0} for vertical text orientation
-            self.translateOrigin(to: self.bounds.origin)
+            if self.layoutOrientation == .vertical {
+                self.translateOrigin(to: self.bounds.origin)
+            }
             
             // reset minimum size for unwrap mode
             self.minSize = self.visibleRect.size
@@ -144,8 +132,6 @@ extension NSTextView {
             // -> For in case the view becomes bigger than text content width when pinch out
             //    but doesn't strech enough to the right edge of the scroll view.
             self.sizeToFit()
-            
-            self.didChangeValue(for: \.scale)
             
             self.setNeedsDisplay(self.visibleRect)
         }

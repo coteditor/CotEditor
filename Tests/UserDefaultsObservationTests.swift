@@ -28,7 +28,7 @@ import XCTest
 @testable import CotEditor
 
 final class UserDefaultsObservationTests: XCTestCase {
-
+    
     private static let key = DefaultKey<Bool>("TestKey")
     
     
@@ -61,5 +61,5 @@ final class UserDefaultsObservationTests: XCTestCase {
         observer.invalidate()
         UserDefaults.standard[Self.key] = false
     }
-
+    
 }

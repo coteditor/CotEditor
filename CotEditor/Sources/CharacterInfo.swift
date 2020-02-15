@@ -54,7 +54,7 @@ struct CharacterInfo {
     
     
     // MARK: Public Properties
-
+    
     let string: String
     let pictureString: String?
     let isComplex: Bool

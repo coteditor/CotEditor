@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,9 +31,8 @@ extension MultipleReplacement {
     func highlight(inSelection: Bool, completionHandler: @escaping (_ resultMessage: String) -> Void) {
         
         guard let textView = TextFinder.shared.client else {
-                NSSound.beep()
-                return
-            }
+            return NSSound.beep()
+        }
         
         let string = textView.string.immutable
         let selectedRanges = textView.selectedRanges as! [NSRange]
@@ -97,11 +96,8 @@ extension MultipleReplacement {
         guard
             let textView = TextFinder.shared.client, textView.isEditable,
             textView.window?.attachedSheet == nil
-            else {
-                NSSound.beep()
-                return
-            }
-
+            else { return NSSound.beep() }
+        
         let string = textView.string.immutable
         let selectedRanges = textView.selectedRanges as! [NSRange]
         

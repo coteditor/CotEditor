@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,14 +34,12 @@ class StatableToolbarItem: ControlToolbarItem {
         didSet {
             guard state != oldValue else { return }
             
-            let suffix = (self.state == .on) ? "On" : "Off"
+            let suffix = (state == .on) ? "On" : "Off"
             
             guard
                 let base = self.image?.name()?.components(separatedBy: "_").first,
                 let image = NSImage(named: base + "_" + suffix)
-                else {
-                    return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.")
-                }
+                else { return assertionFailure("StatableToolbarItem must habe an image that has name with \"_On\" and \"_Off\" suffixes.") }
             
             self.image = image
         }

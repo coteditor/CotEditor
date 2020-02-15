@@ -166,7 +166,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let themeName = UserDefaults.standard[.pinsThemeAppearance]
                 ? storedThemeName
                 : ThemeManager.shared.equivalentSettingName(to: storedThemeName, forDark: self.view.effectiveAppearance.isDark) ?? storedThemeName
-        
+            
             self.setTheme(name: themeName)
         }
         
@@ -364,7 +364,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             // perform highlight in the next run loop to give layoutManager time to update temporary attribute
             let editedRange = textStorage.editedRange
             DispatchQueue.main.async { [weak self] in
-                if let progress = self?.syntaxHighlightProgress {
+                if let progress = self?.syntaxHighlightProgress, !progress.isFinished {
                     // retry syntax highlight if the last highlightAll has not finished yet
                     progress.cancel()
                     self?.syntaxHighlightProgress = syntaxParser.highlightAll()
@@ -452,7 +452,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// return textView focused on
     var focusedTextView: EditorTextView? {
         
-        return self.splitViewController?.focusedSubviewController?.textView
+        return self.splitViewController?.focusedChild?.textView
     }
     
     
@@ -793,18 +793,18 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// split editor view
     @IBAction func openSplitTextView(_ sender: Any?) {
         
-        guard (self.splitViewController?.splitViewItems.count ?? 0) < maximumNumberOfSplitEditors else {
-            NSSound.beep()
-            return
-        }
+        guard
+            let splitViewController = self.splitViewController,
+            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
+            else { return assertionFailure() }
         
-        guard let currentEditorViewController = self.findTargetEditorViewController(for: sender) else { return }
+        guard splitViewController.splitViewItems.count < maximumNumberOfSplitEditors else { return NSSound.beep() }
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
         
         let newEditorViewController = EditorViewController.instantiate(storyboard: "EditorView")
-        self.splitViewController?.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
+        splitViewController.addSubview(for: newEditorViewController, relativeTo: currentEditorViewController)
         self.setup(editorViewController: newEditorViewController, baseViewController: currentEditorViewController)
         
         newEditorViewController.navigationBarController?.outlineItems = self.syntaxParser?.outlineItems ?? []
@@ -837,7 +837,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         NSTextInputContext.current?.discardMarkedText()
         
         // move focus to the next text view if the view to close has a focus
-        if splitViewController.focusedSubviewController == currentEditorViewController {
+        if splitViewController.focusedChild == currentEditorViewController {
             let childViewControllers = self.editorViewControllers
             let deleteIndex = childViewControllers.firstIndex(of: currentEditorViewController) ?? 0
             let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
@@ -848,7 +848,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // close
         if let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController) {
             splitViewController.removeSplitViewItem(splitViewItem)
-        
+            
             if let textView = currentEditorViewController.textView {
                 NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
             }
@@ -984,7 +984,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// child editor view controllers
     private var editorViewControllers: [EditorViewController] {
         
-        return self.splitViewController?.children as? [EditorViewController] ?? []
+        return self.splitViewController?.children.compactMap { $0 as? EditorViewController } ?? []
     }
     
     
@@ -1012,7 +1012,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard
             let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: { $0.superview }).first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
+            let editorView = sequence(first: view, next: { $0.superview })
+                .first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
             else { return nil }
         
         return self.splitViewController?.viewController(for: editorView)
@@ -1026,7 +1027,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
 
 extension DocumentViewController: TextFinderClientProvider {
     
-    /// tell text finder in which text view should it find text
+    /// tell text finder in which text view it should find text
     func textFinderClient() -> NSTextView? {
         
         return self.focusedTextView

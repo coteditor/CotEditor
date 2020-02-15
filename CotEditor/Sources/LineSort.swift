@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ extension SortPattern {
         
         var lines = string.components(separatedBy: .newlines)
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
-            
+        
         lines = lines
             .map { line -> (line: String, key: String?) in
                 (line: line, key: self.sortKey(for: line))
@@ -135,11 +135,11 @@ final class CSVSortPattern: NSObject, SortPattern {
             end = line.index(start, offsetBy: component.count)
             
             range = start..<end
-            if let trimmedStart = component.firstIndex(where: { $0 != " " }) {
+            if let trimmedStart = component.firstIndex(where: { !$0.isWhitespace }) {
                 let offset = component.distance(from: component.startIndex, to: trimmedStart)
                 range = line.index(start, offsetBy: offset)..<range.upperBound
             }
-            if let trimmedEnd = component.lastIndex(where: { $0 != " " }) {
+            if let trimmedEnd = component.lastIndex(where: { $0.isWhitespace }) {
                 let offset = component.distance(from: component.startIndex, to: trimmedEnd)
                 range = range.lowerBound..<line.index(start, offsetBy: offset)
             }

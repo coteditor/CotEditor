@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -125,8 +125,8 @@ final class UserDefaultsObservation: NSObject {
                                  isPrior: change[.notificationIsPriorKey] as? Bool ?? false)
         
         if let queue = self.queue, queue != OperationQueue.current {
-            queue.addOperation { [handler = self.changeHandler] in
-                handler(typedChange)
+            queue.addOperation { [weak self] in
+                self?.changeHandler(typedChange)
             }
         } else {
             self.changeHandler(typedChange)

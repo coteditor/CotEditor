@@ -85,7 +85,7 @@ final class IncompatibleCharacterTests: XCTestCase {
         XCTAssertEqual(incompatibles[1].location, 21)
         XCTAssertEqual(incompatibles[1].lineNumber, 1)
     }
-
+    
 }
 
 

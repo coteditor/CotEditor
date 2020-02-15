@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -47,7 +47,7 @@ final class TextFindTests: XCTestCase {
         XCTAssertEqual(textFind.numberOfCaptureGroups, 0)
     }
     
-
+    
     func testSingleFind() throws {
         
         let text = "abcdefg abcdefg ABCDEFG"
@@ -136,6 +136,15 @@ final class TextFindTests: XCTestCase {
         let regex = try NSRegularExpression(pattern: findString)
         let numberOfMatches = regex.numberOfMatches(in: text, range: NSRange(location: 0, length: text.utf16.count))
         XCTAssertEqual(numberOfMatches, 2)
+    }
+    
+    
+    func testUnescapedRegexFind() throws {
+        
+        let mode: TextFind.Mode = .regularExpression(options: .caseInsensitive, unescapesReplacement: true)
+        let textFind = try TextFind(for: "1", findString: "1", mode: mode, selectedRanges: [NSRange(0..<1)])
+        let replacementResult = textFind.replace(with: #"foo：\n1"#)
+        XCTAssertEqual(replacementResult!.string, "foo：\n1")
     }
     
     

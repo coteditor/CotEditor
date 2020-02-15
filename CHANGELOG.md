@@ -2,6 +2,37 @@
 Change Log
 ==========================
 
+3.8.10 (396)
+--------------------------
+
+### Improvements
+
+- Optimize the performance of the invisible character drawing, the hanging indent calculation, and the line number view drawing.
+- Make space to draw the invisible symbol for ZERO WIDTH SPACE (U+200B) when the “other invisible characters” option is enabled.
+- Enable “Move Line Down” and “Move Line Up” commands swap lines with the last empty line.
+- Improve general performance while typing.
+- Update “CSS” syntax style.
+- [trivial] Keep the visible area after resizing a document window even if overscrolling is enabled.
+- [trivial] Adjust the theme “Note”.
+
+
+### Fixes
+
+- Fix an issue where the Unicode code point field in the document inspector displayed always “not selected.”
+- Fix an issue where insertion points multiplied too many when adding them with `^⇧↑` or `^⇧↓` shortcut under specific conditions.
+- Fix an issue where default theme change in the preferences was not applied to opened documents under specific conditions.
+- Fix an issue where unescaping replacement string in the regular expression replacement failed with specific text patterns.
+- Fix an issue where the editor's line height and tab width in the opened windows did not update even the setting is changed.
+- Fix an issue where the rainbow cursor could appear when finding the brace pair in the latter part of a large document.
+- Fix an issue where the application crashed when moving lines down under specific conditions.
+- Fix an issue where the “Sort by Pattern” with column sort key dropped the last character from the sort key string.
+- Fix an issue where the current line highlight remained when quickly moving selection by dragging.
+- Fix an issue where the writable area of newly added split editors shrank.
+- Fix an issue in scripting where settings some properties, such as `tab width`, `tab expands` and `wrap lines`, in the document creation phase were ignored.
+- Improve stability.
+
+
+
 3.8.9 (394)
 --------------------------
 
@@ -13,7 +44,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue on CotEditor 3.8.8 where the application could rarely immediately after opening a document window under some very specific conditions.
+- Fix an issue on CotEditor 3.8.8 where the application could rarely crash immediately after opening a document window under some very specific conditions.
 - Fix an issue where the progress indicator for the outline menu in the navigation bar could rarely remain.
 
 

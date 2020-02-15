@@ -6,13 +6,13 @@
  CotEditor
  https://coteditor.com
  
- © 2006-2019 CotEditor Project
+ © 2006-2020 CotEditor Project
 */
 
 
 :root {
 	-webkit-text-size-adjust: 100%;
-	font: 10pt/1.5 -apple-system, -apple-system-font, 'Helvetica Neue', sans-serif;
+	font: 10pt/1.5 -apple-system, sans-serif;
 	color: -apple-system-label;
 }
 body {
@@ -36,7 +36,9 @@ b {
 }
 
 kbd {
+	font-family: -apple-system, sans-serif;
 	padding: 0 0.2em;
+	margin: 0 0.1em;
 	border-radius: 0.2em;
 	border: 1px solid -apple-system-tertiary-label;
 	box-shadow: 0 1px 0 hsla(0, 0%, 0%, .05);
@@ -63,7 +65,7 @@ pre code {
 }
 
 body > h1 {
-	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w2', sans-serif;
+	font-family: -apple-system-headline, sans-serif;
 	font-size: 1.71rem;
 	line-height: 1.0;
 	font-weight: 400;
@@ -80,7 +82,7 @@ body > h1::before {
 	margin-right: 8px;
 }
 h2 {
-	font-family: -apple-system-font, 'Helvetica Neue', 'Hiragino Sans w5', sans-serif;
+	font-family: -apple-system-subheadline, sans-serif;
 	font-size: 1.41rem;
 	font-weight: 400;
 	line-height: 1.1;

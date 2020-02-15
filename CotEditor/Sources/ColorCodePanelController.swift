@@ -93,7 +93,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     func windowWillClose(_ notification: Notification) {
         
         guard let panel = self.panel else { return assertionFailure() }
-    
+        
         panel.delegate = nil
         panel.accessoryView = nil
         panel.detachColorList(self.stylesheetColorList)
@@ -140,8 +140,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         guard self.colorCode != nil else { return }
         
         guard let receiver = NSApp.target(forAction: #selector(ColorCodeReceiver.insertColorCode)) as? ColorCodeReceiver else {
-            NSSound.beep()
-            return
+            return NSSound.beep()
         }
         
         receiver.insertColorCode(self)

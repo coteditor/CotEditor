@@ -35,14 +35,34 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Properties
     
-    private var lastLineStartIndex = 0
-    private var indentWidthCache: [NSAttributedString: CGFloat] = [:]
-    private lazy var indentRegex = try! NSRegularExpression(pattern: "[ \t]+")
+    private var indentWidthCache: [String: CGFloat] = [:]
+    private var indentAttributes: [NSAttributedString.Key: Any] = [:]
+    private var typingAttributesObserver: NSKeyValueObservation?
     
     
     
     // MARK: -
     // MARK: Text Container Methods
+    
+    deinit {
+        self.typingAttributesObserver?.invalidate()
+    }
+    
+    
+    override weak var textView: NSTextView? {
+        
+        willSet {
+            self.typingAttributesObserver?.invalidate()
+        }
+        
+        didSet {
+            self.typingAttributesObserver = textView?.observe(\.typingAttributes, options: [.initial, .new]) { [weak self] (_, change) in
+                self?.indentAttributes = change.newValue ?? [:]
+                self?.indentWidthCache.removeAll()
+            }
+        }
+    }
+    
     
     override var isSimpleRectangularTextContainer: Bool {
         
@@ -58,36 +78,25 @@ final class TextContainer: NSTextContainer {
         
         guard
             self.isHangingIndentEnabled,
-            let layoutManager = self.layoutManager as? LayoutManager,
-            let storage = layoutManager.textStorage
+            let layoutManager = self.layoutManager as? LayoutManager
             else { return rect }
         
-        let string = storage.string as NSString
+        let lineStartIndex = layoutManager.lineStartIndex(at: characterIndex)
         
         // no hanging indent for new line
-        if characterIndex == 0 || string.character(at: characterIndex - 1) == NSNewlineCharacter {
-            self.lastLineStartIndex = characterIndex
-            return rect
-        }
-        
-        // find line start index only really needed
-        if characterIndex < self.lastLineStartIndex {
-            self.lastLineStartIndex = string.lineStartIndex(at: characterIndex)
-        }
-        
-        assert(characterIndex > 10_000 || self.lastLineStartIndex == string.lineStartIndex(at: characterIndex),
-               "Wrong line start index estimation at \(characterIndex).")
+        guard characterIndex != lineStartIndex else { return rect }
         
         // get base indent
-        let searchRange = NSRange(self.lastLineStartIndex..<characterIndex)
-        let indentRange = self.indentRegex.rangeOfFirstMatch(in: storage.string, options: .anchored, range: searchRange)
+        let string = layoutManager.attributedString().string as NSString
+        let indentString = string.indentString(from: lineStartIndex, limitedBy: characterIndex)
         let baseIndent: CGFloat
-        if indentRange != .notFound {
-            let attrIndent = storage.attributedSubstring(from: indentRange)
-            baseIndent = self.indentWidthCache[attrIndent] ?? attrIndent.size().width
-            self.indentWidthCache[attrIndent] = baseIndent
-        } else {
+        if indentString.isEmpty {
             baseIndent = 0
+        } else if let cache = self.indentWidthCache[indentString] {
+            baseIndent = cache
+        } else {
+            baseIndent = (indentString as NSString).size(withAttributes: self.indentAttributes).width
+            self.indentWidthCache[indentString] = baseIndent
         }
         
         // calculate hanging indent
@@ -113,4 +122,38 @@ final class TextContainer: NSTextContainer {
         layoutManager.invalidateLayout(forCharacterRange: layoutManager.attributedString().range, actualCharacterRange: nil)
     }
     
+}
+
+
+
+// MARK: -
+
+private extension NSString {
+    
+    /// The fast way to find the indent charaters at the beginning of the given range.
+    ///
+    /// - Parameters:
+    ///   - startIndex: The character index where the indent search startss.
+    ///   - limitIndex: The upper threshold to find indent.
+    /// - Returns: The indent part of the string at the beginning of the given range.
+    func indentString(from startIndex: Int, limitedBy limitIndex: Int? = nil) -> String {
+        
+        assert(self.lineStartIndex(at: startIndex) == startIndex)
+        
+        let limitIndex = limitIndex ?? self.length
+        var characters: [unichar] = []
+        
+        for index in startIndex..<limitIndex {
+            let character = self.character(at: index)
+            
+            switch character {
+            case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
+                characters.append(character)
+            default:
+                return String(utf16CodeUnits: characters, count: characters.count)
+            }
+        }
+        
+        return ""
+    }
 }

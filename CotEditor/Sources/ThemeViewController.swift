@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -51,8 +51,8 @@ final class ThemeViewController: NSViewController {
             self.beginThemeObserving()
             
             // add metadata's NSMutableDictionary beforehand for KVO by NSObjectController
-            if self.theme?[DictionaryKey.metadata.rawValue] == nil {
-                self.theme?[DictionaryKey.metadata.rawValue] = NSMutableDictionary()
+            if theme?[DictionaryKey.metadata.rawValue] == nil {
+                theme?[DictionaryKey.metadata.rawValue] = NSMutableDictionary()
             }
         }
     }

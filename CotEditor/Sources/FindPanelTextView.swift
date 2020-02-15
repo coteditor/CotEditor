@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -103,7 +103,7 @@ class FindPanelTextView: NSTextView {
     override var string: String {
         
         didSet {
-            self.isEmpty = self.string.isEmpty
+            self.isEmpty = string.isEmpty
         }
     }
     
@@ -113,7 +113,7 @@ class FindPanelTextView: NSTextView {
         
         // perform Find Next in find string field (standard NSTextField behavior)
         if performsActionOnEnter {
-           TextFinder.shared.findNext(self)
+            TextFinder.shared.findNext(self)
         }
     }
     

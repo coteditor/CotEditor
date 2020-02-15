@@ -38,7 +38,7 @@ final class FormattersTests: XCTestCase {
         XCTAssertEqual(FilePermissions(mask: 0o643).humanReadable, "rw-r---wx")
     }
     
-
+    
     func testFilePermissionsFormatter() {
         
         let formatter = FilePermissionsFormatter()
@@ -46,5 +46,5 @@ final class FormattersTests: XCTestCase {
         XCTAssertEqual(formatter.string(for: 0o777 as NSNumber), "777 (-rwxrwxrwx)")
         XCTAssertEqual(formatter.string(for: 0o643 as NSNumber), "643 (-rw-r---wx)")
     }
-
+    
 }

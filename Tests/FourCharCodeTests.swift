@@ -28,11 +28,11 @@ import XCTest
 @testable import CotEditor
 
 final class FourCharCodeTests: XCTestCase {
-
+    
     func testInitializerr() {
         
         XCTAssertEqual(FourCharCode(code: "TEXT"), NSHFSTypeCodeFromFileType("'TEXT'"))
         XCTAssertEqual(FourCharCode(code: "rtfd"), NSHFSTypeCodeFromFileType("'rtfd'"))
     }
-
+    
 }

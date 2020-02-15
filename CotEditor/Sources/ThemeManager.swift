@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -68,7 +68,7 @@ final class ThemeManager: SettingFileManaging {
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: Self.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
-            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+            .localizedCaseInsensitiveSorted()
         
         // cache user setting names
         self.checkUserSettings()
@@ -93,7 +93,7 @@ final class ThemeManager: SettingFileManaging {
         
         let settingName = UserDefaults.standard[.theme]!
         
-        if UserDefaults.standard[.pinsThemeAppearance] || NSAppKitVersion.current < .macOS10_13 {
+        if UserDefaults.standard[.pinsThemeAppearance] || NSAppKitVersion.current <= .macOS10_13 {
             return settingName
         }
         
@@ -196,7 +196,7 @@ final class ThemeManager: SettingFileManaging {
         // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
             .map { self.settingName(from: $0) }
-            .sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+            .localizedCaseInsensitiveSorted()
         
         self.settingNames = (self.bundledSettingNames + userSettingNames).unique
         
@@ -227,7 +227,7 @@ final class ThemeManager: SettingFileManaging {
             return true
         }
     }
-        
+    
     
     /// Load ThemeDictionary from a file at the URL.
     ///

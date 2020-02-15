@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ struct OutlineExtractor {
         // compile to regex object
         var options: NSRegularExpression.Options = .anchorsMatchLines
         if definition.ignoreCase {
-            options.update(with: .caseInsensitive)
+            options.formUnion(.caseInsensitive)
         }
         self.regex = try NSRegularExpression(pattern: definition.pattern, options: options)
         
@@ -45,13 +45,13 @@ struct OutlineExtractor {
         
         var style = OutlineItem.Style()
         if definition.bold {
-            style.update(with: .bold)
+            style.formUnion(.bold)
         }
         if definition.italic {
-            style.update(with: .italic)
+            style.formUnion(.italic)
         }
         if definition.underline {
-            style.update(with: .underline)
+            style.formUnion(.underline)
         }
         self.style = style
     }

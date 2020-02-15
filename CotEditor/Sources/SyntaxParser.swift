@@ -34,7 +34,7 @@ protocol SyntaxParserDelegate: AnyObject {
 }
 
 
-extension NSAttributedString.Key {
+private extension NSAttributedString.Key {
     
     static let syntaxType = NSAttributedString.Key("CotEditor.SyntaxType")
 }
@@ -65,7 +65,7 @@ final class SyntaxParser {
         
         didSet {
             // inform about outline items update
-            DispatchQueue.main.async { [weak self, items = self.outlineItems] in
+            DispatchQueue.main.async { [weak self, items = outlineItems] in
                 guard let self = self else { return assertionFailure() }
                 
                 self.delegate?.syntaxParser(self, didParseOutline: items)
@@ -104,14 +104,14 @@ final class SyntaxParser {
     
     // MARK: Public Methods
     
-    /// whether enable parsing syntax
+    /// Whether syntax should be parsed.
     var canParse: Bool {
         
         return UserDefaults.standard[.enableSyntaxHighlight] && !self.style.isNone
     }
     
     
-    /// cancel all syntax parse
+    /// Cancel all syntax parse including ones in the queues.
     func invalidateCurrentParse() {
         
         self.highlightCache = nil
@@ -128,7 +128,7 @@ final class SyntaxParser {
 
 extension SyntaxParser {
     
-    /// parse outline with delay
+    /// Parse outline with delay.
     func invalidateOutline() {
         
         guard
@@ -146,7 +146,7 @@ extension SyntaxParser {
     
     // MARK: Private Methods
     
-    /// parse outline
+    /// Perform outline parse.
     private func parseOutline() {
         
         let wholeRange = self.textStorage.range
@@ -183,8 +183,11 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// update whole document highlights
-    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    /// Update whole syntax highlights.
+    ///
+    /// - Parameter completionHandler: The block to execute when the process completes.
+    /// - Returns: The progress of the async highlight task if performed.
+    func highlightAll(forcesParsing: Bool = false, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         assert(Thread.isMainThread)
         
@@ -194,8 +197,12 @@ extension SyntaxParser {
         let wholeRange = self.textStorage.range
         
         // use cache if the content of the whole document is the same as the last
-        if let cache = self.highlightCache, cache.styleName == self.style.name, cache.string == self.textStorage.string {
-            self.apply(highlights: cache.highlights, range: wholeRange)
+        if
+            let cache = self.highlightCache,
+            cache.styleName == self.style.name,
+            cache.string == self.textStorage.string
+        {
+            self.textStorage.apply(highlights: cache.highlights, range: wholeRange)
             completionHandler()
             return nil
         }
@@ -210,7 +217,10 @@ extension SyntaxParser {
     }
     
     
-    /// update highlights around passed-in range
+    /// Update highlights around passed-in range.
+    ///
+    /// - Parameter editedRange: The character range that was edited.
+    /// - Returns: The progress of the async highlight task if performed.
     func highlight(around editedRange: NSRange) -> Progress? {
         
         assert(Thread.isMainThread)
@@ -218,15 +228,15 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        // make sure that string is immutable (see `highlightAll()` for details)
-        let string = self.textStorage.string.immutable
-        
         let wholeRange = self.textStorage.range
-        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         
         // in case that wholeRange length is changed from editedRange
         guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
         
+        // make sure that string is immutable (see `highlightAll()` for details)
+        let string = self.textStorage.string.immutable
+        
+        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
         var highlightRange = editedRange
         
         // highlight whole if string is enough short
@@ -235,13 +245,11 @@ extension SyntaxParser {
             
         } else {
             // highlight whole visible area if edited point is visible
-            for layoutManager in self.textStorage.layoutManagers {
-                guard let visibleRange = layoutManager.firstTextView?.visibleRange else { continue }
-                
-                highlightRange.formUnion(visibleRange)
-            }
+            highlightRange = self.textStorage.layoutManagers
+                .compactMap { $0.textViewForBeginningOfSelection?.visibleRange }
+                .filter { $0.intersection(highlightRange) != nil }
+                .reduce(into: highlightRange) { $0.formUnion($1) }
             
-            highlightRange = highlightRange.intersection(wholeRange) ?? wholeRange
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
             // expand highlight area if the character just before/after the highlighting area is the same color
@@ -279,7 +287,7 @@ extension SyntaxParser {
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
-            self.apply(highlights: [:], range: highlightRange)
+            self.textStorage.apply(highlights: [:], range: highlightRange)
             completionHandler()
             return nil
         }
@@ -339,7 +347,7 @@ extension SyntaxParser {
                     self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
                 }
                 
-                self?.apply(highlights: highlights, range: highlightRange)
+                self?.textStorage.apply(highlights: highlights, range: highlightRange)
                 
                 progress.completedUnitCount += 1
             }
@@ -350,38 +358,45 @@ extension SyntaxParser {
         return operation.progress
     }
     
+}
+
+
+
+private extension NSTextStorage {
     
     /// apply highlights to the document
-    private func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
+    func apply(highlights: [SyntaxType: [NSRange]], range highlightRange: NSRange) {
         
         assert(Thread.isMainThread)
         
-        guard self.textStorage.length > 0 else { return }
+        guard self.length > 0 else { return }
         
         let hasHighlight = highlights.values.contains { !$0.isEmpty }
         
-        for layoutManager in self.textStorage.layoutManagers {
+        for layoutManager in self.layoutManagers {
             // skip if never colorlized yet to avoid heavy `layoutManager.invalidateDisplay(forCharacterRange:)`
             guard hasHighlight || layoutManager.hasTemporaryAttribute(.syntaxType, in: highlightRange) else { continue }
+            
+            let theme = (layoutManager.firstTextView as? Themable)?.theme
             
             layoutManager.groupTemporaryAttributesUpdate(in: highlightRange) {
                 layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: highlightRange)
                 layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
                 
-                guard let theme = (layoutManager.firstTextView as? Themable)?.theme else { return }
-                
                 for type in SyntaxType.allCases {
                     guard let ranges = highlights[type], !ranges.isEmpty else { continue }
                     
-                    if let color = theme.style(for: type)?.color {
+                    for range in ranges {
+                        layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
+                    }
+                    
+                    if let color = theme?.style(for: type)?.color {
                         for range in ranges {
                             layoutManager.addTemporaryAttribute(.foregroundColor, value: color, forCharacterRange: range)
-                            layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
                         }
                     } else {
                         for range in ranges {
                             layoutManager.removeTemporaryAttribute(.foregroundColor, forCharacterRange: range)
-                            layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: range)
                         }
                     }
                 }

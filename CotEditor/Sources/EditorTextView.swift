@@ -60,7 +60,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var needsUpdateLineHighlight = true
+    var needsUpdateLineHighlight = true  { didSet { self.setNeedsDisplay(self.visibleRect) } }
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
@@ -101,8 +101,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
-    private var scrollObserver: NSObjectProtocol?
-    private var resizeObserver: NSObjectProtocol?
     
     
     
@@ -126,8 +124,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         super.init(coder: coder)
         
         // workaround for: the text selection highlight can remain between lines (2017-09 macOS 10.13–10.15).
-        self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
-        self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
+        if !UserDefaults.standard.bool(forKey: "testsRescalingInTextView") {
+            self.scaleUnitSquare(to: NSSize(width: 0.5, height: 0.5))
+            self.scaleUnitSquare(to: self.convert(.unit, from: nil))  // reset scale
+        }
         
         // setup layoutManager and textContainer
         let textContainer = TextContainer()
@@ -186,7 +186,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     deinit {
         self.insertionPointTimer?.cancel()
         self.defaultsObservers.forEach { $0.invalidate() }
-        self.removeNotificationObservers()
+        
+        if let observer = self.windowOpacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
     }
     
     
@@ -251,24 +254,25 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// textView is about to be attached to / detached from a window
+    /// the receiver is about to be attached to / detached from a window
     override func viewWillMove(toWindow newWindow: NSWindow?) {
         
         super.viewWillMove(toWindow: window)
         
-        // remove observations before all observed objects are deallocated
-        if newWindow == nil {
-            self.removeNotificationObservers()
+        // remove observation before the observed object is deallocated
+        if let observer = self.windowOpacityObserver {
+            NotificationCenter.default.removeObserver(observer)
+            self.windowOpacityObserver = nil
         }
     }
     
     
-    /// textView was attached to / detached from a window
+    /// the receiver was attached to / detached from a window
     override func viewDidMoveToWindow() {
         
         super.viewDidMoveToWindow()
         
-        // textView will be removed from the window
+        // textView was detached from the window
         guard let window = self.window else { return }
         
         // apply theme to window
@@ -276,29 +280,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
-        
-        // observe window opacity flag
-        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [unowned self] (notification) in
+        self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] (notification) in
             guard let window = notification.object as? NSWindow else { return assertionFailure() }
             
-            self.didChangeWindowOpacity(to: window.isOpaque)
-        }
-        
-        if let scrollView = self.enclosingScrollView {
-            // observe scorolling to fix drawing area on non-opaque view
-            self.scrollObserver = NotificationCenter.default.addObserver(forName: NSView.boundsDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
-                if !self.drawsBackground {
-                    // -> Needs display visible rect since drawing area is modified in draw(_ dirtyFrame:)
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-                }
-            }
-            
-            // observe resizing for overscroll amount update
-            self.resizeObserver = NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: scrollView.contentView, queue: .main) { [unowned self] _ in
-                self.invalidateOverscrollRate()
-            }
-        } else {
-            assertionFailure("failed starting observing the visible rect change")
+            self?.didChangeWindowOpacity(to: window.isOpaque)
         }
     }
     
@@ -309,6 +294,30 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         super.setFrameSize(newSize)
         
         self.needsUpdateLineHighlight = true
+    }
+    
+    
+    /// visible area did chage
+    override func viewDidEndLiveResize() {
+        
+        super.viewDidEndLiveResize()
+        
+        self.invalidateOverscrollRate()
+    }
+    
+    
+    /// encrosing scroll view did scroll
+    override func adjustScroll(_ newVisible: NSRect) -> NSRect {
+        
+        let newVisible = super.adjustScroll(newVisible)
+        
+        // fix drawing area on non-opaque view
+        if !self.drawsBackground {
+            // -> Needs display visible rect since the drawing area will be modified in draw(_ dirtyFrame:)
+            self.setNeedsDisplay(newVisible, avoidAdditionalLayout: true)
+        }
+        
+        return newVisible
     }
     
     
@@ -539,8 +548,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             let softTabs = insertionRanges
                 .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }
             
-           self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
-           return
+            self.replace(with: softTabs, ranges: insertionRanges, selectedRanges: nil)
+            return
         }
         
         super.insertTab(sender)
@@ -577,7 +586,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
                 guard
                     !indentRange.isEmpty,
-                    let autoIndentRange = indentRange.intersection(NSRange(..<range.location))
+                    let autoIndentRange = indentRange.intersection(NSRange(location: 0, length: range.location))
                     else { return (range, "", 0) }
                 
                 var indent = (self.string as NSString).substring(with: autoIndentRange)
@@ -612,12 +621,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         for (range, indent, insertion) in indents {
             let location = range.lowerBound + 1 + offset  // +1 for new line character
             
-            super.insertText(indent, replacementRange: NSRange(location..<location))
+            super.insertText(indent, replacementRange: NSRange(location: location, length: 0))
             
             offset += -range.length + 1 + indent.count
             locations.append(location + insertion)
         }
-        self.setSelectedRangesWithUndo(locations.map { NSRange($0..<$0) })
+        self.setSelectedRangesWithUndo(locations.map { NSRange(location: $0, length: 0) })
     }
     
     
@@ -664,7 +673,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // keep insertion points after cut
         let ranges = insertionRanges.enumerated()
             .map { insertionRanges[..<$0.offset].reduce(into: $0.element.location) { $0 -= $1.length } }
-            .map { NSRange($0..<$0) }
+            .map { NSRange(location: $0, length: 0) }
         
         guard let set = self.prepareForSelectionUpdate(ranges) else { return }
         
@@ -730,8 +739,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             
             // invalidate current instances highlight
             if UserDefaults.standard[.highlightSelectionInstance] {
+                if let layoutManager = self.layoutManager, layoutManager.hasTemporaryAttribute(.roundedBackgroundColor) {
+                    layoutManager.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                }
                 let delay: TimeInterval = UserDefaults.standard[.selectionInstanceHighlightDelay]
-                self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 self.instanceHighlightTask.schedule(delay: .seconds(delay))
             }
         }
@@ -965,20 +976,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         
         // scroll line by line if an arrow key is pressed
         // -> Perform only when the scroll target is near by the visible area.
-        //    Otherwise with the noncontiguous layout:
-        //    - Scroll jumps when the cursor is initially in the end part of document.
-        //    - Scroll doesn't reach to the bottom with command+down arrow.
-        //    (2018-12 macOS 10.14)
-        if NSEvent.modifierFlags.contains(.numericPad),
-            let rect = self.boundingRect(for: range),
-            let lineHeight = self.enclosingScrollView?.lineScroll,
-            self.visibleRect.insetBy(dx: -lineHeight, dy: -lineHeight).intersects(rect)
-        {
-            super.scrollToVisible(rect)  // move minimum distance
-            return
-        }
+        //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
+        //    in the noncontiguous layout mode. (2018-12 macOS 10.14)
+        guard NSEvent.modifierFlags.contains(.numericPad),
+            range.lowerBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
+            let rect = self.boundingRect(for: range)
+            else { return super.scrollRangeToVisible(range) }
         
-        super.scrollRangeToVisible(range)
+        super.scrollToVisible(rect)  // move minimum distance
     }
     
     
@@ -986,9 +991,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
         // -> need to send KVO notification manually on Swift (2016-09-12 on macOS 10.12 SDK)
-        self.willChangeValue(forKey: #keyPath(layoutOrientation))
+        self.willChangeValue(for: \.layoutOrientation)
         super.setLayoutOrientation(orientation)
-        self.didChangeValue(forKey: #keyPath(layoutOrientation))
+        self.didChangeValue(for: \.layoutOrientation)
         
         self.invalidateNonContiguousLayout()
         
@@ -1143,7 +1148,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     @objc var tabWidth: Int {
         
         didSet {
-            tabWidth = max(oldValue, 0)
+            tabWidth = max(tabWidth, 0)
             
             guard tabWidth != oldValue else { return }
             
@@ -1156,7 +1161,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var lineHeight: CGFloat {
         
         didSet {
-            lineHeight = max(oldValue, 0)
+            lineHeight = max(lineHeight, 0)
             
             guard lineHeight != oldValue else { return }
             
@@ -1169,7 +1174,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var showsPageGuide = false {
         
         didSet {
-            self.setNeedsDisplay(self.bounds, avoidAdditionalLayout: true)
+            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
         }
     }
     
@@ -1222,10 +1227,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// copy selection with syntax highlight and font style
     @IBAction func copyWithStyle(_ sender: Any?) {
         
-        guard !self.selectedRange.isEmpty else {
-            NSSound.beep()
-            return
-        }
+        guard !self.selectedRange.isEmpty else { return NSSound.beep() }
         
         let string = self.string
         var selections = [NSAttributedString]()
@@ -1335,32 +1337,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     }
     
     
-    /// remove notification observers
-    private func removeNotificationObservers() {
-        
-        if let observer = self.windowOpacityObserver {
-            assert(self.window != nil)
-            
-            NotificationCenter.default.removeObserver(observer)
-            self.windowOpacityObserver = nil
-        }
-        
-        if let observer = self.scrollObserver {
-            assert(self.enclosingScrollView?.contentView != nil)
-            
-            NotificationCenter.default.removeObserver(observer)
-            self.scrollObserver = nil
-        }
-        
-        if let observer = self.resizeObserver {
-            assert(self.enclosingScrollView?.contentView != nil)
-            
-            NotificationCenter.default.removeObserver(observer)
-            self.resizeObserver = nil
-        }
-    }
-    
-    
     /// window's opacity did change
     private func didChangeWindowOpacity(to isOpaque: Bool) {
         
@@ -1418,7 +1394,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let paragraphStyle = NSParagraphStyle.default.mutable
         
         // set line height
-        //   -> The actual line height will be calculated in LayoutManager and ATSTypesetter based on this line height multiple.
+        //   -> The actual line height will be calculated in LayoutManager and Typesetter based on this line height multiple.
         //      Because the default Cocoa Text System calculate line height differently
         //      if the first character of the document is drawn with another font (typically by a composite font).
         //   -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
@@ -1487,22 +1463,22 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     /// calculate overscrolling amount
     private func invalidateOverscrollRate() {
         
-        guard
-            let scrollView = self.enclosingScrollView,
-            let layoutManager = self.layoutManager as? LayoutManager
-            else { return assertionFailure() }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
         
+        let visibleRect = self.visibleRect
         let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
-        let inset = rate * (scrollView.documentVisibleRect.height - layoutManager.lineHeight)
+        let inset = rate * (visibleRect.height - layoutManager.lineHeight)
         
         // halve inset since the input value will be added to both top and bottom
         let height = max(floor(inset / 2), Self.textContainerInset.height)
+        let diff = height - self.textContainerInset.height
         
-        // avoid high-loaded `sizeToFit()` if not required
-        guard height != self.textContainerInset.height else { return }
+        guard diff != 0 else { return }
         
         self.textContainerInset.height = height
-        self.sizeToFit()
+        self.frame.size.height += 2 * diff
+        
+        self.scrollToVisible(visibleRect)
     }
     
     
@@ -1565,7 +1541,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             layoutManager.propertyForGlyph(at: glyphIndex) != .controlCharacter
             else { return layoutManager.spaceWidth }
         
-        return layoutManager.boundingRect(forGlyphRange: NSRange(glyphIndex...glyphIndex), in: textContainer).width
+        return layoutManager.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer).width
     }
     
     
@@ -1595,7 +1571,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
         let matches = regex.matches(in: self.string, range: self.string.nsRange)
-            
+        
         guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
         
         matches
@@ -1630,7 +1606,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             .highlightSelectionInstance,
             .enablesHangingIndent,
             .hangingIndentWidth,
-            ]
+        ]
         
         return UserDefaults.standard.observe(keys: keys, options: [.new]) { [unowned self] (key, change) in
             
@@ -1738,7 +1714,7 @@ extension EditorTextView {
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates
-        let searchRange = NSRange(..<range.upperBound)
+        let searchRange = NSRange(location: 0, length: range.upperBound)
         let invalidRange = (self.string as NSString).rangeOfCharacter(from: firstLetterSet.inverted, options: .backwards, range: searchRange)
         
         guard invalidRange != .notFound else { return range }
@@ -1943,7 +1919,7 @@ extension EditorTextView {
     /// word range that includes location
     func wordRange(at location: Int) -> NSRange {
         
-        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location..<location), granularity: .selectByWord)
+        let proposedWordRange = super.selectionRange(forProposedRange: NSRange(location: location, length: 0), granularity: .selectByWord)
         
         guard proposedWordRange.contains(location) else { return proposedWordRange }
         

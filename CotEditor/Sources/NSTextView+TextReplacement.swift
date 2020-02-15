@@ -59,7 +59,7 @@ extension NSTextView {
         if let actionName = actionName {
             self.undoManager?.setActionName(actionName)
         }
-
+        
         // manually calculate the cursor locations after the replacement for multiple insertions
         let selectedRanges: [NSRange]? = {
             // use ones when explicitly specified
@@ -77,7 +77,7 @@ extension NSTextView {
                 let length = string.length
                 let location = range.lowerBound + offset + length
                 offset += length - range.length
-            
+                
                 return NSRange(location: location, length: 0)
             }
         }()
@@ -132,7 +132,7 @@ extension NSTextView {
     func trimTrailingWhitespace(ignoresEmptyLines: Bool, keepingEditingPoint: Bool = false) {
         
         assert(Thread.isMainThread)
-
+        
         let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
         let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
         
@@ -140,7 +140,7 @@ extension NSTextView {
         let replacementRanges: [NSRange] = keepingEditingPoint
             ? ranges.filter { range in editingRanges.allSatisfy { !$0.touches(range) } }
             : ranges
-           
+        
         guard !replacementRanges.isEmpty else { return }
         
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
@@ -183,7 +183,7 @@ extension String {
 
 
 extension String {
-
+    
     func rangesOfTrailingWhitespace(ignoresEmptyLines: Bool) -> [NSRange] {
         
         let pattern = ignoresEmptyLines ? "(?<!^|[ \\t])[ \\t]+$" : "[ \\t]+$"

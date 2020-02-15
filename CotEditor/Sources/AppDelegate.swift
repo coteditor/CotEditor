@@ -133,7 +133,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     #if !APPSTORE
     /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {
-    
+        
         UpdaterManager.shared.setup()
     }
     #endif
@@ -297,7 +297,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// show standard about panel
     @IBAction func showAboutPanel(_ sender: Any?) {
-     
+        
         let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
         var html = try! String(contentsOf: creditsURL)
         
@@ -430,7 +430,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     
     /// build theme menu in the main menu
-     @objc private func buildThemeMenu() {
+    @objc private func buildThemeMenu() {
         
         let menu = self.themesMenu!
         

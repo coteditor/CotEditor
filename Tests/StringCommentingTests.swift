@@ -115,7 +115,7 @@ final class StringCommentingTests: XCTestCase {
         
         XCTAssertEqual("// foo\n//bar".rangesOfInlineDelimiter("//", spacer: " ", ranges: [NSRange(0..<5), NSRange(7..<12)]), [NSRange(0..<3), NSRange(7..<9)])
     }
-
+    
     
     func testBlockUncomment() {
         
@@ -164,7 +164,7 @@ final class StringCommentingTests: XCTestCase {
         XCTAssertEqual(textView.string, "foo\nbar")
         XCTAssertEqual(textView.rangesForUserTextChange, [NSRange(1..<1), NSRange(5..<5)] as [NSValue])
     }
-        
+    
     
     func testTextViewBlockComment() {
         

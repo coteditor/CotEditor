@@ -171,7 +171,7 @@ extension Document {
         }
         
         set {
-            self.viewController?.wrapsLines = newValue
+            self.setViewControllerValue(newValue, for: \.wrapsLines)
         }
     }
     
@@ -184,7 +184,7 @@ extension Document {
         }
         
         set {
-            self.viewController?.tabWidth = newValue
+            self.setViewControllerValue(newValue, for: \.tabWidth)
         }
     }
     
@@ -197,7 +197,7 @@ extension Document {
         }
         
         set {
-            self.viewController?.isAutoTabExpandEnabled = newValue
+            self.setViewControllerValue(newValue, for: \.isAutoTabExpandEnabled)
         }
     }
     
@@ -356,6 +356,42 @@ extension Document {
         return (self.string as NSString).substring(with: range)
     }
     
+    
+    
+    // MARK: Private Methods
+    
+    /// Set the value to DocumentViewController but lazily by waiting the DocumentViewController is attached if it is not available yet.
+    ///
+    /// When document's properties are set in the document creation phase like in the following code,
+    /// those setters are invoked while `self.viewController` is still `nil`.
+    /// Therefore, to avoid ignoring initialization, this method asynchronously waits for the DocumentViewController is available, and then sets the value.
+    ///
+    ///     tell application "CotEditor"
+    ///         make new document with properties { name: "Untitled.txt", tab width: 16 }
+    ///     end tell
+    ///
+    /// - Parameters:
+    ///   - value: The value to set.
+    ///   - keyPath: The keyPath of the DocumentViewController to set the value.
+    private func setViewControllerValue<Value>(_ value: Value, for keyPath: ReferenceWritableKeyPath<DocumentViewController, Value>) {
+        
+        if let viewController = self.viewController {
+            viewController[keyPath: keyPath] = value
+            return
+        }
+        
+        weak var observer: NSObjectProtocol?
+        observer = NotificationCenter.default.addObserver(forName: EditorTextView.didBecomeFirstResponderNotification, object: nil, queue: .main) { [weak self] _ in
+            guard let viewController = self?.viewController else { return }
+            
+            if let observer = observer {
+                NotificationCenter.default.removeObserver(observer)
+            }
+            
+            viewController[keyPath: keyPath] = value
+        }
+    }
+    
 }
 
 
@@ -374,13 +410,13 @@ private extension NSString.CompareOptions {
         self.init()
         
         if isRegex {
-            self.update(with: .regularExpression)
+            self.formUnion(.regularExpression)
         }
         if ignoresCase {
-            self.update(with: .caseInsensitive)
+            self.formUnion(.caseInsensitive)
         }
         if isBackwards {
-            self.update(with: .backwards)
+            self.formUnion(.backwards)
         }
     }
     

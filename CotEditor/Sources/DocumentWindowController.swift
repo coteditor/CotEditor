@@ -91,7 +91,7 @@ final class DocumentWindowController: NSWindowController {
     
     
     /// apply passed-in document instance to window
-    override var document: AnyObject? {
+    override unowned(unsafe) var document: AnyObject? {
         
         didSet {
             guard let document = document as? Document else { return }

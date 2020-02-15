@@ -142,7 +142,7 @@ final class DocumentWindow: NSWindow {
         titlebarView.wantsLayer = !self.isOpaque
         titlebarView.layer?.backgroundColor = self.isOpaque ? nil : NSColor.windowBackgroundColor.cgColor(for: self.effectiveAppearance)
     }
-
+    
 }
 
 
@@ -178,7 +178,7 @@ extension DocumentWindow {
         guard !super.performKeyEquivalent(with: event) else { return true }
         
         // prefer existing shortcut that user might define
-        guard !NSApp.mainMenu!.performKeyEquivalent(with: event) else { return true }
+        guard NSApp.mainMenu?.performKeyEquivalent(with: event) != true else { return true }
         
         let modifierFlags = event.modifierFlags.intersection(.deviceIndependentFlagsMask).subtracting(.numericPad)
         

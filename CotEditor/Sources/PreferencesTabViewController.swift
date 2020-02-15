@@ -127,7 +127,7 @@ private extension PreferencesTabViewController {
         "Key Bindings": "b8q-WN-1ls",
         "Print": "UuB-iq-kOt",
         "Integration": "gEv-qP-tRM",
-        ]
+    ]
     
     
     /// localize tabViewItems using storyboard's .string

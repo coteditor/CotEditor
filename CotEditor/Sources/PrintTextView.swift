@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private let lineNumberPadding: CGFloat = 10.0
     private let headerFooterFontSize: CGFloat = 9.0
     
-
+    
     // MARK: Public Properties
     
     var filePath: String?
@@ -193,14 +193,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
                     }() else { return }
                 
                 // adjust position to draw
+                let width = CGFloat(numberString.count) * charSize.width
                 var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
-                let digit = numberString.count
                 if isVerticalText {
-                    let width = charSize.width * CGFloat(digit) + charSize.height
-                    point = NSPoint(x: -point.y - width / 2,
+                    point = NSPoint(x: -point.y - (width + charSize.height) / 2,
                                     y: point.x - charSize.height)
                 } else {
-                    point.x -= CGFloat(digit) * charSize.width  // align right
+                    point.x -= width  // align right
                 }
                 
                 // draw number
@@ -245,24 +244,21 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     /// set printing font
     override var font: NSFont? {
         
-        willSet {
+        didSet {
+            guard let font = font else { return }
+            
             // set tab width
             let paragraphStyle = NSParagraphStyle.default.mutable
-            
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * (newValue?.spaceWidth ?? 0)
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             
             // apply to current string
-            if let textStorage = self.textStorage {
-                textStorage.addAttribute(.paragraphStyle, value: paragraphStyle, range: textStorage.range)
-            }
+            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
             
             // set font also to layout manager
-            if let layoutManager = self.layoutManager as? LayoutManager {
-                layoutManager.textFont = newValue
-            }
+            (self.layoutManager as? LayoutManager)?.textFont = font
         }
     }
     
@@ -391,7 +387,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private func headerFooterAttributes(for alignment: AlignmentType) -> [NSAttributedString.Key: Any] {
         
         let font = NSFont.userFont(ofSize: self.headerFooterFontSize)
-    
+        
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.alignment = alignment.textAlignment

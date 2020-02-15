@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -113,7 +113,7 @@ private struct RegularExpressionExtractor: HighlightExtractable {
         
         var options: NSRegularExpression.Options = .anchorsMatchLines
         if ignoresCase {
-            options.update(with: .caseInsensitive)
+            options.formUnion(.caseInsensitive)
         }
         
         self.regex = try NSRegularExpression(pattern: pattern, options: options)
@@ -140,7 +140,7 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
         
         var options: NSRegularExpression.Options = .anchorsMatchLines
         if ignoresCase {
-            options.update(with: .caseInsensitive)
+            options.formUnion(.caseInsensitive)
         }
         
         self.beginRegex = try NSRegularExpression(pattern: beginPattern, options: options)

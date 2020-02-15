@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -25,13 +25,19 @@
 
 import Foundation
 
+extension Unicode.Scalar {
+    
+    static let zeroWidthSpace = Unicode.Scalar(0x200B)!
+}
+
+
 enum Invisible {
     
     case space
     case tab
     case newLine
     case fullwidthSpace
-    case replacement
+    case otherControl
     
     
     var candidates: [String] {
@@ -45,7 +51,7 @@ enum Invisible {
             return ["¶", "↩", "↵", "⏎"]
         case .fullwidthSpace:
             return ["□", "⊠", "■", "•"]
-        case .replacement:
+        case .otherControl:
             return ["�"]
         }
     }
@@ -70,7 +76,7 @@ enum Invisible {
 // MARK: Code Unit
 
 extension Invisible {
-
+    
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
         switch codeUnit {
@@ -82,8 +88,13 @@ extension Invisible {
             self = .newLine
         case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. full-width space (JP)
             self = .fullwidthSpace
+        case 0x0000...0x001F,  // C0
+             0x0080...0x009F,  // C1
+             0x200B:  // ZERO WIDTH SPACE
+            // -> NSGlyphGenerator generates NSControlGlyph for all characters
+            //    in the Unicode General Category C* and U+200B (ZERO WIDTH SPACE).
+            self = .otherControl
         default:
-            // `.replacement` cannot be determined only with code unit
             return nil
         }
     }
@@ -94,28 +105,31 @@ extension Invisible {
 
 // MARK: User Defaults
 
-extension Invisible {
+extension UserDefaults {
     
-    var usedSymbol: String {
+    func invisibleSymbol(for invisible: Invisible) -> String {
         
         guard
-            let key = self.defaultTypeKey,
-            let symbol = self.candidates[safe: UserDefaults.standard[key]]
-            else { return self.candidates.first! }
+            let key = invisible.defaultTypeKey,
+            let symbol = invisible.candidates[safe: self[key]]
+            else { return invisible.candidates[0] }
         
         return symbol
     }
+}
+
+
+private extension Invisible {
     
-    
-    private var defaultTypeKey: DefaultKey<Int>? {
+    var defaultTypeKey: DefaultKey<Int>? {
         
-            switch self {
-            case .space: return .invisibleSpace
-            case .tab: return .invisibleTab
-            case .newLine: return .invisibleNewLine
-            case .fullwidthSpace: return .invisibleFullwidthSpace
-            case .replacement: return nil
-            }
+        switch self {
+        case .space: return .invisibleSpace
+        case .tab: return .invisibleTab
+        case .newLine: return .invisibleNewLine
+        case .fullwidthSpace: return .invisibleFullwidthSpace
+        case .otherControl: return nil
+        }
     }
     
 }

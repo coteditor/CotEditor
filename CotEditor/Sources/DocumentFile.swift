@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -93,7 +93,7 @@ struct DocumentFile {
         self.attributes = attributes
         self.string = content
         self.encoding = encoding
-        self.hasUTF8BOM = (encoding == .utf8) && data.hasUTF8BOM
+        self.hasUTF8BOM = (encoding == .utf8) && data.starts(with: UTF8.bom)
         self.lineEnding = content.detectedLineEnding
     }
     

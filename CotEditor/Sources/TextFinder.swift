@@ -68,7 +68,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     @objc dynamic var findString = "" {
         
         didSet {
-            NSPasteboard.findString = self.findString
+            NSPasteboard.findString = findString
         }
     }
     @objc dynamic var replacementString = ""
@@ -348,10 +348,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     /// set selected string to find field
     @IBAction func useSelectionForFind(_ sender: Any?) {
         
-        guard let selectedString = self.selectedString else {
-            NSSound.beep()
-            return
-        }
+        guard let selectedString = self.selectedString else { return NSSound.beep() }
         
         self.findString = selectedString
         
@@ -491,7 +488,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.isEditable = false
         
         let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
-        let lineRegex = try! NSRegularExpression(pattern: "\n")
+        let lineCounter = LineCounter(textFind.string)
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
@@ -522,10 +519,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     let matchedRange = matches[0]
                     
                     // calculate line number
-                    let lastLineNumber = results.last?.lineNumber ?? 1
-                    let lastLocation = results.last?.range.location ?? 0
-                    let diffRange = NSRange(lastLocation..<matchedRange.location)
-                    let lineNumber = lastLineNumber + lineRegex.numberOfMatches(in: textFind.string, range: diffRange)
+                    let lineNumber = lineCounter.lineNumber(at: matchedRange.location)
                     
                     // build a highlighted line string for result table
                     let lineRange = (textFind.string as NSString).lineRange(for: matchedRange)
@@ -591,6 +585,24 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 
 
 
+// MARK: -
+
+private class LineCounter: LineRangeCacheable {
+    
+    let string: String
+    var lineStartIndexes = IndexSet()
+    var firstLineUncoundedIndex = 0
+    
+    
+    init(_ string: String) {
+        
+        self.string = string
+    }
+    
+}
+
+
+
 // MARK: - UserDefaults
 
 private extension UserDefaults {
@@ -625,19 +637,19 @@ private extension TextFind.Mode {
         
         if defaults[.findUsesRegularExpression] {
             var options = NSRegularExpression.Options()
-            if defaults[.findIgnoresCase]                { options.update(with: .caseInsensitive) }
-            if defaults[.findRegexIsSingleline]          { options.update(with: .dotMatchesLineSeparators) }
-            if defaults[.findRegexIsMultiline]           { options.update(with: .anchorsMatchLines) }
-            if defaults[.findRegexUsesUnicodeBoundaries] { options.update(with: .useUnicodeWordBoundaries) }
+            if defaults[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
+            if defaults[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
+            if defaults[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
+            if defaults[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
             
             self = .regularExpression(options: options, unescapesReplacement: defaults[.findRegexUnescapesReplacementString])
             
         } else {
             var options = NSString.CompareOptions()
-            if defaults[.findIgnoresCase]               { options.update(with: .caseInsensitive) }
-            if defaults[.findTextIsLiteralSearch]       { options.update(with: .literal) }
-            if defaults[.findTextIgnoresDiacriticMarks] { options.update(with: .diacriticInsensitive) }
-            if defaults[.findTextIgnoresWidth]          { options.update(with: .widthInsensitive) }
+            if defaults[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
+            if defaults[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
+            if defaults[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
+            if defaults[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
             
             self = .textual(options: options, fullWord: defaults[.findMatchesFullWord])
         }

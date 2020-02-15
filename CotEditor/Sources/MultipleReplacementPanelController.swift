@@ -35,5 +35,5 @@ final class MultipleReplacementPanelController: NSWindowController {
         
         self.windowFrameAutosaveName = NSWindow.FrameAutosaveName("Multiple Replacement Panel")
     }
-
+    
 }

@@ -64,7 +64,10 @@ final class NavigationBarController: NSViewController {
     private var selectionObserver: NSObjectProtocol?
     
     private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
-        guard let progress = self?.outlineProgress, !progress.isFinished else { return }
+        guard
+            let progress = self?.outlineProgress, !progress.isFinished,
+            self?.outlineMenu?.isHidden ?? true
+            else { return }
         
         self?.outlineIndicator?.startAnimation(nil)
         self?.outlineLoadingMessage?.isHidden = false
@@ -99,6 +102,11 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidLoad()
         
+        if let progress = self.outlineProgress, (!progress.isFinished || !progress.isCancelled) {
+            self.outlineIndicator?.startAnimation(nil)
+            self.outlineLoadingMessage?.isHidden = false
+        }
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)
@@ -113,11 +121,11 @@ final class NavigationBarController: NSViewController {
         super.viewWillAppear()
         
         guard let textView = self.textView else { return assertionFailure() }
-
+        
         self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-          self?.updateTextOrientation(to: textView.layoutOrientation)
+            self?.updateTextOrientation(to: textView.layoutOrientation)
         }
-
+        
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }

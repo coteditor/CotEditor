@@ -34,7 +34,7 @@ extension NSTextStorage {
     /// e.g.:
     /// ```AppleScript
     /// tell first document of application "CotEditor"
-    /// set first paragraph of contents to "foo bar"
+    ///     set first paragraph of contents to "foo bar"
     /// end tell
     /// ```
     ///

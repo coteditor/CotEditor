@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -31,15 +31,21 @@ extension NSMutableAttributedString {
     func detectLink(in range: NSRange? = nil) {
         
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
-        let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? NSRange(..<self.length)
+        let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? self.range
+        let matches = detector.matches(in: self.string, range: range)
+        
+        guard !matches.isEmpty || self.hasAttribute(.link, in: range) else { return }
+        
+        self.beginEditing()
         
         self.removeAttribute(.link, range: range)
-        
-        detector.enumerateMatches(in: self.string, range: range) { (result, _, _) in
-            guard let result = result, let url = result.url else { return }
+        for match in matches {
+            guard let url = match.url else { continue }
             
-            self.addAttribute(.link, value: url, range: result.range)
+            self.addAttribute(.link, value: url, range: match.range)
         }
+        
+        self.endEditing()
     }
     
 }

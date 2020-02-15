@@ -27,7 +27,7 @@ import AppKit
 
 extension NSSplitView {
     
-     struct AutosavingSubviewState {
+    struct AutosavingSubviewState {
         
         var frame: NSRect
         var isCollapsed: Bool

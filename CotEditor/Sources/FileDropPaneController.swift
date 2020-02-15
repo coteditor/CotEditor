@@ -37,7 +37,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         didSet {
             // set tokenizer for format text view
-            self.formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
+            formatTextView!.tokenizer = FileDropComposer.Token.tokenizer
         }
     }
     
@@ -105,10 +105,7 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
             let cellView = rowView.view(atColumn: 1) as? NSTableCellView,
             let menu = cellView.subviews.first as? NSPopUpButton,
             let item = cellView.objectValue as? [String: String]
-            else {
-                assertionFailure()
-                return
-            }
+            else { return assertionFailure() }
         
         // reset attributed string for "All" item
         // -> Otherwise, the title isn't localized.

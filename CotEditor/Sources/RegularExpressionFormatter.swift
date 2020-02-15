@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -93,8 +93,9 @@ final class RegularExpressionFormatter: Formatter {
                     self.invisibles.contains(invisible)
                     else { continue }
                 
-                let attributedInvisible = NSAttributedString(string: invisible.usedSymbol, attributes: attributes)
-                attributedString.replaceCharacters(in: NSRange(index...index), with: attributedInvisible)
+                let symbol = UserDefaults.standard.invisibleSymbol(for: invisible)
+                let attributedInvisible = NSAttributedString(string: symbol, attributes: attributes)
+                attributedString.replaceCharacters(in: NSRange(location: index, length: 1), with: attributedInvisible)
             }
         }
         
