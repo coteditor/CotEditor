@@ -119,10 +119,58 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     // MARK: Text View Methods
     
+    /// the top/left point of text container
+    override var textContainerOrigin: NSPoint {
+        
+        return NSPoint(x: self.xOffset, y: 0)
+    }
+    
+    
+    /// view's opacity
+    override var isOpaque: Bool {
+        
+        return true
+    }
+    
+    
     /// job title
     override var printJobTitle: String {
         
         return self.documentName ?? super.printJobTitle
+    }
+    
+    
+    /// return page header attributed string
+    override var pageHeader: NSAttributedString {
+        
+        return self.headerFooter(for: .header)
+    }
+    
+    
+    /// return page footer attributed string
+    override var pageFooter: NSAttributedString {
+        
+        return self.headerFooter(for: .footer)
+    }
+    
+    
+    /// set printing font
+    override var font: NSFont? {
+        
+        didSet {
+            guard let font = font else { return }
+            
+            // setup paragraph style
+            let paragraphStyle = NSParagraphStyle.default.mutable
+            paragraphStyle.tabStops = []
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
+            paragraphStyle.lineHeightMultiple = self.lineHeight
+            self.defaultParagraphStyle = paragraphStyle
+            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
+            
+            // set font also to layout manager
+            (self.layoutManager as? LayoutManager)?.textFont = font
+        }
     }
     
     
@@ -209,56 +257,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             if isVerticalText {
                 NSGraphicsContext.restoreGraphicsState()
             }
-        }
-    }
-    
-    
-    /// return page header attributed string
-    override var pageHeader: NSAttributedString {
-        
-        return self.headerFooter(for: .header)
-    }
-    
-    
-    /// return page footer attributed string
-    override var pageFooter: NSAttributedString {
-        
-        return self.headerFooter(for: .footer)
-    }
-    
-    
-    /// view's opacity
-    override var isOpaque: Bool {
-        
-        return true
-    }
-    
-    
-    /// the top/left point of text container
-    override var textContainerOrigin: NSPoint {
-        
-        return NSPoint(x: self.xOffset, y: 0)
-    }
-    
-    
-    /// set printing font
-    override var font: NSFont? {
-        
-        didSet {
-            guard let font = font else { return }
-            
-            // set tab width
-            let paragraphStyle = NSParagraphStyle.default.mutable
-            paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
-            paragraphStyle.lineHeightMultiple = self.lineHeight
-            self.defaultParagraphStyle = paragraphStyle
-            
-            // apply to current string
-            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
-            
-            // set font also to layout manager
-            (self.layoutManager as? LayoutManager)?.textFont = font
         }
     }
     
