@@ -73,6 +73,8 @@
 		2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */; };
 		2A1125C323F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
 		2A1125C423F1A86B006A1DB2 /* LineRangeCacheable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */; };
+		2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */; };
+		2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */; };
 		2A11F2131E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A11F2141E669BFA005E1675 /* PointerBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A11F2121E669BFA005E1675 /* PointerBridge.swift */; };
 		2A1235462121B106002E9C53 /* UTF32Char+BlockName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */; };
@@ -922,6 +924,7 @@
 		2A10D1471E7477D30027192A /* StyledButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledButton.swift; sourceTree = "<group>"; };
 		2A1125C023F180FF006A1DB2 /* LineRangeCacheableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheableTests.swift; sourceTree = "<group>"; };
 		2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineRangeCacheable.swift; sourceTree = "<group>"; };
+		2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		2A11F2121E669BFA005E1675 /* PointerBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerBridge.swift; sourceTree = "<group>"; };
 		2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UTF32Char+BlockName.swift"; sourceTree = "<group>"; };
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
@@ -1649,6 +1652,7 @@
 				2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */,
 				2A47CD3421D20E6F0094F62F /* DefaultKey+Observation.swift */,
 				2AFB30DE1E4B8F5B00BFAEF3 /* Debouncer.swift */,
+				2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
 				2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */,
@@ -3108,6 +3112,7 @@
 				2AE12E011E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift in Sources */,
 				2A1893A81FFF16A400AD244F /* PatternSortViewController.swift in Sources */,
 				2AFAFD4B1D41487600F1458F /* PrintTextView.swift in Sources */,
+				2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2AC434F31D494EA700980E66 /* SyntaxManager.swift in Sources */,
 				2ACDC09B1D172CDE009B72D6 /* AntialiasingTextField.swift in Sources */,
 				2A1893AB1FFF422D00AD244F /* LineSort.swift in Sources */,
@@ -3244,6 +3249,7 @@
 				2A48982D215B2BFD00A6CE8A /* NSCursor+Dark.swift in Sources */,
 				2AC434F41D494EA800980E66 /* SyntaxManager.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
+				2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2A231A361E7C30F000C2A909 /* MultipleReplacementSplitViewController.swift in Sources */,
 				2A231A251E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift in Sources */,
 				2AD551E420D6CF2F007279B1 /* ControlToolbarItem.swift in Sources */,
