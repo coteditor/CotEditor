@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.8.11 (unreleased)
+--------------------------
+
+### Fixes
+
+- Fix an issue where the application could rarely crash when printing a document.
+
+
+
 3.8.10 (396)
 --------------------------
 
