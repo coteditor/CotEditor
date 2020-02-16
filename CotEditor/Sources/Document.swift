@@ -635,8 +635,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printView.textStorage?.detectLink()
         
         // create print operation
-        let printOperation = NSPrintOperation(view: printView, printInfo: self.printInfo)
-        printOperation.printInfo.dictionary().addEntries(from: printSettings)
+        let printInfo = self.printInfo
+        printInfo.dictionary().addEntries(from: printSettings)
+        let printOperation = NSPrintOperation(view: printView, printInfo: printInfo)
         printOperation.showsProgressPanel = true
         printOperation.canSpawnSeparateThread = true  // display print progress panel as a sheet
         

@@ -186,7 +186,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         {
             self.lastPaperContentSize = paperContentSize
             self.frame.size = paperContentSize
-            self.doForegroundLayout()
+            self.layoutManager?.doForegroundLayout()
         }
         
         return super.knowsPageRange(range)
@@ -325,7 +325,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
         _ = self.syntaxParser.highlightAll {
             DispatchQueue.main.async {
-                guard let controller = controller, !controller.view.isHidden else { return }
+                guard let controller = controller, controller.isViewShown else { return }
                 
                 controller.needsUpdatePreview = true
             }
@@ -438,31 +438,17 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
 
 
 
-private extension NSTextView {
+private extension NSLayoutManager {
     
-    /// This method causes the text to be laid out in the foreground (approximately) up to the indicated character index.
-    ///
-    /// - Parameter characterIndex: The maximum character index to be layout. If omit this paramater, the whole content will be layed out.
+    /// This method causes the text to be laid out in the foreground.
     ///
     /// - Note: This method is based on `textEditDoForegroundLayoutToCharacterIndex:` in Apple's TextView.app sourece code.
-    func doForegroundLayout(to characterIndex: Int = .max) {
+    func doForegroundLayout() {
         
-        guard
-            let textStorage = self.textStorage,
-            let layoutManager = self.layoutManager,
-            characterIndex > 0,
-            textStorage.length > 0
-            else { return }
-        
-        // find out which glyph index the desired character index corresponds to
-        let location = min(characterIndex, textStorage.length - 1)
-        let characterRange = NSRange(location: location, length: 1)
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
-        
-        guard glyphRange.location > 0 else { return }
+        guard self.numberOfGlyphs > 0 else { return }
         
         // cause layout by asking a question which has to determine where the glyph is
-        layoutManager.textContainer(forGlyphAt: glyphRange.location - 1, effectiveRange: nil)
+        self.textContainer(forGlyphAt: self.numberOfGlyphs - 1, effectiveRange: nil)
     }
     
 }
