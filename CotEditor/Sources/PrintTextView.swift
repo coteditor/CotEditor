@@ -182,9 +182,8 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         
         // adjust content size based on print setting
         if let paperContentSize = NSPrintOperation.current?.printInfo.paperContentSize,
-            self.lastPaperContentSize != paperContentSize
+            paperContentSize != self.frame.size
         {
-            self.lastPaperContentSize = paperContentSize
             self.frame.size = paperContentSize
             self.layoutManager?.doForegroundLayout()
         }
