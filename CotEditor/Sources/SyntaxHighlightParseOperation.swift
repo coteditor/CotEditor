@@ -106,13 +106,6 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     
     // MARK: Operation Methods
     
-    /// is ready to run
-    override var isReady: Bool {
-        
-        return true
-    }
-    
-    
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
         
