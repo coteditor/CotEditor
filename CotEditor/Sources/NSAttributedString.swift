@@ -55,22 +55,4 @@ extension NSAttributedString {
         lhs = result.copy() as! NSAttributedString
     }
     
-    
-    /// Check if at least one attribute for the given attribute key exists.
-    ///
-    /// - Parameters:
-    ///   - attrName: The name of attribute key to check.
-    ///   - range: The range where to check. When `nil`, search the entire range.
-    /// - Returns: Whether the given attribute key exists.
-    func hasAttribute(_ attrName: NSAttributedString.Key, in range: NSRange? = nil) -> Bool {
-        
-        guard self.length > 0 else { return false }
-        
-        let range = range ?? self.range
-        var effectiveRange: NSRange = .notFound
-        let value = self.attribute(attrName, at: range.location, longestEffectiveRange: &effectiveRange, in: range)
-        
-        return value != nil || effectiveRange.upperBound < range.upperBound
-    }
-    
 }
