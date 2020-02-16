@@ -442,7 +442,7 @@ private extension NSLayoutManager {
     
     /// This method causes the text to be laid out in the foreground.
     ///
-    /// - Note: This method is based on `textEditDoForegroundLayoutToCharacterIndex:` in Apple's TextView.app sourece code.
+    /// - Note: This method is based on `textEditDoForegroundLayoutToCharacterIndex:` in Apple's TextView.app source code.
     func doForegroundLayout() {
         
         guard self.numberOfGlyphs > 0 else { return }
