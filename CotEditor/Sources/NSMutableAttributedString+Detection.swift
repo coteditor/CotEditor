@@ -34,7 +34,7 @@ extension NSMutableAttributedString {
         let range = range.flatMap { (self.string as NSString).lineRange(for: $0) } ?? self.range
         let matches = detector.matches(in: self.string, range: range)
         
-        guard !matches.isEmpty || self.hasAttribute(.link, in: range) else { return }
+        guard !matches.isEmpty else { return }
         
         self.beginEditing()
         
