@@ -24,6 +24,50 @@
 //
 
 import Foundation
+import Yams
 
-print("Hello, World!")
+struct SyntaxStyle: Codable {
+    
+    struct Item: Codable {
+        
+        var keyString: String
+    }
+    
+    var extensions: [Item]?
+    var filenames: [Item]?
+    var interpreters: [Item]?
+}
 
+guard CommandLine.arguments.count > 1 else { exit(1) }
+
+let directoryPath = CommandLine.arguments[1]
+
+// find syntax style files
+let directoryURL = URL(fileURLWithPath: directoryPath, isDirectory: true)
+
+let urls = try FileManager.default.contentsOfDirectory(at: directoryURL, includingPropertiesForKeys: nil)
+    .filter { $0.pathExtension == "yaml" }
+
+// build syntaxMap from syntax style files
+let decoder = YAMLDecoder()
+let syntaxMap: [String: [String: [String]]] = try urls.reduce(into: .init()) { (map, url) in
+    let styleName = url.deletingPathExtension().lastPathComponent
+    
+    let yaml = try String(contentsOf: url)
+    let style = try decoder.decode(SyntaxStyle.self, from: yaml, userInfo: [:])
+    
+    map[styleName] = [
+        "extensions": style.extensions,
+        "filenames": style.filenames,
+        "interpreters": style.interpreters,
+        ]
+        .mapValues { $0?.map { $0.keyString } ?? [] }
+}
+
+// encode syntaxMap to JSON style
+let encoder = JSONEncoder()
+encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+let data = try encoder.encode(syntaxMap)
+let json = String(data: data, encoding: .utf8)!
+
+print(json)
