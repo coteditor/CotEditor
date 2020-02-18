@@ -946,7 +946,6 @@
 		2A1CD5531DD1AADE006E17DB /* NSAlert+ModalSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAlert+ModalSheet.swift"; sourceTree = "<group>"; };
 		2A1EB5C319AD469500C1E37E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A1FAD5720A74D0A00566D7C /* MutableCopying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableCopying.swift; sourceTree = "<group>"; };
-		2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = makeSyntaxMap.rb; sourceTree = "<group>"; };
 		2A2179F51A07093B002C4AB1 /* SyntaxMap.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SyntaxMap.json; sourceTree = "<group>"; };
 		2A231A241E7B4EDC00C2A909 /* MultipleReplacement+Codable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement+Codable.swift"; sourceTree = "<group>"; };
 		2A231A271E7BD82700C2A909 /* MultipleReplacement.Settings+Object.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MultipleReplacement.Settings+Object.swift"; sourceTree = "<group>"; };
@@ -1900,7 +1899,6 @@
 		2A37F4AFFDCFA73011CA2CEA /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				2A2179ED1A07011C002C4AB1 /* makeSyntaxMap.rb */,
 				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
 			);
 			name = Scripts;
@@ -2430,10 +2428,10 @@
 			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */;
 			buildPhases = (
 				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
+				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */,
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
-				2A6F0DA31B5500E100C2D03C /* Sources */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
 				2ACD68291D6B0F7300496B47 /* Embed Frameworks */,
 				2ACD682C1D6B0F8200496B47 /* Copy dSYM Files */,
@@ -2474,10 +2472,10 @@
 			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
 				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
+				8D15AC300486D014006FF6A4 /* Sources */,
 				2A5DBE5E1B5D2E1300F8CB13 /* Build Syntax Map */,
 				8D15AC2B0486D014006FF6A4 /* Resources */,
 				2A94FC771BE2253500B454A8 /* Copy Command-Line Tools */,
-				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				2ACD68221D6B0F0100496B47 /* Embed Frameworks */,
 				2A9246F51FCD21E6008DBC30 /* Embed XPC Services */,
@@ -2768,7 +2766,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ruby makeSyntaxMap.rb\n";
+			shellScript = "${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
 		};
 		2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2782,7 +2780,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ruby makeSyntaxMap.rb\n";
+			shellScript = "${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
 		};
 		2A9246EB1FCD2012008DBC30 /* Build Sparkle XPCs */ = {
 			isa = PBXShellScriptBuildPhase;

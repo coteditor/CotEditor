@@ -14,6 +14,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2A025B7423FBA08000969C0E"
+               BuildableName = "SyntaxMapBuilder"
+               BlueprintName = "SyntaxMapBuilder"
+               ReferencedContainer = "container:CotEditor.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
                BuildableName = "CotEditor.app"
                BlueprintName = "CotEditor -AppStore"
