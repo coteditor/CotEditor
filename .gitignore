@@ -1,49 +1,14 @@
 # macOS
 .DS_Store
 
-# Xcode
-#
-# cf. https://github.com/github/gitignore/blob/master/Swift.gitignore
-
-## Build generated
-build/
-DerivedData/
-
-## Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
+## Xcode
 xcuserdata/
 *.xccheckout
 *.xcscmblueprint
 
-## Other
-*.moved-aside
-*.xcuserstate
-
-## Obj-C/Swift specific
-*.hmap
-*.ipa
-*.dSYM.zip
-# *.dSYM
-
-## Playgrounds
-timeline.xctimeline
-playground.xcworkspace
-
 # Swift Package Manager
-#
-# Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
 .build/
+.swiftpm/
 
 # Carthage
-#
-# Add this line if you want to avoid checking in source code from Carthage dependencies.
 Carthage/Checkouts
-!Carthage/Build
