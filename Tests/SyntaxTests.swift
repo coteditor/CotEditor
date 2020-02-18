@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,18 +42,18 @@ final class SyntaxTests: XCTestCase {
     
     
     
-    override func setUp() {
+    override func setUpWithError() throws {
         
-        super.setUp()
+        try super.setUpWithError()
         
         let bundle = Bundle(for: type(of: self))
         
         // load styles
-        let dictsWithNames = bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
+        let dictsWithNames = try bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
             .map { url -> (String, SyntaxManager.StyleDictionary) in
-                let data = try! Data(contentsOf: url)
+                let data = try Data(contentsOf: url)
                 let name = url.deletingPathExtension().lastPathComponent
-                let dict = try! YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
+                let dict = try YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves) as! [String: Any]
                 
                 return (name, dict)
             }
@@ -66,7 +66,7 @@ final class SyntaxTests: XCTestCase {
         
         // load test file
         let sourceURL = bundle.url(forResource: "sample", withExtension: "html")
-        self.htmlSource = try? String(contentsOf: sourceURL!, encoding: .utf8)
+        self.htmlSource = try String(contentsOf: sourceURL!, encoding: .utf8)
         
         XCTAssertNotNil(self.htmlSource)
     }
