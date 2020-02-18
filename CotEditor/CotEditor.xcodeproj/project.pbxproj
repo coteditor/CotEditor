@@ -33,6 +33,7 @@
 
 /* Begin PBXBuildFile section */
 		259C2318077678DE00BA61C5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 259C2316077678DE00BA61C5 /* Localizable.strings */; };
+		2A025B7823FBA08000969C0E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A025B7723FBA08000969C0E /* main.swift */; };
 		2A05081323D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A05081423D6B9E900602F5E /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A05081223D6B9E900602F5E /* NSViewController.swift */; };
 		2A0778612072040500876277 /* RegularExpressionSyntaxType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */; };
@@ -865,6 +866,8 @@
 		0D51D5902274EF3F00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0D51D5912274EF4A00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ServicesMenu.strings; sourceTree = "<group>"; };
 		0D51D5922274EF5300A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Unicode.strings; sourceTree = "<group>"; };
+		2A025B7523FBA08000969C0E /* SyntaxMapBuilder */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SyntaxMapBuilder; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A025B7723FBA08000969C0E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2A03E699201457570093FDF1 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/PatternSortView.strings; sourceTree = "<group>"; };
 		2A05081223D6B9E900602F5E /* NSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSViewController.swift; sourceTree = "<group>"; };
 		2A0778602072040500876277 /* RegularExpressionSyntaxType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegularExpressionSyntaxType.swift; sourceTree = "<group>"; };
@@ -1474,6 +1477,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2A025B7223FBA08000969C0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A6F0DFD1B5500E100C2D03C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1505,6 +1515,7 @@
 				2A6F0E071B5500E100C2D03C /* CotEditor.app */,
 				2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */,
 				2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */,
+				2A025B7523FBA08000969C0E /* SyntaxMapBuilder */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1519,6 +1530,14 @@
 				2A1B7E74216CBBEA002C7395 /* SynchronizedScrollView.swift */,
 			);
 			name = "Text View";
+			sourceTree = "<group>";
+		};
+		2A025B7623FBA08000969C0E /* Syntax Map Builder */ = {
+			isa = PBXGroup;
+			children = (
+				2A025B7723FBA08000969C0E /* main.swift */,
+			);
+			path = "Syntax Map Builder";
 			sourceTree = "<group>";
 		};
 		2A0E160B18E7240C00AAD872 /* Print */ = {
@@ -1851,6 +1870,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Scripts */,
 				2AC71DE01BF0BDBC002E1434 /* Tests */,
 				2A3F18F8203270BE002F1CA7 /* UI Tests */,
+				2A025B7623FBA08000969C0E /* Syntax Map Builder */,
 				BEED9F89D1E364DD05CA42CB /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
@@ -2368,6 +2388,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2A025B7423FBA08000969C0E /* SyntaxMapBuilder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A025B7B23FBA08000969C0E /* Build configuration list for PBXNativeTarget "SyntaxMapBuilder" */;
+			buildPhases = (
+				2A025B7123FBA08000969C0E /* Sources */,
+				2A025B7223FBA08000969C0E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SyntaxMapBuilder;
+			productName = SyntaxMapBuilder;
+			productReference = 2A025B7523FBA08000969C0E /* SyntaxMapBuilder */;
+			productType = "com.apple.product-type.tool";
+		};
 		2A3F18F6203270BE002F1CA7 /* UI Tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2A3F18FE203270BE002F1CA7 /* Build configuration list for PBXNativeTarget "UI Tests" */;
@@ -2465,10 +2501,13 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
+					2A025B7423FBA08000969C0E = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 					2A3E847D1D07296200070A54 = {
 						CreatedOnToolsVersion = 7.3.1;
 					};
@@ -2541,6 +2580,7 @@
 				2A6F0D4E1B5500E100C2D03C /* CotEditor -AppStore */,
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3F18F6203270BE002F1CA7 /* UI Tests */,
+				2A025B7423FBA08000969C0E /* SyntaxMapBuilder */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
 				2A9246E71FCD2004008DBC30 /* Build Sparkle XPCs */,
 			);
@@ -2797,6 +2837,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2A025B7123FBA08000969C0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A025B7823FBA08000969C0E /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A3F18F3203270BE002F1CA7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4100,6 +4148,31 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2A025B7923FBA08000969C0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HT3Z3A72WZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+			};
+			name = Debug;
+		};
+		2A025B7A23FBA08000969C0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HT3Z3A72WZ;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		2A3E847E1D07296200070A54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -4412,6 +4485,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2A025B7B23FBA08000969C0E /* Build configuration list for PBXNativeTarget "SyntaxMapBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2A025B7923FBA08000969C0E /* Debug */,
+				2A025B7A23FBA08000969C0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2A3E84801D07296200070A54 /* Build configuration list for PBXAggregateTarget "Update Help Index" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
