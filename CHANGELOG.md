@@ -8,6 +8,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the application could rarely crash when printing a document.
+- Fix an issue where the application could rarely crash when opening an document under macOS 10.14 and earlier.
 
 
 

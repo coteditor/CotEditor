@@ -103,7 +103,7 @@ extension StringProtocol where Self.Index == String.Index {
         guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
         
         // Swift treats "\r\n" also as a single character.
-        let character = self[range.lowerBound]
+        let character = self[workaround: range.lowerBound]
         
         return LineEnding(rawValue: character)
     }
