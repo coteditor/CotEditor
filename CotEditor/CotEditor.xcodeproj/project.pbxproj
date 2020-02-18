@@ -421,6 +421,7 @@
 		2A9246FE1FCD2D07008DBC30 /* org.sparkle-project.InstallerConnection.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A9246FF1FCD2D07008DBC30 /* org.sparkle-project.InstallerLauncher.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FB1FCD2CF0008DBC30 /* org.sparkle-project.InstallerLauncher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2A9247001FCD2D07008DBC30 /* org.sparkle-project.InstallerStatus.xpc in Embed XPC Services */ = {isa = PBXBuildFile; fileRef = 2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		2A9319CC23FBA30B00E2162C /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2A9319CB23FBA30B00E2162C /* Yams */; };
 		2A94FC791BE225A200B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A94FC7B1BE225F000B454A8 /* cot in Copy Command-Line Tools */ = {isa = PBXBuildFile; fileRef = 2A94FC781BE2256F00B454A8 /* cot */; };
 		2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
@@ -1481,6 +1482,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A9319CC23FBA30B00E2162C /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2400,6 +2402,9 @@
 			dependencies = (
 			);
 			name = SyntaxMapBuilder;
+			packageProductDependencies = (
+				2A9319CB23FBA30B00E2162C /* Yams */,
+			);
 			productName = SyntaxMapBuilder;
 			productReference = 2A025B7523FBA08000969C0E /* SyntaxMapBuilder */;
 			productType = "com.apple.product-type.tool";
@@ -2572,6 +2577,7 @@
 			packageReferences = (
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
 				2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				2A9319CA23FBA30B00E2162C /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -4560,6 +4566,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2A9319CA23FBA30B00E2162C /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ra1028/DifferenceKit/";
@@ -4579,6 +4593,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2A9319CB23FBA30B00E2162C /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A9319CA23FBA30B00E2162C /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
 		2AAF1E3D23DA671A00164CBF /* DifferenceKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */;
