@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -32,15 +32,7 @@ private let themeDirectoryName = "Themes"
 
 final class ThemeTests: XCTestCase {
     
-    var bundle: Bundle?
-    
-    
-    override func setUp() {
-        
-        super.setUp()
-        
-        self.bundle = Bundle(for: type(of: self))
-    }
+    private(set) lazy var bundle = Bundle(for: type(of: self))
     
     
     func testDefaultTheme() throws {
@@ -77,8 +69,8 @@ final class ThemeTests: XCTestCase {
     /// test if all of bundled themes are valid
     func testBundledThemes() throws {
         
-        let themeDirectoryURL = self.bundle?.url(forResource: themeDirectoryName, withExtension: nil)!
-        let enumerator = FileManager.default.enumerator(at: themeDirectoryURL!, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
+        let themeDirectoryURL = self.bundle.url(forResource: themeDirectoryName, withExtension: nil)!
+        let enumerator = FileManager.default.enumerator(at: themeDirectoryURL, includingPropertiesForKeys: nil, options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles])!
         
         for case let url as URL in enumerator {
             guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
@@ -95,7 +87,7 @@ private extension ThemeTests {
     
     func loadThemeWithName(_ name: String) throws -> Theme? {
         
-        let url = self.bundle?.url(forResource: name, withExtension: DocumentType.theme.extensions[0], subdirectory: themeDirectoryName)
+        let url = self.bundle.url(forResource: name, withExtension: DocumentType.theme.extensions[0], subdirectory: themeDirectoryName)
         
         return try Theme(contentsOf: url!)
     }

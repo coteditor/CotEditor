@@ -29,15 +29,7 @@ import XCTest
 
 final class EncodingDetectionTests: XCTestCase {
     
-    var bundle: Bundle?
-    
-    
-    override func setUp() {
-        
-        super.setUp()
-        
-        self.bundle = Bundle(for: type(of: self))
-    }
+    private(set) lazy var bundle = Bundle(for: type(of: self))
     
     
     func testUTF8BOM() throws {
@@ -238,7 +230,7 @@ private extension EncodingDetectionTests {
     
     func dataForFileName(_ fileName: String) throws -> Data {
         
-        let fileURL = self.bundle!.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
+        let fileURL = self.bundle.url(forResource: fileName, withExtension: "txt", subdirectory: "Encodings")
         
         return try Data(contentsOf: fileURL!)
     }
