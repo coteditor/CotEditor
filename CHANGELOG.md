@@ -11,6 +11,7 @@ Change Log
 - Adjust invisible characters position in the vertical text orientation.
 - Duplicate lines more intelligently.
 - Improve drawing performance.
+- [dev] Update build environment to Xcode 11.4 (Swift 5.2).
 
 
 ### Fixes
