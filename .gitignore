@@ -13,3 +13,4 @@ default.profraw
 
 # Carthage
 Carthage/Checkouts
+Carthage/DerivedData
