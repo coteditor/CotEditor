@@ -30,7 +30,7 @@ extension String {
     /// Transform all camel and pascal case words to snake case.
     var snakecased: String {
         
-        return self.ranges(pattern: "(?<=\\w)(?=[A-Z])")
+        return self.ranges(pattern: "(?<=\\w)(?=\\p{uppercase})")
             .reversed()
             .reduce(into: self.lowercased()) { (string, range) in
                 string.replaceSubrange(range, with: "_")
@@ -41,12 +41,12 @@ extension String {
     /// Transform all snake and pascal case words to camel case.
     var camelcased: String {
         
-        return self.ranges(pattern: "(?<=\\w)(?:[A-Z]|_\\w)")
+        return self.ranges(pattern: "(?<=\\w)(?:\\p{uppercase}|_\\w)")
             .reversed()
             .reduce(into: self.lowercased()) { (string, range) in
                 let index = string.index(before: range.upperBound)
                 
-                return string.replaceSubrange(range, with: string[index].uppercased())
+                string.replaceSubrange(range, with: string[workaround: index].uppercased())
             }
     }
     
@@ -59,7 +59,7 @@ extension String {
             .reduce(into: self) { (string, range) in
                 let index = string.index(before: range.upperBound)
                 
-                return string.replaceSubrange(range, with: string[index].uppercased())
+                string.replaceSubrange(range, with: string[workaround: index].uppercased())
             }
     }
     

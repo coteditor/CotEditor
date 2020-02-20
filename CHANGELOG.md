@@ -5,6 +5,11 @@ Change Log
 3.8.11 (unreleased)
 --------------------------
 
+### Improvements
+
+- Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
+
+
 ### Fixes
 
 - Fix an issue where the application could rarely crash when printing a document.
