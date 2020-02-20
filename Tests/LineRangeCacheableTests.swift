@@ -115,7 +115,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let string = "\n🐶"
         let lineString = LineString(string)
         _ = lineString.lineNumber(at: 1)
-        lineString.string.replaceSubrange(Range(NSRange(1..<3), in: string)!, with: "a\nb")
+        lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<3), with: "a\nb") as NSString
         lineString.invalidateLineRanges(from: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), 2)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
@@ -132,7 +132,7 @@ final class LineRangeCacheableTests: XCTestCase {
             let range = NSRange(location: location, length: length)
             let replacement = String("ab\nc".shuffled())
             
-            lineString.string.replaceSubrange(Range(range, in: string)!, with: replacement)
+            lineString.string = lineString.string.replacingCharacters(in: range, with: replacement) as NSString
             lineString.invalidateLineRanges(from: range.location)
             
             for index in (0..<lineString.string.length).shuffled() {
@@ -147,14 +147,14 @@ final class LineRangeCacheableTests: XCTestCase {
 
 private class LineString: LineRangeCacheable {
     
-    var string: String
+    var string: NSString
     var lineStartIndexes = IndexSet()
     var firstLineUncoundedIndex = 0
     
     
     init(_ string: String) {
         
-        self.string = string
+        self.string = string as NSString
     }
     
 }

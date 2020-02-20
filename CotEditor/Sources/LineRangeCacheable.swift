@@ -27,7 +27,7 @@ import Foundation
 
 protocol LineRangeCacheable: AnyObject {
     
-    var string: String { get }
+    var string: NSString { get }
     var lineStartIndexes: IndexSet { get set }
     var firstLineUncoundedIndex: Int { get set }
     
@@ -114,12 +114,12 @@ extension LineRangeCacheable {
         assert(endIndex <= self.string.length)
         assert(!self.lineStartIndexes.contains(self.firstLineUncoundedIndex + 1))
         
+        let string = self.string
+        
         guard
             endIndex >= self.firstLineUncoundedIndex,
-            !self.string.isEmpty
+            string.length > 0
             else { return }
-        
-        let string = self.string as NSString
         
         var index = self.firstLineUncoundedIndex
         while index <= min(endIndex, string.length - 1) {

@@ -488,7 +488,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.isEditable = false
         
         let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
-        let lineCounter = LineCounter(textFind.string)
+        let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
@@ -589,12 +589,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 
 private class LineCounter: LineRangeCacheable {
     
-    let string: String
+    let string: NSString
     var lineStartIndexes = IndexSet()
     var firstLineUncoundedIndex = 0
     
     
-    init(_ string: String) {
+    init(_ string: NSString) {
         
         self.string = string
     }

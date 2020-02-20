@@ -33,7 +33,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     var ignoresDisplayValidation = false
     
-    var string: String  { self.attributedString().string }
+    var string: NSString  { self.attributedString().string as NSString }
     var lineStartIndexes = IndexSet()
     var firstLineUncoundedIndex = 0
     
