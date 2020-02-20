@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
+- Avoid showing the rainbow cursor while parsing URLs in the editor with large contents.
 
 
 ### Fixes
