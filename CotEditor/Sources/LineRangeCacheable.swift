@@ -50,7 +50,7 @@ extension LineRangeCacheable {
         
         self.ensureLineRanges(upTo: index)
         
-        return self.lineStartIndexes.count(in: ...index) + 1
+        return self.lineStartIndexes.count(in: 0...index) + 1
     }
     
     
