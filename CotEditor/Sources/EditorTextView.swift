@@ -139,8 +139,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.replaceTextContainer(textContainer)
         
         let layoutManager = LayoutManager()
+        layoutManager.allowsNonContiguousLayout = true
         self.textContainer!.replaceLayoutManager(layoutManager)
-        self.layoutManager?.allowsNonContiguousLayout = true
         
         // set layout values (wraps lines)
         self.minSize = self.frame.size
