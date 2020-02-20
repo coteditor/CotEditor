@@ -5,6 +5,11 @@ Change Log
 3.8.11 (unreleased)
 --------------------------
 
+### Improvements
+
+- Avoid showing the rainbow cursor while parsing URLs in the editor with large contents.
+
+
 ### Fixes
 
 - Fix an issue where the application could rarely crash when printing a document.

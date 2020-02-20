@@ -130,11 +130,11 @@ final class EditorViewController: NSSplitViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        if textView.isAutomaticLinkDetectionEnabled {
-            textStorage.detectLink()
-        }
-        
         textView.layoutManager?.replaceTextStorage(textStorage)
+        
+        if textView.isAutomaticLinkDetectionEnabled {
+            textView.detectLink()
+        }
     }
     
     

@@ -34,7 +34,7 @@ private extension NSAttributedString.Key {
 
 // MARK: -
 
-final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, MultiCursorEditing {
+final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDetectable, MultiCursorEditing {
     
     // MARK: Notification Names
     
@@ -75,6 +75,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     var deferredMagnification: CGFloat = 0
     
     private(set) lazy var customSurroundStringViewController = CustomSurroundStringViewController.instantiate(storyboard: "CustomSurroundStringView")
+    
+    private(set) lazy var urlDetectionQueue = OperationQueue(name: "com.coteditor.CotEditor.URLDetectionOperationQueue", qos: .utility)
     
     
     // MARK: Private Properties
@@ -185,6 +187,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
     
     deinit {
         self.insertionPointTimer?.cancel()
+        self.urlDetectionQueue.cancelAllOperations()
         self.defaultsObservers.forEach { $0.invalidate() }
         
         if let observer = self.windowOpacityObserver {
@@ -435,6 +438,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
             self.needsRecompletion = false
             self.completionTask.schedule(delay: .milliseconds(50))
         }
+        
+        self.invalidateURLDetection()
     }
     
     
@@ -1016,7 +1021,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
         // link URLs in pasted string
         defer {
             if self.isAutomaticLinkDetectionEnabled {
-                self.textStorage?.detectLink()
+                self.detectLink()
             }
         }
         
@@ -1648,12 +1653,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, Multi
                 
             case .autoLinkDetection:
                 self.isAutomaticLinkDetectionEnabled = new as! Bool
-                if let textStorage = self.textStorage {
-                    if self.isAutomaticLinkDetectionEnabled {
-                        textStorage.detectLink()
-                    } else {
-                        textStorage.removeAttribute(.link, range: textStorage.range)
-                    }
+                if self.isAutomaticLinkDetectionEnabled {
+                    self.detectLink()
+                } else {
+                    self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
                 }
                 
             case .pageGuideColumn:

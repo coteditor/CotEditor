@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
+final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDetectable {
     
     // MARK: Constants
     
@@ -45,11 +45,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private(set) var theme: Theme?
     private(set) lazy var syntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
-    
     // settings on current window to be set by Document.
     // These values are used if set option is "Same as document's setting"
     var documentShowsLineNumber = false
     var documentShowsInvisibles = false
+    
+    private(set) lazy var urlDetectionQueue = OperationQueue()
     
     
     // MARK: Private Properties
@@ -113,6 +114,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     deinit {
         self.layoutManager?.delegate = nil
+        self.urlDetectionQueue.cancelAllOperations()
     }
     
     
