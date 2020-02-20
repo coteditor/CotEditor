@@ -9,12 +9,13 @@ Change Log
 
 - Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
 - Avoid showing the rainbow cursor while parsing URLs in the editor with large contents.
+- [trivial] Improve drawing performance and general stability.
 
 
 ### Fixes
 
 - Fix an issue where the application could rarely crash when printing a document.
-- Fix an issue where the application could rarely crash when opening an document under macOS 10.14 and earlier.
+- Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.
 
 
 
