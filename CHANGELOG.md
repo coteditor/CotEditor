@@ -15,6 +15,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the document window zombie appeared when it was closed while detached chracter info popovers ramain.
 - Fix an issue where the application could rarely crash when printing a document.
 - Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.
 
