@@ -210,16 +210,11 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     /// make custom windowControllers
     override func makeWindowControllers() {
         
-        defer {
-            self.applyContentToWindow()
+        if self.windowControllers.isEmpty {  // -> A transient document already has one.
+            self.addWindowController(.instantiate(storyboard: "DocumentWindow"))
         }
         
-        // a transient document has already one
-        guard self.windowControllers.isEmpty else { return }
-        
-        let windowController = NSWindowController.instantiate(storyboard: "DocumentWindow")
-        
-        self.addWindowController(windowController)
+        self.applyContentToWindow()
     }
     
     
