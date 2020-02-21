@@ -125,19 +125,15 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     
     /// store internal document state
-    override func encodeRestorableState(with coder: NSCoder, backgroundQueue queue: OperationQueue) {
+    override func encodeRestorableState(with coder: NSCoder) {
         
-        super.encodeRestorableState(with: coder, backgroundQueue: queue)
+        super.encodeRestorableState(with: coder)
         
-        queue.addOperation { [weak self] in
-            guard let self = self else { return }
-            
-            coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
-            coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
-            coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
-            coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
-            coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
-        }
+        coder.encode(Int(self.encoding.rawValue), forKey: SerializationKey.readingEncoding)
+        coder.encode(self.autosaveIdentifier, forKey: SerializationKey.autosaveIdentifier)
+        coder.encode(self.syntaxParser.style.name, forKey: SerializationKey.syntaxStyle)
+        coder.encode(self.isVerticalText, forKey: SerializationKey.isVerticalText)
+        coder.encode(self.isTransient, forKey: SerializationKey.isTransient)
     }
     
     
