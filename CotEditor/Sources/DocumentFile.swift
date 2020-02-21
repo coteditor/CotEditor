@@ -82,7 +82,10 @@ struct DocumentFile {
         default:
             encoding = readingEncoding
             if !data.isEmpty {
-                content = try String(contentsOf: fileURL, encoding: encoding)  // FILE_READ
+                guard let string = String(bomCapableData: data, encoding: encoding) else {
+                    throw CocoaError.error(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: encoding.rawValue], url: fileURL)
+                }
+                content = string
             } else {
                 content = ""
             }
