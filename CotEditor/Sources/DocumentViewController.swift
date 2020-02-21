@@ -828,10 +828,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// close one of split views
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
+        assert(self.splitViewController!.splitViewItems.count > 1)
+        
         guard
             let splitViewController = self.splitViewController,
-            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
+            let currentEditorViewController = self.findTargetEditorViewController(for: sender),
+            let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController)
             else { return }
+        
+        if let textView = currentEditorViewController.textView {
+            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+        }
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
@@ -840,19 +847,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         if splitViewController.focusedChild == currentEditorViewController {
             let childViewControllers = self.editorViewControllers
             let deleteIndex = childViewControllers.firstIndex(of: currentEditorViewController) ?? 0
-            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
+            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.last!
             
             self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)
         }
         
         // close
-        if let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController) {
-            splitViewController.removeSplitViewItem(splitViewItem)
-            
-            if let textView = currentEditorViewController.textView {
-                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
-            }
-        }
+        splitViewController.removeSplitViewItem(splitViewItem)
     }
     
     
