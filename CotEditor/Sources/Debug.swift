@@ -62,25 +62,11 @@ func moofTime(_ label: String? = nil, work: () -> Void) {
     
     let icon = Thread.isMainThread ? "🐕" : "🐄"
     let time = measureTime(work: work)
+    let timeString = String(format: "% 2.6fs", time)
     
     if let label = label {
-        Swift.print("\(icon) \(label): \(time)")
+        Swift.print("\(icon) \(label): \(timeString)")
     } else {
-        Swift.print("\(icon) \(time)")
+        Swift.print("\(icon): \(timeString)")
     }
-}
-
-
-extension Date {
-    
-    /// Print time stamp using moof() function.
-    func moof(_ label: String? = nil) {
-        
-        if let label = label {
-            CotEditor.moof(-self.timeIntervalSinceNow, label)
-        } else {
-            CotEditor.moof(-self.timeIntervalSinceNow)
-        }
-    }
-    
 }
