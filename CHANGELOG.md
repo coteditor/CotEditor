@@ -9,6 +9,7 @@ Change Log
 
 - Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
 - Avoid showing the rainbow cursor while parsing URLs in the editor with large contents.
+- Improve message for syntax highlighting progress.
 - [trivial] Improve drawing performance and general stability.
 
 
