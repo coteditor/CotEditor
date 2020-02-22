@@ -114,7 +114,7 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
             }
             
             // truncate tail
-            let paragraphStyle = NSMutableParagraphStyle()
+            let paragraphStyle = NSParagraphStyle.default.mutable
             paragraphStyle.lineBreakMode = .byTruncatingTail
             lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.range)
             

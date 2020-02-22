@@ -191,7 +191,7 @@ final class StatusBarController: NSViewController {
         }
         
         // truncate tail
-        let paragraphStyle = NSMutableParagraphStyle()
+        let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingTail
         status.addAttribute(.paragraphStyle, value: paragraphStyle, range: status.range)
         
