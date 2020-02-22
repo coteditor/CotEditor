@@ -66,7 +66,7 @@ final class CharacterFieldCell: NSTextFieldCell {
         
         context.saveGState()
         
-        context.textMatrix = CGAffineTransform(scaleX: 1.0, y: 1.0)  // avoid flipping drawing when popover detatched
+        context.textMatrix = CGAffineTransform(scaleX: 1.0, y: 1.0)  // avoid flipping drawing when popover detached
         context.textPosition = CGPoint(x: (cellFrame.width - bounds.width) / 2, y: -bounds.minY)
         CTLineDraw(line, context)
         
