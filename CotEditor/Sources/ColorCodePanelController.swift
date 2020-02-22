@@ -46,13 +46,8 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Private Properties
     
-    private let stylesheetColorList: NSColorList = {
-        let colorList = NSColorList(name: "Stylesheet Keywords".localized)
-        for (keyword, color) in NSColor.stylesheetKeywordColors {
-            colorList.setColor(color, forKey: keyword)
-        }
-        return colorList
-    }()
+    private let stylesheetColorList: NSColorList = NSColor.stylesheetKeywordColors
+        .reduce(into: NSColorList(name: "Stylesheet Keywords".localized)) { $0.setColor($1.value, forKey: $1.key) }
     
     private weak var panel: NSColorPanel?
     @objc private dynamic var color: NSColor?
@@ -73,13 +68,15 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     
     // MARK: Public Methods
     
-    /// set color to color panel from color code
-    func setColor(withCode code: String?) {
+    /// Set color to color panel with color code.
+    ///
+    /// - Parameter code: The color code of the color to set.
+    func setColor(code: String?) {
         
-        guard let sanitizedCode = code?.trimmingCharacters(in: .whitespacesAndNewlines), !sanitizedCode.isEmpty else { return }
+        guard let code = code?.trimmingCharacters(in: .whitespacesAndNewlines), !code.isEmpty else { return }
         
         var codeType: ColorCodeType?
-        guard let color = NSColor(colorCode: sanitizedCode, type: &codeType) else { return }
+        guard let color = NSColor(colorCode: code, type: &codeType) else { return }
         
         self.selectedCodeType = codeType ?? .hex
         self.panel?.color = color
@@ -109,22 +106,19 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
         
         // setup the shared color panel
         let panel = NSColorPanel.shared
-        panel.accessoryView = self.view
-        panel.showsAlpha = true
         panel.isRestorable = false
-        
         panel.delegate = self
+        panel.accessoryView = self.view
+        panel.attachColorList(self.stylesheetColorList)
+        panel.showsAlpha = true
+        
         panel.setAction(#selector(selectColor))
         panel.setTarget(self)
         
         // make position of accessory view center
         if let superview = panel.accessoryView?.superview {
-            superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[accessory]|",
-                                                                    metrics: nil,
-                                                                    views: ["accessory": self.view]))
+            superview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "|[accessory]|", metrics: nil, views: ["accessory": self.view]))
         }
-        
-        panel.attachColorList(self.stylesheetColorList)
         
         self.panel = panel
         self.color = panel.color
@@ -158,7 +152,7 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// set color from the color code field in the panel
     @IBAction func applayColorCode(_ sender: Any?) {
         
-        self.setColor(withCode: self.colorCode)
+        self.setColor(code: self.colorCode)
     }
     
     
@@ -184,13 +178,8 @@ final class ColorCodePanelController: NSViewController, NSWindowDelegate {
     /// current color code type selection
     private var selectedCodeType: ColorCodeType {
         
-        get {
-            return ColorCodeType(rawValue: UserDefaults.standard[.colorCodeType]) ?? .hex
-        }
-        
-        set {
-            UserDefaults.standard[.colorCodeType] = newValue.rawValue
-        }
+        get { ColorCodeType(rawValue: UserDefaults.standard[.colorCodeType]) ?? .hex }
+        set { UserDefaults.standard[.colorCodeType] = newValue.rawValue }
     }
     
 }
