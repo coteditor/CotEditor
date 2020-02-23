@@ -250,7 +250,6 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 
 
-
 // MARK: -
 
 /// model object for NSArrayController

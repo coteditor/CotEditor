@@ -116,7 +116,6 @@ struct OutlineDefinition: Equatable {
 
 
 
-
 // MARK: -
 
 struct SyntaxStyle {

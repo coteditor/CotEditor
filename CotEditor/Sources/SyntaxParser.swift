@@ -41,6 +41,8 @@ private extension NSAttributedString.Key {
 
 
 
+// MARK: -
+
 final class SyntaxParser {
     
     static let didUpdateOutlineNotification = Notification.Name("SyntaxStyleDidUpdateOutline")

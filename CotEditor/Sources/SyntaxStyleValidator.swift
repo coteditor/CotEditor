@@ -104,6 +104,7 @@ final class SyntaxStyleValidator {
     }
     
     
+    
     // MARK: -
     // MARK: Lifecycle
     

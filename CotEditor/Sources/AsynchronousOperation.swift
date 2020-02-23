@@ -68,7 +68,8 @@ class AsynchronousOperation: Operation {
     
     
     
-    // MARK: - Operation Methods
+    // MARK: -
+    // MARK: Operation Methods
     
     final override var isAsynchronous: Bool {
         

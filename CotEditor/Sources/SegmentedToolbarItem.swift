@@ -27,6 +27,8 @@ import Cocoa
 
 final class SegmentedToolbarItem: ControlToolbarItem {
     
+    // MARK: Private Properties
+    
     @IBOutlet private var menu: NSMenu?
     
     

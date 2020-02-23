@@ -85,6 +85,7 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
+    // MARK: Lifecycle
     
     deinit {
         self.orientationObserver?.invalidate()

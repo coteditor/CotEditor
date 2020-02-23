@@ -232,7 +232,6 @@ final class DocumentAnalyzer: NSObject {
 
 
 
-
 // MARK: -
 
 private extension Document {

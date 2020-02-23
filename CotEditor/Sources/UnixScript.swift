@@ -250,7 +250,6 @@ final class UnixScript: Script {
 
 
 
-
 // MARK: - Error
 
 private enum ScriptError: Error {
@@ -270,7 +269,6 @@ private enum ScriptError: Error {
     }
     
 }
-
 
 
 

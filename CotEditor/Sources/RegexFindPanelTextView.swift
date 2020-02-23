@@ -33,6 +33,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
     
+    
     // MARK: -
     // MARK: Text View Methods
     

@@ -92,7 +92,7 @@ function_parameter_count:
   warning: 6
 
 vertical_whitespace:
-  max_empty_lines: 4
+  max_empty_lines: 3
 
 file_length:
   warning: 2000

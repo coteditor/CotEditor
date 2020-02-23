@@ -59,7 +59,6 @@ extension Script {
 
 
 
-
 // MARK: - Error
 
 struct ScriptFileError: LocalizedError {

@@ -57,7 +57,6 @@ final class Console {
 
 
 
-
 // MARK: -
 
 final class ConsoleWindowController: NSWindowController {

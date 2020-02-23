@@ -1697,7 +1697,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
 
 
 
-
 // MARK: - Word Completion
 
 extension EditorTextView {

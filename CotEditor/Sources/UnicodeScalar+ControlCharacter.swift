@@ -69,7 +69,6 @@ extension UTF32Char {
 
 
 
-
 // MARK: -
 
 enum ControlCharacter {
