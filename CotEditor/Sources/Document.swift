@@ -1312,7 +1312,7 @@ private struct EncodingError: LocalizedError, RecoverableError {
         }
     }
     
-
+    
     private func showIncompatibleCharacters() {
         
         let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController
