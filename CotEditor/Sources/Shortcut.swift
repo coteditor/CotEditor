@@ -41,10 +41,10 @@ enum ModifierKey: CaseIterable {
     var mask: NSEvent.ModifierFlags {
         
         switch self {
-        case .control: return .control
-        case .option:  return .option
-        case .shift:   return .shift
-        case .command: return .command
+            case .control: return .control
+            case .option:  return .option
+            case .shift:   return .shift
+            case .command: return .command
         }
     }
     
@@ -53,10 +53,10 @@ enum ModifierKey: CaseIterable {
     var symbol: String {
         
         switch self {
-        case .control: return "^"
-        case .option:  return "⌥"
-        case .shift:   return "⇧"
-        case .command: return "⌘"
+            case .control: return "^"
+            case .option:  return "⌥"
+            case .shift:   return "⇧"
+            case .command: return "⌘"
         }
     }
     
@@ -65,10 +65,10 @@ enum ModifierKey: CaseIterable {
     var keySpecChar: String {
         
         switch self {
-        case .control: return "^"
-        case .option:  return "~"
-        case .shift:   return "$"
-        case .command: return "@"
+            case .control: return "^"
+            case .option:  return "~"
+            case .shift:   return "$"
+            case .command: return "@"
         }
     }
     

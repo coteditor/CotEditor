@@ -98,40 +98,40 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         
         // append target setting name to menu titles
         switch menuItem.action {
-        case #selector(addSetting), #selector(importSetting(_:)):
-            menuItem.isHidden = (isContextualMenu && itemSelected)
+            case #selector(addSetting), #selector(importSetting(_:)):
+                menuItem.isHidden = (isContextualMenu && itemSelected)
             
-        case #selector(renameSetting(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Rename “%@”".localized, name)
+            case #selector(renameSetting(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Rename “%@”".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
+            
+            case #selector(duplicateSetting(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
+            
+            case #selector(deleteSetting(_:)):
+                menuItem.isHidden = !itemSelected
+            
+            case #selector(exportSetting(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
+            
+            case #selector(revealSettingInFinder(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
             }
-            menuItem.isHidden = !itemSelected
             
-        case #selector(duplicateSetting(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Duplicate “%@”".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
+            case nil:
+                return false
             
-        case #selector(deleteSetting(_:)):
-            menuItem.isHidden = !itemSelected
-            
-        case #selector(exportSetting(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Export “%@”…".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
-            
-        case #selector(revealSettingInFinder(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
-            }
-            
-        case nil:
-            return false
-            
-        default:
-            break
+            default:
+                break
         }
         
         return true

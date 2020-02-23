@@ -69,14 +69,14 @@ final class SyntaxStyleValidator {
         @objc var failureReason: String? {
             
             switch self.kind {
-            case .duplicated:
-                return "The same word is registered multiple times.".localized
+                case .duplicated:
+                    return "The same word is registered multiple times.".localized
                 
-            case .regularExpression(let error):
-                return "Regular Expression: ".localized + error.localizedDescription
+                case .regularExpression(let error):
+                    return "Regular Expression: ".localized + error.localizedDescription
                 
-            case .blockComment:
-                return "Block comment needs both begin delimiter and end delimiter.".localized
+                case .blockComment:
+                    return "Block comment needs both begin delimiter and end delimiter.".localized
             }
         }
         
@@ -90,14 +90,14 @@ final class SyntaxStyleValidator {
         @objc var localizedRole: String? {
             
             switch self.role {
-            case .begin:
-                return "Begin string".localized
+                case .begin:
+                    return "Begin string".localized
                 
-            case .end:
-                return "End string".localized
+                case .end:
+                    return "End string".localized
                 
-            case .regularExpression:
-                return nil
+                case .regularExpression:
+                    return nil
             }
         }
         

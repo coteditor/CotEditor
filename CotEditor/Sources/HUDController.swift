@@ -34,8 +34,8 @@ enum HUDSymbol {
     fileprivate var image: NSImage {
         
         switch self {
-        case .wrap(let reversed):
-            return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
+            case .wrap(let reversed):
+                return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
         }
     }
     

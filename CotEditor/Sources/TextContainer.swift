@@ -147,10 +147,10 @@ private extension NSString {
             let character = self.character(at: index)
             
             switch character {
-            case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
-                characters.append(character)
-            default:
-                return String(utf16CodeUnits: characters, count: characters.count)
+                case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
+                    characters.append(character)
+                default:
+                    return String(utf16CodeUnits: characters, count: characters.count)
             }
         }
         

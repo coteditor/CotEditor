@@ -54,12 +54,12 @@ extension SortPattern {
             }
             .sorted {
                 switch ($0.key, $1.key) {
-                case let (.some(key0), .some(key1)):
-                    return key0.compare(key1, options: compareOptions, locale: options.locale) == .orderedAscending
-                case (.none, .some):
-                    return false
-                case (.some, .none), (.none, .none):
-                    return true
+                    case let (.some(key0), .some(key1)):
+                        return key0.compare(key1, options: compareOptions, locale: options.locale) == .orderedAscending
+                    case (.none, .some):
+                        return false
+                    case (.some, .none), (.none, .none):
+                        return true
                 }
             }
             .map { $0.line }

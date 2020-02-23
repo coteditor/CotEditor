@@ -100,15 +100,15 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             else { return "" }
         
         switch identifier {
-        case .title:
-            return node.name
+            case .title:
+                return node.name
             
-        case .keySpecChars:
-            guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut, shortcut.isValid else { return nil }
-            return shortcut.isValid ? shortcut.description : nil
+            case .keySpecChars:
+                guard let shortcut = (node.representedObject as? KeyBindingItem)?.shortcut, shortcut.isValid else { return nil }
+                return shortcut.isValid ? shortcut.description : nil
             
-        default:
-            return ""
+            default:
+                return ""
         }
     }
     

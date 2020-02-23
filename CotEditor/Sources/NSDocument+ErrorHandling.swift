@@ -30,12 +30,12 @@ extension NSDocument.SaveOperationType {
     var isAutoSaving: Bool {
         
         switch self {
-        case .autosaveElsewhereOperation, .autosaveInPlaceOperation, .autosaveAsOperation:
-            return true
-        case .saveOperation, .saveAsOperation, .saveToOperation:
-            return false
-        @unknown default:
-            fatalError()
+            case .autosaveElsewhereOperation, .autosaveInPlaceOperation, .autosaveAsOperation:
+                return true
+            case .saveOperation, .saveAsOperation, .saveToOperation:
+                return false
+            @unknown default:
+                fatalError()
         }
     }
     

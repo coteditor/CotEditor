@@ -129,11 +129,11 @@ final class ThemeViewController: NSViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         
         switch keyPath {
-        case let keyPath? where self.observedKeys.contains(keyPath):
-            self.notifyUpdate()
+            case let keyPath? where self.observedKeys.contains(keyPath):
+                self.notifyUpdate()
             
-        default:
-            super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
+            default:
+                super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
         }
     }
     

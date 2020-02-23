@@ -51,8 +51,8 @@ extension NSTextView {
             .compactMap { self.string.indexOfBracePair(at: $0, candidates: candidates, in: range, ignoring: pairToIgnore) }
             .compactMap { pairIndex in
                 switch pairIndex {
-                case .begin(let index), .end(let index): return index
-                case .odd: return nil
+                    case .begin(let index), .end(let index): return index
+                    case .odd: return nil
                 }
             }
             .map { NSRange($0...$0, in: self.string) }

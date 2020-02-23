@@ -64,16 +64,16 @@ final class RegularExpressionFormatter: Formatter {
         if self.parsesRegularExpression {
             // validate regex pattern
             switch self.mode {
-            case .search:
-                do {
-                    _ = try NSRegularExpression(pattern: string)
-                } catch {
-                    if self.showsError {
-                        attributedString.replaceCharacters(in: NSRange(..<0), with: "⚠️ ")
-                    }
-                    return attributedString
+                case .search:
+                    do {
+                        _ = try NSRegularExpression(pattern: string)
+                    } catch {
+                        if self.showsError {
+                            attributedString.replaceCharacters(in: NSRange(..<0), with: "⚠️ ")
+                        }
+                        return attributedString
                 }
-            case .replacement: break
+                case .replacement: break
             }
             
             // syntax highlight

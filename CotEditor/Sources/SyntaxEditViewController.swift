@@ -46,10 +46,10 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
             
             let style: SyntaxManager.StyleDictionary = {
                 switch mode {
-                case .edit(let name), .copy(let name):
-                    return manager.settingDictionary(name: name) ?? manager.blankSettingDictionary
-                case .new:
-                    return manager.blankSettingDictionary
+                    case .edit(let name), .copy(let name):
+                        return manager.settingDictionary(name: name) ?? manager.blankSettingDictionary
+                    case .new:
+                        return manager.blankSettingDictionary
                 }
             }()
             self.style.setDictionary(style)
@@ -103,9 +103,9 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         // setup style name field
         self.styleNameField?.stringValue = {
             switch self.mode {
-            case .edit(let name): return name
-            case .copy(let name): return SyntaxManager.shared.savableSettingName(for: name, appendingCopySuffix: true)
-            case .new: return ""
+                case .edit(let name): return name
+                case .copy(let name): return SyntaxManager.shared.savableSettingName(for: name, appendingCopySuffix: true)
+                case .new: return ""
             }
         }()
         if self.isBundledStyle {

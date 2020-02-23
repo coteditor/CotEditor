@@ -164,10 +164,10 @@ extension NSLayoutManager {
         let string = self.attributedString().string as NSString
         
         switch baseWritingDirection {
-        case .rightToLeft:
-            return string.index(after: characterIndexes.max() ?? 0)
-        default:
-            return string.index(before: characterIndexes.min() ?? 0)
+            case .rightToLeft:
+                return string.index(after: characterIndexes.max() ?? 0)
+            default:
+                return string.index(before: characterIndexes.min() ?? 0)
         }
     }
     
@@ -190,10 +190,10 @@ extension NSLayoutManager {
         let string = self.attributedString().string as NSString
         
         switch baseWritingDirection {
-        case .rightToLeft:
-            return string.index(before: characterIndexes.min() ?? 0)
-        default:
-            return string.index(after: characterIndexes.max() ?? 0)
+            case .rightToLeft:
+                return string.index(before: characterIndexes.min() ?? 0)
+            default:
+                return string.index(after: characterIndexes.max() ?? 0)
         }
     }
     

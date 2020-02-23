@@ -40,11 +40,11 @@ extension RegularExpressionSyntaxType {
     private var colorName: NSColor.Name {
         
         switch self {
-        case .character: return "Character"
-        case .backReference: return "BackReference"
-        case .symbol: return "Symbol"
-        case .quantifier: return "Quantifier"
-        case .anchor: return "Anchor"
+            case .character: return "Character"
+            case .backReference: return "BackReference"
+            case .symbol: return "Symbol"
+            case .quantifier: return "Quantifier"
+            case .anchor: return "Anchor"
         }
     }
     

@@ -207,10 +207,10 @@ final class DocumentController: NSDocumentController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(newDocumentAsTab):
-            return self.currentDocument != nil
-        default:
-            break
+            case #selector(newDocumentAsTab):
+                return self.currentDocument != nil
+            default:
+                break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -343,14 +343,14 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
     var errorDescription: String? {
         
         switch self.kind {
-        case .binaryFile:
-            return String(format: "The file “%@” doesn’t appear to be text data.".localized,
-                          self.url.lastPathComponent)
+            case .binaryFile:
+                return String(format: "The file “%@” doesn’t appear to be text data.".localized,
+                              self.url.lastPathComponent)
             
-        case .tooLarge(let size):
-            return String(format: "The file “%@” has a size of %@.".localized,
-                          self.url.lastPathComponent,
-                          ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file))
+            case .tooLarge(let size):
+                return String(format: "The file “%@” has a size of %@.".localized,
+                              self.url.lastPathComponent,
+                              ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file))
         }
     }
     
@@ -358,12 +358,12 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .binaryFile(let type):
-            let localizedTypeName = (UTTypeCopyDescription(type as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
-            return String(format: "The file is %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
+            case .binaryFile(let type):
+                let localizedTypeName = (UTTypeCopyDescription(type as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
+                return String(format: "The file is %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
             
-        case .tooLarge:
-            return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized
+            case .tooLarge:
+                return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized
         }
     }
     

@@ -215,28 +215,28 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 
                 let line: CTLine
                 switch invisible {
-                case .space:
-                    guard self.showsSpace else { continue }
-                    line = self.invisibleLines.space
+                    case .space:
+                        guard self.showsSpace else { continue }
+                        line = self.invisibleLines.space
                     
-                case .tab:
-                    guard self.showsTab else { continue }
-                    line = self.invisibleLines.tab
+                    case .tab:
+                        guard self.showsTab else { continue }
+                        line = self.invisibleLines.tab
                     
-                case .newLine:
-                    guard self.showsNewLine else { continue }
-                    line = self.invisibleLines.newLine
+                    case .newLine:
+                        guard self.showsNewLine else { continue }
+                        line = self.invisibleLines.newLine
                     
-                case .fullwidthSpace:
-                    guard self.showsFullwidthSpace else { continue }
-                    line = self.invisibleLines.fullwidthSpace
+                    case .fullwidthSpace:
+                        guard self.showsFullwidthSpace else { continue }
+                        line = self.invisibleLines.fullwidthSpace
                     
-                case .otherControl:
-                    guard self.showsOtherInvisibles else { continue }
-                    line = self.invisibleLines.otherControl
+                    case .otherControl:
+                        guard self.showsOtherInvisibles else { continue }
+                        line = self.invisibleLines.otherControl
                     
-                case .none:
-                    continue
+                    case .none:
+                        continue
                 }
                 
                 // calculate position to draw glyph

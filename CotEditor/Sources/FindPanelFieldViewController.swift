@@ -118,13 +118,13 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         guard let textView = notification.object as? NSTextView else { return assertionFailure() }
         
         switch textView {
-        case self.findTextView!:
-            self.clearNumberOfReplaced()
-            self.clearNumberOfFound()
-        case self.replacementTextView!:
-            self.clearNumberOfReplaced()
-        default:
-            break
+            case self.findTextView!:
+                self.clearNumberOfReplaced()
+                self.clearNumberOfFound()
+            case self.replacementTextView!:
+                self.clearNumberOfReplaced()
+            default:
+                break
         }
     }
     
@@ -189,10 +189,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         let message: String = {
             switch numberOfFound {
-            case ..<0:
-                return "Not Found".localized
-            default:
-                return String(format: "%@ found".localized, String.localizedStringWithFormat("%li", numberOfFound))
+                case ..<0:
+                    return "Not Found".localized
+                default:
+                    return String(format: "%@ found".localized, String.localizedStringWithFormat("%li", numberOfFound))
             }
         }()
         self.applyResult(message: message, textField: self.findResultField!, textView: self.findTextView!)
@@ -212,10 +212,10 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         let message: String = {
             switch numberOfReplaced {
-            case ..<0:
-                return "Not Replaced".localized
-            default:
-                return String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", numberOfReplaced))
+                case ..<0:
+                    return "Not Replaced".localized
+                default:
+                    return String(format: "%@ replaced".localized, String.localizedStringWithFormat("%li", numberOfReplaced))
             }
         }()
         self.applyResult(message: message, textField: self.replacementResultField!, textView: self.replacementTextView!)

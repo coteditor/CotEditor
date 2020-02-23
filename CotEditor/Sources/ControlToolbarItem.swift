@@ -53,12 +53,12 @@ class ControlToolbarItem: NSToolbarItem {
                 else { return false }
             
             switch validator {
-            case let validator as NSToolbarItemValidation:
-                return validator.validateToolbarItem(self)
-            case let validator as NSUserInterfaceValidations:
-                return validator.validateUserInterfaceItem(self)
-            default:
-                return true
+                case let validator as NSToolbarItemValidation:
+                    return validator.validateToolbarItem(self)
+                case let validator as NSUserInterfaceValidations:
+                    return validator.validateUserInterfaceItem(self)
+                default:
+                    return true
             }
         }()
     }

@@ -86,36 +86,36 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case .textSizeActual:
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            item.view = NSButton(title: "Actual Size".localized, target: self, action: #selector(resetTextSize))
-            return item
+            case .textSizeActual:
+                let item = NSCustomTouchBarItem(identifier: identifier)
+                item.view = NSButton(title: "Actual Size".localized, target: self, action: #selector(resetTextSize))
+                return item
             
-        case .textSizeSlider:
-            guard let textView = self.textView else { return nil }
+            case .textSizeSlider:
+                guard let textView = self.textView else { return nil }
+                
+                let item = NSSliderTouchBarItem(identifier: identifier)
+                item.target = self
+                item.action = #selector(textSizeSliderChanged)
+                item.doubleValue = Double(textView.scale)
+                item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
+                item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
+                item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
+                item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
+                
+                if #available(macOS 10.15, *) {
+                    item.maximumSliderWidth = 300
+                } else {
+                    let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]",
+                                                                     metrics: nil,
+                                                                     views: ["slider": item.slider])
+                    NSLayoutConstraint.activate(constraints)
+                }
+                
+                return item
             
-            let item = NSSliderTouchBarItem(identifier: identifier)
-            item.target = self
-            item.action = #selector(textSizeSliderChanged)
-            item.doubleValue = Double(textView.scale)
-            item.slider.maxValue = Double(textView.enclosingScrollView?.maxMagnification ?? 5.0)
-            item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
-            item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
-            item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
-            
-            if #available(macOS 10.15, *) {
-                item.maximumSliderWidth = 300
-            } else {
-                let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]",
-                                                                 metrics: nil,
-                                                                 views: ["slider": item.slider])
-                NSLayoutConstraint.activate(constraints)
-            }
-            
-            return item
-            
-        default:
-            return nil
+            default:
+                return nil
         }
     }
     
@@ -126,12 +126,12 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(resetTextSize):
-            return (self.textView?.scale != 1.0)
-        case nil:
-            return false
-        default:
-            return true
+            case #selector(resetTextSize):
+                return (self.textView?.scale != 1.0)
+            case nil:
+                return false
+            default:
+                return true
         }
     }
     

@@ -177,13 +177,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
         
         switch UserDefaults.standard[.noDocumentOnLaunchBehavior] {
-        case .untitledDocument:
-            return true
-        case .openPanel:
-            NSDocumentController.shared.openDocument(nil)
-            return false
-        case .none:
-            return false
+            case .untitledDocument:
+                return true
+            case .openPanel:
+                NSDocumentController.shared.openDocument(nil)
+                return false
+            case .none:
+                return false
         }
     }
     

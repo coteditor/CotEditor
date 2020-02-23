@@ -155,12 +155,12 @@ extension MultipleReplacement {
             let (replacementItems, selectedRanges) = textFind.replaceAll(with: replacement.replacementString) { (flag, stop) in
                 
                 switch flag {
-                case .findProgress, .foundCount:
-                    break
-                case .replacementProgress:
-                    result.count += 1
-                    block(&stop)
-                    isCancelled = stop
+                    case .findProgress, .foundCount:
+                        break
+                    case .replacementProgress:
+                        result.count += 1
+                        block(&stop)
+                        isCancelled = stop
                 }
             }
             

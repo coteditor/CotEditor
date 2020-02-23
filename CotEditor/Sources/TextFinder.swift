@@ -111,27 +111,27 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
-        case #selector(findNext(_:)),
-             #selector(findPrevious(_:)),
-             #selector(findSelectedText(_:)),
-             #selector(findAll(_:)),
-             #selector(highlight(_:)),
-             #selector(unhighlight(_:)),
-             #selector(replace(_:)),
-             #selector(replaceAndFind(_:)),
-             #selector(replaceAll(_:)),
-             #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
-             #selector(centerSelectionInVisibleArea(_:)):
-            return self.client != nil
+            case #selector(findNext(_:)),
+                 #selector(findPrevious(_:)),
+                 #selector(findSelectedText(_:)),
+                 #selector(findAll(_:)),
+                 #selector(highlight(_:)),
+                 #selector(unhighlight(_:)),
+                 #selector(replace(_:)),
+                 #selector(replaceAndFind(_:)),
+                 #selector(replaceAll(_:)),
+                 #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
+            #selector(centerSelectionInVisibleArea(_:)):
+                return self.client != nil
             
-        case #selector(useSelectionForFind(_:)):
-            return self.selectedString != nil
+            case #selector(useSelectionForFind(_:)):
+                return self.selectedString != nil
             
-        case nil:
-            return false
+            case nil:
+                return false
             
-        default:
-            return true
+            default:
+                return true
         }
     }
     
@@ -303,10 +303,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 switch flag {
-                case .findProgress, .foundCount:
-                    break
-                case .replacementProgress:
-                    progress.completedUnitCount += 1
+                    case .findProgress, .foundCount:
+                        break
+                    case .replacementProgress:
+                        progress.completedUnitCount += 1
                 }
             }
             
@@ -408,11 +408,11 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch let error as TextFind.Error {
             switch error {
-            case .regularExpression, .emptyInSelectionSearch:
-                self.findPanelController.showWindow(self)
-                self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
-            case .emptyFindString:
-                break
+                case .regularExpression, .emptyInSelectionSearch:
+                    self.findPanelController.showWindow(self)
+                    self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
+                case .emptyFindString:
+                    break
             }
             NSSound.beep()
             return nil

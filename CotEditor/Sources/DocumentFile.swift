@@ -75,19 +75,19 @@ struct DocumentFile {
         let content: String
         let encoding: String.Encoding
         switch readingEncoding {
-        case .autoDetection:
-            (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
-                                                  suggestedCFEncodings: defaults[.encodingList],
-                                                  refersToEncodingTag: defaults[.referToEncodingTag])
-        default:
-            encoding = readingEncoding
-            if !data.isEmpty {
-                guard let string = String(bomCapableData: data, encoding: encoding) else {
-                    throw CocoaError.error(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: encoding.rawValue], url: fileURL)
-                }
-                content = string
-            } else {
-                content = ""
+            case .autoDetection:
+                (content, encoding) = try Self.string(data: data, xattrEncoding: self.xattrEncoding,
+                                                      suggestedCFEncodings: defaults[.encodingList],
+                                                      refersToEncodingTag: defaults[.referToEncodingTag])
+            default:
+                encoding = readingEncoding
+                if !data.isEmpty {
+                    guard let string = String(bomCapableData: data, encoding: encoding) else {
+                        throw CocoaError.error(.fileReadInapplicableStringEncoding, userInfo: [NSStringEncodingErrorKey: encoding.rawValue], url: fileURL)
+                    }
+                    content = string
+                } else {
+                    content = ""
             }
         }
         

@@ -67,10 +67,10 @@ final class SegmentedToolbarItem: ControlToolbarItem {
             
             let isValid: Bool = {
                 switch validator {
-                case let validator as NSUserInterfaceValidations:
-                    return validator.validateUserInterfaceItem(item)
-                default:
-                    return validator.validateMenuItem(item)
+                    case let validator as NSUserInterfaceValidations:
+                        return validator.validateUserInterfaceItem(item)
+                    default:
+                        return validator.validateMenuItem(item)
                 }
             }()
             

@@ -45,10 +45,10 @@ extension NSTextView {
         
         // validate regex pattern
         switch mode {
-        case .search:
-            guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }
-        case .replacement:
-            break
+            case .search:
+                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }
+            case .replacement:
+                break
         }
         
         // highlight

@@ -54,14 +54,14 @@ extension Document {
         
         set {
             switch newValue {
-            case let textStorage as NSTextStorage:
-                self.insert(string: textStorage.string, at: .replaceAll)
+                case let textStorage as NSTextStorage:
+                    self.insert(string: textStorage.string, at: .replaceAll)
                 
-            case let string as String:
-                self.insert(string: string, at: .replaceAll)
+                case let string as String:
+                    self.insert(string: string, at: .replaceAll)
                 
-            default:
-                assertionFailure()
+                default:
+                    assertionFailure()
             }
         }
     }
@@ -107,20 +107,6 @@ extension Document {
         
         get {
             switch self.lineEnding {
-            case .lf:
-                return .lf
-            case .cr:
-                return .cr
-            case .crlf:
-                return .crlf
-            default:
-                return .lf
-            }
-        }
-        
-        set {
-            let type: LineEnding = {
-                switch newValue {
                 case .lf:
                     return .lf
                 case .cr:
@@ -129,6 +115,20 @@ extension Document {
                     return .crlf
                 default:
                     return .lf
+            }
+        }
+        
+        set {
+            let type: LineEnding = {
+                switch newValue {
+                    case .lf:
+                        return .lf
+                    case .cr:
+                        return .cr
+                    case .crlf:
+                        return .crlf
+                    default:
+                        return .lf
                 }
             }()
             self.changeLineEnding(to: type)

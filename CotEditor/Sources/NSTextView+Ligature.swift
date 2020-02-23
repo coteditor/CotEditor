@@ -49,15 +49,15 @@ extension NSTextView {
         
         set {
             switch newValue {
-            case .standard:  // NSTextView uses the standard ligatures by default.
-                self.typingAttributes[.ligature] = nil
-                if let textStorage = self.textStorage {
-                    textStorage.removeAttribute(.ligature, range: textStorage.range)
+                case .standard:  // NSTextView uses the standard ligatures by default.
+                    self.typingAttributes[.ligature] = nil
+                    if let textStorage = self.textStorage {
+                        textStorage.removeAttribute(.ligature, range: textStorage.range)
                 }
-            case .none, .all:
-                self.typingAttributes[.ligature] = newValue.rawValue
-                if let textStorage = self.textStorage {
-                    textStorage.addAttribute(.ligature, value: newValue.rawValue, range: textStorage.range)
+                case .none, .all:
+                    self.typingAttributes[.ligature] = newValue.rawValue
+                    if let textStorage = self.textStorage {
+                        textStorage.addAttribute(.ligature, value: newValue.rawValue, range: textStorage.range)
                 }
             }
         }

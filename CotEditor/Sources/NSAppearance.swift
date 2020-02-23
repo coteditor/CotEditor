@@ -44,13 +44,13 @@ extension NSAppearance {
         }
         
         switch self.name {
-        case .accessibilityHighContrastAqua,
-             .accessibilityHighContrastDarkAqua,
-             .accessibilityHighContrastVibrantLight,
-             .accessibilityHighContrastVibrantDark:
-            return true
-        default:
-            return false
+            case .accessibilityHighContrastAqua,
+                 .accessibilityHighContrastDarkAqua,
+                 .accessibilityHighContrastVibrantLight,
+                 .accessibilityHighContrastVibrantDark:
+                return true
+            default:
+                return false
         }
     }
     

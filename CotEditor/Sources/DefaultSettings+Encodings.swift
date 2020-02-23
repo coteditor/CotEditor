@@ -110,14 +110,14 @@ extension DefaultSettings {
         ]
         .map { encoding in
             switch encoding {
-            case let encoding as CFStringBuiltInEncodings:
-                return encoding.rawValue
-            case let encoding as CFStringEncodings:
-                return UInt32(encoding.rawValue)
-            case let encoding as UInt32 where encoding == kCFStringEncodingInvalidId:
-                return encoding
-            default:
-                preconditionFailure()
+                case let encoding as CFStringBuiltInEncodings:
+                    return encoding.rawValue
+                case let encoding as CFStringEncodings:
+                    return UInt32(encoding.rawValue)
+                case let encoding as UInt32 where encoding == kCFStringEncodingInvalidId:
+                    return encoding
+                default:
+                    preconditionFailure()
             }
         }
     

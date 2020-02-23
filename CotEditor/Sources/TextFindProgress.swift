@@ -103,12 +103,12 @@ struct CountableFormatter {
     private func format(for count: Int) -> String {
         
         switch count {
-        case 0:
-            return "Searching in text…".localized
-        case 1:
-            return self.singular
-        default:
-            return self.plural
+            case 0:
+                return "Searching in text…".localized
+            case 1:
+                return self.singular
+            default:
+                return self.plural
         }
     }
     

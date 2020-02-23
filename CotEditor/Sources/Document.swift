@@ -731,12 +731,12 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // notify about external file update
         DispatchQueue.main.async { [weak self] in
             switch UserDefaults.standard[.documentConflictOption] {
-            case .ignore:
-                assertionFailure()
-            case .notify:
-                self?.showUpdatedByExternalProcessAlert()
-            case .revert:
-                self?.revertWithoutAsking()
+                case .ignore:
+                    assertionFailure()
+                case .notify:
+                    self?.showUpdatedByExternalProcessAlert()
+                case .revert:
+                    self?.revertWithoutAsking()
             }
         }
     }
@@ -746,18 +746,18 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
-        case #selector(changeEncoding(_:)):
-            let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
-            menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
+            case #selector(changeEncoding(_:)):
+                let encodingTag = self.hasUTF8BOM ? -Int(self.encoding.rawValue) : Int(self.encoding.rawValue)
+                menuItem.state = (menuItem.tag == encodingTag) ? .on : .off
             
-        case #selector(changeLineEnding(_:)):
-            menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
+            case #selector(changeLineEnding(_:)):
+                menuItem.state = (LineEnding(index: menuItem.tag) == self.lineEnding) ? .on : .off
             
-        case #selector(changeSyntaxStyle(_:)):
-            let name = self.syntaxParser.style.name
-            menuItem.state = (menuItem.title == name) ? .on : .off
+            case #selector(changeSyntaxStyle(_:)):
+                let name = self.syntaxParser.style.name
+                menuItem.state = (menuItem.title == name) ? .on : .off
             
-        default: break
+            default: break
         }
         
         return super.validateMenuItem(menuItem)
@@ -1002,45 +1002,45 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let documentWindow = self.windowForSheet!
             alert.beginSheetModal(for: documentWindow) { [unowned self] (returnCode: NSApplication.ModalResponse) in
                 switch returnCode {
-                case .alertFirstButtonReturn:  // = Convert
-                    do {
-                        try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
-                        completionHandler(true)
-                    } catch {
-                        self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
+                    case .alertFirstButtonReturn:  // = Convert
+                        do {
+                            try self.changeEncoding(to: encoding, withUTF8BOM: withUTF8BOM, lossy: false)
+                            completionHandler(true)
+                        } catch {
+                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                     }
                     
-                case .alertSecondButtonReturn:  // = Reinterpret
-                    // ask user if document is edited
-                    if self.isDocumentEdited {
-                        let alert = NSAlert()
-                        alert.messageText = "The document has unsaved changes.".localized
-                        alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, encodingName)
-                        alert.addButton(withTitle: "Cancel".localized)
-                        alert.addButton(withTitle: "Discard Changes".localized)
-                        
-                        documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
-                        let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
-                        
-                        guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
-                            completionHandler(false)
-                            return
+                    case .alertSecondButtonReturn:  // = Reinterpret
+                        // ask user if document is edited
+                        if self.isDocumentEdited {
+                            let alert = NSAlert()
+                            alert.messageText = "The document has unsaved changes.".localized
+                            alert.informativeText = String(format: "Do you want to discard the changes and reopen the document using “%@”?".localized, encodingName)
+                            alert.addButton(withTitle: "Cancel".localized)
+                            alert.addButton(withTitle: "Discard Changes".localized)
+                            
+                            documentWindow.attachedSheet?.orderOut(self)  // close previous sheet
+                            let returnCode = alert.runModal(for: documentWindow)  // wait for sheet close
+                            
+                            guard returnCode == .alertSecondButtonReturn else {  // = Discard Changes
+                                completionHandler(false)
+                                return
+                            }
                         }
+                        
+                        // reinterpret
+                        do {
+                            try self.reinterpret(encoding: encoding)
+                            completionHandler(true)
+                        } catch {
+                            NSSound.beep()
+                            self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
                     }
                     
-                    // reinterpret
-                    do {
-                        try self.reinterpret(encoding: encoding)
-                        completionHandler(true)
-                    } catch {
-                        NSSound.beep()
-                        self.presentErrorAsSheet(error, recoveryHandler: completionHandler)
-                    }
+                    case .alertThirdButtonReturn:  // = Cancel
+                        completionHandler(false)
                     
-                case .alertThirdButtonReturn:  // = Cancel
-                    completionHandler(false)
-                    
-                default: preconditionFailure()
+                    default: preconditionFailure()
                 }
             }
         }
@@ -1208,12 +1208,12 @@ private struct ReinterpretationError: LocalizedError {
     var errorDescription: String? {
         
         switch self.kind {
-        case .noFile:
-            return "The document doesn’t have a file to reinterpret.".localized
+            case .noFile:
+                return "The document doesn’t have a file to reinterpret.".localized
             
-        case .reinterpretationFailed(let fileURL):
-            return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
-                          fileURL.lastPathComponent, String.localizedName(of: self.encoding))
+            case .reinterpretationFailed(let fileURL):
+                return String(format: "The file “%@” couldn’t be reinterpreted using text encoding “%@”.".localized,
+                              fileURL.lastPathComponent, String.localizedName(of: self.encoding))
         }
     }
     
@@ -1221,11 +1221,11 @@ private struct ReinterpretationError: LocalizedError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .noFile:
-            return nil
+            case .noFile:
+                return nil
             
-        case .reinterpretationFailed:
-            return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
+            case .reinterpretationFailed:
+                return "The file may have been saved using a different text encoding, or it may not be a text file.".localized
         }
     }
     
@@ -1258,11 +1258,11 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .lossySaving:
-            return "Do you want to continue processing?".localized
+            case .lossySaving:
+                return "Do you want to continue processing?".localized
             
-        case .lossyConversion:
-            return "Do you want to change encoding and show incompatible characters?".localized
+            case .lossyConversion:
+                return "Do you want to change encoding and show incompatible characters?".localized
         }
     }
     
@@ -1270,14 +1270,14 @@ private struct EncodingError: LocalizedError, RecoverableError {
     var recoveryOptions: [String] {
         
         switch self.kind {
-        case .lossySaving:
-            return ["Show Incompatible Characters".localized,
-                    "Save Available Strings".localized,
-                    "Cancel".localized]
+            case .lossySaving:
+                return ["Show Incompatible Characters".localized,
+                        "Save Available Strings".localized,
+                        "Cancel".localized]
             
-        case .lossyConversion:
-            return ["Change Encoding".localized,
-                    "Cancel".localized]
+            case .lossyConversion:
+                return ["Change Encoding".localized,
+                        "Cancel".localized]
         }
     }
     
@@ -1285,34 +1285,34 @@ private struct EncodingError: LocalizedError, RecoverableError {
     func attemptRecovery(optionIndex recoveryOptionIndex: Int) -> Bool {
         
         switch self.kind {
-        case .lossySaving:
-            switch recoveryOptionIndex {
-            case 0:  // == Show Incompatible Characters
-                self.showIncompatibleCharacters()
-                return false
-            case 1:  // == Save
-                return true
-            case 2:  // == Cancel
-                return false
-            default:
-                preconditionFailure()
+            case .lossySaving:
+                switch recoveryOptionIndex {
+                    case 0:  // == Show Incompatible Characters
+                        self.showIncompatibleCharacters()
+                        return false
+                    case 1:  // == Save
+                        return true
+                    case 2:  // == Cancel
+                        return false
+                    default:
+                        preconditionFailure()
             }
             
-        case .lossyConversion:
-            switch recoveryOptionIndex {
-            case 0:  // == Change Encoding
-                try? self.attempter.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, lossy: true)
-                self.showIncompatibleCharacters()
-                return true
-            case 1:  // == Cancel
-                return false
-            default:
-                preconditionFailure()
+            case .lossyConversion:
+                switch recoveryOptionIndex {
+                    case 0:  // == Change Encoding
+                        try? self.attempter.changeEncoding(to: self.encoding, withUTF8BOM: self.withUTF8BOM, lossy: true)
+                        self.showIncompatibleCharacters()
+                        return true
+                    case 1:  // == Cancel
+                        return false
+                    default:
+                        preconditionFailure()
             }
         }
     }
     
-    
+
     private func showIncompatibleCharacters() {
         
         let windowContentController = self.attempter.windowControllers.first?.contentViewController as? WindowContentViewController

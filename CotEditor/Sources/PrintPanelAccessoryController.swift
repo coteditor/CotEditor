@@ -82,10 +82,10 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             self.theme = {
                 if let mode = PrintColorMode(rawValue: defaults[.printColorIndex]) {
                     switch mode {
-                    case .blackWhite:
-                        return ThemeName.blackAndWhite
-                    case .sameAsDocument:
-                        return ThemeManager.shared.userDefaultSettingName
+                        case .blackWhite:
+                            return ThemeName.blackAndWhite
+                        case .sameAsDocument:
+                            return ThemeManager.shared.userDefaultSettingName
                     }
                 }
                 return defaults[.printTheme] ?? ThemeName.blackAndWhite
@@ -343,12 +343,12 @@ private extension PrintLineNmuberMode {
     var description: String {
         
         switch self {
-        case .no:
-            return "Don’t Print"
-        case .sameAsDocument:
-            return "Same as Document’s Setting"
-        case .yes:
-            return "Print"
+            case .no:
+                return "Don’t Print"
+            case .sameAsDocument:
+                return "Same as Document’s Setting"
+            case .yes:
+                return "Print"
         }
     }
 }
@@ -359,12 +359,12 @@ private extension PrintInvisiblesMode {
     var description: String {
         
         switch self {
-        case .no:
-            return "Don’t Print"
-        case .sameAsDocument:
-            return "Same as Document’s Setting"
-        case .all:
-            return "Print All"
+            case .no:
+                return "Don’t Print"
+            case .sameAsDocument:
+                return "Same as Document’s Setting"
+            case .all:
+                return "Print All"
         }
     }
 }
@@ -375,18 +375,18 @@ private extension PrintInfoType {
     var description: String {
         
         switch self {
-        case .none:
-            return "None"
-        case .syntaxName:
-            return "Syntax Name"
-        case .documentName:
-            return "Document Name"
-        case .filePath:
-            return "File Path"
-        case .printDate:
-            return "Print Date"
-        case .pageNumber:
-            return "Page Number"
+            case .none:
+                return "None"
+            case .syntaxName:
+                return "Syntax Name"
+            case .documentName:
+                return "Document Name"
+            case .filePath:
+                return "File Path"
+            case .printDate:
+                return "Print Date"
+            case .pageNumber:
+                return "Page Number"
         }
     }
 }
@@ -397,12 +397,12 @@ private extension AlignmentType {
     var description: String {
         
         switch self {
-        case .left:
-            return "Left"
-        case .center:
-            return "Center"
-        case .right:
-            return "Right"
+            case .left:
+                return "Left"
+            case .center:
+                return "Center"
+            case .right:
+                return "Right"
         }
     }
 }

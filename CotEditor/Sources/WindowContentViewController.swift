@@ -83,23 +83,23 @@ final class WindowContentViewController: NSSplitViewController, TabViewControlle
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(toggleInspector):
-            let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
-            (item as? NSMenuItem)?.title = title.localized
+            case #selector(toggleInspector):
+                let title = self.isSidebarShown ? "Hide Inspector" : "Show Inspector"
+                (item as? NSMenuItem)?.title = title.localized
             
-        case #selector(getInfo):
-            (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
-            return self.canToggleSidebar
+            case #selector(getInfo):
+                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .documentInspector) ? .on : .off
+                return self.canToggleSidebar
             
-        case #selector(toggleOutlineMenu):
-            (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
-            return self.canToggleSidebar
+            case #selector(toggleOutlineMenu):
+                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .outline) ? .on : .off
+                return self.canToggleSidebar
             
-        case #selector(toggleIncompatibleCharList):
-            (item as? NSMenuItem)?.state = self.isSidebarShown(index: .incompatibleCharacters) ? .on : .off
-            return self.canToggleSidebar
+            case #selector(toggleIncompatibleCharList):
+                (item as? NSMenuItem)?.state = self.isSidebarShown(index: .incompatibleCharacters) ? .on : .off
+                return self.canToggleSidebar
             
-        default: break
+            default: break
         }
         
         return super.validateUserInterfaceItem(item)

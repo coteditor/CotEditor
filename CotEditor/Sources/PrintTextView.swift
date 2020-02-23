@@ -230,15 +230,15 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
             self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
                 guard let numberString: String = {
                     switch line {
-                    case .new(let lineNumber, _):
-                        if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
-                            return "·"  // draw real number only in every 5 times
-                        }
-                        return String(lineNumber)
+                        case .new(let lineNumber, _):
+                            if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
+                                return "·"  // draw real number only in every 5 times
+                            }
+                            return String(lineNumber)
                         
-                    case .wrapped:
-                        if isVerticalText { return nil }
-                        return "-"
+                        case .wrapped:
+                            if isVerticalText { return nil }
+                            return "-"
                     }
                     }() else { return }
                 
@@ -286,12 +286,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         // check whether print line numbers
         self.printsLineNumber = {
             switch PrintLineNmuberMode(settings[.lineNumber] as? Int) {
-            case .no:
-                return false
-            case .sameAsDocument:
-                return self.documentShowsLineNumber
-            case .yes:
-                return true
+                case .no:
+                    return false
+                case .sameAsDocument:
+                    return self.documentShowsLineNumber
+                case .yes:
+                    return true
             }
         }()
         
@@ -301,12 +301,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         // check whether print invisibles
         layoutManager.showsInvisibles = {
             switch PrintInvisiblesMode(settings[.invisibles] as? Int) {
-            case .no:
-                return false
-            case .sameAsDocument:
-                return self.documentShowsInvisibles
-            case .all:
-                return true
+                case .no:
+                    return false
+                case .sameAsDocument:
+                    return self.documentShowsInvisibles
+                case .all:
+                    return true
             }
         }()
         
@@ -354,30 +354,30 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         let secondaryString = self.printInfoString(type: secondaryInfoType)
         
         switch (primaryString, secondaryString) {
-        // case: empty
-        case (nil, nil):
-            return NSAttributedString()
+            // case: empty
+            case (nil, nil):
+                return NSAttributedString()
             
-        // case: single content
-        case let (.some(string), nil):
-            return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        case let (nil, .some(string)):
-            return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+            // case: single content
+            case let (.some(string), nil):
+                return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
+            case let (nil, .some(string)):
+                return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
             
-        case let (.some(primaryString), .some(secondaryString)):
-            switch (primaryAlignment, secondaryAlignment) {
-            // case: double-sided
-            case (.left, .right):
-                return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
-            case (.right, .left):
-                return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
-                
-            // case: two lines
-            default:
-                let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
-                let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
-                
-                return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
+            case let (.some(primaryString), .some(secondaryString)):
+                switch (primaryAlignment, secondaryAlignment) {
+                    // case: double-sided
+                    case (.left, .right):
+                        return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+                    case (.right, .left):
+                        return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+                    
+                    // case: two lines
+                    default:
+                        let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
+                        let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+                        
+                        return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
             }
         }
     }
@@ -409,30 +409,30 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
     private func printInfoString(type: PrintInfoType) -> String? {
         
         switch type {
-        case .documentName:
-            return self.documentName
-            
-        case .syntaxName:
-            return self.syntaxParser.style.name
-            
-        case .filePath:
-            guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
+            case .documentName:
                 return self.documentName
-            }
-            if UserDefaults.standard[.headerFooterPathAbbreviatingWithTilde] {
-                return filePath.abbreviatingWithTildeInSandboxedPath
-            }
-            return filePath
             
-        case .printDate:
-            return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
+            case .syntaxName:
+                return self.syntaxParser.style.name
             
-        case .pageNumber:
-            guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
-            return String(pageNumber)
+            case .filePath:
+                guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
+                    return self.documentName
+                }
+                if UserDefaults.standard[.headerFooterPathAbbreviatingWithTilde] {
+                    return filePath.abbreviatingWithTildeInSandboxedPath
+                }
+                return filePath
             
-        case .none:
-            return nil
+            case .printDate:
+                return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
+            
+            case .pageNumber:
+                guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
+                return String(pageNumber)
+            
+            case .none:
+                return nil
         }
     }
     
@@ -478,19 +478,19 @@ private enum HeaderFooterLocation {
     var keys: Keys {
         
         switch self {
-        case .header:
-            return Keys(needsDraw: .printsHeader,
-                        primaryContent: .primaryHeaderContent,
-                        primaryAlignment: .primaryHeaderAlignment,
-                        secondaryContent: .secondaryHeaderContent,
-                        secondaryAlignment: .secondaryHeaderAlignment)
+            case .header:
+                return Keys(needsDraw: .printsHeader,
+                            primaryContent: .primaryHeaderContent,
+                            primaryAlignment: .primaryHeaderAlignment,
+                            secondaryContent: .secondaryHeaderContent,
+                            secondaryAlignment: .secondaryHeaderAlignment)
             
-        case .footer:
-            return Keys(needsDraw: .printsFooter,
-                        primaryContent: .primaryFooterContent,
-                        primaryAlignment: .primaryFooterAlignment,
-                        secondaryContent: .secondaryFooterContent,
-                        secondaryAlignment: .secondaryFooterAlignment)
+            case .footer:
+                return Keys(needsDraw: .printsFooter,
+                            primaryContent: .primaryFooterContent,
+                            primaryAlignment: .primaryFooterAlignment,
+                            secondaryContent: .secondaryFooterContent,
+                            secondaryAlignment: .secondaryFooterAlignment)
         }
     }
     
@@ -503,12 +503,12 @@ private extension AlignmentType {
     var textAlignment: NSTextAlignment {
         
         switch self {
-        case .left:
-            return .left
-        case .center:
-            return .center
-        case .right:
-            return .right
+            case .left:
+                return .left
+            case .center:
+                return .center
+            case .right:
+                return .right
         }
     }
 }

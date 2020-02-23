@@ -82,14 +82,14 @@ extension SynchronizedScrollView: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(smallerFont):
-            return self.magnification > self.minMagnification
-        case #selector(biggerFont):
-            return self.magnification < self.maxMagnification
-        case nil:
-            return false
-        default:
-            return true
+            case #selector(smallerFont):
+                return self.magnification > self.minMagnification
+            case #selector(biggerFont):
+                return self.magnification < self.maxMagnification
+            case nil:
+                return false
+            default:
+                return true
         }
     }
     

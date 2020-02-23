@@ -37,13 +37,13 @@ extension NSImage {
         
         let rotatedSize: NSSize
         switch angle.remainder(dividingBy: 180) {
-        case 0:
-            rotatedSize = self.size
-        case -90, 90:
-            rotatedSize = self.size.rotated
-        default:
-            assertionFailure("The angle is assumed to be a multiple of 90°.")
-            rotatedSize = self.size
+            case 0:
+                rotatedSize = self.size
+            case -90, 90:
+                rotatedSize = self.size.rotated
+            default:
+                assertionFailure("The angle is assumed to be a multiple of 90°.")
+                rotatedSize = self.size
         }
         
         let image = Self(size: rotatedSize, flipped: false) { [unowned self] (dstRect) -> Bool in

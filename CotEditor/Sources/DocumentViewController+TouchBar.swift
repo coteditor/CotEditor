@@ -65,26 +65,26 @@ extension DocumentViewController: NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         
         switch identifier {
-        case .invisibles:
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            item.customizationLabel = "Invisibles".localized(comment: "touch bar item")
-            item.view = NSButton(image: #imageLiteral(resourceName: "InvisiblesTemplate"), target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
-            return item
+            case .invisibles:
+                let item = NSCustomTouchBarItem(identifier: identifier)
+                item.customizationLabel = "Invisibles".localized(comment: "touch bar item")
+                item.view = NSButton(image: #imageLiteral(resourceName: "InvisiblesTemplate"), target: self, action: #selector(toggleInvisibleCharsViaTouchBar))
+                return item
             
-        case .wrapLines:
-            let item = NSCustomTouchBarItem(identifier: identifier)
-            item.customizationLabel = "Wrap Lines".localized(comment: "touch bar item")
-            item.view = NSButton(image: #imageLiteral(resourceName: "WrapLinesTemplate"), target: self, action: #selector(toggleLineWrapViaTouchBar))
-            return item
+            case .wrapLines:
+                let item = NSCustomTouchBarItem(identifier: identifier)
+                item.customizationLabel = "Wrap Lines".localized(comment: "touch bar item")
+                item.view = NSButton(image: #imageLiteral(resourceName: "WrapLinesTemplate"), target: self, action: #selector(toggleLineWrapViaTouchBar))
+                return item
             
-        case .share:
-            guard let document = self.document else { return nil }
-            let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
-            item.delegate = document
-            return item
+            case .share:
+                guard let document = self.document else { return nil }
+                let item = NSSharingServicePickerTouchBarItem(identifier: identifier)
+                item.delegate = document
+                return item
             
-        default:
-            return nil
+            default:
+                return nil
         }
     }
     
@@ -124,13 +124,13 @@ extension DocumentViewController: TouchBarItemValidations {
         
         guard let isEnabled: Bool = {
             switch item.identifier {
-            case .invisibles:
-                return self.showsInvisibles
+                case .invisibles:
+                    return self.showsInvisibles
                 
-            case .wrapLines:
-                return self.wrapsLines
+                case .wrapLines:
+                    return self.wrapsLines
                 
-            default: return nil
+                default: return nil
             }
             }() else { return true }
         

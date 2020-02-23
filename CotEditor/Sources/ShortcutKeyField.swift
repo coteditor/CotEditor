@@ -62,11 +62,11 @@ final class ShortcutKeyField: NSTextField {
             //  -> "backspace" key:        the key above "return"
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
             switch Int(char.value) {
-            case NSDeleteCharacter:
-                charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter)!)
-            case NSDeleteFunctionKey:
-                charsIgnoringModifiers = String(UnicodeScalar(NSDeleteCharacter)!)
-            default: break
+                case NSDeleteCharacter:
+                    charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter)!)
+                case NSDeleteFunctionKey:
+                    charsIgnoringModifiers = String(UnicodeScalar(NSDeleteCharacter)!)
+                default: break
             }
             
             // remove unwanted Shift

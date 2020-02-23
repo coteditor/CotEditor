@@ -37,9 +37,9 @@ class AsynchronousOperation: Operation {
         var keyPath: KeyPath<AsynchronousOperation, Bool> {
             
             switch self {
-            case .ready: return \.isReady
-            case .executing: return \.isExecuting
-            case .finished: return \.isFinished
+                case .ready: return \.isReady
+                case .executing: return \.isExecuting
+                case .finished: return \.isFinished
             }
         }
         

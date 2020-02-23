@@ -76,43 +76,43 @@ private extension NSFont.Name {
     private func weightName(of weight: NSFont.Weight) -> String? {
         
         switch self {
-        case .lucidaGrande:
-            switch weight {
-            case .regular: return ""
-            case .bold: return "Bold"
-            default: return nil
+            case .lucidaGrande:
+                switch weight {
+                    case .regular: return ""
+                    case .bold: return "Bold"
+                    default: return nil
             }
             
-        case .menlo:
-            switch weight {
-            case .regular: return "Regular"
-            case .bold: return "Bold"
-            default: return nil
+            case .menlo:
+                switch weight {
+                    case .regular: return "Regular"
+                    case .bold: return "Bold"
+                    default: return nil
             }
             
-        case .avenirNextCondensed:
-            switch weight {
-            case .ultraLight: return "UltraLight"
-            case .regular: return "Regular"
-            case .medium: return "Medium"
-            case .semibold: return "DemiBold"
-            case .bold: return "Bold"
-            case .heavy: return "Heavy"
-            default: return nil
+            case .avenirNextCondensed:
+                switch weight {
+                    case .ultraLight: return "UltraLight"
+                    case .regular: return "Regular"
+                    case .medium: return "Medium"
+                    case .semibold: return "DemiBold"
+                    case .bold: return "Bold"
+                    case .heavy: return "Heavy"
+                    default: return nil
             }
             
-        case .hiraginoSans:
-            switch weight {
-            case .ultraLight: return "W0"
-            case .thin: return "W1"
-            case .light: return "W2"
-            case .regular: return "W3"
-            case .medium: return "W4"
-            case .semibold: return "W5"
-            case .bold: return "W6"
-            case .heavy: return "W7"
-            case .black: return "W8"
-            default: return nil
+            case .hiraginoSans:
+                switch weight {
+                    case .ultraLight: return "W0"
+                    case .thin: return "W1"
+                    case .light: return "W2"
+                    case .regular: return "W3"
+                    case .medium: return "W4"
+                    case .semibold: return "W5"
+                    case .bold: return "W6"
+                    case .heavy: return "W7"
+                    case .black: return "W8"
+                    default: return nil
             }
         }
     }

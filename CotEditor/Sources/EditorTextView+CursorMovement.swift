@@ -510,18 +510,18 @@ extension EditorTextView {
             else { return false }
         
         switch (Int(character), self.layoutOrientation) {
-        case (NSUpArrowFunctionKey, .horizontal),
-             (NSRightArrowFunctionKey, .vertical):
-            self.doCommand(by: #selector(selectColumnUp))
-            return true
+            case (NSUpArrowFunctionKey, .horizontal),
+                 (NSRightArrowFunctionKey, .vertical):
+                self.doCommand(by: #selector(selectColumnUp))
+                return true
             
-        case (NSDownArrowFunctionKey, .horizontal),
-             (NSLeftArrowFunctionKey, .vertical):
-            self.doCommand(by: #selector(selectColumnDown))
-            return true
+            case (NSDownArrowFunctionKey, .horizontal),
+                 (NSLeftArrowFunctionKey, .vertical):
+                self.doCommand(by: #selector(selectColumnDown))
+                return true
             
-        default:
-            return false
+            default:
+                return false
         }
     }
     

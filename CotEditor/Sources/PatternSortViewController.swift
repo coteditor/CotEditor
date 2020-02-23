@@ -150,10 +150,10 @@ final class SortPatternTabViewController: NSTabViewController {
         
         viewController.representedObject = {
             switch tabView.indexOfTabViewItem(item) {
-            case 0: return EntireLineSortPattern()
-            case 1: return CSVSortPattern()
-            case 2: return RegularExpressionSortPattern()
-            default: preconditionFailure()
+                case 0: return EntireLineSortPattern()
+                case 1: return CSVSortPattern()
+                case 2: return RegularExpressionSortPattern()
+                default: preconditionFailure()
             }
         }()
     }
@@ -211,10 +211,10 @@ extension CSVSortPattern {
         
         // avoid rising an exception when number field becomes empty
         switch key {
-        case #keyPath(column):
-            self.column = 1
-        default:
-            super.setNilValueForKey(key)
+            case #keyPath(column):
+                self.column = 1
+            default:
+                super.setNilValueForKey(key)
         }
     }
     

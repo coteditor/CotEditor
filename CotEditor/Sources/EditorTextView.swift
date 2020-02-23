@@ -456,9 +456,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             // swap '¥' with '\' if needed
             if UserDefaults.standard[.swapYenAndBackSlash] {
                 switch input {
-                case "\\": return "¥"
-                case "¥": return "\\"
-                default: break
+                    case "\\": return "¥"
+                    case "¥": return "\\"
+                    default: break
                 }
             }
             
@@ -892,13 +892,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         var rect = rect
         switch self.cursorType {
-        case .bar:
-            break
-        case .thickBar:
-            rect.size.width *= 2
-        case .block:
-            let index = self.characterIndexForInsertion(at: rect.mid)
-            rect.size.width = self.insertionBlockWidth(at: index)
+            case .bar:
+                break
+            case .thickBar:
+                rect.size.width *= 2
+            case .block:
+                let index = self.characterIndexForInsertion(at: rect.mid)
+                rect.size.width = self.insertionBlockWidth(at: index)
         }
         
         super.drawInsertionPoint(in: rect, color: color, turnedOn: flag)
@@ -916,12 +916,12 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         var rect = super.insertionPointRect(at: index)
         
         switch self.cursorType {
-        case .bar:
-            break
-        case .thickBar:
-            rect.size.width *= 2
-        case .block:
-            rect.size.width = self.insertionBlockWidth(at: index)
+            case .bar:
+                break
+            case .thickBar:
+                rect.size.width *= 2
+            case .block:
+                rect.size.width = self.insertionBlockWidth(at: index)
         }
         
         return rect
@@ -1111,35 +1111,35 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(copyWithStyle):
-            return !self.selectedRange.isEmpty
+            case #selector(copyWithStyle):
+                return !self.selectedRange.isEmpty
             
-        case #selector(straightenQuotesInSelection):
-            // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
-            //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
-            return !self.selectedRange.isEmpty
+            case #selector(straightenQuotesInSelection):
+                // -> Although `straightenQuotesInSelection(:_)` actually works also when selections are empty,
+                //    disable it to make the state same as `replaceQuotesInSelection(_:)`.
+                return !self.selectedRange.isEmpty
             
-        case #selector(showSelectionInfo):
-            return (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
+            case #selector(showSelectionInfo):
+                return (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
             
-        case #selector(toggleComment):
-            if let menuItem = item as? NSMenuItem {
-                let canComment = self.canUncomment(partly: false)
-                let title = canComment ? "Uncomment" : "Comment Out"
-                menuItem.title = title.localized
-            }
-            return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
+            case #selector(toggleComment):
+                if let menuItem = item as? NSMenuItem {
+                    let canComment = self.canUncomment(partly: false)
+                    let title = canComment ? "Uncomment" : "Comment Out"
+                    menuItem.title = title.localized
+                }
+                return (self.inlineCommentDelimiter != nil) || (self.blockCommentDelimiters != nil)
             
-        case #selector(inlineCommentOut):
-            return (self.inlineCommentDelimiter != nil)
+            case #selector(inlineCommentOut):
+                return (self.inlineCommentDelimiter != nil)
             
-        case #selector(blockCommentOut):
-            return (self.blockCommentDelimiters != nil)
+            case #selector(blockCommentOut):
+                return (self.blockCommentDelimiters != nil)
             
-        case #selector(uncomment(_:)):
-            return self.canUncomment(partly: true)
+            case #selector(uncomment(_:)):
+                return self.canUncomment(partly: true)
             
-        default: break
+            default: break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -1450,15 +1450,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard self.theme?.isDarkTheme == true else { return }
         
         switch NSCursor.current {
-        case .iBeam where NSAppKitVersion.current <= .macOS10_13:
-            // -> i-beam is enough findable with dark background since Mojave
-            NSCursor.lightIBeam.set()
+            case .iBeam where NSAppKitVersion.current <= .macOS10_13:
+                // -> i-beam is enough findable with dark background since Mojave
+                NSCursor.lightIBeam.set()
             
-        case .iBeamCursorForVerticalLayout:
-            NSCursor.lightIBeamCursorForVerticalLayout.set()
+            case .iBeamCursorForVerticalLayout:
+                NSCursor.lightIBeamCursorForVerticalLayout.set()
             
-        default:
-            break
+            default:
+                break
         }
     }
     
@@ -1615,80 +1615,80 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             
             let new = change.new
             switch key {
-            case .cursorType:
-                self.cursorType = UserDefaults.standard[.cursorType]
-                self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
+                case .cursorType:
+                    self.cursorType = UserDefaults.standard[.cursorType]
+                    self.insertionPointColor = self.insertionPointColor.withAlphaComponent(self.cursorType == .block ? 0.5 : 1)
                 
-            case .autoExpandTab:
-                self.isAutomaticTabExpansionEnabled = new as! Bool
+                case .autoExpandTab:
+                    self.isAutomaticTabExpansionEnabled = new as! Bool
                 
-            case .autoIndent:
-                self.isAutomaticIndentEnabled = new as! Bool
+                case .autoIndent:
+                    self.isAutomaticIndentEnabled = new as! Bool
                 
-            case .enableSmartIndent:
-                self.isSmartIndentEnabled = new as! Bool
+                case .enableSmartIndent:
+                    self.isSmartIndentEnabled = new as! Bool
                 
-            case .balancesBrackets:
-                self.balancesBrackets = new as! Bool
+                case .balancesBrackets:
+                    self.balancesBrackets = new as! Bool
                 
-            case .shouldAntialias:
-                self.usesAntialias = new as! Bool
+                case .shouldAntialias:
+                    self.usesAntialias = new as! Bool
                 
-            case .ligature:
-                self.ligature = (new as! Bool) ? .standard : .none
+                case .ligature:
+                    self.ligature = (new as! Bool) ? .standard : .none
                 
-            case .smartInsertAndDelete:
-                self.smartInsertDeleteEnabled = new as! Bool
+                case .smartInsertAndDelete:
+                    self.smartInsertDeleteEnabled = new as! Bool
                 
-            case .enableSmartQuotes:
-                self.isAutomaticQuoteSubstitutionEnabled = new as! Bool
+                case .enableSmartQuotes:
+                    self.isAutomaticQuoteSubstitutionEnabled = new as! Bool
                 
-            case .enableSmartDashes:
-                self.isAutomaticDashSubstitutionEnabled = new as! Bool
+                case .enableSmartDashes:
+                    self.isAutomaticDashSubstitutionEnabled = new as! Bool
                 
-            case .checkSpellingAsType:
-                self.isContinuousSpellCheckingEnabled = new as! Bool
+                case .checkSpellingAsType:
+                    self.isContinuousSpellCheckingEnabled = new as! Bool
                 
-            case .autoLinkDetection:
-                self.isAutomaticLinkDetectionEnabled = new as! Bool
-                if self.isAutomaticLinkDetectionEnabled {
-                    self.detectLink()
-                } else {
-                    self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
+                case .autoLinkDetection:
+                    self.isAutomaticLinkDetectionEnabled = new as! Bool
+                    if self.isAutomaticLinkDetectionEnabled {
+                        self.detectLink()
+                    } else {
+                        self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
                 }
                 
-            case .pageGuideColumn:
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                case .pageGuideColumn:
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
                 
-            case .overscrollRate:
-                self.invalidateOverscrollRate()
+                case .overscrollRate:
+                    self.invalidateOverscrollRate()
                 
-            case .tabWidth:
-                self.tabWidth = new as! Int
+                case .tabWidth:
+                    self.tabWidth = new as! Int
                 
-            case .fontName, .fontSize:
-                self.resetFont(nil)
+                case .fontName, .fontSize:
+                    self.resetFont(nil)
                 
-            case .lineHeight:
-                self.lineHeight = new as! CGFloat
-                self.centerSelectionInVisibleArea(self)  // reset visible area
+                case .lineHeight:
+                    self.lineHeight = new as! CGFloat
+                    self.centerSelectionInVisibleArea(self)  // reset visible area
                 
-            case .highlightCurrentLine:
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                case .highlightCurrentLine:
+                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
                 
-            case .highlightSelectionInstance:
-                if !(new as! Bool) {
-                    self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
+                case .highlightSelectionInstance:
+                    if !(new as! Bool) {
+                        self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
                 }
                 
-            case .enablesHangingIndent:
-                (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
+                case .enablesHangingIndent:
+                    (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool
                 
-            case .hangingIndentWidth:
-                (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
+                case .hangingIndentWidth:
+                    (self.textContainer as? TextContainer)?.hangingIndentWidth = new as! Int
                 
-            default:
-                preconditionFailure()
+                default:
+                    preconditionFailure()
             }
         }
     }
@@ -1804,14 +1804,14 @@ extension EditorTextView {
         var didComplete = false
         if flag {
             switch movement {
-            case NSIllegalTextMovement, NSRightTextMovement:  // treat as cancelled
-                // restore original input
-                //   -> In case if the letter case is changed from the original.
-                if let originalWord = self.particalCompletionWord {
-                    word = originalWord
+                case NSIllegalTextMovement, NSRightTextMovement:  // treat as cancelled
+                    // restore original input
+                    //   -> In case if the letter case is changed from the original.
+                    if let originalWord = self.particalCompletionWord {
+                        word = originalWord
                 }
-            default:
-                didComplete = true
+                default:
+                    didComplete = true
             }
             
             // discard stored orignal word
@@ -1899,13 +1899,13 @@ extension EditorTextView {
         // select inside of brackets
         if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: BracePair.braces + [.ltgt]) {
             switch pairIndex {
-            case .begin(let beginIndex):
-                return NSRange(beginIndex...characterIndex, in: self.string)
-            case .end(let endIndex):
-                return NSRange(characterIndex...endIndex, in: self.string)
-            case .odd:
-                NSSound.beep()
-                return NSRange(characterIndex...characterIndex, in: self.string)  // If a odd brace was double-clicked, only the clicked brace should be selected
+                case .begin(let beginIndex):
+                    return NSRange(beginIndex...characterIndex, in: self.string)
+                case .end(let endIndex):
+                    return NSRange(characterIndex...endIndex, in: self.string)
+                case .odd:
+                    NSSound.beep()
+                    return NSRange(characterIndex...characterIndex, in: self.string)  // If a odd brace was double-clicked, only the clicked brace should be selected
             }
         }
         

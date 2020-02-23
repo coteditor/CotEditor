@@ -117,11 +117,11 @@ final class TextSelection: NSObject {
         set {
             guard let string: String = {
                 switch newValue {
-                case let storage as NSTextStorage:
-                    return storage.string
-                case let string as String:
-                    return string
-                default: return nil
+                    case let storage as NSTextStorage:
+                        return storage.string
+                    case let string as String:
+                        return string
+                    default: return nil
                 }
                 }() else { return }
             
@@ -171,12 +171,12 @@ final class TextSelection: NSObject {
         set {
             let fuzzyRange: FuzzyRange
             switch newValue {
-            case let number as Int:
-                fuzzyRange = FuzzyRange(location: number, length: 1)
-            case let range as [Int] where range.count == 2:
-                fuzzyRange = FuzzyRange(location: range[0], length: range[1])
-            default:
-                return
+                case let number as Int:
+                    fuzzyRange = FuzzyRange(location: number, length: 1)
+                case let range as [Int] where range.count == 2:
+                    fuzzyRange = FuzzyRange(location: range[0], length: range[1])
+                default:
+                    return
             }
             
             // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
@@ -263,13 +263,13 @@ final class TextSelection: NSObject {
         
         let type = FourCharCode(argument)
         switch type {
-        case OSACaseType.lowercase:
-            textView.lowercaseWord(command)
-        case OSACaseType.uppercase:
-            textView.uppercaseWord(command)
-        case OSACaseType.capitalized:
-            textView.capitalizeWord(command)
-        default: break
+            case OSACaseType.lowercase:
+                textView.lowercaseWord(command)
+            case OSACaseType.uppercase:
+                textView.uppercaseWord(command)
+            case OSACaseType.capitalized:
+                textView.capitalizeWord(command)
+            default: break
         }
     }
     
@@ -283,11 +283,11 @@ final class TextSelection: NSObject {
         
         let type = FourCharCode(argument)
         switch type {
-        case OSAWidthType.half:
-            textView.exchangeHalfwidthRoman(command)
-        case OSAWidthType.full:
-            textView.exchangeFullwidthRoman(command)
-        default: break
+            case OSAWidthType.half:
+                textView.exchangeHalfwidthRoman(command)
+            case OSAWidthType.full:
+                textView.exchangeFullwidthRoman(command)
+            default: break
         }
     }
     
@@ -301,11 +301,11 @@ final class TextSelection: NSObject {
         
         let type = FourCharCode(argument)
         switch type {
-        case OSAKanaType.hiragana:
-            textView.exchangeHiragana(command)
-        case OSAKanaType.katakana:
-            textView.exchangeKatakana(command)
-        default: break
+            case OSAKanaType.hiragana:
+                textView.exchangeHiragana(command)
+            case OSAKanaType.katakana:
+                textView.exchangeKatakana(command)
+            default: break
         }
     }
     
@@ -319,21 +319,21 @@ final class TextSelection: NSObject {
         
         let type = FourCharCode(argument)
         switch type {
-        case OSAUnicodeNormalizationType.NFC:
-            textView.normalizeUnicodeWithNFC(command)
-        case OSAUnicodeNormalizationType.NFD:
-            textView.normalizeUnicodeWithNFD(command)
-        case OSAUnicodeNormalizationType.NFKC:
-            textView.normalizeUnicodeWithNFKC(command)
-        case OSAUnicodeNormalizationType.NFKD:
-            textView.normalizeUnicodeWithNFKD(command)
-        case OSAUnicodeNormalizationType.NFKCCF:
-            textView.normalizeUnicodeWithNFKCCF(command)
-        case OSAUnicodeNormalizationType.modifiedNFC:
-            textView.normalizeUnicodeWithModifiedNFC(command)
-        case OSAUnicodeNormalizationType.modifiedNFD:
-            textView.normalizeUnicodeWithModifiedNFD(command)
-        default: break
+            case OSAUnicodeNormalizationType.NFC:
+                textView.normalizeUnicodeWithNFC(command)
+            case OSAUnicodeNormalizationType.NFD:
+                textView.normalizeUnicodeWithNFD(command)
+            case OSAUnicodeNormalizationType.NFKC:
+                textView.normalizeUnicodeWithNFKC(command)
+            case OSAUnicodeNormalizationType.NFKD:
+                textView.normalizeUnicodeWithNFKD(command)
+            case OSAUnicodeNormalizationType.NFKCCF:
+                textView.normalizeUnicodeWithNFKCCF(command)
+            case OSAUnicodeNormalizationType.modifiedNFC:
+                textView.normalizeUnicodeWithModifiedNFC(command)
+            case OSAUnicodeNormalizationType.modifiedNFD:
+                textView.normalizeUnicodeWithModifiedNFD(command)
+            default: break
         }
     }
     
