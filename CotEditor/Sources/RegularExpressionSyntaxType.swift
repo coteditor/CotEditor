@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -94,9 +94,9 @@ enum RegularExpressionSyntaxType {
                     escapeIgnorer + "\\\\" + "[pP]\\{[a-zA-Z0-9 ]+\\}",  // \p{UNICODE PROPERTY NAME}
                     escapeIgnorer + "\\\\" + "u[0-9a-f]{4}",  // \uhhhh (h: hex)
                     escapeIgnorer + "\\\\" + "U[0-9a-f]{8}",  // \Uhhhhhhhh (h: hex)
-                    escapeIgnorer + "\\\\" + "x\\{[0-9a-f]{4}\\}",  // \x{hhhh} (h: hex)
+                    escapeIgnorer + "\\\\" + "x\\{[0-9a-f]{1,6}\\}",  // \x{hhhh} (h: hex)
                     escapeIgnorer + "\\\\" + "x[0-9a-f]{2}",  // \xhh (h: hex)
-                    escapeIgnorer + "\\\\" + "0[0-7]{3}",  // \0ooo (o: octal)
+                    escapeIgnorer + "\\\\" + "0[0-7]{1,3}",  // \0ooo (o: octal)
                 ]
             case .backReference:
                 return [
@@ -128,7 +128,7 @@ enum RegularExpressionSyntaxType {
         case .replacement(let unescapes):
             switch self {
             case .character where unescapes:
-                return [escapeIgnorer + "\\\\[0tnr\"'\\\\]"]
+                return [escapeIgnorer + "\\\\[$0tnr\"'\\\\]"]
             case .backReference:
                 return [escapeIgnorer + "\\$[0-9]"]
             default:

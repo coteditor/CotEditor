@@ -10,12 +10,13 @@ Change Log
 - Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
 - Avoid showing the rainbow cursor while parsing URLs in the editor with large contents.
 - Improve message for syntax highlighting progress.
-- [trivial] Improve drawing performance and general stability.
+- Improve drawing performance and general stability.
 
 
 ### Fixes
 
-- Fix an issue where the document window zombie appeared when it was closed while detached chracter info popovers ramain.
+- Fix an issue where a document window zombie appeared when the window was closed while detached chracter info popovers ramain.
+- Fix an issue where the `\x{hhhh}`, `\0ooo`, and  `\$`  style character expressions in the regular expression pattern were not syntax-highlighted correctly.
 - Fix an issue where the application could rarely crash when printing a document.
 - Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.
 
