@@ -33,23 +33,6 @@ private extension NSUserInterfaceItemIdentifier {
 }
 
 
-/// model object for NSArrayController
-final class SnippetItem: NSObject {
-    
-    @objc dynamic var text: String
-    
-    required init(_ text: String) {
-        
-        self.text = text
-        
-        super.init()
-    }
-}
-
-
-
-// MARK: -
-
 class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOutlineViewDelegate, NSTextFieldDelegate {
     
     // MARK: Private Properties
@@ -131,9 +114,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     
     
     
-    // MARK: Delegate
-    
-    // NSOutlineViewDelegate  < outlineView
+    // MARK: Outline View Delegate
     
     /// initialize table cell view
     func outlineView(_ outlineView: NSOutlineView, didAdd rowView: NSTableRowView, forRow row: Int) {
@@ -149,37 +130,29 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
             
             // set default short cut to placeholder
             textField.placeholderString = keyBinding?.defaultShortcut.description
-            
-            // set delegate of ShortcutKeyField programmatically for workaround of the Interface Builder on Xcode 9 (2017-9)
-            if textField is ShortcutKeyField {
-                textField.delegate = self
-            }
         }
     }
     
     
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        
-        // dummy implementation for SnippetKeyBindingsViewController.
-        // -> Otherwise, this delegate method in subclass is not called in release build.
-        //    (2019-05 Xcode 10.2, macOS 10.14, Swift 5.1)
-    }
     
-    
-    // NSTextFieldDelegate  < outlineView->ShortcutKeyField
+    // MARK: Text Field Delegate
+    // (outlineView->ShortcutKeyField)
     
     /// validate and apply new shortcut key input
     func controlTextDidEndEditing(_ obj: Notification) {
         
         guard
             let textField = obj.object as? NSTextField,
-            let outlineView = self.outlineView else { return assertionFailure() }
+            let outlineView = self.outlineView
+            else { return assertionFailure() }
         
         let row = outlineView.row(for: textField)
         let column = outlineView.column(for: textField)
         
-        guard let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf else { return }
-        guard let item = node.representedObject as? KeyBindingItem else { return }
+        guard
+            let node = outlineView.item(atRow: row) as? NSTreeNode, node.isLeaf,
+            let item = node.representedObject as? KeyBindingItem
+            else { return }
         
         let oldShortcut = item.shortcut
         let input = textField.stringValue
@@ -280,9 +253,21 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 
 // MARK: -
 
+/// model object for NSArrayController
+final private class SnippetItem: NSObject {
+    
+    @objc dynamic var text: String
+    
+    required init(_ text: String) {
+        
+        self.text = text
+    }
+}
+
+
 final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextViewDelegate {
     
-    @objc dynamic var snippets = [SnippetItem]()
+    @objc private dynamic var snippets = [SnippetItem]()
     
     @IBOutlet private var snippetArrayController: NSArrayController?
     @IBOutlet private weak var formatTextView: TokenTextView?
@@ -298,7 +283,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         super.viewDidLoad()
         
         self.formatTextView?.tokenizer = Snippet.Variable.tokenizer
-        self.setup(snippets: SnippetKeyBindingManager.shared.snippets)
+        self.snippets = SnippetKeyBindingManager.shared.snippets.map { SnippetItem($0) }
         
         // setup variable menu
         self.variableInsertionMenu!.menu!.addItems(for: Snippet.Variable.allCases, target: self.formatTextView)
@@ -329,19 +314,17 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     /// restore key binding setting to default
     @IBAction override func setToFactoryDefaults(_ sender: Any?) {
         
-        self.setup(snippets: SnippetKeyBindingManager.shared.defaultSnippets)
+        self.snippets = SnippetKeyBindingManager.shared.defaultSnippets.map { SnippetItem($0) }
         
         super.setToFactoryDefaults(sender)
     }
     
     
     
-    // MARK: Delegate
-    
-    // NSOutlineViewDelegate  < outlineView
+    // MARK: Outline View Delegate
     
     /// change snippet array controller's selection
-    override func outlineViewSelectionDidChange(_ notification: Notification) {
+    func outlineViewSelectionDidChange(_ notification: Notification) {
         
         guard
             let arrayController = self.snippetArrayController,
@@ -354,7 +337,9 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     }
     
     
-    // NSTextViewDelegate  < insertion text view
+    
+    // MARK: Text View Delegate
+    // (insertion text view)
     
     /// insertion text did update
     func textDidEndEditing(_ notification: Notification) {
@@ -362,17 +347,6 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         if notification.object is NSTextView {
             self.saveSettings()
         }
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// set snippets to arrayController
-    private func setup(snippets: [String]) {
-        
-        // wrap with SnippetItem object for Cocoa-Binding
-        self.snippets = snippets.map { SnippetItem($0) }
     }
     
 }
