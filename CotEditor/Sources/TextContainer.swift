@@ -87,8 +87,8 @@ final class TextContainer: NSTextContainer {
         guard characterIndex != lineStartIndex else { return rect }
         
         // get base indent
-        let string = layoutManager.attributedString().string as NSString
-        let indentString = string.indentString(from: lineStartIndex, limitedBy: characterIndex)
+        let string = layoutManager.string
+        let indentString = string.indentString(in: lineStartIndex..<characterIndex)
         let baseIndent: CGFloat
         if indentString.isEmpty {
             baseIndent = 0
@@ -133,27 +133,15 @@ private extension NSString {
     /// The fast way to find the indent charaters at the beginning of the given range.
     ///
     /// - Parameters:
-    ///   - startIndex: The character index where the indent search startss.
-    ///   - limitIndex: The upper threshold to find indent.
+    ///   - ramge: The UTF1-based character range where the indent is searched.
     /// - Returns: The indent part of the string at the beginning of the given range.
-    func indentString(from startIndex: Int, limitedBy limitIndex: Int? = nil) -> String {
+    func indentString(in range: Range<Int>) -> String {
         
-        assert(self.lineStartIndex(at: startIndex) == startIndex)
+        let characters: [unichar] = range.lazy
+            .map { self.character(at: $0) }
+            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE, HORIONTAL TAB
         
-        let limitIndex = limitIndex ?? self.length
-        var characters: [unichar] = []
-        
-        for index in startIndex..<limitIndex {
-            let character = self.character(at: index)
-            
-            switch character {
-                case 0x0020, 0x0009:  // SPACE, HORIONTAL TAB
-                    characters.append(character)
-                default:
-                    return String(utf16CodeUnits: characters, count: characters.count)
-            }
-        }
-        
-        return ""
+        return String(utf16CodeUnits: characters, count: characters.count)
     }
+    
 }
