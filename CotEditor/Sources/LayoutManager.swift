@@ -191,9 +191,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         
         // draw invisibles
         if self.showsInvisibles,
-            let context = NSGraphicsContext.current?.cgContext,
-            let string = self.textStorage?.string as NSString?
+            let context = NSGraphicsContext.current?.cgContext
         {
+            let string = self.attributedString().string as NSString
             let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
             let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
             let isOpaque = self.firstTextView?.isOpaque ?? true
