@@ -59,7 +59,7 @@ extension LineRangeCacheable {
     /// Because this method count up all the line ranges up to the given index when not cached yet,
     /// there is a large perormance disadbantage when just a single line range is needed.
     ///
-    /// - Parameter index: The character index.
+    /// - Parameter index: The index of character for finding the line range.
     /// - Returns: The characer range of the line.
     func lineRange(at index: Int) -> NSRange {
         
@@ -79,8 +79,7 @@ extension LineRangeCacheable {
     /// Because this method count up all the line ranges up to the given index when not cached yet,
     /// there is a large perormance disadbantage when just a single line start index is needed.
     ///
-    /// - Parameters:
-    ///   - index: The index of character for finding the line start.
+    /// - Parameter index: The index of character for finding the line start.
     /// - Returns: The character index of the nearest line start.
     func lineStartIndex(at index: Int) -> Int {
         
@@ -104,6 +103,7 @@ extension LineRangeCacheable {
     }
     
     
+    
     // MARK: Private Methods
     
     /// Calculate and cache line ranges up to the line that contains the given character index, if it has not already done so.
@@ -114,12 +114,11 @@ extension LineRangeCacheable {
         assert(endIndex <= self.string.length)
         assert(!self.lineStartIndexes.contains(self.firstLineUncoundedIndex + 1))
         
+        guard endIndex >= self.firstLineUncoundedIndex else { return }
+        
         let string = self.string
         
-        guard
-            endIndex >= self.firstLineUncoundedIndex,
-            string.length > 0
-            else { return }
+        guard string.length > 0 else { return }
         
         var index = self.firstLineUncoundedIndex
         while index <= min(endIndex, string.length - 1) {
