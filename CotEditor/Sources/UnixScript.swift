@@ -180,6 +180,7 @@ final class UnixScript: Script {
     }
     
     
+    
     // MARK: Private Methods
     
     /// read content of script file

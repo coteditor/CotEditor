@@ -46,6 +46,7 @@ class AsynchronousOperation: Operation {
     }
     
     
+    
     // MARK: Private Properties
     
     private var state: State {

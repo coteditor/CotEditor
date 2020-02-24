@@ -165,6 +165,7 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
+    
     // MARK: Private Methods
     
     /// move focus to next/previous text view

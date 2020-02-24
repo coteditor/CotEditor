@@ -180,6 +180,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    
     // MARK: Public Methods
     
     /// receive number of found

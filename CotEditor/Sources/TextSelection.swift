@@ -189,6 +189,7 @@ final class TextSelection: NSObject {
     }
     
     
+    
     // MARK: AppleScript Handlers
     
     /// shift the selection to right
