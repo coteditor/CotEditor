@@ -11,6 +11,7 @@ Change Log
 - Avoid showing the rainbow cursor while parsing URLs in the editor with large contents.
 - Improve message for syntax highlighting progress.
 - Improve drawing performance and general stability.
+- [trivial] Tweak the visual notification for wrapping search.
 
 
 ### Fixes

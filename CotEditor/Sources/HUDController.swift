@@ -110,9 +110,6 @@ final class HUDController: NSViewController {
                                toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0),
         ])
         
-        // fade-in
-        self.view.fadeIn(duration: self.fadeDuration * 0.8)
-        
         // set fade-out with delay
         self.view.fadeOut(duration: self.fadeDuration, delay: self.fadeDuration + self.defaultDisplayingInterval)
     }
