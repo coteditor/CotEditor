@@ -89,7 +89,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString = LineString("\n🐶")
         let lineNumber = lineString.lineNumber(at: 1)
         let lineRange = lineString.lineRange(at: 1)
-        lineString.invalidateLineRanges(in: NSRange(1..<2), changeInLength: 0)
+        lineString.invalidateLineRanges(from: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
         XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
         XCTAssertEqual(lineString.lineStartIndexes.count, 1)
@@ -100,9 +100,8 @@ final class LineRangeCacheableTests: XCTestCase {
             for index in (0..<lineString.string.length).shuffled() {
                 let lineNumber = lineString.lineNumber(at: index)
                 let lineRange = lineString.lineRange(at: index)
-                let range = NSRange(Int.random(in: 0..<lineString.string.length)..<lineString.string.length)
                 
-                lineString.invalidateLineRanges(in: range, changeInLength: 0)
+                lineString.invalidateLineRanges(from: Int.random(in: 0..<lineString.string.length))
                 
                 XCTAssertEqual(lineString.lineNumber(at: index), lineNumber, "At \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineRange(at: index), lineRange, "At \(index) with string \"\(lineString.string)\"")
@@ -117,7 +116,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString = LineString(string)
         _ = lineString.lineNumber(at: 1)
         lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<3), with: "a\nb") as NSString
-        lineString.invalidateLineRanges(in: NSRange(1..<3), changeInLength: 1)
+        lineString.invalidateLineRanges(from: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), 2)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
         XCTAssertEqual(lineString.lineStartIndexes.count, 2)
