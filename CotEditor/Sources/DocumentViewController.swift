@@ -1028,7 +1028,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
 
 extension DocumentViewController: TextFinderClientProvider {
     
-    /// tell text finder in which text view it should find text
+    /// Tell text finder in which text view the text find should perform.
     func textFinderClient() -> NSTextView? {
         
         return self.focusedTextView
