@@ -401,7 +401,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         }
         
         let string = textView.string.immutable
-        let mode = TextFind.Mode(defaults: UserDefaults.standard)
+        let mode = UserDefaults.standard.textFindMode
         let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
@@ -417,7 +417,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
             NSSound.beep()
             return nil
         } catch {
-            assertionFailure()
+            assertionFailure(error.localizedDescription)
             return nil
         }
         
@@ -631,27 +631,27 @@ private extension UserDefaults {
 }
 
 
-private extension TextFind.Mode {
+private extension UserDefaults {
     
-    init(defaults: UserDefaults) {
+    var textFindMode: TextFind.Mode {
         
-        if defaults[.findUsesRegularExpression] {
+        if self[.findUsesRegularExpression] {
             var options = NSRegularExpression.Options()
-            if defaults[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
-            if defaults[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
-            if defaults[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
-            if defaults[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
+            if self[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
+            if self[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
+            if self[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
+            if self[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
             
-            self = .regularExpression(options: options, unescapesReplacement: defaults[.findRegexUnescapesReplacementString])
+            return .regularExpression(options: options, unescapesReplacement: self[.findRegexUnescapesReplacementString])
             
         } else {
             var options = NSString.CompareOptions()
-            if defaults[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
-            if defaults[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
-            if defaults[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
-            if defaults[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
+            if self[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
+            if self[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
+            if self[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
+            if self[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
             
-            self = .textual(options: options, fullWord: defaults[.findMatchesFullWord])
+            return .textual(options: options, fullWord: self[.findMatchesFullWord])
         }
     }
     
