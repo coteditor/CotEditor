@@ -13,6 +13,7 @@
 :root {
 	-webkit-text-size-adjust: 100%;
 	font: 10pt/1.5 -apple-system, sans-serif;
+	font-weight: 400;
 	color: -apple-system-label;
 }
 body {
@@ -157,7 +158,9 @@ ul.topicbox {
 }
 #cf h2 {
 	font-size: 100%;
-	text-transform: uppercase;
+	font-weight: 600;
+	text-transform: capitalize;
+	margin-bottom: 0.5em;
 }
 #cf ul {
 	list-style-type: none;
