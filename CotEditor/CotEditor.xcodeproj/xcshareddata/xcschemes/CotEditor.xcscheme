@@ -10,14 +10,14 @@
             buildForTesting = "YES"
             buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "YES"
+            buildForArchiving = "NO"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A025B7423FBA08000969C0E"
+               BlueprintIdentifier = "SyntaxMapBuilder"
                BuildableName = "SyntaxMapBuilder"
                BlueprintName = "SyntaxMapBuilder"
-               ReferencedContainer = "container:CotEditor.xcodeproj">
+               ReferencedContainer = "container:../SyntaxMapBuilder">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

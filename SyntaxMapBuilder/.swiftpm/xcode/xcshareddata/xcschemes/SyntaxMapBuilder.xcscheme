@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A025B7423FBA08000969C0E"
+               BlueprintIdentifier = "SyntaxMapBuilder"
                BuildableName = "SyntaxMapBuilder"
                BlueprintName = "SyntaxMapBuilder"
-               ReferencedContainer = "container:CotEditor.xcodeproj">
+               ReferencedContainer = "container:">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "SyntaxMapBuilderTests"
+               BuildableName = "SyntaxMapBuilderTests"
+               BlueprintName = "SyntaxMapBuilderTests"
+               ReferencedContainer = "container:">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -44,18 +54,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A025B7423FBA08000969C0E"
+            BlueprintIdentifier = "SyntaxMapBuilder"
             BuildableName = "SyntaxMapBuilder"
             BlueprintName = "SyntaxMapBuilder"
-            ReferencedContainer = "container:CotEditor.xcodeproj">
+            ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "$(SRCROOT)/Syntaxes"
-            isEnabled = "YES">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -67,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A025B7423FBA08000969C0E"
+            BlueprintIdentifier = "SyntaxMapBuilder"
             BuildableName = "SyntaxMapBuilder"
             BlueprintName = "SyntaxMapBuilder"
-            ReferencedContainer = "container:CotEditor.xcodeproj">
+            ReferencedContainer = "container:">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
