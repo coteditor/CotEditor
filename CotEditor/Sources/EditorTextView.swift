@@ -984,7 +984,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
         //    in the noncontiguous layout mode. (2018-12 macOS 10.14)
         guard NSEvent.modifierFlags.contains(.numericPad),
-            range.lowerBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
+            range.upperBound < (self.layoutManager?.firstUnlaidCharacterIndex() ?? 0),
             let rect = self.boundingRect(for: range)
             else { return super.scrollRangeToVisible(range) }
         
