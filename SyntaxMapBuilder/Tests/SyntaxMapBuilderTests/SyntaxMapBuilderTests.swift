@@ -4,7 +4,7 @@
 //  SyntaxMapBuilder
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2020-02-26.
+//  Created by 1024jp on 2020-02-18.
 //
 //  ---------------------------------------------------------------------------
 //
@@ -21,23 +21,21 @@
 //  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //  See the License for the specific language governing permissions and
 //  limitations under the License.
+//
 
 import XCTest
 import class Foundation.Bundle
 
 final class SyntaxMapBuilderTests: XCTestCase {
     
-    static var allTests = [
-        ("testExample", testExample),
-    ]
-    
-    
-    func testExample() throws {
+    func testExecutable() throws {
         
-        let fooBinary = productsDirectory.appendingPathComponent("SyntaxMapBuilder")
+        let executableURL = self.productsDirectory.appendingPathComponent("SyntaxMapBuilder")
+        let inputURL = self.testDirectory.appendingPathComponent("Resources")
         
         let process = Process()
-        process.executableURL = fooBinary
+        process.executableURL = executableURL
+        process.arguments = [inputURL.path]
         
         let pipe = Pipe()
         process.standardOutput = pipe
@@ -48,23 +46,61 @@ final class SyntaxMapBuilderTests: XCTestCase {
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
         let output = String(data: data, encoding: .utf8)
         
-        XCTAssertEqual(output, "")
+        let expectedResult = """
+            {
+              "Apache" : {
+                "extensions" : [
+                  "conf"
+                ],
+                "filenames" : [
+                  ".htaccess"
+                ],
+                "interpreters" : [
+
+                ]
+              },
+              "Python" : {
+                "extensions" : [
+                  "py"
+                ],
+                "filenames" : [
+
+                ],
+                "interpreters" : [
+                  "python",
+                  "python2",
+                  "python3"
+                ]
+              }
+            }
+            
+            """
+        
+        XCTAssertEqual(output!, expectedResult)
+    }
+    
+}
+
+
+
+private extension XCTestCase {
+    
+    /// Path to the built products directory.
+    var productsDirectory: URL {
+        
+        return Bundle.allBundles
+            .first { $0.bundlePath.hasSuffix(".xctest") }!
+            .bundleURL
+            .deletingLastPathComponent()
     }
     
     
-    
-    // MARK: Private Methods
-    
-    /// Returns path to the built products directory.
-    private var productsDirectory: URL {
-        #if os(macOS)
-        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
-            return bundle.bundleURL.deletingLastPathComponent()
-        }
-        fatalError("couldn't find the products directory")
-        #else
-        return Bundle.main.bundleURL
-        #endif
+    /// Path to the test directory in package.
+    var testDirectory: URL {
+        
+        return URL(fileURLWithPath: #file)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
     }
     
 }

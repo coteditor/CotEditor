@@ -1,0 +1,6 @@
+extensions:
+- keyString: "conf"
+filenames:
+- keyString: ".htaccess"
+metadata:
+  license: "Same as CotEditor"
