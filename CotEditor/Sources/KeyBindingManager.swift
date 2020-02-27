@@ -42,17 +42,17 @@ struct InvalidKeySpecCharactersError: LocalizedError {
     var errorDescription: String? {
         
         switch self.kind {
-        case .singleType:
-            return "Single type is invalid for a shortcut.".localized
+            case .singleType:
+                return "Single type is invalid for a shortcut.".localized
             
-        case .alreadyTaken:
-            return String(format: "“%@” is already taken.".localized, self.shortcut.description)
+            case .alreadyTaken:
+                return String(format: "“%@” is already taken.".localized, self.shortcut.description)
             
-        case .lackingCommandKey:
-            return String(format: "“%@” does not include the Command key.".localized, self.shortcut.description)
+            case .lackingCommandKey:
+                return String(format: "“%@” does not include the Command key.".localized, self.shortcut.description)
             
-        case .unwantedCommandKey:
-            return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
+            case .unwantedCommandKey:
+                return String(format: "“%@” includes the Command key.".localized, self.shortcut.description)
         }
     }
     

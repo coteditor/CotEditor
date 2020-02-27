@@ -377,20 +377,20 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
             else { return nil }
         
         switch identifier {
-        case .isEnabled:
-            cellView.objectValue = replacement.isEnabled
-        case .findString:
-            cellView.objectValue = replacement.findString
-        case .replacementString:
-            cellView.objectValue = replacement.replacementString
-        case .ignoresCase:
-            cellView.objectValue = replacement.ignoresCase
-        case .usesRegularExpression:
-            cellView.objectValue = replacement.usesRegularExpression
-        case .description:
-            cellView.objectValue = replacement.description
-        default:
-            preconditionFailure()
+            case .isEnabled:
+                cellView.objectValue = replacement.isEnabled
+            case .findString:
+                cellView.objectValue = replacement.findString
+            case .replacementString:
+                cellView.objectValue = replacement.replacementString
+            case .ignoresCase:
+                cellView.objectValue = replacement.ignoresCase
+            case .usesRegularExpression:
+                cellView.objectValue = replacement.usesRegularExpression
+            case .description:
+                cellView.objectValue = replacement.description
+            default:
+                preconditionFailure()
         }
         
         // update regex field
@@ -453,34 +453,34 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
                 var replacement = replacement
                 
                 switch sender {
-                case let textField as NSTextField:
-                    let value = textField.stringValue
-                    switch identifier {
-                    case .findString:
-                        replacement.findString = value
-                    case .replacementString:
-                        replacement.replacementString = value
-                    case .description:
-                        replacement.description = value.isEmpty ? nil : value
-                    default:
-                        preconditionFailure()
+                    case let textField as NSTextField:
+                        let value = textField.stringValue
+                        switch identifier {
+                            case .findString:
+                                replacement.findString = value
+                            case .replacementString:
+                                replacement.replacementString = value
+                            case .description:
+                                replacement.description = value.isEmpty ? nil : value
+                            default:
+                                preconditionFailure()
                     }
                     
-                case let checkbox as NSButton:
-                    let value = (checkbox.state == .on)
-                    switch identifier {
-                    case .isEnabled:
-                        replacement.isEnabled = value
-                    case .ignoresCase:
-                        replacement.ignoresCase = value
-                    case .usesRegularExpression:
-                        replacement.usesRegularExpression = value
-                    default:
-                        preconditionFailure()
+                    case let checkbox as NSButton:
+                        let value = (checkbox.state == .on)
+                        switch identifier {
+                            case .isEnabled:
+                                replacement.isEnabled = value
+                            case .ignoresCase:
+                                replacement.ignoresCase = value
+                            case .usesRegularExpression:
+                                replacement.usesRegularExpression = value
+                            default:
+                                preconditionFailure()
                     }
                     
-                default:
-                    preconditionFailure()
+                    default:
+                        preconditionFailure()
                 }
                 
                 return replacement

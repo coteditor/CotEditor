@@ -91,9 +91,8 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         self.string = string
         self.parseRange = parseRange
         
-        // +1 for extractCommentsWithQuotes()
-        // +1 for highlighting
-        self.progress = Progress(totalUnitCount: Int64(definition.extractors.count + 2))
+        // +3 for extractCommentsWithQuotes(), sanitizing, and highlighting
+        self.progress = Progress(totalUnitCount: Int64(definition.extractors.count + 3))
         
         super.init()
         
@@ -105,13 +104,6 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
     
     
     // MARK: Operation Methods
-    
-    /// is ready to run
-    override var isReady: Bool {
-        
-        return true
-    }
-    
     
     /// parse string in background and return extracted highlight ranges per syntax types
     override func main() {
@@ -163,14 +155,16 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
         // extract comments and quoted text
         self.progress.localizedDescription = String(format: "Extracting %@…".localized, "comments and quoted texts".localized)
         highlights.merge(self.extractCommentsWithQuotes()) { $0 + $1 }
+        self.progress.completedUnitCount += 1
         
         guard !self.isCancelled else { return [:] }
         
-        let sanitized = highlights.sanitized()
-        
+        // reduce complexity of highlights dictionary
+        self.progress.localizedDescription = "Preparing coloring…".localized
+        highlights.sanitize(progress: self.progress)
         self.progress.completedUnitCount += 1
         
-        return sanitized
+        return highlights
     }
     
     
@@ -268,17 +262,17 @@ private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
     ///
     /// - Note:
     /// This sanitization reduces the performance time of `SyntaxParser.apply(highlights:range:)` significantly.
-    /// Adding temporary attribute to a layoutManager is quite sluggish,
+    /// Adding temporary attribute to a layoutManager in the main thread is quite sluggish,
     /// so we want to remove useless highlighting ranges as many as possible beforehand.
     ///
-    /// - Returns: Sanitized syntax highlight dictionary.
-    func sanitized() -> Self {
+    /// - Parameter progress: The progress instance to give a change to cancel
+    mutating func sanitize(progress: Progress) {
         
         var registeredIndexes = IndexSet()
         
-        return SyntaxType.allCases.reversed()
+        self = SyntaxType.allCases.reversed()
             .reduce(into: [SyntaxType: IndexSet]()) { (dict, type) in
-                guard let ranges = self[type] else { return }
+                guard let ranges = self[type], !progress.isCancelled else { return }
                 
                 let indexes = ranges
                     .compactMap { Range<Int>($0) }

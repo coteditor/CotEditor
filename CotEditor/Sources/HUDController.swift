@@ -34,8 +34,8 @@ enum HUDSymbol {
     fileprivate var image: NSImage {
         
         switch self {
-        case .wrap(let reversed):
-            return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
+            case .wrap(let reversed):
+                return reversed ? #imageLiteral(resourceName: "WrapTemplate").rotated(by: 180) : #imageLiteral(resourceName: "WrapTemplate")
         }
     }
     
@@ -109,9 +109,6 @@ final class HUDController: NSViewController {
             NSLayoutConstraint(item: self.view, attribute: .centerY, relatedBy: .equal,
                                toItem: clientView, attribute: .centerY, multiplier: 0.8, constant: 0),
         ])
-        
-        // fade-in
-        self.view.fadeIn(duration: self.fadeDuration * 0.8)
         
         // set fade-out with delay
         self.view.fadeOut(duration: self.fadeDuration, delay: self.fadeDuration + self.defaultDisplayingInterval)

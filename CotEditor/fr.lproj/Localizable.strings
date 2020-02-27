@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2019 CotEditor Project
+ © 2019-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -323,6 +323,7 @@
 "Coloring text…" = "Coloration du texte…";
 "Please wait for a while." = "Veuillez patienter quelques instants.";
 "Extracting %@…" = "Extraction de %@…";
+"Preparing coloring…" = "Preparing coloring…";  // FIXME: added
 "Applying colors to text" = "Application des couleurs au texte";
 "keywords" = "mots-clés";
 "commands" = "commandes";

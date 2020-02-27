@@ -31,12 +31,12 @@ extension UnicodeScalar {
     var pictureRepresentation: UnicodeScalar? {
         
         switch self.value {
-        case ControlCharacter.C0Range:
-            return UnicodeScalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
-        case ControlCharacter.deleteCharacter:
-            return UnicodeScalar(0x2421)  // SYMBOL FOR DELETE character
-        default:
-            return nil
+            case ControlCharacter.C0Range:
+                return UnicodeScalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
+            case ControlCharacter.deleteCharacter:
+                return UnicodeScalar(0x2421)  // SYMBOL FOR DELETE character
+            default:
+                return nil
         }
     }
     
@@ -50,23 +50,22 @@ extension UTF32Char {
     var controlCharacterName: String? {
         
         switch self {
-        case ControlCharacter.C0Range:
-            let index = Int(self)
-            return ControlCharacter.C0Names[index]
-        case ControlCharacter.C1Range:
-            let index = Int(self - ControlCharacter.C1Range.lowerBound)  // shift to 0-based array index
-            return ControlCharacter.C1Names[index]
-        case ControlCharacter.deleteCharacter:
-            return ControlCharacter.deleteName
-        case ControlCharacter.zeroWidthNoBreakSpaceCharacter:
-            return ControlCharacter.zeroWidthNoBreakSpaceName
-        default:
-            return nil
+            case ControlCharacter.C0Range:
+                let index = Int(self)
+                return ControlCharacter.C0Names[index]
+            case ControlCharacter.C1Range:
+                let index = Int(self - ControlCharacter.C1Range.lowerBound)  // shift to 0-based array index
+                return ControlCharacter.C1Names[index]
+            case ControlCharacter.deleteCharacter:
+                return ControlCharacter.deleteName
+            case ControlCharacter.zeroWidthNoBreakSpaceCharacter:
+                return ControlCharacter.zeroWidthNoBreakSpaceName
+            default:
+                return nil
         }
     }
     
 }
-
 
 
 

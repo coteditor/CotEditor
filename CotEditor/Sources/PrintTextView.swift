@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
+final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDetectable {
     
     // MARK: Constants
     
@@ -45,11 +45,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private(set) var theme: Theme?
     private(set) lazy var syntaxParser = SyntaxParser(textStorage: self.textStorage!)
     
-    
     // settings on current window to be set by Document.
     // These values are used if set option is "Same as document's setting"
     var documentShowsLineNumber = false
     var documentShowsInvisibles = false
+    
+    private(set) lazy var urlDetectionQueue = OperationQueue()
     
     
     // MARK: Private Properties
@@ -113,16 +114,65 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     
     deinit {
         self.layoutManager?.delegate = nil
+        self.urlDetectionQueue.cancelAllOperations()
     }
     
     
     
     // MARK: Text View Methods
     
+    /// the top/left point of text container
+    override var textContainerOrigin: NSPoint {
+        
+        return NSPoint(x: self.xOffset, y: 0)
+    }
+    
+    
+    /// view's opacity
+    override var isOpaque: Bool {
+        
+        return true
+    }
+    
+    
     /// job title
     override var printJobTitle: String {
         
         return self.documentName ?? super.printJobTitle
+    }
+    
+    
+    /// return page header attributed string
+    override var pageHeader: NSAttributedString {
+        
+        return self.headerFooter(for: .header)
+    }
+    
+    
+    /// return page footer attributed string
+    override var pageFooter: NSAttributedString {
+        
+        return self.headerFooter(for: .footer)
+    }
+    
+    
+    /// set printing font
+    override var font: NSFont? {
+        
+        didSet {
+            guard let font = font else { return }
+            
+            // setup paragraph style
+            let paragraphStyle = NSParagraphStyle.default.mutable
+            paragraphStyle.tabStops = []
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
+            paragraphStyle.lineHeightMultiple = self.lineHeight
+            self.defaultParagraphStyle = paragraphStyle
+            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
+            
+            // set font also to layout manager
+            (self.layoutManager as? LayoutManager)?.textFont = font
+        }
     }
     
     
@@ -138,7 +188,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         {
             self.lastPaperContentSize = paperContentSize
             self.frame.size = paperContentSize
-            self.doForegroundLayout()
+            self.layoutManager?.doForegroundLayout()
         }
         
         return super.knowsPageRange(range)
@@ -180,15 +230,15 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             self.enumerateLineFragments(in: dirtyRect, includingExtraLine: false) { (line, lineRect) in
                 guard let numberString: String = {
                     switch line {
-                    case .new(let lineNumber, _):
-                        if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
-                            return "·"  // draw real number only in every 5 times
-                        }
-                        return String(lineNumber)
+                        case .new(let lineNumber, _):
+                            if isVerticalText, lineNumber != 1, !lineNumber.isMultiple(of: 5) {
+                                return "·"  // draw real number only in every 5 times
+                            }
+                            return String(lineNumber)
                         
-                    case .wrapped:
-                        if isVerticalText { return nil }
-                        return "-"
+                        case .wrapped:
+                            if isVerticalText { return nil }
+                            return "-"
                     }
                     }() else { return }
                 
@@ -209,56 +259,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
             if isVerticalText {
                 NSGraphicsContext.restoreGraphicsState()
             }
-        }
-    }
-    
-    
-    /// return page header attributed string
-    override var pageHeader: NSAttributedString {
-        
-        return self.headerFooter(for: .header)
-    }
-    
-    
-    /// return page footer attributed string
-    override var pageFooter: NSAttributedString {
-        
-        return self.headerFooter(for: .footer)
-    }
-    
-    
-    /// view's opacity
-    override var isOpaque: Bool {
-        
-        return true
-    }
-    
-    
-    /// the top/left point of text container
-    override var textContainerOrigin: NSPoint {
-        
-        return NSPoint(x: self.xOffset, y: 0)
-    }
-    
-    
-    /// set printing font
-    override var font: NSFont? {
-        
-        didSet {
-            guard let font = font else { return }
-            
-            // set tab width
-            let paragraphStyle = NSParagraphStyle.default.mutable
-            paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
-            paragraphStyle.lineHeightMultiple = self.lineHeight
-            self.defaultParagraphStyle = paragraphStyle
-            
-            // apply to current string
-            self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
-            
-            // set font also to layout manager
-            (self.layoutManager as? LayoutManager)?.textFont = font
         }
     }
     
@@ -286,12 +286,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // check whether print line numbers
         self.printsLineNumber = {
             switch PrintLineNmuberMode(settings[.lineNumber] as? Int) {
-            case .no:
-                return false
-            case .sameAsDocument:
-                return self.documentShowsLineNumber
-            case .yes:
-                return true
+                case .no:
+                    return false
+                case .sameAsDocument:
+                    return self.documentShowsLineNumber
+                case .yes:
+                    return true
             }
         }()
         
@@ -301,12 +301,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         // check whether print invisibles
         layoutManager.showsInvisibles = {
             switch PrintInvisiblesMode(settings[.invisibles] as? Int) {
-            case .no:
-                return false
-            case .sameAsDocument:
-                return self.documentShowsInvisibles
-            case .all:
-                return true
+                case .no:
+                    return false
+                case .sameAsDocument:
+                    return self.documentShowsInvisibles
+                case .all:
+                    return true
             }
         }()
         
@@ -327,7 +327,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
         _ = self.syntaxParser.highlightAll {
             DispatchQueue.main.async {
-                guard let controller = controller, !controller.view.isHidden else { return }
+                guard let controller = controller, controller.isViewShown else { return }
                 
                 controller.needsUpdatePreview = true
             }
@@ -354,30 +354,30 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
         let secondaryString = self.printInfoString(type: secondaryInfoType)
         
         switch (primaryString, secondaryString) {
-        // case: empty
-        case (nil, nil):
-            return NSAttributedString()
+            // case: empty
+            case (nil, nil):
+                return NSAttributedString()
             
-        // case: single content
-        case let (.some(string), nil):
-            return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
-        case let (nil, .some(string)):
-            return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+            // case: single content
+            case let (.some(string), nil):
+                return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: primaryAlignment))
+            case let (nil, .some(string)):
+                return NSAttributedString(string: string, attributes: self.headerFooterAttributes(for: secondaryAlignment))
             
-        case let (.some(primaryString), .some(secondaryString)):
-            switch (primaryAlignment, secondaryAlignment) {
-            // case: double-sided
-            case (.left, .right):
-                return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
-            case (.right, .left):
-                return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
-                
-            // case: two lines
-            default:
-                let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
-                let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
-                
-                return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
+            case let (.some(primaryString), .some(secondaryString)):
+                switch (primaryAlignment, secondaryAlignment) {
+                    // case: double-sided
+                    case (.left, .right):
+                        return NSAttributedString(string: primaryString + "\t\t" + secondaryString, attributes: self.headerFooterAttributes(for: .left))
+                    case (.right, .left):
+                        return NSAttributedString(string: secondaryString + "\t\t" + primaryString, attributes: self.headerFooterAttributes(for: .left))
+                    
+                    // case: two lines
+                    default:
+                        let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
+                        let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
+                        
+                        return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
             }
         }
     }
@@ -409,30 +409,30 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
     private func printInfoString(type: PrintInfoType) -> String? {
         
         switch type {
-        case .documentName:
-            return self.documentName
-            
-        case .syntaxName:
-            return self.syntaxParser.style.name
-            
-        case .filePath:
-            guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
+            case .documentName:
                 return self.documentName
-            }
-            if UserDefaults.standard[.headerFooterPathAbbreviatingWithTilde] {
-                return filePath.abbreviatingWithTildeInSandboxedPath
-            }
-            return filePath
             
-        case .printDate:
-            return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
+            case .syntaxName:
+                return self.syntaxParser.style.name
             
-        case .pageNumber:
-            guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
-            return String(pageNumber)
+            case .filePath:
+                guard let filePath = self.filePath else {  // print document name instead if document doesn't have file path yet
+                    return self.documentName
+                }
+                if UserDefaults.standard[.headerFooterPathAbbreviatingWithTilde] {
+                    return filePath.abbreviatingWithTildeInSandboxedPath
+                }
+                return filePath
             
-        case .none:
-            return nil
+            case .printDate:
+                return String(format: "Printed on %@".localized, self.dateFormatter.string(from: Date()))
+            
+            case .pageNumber:
+                guard let pageNumber = NSPrintOperation.current?.currentPage else { return nil }
+                return String(pageNumber)
+            
+            case .none:
+                return nil
         }
     }
     
@@ -440,31 +440,17 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable {
 
 
 
-private extension NSTextView {
+private extension NSLayoutManager {
     
-    /// This method causes the text to be laid out in the foreground (approximately) up to the indicated character index.
+    /// This method causes the text to be laid out in the foreground.
     ///
-    /// - Parameter characterIndex: The maximum character index to be layout. If omit this paramater, the whole content will be layed out.
-    ///
-    /// - Note: This method is based on `textEditDoForegroundLayoutToCharacterIndex:` in Apple's TextView.app sourece code.
-    func doForegroundLayout(to characterIndex: Int = .max) {
+    /// - Note: This method is based on `textEditDoForegroundLayoutToCharacterIndex:` in Apple's TextView.app source code.
+    func doForegroundLayout() {
         
-        guard
-            let textStorage = self.textStorage,
-            let layoutManager = self.layoutManager,
-            characterIndex > 0,
-            textStorage.length > 0
-            else { return }
-        
-        // find out which glyph index the desired character index corresponds to
-        let location = min(characterIndex, textStorage.length - 1)
-        let characterRange = NSRange(location: location, length: 1)
-        let glyphRange = layoutManager.glyphRange(forCharacterRange: characterRange, actualCharacterRange: nil)
-        
-        guard glyphRange.location > 0 else { return }
+        guard self.numberOfGlyphs > 0 else { return }
         
         // cause layout by asking a question which has to determine where the glyph is
-        layoutManager.textContainer(forGlyphAt: glyphRange.location - 1, effectiveRange: nil)
+        self.textContainer(forGlyphAt: self.numberOfGlyphs - 1, effectiveRange: nil)
     }
     
 }
@@ -492,19 +478,19 @@ private enum HeaderFooterLocation {
     var keys: Keys {
         
         switch self {
-        case .header:
-            return Keys(needsDraw: .printsHeader,
-                        primaryContent: .primaryHeaderContent,
-                        primaryAlignment: .primaryHeaderAlignment,
-                        secondaryContent: .secondaryHeaderContent,
-                        secondaryAlignment: .secondaryHeaderAlignment)
+            case .header:
+                return Keys(needsDraw: .printsHeader,
+                            primaryContent: .primaryHeaderContent,
+                            primaryAlignment: .primaryHeaderAlignment,
+                            secondaryContent: .secondaryHeaderContent,
+                            secondaryAlignment: .secondaryHeaderAlignment)
             
-        case .footer:
-            return Keys(needsDraw: .printsFooter,
-                        primaryContent: .primaryFooterContent,
-                        primaryAlignment: .primaryFooterAlignment,
-                        secondaryContent: .secondaryFooterContent,
-                        secondaryAlignment: .secondaryFooterAlignment)
+            case .footer:
+                return Keys(needsDraw: .printsFooter,
+                            primaryContent: .primaryFooterContent,
+                            primaryAlignment: .primaryFooterAlignment,
+                            secondaryContent: .secondaryFooterContent,
+                            secondaryAlignment: .secondaryFooterAlignment)
         }
     }
     
@@ -517,12 +503,12 @@ private extension AlignmentType {
     var textAlignment: NSTextAlignment {
         
         switch self {
-        case .left:
-            return .left
-        case .center:
-            return .center
-        case .right:
-            return .right
+            case .left:
+                return .left
+            case .center:
+                return .center
+            case .right:
+                return .right
         }
     }
 }

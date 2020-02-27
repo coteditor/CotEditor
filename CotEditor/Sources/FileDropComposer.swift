@@ -63,38 +63,38 @@ final class FileDropComposer {
         var description: String {
             
             switch self {
-            case .absolutePath:
-                return "The dropped file absolute path."
+                case .absolutePath:
+                    return "The dropped file absolute path."
                 
-            case .relativePath:
-                return "The relative path between dropped file and the document."
+                case .relativePath:
+                    return "The relative path between dropped file and the document."
                 
-            case .filename:
-                return "The dropped file’s name including extension (if exists)."
+                case .filename:
+                    return "The dropped file’s name including extension (if exists)."
                 
-            case .filenameWithoutExtension:
-                return "The dropped file’s name without extension."
+                case .filenameWithoutExtension:
+                    return "The dropped file’s name without extension."
                 
-            case .fileExtension:
-                return "The dropped file’s extension."
+                case .fileExtension:
+                    return "The dropped file’s extension."
                 
-            case .fileExtensionLowercase:
-                return "The dropped file’s extension (converted to lowercase)."
+                case .fileExtensionLowercase:
+                    return "The dropped file’s extension (converted to lowercase)."
                 
-            case .fileExtensionUppercase:
-                return "The dropped file’s extension (converted to uppercase)."
+                case .fileExtensionUppercase:
+                    return "The dropped file’s extension (converted to uppercase)."
                 
-            case .directory:
-                return "The parent directory name of dropped file."
+                case .directory:
+                    return "The parent directory name of dropped file."
                 
-            case .fileContent:
-                return "(If the dropped file is a text file) file content."
+                case .fileContent:
+                    return "(If the dropped file is a text file) file content."
                 
-            case .imageWidth:
-                return "(If the dropped file is an image) image width."
+                case .imageWidth:
+                    return "(If the dropped file is an image) image width."
                 
-            case .imageHeight:
-                return "(If the dropped file is an image) image height."
+                case .imageHeight:
+                    return "(If the dropped file is an image) image height."
             }
         }
         

@@ -59,7 +59,6 @@ extension Script {
 
 
 
-
 // MARK: - Error
 
 struct ScriptFileError: LocalizedError {
@@ -78,14 +77,14 @@ struct ScriptFileError: LocalizedError {
     var errorDescription: String? {
         
         switch self.kind {
-        case .existance:
-            return String(format: "The script “%@” does not exist.".localized, self.url.lastPathComponent)
-        case .read:
-            return String(format: "The script “%@” couldn’t be read.".localized, self.url.lastPathComponent)
-        case .open:
-            return String(format: "The script file “%@” couldn’t be opened.".localized, self.url.path)
-        case .permission:
-            return String(format: "The script “%@” can’t be executed because you don’t have the execute permission.".localized, self.url.lastPathComponent)
+            case .existance:
+                return String(format: "The script “%@” does not exist.".localized, self.url.lastPathComponent)
+            case .read:
+                return String(format: "The script “%@” couldn’t be read.".localized, self.url.lastPathComponent)
+            case .open:
+                return String(format: "The script file “%@” couldn’t be opened.".localized, self.url.path)
+            case .permission:
+                return String(format: "The script “%@” can’t be executed because you don’t have the execute permission.".localized, self.url.lastPathComponent)
         }
     }
     
@@ -93,10 +92,10 @@ struct ScriptFileError: LocalizedError {
     var recoverySuggestion: String? {
         
         switch self.kind {
-        case .permission:
-            return "Check permission of the script file.".localized
-        default:
-            return "Check the script file.".localized
+            case .permission:
+                return "Check permission of the script file.".localized
+            default:
+                return "Check the script file.".localized
         }
     }
     

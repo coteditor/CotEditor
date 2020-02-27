@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019 1024jp
+//  © 2019-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ struct TextClipping: Decodable {
         let data = try Data(contentsOf: url)
         let plist = try PropertyListDecoder().decode([String: TextClipping].self, from: data)
         
-        guard let textClipping = plist["UTI-Data"] else { throw CocoaError(.coderReadCorrupt) }
+        guard let textClipping = plist["UTI-Data"] else { throw CocoaError.error(.coderReadCorrupt, url: url) }
         
         self = textClipping
     }

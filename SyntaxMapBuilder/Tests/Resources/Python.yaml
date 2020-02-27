@@ -1,0 +1,10 @@
+extensions:
+- keyString: "py"
+filenames: []
+interpreters:
+- keyString: "python"
+- keyString: "python2"
+- keyString: "python3"
+metadata:
+  distributionURL: "https://coteditor.com"
+  license: "Same as CotEditor"

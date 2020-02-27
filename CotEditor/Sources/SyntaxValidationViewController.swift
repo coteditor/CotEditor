@@ -70,12 +70,12 @@ final class SyntaxValidationViewController: NSViewController {
         
         self.message = {
             switch self.errors.count {
-            case 0:
-                return "No error found.".localized
-            case 1:
-                return "An error found!".localized
-            default:
-                return String(format: "%i errors were found!".localized, errors.count)
+                case 0:
+                    return "No error found.".localized
+                case 1:
+                    return "An error found!".localized
+                default:
+                    return String(format: "%i errors were found!".localized, errors.count)
             }
         }()
     }

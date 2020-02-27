@@ -80,12 +80,12 @@ final class FindPanelButtonViewController: NSViewController {
     @IBAction func clickSegmentedFindButton(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
-        case 0:
-            TextFinder.shared.findPrevious(sender)
-        case 1:
-            TextFinder.shared.findNext(sender)
-        default:
-            assertionFailure("Number of the find button segments must be 2.")
+            case 0:
+                TextFinder.shared.findPrevious(sender)
+            case 1:
+                TextFinder.shared.findNext(sender)
+            default:
+                assertionFailure("Number of the find button segments must be 2.")
         }
     }
     

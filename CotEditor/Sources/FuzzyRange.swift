@@ -118,12 +118,12 @@ extension String {
         let newLocation = (lineRange.location > 0) ? lineRange.location - 1 : (count + lineRange.location)  // 1-based to 0-based
         let newLength: Int = {
             switch lineRange.length {
-            case ..<0:
-                return count - newLocation + lineRange.length - 1
-            case 0:
-                return 0
-            default:
-                return lineRange.length - 1
+                case ..<0:
+                    return count - newLocation + lineRange.length - 1
+                case 0:
+                    return 0
+                default:
+                    return lineRange.length - 1
             }
         }()
         

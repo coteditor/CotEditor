@@ -66,12 +66,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // set writing direction
         switch defaults[.writingDirection] {
-        case .leftToRight:
-            break
-        case .rightToLeft:
-            self.writingDirection = .rightToLeft
-        case .vertical:
-            self.verticalLayoutOrientation = true
+            case .leftToRight:
+                break
+            case .rightToLeft:
+                self.writingDirection = .rightToLeft
+            case .vertical:
+                self.verticalLayoutOrientation = true
         }
         
         // set theme
@@ -209,10 +209,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             {
                 self.isAutoTabExpandEnabled = {
                     switch indentStyle {
-                    case .tab:
-                        return false
-                    case .space:
-                        return true
+                        case .tab:
+                            return false
+                        case .space:
+                            return true
                     }
                 }()
             }
@@ -242,96 +242,96 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(recolorAll):
-            return self.syntaxParser?.canParse ?? false
+            case #selector(recolorAll):
+                return self.syntaxParser?.canParse ?? false
             
-        case #selector(changeTheme):
-            if let item = item as? NSMenuItem {
-                item.state = (self.theme?.name == item.title) ? .on : .off
+            case #selector(changeTheme):
+                if let item = item as? NSMenuItem {
+                    item.state = (self.theme?.name == item.title) ? .on : .off
             }
             
-        case #selector(toggleNavigationBar):
-            (item as? NSMenuItem)?.title = self.showsNavigationBar
-                ? "Hide Navigation Bar".localized
-                : "Show Navigation Bar".localized
+            case #selector(toggleNavigationBar):
+                (item as? NSMenuItem)?.title = self.showsNavigationBar
+                    ? "Hide Navigation Bar".localized
+                    : "Show Navigation Bar".localized
             
-        case #selector(toggleLineNumber):
-            (item as? NSMenuItem)?.title = self.showsLineNumber
-                ? "Hide Line Numbers".localized
-                : "Show Line Numbers".localized
+            case #selector(toggleLineNumber):
+                (item as? NSMenuItem)?.title = self.showsLineNumber
+                    ? "Hide Line Numbers".localized
+                    : "Show Line Numbers".localized
             
-        case #selector(toggleStatusBar):
-            (item as? NSMenuItem)?.title = self.isStatusBarShown
-                ? "Hide Status Bar".localized
-                : "Show Status Bar".localized
+            case #selector(toggleStatusBar):
+                (item as? NSMenuItem)?.title = self.isStatusBarShown
+                    ? "Hide Status Bar".localized
+                    : "Show Status Bar".localized
             
-        case #selector(togglePageGuide):
-            (item as? NSMenuItem)?.title = self.showsPageGuide
-                ? "Hide Page Guide".localized
-                : "Show Page Guide".localized
-            (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
+            case #selector(togglePageGuide):
+                (item as? NSMenuItem)?.title = self.showsPageGuide
+                    ? "Hide Page Guide".localized
+                    : "Show Page Guide".localized
+                (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
             
-        case #selector(toggleLineWrap):
-            (item as? NSMenuItem)?.title = self.wrapsLines
-                ? "Unwrap Lines".localized
-                : "Wrap Lines".localized
-            (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
+            case #selector(toggleLineWrap):
+                (item as? NSMenuItem)?.title = self.wrapsLines
+                    ? "Unwrap Lines".localized
+                    : "Wrap Lines".localized
+                (item as? StatableToolbarItem)?.state = self.wrapsLines ? .on : .off
             
-        case #selector(toggleInvisibleChars):
-            (item as? NSMenuItem)?.title = self.showsInvisibles
-                ? "Hide Invisible Characters".localized
-                : "Show Invisible Characters".localized
-            (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
+            case #selector(toggleInvisibleChars):
+                (item as? NSMenuItem)?.title = self.showsInvisibles
+                    ? "Hide Invisible Characters".localized
+                    : "Show Invisible Characters".localized
+                (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
+                
+                // disable if item cannot be enabled
+                item.toolTip = self.canActivateShowInvisibles
+                    ? "Show or hide invisible characters in document".localized
+                    : "To show invisible characters, set them in Preferences".localized
+                return self.canActivateShowInvisibles
             
-            // disable if item cannot be enabled
-            item.toolTip = self.canActivateShowInvisibles
-                ? "Show or hide invisible characters in document".localized
-                : "To show invisible characters, set them in Preferences".localized
-            return self.canActivateShowInvisibles
+            case #selector(toggleAntialias):
+                (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
             
-        case #selector(toggleAntialias):
-            (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
+            case #selector(toggleLigatures):
+                (item as? StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
             
-        case #selector(toggleLigatures):
-            (item as? StatableItem)?.state = (self.focusedTextView?.ligature != NSTextView.LigatureMode.none) ? .on : .off
+            case #selector(toggleAutoTabExpand):
+                (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
             
-        case #selector(toggleAutoTabExpand):
-            (item as? StatableItem)?.state = self.isAutoTabExpandEnabled ? .on : .off
+            case #selector(changeTabWidth):
+                (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
             
-        case #selector(changeTabWidth):
-            (item as? StatableItem)?.state = (self.tabWidth == item.tag) ? .on : .off
+            case #selector(makeLayoutOrientationHorizontal):
+                (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
             
-        case #selector(makeLayoutOrientationHorizontal):
-            (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .off : .on
+            case #selector(makeLayoutOrientationVertical):
+                (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
             
-        case #selector(makeLayoutOrientationVertical):
-            (item as? StatableItem)?.state = self.verticalLayoutOrientation ? .on : .off
+            case #selector(makeWritingDirectionLeftToRight):
+                (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
             
-        case #selector(makeWritingDirectionLeftToRight):
-            (item as? StatableItem)?.state = (self.writingDirection == .leftToRight) ? .on : .off
+            case #selector(makeWritingDirectionRightToLeft):
+                (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
+                return !self.verticalLayoutOrientation
             
-        case #selector(makeWritingDirectionRightToLeft):
-            (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
-            return !self.verticalLayoutOrientation
+            case #selector(changeWritingDirection):
+                let tag: Int = {
+                    switch (self.verticalLayoutOrientation, self.writingDirection) {
+                        case (true, _): return 2
+                        case (false, .rightToLeft): return 1
+                        default: return 0
+                    }
+                }()
+                (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
             
-        case #selector(changeWritingDirection):
-            let tag: Int = {
-                switch (self.verticalLayoutOrientation, self.writingDirection) {
-                case (true, _): return 2
-                case (false, .rightToLeft): return 1
-                default: return 0
-                }
-            }()
-            (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
+            case #selector(changeOrientation):
+                let tag = self.verticalLayoutOrientation ? 1 : 0
+                (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
             
-        case #selector(changeOrientation):
-            let tag = self.verticalLayoutOrientation ? 1 : 0
-            (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
+            case #selector(closeSplitTextView):
+                return (self.splitViewController?.splitViewItems.count ?? 0) > 1
             
-        case #selector(closeSplitTextView):
-            return (self.splitViewController?.splitViewItems.count ?? 0) > 1
-            
-        default: break
+            default: break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -761,17 +761,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func changeWritingDirection(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
-        case 0:
-            self.makeLayoutOrientationHorizontal(nil)
-            self.makeWritingDirectionLeftToRight(nil)
-        case 1:
-            self.makeLayoutOrientationHorizontal(nil)
-            self.makeWritingDirectionRightToLeft(nil)
-        case 2:
-            self.makeWritingDirectionLeftToRight(nil)
-            self.makeLayoutOrientationVertical(nil)
-        default:
-            assertionFailure("Segmented writing direction button must have 3 segments only.")
+            case 0:
+                self.makeLayoutOrientationHorizontal(nil)
+                self.makeWritingDirectionLeftToRight(nil)
+            case 1:
+                self.makeLayoutOrientationHorizontal(nil)
+                self.makeWritingDirectionRightToLeft(nil)
+            case 2:
+                self.makeWritingDirectionLeftToRight(nil)
+                self.makeLayoutOrientationVertical(nil)
+            default:
+                assertionFailure("Segmented writing direction button must have 3 segments only.")
         }
     }
     
@@ -780,12 +780,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func changeOrientation(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
-        case 0:
-            self.makeLayoutOrientationHorizontal(nil)
-        case 1:
-            self.makeLayoutOrientationVertical(nil)
-        default:
-            assertionFailure("Segmented layout orientation button must have 2 segments only.")
+            case 0:
+                self.makeLayoutOrientationHorizontal(nil)
+            case 1:
+                self.makeLayoutOrientationVertical(nil)
+            default:
+                assertionFailure("Segmented layout orientation button must have 2 segments only.")
         }
     }
     
@@ -828,10 +828,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// close one of split views
     @IBAction func closeSplitTextView(_ sender: Any?) {
         
+        assert(self.splitViewController!.splitViewItems.count > 1)
+        
         guard
             let splitViewController = self.splitViewController,
-            let currentEditorViewController = self.findTargetEditorViewController(for: sender)
+            let currentEditorViewController = self.findTargetEditorViewController(for: sender),
+            let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController)
             else { return }
+        
+        if let textView = currentEditorViewController.textView {
+            NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
+        }
         
         // end current editing
         NSTextInputContext.current?.discardMarkedText()
@@ -840,19 +847,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         if splitViewController.focusedChild == currentEditorViewController {
             let childViewControllers = self.editorViewControllers
             let deleteIndex = childViewControllers.firstIndex(of: currentEditorViewController) ?? 0
-            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.first!
+            let newFocusEditorViewController = childViewControllers[safe: deleteIndex + 1] ?? childViewControllers.last!
             
             self.view.window?.makeFirstResponder(newFocusEditorViewController.textView)
         }
         
         // close
-        if let splitViewItem = splitViewController.splitViewItem(for: currentEditorViewController) {
-            splitViewController.removeSplitViewItem(splitViewItem)
-            
-            if let textView = currentEditorViewController.textView {
-                NotificationCenter.default.removeObserver(self, name: NSTextView.didChangeSelectionNotification, object: textView)
-            }
-        }
+        splitViewController.removeSplitViewItem(splitViewItem)
     }
     
     
@@ -905,6 +906,10 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 let progress = progress,
                 !progress.isFinished, !progress.isCancelled
                 else { return }
+            
+            self.presentedViewControllers?
+                .filter { $0 is ProgressViewController }
+                .forEach { self.dismiss($0) }
             
             let message = "Coloring text…".localized
             let indicator = ProgressViewController.instantiate(storyboard: "CompactProgressView")
@@ -1027,7 +1032,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
 
 extension DocumentViewController: TextFinderClientProvider {
     
-    /// tell text finder in which text view it should find text
+    /// Tell text finder in which text view the text find should perform.
     func textFinderClient() -> NSTextView? {
         
         return self.focusedTextView

@@ -69,10 +69,10 @@ extension NSTextView {
         return rects.map { rect in
             let corners: RectCorner = {
                 switch rect {
-                case _ where rects.count == 1: return .allCorners
-                case rects.first:              return [.topLeft, .bottomLeft]
-                case rects.last:               return [.topRight, .bottomRight]
-                default:                       return []
+                    case _ where rects.count == 1: return .allCorners
+                    case rects.first:              return [.topLeft, .bottomLeft]
+                    case rects.last:               return [.topRight, .bottomRight]
+                    default:                       return []
                 }
             }()
             let radius = rect.height / 4

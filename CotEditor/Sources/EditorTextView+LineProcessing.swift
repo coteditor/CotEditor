@@ -180,7 +180,6 @@ extension EditorTextView {
 
 
 
-
 // MARK: -
 
 private extension String {

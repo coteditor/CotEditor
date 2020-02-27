@@ -80,9 +80,9 @@ final class DocumentWindowController: NSWindowController {
             self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: .initial) { [weak self] _ in
                 self?.window?.appearance = {
                     switch UserDefaults.standard[.documentAppearance] {
-                    case .default: return nil
-                    case .light:   return NSAppearance(named: .aqua)
-                    case .dark:    return NSAppearance(named: .darkAqua)
+                        case .default: return nil
+                        case .light:   return NSAppearance(named: .aqua)
+                        case .dark:    return NSAppearance(named: .darkAqua)
                     }
                 }()
             }
@@ -142,12 +142,12 @@ extension DocumentWindowController: NSUserInterfaceValidations {
     func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(showOpacitySlider):
-            return self.window?.styleMask.contains(.fullScreen) == false
-        case nil:
-            return false
-        default:
-            return true
+            case #selector(showOpacitySlider):
+                return self.window?.styleMask.contains(.fullScreen) == false
+            case nil:
+                return false
+            default:
+                return true
         }
     }
     

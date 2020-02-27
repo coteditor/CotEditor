@@ -145,6 +145,7 @@ final class UserDefaultsObservation: NSObject {
     }
     
     
+    
     // MARK: Private Methods
     
     fileprivate func startObservation(_ options: NSKeyValueObservingOptions) {

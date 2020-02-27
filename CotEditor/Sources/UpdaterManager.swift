@@ -45,10 +45,10 @@ private enum AppCastURL {
     private var filename: String {
         
         switch self {
-        case .stable:
-            return "appcast.xml"
-        case .beta:
-            return "appcast-beta.xml"
+            case .stable:
+                return "appcast.xml"
+            case .beta:
+                return "appcast-beta.xml"
         }
     }
 }

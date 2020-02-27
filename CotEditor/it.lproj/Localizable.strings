@@ -325,6 +325,7 @@
 "Coloring text…" = "Colorando testo…";
 "Please wait for a while." = "Si prega di attendere.";
 "Extracting %@…" = "Estrazione di %@…";
+"Preparing coloring…" = "Preparing coloring…";  // FIXME: added
 "Applying colors to text" = "Applicazione dei colori al testo";
 "keywords" = "Parole chiave";
 "commands" = "Comandi";

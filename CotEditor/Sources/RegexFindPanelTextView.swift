@@ -33,6 +33,7 @@ final class RegexFindPanelTextView: FindPanelTextView {
     var isRegularExpressionMode: Bool = false  { didSet { self.invalidateRegularExpression() } }
     
     
+    
     // MARK: -
     // MARK: Text View Methods
     
@@ -63,12 +64,12 @@ final class RegexFindPanelTextView: FindPanelTextView {
         // select inside of brackets
         if let pairIndex = self.string.indexOfBracePair(at: characterIndex, candidates: [BracePair("(", ")"), BracePair("[", "]")], ignoring: BracePair("[", "]")) {
             switch pairIndex {
-            case .begin(let beginIndex):
-                return NSRange(beginIndex...characterIndex, in: self.string)
-            case .end(let endIndex):
-                return NSRange(characterIndex...endIndex, in: self.string)
-            case .odd:
-                return NSRange(characterIndex...characterIndex, in: self.string)
+                case .begin(let beginIndex):
+                    return NSRange(beginIndex...characterIndex, in: self.string)
+                case .end(let endIndex):
+                    return NSRange(characterIndex...endIndex, in: self.string)
+                case .odd:
+                    return NSRange(characterIndex...characterIndex, in: self.string)
             }
         }
         

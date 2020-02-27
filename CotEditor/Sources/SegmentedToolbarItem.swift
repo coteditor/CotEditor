@@ -27,6 +27,8 @@ import Cocoa
 
 final class SegmentedToolbarItem: ControlToolbarItem {
     
+    // MARK: Private Properties
+    
     @IBOutlet private var menu: NSMenu?
     
     
@@ -65,10 +67,10 @@ final class SegmentedToolbarItem: ControlToolbarItem {
             
             let isValid: Bool = {
                 switch validator {
-                case let validator as NSUserInterfaceValidations:
-                    return validator.validateUserInterfaceItem(item)
-                default:
-                    return validator.validateMenuItem(item)
+                    case let validator as NSUserInterfaceValidations:
+                        return validator.validateUserInterfaceItem(item)
+                    default:
+                        return validator.validateMenuItem(item)
                 }
             }()
             

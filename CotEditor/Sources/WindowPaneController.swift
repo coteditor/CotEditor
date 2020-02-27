@@ -75,12 +75,12 @@ final class WindowPaneController: NSViewController {
         
         // select one of writing direction radio buttons
         switch UserDefaults.standard[.writingDirection] {
-        case .leftToRight:
-            self.ltrWritingDirectionButton?.state = .on
-        case .rightToLeft:
-            self.rtlWritingDirectionButton?.state = .on
-        case .vertical:
-            self.verticalWritingDirectionButton?.state = .on
+            case .leftToRight:
+                self.ltrWritingDirectionButton?.state = .on
+            case .rightToLeft:
+                self.rtlWritingDirectionButton?.state = .on
+            case .vertical:
+                self.verticalWritingDirectionButton?.state = .on
         }
     }
     

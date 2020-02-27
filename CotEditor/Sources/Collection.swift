@@ -96,11 +96,17 @@ extension Dictionary {
     /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
     func mapKeys<T>(transform: (Key) throws -> T) rethrows -> [T: Value] {
         
-        let keysWithValues = try self.map { (key, value) -> (T, Value) in
-            (try transform(key), value)
-        }
+        return try self.reduce(into: [:]) { $0[try transform($1.key)] = $1.value }
+    }
+    
+    
+    /// Return a new dictionary containing the keys transformed by the given keyPath with the values of this dictionary.
+    ///
+    /// - Parameter keyPath:  The keyPath to the value to transform key. Every transformed key must be unique.
+    /// - Returns: A dictionary containing transformed keys and the values of this dictionary.
+    func mapKeys<T>(_ keyPath: KeyPath<Key, T>) -> [T: Value] {
         
-        return [T: Value](uniqueKeysWithValues: keysWithValues)
+        return self.mapKeys { $0[keyPath: keyPath] }
     }
     
 }

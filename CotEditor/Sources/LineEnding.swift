@@ -45,16 +45,16 @@ enum LineEnding: Character {
     var name: String {
         
         switch self {
-        case .lf:
-            return "LF"
-        case .cr:
-            return "CR"
-        case .crlf:
-            return "CRLF"
-        case .lineSeparator:
-            return "LS"
-        case .paragraphSeparator:
-            return "PS"
+            case .lf:
+                return "LF"
+            case .cr:
+                return "CR"
+            case .crlf:
+                return "CRLF"
+            case .lineSeparator:
+                return "LS"
+            case .paragraphSeparator:
+                return "PS"
         }
     }
     
@@ -62,16 +62,16 @@ enum LineEnding: Character {
     var localizedName: String {
         
         switch self {
-        case .lf:
-            return "macOS / Unix (LF)".localized
-        case .cr:
-            return "Classic Mac OS (CR)".localized
-        case .crlf:
-            return "Windows (CRLF)".localized
-        case .lineSeparator:
-            return "Unix Line Separator".localized
-        case .paragraphSeparator:
-            return "Unix Paragraph Separator".localized
+            case .lf:
+                return "macOS / Unix (LF)".localized
+            case .cr:
+                return "Classic Mac OS (CR)".localized
+            case .crlf:
+                return "Windows (CRLF)".localized
+            case .lineSeparator:
+                return "Unix Line Separator".localized
+            case .paragraphSeparator:
+                return "Unix Paragraph Separator".localized
         }
     }
     
@@ -103,7 +103,7 @@ extension StringProtocol where Self.Index == String.Index {
         guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
         
         // Swift treats "\r\n" also as a single character.
-        let character = self[range.lowerBound]
+        let character = self[workaround: range.lowerBound]
         
         return LineEnding(rawValue: character)
     }

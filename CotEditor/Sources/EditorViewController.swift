@@ -91,13 +91,13 @@ final class EditorViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(selectPrevItemOfOutlineMenu):
-            return self.navigationBarController?.canSelectPrevItem ?? false
+            case #selector(selectPrevItemOfOutlineMenu):
+                return self.navigationBarController?.canSelectPrevItem ?? false
             
-        case #selector(selectNextItemOfOutlineMenu):
-            return self.navigationBarController?.canSelectNextItem ?? false
+            case #selector(selectNextItemOfOutlineMenu):
+                return self.navigationBarController?.canSelectNextItem ?? false
             
-        default: break
+            default: break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -130,11 +130,11 @@ final class EditorViewController: NSSplitViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        if textView.isAutomaticLinkDetectionEnabled, !textStorage.hasAttribute(.link) {
-            textStorage.detectLink()
-        }
-        
         textView.layoutManager?.replaceTextStorage(textStorage)
+        
+        if textView.isAutomaticLinkDetectionEnabled {
+            textView.detectLink()
+        }
     }
     
     

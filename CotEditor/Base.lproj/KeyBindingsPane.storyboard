@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jWV-Py-v0Q">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -174,6 +174,7 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="bQJ-P8-Oc8" name="value" keyPath="objectValue" id="b4N-fU-yfy"/>
+                                                                        <outlet property="delegate" destination="sBQ-LT-Rwm" id="tuA-rs-BE1"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -1151,6 +1152,7 @@
                                                                     </textFieldCell>
                                                                     <connections>
                                                                         <binding destination="5Mj-24-vkv" name="value" keyPath="objectValue" id="f9g-2Z-soV"/>
+                                                                        <outlet property="delegate" destination="9kQ-W2-4kw" id="yBG-gT-119"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>

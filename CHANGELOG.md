@@ -2,6 +2,28 @@
 Change Log
 ==========================
 
+3.8.11 (398)
+--------------------------
+
+### Improvements
+
+- Avoid showing the rainbow cursor while parsing URLs in the editor with large contents when the “link URLs in document” option is enabled.
+- Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
+- Improve message for syntax highlighting progress.
+- Improve drawing performance and general stability.
+- [trivial] Tweak the visual notification for wrapping search.
+
+
+### Fixes
+
+- Fix an issue where a document window zombie appeared when the window was closed while detached character info popovers remain.
+- Fix an issue where a blank progress dialog for a long syntax highlighting could rarely remain when the document is updated while parsing.
+- Fix an issue where the `\x{hhhh}`, `\0ooo`, and  `\$`  style character expressions in the regular expression pattern were not syntax-highlighted correctly.
+- Fix an issue where the application could rarely crash when printing a document.
+- Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.
+
+
+
 3.8.10 (396)
 --------------------------
 

@@ -111,27 +111,27 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
     func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
         
         switch menuItem.action {
-        case #selector(findNext(_:)),
-             #selector(findPrevious(_:)),
-             #selector(findSelectedText(_:)),
-             #selector(findAll(_:)),
-             #selector(highlight(_:)),
-             #selector(unhighlight(_:)),
-             #selector(replace(_:)),
-             #selector(replaceAndFind(_:)),
-             #selector(replaceAll(_:)),
-             #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
-             #selector(centerSelectionInVisibleArea(_:)):
-            return self.client != nil
+            case #selector(findNext(_:)),
+                 #selector(findPrevious(_:)),
+                 #selector(findSelectedText(_:)),
+                 #selector(findAll(_:)),
+                 #selector(highlight(_:)),
+                 #selector(unhighlight(_:)),
+                 #selector(replace(_:)),
+                 #selector(replaceAndFind(_:)),
+                 #selector(replaceAll(_:)),
+                 #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
+            #selector(centerSelectionInVisibleArea(_:)):
+                return self.client != nil
             
-        case #selector(useSelectionForFind(_:)):
-            return self.selectedString != nil
+            case #selector(useSelectionForFind(_:)):
+                return self.selectedString != nil
             
-        case nil:
-            return false
+            case nil:
+                return false
             
-        default:
-            return true
+            default:
+                return true
         }
     }
     
@@ -303,10 +303,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 }
                 
                 switch flag {
-                case .findProgress, .foundCount:
-                    break
-                case .replacementProgress:
-                    progress.completedUnitCount += 1
+                    case .findProgress, .foundCount:
+                        break
+                    case .replacementProgress:
+                        progress.completedUnitCount += 1
                 }
             }
             
@@ -401,23 +401,23 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         }
         
         let string = textView.string.immutable
-        let mode = TextFind.Mode(defaults: UserDefaults.standard)
+        let mode = UserDefaults.standard.textFindMode
         let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
             textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
         } catch let error as TextFind.Error {
             switch error {
-            case .regularExpression, .emptyInSelectionSearch:
-                self.findPanelController.showWindow(self)
-                self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
-            case .emptyFindString:
-                break
+                case .regularExpression, .emptyInSelectionSearch:
+                    self.findPanelController.showWindow(self)
+                    self.presentError(error, modalFor: self.findPanelController.window!, delegate: nil, didPresent: nil, contextInfo: nil)
+                case .emptyFindString:
+                    break
             }
             NSSound.beep()
             return nil
         } catch {
-            assertionFailure()
+            assertionFailure(error.localizedDescription)
             return nil
         }
         
@@ -488,7 +488,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         textView.isEditable = false
         
         let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
-        let lineCounter = LineCounter(textFind.string)
+        let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
         let progress = TextFindProgress(format: .find)
@@ -589,12 +589,12 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 
 private class LineCounter: LineRangeCacheable {
     
-    let string: String
+    let string: NSString
     var lineStartIndexes = IndexSet()
     var firstLineUncoundedIndex = 0
     
     
-    init(_ string: String) {
+    init(_ string: NSString) {
         
         self.string = string
     }
@@ -631,27 +631,27 @@ private extension UserDefaults {
 }
 
 
-private extension TextFind.Mode {
+private extension UserDefaults {
     
-    init(defaults: UserDefaults) {
+    var textFindMode: TextFind.Mode {
         
-        if defaults[.findUsesRegularExpression] {
+        if self[.findUsesRegularExpression] {
             var options = NSRegularExpression.Options()
-            if defaults[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
-            if defaults[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
-            if defaults[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
-            if defaults[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
+            if self[.findIgnoresCase]                { options.formUnion(.caseInsensitive) }
+            if self[.findRegexIsSingleline]          { options.formUnion(.dotMatchesLineSeparators) }
+            if self[.findRegexIsMultiline]           { options.formUnion(.anchorsMatchLines) }
+            if self[.findRegexUsesUnicodeBoundaries] { options.formUnion(.useUnicodeWordBoundaries) }
             
-            self = .regularExpression(options: options, unescapesReplacement: defaults[.findRegexUnescapesReplacementString])
+            return .regularExpression(options: options, unescapesReplacement: self[.findRegexUnescapesReplacementString])
             
         } else {
             var options = NSString.CompareOptions()
-            if defaults[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
-            if defaults[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
-            if defaults[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
-            if defaults[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
+            if self[.findIgnoresCase]               { options.formUnion(.caseInsensitive) }
+            if self[.findTextIsLiteralSearch]       { options.formUnion(.literal) }
+            if self[.findTextIgnoresDiacriticMarks] { options.formUnion(.diacriticInsensitive) }
+            if self[.findTextIgnoresWidth]          { options.formUnion(.widthInsensitive) }
             
-            self = .textual(options: options, fullWord: defaults[.findMatchesFullWord])
+            return .textual(options: options, fullWord: self[.findMatchesFullWord])
         }
     }
     

@@ -94,22 +94,22 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // select one of cursor type radio buttons
         switch UserDefaults.standard[.cursorType] {
-        case .bar:
-            self.barCursorButton?.state = .on
-        case .thickBar:
-            self.thickBarCursorButton?.state = .on
-        case .block:
-            self.blockCursorButton?.state = .on
+            case .bar:
+                self.barCursorButton?.state = .on
+            case .thickBar:
+                self.thickBarCursorButton?.state = .on
+            case .block:
+                self.blockCursorButton?.state = .on
         }
         
         // select one of appearance radio buttons
         switch UserDefaults.standard[.documentAppearance] {
-        case .default:
-            self.defaultAppearanceButton?.state = .on
-        case .light:
-            self.lightAppearanceButton?.state = .on
-        case .dark:
-            self.darkAppearanceButton?.state = .on
+            case .default:
+                self.defaultAppearanceButton?.state = .on
+            case .light:
+                self.lightAppearanceButton?.state = .on
+            case .dark:
+                self.darkAppearanceButton?.state = .on
         }
         
         let themeName = ThemeManager.shared.userDefaultSettingName
@@ -175,50 +175,50 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // append target setting name to menu titles
         switch menuItem.action {
-        case #selector(addTheme), #selector(importTheme(_:)):
-            menuItem.isHidden = (isContextualMenu && itemSelected)
+            case #selector(addTheme), #selector(importTheme(_:)):
+                menuItem.isHidden = (isContextualMenu && itemSelected)
             
-        case #selector(renameTheme(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Rename “%@”".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
-            return !isBundled
+            case #selector(renameTheme(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Rename “%@”".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
+                return !isBundled
             
-        case #selector(duplicateTheme(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Duplicate “%@”".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
+            case #selector(duplicateTheme(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
             
-        case #selector(deleteTheme(_:)):
-            menuItem.isHidden = (isBundled || !itemSelected)
+            case #selector(deleteTheme(_:)):
+                menuItem.isHidden = (isBundled || !itemSelected)
             
-        case #selector(restoreTheme(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Restore “%@”".localized, name)
-            }
-            menuItem.isHidden = (!isBundled || !itemSelected)
-            return isCustomized
+            case #selector(restoreTheme(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Restore “%@”".localized, name)
+                }
+                menuItem.isHidden = (!isBundled || !itemSelected)
+                return isCustomized
             
-        case #selector(exportTheme(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Export “%@”…".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
-            return (!isBundled || isCustomized)
+            case #selector(exportTheme(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
+                return (!isBundled || isCustomized)
             
-        case #selector(revealThemeInFinder(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
-            }
-            return (!isBundled || isCustomized)
+            case #selector(revealThemeInFinder(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
+                }
+                return (!isBundled || isCustomized)
             
-        case nil:
-            return false
+            case nil:
+                return false
             
-        default:
-            break
+            default:
+                break
         }
         
         return true
@@ -319,9 +319,9 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
                 let isDarkTheme = ThemeManager.shared.isDark(name: themeName)
                 let isDarkAppearance: Bool = {
                     switch UserDefaults.standard[.documentAppearance] {
-                    case .default: return NSAppearance.current.isDark
-                    case .light: return false
-                    case .dark: return true
+                        case .default: return NSAppearance.current.isDark
+                        case .light: return false
+                        case .dark: return true
                     }
                 }()
                 UserDefaults.standard[.pinsThemeAppearance] = (isDarkTheme != isDarkAppearance)

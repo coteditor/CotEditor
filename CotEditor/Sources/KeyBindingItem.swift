@@ -46,7 +46,6 @@ final class KeyBindingItem {
 
 
 
-
 // MARK: -
 
 final class NamedTreeNode: NSTreeNode {

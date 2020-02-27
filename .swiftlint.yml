@@ -85,6 +85,9 @@ private_outlet:
 trailing_whitespace:
   ignores_empty_lines: true
 
+switch_case_alignment:
+    indented_cases: true
+
 attributes:
   always_on_same_line: ["@IBAction", "@objc"]
 
@@ -92,7 +95,7 @@ function_parameter_count:
   warning: 6
 
 vertical_whitespace:
-  max_empty_lines: 4
+  max_empty_lines: 3
 
 file_length:
   warning: 2000

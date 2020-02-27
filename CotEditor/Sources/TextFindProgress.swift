@@ -32,6 +32,7 @@ final class TextFindProgress: Progress {
     private let format: CountableFormatter
     
     
+    
     // MARK: -
     // MARK: Lifecycle
     
@@ -44,6 +45,7 @@ final class TextFindProgress: Progress {
         self.totalUnitCount = Int64(totalUnitCount)
         self.localizedDescription = self.format.localizedString(for: 0)
     }
+    
     
     
     // MARK: Progress Methods
@@ -101,12 +103,12 @@ struct CountableFormatter {
     private func format(for count: Int) -> String {
         
         switch count {
-        case 0:
-            return "Searching in text…".localized
-        case 1:
-            return self.singular
-        default:
-            return self.plural
+            case 0:
+                return "Searching in text…".localized
+            case 1:
+                return self.singular
+            default:
+                return self.plural
         }
     }
     

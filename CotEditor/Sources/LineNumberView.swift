@@ -166,11 +166,11 @@ final class LineNumberView: NSView {
     override var intrinsicContentSize: NSSize {
         
         switch self.orientation {
-        case .horizontal:
-            return NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
-        case .vertical:
-            return NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
-        @unknown default: fatalError()
+            case .horizontal:
+                return NSSize(width: self.thickness, height: NSView.noIntrinsicMetric)
+            case .vertical:
+                return NSSize(width: NSView.noIntrinsicMetric, height: self.thickness)
+            @unknown default: fatalError()
         }
     }
     
@@ -228,13 +228,13 @@ final class LineNumberView: NSView {
         // draw divider (1px)
         self.textColor(.stroke).setStroke()
         switch self.orientation {
-        case .horizontal:
-            NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
-                                    to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
-        case .vertical:
-            NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
-                                    to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
-        @unknown default: fatalError()
+            case .horizontal:
+                NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
+                                        to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
+            case .vertical:
+                NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
+                                        to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
+            @unknown default: fatalError()
         }
         
         NSGraphicsContext.restoreGraphicsState()
@@ -306,11 +306,11 @@ final class LineNumberView: NSView {
         let relativePoint = self.convert(NSPoint.zero, from: textView)
         let lineBase = (scale * textView.textContainerOrigin.y) + drawingInfo.ascent
         switch textView.layoutOrientation {
-        case .horizontal:
-            context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
-        case .vertical:
-            context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
-        @unknown default: fatalError()
+            case .horizontal:
+                context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
+            case .vertical:
+                context.translateBy(x: round(relativePoint.x - lineBase), y: 0)
+            @unknown default: fatalError()
         }
         
         // draw labels
@@ -318,46 +318,46 @@ final class LineNumberView: NSView {
             let y = scale * -lineRect.minY
             
             switch line {
-            case .new(let lineNumber, let isSelected):
-                // draw line number
-                if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
-                    let digit = lineNumber.numberOfDigits
-                    
-                    // calculate base position
-                    let basePosition: CGPoint = isVerticalText
-                        ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
-                        : CGPoint(x: -drawingInfo.padding, y: y)
-                    
-                    // get glyphs and positions
-                    let positions: [CGPoint] = (0..<digit)
-                        .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
-                    let glyphs: [CGGlyph] = (0..<digit)
-                        .map { lineNumber.number(at: $0) }
-                        .map { drawingInfo.digitGlyphs[$0] }
-                    
-                    // draw
-                    if isSelected {
-                        context.setFillColor(self.textColor(.bold).cgColor)
-                        context.setFont(Self.boldLineNumberFont)
+                case .new(let lineNumber, let isSelected):
+                    // draw line number
+                    if !isVerticalText || isSelected || lineNumber.isMultiple(of: 5) || lineNumber == 1 || lineNumber == self.numberOfLines {
+                        let digit = lineNumber.numberOfDigits
+                        
+                        // calculate base position
+                        let basePosition: CGPoint = isVerticalText
+                            ? CGPoint(x: ceil(y + drawingInfo.charWidth * CGFloat(digit) / 2), y: 2 * drawingInfo.tickLength)
+                            : CGPoint(x: -drawingInfo.padding, y: y)
+                        
+                        // get glyphs and positions
+                        let positions: [CGPoint] = (0..<digit)
+                            .map { basePosition.offsetBy(dx: -CGFloat($0 + 1) * drawingInfo.charWidth) }
+                        let glyphs: [CGGlyph] = (0..<digit)
+                            .map { lineNumber.number(at: $0) }
+                            .map { drawingInfo.digitGlyphs[$0] }
+                        
+                        // draw
+                        if isSelected {
+                            context.setFillColor(self.textColor(.bold).cgColor)
+                            context.setFont(Self.boldLineNumberFont)
+                        }
+                        context.showGlyphs(glyphs, at: positions)
+                        if isSelected {
+                            context.setFillColor(self.textColor().cgColor)
+                            context.setFont(Self.lineNumberFont)
+                        }
                     }
-                    context.showGlyphs(glyphs, at: positions)
-                    if isSelected {
-                        context.setFillColor(self.textColor().cgColor)
-                        context.setFont(Self.lineNumberFont)
-                    }
+                    
+                    // draw tick
+                    if isVerticalText {
+                        let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
+                        context.stroke(rect, width: 1)
                 }
                 
-                // draw tick
-                if isVerticalText {
-                    let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
-                    context.stroke(rect, width: 1)
-                }
-                
-            case .wrapped:
-                // draw wrapped mark (-)
-                if !isVerticalText {
-                    let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
-                    context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
+                case .wrapped:
+                    // draw wrapped mark (-)
+                    if !isVerticalText {
+                        let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
+                        context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
                 }
             }
         }
@@ -386,14 +386,14 @@ final class LineNumberView: NSView {
         // adjust thickness
         let thickness: CGFloat = {
             switch self.orientation {
-            case .horizontal:
-                let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
-                let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
-                return max(ceil(thickness), self.minVerticalThickness)
-            case .vertical:
-                let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
-                return max(ceil(thickness), self.minHorizontalThickness)
-            @unknown default: fatalError()
+                case .horizontal:
+                    let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
+                    let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
+                    return max(ceil(thickness), self.minVerticalThickness)
+                case .vertical:
+                    let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
+                    return max(ceil(thickness), self.minHorizontalThickness)
+                @unknown default: fatalError()
             }
         }()
         if thickness != self.thickness {

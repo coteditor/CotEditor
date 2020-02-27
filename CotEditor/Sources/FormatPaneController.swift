@@ -128,43 +128,43 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         
         // append target setting name to menu titles
         switch menuItem.action {
-        case #selector(openSyntaxMappingConflictSheet(_:)):
-            return SyntaxManager.shared.mappingConflicts.contains { !$0.value.isEmpty }
+            case #selector(openSyntaxMappingConflictSheet(_:)):
+                return SyntaxManager.shared.mappingConflicts.contains { !$0.value.isEmpty }
             
-        case #selector(duplicateSyntaxStyle(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Duplicate “%@”".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
+            case #selector(duplicateSyntaxStyle(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Duplicate “%@”".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
             
-        case #selector(deleteSyntaxStyle(_:)):
-            menuItem.isHidden = (isBundled || !itemSelected)
+            case #selector(deleteSyntaxStyle(_:)):
+                menuItem.isHidden = (isBundled || !itemSelected)
             
-        case #selector(restoreSyntaxStyle(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Restore “%@”".localized, name)
-            }
-            menuItem.isHidden = (!isBundled || !itemSelected)
-            return isCustomized
+            case #selector(restoreSyntaxStyle(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Restore “%@”".localized, name)
+                }
+                menuItem.isHidden = (!isBundled || !itemSelected)
+                return isCustomized
             
-        case #selector(exportSyntaxStyle(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Export “%@”…".localized, name)
-            }
-            menuItem.isHidden = !itemSelected
-            return (!isBundled || isCustomized)
+            case #selector(exportSyntaxStyle(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Export “%@”…".localized, name)
+                }
+                menuItem.isHidden = !itemSelected
+                return (!isBundled || isCustomized)
             
-        case #selector(revealSyntaxStyleInFinder(_:)):
-            if let name = representedSettingName, !isContextualMenu {
-                menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
-            }
-            return (!isBundled || isCustomized)
+            case #selector(revealSyntaxStyleInFinder(_:)):
+                if let name = representedSettingName, !isContextualMenu {
+                    menuItem.title = String(format: "Reveal “%@” in Finder".localized, name)
+                }
+                return (!isBundled || isCustomized)
             
-        case nil:
-            return false
+            case nil:
+                return false
             
-        default:
-            break
+            default:
+                break
         }
         
         return true

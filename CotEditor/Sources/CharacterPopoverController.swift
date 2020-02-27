@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,7 +29,9 @@ final class CharacterPopoverController: NSViewController {
     
     // MARK: Private Properties
     
-    @objc private dynamic var glyph: String = ""
+    private var closingCueObserver: NSObjectProtocol?
+    
+    @objc private dynamic var glyph: String?
     @objc private dynamic var unicodeName: String?
     @objc private dynamic var unicodeBlockName: String?
     @objc private dynamic var unicode: String = ""
@@ -43,7 +45,11 @@ final class CharacterPopoverController: NSViewController {
     // MARK: -
     // MARK: Lifecycle
     
-    /// setup UI
+    deinit {
+        self.removeObservation()
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -58,15 +64,12 @@ final class CharacterPopoverController: NSViewController {
     
     // MARK: Public Methods
     
-    /// initialize view with character
+    /// Initialize view with character info.
     ///
-    /// - Parameter character: `character` must be a single character (or a surrogate-pair). If not, throws an error.
-    /// - Throws: `CharacterInfo.Error`
-    func setup(character: String) throws {
+    /// - Parameter info: The CharacterInfo instance to display.
+    func setup(characterInfo info: CharacterInfo) {
         
-        let info = try CharacterInfo(string: character)
-        
-        let unicodes = character.unicodeScalars
+        let unicodes = info.string.unicodeScalars
         
         self.glyph = info.pictureString ?? info.string
         self.unicodeName = info.localizedDescription
@@ -92,31 +95,39 @@ final class CharacterPopoverController: NSViewController {
     }
     
     
-    /// show popover
+    /// Show the popover anchored to the specified view.
+    ///
+    /// - Parameters:
+    ///   - parentView: The view relative to which the popover should be positioned.
+    /// - Returns: A popover instance.
     func showPopover(relativeTo positioningRect: NSRect, of parentView: NSView) {
+        
+        assert(self.glyph != nil)
         
         let popover = NSPopover()
         popover.contentViewController = self
         popover.delegate = self
         popover.behavior = .semitransient
         popover.show(relativeTo: positioningRect, of: parentView, preferredEdge: .minY)
-        parentView.window?.makeFirstResponder(parentView)
         
-        // auto-close popover if selection is changed.
+        // auto-close popover if selection is changed
         if let textView = parentView as? NSTextView {
-            weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification,
-                                                              object: textView, queue: .main, using:
-                { _ in
-                    
-                    if !popover.isDetached {
-                        popover.performClose(nil)
-                    }
-                    if let observer = observer {
-                        NotificationCenter.default.removeObserver(observer)
-                    }
-            })
+            self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak popover] _ in
+                popover?.performClose(nil)
+            }
         }
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    private func removeObservation() {
+        
+        guard let observer = self.closingCueObserver else { return }
+        
+        NotificationCenter.default.removeObserver(observer)
+        self.closingCueObserver = nil
     }
     
 }
@@ -129,6 +140,21 @@ extension CharacterPopoverController: NSPopoverDelegate {
     
     /// make popover detachable
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+        
+        // remove selection change observer
+        self.removeObservation()
+        
+        guard let parentWindow = popover.contentViewController?.view.window?.parent else {
+            assertionFailure("Failed obtaining the parent window for character info popover.")
+            return false
+        }
+        
+        // close popover when the window of the parent editor is closed
+        // -> Otherwise, a zombie window appears again when click somewhere after closing the window,
+        //    as NSPopover seems to retain the parent window somehow (2020 macOS 10.15).
+        self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: parentWindow, queue: .main) { [weak popover] _ in
+            popover?.close()
+        }
         
         return true
     }

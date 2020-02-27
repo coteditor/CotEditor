@@ -66,13 +66,6 @@ final class OutlineParseOperation: Operation, ProgressReporting {
     
     // MARK: Operation Methods
     
-    /// is ready to run
-    override var isReady: Bool {
-        
-        return true
-    }
-    
-    
     /// parse string and extract outline items
     override func main() {
         

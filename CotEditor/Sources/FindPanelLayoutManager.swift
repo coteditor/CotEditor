@@ -98,45 +98,45 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 
                 let glyphString: NSAttributedString
                 switch invisible {
-                case .space:
-                    guard showsSpace else { continue }
-                    glyphString = space
+                    case .space:
+                        guard showsSpace else { continue }
+                        glyphString = space
                     
-                case .tab:
-                    guard showsTab else { continue }
-                    glyphString = tab
+                    case .tab:
+                        guard showsTab else { continue }
+                        glyphString = tab
                     
-                case .newLine:
-                    guard showsNewLine else { continue }
-                    glyphString = newLine
+                    case .newLine:
+                        guard showsNewLine else { continue }
+                        glyphString = newLine
                     
-                case .fullwidthSpace:
-                    guard showsFullwidthSpace else { continue }
-                    glyphString = fullwidthSpace
+                    case .fullwidthSpace:
+                        guard showsFullwidthSpace else { continue }
+                        glyphString = fullwidthSpace
                     
-                case .otherControl:
-                    guard showsOtherInvisibles else { continue }
-                    guard
-                        self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
-                        else { continue }
+                    case .otherControl:
+                        guard showsOtherInvisibles else { continue }
+                        guard
+                            self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
+                            else { continue }
+                        
+                        let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
+                        let glyph = replaceFont.cgFont.getGlyphWithGlyphName(name: "replacement" as CFString)
+                        let controlRange = NSRange(location: charIndex, length: 1)
+                        let baseString = (string as NSString).substring(with: controlRange)
+                        
+                        guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: replaceFont, baseString: baseString) else { assertionFailure(); continue }
+                        
+                        // !!!: The following line can cause crash by binary document.
+                        //      It's actually dangerous and to be detoured to modify textStorage while drawing.
+                        //      (2015-09 by 1024jp)
+                        self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
+                                                         .font: replaceFont,
+                                                         .foregroundColor: color], range: controlRange)
+                        continue
                     
-                    let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
-                    let glyph = replaceFont.cgFont.getGlyphWithGlyphName(name: "replacement" as CFString)
-                    let controlRange = NSRange(location: charIndex, length: 1)
-                    let baseString = (string as NSString).substring(with: controlRange)
-                    
-                    guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: replaceFont, baseString: baseString) else { assertionFailure(); continue }
-                    
-                    // !!!: The following line can cause crash by binary document.
-                    //      It's actually dangerous and to be detoured to modify textStorage while drawing.
-                    //      (2015-09 by 1024jp)
-                    self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
-                                                     .font: replaceFont,
-                                                     .foregroundColor: color], range: controlRange)
-                    continue
-                    
-                case .none:
-                    continue
+                    case .none:
+                        continue
                 }
                 
                 // calculate position to draw glyph

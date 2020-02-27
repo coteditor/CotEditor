@@ -80,32 +80,24 @@ struct CharacterInfo {
             guard unicodes.count == 2, let lastUnicode = unicodes.last else { return nil }
             
             switch lastUnicode {
-            case UnicodeScalar.emojiSequence:
-                return "Emoji Style"
-                
-            case UnicodeScalar.textSequence:
-                return "Text Style"
-                
-            case UnicodeScalar.SkinToneModifier.type12:
-                return "Skin Tone I-II"
-                
-            case UnicodeScalar.SkinToneModifier.type3:
-                return "Skin Tone III"
-                
-            case UnicodeScalar.SkinToneModifier.type4:
-                return "Skin Tone IV"
-                
-            case UnicodeScalar.SkinToneModifier.type5:
-                return "Skin Tone V"
-                
-            case UnicodeScalar.SkinToneModifier.type6:
-                return "Skin Tone VI"
-                
-            case let unicode where unicode.properties.isVariationSelector:
-                return "Variant"
-                
-            default:
-                return nil
+                case UnicodeScalar.emojiSequence:
+                    return "Emoji Style"
+                case UnicodeScalar.textSequence:
+                    return "Text Style"
+                case UnicodeScalar.SkinToneModifier.type12:
+                    return "Skin Tone I-II"
+                case UnicodeScalar.SkinToneModifier.type3:
+                    return "Skin Tone III"
+                case UnicodeScalar.SkinToneModifier.type4:
+                    return "Skin Tone IV"
+                case UnicodeScalar.SkinToneModifier.type5:
+                    return "Skin Tone V"
+                case UnicodeScalar.SkinToneModifier.type6:
+                    return "Skin Tone VI"
+                case let unicode where unicode.properties.isVariationSelector:
+                    return "Variant"
+                default:
+                    return nil
             }
         }()
         let isComplex = (unicodes.count > 1 && additional == nil)

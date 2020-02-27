@@ -180,6 +180,7 @@ final class UnixScript: Script {
     }
     
     
+    
     // MARK: Private Methods
     
     /// read content of script file
@@ -202,11 +203,10 @@ final class UnixScript: Script {
         guard let editor = editor else { throw ScriptError.noInputTarget }
         
         switch type {
-        case .selection:
-            return editor.selectedString
-            
-        case .allText:
-            return editor.string
+            case .selection:
+                return editor.selectedString
+            case .allText:
+                return editor.string
         }
     }
     
@@ -219,35 +219,34 @@ final class UnixScript: Script {
         assert(Thread.isMainThread)
         
         switch type {
-        case .replaceSelection:
-            guard let editor = editor else { throw ScriptError.noOutputTarget }
-            editor.insert(string: output, at: .replaceSelection)
+            case .replaceSelection:
+                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                editor.insert(string: output, at: .replaceSelection)
             
-        case .replaceAllText:
-            guard let editor = editor else { throw ScriptError.noOutputTarget }
-            editor.insert(string: output, at: .replaceAll)
+            case .replaceAllText:
+                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                editor.insert(string: output, at: .replaceAll)
             
-        case .insertAfterSelection:
-            guard let editor = editor else { throw ScriptError.noOutputTarget }
-            editor.insert(string: output, at: .afterSelection)
+            case .insertAfterSelection:
+                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                editor.insert(string: output, at: .afterSelection)
             
-        case .appendToAllText:
-            guard let editor = editor else { throw ScriptError.noOutputTarget }
-            editor.insert(string: output, at: .afterAll)
+            case .appendToAllText:
+                guard let editor = editor else { throw ScriptError.noOutputTarget }
+                editor.insert(string: output, at: .afterAll)
             
-        case .newDocument:
-            let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Editable
-            document.insert(string: output, at: .replaceAll)
-            document.selectedRange = NSRange(0..<0)
+            case .newDocument:
+                let document = try NSDocumentController.shared.openUntitledDocumentAndDisplay(true) as! Editable
+                document.insert(string: output, at: .replaceAll)
+                document.selectedRange = NSRange(0..<0)
             
-        case .pasteBoard:
-            NSPasteboard.general.declareTypes([.string], owner: nil)
-            NSPasteboard.general.setString(output, forType: .string)
+            case .pasteBoard:
+                NSPasteboard.general.declareTypes([.string], owner: nil)
+                NSPasteboard.general.setString(output, forType: .string)
         }
     }
     
 }
-
 
 
 
@@ -262,15 +261,14 @@ private enum ScriptError: Error {
     var localizedDescription: String {
         
         switch self {
-        case .noInputTarget:
-            return "No document to get input.".localized
-        case .noOutputTarget:
-            return "No document to put output.".localized
+            case .noInputTarget:
+                return "No document to get input.".localized
+            case .noOutputTarget:
+                return "No document to put output.".localized
         }
     }
     
 }
-
 
 
 

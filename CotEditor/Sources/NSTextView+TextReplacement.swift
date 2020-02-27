@@ -170,12 +170,12 @@ extension String {
     init(anyString: Any) {
         
         switch anyString {
-        case let string as String:
-            self = string
-        case let attributedString as NSAttributedString:
-            self = attributedString.string
-        default:
-            preconditionFailure()
+            case let string as String:
+                self = string
+            case let attributedString as NSAttributedString:
+                self = attributedString.string
+            default:
+                preconditionFailure()
         }
     }
     

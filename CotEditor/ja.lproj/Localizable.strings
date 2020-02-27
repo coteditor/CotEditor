@@ -10,7 +10,7 @@
  ------------------------------------------------------------------------------
  
  © 2004-2007 nakamuxu
- © 2014-2019 1024jp
+ © 2014-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -325,6 +325,7 @@
 "Coloring text…" = "テキストのカラーリング中...";
 "Please wait for a while." = "しばらくお待ちください...";
 "Extracting %@…" = "%@を抽出中...";
+"Preparing coloring…" = "カラーリングの準備中...";
 "Applying colors to text" = "テキストにカラーを適用中";
 "keywords" = "キーワード";
 "commands" = "コマンド";

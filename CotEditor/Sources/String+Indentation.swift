@@ -64,12 +64,12 @@ extension String {
             
             // check first character
             switch character {
-            case "\t":
-                tabCount += 1
-            case " ":
-                spaceCount += 1
-            default:
-                break
+                case "\t":
+                    tabCount += 1
+                case " ":
+                    spaceCount += 1
+                default:
+                    break
             }
         }
         
@@ -95,10 +95,10 @@ extension String {
         
         let indent: (before: String, after: String) = {
             switch indentStyle {
-            case .space:
-                return (before: "\t", after: spaces)
-            case .tab:
-                return (before: spaces, after: "\t")
+                case .space:
+                    return (before: "\t", after: spaces)
+                case .tab:
+                    return (before: spaces, after: "\t")
             }
         }()
         

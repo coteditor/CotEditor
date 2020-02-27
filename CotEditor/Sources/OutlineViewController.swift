@@ -320,14 +320,14 @@ extension OutlineViewController: NSOutlineViewDataSource {
             else { return nil }
         
         switch identifier {
-        case .title:
-            let fontSize = UserDefaults.standard[.outlineViewFontSize]
-            let font = outlineView.font.flatMap { NSFont(name: $0.fontName, size: fontSize) } ?? .systemFont(ofSize: fontSize)
+            case .title:
+                let fontSize = UserDefaults.standard[.outlineViewFontSize]
+                let font = outlineView.font.flatMap { NSFont(name: $0.fontName, size: fontSize) } ?? .systemFont(ofSize: fontSize)
+                
+                return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
             
-            return outlineItem.attributedTitle(for: font, attributes: [.paragraphStyle: self.itemParagraphStyle])
-            
-        default:
-            preconditionFailure()
+            default:
+                preconditionFailure()
         }
     }
     

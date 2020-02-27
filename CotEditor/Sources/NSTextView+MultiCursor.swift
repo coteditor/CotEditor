@@ -234,9 +234,9 @@ extension MultiCursorEditing {
         
         let rangeToVisible: NSRange = {
             switch affinity {
-            case .downstream: return ranges.first!
-            case .upstream:   return ranges.last!
-            @unknown default: fatalError()
+                case .downstream: return ranges.first!
+                case .upstream:   return ranges.last!
+                @unknown default: fatalError()
             }
         }()
         self.scrollRangeToVisible(rangeToVisible)
@@ -264,10 +264,10 @@ extension MultiCursorEditing {
             
             let (cursor, newOrigin): (Int, Int) = {
                 switch (forward, origin) {
-                case (false, range.lowerBound): return (range.upperBound, range.lowerBound)
-                case (false, _):                return (range.lowerBound, range.upperBound)
-                case (true, range.upperBound):  return (range.lowerBound, range.upperBound)
-                case (true, _):                 return (range.upperBound, range.lowerBound)
+                    case (false, range.lowerBound): return (range.upperBound, range.lowerBound)
+                    case (false, _):                return (range.lowerBound, range.upperBound)
+                    case (true, range.upperBound):  return (range.lowerBound, range.upperBound)
+                    case (true, _):                 return (range.upperBound, range.lowerBound)
                 }
             }()
             
@@ -328,13 +328,13 @@ extension MultiCursorEditing {
         // -> Use line fragment to allow placing insertion points even when the line is shorter than the origin insertion columns.
         let newLineRect: CGRect = {
             switch affinity {
-            case .downstream:
-                return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.lowerBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
-            case .upstream where layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound):
-                return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
-            case .upstream:
-                return layoutManager.extraLineFragmentRect
-            @unknown default: fatalError()
+                case .downstream:
+                    return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.lowerBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
+                case .upstream where layoutManager.isValidGlyphIndex(effectiveGlyphRange.upperBound):
+                    return layoutManager.lineFragmentRect(forGlyphAt: effectiveGlyphRange.upperBound, effectiveRange: nil, withoutAdditionalLayout: true)
+                case .upstream:
+                    return layoutManager.extraLineFragmentRect
+                @unknown default: fatalError()
             }
         }()
         

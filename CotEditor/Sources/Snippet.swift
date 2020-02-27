@@ -38,8 +38,8 @@ struct Snippet {
         var description: String {
             
             switch self {
-            case .cursor:
-                return "The cursor position after inserting the snippet."
+                case .cursor:
+                    return "The cursor position after inserting the snippet."
             }
         }
         

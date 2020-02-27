@@ -24,6 +24,41 @@
 
 <article>
 <header>
+    <h1>CotEditor 3.8.11</h1>
+    <p>release: <time>2020-02-28</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Avoid showing the rainbow cursor while parsing URLs in the editor with large contents when the “link URLs in document” option is enabled.</li>
+	<li>Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.</li>
+	<li>Improve message for syntax highlighting progress.</li>
+	<li>Improve drawing performance and general stability.</li>
+	<li><span class="trivial">trivial</span>: Tweak the visual notification for wrapping search.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where a document window zombie appeared when the window was closed while detached character info popovers remain.</li>
+	<li>Fix an issue where a blank progress dialog for a long syntax highlighting could rarely remain when the document is updated while parsing.</li>
+	<li>Fix an issue where the <code>\x{hhhh}</code>, <code>\0ooo</code>, and  <code>\$</code> style character expressions in the regular expression pattern were not syntax-highlighted correctly.</li>
+	<li>Fix an issue where the application could rarely crash when printing a document.</li>
+	<li>Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
     <h1>CotEditor 3.8.10</h1>
     <p>release: <time>2020-02-15</time></p>
 </header>

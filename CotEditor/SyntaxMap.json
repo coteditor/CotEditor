@@ -1,62 +1,74 @@
 {
-  "AWK": {
-    "extensions": [
-      "awk"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-      "awk"
-    ]
-  },
-  "Apache": {
-    "extensions": [
+  "Apache" : {
+    "extensions" : [
       "conf"
     ],
-    "filenames": [
+    "filenames" : [
       ".htaccess"
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "AppleScript": {
-    "extensions": [
+  "AppleScript" : {
+    "extensions" : [
       "applescript"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "BibTeX": {
-    "extensions": [
+  "AWK" : {
+    "extensions" : [
+      "awk"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "awk"
+    ]
+  },
+  "BibTeX" : {
+    "extensions" : [
       "bib",
       "bibtex"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "C#": {
-    "extensions": [
-      "cs"
+  "C" : {
+    "extensions" : [
+      "c",
+      "h"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
+
+    ]
+  },
+  "C#" : {
+    "extensions" : [
+      "cs"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
       "csharp"
     ]
   },
-  "C++": {
-    "extensions": [
+  "C++" : {
+    "extensions" : [
       "c++",
       "cpp",
       "cxx",
@@ -64,106 +76,94 @@
       "hpp",
       "h++"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "C": {
-    "extensions": [
-      "c",
-      "h"
+  "CoffeeScript" : {
+    "extensions" : [
+      "coffee"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
-
+    "interpreters" : [
+      "coffee"
     ]
   },
-  "CSS": {
-    "extensions": [
+  "CSS" : {
+    "extensions" : [
       "css"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "CoffeeScript": {
-    "extensions": [
-      "coffee"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-      "coffee"
-    ]
-  },
-  "D": {
-    "extensions": [
+  "D" : {
+    "extensions" : [
       "d"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "rdmd"
     ]
   },
-  "DTD": {
-    "extensions": [
-      "dtd"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "Dart": {
-    "extensions": [
+  "Dart" : {
+    "extensions" : [
       "dart"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "dart"
     ]
   },
-  "Diff": {
-    "extensions": [
+  "Diff" : {
+    "extensions" : [
       "diff",
       "patch",
       "dif"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Erlang": {
-    "extensions": [
+  "DTD" : {
+    "extensions" : [
+      "dtd"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "Erlang" : {
+    "extensions" : [
       "erl"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Fortran": {
-    "extensions": [
+  "Fortran" : {
+    "extensions" : [
       "f",
       "f08",
       "f03",
@@ -171,250 +171,275 @@
       "f90",
       "for"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Git Config": {
-    "extensions": [
+  "Git" : {
+    "extensions" : [
 
     ],
-    "filenames": [
+    "filenames" : [
+      "git-rebase-todo",
+      "COMMIT_EDITMSG"
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "Git Config" : {
+    "extensions" : [
+
+    ],
+    "filenames" : [
       ".gitconfig",
       ".gitmodules",
       "gitconfig"
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Git Ignore": {
-    "extensions": [
+  "Git Ignore" : {
+    "extensions" : [
 
     ],
-    "filenames": [
+    "filenames" : [
       ".gitignore"
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Git": {
-    "extensions": [
-
-    ],
-    "filenames": [
-      "git-rebase-todo",
-      "COMMIT_EDITMSG"
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "Go": {
-    "extensions": [
+  "Go" : {
+    "extensions" : [
       "go"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "HTML": {
-    "extensions": [
+  "Haskell" : {
+    "extensions" : [
+      "hs",
+      "lhs"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "runhaskell"
+    ]
+  },
+  "HTML" : {
+    "extensions" : [
       "html",
       "htm",
       "shtml"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Haskell": {
-    "extensions": [
-      "hs",
-      "lhs"
+  "iCalendar" : {
+    "extensions" : [
+      "ics",
+      "ifb"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
-      "runhaskell"
+    "interpreters" : [
+
     ]
   },
-  "INI": {
-    "extensions": [
+  "INI" : {
+    "extensions" : [
       "ini",
       "url"
     ],
-    "filenames": [
+    "filenames" : [
       ".editorconfig"
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "JSON": {
-    "extensions": [
+  "Java" : {
+    "extensions" : [
+      "java"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "JavaScript" : {
+    "extensions" : [
+      "js",
+      "pac"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "JSON" : {
+    "extensions" : [
       "json",
       "geojson",
       "resolved",
       "cottheme",
       "cotrpl"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Java": {
-    "extensions": [
-      "java"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "JavaScript": {
-    "extensions": [
-      "js",
-      "pac"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "Julia": {
-    "extensions": [
+  "Julia" : {
+    "extensions" : [
       "jl"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "julia"
     ]
   },
-  "Kotlin": {
-    "extensions": [
+  "Kotlin" : {
+    "extensions" : [
       "kt",
       "kts"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "kotlin",
       "kotlinc"
     ]
   },
-  "LaTeX": {
-    "extensions": [
+  "LaTeX" : {
+    "extensions" : [
       "tex",
       "TEX",
       "sty",
       "cls"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Lisp": {
-    "extensions": [
+  "Lisp" : {
+    "extensions" : [
       "lisp",
       "lsp",
       "el",
       "clj",
       "edn"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "lua"
     ]
   },
-  "Lua": {
-    "extensions": [
+  "Lua" : {
+    "extensions" : [
       "lua"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "MATLAB": {
-    "extensions": [
-      "m"
-    ],
-    "filenames": [
+  "Makefile" : {
+    "extensions" : [
 
     ],
-    "interpreters": [
-
-    ]
-  },
-  "METAFONT": {
-    "extensions": [
-      "mf"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "Makefile": {
-    "extensions": [
-
-    ],
-    "filenames": [
+    "filenames" : [
       "Makefile",
       "makefile"
     ],
-    "interpreters": [
+    "interpreters" : [
       "make"
     ]
   },
-  "Markdown": {
-    "extensions": [
+  "Markdown" : {
+    "extensions" : [
       "md",
       "markdown",
       "mkd",
       "mdown",
       "mkdn"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "PHP": {
-    "extensions": [
+  "MATLAB" : {
+    "extensions" : [
+      "m"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "METAFONT" : {
+    "extensions" : [
+      "mf"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "Perl" : {
+    "extensions" : [
+      "pl",
+      "cgi",
+      "pm"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+      "perl"
+    ]
+  },
+  "PHP" : {
+    "extensions" : [
       "php",
       "php3",
       "php4",
@@ -422,161 +447,136 @@
       "phps",
       "phtml"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "php"
     ]
   },
-  "Perl": {
-    "extensions": [
-      "pl",
-      "cgi",
-      "pm"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-      "perl"
-    ]
-  },
-  "Plain Text": {
-    "extensions": [
+  "Plain Text" : {
+    "extensions" : [
       "txt"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Properties": {
-    "extensions": [
+  "Properties" : {
+    "extensions" : [
       "properties"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Python": {
-    "extensions": [
+  "Python" : {
+    "extensions" : [
       "py",
       "pyw",
       "pyi"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "python",
       "python2",
       "python3"
     ]
   },
-  "R": {
-    "extensions": [
+  "R" : {
+    "extensions" : [
       "r"
     ],
-    "filenames": [
+    "filenames" : [
       ".Rprofile"
     ],
-    "interpreters": [
+    "interpreters" : [
       "Rscript"
     ]
   },
-  "Rich Text Format": {
-    "extensions": [
-      "rtf"
+  "reStructuredText" : {
+    "extensions" : [
+      "rest",
+      "rst"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Ruby": {
-    "extensions": [
-      "rb"
+  "Rich Text Format" : {
+    "extensions" : [
+      "rtf"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
+
+    ]
+  },
+  "Ruby" : {
+    "extensions" : [
+      "rb"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
       "ruby"
     ]
   },
-  "Rust": {
-    "extensions": [
+  "Rust" : {
+    "extensions" : [
       "rs",
       "rc"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "rustx"
     ]
   },
-  "SQL": {
-    "extensions": [
-      "sql",
-      "mysql",
-      "pgsql"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "SVG": {
-    "extensions": [
-      "svg"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "Scala": {
-    "extensions": [
+  "Scala" : {
+    "extensions" : [
       "scala"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "scala"
     ]
   },
-  "Scheme": {
-    "extensions": [
+  "Scheme" : {
+    "extensions" : [
       "scm",
       "ss"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
       "tclsh"
     ]
   },
-  "Shell Script": {
-    "extensions": [
+  "Shell Script" : {
+    "extensions" : [
       "sh",
       "command"
     ],
-    "filenames": [
+    "filenames" : [
       ".profile",
       ".bash_profile",
       ".bashrc",
@@ -585,7 +585,7 @@
       ".zshrc",
       ".zshenv"
     ],
-    "interpreters": [
+    "interpreters" : [
       "sh",
       "bash",
       "csh",
@@ -594,64 +594,88 @@
       "zsh"
     ]
   },
-  "Swift": {
-    "extensions": [
+  "SQL" : {
+    "extensions" : [
+      "sql",
+      "mysql",
+      "pgsql"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "SVG" : {
+    "extensions" : [
+      "svg"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "Swift" : {
+    "extensions" : [
       "swift",
       "swiftinterface"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "TOML": {
-    "extensions": [
-      "toml"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "Tcl": {
-    "extensions": [
+  "Tcl" : {
+    "extensions" : [
       "tcl"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Textile": {
-    "extensions": [
+  "Textile" : {
+    "extensions" : [
       "textile"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "Verilog": {
-    "extensions": [
+  "TOML" : {
+    "extensions" : [
+      "toml"
+    ],
+    "filenames" : [
+
+    ],
+    "interpreters" : [
+
+    ]
+  },
+  "Verilog" : {
+    "extensions" : [
       "v"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "XML": {
-    "extensions": [
+  "XML" : {
+    "extensions" : [
       "xml",
       "xsl",
       "xslt",
@@ -659,46 +683,22 @@
       "rlx",
       "rdf"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   },
-  "YAML": {
-    "extensions": [
+  "YAML" : {
+    "extensions" : [
       "yaml",
       "yml"
     ],
-    "filenames": [
+    "filenames" : [
 
     ],
-    "interpreters": [
-
-    ]
-  },
-  "iCalendar": {
-    "extensions": [
-      "ics",
-      "ifb"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
-
-    ]
-  },
-  "reStructuredText": {
-    "extensions": [
-      "rest",
-      "rst"
-    ],
-    "filenames": [
-
-    ],
-    "interpreters": [
+    "interpreters" : [
 
     ]
   }

@@ -82,14 +82,14 @@ extension Editable {
         
         let replacementRange: NSRange = {
             switch location {
-            case .replaceSelection:
-                return textView.selectedRange
-            case .afterSelection:
-                return NSRange(location: textView.selectedRange.upperBound, length: 0)
-            case .replaceAll:
-                return textView.string.nsRange
-            case .afterAll:
-                return NSRange(location: (textView.string as NSString).length, length: 0)
+                case .replaceSelection:
+                    return textView.selectedRange
+                case .afterSelection:
+                    return NSRange(location: textView.selectedRange.upperBound, length: 0)
+                case .replaceAll:
+                    return textView.string.nsRange
+                case .afterAll:
+                    return NSRange(location: (textView.string as NSString).length, length: 0)
             }
         }()
         

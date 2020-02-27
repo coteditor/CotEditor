@@ -85,6 +85,7 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
+    // MARK: Lifecycle
     
     deinit {
         self.orientationObserver?.invalidate()
@@ -282,19 +283,19 @@ final class NavigationBarController: NSViewController {
         // add outline items
         for outlineItem in self.outlineItems {
             switch outlineItem.title {
-            case .separator:
-                menu.addItem(.separator())
+                case .separator:
+                    menu.addItem(.separator())
+                    
+                    // add a dummy item to avoid merging series separators to a single separator
+                    let menuItem = NSMenuItem()
+                    menuItem.view = NSView()
+                    menu.addItem(menuItem)
                 
-                // add a dummy item to avoid merging series separators to a single separator
-                let menuItem = NSMenuItem()
-                menuItem.view = NSView()
-                menu.addItem(menuItem)
-                
-            default:
-                let menuItem = NSMenuItem()
-                menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
-                menuItem.representedObject = outlineItem.range
-                menu.addItem(menuItem)
+                default:
+                    let menuItem = NSMenuItem()
+                    menuItem.attributedTitle = outlineItem.attributedTitle(for: menu.font, attributes: [.paragraphStyle: self.menuItemParagraphStyle])
+                    menuItem.representedObject = outlineItem.range
+                    menu.addItem(menuItem)
             }
         }
         
@@ -332,14 +333,14 @@ final class NavigationBarController: NSViewController {
     private func updateTextOrientation(to orientation: NSLayoutManager.TextLayoutOrientation) {
         
         switch orientation {
-        case .horizontal:
-            self.leftButton?.image = #imageLiteral(resourceName: "UpArrowTemplate")
-            self.rightButton?.image = #imageLiteral(resourceName: "DownArrowTemplate")
-        case .vertical:
-            self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
-            self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
-        @unknown default:
-            fatalError()
+            case .horizontal:
+                self.leftButton?.image = #imageLiteral(resourceName: "UpArrowTemplate")
+                self.rightButton?.image = #imageLiteral(resourceName: "DownArrowTemplate")
+            case .vertical:
+                self.leftButton?.image = #imageLiteral(resourceName: "LeftArrowTemplate")
+                self.rightButton?.image = #imageLiteral(resourceName: "RightArrowTemplate")
+            @unknown default:
+                fatalError()
         }
         
         self.prevButton?.action = #selector(selectPrevItemOfOutlineMenu)

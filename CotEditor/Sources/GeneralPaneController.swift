@@ -68,12 +68,12 @@ final class GeneralPaneController: NSViewController {
         
         // select one of document conflict radio buttons
         switch UserDefaults.standard[.documentConflictOption] {
-        case .ignore:
-            self.ignoreConflictButton?.state = .on
-        case .notify:
-            self.notifyConflictButton?.state = .on
-        case .revert:
-            self.revertConflictButton?.state = .on
+            case .ignore:
+                self.ignoreConflictButton?.state = .on
+            case .notify:
+                self.notifyConflictButton?.state = .on
+            case .revert:
+                self.revertConflictButton?.state = .on
         }
     }
     
@@ -120,14 +120,14 @@ final class GeneralPaneController: NSViewController {
         alert.beginSheetModal(for: self.view.window!) { returnCode in
             
             switch returnCode {
-            case .alertFirstButtonReturn:  // = Restart Now
-                NSApp.relaunch(delay: 2.0)
-            case .alertSecondButtonReturn:  // = Later
-                break  // do nothing
-            case .alertThirdButtonReturn:  // = Cancel
-                UserDefaults.standard[defaultKey].toggle()  // revert state
-            default:
-                preconditionFailure()
+                case .alertFirstButtonReturn:  // = Restart Now
+                    NSApp.relaunch(delay: 2.0)
+                case .alertSecondButtonReturn:  // = Later
+                    break  // do nothing
+                case .alertThirdButtonReturn:  // = Cancel
+                    UserDefaults.standard[defaultKey].toggle()  // revert state
+                default:
+                    preconditionFailure()
             }
         }
     }

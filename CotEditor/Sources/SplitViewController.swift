@@ -70,17 +70,17 @@ final class SplitViewController: NSSplitViewController {
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {
-        case #selector(toggleSplitOrientation):
-            if let item = item as? NSMenuItem {
-                let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
-                item.title = title.localized
-            }
-            return self.splitViewItems.count > 1
+            case #selector(toggleSplitOrientation):
+                if let item = item as? NSMenuItem {
+                    let title = self.splitView.isVertical ? "Stack Editors Horizontally" : "Stack Editors Vertically"
+                    item.title = title.localized
+                }
+                return self.splitViewItems.count > 1
             
-        case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
-            return self.splitViewItems.count > 1
+            case #selector(focusNextSplitTextView), #selector(focusPrevSplitTextView):
+                return self.splitViewItems.count > 1
             
-        default: break
+            default: break
         }
         
         return super.validateUserInterfaceItem(item)
@@ -165,6 +165,7 @@ final class SplitViewController: NSSplitViewController {
     }
     
     
+    
     // MARK: Private Methods
     
     /// move focus to next/previous text view
@@ -177,12 +178,12 @@ final class SplitViewController: NSSplitViewController {
         let focusIndex = self.children.firstIndex(of: self.focusedChild!) ?? 0
         let index: Int = {
             switch focusIndex {
-            case 0 where !onNext:
-                return count - 1
-            case count - 1 where onNext:
-                return 0
-            default:
-                return focusIndex + (onNext ? 1 : -1)
+                case 0 where !onNext:
+                    return count - 1
+                case count - 1 where onNext:
+                    return 0
+                default:
+                    return focusIndex + (onNext ? 1 : -1)
             }
         }()
         

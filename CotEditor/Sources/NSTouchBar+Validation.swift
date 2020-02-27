@@ -53,17 +53,17 @@ extension NSTouchBar {
             guard let item = self.item(forIdentifier: identifier), item.isVisible else { continue }
             
             switch item {
-            case let item as NSCustomTouchBarItem:
-                item.validate()
+                case let item as NSCustomTouchBarItem:
+                    item.validate()
                 
-            case let item as NSGroupTouchBarItem:
-                item.groupTouchBar.validateVisibleItems()
+                case let item as NSGroupTouchBarItem:
+                    item.groupTouchBar.validateVisibleItems()
                 
-            case let item as NSPopoverTouchBarItem:
-                item.popoverTouchBar.validateVisibleItems()
-                item.pressAndHoldTouchBar?.validateVisibleItems()
+                case let item as NSPopoverTouchBarItem:
+                    item.popoverTouchBar.validateVisibleItems()
+                    item.pressAndHoldTouchBar?.validateVisibleItems()
                 
-            default: break
+                default: break
             }
         }
     }
@@ -157,23 +157,23 @@ private final class TouchBarValidator {
         //        cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
         let isLazy: Bool
         switch event.type {
-        case .leftMouseDragged,
-             .rightMouseDragged,
-             .otherMouseDragged,
-             .mouseEntered,
-             .mouseExited,
-             .scrollWheel,
-             .cursorUpdate,
-             .keyDown,
-             .mouseMoved:
-            return
+            case .leftMouseDragged,
+                 .rightMouseDragged,
+                 .otherMouseDragged,
+                 .mouseEntered,
+                 .mouseExited,
+                 .scrollWheel,
+                 .cursorUpdate,
+                 .keyDown,
+                 .mouseMoved:
+                return
             
-        case .keyUp,
-             .flagsChanged:
-            isLazy = true
+            case .keyUp,
+                 .flagsChanged:
+                isLazy = true
             
-        default:
-            isLazy = false
+            default:
+                isLazy = false
         }
         
         // schedule validation with delay
@@ -212,11 +212,11 @@ extension NSCustomTouchBarItem: NSValidatedUserInterfaceItem {
             else { return }
         
         switch validator {
-        case let validator as TouchBarItemValidations:
-            control.isEnabled = validator.validateTouchBarItem(self)
-        case let validator as NSUserInterfaceValidations:
-            control.isEnabled = validator.validateUserInterfaceItem(self)
-        default: break
+            case let validator as TouchBarItemValidations:
+                control.isEnabled = validator.validateTouchBarItem(self)
+            case let validator as NSUserInterfaceValidations:
+                control.isEnabled = validator.validateUserInterfaceItem(self)
+            default: break
         }
     }
     

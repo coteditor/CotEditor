@@ -98,27 +98,27 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         let result = self.results[row]
         
         switch tableColumn?.identifier {
-        case NSUserInterfaceItemIdentifier("line"):
-            return result.lineNumber
+            case NSUserInterfaceItemIdentifier("line"):
+                return result.lineNumber
             
-        default:
-            let lineAttrString = result.attributedLineString.mutable
-            
-            // truncate
-            let leadingOverflow = result.inlineRange.location - maxLeftMargin
-            if leadingOverflow > 0 {
-                lineAttrString.replaceCharacters(in: NSRange(..<leadingOverflow), with: "…")
-            }
-            if lineAttrString.length > maxMatchedStringLength {
-                lineAttrString.replaceCharacters(in: NSRange(maxMatchedStringLength..<lineAttrString.length), with: "…")
-            }
-            
-            // truncate tail
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.lineBreakMode = .byTruncatingTail
-            lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.range)
-            
-            return lineAttrString
+            default:
+                let lineAttrString = result.attributedLineString.mutable
+                
+                // truncate
+                let leadingOverflow = result.inlineRange.location - maxLeftMargin
+                if leadingOverflow > 0 {
+                    lineAttrString.replaceCharacters(in: NSRange(..<leadingOverflow), with: "…")
+                }
+                if lineAttrString.length > maxMatchedStringLength {
+                    lineAttrString.replaceCharacters(in: NSRange(maxMatchedStringLength..<lineAttrString.length), with: "…")
+                }
+                
+                // truncate tail
+                let paragraphStyle = NSParagraphStyle.default.mutable
+                paragraphStyle.lineBreakMode = .byTruncatingTail
+                lineAttrString.addAttribute(.paragraphStyle, value: paragraphStyle, range: lineAttrString.range)
+                
+                return lineAttrString
         }
     }
     
@@ -136,13 +136,13 @@ final class FindPanelResultViewController: NSViewController, NSTableViewDataSour
         let documentName = (target.window?.windowController?.document as? NSDocument)?.displayName ?? "Unknown"  // This should never be nil.
         let resultMessage: String = {
             switch results.count {
-            case 0:
-                return String(format: "No strings found in “%@”.".localized, documentName)
-            case 1:
-                return String(format: "Found one string in “%@”.".localized, documentName)
-            default:
-                let countStr = String.localizedStringWithFormat("%li", results.count)  // localize to add thousand separators
-                return String(format: "Found %@ strings in “%@”.".localized, countStr, documentName)
+                case 0:
+                    return String(format: "No strings found in “%@”.".localized, documentName)
+                case 1:
+                    return String(format: "Found one string in “%@”.".localized, documentName)
+                default:
+                    let countStr = String.localizedStringWithFormat("%li", results.count)  // localize to add thousand separators
+                    return String(format: "Found %@ strings in “%@”.".localized, countStr, documentName)
             }
         }()
         self.resultMessage = resultMessage

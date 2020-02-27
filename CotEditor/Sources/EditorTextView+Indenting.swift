@@ -59,12 +59,12 @@ extension EditorTextView: Indenting {
     @IBAction func shift(_ sender: NSSegmentedControl) {
         
         switch sender.selectedSegment {
-        case 0:
-            self.shiftLeft(sender)
-        case 1:
-            self.shiftRight(sender)
-        default:
-            assertionFailure("Segmented shift button must have 2 segments only.")
+            case 0:
+                self.shiftLeft(sender)
+            case 1:
+                self.shiftRight(sender)
+            default:
+                assertionFailure("Segmented shift button must have 2 segments only.")
         }
     }
     
@@ -149,12 +149,12 @@ extension Indenting {
         let lines = lineRanges.map { string.substring(with: $0) }
         let dropCounts = lines.map { line -> Int in
             switch line.first {
-            case "\t":
-                return 1
-            case " ":
-                return line.prefix(self.tabWidth).countPrefix { $0 == " " }
-            default:
-                return 0
+                case "\t":
+                    return 1
+                case " ":
+                    return line.prefix(self.tabWidth).countPrefix { $0 == " " }
+                default:
+                    return 0
             }
         }
         

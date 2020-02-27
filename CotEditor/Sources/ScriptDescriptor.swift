@@ -34,8 +34,8 @@ enum ScriptingFileType: CaseIterable {
     var extensions: [String] {
         
         switch self {
-        case .appleScript: return ["applescript", "scpt", "scptd"]
-        case .unixScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
+            case .appleScript: return ["applescript", "scpt", "scptd"]
+            case .unixScript: return ["sh", "pl", "php", "rb", "py", "js", "swift"]
         }
     }
     
@@ -60,8 +60,8 @@ enum ScriptingEventType: String, Decodable {
     var eventID: AEEventID {
         
         switch self {
-        case .documentOpened: return AEEventID(code: "edod")
-        case .documentSaved: return AEEventID(code: "edsd")
+            case .documentOpened: return AEEventID(code: "edod")
+            case .documentSaved: return AEEventID(code: "edsd")
         }
     }
     
@@ -167,13 +167,13 @@ struct ScriptDescriptor {
     func makeScript() -> Script? {
         
         switch self.type {
-        case .appleScript:
-            switch self.executionModel {
-            case .unrestricted: return AppleScript(descriptor: self)
-            case .persistent: return PersistentOSAScript(descriptor: self)
+            case .appleScript:
+                switch self.executionModel {
+                    case .unrestricted: return AppleScript(descriptor: self)
+                    case .persistent: return PersistentOSAScript(descriptor: self)
             }
-        case .unixScript: return UnixScript(descriptor: self)
-        case .none: return nil
+            case .unixScript: return UnixScript(descriptor: self)
+            case .none: return nil
         }
     }
     

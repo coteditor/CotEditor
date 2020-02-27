@@ -31,7 +31,7 @@ extension NSTextView {
     ///
     /// - Parameters:
     ///   - mode: Parse mode of reguler expression.
-    ///   - enabled: If false, just remove current highlight, otherwise parse and highlight.
+    ///   - enabled: If true, parse and highlight, otherwise just remove the current highlight.
     func highlightAsRegularExpressionPattern(mode: RegularExpressionParseMode, enabled: Bool = true) {
         
         assert(Thread.isMainThread)
@@ -45,15 +45,15 @@ extension NSTextView {
         
         // validate regex pattern
         switch mode {
-        case .search:
-            guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }
-        case .replacement:
-            break
+            case .search:
+                guard (try? NSRegularExpression(pattern: self.string)) != nil else { return }
+            case .replacement:
+                break
         }
         
         // highlight
         for type in RegularExpressionSyntaxType.priority.reversed() {
-            for range in type.ranges(in: string, mode: mode) {
+            for range in type.ranges(in: self.string, mode: mode) {
                 layoutManager.addTemporaryAttribute(.foregroundColor, value: type.color, forCharacterRange: range)
             }
         }

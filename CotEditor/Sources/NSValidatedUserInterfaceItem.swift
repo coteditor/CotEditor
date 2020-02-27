@@ -41,28 +41,28 @@ extension NSValidatedUserInterfaceItem {
         
         get {
             switch self {
-            case let item as NSMenuItem:
-                return item.toolTip
-            case let item as NSToolbarItem:
-                return item.toolTip
-            case let item as NSCustomTouchBarItem:
-                return item.toolTip
-            default:
-                // -> Only NSMenuItem and NSToolbarItem inherit NSValidatedUserInterfaceItem.
-                preconditionFailure()
+                case let item as NSMenuItem:
+                    return item.toolTip
+                case let item as NSToolbarItem:
+                    return item.toolTip
+                case let item as NSCustomTouchBarItem:
+                    return item.toolTip
+                default:
+                    // -> Only NSMenuItem and NSToolbarItem inherit NSValidatedUserInterfaceItem.
+                    preconditionFailure()
             }
         }
         
         set {
             switch self {
-            case let item as NSMenuItem:
-                item.toolTip = newValue
-            case let item as NSToolbarItem:
-                item.toolTip = newValue
-            case let item as NSCustomTouchBarItem:
-                item.toolTip = newValue
-            default:
-                preconditionFailure()
+                case let item as NSMenuItem:
+                    item.toolTip = newValue
+                case let item as NSToolbarItem:
+                    item.toolTip = newValue
+                case let item as NSCustomTouchBarItem:
+                    item.toolTip = newValue
+                default:
+                    preconditionFailure()
             }
         }
     }

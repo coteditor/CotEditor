@@ -43,6 +43,19 @@ extension StringProtocol where Self.Index == String.Index {
             : self[range.lowerBound...]
     }
     
+    
+    /// workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
+    ///
+    /// cf. <https://bugs.swift.org/browse/SR-11605>
+    subscript(workaround index: Index) -> Element {
+        
+        if #available(macOS 10.15, *) { return self[index] }
+        
+        return (index == self.endIndex)
+            ? self[self.endIndex]
+            : self[index]
+    }
+    
 }
 
 

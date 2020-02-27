@@ -167,36 +167,36 @@ final class MenuKeyBindingManager: KeyBindingManager {
         // specific tags
         if let tag = MainMenu.MenuItemTag(rawValue: menuItem.tag) {
             switch tag {
-            case .services,
-                 .recentDocumentsDirectory,
-                 .sharingService,
-                 .scriptDirectory:
-                return false
+                case .services,
+                     .recentDocumentsDirectory,
+                     .sharingService,
+                     .scriptDirectory:
+                    return false
             }
         }
         
         // specific actions
         switch menuItem.action {
-        case #selector(EncodingHolder.changeEncoding),
-             #selector(SyntaxHolder.changeSyntaxStyle),
-             #selector(ThemeHolder.changeTheme),
-             #selector(Document.changeLineEnding(_:)),
-             #selector(DocumentViewController.changeTabWidth),
-             #selector(ScriptManager.launchScript),
-             #selector(AppDelegate.openHelpAnchor),
-             #selector(NSWindow.makeKeyAndOrderFront),
-             #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
-            return false
+            case #selector(EncodingHolder.changeEncoding),
+                 #selector(SyntaxHolder.changeSyntaxStyle),
+                 #selector(ThemeHolder.changeTheme),
+                 #selector(Document.changeLineEnding(_:)),
+                 #selector(DocumentViewController.changeTabWidth),
+                 #selector(ScriptManager.launchScript),
+                 #selector(AppDelegate.openHelpAnchor),
+                 #selector(NSWindow.makeKeyAndOrderFront),
+                 #selector(NSApplication.orderFrontCharacterPalette):  // = "Emoji & Symbols"
+                return false
             
-        // window tabbing actions
-        // -> Because they cannot be set correctly.
-        case #selector(NSWindow.selectNextTab),
-             #selector(NSWindow.selectPreviousTab),
-             #selector(NSWindow.moveTabToNewWindow),
-             #selector(NSWindow.mergeAllWindows):
-            return false
+            // window tabbing actions
+            // -> Because they cannot be set correctly.
+            case #selector(NSWindow.selectNextTab),
+                 #selector(NSWindow.selectPreviousTab),
+                 #selector(NSWindow.moveTabToNewWindow),
+                 #selector(NSWindow.mergeAllWindows):
+                return false
             
-        default: break
+            default: break
         }
         
         return true

@@ -30,6 +30,16 @@ final class WebDocumentViewController: NSViewController {
     
     // MARK: View Controller Methods
     
+    override var representedObject: Any? {
+        
+        didSet {
+            guard let url = representedObject as? URL else { return }
+            
+            self.webView?.loadFileURL(url, allowingReadAccessTo: url)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -48,20 +58,10 @@ final class WebDocumentViewController: NSViewController {
         
         super.viewWillAppear()
         
-        assert(self.view.window != nil)
-        
         // set window here since `self.view.window` is still nil in `viewDidLoad()`.
+        assert(self.view.window != nil)
         self.view.window?.backgroundColor = .textBackgroundColor
         self.view.window?.bind(.title, to: self.webView!, withKeyPath: #keyPath(title))
-        
-        guard
-            let webView = self.webView,
-            let url = self.representedObject as? URL
-            else { return assertionFailure() }
-        
-        if webView.url != url {
-            webView.loadFileURL(url, allowingReadAccessTo: url)
-        }
     }
     
     
