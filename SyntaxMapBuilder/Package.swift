@@ -5,13 +5,13 @@ import PackageDescription
 let package = Package(
     name: "SyntaxMapBuilder",
     platforms: [
-        .macOS("10.15"),
+        .macOS(.v10_14),
     ],
     products: [
         .executable(name: "SyntaxMapBuilder", targets: ["SyntaxMapBuilder"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/jpsim/Yams", from: "2.0.0"),
+        .package(url: "https://github.com/jpsim/Yams", from: Version(2, 0, 0)),
     ],
     targets: [
         .target(name: "SyntaxMapBuilder", dependencies: ["Yams"]),
