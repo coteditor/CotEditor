@@ -25,7 +25,7 @@
 <article>
 <header>
     <h1>CotEditor 3.8.11</h1>
-    <p>release: <time>2020-02-27</time></p>
+    <p>release: <time>2020-02-28</time></p>
 </header>
 
 
@@ -47,6 +47,7 @@
 
 <ul>
 	<li>Fix an issue where a document window zombie appeared when the window was closed while detached character info popovers remain.</li>
+	<li>Fix an issue where a blank progress dialog for a long syntax highlighting could rarely remain when the document is updated while parsing.</li>
 	<li>Fix an issue where the <code>\x{hhhh}</code>, <code>\0ooo</code>, and  <code>\$</code> style character expressions in the regular expression pattern were not syntax-highlighted correctly.</li>
 	<li>Fix an issue where the application could rarely crash when printing a document.</li>
 	<li>Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.</li>

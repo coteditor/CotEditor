@@ -17,6 +17,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where a document window zombie appeared when the window was closed while detached character info popovers remain.
+- Fix an issue where a blank progress dialog for a long syntax highlighting could rarely remain when the document is updated while parsing.
 - Fix an issue where the `\x{hhhh}`, `\0ooo`, and  `\$`  style character expressions in the regular expression pattern were not syntax-highlighted correctly.
 - Fix an issue where the application could rarely crash when printing a document.
 - Fix an issue where the application could rarely crash when opening a document under macOS 10.14 and earlier.
