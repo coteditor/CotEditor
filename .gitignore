@@ -9,7 +9,6 @@ default.profraw
 
 # Swift Package Manager
 .build/
-.swiftpm/
 
 # Carthage
 Carthage/Checkouts
