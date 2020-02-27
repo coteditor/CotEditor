@@ -23,3 +23,8 @@ jobs:
       run: |
         set -o pipefail
         xcodebuild test -workspace CotEditor.xcworkspace -scheme CotEditor CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -c
+    - name: Unit Test for SyntaxMapBuilder
+      run: |
+        cd SyntaxMapBuilder
+        swift build
+        swift test
