@@ -169,19 +169,17 @@ final class SyntaxManager: SettingFileManaging {
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
-        // sanitize -> remove empty mapping dicts
-        for key in SyntaxKey.mappingKeys {
-            (settingDictionary[key.rawValue] as? NSMutableArray)?.remove([:])
+        // sort items
+        let beginStringSort = NSSortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
+                                               selector: #selector(NSString.caseInsensitiveCompare))
+        for key in SyntaxType.allCases {
+            (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [beginStringSort])
         }
         
-        // sort
-        let descriptors = [NSSortDescriptor(key: SyntaxDefinitionKey.beginString.rawValue, ascending: true,
-                                            selector: #selector(NSString.caseInsensitiveCompare)),
-                           NSSortDescriptor(key: SyntaxDefinitionKey.keyString.rawValue, ascending: true,
-                                            selector: #selector(NSString.caseInsensitiveCompare))]
-        let syntaxDictKeys = SyntaxType.allCases.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue, SyntaxKey.completions.rawValue]
-        for key in syntaxDictKeys {
-            (settingDictionary[key] as? NSMutableArray)?.sort(using: descriptors)
+        let keyStringSort = NSSortDescriptor(key: SyntaxDefinitionKey.keyString.rawValue, ascending: true,
+                                             selector: #selector(NSString.caseInsensitiveCompare))
+        for key in [SyntaxKey.outlineMenu, .completions] {
+            (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [keyStringSort])
         }
         
         // save
