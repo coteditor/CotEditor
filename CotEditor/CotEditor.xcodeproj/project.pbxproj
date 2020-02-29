@@ -655,8 +655,6 @@
 		2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F171D17468B00D60A32 /* EditorSplitView.swift */; };
 		2AE52F1B1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */; };
 		2AE52F1C1D17493B00D60A32 /* FilePermissionsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */; };
-		2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */; };
-		2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */; };
 		2AE52F281D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE52F291D176B8500D60A32 /* FindPanelSplitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */; };
 		2AE73EC8203520E000D8903B /* Acknowledgments.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73EC6203520E000D8903B /* Acknowledgments.css */; };
@@ -1405,7 +1403,6 @@
 		2AE439D720A1280800EED807 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/MultipleReplacementPanel.strings; sourceTree = "<group>"; };
 		2AE52F171D17468B00D60A32 /* EditorSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorSplitView.swift; sourceTree = "<group>"; };
 		2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionsFormatter.swift; sourceTree = "<group>"; };
-		2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexColorTransformer.swift; sourceTree = "<group>"; };
 		2AE52F271D176B8500D60A32 /* FindPanelSplitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPanelSplitView.swift; sourceTree = "<group>"; };
 		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
 		2AE73ECB2035223100D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Credits.css; sourceTree = "<group>"; };
@@ -1634,8 +1631,8 @@
 				2A1125C823F8C096006A1DB2 /* AsynchronousOperation.swift */,
 				2A38FAFC1D1C67050032231A /* DraggableArrayController.swift */,
 				2A657D1C2033ED6B00C2611C /* DefaultInitializable.swift */,
-				2AE52F1E1D17533900D60A32 /* HexColorTransformer.swift */,
-				2A41CB3A1C39068200F9122B /* Formatters */,
+				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
+				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1944,15 +1941,6 @@
 			);
 			name = "UI Tests";
 			path = "../UI Tests";
-			sourceTree = "<group>";
-		};
-		2A41CB3A1C39068200F9122B /* Formatters */ = {
-			isa = PBXGroup;
-			children = (
-				2A1814B721CF8BD500602214 /* RegularExpressionFormatter.swift */,
-				2AE52F1A1D17493B00D60A32 /* FilePermissionsFormatter.swift */,
-			);
-			name = Formatters;
 			sourceTree = "<group>";
 		};
 		2A42825218FCC1C100386899 /* Text View */ = {
@@ -2899,7 +2887,6 @@
 				2A78BFA81D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2A9082E61D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A5D13171D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
-				2AE52F201D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2A5D13141D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A2948B22197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,
@@ -3197,7 +3184,6 @@
 				2A78BFA71D1B05FB00A583D2 /* GeneralPaneController.swift in Sources */,
 				2A9082E51D324D9A00228F50 /* Geometry.swift in Sources */,
 				2A5D13161D1EF5AA00D38E6A /* GoToLineViewController.swift in Sources */,
-				2AE52F1F1D17533900D60A32 /* HexColorTransformer.swift in Sources */,
 				2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */,
 				2A5D13131D1EE8FF00D38E6A /* HUDController.swift in Sources */,
 				2A2948B12197FCE0001DCE1E /* ImageRadioButton.swift in Sources */,

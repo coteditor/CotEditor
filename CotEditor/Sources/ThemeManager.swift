@@ -39,8 +39,6 @@ final class ThemeManager: SettingFileManaging {
     
     typealias Setting = Theme
     
-    typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
-    
     
     // MARK: Public Properties
     
@@ -107,28 +105,22 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// load theme dict in which objects are property list ready.
-    func settingDictionary(name: String) -> ThemeDictionary? {
-        
-        guard let themeURL = self.urlForUsedSetting(name: name) else { return nil }
-        
-        return try? self.loadSettingDictionary(at: themeURL)
-    }
-    
-    
     /// save setting file
-    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
+    func save(setting: Setting, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted]
+        
         let fileURL = self.preparedURLForUserSetting(name: name)
-        let data = try JSONSerialization.data(withJSONObject: settingDictionary, options: .prettyPrinted)
+        let data = try encoder.encode(setting)
         
         try data.write(to: fileURL, options: .atomic)
         
         // invalidate current cache
-        self.cachedSettings[name] = nil
+        self.cachedSettings[name] = setting
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -144,7 +136,7 @@ final class ThemeManager: SettingFileManaging {
         // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: "Untitled".localized)
         
-        try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
+        try self.save(setting: Setting(), name: name) {
             completionHandler(name)
         }
     }
@@ -226,32 +218,6 @@ final class ThemeManager: SettingFileManaging {
             case .dark:
                 return true
         }
-    }
-    
-    
-    /// Load ThemeDictionary from a file at the URL.
-    ///
-    /// - Parameter fileURL: URL to a setting file.
-    /// - Throws: `CocoaError`
-    private func loadSettingDictionary(at fileURL: URL) throws -> ThemeDictionary {
-        
-        let data = try Data(contentsOf: fileURL)
-        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-        
-        guard let themeDictionry = json as? ThemeDictionary else {
-            throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
-        }
-        
-        return themeDictionry
-    }
-    
-    
-    /// plain setting to be based on when creating a new one
-    private var blankSettingDictionary: ThemeDictionary {
-        
-        let url = self.urlForBundledSetting(name: "_Plain")!
-        
-        return try! self.loadSettingDictionary(at: url)
     }
     
 }

@@ -288,10 +288,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // ThemeViewControllerDelegate
     
     /// theme did update
-    func didUpdate(theme: ThemeManager.ThemeDictionary) {
+    func didUpdate(theme: Theme) {
         
         do {
-            try ThemeManager.shared.save(settingDictionary: theme, name: self.selectedThemeName)
+            try ThemeManager.shared.save(setting: theme, name: self.selectedThemeName)
         } catch {
             print(error.localizedDescription)
         }
@@ -306,7 +306,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         guard notification.object as? NSTableView == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
-        let themeDict = ThemeManager.shared.settingDictionary(name: themeName)
+        let theme = ThemeManager.shared.setting(name: themeName)
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
@@ -329,7 +329,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             }
         }
         
-        self.themeViewController?.theme = themeDict
+        self.themeViewController?.theme = theme
         self.themeViewController?.isBundled = isBundled
         self.themeViewController?.view.setAccessibilityLabel(themeName)
         
@@ -579,7 +579,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private func themeDidUpdate(_ notification: Notification) {
         
         guard
-            let bundledTheme = ThemeManager.shared.settingDictionary(name: self.selectedThemeName),
+            let bundledTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
             let newTheme = self.themeViewController?.theme else { return }
         
         if bundledTheme == newTheme {

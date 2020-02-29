@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="WBM-EY-ENr">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -846,11 +846,7 @@
                                 <rect key="frame" x="95" y="220" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.insertionPoint.color" id="vH4-wy-eke">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.insertionPoint.color" id="tbd-Yb-mvt"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TKF-33-73c">
@@ -877,55 +873,35 @@
                                 </constraints>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.text.color" id="VkF-4c-phg">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.text.color" id="cGk-3E-ik7"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="GF9-4S-gLx">
                                 <rect key="frame" x="95" y="194" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.invisibles.color" id="Qbx-2r-tNH">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.invisibles.color" id="VMj-de-rNq"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="UgX-sS-Fcp">
                                 <rect key="frame" x="286" y="246" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.background.color" id="I60-dP-2K3">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.background.color" id="oGX-n3-HQR"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="gmI-f2-jT4">
                                 <rect key="frame" x="286" y="220" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.lineHighlight.color" id="fsj-I9-Uv1">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.lineHighlight.color" id="Byo-xO-Sg6"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="lph-a7-WhS" customClass="SelectionColorWell" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="286" y="194" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.color" id="5Nj-cg-EHy">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.selection.color" id="lBO-Am-0Hn"/>
                                     <binding destination="fug-yh-kPG" name="enabled" keyPath="selection.selection.usesSystemSetting" id="ImN-5g-xxj">
                                         <dictionary key="options">
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
@@ -969,22 +945,14 @@
                                 <rect key="frame" x="286" y="107" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.numbers.color" id="560-Ql-hOc">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.numbers.color" id="VyB-RY-qAf"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="5Xc-uU-ZVc">
                                 <rect key="frame" x="286" y="55" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.characters.color" id="KHG-Zx-Peq">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.characters.color" id="Bd9-mj-PC5"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ITJ-dM-gUs">
@@ -999,55 +967,35 @@
                                 <rect key="frame" x="286" y="81" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.strings.color" id="Pvk-D8-Yi6">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.strings.color" id="ZMy-sF-XEN"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="i2u-jb-gDm">
                                 <rect key="frame" x="286" y="29" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.comments.color" id="Ay1-uL-Hn6">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.comments.color" id="lvX-D6-lF7"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="mOJ-0i-G0x">
                                 <rect key="frame" x="95" y="133" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.keywords.color" id="0cn-Br-8UK">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.keywords.color" id="oPd-9r-UG5"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="FcM-kz-UdO">
                                 <rect key="frame" x="95" y="107" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.commands.color" id="M2n-wg-hJ4">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.commands.color" id="jXB-No-31B"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="3oY-wN-WmV">
                                 <rect key="frame" x="95" y="55" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.attributes.color" id="XLy-Hs-WXh">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.attributes.color" id="CGh-mo-nkX"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8QY-g0-UOv">
@@ -1062,22 +1010,14 @@
                                 <rect key="frame" x="95" y="81" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.types.color" id="ZMf-4b-k6z">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.types.color" id="8Nt-M2-xdg"/>
                                 </connections>
                             </colorWell>
                             <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="TM9-hz-gN9">
                                 <rect key="frame" x="95" y="29" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.variables.color" id="kPL-SC-Xhs">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.variables.color" id="Zyq-0d-YhR"/>
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KeE-qE-PVX">
@@ -1092,11 +1032,7 @@
                                 <rect key="frame" x="286" y="133" width="44" height="22"/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
-                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.values.color" id="VSw-7L-Seh">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">HexColorTransformer</string>
-                                        </dictionary>
-                                    </binding>
+                                    <binding destination="fug-yh-kPG" name="value" keyPath="selection.values.color" id="R51-9n-OL0"/>
                                 </connections>
                             </colorWell>
                             <button horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4bE-Ej-Eq1">
@@ -1245,7 +1181,7 @@
                         </constraints>
                     </view>
                 </viewController>
-                <objectController id="fug-yh-kPG" userLabel="Theme Controller">
+                <objectController objectClassName="CotEditor.Theme" id="fug-yh-kPG" userLabel="Theme Controller">
                     <connections>
                         <binding destination="z57-dm-qGO" name="contentObject" keyPath="theme" id="MEV-a1-Hdr"/>
                     </connections>
@@ -1371,7 +1307,7 @@
                                             <string key="NSValueTransformerName">NSNegateBoolean</string>
                                         </dictionary>
                                     </binding>
-                                    <binding destination="0m3-ka-vdo" name="value" keyPath="selection.description" id="r9S-sB-zfs">
+                                    <binding destination="0m3-ka-vdo" name="value" keyPath="selection.comment" id="rpX-lj-tHS">
                                         <dictionary key="options">
                                             <string key="NSNullPlaceholder">Not defined</string>
                                         </dictionary>
@@ -1429,9 +1365,9 @@
                     </view>
                 </viewController>
                 <customObject id="Oyw-bQ-ntc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <objectController id="0m3-ka-vdo" userLabel="Metadata Controller">
+                <objectController objectClassName="CotEditor.Metadata" id="0m3-ka-vdo" userLabel="Metadata Controller">
                     <connections>
-                        <binding destination="I23-rk-sjA" name="contentObject" keyPath="representedObject.metadata" id="H6U-0Q-Q7r"/>
+                        <binding destination="I23-rk-sjA" name="contentObject" keyPath="representedObject" id="hNn-At-yEF"/>
                     </connections>
                 </objectController>
             </objects>

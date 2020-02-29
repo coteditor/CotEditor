@@ -998,10 +998,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         assert(Thread.isMainThread)
         
-        guard
-            let theme = ThemeManager.shared.setting(name: name),
-            theme != self.theme
-            else { return }
+        guard let theme = ThemeManager.shared.setting(name: name) else { return }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme
