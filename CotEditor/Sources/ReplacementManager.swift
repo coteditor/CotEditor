@@ -88,7 +88,7 @@ final class ReplacementManager: SettingFileManaging {
         
         let name = self.savableSettingName(for: "Untitled".localized)
         
-        try self.save(setting: MultipleReplacement(), name: name) {
+        try self.save(setting: Setting(), name: name) {
             completionHandler(name)
         }
     }
@@ -103,7 +103,7 @@ final class ReplacementManager: SettingFileManaging {
         let decoder = JSONDecoder()
         let data = try Data(contentsOf: fileURL)
         
-        return try decoder.decode(MultipleReplacement.self, from: data)
+        return try decoder.decode(Setting.self, from: data)
     }
     
     

@@ -64,7 +64,6 @@ final class ThemeManager: SettingFileManaging {
         
         // cache bundled setting names
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: Self.directoryName)!
-            .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
             .sorted(options: [.localized, .caseInsensitive])
         
@@ -112,14 +111,13 @@ final class ThemeManager: SettingFileManaging {
         try self.prepareUserSettingDirectory()
         
         let encoder = JSONEncoder()
-        encoder.outputFormatting = [.prettyPrinted]
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         
-        let fileURL = self.preparedURLForUserSetting(name: name)
         let data = try encoder.encode(setting)
+        let fileURL = self.preparedURLForUserSetting(name: name)
         
         try data.write(to: fileURL, options: .atomic)
         
-        // invalidate current cache
         self.cachedSettings[name] = setting
         
         self.updateCache { [weak self] in
@@ -133,7 +131,6 @@ final class ThemeManager: SettingFileManaging {
     /// create a new untitled setting
     func createUntitledSetting(completionHandler: @escaping ((_ settingName: String) -> Void) = { _ in }) throws {
         
-        // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: "Untitled".localized)
         
         try self.save(setting: Setting(), name: name) {
