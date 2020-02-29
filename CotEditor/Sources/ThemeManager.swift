@@ -68,7 +68,7 @@ final class ThemeManager: SettingFileManaging {
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: Self.directoryName)!
             .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
         
         // cache user setting names
         self.checkUserSettings()
@@ -196,7 +196,7 @@ final class ThemeManager: SettingFileManaging {
         // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
             .map { self.settingName(from: $0) }
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
         
         self.settingNames = (self.bundledSettingNames + userSettingNames).unique
         

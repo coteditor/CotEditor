@@ -114,7 +114,7 @@ final class ReplacementManager: SettingFileManaging {
         self.settingNames = self.userSettingFileURLs
             .filter { (try? self.loadSetting(at: $0)) != nil }  // just try loading but not store
             .map { self.settingName(from: $0) }
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
     }
     
 }

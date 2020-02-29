@@ -295,7 +295,7 @@ private extension String {
         let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
             .joined(separator: "\n")
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
