@@ -186,7 +186,7 @@ final class ThemeManager: SettingFileManaging {
     /// load setting from the file at given URL
     func loadSetting(at fileURL: URL) throws -> Setting {
         
-        return try Theme(contentsOf: fileURL)
+        return try Theme.theme(contentsOf: fileURL)
     }
     
     

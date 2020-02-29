@@ -33,43 +33,34 @@ protocol Themable: AnyObject {
 }
 
 
-struct Theme: Equatable, Codable {
+
+final class Theme: NSObject {
     
-    struct Style: Equatable {
+    final class Style: NSObject {
         
-        var color: NSColor
+        @objc dynamic var color: NSColor
+        
+        fileprivate static let invalidColor = NSColor.gray.usingColorSpaceName(.calibratedRGB)!
+        
+        
+        init(color: NSColor) {
+            
+            self.color = color
+        }
     }
     
     
-    struct SelectionStyle: Equatable {
+    final class SelectionStyle: NSObject {
         
-        var color: NSColor
-        var usesSystemSetting: Bool
-    }
-    
-    
-    
-    enum CodingKeys: String, CodingKey {
+        @objc dynamic var color: NSColor
+        @objc dynamic var usesSystemSetting: Bool
         
-        case text
-        case background
-        case invisibles
-        case selection
-        case insertionPoint
-        case lineHighlight
         
-        case keywords
-        case commands
-        case types
-        case attributes
-        case variables
-        case values
-        case numbers
-        case strings
-        case characters
-        case comments
-        
-        case metadata
+        init(color: NSColor, usesSystemSetting: Bool = false) {
+            
+            self.color = color
+            self.usesSystemSetting = usesSystemSetting
+        }
     }
     
     
@@ -80,23 +71,23 @@ struct Theme: Equatable, Codable {
     var name: String?
     
     // basic colors
-    var text: Style
-    var background: Style
-    var invisibles: Style
-    var selection: SelectionStyle
-    var insertionPoint: Style
-    var lineHighlight: Style
+    @objc dynamic var text: Style
+    @objc dynamic var background: Style
+    @objc dynamic var invisibles: Style
+    @objc dynamic var selection: SelectionStyle
+    @objc dynamic var insertionPoint: Style
+    @objc dynamic var lineHighlight: Style
     
-    var keywords: Style
-    var commands: Style
-    var types: Style
-    var attributes: Style
-    var variables: Style
-    var values: Style
-    var numbers: Style
-    var strings: Style
-    var characters: Style
-    var comments: Style
+    @objc dynamic var keywords: Style
+    @objc dynamic var commands: Style
+    @objc dynamic var types: Style
+    @objc dynamic var attributes: Style
+    @objc dynamic var variables: Style
+    @objc dynamic var values: Style
+    @objc dynamic var numbers: Style
+    @objc dynamic var strings: Style
+    @objc dynamic var characters: Style
+    @objc dynamic var comments: Style
     
     var metadata: Metadata?
     
@@ -105,15 +96,40 @@ struct Theme: Equatable, Codable {
     // MARK: -
     // MARK: Lifecycle
     
-    init(contentsOf fileURL: URL) throws {
+    init(name: String? = nil) {
+        
+        self.name = name
+        
+        self.text = Style(color: .textColor)
+        self.background = Style(color: .textBackgroundColor)
+        self.invisibles = Style(color: .tertiaryLabelColor)
+        self.selection = SelectionStyle(color: .selectedTextBackgroundColor, usesSystemSetting: true)
+        self.insertionPoint = Style(color: .textColor)
+        self.lineHighlight = Style(color: .quaternaryLabelColor)
+        
+        self.keywords = Style(color: .gray)
+        self.commands = Style(color: .gray)
+        self.types = Style(color: .gray)
+        self.attributes = Style(color: .gray)
+        self.variables = Style(color: .gray)
+        self.values = Style(color: .gray)
+        self.numbers = Style(color: .gray)
+        self.strings = Style(color: .gray)
+        self.characters = Style(color: .gray)
+        self.comments = Style(color: .gray)
+    }
+    
+    
+    static func theme(contentsOf fileURL: URL) throws -> Theme {
         
         let data = try Data(contentsOf: fileURL)
         let decoder = JSONDecoder()
         
-        self = try decoder.decode(Theme.self, from: data)
-        
+        let theme = try decoder.decode(Theme.self, from: data)
+        theme.name = fileURL.deletingPathExtension().lastPathComponent.immutable
         // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
-        self.name = fileURL.deletingPathExtension().lastPathComponent.immutable
+        
+        return theme
     }
     
     
@@ -158,9 +174,36 @@ struct Theme: Equatable, Codable {
 
 // MARK: - Codable
 
-extension Theme.Style: Codable {
+extension Theme: Codable {
     
-    fileprivate static let invalidColor = NSColor.gray.usingColorSpace(.genericRGB)!
+    private enum CodingKeys: String, CodingKey {
+        
+        case text
+        case background
+        case invisibles
+        case selection
+        case insertionPoint
+        case lineHighlight
+        
+        case keywords
+        case commands
+        case types
+        case attributes
+        case variables
+        case values
+        case numbers
+        case strings
+        case characters
+        case comments
+        
+        case metadata
+    }
+    
+}
+
+
+
+extension Theme.Style: Codable {
     
     private enum CodingKeys: String, CodingKey {
         
@@ -168,12 +211,14 @@ extension Theme.Style: Codable {
     }
     
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let colorCode = try container.decode(String.self, forKey: .color)
-        self.color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
+        let color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
+        
+        self.init(color: color)
     }
     
     
@@ -190,21 +235,23 @@ extension Theme.Style: Codable {
 
 extension Theme.SelectionStyle: Codable {
     
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         
         case color
         case usesSystemSetting
     }
     
     
-    init(from decoder: Decoder) throws {
+    convenience init(from decoder: Decoder) throws {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         let colorCode = try container.decode(String.self, forKey: .color)
-        self.color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
+        let color = NSColor(colorCode: colorCode) ?? Theme.Style.invalidColor
         
-        self.usesSystemSetting = try container.decodeIfPresent(Bool.self, forKey: .usesSystemSetting) ?? false
+        let usesSystemSetting = try container.decodeIfPresent(Bool.self, forKey: .usesSystemSetting) ?? false
+        
+        self.init(color: color, usesSystemSetting: usesSystemSetting)
     }
     
     
