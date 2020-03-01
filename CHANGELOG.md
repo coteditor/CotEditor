@@ -5,6 +5,10 @@ Change Log
 3.8.12 (unreleased)
 --------------------------
 
+### Improvements
+
+- Include the last line break to line count.
+
 
 
 3.8.11 (398)
