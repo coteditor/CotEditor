@@ -91,13 +91,13 @@ final class StringExtensionsTests: XCTestCase {
         
         XCTAssertEqual("".numberOfLines, 0)
         XCTAssertEqual("a".numberOfLines, 1)
-        XCTAssertEqual("\n".numberOfLines, 1)
-        XCTAssertEqual("\n\n".numberOfLines, 2)
+        XCTAssertEqual("\n".numberOfLines, 2)
+        XCTAssertEqual("\n\n".numberOfLines, 3)
         XCTAssertEqual("\u{feff}".numberOfLines, 1)
         XCTAssertEqual("ab\r\ncd".numberOfLines, 2)
         
         let testString = "a\nb c\n\n"
-        XCTAssertEqual(testString.numberOfLines, 3)
+        XCTAssertEqual(testString.numberOfLines, 4)
         XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0), includingLastLineEnding: true), 0)   // ""
         XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1), includingLastLineEnding: true), 1)   // "a"
         XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includingLastLineEnding: true), 2)   // "a\n"

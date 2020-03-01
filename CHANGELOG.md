@@ -7,6 +7,15 @@ Change Log
 
 ### Improvements
 
+- Include the last line break to line count.
+
+
+
+3.8.11 (398)
+--------------------------
+
+### Improvements
+
 - Avoid showing the rainbow cursor while parsing URLs in the editor with large contents when the “link URLs in document” option is enabled.
 - Improve “Snakecase” and “Camelcase” commands to handle uppercase letters with accent properly.
 - Improve message for syntax highlighting progress.
