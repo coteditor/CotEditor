@@ -11,6 +11,11 @@ Change Log
 - Update “Kotlin” syntax style.
 
 
+### Fixes
+
+- Fix an issue where the horizontal scrollbar didn't appear by unwrapping lines if the document consists of a single very long line.
+
+
 
 3.8.11 (398)
 --------------------------
