@@ -25,9 +25,9 @@
 
 import Foundation
 
-extension StringProtocol where Self.Index == String.Index {
+extension StringProtocol where Index == String.Index {
     
-    /// number of words in the whole string
+    /// The number of words in the whole string.
     var numberOfWords: Int {
         
         var count = 0
@@ -39,15 +39,18 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// number of lines in the whole string including the last new line character
+    /// The number of lines in the whole string including the last blank line.
     var numberOfLines: Int {
         
         return self.numberOfLines()
     }
     
     
-    /// count the number of lines at the character index (1-based).
-    func lineNumber(at index: Self.Index) -> Int {
+    /// Calculate the line number at the given character index (1-based).
+    ///
+    /// - Parameter index: The character index.
+    /// - Returns: The line number.
+    func lineNumber(at index: Index) -> Int {
         
         guard !self.isEmpty, index > self.startIndex else { return 1 }
         
@@ -55,7 +58,10 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// count the number of lines in the range
+    /// Count the number of lines in the given range including the last blank line.
+    ///
+    /// - Parameter range: The character range to count lines, or when `nil`, the entire range.
+    /// - Returns: The number of lines.
     func numberOfLines(in range: Range<String.Index>? = nil) -> Int {
         
         let range = range ?? self.startIndex..<self.endIndex
@@ -91,7 +97,10 @@ extension StringProtocol where Self.Index == String.Index {
 
 extension String {
     
-    /// count the number of lines at the character index (1-based).
+    /// Calculate the line number at the given character index (1-based).
+    ///
+    /// - Parameter location: The UTF16-baesd character index.
+    /// - Returns: The line number.
     func lineNumber(at location: Int) -> Int {
         
         guard !self.isEmpty, location > 0 else { return 1 }
@@ -100,7 +109,10 @@ extension String {
     }
     
     
-    /// count the number of lines in the range
+    /// Count the number of lines in the given range including the last blank line.
+    ///
+    /// - Parameter range: The character range to count lines, or when `nil`, the entire range.
+    /// - Returns: The number of lines.
     func numberOfLines(in range: NSRange? = nil) -> Int {
         
         let range = range ?? self.nsRange
