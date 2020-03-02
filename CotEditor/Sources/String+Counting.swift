@@ -101,11 +101,22 @@ extension String {
     
     
     /// count the number of lines in the range
-    func numberOfLines(in range: NSRange) -> Int {
+    func numberOfLines(in range: NSRange? = nil) -> Int {
         
-        guard let characterRange = Range(range, in: self) else { return 0 }
+        let range = range ?? self.nsRange
         
-        return self.numberOfLines(in: characterRange)
+        if self.isEmpty || range.isEmpty { return 0 }
+        
+        var count = 0
+        (self as NSString).enumerateSubstrings(in: range, options: [.byLines, .substringNotRequired]) { (_, _, _, _) in
+            count += 1
+        }
+        
+        if (self as NSString).character(at: range.upperBound - 1).isNewline == true {
+            count += 1
+        }
+        
+        return count
     }
     
 }
