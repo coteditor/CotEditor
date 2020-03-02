@@ -42,7 +42,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// number of lines in the whole string including the last new line character
     var numberOfLines: Int {
         
-        return self.numberOfLines(includingLastLineEnding: true)
+        return self.numberOfLines()
     }
     
     
@@ -51,12 +51,12 @@ extension StringProtocol where Self.Index == String.Index {
         
         guard !self.isEmpty, index > self.startIndex else { return 1 }
         
-        return self.numberOfLines(in: self.startIndex..<index, includingLastLineEnding: true)
+        return self.numberOfLines(in: self.startIndex..<index)
     }
     
     
     /// count the number of lines in the range
-    func numberOfLines(in range: Range<String.Index>? = nil, includingLastLineEnding: Bool) -> Int {
+    func numberOfLines(in range: Range<String.Index>? = nil) -> Int {
         
         let range = range ?? self.startIndex..<self.endIndex
         
@@ -68,9 +68,6 @@ extension StringProtocol where Self.Index == String.Index {
             let substring = self[workaround: range]
             let count = substring.count { $0.isNewline } + 1
             
-            if !includingLastLineEnding, substring.last?.isNewline == true {
-                return count - 1
-            }
             return count
         }
         
@@ -79,7 +76,7 @@ extension StringProtocol where Self.Index == String.Index {
             count += 1
         }
         
-        if includingLastLineEnding, self[workaround: range].last?.isNewline == true {
+        if self[workaround: range].last?.isNewline == true {
             count += 1
         }
         
@@ -99,16 +96,16 @@ extension String {
         
         guard !self.isEmpty, location > 0 else { return 1 }
         
-        return self.numberOfLines(in: NSRange(location: 0, length: location), includingLastLineEnding: true)
+        return self.numberOfLines(in: NSRange(location: 0, length: location))
     }
     
     
     /// count the number of lines in the range
-    func numberOfLines(in range: NSRange, includingLastLineEnding: Bool) -> Int {
+    func numberOfLines(in range: NSRange) -> Int {
         
         guard let characterRange = Range(range, in: self) else { return 0 }
         
-        return self.numberOfLines(in: characterRange, includingLastLineEnding: includingLastLineEnding)
+        return self.numberOfLines(in: characterRange)
     }
     
 }
