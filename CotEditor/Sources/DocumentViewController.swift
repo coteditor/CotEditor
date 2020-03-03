@@ -248,7 +248,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
                     item.state = (self.theme?.name == item.title) ? .on : .off
-            }
+                }
             
             case #selector(toggleNavigationBar):
                 (item as? NSMenuItem)?.title = self.showsNavigationBar
