@@ -358,11 +358,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.document?.incompatibleCharacterScanner.invalidate()
         
         // parse syntax
-        if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
-            syntaxParser.invalidateOutline()
-            
-            self.invalidateSyntaxHighlight(in: textStorage.editedRange)
-        }
+        self.syntaxParser?.invalidateOutline()
+        self.invalidateSyntaxHighlight(in: textStorage.editedRange)
     }
     
     
