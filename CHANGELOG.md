@@ -14,6 +14,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the horizontal scrollbar didn't appear by unwrapping lines if the document consists of a single very long line.
+- Fix an issue where the application could crash after parsing syntax in a large document to highlight.
 
 
 
