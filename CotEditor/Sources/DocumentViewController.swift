@@ -341,7 +341,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Delegate
     
-    /// text did edit
+    /// text was edited
     override func textStorageDidProcessEditing(_ notification: Notification) {
         
         // ignore if only attributes did change or input text is not yet fixed.
@@ -361,20 +361,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
             syntaxParser.invalidateOutline()
             
-            // perform highlight in the next run loop to give layoutManager time to update temporary attribute
-            let editedRange = textStorage.editedRange
-            DispatchQueue.main.async { [weak self] in
-                if let progress = self?.syntaxHighlightProgress, !progress.isFinished {
-                    // retry syntax highlight if the last highlightAll has not finished yet
-                    progress.cancel()
-                    self?.syntaxHighlightProgress = syntaxParser.highlightAll()
-                    
-                } else {
-                    if let progress = syntaxParser.highlight(around: editedRange) {
-                        self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
-                    }
-                }
-            }
+            self.invalidateSyntaxHighlight(in: textStorage.editedRange)
         }
     }
     
@@ -860,7 +847,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Private Methods
     
-    /// whether at least one of invisible characters is enabled in the preferences currently
+    /// Whether at least one of invisible characters is enabled in the preferences currently.
     private var canActivateShowInvisibles: Bool {
         
         let defaults = UserDefaults.standard
@@ -872,31 +859,47 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
-    /// re-highlight whole content
-    private func invalidateSyntaxHighlight() {
+    /// Invalidate the current syntax highlight.
+    ///
+    /// - Parameter range: The character range to invalidate syntax highlight, or `nil` when entire text is needed to re-highlight.
+    private func invalidateSyntaxHighlight(in range: NSRange? = nil) {
         
-        self.syntaxHighlightProgress?.cancel()
-        self.syntaxHighlightProgress = self.syntaxParser?.highlightAll()
+        var range = range
         
+        // retry entire syntax highlight if the last highlightAll has not finished yet
+        if let progress = self.syntaxHighlightProgress, !progress.isFinished, !progress.isCancelled {
+            progress.cancel()
+            self.syntaxHighlightProgress = nil
+            range = nil
+        }
+        
+        guard let parser = self.syntaxParser, parser.canParse else { return }
+        
+        if let range = range {
+            self.syntaxHighlightProgress = parser.highlight(around: range)
+        } else {
+            self.syntaxHighlightProgress = parser.highlightAll()
+        }
+        
+        // show indicator for a large update
+        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
         guard
             let progress = self.syntaxHighlightProgress,
-            let length = self.textStorage?.length
+            let highlightLength = range?.length ?? self.textStorage?.length,
+            threshold > 0, highlightLength > threshold
             else { return }
         
-        self.presentHighlightIndicator(progress: progress, highlightLength: length)
+        self.presentHighlightIndicator(progress: progress)
     }
     
     
-    /// show highlighting indicator for large string
-    private func presentHighlightIndicator(progress: Progress, highlightLength: Int) {
-        
-        // show indicator only for a large update
-        let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
-        guard threshold > 0, highlightLength > threshold else { return }
+    /// Show syntax highlight progress as sheet.
+    ///
+    /// - Parameter progress: The highlight progress
+    private func presentHighlightIndicator(progress: Progress) {
         
         guard let window = self.view.window else {
-            assertionFailure("Expected window to be non-nil.")
-            return
+            return assertionFailure("Expected window to be non-nil.")
         }
         
         // display indicator first when window is visible
