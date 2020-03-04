@@ -93,6 +93,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private var mouseDownPoint: NSPoint = .zero
     
+    private lazy var overscrollResizingTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.invalidateOverscrollRate() }
+    
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightInstance() }
     
@@ -189,6 +191,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.insertionPointTimer?.cancel()
         self.urlDetectionQueue.cancelAllOperations()
         self.defaultsObservers.forEach { $0.invalidate() }
+        self.overscrollResizingTask.cancel()
         
         if let observer = self.windowOpacityObserver {
             NotificationCenter.default.removeObserver(observer)
@@ -296,6 +299,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.setFrameSize(newSize)
         
+        if !self.inLiveResize {
+            self.overscrollResizingTask.schedule()
+        }
+        
         self.needsUpdateLineHighlight = true
     }
     
@@ -305,7 +312,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.viewDidEndLiveResize()
         
-        self.invalidateOverscrollRate()
+        self.overscrollResizingTask.schedule()
     }
     
     
@@ -1466,7 +1473,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// calculate overscrolling amount
     private func invalidateOverscrollRate() {
         
-        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
+        guard let layoutManager = self.layoutManager as? LayoutManager else { return }
         
         let visibleRect = self.visibleRect
         let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
