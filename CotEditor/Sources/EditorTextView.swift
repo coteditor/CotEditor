@@ -60,7 +60,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var needsUpdateLineHighlight = true  { didSet { self.setNeedsDisplay(self.visibleRect) } }
+    var needsUpdateLineHighlight = true  { didSet { self.needsDisplay = true } }
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
