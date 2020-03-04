@@ -84,7 +84,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private static let textContainerInset = NSSize(width: 0, height: 4)
     
     private let matchingBracketPairs: [BracePair] = BracePair.braces + [.doubleQuotes]
-    private lazy var braceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightMatchingBrace() }
+    private lazy var braceHighlightTask = Debouncer { [weak self] in self?.highlightMatchingBrace() }
     
     private var cursorType: CursorType = .bar
     private var balancesBrackets = false
@@ -93,15 +93,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     
     private var mouseDownPoint: NSPoint = .zero
     
-    private lazy var overscrollResizingTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.invalidateOverscrollRate() }
+    private lazy var overscrollResizingTask = Debouncer { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
-    private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightInstance() }
+    private lazy var instanceHighlightTask = Debouncer { [weak self] in self?.highlightInstance() }
     
     private var needsRecompletion = false
     private var isShowingCompletion = false
     private var particalCompletionWord: String?
-    private lazy var completionTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.performCompletion() }
+    private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     private var windowOpacityObserver: NSObjectProtocol?
@@ -191,7 +191,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.insertionPointTimer?.cancel()
         self.urlDetectionQueue.cancelAllOperations()
         self.defaultsObservers.forEach { $0.invalidate() }
-        self.overscrollResizingTask.cancel()
         
         if let observer = self.windowOpacityObserver {
             NotificationCenter.default.removeObserver(observer)
