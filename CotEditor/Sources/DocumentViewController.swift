@@ -341,13 +341,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Delegate
     
-    /// text was edited
-    override func textStorageDidProcessEditing(_ notification: Notification) {
+    /// text was edited (invoked right **before** notifying layout managers)
+    func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
         
-        // ignore if only attributes did change or input text is not yet fixed.
         guard
-            let textStorage = notification.object as? NSTextStorage,
-            textStorage.editedMask.contains(.editedCharacters),
+            editedMask.contains(.editedCharacters),
             self.focusedTextView?.hasMarkedText() != true
             else { return }
         
@@ -359,7 +357,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // parse syntax
         self.syntaxParser?.invalidateOutline()
-        self.invalidateSyntaxHighlight(in: textStorage.editedRange)
+        self.invalidateSyntaxHighlight(in: editedRange)
     }
     
     
