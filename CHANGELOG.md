@@ -15,6 +15,7 @@ Change Log
 
 - Fix an issue where the horizontal scrollbar didn't appear by unwrapping lines if the document consists of a single very long line.
 - Fix an issue where the application could crash after parsing syntax in a large document to highlight.
+- Fix an issue where the overscrolling was enabled only after window is resized.
 - Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
 - Fix an issue where the find panel could not display the result table when the find string is very long.
 
