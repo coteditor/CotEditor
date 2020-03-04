@@ -96,19 +96,16 @@ extension NSTextView {
             lineNumber += 1
         }
         
-        guard includingExtraLine else { return }
-        
-        let extraLineRect = layoutManager.extraLineFragmentRect
-        
         guard
-            !extraLineRect.isEmpty,
-            (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
+            includingExtraLine,
+            (!layoutManager.isValidGlyphIndex(glyphRangeToDraw.upperBound) || lineNumber == 1),
+            layoutManager.extraLineFragmentTextContainer != nil
             else { return }
         
         let lastLineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
         let isSelected = (selectedRanges.last?.location == string.length)
         
-        body(.new(lastLineNumber, isSelected), extraLineRect)
+        body(.new(lastLineNumber, isSelected), layoutManager.extraLineFragmentRect)
     }
     
     
