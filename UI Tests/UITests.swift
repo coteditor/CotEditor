@@ -64,7 +64,7 @@ final class UITests: XCTestCase {
         
         // delete entire words
         for _ in 1...6 {
-            textView.typeKey(.delete, modifierFlags:[])
+            textView.typeKey(.delete, modifierFlags: [])
         }
         
         // close window without save
