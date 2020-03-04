@@ -8,7 +8,7 @@ Change Log
 ### Improvements
 
 - Include the last line break to line count.
-- Update “Kotlin” and “JSON” syntax styles.
+- Update “Kotlin”, “JSON”, and “SVG” syntax styles.
 
 
 ### Fixes
