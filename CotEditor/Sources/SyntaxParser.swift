@@ -232,6 +232,9 @@ extension SyntaxParser {
         
         let wholeRange = self.textStorage.range
         
+        // in case that wholeRange length is changed from editedRange
+        guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
+        
         // make sure that string is immutable (see `highlightAll()` for details)
         let string = self.textStorage.string.immutable
         

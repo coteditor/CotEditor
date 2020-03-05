@@ -355,9 +355,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // update incompatible characters list
         self.document?.incompatibleCharacterScanner.invalidate()
         
-        // parse syntax
+        // parse outline
         self.syntaxParser?.invalidateOutline()
-        self.invalidateSyntaxHighlight(in: editedRange)
+        
+        // perform highlight parsing in the next run loop to give layoutManagers time to update their values
+        DispatchQueue.main.async { [weak self] in
+            self?.invalidateSyntaxHighlight(in: editedRange)
+        }
     }
     
     
