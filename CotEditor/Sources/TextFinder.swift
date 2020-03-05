@@ -590,8 +590,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 private class LineCounter: LineRangeCacheable {
     
     let string: NSString
-    var lineStartIndexes = IndexSet()
-    var firstLineUncoundedIndex = 0
+    var lineRangeCache = LineRangeCache()
     
     
     init(_ string: NSString) {

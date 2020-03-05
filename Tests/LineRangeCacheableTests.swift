@@ -92,7 +92,6 @@ final class LineRangeCacheableTests: XCTestCase {
         lineString.invalidateLineRanges(from: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
         XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
-        XCTAssertEqual(lineString.lineStartIndexes.count, 1)
         
         for _ in (0..<10) {
             let lineString = LineString(String(" 🐶 \n 🐱 \n 🐮 \n".shuffled()))
@@ -119,7 +118,6 @@ final class LineRangeCacheableTests: XCTestCase {
         lineString.invalidateLineRanges(from: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), 2)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
-        XCTAssertEqual(lineString.lineStartIndexes.count, 2)
         
         for _ in (0..<10) {
             let string = String(" dog \n cat \n cow \n".shuffled())
@@ -148,8 +146,7 @@ final class LineRangeCacheableTests: XCTestCase {
 private class LineString: LineRangeCacheable {
     
     var string: NSString
-    var lineStartIndexes = IndexSet()
-    var firstLineUncoundedIndex = 0
+    var lineRangeCache = LineRangeCache()
     
     
     init(_ string: String) {

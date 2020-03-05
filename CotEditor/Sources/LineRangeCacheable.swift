@@ -28,12 +28,23 @@ import Foundation
 protocol LineRangeCacheable: AnyObject {
     
     var string: NSString { get }
-    var lineStartIndexes: IndexSet { get set }
-    var firstLineUncoundedIndex: Int { get set }
+    var lineRangeCache: LineRangeCache { get set }
     
-    // This method must be invoked every time when the receiver's `.string` is updated.
+    /// Invalidate the line range cache.
+    ///
+    /// This method must be invoked every time when the receiver's `.string` is updated.
+    ///
+    /// - Parameter index: The first character index where modificated.
     func invalidateLineRanges(from index: Int)
 }
+
+
+struct LineRangeCache {
+    
+    fileprivate var lineStartIndexes = IndexSet()
+    fileprivate var firstUncoundedIndex = 0
+}
+
 
 
 extension LineRangeCacheable {
@@ -50,7 +61,7 @@ extension LineRangeCacheable {
         
         self.ensureLineRanges(upTo: index)
         
-        return self.lineStartIndexes.count(in: 0...index) + 1
+        return self.lineRangeCache.lineStartIndexes.count(in: 0...index) + 1
     }
     
     
@@ -67,8 +78,8 @@ extension LineRangeCacheable {
         
         self.ensureLineRanges(upTo: index)
         
-        let lowerBound = self.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
-        let upperBound = self.lineStartIndexes.integerGreaterThan(index) ?? self.string.length
+        let lowerBound = self.lineRangeCache.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
+        let upperBound = self.lineRangeCache.lineStartIndexes.integerGreaterThan(index) ?? self.string.length
         
         return NSRange(location: lowerBound, length: upperBound - lowerBound)
     }
@@ -87,7 +98,7 @@ extension LineRangeCacheable {
         
         self.ensureLineRanges(upTo: index)
         
-        return self.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
+        return self.lineRangeCache.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
     }
     
     
@@ -98,8 +109,8 @@ extension LineRangeCacheable {
     /// - Parameter index: The first character index where modificated.
     func invalidateLineRanges(from index: Int) {
         
-        self.lineStartIndexes.remove(integersIn: (index + 1)..<Int.max)
-        self.firstLineUncoundedIndex = self.lineStartIndexes.last ?? 0
+        self.lineRangeCache.lineStartIndexes.remove(integersIn: (index + 1)..<Int.max)
+        self.lineRangeCache.firstUncoundedIndex = self.lineRangeCache.lineStartIndexes.last ?? 0
     }
     
     
@@ -112,23 +123,23 @@ extension LineRangeCacheable {
     private func ensureLineRanges(upTo endIndex: Int) {
         
         assert(endIndex <= self.string.length)
-        assert(!self.lineStartIndexes.contains(self.firstLineUncoundedIndex + 1))
+        assert(!self.lineRangeCache.lineStartIndexes.contains(self.lineRangeCache.firstUncoundedIndex + 1))
         
-        guard endIndex >= self.firstLineUncoundedIndex else { return }
+        guard endIndex >= self.lineRangeCache.firstUncoundedIndex else { return }
         
         let string = self.string
         
         guard string.length > 0 else { return }
         
-        var index = self.firstLineUncoundedIndex
+        var index = self.lineRangeCache.firstUncoundedIndex
         while index <= min(endIndex, string.length - 1) {
             string.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
             
             guard index != string.length || string.character(at: index - 1).isNewline else { break }
             
-            self.lineStartIndexes.insert(index)
+            self.lineRangeCache.lineStartIndexes.insert(index)
         }
-        self.firstLineUncoundedIndex = index
+        self.lineRangeCache.firstUncoundedIndex = index
     }
     
 }

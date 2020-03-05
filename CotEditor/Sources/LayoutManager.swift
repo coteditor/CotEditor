@@ -34,8 +34,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     var ignoresDisplayValidation = false
     
     var string: NSString  { self.attributedString().string as NSString }
-    var lineStartIndexes = IndexSet()
-    var firstLineUncoundedIndex = 0
+    var lineRangeCache = LineRangeCache()
     
     
     // MARK: Public Properties
@@ -300,7 +299,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
         if editMask.contains(.editedCharacters) {
-            self.invalidateLineRanges(from: invalidatedCharRange.location)
+            self.invalidateLineRanges(from: newCharRange.location)
         }
         
         super.processEditing(for: textStorage, edited: editMask, range: newCharRange, changeInLength: delta, invalidatedRange: invalidatedCharRange)
