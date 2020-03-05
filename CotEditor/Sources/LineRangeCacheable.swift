@@ -59,7 +59,7 @@ extension LineRangeCacheable {
         
         assert(index <= self.string.length)
         
-        self.ensureLineRanges(upTo: index)
+        self.ensureLineRanges(upTo: index - 1)
         
         return self.lineRangeCache.lineStartIndexes.count(in: 0...index) + 1
     }
@@ -96,7 +96,7 @@ extension LineRangeCacheable {
         
         assert(index <= self.string.length)
         
-        self.ensureLineRanges(upTo: index)
+        self.ensureLineRanges(upTo: index - 1)
         
         return self.lineRangeCache.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
     }

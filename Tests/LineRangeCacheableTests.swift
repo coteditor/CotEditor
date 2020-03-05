@@ -79,6 +79,7 @@ final class LineRangeCacheableTests: XCTestCase {
             for index in (0..<string.length).shuffled() {
                 let result = (string as NSString).lineRange(at: index)
                 XCTAssertEqual(lineString.lineRange(at: index), result, "At \(index) with string \"\(string)\"")
+                XCTAssertEqual(lineString.lineStartIndex(at: index), result.lowerBound, "At \(index) with string \"\(string)\"")
             }
         }
     }
@@ -104,6 +105,7 @@ final class LineRangeCacheableTests: XCTestCase {
                 
                 XCTAssertEqual(lineString.lineNumber(at: index), lineNumber, "At \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineRange(at: index), lineRange, "At \(index) with string \"\(lineString.string)\"")
+                XCTAssertEqual(lineString.lineStartIndex(at: index), lineRange.lowerBound, "At \(index) with string \"\(lineString.string)\"")
             }
         }
     }
@@ -136,6 +138,7 @@ final class LineRangeCacheableTests: XCTestCase {
             for index in (0..<lineString.string.length).shuffled() {
                 XCTAssertEqual(lineString.lineNumber(at: index), (lineString.string as NSString).lineNumber(at: index))
                 XCTAssertEqual(lineString.lineRange(at: index), (lineString.string as NSString).lineRange(at: index))
+                XCTAssertEqual(lineString.lineStartIndex(at: index), (lineString.string as NSString).lineStartIndex(at: index), "At \(index) with string \"\(lineString.string)\"")
             }
         }
     }
