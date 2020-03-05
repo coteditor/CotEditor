@@ -251,22 +251,17 @@ extension SyntaxParser {
             
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
-            // expand highlight area if the character just before/after the highlighting area is the same color
+            // expand highlight area if the character just before/after the highlighting area is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
-                var start = highlightRange.lowerBound
-                var end = highlightRange.upperBound
-                
-                if start <= bufferLength {
-                    start = 0
-                } else if let effectiveRange = layoutManager.effectiveRange(of: .foregroundColor, at: start) {
-                    start = effectiveRange.lowerBound
+                if highlightRange.lowerBound <= bufferLength {
+                    highlightRange.location = 0
+                } else if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound) {
+                    highlightRange.location = effectiveRange.lowerBound
                 }
                 
-                if let effectiveRange = layoutManager.effectiveRange(of: .foregroundColor, at: end) {
-                    end = effectiveRange.upperBound
+                if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound) {
+                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
                 }
-                
-                highlightRange = NSRange(start..<end)
             }
         }
         
