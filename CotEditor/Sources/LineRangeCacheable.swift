@@ -113,8 +113,12 @@ extension LineRangeCacheable {
     ///   - delta: The length delta for the editing changes.
     func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int) {
         
-        self.lineRangeCache.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<Int.max)
-        self.lineRangeCache.firstUncoundedIndex = self.lineRangeCache.lineStartIndexes.last ?? 0
+        if newRange.isEmpty {
+            self.lineRangeCache.lineStartIndexes.shift(startingAt: (newRange.lowerBound + 1 - delta), by: delta)
+        } else {
+            self.lineRangeCache.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<Int.max)
+            self.lineRangeCache.firstUncoundedIndex = self.lineRangeCache.lineStartIndexes.last ?? 0
+        }
     }
     
     
