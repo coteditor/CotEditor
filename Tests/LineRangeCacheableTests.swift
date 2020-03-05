@@ -44,7 +44,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString2 = LineString("dog \n\n cat \n cow ")
         XCTAssertEqual(lineString2.lineNumber(at: 17), 4)
         
-        for _ in (0..<10) {
+        for _ in (0..<20) {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
@@ -72,7 +72,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString2 = LineString("dog \n\n cat \n cow ")
         XCTAssertEqual(lineString2.lineRange(at: 17), NSRange(12..<17))
         
-        for _ in (0..<10) {
+        for _ in (0..<20) {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
@@ -94,7 +94,7 @@ final class LineRangeCacheableTests: XCTestCase {
         XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
         XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
         
-        for _ in (0..<10) {
+        for _ in (0..<20) {
             let lineString = LineString(String(" 🐶 \n 🐱 \n 🐮 \n".shuffled()))
             
             for index in (0..<lineString.string.length).shuffled() {
@@ -111,6 +111,40 @@ final class LineRangeCacheableTests: XCTestCase {
     }
     
     
+    func testStringRemoval() {
+        
+        let string = "dog \n\n\n cat \n "
+        let lineString = LineString(string)
+        _ = lineString.lineNumber(at: string.length)
+        
+        lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<3), with: "") as NSString  // "og"
+        lineString.invalidateLineRanges(from: 1)
+        XCTAssertEqual(lineString.string, "d \n\n\n cat \n ")
+        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
+        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<3))  // "d \n"
+        XCTAssertEqual(lineString.lineNumber(at: 3), 2)
+        XCTAssertEqual(lineString.lineRange(at: 3), NSRange(3..<4))  // "\n"
+        XCTAssertEqual(lineString.lineRange(at: 4), NSRange(4..<5))  // "\n"
+        XCTAssertEqual(lineString.lineRange(at: 5), NSRange(5..<11))  // " cat \n"
+        
+        lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<2), with: "") as NSString  // 1st " "
+        lineString.invalidateLineRanges(from: 1)
+        XCTAssertEqual(lineString.string, "d\n\n\n cat \n ")
+        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
+        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<2))  // "d\n"
+        XCTAssertEqual(lineString.lineRange(at: 2), NSRange(2..<3))  // "\n"
+        XCTAssertEqual(lineString.lineRange(at: 3), NSRange(3..<4))  // "\n"
+        XCTAssertEqual(lineString.lineRange(at: 4), NSRange(4..<10))  // " cat \n"
+        
+        lineString.string = lineString.string.replacingCharacters(in: NSRange(2..<4), with: "") as NSString  // "\n\n"
+        lineString.invalidateLineRanges(from: 2)
+        XCTAssertEqual(lineString.string, "d\n cat \n ")
+        XCTAssertEqual(lineString.lineNumber(at: 1), 1)
+        XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<2))  // "d\n"
+        XCTAssertEqual(lineString.lineRange(at: 2), NSRange(2..<8))  // " cat \n"
+    }
+    
+    
     func testStringModification() {
         
         let string = "\n🐶"
@@ -121,7 +155,7 @@ final class LineRangeCacheableTests: XCTestCase {
         XCTAssertEqual(lineString.lineNumber(at: 1), 2)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
         
-        for _ in (0..<10) {
+        for _ in (0..<20) {
             let string = String(" dog \n cat \n cow \n".shuffled())
             let lineString = LineString(string)
             
@@ -130,15 +164,18 @@ final class LineRangeCacheableTests: XCTestCase {
             let location = Int.random(in: 0..<(string.length - 1))
             let length = Int.random(in: 0..<(string.length - location))
             let range = NSRange(location: location, length: length)
-            let replacement = String("ab\nc".shuffled())
+            let replacement = String("ab\nc".prefix(Int.random(in: 0...4)).shuffled())
             
             lineString.string = lineString.string.replacingCharacters(in: range, with: replacement) as NSString
             lineString.invalidateLineRanges(from: range.location)
             
             for index in (0..<lineString.string.length).shuffled() {
-                XCTAssertEqual(lineString.lineNumber(at: index), (lineString.string as NSString).lineNumber(at: index))
-                XCTAssertEqual(lineString.lineRange(at: index), (lineString.string as NSString).lineRange(at: index))
-                XCTAssertEqual(lineString.lineStartIndex(at: index), (lineString.string as NSString).lineStartIndex(at: index), "At \(index) with string \"\(lineString.string)\"")
+                XCTAssertEqual(lineString.lineNumber(at: index), lineString.string.lineNumber(at: index),
+                               "At \(index) with string \"\(lineString.string)\"")
+                XCTAssertEqual(lineString.lineRange(at: index), lineString.string.lineRange(at: index),
+                               "At \(index) with string \"\(lineString.string)\"")
+                XCTAssertEqual(lineString.lineStartIndex(at: index), lineString.string.lineStartIndex(at: index),
+                               "At \(index) with string \"\(lineString.string)\"")
             }
         }
     }
