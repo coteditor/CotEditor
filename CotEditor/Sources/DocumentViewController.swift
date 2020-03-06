@@ -874,21 +874,23 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard let parser = self.syntaxParser, parser.canParse else { return }
         
+        // start parse
+        let progress: Progress?
         if let range = range {
-            self.syntaxHighlightProgress = parser.highlight(around: range)
+            progress = parser.highlight(around: range)
         } else {
-            self.syntaxHighlightProgress = parser.highlightAll()
+            progress = parser.highlightAll()
         }
         
         // show indicator for a large update
         let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
-        guard
-            let progress = self.syntaxHighlightProgress,
-            let highlightLength = range?.length ?? self.textStorage?.length,
-            threshold > 0, highlightLength > threshold
-            else { return }
+        let highlightLength = range?.length ?? self.textStorage?.length ?? 0
+        guard threshold > 0, highlightLength > threshold else { return }
         
-        self.presentHighlightIndicator(progress: progress)
+        self.syntaxHighlightProgress = progress
+        if let progress = progress {
+            self.presentHighlightIndicator(progress: progress)
+        }
     }
     
     
