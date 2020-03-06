@@ -90,7 +90,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString = LineString("\n🐶")
         let lineNumber = lineString.lineNumber(at: 1)
         let lineRange = lineString.lineRange(at: 1)
-        lineString.invalidateLineRanges(from: 1)
+        lineString.invalidateLineRanges(in: NSRange(1..<2), changeInLength: 0)
         XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
         XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
         
@@ -100,8 +100,9 @@ final class LineRangeCacheableTests: XCTestCase {
             for index in (0..<lineString.string.length).shuffled() {
                 let lineNumber = lineString.lineNumber(at: index)
                 let lineRange = lineString.lineRange(at: index)
+                let range = NSRange(Int.random(in: 0..<lineString.string.length)..<lineString.string.length)
                 
-                lineString.invalidateLineRanges(from: Int.random(in: 0..<lineString.string.length))
+                lineString.invalidateLineRanges(in: range, changeInLength: 0)
                 
                 XCTAssertEqual(lineString.lineNumber(at: index), lineNumber, "At \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineRange(at: index), lineRange, "At \(index) with string \"\(lineString.string)\"")
@@ -118,7 +119,7 @@ final class LineRangeCacheableTests: XCTestCase {
         _ = lineString.lineNumber(at: string.length)
         
         lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<3), with: "") as NSString  // "og"
-        lineString.invalidateLineRanges(from: 1)
+        lineString.invalidateLineRanges(in: NSRange(1..<1), changeInLength: -2)
         XCTAssertEqual(lineString.string, "d \n\n\n cat \n ")
         XCTAssertEqual(lineString.lineNumber(at: 1), 1)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<3))  // "d \n"
@@ -128,7 +129,7 @@ final class LineRangeCacheableTests: XCTestCase {
         XCTAssertEqual(lineString.lineRange(at: 5), NSRange(5..<11))  // " cat \n"
         
         lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<2), with: "") as NSString  // 1st " "
-        lineString.invalidateLineRanges(from: 1)
+        lineString.invalidateLineRanges(in: NSRange(1..<1), changeInLength: -1)
         XCTAssertEqual(lineString.string, "d\n\n\n cat \n ")
         XCTAssertEqual(lineString.lineNumber(at: 1), 1)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<2))  // "d\n"
@@ -137,7 +138,7 @@ final class LineRangeCacheableTests: XCTestCase {
         XCTAssertEqual(lineString.lineRange(at: 4), NSRange(4..<10))  // " cat \n"
         
         lineString.string = lineString.string.replacingCharacters(in: NSRange(2..<4), with: "") as NSString  // "\n\n"
-        lineString.invalidateLineRanges(from: 2)
+        lineString.invalidateLineRanges(in: NSRange(2..<2), changeInLength: -2)
         XCTAssertEqual(lineString.string, "d\n cat \n ")
         XCTAssertEqual(lineString.lineNumber(at: 1), 1)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(0..<2))  // "d\n"
@@ -151,7 +152,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString = LineString(string)
         _ = lineString.lineNumber(at: 1)
         lineString.string = lineString.string.replacingCharacters(in: NSRange(1..<3), with: "a\nb") as NSString
-        lineString.invalidateLineRanges(from: 1)
+        lineString.invalidateLineRanges(in: NSRange(1..<3), changeInLength: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), 2)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
         
@@ -167,7 +168,8 @@ final class LineRangeCacheableTests: XCTestCase {
             let replacement = String("ab\nc".prefix(Int.random(in: 0...4)).shuffled())
             
             lineString.string = lineString.string.replacingCharacters(in: range, with: replacement) as NSString
-            lineString.invalidateLineRanges(from: range.location)
+            lineString.invalidateLineRanges(in: NSRange(location: range.location, length: replacement.length),
+                                            changeInLength: replacement.length - range.length)
             
             for index in (0..<lineString.string.length).shuffled() {
                 XCTAssertEqual(lineString.lineNumber(at: index), lineString.string.lineNumber(at: index),
