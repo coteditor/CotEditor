@@ -34,8 +34,10 @@ protocol LineRangeCacheable: AnyObject {
     ///
     /// This method must be invoked every time when the receiver's `.string` is updated.
     ///
-    /// - Parameter index: The first character index where modificated.
-    func invalidateLineRanges(from index: Int)
+    /// - Parameters:
+    ///   - newRange: The range in the final string that was edited.
+    ///   - delta: The length delta for the editing changes.
+    func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int)
 }
 
 
@@ -106,11 +108,17 @@ extension LineRangeCacheable {
     ///
     /// This method must be invoked every time when the receiver's `.string` is updated.
     ///
-    /// - Parameter index: The first character index where modificated.
-    func invalidateLineRanges(from index: Int) {
+    /// - Parameters:
+    ///   - newRange: The range in the final string that was edited.
+    ///   - delta: The length delta for the editing changes.
+    func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int) {
         
-        self.lineRangeCache.lineStartIndexes.remove(integersIn: (index + 1)..<Int.max)
-        self.lineRangeCache.firstUncoundedIndex = self.lineRangeCache.lineStartIndexes.last ?? 0
+        if newRange.isEmpty {
+            self.lineRangeCache.lineStartIndexes.shift(startingAt: (newRange.lowerBound + 1 - delta), by: delta)
+        } else {
+            self.lineRangeCache.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<Int.max)
+            self.lineRangeCache.firstUncoundedIndex = self.lineRangeCache.lineStartIndexes.last ?? 0
+        }
     }
     
     
