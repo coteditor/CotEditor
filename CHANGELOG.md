@@ -7,6 +7,15 @@ Change Log
 
 ### Improvements
 
+- Improve drawing performance.
+
+
+
+3.8.12 (unreleased)
+--------------------------
+
+### Improvements
+
 - Include the last line break to line count.
 - Update “Kotlin”, “JSON”, and “SVG” syntax styles.
 

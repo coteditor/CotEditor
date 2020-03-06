@@ -44,6 +44,7 @@ protocol LineRangeCacheable: AnyObject {
 struct LineRangeCache {
     
     fileprivate var lineStartIndexes = IndexSet()
+    fileprivate var parsedIndexes = IndexSet()
     fileprivate var firstUncoundedIndex = 0
 }
 
@@ -113,12 +114,7 @@ extension LineRangeCacheable {
     ///   - delta: The length delta for the editing changes.
     func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int) {
         
-        if newRange.isEmpty {
-            self.lineRangeCache.lineStartIndexes.shift(startingAt: (newRange.lowerBound + 1 - delta), by: delta)
-        } else {
-            self.lineRangeCache.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<Int.max)
-        }
-        self.lineRangeCache.firstUncoundedIndex = self.lineRangeCache.lineStartIndexes.last ?? 0
+        self.lineRangeCache.invalidate(in: newRange, changeInLength: delta)
     }
     
     
@@ -131,7 +127,6 @@ extension LineRangeCacheable {
     private func ensureLineRanges(upTo endIndex: Int) {
         
         assert(endIndex <= self.string.length)
-        assert(!self.lineRangeCache.lineStartIndexes.contains(self.lineRangeCache.firstUncoundedIndex + 1))
         
         guard endIndex >= self.lineRangeCache.firstUncoundedIndex else { return }
         
@@ -139,15 +134,52 @@ extension LineRangeCacheable {
         
         guard string.length > 0 else { return }
         
-        var index = self.lineRangeCache.firstUncoundedIndex
-        while index <= min(endIndex, string.length - 1) {
+        let invalidIndexes = IndexSet(integersIn: 0...endIndex).subtracting(self.lineRangeCache.parsedIndexes)
+        let lowerParseBound = self.lineRangeCache.firstUncoundedIndex
+        let upperPasreBound = invalidIndexes.last ?? lowerParseBound
+        
+        var index = lowerParseBound
+        while index <= min(upperPasreBound, string.length - 1) {
             string.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
             
             guard index != string.length || string.character(at: index - 1).isNewline else { break }
             
             self.lineRangeCache.lineStartIndexes.insert(index)
         }
-        self.lineRangeCache.firstUncoundedIndex = index
+        self.lineRangeCache.parsedIndexes.insert(integersIn: lowerParseBound..<index)
+        self.lineRangeCache.invalidateFirstUncoundedIndex()
+    }
+    
+}
+
+
+private extension LineRangeCache {
+    
+    /// Invalidate the cache.
+    ///
+    /// - Parameters:
+    ///   - newRange: The range in the final string that was edited.
+    ///   - delta: The length delta for the editing changes.
+    mutating func invalidate(in newRange: NSRange, changeInLength delta: Int) {
+        
+        self.parsedIndexes.shift(startingAt: newRange.lowerBound - delta, by: delta)
+        self.parsedIndexes.remove(integersIn: newRange.lowerBound..<newRange.upperBound)
+        
+        self.lineStartIndexes.shift(startingAt: newRange.lowerBound + 1 - delta, by: delta)
+        self.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<(newRange.upperBound + 1))
+        
+        self.invalidateFirstUncoundedIndex()
+    }
+    
+    
+    /// Update the first uncounted index.
+    mutating func invalidateFirstUncoundedIndex() {
+        
+        let upperParsedIndexesBound = self.parsedIndexes.last.flatMap { $0 + 1 } ?? 0
+        let invalidIndexes = IndexSet(integersIn: 0..<upperParsedIndexesBound).subtracting(self.parsedIndexes)
+        let firstInvalidIndex = invalidIndexes.first ?? upperParsedIndexesBound
+        
+        self.firstUncoundedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
     }
     
 }
