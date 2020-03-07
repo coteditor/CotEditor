@@ -1472,7 +1472,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// calculate overscrolling amount
     private func invalidateOverscrollRate() {
         
-        guard let layoutManager = self.layoutManager as? LayoutManager else { return }
+        guard
+            let layoutManager = self.layoutManager as? LayoutManager,
+            let textContainer = self.textContainer
+            else { return }
         
         let visibleRect = self.visibleRect
         let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
@@ -1486,6 +1489,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         self.textContainerInset.height = height
         self.frame.size.height += 2 * diff
+        
+        // invoke `setToFit()` but only when needed to aboid heavy calculation by large document
+        // -> `setToFit()` is required to remove the extra height of those frame that contains blank margin already
+        //    due to the smaller text content than the visible rect (macOS 10.15).
+        let maxVisibleYGlyphIndex = layoutManager.glyphIndex(for: NSPoint(x: 0, y: visibleRect.height), in: textContainer)
+        let maxVisibleY = layoutManager.lineFragmentRect(forGlyphAt: maxVisibleYGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).maxY
+        if maxVisibleY < visibleRect.height {
+            self.sizeToFit()
+        }
         
         self.scrollToVisible(visibleRect)
     }
