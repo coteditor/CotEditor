@@ -284,12 +284,14 @@ final class NavigationBarController: NSViewController {
         for outlineItem in self.outlineItems {
             switch outlineItem.title {
                 case .separator:
-                    menu.addItem(.separator())
+                    // add dummy item to avoid merging sequential separators into a single separator
+                    if menu.items.last?.isSeparatorItem == true {
+                        let menuItem = NSMenuItem()
+                        menuItem.view = NSView()
+                        menu.addItem(menuItem)
+                    }
                     
-                    // add a dummy item to avoid merging series separators to a single separator
-                    let menuItem = NSMenuItem()
-                    menuItem.view = NSView()
-                    menu.addItem(menuItem)
+                    menu.addItem(.separator())
                 
                 default:
                     let menuItem = NSMenuItem()
