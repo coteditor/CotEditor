@@ -114,7 +114,7 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Methods
     
-    /// invalidate layout in layoutManager
+    /// Let layoutManager invalidate the entire layout.
     private func invalidateLayout() {
         
         guard let layoutManager = self.layoutManager else { return }
@@ -133,13 +133,13 @@ private extension NSString {
     /// The fast way to find the indent charaters at the beginning of the given range.
     ///
     /// - Parameters:
-    ///   - ramge: The UTF1-based character range where the indent is searched.
+    ///   - range: The UTF16-based character range where searching for the indent.
     /// - Returns: The indent part of the string at the beginning of the given range.
     func indentString(in range: Range<Int>) -> String {
         
         let characters: [unichar] = range.lazy
             .map { self.character(at: $0) }
-            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE, HORIONTAL TAB
+            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIONTAL TAB
         
         return String(utf16CodeUnits: characters, count: characters.count)
     }
