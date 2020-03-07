@@ -344,6 +344,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// text was edited (invoked right **before** notifying layout managers)
     func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
         
+        assert(Thread.isMainThread)
+        
         guard
             editedMask.contains(.editedCharacters),
             self.focusedTextView?.hasMarkedText() != true
