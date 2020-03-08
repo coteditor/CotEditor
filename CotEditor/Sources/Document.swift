@@ -41,7 +41,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     static let didChangeSyntaxStyleNotification = Notification.Name("DocumentDidChangeSyntaxStyle")
     
     
-    // MARK: Structs
+    // MARK: Enums
     
     private enum SerializationKey {
         

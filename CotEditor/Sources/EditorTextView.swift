@@ -42,7 +42,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     static let didLiveChangeSelectionNotification = Notification.Name("TextViewDidLiveChangeSelectionNotification")
     
     
-    // MARK: Structs
+    // MARK: Enums
     
     private enum SerializationKey {
         
