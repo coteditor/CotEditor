@@ -253,7 +253,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 // MARK: -
 
 /// model object for NSArrayController
-final private class SnippetItem: NSObject {
+private final class SnippetItem: NSObject {
     
     @objc dynamic var text: String
     

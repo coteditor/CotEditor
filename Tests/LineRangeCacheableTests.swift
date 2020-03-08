@@ -180,7 +180,7 @@ final class LineRangeCacheableTests: XCTestCase {
 }
 
 
-private class LineString: LineRangeCacheable {
+private final class LineString: LineRangeCacheable {
     
     private(set) var string: NSString
     var lineRangeCache = LineRangeCache()

@@ -587,7 +587,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 
 // MARK: -
 
-private class LineCounter: LineRangeCacheable {
+private final class LineCounter: LineRangeCacheable {
     
     let string: NSString
     var lineRangeCache = LineRangeCache()
