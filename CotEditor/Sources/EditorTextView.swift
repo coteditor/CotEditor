@@ -1494,7 +1494,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // -> `setToFit()` is required to remove the extra height of those frame that contains blank margin already
         //    due to the smaller text content than the visible rect (macOS 10.15).
         let maxVisibleYGlyphIndex = layoutManager.glyphIndex(for: NSPoint(x: 0, y: visibleRect.height), in: textContainer)
-        let maxVisibleY = layoutManager.lineFragmentRect(forGlyphAt: maxVisibleYGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).maxY
+        let maxVisibleY = layoutManager.isValidGlyphIndex(maxVisibleYGlyphIndex)
+            ? layoutManager.lineFragmentRect(forGlyphAt: maxVisibleYGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).maxY
+            : 0
         if maxVisibleY < visibleRect.height {
             self.sizeToFit()
         }
