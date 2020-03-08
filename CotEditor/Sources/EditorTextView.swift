@@ -60,7 +60,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var needsUpdateLineHighlight = true  { didSet { self.setNeedsDisplay(self.visibleRect) } }
+    var needsUpdateLineHighlight = true  { didSet { self.needsDisplay = true } }
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
@@ -92,6 +92,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private var isSmartIndentEnabled = false
     
     private var mouseDownPoint: NSPoint = .zero
+    
+    private lazy var overscrollResizingTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.invalidateOverscrollRate() }
     
     private let instanceHighlightColor = NSColor.textHighlighterColor.withAlphaComponent(0.3)
     private lazy var instanceHighlightTask = Debouncer(delay: .seconds(0)) { [weak self] in self?.highlightInstance() }
@@ -189,6 +191,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.insertionPointTimer?.cancel()
         self.urlDetectionQueue.cancelAllOperations()
         self.defaultsObservers.forEach { $0.invalidate() }
+        self.overscrollResizingTask.cancel()
         
         if let observer = self.windowOpacityObserver {
             NotificationCenter.default.removeObserver(observer)
@@ -296,6 +299,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.setFrameSize(newSize)
         
+        if !self.inLiveResize {
+            self.overscrollResizingTask.schedule()
+        }
+        
         self.needsUpdateLineHighlight = true
     }
     
@@ -305,7 +312,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         super.viewDidEndLiveResize()
         
-        self.invalidateOverscrollRate()
+        self.overscrollResizingTask.schedule()
     }
     
     
@@ -1466,7 +1473,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// calculate overscrolling amount
     private func invalidateOverscrollRate() {
         
-        guard let layoutManager = self.layoutManager as? LayoutManager else { return assertionFailure() }
+        guard
+            let layoutManager = self.layoutManager as? LayoutManager,
+            let textContainer = self.textContainer
+            else { return }
         
         let visibleRect = self.visibleRect
         let rate = UserDefaults.standard[.overscrollRate].clamped(to: 0...1.0)
@@ -1480,6 +1490,15 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         self.textContainerInset.height = height
         self.frame.size.height += 2 * diff
+        
+        // invoke `setToFit()` but only when needed to aboid heavy calculation by large document
+        // -> `setToFit()` is required to remove the extra height of those frame that contains blank margin already
+        //    due to the smaller text content than the visible rect (macOS 10.15).
+        let maxVisibleYGlyphIndex = layoutManager.glyphIndex(for: NSPoint(x: 0, y: visibleRect.height), in: textContainer)
+        let maxVisibleY = layoutManager.lineFragmentRect(forGlyphAt: maxVisibleYGlyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).maxY
+        if maxVisibleY < visibleRect.height {
+            self.sizeToFit()
+        }
         
         self.scrollToVisible(visibleRect)
     }

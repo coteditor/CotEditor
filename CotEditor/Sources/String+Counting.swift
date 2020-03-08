@@ -39,10 +39,10 @@ extension StringProtocol where Self.Index == String.Index {
     }
     
     
-    /// number of lines in the whole string ignoring the last new line character
+    /// number of lines in the whole string including the last new line character
     var numberOfLines: Int {
         
-        return self.numberOfLines(includingLastLineEnding: false)
+        return self.numberOfLines(includingLastLineEnding: true)
     }
     
     

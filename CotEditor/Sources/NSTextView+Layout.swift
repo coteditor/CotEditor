@@ -199,6 +199,14 @@ extension NSTextView {
             let visibleRange = self.visibleRange
             let isVertical = (self.layoutOrientation == .vertical)
             
+            if isVertical {
+                self.enclosingScrollView?.hasVerticalScroller = !newValue
+                self.isVerticallyResizable = !newValue
+            } else {
+                self.enclosingScrollView?.hasHorizontalScroller = !newValue
+                self.isHorizontallyResizable = !newValue
+            }
+            
             if newValue {
                 let width = self.visibleRect.width
                 self.frame.size[keyPath: isVertical ? \NSSize.height : \NSSize.width] = width * self.scale
@@ -207,14 +215,6 @@ extension NSTextView {
             } else {
                 textContainer.widthTracksTextView = false
                 textContainer.size = self.infiniteSize
-            }
-            
-            if isVertical {
-                self.isVerticallyResizable = !newValue
-                self.enclosingScrollView?.hasVerticalScroller = !newValue
-            } else {
-                self.isHorizontallyResizable = !newValue
-                self.enclosingScrollView?.hasHorizontalScroller = !newValue
             }
             
             if let visibleRange = visibleRange, var visibleRect = self.boundingRect(for: visibleRange) {

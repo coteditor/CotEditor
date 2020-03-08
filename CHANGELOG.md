@@ -2,6 +2,26 @@
 Change Log
 ==========================
 
+3.8.12 (400)
+--------------------------
+
+### Improvements
+
+- Include the last line break to line count.
+- Update “Kotlin”, “JSON”, and “SVG” syntax styles.
+
+
+### Fixes
+
+- Fix an issue where the horizontal scrollbar didn't appear by unwrapping lines if the document consists of a single very long line.
+- Fix an issue where the application could crash after parsing syntax in a large document to highlight.
+- Fix an issue where the overscrolling was enabled only after window is resized.
+- Fix an issue where the current line was just partly highlighted under specific conditions.
+- Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
+- Fix an issue where the find panel could not display the result table when the find string is very long.
+
+
+
 3.8.11 (398)
 --------------------------
 

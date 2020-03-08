@@ -3,10 +3,10 @@ extensions:
 metadata:
   author: "1024jp"
   distributionURL: "https://coteditor.com"
-  version: "1.2.3"
+  version: "1.2.4"
   description: "Based on SVG 1.1 (Second Edition)"
   license: "Same as CotEditor"
-  lastModified: "2019-01-13"
+  lastModified: "2020-03-04"
 outlineMenu:
 - beginString: "(?<= )id=\"(.+?)\""
   description: "id"
@@ -502,6 +502,8 @@ attributes:
 - beginString: "\\sglyph-orientation-vertical\\b(?=[^<>]*>)"
   regularExpression: true
 - beginString: "\\sglyphRef\\b(?=[^<>]*>)"
+  regularExpression: true
+- beginString: "\\gradientTransform\\b(?=[^<>]*>)"
   regularExpression: true
 - beginString: "\\sgradientUnits\\b(?=[^<>]*>)"
   regularExpression: true

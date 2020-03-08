@@ -1,9 +1,9 @@
 metadata:
   distributionURL: "https://coteditor.com"
-  lastModified: "2018-12-28"
+  lastModified: "2020-03-02"
   author: "1024jp"
   license: "Same as CotEditor"
-  version: "1.0.0"
+  version: "1.0.1"
 extensions:
 - keyString: "kt"
 - keyString: "kts"
@@ -12,10 +12,15 @@ interpreters:
 - keyString: "kotlin"
 - keyString: "kotlinc"
 outlineMenu:
-- beginString: "^([ \\t]*)(?:[a-z]+ ){0,3}class +([a-zA-Z0-9_]+)"
+- beginString: "^([ \\t]*)(?:[a-z]+ ){0,3}(class|object) +([a-zA-Z0-9_]+)"
   bold: true
   ignoreCase: false
-  description: "class"
+  description: "class or object"
+  keyString: "$1$2"
+- beginString: "^([ \\t]*)(?:[a-z]+ ){0,3}interface +([a-zA-Z0-9_]+)"
+  italic: true
+  ignoreCase: false
+  description: "interface"
   keyString: "$1$2"
 - beginString: "^([ \\t]*)(?:[a-z]+ ){0,3}fun +([a-zA-Z0-9_]+\\([^\\)]*\\))"
   keyString: "$1$2"
@@ -29,9 +34,12 @@ characters:
 - beginString: "'"
   endString: "'"
 attributes:
-- beginString: "@[a-zA-Z][a-zA-Z0-9_]*\\b"
-  description: "annotation"
+- beginString: "(?<=\\s|\\A)@[a-zA-Z][a-zA-Z0-9_]*\\b"
   regularExpression: true
+  description: "annotation"
+- beginString: "(?<=continue|break)@[a-zA-Z][a-zA-Z0-9_]*+(?=\\s|\\z)"
+  regularExpression: true
+  description: "label"
 - beginString: "@delegate"
 - beginString: "@field"
 - beginString: "@file"
@@ -45,6 +53,9 @@ attributes:
 - beginString: "@set"
 - beginString: "@setparam"
 - beginString: "@Target"
+- beginString: "[a-zA-Z][a-zA-Z0-9_]*+@(?=\\s)"
+  regularExpression: true
+  description: "label"
 numbers:
 - beginString: "\\b0b[01][01_]*\\b"
   regularExpression: true
@@ -135,6 +146,8 @@ keywords:
 - beginString: "where"
 - beginString: "while"
 variables:
+- beginString: "`"
+  endString: "`"
 - beginString: "super"
 - beginString: "this"
 commentDelimiters:
