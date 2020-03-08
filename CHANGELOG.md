@@ -11,7 +11,7 @@ Change Log
 
 
 
-3.8.12 (unreleased)
+3.8.12 (400)
 --------------------------
 
 ### Improvements
