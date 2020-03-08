@@ -390,7 +390,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
 
 private extension CTLine {
     
-    /// Get receier's bounds in the object-oriented way.
+    /// Get receiver's bounds in the object-oriented way.
     ///
     /// - Parameter options: Desired options or 0 if none.
     /// - Returns: The bouns of the receiver.
