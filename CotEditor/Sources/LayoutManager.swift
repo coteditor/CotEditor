@@ -193,8 +193,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             let context = NSGraphicsContext.current?.cgContext
         {
             let string = self.attributedString().string as NSString
-            let isVertical = (self.firstTextView?.layoutOrientation == .vertical)
-            let isRTL = (self.firstTextView?.baseWritingDirection == .rightToLeft)
+            let layoutOrientation = self.firstTextView?.layoutOrientation
+            let writingDirection = self.firstTextView?.baseWritingDirection
             let isOpaque = self.firstTextView?.isOpaque ?? true
             
             if !isOpaque {
@@ -244,11 +244,11 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
                 var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x,
                                                                    dy: self.defaultBaselineOffset)
-                if isVertical {
+                if layoutOrientation == .vertical {
                     // [note] Probably not a good solution but better than doing nothing (2016-05-25).
                     point.y += line.bounds(options: .useGlyphPathBounds).height / 2
                 }
-                if isRTL, invisible == .newLine {
+                if writingDirection == .rightToLeft, invisible == .newLine {
                     point.x -= line.bounds().width
                 }
                 
@@ -351,7 +351,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     /// Create CTLines to cache for invisible characters drawing.
     ///
-    /// - Returns: A InvisibleLines struct.
+    /// - Returns: An InvisibleLines struct.
     private func generateInvisibleLines() -> InvisibleLines {
         
         let fontSize = self.textFont?.pointSize ?? 0
