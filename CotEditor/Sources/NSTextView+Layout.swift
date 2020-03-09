@@ -107,6 +107,8 @@ extension NSTextView {
         }
         
         set {
+            assert(newValue > 0)
+            
             // sanitize value
             let scale = self.enclosingScrollView
                 .flatMap { $0.minMagnification...$0.maxMagnification }
@@ -121,6 +123,7 @@ extension NSTextView {
             self.didChangeValue(for: \.scale)
             
             // ensure bounds origin is {0, 0} for vertical text orientation
+            // to workaround AppKit-side bug (FB5703371).
             if self.layoutOrientation == .vertical {
                 self.translateOrigin(to: self.bounds.origin)
             }
@@ -129,11 +132,11 @@ extension NSTextView {
             self.minSize = self.visibleRect.size
             
             // update view size
-            // -> For in case the view becomes bigger than text content width when pinch out
+            // -> For in case by scaling-down when the view becomes bigger than text content width
             //    but doesn't strech enough to the right edge of the scroll view.
             self.sizeToFit()
             
-            self.setNeedsDisplay(self.visibleRect)
+            self.needsDisplay = true
         }
     }
     
