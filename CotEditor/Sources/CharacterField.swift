@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -55,8 +55,8 @@ final class CharacterFieldCell: NSTextFieldCell {
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
         #if DEBUG
-            NSColor.orange.setStroke()
-            NSBezierPath(rect: cellFrame).stroke()
+            NSColor.orange.set()
+            cellFrame.frame()
         #endif
         
         guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }

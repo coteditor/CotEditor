@@ -42,6 +42,7 @@ final class OpacitySampleView: NSView {
         NSGraphicsContext.saveGraphicsState()
         
         // draw bezel
+        moof(self.bounds)
         let baseFrame = self.bounds.insetBy(dx: NSBezierPath.defaultLineWidth / 2,
                                             dy: NSBezierPath.defaultLineWidth / 2)
         let basePath = NSBezierPath(roundedRect: baseFrame, xRadius: 2, yRadius: 2)

@@ -226,16 +226,18 @@ final class LineNumberView: NSView {
         dirtyRect.fill()
         
         // draw divider (1px)
-        self.textColor(.stroke).setStroke()
+        let dividerRect: NSRect
         switch self.orientation {
             case .horizontal:
-                NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
-                                        to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
+                dividerRect = NSRect(x: self.bounds.maxX - 1, y: dirtyRect.minY,
+                                     width: 1, height: dirtyRect.height)
             case .vertical:
-                NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
-                                        to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
+                dividerRect = NSRect(x: dirtyRect.minX, y: self.bounds.minY,
+                                     width: dirtyRect.width, height: 1)
             @unknown default: fatalError()
         }
+        self.textColor(.stroke).setFill()
+        dividerRect.fill()
         
         NSGraphicsContext.restoreGraphicsState()
         

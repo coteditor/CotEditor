@@ -52,7 +52,7 @@ extension CurrentLineHighlighting {
         
         color.setFill()
         for rect in self.lineHighLightRects where rect.intersects(dirtyRect) {
-            rect.fill()
+            self.centerScanRect(rect).fill()
         }
         
         NSGraphicsContext.restoreGraphicsState()
