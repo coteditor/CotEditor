@@ -55,7 +55,7 @@ extension OutlineItem {
     
     func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
         
-        assert(!self.isSeparator)
+//        assert(!self.isSeparator)
         
         var font = baseFont
         var attributes = attributes
