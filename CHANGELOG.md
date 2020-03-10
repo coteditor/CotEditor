@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Adjust invisible characters position in the vertical text orientation.
 - Improve drawing performance.
 
 

@@ -245,8 +245,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x,
                                                                    dy: self.defaultBaselineOffset)
                 if layoutOrientation == .vertical {
-                    // [note] Probably not a good solution but better than doing nothing (2016-05-25).
-                    point.y += line.bounds(options: .useGlyphPathBounds).height / 2
+                    let bounds = line.bounds()
+                    point.y += bounds.minY + bounds.height / 2
                 }
                 if writingDirection == .rightToLeft, invisible == .newLine {
                     point.x -= line.bounds().width
