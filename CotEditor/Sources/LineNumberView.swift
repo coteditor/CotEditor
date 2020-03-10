@@ -49,7 +49,7 @@ final class LineNumberView: NSView {
             self.scale = scale
             
             // calculate font size for number
-            self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).round(interval: 0.5)
+            self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).rounded(interval: 0.5)
             self.ascent = scale * textFont.ascender
             
             // prepare glyphs
@@ -502,7 +502,7 @@ private extension Int {
 
 private extension FloatingPoint {
     
-    func round(interval: Self) -> Self {
+    func rounded(interval: Self) -> Self {
         
         return (self / interval).rounded() * interval
     }
