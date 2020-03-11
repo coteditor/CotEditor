@@ -114,7 +114,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
@@ -445,7 +445,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         try? ThemeManager.shared.createUntitledSetting { themeName in
             let row = ThemeManager.shared.settingNames.firstIndex(of: themeName) ?? 0
             
-            tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            tableView.selectRowIndexes([row], byExtendingSelection: false)
         }
     }
     
@@ -653,7 +653,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeTableView?.reloadData()
         
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
     
     
@@ -663,7 +663,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
         
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
     
 }

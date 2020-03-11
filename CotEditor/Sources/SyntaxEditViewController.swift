@@ -213,7 +213,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         guard SyntaxStyleValidator.validate(self.style as! SyntaxManager.StyleDictionary).isEmpty else {
             // show "Validation" pane
             let index = self.tabViewController!.tabViewItems.firstIndex { ($0.identifier as? String) == "validation" }!
-            self.menuTableView?.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+            self.menuTableView?.selectRowIndexes([index], byExtendingSelection: false)
             NSSound.beep()
             return
         }

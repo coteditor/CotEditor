@@ -252,7 +252,7 @@ final class OutlineViewController: NSViewController {
             else { return outlineView.deselectAll(nil) }
         
         self.isOwnSelectionChange = true
-        outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        outlineView.selectRowIndexes([row], byExtendingSelection: false)
         outlineView.scrollRowToVisible(row)
     }
     

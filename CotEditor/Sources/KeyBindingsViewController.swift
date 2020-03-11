@@ -194,7 +194,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         item.shortcut = shortcut
         textField.objectValue = shortcut.description
         self.saveSettings()
-        self.outlineView?.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
+        self.outlineView?.reloadData(forRowIndexes: [row], columnIndexes: [column])
     }
     
     
