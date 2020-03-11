@@ -195,9 +195,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             let string = self.attributedString().string as NSString
             let layoutOrientation = self.firstTextView?.layoutOrientation
             let writingDirection = self.firstTextView?.baseWritingDirection
-            let isOpaque = self.firstTextView?.isOpaque ?? true
+            let disableSmoothFonts = (NSAppKitVersion.current <= .number10_14) || !(self.firstTextView?.isOpaque ?? true)
             
-            if !isOpaque {
+            if disableSmoothFonts {
                 context.setShouldSmoothFonts(false)
             }
             
@@ -257,7 +257,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 CTLineDraw(line, context)
             }
             
-            if !isOpaque {
+            if disableSmoothFonts {
                 context.setShouldSmoothFonts(true)
             }
         }
