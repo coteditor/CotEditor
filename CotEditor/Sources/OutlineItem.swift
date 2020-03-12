@@ -75,7 +75,7 @@ extension OutlineItem {
 }
 
 
-extension Array where Element == OutlineItem {
+extension BidirectionalCollection where Element == OutlineItem {
     
     func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
         
