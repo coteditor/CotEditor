@@ -193,13 +193,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             let context = NSGraphicsContext.current?.cgContext
         {
             let string = self.attributedString().string as NSString
-            let layoutOrientation = self.firstTextView?.layoutOrientation
-            let writingDirection = self.firstTextView?.baseWritingDirection
-            let disableSmoothFonts = (NSAppKitVersion.current <= .number10_14) || !(self.firstTextView?.isOpaque ?? true)
-            
-            if disableSmoothFonts {
-                context.setShouldSmoothFonts(false)
-            }
+            let textView = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)?.textView
+            let layoutOrientation = textView?.layoutOrientation
+            let writingDirection = textView?.baseWritingDirection
             
             // flip coordinate if needed
             if NSGraphicsContext.current?.isFlipped == true {
@@ -255,10 +251,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 // draw character
                 context.textPosition = point
                 CTLineDraw(line, context)
-            }
-            
-            if disableSmoothFonts {
-                context.setShouldSmoothFonts(true)
             }
         }
         
