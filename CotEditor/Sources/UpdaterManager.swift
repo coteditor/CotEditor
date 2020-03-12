@@ -31,7 +31,7 @@ private enum AppCastURL {
     case stable
     case beta
     
-    static let host = "https://coteditor.com/"
+    private static let host = "https://coteditor.com/"
     
     
     /// URL for app cast
@@ -85,8 +85,7 @@ final class UpdaterManager: NSObject, SPUUpdaterDelegate {
     func setup() {
         
         guard let updater = self.controller.updater else {
-            assertionFailure("No SPUUpdater instance could be obtained.")
-            return
+            return assertionFailure("No SPUUpdater instance could be obtained.")
         }
         
         // insert "Check for Updates…" menu item
