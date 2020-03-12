@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSRegularExpression
 
 protocol TokenRepresentable: CaseIterable {
     
