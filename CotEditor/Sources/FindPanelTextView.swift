@@ -44,7 +44,7 @@ class FindPanelTextView: NSTextView {
         super.init(coder: coder)
         
         // set system font (standard NSTextField behavior)
-        self.font = NSFont.systemFont(ofSize: 0)
+        self.font = .systemFont(ofSize: 0)
         
         // set inset a bit like NSTextField (horizontal inset is added in FindPanelTextClipView)
         self.textContainerInset = NSSize(width: 0.0, height: 2.0)

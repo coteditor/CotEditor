@@ -29,7 +29,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private let font = NSFont.systemFont(ofSize: 0)
+    private let font: NSFont = .systemFont(ofSize: 0)
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
     
@@ -62,10 +62,8 @@ final class FindPanelLayoutManager: NSLayoutManager {
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if UserDefaults.standard[.showInvisibles] {
-            let string = self.textStorage?.string ?? ""
-            
+            let string = self.attributedString().string
             let color = NSColor.tertiaryLabelColor
-            
             let font = self.font
             let fullWidthFont = NSFont(named: .hiraginoSans, size: font.pointSize) ?? font
             
