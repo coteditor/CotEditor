@@ -1,5 +1,5 @@
 //
-//  Array+IndexSet.swift
+//  Collection+IndexSet.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,7 +25,7 @@
 
 import struct Foundation.IndexSet
 
-extension Array {
+extension RangeReplaceableCollection where Index == Int {
     
     /// Remove elements with IndexSet
     mutating func remove(in indexes: IndexSet) {

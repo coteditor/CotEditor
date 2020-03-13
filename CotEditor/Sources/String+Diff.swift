@@ -1,5 +1,5 @@
 //
-//  Collection+Diff.swift
+//  String+Diff.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 import struct Foundation.NSRange
 import DifferenceKit
 
-extension String {
+extension StringProtocol {
     
     /// Calculate equivalent ranges in the receiver to the given ranges in the given string using DifferenceKit.
     ///
@@ -34,7 +34,7 @@ extension String {
     ///   - ranges: The original ranges to be based on.
     ///   - string: The string to compare with the receiver.
     /// - Returns: The equivalent ranges to the given ranges.
-    func equivalentRanges(to ranges: [NSRange], in other: String) -> [NSRange] {
+    func equivalentRanges(to ranges: [NSRange], in other: Self) -> [NSRange] {
         
         // -> Use UTF16View instead of Character due to performance issue
         let diff = StagedChangeset(source: Array(other.utf16), target: Array(self.utf16))

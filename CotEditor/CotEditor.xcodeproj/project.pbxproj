@@ -126,8 +126,8 @@
 		2A25C52920F06BE80003AE1A /* CustomTabWidthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */; };
 		2A25D0EE1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
 		2A25D0EF1DA15E7F008C94B0 /* NSAnimationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */; };
-		2A2747732111909400795954 /* Collection+Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2747722111909400795954 /* Collection+Diff.swift */; };
-		2A2747742111909400795954 /* Collection+Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2747722111909400795954 /* Collection+Diff.swift */; };
+		2A2747732111909400795954 /* String+Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2747722111909400795954 /* String+Diff.swift */; };
+		2A2747742111909400795954 /* String+Diff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2747722111909400795954 /* String+Diff.swift */; };
 		2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */; };
 		2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */; };
@@ -632,8 +632,8 @@
 		2AD940DC21A46B100076A28C /* UnicodePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodePanel.storyboard */; };
 		2AD940E721A47C4B0076A28C /* GoToLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */; };
 		2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */; };
-		2ADA15EE21C5073D00C6608B /* Array+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */; };
-		2ADA15EF21C5073D00C6608B /* Array+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */; };
+		2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
+		2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
 		2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBC91421C9F30000B884FF /* Atomic.swift */; };
 		2ADD0AD8217A967200F78732 /* NSTextView+LineNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */; };
@@ -959,7 +959,7 @@
 		2A25C52620F06A940003AE1A /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CustomTabWidthView.strings; sourceTree = "<group>"; };
 		2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabWidthViewController.swift; sourceTree = "<group>"; };
 		2A25D0ED1DA15E7F008C94B0 /* NSAnimationContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSAnimationContext.swift; sourceTree = "<group>"; };
-		2A2747722111909400795954 /* Collection+Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Diff.swift"; sourceTree = "<group>"; };
+		2A2747722111909400795954 /* String+Diff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Diff.swift"; sourceTree = "<group>"; };
 		2A2792911D1DACC400F3FC5D /* AppearancePaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearancePaneController.swift; sourceTree = "<group>"; };
 		2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Constants.swift"; sourceTree = "<group>"; };
 		2A2792971D1E57DA00F3FC5D /* FormatPaneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatPaneController.swift; sourceTree = "<group>"; };
@@ -1370,7 +1370,7 @@
 		2AD940EC21A47DD90076A28C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2AD940ED21A47DDA0076A28C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2AD940EF21A7CBF50076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/SyntaxValidationView.storyboard; sourceTree = "<group>"; };
-		2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+IndexSet.swift"; sourceTree = "<group>"; };
+		2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+IndexSet.swift"; sourceTree = "<group>"; };
 		2ADBC91421C9F30000B884FF /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		2ADD0AD7217A967200F78732 /* NSTextView+LineNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+LineNumber.swift"; sourceTree = "<group>"; };
 		2ADD0AE221800E2F00F78732 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/ConsolePanel.storyboard; sourceTree = "<group>"; };
@@ -1815,9 +1815,8 @@
 				2A885E321D5C3A1B00288723 /* Comparable.swift */,
 				2A9082E41D324D9A00228F50 /* Geometry.swift */,
 				2A5ADE831D2168FC00F6CE26 /* Collection.swift */,
+				2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */,
 				2AE12DFA1E7DB47000681F72 /* Collection+String.swift */,
-				2A2747722111909400795954 /* Collection+Diff.swift */,
-				2ADA15ED21C5073D00C6608B /* Array+IndexSet.swift */,
 				2A8DA9461D28ED93003D0C4B /* URL.swift */,
 				2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */,
 				2A2792941D1DBDAC00F3FC5D /* String+Constants.swift */,
@@ -1830,6 +1829,7 @@
 				2AA761391D457BD500031AAF /* String+Indentation.swift */,
 				2A887A8F20FA1D19002BFA34 /* String+Localization.swift */,
 				2AEDB41E1D462EAB0020AD15 /* String+Sandboxing.swift */,
+				2A2747722111909400795954 /* String+Diff.swift */,
 				2A6FD9EC1D3A85D700A59784 /* NSString.swift */,
 				2AE3F3171D3F8A1F005B8724 /* NSAttributedString.swift */,
 				2AF1D85721B8D9250060BC04 /* NSRegularExpression+Additions.swift */,
@@ -2811,7 +2811,6 @@
 				2A2792931D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2A91C31C1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2AA14CFD1FA4983500EAF586 /* AppleScript.swift in Sources */,
-				2ADA15EF21C5073D00C6608B /* Array+IndexSet.swift in Sources */,
 				2A1125CA23F8C097006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91621C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BE208C3C630082D52B /* AudioToolbox.swift in Sources */,
@@ -2822,7 +2821,7 @@
 				2AF073FC1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2AF073F51D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
 				2A5ADE851D2168FC00F6CE26 /* Collection.swift in Sources */,
-				2A2747742111909400795954 /* Collection+Diff.swift in Sources */,
+				2ADA15EF21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFC1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A885E341D5C3A1B00288723 /* Comparable.swift in Sources */,
@@ -3017,6 +3016,7 @@
 				2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */,
 				2A2792961D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2AA761361D45634400031AAF /* String+Counting.swift in Sources */,
+				2A2747742111909400795954 /* String+Diff.swift in Sources */,
 				2AA375441D403F100080C27C /* String+Encoding.swift in Sources */,
 				2AA7613B1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A9BF3C81D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
@@ -3109,7 +3109,6 @@
 				2A2792921D1DACC400F3FC5D /* AppearancePaneController.swift in Sources */,
 				2A91C31B1D1BFE47007CF8BE /* AppInfo.swift in Sources */,
 				2AA14CFC1FA4983500EAF586 /* AppleScript.swift in Sources */,
-				2ADA15EE21C5073D00C6608B /* Array+IndexSet.swift in Sources */,
 				2A1125C923F8C096006A1DB2 /* AsynchronousOperation.swift in Sources */,
 				2ADBC91521C9F30000B884FF /* Atomic.swift in Sources */,
 				2ABF86BD208C3C630082D52B /* AudioToolbox.swift in Sources */,
@@ -3120,7 +3119,7 @@
 				2AF073FB1D34587500770BA6 /* CharacterInfo.swift in Sources */,
 				2AF073F41D34076A00770BA6 /* CharacterPopoverController.swift in Sources */,
 				2A5ADE841D2168FC00F6CE26 /* Collection.swift in Sources */,
-				2A2747732111909400795954 /* Collection+Diff.swift in Sources */,
+				2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */,
 				2AE12DFB1E7DB47000681F72 /* Collection+String.swift in Sources */,
 				2A4257B01D22FD490086DAAD /* ColorCodePanelController.swift in Sources */,
 				2A885E331D5C3A1B00288723 /* Comparable.swift in Sources */,
@@ -3315,6 +3314,7 @@
 				2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */,
 				2A2792951D1DBDAC00F3FC5D /* String+Constants.swift in Sources */,
 				2AA761351D45634400031AAF /* String+Counting.swift in Sources */,
+				2A2747732111909400795954 /* String+Diff.swift in Sources */,
 				2AA375451D403F110080C27C /* String+Encoding.swift in Sources */,
 				2AA7613A1D457BD500031AAF /* String+Indentation.swift in Sources */,
 				2A9BF3C71D38325200E3D3E2 /* String+JapaneseTransformation.swift in Sources */,
