@@ -110,7 +110,7 @@ extension MultiCursorEditing {
         guard ranges.count > 1 else { return false }
         
         let deletionRanges: [NSRange] = ranges
-            .map { range in
+            .map { range -> NSRange in
                 guard range.location > 0 else { return range }
                 guard range.isEmpty else { return range }
                 
@@ -119,11 +119,10 @@ extension MultiCursorEditing {
                     let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }
                 
-                return NSRange(location: range.location-1, length: 1)
+                return NSRange(location: range.location - 1, length: 1)
             }
             // remove overlappings
-            .map { Range<Int>($0)! }
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
             .rangeView
             .map { NSRange($0) }
         
@@ -175,8 +174,7 @@ extension MultiCursorEditing {
         
         let ranges = ranges.unique.sorted(\.location)
         let selectionSet = ranges
-            .map { Range<Int>($0)! }
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
         let nonemptyRanges = selectionSet.rangeView
             .map { NSRange($0) }
         var emptyRanges = ranges
