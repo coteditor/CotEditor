@@ -665,8 +665,8 @@
 		2AE73ECD2035223100D8903B /* Credits.css in Resources */ = {isa = PBXBuildFile; fileRef = 2AE73ECA2035223100D8903B /* Credits.css */; };
 		2AE73F3D2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */; };
 		2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */; };
-		2AE73F40203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */; };
-		2AE73F41203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */; };
+		2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */; };
+		2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */; };
 		2AE73F43203E753C00D8903B /* NSTextView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */; };
 		2AE73F44203E753C00D8903B /* NSTextView+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */; };
 		2AE7A8D620450C0000830830 /* OutlineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D420450C0000830830 /* OutlineView.storyboard */; };
@@ -1411,7 +1411,7 @@
 		2AE73EC7203520E000D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Acknowledgments.css; sourceTree = "<group>"; };
 		2AE73ECB2035223100D8903B /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.css; name = Base; path = Base.lproj/Credits.css; sourceTree = "<group>"; };
 		2AE73F3C2039A29300D8903B /* URL+ExtendedAttribute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ExtendedAttribute.swift"; sourceTree = "<group>"; };
-		2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSLayoutManager+Range.swift"; sourceTree = "<group>"; };
+		2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutManager.swift; sourceTree = "<group>"; };
 		2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Selection.swift"; sourceTree = "<group>"; };
 		2AE7A8D520450C0000830830 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OutlineView.storyboard; sourceTree = "<group>"; };
 		2AE7A8D820450FE600830830 /* OutlineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewController.swift; sourceTree = "<group>"; };
@@ -1796,7 +1796,7 @@
 				2AC186D91E2F414D002F4D27 /* NSDocument+ErrorHandling.swift */,
 				2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */,
 				2A07E8471DF160600022FF9C /* NSTouchBar+Validation.swift */,
-				2AE73F3F203D2FBB00D8903B /* NSLayoutManager+Range.swift */,
+				2AE73F3F203D2FBB00D8903B /* NSLayoutManager.swift */,
 				2A484A38236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift */,
 				2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */,
 				2A05081223D6B9E900602F5E /* NSViewController.swift */,
@@ -2940,7 +2940,7 @@
 				2A5D2DC421908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A551D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A71BC7F1DDC70A80085AE1C /* NSImage+Template.swift in Sources */,
-				2AE73F41203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
+				2AE73F41203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A484A3A236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AF99621235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2AF1D85921B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,
@@ -3238,7 +3238,7 @@
 				2A5D2DC321908F4A006814D5 /* NSFont+Name.swift in Sources */,
 				2AA45A541D2F22C600A1A401 /* NSFont+Size.swift in Sources */,
 				2A71BC7E1DDC70A80085AE1C /* NSImage+Template.swift in Sources */,
-				2AE73F40203D2FBB00D8903B /* NSLayoutManager+Range.swift in Sources */,
+				2AE73F40203D2FBB00D8903B /* NSLayoutManager.swift in Sources */,
 				2A484A39236579A7006FFD14 /* NSLayoutManager+ValidationIgnorable.swift in Sources */,
 				2AF99620235ACDD60041872E /* NSPrintInfo.swift in Sources */,
 				2AF1D85821B8D9250060BC04 /* NSRegularExpression+Additions.swift in Sources */,

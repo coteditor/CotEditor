@@ -1,5 +1,5 @@
 //
-//  NSLayoutManager+Range.swift
+//  NSLayoutManager.swift
 //
 //  CotEditor
 //  https://coteditor.com
