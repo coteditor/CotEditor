@@ -244,12 +244,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * charSize.width
-                var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
+                var point = NSPoint(x: horizontalOrigin, y: lineRect.midY)
                 if isVerticalText {
-                    point = NSPoint(x: -point.y - (width + charSize.height) / 2,
+                    point = NSPoint(x: -point.y - width / 2,
                                     y: point.x - charSize.height)
                 } else {
                     point.x -= width  // align right
+                    point.y -= charSize.height / 2
                 }
                 
                 // draw number

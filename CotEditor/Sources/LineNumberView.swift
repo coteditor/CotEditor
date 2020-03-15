@@ -33,7 +33,6 @@ final class LineNumberView: NSView {
         
         let fontSize: CGFloat
         let charWidth: CGFloat
-        let ascent: CGFloat
         let wrappedMarkGlyph: CGGlyph
         let digitGlyphs: [CGGlyph]
         let padding: CGFloat
@@ -50,7 +49,6 @@ final class LineNumberView: NSView {
             
             // calculate font size for number
             self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).rounded(interval: 0.5)
-            self.ascent = scale * textFont.ascender
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
@@ -291,6 +289,7 @@ final class LineNumberView: NSView {
         guard
             let drawingInfo = self.drawingInfo,
             let textView = self.textView,
+            let layoutManager = textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
             else { return assertionFailure() }
         
@@ -306,7 +305,8 @@ final class LineNumberView: NSView {
         
         // adjust drawing coordinate
         let relativePoint = self.convert(NSPoint.zero, from: textView)
-        let lineBase = (scale * textView.textContainerOrigin.y) + drawingInfo.ascent
+        let baselineOffset = layoutManager.baselineOffset(for: textView.layoutOrientation)
+        let lineBase = scale * (textView.textContainerOrigin.y + baselineOffset)
         switch textView.layoutOrientation {
             case .horizontal:
                 context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)

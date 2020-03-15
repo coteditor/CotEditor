@@ -7,8 +7,14 @@ Change Log
 
 ### Improvements
 
+- Adjust the text baseline to draw characters vertically center in lines.
 - Adjust invisible characters position in the vertical text orientation.
 - Improve drawing performance.
+
+
+### Fixes
+
+- Fix an issue where the line numbers could be shifted when printing vertical text orientation document.
 
 
 
