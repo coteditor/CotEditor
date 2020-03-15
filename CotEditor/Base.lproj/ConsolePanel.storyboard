@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EcT-zs-4uz">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="EcT-zs-4uz">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
         <scene sceneID="Ra4-72-mvU">
             <objects>
-                <windowController showSeguePresentationStyle="single" id="EcT-zs-4uz" customClass="ConsoleWindowController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="EcT-zs-4uz" customClass="ConsolePanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Console" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="6" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES"/>
                         <rect key="contentRect" x="196" y="240" width="360" height="200"/>
