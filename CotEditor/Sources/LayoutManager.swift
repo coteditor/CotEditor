@@ -79,7 +79,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     private(set) var spaceWidth: CGFloat = 0
     private(set) var replacementGlyphWidth: CGFloat = 0
-    private(set) var defaultBaselineOffset: CGFloat = 0  // defaultBaselineOffset for textFont
     private(set) var showsOtherInvisibles = false
     
     
@@ -88,6 +87,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     private var defaultsObservers: [UserDefaultsObservation] = []
     
     private var defaultLineHeight: CGFloat = 1.0
+    private var defaultBaselineOffset: CGFloat = 0
     
     private var showsSpace = false
     private var showsTab = false
@@ -202,6 +202,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
             }
             
+            let baselineOffset = self.baselineOffset(for: layoutOrientation ?? .horizontal)
+            
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
             for charIndex in characterRange.lowerBound..<characterRange.upperBound {
@@ -238,8 +240,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
                 let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x,
-                                                                   dy: self.defaultBaselineOffset)
+                var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset)
                 if layoutOrientation == .vertical {
                     let bounds = line.bounds()
                     point.y += bounds.minY + bounds.height / 2
@@ -307,6 +308,21 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         let multiple = self.firstTextView?.defaultParagraphStyle?.lineHeightMultiple ?? 1.0
         
         return multiple * self.defaultLineHeight
+    }
+    
+    
+    /// Fixed baseline offset to place glyphs vertically in the middle of a line.
+    ///
+    /// - Parameter layoutOrientation: The text layout orientation.
+    /// - Returns: The baseline offset.
+    func baselineOffset(for layoutOrientation: TextLayoutOrientation) -> CGFloat {
+        
+        switch layoutOrientation {
+            case .vertical:
+                return self.lineHeight / 2
+            default:
+                return (self.lineHeight + self.defaultBaselineOffset) / 2
+        }
     }
     
     

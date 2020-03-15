@@ -43,8 +43,8 @@ final class Typesetter: NSATSTypesetter {
         lineRect.pointee.size.height = manager.lineHeight
         usedRect.pointee.size.height = manager.lineHeight
         
-        // avoid baseline shifting when the glyph height is higher than the fixed line height, such as 𓆏.
-        baselineOffset.pointee = manager.defaultBaselineOffset
+        // vertically center the glyphs in the line fragment
+        baselineOffset.pointee = manager.baselineOffset(for: self.currentTextContainer?.layoutOrientation ?? .horizontal)
     }
     
     
