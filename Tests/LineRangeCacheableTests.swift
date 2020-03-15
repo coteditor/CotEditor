@@ -28,6 +28,9 @@ import XCTest
 
 final class LineRangeCacheableTests: XCTestCase {
     
+    private let repeatCount = 20
+    
+    
     func testLineNumberCalculation() {
         
         let lineString = LineString("dog \n\n cat \n cow \n")
@@ -44,7 +47,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString2 = LineString("dog \n\n cat \n cow ")
         XCTAssertEqual(lineString2.lineNumber(at: 17), 4)
         
-        for _ in 0..<20 {
+        for _ in 0..<self.repeatCount {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
@@ -72,7 +75,7 @@ final class LineRangeCacheableTests: XCTestCase {
         let lineString2 = LineString("dog \n\n cat \n cow ")
         XCTAssertEqual(lineString2.lineRange(at: 17), NSRange(12..<17))
         
-        for _ in 0..<20 {
+        for _ in 0..<self.repeatCount {
             let string = String(" 🐶 \n 🐱 \n 🐮 \n".shuffled())
             let lineString = LineString(string)
             
@@ -94,7 +97,7 @@ final class LineRangeCacheableTests: XCTestCase {
         XCTAssertEqual(lineString.lineNumber(at: 1), lineNumber)  // 2
         XCTAssertEqual(lineString.lineRange(at: 1), lineRange)    // NSRange(1..<3)
         
-        for _ in 0..<20 {
+        for _ in 0..<self.repeatCount {
             let lineString = LineString(String(" 🐶 \n 🐱 \n 🐮 \n".shuffled()))
             
             for index in (0..<lineString.string.length).shuffled() {
@@ -114,9 +117,8 @@ final class LineRangeCacheableTests: XCTestCase {
     
     func testStringRemoval() {
         
-        let string = "dog \n\n\n cat \n "
-        let lineString = LineString(string)
-        _ = lineString.lineNumber(at: string.length)
+        let lineString = LineString("dog \n\n\n cat \n ")
+        _ = lineString.lineNumber(at: lineString.string.length)
         
         lineString.replaceCharacters(in: NSRange(1..<3), with: "")  // "og"
         XCTAssertEqual(lineString.string, "d \n\n\n cat \n ")
@@ -145,19 +147,18 @@ final class LineRangeCacheableTests: XCTestCase {
     
     func testStringModification() {
         
-        let string = "\n🐶"
-        let lineString = LineString(string)
+        let lineString = LineString("\n🐶")
         _ = lineString.lineNumber(at: 1)
         lineString.replaceCharacters(in: NSRange(1..<3), with: "a\nb")
         lineString.invalidateLineRanges(in: NSRange(1..<3), changeInLength: 1)
         XCTAssertEqual(lineString.lineNumber(at: 1), 2)
         XCTAssertEqual(lineString.lineRange(at: 1), NSRange(1..<3))  // "a\n"
         
-        for _ in 0..<20 {
+        for _ in 0..<self.repeatCount {
             let string = String(" dog \n cat \n cow \n".shuffled())
             let lineString = LineString(string)
             
-            XCTAssertEqual(lineString.lineNumber(at: string.length), 4, "with string \"\(lineString.string)\"")
+            XCTAssertEqual(lineString.lineNumber(at: string.length), 4)
             
             let location = Int.random(in: 0..<(string.length - 1))
             let length = Int.random(in: 0..<(string.length - location))
@@ -168,13 +169,29 @@ final class LineRangeCacheableTests: XCTestCase {
             
             for index in (0..<lineString.string.length).shuffled() {
                 XCTAssertEqual(lineString.lineNumber(at: index), lineString.string.lineNumber(at: index),
-                               "At \(index) with string \"\(lineString.string)\"")
+                               "at \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineRange(at: index), lineString.string.lineRange(at: index),
-                               "At \(index) with string \"\(lineString.string)\"")
+                               "at \(index) with string \"\(lineString.string)\"")
                 XCTAssertEqual(lineString.lineStartIndex(at: index), lineString.string.lineStartIndex(at: index),
-                               "At \(index) with string \"\(lineString.string)\"")
+                               "at \(index) with string \"\(lineString.string)\"")
             }
         }
+    }
+    
+    
+    func testEdgeModification() {
+        
+        let lineString = LineString("\n  \n")
+        
+        XCTAssertEqual(lineString.lineNumber(at: 4), 3)
+        
+        lineString.replaceCharacters(in: NSRange(0..<0), with: "  ")
+        
+        let index = 4
+        XCTAssertEqual(lineString.string, "  \n  \n")
+        XCTAssertEqual(lineString.lineNumber(at: index), 2)
+        XCTAssertEqual(lineString.lineRange(at: index), NSRange(location: 3, length: 3))
+        XCTAssertEqual(lineString.lineStartIndex(at: index), 3)
     }
     
 }

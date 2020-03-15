@@ -162,10 +162,10 @@ private extension LineRangeCache {
     ///   - delta: The length delta for the editing changes.
     mutating func invalidate(in newRange: NSRange, changeInLength delta: Int) {
         
-        self.parsedIndexes.shift(startingAt: newRange.lowerBound - delta, by: delta)
+        self.parsedIndexes.shift(startingAt: max(newRange.lowerBound - delta, 0), by: delta)
         self.parsedIndexes.remove(integersIn: newRange.lowerBound..<newRange.upperBound)
         
-        self.lineStartIndexes.shift(startingAt: newRange.lowerBound + 1 - delta, by: delta)
+        self.lineStartIndexes.shift(startingAt: max(newRange.lowerBound + 1 - delta, 0), by: delta)
         self.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<(newRange.upperBound + 1))
         
         self.invalidateFirstUncoundedIndex()
