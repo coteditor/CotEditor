@@ -212,3 +212,45 @@ extension NSLayoutManager {
     }
     
 }
+
+
+
+// MARK: - Debug
+
+extension NSLayoutManager {
+    
+    private static let guidelineColor = NSColor(hue: 0.5, saturation: 0.75, brightness: 0.5, alpha: 1)
+    
+    
+    /// Draw guildelines of line fragement and baseline for debugging.
+    ///
+    /// Invoke this method in `drawBackground(forGlyphRange:at:)` to check the text layout for debugging.
+    ///
+    /// - Parameters:
+    ///   - glyphsToShow: The range of glyphs for which the line fragments are drawn.
+    ///   - origin: The position of the text container in the coordinate system of the currently focused view.
+    ///   - offsetsHandler: The block returning the vertical offsets in the line fragment coordinate to draw additional guidelines.
+    ///   - textContainer: The text container in which the glyphs are laid out.
+    ///   - glyphRange: The range of glyphs laid out in the current line fragment.
+    func drawLineFragments(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, offsetsHandler: @escaping (_ textContainer: NSTextContainer, _ glyphRange: NSRange) -> [CGFloat] = { (_, _) in [] }) {
+        
+        NSGraphicsContext.saveGraphicsState()
+        
+        Self.guidelineColor.setStroke()
+        self.enumerateLineFragments(forGlyphRange: glyphsToShow) { (rect, _, textContainer, glyphRange, _) in
+            let rect = rect.offset(by: origin)
+            
+            NSBezierPath.defaultLineWidth = 0.5
+            NSBezierPath.stroke(rect)
+            
+            for offset in offsetsHandler(textContainer, glyphRange) {
+                NSBezierPath.defaultLineWidth = 0.25
+                NSBezierPath.strokeLine(from: NSPoint(x: rect.minX, y: rect.minY + offset),
+                                        to: NSPoint(x: rect.maxX, y: rect.minY + offset))
+            }
+        }
+        
+        NSGraphicsContext.restoreGraphicsState()
+    }
+    
+}
