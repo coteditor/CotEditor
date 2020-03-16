@@ -350,7 +350,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
+"The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
 "Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";

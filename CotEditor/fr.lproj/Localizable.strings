@@ -348,7 +348,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "Le changement sera appliqué au prochain lancement.";
+"The change will be applied first on the next launch." = "Le changement sera appliqué au prochain lancement.";
 "Do you want to restart CotEditor now?" = "Voulez-vous relancer CotEditor maintenant ?";
 "Restart Now" = "Relancer maintenant";
 "Later" = "Plus tard";

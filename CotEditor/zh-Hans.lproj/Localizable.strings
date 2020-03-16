@@ -350,7 +350,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "变更将在下次启动时生效。";
+"The change will be applied first on the next launch." = "变更将在下次启动时生效。";
 "Do you want to restart CotEditor now?" = "现在就重启 CotEditor 吗？";
 "Restart Now" = "现在重启";
 "Later" = "稍后";

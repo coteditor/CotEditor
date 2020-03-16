@@ -350,7 +350,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "A alteração será aplicada quando o aplicativo for reaberto.";
+"The change will be applied first on the next launch." = "A alteração será aplicada quando o aplicativo for reaberto.";
 "Do you want to restart CotEditor now?" = "Deseja reabrir o CotEditor agora?";
 "Restart Now" = "Reabrir Agora";
 "Later" = "Mais Tarde";
