@@ -182,7 +182,7 @@ extension EditorTextView {
 
 // MARK: -
 
-private extension String {
+extension String {
     
     typealias EditingInfo = (strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?)
     
@@ -375,11 +375,12 @@ private extension String {
                 lineString += "\n"
             }
             
-            let offset = (replacementStrings + [lineString]).map { ($0 as NSString).length }.reduce(0, +)
-            let selectedRange = range.shifted(offset: offset)
-            
             replacementStrings.append(lineString)
             replacementRanges.append(replacementRange)
+            
+            let offset = replacementStrings.map { $0.length }.reduce(0, +)
+            let selectedRange = range.shifted(offset: offset)
+            
             selectedRanges.append(selectedRange)
         }
         
@@ -395,7 +396,7 @@ private extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         let replacementStrings = [String](repeating: "", count: lineRanges.count)
         
-        var selectedRanges = [NSRange]()
+        var selectedRanges: [NSRange] = []
         var offset = 0
         for range in lineRanges {
             selectedRanges.append(NSRange(location: range.location + offset, length: 0))
