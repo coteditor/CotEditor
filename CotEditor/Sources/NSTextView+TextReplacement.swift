@@ -95,7 +95,7 @@ extension NSTextView {
         self.didChangeText()
         
         // apply new selection ranges
-        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges.map { $0.rangeValue })
+        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges.map(\.rangeValue))
         
         return true
     }
@@ -134,7 +134,7 @@ extension NSTextView {
         assert(Thread.isMainThread)
         
         let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
-        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
+        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
         // exclude editing lines if needed
         let replacementRanges: [NSRange] = keepingEditingPoint
@@ -189,7 +189,7 @@ extension String {
         let pattern = ignoresEmptyLines ? "(?<!^|[ \\t])[ \\t]+$" : "[ \\t]+$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         
-        return regex.matches(in: self, range: self.nsRange).map { $0.range }
+        return regex.matches(in: self, range: self.nsRange).map(\.range)
     }
     
 }

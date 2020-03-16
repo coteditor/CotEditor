@@ -123,7 +123,7 @@ struct Shortcut: Hashable {
         
         let modifierCharacters = ModifierKey.allCases
             .filter { self.modifierMask.contains($0.mask) }
-            .map { $0.keySpecChar }
+            .map(\.keySpecChar)
             .joined()
         
         return modifierCharacters + self.keyEquivalent
@@ -166,7 +166,7 @@ struct Shortcut: Hashable {
         
         return ModifierKey.allCases
             .filter { self.modifierMask.contains($0.mask) }
-            .map { $0.symbol }
+            .map(\.symbol)
             .joined()
     }
     

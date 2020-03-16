@@ -305,7 +305,7 @@ final class SyntaxManager: SettingFileManaging {
     func checkUserSettings() {
         
         // load mapping definitions from style files in user domain
-        let mappingKeys = SyntaxKey.mappingKeys.map { $0.rawValue }
+        let mappingKeys = SyntaxKey.mappingKeys.map(\.rawValue)
         let userMap: [SettingName: [String: [String]]] = self.userSettingFileURLs.reduce(into: [:]) { (dict, url) in
             guard let style = try? self.loadSettingDictionary(at: url) else { return }
             let settingName = self.settingName(from: url)

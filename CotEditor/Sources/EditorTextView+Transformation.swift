@@ -201,7 +201,7 @@ private extension NSTextView {
             self.selectWord(self)
         }
         
-        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
         var strings = [String]()
         var appliedRanges = [NSRange]()
         var newSelectedRanges = [NSRange]()

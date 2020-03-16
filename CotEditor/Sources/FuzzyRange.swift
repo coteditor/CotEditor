@@ -109,7 +109,7 @@ extension String {
     func rangeForLine(in lineRange: FuzzyRange) -> NSRange? {
         
         let regex = try! NSRegularExpression(pattern: "^.*(?:\\R|\\z)", options: .anchorsMatchLines)
-        let lineRanges = regex.matches(in: self, range: self.nsRange).map { $0.range }
+        let lineRanges = regex.matches(in: self, range: self.nsRange).map(\.range)
         let count = lineRanges.count
         
         guard lineRange.location != 0 else { return NSRange(0..<0) }

@@ -316,8 +316,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 guard !progress.isCancelled else { return }
                 
                 if !replacementItems.isEmpty {
-                    let replacementStrings = replacementItems.map { $0.string }
-                    let replacementRanges = replacementItems.map { $0.range }
+                    let replacementStrings = replacementItems.map(\.string)
+                    let replacementRanges = replacementItems.map(\.range)
                     
                     // apply found strings to the text view
                     textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
@@ -405,7 +405,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges.map { $0.rangeValue })
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges.map(\.rangeValue))
         } catch let error as TextFind.Error {
             switch error {
                 case .regularExpression, .emptyInSelectionSearch:

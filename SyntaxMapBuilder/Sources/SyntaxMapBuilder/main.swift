@@ -58,7 +58,7 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
             "filenames": style.filenames,
             "interpreters": style.interpreters,
             ]
-            .mapValues { $0?.map { $0.keyString } ?? [] }
+            .mapValues { $0?.map(\.keyString) ?? [] }
     }
     
     // encode syntaxMap to JSON style

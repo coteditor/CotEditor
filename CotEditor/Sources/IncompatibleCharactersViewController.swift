@@ -108,7 +108,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         self.incompatibleCharacters = incompatibleCharacters
         self.characterAvailable = !incompatibleCharacters.isEmpty
         
-        let ranges = incompatibleCharacters.map { $0.range }
+        let ranges = incompatibleCharacters.map(\.range)
         
         document.textStorage.clearAllMarkup()
         document.textStorage.markup(ranges: ranges, lineEnding: document.lineEnding)
