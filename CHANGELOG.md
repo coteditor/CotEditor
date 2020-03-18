@@ -14,7 +14,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the line numbers could be shifted when printing vertical text orientation document.
+- Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
 
 
 
