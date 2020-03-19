@@ -228,7 +228,7 @@ extension String {
                 }
             }
         }
-        selectedRanges.sort(\.location)
+        selectedRanges = selectedRanges.unique.sorted(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -277,7 +277,7 @@ extension String {
                 }
             }
         }
-        selectedRanges.sort(\.location)
+        selectedRanges = selectedRanges.unique.sorted(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
