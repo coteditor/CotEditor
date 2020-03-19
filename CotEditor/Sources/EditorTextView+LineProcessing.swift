@@ -228,6 +228,7 @@ extension String {
                 }
             }
         }
+        selectedRanges.sort(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -276,6 +277,7 @@ extension String {
                 }
             }
         }
+        selectedRanges.sort(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         

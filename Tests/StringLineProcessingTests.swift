@@ -34,6 +34,8 @@ final class StringLineProcessingTests: XCTestCase {
             aa
             bbbb
             ccc
+            d
+            eee
             """
         var info: String.EditingInfo?
         
@@ -41,6 +43,14 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info!.strings, ["bbbb\naa\n"])
         XCTAssertEqual(info!.ranges, [NSRange(0, 8)])
         XCTAssertEqual(info!.selectedRanges, [NSRange(1, 1)])
+        
+        info = string.moveLineUp(in: [NSRange(4, 1), NSRange(6, 0)])
+        XCTAssertEqual(info!.strings, ["bbbb\naa\n"])
+        XCTAssertEqual(info!.ranges, [NSRange(0, 8)])
+        XCTAssertEqual(info!.selectedRanges, [NSRange(1, 1), NSRange(3, 0)])
+        
+        info = string.moveLineUp(in: [NSRange(2, 1)])
+        XCTAssertNil(info)
     }
     
     
@@ -50,13 +60,23 @@ final class StringLineProcessingTests: XCTestCase {
             aa
             bbbb
             ccc
+            d
+            eee
             """
         var info: String.EditingInfo?
         
         info = string.moveLineDown(in: [NSRange(4, 1)])
-        XCTAssertEqual(info!.strings, ["aa\nccc\nbbbb"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 11)])
+        XCTAssertEqual(info!.strings, ["aa\nccc\nbbbb\n"])
+        XCTAssertEqual(info!.ranges, [NSRange(0, 12)])
         XCTAssertEqual(info!.selectedRanges, [NSRange(8, 1)])
+        
+        info = string.moveLineDown(in: [NSRange(4, 1), NSRange(6, 0), NSRange(13, 1)])
+        XCTAssertEqual(info!.strings, ["aa\nccc\nbbbb\neee\nd"])
+        XCTAssertEqual(info!.ranges, [NSRange(0, 17)])
+        XCTAssertEqual(info!.selectedRanges, [NSRange(8, 1), NSRange(10, 0), NSRange(17, 1)])
+        
+        info = string.moveLineDown(in: [NSRange(14, 1)])
+        XCTAssertNil(info)
     }
     
     
