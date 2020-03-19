@@ -187,9 +187,9 @@ final class RegularExpressionSortPattern: NSObject, SortPattern {
         
         if self.usesCaptureGroup {
             guard match.numberOfRanges > self.group else { return nil }
-            return Range(match.range(at: self.group), in: line)!
+            return Range(match.range(at: self.group), in: line)
         } else {
-            return Range(match.range, in: line)!
+            return Range(match.range, in: line)
         }
     }
     
