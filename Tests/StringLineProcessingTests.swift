@@ -106,6 +106,11 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info!.strings, ["aa\nbbbb\nccc"])
         XCTAssertEqual(info!.ranges, [NSRange(0, 11)])
         XCTAssertEqual(info!.selectedRanges, [NSRange(0, 11)])
+        
+        info = string.sortLinesAscending(in: NSRange(2, 4))
+        XCTAssertEqual(info!.strings, ["aa\nccc"])
+        XCTAssertEqual(info!.ranges, [NSRange(0, 6)])
+        XCTAssertEqual(info!.selectedRanges, [NSRange(0, 6)])
     }
     
     
@@ -125,6 +130,11 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info!.strings, ["ccc\nbbbb\naa"])
         XCTAssertEqual(info!.ranges, [NSRange(0, 11)])
         XCTAssertEqual(info!.selectedRanges, [NSRange(0, 11)])
+        
+        info = string.reverseLines(in: NSRange(2, 4))
+        XCTAssertEqual(info!.strings, ["bbbb\naa"])
+        XCTAssertEqual(info!.ranges, [NSRange(0, 7)])
+        XCTAssertEqual(info!.selectedRanges, [NSRange(0, 7)])
     }
     
     
