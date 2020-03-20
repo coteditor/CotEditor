@@ -40,19 +40,19 @@ final class StringLineProcessingTests: XCTestCase {
         var info: String.EditingInfo?
         
         info = string.moveLineUp(in: [NSRange(4, 1)])
-        XCTAssertEqual(info!.strings, ["bbbb\naa\n"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 8)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(1, 1)])
+        XCTAssertEqual(info?.strings, ["bbbb\naa\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 8)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(1, 1)])
         
         info = string.moveLineUp(in: [NSRange(4, 1), NSRange(6, 0)])
-        XCTAssertEqual(info!.strings, ["bbbb\naa\n"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 8)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(1, 1), NSRange(3, 0)])
+        XCTAssertEqual(info?.strings, ["bbbb\naa\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 8)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(1, 1), NSRange(3, 0)])
         
         info = string.moveLineUp(in: [NSRange(4, 1), NSRange(9, 0), NSRange(15, 1)])
-        XCTAssertEqual(info!.strings, ["bbbb\nccc\naa\neee\nd"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 17)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(1, 1), NSRange(6, 0), NSRange(13, 1)])
+        XCTAssertEqual(info?.strings, ["bbbb\nccc\naa\neee\nd"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 17)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(1, 1), NSRange(6, 0), NSRange(13, 1)])
         
         info = string.moveLineUp(in: [NSRange(2, 1)])
         XCTAssertNil(info)
@@ -71,19 +71,19 @@ final class StringLineProcessingTests: XCTestCase {
         var info: String.EditingInfo?
         
         info = string.moveLineDown(in: [NSRange(4, 1)])
-        XCTAssertEqual(info!.strings, ["aa\nccc\nbbbb\n"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 12)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(8, 1)])
+        XCTAssertEqual(info?.strings, ["aa\nccc\nbbbb\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 12)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(8, 1)])
         
         info = string.moveLineDown(in: [NSRange(4, 1), NSRange(6, 0)])
-        XCTAssertEqual(info!.strings, ["aa\nccc\nbbbb\n"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 12)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(8, 1), NSRange(10, 0)])
+        XCTAssertEqual(info?.strings, ["aa\nccc\nbbbb\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 12)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(8, 1), NSRange(10, 0)])
         
         info = string.moveLineDown(in: [NSRange(4, 1), NSRange(9, 0), NSRange(13, 1)])
-        XCTAssertEqual(info!.strings, ["aa\neee\nbbbb\nccc\nd"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 17)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(8, 1), NSRange(13, 0), NSRange(17, 1)])
+        XCTAssertEqual(info?.strings, ["aa\neee\nbbbb\nccc\nd"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 17)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(8, 1), NSRange(13, 0), NSRange(17, 1)])
         
         info = string.moveLineDown(in: [NSRange(14, 1)])
         XCTAssertNil(info)
@@ -103,14 +103,14 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertNil(info)
         
         info = string.sortLinesAscending(in: string.nsRange)
-        XCTAssertEqual(info!.strings, ["aa\nbbbb\nccc"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 11)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(0, 11)])
+        XCTAssertEqual(info?.strings, ["aa\nbbbb\nccc"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 11)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(0, 11)])
         
         info = string.sortLinesAscending(in: NSRange(2, 4))
-        XCTAssertEqual(info!.strings, ["aa\nccc"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 6)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(0, 6)])
+        XCTAssertEqual(info?.strings, ["aa\nccc"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 6)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(0, 6)])
     }
     
     
@@ -127,14 +127,14 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertNil(info)
         
         info = string.reverseLines(in: string.nsRange)
-        XCTAssertEqual(info!.strings, ["ccc\nbbbb\naa"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 11)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(0, 11)])
+        XCTAssertEqual(info?.strings, ["ccc\nbbbb\naa"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 11)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(0, 11)])
         
         info = string.reverseLines(in: NSRange(2, 4))
-        XCTAssertEqual(info!.strings, ["bbbb\naa"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 7)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(0, 7)])
+        XCTAssertEqual(info?.strings, ["bbbb\naa"])
+        XCTAssertEqual(info?.ranges, [NSRange(0, 7)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(0, 7)])
     }
     
     
@@ -178,10 +178,10 @@ final class StringLineProcessingTests: XCTestCase {
             """
         var info: String.EditingInfo?
         
-        info = string.duplicateLine(in: [NSRange(4, 1)])!
-        XCTAssertEqual(info!.strings, ["bbbb\n"])
-        XCTAssertEqual(info!.ranges, [NSRange(3, 0)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(9, 1)])
+        info = string.duplicateLine(in: [NSRange(4, 1)])
+        XCTAssertEqual(info?.strings, ["bbbb\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(3, 0)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(9, 1)])
     }
     
     
@@ -195,14 +195,14 @@ final class StringLineProcessingTests: XCTestCase {
         var info: String.EditingInfo?
         
         info = string.deleteLine(in: [NSRange(4, 1)])
-        XCTAssertEqual(info!.strings, [""])
-        XCTAssertEqual(info!.ranges, [NSRange(3, 5)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(3, 0)])
+        XCTAssertEqual(info?.strings, [""])
+        XCTAssertEqual(info?.ranges, [NSRange(3, 5)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(3, 0)])
         
-        info = string.deleteLine(in: [NSRange(4, 1), NSRange(6, 1), NSRange(10, 0)])!
-        XCTAssertEqual(info!.strings, ["", ""])
-        XCTAssertEqual(info!.ranges, [NSRange(3, 5), NSRange(8, 3)])
-        XCTAssertEqual(info!.selectedRanges, [NSRange(3, 0)])
+        info = string.deleteLine(in: [NSRange(4, 1), NSRange(6, 1), NSRange(10, 0)])
+        XCTAssertEqual(info?.strings, ["", ""])
+        XCTAssertEqual(info?.ranges, [NSRange(3, 5), NSRange(8, 3)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(3, 0)])
     }
 
 }
