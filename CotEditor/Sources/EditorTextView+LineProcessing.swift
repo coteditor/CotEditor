@@ -327,33 +327,27 @@ extension String {
     func deleteDuplicateLine(in ranges: [NSRange]) -> EditingInfo? {
         
         let string = self as NSString
-        var replacementStrings = [String]()
-        var replacementRanges = [NSRange]()
-        var uniqueLines = OrderedSet<String>()
-        var processedCount = 0
+        let lineContentRanges = ranges
+            .map { string.lineRange(for: $0) }
+            .flatMap { self.lineContentsRanges(for: $0) }
+            .unique
+            .sorted(\.location)
         
-        // collect duplicate lines
-        for range in ranges {
-            let lineRange = string.lineContentsRange(for: range)
-            let targetString = string.substring(with: lineRange)
-            let lines = targetString.components(separatedBy: .newlines)
+        var replacementRanges = [NSRange]()
+        var uniqueLines = [String]()
+        for lineContentRange in lineContentRanges {
+            let line = string.substring(with: lineContentRange)
             
-            // filter duplicate lines
-            uniqueLines.append(contentsOf: lines)
-            
-            let targetLinesRange: Range<Int> = processedCount..<uniqueLines.count
-            processedCount += targetLinesRange.count
-            
-            // do nothing if no duplicate line exists
-            guard targetLinesRange.count != lines.count else { continue }
-            
-            let replacementString = uniqueLines[targetLinesRange].joined(separator: "\n")
-            
-            replacementStrings.append(replacementString)
-            replacementRanges.append(lineRange)
+            if uniqueLines.contains(line) {
+                replacementRanges.append(string.lineRange(for: lineContentRange))
+            } else {
+                uniqueLines.append(line)
+            }
         }
         
-        guard processedCount > 0 else { return nil }
+        guard !replacementRanges.isEmpty else { return nil }
+        
+        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
     }

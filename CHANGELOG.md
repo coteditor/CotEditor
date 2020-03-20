@@ -15,6 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
+- Fix an issue where line endings could remain when deleting duplicate lines with mpltiple selections.
 
 
 

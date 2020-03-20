@@ -150,19 +150,22 @@ final class StringLineProcessingTests: XCTestCase {
         var info: String.EditingInfo?
         
         info = string.deleteDuplicateLine(in: [NSRange(4, 1)])
-        XCTAssertEqual(info!.strings, [])
-        XCTAssertEqual(info!.ranges, [])
-        XCTAssertNil(info!.selectedRanges)
+        XCTAssertNil(info)
         
-        info = string.deleteDuplicateLine(in: [string.nsRange])!
-        XCTAssertEqual(info!.strings, ["aa\nbbbb\nccc"])
-        XCTAssertEqual(info!.ranges, [NSRange(0, 20)])
-        XCTAssertNil(info!.selectedRanges)
+        info = string.deleteDuplicateLine(in: [string.nsRange])
+        XCTAssertEqual(info?.strings, ["", ""])
+        XCTAssertEqual(info?.ranges, [NSRange(12, 4), NSRange(16, 4)])
+        XCTAssertNil(info?.selectedRanges)
         
-        info = string.deleteDuplicateLine(in: [NSRange(10, 4)])!
-        XCTAssertEqual(info!.strings, ["ccc"])
-        XCTAssertEqual(info!.ranges, [NSRange(8, 7)])
-        XCTAssertNil(info!.selectedRanges)
+        info = string.deleteDuplicateLine(in: [NSRange(10, 4)])
+        XCTAssertEqual(info?.strings, [""])
+        XCTAssertEqual(info?.ranges, [NSRange(12, 4)])
+        XCTAssertNil(info?.selectedRanges)
+        
+        info = string.deleteDuplicateLine(in: [NSRange(9, 1), NSRange(11, 0), NSRange(13, 2)])
+        XCTAssertEqual(info?.strings, [""])
+        XCTAssertEqual(info?.ranges, [NSRange(12, 4)])
+        XCTAssertNil(info?.selectedRanges)
     }
     
     
