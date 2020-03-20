@@ -195,6 +195,11 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info!.strings, [""])
         XCTAssertEqual(info!.ranges, [NSRange(3, 5)])
         XCTAssertEqual(info!.selectedRanges, [NSRange(3, 0)])
+        
+        info = string.deleteLine(in: [NSRange(4, 1), NSRange(6, 1), NSRange(10, 0)])!
+        XCTAssertEqual(info!.strings, ["", ""])
+        XCTAssertEqual(info!.ranges, [NSRange(3, 5), NSRange(8, 3)])
+        XCTAssertEqual(info!.selectedRanges, [NSRange(3, 0)])
     }
 
 }

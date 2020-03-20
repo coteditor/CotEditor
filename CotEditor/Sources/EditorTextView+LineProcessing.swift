@@ -404,6 +404,7 @@ extension String {
             selectedRanges.append(NSRange(location: range.location + offset, length: 0))
             offset -= range.length
         }
+        selectedRanges = selectedRanges.unique.sorted(\.location)
         
         return (strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }
