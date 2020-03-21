@@ -9,6 +9,7 @@ Change Log
 
 - Adjust the text baseline to draw characters vertically center in lines.
 - Adjust invisible characters position in the vertical text orientation.
+- Duplicate lines more intelligently.
 - Improve drawing performance.
 
 

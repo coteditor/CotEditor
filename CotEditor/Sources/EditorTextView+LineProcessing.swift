@@ -361,8 +361,22 @@ extension String {
         var replacementRanges = [NSRange]()
         var selectedRanges = [NSRange]()
         
-        for range in ranges {
-            let lineRange = string.lineRange(for: range)
+        // group the ranges sharing the same lines
+        let rangeGroups: [[NSRange]] = ranges.sorted(\.location)
+            .reduce(into: []) { (groups, range) in
+                if let last = groups.last?.last,
+                    string.lineRange(for: last).intersection(string.lineRange(for: range)) != nil
+                {
+                    groups[groups.count - 1].append(range)
+                } else {
+                    groups.append([range])
+                }
+            }
+        
+        var offset = 0
+        for group in rangeGroups {
+            let unionRange = group.reduce(into: group[0]) { $0.formUnion($1) }
+            let lineRange = string.lineRange(for: unionRange)
             let replacementRange = NSRange(location: lineRange.location, length: 0)
             var lineString = string.substring(with: lineRange)
             
@@ -374,10 +388,10 @@ extension String {
             replacementStrings.append(lineString)
             replacementRanges.append(replacementRange)
             
-            let offset = replacementStrings.map { $0.length }.reduce(0, +)
-            let selectedRange = range.shifted(offset: offset)
-            
-            selectedRanges.append(selectedRange)
+            offset += lineString.length
+            for range in group {
+                selectedRanges.append(range.shifted(offset: offset))
+            }
         }
         
         return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)

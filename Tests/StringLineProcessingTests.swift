@@ -182,6 +182,16 @@ final class StringLineProcessingTests: XCTestCase {
         XCTAssertEqual(info?.strings, ["bbbb\n"])
         XCTAssertEqual(info?.ranges, [NSRange(3, 0)])
         XCTAssertEqual(info?.selectedRanges, [NSRange(9, 1)])
+        
+        info = string.duplicateLine(in: [NSRange(4, 1), NSRange(6, 4)])
+        XCTAssertEqual(info?.strings, ["bbbb\nccc\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(3, 0)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(13, 1), NSRange(15, 4)])
+        
+        info = string.duplicateLine(in: [NSRange(4, 1), NSRange(6, 1), NSRange(10, 0)])
+        XCTAssertEqual(info?.strings, ["bbbb\n", "ccc\n"])
+        XCTAssertEqual(info?.ranges, [NSRange(3, 0), NSRange(8, 0)])
+        XCTAssertEqual(info?.selectedRanges, [NSRange(9, 1), NSRange(11, 1), NSRange(19, 0)])
     }
     
     
