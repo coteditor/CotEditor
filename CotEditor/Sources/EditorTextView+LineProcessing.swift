@@ -365,7 +365,7 @@ extension String {
         let rangeGroups: [[NSRange]] = ranges.sorted(\.location)
             .reduce(into: []) { (groups, range) in
                 if let last = groups.last?.last,
-                    string.lineRange(for: last).intersection(string.lineRange(for: range)) != nil
+                    string.lineRange(for: last).intersects(string.lineRange(for: range))
                 {
                     groups[groups.count - 1].append(range)
                 } else {

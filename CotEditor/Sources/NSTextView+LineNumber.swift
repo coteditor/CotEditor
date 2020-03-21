@@ -79,7 +79,7 @@ extension NSTextView {
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = self.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            let isSelected = selectedRanges.contains { $0.intersection(lineRange) != nil }
+            let isSelected = selectedRanges.contains { $0.intersects(lineRange) }
                 || (lineRange.upperBound == string.length && layoutManager.extraLineFragmentRect.isEmpty)
             glyphIndex = lineGlyphRange.upperBound
             

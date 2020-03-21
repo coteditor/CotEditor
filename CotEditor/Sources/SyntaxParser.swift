@@ -249,7 +249,7 @@ extension SyntaxParser {
             // highlight whole visible area if edited point is visible
             highlightRange = self.textStorage.layoutManagers
                 .compactMap { $0.textViewForBeginningOfSelection?.visibleRange }
-                .filter { $0.intersection(highlightRange) != nil }
+                .filter { $0.intersects(highlightRange) }
                 .reduce(into: highlightRange) { $0.formUnion($1) }
             
             highlightRange = (string as NSString).lineRange(for: highlightRange)

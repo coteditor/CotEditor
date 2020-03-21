@@ -64,6 +64,14 @@ extension NSRange {
     }
     
     
+    /// Return a boolean indicating whether the specified range intersects the receiver’s range.
+    ///
+    /// - Parameter other: The other range.
+    func intersects(_ other: NSRange) -> Bool {
+        
+        return self.intersection(other) != nil
+    }
+    
     
     /// Check if the two ranges overlap or touch each other.
     ///
