@@ -76,7 +76,7 @@ final class SyntaxMapBuilderTests: XCTestCase {
             
             """
         
-        XCTAssertEqual(output!, expectedResult)
+        XCTAssertEqual(output, expectedResult)
     }
     
 }
