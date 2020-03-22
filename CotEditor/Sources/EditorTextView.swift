@@ -1829,7 +1829,7 @@ extension EditorTextView {
                     //   -> In case if the letter case is changed from the original.
                     if let originalWord = self.particalCompletionWord {
                         word = originalWord
-                }
+                    }
                 default:
                     didComplete = true
             }
