@@ -554,7 +554,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // insert soft tab
         if
             self.isAutomaticTabExpansionEnabled,
-            let insertionRanges = rangesForUserTextChange as? [NSRange]
+            let insertionRanges = self.rangesForUserTextChange as? [NSRange]
         {
             let softTabs = insertionRanges
                 .map { self.string.softTab(at: $0.location, tabWidth: self.tabWidth) }

@@ -48,8 +48,10 @@ extension MultiCursorEditing {
     /// All ranges to insert for multiple-cursor editing.
     var insertionRanges: [NSRange] {
         
+        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
         let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
-        return ((self.selectedRanges as! [NSRange]) + insertionRanges).sorted(\.location)
+        
+        return (selectedRanges + insertionRanges).sorted(\.location)
     }
     
     
