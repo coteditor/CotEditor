@@ -10,6 +10,7 @@ Change Log
 - Adjust the text baseline to draw characters vertically center in lines.
 - Adjust invisible characters position in the vertical text orientation.
 - Duplicate lines more intelligently.
+- Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
 
 

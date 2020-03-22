@@ -63,7 +63,7 @@ enum Invisible {
             case .tab:
                 return ["¬", "⇤", "◂", "◃"]
             case .newLine:
-                return ["¶", "↪", "↳", "⏎"]
+                return ["⁋", "↪", "↳", "⏎"]
             default:
                 return self.candidates
         }
