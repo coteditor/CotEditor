@@ -192,7 +192,7 @@ extension Indenting {
         guard !self.string.isEmpty else { return }
         
         // process whole document if no text selected
-        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : self.selectedRanges as! [NSRange]
+        let ranges = self.selectedRange.isEmpty ? [self.string.nsRange] : self.selectedRanges.map { $0.rangeValue }
         
         var replacementRanges = [NSRange]()
         var replacementStrings = [String]()

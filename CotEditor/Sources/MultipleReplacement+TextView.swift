@@ -35,7 +35,7 @@ extension MultipleReplacement {
         }
         
         let string = textView.string.immutable
-        let selectedRanges = textView.selectedRanges as! [NSRange]
+        let selectedRanges = textView.selectedRanges.map { $0.rangeValue }
         
         textView.isEditable = false
         
@@ -99,7 +99,7 @@ extension MultipleReplacement {
             else { return NSSound.beep() }
         
         let string = textView.string.immutable
-        let selectedRanges = textView.selectedRanges as! [NSRange]
+        let selectedRanges = textView.selectedRanges.map { $0.rangeValue }
         
         textView.isEditable = false
         

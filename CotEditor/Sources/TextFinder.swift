@@ -405,7 +405,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges.map { $0.rangeValue })
         } catch let error as TextFind.Error {
             switch error {
                 case .regularExpression, .emptyInSelectionSearch:

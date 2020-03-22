@@ -255,7 +255,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         let lastString = self.textStorage.string
         let editorStates = self.textStorage.layoutManagers
             .compactMap { $0.textViewForBeginningOfSelection }
-            .map { (textView: $0, ranges: $0.selectedRanges as! [NSRange]) }
+            .map { (textView: $0, ranges: $0.selectedRanges.map { $0.rangeValue }) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         

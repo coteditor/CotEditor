@@ -1246,7 +1246,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let lineEnding = self.document?.lineEnding ?? .lf
         
         // substring all selected attributed strings
-        let selectedRanges = self.selectedRanges as! [NSRange]
+        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
         for selectedRange in selectedRanges {
             let plainText = (string as NSString).substring(with: selectedRange)
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
