@@ -25,6 +25,15 @@
 
 import Dispatch
 
+extension DispatchTimeInterval {
+    
+    static func seconds(_ interval: Double) -> DispatchTimeInterval {
+        
+        return .milliseconds(Int(interval * 1000))
+    }
+}
+
+
 /// Object invoking the registered block when a specific time interval is passed after the last call.
 final class Debouncer {
     

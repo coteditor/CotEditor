@@ -195,8 +195,6 @@
 		2A4714E42093A2D40093E27F /* SyntaxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E22093A2D40093E27F /* SyntaxParser.swift */; };
 		2A4714E6209630510093E27F /* OutlineExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E5209630510093E27F /* OutlineExtractor.swift */; };
 		2A4714E7209630510093E27F /* OutlineExtractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E5209630510093E27F /* OutlineExtractor.swift */; };
-		2A4714E9209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E8209717C90093E27F /* DispatchQueue+Throttle.swift */; };
-		2A4714EA209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4714E8209717C90093E27F /* DispatchQueue+Throttle.swift */; };
 		2A476CAE1D09C8C80088E37A /* URLExtensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */; };
 		2A476CB11D09D0500088E37A /* FontExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A476CB01D09D0500088E37A /* FontExtensionTests.swift */; };
 		2A478F3F22BE743200AEA45E /* NSTextView+Ligature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */; };
@@ -1028,7 +1026,6 @@
 		2A4682B11D2F6B580005410E /* FileDropComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileDropComposer.swift; sourceTree = "<group>"; };
 		2A4714E22093A2D40093E27F /* SyntaxParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyntaxParser.swift; sourceTree = "<group>"; };
 		2A4714E5209630510093E27F /* OutlineExtractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineExtractor.swift; sourceTree = "<group>"; };
-		2A4714E8209717C90093E27F /* DispatchQueue+Throttle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue+Throttle.swift"; sourceTree = "<group>"; };
 		2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensionsTests.swift; sourceTree = "<group>"; };
 		2A476CB01D09D0500088E37A /* FontExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FontExtensionTests.swift; sourceTree = "<group>"; };
 		2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+Ligature.swift"; sourceTree = "<group>"; };
@@ -1841,7 +1838,6 @@
 				2AF0C1241D3DA44900B6FCB6 /* FourCharCode.swift */,
 				2AF45E211E6C17700030CD60 /* OperationQueue.swift */,
 				2AC52BDA1D48CC0E007D6371 /* DispatchQueue.swift */,
-				2A4714E8209717C90093E27F /* DispatchQueue+Throttle.swift */,
 				2A10C5F91FD25D04002AB5AE /* Selector+Codable.swift */,
 				2A685F692027729000A130A4 /* NSAppleEventManager+Additions.swift */,
 				2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */,
@@ -2847,7 +2843,6 @@
 				2A38FB011D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
 				2ACFE5881D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2AC52BDC1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
-				2A4714EA209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */,
 				2A1679E71D3CE07100E8261D /* Document.swift in Sources */,
 				2AF0C12E1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
 				2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
@@ -3147,7 +3142,6 @@
 				2A38FB001D1C6B6D0032231A /* DefinitionTableViewDelegate.swift in Sources */,
 				2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */,
 				2AC52BDB1D48CC0E007D6371 /* DispatchQueue.swift in Sources */,
-				2A4714E9209717C90093E27F /* DispatchQueue+Throttle.swift in Sources */,
 				2A1679E61D3CE07100E8261D /* Document.swift in Sources */,
 				2AF0C12D1D3DABD000B6FCB6 /* Document+ScriptingSupport.swift in Sources */,
 				2AD7B9AF1D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */,
