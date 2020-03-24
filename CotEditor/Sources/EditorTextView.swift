@@ -1675,7 +1675,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                         self.detectLink()
                     } else {
                         self.textStorage?.removeAttribute(.link, range: self.string.nsRange)
-                }
+                    }
                 
                 case .pageGuideColumn:
                     self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
@@ -1699,7 +1699,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 case .highlightSelectionInstance:
                     if !(new as! Bool) {
                         self.layoutManager?.removeTemporaryAttribute(.roundedBackgroundColor, forCharacterRange: self.string.nsRange)
-                }
+                    }
                 
                 case .enablesHangingIndent:
                     (self.textContainer as? TextContainer)?.isHangingIndentEnabled = new as! Bool

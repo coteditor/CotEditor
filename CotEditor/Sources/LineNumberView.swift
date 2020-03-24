@@ -353,7 +353,7 @@ final class LineNumberView: NSView {
                     if isVerticalText {
                         let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
                         context.stroke(rect, width: 1)
-                }
+                    }
                 
                 case .wrapped:
                     // draw wrapped mark (-)
