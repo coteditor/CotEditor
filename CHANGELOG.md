@@ -12,6 +12,7 @@ Change Log
 - Duplicate lines more intelligently.
 - Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
+- [dev] Update build environment to Xcode 11.4 (Swift 5.2).
 
 
 ### Fixes

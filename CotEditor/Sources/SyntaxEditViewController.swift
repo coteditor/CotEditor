@@ -89,7 +89,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         if let destinationController = segue.destinationController as? NSTabViewController {
             self.tabViewController = destinationController
-            self.menuTitles = destinationController.tabViewItems.map { $0.label.localized }
+            self.menuTitles = destinationController.tabViewItems.map(\.label.localized)
             destinationController.children.forEach { $0.representedObject = self.style }
         }
     }

@@ -248,7 +248,7 @@ extension SyntaxParser {
         } else {
             // highlight whole visible area if edited point is visible
             highlightRange = self.textStorage.layoutManagers
-                .compactMap { $0.textViewForBeginningOfSelection?.visibleRange }
+                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
                 .filter { $0.intersects(highlightRange) }
                 .reduce(into: highlightRange) { $0.formUnion($1) }
             

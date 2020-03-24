@@ -285,8 +285,8 @@ final class DocumentController: NSDocumentController {
         
         // notify accessibility clients about the value replacement of the transient document with opened document
         document.textStorage.layoutManagers
-            .flatMap { $0.textContainers }
-            .compactMap { $0.textView }
+            .flatMap(\.textContainers)
+            .compactMap(\.textView)
             .forEach { NSAccessibility.post(element: $0, notification: .valueChanged) }
     }
     

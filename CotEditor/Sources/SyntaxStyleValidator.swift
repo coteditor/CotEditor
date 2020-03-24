@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -119,7 +119,7 @@ final class SyntaxStyleValidator {
         
         var results = [StyleError]()
         
-        let syntaxDictKeys = SyntaxType.allCases.map { $0.rawValue } + [SyntaxKey.outlineMenu.rawValue]
+        let syntaxDictKeys = SyntaxType.allCases.map(\.rawValue) + [SyntaxKey.outlineMenu.rawValue]
         
         for key in syntaxDictKeys {
             guard let dictionaries = styleDictionary[key] as? [[String: Any]] else { continue }

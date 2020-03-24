@@ -191,7 +191,7 @@ extension String {
         let range = range ?? self.nsRange
         let regex = try! NSRegularExpression(pattern: "^.*", options: [.anchorsMatchLines])
         
-        return regex.matches(in: self, range: range).map { $0.range }
+        return regex.matches(in: self, range: range).map(\.range)
     }
     
     

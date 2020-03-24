@@ -48,7 +48,7 @@ extension MultiCursorEditing {
     /// All ranges to insert for multiple-cursor editing.
     var insertionRanges: [NSRange] {
         
-        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
         
         return (selectedRanges + insertionRanges).sorted(\.location)
@@ -187,7 +187,7 @@ extension MultiCursorEditing {
         //    either a single empty range, a single nonempty range, or multiple nonempty ranges (macOS 10.14).
         let selectedRanges = nonemptyRanges.isEmpty ? [emptyRanges.removeFirst()] : nonemptyRanges
         
-        return (selectedRanges as [NSValue], emptyRanges.map { $0.location })
+        return (selectedRanges as [NSValue], emptyRanges.map(\.location))
     }
     
     

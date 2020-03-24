@@ -147,7 +147,7 @@ class KeyBindingManager: SettingManaging, KeyBindingManagerProtocol {
         let keyBindings = outlineTree.keyBindings
         let fileURL = self.keyBindingSettingFileURL
         
-        let defaultExistsAction = self.defaultKeyBindings.map { $0.action }
+        let defaultExistsAction = self.defaultKeyBindings.map(\.action)
         let diff = keyBindings.subtracting(self.defaultKeyBindings)
             .filter { $0.shortcut != nil || defaultExistsAction.contains($0.action) }
         

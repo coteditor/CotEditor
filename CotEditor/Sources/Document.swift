@@ -254,8 +254,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         // store current selections
         let lastString = self.textStorage.string
         let editorStates = self.textStorage.layoutManagers
-            .compactMap { $0.textViewForBeginningOfSelection }
-            .map { (textView: $0, ranges: $0.selectedRanges.map { $0.rangeValue }) }
+            .compactMap(\.textViewForBeginningOfSelection)
+            .map { (textView: $0, ranges: $0.selectedRanges.map(\.rangeValue)) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
@@ -400,7 +400,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = saveOperation.isAutoSaving
             let textView = self.textStorage.layoutManagers.lazy
-                .compactMap { $0.textViewForBeginningOfSelection }
+                .compactMap(\.textViewForBeginningOfSelection)
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
             
             textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,

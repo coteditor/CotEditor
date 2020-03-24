@@ -77,8 +77,8 @@ extension String {
         
         // detect incompatible chars using DifferenceKit
         return StagedChangeset(source: self, target: convertedString)
-            .flatMap { $0.elementDeleted }
-            .map { $0.element }
+            .flatMap(\.elementDeleted)
+            .map(\.element)
             .compactMap { (offset) in
                 let index = self.index(self.startIndex, offsetBy: offset)
                 let location = index.utf16Offset(in: self)

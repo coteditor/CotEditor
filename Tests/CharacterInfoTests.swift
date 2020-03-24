@@ -9,7 +9,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2019 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -133,8 +133,8 @@ final class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(charInfo.string, "☺︎")
         XCTAssertFalse(charInfo.isComplex)
-        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+263A", "U+FE0E"])
-        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.name! }, ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.codePoint), ["U+263A", "U+FE0E"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.name!), ["WHITE SMILING FACE", "VARIATION SELECTOR-15"])
         XCTAssertEqual(charInfo.localizedDescription, "WHITE SMILING FACE (Text Style)")
     }
     
@@ -144,7 +144,7 @@ final class CharacterInfoTests: XCTestCase {
         let charInfo = try CharacterInfo(string: "1️⃣")
         
         XCTAssertTrue(charInfo.isComplex)
-        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+0031", "U+FE0F", "U+20E3"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.codePoint), ["U+0031", "U+FE0F", "U+20E3"])
         XCTAssertEqual(charInfo.localizedDescription, "<a letter consisting of 3 characters>")
     }
     
@@ -154,7 +154,7 @@ final class CharacterInfoTests: XCTestCase {
         let charInfo = try CharacterInfo(string: "🇯🇵")
         
         XCTAssertTrue(charInfo.isComplex)
-        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.codePoint }, ["U+1F1EF", "U+1F1F5"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.codePoint), ["U+1F1EF", "U+1F1F5"])
     }
     
     
@@ -164,7 +164,7 @@ final class CharacterInfoTests: XCTestCase {
         
         XCTAssertEqual(charInfo.string, " ")
         XCTAssertEqual(charInfo.pictureString, "␠")
-        XCTAssertEqual(charInfo.string.unicodeScalars.map { $0.name! }, ["SPACE"])
+        XCTAssertEqual(charInfo.string.unicodeScalars.map(\.name!), ["SPACE"])
     }
     
 }

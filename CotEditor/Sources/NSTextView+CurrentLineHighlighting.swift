@@ -68,7 +68,7 @@ extension CurrentLineHighlighting {
     private func calcurateLineHighLightRects() -> [NSRect] {
         
         return self.rangesForUserTextChange?
-            .map { $0.rangeValue }
+            .map(\.rangeValue)
             .map { (self.string as NSString).lineContentsRange(for: $0) }
             .unique
             .map { self.lineRect(for: $0) }

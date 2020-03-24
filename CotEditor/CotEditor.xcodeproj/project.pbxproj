@@ -2461,10 +2461,9 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = YES;
 				CLASSPREFIX = "";
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = "CotEditor Project";
 				TargetAttributes = {
 					2A3E847D1D07296200070A54 = {

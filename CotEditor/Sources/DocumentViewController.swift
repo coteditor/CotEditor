@@ -1020,7 +1020,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard
             let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: { $0.superview })
+            let editorView = sequence(first: view, next: \.superview)
                 .first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
             else { return nil }
         

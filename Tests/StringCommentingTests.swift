@@ -237,7 +237,7 @@ private final class CommentingTextView: NSTextView, Commenting, MultiCursorEditi
     
     override var rangesForUserTextChange: [NSValue]? {
         
-        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
         
         return (selectedRanges + insertionRanges).sorted(\.location) as [NSValue]

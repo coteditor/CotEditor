@@ -535,7 +535,7 @@ extension LineNumberView {
         let point = window.convertPoint(toScreen: event.locationInWindow)
         let index = textView.characterIndex(for: point)
         
-        let selectedRanges = textView.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = textView.selectedRanges.map(\.rangeValue)
         
         // repeat while dragging
         self.draggingTimer = .scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(selectLines),

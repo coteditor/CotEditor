@@ -700,9 +700,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             // keep only empty ranges that super may discard for following multi-cursor editing
             // -> The ranges that `setSelectedRanges(_:affinity:stillSelecting:)` receives are sanitized already in NSTextView manner.
             self.insertionLocations = newValue
-                .map { $0.rangeValue }
-                .filter { $0.isEmpty }
-                .map { $0.location }
+                .map(\.rangeValue)
+                .filter(\.isEmpty)
+                .map(\.location)
         }
     }
     
@@ -731,7 +731,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.setSelectedRanges(ranges, affinity: affinity, stillSelecting: stillSelectingFlag)
         
         // remove official selectedRanges from the sub insertion points
-        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
         self.insertionLocations.removeAll { (location) in selectedRanges.contains { $0.touches(location) } }
         
         if !stillSelectingFlag, !self.hasMultipleInsertions {
@@ -975,7 +975,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // -> Because the insertion point blink timer stops while dragging. (macOS 10.14)
         if self.needsDrawInsertionPoints {
             self.insertionRanges
-                .filter { $0.isEmpty }
+                .filter(\.isEmpty)
                 .map { self.insertionPointRect(at: $0.location) }
                 .forEach { super.drawInsertionPoint(in: $0, color: self.insertionPointColor, turnedOn: self.insertionPointOn) }
         }
@@ -1246,7 +1246,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let lineEnding = self.document?.lineEnding ?? .lf
         
         // substring all selected attributed strings
-        let selectedRanges = self.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
         for selectedRange in selectedRanges {
             let plainText = (string as NSString).substring(with: selectedRange)
             let styledText = NSMutableAttributedString(string: plainText, attributes: self.typingAttributes)
@@ -1598,7 +1598,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
         
         matches
-            .map { $0.range }
+            .map(\.range)
             .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
     }
     
@@ -1730,7 +1730,7 @@ extension EditorTextView {
         
         guard !self.string.isEmpty else { return range }
         
-        let firstSyntaxLetters = self.syntaxCompletionWords.compactMap { $0.unicodeScalars.first }
+        let firstSyntaxLetters = self.syntaxCompletionWords.compactMap(\.unicodeScalars.first)
         let firstLetterSet = CharacterSet(firstSyntaxLetters).union(.letters)
         
         // expand range until hitting a character that isn't in the word completion candidates

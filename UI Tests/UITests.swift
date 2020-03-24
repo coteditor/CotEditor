@@ -38,12 +38,6 @@ final class UITests: XCTestCase {
     }
     
     
-    override func tearDown() {
-        
-        super.tearDown()
-    }
-    
-    
     func testTyping() {
         
         let app = XCUIApplication()

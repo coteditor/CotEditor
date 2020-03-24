@@ -49,9 +49,7 @@ extension SortPattern {
         let firstLine = options.keepsFirstLine ? lines.removeFirst() : nil
         
         lines = lines
-            .map { line -> (line: String, key: String?) in
-                (line: line, key: self.sortKey(for: line))
-            }
+            .map { (line: $0, key: self.sortKey(for: $0)) }
             .sorted {
                 switch ($0.key, $1.key) {
                     case let (.some(key0), .some(key1)):
@@ -62,7 +60,7 @@ extension SortPattern {
                         return true
                 }
             }
-            .map { $0.line }
+            .map(\.line)
         
         if options.decending {
             lines.reverse()
