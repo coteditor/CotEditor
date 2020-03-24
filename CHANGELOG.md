@@ -18,6 +18,7 @@ Change Log
 
 - Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
 - Fix an issue where line endings could remain when deleting duplicate lines with mpltiple selections.
+- Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
 
 
 
