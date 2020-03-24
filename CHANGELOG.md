@@ -8,7 +8,7 @@ Change Log
 ### Improvements
 
 - Adjust the text baseline to draw characters vertically center in lines.
-- Adjust invisible characters position in the vertical text orientation.
+- Adjust the invisible characters position in the vertical text orientation.
 - Duplicate lines more intelligently.
 - Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
@@ -17,7 +17,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
-- Fix an issue where line endings could remain when deleting duplicate lines with mpltiple selections.
+- Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.
 - Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
 
 
