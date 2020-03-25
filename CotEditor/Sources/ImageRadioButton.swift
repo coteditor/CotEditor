@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,40 +42,13 @@ final class ImageRadioButton: NSButton {
         super.awakeFromNib()
         
         // prepend image to the label
-        let attachment = NSTextAttachment(image: self.leadingImage!)
+        let image = self.leadingImage!
+        let attachment = NSTextAttachment()
+        attachment.image = image.isTemplate ? image.tinted(color: .labelColor) : image
         
         self.attributedTitle = NSAttributedString(attachment: attachment)
             + NSAttributedString(string: " ")
             + self.attributedTitle
-    }
-    
-}
-
-
-
-// MARK: -
-
-private extension NSTextAttachment {
-    
-    /// create text attachment by considering whether image should be drawn as a template image
-    convenience init(image: NSImage) {
-        
-        self.init()
-        
-        if image.isTemplate {
-            self.image = NSImage(size: image.size, flipped: false) { (dstRect) -> Bool in
-                
-                image.draw(in: dstRect)
-                
-                NSColor.labelColor.setFill()
-                dstRect.fill(using: .sourceIn)
-                
-                return true
-            }
-            
-        } else {
-            self.image = image
-        }
     }
     
 }
