@@ -16,5 +16,8 @@ let package = Package(
     targets: [
         .target(name: "SyntaxMapBuilder", dependencies: ["Yams"]),
         .testTarget(name: "SyntaxMapBuilderTests", dependencies: ["SyntaxMapBuilder"]),
+    ],
+    swiftLanguageVersions: [
+        .v5,
     ]
 )
