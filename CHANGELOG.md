@@ -9,6 +9,7 @@ Change Log
 
 - Adjust the text baseline to draw characters vertically center in lines.
 - Adjust the invisible characters position in the vertical text orientation.
+- Optimize the performance of “Replace All” with a large number of matches.
 - Duplicate lines more intelligently.
 - Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
