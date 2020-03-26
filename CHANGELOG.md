@@ -12,6 +12,7 @@ Change Log
 - Duplicate lines more intelligently.
 - Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
+- [trivial] Make the outlines of opacity sample tips more distinct in the high-contrast mode.
 - [dev] Update build environment to Xcode 11.4 (Swift 5.2).
 
 
