@@ -100,6 +100,8 @@ final class LineNumberView: NSView {
         case normal = 0.75
         case bold = 0.9
         case stroke = 0.2
+        
+        static let highContrastCoefficient: CGFloat = 0.5
     }
     
     
@@ -234,7 +236,7 @@ final class LineNumberView: NSView {
                                      width: dirtyRect.width, height: 1)
             @unknown default: fatalError()
         }
-        self.textColor(.stroke).setFill()
+        self.foregroundColor(.stroke).setFill()
         dividerRect.fill()
         
         NSGraphicsContext.restoreGraphicsState()
@@ -257,16 +259,17 @@ final class LineNumberView: NSView {
     }
     
     
-    /// return text color considering current accesibility setting
-    private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
+    /// return foreground color by considering the current accesibility setting
+    private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
         let textColor = self.textView?.textColor ?? .textColor
+        let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? strength.rawValue + ColorStrength.highContrastCoefficient
+            : strength.rawValue
         
-        if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
-            return textColor
-        }
+        guard fraction < 1 else { return textColor }
         
-        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
+        return self.backgroundColor.blended(withFraction: fraction, of: textColor) ?? textColor
     }
     
     
@@ -297,8 +300,8 @@ final class LineNumberView: NSView {
         
         context.setFont(Self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
-        context.setFillColor(self.textColor().cgColor)
-        context.setStrokeColor(self.textColor(.stroke).cgColor)
+        context.setFillColor(self.foregroundColor().cgColor)
+        context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
         let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
@@ -339,12 +342,12 @@ final class LineNumberView: NSView {
                         
                         // draw
                         if isSelected {
-                            context.setFillColor(self.textColor(.bold).cgColor)
+                            context.setFillColor(self.foregroundColor(.bold).cgColor)
                             context.setFont(Self.boldLineNumberFont)
                         }
                         context.showGlyphs(glyphs, at: positions)
                         if isSelected {
-                            context.setFillColor(self.textColor().cgColor)
+                            context.setFillColor(self.foregroundColor().cgColor)
                             context.setFont(Self.lineNumberFont)
                         }
                     }
