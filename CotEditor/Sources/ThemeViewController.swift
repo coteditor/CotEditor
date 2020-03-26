@@ -89,10 +89,10 @@ final class ThemeViewController: NSViewController {
             NotificationCenter.default.removeObserver(observer)
         }
         self.themeObserver = NotificationCenter.default.addObserver(forName: Theme.didChangeNotification, object: nil, queue: .main) { [weak self] (notification) in
-            
             self?.notifyUpdate()
         }
     }
+    
     
     /// finish current editing
     override func viewWillDisappear() {
