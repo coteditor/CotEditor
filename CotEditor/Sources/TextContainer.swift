@@ -103,6 +103,9 @@ final class TextContainer: NSTextContainer {
         let hangingIndent = CGFloat(self.hangingIndentWidth) * layoutManager.spaceWidth
         let indent = baseIndent + hangingIndent
         
+        // just give up large hanging indent
+        guard indent + 2 * layoutManager.spaceWidth < rect.width else { return rect }
+        
         // remove hanging indent space from rect
         rect.size.width -= indent
         rect.origin.x += (baseWritingDirection != .rightToLeft) ? indent : 0

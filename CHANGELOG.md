@@ -20,6 +20,7 @@ Change Log
 
 ### Fixes
 
+- Fix an isue where the application crashed when a hanging indent depth becomes larger than the editor area.
 - Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
 - Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.
 - Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
