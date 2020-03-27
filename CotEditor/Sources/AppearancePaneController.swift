@@ -71,7 +71,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeNames = ThemeManager.shared.settingNames
         
         // set initial value as field's placeholder
-        self.lineHeightField?.bindNullPlaceholderToUserDefaults(.value)
+        self.lineHeightField?.bindNullPlaceholderToUserDefaults()
         
         // remove appearance controls on macOS 10.13 or earlier
         if NSAppKitVersion.current <= .macOS10_13 {

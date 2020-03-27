@@ -55,11 +55,11 @@ final class WindowPaneController: NSViewController {
         super.viewDidLoad()
         
         // set initial values as fields' placeholder
-        self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults(.value)
-        self.windowWidthField?.bindNullPlaceholderToUserDefaults(.value)
-        self.windowHeightField?.bindNullPlaceholderToUserDefaults(.value)
-        self.overscrollField?.bindNullPlaceholderToUserDefaults(.value)
-        self.editorOpacityField?.bindNullPlaceholderToUserDefaults(.value)
+        self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults()
+        self.windowWidthField?.bindNullPlaceholderToUserDefaults()
+        self.windowHeightField?.bindNullPlaceholderToUserDefaults()
+        self.overscrollField?.bindNullPlaceholderToUserDefaults()
+        self.editorOpacityField?.bindNullPlaceholderToUserDefaults()
     }
     
     
