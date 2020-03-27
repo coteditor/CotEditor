@@ -8,13 +8,13 @@ Change Log
 ### Improvements
 
 - Adjust the text baseline to draw characters vertically center in lines.
-- Adjust the invisible characters position in the vertical text orientation.
+- Adjust the position of invisible characters in the vertical text orientation.
 - Optimize the performance of “Replace All” with a large number of matches.
 - Duplicate lines more intelligently.
 - Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
-- [dev] Update build environment to Xcode 11.4 (Swift 5.2).
+- [dev] Update the build environment to Xcode 11.4 (Swift 5.2).
 
 
 ### Fixes
