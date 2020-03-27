@@ -430,7 +430,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // save the unsaved change before the selection changes
-        _ = self.mainViewController?.commitEditing()
+        self.mainViewController?.commitEditing()
         
         return true
     }
