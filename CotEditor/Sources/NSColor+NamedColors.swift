@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -53,38 +53,17 @@ extension NSColor {
         return self.cgColor
     }
     
-}
-
-
-
-extension NSColor {
     
-    /// return well distributed colors to highlight text
-    static func textHighlighterColors(count: Int) -> [NSColor] {
+    /// Create desired number of well distributed colors from the receiver.
+    ///
+    /// - Parameter number: The required number of colors.
+    /// - Returns: An array of created colors.
+    func decomposite(into number: Int) -> [NSColor] {
         
-        return NSColor.textHighlighterColor.decomposite(into: count)
-    }
-    
-    
-    
-    // MARK: Private Methods
-    
-    /// create desired number of colors from itself
-    private func decomposite(into number: Int) -> [NSColor] {
-        
-        guard number > 0 else { return [] }
-        
-        let baseHue = self.hueComponent
-        let saturation = self.saturationComponent
-        let brightness = self.brightnessComponent
-        let alpha = self.alphaComponent
-        
-        return (0..<number).map { index in
-            let advance = CGFloat(index) / CGFloat(number)
-            let (_, hue) = modf(baseHue + advance)
-            
-            return NSColor(calibratedHue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
-        }
+        return (0..<number)
+            .map { CGFloat($0) / CGFloat(number) }
+            .map { modf(self.hueComponent + $0).1 }
+            .map { NSColor(calibratedHue: $0, saturation: self.saturationComponent, brightness: self.brightnessComponent, alpha: self.alphaComponent) }
     }
     
 }
