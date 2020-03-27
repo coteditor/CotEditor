@@ -14,6 +14,7 @@ Change Log
 - Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
+- [trivial] Display default values as the input field's placeholder for window size setting when empty.
 - [dev] Update the build environment to Xcode 11.4 (Swift 5.2).
 
 
