@@ -23,7 +23,8 @@
 //  limitations under the License.
 //
 
-import Foundation
+import typealias Darwin.MacTypes.UTF32Char
+import class Foundation.Bundle
 
 extension UnicodeScalar {
     

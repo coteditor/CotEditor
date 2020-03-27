@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSObject
 
 enum DictionaryKey: String {
     
