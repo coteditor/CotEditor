@@ -66,7 +66,17 @@ final class TextContainer: NSTextContainer {
     
     override var isSimpleRectangularTextContainer: Bool {
         
-        return !self.isHangingIndentEnabled
+        // -> According to the reference, this property should return `false` when `.isHangingIndentEnabled`
+        //    is `true` because of non-uniform line fragment width.
+        //    Yet, only returning `true` enables the non-contiguous layout, and practically, in fact,
+        //    TextKit handles the hanging indent properly even when this flag is true.
+        //    It is therefore significantly advantageous for performance, such as when pasting large text.
+        //    This flag may be really critical if the layout cannot be determined without laying all glyphs out
+        //    from the top until the index where to draw.
+        //    However, by the hanging indent, line fragments can be calculated only from the logical line
+        //    where they belong to and thus are not affected by the previous context.
+        //    (2020-03 macOS 10.15)
+        return true
     }
     
     
@@ -103,7 +113,7 @@ final class TextContainer: NSTextContainer {
         let hangingIndent = CGFloat(self.hangingIndentWidth) * layoutManager.spaceWidth
         let indent = baseIndent + hangingIndent
         
-        // just give up large hanging indent
+        // intentionally give up overflown hanging indent
         guard indent + 2 * layoutManager.spaceWidth < rect.width else { return rect }
         
         // remove hanging indent space from rect
