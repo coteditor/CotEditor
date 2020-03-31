@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,8 +29,6 @@ extension NSTextStorage {
     
     /// Observe text storage update for in case when a part of the contents is directly edited from an AppleScript.
     ///
-    /// This method is used for a textStorage that will be passed to AppleScript.
-    ///
     /// e.g.:
     /// ```AppleScript
     /// tell first document of application "CotEditor"
@@ -38,18 +36,23 @@ extension NSTextStorage {
     /// end tell
     /// ```
     ///
+    /// - Attention: This method is aimed to be used only for text storages that will be passed to AppleScript.
+    ///
     /// - Parameters
     ///   - block: The block to be executed when the textStorage is edited.
     ///   - editedString: The contents of the textStrage after the editing.
     func observeDirectEditing(block: @escaping (_ editedString: String) -> Void) {
         
         weak var observer: NSObjectProtocol?
-        observer = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self, queue: .main) { notification in
+        observer = NotificationCenter.default.addObserver(forName: NSTextStorage.didProcessEditingNotification, object: self, queue: .main) { [weak self] notification in
             if let observer = observer {
                 NotificationCenter.default.removeObserver(observer)
             }
             
             guard let textStorage = notification.object as? NSTextStorage else { return assertionFailure() }
+            
+            // -> After `self` becoming `nil`, notifications by other objects come also into this block.
+            guard textStorage == self else { return }
             
             block(textStorage.string)
         }

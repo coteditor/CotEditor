@@ -26,6 +26,7 @@ Change Log
 - Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.
 - Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
 - Fix an issue in scripting with AppleScript/JXA where the application crashed by performing `string in ...` method.
+- Fix an issue in scripting with AppleScript/JXA where the contents of a document can rerely be overwritten with the contents of another document window under very specific conditions.
 - Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.
 
 
