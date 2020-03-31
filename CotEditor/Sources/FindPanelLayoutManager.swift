@@ -77,15 +77,15 @@ final class FindPanelLayoutManager: NSLayoutManager {
             ]
             
             let defaults = UserDefaults.standard
-            let showsSpace = defaults[.showInvisibleSpace]
-            let showsTab = defaults[.showInvisibleTab]
             let showsNewLine = defaults[.showInvisibleNewLine]
+            let showsTab = defaults[.showInvisibleTab]
+            let showsSpace = defaults[.showInvisibleSpace]
             let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
             let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
             
-            let space = NSAttributedString(string: String(Invisible.space.symbol), attributes: attributes)
-            let tab = NSAttributedString(string: String(Invisible.tab.symbol), attributes: attributes)
             let newLine = NSAttributedString(string: String(Invisible.newLine.symbol), attributes: attributes)
+            let tab = NSAttributedString(string: String(Invisible.tab.symbol), attributes: attributes)
+            let space = NSAttributedString(string: String(Invisible.space.symbol), attributes: attributes)
             let fullwidthSpace = NSAttributedString(string: String(Invisible.fullwidthSpace.symbol), attributes: fullwidthAttributes)
             
             // draw invisibles glyph by glyph
@@ -96,17 +96,17 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 
                 let glyphString: NSAttributedString
                 switch invisible {
-                    case .space:
-                        guard showsSpace else { continue }
-                        glyphString = space
+                    case .newLine:
+                        guard showsNewLine else { continue }
+                        glyphString = newLine
                     
                     case .tab:
                         guard showsTab else { continue }
                         glyphString = tab
                     
-                    case .newLine:
-                        guard showsNewLine else { continue }
-                        glyphString = newLine
+                    case .space:
+                        guard showsSpace else { continue }
+                        glyphString = space
                     
                     case .fullwidthSpace:
                         guard showsFullwidthSpace else { continue }

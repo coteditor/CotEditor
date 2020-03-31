@@ -852,9 +852,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     private var canActivateShowInvisibles: Bool {
         
         let defaults = UserDefaults.standard
-        return (defaults[.showInvisibleSpace] ||
+        return (defaults[.showInvisibleNewLine] ||
             defaults[.showInvisibleTab] ||
-            defaults[.showInvisibleNewLine] ||
+            defaults[.showInvisibleSpace] ||
             defaults[.showInvisibleFullwidthSpace] ||
             defaults[.showOtherInvisibleChars])
     }

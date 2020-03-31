@@ -31,9 +31,9 @@ extension Unicode.Scalar {
 
 enum Invisible {
     
-    case space
-    case tab
     case newLine
+    case tab
+    case space
     case fullwidthSpace
     case otherControl
     
@@ -41,9 +41,9 @@ enum Invisible {
     var symbol: Character {
         
         switch self {
-            case .space: return "·"
-            case .tab: return "‣"
             case .newLine: return "↩"
+            case .tab: return "‣"
+            case .space: return "·"
             case .fullwidthSpace: return "□"
             case .otherControl: return "�"
         }
@@ -53,8 +53,8 @@ enum Invisible {
     private var rtlSymbol: Character {  // not used
         
         switch self {
-            case .tab: return "◂"
             case .newLine: return "↪"
+            case .tab: return "◂"
             default: return self.symbol
         }
     }
@@ -70,13 +70,13 @@ extension Invisible {
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
         switch codeUnit {
-            case 0x0020, 0x00A0:  // SPACE, NO-BREAK SPACE
-                self = .space
-            case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
-                self = .tab
             case 0x000A:  // LINE FEED a.k.a. \n
                 self = .newLine
-            case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. full-width space (JP)
+            case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
+                self = .tab
+            case 0x0020, 0x00A0:  // SPACE, NO-BREAK SPACE
+                self = .space
+            case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. Japanese full-width space
                 self = .fullwidthSpace
             case 0x0000...0x001F,  // C0
                  0x0080...0x009F,  // C1
