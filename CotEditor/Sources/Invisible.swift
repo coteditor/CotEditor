@@ -23,8 +23,6 @@
 //  limitations under the License.
 //
 
-import class Foundation.UserDefaults
-
 extension Unicode.Scalar {
     
     static let zeroWidthSpace = Unicode.Scalar(0x200B)!
@@ -40,32 +38,24 @@ enum Invisible {
     case otherControl
     
     
-    var candidates: [String] {
+    var symbol: Character {
         
         switch self {
-            case .space:
-                return ["·", "°", "ː", "␣"]
-            case .tab:
-                return ["¬", "⇥", "‣", "▹"]
-            case .newLine:
-                return ["¶", "↩", "↵", "⏎"]
-            case .fullwidthSpace:
-                return ["□", "⊠", "■", "•"]
-            case .otherControl:
-                return ["�"]
+            case .space: return "·"
+            case .tab: return "‣"
+            case .newLine: return "↩"
+            case .fullwidthSpace: return "□"
+            case .otherControl: return "�"
         }
     }
     
     
-    private var rtlCandidates: [String] {
+    private var rtlSymbol: Character {  // not used
         
         switch self {
-            case .tab:
-                return ["¬", "⇤", "◂", "◃"]
-            case .newLine:
-                return ["⁋", "↪", "↳", "⏎"]
-            default:
-                return self.candidates
+            case .tab: return "◂"
+            case .newLine: return "↪"
+            default: return self.symbol
         }
     }
     
@@ -96,39 +86,6 @@ extension Invisible {
                 self = .otherControl
             default:
                 return nil
-        }
-    }
-    
-}
-
-
-
-// MARK: User Defaults
-
-extension UserDefaults {
-    
-    func invisibleSymbol(for invisible: Invisible) -> String {
-        
-        guard
-            let key = invisible.defaultTypeKey,
-            let symbol = invisible.candidates[safe: self[key]]
-            else { return invisible.candidates[0] }
-        
-        return symbol
-    }
-}
-
-
-private extension Invisible {
-    
-    var defaultTypeKey: DefaultKey<Int>? {
-        
-        switch self {
-            case .space: return .invisibleSpace
-            case .tab: return .invisibleTab
-            case .newLine: return .invisibleNewLine
-            case .fullwidthSpace: return .invisibleFullwidthSpace
-            case .otherControl: return nil
         }
     }
     

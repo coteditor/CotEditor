@@ -117,7 +117,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         
         self.applyInvisibleVisibilitySetting()
         
-        // -> This `.showsControlCharacters` flag was used for "Other Invisible Characters" in previous CotEditor.
+        // -> This `.showsControlCharacters` flag was used for "Other Control Characters" in previous CotEditor.
         //    However, since NSLayoutManager's .showsControlCharacters flag is totally buggy (at least on El Capitan),
         //    we turned it off since CotEditor 2.3.3, which was released in 2016-01.
         //    CotEditor now draws such control-alternative characters by itself in `drawGlyphs(forGlyphRange:at:)`.
@@ -133,20 +133,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             .showInvisibleFullwidthSpace,
             .showOtherInvisibleChars,
         ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
+        self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
             self.applyInvisibleVisibilitySetting()
             self.invalidateInvisibleDisplay(includingControls: key == .showOtherInvisibleChars)
-        }
-        
-        let invisibleSymbolKeys: [DefaultKeys] = [
-            .invisibleSpace,
-            .invisibleTab,
-            .invisibleNewLine,
-            .invisibleFullwidthSpace,
-        ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: invisibleSymbolKeys) { [unowned self] (_, _) in
-            self.invisibleLines = self.generateInvisibleLines()
-            self.invalidateInvisibleDisplay(includingControls: false)
         }
     }
     
@@ -383,7 +372,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     /// - Returns: A CTLine of the alternative glyph for the given invisible type.
     private func invisibleLine(_ invisible: Invisible, font: NSFont) -> CTLine {
         
-        let attrString = NSAttributedString(string: UserDefaults.standard.invisibleSymbol(for: invisible),
+        let attrString = NSAttributedString(string: String(invisible.symbol),
                                             attributes: [.foregroundColor: self.invisiblesColor,
                                                          .font: font])
         

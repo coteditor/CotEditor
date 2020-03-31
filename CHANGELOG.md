@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Remove the feature selecting the symbols for invisible characters from multiple choices.
 - Adjust the text baseline to draw characters vertically center in lines.
 - Adjust the position of invisible characters in the vertical text orientation.
 - Optimize the performance of “Replace All” with a large number of matches.
