@@ -12,7 +12,6 @@ Change Log
 - Optimize the performance of “Replace All” with a large number of matches.
 - Improve the prformance when pasting a huge text.
 - Duplicate lines more intelligently.
-- Use mirrored pilcrow sign “⁋” for an invisible line ending symbol in RTL mode.
 - Improve drawing performance.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
 - [trivial] Display default values as the input field's placeholder for window size setting when empty.

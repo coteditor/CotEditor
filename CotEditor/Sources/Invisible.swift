@@ -57,7 +57,7 @@ enum Invisible {
     }
     
     
-    var rtlCandidates: [String] {
+    private var rtlCandidates: [String] {
         
         switch self {
             case .tab:
