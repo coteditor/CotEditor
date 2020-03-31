@@ -67,8 +67,8 @@
 "gcF-OM-SV0.title" = "Spazio";
 /* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
 "Bf2-rS-2zu.title" = "A tutta ampiezza";
-/* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Altri caratteri invisibili";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "Altri caratteri invisibili";  // FIXME: changed (invisible -> control)
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Aspetto:";
