@@ -342,7 +342,7 @@ extension Document {
     
     
     /// return sting in the specified range
-    func handleString(_ command: NSScriptCommand) -> String? {
+    @objc func handleString(_ command: NSScriptCommand) -> String? {
         
         guard
             let arguments = command.evaluatedArguments,
