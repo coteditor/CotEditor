@@ -29,7 +29,6 @@ extension NSFont {
     
     enum Name: String {
         
-        case lucidaGrande = "LucidaGrande"
         case menlo = "Menlo"
         case avenirNextCondensed = "AvenirNextCondensed"
     }
@@ -75,13 +74,6 @@ private extension NSFont.Name {
     private func weightName(of weight: NSFont.Weight) -> String? {
         
         switch self {
-            case .lucidaGrande:
-                switch weight {
-                    case .regular: return ""
-                    case .bold: return "Bold"
-                    default: return nil
-                }
-            
             case .menlo:
                 switch weight {
                     case .regular: return "Regular"

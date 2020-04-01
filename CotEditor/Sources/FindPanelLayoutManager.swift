@@ -106,22 +106,18 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     
                     case .otherControl:
                         guard showsOtherInvisibles else { continue }
-                        guard
-                            self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
-                            else { continue }
+                        guard self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil else { continue }
                         
-                        let replaceFont = NSFont(named: .lucidaGrande, size: 0) ?? NSFont.systemFont(ofSize: 0)
-                        let glyph = replaceFont.cgFont.getGlyphWithGlyphName(name: "replacement" as CFString)
+                        let glyph = (self.font as CTFont).glyph(for: invisible.symbol)
                         let controlRange = NSRange(location: charIndex, length: 1)
                         let baseString = (string as NSString).substring(with: controlRange)
                         
-                        guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: replaceFont, baseString: baseString) else { assertionFailure(); continue }
+                        guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: self.font, baseString: baseString) else { assertionFailure(); continue }
                         
                         // !!!: The following line can cause crash by binary document.
                         //      It's actually dangerous and to be detoured to modify textStorage while drawing.
                         //      (2015-09 by 1024jp)
                         self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
-                                                         .font: replaceFont,
                                                          .foregroundColor: color], range: controlRange)
                         continue
                 }
