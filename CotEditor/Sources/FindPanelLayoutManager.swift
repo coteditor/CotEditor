@@ -62,7 +62,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if UserDefaults.standard[.showInvisibles] {
-            let string = self.attributedString().string
+            let string = self.attributedString().string as NSString
             let color = NSColor.tertiaryLabelColor
             
             let defaults = UserDefaults.standard
@@ -72,37 +72,25 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
             let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
             
-            let attributes: [NSAttributedString.Key: Any] = [.font: self.font,
-                                                             .foregroundColor: color]
-            let newLine = NSAttributedString(string: String(Invisible.newLine.symbol), attributes: attributes)
-            let tab = NSAttributedString(string: String(Invisible.tab.symbol), attributes: attributes)
-            let space = NSAttributedString(string: String(Invisible.space.symbol), attributes: attributes)
-            let fullwidthSpace = NSAttributedString(string: String(Invisible.fullwidthSpace.symbol), attributes: attributes)
-            
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
             for charIndex in characterRange.lowerBound..<characterRange.upperBound {
-                let codeUnit = (string as NSString).character(at: charIndex)
+                let codeUnit = string.character(at: charIndex)
                 
                 guard let invisible = Invisible(codeUnit: codeUnit) else { continue }
                 
-                let glyphString: NSAttributedString
                 switch invisible {
                     case .newLine:
                         guard showsNewLine else { continue }
-                        glyphString = newLine
                     
                     case .tab:
                         guard showsTab else { continue }
-                        glyphString = tab
                     
                     case .space:
                         guard showsSpace else { continue }
-                        glyphString = space
                     
                     case .fullwidthSpace:
                         guard showsFullwidthSpace else { continue }
-                        glyphString = fullwidthSpace
                     
                     case .otherControl:
                         guard showsOtherInvisibles else { continue }
@@ -110,7 +98,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                         
                         let glyph = (self.font as CTFont).glyph(for: invisible.symbol)
                         let controlRange = NSRange(location: charIndex, length: 1)
-                        let baseString = (string as NSString).substring(with: controlRange)
+                        let baseString = string.substring(with: controlRange)
                         
                         guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: self.font, baseString: baseString) else { assertionFailure(); continue }
                         
@@ -129,6 +117,9 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 let point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x)
                 
                 // draw character
+                let glyphString = NSAttributedString(string: String(invisible.symbol),
+                                                     attributes: [.font: self.font,
+                                                                  .foregroundColor: color])
                 glyphString.draw(at: point)
             }
         }
