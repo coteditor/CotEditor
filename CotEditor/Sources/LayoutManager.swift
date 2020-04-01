@@ -352,12 +352,11 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let textFont = self.textFont ?? font
-        let fullwidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
         
         return InvisibleLines(newLine: self.invisibleLine(.newLine, font: font),
                               tab: self.invisibleLine(.tab, font: font),
                               space: self.invisibleLine(.space, font: textFont),
-                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullwidthFont),
+                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: font),
                               otherControl: self.invisibleLine(.otherControl, font: textFont))
     }
     

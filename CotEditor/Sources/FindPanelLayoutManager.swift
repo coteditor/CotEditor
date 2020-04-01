@@ -64,17 +64,6 @@ final class FindPanelLayoutManager: NSLayoutManager {
         if UserDefaults.standard[.showInvisibles] {
             let string = self.attributedString().string
             let color = NSColor.tertiaryLabelColor
-            let font = self.font
-            let fullWidthFont = NSFont(named: .hiraginoSans, size: font.pointSize) ?? font
-            
-            let attributes: [NSAttributedString.Key: Any] = [
-                .font: font,
-                .foregroundColor: color
-            ]
-            let fullwidthAttributes: [NSAttributedString.Key: Any] = [
-                .font: fullWidthFont,
-                .foregroundColor: color
-            ]
             
             let defaults = UserDefaults.standard
             let showsNewLine = defaults[.showInvisibleNewLine]
@@ -83,10 +72,12 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
             let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
             
+            let attributes: [NSAttributedString.Key: Any] = [.font: self.font,
+                                                             .foregroundColor: color]
             let newLine = NSAttributedString(string: String(Invisible.newLine.symbol), attributes: attributes)
             let tab = NSAttributedString(string: String(Invisible.tab.symbol), attributes: attributes)
             let space = NSAttributedString(string: String(Invisible.space.symbol), attributes: attributes)
-            let fullwidthSpace = NSAttributedString(string: String(Invisible.fullwidthSpace.symbol), attributes: fullwidthAttributes)
+            let fullwidthSpace = NSAttributedString(string: String(Invisible.fullwidthSpace.symbol), attributes: attributes)
             
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
@@ -119,7 +110,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                             self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
                             else { continue }
                         
-                        let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
+                        let replaceFont = NSFont(named: .lucidaGrande, size: 0) ?? NSFont.systemFont(ofSize: 0)
                         let glyph = replaceFont.cgFont.getGlyphWithGlyphName(name: "replacement" as CFString)
                         let controlRange = NSRange(location: charIndex, length: 1)
                         let baseString = (string as NSString).substring(with: controlRange)
