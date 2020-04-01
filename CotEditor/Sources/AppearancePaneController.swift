@@ -31,11 +31,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Private Properties
     
-    @objc private dynamic let invisibleSpaces: [String] = Invisible.space.candidates
-    @objc private dynamic let invisibleTabs: [String] = Invisible.tab.candidates
-    @objc private dynamic let invisibleNewLines: [String] = Invisible.newLine.candidates
-    @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
-    
     private var themeNames = [String]()
     private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false

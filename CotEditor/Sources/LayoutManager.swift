@@ -89,9 +89,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     private var defaultLineHeight: CGFloat = 1.0
     private var defaultBaselineOffset: CGFloat = 0
     
-    private var showsSpace = false
-    private var showsTab = false
     private var showsNewLine = false
+    private var showsTab = false
+    private var showsSpace = false
     private var showsFullwidthSpace = false
     
     private lazy var invisibleLines: InvisibleLines = self.generateInvisibleLines()
@@ -99,9 +99,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     private struct InvisibleLines {
         
-        var space: CTLine
-        var tab: CTLine
         var newLine: CTLine
+        var tab: CTLine
+        var space: CTLine
         var fullwidthSpace: CTLine
         var otherControl: CTLine
     }
@@ -117,7 +117,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         
         self.applyInvisibleVisibilitySetting()
         
-        // -> This `.showsControlCharacters` flag was used for "Other Invisible Characters" in previous CotEditor.
+        // -> This `.showsControlCharacters` flag was used for "Other Control Characters" in previous CotEditor.
         //    However, since NSLayoutManager's .showsControlCharacters flag is totally buggy (at least on El Capitan),
         //    we turned it off since CotEditor 2.3.3, which was released in 2016-01.
         //    CotEditor now draws such control-alternative characters by itself in `drawGlyphs(forGlyphRange:at:)`.
@@ -127,26 +127,15 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         self.typesetter = Typesetter()
         
         let visibilityKeys: [DefaultKeys] = [
-            .showInvisibleSpace,
-            .showInvisibleTab,
             .showInvisibleNewLine,
+            .showInvisibleTab,
+            .showInvisibleSpace,
             .showInvisibleFullwidthSpace,
             .showOtherInvisibleChars,
         ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
+        self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
             self.applyInvisibleVisibilitySetting()
             self.invalidateInvisibleDisplay(includingControls: key == .showOtherInvisibleChars)
-        }
-        
-        let invisibleSymbolKeys: [DefaultKeys] = [
-            .invisibleSpace,
-            .invisibleTab,
-            .invisibleNewLine,
-            .invisibleFullwidthSpace,
-        ]
-        self.defaultsObservers += UserDefaults.standard.observe(keys: invisibleSymbolKeys) { [unowned self] (_, _) in
-            self.invisibleLines = self.generateInvisibleLines()
-            self.invalidateInvisibleDisplay(includingControls: false)
         }
     }
     
@@ -212,17 +201,17 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                 
                 let line: CTLine
                 switch invisible {
-                    case .space:
-                        guard self.showsSpace else { continue }
-                        line = self.invisibleLines.space
+                    case .newLine:
+                        guard self.showsNewLine else { continue }
+                        line = self.invisibleLines.newLine
                     
                     case .tab:
                         guard self.showsTab else { continue }
                         line = self.invisibleLines.tab
                     
-                    case .newLine:
-                        guard self.showsNewLine else { continue }
-                        line = self.invisibleLines.newLine
+                    case .space:
+                        guard self.showsSpace else { continue }
+                        line = self.invisibleLines.space
                     
                     case .fullwidthSpace:
                         guard self.showsFullwidthSpace else { continue }
@@ -349,9 +338,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         let defaults = UserDefaults.standard
         
         // `showsInvisibles` will be set from EditorTextView or PrintTextView
-        self.showsSpace = defaults[.showInvisibleSpace]
-        self.showsTab = defaults[.showInvisibleTab]
         self.showsNewLine = defaults[.showInvisibleNewLine]
+        self.showsTab = defaults[.showInvisibleTab]
+        self.showsSpace = defaults[.showInvisibleSpace]
         self.showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
         self.showsOtherInvisibles = defaults[.showOtherInvisibleChars]
     }
@@ -365,12 +354,12 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         let fontSize = self.textFont?.pointSize ?? 0
         let font = NSFont.systemFont(ofSize: fontSize)
         let textFont = self.textFont ?? font
-        let fullWidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
+        let fullwidthFont = NSFont(named: .hiraginoSans, size: fontSize) ?? font
         
-        return InvisibleLines(space: self.invisibleLine(.space, font: textFont),
+        return InvisibleLines(newLine: self.invisibleLine(.newLine, font: font),
                               tab: self.invisibleLine(.tab, font: font),
-                              newLine: self.invisibleLine(.newLine, font: font),
-                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullWidthFont),
+                              space: self.invisibleLine(.space, font: textFont),
+                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: fullwidthFont),
                               otherControl: self.invisibleLine(.otherControl, font: textFont))
     }
     
@@ -383,7 +372,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     /// - Returns: A CTLine of the alternative glyph for the given invisible type.
     private func invisibleLine(_ invisible: Invisible, font: NSFont) -> CTLine {
         
-        let attrString = NSAttributedString(string: UserDefaults.standard.invisibleSymbol(for: invisible),
+        let attrString = NSAttributedString(string: String(invisible.symbol),
                                             attributes: [.foregroundColor: self.invisiblesColor,
                                                          .font: font])
         

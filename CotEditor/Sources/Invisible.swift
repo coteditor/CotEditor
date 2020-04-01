@@ -23,8 +23,6 @@
 //  limitations under the License.
 //
 
-import class Foundation.UserDefaults
-
 extension Unicode.Scalar {
     
     static let zeroWidthSpace = Unicode.Scalar(0x200B)!
@@ -33,39 +31,31 @@ extension Unicode.Scalar {
 
 enum Invisible {
     
-    case space
-    case tab
     case newLine
+    case tab
+    case space
     case fullwidthSpace
     case otherControl
     
     
-    var candidates: [String] {
+    var symbol: Character {
         
         switch self {
-            case .space:
-                return ["·", "°", "ː", "␣"]
-            case .tab:
-                return ["¬", "⇥", "‣", "▹"]
-            case .newLine:
-                return ["¶", "↩", "↵", "⏎"]
-            case .fullwidthSpace:
-                return ["□", "⊠", "■", "•"]
-            case .otherControl:
-                return ["�"]
+            case .newLine: return "↩"
+            case .tab: return "‣"
+            case .space: return "·"
+            case .fullwidthSpace: return "□"
+            case .otherControl: return "�"
         }
     }
     
     
-    private var rtlCandidates: [String] {
+    private var rtlSymbol: Character {  // not used
         
         switch self {
-            case .tab:
-                return ["¬", "⇤", "◂", "◃"]
-            case .newLine:
-                return ["⁋", "↪", "↳", "⏎"]
-            default:
-                return self.candidates
+            case .newLine: return "↪"
+            case .tab: return "◂"
+            default: return self.symbol
         }
     }
     
@@ -80,13 +70,13 @@ extension Invisible {
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
         switch codeUnit {
-            case 0x0020, 0x00A0:  // SPACE, NO-BREAK SPACE
-                self = .space
-            case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
-                self = .tab
             case 0x000A:  // LINE FEED a.k.a. \n
                 self = .newLine
-            case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. full-width space (JP)
+            case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
+                self = .tab
+            case 0x0020, 0x00A0:  // SPACE, NO-BREAK SPACE
+                self = .space
+            case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. Japanese full-width space
                 self = .fullwidthSpace
             case 0x0000...0x001F,  // C0
                  0x0080...0x009F,  // C1
@@ -96,39 +86,6 @@ extension Invisible {
                 self = .otherControl
             default:
                 return nil
-        }
-    }
-    
-}
-
-
-
-// MARK: User Defaults
-
-extension UserDefaults {
-    
-    func invisibleSymbol(for invisible: Invisible) -> String {
-        
-        guard
-            let key = invisible.defaultTypeKey,
-            let symbol = invisible.candidates[safe: self[key]]
-            else { return invisible.candidates[0] }
-        
-        return symbol
-    }
-}
-
-
-private extension Invisible {
-    
-    var defaultTypeKey: DefaultKey<Int>? {
-        
-        switch self {
-            case .space: return .invisibleSpace
-            case .tab: return .invisibleTab
-            case .newLine: return .invisibleNewLine
-            case .fullwidthSpace: return .invisibleFullwidthSpace
-            case .otherControl: return nil
         }
     }
     

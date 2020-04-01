@@ -59,16 +59,16 @@
 "oAZ-6U-Ba8.title" = "不可见字符：";
 /* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
 "gqy-Io-eUU.title" = "显示不可见文字";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
-"gcF-OM-SV0.title" = "空格";
-/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
-"XSb-uU-5QP.title" = "Tab";
 /* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
 "Ont-7L-Uf5.title" = "行尾";
+/* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
+"XSb-uU-5QP.title" = "Tab";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "空格";
 /* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
 "Bf2-rS-2zu.title" = "全角空格";
-/* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "其他不可见字符";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "其他不可见字符";  // FIXME: changed (invisible -> control)
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "外观：";

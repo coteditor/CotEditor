@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2019 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -58,16 +58,16 @@
 "oAZ-6U-Ba8.title" = "不可視文字:";
 /* Class = "NSButtonCell"; title = "Show invisible characters"; ObjectID = "gqy-Io-eUU"; */
 "gqy-Io-eUU.title" = "不可視文字を表示";
-/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
-"gcF-OM-SV0.title" = "スペース";
+/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
+"Ont-7L-Uf5.title" = "改行";
 /* Class = "NSButtonCell"; title = "Tab"; ObjectID = "XSb-uU-5QP"; */
 "XSb-uU-5QP.title" = "タブ";
-/* Class = "NSButtonCell"; title = "Line ending"; ObjectID = "Ont-7L-Uf5"; */
-"Ont-7L-Uf5.title" = "改行コード";
+/* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
+"gcF-OM-SV0.title" = "スペース";
 /* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
 "Bf2-rS-2zu.title" = "全角スペース";
-/* Class = "NSButtonCell"; title = "Other invisible characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "ほかの不可視文字";
+/* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
+"sxg-F3-ely.title" = "その他の制御文字";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "外観モード:";
