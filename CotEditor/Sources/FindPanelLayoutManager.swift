@@ -92,7 +92,8 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
             for charIndex in characterRange.lowerBound..<characterRange.upperBound {
                 let codeUnit = (string as NSString).character(at: charIndex)
-                let invisible = Invisible(codeUnit: codeUnit)
+                
+                guard let invisible = Invisible(codeUnit: codeUnit) else { continue }
                 
                 let glyphString: NSAttributedString
                 switch invisible {
@@ -131,9 +132,6 @@ final class FindPanelLayoutManager: NSLayoutManager {
                         self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
                                                          .font: replaceFont,
                                                          .foregroundColor: color], range: controlRange)
-                        continue
-                    
-                    case .none:
                         continue
                 }
                 

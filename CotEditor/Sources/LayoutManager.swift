@@ -197,7 +197,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
             for charIndex in characterRange.lowerBound..<characterRange.upperBound {
                 let codeUnit = string.character(at: charIndex)
-                let invisible = Invisible(codeUnit: codeUnit)
+                
+                guard let invisible = Invisible(codeUnit: codeUnit) else { continue }
                 
                 let line: CTLine
                 switch invisible {
@@ -220,9 +221,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                     case .otherControl:
                         guard self.showsOtherInvisibles else { continue }
                         line = self.invisibleLines.otherControl
-                    
-                    case .none:
-                        continue
                 }
                 
                 // calculate position to draw glyph
