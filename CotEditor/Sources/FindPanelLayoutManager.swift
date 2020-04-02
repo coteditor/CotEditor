@@ -33,6 +33,8 @@ final class FindPanelLayoutManager: NSLayoutManager {
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
     
+    private var controlVisibilityObserver: UserDefaultsObservation?
+    
     
     
     // MARK: -
@@ -46,12 +48,23 @@ final class FindPanelLayoutManager: NSLayoutManager {
         self.baselineOffset = self.defaultBaselineOffset(for: self.font)
         
         self.delegate = self
+        
+        self.controlVisibilityObserver = UserDefaults.standard.observe(key: .showOtherInvisibleChars) { [unowned self] (_) in
+            let wholeRange = self.attributedString().range
+            self.invalidateGlyphs(forCharacterRange: wholeRange, changeInLength: 0, actualCharacterRange: nil)
+            self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
+        }
     }
     
     
     required init?(coder: NSCoder) {
         
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    deinit {
+        self.controlVisibilityObserver?.invalidate()
     }
     
     
@@ -63,7 +76,6 @@ final class FindPanelLayoutManager: NSLayoutManager {
         
         if UserDefaults.standard[.showInvisibles] {
             let string = self.attributedString().string as NSString
-            let color = NSColor.tertiaryLabelColor
             
             let defaults = UserDefaults.standard
             let showsNewLine = defaults[.showInvisibleNewLine]
@@ -94,20 +106,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     
                     case .otherControl:
                         guard showsOtherInvisibles else { continue }
-                        guard self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil else { continue }
-                        
-                        let glyph = (self.font as CTFont).glyph(for: invisible.symbol)
-                        let controlRange = NSRange(location: charIndex, length: 1)
-                        let baseString = string.substring(with: controlRange)
-                        
-                        guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: self.font, baseString: baseString) else { assertionFailure(); continue }
-                        
-                        // !!!: The following line can cause crash by binary document.
-                        //      It's actually dangerous and to be detoured to modify textStorage while drawing.
-                        //      (2015-09 by 1024jp)
-                        self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
-                                                         .foregroundColor: color], range: controlRange)
-                        continue
+                        self.addTemporaryAttribute(.foregroundColor, value: NSColor.clear, forCharacterRange: NSRange(location: charIndex, length: 1))
                 }
                 
                 // calculate position to draw glyph
@@ -119,12 +118,30 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 // draw character
                 let glyphString = NSAttributedString(string: String(invisible.symbol),
                                                      attributes: [.font: self.font,
-                                                                  .foregroundColor: color])
+                                                                  .foregroundColor: NSColor.tertiaryLabelColor])
                 glyphString.draw(at: point)
             }
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
+    }
+    
+    
+    /// replace control glyph
+    override func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: NSFont, forGlyphRange glyphRange: NSRange) {
+        
+        guard UserDefaults.standard[.showOtherInvisibleChars] else {
+            return super.setGlyphs(glyphs, properties: props, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
+        }
+        
+        let newGlyphs = UnsafeMutablePointer(mutating: glyphs)
+        let newProps = UnsafeMutablePointer(mutating: props)
+        for index in 0..<glyphRange.length where props[index] == .controlCharacter {
+            newGlyphs[index] = (aFont as CTFont).glyph(for: Invisible.otherControl.symbol)
+            newProps[index] = []
+        }
+        
+        super.setGlyphs(newGlyphs, properties: newProps, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
     }
     
 }
