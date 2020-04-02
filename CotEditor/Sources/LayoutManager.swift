@@ -115,16 +115,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         
         super.init()
         
-        self.applyInvisibleVisibilitySetting()
-        
-        // -> This `.showsControlCharacters` flag was used for "Other Control Characters" in previous CotEditor.
-        //    However, since NSLayoutManager's .showsControlCharacters flag is totally buggy (at least on El Capitan),
-        //    we turned it off since CotEditor 2.3.3, which was released in 2016-01.
-        //    CotEditor now draws such control-alternative characters by itself in `drawGlyphs(forGlyphRange:at:)`.
-        //    Thus, this flag is actually no more necessary. Treat carefully if you wanna use it in the future.
-        self.showsControlCharacters = false
-        
         self.typesetter = Typesetter()
+        
+        self.applyInvisibleVisibilitySetting()
         
         let visibilityKeys: [DefaultKeys] = [
             .showInvisibleNewLine,
