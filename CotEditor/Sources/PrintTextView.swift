@@ -91,7 +91,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         super.init(frame: .zero, textContainer: textContainer)
         
         // specify text container padding
-        // -> If padding is changed while printing, print area can be cropped due to text wrapping
+        // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
         self.textContainer!.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
@@ -199,7 +199,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
     override func draw(_ dirtyRect: NSRect) {
         
         // store graphics state to keep line number area drawable
-        //   -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
+        // -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
         NSGraphicsContext.saveGraphicsState()
         
         super.draw(dirtyRect)

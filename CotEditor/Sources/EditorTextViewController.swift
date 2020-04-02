@@ -87,7 +87,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
         
         // standardize line endings to LF
-        // -> Line endings replacemement on file read is processed in `Document.read(from:ofType:)`
+        // -> Line endings replacement on file read is processed in `Document.read(from:ofType:).
         if let replacementString = replacementString,  // = only attributes changed
             !replacementString.isEmpty,  // = text deleted
             textView.undoManager?.isUndoing != true,  // = undo

@@ -154,7 +154,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ notification: Notification) {
         
         // store the latest version
-        //   -> The bundle version (build number) must be Int.
+        // -> The bundle version (build number) must be Int.
         let thisVersion = Bundle.main.bundleVersion
         let isLatest: Bool = {
             guard

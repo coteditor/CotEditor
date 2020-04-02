@@ -150,7 +150,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     /// adjust rect of last empty line
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
-        // -> height of the extra line fragment should be the same as normal other fragments that are likewise customized in Typesetter
+        // -> The height of the extra line fragment should be the same as normal other fragments that are likewise customized in Typesetter.
         var fragmentRect = fragmentRect
         fragmentRect.size.height = self.lineHeight
         var usedRect = usedRect
@@ -245,8 +245,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     override func fillBackgroundRectArray(_ rectArray: UnsafePointer<NSRect>, count rectCount: Int, forCharacterRange charRange: NSRange, color: NSColor) {
         
         // modify selected highlight color when the window is inactive
-        // -> Otherwise, `.secondarySelectedControlColor` will be used forcely and text becomes unreadable
-        //    when the window appearance and theme is inconsistent.
+        // -> Otherwise, `.secondarySelectedControlColor` will be used forcibly and text becomes unreadable
+        //    when the window appearance and theme are inconsistent.
         if color == .secondarySelectedControlColor,  // check if inactive
             let textContainer = self.textContainer(forGlyphAt: self.glyphIndexForCharacter(at: charRange.location),
                                                    effectiveRange: nil, withoutAdditionalLayout: true),

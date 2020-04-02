@@ -108,8 +108,8 @@ final class OutlineViewController: NSViewController {
         self.invalidateCurrentLocation()
         
         // make sure the last observer is invalidated before a new one is set to the property.
-        //   -> Although the previous observer must be invalidated in `viewDidDisappear()`,
-        //      it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
+        // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
+        //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }

@@ -36,7 +36,7 @@ extension StringProtocol {
     /// - Returns: The equivalent ranges to the given ranges.
     func equivalentRanges(to ranges: [NSRange], in other: Self) -> [NSRange] {
         
-        // -> Use UTF16View instead of Character due to performance issue
+        // -> Use UTF16View instead of Character due to a performance issue.
         let diff = StagedChangeset(source: Array(other.utf16), target: Array(self.utf16))
         
         return ranges.map { NSRange(diff.move($0.lowerBound)..<diff.move($0.upperBound)) }

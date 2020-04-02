@@ -568,7 +568,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
-                // -> close also if result view has been shown
+                // close also if result view has been shown
                 if indicator.closesAutomatically || !results.isEmpty {
                     indicator.dismiss(nil)
                     if let panel = self.findPanelController.window, panel.isVisible {

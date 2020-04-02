@@ -131,7 +131,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         editor.selectedRange = range
         
         // focus result
-        // -> use textView's `selectedRange` since `range` is incompatible with CRLF
+        // -> Use textView's `selectedRange` since `range` is incompatible with CRLF.
         if let textView = editor.textView {
             textView.scrollRangeToVisible(textView.selectedRange)
             textView.showFindIndicator(for: textView.selectedRange)

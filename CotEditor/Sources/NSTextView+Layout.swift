@@ -132,8 +132,8 @@ extension NSTextView {
             self.minSize = self.visibleRect.size
             
             // update view size
-            // -> For in case by scaling-down when the view becomes bigger than text content width
-            //    but doesn't strech enough to the right edge of the scroll view.
+            // -> For in the case by scaling-down when the view becomes bigger than text content width
+            //    but doesn't stretch enough to the right edge of the scroll view.
             self.sizeToFit()
             
             self.needsDisplay = true

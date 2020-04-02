@@ -168,7 +168,7 @@ extension SyntaxParser {
         }
         operation.qualityOfService = .utility
         
-        // -> Regarding the outline extraction, just cancel previous operations before pasing the latest string,
+        // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
         //    since user cannot cancel it manually.
         self.outlineParseOperationQueue.cancelAllOperations()
         
@@ -210,9 +210,9 @@ extension SyntaxParser {
         }
         
         // make sure that string is immutable
-        //   -> `string` of NSTextStorage is actually a mutable object
-        //      and it can cause crash when a mutable string is given to NSRegularExpression instance.
-        //      (2016-11, macOS 10.12.1 SDK)
+        // -> `string` of NSTextStorage is actually a mutable object
+        //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
+        //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
         return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)

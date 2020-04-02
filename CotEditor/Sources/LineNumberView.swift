@@ -383,7 +383,7 @@ final class LineNumberView: NSView {
         if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
             drawingInfo = lastDrawingInfo
         } else {
-            // -> update drawing info only when needed
+            // update drawing info only when needed
             drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
             self.drawingInfo = drawingInfo
         }

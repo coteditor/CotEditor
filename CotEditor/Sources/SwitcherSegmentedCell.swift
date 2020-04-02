@@ -40,7 +40,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
     /// draw each segment
     override func drawSegment(_ segment: Int, inFrame frame: NSRect, with controlView: NSView) {
         
-        // use another image for selected segment
+        // use another image for selected segments
         // -> From the universal design point of view, it's better to use an image that has a different silhouette from the normal (unselected) one,
         //    because some users may hard to distinguish the selected state just by the color.
         if self.isSelected(forSegment: segment) {

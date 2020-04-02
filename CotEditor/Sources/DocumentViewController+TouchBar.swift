@@ -95,7 +95,7 @@ extension DocumentViewController: NSTouchBarDelegate {
         self.toggleInvisibleChars(sender)
         
         // update UI manually
-        //   -> workaround for the issue where UI doesn't update on a touch bar event (2017-01 macOS 10.12.2 SDK)
+        // -> Workaround for the issue where UI doesn't update on a touch bar event. (2017-01 macOS 10.12.2 SDK)
         self.view.window?.toolbar?.validateVisibleItems()
         self.touchBar?.validateVisibleItems()
     }
@@ -107,7 +107,7 @@ extension DocumentViewController: NSTouchBarDelegate {
         self.toggleLineWrap(sender)
         
         // update UI manually
-        //   -> workaround for the issue where UI doesn't update on a touch bar event (2017-01 macOS 10.12.2 SDK)
+        // -> Workaround for the issue where UI doesn't update on a touch bar event. (2017-01 macOS 10.12.2 SDK)
         self.view.window?.toolbar?.validateVisibleItems()
         self.touchBar?.validateVisibleItems()
     }

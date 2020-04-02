@@ -327,7 +327,7 @@ extension Document {
             }
             
             self.selectedRange = foundRange
-            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument
+            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument.
             
             return 1
         }

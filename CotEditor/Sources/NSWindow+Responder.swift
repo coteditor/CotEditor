@@ -33,7 +33,7 @@ extension NSWindow {
         
         let responder: NSResponder?
         if let editor = self.firstResponder as? NSTextView, editor.isFieldEditor {
-            // -> Regarding field editor, the real first responder is its delegate.
+            // -> Regarding field editors, the real first responder is its delegate.
             responder = editor.delegate as? NSResponder
         } else {
             responder = self.firstResponder

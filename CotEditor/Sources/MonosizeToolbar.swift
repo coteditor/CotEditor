@@ -54,9 +54,9 @@ final class MonosizeToolbar: NSToolbar {
         
         super.awakeFromNib()
         
-        // This is really dirty way but works.
-        //   -> It actually doesn't matter if "Use Small Size" menu item cannot be removed.
-        //      What really matter is crash, or any other unwanted side effects. So, be careful.
+        // -> This is really dirty way but works.
+        //    It actually doesn't matter if "Use Small Size" menu item cannot be removed.
+        //    What really matters is crashing, or any other unwanted side effects. So, be careful.
         // cf. https://forums.developer.apple.com/thread/21887
         if
             let contextMenu = self.window?.contentView?.superview?.menu,

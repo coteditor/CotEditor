@@ -230,7 +230,7 @@ extension EditorTextView {
         let cursor = isLowerOrigin ? currentRange.upperBound : currentRange.lowerBound
         let origin = isLowerOrigin ? currentRange.lowerBound : currentRange.upperBound
         
-        //  skip modifiying selection in RTL text as it is too complex
+        //  skip modifying the selection in RTL text as it is too complex
         // -> Additional word boundaries may be not so nessessory in RTL text.
         guard !self.layoutManager!.isRTL(at: cursor) else { return }
         
@@ -272,7 +272,7 @@ extension EditorTextView {
             // repeat `moveBackwardAndModifySelection(_:)` until reaching to the goal location,
             // instead of setting `selectedRange` directly.
             // -> To avoid an issue that changing selection by shortcut ⇧→ just after this command
-            //    expands the selection to a wrong direction. (2018-11 macOS 10.14 #863)
+            //    expands the selection to the wrong direction. (2018-11 macOS 10.14 #863)
             while self.selectedRange.location > location {
                 self.moveBackwardAndModifySelection(self)
             }

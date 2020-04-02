@@ -56,7 +56,7 @@ final class DocumentWindowController: NSWindowController {
         
         // -> It's set as false by default if the window controller was invoked from a storyboard.
         self.shouldCascadeWindows = true
-        // -> Do not use "document" for autosave name because somehow windows forget the size with that name (2018-09)
+        // -> Do not use "document" for autosave name because somehow windows forget the size with that name. (2018-09)
         self.windowFrameAutosaveName = "Document Window"
         
         // set window size
@@ -99,7 +99,7 @@ final class DocumentWindowController: NSWindowController {
             self.toolbarController!.document = document
             self.contentViewController!.representedObject = document
             
-            // -> In case when the window was created as a restored window (the right side ones in the browsing mode)
+            // -> In case when the window was created as a restored window (the right side ones in the browsing mode).
             if document.isInViewingMode, let window = self.window as? DocumentWindow {
                 window.backgroundAlpha = 1.0
             }

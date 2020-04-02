@@ -153,8 +153,8 @@ private final class TouchBarValidator {
             else { return }
         
         // skip validation for specific events just like NSToolbar does
-        //   -> See Apple's API reference for NSToolbar's `validateVisibleItems()` to see which events should be skipped:
-        //        cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
+        // -> See Apple's API reference for NSToolbar's `validateVisibleItems()` to see which events should be skipped:
+        //      cf. https://developer.apple.com/reference/appkit/nstoolbar/1516947-validatevisibleitems
         let isLazy: Bool
         switch event.type {
             case .leftMouseDragged,

@@ -150,8 +150,8 @@ extension CharacterPopoverController: NSPopoverDelegate {
         }
         
         // close popover when the window of the parent editor is closed
-        // -> Otherwise, a zombie window appears again when click somewhere after closing the window,
-        //    as NSPopover seems to retain the parent window somehow (2020 macOS 10.15).
+        // -> Otherwise, a zombie window appears again when clicking somewhere after closing the window,
+        //    as NSPopover seems to retain the parent window somehow. (2020 macOS 10.15)
         self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: parentWindow, queue: .main) { [weak popover] _ in
             popover?.close()
         }

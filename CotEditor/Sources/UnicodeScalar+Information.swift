@@ -80,7 +80,7 @@ extension UnicodeScalar {
 
 // MARK: -
 
-// Implemented Unicode functions at UTF32Char level in order to cover single surrogate character that is not allowed by UnicodeScalar
+// implement Unicode functions at UTF32Char level in order to cover single surrogate characters that are not allowed by UnicodeScalar
 
 extension UTF32Char {
     
@@ -129,7 +129,7 @@ extension UTF32Char {
 private func sanitize(blockName: String) -> String {
     
     // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-    //    Otherwise, we cannot localize block name correctly. (2015-11 by 1024jp)
+    //    Otherwise, we cannot localize block names correctly. (2015-11)
     
     return blockName
         .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)

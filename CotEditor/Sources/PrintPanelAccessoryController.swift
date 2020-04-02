@@ -74,7 +74,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             guard representedObject != nil else { return }
             
             // -> Property initialization must be done after setting representedObject, namely NSPrintInfo,
-            //    because these values need to be set also to printInfo through the computed settters.
+            //    because these values need to be set also to printInfo through the computed setters.
             assert(representedObject is NSPrintInfo)
             
             let defaults = UserDefaults.standard

@@ -75,7 +75,7 @@ final class ShortcutKeyField: NSTextField {
             let modifierMask = event.modifierFlags.subtracting(ignoringMask)
             
             // set input shortcut string to field
-            // -> single NSDeleteCharacter works as delete
+            // -> The single NSDeleteCharacter works as delete.
             let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
             self.objectValue = (keySpecChars == "\u{8}") ? nil : keySpecChars
             

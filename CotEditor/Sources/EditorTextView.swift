@@ -322,7 +322,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // fix drawing area on non-opaque view
         if !self.drawsBackground {
-            // -> Needs display visible rect since the drawing area will be modified in draw(_ dirtyFrame:)
+            // -> Needs display visible rect since the drawing area will be modified in `draw(_ dirtyFrame:)`.
             self.setNeedsDisplay(newVisible, avoidAdditionalLayout: true)
         }
         
@@ -334,8 +334,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     override func updateTextTouchBarItems() {
         
         // silly workaround for the issue #971, where `updateTextTouchBarItems()` is invoked repeatedly when resizing frame
-        //   -> This workaround must be applicable to EditorTextView because this method
-        //      seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
+        // -> This workaround must be applicable to EditorTextView because this method
+        //    seems updating only RichText-related Touch Bar items. (2019-06 macOS 10.14)
 //        super.updateTextTouchBarItems()
     }
     
@@ -425,7 +425,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             return
         }
         
-        // -> NSTextView doesn't impelment cancelOperation (macOS 10.14)
+        // -> NSTextView doesn't implement `cancelOperation(_:)`. (macOS 10.14)
     }
     
     
@@ -439,7 +439,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.needsUpdateLineHighlight = true
         
         // retry completion if needed
-        //   -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`
+        // -> Flag is set in `insertCompletion(_:forPartialWordRange:movement:isFinal:)`.
         if self.needsRecompletion {
             self.needsRecompletion = false
             self.completionTask.schedule(delay: .milliseconds(50))
@@ -937,9 +937,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// draw view
     override func draw(_ dirtyRect: NSRect) {
         
-        // minimize drawing area on non-opaque background
-        // -> Otherwise, all textView (from the top to the bottom) is everytime drawn
-        //    and it affects to the drawing performance on a large document critically. (2017-03 macOS 10.12)
+        // minimize drawing area for non-opaque background
+        // -> Otherwise, all textView (from the top to the bottom) is drawn every time
+        //    and it affects the drawing performance on a large document critically. (2017-03 macOS 10.12)
         let dirtyRect = self.drawsBackground ? dirtyRect : self.visibleRect
         
         super.draw(dirtyRect)
@@ -986,7 +986,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     override func scrollRangeToVisible(_ range: NSRange) {
         
         // scroll line by line if an arrow key is pressed
-        // -> Perform only when the scroll target is near by the visible area.
+        // -> Perform only when the scroll target is nearby the visible area.
         //    Otherwise, the scroll doesn't reach the bottom with command+down arrow
         //    in the noncontiguous layout mode. (2018-12 macOS 10.14)
         guard NSEvent.modifierFlags.contains(.numericPad),
@@ -1001,7 +1001,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// change text layout orientation
     override func setLayoutOrientation(_ orientation: NSLayoutManager.TextLayoutOrientation) {
         
-        // -> need to send KVO notification manually on Swift (2016-09-12 on macOS 10.12 SDK)
+        // -> Need to send KVO notification manually on Swift. (2016-09-12 on macOS 10.12 SDK)
         self.willChangeValue(for: \.layoutOrientation)
         super.setLayoutOrientation(orientation)
         self.didChangeValue(for: \.layoutOrientation)
@@ -1403,11 +1403,11 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let paragraphStyle = NSParagraphStyle.default.mutable
         
         // set line height
-        //   -> The actual line height will be calculated in LayoutManager and Typesetter based on this line height multiple.
-        //      Because the default Cocoa Text System calculate line height differently
-        //      if the first character of the document is drawn with another font (typically by a composite font).
-        //   -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
-        //      e.g. Times
+        // -> The actual line height will be calculated in LayoutManager and Typesetter based on this line height multiple.
+        //    Because the default Cocoa Text System calculate line height differently
+        //     if the first character of the document is drawn with another font (typically by a composite font).
+        // -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
+        //    e.g. Times
         paragraphStyle.lineHeightMultiple = self.lineHeight.rounded(to: 5)
         
         // calculate tab interval
@@ -1421,7 +1421,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.defaultParagraphStyle = paragraphStyle
         
         // add paragraph style also to the typing attributes
-        //   -> textColor and font are added automatically.
+        // -> textColor and font are added automatically.
         self.typingAttributes[.paragraphStyle] = paragraphStyle
         
         // tell line height also to scroll view so that scroll view can scroll line by line
@@ -1457,7 +1457,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         switch NSCursor.current {
             case .iBeam where NSAppKitVersion.current <= .macOS10_13:
-                // -> i-beam is enough findable with dark background since Mojave
+                // -> The i-beam is enough findable with dark background since Mojave.
                 NSCursor.lightIBeam.set()
             
             case .iBeamCursorForVerticalLayout:
@@ -1490,8 +1490,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.textContainerInset.height = height
         self.frame.size.height += 2 * diff
         
-        // invoke `setToFit()` but only when needed to aboid heavy calculation by large document
-        // -> `setToFit()` is required to remove the extra height of those frame that contains blank margin already
+        // invoke `setToFit()` but only when needed to avoid heavy calculation by large document
+        // -> `setToFit()` is required to remove the extra height of the frame that contains a blank margin already
         //    due to the smaller text content than the visible rect (macOS 10.15).
         let maxVisibleYGlyphIndex = layoutManager.glyphIndex(for: NSPoint(x: 0, y: visibleRect.height), in: textContainer)
         let maxVisibleY = layoutManager.isValidGlyphIndex(maxVisibleYGlyphIndex)
@@ -1803,7 +1803,7 @@ extension EditorTextView {
         }
         
         // raise frag to proceed word completion again, if a normal key input is performed during displaying the completion list
-        //   -> The flag will be used in `didChangeText()`
+        // -> The flag will be used in `didChangeText()`.
         var movement = movement
         if flag, let event = self.window?.currentEvent, event.type == .keyDown, !event.modifierFlags.contains(.command),
             event.charactersIgnoringModifiers == event.characters  // exclude key-bindings
@@ -1826,7 +1826,7 @@ extension EditorTextView {
             switch movement {
                 case NSIllegalTextMovement, NSRightTextMovement:  // treat as cancelled
                     // restore original input
-                    //   -> In case if the letter case is changed from the original.
+                    // -> In case if the letter case is changed from the original.
                     if let originalWord = self.particalCompletionWord {
                         word = originalWord
                     }
@@ -1925,7 +1925,7 @@ extension EditorTextView {
                     return NSRange(characterIndex...endIndex, in: self.string)
                 case .odd:
                     NSSound.beep()
-                    return NSRange(characterIndex...characterIndex, in: self.string)  // If a odd brace was double-clicked, only the clicked brace should be selected
+                    return NSRange(characterIndex...characterIndex, in: self.string)  // By double-clicking an odd brace, only the clicked brace should be selected.
             }
         }
         

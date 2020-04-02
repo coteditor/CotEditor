@@ -153,7 +153,7 @@ final class Theme: NSObject {
     /// color for syntax type defined in theme
     func style(for type: SyntaxType) -> Style? {
         
-        // The syntax key and theme keys must be the same.
+        // The syntax keys and theme keys must be the same.
         switch type {
             case .keywords: return self.keywords
             case .commands: return self.commands

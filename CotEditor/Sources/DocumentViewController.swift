@@ -199,7 +199,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
-            // start parcing syntax highlights and outline menu
+            // start parcing syntax for highlighting and outline menu
             document.syntaxParser.invalidateOutline()
             self.invalidateSyntaxHighlight()
             
@@ -231,7 +231,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// avoid showing draggable cursor
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        // -> must call super's delegate method anyway.
+        // -> Super's delegate method must be called anyway.
         super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
         
         return .zero
@@ -373,7 +373,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineProgress = nil
             viewController.navigationBarController?.outlineItems = outlineItems
-            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it (2008-05-16)
+            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it. (2008-05-16)
         }
     }
     

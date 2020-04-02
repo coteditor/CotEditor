@@ -142,7 +142,7 @@ struct ScriptDescriptor {
             let orderingString = name[..<name.index(before: range.upperBound)]
             self.ordering = Int(orderingString)
             
-            // Remove the ordering number from the script name
+            // remove the ordering number from the script name
             name.removeSubrange(range)
         } else {
             self.ordering = nil

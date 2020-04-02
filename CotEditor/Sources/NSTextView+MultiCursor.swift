@@ -184,7 +184,7 @@ extension MultiCursorEditing {
             .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
-        //    either a single empty range, a single nonempty range, or multiple nonempty ranges (macOS 10.14).
+        //    either a single empty range, a single non-empty range, or multiple nonempty ranges. (macOS 10.14)
         let selectedRanges = nonemptyRanges.isEmpty ? [emptyRanges.removeFirst()] : nonemptyRanges
         
         return (selectedRanges as [NSValue], emptyRanges.map(\.location))

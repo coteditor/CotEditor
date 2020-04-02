@@ -248,7 +248,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(Thread.isMainThread)
         
         // once force-close all sheets
-        //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
+        // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
         self.windowForSheet?.sheets.forEach { $0.close() }
         
         // store current selections
@@ -266,7 +266,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.applyContentToWindow()
         
         // select previous ranges again
-        // -> Taking performance issue into consideration,
+        // -> Taking performance issues into consideration,
         //    the selection ranges will be adjusted only when the content size is enough small;
         //    otherwise, just cut extra ranges off.
         let string = self.textStorage.string
@@ -341,7 +341,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // standardize line endings to LF
-        // -> Line endings replacemement by other text modifications is processed in
+        // -> Line endings replacement by other text modifications is processed in
         //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
         let string = file.string.replacingLineEndings(with: .lf)
         
@@ -412,9 +412,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        // modify place to create backup file
-        //   -> save backup file always in `~/Library/Autosaved Information/` directory
-        //      (The default backup URL is the same directory as the fileURL.)
+        // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
+        // -> The default backup URL is the same directory as the fileURL.
         let newURL: URL = {
             guard
                 saveOperation == .autosaveElsewhereOperation,
@@ -630,7 +629,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printInfo.dictionary().addEntries(from: printSettings)
         let printOperation = NSPrintOperation(view: printView, printInfo: printInfo)
         printOperation.showsProgressPanel = true
-        // -> This flag looks fancy but needs to disable,
+        // -> This flag looks fancy but needs to disable
         //    since NSTextView seems to cannot print in a background thraed (macOS -10.15).
         printOperation.canSpawnSeparateThread = false
         
@@ -715,7 +714,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-            // If not, an alert shows up when user saves the file.
+            // -> If not, an alert shows up when user saves the file.
             DispatchQueue.main.async { [weak self] in
                 guard
                     let lastModificationDate = self?.fileModificationDate,
@@ -768,7 +767,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func didMakeDocumentForExisitingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        // This method won't be invoked on Resume. (2015-01-26)
+        // -> This method won't be invoked on Resume. (2015-01-26)
         
         ScriptManager.shared.dispatchEvent(documentOpened: self)
     }
