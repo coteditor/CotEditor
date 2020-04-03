@@ -31,22 +31,26 @@ final class DebouncerTests: XCTestCase {
     func testDebounce() {
         
         let expectation = self.expectation(description: "Debouncer executed")
+        let waitingExpectation = self.expectation(description: "Debouncer waiting")
+        waitingExpectation.isInverted = true
         
         var value = 0
         let debouncer = Debouncer(delay: .seconds(0.5)) {
             value += 1
             expectation.fulfill()
+            waitingExpectation.fulfill()
         }
         
         XCTAssertEqual(value, 0)
         
         debouncer.schedule()
-        sleep(1)
         debouncer.schedule()
+        
+        self.wait(for: [waitingExpectation], timeout: 0.1)
         
         XCTAssertEqual(value, 0)
         
-        self.waitForExpectations(timeout: 1)
+        self.wait(for: [expectation], timeout: 0.5)
         
         XCTAssertEqual(value, 1)
     }
