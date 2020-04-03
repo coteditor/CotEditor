@@ -117,7 +117,7 @@ extension String {
         
         guard !indentRange.isEmpty else { return 0 }
         
-        let indent = self[workaround: indentRange]
+        let indent = self[indentRange]
         let numberOfTabs = indent.count { $0 == "\t" }
         
         return numberOfTabs + ((indent.count - numberOfTabs) / tabWidth)
@@ -207,7 +207,7 @@ extension String {
         let index = String.Index(utf16Offset: location, in: self)
         let lineStartIndex = self.lineStartIndex(at: index)
         
-        return self[workaround: lineStartIndex..<index].lazy
+        return self[lineStartIndex..<index].lazy
             .map { $0 == "\t" ? tabWidth : $0.utf16.count }
             .reduce(0, +)
     }

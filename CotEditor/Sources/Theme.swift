@@ -126,8 +126,7 @@ final class Theme: NSObject {
         let decoder = JSONDecoder()
         
         let theme = try decoder.decode(Theme.self, from: data)
-        theme.name = fileURL.deletingPathExtension().lastPathComponent.immutable
-        // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
+        theme.name = fileURL.deletingPathExtension().lastPathComponent
         
         return theme
     }

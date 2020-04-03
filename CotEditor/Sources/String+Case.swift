@@ -46,7 +46,7 @@ extension String {
             .reduce(into: self.lowercased()) { (string, range) in
                 let index = string.index(before: range.upperBound)
                 
-                string.replaceSubrange(range, with: string[workaround: index].uppercased())
+                string.replaceSubrange(range, with: string[index].uppercased())
             }
     }
     
@@ -59,7 +59,7 @@ extension String {
             .reduce(into: self) { (string, range) in
                 let index = string.index(before: range.upperBound)
                 
-                string.replaceSubrange(range, with: string[workaround: index].uppercased())
+                string.replaceSubrange(range, with: string[index].uppercased())
             }
     }
     

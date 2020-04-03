@@ -134,7 +134,7 @@ extension EditorTextView {
             ? self.string.startIndex
             : String.Index(utf16Offset: self.selectedRange.location, in: self.string)
         let lineRange = self.string.lineContentsRange(at: location)
-        viewController.sampleLine = String(self.string[workaround: lineRange])
+        viewController.sampleLine = String(self.string[lineRange])
         viewController.sampleFontName = self.font?.fontName
         
         viewController.completionHandler = { [weak self] (pattern, options) in

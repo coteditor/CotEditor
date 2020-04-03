@@ -27,39 +27,6 @@ import Foundation
 
 private let kMaxEscapesCheckLength = 8
 
-extension StringProtocol where Self.Index == String.Index {
-    
-    /// workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
-    ///
-    /// cf. <https://bugs.swift.org/browse/SR-11605>
-    subscript(workaround range: Range<Index>) -> SubSequence {
-        
-        if #available(macOS 10.15, *) { return self[range] }
-        
-        guard range.upperBound == self.endIndex else { return self[range] }
-        
-        return (range.lowerBound == self.endIndex)
-            ? self[self.endIndex...]
-            : self[range.lowerBound...]
-    }
-    
-    
-    /// workaround for NSBigMutableString + range subscript bug (2019-10 Xcode 11.1)
-    ///
-    /// cf. <https://bugs.swift.org/browse/SR-11605>
-    subscript(workaround index: Index) -> Element {
-        
-        if #available(macOS 10.15, *) { return self[index] }
-        
-        return (index == self.endIndex)
-            ? self[self.endIndex]
-            : self[index]
-    }
-    
-}
-
-
-
 extension String {
     
     /// Copied string to make sure the string is not a kind of NSMutableString.
@@ -169,7 +136,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// - Returns: `true` when the character at the given index is escaped.
     func isCharacterEscaped(at index: Index) -> Bool {
         
-        let escapes = self[workaround: self.startIndex..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
+        let escapes = self[..<index].suffix(kMaxEscapesCheckLength).reversed().prefix { $0 == "\\" }
         
         return !escapes.count.isMultiple(of: 2)
     }
