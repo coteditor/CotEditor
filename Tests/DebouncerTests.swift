@@ -41,7 +41,7 @@ final class DebouncerTests: XCTestCase {
         XCTAssertEqual(value, 0)
         
         debouncer.schedule()
-        sleep(200)
+        sleep(1)
         debouncer.schedule()
         
         XCTAssertEqual(value, 0)
