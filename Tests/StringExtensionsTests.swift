@@ -31,17 +31,26 @@ final class StringExtensionsTests: XCTestCase {
     
     /// Test if the U+FEFF omitting bug on Swift 5 still exists.
     ///
-    /// cf. <https://bugs.swift.org/browse/SR-10896>
+    /// - Bug: <https://bugs.swift.org/browse/SR-10896>
     func testFEFF() {
         
         let bom = "\u{feff}"
         
+        // -> Some of these test cases must fail if the bug fixed.
         XCTAssertEqual(bom.count, 1)
-        XCTAssertEqual((bom + "abc").count, 4)
-        XCTAssertEqual(NSString(string: bom).length, 0)
-        XCTAssertEqual(NSString(string: bom + bom).length, 1)
-        XCTAssertEqual(NSString(string: bom + "abc").length, 3)
-        XCTAssertEqual(NSString(string: "a" + bom + "bc").length, 4)
+        XCTAssertEqual(("\(bom)abc").count, 4)
+        XCTAssertEqual(NSString(string: bom).length, 0)  // correct: 1
+        XCTAssertEqual(NSString(string: "\(bom)\(bom)").length, 1)  // correct: 2
+        XCTAssertEqual(NSString(string: "\(bom)abc").length, 3)  // correct: 4
+        XCTAssertEqual(NSString(string: "a\(bom)bc").length, 4)
+        
+        let string = "\(bom)abc"
+        XCTAssertNotEqual(string.immutable, string)  // -> This test must fail if the bug fixed.
+        
+        // Implicit NSString cast is fixed.
+        // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
+        let middleIndex = string.index(string.startIndex, offsetBy: 2)
+        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { (_, _, _, _) in }
     }
     
     
