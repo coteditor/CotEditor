@@ -334,7 +334,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         self.showsTab = defaults[.showInvisibleTab]
         self.showsSpace = defaults[.showInvisibleSpace]
         self.showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
-        self.showsControl = defaults[.showInvisibleControl]
+        self.showsOtherControl = defaults[.showInvisibleControl]
     }
     
     
