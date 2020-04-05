@@ -121,6 +121,15 @@ final class OutlineViewController: NSViewController {
             
             guard textView.window == self.view.window else { return }
             
+            // avoid updating outline item selection before finishing outline parse
+            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+            guard
+                !textView.hasMarkedText(),
+                let textStorage = textView.textStorage,
+                textStorage.editedRange.location == NSNotFound
+                else { return }
+            
             self.invalidateCurrentLocation(textView: textView)
         }
         

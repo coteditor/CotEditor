@@ -130,7 +130,17 @@ final class NavigationBarController: NSViewController {
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] (notification) in
+            // avoid updating outline item selection before finishing outline parse
+            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+            guard
+                let textView = notification.object as? NSTextView,
+                !textView.hasMarkedText(),
+                let textStorage = textView.textStorage,
+                textStorage.editedRange.location == NSNotFound
+                else { return }
+            
             self?.invalidateOutlineMenuSelection()
         }
         
