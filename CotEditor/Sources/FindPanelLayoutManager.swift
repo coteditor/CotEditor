@@ -77,37 +77,37 @@ final class FindPanelLayoutManager: NSLayoutManager {
         if UserDefaults.standard[.showInvisibles] {
             let string = self.attributedString().string as NSString
             
+            // gather visibility settings
             let defaults = UserDefaults.standard
-            let showsNewLine = defaults[.showInvisibleNewLine]
-            let showsTab = defaults[.showInvisibleTab]
-            let showsSpace = defaults[.showInvisibleSpace]
-            let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
-            let showsOtherControl = defaults[.showInvisibleControl]
+            let shows: [Invisible: Bool] = [
+                .newLine: defaults[.showInvisibleNewLine],
+                .tab: defaults[.showInvisibleTab],
+                .space: defaults[.showInvisibleSpace],
+                .fullwidthSpace: defaults[.showInvisibleFullwidthSpace],
+                .otherControl: defaults[.showInvisibleControl],
+            ]
+            var lineCache: [Invisible: NSAttributedString] = [:]
             
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
             for charIndex in characterRange.lowerBound..<characterRange.upperBound {
                 let codeUnit = string.character(at: charIndex)
                 
-                guard let invisible = Invisible(codeUnit: codeUnit) else { continue }
+                guard
+                    let invisible = Invisible(codeUnit: codeUnit),
+                    shows[invisible] == true
+                    else { continue }
                 
-                switch invisible {
-                    case .newLine:
-                        guard showsNewLine else { continue }
-                    
-                    case .tab:
-                        guard showsTab else { continue }
-                    
-                    case .space:
-                        guard showsSpace else { continue }
-                    
-                    case .fullwidthSpace:
-                        guard showsFullwidthSpace else { continue }
-                    
-                    case .otherControl:
-                        guard showsOtherControl else { continue }
-                        self.addTemporaryAttribute(.foregroundColor, value: NSColor.clear, forCharacterRange: NSRange(location: charIndex, length: 1))
+                if invisible == .otherControl {
+                    self.addTemporaryAttribute(.foregroundColor, value: NSColor.clear, forCharacterRange: NSRange(location: charIndex, length: 1))
                 }
+                
+                // use chache or create if not yet
+                let glyphString = lineCache[invisible]
+                    ?? NSAttributedString(string: String(invisible.symbol),
+                                          attributes: [.font: self.font,
+                                                       .foregroundColor: NSColor.tertiaryLabelColor])
+                lineCache[invisible] = glyphString
                 
                 // calculate position to draw glyph
                 let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
@@ -116,9 +116,6 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 let point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x)
                 
                 // draw character
-                let glyphString = NSAttributedString(string: String(invisible.symbol),
-                                                     attributes: [.font: self.font,
-                                                                  .foregroundColor: NSColor.tertiaryLabelColor])
                 glyphString.draw(at: point)
             }
         }

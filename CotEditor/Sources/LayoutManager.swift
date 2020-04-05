@@ -53,11 +53,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)
             self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
             
-            // cache width of space char for hanging indent width calculation
+            // cache width of special glyphs
             self.spaceWidth = textFont.spaceWidth
-            
-            self.invisibleLines = self.generateInvisibleLines()
-            self.replacementGlyphWidth = self.invisibleLines.otherControl.bounds().width
+            self.replacementGlyphWidth = self.invisibleLine(for: .otherControl).bounds().width
         }
     }
     
@@ -70,12 +68,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         }
     }
     
-    var invisiblesColor: NSColor = .disabledControlTextColor {
-        
-        didSet {
-            self.invisibleLines = self.generateInvisibleLines()
-        }
-    }
+    var invisiblesColor: NSColor = .disabledControlTextColor
     
     private(set) var spaceWidth: CGFloat = 0
     private(set) var replacementGlyphWidth: CGFloat = 0
@@ -93,18 +86,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     private var showsTab = false
     private var showsSpace = false
     private var showsFullwidthSpace = false
-    
-    private lazy var invisibleLines: InvisibleLines = self.generateInvisibleLines()
-    
-    
-    private struct InvisibleLines {
-        
-        var newLine: CTLine
-        var tab: CTLine
-        var space: CTLine
-        var fullwidthSpace: CTLine
-        var otherControl: CTLine
-    }
     
     
     
@@ -179,6 +160,16 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             let layoutOrientation = textView?.layoutOrientation
             let writingDirection = textView?.baseWritingDirection
             let baselineOffset = self.baselineOffset(for: layoutOrientation ?? .horizontal)
+            var lineCache: [Invisible: CTLine] = [:]
+            
+            // gather visibility settings
+            let shows: [Invisible: Bool] = [
+                .newLine: self.showsNewLine,
+                .tab: self.showsTab,
+                .space: self.showsSpace,
+                .fullwidthSpace: self.showsFullwidthSpace,
+                .otherControl: self.showsOtherControl,
+            ]
             
             // flip coordinate if needed
             if NSGraphicsContext.current?.isFlipped == true {
@@ -190,30 +181,14 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             for charIndex in characterRange.lowerBound..<characterRange.upperBound {
                 let codeUnit = string.character(at: charIndex)
                 
-                guard let invisible = Invisible(codeUnit: codeUnit) else { continue }
+                guard
+                    let invisible = Invisible(codeUnit: codeUnit),
+                    shows[invisible] == true
+                    else { continue }
                 
-                let line: CTLine
-                switch invisible {
-                    case .newLine:
-                        guard self.showsNewLine else { continue }
-                        line = self.invisibleLines.newLine
-                    
-                    case .tab:
-                        guard self.showsTab else { continue }
-                        line = self.invisibleLines.tab
-                    
-                    case .space:
-                        guard self.showsSpace else { continue }
-                        line = self.invisibleLines.space
-                    
-                    case .fullwidthSpace:
-                        guard self.showsFullwidthSpace else { continue }
-                        line = self.invisibleLines.fullwidthSpace
-                    
-                    case .otherControl:
-                        guard self.showsOtherControl else { continue }
-                        line = self.invisibleLines.otherControl
-                }
+                // use chached line or create if not yet
+                let line = lineCache[invisible] ?? self.invisibleLine(for: invisible)
+                lineCache[invisible] = line
                 
                 // calculate position to draw glyph
                 let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
@@ -338,31 +313,21 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     }
     
     
-    /// Create CTLines to cache for invisible characters drawing.
-    ///
-    /// - Returns: An InvisibleLines struct.
-    private func generateInvisibleLines() -> InvisibleLines {
-        
-        let fontSize = self.textFont?.pointSize ?? 0
-        let font = NSFont.systemFont(ofSize: fontSize)
-        let textFont = self.textFont ?? font
-        
-        return InvisibleLines(newLine: self.invisibleLine(.newLine, font: font),
-                              tab: self.invisibleLine(.tab, font: font),
-                              space: self.invisibleLine(.space, font: textFont),
-                              fullwidthSpace: self.invisibleLine(.fullwidthSpace, font: font),
-                              otherControl: self.invisibleLine(.otherControl, font: textFont))
-    }
-    
-    
     /// Create a CTLine for given invisible type.
     ///
     /// - Parameters:
     ///   - invisible: The type of invisible character.
-    ///   - font: The font for the alternative character.
     /// - Returns: A CTLine of the alternative glyph for the given invisible type.
-    private func invisibleLine(_ invisible: Invisible, font: NSFont) -> CTLine {
+    private func invisibleLine(for invisible: Invisible) -> CTLine {
         
+        let fontSize = self.textFont?.pointSize ?? 0
+        let font: NSFont
+        switch invisible {
+            case .newLine, .tab, .fullwidthSpace:
+                font = .systemFont(ofSize: fontSize)
+            case .space, .otherControl:
+                font = self.textFont ?? .systemFont(ofSize: fontSize)
+        }
         let attrString = NSAttributedString(string: String(invisible.symbol),
                                             attributes: [.foregroundColor: self.invisiblesColor,
                                                          .font: font])
