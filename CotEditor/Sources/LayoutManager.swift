@@ -178,13 +178,12 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             let textView = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)?.textView
             let layoutOrientation = textView?.layoutOrientation
             let writingDirection = textView?.baseWritingDirection
+            let baselineOffset = self.baselineOffset(for: layoutOrientation ?? .horizontal)
             
             // flip coordinate if needed
             if NSGraphicsContext.current?.isFlipped == true {
                 context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
             }
-            
-            let baselineOffset = self.baselineOffset(for: layoutOrientation ?? .horizontal)
             
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
