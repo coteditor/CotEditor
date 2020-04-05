@@ -744,13 +744,6 @@
 			remoteGlobalIDString = 2A6F0D4E1B5500E100C2D03C;
 			remoteInfo = CotEditor;
 		};
-		2AB0E3E01D8974D00027FF46 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
-			remoteInfo = CotEditor;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -2434,7 +2427,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2AB0E3E11D8974D00027FF46 /* PBXTargetDependency */,
 				2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */,
 			);
 			name = Tests;
@@ -3400,11 +3392,6 @@
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
 			targetProxy = 2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */;
-		};
-		2AB0E3E11D8974D00027FF46 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */;
-			targetProxy = 2AB0E3E01D8974D00027FF46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
