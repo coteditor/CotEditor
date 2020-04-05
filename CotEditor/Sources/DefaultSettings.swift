@@ -77,7 +77,7 @@ struct DefaultSettings {
         .showInvisibleTab: true,
         .showInvisibleSpace: false,
         .showInvisibleFullwidthSpace: false,
-        .showOtherInvisibleChars: false,
+        .showInvisibleControl: false,
         .documentAppearance: AppearanceMode.default.rawValue,
         .theme: "Dendrobates",
         

@@ -55,7 +55,7 @@ final class Typesetter: NSATSTypesetter {
         
         if action.contains(.zeroAdvancementAction),
             let manager = self.layoutManager as? LayoutManager,
-            manager.showsOtherInvisibles,
+            manager.showsOtherControl,
             manager.showsInvisibles,
             let unicode = Unicode.Scalar((manager.attributedString().string as NSString).character(at: charIndex)),
             unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace

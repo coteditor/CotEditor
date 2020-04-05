@@ -49,7 +49,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
         
         self.delegate = self
         
-        self.controlVisibilityObserver = UserDefaults.standard.observe(key: .showOtherInvisibleChars) { [unowned self] (_) in
+        self.controlVisibilityObserver = UserDefaults.standard.observe(key: .showInvisibleControl) { [unowned self] (_) in
             let wholeRange = self.attributedString().range
             self.invalidateGlyphs(forCharacterRange: wholeRange, changeInLength: 0, actualCharacterRange: nil)
             self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
@@ -82,7 +82,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
             let showsTab = defaults[.showInvisibleTab]
             let showsSpace = defaults[.showInvisibleSpace]
             let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
-            let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
+            let showsOtherControl = defaults[.showInvisibleControl]
             
             // draw invisibles glyph by glyph
             let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
@@ -105,7 +105,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                         guard showsFullwidthSpace else { continue }
                     
                     case .otherControl:
-                        guard showsOtherInvisibles else { continue }
+                        guard showsOtherControl else { continue }
                         self.addTemporaryAttribute(.foregroundColor, value: NSColor.clear, forCharacterRange: NSRange(location: charIndex, length: 1))
                 }
                 
@@ -130,7 +130,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     /// replace control glyph
     override func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: NSFont, forGlyphRange glyphRange: NSRange) {
         
-        guard UserDefaults.standard[.showOtherInvisibleChars] else {
+        guard UserDefaults.standard[.showInvisibleControl] else {
             return super.setGlyphs(glyphs, properties: props, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
         }
         

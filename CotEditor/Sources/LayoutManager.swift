@@ -66,7 +66,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         didSet {
             guard showsInvisibles != oldValue else { return }
             
-            self.invalidateInvisibleDisplay(includingControls: self.showsOtherInvisibles)
+            self.invalidateInvisibleDisplay(includingControls: self.showsOtherControl)
         }
     }
     
@@ -79,7 +79,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     private(set) var spaceWidth: CGFloat = 0
     private(set) var replacementGlyphWidth: CGFloat = 0
-    private(set) var showsOtherInvisibles = false
+    private(set) var showsOtherControl = false
     
     
     // MARK: Private Properties
@@ -124,11 +124,11 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             .showInvisibleTab,
             .showInvisibleSpace,
             .showInvisibleFullwidthSpace,
-            .showOtherInvisibleChars,
+            .showInvisibleControl,
         ]
         self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
             self.applyInvisibleVisibilitySetting()
-            self.invalidateInvisibleDisplay(includingControls: key == .showOtherInvisibleChars)
+            self.invalidateInvisibleDisplay(includingControls: key == .showInvisibleControl)
         }
     }
     
@@ -211,7 +211,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                         line = self.invisibleLines.fullwidthSpace
                     
                     case .otherControl:
-                        guard self.showsOtherInvisibles else { continue }
+                        guard self.showsOtherControl else { continue }
                         line = self.invisibleLines.otherControl
                 }
                 
@@ -334,7 +334,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         self.showsTab = defaults[.showInvisibleTab]
         self.showsSpace = defaults[.showInvisibleSpace]
         self.showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
-        self.showsOtherInvisibles = defaults[.showOtherInvisibleChars]
+        self.showsControl = defaults[.showInvisibleControl]
     }
     
     
