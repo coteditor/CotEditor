@@ -429,6 +429,8 @@
 		2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
 		2AA22A4F1FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */; };
 		2AA22A501FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */; };
+		2AA2C6FC24399A920017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FB24399A920017D1EC /* Yams */; };
+		2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FD24399AA20017D1EC /* Yams */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
 		2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
 		2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
@@ -1495,6 +1497,7 @@
 			files = (
 				2AAF1E4023DA672F00164CBF /* DifferenceKit in Frameworks */,
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
+				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 				2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1507,6 +1510,7 @@
 				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
 				2AAF1E3E23DA671A00164CBF /* DifferenceKit in Frameworks */,
 				2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */,
+				2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2429,6 +2433,7 @@
 			packageProductDependencies = (
 				2ACD02BE22A87F0400893051 /* ColorCode */,
 				2AAF1E3F23DA672F00164CBF /* DifferenceKit */,
+				2AA2C6FB24399A920017D1EC /* Yams */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2475,6 +2480,7 @@
 			packageProductDependencies = (
 				2ACD02BC22A87EFD00893051 /* ColorCode */,
 				2AAF1E3D23DA671A00164CBF /* DifferenceKit */,
+				2AA2C6FD24399AA20017D1EC /* Yams */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2556,6 +2562,7 @@
 			packageReferences = (
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
 				2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -4475,6 +4482,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ra1028/DifferenceKit/";
@@ -4494,6 +4509,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2AA2C6FB24399A920017D1EC /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		2AA2C6FD24399AA20017D1EC /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
 		2AAF1E3D23DA671A00164CBF /* DifferenceKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */;
