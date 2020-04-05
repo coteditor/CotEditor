@@ -723,13 +723,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		2A3F18FC203270BE002F1CA7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
-			remoteInfo = CotEditor;
-		};
 		2AA2C6F6243996EC0017D1EC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -2382,7 +2375,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				2A3F18FD203270BE002F1CA7 /* PBXTargetDependency */,
 				2AA2C6F9243996EF0017D1EC /* PBXTargetDependency */,
 			);
 			name = "UI Tests";
@@ -3378,11 +3370,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2A3F18FD203270BE002F1CA7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */;
-			targetProxy = 2A3F18FC203270BE002F1CA7 /* PBXContainerItemProxy */;
-		};
 		2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
