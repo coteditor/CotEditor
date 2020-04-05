@@ -138,7 +138,7 @@ final class NavigationBarController: NSViewController {
                 let textView = notification.object as? NSTextView,
                 !textView.hasMarkedText(),
                 let textStorage = textView.textStorage,
-                textStorage.editedRange.location == NSNotFound
+                !textStorage.editedMask.contains(.editedCharacters)
                 else { return }
             
             self?.invalidateOutlineMenuSelection()
