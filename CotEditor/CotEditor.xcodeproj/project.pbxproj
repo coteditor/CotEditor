@@ -730,6 +730,20 @@
 			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
 			remoteInfo = CotEditor;
 		};
+		2AA2C6F6243996EC0017D1EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A6F0D4E1B5500E100C2D03C;
+			remoteInfo = CotEditor;
+		};
+		2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2A6F0D4E1B5500E100C2D03C;
+			remoteInfo = CotEditor;
+		};
 		2AB0E3E01D8974D00027FF46 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -1073,7 +1087,7 @@
 		2A5F7CAB1D157506001D83BC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A5F7CAC1D157509001D83BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2A5F7CAD1D15750B001D83BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
-		2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CotEditor.entitlements; sourceTree = "<group>"; };
+		2A61B7FC1B52CDD800CE3AFB /* CotEditor-Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-Sparkle.entitlements"; sourceTree = "<group>"; };
 		2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
 		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
 		2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
@@ -1110,8 +1124,8 @@
 		2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditorTextView+CursorMovement.swift"; sourceTree = "<group>"; };
 		2A6E3F3C19B5218300A63E97 /* CotEditor.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = CotEditor.help; sourceTree = "<group>"; };
 		2A6F0E071B5500E100C2D03C /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		2A6F0E081B5500E100C2D03C /* Info-AppStore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info-AppStore.plist"; sourceTree = "<group>"; };
-		2A6F0E091B55043800C2D03C /* CotEditor-AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-AppStore.entitlements"; sourceTree = "<group>"; };
+		2A6F0E081B5500E100C2D03C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
 		2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Indenting.swift"; sourceTree = "<group>"; };
 		2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typesetter.swift; sourceTree = "<group>"; };
@@ -1473,7 +1487,7 @@
 		57ED31771FFD892A00F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = pt; path = pt.lproj/ReportTemplate.md; sourceTree = "<group>"; };
 		6C1E212412C9E65600194313 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
-		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D15AC360486D014006FF6A4 /* Info-Sparkle.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-Sparkle.plist"; sourceTree = "<group>"; };
 		8D15AC370486D014006FF6A4 /* CotEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CotEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -1926,10 +1940,10 @@
 		2A3F187D202D8773002F1CA7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8D15AC360486D014006FF6A4 /* Info.plist */,
-				2A6F0E081B5500E100C2D03C /* Info-AppStore.plist */,
-				2A61B7FC1B52CDD800CE3AFB /* CotEditor.entitlements */,
-				2A6F0E091B55043800C2D03C /* CotEditor-AppStore.entitlements */,
+				2A6F0E081B5500E100C2D03C /* Info.plist */,
+				8D15AC360486D014006FF6A4 /* Info-Sparkle.plist */,
+				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
+				2A61B7FC1B52CDD800CE3AFB /* CotEditor-Sparkle.entitlements */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
@@ -2376,15 +2390,16 @@
 			);
 			dependencies = (
 				2A3F18FD203270BE002F1CA7 /* PBXTargetDependency */,
+				2AA2C6F9243996EF0017D1EC /* PBXTargetDependency */,
 			);
 			name = "UI Tests";
 			productName = "UI Tests";
 			productReference = 2A3F18F7203270BE002F1CA7 /* UI Tests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		2A6F0D4E1B5500E100C2D03C /* CotEditor -AppStore */ = {
+		2A6F0D4E1B5500E100C2D03C /* CotEditor */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */;
+			buildConfigurationList = 2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor" */;
 			buildPhases = (
 				2ACC21B91E546CCF0078241F /* Lint Swift Code */,
 				2A6F0DA31B5500E100C2D03C /* Sources */,
@@ -2399,7 +2414,7 @@
 			);
 			dependencies = (
 			);
-			name = "CotEditor -AppStore";
+			name = CotEditor;
 			packageProductDependencies = (
 				2ACD02BE22A87F0400893051 /* ColorCode */,
 				2AAF1E3F23DA672F00164CBF /* DifferenceKit */,
@@ -2420,15 +2435,16 @@
 			);
 			dependencies = (
 				2AB0E3E11D8974D00027FF46 /* PBXTargetDependency */,
+				2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = CotEditorTests;
 			productReference = 2AC71DDF1BF0BDBC002E1434 /* Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		8D15AC270486D014006FF6A4 /* CotEditor */ = {
+		8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */;
+			buildConfigurationList = 8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor -Sparkle" */;
 			buildPhases = (
 				2ACC21B81E5445BA0078241F /* Lint Swift Code */,
 				8D15AC300486D014006FF6A4 /* Sources */,
@@ -2445,7 +2461,7 @@
 			);
 			dependencies = (
 			);
-			name = CotEditor;
+			name = "CotEditor -Sparkle";
 			packageProductDependencies = (
 				2ACD02BC22A87EFD00893051 /* ColorCode */,
 				2AAF1E3D23DA671A00164CBF /* DifferenceKit */,
@@ -2471,7 +2487,7 @@
 					};
 					2A3F18F6203270BE002F1CA7 = {
 						CreatedOnToolsVersion = 9.2;
-						TestTargetID = 8D15AC270486D014006FF6A4;
+						TestTargetID = 2A6F0D4E1B5500E100C2D03C;
 					};
 					2A6F0D4E1B5500E100C2D03C = {
 						LastSwiftMigration = 0900;
@@ -2494,7 +2510,7 @@
 					2AC71DDE1BF0BDBC002E1434 = {
 						CreatedOnToolsVersion = 7.1;
 						LastSwiftMigration = 0900;
-						TestTargetID = 8D15AC270486D014006FF6A4;
+						TestTargetID = 2A6F0D4E1B5500E100C2D03C;
 					};
 					8D15AC270486D014006FF6A4 = {
 						LastSwiftMigration = 0900;
@@ -2534,8 +2550,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D15AC270486D014006FF6A4 /* CotEditor */,
-				2A6F0D4E1B5500E100C2D03C /* CotEditor -AppStore */,
+				2A6F0D4E1B5500E100C2D03C /* CotEditor */,
+				8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */,
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3F18F6203270BE002F1CA7 /* UI Tests */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
@@ -3372,12 +3388,22 @@
 /* Begin PBXTargetDependency section */
 		2A3F18FD203270BE002F1CA7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D15AC270486D014006FF6A4 /* CotEditor */;
+			target = 8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */;
 			targetProxy = 2A3F18FC203270BE002F1CA7 /* PBXContainerItemProxy */;
+		};
+		2AA2C6F7243996EC0017D1EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
+			targetProxy = 2AA2C6F6243996EC0017D1EC /* PBXContainerItemProxy */;
+		};
+		2AA2C6F9243996EF0017D1EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2A6F0D4E1B5500E100C2D03C /* CotEditor */;
+			targetProxy = 2AA2C6F8243996EF0017D1EC /* PBXContainerItemProxy */;
 		};
 		2AB0E3E11D8974D00027FF46 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8D15AC270486D014006FF6A4 /* CotEditor */;
+			target = 8D15AC270486D014006FF6A4 /* CotEditor -Sparkle */;
 			targetProxy = 2AB0E3E01D8974D00027FF46 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -4147,15 +4173,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
+				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 410;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "Info-AppStore.plist";
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "3.9.0-alpha";
-				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4166,15 +4191,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "CotEditor-AppStore.entitlements";
+				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 410;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = "Info-AppStore.plist";
+				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "3.9.0-alpha";
-				OTHER_SWIFT_FLAGS = "$(inherited) -D APPSTORE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4239,14 +4263,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "CotEditor-Sparkle.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 410;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
+				OTHER_SWIFT_FLAGS = "$(inherited) -SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4257,14 +4282,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "CotEditor-Sparkle.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 410;
 				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
+				OTHER_SWIFT_FLAGS = "$(inherited) -SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4429,7 +4455,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor -AppStore" */ = {
+		2A6F0E041B5500E100C2D03C /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A6F0E051B5500E100C2D03C /* Debug */,
@@ -4456,7 +4482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor" */ = {
+		8C71D95308640EDF00C9C0BD /* Build configuration list for PBXNativeTarget "CotEditor -Sparkle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8C71D95408640EDF00C9C0BD /* Debug */,

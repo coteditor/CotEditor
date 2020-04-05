@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1140"
-   version = "1.3">
+   version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -28,9 +28,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
+               BlueprintIdentifier = "8D15AC270486D014006FF6A4"
                BuildableName = "CotEditor.app"
-               BlueprintName = "CotEditor -AppStore"
+               BlueprintName = "CotEditor -Sparkle"
+               ReferencedContainer = "container:CotEditor.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2A3F18F6203270BE002F1CA7"
+               BuildableName = "UI Tests.xctest"
+               BlueprintName = "UI Tests"
                ReferencedContainer = "container:CotEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -40,13 +54,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      language = "en"
+      codeCoverageEnabled = "YES">
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
+            BlueprintIdentifier = "8D15AC270486D014006FF6A4"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor -AppStore"
+            BlueprintName = "CotEditor -Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -71,15 +87,16 @@
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
+      debugXPCServices = "NO"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
+            BlueprintIdentifier = "8D15AC270486D014006FF6A4"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor -AppStore"
+            BlueprintName = "CotEditor -Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -94,9 +111,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A6F0D4E1B5500E100C2D03C"
+            BlueprintIdentifier = "8D15AC270486D014006FF6A4"
             BuildableName = "CotEditor.app"
-            BlueprintName = "CotEditor -AppStore"
+            BlueprintName = "CotEditor -Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
