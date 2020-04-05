@@ -16,6 +16,7 @@ Change Log
 - Improve drawing performance.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
 - [trivial] Display default values as the input field's placeholder for window size setting when empty.
+- [trivial] Make the identifeier for document autosaving longer.
 - [dev] Update the build environment to Xcode 11.4 (Swift 5.2).
 
 

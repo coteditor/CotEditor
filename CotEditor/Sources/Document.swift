@@ -26,12 +26,6 @@
 
 import Cocoa
 
-private let uniqueFileIDLength = 13
-
-
-
-// MARK: -
-
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Notification Names
@@ -82,7 +76,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
-    private var autosaveIdentifier: String
+    private var autosaveIdentifier: String = UUID().uuidString
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -95,9 +89,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override init() {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        
-        let uuid = UUID().uuidString
-        self.autosaveIdentifier = String(uuid.prefix(uniqueFileIDLength))
         
         let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
         self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
@@ -422,8 +413,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
                 .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
             
-            // append a unique string to avoid overwriting another backup file with the same file name.
-            let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
+            // append an unique string to avoid overwriting another backup file with the same file name.
+            let maxIdentifierLength = Int(NAME_MAX) - (baseFileName.length + " ().".length + fileURL.pathExtension.length)
+            let fileName = baseFileName + " (" + self.autosaveIdentifier.prefix(maxIdentifierLength) + ")"
             
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
