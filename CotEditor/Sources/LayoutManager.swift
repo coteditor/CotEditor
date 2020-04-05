@@ -77,15 +77,10 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     // MARK: Private Properties
     
-    private var defaultsObservers: [UserDefaultsObservation] = []
-    
     private var defaultLineHeight: CGFloat = 1.0
     private var defaultBaselineOffset: CGFloat = 0
     
-    private var showsNewLine = false
-    private var showsTab = false
-    private var showsSpace = false
-    private var showsFullwidthSpace = false
+    private var defaultsObservers: [UserDefaultsObservation] = []
     
     
     
@@ -98,7 +93,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         
         self.typesetter = Typesetter()
         
-        self.applyInvisibleVisibilitySetting()
+        self.showsOtherControl = UserDefaults.standard[.showInvisibleControl]
         
         let visibilityKeys: [DefaultKeys] = [
             .showInvisibleNewLine,
@@ -108,7 +103,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             .showInvisibleControl,
         ]
         self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
-            self.applyInvisibleVisibilitySetting()
+            self.showsOtherControl = UserDefaults.standard[.showInvisibleControl]
             self.invalidateInvisibleDisplay(includingControls: key == .showInvisibleControl)
         }
     }
@@ -163,12 +158,13 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             var lineCache: [Invisible: CTLine] = [:]
             
             // gather visibility settings
+            let defaults = UserDefaults.standard
             let shows: [Invisible: Bool] = [
-                .newLine: self.showsNewLine,
-                .tab: self.showsTab,
-                .space: self.showsSpace,
-                .fullwidthSpace: self.showsFullwidthSpace,
-                .otherControl: self.showsOtherControl,
+                .newLine: defaults[.showInvisibleNewLine],
+                .tab: defaults[.showInvisibleTab],
+                .space: defaults[.showInvisibleSpace],
+                .fullwidthSpace: defaults[.showInvisibleFullwidthSpace],
+                .otherControl: defaults[.showInvisibleControl],
             ]
             
             // flip coordinate if needed
@@ -296,20 +292,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         if includingControls {
             self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
         }
-    }
-    
-    
-    /// Apply invisible visibility setting.
-    private func applyInvisibleVisibilitySetting() {
-        
-        let defaults = UserDefaults.standard
-        
-        // `showsInvisibles` will be set from EditorTextView or PrintTextView
-        self.showsNewLine = defaults[.showInvisibleNewLine]
-        self.showsTab = defaults[.showInvisibleTab]
-        self.showsSpace = defaults[.showInvisibleSpace]
-        self.showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
-        self.showsOtherControl = defaults[.showInvisibleControl]
     }
     
     
