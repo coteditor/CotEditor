@@ -4245,7 +4245,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
-				OTHER_SWIFT_FLAGS = "$(inherited) -SPARKLE";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4264,7 +4264,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
-				OTHER_SWIFT_FLAGS = "$(inherited) -SPARKLE";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
 				PROVISIONING_PROFILE_SPECIFIER = "";
