@@ -43,7 +43,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     var textFont: NSFont? {
         
-        // store text font to avoid the issue where the line height can be different by composite font
+        // store text font to avoid the issue where the line height can be inconsistent by using a fallback font
         // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't support
         //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
@@ -53,9 +53,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)
             self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
             
-            // cache width of special glyphs
-            self.spaceWidth = textFont.spaceWidth
-            self.replacementGlyphWidth = self.invisibleLine(for: .otherControl).bounds().width
+            // cache widths of special glyphs
+            self.spaceWidth = textFont.width(of: " ")
+            self.replacementGlyphWidth = textFont.width(of: Invisible.otherControl.symbol)
         }
     }
     
@@ -126,7 +126,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     /// adjust rect of last empty line
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
-        // -> The height of the extra line fragment should be the same as normal other fragments that are likewise customized in Typesetter.
+        // -> The height of the extra line fragment should be the same as other normal fragments that are likewise customized in Typesetter.
         var fragmentRect = fragmentRect
         fragmentRect.size.height = self.lineHeight
         var usedRect = usedRect

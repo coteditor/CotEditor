@@ -1413,7 +1413,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         // calculate tab interval
         if let font = self.font {
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
         }
         
         paragraphStyle.baseWritingDirection = self.baseWritingDirection

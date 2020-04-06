@@ -165,7 +165,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
             // setup paragraph style
             let paragraphStyle = NSParagraphStyle.default.mutable
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
