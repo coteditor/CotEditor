@@ -121,7 +121,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                  #selector(replaceAndFind(_:)),
                  #selector(replaceAll(_:)),
                  #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
-            #selector(centerSelectionInVisibleArea(_:)):
+                 #selector(centerSelectionInVisibleArea(_:)):
                 return self.client != nil
             
             case #selector(useSelectionForFind(_:)):
