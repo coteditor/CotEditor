@@ -2720,7 +2720,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
 		};
 		2A5DBE5F1B5D30A500F8CB13 /* Build Syntax Map */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2734,7 +2734,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CONFIGURATION\" = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
 		};
 		2A9246EB1FCD2012008DBC30 /* Build Sparkle XPCs */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2762,7 +2762,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# check if codesigned\nif [ -z \"$CODE_SIGN_IDENTITY\" ] ; then\n    if [ \"$CONFIGURATION\" = \"Release\" ] ; then\n    echo \"CODE_SIGN_IDENTITY needs to be non-empty for codesigning XPCs!\"\n        exit 1\n    else\n        exit 0  # Codesigning is optional for non-release builds.\n    fi\nfi\n\npaths=(\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerLauncher.xpc\"\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerConnection.xpc\"\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerStatus.xpc\"\n    \"$FRAMEWORKS_FOLDER_PATH/Sparkle.framework/Versions/A/Resources/AutoUpdate\"\n    \"$FRAMEWORKS_FOLDER_PATH/Sparkle.framework/Versions/A/Resources/Updater.app\"\n)\nfor path in ${paths[@]}; do\n    codesign --verbose --force --deep -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$TARGET_BUILD_DIR/$path\"\ndone\n";
+			shellScript = "# check if codesigned\nif [ -z $CODE_SIGN_IDENTITY ] ; then\n    if [ $CONFIGURATION = \"Release\" ] ; then\n    echo \"CODE_SIGN_IDENTITY needs to be non-empty for codesigning XPCs!\"\n        exit 1\n    else\n        exit 0  # Codesigning is optional for non-release builds.\n    fi\nfi\n\npaths=(\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerLauncher.xpc\"\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerConnection.xpc\"\n    \"$XPCSERVICES_FOLDER_PATH/org.sparkle-project.InstallerStatus.xpc\"\n    \"$FRAMEWORKS_FOLDER_PATH/Sparkle.framework/Versions/A/Resources/AutoUpdate\"\n    \"$FRAMEWORKS_FOLDER_PATH/Sparkle.framework/Versions/A/Resources/Updater.app\"\n)\nfor path in ${paths[@]}; do\n    codesign --verbose --force --deep -o runtime --sign \"$EXPANDED_CODE_SIGN_IDENTITY_NAME\" \"$TARGET_BUILD_DIR/$path\"\ndone\n";
 		};
 		2ACC21B81E5445BA0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2776,7 +2776,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\ncd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		2ACC21B91E546CCF0078241F /* Lint Swift Code */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2790,7 +2790,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../\nif which swiftlint >/dev/null; then\n    echo \"\"\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip lint in release phase.\nfi\n\ncd ../\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"SwiftLint does not exist, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
