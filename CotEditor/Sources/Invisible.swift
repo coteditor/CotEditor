@@ -25,7 +25,7 @@
 
 extension Unicode.Scalar {
     
-    static let zeroWidthSpace = Unicode.Scalar(0x200B)!
+    static let zeroWidthSpace = Self(0x200B)!
 }
 
 
@@ -49,23 +49,6 @@ enum Invisible {
         }
     }
     
-    
-    private var rtlSymbol: Character {  // not used
-        
-        switch self {
-            case .newLine: return "↪"
-            case .tab: return "◂"
-            default: return self.symbol
-        }
-    }
-    
-}
-
-
-
-// MARK: Code Unit
-
-extension Invisible {
     
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
