@@ -33,12 +33,12 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 How to Build
 --------------------------
 
-1. `git submodule update --init`
-2. Update frameworks.
-    1. `carthage bootstrap --platform macOS`
-    2. Build Sparkle's XPCs by running "Sparkle XPCs" scheme in CotEditor.xcworkspace
-3. Open CotEditor.xcworkspace in Xcode.
-4. Build.
+1. Run following commands to resolve dependencies.
+    - `git submodule update --init`
+    - `carthage bootstrap --platform macOS`
+2. Open CotEditor.xcworkspace in Xcode.
+3. Adjust the signing settings.
+4. Build "CotEditor" scheme in the workspace.
 
 
 
