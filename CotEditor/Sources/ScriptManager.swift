@@ -111,7 +111,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     // MARK: Public Methods
     
-    /// return menu for context menu
+    /// Menu for context menu.
     var contexualMenu: NSMenu? {
         
         let items = MainMenu.script.menu!.items
@@ -130,7 +130,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// build Script menu
+    /// Build the Script menu.
     func buildScriptMenu() {
         
         assert(Thread.isMainThread)
@@ -155,7 +155,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// Dispatch an Apple Event that notifies the given document was opened
+    /// Dispatch an Apple Event that notifies the given document was opened.
     ///
     /// - Parameter document: The document that was opened.
     func dispatchEvent(documentOpened document: Document) {
@@ -268,7 +268,11 @@ final class ScriptManager: NSObject, NSFilePresenter {
     }
     
     
-    /// read files and create/add menu items
+    /// Read files recursively and add to the given menu as menu items.
+    ///
+    /// - Parameters:
+    ///   - directoryURL: The directory where to find files recursively.
+    ///   - menu: The menu to add read files.
     private func addChildFileItem(in directoryURL: URL, to menu: NSMenu) {
         
         guard let urls = try? FileManager.default.contentsOfDirectory(at: directoryURL,
@@ -318,6 +322,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Open script file in an editor.
     ///
+    /// - Parameter url: The URL of a script file to open.
     /// - Throws: `ScriptFileError`
     private func editScript(at url: URL) throws {
         
@@ -329,6 +334,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     
     /// Reveal script file in Finder.
     ///
+    /// - Parameter url: The URL of a script file to reveal.
     /// - Throws: `ScriptFileError`
     private func revealScript(at url: URL) throws {
         
