@@ -18,6 +18,7 @@ Change Log
 - [trivial] Display default values as the input field's placeholder for window size setting when empty.
 - [trivial] Make the identifeier for document autosaving longer.
 - [dev] Update the build environment to Xcode 11.4 (Swift 5.2).
+- [dev] Migrate codesign-specific build settings to .xcconfig (thanks to Yoshimasa Niwa!).
 
 
 ### Fixes
