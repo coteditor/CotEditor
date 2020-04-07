@@ -11,5 +11,4 @@ default.profraw
 .build/
 
 # Carthage
-Carthage/DerivedData
 Carthage/Build
