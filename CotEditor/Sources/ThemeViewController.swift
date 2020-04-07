@@ -166,7 +166,7 @@ final class ThemeViewController: NSViewController {
 
 extension Theme {
     
-    fileprivate static let didChangeNotification = Notification.Name("ThemeDidChangeNotification")
+    static let didChangeNotification = Notification.Name("ThemeDidChangeNotification")
     
     
     override func setValue(_ value: Any?, forKeyPath keyPath: String) {
