@@ -2370,8 +2370,8 @@
 				5454B928243C81C6009275BC /* CodeSigning-AdHoc.xcconfig */,
 				5454B929243C81C7009275BC /* CodeSigning-Default.xcconfig */,
 				5454B92A243C81C7009275BC /* CodeSigning.xcconfig */,
-				5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */,
 				5454B92E243C8257009275BC /* CotEditor.xcconfig */,
+				5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */,
 				5454B92C243C8257009275BC /* Tests.xcconfig */,
 				5454B92B243C8257009275BC /* UI-Tests.xcconfig */,
 			);
