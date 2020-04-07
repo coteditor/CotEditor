@@ -719,6 +719,10 @@
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
+		5454B92F243C8257009275BC /* UI-Tests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92B243C8257009275BC /* UI-Tests.xcconfig */; };
+		5454B930243C8257009275BC /* Tests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92C243C8257009275BC /* Tests.xcconfig */; };
+		5454B931243C8257009275BC /* CotEditor-Sparkle.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */; };
+		5454B932243C8257009275BC /* CotEditor.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92E243C8257009275BC /* CotEditor.xcconfig */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
@@ -1073,7 +1077,6 @@
 		2A5F7CAB1D157506001D83BC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/EditorView.strings; sourceTree = "<group>"; };
 		2A5F7CAC1D157509001D83BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/EditorView.strings"; sourceTree = "<group>"; };
 		2A5F7CAD1D15750B001D83BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/EditorView.strings; sourceTree = "<group>"; };
-		2A61B7FC1B52CDD800CE3AFB /* CotEditor-Sparkle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "CotEditor-Sparkle.entitlements"; sourceTree = "<group>"; };
 		2A63CEC31D0B06D800ED8186 /* SyntaxTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxTests.swift; sourceTree = "<group>"; };
 		2A63CECA1D0B0E7800ED8186 /* sample.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = sample.html; path = TestFiles/sample.html; sourceTree = "<group>"; };
 		2A63FBE21D1D90E70081C84E /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
@@ -1450,6 +1453,14 @@
 		2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+AppInfo.swift"; sourceTree = "<group>"; };
 		4B7998191A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		4B79981C1A1F1BCD0088D167 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = "zh-Hans"; path = "zh-Hans.lproj/ReportTemplate.md"; sourceTree = "<group>"; };
+		5454B928243C81C6009275BC /* CodeSigning-AdHoc.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeSigning-AdHoc.xcconfig"; sourceTree = "<group>"; };
+		5454B929243C81C7009275BC /* CodeSigning-Default.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "CodeSigning-Default.xcconfig"; sourceTree = "<group>"; };
+		5454B92A243C81C7009275BC /* CodeSigning.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CodeSigning.xcconfig; sourceTree = "<group>"; };
+		5454B92B243C8257009275BC /* UI-Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "UI-Tests.xcconfig"; sourceTree = "<group>"; };
+		5454B92C243C8257009275BC /* Tests.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Tests.xcconfig; sourceTree = "<group>"; };
+		5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = "CotEditor-Sparkle.xcconfig"; sourceTree = "<group>"; };
+		5454B92E243C8257009275BC /* CotEditor.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CotEditor.xcconfig; sourceTree = "<group>"; };
+		5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = "CotEditor-AdHoc.entitlements"; sourceTree = "<group>"; };
 		57ED314A1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Main.strings; sourceTree = "<group>"; };
 		57ED314B1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/FindPanel.strings; sourceTree = "<group>"; };
 		57ED314E1FFD892600F16CAD /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/DocumentWindow.strings; sourceTree = "<group>"; };
@@ -1848,6 +1859,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* CotEditor */ = {
 			isa = PBXGroup;
 			children = (
+				5454B927243C8166009275BC /* Configurations */,
 				2A37F4ABFDCFA73011CA2CEA /* Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A3F187D202D8773002F1CA7 /* Supporting Files */,
@@ -1929,7 +1941,7 @@
 				2A6F0E081B5500E100C2D03C /* Info.plist */,
 				8D15AC360486D014006FF6A4 /* Info-Sparkle.plist */,
 				2A6F0E091B55043800C2D03C /* CotEditor.entitlements */,
-				2A61B7FC1B52CDD800CE3AFB /* CotEditor-Sparkle.entitlements */,
+				5454B933243C8271009275BC /* CotEditor-AdHoc.entitlements */,
 				2A75ACCA19E86DDB00444894 /* CotEditor.sdef */,
 				2A6E3F3C19B5218300A63E97 /* CotEditor.help */,
 				6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */,
@@ -2352,6 +2364,20 @@
 			name = Panels;
 			sourceTree = "<group>";
 		};
+		5454B927243C8166009275BC /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				5454B928243C81C6009275BC /* CodeSigning-AdHoc.xcconfig */,
+				5454B929243C81C7009275BC /* CodeSigning-Default.xcconfig */,
+				5454B92A243C81C7009275BC /* CodeSigning.xcconfig */,
+				5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */,
+				5454B92E243C8257009275BC /* CotEditor.xcconfig */,
+				5454B92C243C8257009275BC /* Tests.xcconfig */,
+				5454B92B243C8257009275BC /* UI-Tests.xcconfig */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
 		BEED9F89D1E364DD05CA42CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2559,6 +2585,7 @@
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
+				5454B930243C8257009275BC /* Tests.xcconfig in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
@@ -2578,6 +2605,7 @@
 				2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */,
 				2ACDE2982406B9C000FC31EC /* EncodingListView.storyboard in Resources */,
 				2ACDE2992406B9C000FC31EC /* FileDropPane.storyboard in Resources */,
+				5454B932243C8257009275BC /* CotEditor.xcconfig in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanel.storyboard in Resources */,
 				2ACDE29B2406B9C000FC31EC /* FindPreferencesView.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
@@ -2593,6 +2621,7 @@
 				2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */,
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
 				2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */,
+				5454B931243C8257009275BC /* CotEditor-Sparkle.xcconfig in Resources */,
 				2ACDE2A92406B9C000FC31EC /* PreferencesWindow.storyboard in Resources */,
 				2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */,
 				2ACDE2AB2406B9C000FC31EC /* RegexReferenceView.storyboard in Resources */,
@@ -2608,6 +2637,7 @@
 				2ACDE2B52406B9C000FC31EC /* SyntaxValidationView.storyboard in Resources */,
 				2ACDE2B62406B9C000FC31EC /* UnicodePanel.storyboard in Resources */,
 				2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */,
+				5454B92F243C8257009275BC /* UI-Tests.xcconfig in Resources */,
 				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4115,8 +4145,8 @@
 		};
 		2A3F18FF203270BE002F1CA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92B243C8257009275BC /* UI-Tests.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "../UI Tests/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4126,8 +4156,8 @@
 		};
 		2A3F1900203270BE002F1CA7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92B243C8257009275BC /* UI-Tests.xcconfig */;
 			buildSettings = {
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = "../UI Tests/Info.plist";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wolfrosch.CotEditorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -4137,11 +4167,10 @@
 		};
 		2A6F0E051B5500E100C2D03C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CURRENT_PROJECT_VERSION = 410;
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "3.9.0-alpha";
@@ -4152,11 +4181,10 @@
 		};
 		2A6F0E061B5500E100C2D03C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CotEditor.entitlements;
 				CURRENT_PROJECT_VERSION = 410;
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "3.9.0-alpha";
@@ -4181,9 +4209,9 @@
 		};
 		2AC71DE61BF0BDBC002E1434 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92C243C8257009275BC /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4198,9 +4226,9 @@
 		};
 		2AC71DE71BF0BDBC002E1434 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92C243C8257009275BC /* Tests.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				INFOPLIST_FILE = ../Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4215,11 +4243,10 @@
 		};
 		8C71D95408640EDF00C9C0BD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "CotEditor-Sparkle.entitlements";
 				CURRENT_PROJECT_VERSION = 410;
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
@@ -4231,11 +4258,10 @@
 		};
 		8C71D95508640EDF00C9C0BD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "CotEditor-Sparkle.entitlements";
 				CURRENT_PROJECT_VERSION = 410;
-				DEVELOPMENT_TEAM = HT3Z3A72WZ;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
