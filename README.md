@@ -36,9 +36,9 @@ How to Build
 1. Run following commands to resolve dependencies.
     - `git submodule update --init`
     - `carthage bootstrap --platform macOS`
-2. Open CotEditor.xcworkspace in Xcode.
-3. Adjust the signing settings.
-4. Build "CotEditor" scheme in the workspace.
+1. Open `CotEditor.xcworkspace` in Xcode.
+1. Open `Configurations/CodeSigning.xcconfig`, then comment out `#include "CodeSigning-Default.xcconfig"`, and uncomment `#include "CodeSigning-AdHoc.xcconfig"`. This step requires to build CotEditor for ad-hoc usage.
+1. Build "CotEditor" scheme in the workspace.
 
 
 
