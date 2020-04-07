@@ -34,7 +34,7 @@ How to Build
 --------------------------
 
 1. `git submodule update --init`
-2. Update frameworks (you can skip this process if you only wanna build).
+2. Update frameworks.
     1. `carthage bootstrap --platform macOS`
     2. Build Sparkle's XPCs by running "Sparkle XPCs" scheme in CotEditor.xcworkspace
 3. Open CotEditor.xcworkspace in Xcode.
