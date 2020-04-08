@@ -18,15 +18,15 @@
 			name = "Update Help Index";
 			productName = "Update Help Index";
 		};
-		2A9246E71FCD2004008DBC30 /* Build Sparkle XPCs */ = {
+		2A9246E71FCD2004008DBC30 /* Sparkle */ = {
 			isa = PBXAggregateTarget;
-			buildConfigurationList = 2A9246EA1FCD200A008DBC30 /* Build configuration list for PBXAggregateTarget "Build Sparkle XPCs" */;
+			buildConfigurationList = 2A9246EA1FCD200A008DBC30 /* Build configuration list for PBXAggregateTarget "Sparkle" */;
 			buildPhases = (
-				2A9246EB1FCD2012008DBC30 /* Build Sparkle XPCs */,
+				2A9246EB1FCD2012008DBC30 /* Build Sparkle */,
 			);
 			dependencies = (
 			);
-			name = "Build Sparkle XPCs";
+			name = Sparkle;
 			productName = "Sparkle XPCs";
 		};
 /* End PBXAggregateTarget section */
@@ -1018,7 +1018,7 @@
 		2A4E637F20ADC45F0033CE63 /* NSBezierPath+RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSBezierPath+RoundedCorner.swift"; sourceTree = "<group>"; };
 		2A50AA61204D513500D10A10 /* DocumentFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentFile.swift; sourceTree = "<group>"; };
 		2A54BE2B1D40EB24000816B0 /* LineEndingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineEndingTests.swift; sourceTree = "<group>"; };
-		2A594C9E1D4BAF100076FEDC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Carthage/Build/Mac/Sparkle.framework; sourceTree = "<group>"; };
+		2A594C9E1D4BAF100076FEDC /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		2A5ADE831D2168FC00F6CE26 /* Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		2A5ADE871D216D4900F6CE26 /* NSColor+NamedColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSColor+NamedColors.swift"; sourceTree = "<group>"; };
 		2A5D13091D1ED10400D38E6A /* Console.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
@@ -2112,17 +2112,6 @@
 			name = "Other View Controllers";
 			sourceTree = "<group>";
 		};
-		2A9246F01FCD20EF008DBC30 /* XPC */ = {
-			isa = PBXGroup;
-			children = (
-				2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */,
-				2A9246FB1FCD2CF0008DBC30 /* org.sparkle-project.InstallerLauncher.xpc */,
-				2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */,
-			);
-			name = XPC;
-			path = ../Carthage/Build/Mac;
-			sourceTree = "<group>";
-		};
 		2AA14CFA1FA47E9000EAF586 /* Script */ = {
 			isa = PBXGroup;
 			children = (
@@ -2250,15 +2239,6 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		2ACD681F1D6B0E5C00496B47 /* dSYM */ = {
-			isa = PBXGroup;
-			children = (
-				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
-			);
-			name = dSYM;
-			path = ../Carthage/Build/Mac;
-			sourceTree = "<group>";
-		};
 		2ACFE5891D205CE90005233A /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -2350,11 +2330,14 @@
 		BEED9F89D1E364DD05CA42CB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2ACD681F1D6B0E5C00496B47 /* dSYM */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
-				2A9246F01FCD20EF008DBC30 /* XPC */,
+				2A9246FD1FCD2CF0008DBC30 /* org.sparkle-project.InstallerConnection.xpc */,
+				2A9246FB1FCD2CF0008DBC30 /* org.sparkle-project.InstallerLauncher.xpc */,
+				2A9246FA1FCD2CF0008DBC30 /* org.sparkle-project.InstallerStatus.xpc */,
+				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
 			);
 			name = Frameworks;
+			path = ../Frameworks/Build;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -2534,7 +2517,7 @@
 				2AC71DDE1BF0BDBC002E1434 /* Tests */,
 				2A3F18F6203270BE002F1CA7 /* UI Tests */,
 				2A3E847D1D07296200070A54 /* Update Help Index */,
-				2A9246E71FCD2004008DBC30 /* Build Sparkle XPCs */,
+				2A9246E71FCD2004008DBC30 /* Sparkle */,
 			);
 		};
 /* End PBXProject section */
@@ -2735,19 +2718,20 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ $CONFIGURATION = \"Release\" ] ; then\n    exit 0  # Skip rebuilding map in release phase.\nfi\n\n${BUILT_PRODUCTS_DIR}\"/SyntaxMapBuilder\" Syntaxes > SyntaxMap.json\n";
 		};
-		2A9246EB1FCD2012008DBC30 /* Build Sparkle XPCs */ = {
+		2A9246EB1FCD2012008DBC30 /* Build Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
+			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Build Sparkle XPCs";
+			name = "Build Sparkle";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../Carthage\n\n# build XPCs\nschemes=(\n    'SparkleInstallerLauncher'\n    'SparkleInstallerConnection'\n    'SparkleInstallerStatus'\n)\nfor scheme in ${schemes[@]}; do\n    echo \"📦 Building ${scheme}...\"\n    xcodebuild build -project Checkouts/Sparkle/Sparkle.xcodeproj -scheme $scheme -derivedDataPath DerivedData -configuration Release\ndone\n\n# copy results to Carthage/Build directory\n#    -> So that, we can usually skip build process.\nfor file in './DerivedData/Build/Products/Release/*.xpc'; do\n    echo \"🚛 Copying ${file}...\"\n    cp -r ${file} Build/Mac/\ndone\n\n# clean up\nrm -r DerivedData\n";
+			shellScript = "cd ../Frameworks\n\nderivedData=$(mktemp -d \"$TMPDIR/Sparkle.XXXXXX\")\n\n# build Sparkle\necho \"📦 Building Sparkle\"\nxcodebuild build -project Sparkle/Sparkle.xcodeproj -scheme 'Distribution' -derivedDataPath $derivedData -configuration 'Release'\n\n# copy results to Build/ directory\nmkdir -p Build\nitems=(\n    'org.sparkle-project.InstallerLauncher.xpc'\n    'org.sparkle-project.InstallerConnection.xpc'\n    'org.sparkle-project.InstallerStatus.xpc'\n    'Sparkle.framework'\n)\nfor item in ${items[@]}; do\n    file=\"${derivedData}/Build/Products/Release/${item}*\"\n    echo \"🚛 Copying ${item}...\"\n    cp -r ${file} Build/\ndone\n";
 		};
 		2A9247051FCD471B008DBC30 /* Codesign Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -4219,7 +4203,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/Mac",
+					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
@@ -4238,7 +4222,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/Mac",
+					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
@@ -4405,7 +4389,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2A9246EA1FCD200A008DBC30 /* Build configuration list for PBXAggregateTarget "Build Sparkle XPCs" */ = {
+		2A9246EA1FCD200A008DBC30 /* Build configuration list for PBXAggregateTarget "Sparkle" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2A9246E81FCD2005008DBC30 /* Debug */,

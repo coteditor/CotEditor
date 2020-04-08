@@ -2,7 +2,7 @@ deployment_target:
   macOS_deployment_target: 10.13
 
 excluded:
-  - Carthage
+  - Frameworks
   - SyntaxMapBuilder/.build
 
 opt_in_rules:

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A9246E71FCD2004008DBC30"
-               BuildableName = "Build Sparkle XPCs"
-               BlueprintName = "Build Sparkle XPCs"
+               BuildableName = "Sparkle"
+               BlueprintName = "Sparkle"
                ReferencedContainer = "container:CotEditor.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,8 +44,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A9246E71FCD2004008DBC30"
-            BuildableName = "Build Sparkle XPCs"
-            BlueprintName = "Build Sparkle XPCs"
+            BuildableName = "Sparkle"
+            BlueprintName = "Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -60,8 +60,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2A9246E71FCD2004008DBC30"
-            BuildableName = "Build Sparkle XPCs"
-            BlueprintName = "Build Sparkle XPCs"
+            BuildableName = "Sparkle"
+            BlueprintName = "Sparkle"
             ReferencedContainer = "container:CotEditor.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
