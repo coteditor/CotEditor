@@ -33,11 +33,27 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 How to Build
 --------------------------
 
+### Build for Ad-hoc usage
+
+For those people who just want to build and play with CotEditor locally.
+
 1. Run following commands to resolve dependencies.
     - `git submodule update --init`
-    - `carthage bootstrap --platform macOS`
 1. Open `CotEditor.xcworkspace` in Xcode.
-1. Open `Configurations/CodeSigning.xcconfig`, then comment out `#include "CodeSigning-Default.xcconfig"`, and uncomment `#include "CodeSigning-AdHoc.xcconfig"`. This step requires to build CotEditor for ad-hoc usage.
+1. Change to ad-hoc build mode:
+    1. Open `Configurations/CodeSigning.xcconfig`.
+    1. Comment out `#include "CodeSigning-Default.xcconfig"`.
+    1. Uncomment `#include "CodeSigning-AdHoc.xcconfig"`.
+1. Build "CotEditor" scheme in the workspace.
+
+
+### Build for distribution (incl. Sparkle version)
+
+1. Run following commands to resolve dependencies.
+    - `git submodule update --init`
+    - `carthage bootstrap`
+1. Open `CotEditor.xcworkspace` in Xcode.
+1. Build Sparkle's XPCs by running "Sparkle XPCs" scheme in CotEditor.xcworkspace
 1. Build "CotEditor" scheme in the workspace.
 
 

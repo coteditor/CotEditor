@@ -429,6 +429,8 @@
 		2AA14D031FA4999200EAF586 /* PersistentOSAScript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA14D011FA4999200EAF586 /* PersistentOSAScript.swift */; };
 		2AA22A4F1FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */; };
 		2AA22A501FF07B90001F21F9 /* NSDocument+SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA22A4E1FF07B90001F21F9 /* NSDocument+SharingService.swift */; };
+		2AA2C6FC24399A920017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FB24399A920017D1EC /* Yams */; };
+		2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */ = {isa = PBXBuildFile; productRef = 2AA2C6FD24399AA20017D1EC /* Yams */; };
 		2AA2E0101BFDE0190087BDD6 /* CharacterInfoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AA2E00F1BFDE0190087BDD6 /* CharacterInfoTests.swift */; };
 		2AA2E0131BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
 		2AA2E0141BFE12620087BDD6 /* Unicode.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2AA2E0111BFE12620087BDD6 /* Unicode.strings */; };
@@ -540,15 +542,9 @@
 		2ACC65321C98033D000574DC /* ThemeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACC65311C98033D000574DC /* ThemeTests.swift */; };
 		2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BC22A87EFD00893051 /* ColorCode */; };
 		2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */ = {isa = PBXBuildFile; productRef = 2ACD02BE22A87F0400893051 /* ColorCode */; };
-		2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
 		2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */; };
-		2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
 		2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; };
-		2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; };
-		2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */ = {isa = PBXBuildFile; fileRef = 2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */; };
 		2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A594C9E1D4BAF100076FEDC /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2ACDC08E1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC08F1D1725F7009B72D6 /* FlippedClipView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */; };
 		2ACDC0911D1726BD009B72D6 /* DotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACDC0901D1726BD009B72D6 /* DotView.swift */; };
@@ -785,7 +781,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 16;
 			files = (
-				2ACD681C1D6B0E3F00496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
 				2ACD681E1D6B0E4500496B47 /* Sparkle.framework.dSYM in Copy dSYM Files */,
 			);
 			name = "Copy dSYM Files";
@@ -797,32 +792,9 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2ACD68311D6B113E00496B47 /* YAML.framework in Embed Frameworks */,
 				2ACD68301D6B113500496B47 /* Sparkle.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2ACD68291D6B0F7300496B47 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				2ACD682B1D6B0F7500496B47 /* YAML.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2ACD682C1D6B0F8200496B47 /* Copy dSYM Files */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 16;
-			files = (
-				2ACD682E1D6B0F9600496B47 /* YAML.framework.dSYM in Copy dSYM Files */,
-			);
-			name = "Copy dSYM Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -1144,7 +1116,6 @@
 		2A78BFAF1D1B168E00A583D2 /* WebDocumentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebDocumentViewController.swift; sourceTree = "<group>"; };
 		2A78BFB21D1B240900A583D2 /* UpdaterManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdaterManager.swift; sourceTree = "<group>"; };
 		2A78BFBB1D1B376000A583D2 /* ServicesProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServicesProvider.swift; sourceTree = "<group>"; };
-		2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAML.framework; path = ../Carthage/Build/Mac/YAML.framework; sourceTree = "<group>"; };
 		2A80C65D1CEE33C100AA664D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6601CEE351200AA664D /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = ja; path = ja.lproj/Credits.html; sourceTree = "<group>"; };
 		2A80C6611CEE351400AA664D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = de; path = de.lproj/Credits.html; sourceTree = "<group>"; };
@@ -1341,7 +1312,6 @@
 		2ACC5E401E7B08D300109ABC /* MultipleReplacementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultipleReplacementViewController.swift; sourceTree = "<group>"; };
 		2ACC5E491E7B20AA00109ABC /* ThemeMetaDataViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeMetaDataViewController.swift; sourceTree = "<group>"; };
 		2ACC65311C98033D000574DC /* ThemeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeTests.swift; sourceTree = "<group>"; };
-		2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = YAML.framework.dSYM; sourceTree = "<group>"; };
 		2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; path = Sparkle.framework.dSYM; sourceTree = "<group>"; };
 		2ACDC08D1D1725F7009B72D6 /* FlippedClipView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlippedClipView.swift; sourceTree = "<group>"; };
 		2ACDC0901D1726BD009B72D6 /* DotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DotView.swift; sourceTree = "<group>"; };
@@ -1495,7 +1465,7 @@
 			files = (
 				2AAF1E4023DA672F00164CBF /* DifferenceKit in Frameworks */,
 				2ACD02BF22A87F0400893051 /* ColorCode in Frameworks */,
-				2ACD682A1D6B0F7500496B47 /* YAML.framework in Frameworks */,
+				2AA2C6FC24399A920017D1EC /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1503,10 +1473,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2ACD68231D6B0F0400496B47 /* YAML.framework in Frameworks */,
 				2ACD68251D6B0F0700496B47 /* Sparkle.framework in Frameworks */,
 				2AAF1E3E23DA671A00164CBF /* DifferenceKit in Frameworks */,
 				2ACD02BD22A87EFD00893051 /* ColorCode in Frameworks */,
+				2AA2C6FE24399AA20017D1EC /* Yams in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2283,7 +2253,6 @@
 		2ACD681F1D6B0E5C00496B47 /* dSYM */ = {
 			isa = PBXGroup;
 			children = (
-				2ACD681B1D6B0E3F00496B47 /* YAML.framework.dSYM */,
 				2ACD681D1D6B0E4500496B47 /* Sparkle.framework.dSYM */,
 			);
 			name = dSYM;
@@ -2382,7 +2351,6 @@
 			isa = PBXGroup;
 			children = (
 				2ACD681F1D6B0E5C00496B47 /* dSYM */,
-				2A7A1D3E1D4BCCEF001B74B8 /* YAML.framework */,
 				2A594C9E1D4BAF100076FEDC /* Sparkle.framework */,
 				2A9246F01FCD20EF008DBC30 /* XPC */,
 			);
@@ -2418,8 +2386,6 @@
 				2A6F0D541B5500E100C2D03C /* Resources */,
 				2A94FC7A1BE225E900B454A8 /* Copy Command-Line Tools */,
 				2A6F0DFD1B5500E100C2D03C /* Frameworks */,
-				2ACD68291D6B0F7300496B47 /* Embed Frameworks */,
-				2ACD682C1D6B0F8200496B47 /* Copy dSYM Files */,
 			);
 			buildRules = (
 			);
@@ -2429,6 +2395,7 @@
 			packageProductDependencies = (
 				2ACD02BE22A87F0400893051 /* ColorCode */,
 				2AAF1E3F23DA672F00164CBF /* DifferenceKit */,
+				2AA2C6FB24399A920017D1EC /* Yams */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2475,6 +2442,7 @@
 			packageProductDependencies = (
 				2ACD02BC22A87EFD00893051 /* ColorCode */,
 				2AAF1E3D23DA671A00164CBF /* DifferenceKit */,
+				2AA2C6FD24399AA20017D1EC /* Yams */,
 			);
 			productInstallPath = "$(HOME)/Applications";
 			productName = CotEditor;
@@ -2556,6 +2524,7 @@
 			packageReferences = (
 				2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */,
 				2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */,
 			);
 			projectDirPath = "";
 			projectRoot = "";
@@ -4248,6 +4217,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 410;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
@@ -4263,6 +4236,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 410;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/../Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
 				MARKETING_VERSION = "3.9.0-alpha";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
@@ -4305,10 +4282,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/Mac",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -4374,10 +4347,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/../Carthage/Build/Mac",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -4475,6 +4444,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jpsim/Yams";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ra1028/DifferenceKit/";
@@ -4494,6 +4471,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2AA2C6FB24399A920017D1EC /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
+		2AA2C6FD24399AA20017D1EC /* Yams */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2AA2C6FA24399A920017D1EC /* XCRemoteSwiftPackageReference "Yams" */;
+			productName = Yams;
+		};
 		2AAF1E3D23DA671A00164CBF /* DifferenceKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */;

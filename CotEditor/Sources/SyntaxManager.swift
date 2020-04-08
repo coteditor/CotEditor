@@ -25,7 +25,7 @@
 //
 
 import Foundation
-import YAML
+import Yams
 
 @objc protocol SyntaxHolder: AnyObject {
     
@@ -148,18 +148,24 @@ final class SyntaxManager: SettingFileManaging {
             return self.blankSettingDictionary
         }
         
-        guard let url = self.urlForUsedSetting(name: name) else { return nil }
+        guard
+            let url = self.urlForUsedSetting(name: name),
+            let dictionary = try? self.loadSettingDictionary(at: url)
+            else { return nil }
         
-        return try? self.loadSettingDictionary(at: url)
+        return dictionary.cocoaBindable
     }
     
     
     /// return bundled version style dictionary or nil if not exists
     func bundledSettingDictionary(name: SettingName) -> StyleDictionary? {
         
-        guard let url = self.urlForBundledSetting(name: name) else { return nil }
+        guard
+            let url = self.urlForBundledSetting(name: name),
+            let dictionary = try? self.loadSettingDictionary(at: url)
+            else { return nil }
         
-        return try? self.loadSettingDictionary(at: url)
+        return dictionary.cocoaBindable
     }
     
     
@@ -182,6 +188,9 @@ final class SyntaxManager: SettingFileManaging {
             (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [keyStringSort])
         }
         
+        // convert NSObject-based collections to Swift.Array/Dictionary
+        let settingDictionary = settingDictionary.yamlEncodable
+        
         // save
         let saveURL = self.preparedURLForUserSetting(name: name)
         
@@ -198,8 +207,8 @@ final class SyntaxManager: SettingFileManaging {
             }
         } else {
             // save file to user domain
-            let yamlData = try YAMLSerialization.yamlData(with: settingDictionary, options: kYAMLWriteOptionSingleDocument)
-            try yamlData.write(to: saveURL, options: .atomic)
+            let yamlString = try Yams.dump(object: settingDictionary)
+            try yamlString.write(to: saveURL, atomically: true, encoding: .utf8)
         }
         
         // invalidate current cache
@@ -346,8 +355,8 @@ final class SyntaxManager: SettingFileManaging {
     /// - Throws: `CocoaError`
     private func loadSettingDictionary(at fileURL: URL) throws -> StyleDictionary {
         
-        let data = try Data(contentsOf: fileURL)
-        let yaml = try YAMLSerialization.object(withYAMLData: data, options: kYAMLReadOptionMutableContainersAndLeaves)
+        let string = try String(contentsOf: fileURL)
+        let yaml = try Yams.load(yaml: string)
         
         guard let styleDictionary = yaml as? StyleDictionary else {
             throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
@@ -402,6 +411,60 @@ private extension StringProtocol where Self.Index == String.Index {
 
 
 
+// MARK: - Cocoa Bindings Support
+
+private extension SyntaxManager.StyleDictionary {
+    
+    /// Convert to NSObject-based collection for Cocoa-Bindings recursively.
+    var cocoaBindable: Self {
+        
+        return self.mapValues(Self.convertToCocoaBindable)
+    }
+    
+    
+    /// Convert to YAML serialization comaptible colletion recursively.
+    var yamlEncodable: Self {
+        
+        return self.mapValues(Self.convertToYAMLEncodable)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    private static func convertToYAMLEncodable(_ item: Any) -> Any {
+        
+        switch item {
+            case let dictionary as NSDictionary:
+                return (dictionary as! Dictionary).mapValues(Self.convertToYAMLEncodable)
+            case let array as NSArray:
+                return (array as Array).map(Self.convertToYAMLEncodable)
+            case let bool as Bool:
+                return bool
+            case let string as String:
+                return string
+            default:
+                assertionFailure("\(type(of: item))")
+                return item
+        }
+    }
+    
+    
+    private static func convertToCocoaBindable(_ item: Any) -> Any {
+        
+        switch item {
+            case let dictionary as Dictionary:
+                return NSMutableDictionary(dictionary: dictionary.mapValues(convertToCocoaBindable))
+            case let array as [Any]:
+                return NSMutableArray(array: array.map(convertToCocoaBindable))
+            default:
+                return item
+        }
+    }
+    
+}
+
+
+
 // MARK: - Migration
 
 extension SyntaxManager {
@@ -428,12 +491,12 @@ extension SyntaxManager {
             .filter { $0.0 != "styleName" }   // remove lagacy "styleName" key
             .mapKeys { $0.replacingOccurrences(of: "Array", with: "") }  // remove all `Array` suffix from dict keys
         
-        let yamlData = try YAMLSerialization.yamlData(with: newStyle, options: kYAMLWriteOptionSingleDocument)
+        let yamlString = try Yams.dump(object: newStyle)
         
         let styleName = self.settingName(from: fileURL)
         let destURL = self.preparedURLForUserSetting(name: styleName)
         coordinator.coordinate(writingItemAt: destURL, error: nil) { (newWritingURL) in
-            try? yamlData.write(to: newWritingURL, options: .atomic)
+            try? yamlString.write(to: newWritingURL, atomically: true, encoding: .utf8)
         }
     }
     
