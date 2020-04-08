@@ -51,9 +51,8 @@ For those people who just want to build and play with CotEditor locally.
 
 1. Run following commands to resolve dependencies.
     - `git submodule update --init`
-    - `carthage bootstrap`
 1. Open `CotEditor.xcworkspace` in Xcode.
-1. Build Sparkle's XPCs by running "Sparkle XPCs" scheme in CotEditor.xcworkspace
+1. Run "Sparkle" scheme in CotEditor.xcworkspace
 1. Build "CotEditor" scheme in the workspace.
 
 

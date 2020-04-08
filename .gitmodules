@@ -1,6 +1,7 @@
 [submodule "cot"]
 	path = cot
 	url = https://github.com/coteditor/cot.git
-[submodule "Carthage/Checkouts/Sparkle"]
+[submodule "Frameworks/Sparkle"]
+	path = Frameworks/Sparkle
 	url = https://github.com/sparkle-project/Sparkle.git
-	path = Carthage/Checkouts/Sparkle
+	branch = 2.x
