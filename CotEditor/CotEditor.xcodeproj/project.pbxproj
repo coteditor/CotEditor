@@ -1096,6 +1096,7 @@
 		2A6FD9EC1D3A85D700A59784 /* NSString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSString.swift; sourceTree = "<group>"; };
 		2A6FD9F21D3ACEB500A59784 /* DefaultKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultKey.swift; sourceTree = "<group>"; };
 		2A6FD9F51D3AE29E00A59784 /* SyntaxStyle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxStyle.swift; sourceTree = "<group>"; };
+		2A706BE9244071FF000D3A64 /* buildSparkle.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = buildSparkle.sh; sourceTree = "<group>"; };
 		2A7135821CFFDC6600ADA555 /* FilePermissionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilePermissionTests.swift; sourceTree = "<group>"; };
 		2A719F6523CD92370026F877 /* FuzzyRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuzzyRangeTests.swift; sourceTree = "<group>"; };
 		2A71BC7A1DDC50530085AE1C /* DocumentViewController+TouchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DocumentViewController+TouchBar.swift"; sourceTree = "<group>"; };
@@ -1864,6 +1865,7 @@
 			isa = PBXGroup;
 			children = (
 				2A3E84821D07331900070A54 /* updateHelpindex.sh */,
+				2A706BE9244071FF000D3A64 /* buildSparkle.sh */,
 			);
 			name = Scripts;
 			sourceTree = "<group>";
@@ -2730,7 +2732,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd ../Frameworks\n\nderivedData=$(mktemp -d \"$TMPDIR/Sparkle.XXXXXX\")\n\n# build Sparkle\necho \"📦 Building Sparkle\"\nxcodebuild build -project Sparkle/Sparkle.xcodeproj -scheme 'Distribution' -derivedDataPath $derivedData -configuration 'Release'\n\n# copy results to Build/ directory\nmkdir -p Build\nitems=(\n    'org.sparkle-project.InstallerLauncher.xpc'\n    'org.sparkle-project.InstallerConnection.xpc'\n    'org.sparkle-project.InstallerStatus.xpc'\n    'Sparkle.framework'\n)\nfor item in ${items[@]}; do\n    file=\"${derivedData}/Build/Products/Release/${item}*\"\n    echo \"🚛 Copying ${item}...\"\n    cp -r ${file} Build/\ndone\n";
+			shellScript = "./buildSparkle.sh\n";
 		};
 		2A9247051FCD471B008DBC30 /* Codesign Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
