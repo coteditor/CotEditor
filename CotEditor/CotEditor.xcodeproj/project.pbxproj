@@ -4438,7 +4438,7 @@
 		};
 		2AAF1E3C23DA671A00164CBF /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ra1028/DifferenceKit/";
+			repositoryURL = "https://github.com/ra1028/DifferenceKit";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 1.1.5;
@@ -4446,7 +4446,7 @@
 		};
 		2ACD02BB22A87CED00893051 /* XCRemoteSwiftPackageReference "WFColorCode" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/1024jp/WFColorCode.git";
+			repositoryURL = "https://github.com/1024jp/WFColorCode";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.4.0;
