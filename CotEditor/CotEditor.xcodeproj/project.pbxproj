@@ -2721,7 +2721,6 @@
 		2A9246EB1FCD2012008DBC30 /* Build Sparkle */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
-			dependencyFile = "$(DERIVED_FILES_DIR)/$(INPUT_FILE_PATH).d";
 			files = (
 			);
 			inputPaths = (
