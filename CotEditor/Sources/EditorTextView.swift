@@ -953,7 +953,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             let guideColor = textColor.withAlphaComponent(isHighContrast ? 0.5 : 0.2)
             
             let column = CGFloat(UserDefaults.standard[.pageGuideColumn])
-            let inset = self.textContainerOrigin.x
+            let inset = self.textContainerInset.width
             let linePadding = self.textContainer?.lineFragmentPadding ?? 0
             let x = spaceWidth * column + inset + linePadding + 2  // +2 px for an esthetic adjustment
             let isRTL = (self.baseWritingDirection == .rightToLeft)
