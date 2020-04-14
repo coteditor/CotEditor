@@ -66,7 +66,7 @@ extension NSTextView {
         
         // get glyph range of which line number should be drawn
         // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
-        let layoutRect = rect.offset(by: -self.textContainerOrigin)
+        let layoutRect = rect.offset(by: -self.textContainerInset)
         let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
         
         // count up lines until the interested area
