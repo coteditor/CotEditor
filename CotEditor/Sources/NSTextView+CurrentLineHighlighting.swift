@@ -87,12 +87,7 @@ extension CurrentLineHighlighting {
             let layoutManager = self.layoutManager
             else { assertionFailure(); return .zero }
         
-        let rect = layoutManager.lineFragmentsRect(for: range)
-        
-        return NSRect(x: 0,
-                      y: rect.minY,
-                      width: textContainer.size.width,
-                      height: rect.height)
+        return layoutManager.lineFragmentsRect(for: range)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
             .offset(by: self.textContainerInset)
     }
