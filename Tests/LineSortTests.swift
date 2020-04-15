@@ -29,7 +29,7 @@ import XCTest
 
 final class LineSortTests: XCTestCase {
     
-    let lines = """
+    private let lines = """
             dog, 🐕, 2, イヌ
             cat, 🐈, 1, ねこ
             cow, 🐄, 3, ｳｼ

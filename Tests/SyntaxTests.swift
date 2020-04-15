@@ -28,17 +28,18 @@ import XCTest
 import Yams
 @testable import CotEditor
 
-let styleDirectoryName = "Syntaxes"
-let styleExtension = "yaml"
-
 
 final class SyntaxTests: XCTestCase {
     
-    var styleDicts: [String: SyntaxManager.StyleDictionary] = [:]
-    var htmlStyle: SyntaxStyle?
-    var htmlSource: String?
+    private let styleDirectoryName = "Syntaxes"
+    private let styleExtension = "yaml"
     
-    var outlineParseExpectation: XCTestExpectation?
+    
+    private var styleDicts: [String: SyntaxManager.StyleDictionary] = [:]
+    private var htmlStyle: SyntaxStyle?
+    private var htmlSource: String?
+    
+    private var outlineParseExpectation: XCTestExpectation?
     
     
     

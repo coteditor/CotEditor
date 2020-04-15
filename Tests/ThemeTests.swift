@@ -27,12 +27,12 @@
 import XCTest
 @testable import CotEditor
 
-private let themeDirectoryName = "Themes"
-
 
 final class ThemeTests: XCTestCase {
     
-    private(set) lazy var bundle = Bundle(for: type(of: self))
+    private let themeDirectoryName = "Themes"
+    
+    private lazy var bundle = Bundle(for: type(of: self))
     
     
     func testDefaultTheme() throws {
