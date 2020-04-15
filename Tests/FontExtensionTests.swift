@@ -33,7 +33,7 @@ final class FontExtensionTests: XCTestCase {
         
         let font = NSFont(name: "Menlo-Regular", size: 11)
         
-        XCTAssertEqual(font?.spaceWidth, 6.62255859375)
+        XCTAssertEqual(font?.width(of: " "), 6.62255859375)
     }
     
     
