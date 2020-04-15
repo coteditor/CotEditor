@@ -49,7 +49,7 @@ final class SyntaxTests: XCTestCase {
         let bundle = Bundle(for: type(of: self))
         
         // load styles
-        let dictsWithNames = try bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
+        let dictsWithNames = bundle.urls(forResourcesWithExtension: "yaml", subdirectory: styleDirectoryName)!
             .map { url -> (String, SyntaxManager.StyleDictionary) in
                 let string = try! String(contentsOf: url)
                 let name = url.deletingPathExtension().lastPathComponent
