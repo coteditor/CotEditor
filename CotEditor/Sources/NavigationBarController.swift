@@ -251,7 +251,7 @@ final class NavigationBarController: NSViewController {
         
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.tabStops = []
-        paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.spaceWidth
+        paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.width(of: " ")
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.tighteningFactorForTruncation = 0  // don't tighten
         

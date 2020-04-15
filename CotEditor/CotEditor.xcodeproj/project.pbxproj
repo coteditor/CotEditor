@@ -308,8 +308,6 @@
 		2A6FD9D21D38933100A59784 /* EditorTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */; };
 		2A6FD9DA1D38F93100A59784 /* EditorTextView+Indenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */; };
 		2A6FD9DB1D38F93300A59784 /* EditorTextView+Indenting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */; };
-		2A6FD9DD1D392EFF00A59784 /* Typesetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */; };
-		2A6FD9DE1D392EFF00A59784 /* Typesetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */; };
 		2A6FD9E01D393F9100A59784 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */; };
 		2A6FD9E11D393F9100A59784 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */; };
 		2A6FD9E71D394F5900A59784 /* LayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A6FD9E61D394F5900A59784 /* LayoutManager.swift */; };
@@ -1089,7 +1087,6 @@
 		2A6F0E091B55043800C2D03C /* CotEditor.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CotEditor.entitlements; sourceTree = "<group>"; };
 		2A6FD9D01D38933100A59784 /* EditorTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextViewController.swift; sourceTree = "<group>"; };
 		2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Indenting.swift"; sourceTree = "<group>"; };
-		2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typesetter.swift; sourceTree = "<group>"; };
 		2A6FD9DF1D393F9100A59784 /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		2A6FD9E61D394F5900A59784 /* LayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutManager.swift; sourceTree = "<group>"; };
 		2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Commenting.swift"; sourceTree = "<group>"; };
@@ -1957,7 +1954,6 @@
 				2A478F3E22BE743200AEA45E /* NSTextView+Ligature.swift */,
 				2AFE848522AE71130001C4ED /* TextContainer.swift */,
 				2A6FD9E61D394F5900A59784 /* LayoutManager.swift */,
-				2A6FD9DC1D392EFF00A59784 /* Typesetter.swift */,
 				2A1125C223F1A86B006A1DB2 /* LineRangeCacheable.swift */,
 				2A6416A21D2F9F7200FA9E1A /* LineNumberView.swift */,
 				2A0BF8A71DD8E7F90088961B /* TextSizeTouchBar.swift */,
@@ -3035,7 +3031,6 @@
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
-				2A6FD9DE1D392EFF00A59784 /* Typesetter.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
 				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
@@ -3334,7 +3329,6 @@
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
-				2A6FD9DD1D392EFF00A59784 /* Typesetter.swift in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,

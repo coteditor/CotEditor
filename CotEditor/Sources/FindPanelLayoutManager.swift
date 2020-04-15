@@ -32,8 +32,9 @@ final class FindPanelLayoutManager: NSLayoutManager {
     private let font: NSFont = .systemFont(ofSize: 0)
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
+    private lazy var replacementGlyphWidth = self.font.width(of: Invisible.otherControl.symbol)
     
-    private var controlVisibilityObserver: UserDefaultsObservation?
+    private var defaultsObservers: [UserDefaultsObservation] = []
     
     
     
@@ -49,10 +50,20 @@ final class FindPanelLayoutManager: NSLayoutManager {
         
         self.delegate = self
         
-        self.controlVisibilityObserver = UserDefaults.standard.observe(key: .showInvisibleControl) { [unowned self] (_) in
+        let visibilityKeys: [DefaultKeys] = [
+            .showInvisibles,
+            .showInvisibleNewLine,
+            .showInvisibleTab,
+            .showInvisibleSpace,
+            .showInvisibleFullwidthSpace,
+            .showInvisibleControl,
+        ]
+        self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
             let wholeRange = self.attributedString().range
-            self.invalidateGlyphs(forCharacterRange: wholeRange, changeInLength: 0, actualCharacterRange: nil)
-            self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
+            self.invalidateDisplay(forCharacterRange: wholeRange)
+            if key == .showInvisibleControl || key == .showInvisibles {
+                self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
+            }
         }
     }
     
@@ -64,7 +75,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     
     
     deinit {
-        self.controlVisibilityObserver?.invalidate()
+        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -98,11 +109,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                     shows[invisible] == true
                     else { continue }
                 
-                if invisible == .otherControl {
-                    self.addTemporaryAttribute(.foregroundColor, value: NSColor.clear, forCharacterRange: NSRange(location: charIndex, length: 1))
-                }
-                
-                // use chache or create if not yet
+                // use cache or create if not in yet
                 let glyphString = lineCache[invisible]
                     ?? NSAttributedString(string: String(invisible.symbol),
                                           attributes: [.font: self.font,
@@ -123,24 +130,6 @@ final class FindPanelLayoutManager: NSLayoutManager {
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
     }
     
-    
-    /// replace control glyph
-    override func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: NSFont, forGlyphRange glyphRange: NSRange) {
-        
-        guard UserDefaults.standard[.showInvisibleControl] else {
-            return super.setGlyphs(glyphs, properties: props, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
-        }
-        
-        let newGlyphs = UnsafeMutablePointer(mutating: glyphs)
-        let newProps = UnsafeMutablePointer(mutating: props)
-        for index in 0..<glyphRange.length where props[index] == .controlCharacter {
-            newGlyphs[index] = (aFont as CTFont).glyph(for: Invisible.otherControl.symbol)
-            newProps[index] = []
-        }
-        
-        super.setGlyphs(newGlyphs, properties: newProps, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
-    }
-    
 }
 
 
@@ -155,6 +144,32 @@ extension FindPanelLayoutManager: NSLayoutManagerDelegate {
         baselineOffset.pointee = self.baselineOffset
         
         return true
+    }
+    
+    
+    /// treat control characers as whitespace to draw replacement glyphs
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
+        
+        if action.contains(.zeroAdvancement),
+            UserDefaults.standard[.showInvisibles],
+            UserDefaults.standard[.showInvisibleControl],
+            let unicode = Unicode.Scalar((layoutManager.attributedString().string as NSString).character(at: charIndex)),
+            unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
+        {
+            return .whitespace  // -> Then, the glyph width can be modified in `layoutManager(_:boundingBoxForControlGlyphAt:...)`.
+        }
+        
+        return action
+    }
+    
+    
+    /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
+    func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
+        
+        var rect = proposedRect
+        rect.size.width = self.replacementGlyphWidth
+        
+        return rect
     }
     
 }

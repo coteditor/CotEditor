@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDetectable {
+final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     // MARK: Constants
     
@@ -101,8 +101,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         self.linkTextAttributes = UserDefaults.standard[.autoLinkDetection]
             ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
             : [:]
-        
-        self.layoutManager!.delegate = self
     }
     
     
@@ -165,7 +163,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
             // setup paragraph style
             let paragraphStyle = NSParagraphStyle.default.mutable
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
@@ -261,15 +259,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
                 NSGraphicsContext.restoreGraphicsState()
             }
         }
-    }
-    
-    
-    
-    // MARK: Layout Manager Delegate
-    
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
-        
-        return attrs
     }
     
     

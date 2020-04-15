@@ -43,7 +43,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     var textFont: NSFont? {
         
-        // store text font to avoid the issue where the line height can be different by composite font
+        // store text font to avoid the issue where the line height can be inconsistent by using a fallback font
         // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't support
         //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
@@ -53,9 +53,9 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)
             self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
             
-            // cache width of special glyphs
-            self.spaceWidth = textFont.spaceWidth
-            self.replacementGlyphWidth = self.invisibleLine(for: .otherControl).bounds().width
+            // cache widths of special glyphs
+            self.spaceWidth = textFont.width(of: " ")
+            self.replacementGlyphWidth = textFont.width(of: Invisible.otherControl.symbol)
         }
     }
     
@@ -71,14 +71,15 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     var invisiblesColor: NSColor = .disabledControlTextColor
     
     private(set) var spaceWidth: CGFloat = 0
-    private(set) var replacementGlyphWidth: CGFloat = 0
-    private(set) var showsOtherControl = false
     
     
     // MARK: Private Properties
     
     private var defaultLineHeight: CGFloat = 1.0
     private var defaultBaselineOffset: CGFloat = 0
+    
+    private var showsOtherControl = false
+    private var replacementGlyphWidth: CGFloat = 0
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     
@@ -91,7 +92,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         
         super.init()
         
-        self.typesetter = Typesetter()
+        self.delegate = self
         
         self.showsOtherControl = UserDefaults.standard[.showInvisibleControl]
         
@@ -126,7 +127,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     /// adjust rect of last empty line
     override func setExtraLineFragmentRect(_ fragmentRect: NSRect, usedRect: NSRect, textContainer container: NSTextContainer) {
         
-        // -> The height of the extra line fragment should be the same as normal other fragments that are likewise customized in Typesetter.
+        // -> The height of the extra line fragment should be the same as other normal fragments that are likewise customized in the delegate.
         var fragmentRect = fragmentRect
         fragmentRect.size.height = self.lineHeight
         var usedRect = usedRect
@@ -315,6 +316,77 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                                                          .font: font])
         
         return CTLineCreateWithAttributedString(attrString)
+    }
+    
+}
+
+
+
+extension LayoutManager: NSLayoutManagerDelegate {
+    
+    /// adjust line height to be all the same
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<NSRect>, lineFragmentUsedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>, in textContainer: NSTextContainer, forGlyphRange glyphRange: NSRange) -> Bool {
+        
+        // avoid inconsistent line height by a composite font
+        // -> The line height by normal input keeps consistant when overriding the related methods in NSLayoutManager.
+        //    but then, the drawing won't be update properly when the font or line hight is changed.
+        // -> NSParagraphStyle's `.lineheightMultiple` can also control the line height,
+        //    but it causes an issue when the first character of the string uses a fallback font.
+        lineFragmentRect.pointee.size.height = self.lineHeight
+        lineFragmentUsedRect.pointee.size.height = self.lineHeight
+        
+        // vertically center the glyphs in the line fragment
+        baselineOffset.pointee = self.baselineOffset(for: textContainer.layoutOrientation)
+        
+        return true
+    }
+    
+    
+    /// treat control characers as whitespace to draw replacement glyphs
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
+        
+        if action.contains(.zeroAdvancement),
+            self.showsOtherControl,
+            self.showsInvisibles,
+            let unicode = Unicode.Scalar((layoutManager.attributedString().string as NSString).character(at: charIndex)),
+            unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
+        {
+            return .whitespace  // -> Then, the glyph width can be modified in `layoutManager(_:boundingBoxForControlGlyphAt:...)`.
+        }
+        
+        return action
+    }
+    
+    
+    /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
+    func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
+        
+        var rect = proposedRect
+        rect.size.width = self.replacementGlyphWidth
+        
+        return rect
+    }
+    
+    
+    /// avoid soft wrapping just after indent
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldBreakLineByWordBeforeCharacterAt charIndex: Int) -> Bool {
+        
+        // avoid creating CharacterSet every time
+        struct NonIndent { static let characterSet = CharacterSet(charactersIn: " \t").inverted }
+        
+        // check if the character is the first non-whitespace character after indent
+        let string = self.string
+        let lineStartIndex = self.lineStartIndex(at: charIndex)
+        let range = NSRange(location: lineStartIndex, length: charIndex - lineStartIndex)
+        
+        return string.rangeOfCharacter(from: NonIndent.characterSet, range: range) != .notFound
+    }
+    
+    
+    /// apply sytax highlighing on printing also
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
+        
+        return attrs
     }
     
 }

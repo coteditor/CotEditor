@@ -24,14 +24,19 @@
 //
 
 import AppKit.NSFont
-import CoreText
+import CoreText.CTFont
 
 extension NSFont {
     
-    /// Width of SPACE character.
-    var spaceWidth: CGFloat {
+    /// Calculate the width of given character in the receiver.
+    ///
+    /// - Precondition: The given character is assumed to consist of a single UniChar.
+    ///
+    /// - Parameter character: The character to obtain the width.
+    /// - Returns: An advance width.
+    func width(of character: Character) -> CGFloat {
         
-        let glyph = (self as CTFont).glyph(for: " ")
+        let glyph = (self as CTFont).glyph(for: character)
         let advancement = self.advancement(forCGGlyph: glyph)
         
         return advancement.width
