@@ -1403,7 +1403,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         let paragraphStyle = NSParagraphStyle.default.mutable
         
         // set line height
-        // -> The actual line height will be calculated in LayoutManager and Typesetter based on this line height multiple.
+        // -> The actual line height will be calculated in LayoutManager based on this line height multiple.
         //    Because the default Cocoa Text System calculate line height differently
         //     if the first character of the document is drawn with another font (typically by a composite font).
         // -> Round line height for workaround to avoid expanding current line highlight when line height is 1.0. (2016-09 on macOS Sierra 10.12)
