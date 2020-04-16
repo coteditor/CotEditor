@@ -277,7 +277,9 @@ extension NSRange {
     /// - Returns: A new range that the receiver moved.
     func deleted(ranges: [NSRange]) -> NSRange {
         
-        let indices = ranges.reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
+        let indices = ranges
+            .compactMap { Range($0) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         
         let location = self.location - indices.count(in: ..<self.lowerBound)
         let length = self.length - indices.count(in: Range(self)!)

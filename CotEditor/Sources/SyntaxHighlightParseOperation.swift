@@ -275,7 +275,8 @@ private extension Dictionary where Key == SyntaxType, Value == [NSRange] {
                 guard let ranges = self[type], !progress.isCancelled else { return }
                 
                 let indexes = ranges
-                    .reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
+                    .compactMap { Range($0) }
+                    .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
                     .subtracting(registeredIndexes)
                 
                 guard !indexes.isEmpty else { return }

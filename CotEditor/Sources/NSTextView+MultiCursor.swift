@@ -124,7 +124,8 @@ extension MultiCursorEditing {
                 return NSRange(location: range.location - 1, length: 1)
             }
             // remove overlappings
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
+            .compactMap { Range($0) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
             .rangeView
             .map { NSRange($0) }
         
@@ -176,7 +177,8 @@ extension MultiCursorEditing {
         
         let ranges = ranges.unique.sorted(\.location)
         let selectionSet = ranges
-            .reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
+            .compactMap { Range($0) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         let nonemptyRanges = selectionSet.rangeView
             .map { NSRange($0) }
         var emptyRanges = ranges
