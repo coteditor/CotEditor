@@ -11,13 +11,13 @@ Change Log
 - Adjust the text baseline to draw characters vertically center in lines.
 - Adjust the position of invisible characters in the vertical text orientation.
 - Optimize the performance of “Replace All” with a large number of matches.
-- Improve the prformance when pasting a huge text.
+- Improve the performance when pasting a huge text.
 - Duplicate lines more intelligently.
 - Improve drawing performance.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
-- Adjust the visible area after unwapping lines in RTL text mode.
+- Adjust the visible area after unwrapping lines in RTL text mode.
 - [trivial] Display default values as the input field's placeholder for window size setting when empty.
-- [trivial] Make the identifeier for document autosaving longer.
+- [trivial] Make the identifier for document autosaving longer.
 - [dev] Update the build environment to Xcode 11.4 (Swift 5.2).
 - [dev] Replace YAML.framework with Yams.
 - [dev] Remove Carthage dependency.
@@ -26,15 +26,15 @@ Change Log
 
 ### Fixes
 
-- Fix an isue where the application crashed when a hanging indent depth becomes larger than the editor area.
-- Fix an issue where the outline menu could select an wrong item while typing.
+- Fix an issue where the application crashed when a hanging indent depth becomes larger than the editor area.
+- Fix an issue where the outline menu could select the wrong item while typing.
 - Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
 - Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.
 - Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
 - Fix an issue in scripting with AppleScript/JXA where the application crashed by performing `string in ...` method.
-- Fix an issue in scripting with AppleScript/JXA where the contents of a document can rerely be overwritten with the contents of another document window under very specific conditions.
+- Fix an issue in scripting with AppleScript/JXA where the contents of a document can rarely be overwritten with the contents of another document window under very specific conditions.
 - Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical.
-- Fix an issue in the RTL text mode where the page guide disappeared when lines are unwapped.
+- Fix an issue in the RTL text mode where the page guide disappeared when lines are unwrapped.
 - Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.
 - Fix an issue in the find panel's input fields where invisible control characters were drawn in the normal text color under specific conditions.
 
