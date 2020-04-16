@@ -183,7 +183,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
                     shows[invisible] == true
                     else { continue }
                 
-                // use chached line or create if not yet
+                // use cached line or create if not yet
                 let line = lineCache[invisible] ?? self.invisibleLine(for: invisible)
                 lineCache[invisible] = line
                 
