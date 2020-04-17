@@ -367,10 +367,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        var rect = proposedRect
-        rect.size.width = self.replacementGlyphWidth
-        
-        return rect
+        return NSRect(x: 0, y: 0, width: self.replacementGlyphWidth, height: proposedRect.height)
     }
     
     
