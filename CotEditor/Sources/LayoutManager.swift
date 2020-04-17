@@ -25,9 +25,8 @@
 //
 
 import Cocoa
-import CoreText
 
-final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCacheable {
+final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorable, LineRangeCacheable {
     
     // MARK: Protocol Properties
     
@@ -132,62 +131,8 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         }
         
         // draw invisibles
-        if self.showsInvisibles,
-            let context = NSGraphicsContext.current?.cgContext
-        {
-            let string = self.attributedString().string as NSString
-            let textView = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)?.textView
-            let layoutOrientation = textView?.layoutOrientation
-            let writingDirection = textView?.baseWritingDirection
-            let baselineOffset = self.baselineOffset(for: layoutOrientation ?? .horizontal)
-            var lineCache: [Invisible: CTLine] = [:]
-            
-            // gather visibility settings
-            let defaults = UserDefaults.standard
-            let shows: [Invisible: Bool] = [
-                .newLine: defaults[.showInvisibleNewLine],
-                .tab: defaults[.showInvisibleTab],
-                .space: defaults[.showInvisibleSpace],
-                .fullwidthSpace: defaults[.showInvisibleFullwidthSpace],
-                .otherControl: defaults[.showInvisibleControl],
-            ]
-            
-            // flip coordinate if needed
-            if NSGraphicsContext.current?.isFlipped == true {
-                context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
-            }
-            
-            // draw invisibles glyph by glyph
-            let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-            for charIndex in characterRange.lowerBound..<characterRange.upperBound {
-                let codeUnit = string.character(at: charIndex)
-                
-                guard
-                    let invisible = Invisible(codeUnit: codeUnit),
-                    shows[invisible] == true
-                    else { continue }
-                
-                // use cached line or create if not yet
-                let line = lineCache[invisible] ?? self.invisibleLine(for: invisible)
-                lineCache[invisible] = line
-                
-                // calculate position to draw glyph
-                let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
-                let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-                let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset)
-                if layoutOrientation == .vertical {
-                    let bounds = line.bounds()
-                    point.y += bounds.minY + bounds.height / 2
-                }
-                if writingDirection == .rightToLeft, invisible == .newLine {
-                    point.x -= line.bounds().width
-                }
-                
-                // draw character
-                context.textPosition = point
-                CTLineDraw(line, context)
-            }
+        if self.showsInvisibles {
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset(for: .horizontal), color: self.invisiblesColor)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
@@ -303,28 +248,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         }
     }
     
-    
-    /// Create a CTLine for given invisible type.
-    ///
-    /// - Parameters:
-    ///   - invisible: The type of invisible character.
-    /// - Returns: A CTLine of the alternative glyph for the given invisible type.
-    private func invisibleLine(for invisible: Invisible) -> CTLine {
-        
-        let font: NSFont
-        switch invisible {
-            case .newLine, .tab, .fullwidthSpace:
-                font = .systemFont(ofSize: self.textFont.pointSize)
-            case .space, .otherControl:
-                font = self.textFont
-        }
-        let attrString = NSAttributedString(string: String(invisible.symbol),
-                                            attributes: [.foregroundColor: self.invisiblesColor,
-                                                         .font: font])
-        
-        return CTLineCreateWithAttributedString(attrString)
-    }
-    
 }
 
 
@@ -390,23 +313,6 @@ extension LayoutManager: NSLayoutManagerDelegate {
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
         return attrs
-    }
-    
-}
-
-
-
-// MARK: -
-
-private extension CTLine {
-    
-    /// Get receiver's bounds in the object-oriented way.
-    ///
-    /// - Parameter options: Desired options or 0 if none.
-    /// - Returns: The bouns of the receiver.
-    func bounds(options: CTLineBoundsOptions = []) -> CGRect {
-        
-        return CTLineGetBoundsWithOptions(self, options)
     }
     
 }

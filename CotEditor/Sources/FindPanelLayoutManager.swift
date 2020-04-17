@@ -25,11 +25,15 @@
 
 import Cocoa
 
-final class FindPanelLayoutManager: NSLayoutManager {
+final class FindPanelLayoutManager: NSLayoutManager, InvisibleDrawing {
+    
+    // MARK: Invisible Drawing Properties
+    
+    let textFont: NSFont = .systemFont(ofSize: 0)
+    
     
     // MARK: Private Properties
     
-    private let textFont: NSFont = .systemFont(ofSize: 0)
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
     
@@ -86,45 +90,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if UserDefaults.standard[.showInvisibles] {
-            let string = self.attributedString().string as NSString
-            
-            // gather visibility settings
-            let defaults = UserDefaults.standard
-            let shows: [Invisible: Bool] = [
-                .newLine: defaults[.showInvisibleNewLine],
-                .tab: defaults[.showInvisibleTab],
-                .space: defaults[.showInvisibleSpace],
-                .fullwidthSpace: defaults[.showInvisibleFullwidthSpace],
-                .otherControl: defaults[.showInvisibleControl],
-            ]
-            var lineCache: [Invisible: NSAttributedString] = [:]
-            
-            // draw invisibles glyph by glyph
-            let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-            for charIndex in characterRange.lowerBound..<characterRange.upperBound {
-                let codeUnit = string.character(at: charIndex)
-                
-                guard
-                    let invisible = Invisible(codeUnit: codeUnit),
-                    shows[invisible] == true
-                    else { continue }
-                
-                // use cache or create if not in yet
-                let glyphString = lineCache[invisible]
-                    ?? NSAttributedString(string: String(invisible.symbol),
-                                          attributes: [.font: self.textFont,
-                                                       .foregroundColor: NSColor.tertiaryLabelColor])
-                lineCache[invisible] = glyphString
-                
-                // calculate position to draw glyph
-                let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
-                let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-                let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                let point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x)
-                
-                // draw character
-                glyphString.draw(at: point)
-            }
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, color: .disabledControlTextColor)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
