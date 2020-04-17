@@ -29,10 +29,10 @@ final class FindPanelLayoutManager: NSLayoutManager {
     
     // MARK: Private Properties
     
-    private let font: NSFont = .systemFont(ofSize: 0)
+    private let textFont: NSFont = .systemFont(ofSize: 0)
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
-    private lazy var replacementGlyphWidth = self.font.width(of: Invisible.otherControl.symbol)
+    private lazy var replacementGlyphWidth = self.textFont.width(of: Invisible.otherControl.symbol)
     
     private var defaultsObservers: [UserDefaultsObservation] = []
     
@@ -45,8 +45,8 @@ final class FindPanelLayoutManager: NSLayoutManager {
         
         super.init()
         
-        self.lineHeight = self.defaultLineHeight(for: self.font)
-        self.baselineOffset = self.defaultBaselineOffset(for: self.font)
+        self.lineHeight = self.defaultLineHeight(for: self.textFont)
+        self.baselineOffset = self.defaultBaselineOffset(for: self.textFont)
         
         self.delegate = self
         
@@ -112,7 +112,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
                 // use cache or create if not in yet
                 let glyphString = lineCache[invisible]
                     ?? NSAttributedString(string: String(invisible.symbol),
-                                          attributes: [.font: self.font,
+                                          attributes: [.font: self.textFont,
                                                        .foregroundColor: NSColor.tertiaryLabelColor])
                 lineCache[invisible] = glyphString
                 
