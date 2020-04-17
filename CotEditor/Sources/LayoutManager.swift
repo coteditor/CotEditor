@@ -62,7 +62,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         didSet {
             guard showsInvisibles != oldValue else { return }
             
-            self.invalidateInvisibleDisplay(includingControls: self.showsOtherControl)
+            self.invalidateInvisibleDisplay()
         }
     }
     
@@ -76,10 +76,10 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     private var defaultLineHeight: CGFloat = 1.0
     private var defaultBaselineOffset: CGFloat = 0
     
-    private var showsOtherControl = false
+    private var showsControls = false
     private var replacementGlyphWidth: CGFloat = 0
     
-    private var defaultsObservers: [UserDefaultsObservation] = []
+    private var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
     
     
     
@@ -91,20 +91,6 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
         super.init()
         
         self.delegate = self
-        
-        self.showsOtherControl = UserDefaults.standard[.showInvisibleControl]
-        
-        let visibilityKeys: [DefaultKeys] = [
-            .showInvisibleNewLine,
-            .showInvisibleTab,
-            .showInvisibleSpace,
-            .showInvisibleFullwidthSpace,
-            .showInvisibleControl,
-        ]
-        self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
-            self.showsOtherControl = UserDefaults.standard[.showInvisibleControl]
-            self.invalidateInvisibleDisplay(includingControls: key == .showInvisibleControl)
-        }
     }
     
     
@@ -115,7 +101,7 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     
     deinit {
-        self.defaultsObservers.forEach { $0.invalidate() }
+        self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -282,14 +268,38 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     /// Invalidate invisible character drawing.
     ///
-    /// - Parameter includingControls: Whether invalidate layout also so that control characters can fit.
-    private func invalidateInvisibleDisplay(includingControls: Bool) {
+    /// - Precondition:
+    ///   - The visivility of whole invisible characters is set by the implementer through `showsInvisibles` property.
+    ///   - The visivility of each invisible type is obtained directly from UserDefaults settings.
+    private func invalidateInvisibleDisplay() {
         
+        // invalidate normal invisible characters visivilisty
         let wholeRange = self.attributedString().range
-        
         self.invalidateDisplay(forCharacterRange: wholeRange)
-        if includingControls {
+        
+        // invalidate control characters visivilisty if needed
+        let showsControls = self.showsInvisibles && UserDefaults.standard[.showInvisibleControl]
+        if showsControls != self.showsControls {
+            self.showsControls = showsControls
             self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
+        }
+        
+        // update UserDefaults observation if needed
+        if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
+            let visibilityKeys: [DefaultKeys] = [
+                .showInvisibleNewLine,
+                .showInvisibleTab,
+                .showInvisibleSpace,
+                .showInvisibleFullwidthSpace,
+                .showInvisibleControl,
+            ]
+            self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+            self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [weak self] (_, _) in
+                self?.invalidateInvisibleDisplay()
+            }
+        } else if !self.showsInvisibles, !self.invisiblesDefaultsObservers.isEmpty {
+            self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+            self.invisiblesDefaultsObservers = []
         }
     }
     
@@ -342,9 +352,8 @@ extension LayoutManager: NSLayoutManagerDelegate {
     /// treat control characers as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
-        if action.contains(.zeroAdvancement),
-            self.showsOtherControl,
-            self.showsInvisibles,
+        if self.showsControls,
+            action.contains(.zeroAdvancement),
             let unicode = Unicode.Scalar((layoutManager.attributedString().string as NSString).character(at: charIndex)),
             unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
         {

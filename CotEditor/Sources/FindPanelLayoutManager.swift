@@ -32,9 +32,11 @@ final class FindPanelLayoutManager: NSLayoutManager {
     private let textFont: NSFont = .systemFont(ofSize: 0)
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
+    
+    private var showsControls: Bool  { UserDefaults.standard[.showInvisibles] && UserDefaults.standard[.showInvisibleControl] }
     private lazy var replacementGlyphWidth = self.textFont.width(of: Invisible.otherControl.symbol)
     
-    private var defaultsObservers: [UserDefaultsObservation] = []
+    private var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
     
     
     
@@ -58,12 +60,10 @@ final class FindPanelLayoutManager: NSLayoutManager {
             .showInvisibleFullwidthSpace,
             .showInvisibleControl,
         ]
-        self.defaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (key, _) in
+        self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (_, _) in
             let wholeRange = self.attributedString().range
             self.invalidateDisplay(forCharacterRange: wholeRange)
-            if key == .showInvisibleControl || key == .showInvisibles {
-                self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
-            }
+            self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
         }
     }
     
@@ -75,7 +75,7 @@ final class FindPanelLayoutManager: NSLayoutManager {
     
     
     deinit {
-        self.defaultsObservers.forEach { $0.invalidate() }
+        self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
     }
     
     
@@ -150,9 +150,8 @@ extension FindPanelLayoutManager: NSLayoutManagerDelegate {
     /// treat control characers as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
-        if action.contains(.zeroAdvancement),
-            UserDefaults.standard[.showInvisibles],
-            UserDefaults.standard[.showInvisibleControl],
+        if self.showsControls,
+            action.contains(.zeroAdvancement),
             let unicode = Unicode.Scalar((layoutManager.attributedString().string as NSString).character(at: charIndex)),
             unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
         {
