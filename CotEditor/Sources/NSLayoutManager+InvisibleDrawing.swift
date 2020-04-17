@@ -29,6 +29,10 @@ import CoreText
 protocol InvisibleDrawing: NSLayoutManager {
     
     var textFont: NSFont { get }
+    var showsInvisibles: Bool { get }
+    var showsControls: Bool { get set }
+    var replacementGlyphWidth: CGFloat { get }
+    var invisiblesDefaultsObservers: [UserDefaultsObservation] { get set }
 }
 
 
@@ -43,6 +47,8 @@ extension InvisibleDrawing {
     ///   - baselineOffset: The baseline offset to draw glyphs.
     ///   - color: The color of invisibles.
     func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor) {
+        
+        assert(self.showsInvisibles)
         
         guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
         
@@ -93,6 +99,63 @@ extension InvisibleDrawing {
             context.textPosition = point
             CTLineDraw(line, context)
         }
+    }
+    
+    
+    /// Invalidate invisible character drawing.
+    ///
+    /// - Precondition:
+    ///   - The visivility of whole invisible characters is set by the implementer through `showsInvisibles` property.
+    ///   - The visivility of each invisible type is obtained directly from UserDefaults settings.
+    func invalidateInvisibleDisplay() {
+        
+        // invalidate normal invisible characters visivilisty
+        let wholeRange = self.attributedString().range
+        self.invalidateDisplay(forCharacterRange: wholeRange)
+        
+        // invalidate control characters visivilisty if needed
+        let showsControls = self.showsInvisibles && UserDefaults.standard[.showInvisibleControl]
+        if showsControls != self.showsControls {
+            self.showsControls = showsControls
+            self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
+        }
+        
+        // update UserDefaults observation if needed
+        if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
+            let visibilityKeys: [DefaultKeys] = [
+                .showInvisibleNewLine,
+                .showInvisibleTab,
+                .showInvisibleSpace,
+                .showInvisibleFullwidthSpace,
+                .showInvisibleControl,
+            ]
+            self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+            self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [weak self] (_, _) in
+                self?.invalidateInvisibleDisplay()
+            }
+        } else if !self.showsInvisibles, !self.invisiblesDefaultsObservers.isEmpty {
+            self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+            self.invisiblesDefaultsObservers = []
+        }
+    }
+    
+    
+    /// Whether a control character replacement glyph for the control character will be drawn.
+    ///
+    /// - Parameters:
+    ///   - charIndex: The character index.
+    ///   - action: The proposed control character action.
+    /// - Returns: A boolean value indicating whether an invisible glyph needs to be shown.
+    func showsControlCharacter(at charIndex: Int, proposedAction action: NSLayoutManager.ControlCharacterAction) -> Bool {
+        
+        guard
+            self.showsControls,
+            action.contains(.zeroAdvancement),
+            let unicode = Unicode.Scalar((self.attributedString().string as NSString).character(at: charIndex)),
+            unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
+            else { return false }
+        
+        return true
     }
     
     

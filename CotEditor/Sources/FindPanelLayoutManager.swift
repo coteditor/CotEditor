@@ -25,22 +25,22 @@
 
 import Cocoa
 
-final class FindPanelLayoutManager: NSLayoutManager, InvisibleDrawing {
+final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, InvisibleDrawing {
     
     // MARK: Invisible Drawing Properties
     
     let textFont: NSFont = .systemFont(ofSize: 0)
+    var showsInvisibles: Bool = false
+    var showsControls: Bool = false
+    lazy var replacementGlyphWidth = self.textFont.width(of: Invisible.otherControl.symbol)
+    var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
     
     
     // MARK: Private Properties
     
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
-    
-    private var showsControls: Bool  { UserDefaults.standard[.showInvisibles] && UserDefaults.standard[.showInvisibleControl] }
-    private lazy var replacementGlyphWidth = self.textFont.width(of: Invisible.otherControl.symbol)
-    
-    private var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
+    private var invisibleVisibilityObserver: UserDefaultsObservation?
     
     
     
@@ -56,19 +56,11 @@ final class FindPanelLayoutManager: NSLayoutManager, InvisibleDrawing {
         
         self.delegate = self
         
-        let visibilityKeys: [DefaultKeys] = [
-            .showInvisibles,
-            .showInvisibleNewLine,
-            .showInvisibleTab,
-            .showInvisibleSpace,
-            .showInvisibleFullwidthSpace,
-            .showInvisibleControl,
-        ]
-        self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [unowned self] (_, _) in
-            let wholeRange = self.attributedString().range
-            self.invalidateDisplay(forCharacterRange: wholeRange)
-            self.invalidateLayout(forCharacterRange: wholeRange, actualCharacterRange: nil)
+        self.invisibleVisibilityObserver = UserDefaults.standard.observe(key: .showInvisibles, options: [.initial, .new]) { [weak self] (change) in
+            self?.showsInvisibles = change.new!
+            self?.invalidateInvisibleDisplay()
         }
+        
     }
     
     
@@ -80,6 +72,7 @@ final class FindPanelLayoutManager: NSLayoutManager, InvisibleDrawing {
     
     deinit {
         self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+        self.invisibleVisibilityObserver?.invalidate()
     }
     
     
@@ -89,18 +82,16 @@ final class FindPanelLayoutManager: NSLayoutManager, InvisibleDrawing {
     /// draw invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
-        if UserDefaults.standard[.showInvisibles] {
+        if self.showsInvisibles {
             self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, color: .disabledControlTextColor)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
     }
     
-}
-
-
-
-extension FindPanelLayoutManager: NSLayoutManagerDelegate {
+    
+    
+    // MARK: Layout Manager Delegate Methods
     
     /// adjust line height to be all the same
     func layoutManager(_ layoutManager: NSLayoutManager, shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<NSRect>, lineFragmentUsedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>, in textContainer: NSTextContainer, forGlyphRange glyphRange: NSRange) -> Bool {
@@ -116,15 +107,7 @@ extension FindPanelLayoutManager: NSLayoutManagerDelegate {
     /// treat control characers as whitespace to draw replacement glyphs
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
         
-        if self.showsControls,
-            action.contains(.zeroAdvancement),
-            let unicode = Unicode.Scalar((layoutManager.attributedString().string as NSString).character(at: charIndex)),
-            unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
-        {
-            return .whitespace  // -> Then, the glyph width can be modified in `layoutManager(_:boundingBoxForControlGlyphAt:...)`.
-        }
-        
-        return action
+        return self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
     }
     
     
