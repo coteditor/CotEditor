@@ -41,14 +41,12 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     
     var usesAntialias = true
     
-    var textFont: NSFont? {
+    var textFont: NSFont = .systemFont(ofSize: 0) {
         
         // store text font to avoid the issue where the line height can be inconsistent by using a fallback font
         // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't support
         //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
-            guard let textFont = textFont else { return }
-            
             // cache metric values to fix line height
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)
             self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
@@ -303,13 +301,12 @@ final class LayoutManager: NSLayoutManager, ValidationIgnorable, LineRangeCachea
     /// - Returns: A CTLine of the alternative glyph for the given invisible type.
     private func invisibleLine(for invisible: Invisible) -> CTLine {
         
-        let fontSize = self.textFont?.pointSize ?? 0
         let font: NSFont
         switch invisible {
             case .newLine, .tab, .fullwidthSpace:
-                font = .systemFont(ofSize: fontSize)
+                font = .systemFont(ofSize: self.textFont.pointSize)
             case .space, .otherControl:
-                font = self.textFont ?? .systemFont(ofSize: fontSize)
+                font = self.textFont
         }
         let attrString = NSAttributedString(string: String(invisible.symbol),
                                             attributes: [.foregroundColor: self.invisiblesColor,

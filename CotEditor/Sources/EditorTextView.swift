@@ -170,10 +170,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         self.isContinuousSpellCheckingEnabled = defaults[.checkSpellingAsType]
         
         // set font
-        let font: NSFont? = {
+        let font: NSFont = {
             let fontName = defaults[.fontName]!
             let fontSize = defaults[.fontSize]
-            return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize)
+            return NSFont(name: fontName, size: fontSize) ?? NSFont.userFont(ofSize: fontSize) ?? NSFont.systemFont(ofSize: fontSize)
         }()
         super.font = font
         layoutManager.textFont = font
