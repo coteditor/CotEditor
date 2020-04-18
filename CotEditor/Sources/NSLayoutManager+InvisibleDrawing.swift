@@ -24,7 +24,6 @@
 //
 
 import Cocoa
-import CoreText
 
 protocol InvisibleDrawing: NSLayoutManager {
     
@@ -50,12 +49,18 @@ extension InvisibleDrawing {
         
         assert(self.showsInvisibles)
         
-        guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
+        guard
+            let textContainer = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)
+            else { return assertionFailure() }
         
         let string = self.attributedString().string as NSString
-        let textView = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)?.textView
-        let writingDirection = textView?.baseWritingDirection
-        var lineCache: [Invisible: CTLine] = [:]
+        let isRTL = textContainer.textView?.baseWritingDirection == .rightToLeft
+        let glyphHeight = self.textFont.capHeight
+        let lineWidth = self.textFont.pointSize * (1 + self.textFont.weight.rawValue) / 12
+        let baselineOffset = (textContainer.layoutOrientation == .vertical)
+            ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
+            : baselineOffset
+        var pathCache: [Invisible: CGPath] = [:]
         
         // gather visibility settings
         let defaults = UserDefaults.standard
@@ -67,12 +72,8 @@ extension InvisibleDrawing {
             .otherControl: defaults[.showInvisibleControl],
         ]
         
-        // flip coordinate if needed
-        if NSGraphicsContext.current?.isFlipped == true {
-            context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
-        }
-        
-        // draw invisibles glyph by glyph
+        // locate invisibles glyph by glyph
+        let symbolPaths = CGMutablePath()
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
         for charIndex in characterRange.lowerBound..<characterRange.upperBound {
             let codeUnit = string.character(at: charIndex)
@@ -82,23 +83,51 @@ extension InvisibleDrawing {
                 shows[invisible] == true
                 else { continue }
             
-            // use cached line or create if not yet
-            let line = lineCache[invisible] ?? self.invisibleLine(for: invisible, color: color)
-            lineCache[invisible] = line
-            
-            // calculate position to draw glyph
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
-            let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-            let glyphLocation = self.location(forGlyphAt: glyphIndex)
-            var point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset)
-            if writingDirection == .rightToLeft, invisible == .newLine {
-                point.x -= line.bounds().width
+            
+            let location: CGPoint
+            let path: CGPath
+            if let cache = pathCache[invisible] {
+                let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
+                let glyphLocation = self.location(forGlyphAt: glyphIndex)
+                location = lineOrigin.offsetBy(dx: glyphLocation.x)
+                path = cache
+            } else {
+                let glyphWidth: CGFloat
+                switch invisible {
+                    case .newLine:
+                        // -> `boundingRect(forGlyphRange:in)` cannot calculate the location of the new line at the end.
+                        let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
+                        let glyphLocation = self.location(forGlyphAt: glyphIndex)
+                        location = lineOrigin.offsetBy(dx: glyphLocation.x)
+                        glyphWidth = 0
+                    default:
+                        let boundingRect = self.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer)
+                        location = boundingRect.origin
+                        glyphWidth = boundingRect.width
+                }
+                
+                path = invisible.path(in: CGSize(width: glyphWidth, height: glyphHeight), isRTL: isRTL)
+                if invisible != .tab {
+                    pathCache[invisible] = path
+                }
             }
             
-            // draw character
-            context.textPosition = point
-            CTLineDraw(line, context)
+            let symbolLocation = location.offset(by: origin).offsetBy(dy: baselineOffset - glyphHeight)
+            
+            symbolPaths.addPath(path, transform: .init(translationX: symbolLocation.x, y: symbolLocation.y))
         }
+        
+        guard !symbolPaths.isEmpty else { return }
+        guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
+        
+        // draw invisible symbols
+        context.setStrokeColor(color.cgColor)
+        context.setLineWidth(lineWidth)
+        context.setLineJoin(.round)
+        context.setLineCap(.round)
+        context.addPath(symbolPaths)
+        context.strokePath()
     }
     
     
@@ -158,47 +187,92 @@ extension InvisibleDrawing {
         return true
     }
     
-    
-    
-    // MARK: Private Methods
-    
-    /// Create a CTLine for given invisible type.
-    ///
-    /// - Parameters:
-    ///   - invisible: The type of invisible character.
-    ///   - color: The color of invisible character.
-    /// - Returns: A CTLine of the alternative glyph for the given invisible type.
-    private func invisibleLine(for invisible: Invisible, color: NSColor) -> CTLine {
-        
-        let font: NSFont
-        switch invisible {
-            case .newLine, .tab, .fullwidthSpace:
-                font = .systemFont(ofSize: self.textFont.pointSize)
-            case .space, .otherControl:
-                font = self.textFont
-        }
-        let attrString = NSAttributedString(string: String(invisible.symbol),
-                                            attributes: [.foregroundColor: color,
-                                                         .font: font])
-        
-        return CTLineCreateWithAttributedString(attrString)
-    }
-    
 }
 
 
 
 // MARK: -
 
-private extension CTLine {
+private extension Invisible {
     
-    /// Get receiver's bounds in the object-oriented way.
+    /// Return the path to draw as alternative symbol.
     ///
-    /// - Parameter options: Desired options or 0 if none.
-    /// - Returns: The bouns of the receiver.
-    func bounds(options: CTLineBoundsOptions = []) -> CGRect {
+    /// - Parameters:
+    ///   - size: The size of bounding box.
+    ///   - isRTL: Whether the path will be used for right-to-left writing direction.
+    /// - Returns: The path.
+    func path(in size: CGSize, isRTL: Bool = false) -> CGPath {
         
-        return CTLineGetBoundsWithOptions(self, options)
+        switch self {
+            case .newLine:
+                // -> Do not use `size.width` as it's basically the rest of the line fragment.
+                let y = 0.4 * size.height
+                let radius = 0.25 * size.height
+                let path = CGMutablePath()
+                // arrow body
+                path.move(to: CGPoint(x: 0.9 * size.height, y: y - radius))
+                path.addArc(center: CGPoint(x: 0.9 * size.height, y: y),
+                            radius: radius, startAngle: -.pi / 2, endAngle: .pi / 2, clockwise: false)
+                path.addLine(to: CGPoint(x: 0.2 * size.height, y: y + radius))
+                // arrow head
+                path.move(to: CGPoint(x: 0.5 * size.height, y: y + radius + 0.25 * size.height))
+                path.addLine(to: CGPoint(x: 0.2 * size.height, y: y + radius))
+                path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius - 0.25 * size.height))
+                if isRTL, let flippedPath = path.copy(using: [CGAffineTransform(scaleX: -1, y: 1)]) {
+                    return flippedPath
+                }
+                return path
+            
+            case .tab:
+                // -> The width of tab is elastic.
+                let arrow = CGSize(width: 0.3 * size.height, height: 0.25 * size.height)
+                let margin = (0.7 * (size.width - arrow.width)).clamped(to: 0...(0.4 * size.height))
+                let endPoint = CGPoint(x: size.width - margin, y: size.height / 2)
+                let transform = isRTL ? CGAffineTransform(scaleX: -1, y: 1).translatedBy(x: -size.width, y: 0) : .identity
+                let path = CGMutablePath()
+                // arrow body
+                path.move(to: endPoint, transform: transform)
+                path.addLine(to: endPoint.offsetBy(dx: -max(size.width - 2 * margin, arrow.width), dy: 0), transform: transform)
+                // arrow head
+                path.move(to: endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height), transform: transform)
+                path.addLine(to: endPoint, transform: transform)
+                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height), transform: transform)
+                return path
+            
+            case .space:
+                let radius = size.height / 15
+                let rect = CGRect(x: size.width / 2, y: size.height / 2, width: 0, height: 0)
+                let path = CGMutablePath()
+                path.addPath(CGPath(ellipseIn: rect.insetBy(dx: -radius, dy: -radius), transform: nil))
+                // draw a zero size dot to fill in the center
+                path.addPath(CGPath(ellipseIn: rect, transform: nil))
+                return path
+            
+            case .fullwidthSpace:
+                let length = min(size.width, size.height)
+                let radius = 0.1 * size.width
+                let rect = CGRect(x: (size.width - length) / 2, y: (size.height - length) / 2, width: length, height: length)
+                    .insetBy(dx: 0.05 * length, dy: 0.05 * length)
+                return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
+                
+            case .otherControl:
+                let question = CGMutablePath()  // `?` mark in unit size
+                question.move(to: CGPoint(x: 0, y: 0.25))
+                question.addCurve(to: CGPoint(x: 0.5, y: 0), control1: CGPoint(x: 0, y: 0.12), control2: CGPoint(x: 0.22, y: 0))
+                question.addCurve(to: CGPoint(x: 1.0, y: 0.25), control1: CGPoint(x: 0.78, y: 0), control2: CGPoint(x: 1.0, y: 0.12))
+                question.addCurve(to: CGPoint(x: 0.7, y: 0.48), control1: CGPoint(x: 1.0, y: 0.32), control2: CGPoint(x: 0.92, y: 0.4))
+                question.addCurve(to: CGPoint(x: 0.5, y: 0.75), control1: CGPoint(x: 0.48, y: 0.56), control2: CGPoint(x: 0.5, y: 0.72))
+                question.move(to: CGPoint(x: 0.5, y: 0.99))
+                question.addLine(to: CGPoint(x: 0.5, y: 1.0))
+                let path = CGMutablePath()
+                let transform = CGAffineTransform(translationX: 0.3 * size.width, y: 0.2 * size.height)
+                    .scaledBy(x: 0.4 * size.width, y: 0.6 * size.height)
+                path.addPath(question, transform: transform)
+                let rect = CGRect(origin: .zero, size: size).insetBy(dx: 0.1 * size.width, dy: 0)
+                let radius = 0.1 * size.width
+                path.addRoundedRect(in: rect, cornerWidth: radius, cornerHeight: radius)
+                return path
+        }
     }
     
 }

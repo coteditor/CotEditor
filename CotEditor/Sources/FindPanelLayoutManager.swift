@@ -32,7 +32,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     let textFont: NSFont = .systemFont(ofSize: 0)
     var showsInvisibles: Bool = false
     var showsControls: Bool = false
-    lazy var replacementGlyphWidth = self.textFont.width(of: Invisible.otherControl.symbol)
+    lazy var replacementGlyphWidth = self.textFont.width(of: "0")
     var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
     
     

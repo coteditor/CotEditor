@@ -5,15 +5,17 @@ Change Log
 3.9.0 (unreleased)
 --------------------------
 
+### New Features
+
+- Rewrite the invisible character drawing feature to draw alternative symbols more properly under various environments.
+
+
 ### Improvements
 
-- Remove the feature selecting the symbols for invisible characters from multiple choices.
 - Adjust the text baseline to draw characters vertically center in lines.
-- Adjust the position of invisible characters in the vertical text orientation.
 - Optimize the performance of “Replace All” with a large number of matches.
 - Improve the performance when pasting a huge text.
 - Duplicate lines more intelligently.
-- Improve drawing performance.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
 - Adjust the visible area after unwrapping lines in RTL text mode.
 - [trivial] Display default values as the input field's placeholder for window size setting when empty.

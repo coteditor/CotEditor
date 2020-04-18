@@ -56,7 +56,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
             
             // cache widths of special glyphs
             self.spaceWidth = textFont.width(of: " ")
-            self.replacementGlyphWidth = textFont.width(of: Invisible.otherControl.symbol)
+            self.replacementGlyphWidth = textFont.width(of: "0")
         }
     }
     
