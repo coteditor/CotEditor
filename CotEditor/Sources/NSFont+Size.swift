@@ -42,6 +42,16 @@ extension NSFont {
         return advancement.width
     }
     
+    
+    /// The font-weight of the receiver.
+    var weight: NSFont.Weight {
+        
+        let traits = CTFontCopyTraits(self as CTFont) as Dictionary
+        let weightNum = traits[kCTFontWeightTrait] as? NSNumber ?? 0
+        
+        return NSFont.Weight(CGFloat(weightNum.doubleValue))
+    }
+    
 }
 
 

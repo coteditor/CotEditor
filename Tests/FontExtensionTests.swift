@@ -37,6 +37,20 @@ final class FontExtensionTests: XCTestCase {
     }
     
     
+    func testFontWeight() {
+        
+        let regularFont = NSFont(name: "Menlo-Regular", size: 11)
+        let boldFont = NSFont(name: "Menlo-Bold", size: 11)
+        
+        XCTAssertEqual(regularFont?.weight, .regular)
+        XCTAssertEqual(boldFont!.weight.rawValue, NSFont.Weight.bold.rawValue, accuracy: 0.00001)
+        
+        // The const value is (unfortunately) not exact equal...
+        XCTAssertEqual(boldFont?.weight.rawValue, 0.4)
+        XCTAssertNotEqual(NSFont.Weight.bold.rawValue, 0.4)
+    }
+    
+    
     func testNamedFont() {
         
         let menlo = NSFont(named: .menlo, size: 11)
@@ -46,6 +60,7 @@ final class FontExtensionTests: XCTestCase {
         let avenirNextCondensed = NSFont(named: .avenirNextCondensed, weight: .bold, size: 11)
         XCTAssertNotNil(avenirNextCondensed)
         XCTAssertEqual(avenirNextCondensed, NSFont(name: "AvenirNextCondensed-Bold", size: 11))
+        XCTAssertEqual(avenirNextCondensed!.weight.rawValue, NSFont.Weight.bold.rawValue, accuracy: 0.00001)
     }
     
 }
