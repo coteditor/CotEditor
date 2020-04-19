@@ -49,7 +49,7 @@ extension NSFont {
         let traits = CTFontCopyTraits(self as CTFont) as Dictionary
         let weightTrait = traits[kCTFontWeightTrait] as? CGFloat ?? 0
         
-        return NSFont.Weight(weiweightTraitght)
+        return NSFont.Weight(weightTrait)
     }
     
 }
