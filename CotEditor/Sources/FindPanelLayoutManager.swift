@@ -60,7 +60,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
             self?.showsInvisibles = change.new!
             self?.invalidateInvisibleDisplay()
         }
-        
     }
     
     
