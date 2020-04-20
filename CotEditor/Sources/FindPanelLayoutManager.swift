@@ -83,7 +83,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
         if self.showsInvisibles {
-            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, color: .disabledControlTextColor)
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, color: .disabledControlTextColor, shows: UserDefaults.standard.showsInvisible)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)

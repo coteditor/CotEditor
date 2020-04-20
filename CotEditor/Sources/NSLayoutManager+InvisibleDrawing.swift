@@ -45,7 +45,8 @@ extension InvisibleDrawing {
     ///   - origin: The position of the text container in the coordinate system of the currently focused view.
     ///   - baselineOffset: The baseline offset to draw glyphs.
     ///   - color: The color of invisibles.
-    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor) {
+    ///   - shows: The setting which invisible types should be drawn.
+    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor, shows: [Invisible: Bool]) {
         
         assert(self.showsInvisibles)
         
@@ -61,16 +62,6 @@ extension InvisibleDrawing {
             ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
             : baselineOffset
         var pathCache: [Invisible: CGPath] = [:]
-        
-        // gather visibility settings
-        let defaults = UserDefaults.standard
-        let shows: [Invisible: Bool] = [
-            .newLine: defaults[.showInvisibleNewLine],
-            .tab: defaults[.showInvisibleTab],
-            .space: defaults[.showInvisibleSpace],
-            .fullwidthSpace: defaults[.showInvisibleFullwidthSpace],
-            .otherControl: defaults[.showInvisibleControl],
-        ]
         
         // locate invisibles glyph by glyph
         let symbolPaths = CGMutablePath()
@@ -151,13 +142,7 @@ extension InvisibleDrawing {
         
         // update UserDefaults observation if needed
         if self.showsInvisibles, self.invisiblesDefaultsObservers.isEmpty {
-            let visibilityKeys: [DefaultKeys] = [
-                .showInvisibleNewLine,
-                .showInvisibleTab,
-                .showInvisibleSpace,
-                .showInvisibleFullwidthSpace,
-                .showInvisibleControl,
-            ]
+            let visibilityKeys = Invisible.allCases.map(\.visibilityDefaultKey).unique
             self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
             self.invisiblesDefaultsObservers = UserDefaults.standard.observe(keys: visibilityKeys) { [weak self] (_, _) in
                 self?.invalidateInvisibleDisplay()

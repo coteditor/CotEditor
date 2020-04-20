@@ -23,6 +23,8 @@
 //  limitations under the License.
 //
 
+import class Foundation.UserDefaults
+
 extension Unicode.Scalar {
     
     static let zeroWidthSpace = Self(0x200B)!
@@ -36,18 +38,6 @@ enum Invisible {
     case space
     case fullwidthSpace
     case otherControl
-    
-    
-    var symbol: Character {
-        
-        switch self {
-            case .newLine: return "↩"
-            case .tab: return "‣"
-            case .space: return "·"
-            case .fullwidthSpace: return "□"
-            case .otherControl: return "�"
-        }
-    }
     
     
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
@@ -70,6 +60,46 @@ enum Invisible {
             default:
                 return nil
         }
+    }
+    
+    
+    var symbol: Character {
+        
+        switch self {
+            case .newLine: return "↩"
+            case .tab: return "→"
+            case .space: return "·"
+            case .fullwidthSpace: return "□"
+            case .otherControl: return "�"
+        }
+    }
+    
+}
+
+
+
+// MARK: User Deafults
+
+extension Invisible: CaseIterable {
+    
+    var visibilityDefaultKey: DefaultKey<Bool> {
+        
+        switch self {
+            case .newLine: return .showInvisibleNewLine
+            case .tab: return .showInvisibleTab
+            case .space: return .showInvisibleSpace
+            case .fullwidthSpace: return .showInvisibleFullwidthSpace
+            case .otherControl: return .showInvisibleControl
+        }
+    }
+}
+
+
+extension UserDefaults {
+    
+    var showsInvisible: [Invisible: Bool] {
+        
+        return Invisible.allCases.reduce(into: [:]) { $0[$1] = self[$1.visibilityDefaultKey] }
     }
     
 }
