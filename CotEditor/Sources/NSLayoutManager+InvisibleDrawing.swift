@@ -38,7 +38,7 @@ protocol InvisibleDrawing: NSLayoutManager {
 
 extension InvisibleDrawing {
     
-    /// Draw invisible characters in the given context.
+    /// Draw invisible character symbols.
     ///
     /// - Parameters:
     ///   - glyphsToShow: The range of glyphs that are drawn.
