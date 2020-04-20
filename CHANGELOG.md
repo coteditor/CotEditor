@@ -35,6 +35,7 @@ Change Log
 - Fix an issue in scripting with AppleScript/JXA where the contents of a document can rarely be overwritten with the contents of another document window under very specific conditions.
 - Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical.
 - Fix an issue in the RTL text mode where the page guide disappeared when lines are unwrapped.
+- Fix an issue where the current line highlight broke after toggling the writing direction.
 - Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.
 - Fix an issue in the find panel's input fields where invisible control characters were drawn in the normal text color under specific conditions.
 
