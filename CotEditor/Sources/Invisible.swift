@@ -97,9 +97,9 @@ extension Invisible: CaseIterable {
 
 extension UserDefaults {
     
-    var showsInvisible: [Invisible: Bool] {
+    var showsInvisible: [Invisible] {
         
-        return Invisible.allCases.reduce(into: [:]) { $0[$1] = self[$1.visibilityDefaultKey] }
+        return Invisible.allCases.filter { self[$0.visibilityDefaultKey] }
     }
     
 }

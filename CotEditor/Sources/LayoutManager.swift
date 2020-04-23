@@ -129,7 +129,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         
         // draw invisibles
         if self.showsInvisibles {
-            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset(for: .horizontal), color: self.invisiblesColor, shows: UserDefaults.standard.showsInvisible)
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset(for: .horizontal), color: self.invisiblesColor, types: UserDefaults.standard.showsInvisible)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)

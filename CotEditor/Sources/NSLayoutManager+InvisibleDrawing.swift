@@ -44,10 +44,13 @@ extension InvisibleDrawing {
     ///   - origin: The position of the text container in the coordinate system of the currently focused view.
     ///   - baselineOffset: The baseline offset to draw glyphs.
     ///   - color: The color of invisibles.
-    ///   - shows: The setting which invisible types should be drawn.
-    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor, shows: [Invisible: Bool]) {
+    ///   - types: The invisible types to draw.
+    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor, types: [Invisible]) {
         
-        assert(self.showsInvisibles)
+        guard
+            self.showsInvisibles,
+            !types.isEmpty
+            else { return }
         
         guard
             let textContainer = self.textContainer(forGlyphAt: glyphsToShow.lowerBound, effectiveRange: nil)
@@ -71,7 +74,7 @@ extension InvisibleDrawing {
             
             guard
                 let invisible = Invisible(codeUnit: codeUnit),
-                shows[invisible] == true
+                types.contains(invisible)
                 else { continue }
             
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
