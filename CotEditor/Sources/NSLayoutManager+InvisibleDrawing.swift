@@ -62,8 +62,9 @@ extension InvisibleDrawing {
             : baselineOffset
         var pathCache: [Invisible: CGPath] = [:]
         
-        // locate invisibles glyph by glyph
-        let symbolPaths = CGMutablePath()
+        color.set()
+        
+        // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
         for charIndex in characterRange.lowerBound..<characterRange.upperBound {
             let codeUnit = string.character(at: charIndex)
@@ -105,19 +106,13 @@ extension InvisibleDrawing {
             
             let symbolLocation = location.offset(by: origin).offsetBy(dy: baselineOffset - glyphHeight)
             
-            symbolPaths.addPath(path, transform: .init(translationX: symbolLocation.x, y: symbolLocation.y))
+            let bezierPath = NSBezierPath(path: path)
+            bezierPath.lineWidth = lineWidth
+            bezierPath.lineCapStyle = .round
+            
+            bezierPath.transform(using: AffineTransform(translationByX: symbolLocation.x, byY: symbolLocation.y))
+            bezierPath.stroke()
         }
-        
-        guard !symbolPaths.isEmpty else { return }
-        guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
-        
-        // draw invisible symbols
-        context.setStrokeColor(color.cgColor)
-        context.setLineWidth(lineWidth)
-        context.setLineJoin(.round)
-        context.setLineCap(.round)
-        context.addPath(symbolPaths)
-        context.strokePath()
     }
     
     
@@ -210,8 +205,9 @@ private extension Invisible {
                             radius: radius, startAngle: -.pi / 2, endAngle: .pi / 2, clockwise: false)
                 path.addLine(to: CGPoint(x: 0.2 * size.height, y: y + radius))
                 // arrow head
-                path.move(to: CGPoint(x: 0.5 * size.height, y: y + radius + 0.25 * size.height))
-                path.addLine(to: CGPoint(x: 0.2 * size.height, y: y + radius))
+                path.move(to: CGPoint(x: 0.2 * size.height, y: y + radius))
+                path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius + 0.25 * size.height))
+                path.move(to: CGPoint(x: 0.2 * size.height, y: y + radius))
                 path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius - 0.25 * size.height))
                 if isRTL, let flippedPath = path.copy(using: [CGAffineTransform(scaleX: -1, y: 1)]) {
                     return flippedPath
@@ -229,8 +225,9 @@ private extension Invisible {
                 path.move(to: endPoint, transform: transform)
                 path.addLine(to: endPoint.offsetBy(dx: -max(size.width - 2 * margin, arrow.width), dy: 0), transform: transform)
                 // arrow head
-                path.move(to: endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height), transform: transform)
-                path.addLine(to: endPoint, transform: transform)
+                path.move(to: endPoint, transform: transform)
+                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height), transform: transform)
+                path.move(to: endPoint, transform: transform)
                 path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height), transform: transform)
                 return path
             
