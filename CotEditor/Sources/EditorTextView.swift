@@ -1179,6 +1179,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             guard lineHeight != oldValue else { return }
             
             self.invalidateDefaultParagraphStyle()
+            self.needsUpdateLineHighlight = true
         }
     }
     
