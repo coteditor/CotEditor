@@ -65,7 +65,14 @@ extension InvisibleDrawing {
             : baselineOffset
         var pathCache: [Invisible: CGPath] = [:]
         
+        // setup drawing parameters
+        NSGraphicsContext.saveGraphicsState()
+        defer {
+            NSGraphicsContext.restoreGraphicsState()
+        }
         color.set()
+        NSBezierPath.defaultLineWidth = lineWidth
+        NSBezierPath.defaultLineCapStyle = .round
         
         // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
@@ -108,13 +115,9 @@ extension InvisibleDrawing {
             }
             
             let symbolLocation = location.offset(by: origin).offsetBy(dy: baselineOffset - glyphHeight)
+            let transform = AffineTransform(translationByX: symbolLocation.x, byY: symbolLocation.y)
             
-            let bezierPath = NSBezierPath(path: path)
-            bezierPath.lineWidth = lineWidth
-            bezierPath.lineCapStyle = .round
-            
-            bezierPath.transform(using: AffineTransform(translationByX: symbolLocation.x, byY: symbolLocation.y))
-            bezierPath.stroke()
+            NSBezierPath(path: path, transform: transform).stroke()
         }
     }
     
