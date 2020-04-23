@@ -32,7 +32,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     let textFont: NSFont = .systemFont(ofSize: 0)
     var showsInvisibles: Bool = false
     var showsControls: Bool = false
-    lazy var replacementGlyphWidth = self.textFont.width(of: "0")
     var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
     
     
@@ -41,6 +40,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     private var lineHeight: CGFloat = 0
     private var baselineOffset: CGFloat = 0
     private var invisibleVisibilityObserver: UserDefaultsObservation?
+    private lazy var boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: self.textFont)
     
     
     
@@ -113,7 +113,7 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        return NSRect(x: 0, y: 0, width: self.replacementGlyphWidth, height: proposedRect.height)
+        return self.boundingBoxForControlGlyph
     }
     
 }

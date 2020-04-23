@@ -30,7 +30,6 @@ protocol InvisibleDrawing: NSLayoutManager {
     var textFont: NSFont { get }
     var showsInvisibles: Bool { get }
     var showsControls: Bool { get set }
-    var replacementGlyphWidth: CGFloat { get }
     var invisiblesDefaultsObservers: [UserDefaultsObservation] { get set }
 }
 
@@ -170,6 +169,17 @@ extension InvisibleDrawing {
             else { return false }
         
         return true
+    }
+    
+    
+    /// Bounding box for the invisible control character symbol.
+    func boundingBoxForControlGlyph(for font: NSFont) -> NSRect {
+        
+        // -> Use `0` to represent the standard glyph size of the font.
+        let glyph = (font as CTFont).glyph(for: "0")
+        let advancement = font.advancement(forCGGlyph: glyph)
+        
+        return NSRect(origin: .zero, size: advancement)
     }
     
 }

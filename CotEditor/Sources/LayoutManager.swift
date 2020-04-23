@@ -31,7 +31,6 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     // MARK: Protocol Properties
     
     var showsControls = false
-    var replacementGlyphWidth: CGFloat = 0
     var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
     
     var ignoresDisplayValidation = false
@@ -50,13 +49,11 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         // -> DO NOT use `self.firstTextView?.font`, because when the specified font doesn't support
         //    the first character of the text view content, it returns a fallback font for the first one.
         didSet {
-            // cache metric values to fix line height
+            // cache metric values
             self.defaultLineHeight = self.defaultLineHeight(for: textFont)
             self.defaultBaselineOffset = self.defaultBaselineOffset(for: textFont)
-            
-            // cache widths of special glyphs
+            self.boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: textFont)
             self.spaceWidth = textFont.width(of: " ")
-            self.replacementGlyphWidth = textFont.width(of: "0")
         }
     }
     
@@ -78,6 +75,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     
     private var defaultLineHeight: CGFloat = 1.0
     private var defaultBaselineOffset: CGFloat = 0
+    private var boundingBoxForControlGlyph: NSRect = .zero
     
     
     
@@ -241,7 +239,7 @@ extension LayoutManager: NSLayoutManagerDelegate {
     /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
     func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
         
-        return NSRect(x: 0, y: 0, width: self.replacementGlyphWidth, height: proposedRect.height)
+        return self.boundingBoxForControlGlyph
     }
     
     
