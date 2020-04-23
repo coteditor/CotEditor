@@ -33,13 +33,13 @@ Change Log
 - Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.
 - Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.
 - Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.
-- Fix an issue in scripting with AppleScript/JXA where the application crashed by performing `string in ...` method.
+- Fix an issue in scripting with AppleScript/JXA where the application crashed by performing `string in ...` command.
 - Fix an issue in scripting with AppleScript/JXA where the contents of a document can rarely be overwritten with the contents of another document window under very specific conditions.
 - Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical.
 - Fix an issue in the RTL text mode where the page guide disappeared when lines are unwrapped.
 - Fix an issue where the current line highlight did not update properly after changing some settings.
-- Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.
 - Fix an issue in the find panel's input fields where invisible control characters were drawn in the normal text color under specific conditions.
+- Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.
 
 
 

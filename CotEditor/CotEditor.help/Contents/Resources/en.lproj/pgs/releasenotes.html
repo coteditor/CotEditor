@@ -24,6 +24,64 @@
 
 <article>
 <header>
+    <h1>CotEditor 3.9.0</h1>
+    <p>release: <time>2020-05</time></p>
+</header>
+
+
+<section>
+<h2>New Features</h2>
+
+<ul>
+	<li>Rewrite the invisible character drawing feature to draw alternative symbols more properly under various environments.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Adjust the text baseline to draw characters vertically center in lines.</li>
+	<li>Optimize the performance of “Replace All” with a large number of matches.</li>
+	<li>Improve the performance when pasting a huge text.</li>
+	<li>Duplicate lines more intelligently.</li>
+	<li>Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.</li>
+	<li>Adjust the visible area after unwrapping lines in RTL text mode.</li>
+	<li><span class="trivial">trivial</span>: Display default values as the input field's placeholder for window size setting when empty.</li>
+	<li><span class="trivial">trivial</span>: Make the identifier for document autosaving longer.</li>
+	<li><span class="trivial">dev</span>: Update the build environment to Xcode 11.4 (Swift 5.2).</li>
+	<li><span class="trivial">dev</span>: Replace YAML.framework with Yams.</li>
+	<li><span class="trivial">dev</span>: Remove Carthage dependency.</li>
+	<li><span class="trivial">dev</span>: Migrate codesign-specific build settings to .xcconfig (thanks to Yoshimasa Niwa!).</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue where the application crashed when a hanging indent depth becomes larger than the editor area.</li>
+	<li>Fix an issue where the outline menu could select the wrong item while typing.</li>
+	<li>Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.</li>
+	<li>Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.</li>
+	<li>Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.</li>
+	<li>Fix an issue in scripting with AppleScript/JXA where the application crashed by performing <code>string in ...</code> command.</li>
+	<li>Fix an issue in scripting with AppleScript/JXA where the contents of a document can rarely be overwritten with the contents of another document window under very specific conditions.</li>
+	<li>Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical.</li>
+	<li>Fix an issue in the RTL text mode where the page guide disappeared when lines are unwrapped.</li>
+	<li>Fix an issue where the current line highlight did not update properly after changing some settings.</li>
+	<li>Fix an issue in the find panel's input fields where invisible control characters were drawn in the normal text color under specific conditions.</li>
+	<li>Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
     <h1>CotEditor 3.8.12</h1>
     <p>release: <time>2020-03-08</time></p>
 </header>
