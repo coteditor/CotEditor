@@ -37,14 +37,23 @@ extension NSBezierPath {
             switch element.type {
                 case .moveToPoint:
                     self.move(to: element.points[0])
+                
                 case .addLineToPoint:
                     self.line(to: element.points[0])
+                
                 case .addQuadCurveToPoint:
-                    self.relativeCurve(to: element.points[1], controlPoint1: element.points[0], controlPoint2: element.points[0])
+                    let controlPoint1 = NSPoint(x: self.currentPoint.x + (2 / 3 * (element.points[0].x - self.currentPoint.x)),
+                                                y: self.currentPoint.y + (2 / 3 * (element.points[0].y - self.currentPoint.y)))
+                    let controlPoint2 = NSPoint(x: element.points[1].x + (2 / 3 * (element.points[0].x - element.points[1].x)),
+                                                y: element.points[1].y + (2 / 3 * (element.points[0].y - element.points[1].y)))
+                    self.curve(to: element.points[1], controlPoint1: controlPoint1, controlPoint2: controlPoint2)
+                
                 case .addCurveToPoint:
                     self.curve(to: element.points[2], controlPoint1: element.points[0], controlPoint2: element.points[1])
+                
                 case .closeSubpath:
                     self.close()
+                
                 @unknown default:
                     assertionFailure()
             }
