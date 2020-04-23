@@ -1,5 +1,5 @@
 //
-//  NSBezierPath+RoundedCorner.swift
+//  NSBezierPath.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -24,6 +24,42 @@
 //
 
 import AppKit.NSBezierPath
+
+extension NSBezierPath {
+    
+    convenience init(path: CGPath, transform: AffineTransform? = nil) {
+        
+        self.init()
+        
+        path.applyWithBlock { (pointer) in
+            let element = pointer.pointee
+            
+            switch element.type {
+                case .moveToPoint:
+                    self.move(to: element.points[0])
+                case .addLineToPoint:
+                    self.line(to: element.points[0])
+                case .addQuadCurveToPoint:
+                    self.relativeCurve(to: element.points[1], controlPoint1: element.points[0], controlPoint2: element.points[0])
+                case .addCurveToPoint:
+                    self.curve(to: element.points[2], controlPoint1: element.points[0], controlPoint2: element.points[1])
+                case .closeSubpath:
+                    self.close()
+                @unknown default:
+                    assertionFailure()
+            }
+        }
+        
+        if let transform = transform {
+            self.transform(using: transform)
+        }
+    }
+    
+}
+
+
+
+// MARK: Rounded Corner
 
 struct RectCorner: OptionSet {
     
