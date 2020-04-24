@@ -28,7 +28,7 @@ import XCTest
 
 final class NSBezierPathTests: XCTestCase {
     
-    func testExample() throws {
+    func testBezierPathCreationFromCGPath() throws {
         
         let rect = CGRect(x: 1, y: 2, width: 3, height: 4)
         let path = CGPath(rect: rect, transform: nil)
