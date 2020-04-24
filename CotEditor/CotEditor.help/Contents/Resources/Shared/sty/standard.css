@@ -301,6 +301,9 @@ span.keyword {
 span.string {
 	color: hsl(0, 0%, 50%);
 }
+span.invisible {
+	color: -apple-system-secondary-label;
+}
 
 /* dark mode */
 

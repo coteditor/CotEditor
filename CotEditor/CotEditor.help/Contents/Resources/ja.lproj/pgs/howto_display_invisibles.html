@@ -1,0 +1,125 @@
+<html lang="ja">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="不可視文字, 制御文字, スペース, タブ, 改行"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>不可視文字を表示する</title>
+</head>
+
+<body>
+<a name="about_move_menu"></a>
+
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditorヘルプ</a></li>
+</ul></nav>
+
+
+<h1>不可視文字を表示する</h1>
+
+<p>不可視文字の表示機能を使うと、書類中の見えない文字（不可視文字）を代替記号で描画しどこにあるか見えるようにできます。</p>
+
+
+<h2>不可視文字の表示/非表示の切り替え</h2>
+
+<h3>一時的な変更</h3>
+
+<p>現在開いている書類ウインドウで一時的に不可視文字の表示/非表示を切り替えるには以下の方法あります：</p>
+
+<ul>
+	<li>画面上部の「フォーマット」メニューの「不可視文字を表示/隠す」を選択</li>
+	<li>ウインドウツールバーの「不可視文字」ボタンをクリック（「不可視文字」ボタンはツールバーをカスタマイズして追加できます）</li>
+</ul>
+
+<p>ここでの変更はCotEditorのデフォルトの設定を上書きしません。</p>
+
+
+<h3>デフォルト設定</h3>
+
+<p>不可視文字を表示するかどうかのデフォルトの設定は環境設定の<a href="pref_appearance.html">表示</a>ペインから行います。チェックボックス「不可視文字を表示」で切り替えます。</p>
+
+
+<h3>プリント時の不可視文字表示</h3>
+
+<p>印刷で不可視文字を表示するかどうかは環境設定の<a href="pref_print.html">プリント</a>ペイン、または個別に書類をプリントする際のプリントダイアログから設定できます。</p>
+
+
+
+<h2>不可視文字の種類</h2>
+
+<p>環境設定の<a href="pref_appearance.html">表示</a>ペインから、不可視文字を表示したときにどの種類の不可視文字を表示するかを設定できます。設定できる種類はそれぞれ以下の文字に対応しています。</p>
+
+<table>
+	<colgroup>
+		<col/>
+		<col style="text-align:center"/>
+		<col style="width:20em"/>
+		<col/>
+	</colgroup>
+	
+	<thead>
+		<tr><th>名称</th><th>記号</th><th>対象文字 (コードポイント)</th><th>解説</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th>改行</th>
+			<td><span class="invisible">↩</span></td>
+			<td>LINE FEED (U+000A),<br/>
+			    CARRIAGE RETURN (U+000D)</td>
+			<td>改行を表す制御文字です。CRLF (U+000DとU+000A)も1つの改行文字として扱います。</td>
+		</tr>
+		
+		<tr>
+			<th>タブ</th>
+			<td><span class="invisible">→</span></td>
+			<td>HORIZONTAL TABULATION (U+0009)</td>
+			<td>ある特定の位置まで次の文字を送る柔軟な幅を持つ空白文字です。プログラム上ではしばしば、1文字で複数個分のスペース幅を持つ文字としてインデントに用いられます。</td>
+		</tr>
+		
+		<tr>
+			<th rowspan="2">スペース</th>
+			<td><span class="invisible">·</span></td>
+			<td>SPACE (U+0020)</td>
+			<td>一般的なスペースです。</td>
+		</tr>
+		
+		<tr>
+			<td><span class="invisible">·̂</span></td>
+			<td>NO-BREAK SPACE (U+00A0),<br/>
+			    FIGURE SPACE (U+2007)</br>
+			    NARROW NO-BREAK SPACE (U+202F)</td>
+			<td>この文字の前後での改行を許さない特殊なスペースです。</td>
+		</tr>
+		
+		<tr>
+			<th>全角スペース</th>
+			<td><span class="invisible">□</span></td>
+			<td>IDEOGRAPHIC SPACE (U+3000)</td>
+			<td>いわゆる日本語の全角スペースです。</td>
+		</tr>
+		
+		<tr>
+			<th>その他の制御文字</th>
+			<td><span class="invisible">�</span></td>
+			<td>C0 (U+0000–U+001F),<br/>
+			    C1 (U+007F–U+009F),<br/>
+			    ZERO WIDTH SPACE (0x200B)</td>
+			<td>文書のフォーマットなどに用いられる特殊な文字です。通常は表示されません。</td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<section id="cf">
+<h2>関連項目</h2>
+<ul>
+	<li><a href="../pgs/pref_appearance.html">環境設定：表示</a></li>
+	<li><a href="../pgs/pref_print.html">環境設定：プリント</a></li>
+</ul>
+</section>
+
+</body>
+</html>
