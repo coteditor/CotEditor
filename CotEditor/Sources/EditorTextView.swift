@@ -576,7 +576,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             return
         }
         
-        return super.insertBacktab(sender)
+        super.insertBacktab(sender)
     }
     
     
