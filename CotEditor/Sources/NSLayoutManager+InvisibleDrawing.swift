@@ -111,8 +111,8 @@ extension InvisibleDrawing {
             
             let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
             let glyphLocation = self.location(forGlyphAt: glyphIndex)
-            let location = lineOrigin.offsetBy(dx: glyphLocation.x).offset(by: origin).offsetBy(dy: baselineOffset - glyphHeight)
-            let transform = AffineTransform(translationByX: location.x, byY: location.y)
+            let symbolOrigin = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset - glyphHeight)
+            let transform = AffineTransform(translationByX: symbolOrigin.x, byY: symbolOrigin.y)
             
             NSBezierPath(path: path, transform: transform).stroke()
         }
