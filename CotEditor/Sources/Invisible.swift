@@ -36,6 +36,7 @@ enum Invisible {
     case newLine
     case tab
     case space
+    case noBreakSpace
     case fullwidthSpace
     case otherControl
     
@@ -47,8 +48,10 @@ enum Invisible {
                 self = .newLine
             case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
                 self = .tab
-            case 0x0020, 0x00A0:  // SPACE, NO-BREAK SPACE
+            case 0x0020:  // SPACE
                 self = .space
+            case 0x00A0:  // NO-BREAK SPACE
+                self = .noBreakSpace
             case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. Japanese full-width space
                 self = .fullwidthSpace
             case 0x0000...0x001F,  // C0
@@ -69,6 +72,7 @@ enum Invisible {
             case .newLine: return "↩"
             case .tab: return "→"
             case .space: return "·"
+            case .noBreakSpace: return "·̂"
             case .fullwidthSpace: return "□"
             case .otherControl: return "�"
         }
@@ -88,6 +92,7 @@ extension Invisible: CaseIterable {
             case .newLine: return .showInvisibleNewLine
             case .tab: return .showInvisibleTab
             case .space: return .showInvisibleSpace
+            case .noBreakSpace: return .showInvisibleSpace
             case .fullwidthSpace: return .showInvisibleFullwidthSpace
             case .otherControl: return .showInvisibleControl
         }

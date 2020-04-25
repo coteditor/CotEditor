@@ -86,25 +86,20 @@ extension InvisibleDrawing {
             
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
-            let location: CGPoint
             let path: CGPath
             if let cache = pathCache[invisible] {
-                let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-                let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                location = lineOrigin.offsetBy(dx: glyphLocation.x)
                 path = cache
             } else {
                 let glyphWidth: CGFloat
                 switch invisible {
                     case .newLine:
-                        // -> `boundingRect(forGlyphRange:in)` cannot calculate the location of the new line at the end.
-                        let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-                        let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                        location = lineOrigin.offsetBy(dx: glyphLocation.x)
                         glyphWidth = 0
+                    case .noBreakSpace:
+                        // -> `boundingRect(forGlyphRange:in)` can occasionally not calculate the width of no-break space properly.
+                        glyphWidth = self.textFont.width(of: "\u{00A0}")
                     default:
-                        let boundingRect = self.boundingRect(forGlyphRange: NSRange(location: glyphIndex, length: 1), in: textContainer)
-                        location = boundingRect.origin
+                        let glyphRange = NSRange(location: glyphIndex, length: 1)
+                        let boundingRect = self.boundingRect(forGlyphRange: glyphRange, in: textContainer)
                         glyphWidth = boundingRect.width
                 }
                 
@@ -114,8 +109,10 @@ extension InvisibleDrawing {
                 }
             }
             
-            let symbolLocation = location.offset(by: origin).offsetBy(dy: baselineOffset - glyphHeight)
-            let transform = AffineTransform(translationByX: symbolLocation.x, byY: symbolLocation.y)
+            let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
+            let glyphLocation = self.location(forGlyphAt: glyphIndex)
+            let location = lineOrigin.offsetBy(dx: glyphLocation.x).offset(by: origin).offsetBy(dy: baselineOffset - glyphHeight)
+            let transform = AffineTransform(translationByX: location.x, byY: location.y)
             
             NSBezierPath(path: path, transform: transform).stroke()
         }
@@ -241,9 +238,23 @@ private extension Invisible {
                 let radius = size.height / 15
                 let rect = CGRect(x: size.width / 2, y: size.height / 2, width: 0, height: 0)
                 let path = CGMutablePath()
-                path.addPath(CGPath(ellipseIn: rect.insetBy(dx: -radius, dy: -radius), transform: nil))
+                path.addEllipse(in: rect.insetBy(dx: -radius, dy: -radius))
                 // draw a zero size dot to fill in the center
-                path.addPath(CGPath(ellipseIn: rect, transform: nil))
+                path.addEllipse(in: rect)
+                return path
+            
+            case .noBreakSpace:
+                let radius = size.height / 15
+                let rect = CGRect(x: size.width / 2, y: size.height / 2, width: 0, height: 0)
+                let path = CGMutablePath()
+                path.addEllipse(in: rect.insetBy(dx: -radius, dy: -radius))
+                // draw a zero size dot to fill in the center
+                path.addEllipse(in: rect)
+                // hat
+                path.move(to: CGPoint(x: 0.5 * size.width, y: 0.05 * size.height))
+                path.addLine(to: CGPoint(x: 0.3 * size.width, y: 0.23 * size.height))
+                path.move(to: CGPoint(x: 0.5 * size.width, y: 0.05 * size.height))
+                path.addLine(to: CGPoint(x: 0.7 * size.width, y: 0.23 * size.height))
                 return path
             
             case .fullwidthSpace:
