@@ -52,7 +52,8 @@ enum Invisible {
                  0x007F...0x009F,  // C1
                  0x200B:  // ZERO WIDTH SPACE
                 // -> NSGlyphGenerator generates NSControlGlyph for all characters
-                //    in the Unicode General Category Cc and U+200B (ZERO WIDTH SPACE).
+                //    in the Unicode General Category C* and U200B (ZERO WIDTH SPACE).
+                //    cf. https://developer.apple.com/documentation/appkit/nscontrolglyph
                 self = .otherControl
             default:
                 return nil
