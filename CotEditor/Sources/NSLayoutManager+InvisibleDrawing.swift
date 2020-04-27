@@ -161,12 +161,12 @@ extension InvisibleDrawing {
         
         guard
             self.showsControls,
-            action.contains(.zeroAdvancement),
-            let unicode = Unicode.Scalar((self.attributedString().string as NSString).character(at: charIndex)),
-            unicode.properties.generalCategory == .control || unicode == .zeroWidthSpace
+            action.contains(.zeroAdvancement)
             else { return false }
         
-        return true
+        let codeUnit = (self.attributedString().string as NSString).character(at: charIndex)
+        
+        return Invisible(codeUnit: codeUnit) == .otherControl
     }
     
     
