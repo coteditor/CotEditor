@@ -55,10 +55,10 @@ enum Invisible {
             case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. Japanese full-width space
                 self = .fullwidthSpace
             case 0x0000...0x001F,  // C0
-                 0x0080...0x009F,  // C1
+                 0x0080...0x009F,  // C1 (excl. U+007F)
                  0x200B:  // ZERO WIDTH SPACE
                 // -> NSGlyphGenerator generates NSControlGlyph for all characters
-                //    in the Unicode General Category C* and U+200B (ZERO WIDTH SPACE).
+                //    in the Unicode General Category Cc and U+200B (ZERO WIDTH SPACE).
                 self = .otherControl
             default:
                 return nil

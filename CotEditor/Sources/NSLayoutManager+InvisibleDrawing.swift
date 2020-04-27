@@ -198,7 +198,7 @@ private extension Invisible {
         
         switch self {
             case .newLine:
-                // -> Do not use `size.width` as it's basically the rest of the line fragment.
+                // -> Do not use `size.width` as new line glyphs actually have no area.
                 let y = 0.4 * size.height
                 let radius = 0.25 * size.height
                 let path = CGMutablePath()
@@ -218,7 +218,7 @@ private extension Invisible {
                 return path
             
             case .tab:
-                // -> The width of tab is elastic.
+                // -> The width of tab is elastic and even can be (almost) zero.
                 let arrow = CGSize(width: 0.3 * size.height, height: 0.25 * size.height)
                 let margin = (0.7 * (size.width - arrow.width)).clamped(to: 0...(0.4 * size.height))
                 let endPoint = CGPoint(x: size.width - margin, y: size.height / 2)
