@@ -25,12 +25,6 @@
 
 import class Foundation.UserDefaults
 
-extension Unicode.Scalar {
-    
-    static let zeroWidthSpace = Self(0x200B)!
-}
-
-
 enum Invisible {
     
     case newLine
