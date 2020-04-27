@@ -104,7 +104,7 @@ extension InvisibleDrawing {
                 }
                 
                 path = invisible.path(in: CGSize(width: glyphWidth, height: glyphHeight), isRTL: isRTL)
-                if invisible != .tab {
+                if invisible != .tab, invisible != .noBreakSpace {
                     pathCache[invisible] = path
                 }
             }

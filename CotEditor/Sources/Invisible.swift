@@ -44,7 +44,9 @@ enum Invisible {
                 self = .tab
             case 0x0020:  // SPACE
                 self = .space
-            case 0x00A0:  // NO-BREAK SPACE
+            case 0x00A0,  // NO-BREAK SPACE
+                 0x2007,  // FIGURE SPACE
+                 0x202F:  // NARROW NO-BREAK SPACE
                 self = .noBreakSpace
             case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. Japanese full-width space
                 self = .fullwidthSpace
