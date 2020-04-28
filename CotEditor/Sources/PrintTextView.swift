@@ -275,7 +275,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // check whether print line numbers
         self.printsLineNumber = {
-            switch PrintLineNmuberMode(settings[.lineNumber] as? Int) {
+            switch PrintVisibilityMode(settings[.lineNumber] as? Int) {
                 case .no:
                     return false
                 case .sameAsDocument:
@@ -290,12 +290,12 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            switch PrintInvisiblesMode(settings[.invisibles] as? Int) {
+            switch PrintVisibilityMode(settings[.invisibles] as? Int) {
                 case .no:
                     return false
                 case .sameAsDocument:
                     return self.documentShowsInvisibles
-                case .all:
+                case .yes:
                     return true
             }
         }()

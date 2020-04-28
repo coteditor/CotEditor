@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2020 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -53,8 +53,8 @@
 "952.title" = "Não Imprimir";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
 "953.title" = "Usar Ajustes do Documento";
-/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
-"954.title" = "Imprimir Tudo";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
+"954.title" = "Imprimir";
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "3368"; */
 "3368.title" = "Imprimir cabeçalho";

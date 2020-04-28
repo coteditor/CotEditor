@@ -72,23 +72,13 @@ enum AppearanceMode: Int {
 }
 
 
-@objc enum PrintLineNmuberMode: Int, DefaultInitializable {
+@objc enum PrintVisibilityMode: Int, DefaultInitializable {
     
     static let defaultValue: Self = .no
     
     case no
     case sameAsDocument
     case yes
-}
-
-
-@objc enum PrintInvisiblesMode: Int, DefaultInitializable {
-    
-    static let defaultValue: Self = .no
-    
-    case no
-    case sameAsDocument
-    case all
 }
 
 
