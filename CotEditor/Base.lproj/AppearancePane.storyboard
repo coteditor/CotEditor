@@ -313,7 +313,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nqX-jr-n2L">
-                                <rect key="frame" x="363" y="403" width="60" height="18"/>
+                                <rect key="frame" x="373" y="403" width="60" height="18"/>
                                 <buttonCell key="cell" type="check" title="Space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="gcF-OM-SV0">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -324,7 +324,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="I05-Ks-5uR">
-                                <rect key="frame" x="263" y="381" width="171" height="18"/>
+                                <rect key="frame" x="273" y="381" width="171" height="18"/>
                                 <buttonCell key="cell" type="check" title="Other control characters" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="sxg-F3-ely">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -354,13 +354,13 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iqn-kw-8py">
-                                <rect key="frame" x="123" y="381" width="123" height="18"/>
-                                <buttonCell key="cell" type="check" title="Full-width space" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bf2-rS-2zu">
+                                <rect key="frame" x="123" y="381" width="136" height="18"/>
+                                <buttonCell key="cell" type="check" title="Other whitespaces" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="Bf2-rS-2zu">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <binding destination="IE5-39-jAY" name="value" keyPath="values.showInvisibleZenkakuSpace" id="yOe-Zb-IxR"/>
+                                    <binding destination="IE5-39-jAY" name="value" keyPath="values.showInvisibleWhitespaces" id="t33-Vr-PMr"/>
                                     <binding destination="IE5-39-jAY" name="enabled" keyPath="values.showInvisibles" id="dSr-VZ-YGl"/>
                                 </connections>
                             </button>
@@ -478,7 +478,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ywA-ws-Ayf">
-                                <rect key="frame" x="263" y="403" width="44" height="18"/>
+                                <rect key="frame" x="273" y="403" width="44" height="18"/>
                                 <buttonCell key="cell" type="check" title="Tab" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="XSb-uU-5QP">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -504,7 +504,7 @@
                             <constraint firstItem="nqX-jr-n2L" firstAttribute="leading" secondItem="ywA-ws-Ayf" secondAttribute="leading" priority="750" constant="100" id="6ch-pZ-eie"/>
                             <constraint firstItem="Tqw-t1-w9R" firstAttribute="firstBaseline" secondItem="rE0-DL-xRG" secondAttribute="firstBaseline" id="7JV-2q-zM5"/>
                             <constraint firstItem="QiH-I6-BXd" firstAttribute="top" secondItem="Tqw-t1-w9R" secondAttribute="bottom" constant="20" id="7kB-S2-sbv"/>
-                            <constraint firstItem="I05-Ks-5uR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iqn-kw-8py" secondAttribute="trailing" constant="20" id="8vQ-cM-g6J"/>
+                            <constraint firstItem="I05-Ks-5uR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iqn-kw-8py" secondAttribute="trailing" constant="8" symbolic="YES" id="8vQ-cM-g6J"/>
                             <constraint firstItem="nMR-L3-OOw" firstAttribute="bottom" secondItem="QiH-I6-BXd" secondAttribute="bottom" id="9mD-M5-fuU"/>
                             <constraint firstItem="FYd-hb-j4K" firstAttribute="centerY" secondItem="Ka6-Bf-yVl" secondAttribute="centerY" id="ANV-kE-OWz"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Y0v-jK-SaN" secondAttribute="trailing" constant="20" symbolic="YES" id="CH1-BC-dAE"/>
@@ -545,7 +545,7 @@
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="uMj-Iu-oCy" secondAttribute="trailing" constant="20" symbolic="YES" id="cJM-d2-mPe"/>
                             <constraint firstItem="x9R-2Y-F6b" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="d3e-4m-edE"/>
                             <constraint firstItem="5XW-Ju-Ix5" firstAttribute="leading" secondItem="hws-J2-FDl" secondAttribute="trailing" constant="8" symbolic="YES" id="e4m-hD-3Os"/>
-                            <constraint firstItem="nqX-jr-n2L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ywA-ws-Ayf" secondAttribute="trailing" constant="20" id="ffa-8C-xDB"/>
+                            <constraint firstItem="nqX-jr-n2L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ywA-ws-Ayf" secondAttribute="trailing" constant="8" symbolic="YES" id="ffa-8C-xDB"/>
                             <constraint firstItem="hws-J2-FDl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LgU-un-VaX" secondAttribute="leading" constant="20" symbolic="YES" id="ggl-Eb-3zs"/>
                             <constraint firstItem="xAb-JZ-6Pr" firstAttribute="leading" secondItem="x9R-2Y-F6b" secondAttribute="trailing" constant="8" symbolic="YES" id="icU-g5-vy3"/>
                             <constraint firstItem="uyp-Xk-mRF" firstAttribute="top" secondItem="Y0v-jK-SaN" secondAttribute="bottom" constant="8" id="ist-af-JEw"/>
@@ -559,7 +559,7 @@
                             <constraint firstItem="I9r-vj-2gy" firstAttribute="leading" secondItem="icl-ar-8yG" secondAttribute="trailing" constant="8" symbolic="YES" id="nGO-X9-i6Z"/>
                             <constraint firstItem="Yzg-b2-Ep1" firstAttribute="top" secondItem="xAb-JZ-6Pr" secondAttribute="bottom" constant="14" id="oLd-bg-Jxs"/>
                             <constraint firstItem="MXi-ss-fox" firstAttribute="trailing" secondItem="icl-ar-8yG" secondAttribute="trailing" id="ocY-Xo-Wmp"/>
-                            <constraint firstItem="ywA-ws-Ayf" firstAttribute="leading" secondItem="uyp-Xk-mRF" secondAttribute="leading" priority="750" constant="140" id="pVn-FS-YV7"/>
+                            <constraint firstItem="ywA-ws-Ayf" firstAttribute="leading" secondItem="uyp-Xk-mRF" secondAttribute="leading" priority="750" constant="150" id="pVn-FS-YV7"/>
                             <constraint firstItem="MXi-ss-fox" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LgU-un-VaX" secondAttribute="leading" constant="20" symbolic="YES" id="ptn-Rd-i9c"/>
                             <constraint firstItem="Y0v-jK-SaN" firstAttribute="top" secondItem="Yzg-b2-Ep1" secondAttribute="bottom" constant="14" id="qD0-O9-Twg"/>
                             <constraint firstItem="FYd-hb-j4K" firstAttribute="leading" secondItem="Ka6-Bf-yVl" secondAttribute="trailing" constant="-1" id="qF4-5j-Drc"/>

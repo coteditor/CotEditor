@@ -104,7 +104,7 @@ extension InvisibleDrawing {
                 }
                 
                 path = invisible.path(in: CGSize(width: glyphWidth, height: glyphHeight), isRTL: isRTL)
-                if invisible != .tab, invisible != .noBreakSpace {
+                if invisible != .tab, invisible != .noBreakSpace, invisible != .otherSpaceSeparator {
                     pathCache[invisible] = path
                 }
             }
@@ -263,6 +263,18 @@ private extension Invisible {
                 let rect = CGRect(x: (size.width - length) / 2, y: (size.height - length) / 2, width: length, height: length)
                     .insetBy(dx: 0.05 * length, dy: 0.05 * length)
                 return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
+            
+            case .otherSpaceSeparator:
+                let path = CGMutablePath()
+                path.addLines(between: [
+                    CGPoint(x: 0.2 * size.width, y: 0.3 * size.height),
+                    CGPoint(x: 0.8 * size.width, y: 0.3 * size.height),
+                ])
+                path.addLines(between: [
+                    CGPoint(x: 0.2 * size.width, y: 0.8 * size.height),
+                    CGPoint(x: 0.8 * size.width, y: 0.8 * size.height),
+                ])
+                return path
                 
             case .otherControl:
                 let question = CGMutablePath()  // `?` mark in unit size

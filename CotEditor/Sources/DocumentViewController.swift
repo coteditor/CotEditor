@@ -855,7 +855,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         return (defaults[.showInvisibleNewLine] ||
             defaults[.showInvisibleTab] ||
             defaults[.showInvisibleSpace] ||
-            defaults[.showInvisibleFullwidthSpace] ||
+            defaults[.showInvisibleWhitespaces] ||
             defaults[.showInvisibleControl])
     }
     

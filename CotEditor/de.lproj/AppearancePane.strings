@@ -64,8 +64,8 @@
 "XSb-uU-5QP.title" = "Tabulator";
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Leerzeichen";
-/* Class = "NSButtonCell"; title = "Full-width space"; ObjectID = "Bf2-rS-2zu"; */
-"Bf2-rS-2zu.title" = "Vollbreite Leerzeichen";
+/* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
+"Bf2-rS-2zu.title" = "Andere Leerräumen";
 /* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Andere Steuerzeichen";
 
