@@ -60,7 +60,8 @@ enum Invisible {
                 self = .otherSpaceSeparator
             case 0x0000...0x001F,  // C0 (Cc)
                  0x007F...0x009F,  // C1 (Cc)
-                 0x200B:  // ZERO WIDTH SPACE (Cf)
+                 0x200B,  // ZERO WIDTH SPACE (Cf)
+                 0xFEFF:  // ZERO WIDTH NO-BREAK SPACE a.k.a. BOM (Cf)
                 self = .otherControl
             default:
                 return nil
