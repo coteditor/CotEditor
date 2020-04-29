@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2019 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -117,7 +117,7 @@
 /* Class = "NSTextFieldCell"; title = "Cursor:"; ObjectID = "Ljk-ky-fQH"; */
 "Ljk-ky-fQH.title" = "Cursor:";
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "IGx-p1-FHi"; */
-"IGx-p1-FHi.title" = "Unsichtbares:";
+"IGx-p1-FHi.title" = "Steuerzeichen:";
 /* Class = "NSTextFieldCell"; title = "Background:"; ObjectID = "tvj-DS-DVt"; */
 "tvj-DS-DVt.title" = "Hintergrund:";
 /* Class = "NSTextFieldCell"; title = "Current Line:"; ObjectID = "yMW-lO-ILw"; */
