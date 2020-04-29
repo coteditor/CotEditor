@@ -63,7 +63,7 @@ extension InvisibleDrawing {
         let baselineOffset = (textContainer.layoutOrientation == .vertical)
             ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
             : baselineOffset
-        var pathCache: [Invisible: CGPath] = [:]
+        var pathCache: [Unicode.UTF16.CodeUnit: CGPath] = [:]
         
         // setup drawing parameters
         NSGraphicsContext.saveGraphicsState()
@@ -87,7 +87,7 @@ extension InvisibleDrawing {
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
             let path: CGPath
-            if let cache = pathCache[invisible] {
+            if let cache = pathCache[codeUnit] {
                 path = cache
             } else {
                 let glyphWidth: CGFloat
@@ -97,6 +97,8 @@ extension InvisibleDrawing {
                     case .noBreakSpace:
                         // -> `boundingRect(forGlyphRange:in)` can occasionally not calculate the width of no-break space properly.
                         glyphWidth = self.textFont.width(of: "\u{00A0}")
+                    case .otherControl:
+                        glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
                     default:
                         let glyphRange = NSRange(location: glyphIndex, length: 1)
                         let boundingRect = self.boundingRect(forGlyphRange: glyphRange, in: textContainer)
@@ -104,8 +106,8 @@ extension InvisibleDrawing {
                 }
                 
                 path = invisible.path(in: CGSize(width: glyphWidth, height: glyphHeight), isRTL: isRTL)
-                if invisible != .tab, invisible != .noBreakSpace, invisible != .otherSpaceSeparator {
-                    pathCache[invisible] = path
+                if invisible != .tab {
+                    pathCache[codeUnit] = path
                 }
             }
             
