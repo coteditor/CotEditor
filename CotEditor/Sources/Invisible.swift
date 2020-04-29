@@ -61,7 +61,11 @@ enum Invisible {
             case 0x0000...0x001F,  // C0 (Cc)
                  0x007F...0x009F,  // C1 (Cc)
                  0x200B,  // ZERO WIDTH SPACE (Cf)
-                 0xFEFF:  // ZERO WIDTH NO-BREAK SPACE a.k.a. BOM (Cf)
+                 0x200C,  // ZERO WIDTH NON-JOINER (Cf)
+                 0x200E...0x200F, 0x202A...0x202E, 0x2066...0x2069,  // bidi controls (Cf)
+                 0x2060,  // WORD JOINER (Cf)
+                 0xFEFF,  // ZERO WIDTH NO-BREAK SPACE a.k.a. BOM (Cf)
+                 0xFFF9...0xFFFB:  // interlinear annotations, controls for ruby (Cf)
                 self = .otherControl
             default:
                 return nil
