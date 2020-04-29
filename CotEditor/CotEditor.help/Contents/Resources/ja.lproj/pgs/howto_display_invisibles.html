@@ -52,68 +52,88 @@
 <p>環境設定の<a href="pref_appearance.html">表示</a>ペインから、不可視文字を表示したときにどの種類の不可視文字を表示するかを設定できます。設定できる種類はそれぞれ以下の文字に対応しています。</p>
 
 <table>
+	<style>
+		ul { list-style-type: none; padding-left: 0; }
+	</style>
+	
 	<colgroup>
 		<col/>
-		<col style="text-align:center"/>
-		<col style="width:20em"/>
+		<col/>
+		<col style="width:19em"/>
 		<col/>
 	</colgroup>
 	
 	<thead>
 		<tr><th>名称</th><th>記号</th><th>対象文字 (コードポイント)</th><th>解説</th></tr>
 	</thead>
+	
 	<tbody>
 		<tr>
 			<th>改行</th>
 			<td><span class="invisible">↩</span></td>
-			<td>LINE FEED (U+000A),<br/>
-			    CARRIAGE RETURN (U+000D)</td>
-			<td>改行を表す制御文字です。CRLF (U+000DとU+000A)も1つの改行文字として扱います。</td>
+			<td><ul>
+				<li>U+000A <small>(LINE FEED)</small></li>
+				<li>U+000D <small>(CARRIAGE RETURN)</small></li>
+			</ul></td>
+			<td>改行を表す制御文字です。CRLF (<code>U+000D</code>と<code>U+000A</code>の組み合わせ)も1つの改行文字として扱います。</td>
 		</tr>
 		
 		<tr>
 			<th>タブ</th>
 			<td><span class="invisible">→</span></td>
-			<td>HORIZONTAL TABULATION (U+0009)</td>
+			<td><ul>
+				<li>U+0009 <small>(HORIZONTAL TABULATION)</small></li>
+			</ul></td>
 			<td>ある特定の位置まで次の文字を送る柔軟な幅を持つ空白文字です。プログラム上ではしばしば、1文字で複数個分のスペース幅を持つ文字としてインデントに用いられます。</td>
 		</tr>
 		
 		<tr>
 			<th>スペース</th>
 			<td><span class="invisible">·</span></td>
-			<td>SPACE (U+0020)</td>
+			<td><ul>
+				<li>U+0020 <small>(SPACE)</small></li>
+			</ul></td>
 			<td>一般的なスペースです。</td>
 		</tr>
 		
 		<tr>
 			<th rowspan="3">その他の空白</th>
 			<td><span class="invisible">·̂</span></td>
-			<td>NO-BREAK SPACE (U+00A0),<br/>
-			    FIGURE SPACE (U+2007)</br>
-			    NARROW NO-BREAK SPACE (U+202F)</td>
+			<td><ul>
+				<li>U+00A0 <small>(NO-BREAK SPACE)</small></li>
+				<li>U+2007 <small>(FIGURE SPACE)</small></li>
+				<li>U+202F <small>(NARROW NO-BREAK SPACE)</small></li>
+			</ul></td>
 			<td>この文字の前後での改行を許さない特殊なスペースです。</td>
 		</tr>
 		
 		<tr>
 			<td><span class="invisible">□</span></td>
-			<td>IDEOGRAPHIC SPACE (U+3000)</td>
+			<td><ul>
+				<li>U+3000 <small>(IDEOGRAPHIC SPACE)</small></li>
+			</ul></td>
 			<td>いわゆる日本語の全角スペースです。</td>
 		</tr>
 		
 		<tr>
 			<td><span class="invisible">=</span></td>
-			<td>Zs (U+2000–U+200A, U+205F)</td>
+			<td><ul>
+				<li>U+2000..U+200A <small>(様々なスペース)</small></li>
+				<li>U+205F <small>(MEDIUM MATHEMATICAL SPACE)</small></li>
+			</ul></td>
 			<td>様々な幅・用途の空白文字です。UnicodeのカテゴリZs (space separator) に含まれる空白文字の残りすべてに対応しています。</td>
 		</tr>
 		
 		<tr>
 			<th>その他の制御文字</th>
 			<td><span class="invisible">�</span></td>
-			<td>C0 (U+0000..U+001F),<br/>
-			    C1 (U+007F–U+009F),<br/>
-			    ZERO WIDTH SPACE (U+200B),<br/>
-			    ZERO WIDTH NO-BREAK SPACE (U+FEFF)</td>
-			<td>通常は文字として表示されず文書のフォーマットなどに用いられる特殊な文字です。</td>
+			<td><ul>
+				<li>U+0000..U+001F <small>(C0)</small></li>
+				<li>U+007F..U+009F <small>(C1)</small></li>
+				<li>U+200B <small>(ZERO WIDTH SPACE)</small></li>
+				<li>U+FEFF <small>(ZERO WIDTH NO-BREAK SPACE)</small></li>
+			</ul></td>
+			<td>通常は文字として表示されず文書のフォーマットなどに用いられる特殊な文字です。UnicodeのカテゴリCcすべてと一部のCfに対応しています。</td>
 		</tr>
 	</tbody>
 </table>

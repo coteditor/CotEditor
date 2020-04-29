@@ -50,68 +50,88 @@
 <p>In the Preferences' <a href="pref_appearance.html">Appearance</a> pane, you can set which types of invisible characters are shown when the invisible character display is enabled. The types correspond to the following characters:</p>
 
 <table>
+	<style>
+		ul { list-style-type: none; padding-left: 0; }
+	</style>
+	
 	<colgroup>
 		<col/>
-		<col style="text-align:center"/>
-		<col style="width:20em"/>
+		<col/>
+		<col style="width:19em"/>
 		<col/>
 	</colgroup>
 	
 	<thead>
-		<tr><th>Label</th><th>Symbol</th><th>Characters (code point)</th><th>Description</th></tr>
+		<tr><th>Label</th><th><abbr title="Symbol">Sym.</abbr></th><th>Characters (code point)</th><th>Description</th></tr>
 	</thead>
+	
 	<tbody>
 		<tr>
 			<th>Line ending</th>
 			<td><span class="invisible">↩</span></td>
-			<td>LINE FEED (U+000A),<br/>
-			    CARRIAGE RETURN (U+000D)</td>
-			<td>The control characters indicating line break. The CRLF type line ending (combination of U+000D and U+000A) is also drawn as a single character.</td>
+			<td><ul>
+				<li>U+000A <small>(LINE FEED)</small></li>
+				<li>U+000D <small>(CARRIAGE RETURN)</small></li>
+			</ul></td>
+			<td>The control characters indicating line break. The CRLF type line ending (combination of <code>U+000D</code> and <code>U+000A</code>) is also drawn as a single character.</td>
 		</tr>
 		
 		<tr>
 			<th>Tab</th>
 			<td><span class="invisible">→</span></td>
-			<td>HORIZONTAL TABULATION (U+0009)</td>
+			<td><ul>
+				<li>U+0009 <small>(HORIZONTAL TABULATION)</small></li>
+			</ul></td>
 			<td>A kind of whitespace characters with a flexible width sending the next character to a certain position. In coding, it is often used for indentation.</td>
 		</tr>
 		
 		<tr>
 			<th>Space</th>
 			<td><span class="invisible">·</span></td>
-			<td>SPACE (U+0020)</td>
+			<td><ul>
+				<li>U+0020 <small>(SPACE)</small></li>
+			</ul></td>
 			<td>The sandard space character.</td>
 		</tr>
 		
 		<tr>
-			<th rowspan="3">Other whitespaces</th>
+			<th rowspan="3">Other<br/>whitespaces</th>
 			<td><span class="invisible">·̂</span></td>
-			<td>NO-BREAK SPACE (U+00A0),<br/>
-			    FIGURE SPACE (U+2007)</br>
-			    NARROW NO-BREAK SPACE (U+202F)</td>
+			<td><ul>
+				<li>U+00A0 <small>(NO-BREAK SPACE)</small></li>
+				<li>U+2007 <small>(FIGURE SPACE)</small></li>
+				<li>U+202F <small>(NARROW NO-BREAK SPACE)</small></li>
+			</ul></td>
 			<td>The space characters avoiding breaking the line before/after it.</td>
 		</tr>
 		
 		<tr>
 			<td><span class="invisible">□</span></td>
-			<td>IDEOGRAPHIC SPACE (U+3000)</td>
+			<td><ul>
+				<li>U+3000 <small>(IDEOGRAPHIC SPACE)</small></li>
+			</ul></td>
 			<td>A kind of space characters commonly used in Japanese writing. As known as full-width space.</td>
 		</tr>
 		
 		<tr>
 			<td><span class="invisible">=</span></td>
-			<td>Zs (U+2000–U+200A, U+205F)</td>
+			<td><ul>
+				<li>U+2000..U+200A <small>(various spaces)</small></li>
+				<li>U+205F <small>(MEDIUM MATHEMATICAL SPACE)</small></li>
+			</ul></td>
 			<td>Whitespace characters in various widths and uses. They correspond to all of the remaining whitespace characters in Unicode category Zs (space separator).</td>
 		</tr>
 		
 		<tr>
-			<th>Other control characters</th>
+			<th>Other<br/>control characters</th>
 			<td><span class="invisible">�</span></td>
-			<td>C0 (U+0000..U+001F),<br/>
-			    C1 (U+007F–U+009F),<br/>
-			    ZERO WIDTH SPACE (U+200B),<br/>
-			    ZERO WIDTH NO-BREAK SPACE (U+FEFF)</td>
-			<td>Special characters that are not printed as a normal character but used for controlling or formatting documents.</td>
+			<td><ul>
+				<li>U+0000..U+001F <small>(C0)</small></li>
+				<li>U+007F..U+009F <small>(C1)</small></li>
+				<li>U+200B <small>(ZERO WIDTH SPACE)</small></li>
+				<li>U+FEFF <small>(ZERO WIDTH NO-BREAK SPACE)</small></li>
+			</ul></td>
+			<td>Special characters that are not printed as a normal character but used for controlling or formatting documents. They correspond to all of Unicode category Cc (control) and some of Cf (format).</td>
 		</tr>
 	</tbody>
 </table>
