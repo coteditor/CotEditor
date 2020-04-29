@@ -38,28 +38,29 @@ enum Invisible {
     
     init?(codeUnit: Unicode.UTF16.CodeUnit) {
         
+        // > NSGlyphGenerator generates NSControlGlyph for all characters
+        // > in the Unicode General Category C* and U200B (ZERO WIDTH SPACE).
+        //   cf. https://developer.apple.com/documentation/appkit/nscontrolglyph
+        
         switch codeUnit {
-            case 0x000A:  // LINE FEED a.k.a. \n
+            case 0x000A:  // LINE FEED (Cc) a.k.a. \n
                 self = .newLine
-            case 0x0009:  // HORIZONTAL TABULATION a.k.a. \t
+            case 0x0009:  // HORIZONTAL TABULATION (Cc) a.k.a. \t
                 self = .tab
-            case 0x0020:  // SPACE
+            case 0x0020:  // SPACE (Zs)
                 self = .space
-            case 0x00A0,  // NO-BREAK SPACE
-                 0x2007,  // FIGURE SPACE
-                 0x202F:  // NARROW NO-BREAK SPACE
+            case 0x00A0,  // NO-BREAK SPACE (Zs)
+                 0x2007,  // FIGURE SPACE (Zs)
+                 0x202F:  // NARROW NO-BREAK SPACE (Zs)
                 self = .noBreakSpace
-            case 0x3000:  // IDEOGRAPHIC SPACE a.k.a. Japanese full-width space
+            case 0x3000:  // IDEOGRAPHIC SPACE (Zs) a.k.a. Japanese full-width space
                 self = .fullwidthSpace
-            case 0x2000...0x200A,  // various width spaces, such as THREE-PER-EM SPACE
-                 0x205F:  // MEDIUM MATHEMATICAL SPACE
+            case 0x2000...0x200A,  // (Zs) various width spaces, such as THREE-PER-EM SPACE
+                 0x205F:  // MEDIUM MATHEMATICAL SPACE (Zs)
                 self = .otherSpaceSeparator
-            case 0x0000...0x001F,  // C0
-                 0x007F...0x009F,  // C1
-                 0x200B:  // ZERO WIDTH SPACE
-                // -> NSGlyphGenerator generates NSControlGlyph for all characters
-                //    in the Unicode General Category C* and U200B (ZERO WIDTH SPACE).
-                //    cf. https://developer.apple.com/documentation/appkit/nscontrolglyph
+            case 0x0000...0x001F,  // C0 (Cc)
+                 0x007F...0x009F,  // C1 (Cc)
+                 0x200B:  // ZERO WIDTH SPACE (Cf)
                 self = .otherControl
             default:
                 return nil
