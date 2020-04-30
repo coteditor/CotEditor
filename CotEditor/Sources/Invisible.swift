@@ -58,8 +58,7 @@ enum Invisible {
             case 0x2000...0x200A,  // (Zs) various width spaces, such as THREE-PER-EM SPACE
                  0x205F:  // MEDIUM MATHEMATICAL SPACE (Zs)
                 self = .otherSpaceSeparator
-            case 0x0000...0x001F,  // C0 (Cc)
-                 0x007F...0x009F,  // C1 (Cc)
+            case 0x0000...0x001F, 0x007F...0x009F,  // C0 and C1 (Cc)
                  0x200B,  // ZERO WIDTH SPACE (Cf)
                  0x200C,  // ZERO WIDTH NON-JOINER (Cf)
                  0x2060,  // WORD JOINER (Cf)
