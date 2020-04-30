@@ -491,6 +491,8 @@
 		2AB2243E21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243C21A7D8DF00F6201F /* SyntaxCommentsEditView.storyboard */; };
 		2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
 		2AB2245421A809A000F6201F /* SyntaxEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2245221A809A000F6201F /* SyntaxEditView.storyboard */; };
+		2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
+		2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */; };
 		2AB541DA20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2AB541DB20A5B6A400367DD5 /* NSView+ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */; };
 		2ABBACA11E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */; };
@@ -1246,6 +1248,7 @@
 		2AB2245821A809B600F6201F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AB2245921A809B700F6201F /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
 		2AB2245A21A809B800F6201F /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/SyntaxEditView.strings; sourceTree = "<group>"; };
+		2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Unicode.GeneralCategory.swift; sourceTree = "<group>"; };
 		2AB541D920A5B6A400367DD5 /* NSView+ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+ViewController.swift"; sourceTree = "<group>"; };
 		2AB8C7BA1D49283400EFC3BC /* SyntaxManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxManager.swift; sourceTree = "<group>"; };
 		2ABBACA01E3F1D1C00A080E7 /* NSTextStorage+ScriptingSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTextStorage+ScriptingSupport.swift"; sourceTree = "<group>"; };
@@ -2134,6 +2137,7 @@
 				2AF073FA1D34587500770BA6 /* CharacterInfo.swift */,
 				2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */,
 				2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */,
+				2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */,
 				2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */,
 			);
 			name = Character;
@@ -3039,6 +3043,7 @@
 				2A0DD6371E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
+				2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
 				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
@@ -3339,6 +3344,7 @@
 				2A0DD6361E655FE6001CAAA3 /* Tokenizer.swift in Sources */,
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
+				2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
 				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
 				2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,

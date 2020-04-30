@@ -34,11 +34,13 @@ final class CharacterPopoverController: NSViewController {
     @objc private dynamic var glyph: String?
     @objc private dynamic var unicodeName: String?
     @objc private dynamic var unicodeBlockName: String?
+    @objc private dynamic var unicodeCategoryName: String?
     @objc private dynamic var unicode: String = ""
     
     @objc private dynamic var characterColor: NSColor = .labelColor
     
     @IBOutlet private weak var unicodeBlockNameField: NSTextField?
+    @IBOutlet private weak var unicodeCategoryNameField: NSTextField?
     
     
     
@@ -57,6 +59,7 @@ final class CharacterPopoverController: NSViewController {
         // remove group name field if not exists
         if self.unicodeBlockName == nil {
             self.unicodeBlockNameField!.removeFromSuperviewWithoutNeedingDisplay()
+            self.unicodeCategoryNameField!.removeFromSuperviewWithoutNeedingDisplay()
         }
     }
     
@@ -74,6 +77,13 @@ final class CharacterPopoverController: NSViewController {
         self.glyph = info.pictureString ?? info.string
         self.unicodeName = info.localizedDescription
         self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
+        self.unicodeCategoryName = {
+            guard !info.isComplex,
+                let category = unicodes.first?.properties.generalCategory
+                else { return nil }
+            
+            return "\(category.longName) (\(category.shortName))"
+        }()
         
         // build Unicode code point string
         let codePoints: [String] = unicodes.map { unicode in

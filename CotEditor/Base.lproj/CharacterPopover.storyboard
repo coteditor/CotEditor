@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="OrY-ac-ENK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="OrY-ac-ENK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,11 +11,11 @@
             <objects>
                 <viewController id="OrY-ac-ENK" customClass="CharacterPopoverController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="0jI-EZ-ymG">
-                        <rect key="frame" x="0.0" y="0.0" width="276" height="92"/>
+                        <rect key="frame" x="0.0" y="0.0" width="276" height="91"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lnp-OL-NAu" customClass="CharacterField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="8" y="10" width="68" height="72"/>
+                                <rect key="frame" x="8" y="10" width="68" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="brS-3N-jsB"/>
                                 </constraints>
@@ -30,9 +30,9 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="5tD-mh-lm6">
-                                <rect key="frame" x="80" y="31" width="188" height="14"/>
+                                <rect key="frame" x="80" y="17" width="188" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="U+86D9" id="Atm-wm-Ocl">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -41,9 +41,9 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="cvP-MD-1SF">
-                                <rect key="frame" x="80" y="66" width="188" height="16"/>
+                                <rect key="frame" x="80" y="66" width="188" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK UNIFIED IDEOGRAPH-86D9" id="H6i-fn-bnL">
-                                    <font key="font" metaFont="cellTitle"/>
+                                    <font key="font" metaFont="label" size="12"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -54,7 +54,7 @@
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="V7B-LW-D7y">
                                 <rect key="frame" x="80" y="49" width="188" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK Unified Ideographs" id="h7A-Kh-GoY">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -62,30 +62,50 @@
                                     <binding destination="OrY-ac-ENK" name="value" keyPath="unicodeBlockName" id="GWn-J1-VN6"/>
                                 </connections>
                             </textField>
+                            <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="A1r-o5-Utk">
+                                <rect key="frame" x="80" y="33" width="188" height="14"/>
+                                <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Other Letter (Lo)" id="Lb6-LZ-azs">
+                                    <font key="font" metaFont="controlContent" size="11"/>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <binding destination="OrY-ac-ENK" name="value" keyPath="unicodeCategoryName" id="GC0-Xf-hdt">
+                                        <dictionary key="options">
+                                            <bool key="NSAllowsEditingMultipleValuesSelection" value="NO"/>
+                                        </dictionary>
+                                    </binding>
+                                </connections>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="V7B-LW-D7y" secondAttribute="bottom" constant="4" id="4Nz-VM-PAT"/>
                             <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" priority="749" constant="4" id="B75-bi-dvz"/>
                             <constraint firstAttribute="trailing" secondItem="cvP-MD-1SF" secondAttribute="trailing" constant="10" id="GfY-bt-3uf"/>
                             <constraint firstAttribute="trailing" secondItem="V7B-LW-D7y" secondAttribute="trailing" constant="10" id="HVL-ke-sJa"/>
                             <constraint firstItem="V7B-LW-D7y" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="JzA-kM-gRT"/>
+                            <constraint firstItem="A1r-o5-Utk" firstAttribute="top" secondItem="V7B-LW-D7y" secondAttribute="bottom" constant="2" id="PyJ-0A-Cro"/>
                             <constraint firstItem="5tD-mh-lm6" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="TEN-2w-O09"/>
                             <constraint firstItem="Lnp-OL-NAu" firstAttribute="leading" secondItem="0jI-EZ-ymG" secondAttribute="leading" constant="10" id="Vj2-pk-Yi8"/>
                             <constraint firstAttribute="bottom" secondItem="Lnp-OL-NAu" secondAttribute="bottom" priority="740" constant="10" id="Vnu-NL-Tu3"/>
+                            <constraint firstItem="A1r-o5-Utk" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="YjN-nk-w8W"/>
                             <constraint firstItem="V7B-LW-D7y" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="bottom" constant="3" id="cW3-TS-n9I"/>
                             <constraint firstAttribute="trailing" secondItem="5tD-mh-lm6" secondAttribute="trailing" constant="10" id="e7L-Ya-1fM"/>
                             <constraint firstItem="cvP-MD-1SF" firstAttribute="leading" secondItem="Lnp-OL-NAu" secondAttribute="trailing" constant="8" symbolic="YES" id="e8Y-ow-6K9"/>
+                            <constraint firstAttribute="trailing" secondItem="A1r-o5-Utk" secondAttribute="trailing" constant="10" id="gaP-g2-Lm2"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5tD-mh-lm6" secondAttribute="bottom" constant="12" id="ggB-LH-qfa"/>
+                            <constraint firstItem="5tD-mh-lm6" firstAttribute="top" secondItem="A1r-o5-Utk" secondAttribute="bottom" constant="2" id="pD7-dI-ZAI"/>
                             <constraint firstItem="Lnp-OL-NAu" firstAttribute="top" secondItem="0jI-EZ-ymG" secondAttribute="top" constant="10" id="sWg-5J-zQW"/>
                             <constraint firstItem="Lnp-OL-NAu" firstAttribute="top" secondItem="cvP-MD-1SF" secondAttribute="top" id="zIk-gW-Q8x"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="unicodeBlockNameField" destination="V7B-LW-D7y" id="BHc-Ks-iOV"/>
+                        <outlet property="unicodeCategoryNameField" destination="A1r-o5-Utk" id="zAW-Yh-jRY"/>
                     </connections>
                 </viewController>
                 <customObject id="4OK-k5-a7c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="131"/>
         </scene>
     </scenes>
 </document>

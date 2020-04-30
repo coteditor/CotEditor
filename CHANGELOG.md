@@ -8,6 +8,7 @@ Change Log
 ### New Features
 
 - Rewrite the invisible character drawing feature to draw alternative symbols more properly under various environments.
+- Display Unicode's general category in the character info popover.
 
 
 ### Improvements
