@@ -331,10 +331,10 @@
 		2A72DA11209B778B005242B9 /* NSTextView+MultiCursor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */; };
 		2A733E8920BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
 		2A733E8A20BBB4AC0090D7CB /* String+Case.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A733E8820BBB4AC0090D7CB /* String+Case.swift */; };
-		2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */; };
-		2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */; };
-		2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
-		2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */; };
+		2A73B5B61D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */; };
+		2A73B5B71D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */; };
+		2A73B5BC1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */; };
+		2A73B5BD1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */; };
 		2A75ACCB19E86DDB00444894 /* CotEditor.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 2A75ACCA19E86DDB00444894 /* CotEditor.sdef */; };
 		2A7646E71D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
 		2A7646E81D48EAF200350674 /* SettingManaging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7646E61D48EAF200350674 /* SettingManaging.swift */; };
@@ -1106,8 +1106,8 @@
 		2A71BC7D1DDC70A80085AE1C /* NSImage+Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSImage+Template.swift"; sourceTree = "<group>"; };
 		2A72DA0F209B778B005242B9 /* NSTextView+MultiCursor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+MultiCursor.swift"; sourceTree = "<group>"; };
 		2A733E8820BBB4AC0090D7CB /* String+Case.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Case.swift"; sourceTree = "<group>"; };
-		2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+ControlCharacter.swift"; sourceTree = "<group>"; };
-		2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UnicodeScalar+Information.swift"; sourceTree = "<group>"; };
+		2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+ControlCharacter.swift"; sourceTree = "<group>"; };
+		2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Unicode.Scalar+Information.swift"; sourceTree = "<group>"; };
 		2A75ACCA19E86DDB00444894 /* CotEditor.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = CotEditor.sdef; sourceTree = "<group>"; };
 		2A7646E61D48EAF200350674 /* SettingManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingManaging.swift; sourceTree = "<group>"; };
 		2A7646E91D48ECD100350674 /* SettingFileManaging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingFileManaging.swift; sourceTree = "<group>"; };
@@ -2135,8 +2135,8 @@
 			isa = PBXGroup;
 			children = (
 				2AF073FA1D34587500770BA6 /* CharacterInfo.swift */,
-				2A73B5BB1D468DD30025337F /* UnicodeScalar+Information.swift */,
-				2A73B5B31D4675350025337F /* UnicodeScalar+ControlCharacter.swift */,
+				2A73B5BB1D468DD30025337F /* Unicode.Scalar+Information.swift */,
+				2A73B5B31D4675350025337F /* Unicode.Scalar+ControlCharacter.swift */,
 				2AB2913D245AAD74004CC203 /* Unicode.GeneralCategory.swift */,
 				2A1235452121B106002E9C53 /* UTF32Char+BlockName.swift */,
 			);
@@ -3044,9 +3044,9 @@
 				2A0DD6341E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A5D13291D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2AB2913E245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
+				2A73B5B71D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
+				2A73B5BD1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
 				2A4257B71D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
-				2A73B5B71D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
-				2A73B5BD1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
 				2AA14D001FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A8DA9481D28ED93003D0C4B /* URL.swift in Sources */,
 				2AE73F3E2039A29300D8903B /* URL+ExtendedAttribute.swift in Sources */,
@@ -3345,9 +3345,9 @@
 				2A0DD6331E655C4A001CAAA3 /* TokenTextView.swift in Sources */,
 				2A5D13281D1F9EEB00D38E6A /* ToolbarController.swift in Sources */,
 				2AB2913F245AAD74004CC203 /* Unicode.GeneralCategory.swift in Sources */,
+				2A73B5B61D4675350025337F /* Unicode.Scalar+ControlCharacter.swift in Sources */,
+				2A73B5BC1D468DD30025337F /* Unicode.Scalar+Information.swift in Sources */,
 				2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */,
-				2A73B5B61D4675350025337F /* UnicodeScalar+ControlCharacter.swift in Sources */,
-				2A73B5BC1D468DD30025337F /* UnicodeScalar+Information.swift in Sources */,
 				2AA14CFF1FA498E900EAF586 /* UnixScript.swift in Sources */,
 				2A78BFB31D1B240900A583D2 /* UpdaterManager.swift in Sources */,
 				2A8DA9471D28ED93003D0C4B /* URL.swift in Sources */,

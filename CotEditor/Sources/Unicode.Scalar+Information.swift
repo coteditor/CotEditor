@@ -1,5 +1,5 @@
 //
-//  UnicodeScalar+Information.swift
+//  Unicode.Scalar+Information.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -26,7 +26,7 @@
 import typealias Darwin.MacTypes.UTF32Char
 import class Foundation.Bundle
 
-extension UnicodeScalar {
+extension Unicode.Scalar {
     
     /// code point string in format like `U+000F`
     var codePoint: String {
@@ -80,7 +80,7 @@ extension UnicodeScalar {
 
 // MARK: -
 
-// implement Unicode functions at UTF32Char level in order to cover single surrogate characters that are not allowed by UnicodeScalar
+// implement Unicode functions at UTF32Char level in order to cover single surrogate characters that are not allowed by Unicode.Scalar
 
 extension UTF32Char {
     

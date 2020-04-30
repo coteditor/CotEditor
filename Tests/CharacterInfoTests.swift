@@ -46,7 +46,7 @@ final class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(character.unicodeName, "<lead surrogate-D83D>")
         XCTAssertEqual(character.blockName, "High Surrogates")
         
-        XCTAssertNil(UnicodeScalar(character))
+        XCTAssertNil(Unicode.Scalar(character))
     }
     
     
@@ -69,7 +69,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSingleChar() {
         
-        let unicode = UnicodeScalar("あ")
+        let unicode = Unicode.Scalar("あ")
         XCTAssertEqual(unicode.codePoint, "U+3042")
         XCTAssertFalse(unicode.isSurrogatePair)
         XCTAssertNil(unicode.surrogateCodePoints)
@@ -81,7 +81,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testSurrogateEmoji() {
         
-        let unicode = UnicodeScalar("😀")
+        let unicode = Unicode.Scalar("😀")
         
         XCTAssertEqual(unicode.codePoint, "U+1F600")
         XCTAssertTrue(unicode.isSurrogatePair)
@@ -94,7 +94,7 @@ final class CharacterInfoTests: XCTestCase {
     
     func testUnicodeBlockNameWithHyphen() {
         
-        let character = UnicodeScalar("﷽")
+        let character = Unicode.Scalar("﷽")
         
         XCTAssertEqual(character.codePoint, "U+FDFD")
         XCTAssertEqual(character.name, "ARABIC LIGATURE BISMILLAH AR-RAHMAN AR-RAHEEM")
@@ -105,29 +105,29 @@ final class CharacterInfoTests: XCTestCase {
     func testUnicodeControlPictures() {
         
         // test NULL
-        let nullCharacter = UnicodeScalar(0x0000)!
-        let nullPictureCharacter = UnicodeScalar(0x2400)!
+        let nullCharacter = Unicode.Scalar(0x0000)!
+        let nullPictureCharacter = Unicode.Scalar(0x2400)!
         XCTAssertEqual(nullCharacter.name, "NULL")
         XCTAssertEqual(nullPictureCharacter.name, "SYMBOL FOR NULL")
         XCTAssertEqual(nullCharacter.pictureRepresentation, nullPictureCharacter)
         
         // test SPACE
-        let spaceCharacter = UnicodeScalar(0x0020)!
-        let spacePictureCharacter = UnicodeScalar(0x2420)!
+        let spaceCharacter = Unicode.Scalar(0x0020)!
+        let spacePictureCharacter = Unicode.Scalar(0x2420)!
         XCTAssertEqual(spaceCharacter.name, "SPACE")
         XCTAssertEqual(spacePictureCharacter.name, "SYMBOL FOR SPACE")
         XCTAssertEqual(spaceCharacter.pictureRepresentation, spacePictureCharacter)
         
         // test DELETE
         XCTAssertEqual(Int(ControlCharacter.deleteCharacter), NSDeleteCharacter)
-        let deleteCharacter = UnicodeScalar(NSDeleteCharacter)!
-        let deletePictureCharacter = UnicodeScalar("␡")
+        let deleteCharacter = Unicode.Scalar(NSDeleteCharacter)!
+        let deletePictureCharacter = Unicode.Scalar("␡")
         XCTAssertEqual(deleteCharacter.name, "DELETE")
         XCTAssertEqual(deletePictureCharacter.name, "SYMBOL FOR DELETE")
         XCTAssertEqual(deleteCharacter.pictureRepresentation, deletePictureCharacter)
         
         // test one after the last C0 control character
-        let exclamationCharacter = UnicodeScalar(0x0021)!
+        let exclamationCharacter = Unicode.Scalar(0x0021)!
         XCTAssertEqual(exclamationCharacter.name, "EXCLAMATION MARK")
         XCTAssertNil(exclamationCharacter.pictureRepresentation)
     }

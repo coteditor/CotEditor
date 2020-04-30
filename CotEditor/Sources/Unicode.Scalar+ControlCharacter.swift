@@ -1,5 +1,5 @@
 //
-//  UnicodeScalar+ControlCharacter.swift
+//  Unicode.Scalar+ControlCharacter.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -25,16 +25,16 @@
 
 import typealias Darwin.MacTypes.UTF32Char
 
-extension UnicodeScalar {
+extension Unicode.Scalar {
     
     /// alternate picture caracter for invisible control character
-    var pictureRepresentation: UnicodeScalar? {
+    var pictureRepresentation: Unicode.Scalar? {
         
         switch self.value {
             case ControlCharacter.C0Range:
-                return UnicodeScalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
+                return Unicode.Scalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
             case ControlCharacter.deleteCharacter:
-                return UnicodeScalar(0x2421)  // SYMBOL FOR DELETE character
+                return Unicode.Scalar(0x2421)  // SYMBOL FOR DELETE character
             default:
                 return nil
         }

@@ -185,7 +185,7 @@ struct Shortcut: Hashable {
     
     
     /// table for characters that cannot be displayed as is with their printable substitutions
-    private static let printableKeyEquivalents: [UnicodeScalar: String] = [
+    private static let printableKeyEquivalents: [Unicode.Scalar: String] = [
         NSUpArrowFunctionKey: "↑",
         NSDownArrowFunctionKey: "↓",
         NSLeftArrowFunctionKey: "←",
@@ -220,7 +220,7 @@ struct Shortcut: Hashable {
         0x03: "⌅",  // = Enter
         0x31: "⇤",  // = Backtab
         0x1b: "⎋",  // = Escape
-        ].mapKeys { UnicodeScalar($0)! }
+        ].mapKeys { Unicode.Scalar($0)! }
     
 }
 

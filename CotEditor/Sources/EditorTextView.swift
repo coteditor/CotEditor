@@ -489,8 +489,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 }
                 
                 // insert bracket pair if insertion point is not in a word
-                if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? UnicodeScalar(0)),
-                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? UnicodeScalar(0)))  // for "
+                if !CharacterSet.alphanumerics.contains(self.character(after: self.rangeForUserTextChange) ?? Unicode.Scalar(0)),
+                    !(pair.begin == pair.end && CharacterSet.alphanumerics.contains(self.character(before: self.rangeForUserTextChange) ?? Unicode.Scalar(0)))  // for "
                 {
                     super.insertText(String(pair.begin) + String(pair.end), replacementRange: replacementRange)
                     self.setSelectedRangesWithUndo([NSRange(location: self.selectedRange.location - 1, length: 0)])

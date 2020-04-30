@@ -103,7 +103,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
         
         self.unicodeName = longChar.unicodeName
         
-        guard let scalar = UnicodeScalar(longChar) else { return }
+        guard let scalar = Unicode.Scalar(longChar) else { return }
         
         self.isValid = true
         self.characterString = String(scalar)
