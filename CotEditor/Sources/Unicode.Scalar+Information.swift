@@ -84,15 +84,17 @@ extension UInt32 {
     /// get Unicode name
     var unicodeName: String? {
         
-        // get control character name from special table
-        if let name = self.controlCharacterName {
+        let scalar = Unicode.Scalar(self)
+        
+        // get Unicode name from property
+        if let properties = scalar?.properties,
+           let name = properties.nameAlias ?? properties.name
+        {
             return name
         }
         
-        // get Unicode name from property
-        if let properties = Unicode.Scalar(self)?.properties,
-           let name = properties.nameAlias ?? properties.name
-        {
+        // get control character name from special table
+        if let name = scalar?.controlCharacterName {
             return name
         }
         

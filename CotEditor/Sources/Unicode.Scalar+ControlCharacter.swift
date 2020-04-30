@@ -25,130 +25,99 @@
 
 extension Unicode.Scalar {
     
-    /// alternate picture caracter for invisible control character
+    /// Alternate picture caracter for invisible control character.
     var pictureRepresentation: Unicode.Scalar? {
         
         switch self.value {
-            case ControlCharacter.C0Range:
+            case 0x0000...0x0020:  // C0
                 return Unicode.Scalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
-            case ControlCharacter.deleteCharacter:
+            case 0x007F:  // DELETE
                 return Unicode.Scalar(0x2421)  // SYMBOL FOR DELETE character
             default:
                 return nil
         }
     }
     
-}
-
-
-
-extension UInt32 {
     
-    /// unicode name if receiver is a control character
+    /// Human-friendly name if receiver is a control character.
     var controlCharacterName: String? {
         
-        switch self {
-            case ControlCharacter.C0Range:
-                let index = Int(self)
-                return ControlCharacter.C0Names[index]
-            case ControlCharacter.C1Range:
-                let index = Int(self - ControlCharacter.C1Range.lowerBound)  // shift to 0-based array index
-                return ControlCharacter.C1Names[index]
-            case ControlCharacter.deleteCharacter:
-                return ControlCharacter.deleteName
+        switch self.value {
+            // C0
+            case 0x0000: return "NULL"
+            case 0x0001: return "START OF HEADING"
+            case 0x0002: return "START OF TEXT"
+            case 0x0003: return "END OF TEXT"
+            case 0x0004: return "END OF TRANSMISSION"
+            case 0x0005: return "ENQUIRY"
+            case 0x0006: return "ACKNOWLEDGE"
+            case 0x0007: return "BELL"
+            case 0x0008: return "BACKSPACE"
+            case 0x0009: return "HORIZONTAL TABULATION"
+            case 0x000A: return "LINE FEED"
+            case 0x000B: return "VERTICAL TABULATION"
+            case 0x000C: return "FORM FEED"
+            case 0x000D: return "CARRIAGE RETURN"
+            case 0x000E: return "SHIFT OUT"
+            case 0x000F: return "SHIFT IN"
+            case 0x0010: return "DATA LINK ESCAPE"
+            case 0x0011: return "DEVICE CONTROL ONE"
+            case 0x0012: return "DEVICE CONTROL TWO"
+            case 0x0013: return "DEVICE CONTROL THREE"
+            case 0x0014: return "DEVICE CONTROL FOUR"
+            case 0x0015: return "NEGATIVE ACKNOWLEDGE"
+            case 0x0016: return "SYNCHRONOUS IDLE"
+            case 0x0017: return "END OF TRANSMISSION BLOCK"
+            case 0x0018: return "CANCEL"
+            case 0x0019: return "END OF MEDIUM"
+            case 0x001A: return "SUBSTITUTE"
+            case 0x001B: return "ESCAPE"
+            case 0x001C: return "FILE SEPARATOR"
+            case 0x001D: return "GROUP SEPARATOR"
+            case 0x001E: return "RECORD SEPARATOR"
+            case 0x001F: return "UNIT SEPARATOR"
+            // The following two are actually not in range of C0 but often included in actual fact.
+            case 0x0020: return "SPACE"
+            case 0x007F: return "DELETE"
+            
+            // C1
+            case 0x0080: return "PADDING CHARACTER"
+            case 0x0081: return "HIGH OCTET PRESET"
+            case 0x0082: return "BREAK PERMITTED HERE"
+            case 0x0083: return "NO BREAK HERE"
+            case 0x0084: return "INDEX"
+            case 0x0085: return "NEXT LINE"
+            case 0x0086: return "START OF SELECTED AREA"
+            case 0x0087: return "END OF SELECTED AREA"
+            case 0x0088: return "CHARACTER TABULATION SET"
+            case 0x0089: return "CHARACTER TABULATION WITH JUSTIFICATION"
+            case 0x008A: return "LINE TABULATION SET"
+            case 0x008B: return "PARTIAL LINE FORWARD"
+            case 0x008C: return "PARTIAL LINE BACKWARD"
+            case 0x008D: return "REVERSE LINE FEED"
+            case 0x008E: return "SINGLE SHIFT TWO"
+            case 0x008F: return "SINGLE SHIFT THREE"
+            case 0x0090: return "DEVICE CONTROL STRING"
+            case 0x0091: return "PRIVATE USE ONE"
+            case 0x0092: return "PRIVATE USE TWO"
+            case 0x0093: return "SET TRANSMIT STATE"
+            case 0x0094: return "CANCEL CHARACTER"
+            case 0x0095: return "MESSAGE WAITING"
+            case 0x0096: return "START OF PROTECTED AREA"
+            case 0x0097: return "END OF PROTECTED AREA"
+            case 0x0098: return "START OF STRING"
+            case 0x0099: return "SINGLE GRAPHIC CHARACTER INTRODUCER"
+            case 0x009A: return "SINGLE CHARACTER INTRODUCER"
+            case 0x009B: return "CONTROL SEQUENCE INTRODUCER"
+            case 0x009C: return "STRING TERMINATOR"
+            case 0x009D: return "OPERATING SYSTEM COMMAND"
+            case 0x009E: return "PRIVACY MESSAGE"
+            case 0x009F: return "APPLICATION PROGRAM COMMAND"
+            
             default:
+                assert(self.properties.generalCategory != .control)
                 return nil
         }
     }
-    
-}
-
-
-
-// MARK: -
-
-enum ControlCharacter {
-    
-    // MARK: Code Point Ranges
-    
-    static let deleteCharacter = UInt32(0x007F)
-    static let C0Range = UInt32(0x0000)...UInt32(0x0020)  // U+0020 is actually not in range of C0 control character. But they are often included in actual fact.
-    static let C1Range = UInt32(0x0080)...UInt32(0x009F)
-    
-    
-    // MARK: Names
-    
-    static let deleteName = "DELETE"
-    
-    static let C0Names = [
-        "NULL",
-        "START OF HEADING",
-        "START OF TEXT",
-        "END OF TEXT",
-        "END OF TRANSMISSION",
-        "ENQUIRY",
-        "ACKNOWLEDGE",
-        "BELL",
-        "BACKSPACE",
-        "HORIZONTAL TABULATION",
-        "LINE FEED",
-        "VERTICAL TABULATION",
-        "FORM FEED",
-        "CARRIAGE RETURN",
-        "SHIFT OUT",
-        "SHIFT IN",
-        "DATA LINK ESCAPE",
-        "DEVICE CONTROL ONE",
-        "DEVICE CONTROL TWO",
-        "DEVICE CONTROL THREE",
-        "DEVICE CONTROL FOUR",
-        "NEGATIVE ACKNOWLEDGE",
-        "SYNCHRONOUS IDLE",
-        "END OF TRANSMISSION BLOCK",
-        "CANCEL",
-        "END OF MEDIUM",
-        "SUBSTITUTE",
-        "ESCAPE",
-        "FILE SEPARATOR",
-        "GROUP SEPARATOR",
-        "RECORD SEPARATOR",
-        "UNIT SEPARATOR",
-        "SPACE",
-    ]
-    
-    static let C1Names = [
-        "PADDING CHARACTER",
-        "HIGH OCTET PRESET",
-        "BREAK PERMITTED HERE",
-        "NO BREAK HERE",
-        "INDEX",
-        "NEXT LINE",
-        "START OF SELECTED AREA",
-        "END OF SELECTED AREA",
-        "CHARACTER TABULATION SET",
-        "CHARACTER TABULATION WITH JUSTIFICATION",
-        "LINE TABULATION SET",
-        "PARTIAL LINE FORWARD",
-        "PARTIAL LINE BACKWARD",
-        "REVERSE LINE FEED",
-        "SINGLE SHIFT TWO",
-        "SINGLE SHIFT THREE",
-        "DEVICE CONTROL STRING",
-        "PRIVATE USE ONE",
-        "PRIVATE USE TWO",
-        "SET TRANSMIT STATE",
-        "CANCEL CHARACTER",
-        "MESSAGE WAITING",
-        "START OF PROTECTED AREA",
-        "END OF PROTECTED AREA",
-        "START OF STRING",
-        "SINGLE GRAPHIC CHARACTER INTRODUCER",
-        "SINGLE CHARACTER INTRODUCER",
-        "CONTROL SEQUENCE INTRODUCER",
-        "STRING TERMINATOR",
-        "OPERATING SYSTEM COMMAND",
-        "PRIVACY MESSAGE",
-        "APPLICATION PROGRAM COMMAND",
-    ]
     
 }

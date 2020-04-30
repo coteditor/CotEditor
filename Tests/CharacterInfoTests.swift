@@ -119,7 +119,6 @@ final class CharacterInfoTests: XCTestCase {
         XCTAssertEqual(spaceCharacter.pictureRepresentation, spacePictureCharacter)
         
         // test DELETE
-        XCTAssertEqual(Int(ControlCharacter.deleteCharacter), NSDeleteCharacter)
         let deleteCharacter = Unicode.Scalar(NSDeleteCharacter)!
         let deletePictureCharacter = Unicode.Scalar("␡")
         XCTAssertEqual(deleteCharacter.name, "DELETE")
