@@ -197,7 +197,7 @@
 // Summary item names
 "Color" = "Cor";
 "Line Number" = "Número da Linha";
-"Invisible Characters" = "Caracteres Invisíveis";
+"Invisibles" = "Invisíveis";
 "Print Header" = "Imprimir Cabeçalho";
 "Primary Header" = "Cabeçalho Primário";
 "Primary Header Alignment" = "Alinhamento do Cabeçalho Primário";
@@ -280,16 +280,16 @@
 "Show Status Bar" = "Mostrar Barra de Estado";
 "Hide Navigation Bar" = "Ocultar Barra de Navegação";
 "Show Navigation Bar" = "Mostrar Barra de Navegação";
-"Hide Invisible Characters" = "Ocultar Caracteres Invisíveis";
-"Show Invisible Characters" = "Mostrar Caracteres Invisíveis";
+"Hide Invisibles" = "Ocultar Invisíveis";
+"Show Invisibles" = "Mostrar Invisíveis";
 "Hide Page Guide" = "Ocultar Guia da Página";
 "Show Page Guide" = "Mostrar Guia da Página";
 "Unwrap Lines" = "Desajustar Linhas";
 "Wrap Lines" = "Ajustar Linhas";
 
-// Tooltip for "Show Invisible Characters" menu item
-"Show or hide invisible characters in document" = "Mostre ou oculte os caracteres invisíveis no documento";
-"To show invisible characters, set them in Preferences" = "Para mostrar caracteres invisíveis, ative-os nas Preferências";
+// Tooltip for "Show Invisibles" menu item
+"Show or hide invisible characters in document" = "Mostre ou oculte os invisíveis no documento";
+"To show invisible characters, set them in Preferences" = "Para mostrar invisíveis, ative-os nas Preferências";
 
 
 

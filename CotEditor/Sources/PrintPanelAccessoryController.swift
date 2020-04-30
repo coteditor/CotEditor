@@ -149,7 +149,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         return [
             localizedSummaryItem(name: "Color", description: self.theme),
             localizedSummaryItem(name: "Line Number", description: self.lineNumberMode.description),
-            localizedSummaryItem(name: "Invisible Characters", description: self.invisibleCharsMode.description),
+            localizedSummaryItem(name: "Invisibles", description: self.invisibleCharsMode.description),
             
             localizedSummaryItem(name: "Print Header", description: self.printsHeader ? "On" : "Off"),
             localizedSummaryItem(name: "Primary Header", description: self.primaryHeaderContent.description),

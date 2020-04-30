@@ -174,7 +174,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
-"Invisibles" = "Invisibles";
+"Invisibles" = "Caractères invisibles";
 "Wrap Lines" = "Renvoyer à la ligne";
 
 // Touch bar item labels -Text View
@@ -195,7 +195,7 @@
 // Summary item names
 "Color" = "Couleur";
 "Line Number" = "Numéro de ligne";
-"Invisible Characters" = "Caractères invisibles";
+"Invisibles" = "Caractères invisibles";
 "Print Header" = "Imprimer l'en-tête";
 "Primary Header" = "En-tête principal";
 "Primary Header Alignment" = "Alignement de l'en-tête principal";
@@ -278,14 +278,14 @@
 "Show Status Bar" = "Afficher la barre d'état";
 "Hide Navigation Bar" = "Masquer la barre de navigation";
 "Show Navigation Bar" = "Afficher la barre de navigation";
-"Hide Invisible Characters" = "Masquer les caractères invisibles";
-"Show Invisible Characters" = "Afficher les caractères invisibles";
+"Hide Invisibles" = "Masquer les caractères invisibles";
+"Show Invisibles" = "Afficher les caractères invisibles";
 "Hide Page Guide" = "Masquer le guide de page";
 "Show Page Guide" = "Afficher le guide de page";
 "Unwrap Lines" = "Ne pas renvoyer à la ligne";
 "Wrap Lines" = "Renvoyer à la ligne";
 
-// Tooltip for "Show Invisible Characters" menu item
+// Tooltip for "Show Invisibles" menu item
 "Show or hide invisible characters in document" = "Affiche ou masque les caractères invisibles dans le document";
 "To show invisible characters, set them in Preferences" = "Pour afficher les caractères invisibles, activez l'option dans les Préférences";
 

@@ -42,7 +42,7 @@
 "418.title" = "Imprimer";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Invisibles :";
+"718.title" = "Caractères invisibles :";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "Identique aux paramètres du document";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */

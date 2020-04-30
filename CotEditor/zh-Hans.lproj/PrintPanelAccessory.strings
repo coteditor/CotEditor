@@ -43,7 +43,7 @@
 "418.title" = "打印";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "不可见字符：";
+"718.title" = "不可见元素：";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "与文档设置一致";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */

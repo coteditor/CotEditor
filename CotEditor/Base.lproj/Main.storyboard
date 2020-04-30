@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -480,7 +480,7 @@ Gw
                                         <menuItem title="Theme" id="8z7-Jc-agP">
                                             <menu key="submenu" title="Theme" id="165-HJ-Xty"/>
                                         </menuItem>
-                                        <menuItem title="Show Invisible Characters" id="788">
+                                        <menuItem title="Show Invisibles" id="788">
                                             <connections>
                                                 <action selector="toggleInvisibleChars:" target="Ady-hI-5gd" id="HlM-Aw-tfM"/>
                                             </connections>

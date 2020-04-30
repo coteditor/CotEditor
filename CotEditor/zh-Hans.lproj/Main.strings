@@ -246,8 +246,8 @@
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Tab 转为空格";
 
-/* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
-"788.title" = "显示不可见字符";
+/* Class = "NSMenuItem"; title = "Show Invisibless"; ObjectID = "788"; */
+"788.title" = "显示不可见元素";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
 "mEh-BD-ZlV.title" = "书写方向";

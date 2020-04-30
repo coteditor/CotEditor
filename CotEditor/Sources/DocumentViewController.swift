@@ -279,8 +279,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
             case #selector(toggleInvisibleChars):
                 (item as? NSMenuItem)?.title = self.showsInvisibles
-                    ? "Hide Invisible Characters".localized
-                    : "Show Invisible Characters".localized
+                    ? "Hide Invisibles".localized
+                    : "Show Invisibles".localized
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled

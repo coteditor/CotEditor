@@ -196,7 +196,7 @@
 // Summary item names
 "Color" = "Farbe";
 "Line Number" = "Zeilennummern";
-"Invisible Characters" = "Unsichtbare Zeichen";
+"Invisibles" = "Steuerzeichen";
 "Print Header" = "Kopfzeilen drucken";
 "Primary Header" = "Primäre Kopfzeile";
 "Primary Header Alignment" = "Ausrichtung der primären Kopfzeile";
@@ -279,16 +279,16 @@
 "Show Status Bar" = "Statusleiste einblenden";
 "Hide Navigation Bar" = "Navigationsleiste ausblenden";
 "Show Navigation Bar" = "Navigationsleiste einblenden";
-"Hide Invisible Characters" = "Unsichtbare Zeichen ausblenden";
-"Show Invisible Characters" = "Unsichtbare Zeichen einblenden";
+"Hide Invisibles" = "Steuerzeichen ausblenden";
+"Show Invisibles" = "Steuerzeichen einblenden";
 "Hide Page Guide" = "Seitenhilfslinie ausblenden";
 "Show Page Guide" = "Seitenhilfslinie einblenden";
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
 
-// Tooltip for "Show Invisible Characters" menu item
-"Show or hide invisible characters in document" = "Unsichtbare Zeichen im Text ein-/ausblenden";
-"To show invisible characters, set them in Preferences" = "Um unsichtbare Zeichen anzuzeigen, setze sie in den Einstellungen";
+// Tooltip for "Show Invisibles" menu item
+"Show or hide invisible characters in document" = "Steuerzeichen im Text ein-/ausblenden";
+"To show invisible characters, set them in Preferences" = "Um Steuerzeichen anzuzeigen, setze sie in den Einstellungen";
 
 
 

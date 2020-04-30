@@ -176,7 +176,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
-"Invisibles" = "不可见字符";
+"Invisibles" = "不可见元素";
 "Wrap Lines" = "换行";
 
 // Touch bar item labels -Text View
@@ -197,7 +197,7 @@
 // Summary item names
 "Color" = "颜色";
 "Line Number" = "行号";
-"Invisible Characters" = "不可见字符";
+"Invisibles" = "不可见元素";
 "Print Header" = "打印页眉";
 "Primary Header" = "主页眉";
 "Primary Header Alignment" = "主页眉对齐";
@@ -280,16 +280,16 @@
 "Show Status Bar" = "显示状态栏";
 "Hide Navigation Bar" = "隐藏导航栏";
 "Show Navigation Bar" = "显示导航栏";
-"Hide Invisible Characters" = "隐藏不可见字符";
-"Show Invisible Characters" = "显示不可见字符";
+"Hide Invisibles" = "隐藏不可见元素";
+"Show Invisibles" = "显示不可见元素";
 "Hide Page Guide" = "隐藏页面指示";
 "Show Page Guide" = "显示页面指示";
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 
-// Tooltip for "Show Invisible Characters" menu item
-"Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
-"To show invisible characters, set them in Preferences" = "要显示不可见字符，请在偏好设置中进行设定";
+// Tooltip for "Show Invisibles" menu item
+"Show or hide invisible characters in document" = "显示或隐藏文档中的不可见元素";
+"To show invisible characters, set them in Preferences" = "要显示不可见元素，请在偏好设置中进行设定";
 
 
 

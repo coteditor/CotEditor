@@ -50,7 +50,7 @@
 "948.title" = "Stampare";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "3382"; */
-"3382.title" = "Invisibili:";
+"3382.title" = "Caratteri invisibili:";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "952"; */
 "952.title" = "Non stampare";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
