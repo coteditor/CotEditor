@@ -56,8 +56,6 @@ extension UInt32 {
                 return ControlCharacter.C1Names[index]
             case ControlCharacter.deleteCharacter:
                 return ControlCharacter.deleteName
-            case ControlCharacter.zeroWidthNoBreakSpaceCharacter:
-                return ControlCharacter.zeroWidthNoBreakSpaceName
             default:
                 return nil
         }
@@ -76,13 +74,11 @@ enum ControlCharacter {
     static let deleteCharacter = UInt32(0x007F)
     static let C0Range = UInt32(0x0000)...UInt32(0x0020)  // U+0020 is actually not in range of C0 control character. But they are often included in actual fact.
     static let C1Range = UInt32(0x0080)...UInt32(0x009F)
-    static let zeroWidthNoBreakSpaceCharacter = UInt32(0xFEFF)  // BOM
     
     
     // MARK: Names
     
     static let deleteName = "DELETE"
-    static let zeroWidthNoBreakSpaceName = "ZERO WIDTH NO-BREAK SPACE"
     
     static let C0Names = [
         "NULL",
