@@ -29,19 +29,19 @@ import XCTest
 
 final class CharacterInfoTests: XCTestCase {
     
-    // MARK: UTF32Char Extension Tests
+    // MARK: UInt32 Extension Tests
     
     func testBlockNameTable() {
         
         // check comprehensiveness of block name table
-        let keys = UTF32Char.blockNameTable.keys.sorted { $0.lowerBound < $1.lowerBound }
+        let keys = UInt32.blockNameTable.keys.sorted { $0.lowerBound < $1.lowerBound }
         XCTAssertEqual(zip(keys, keys.dropFirst()).count(where: { $0.0.upperBound + 1 != $0.1.lowerBound }), 20)
     }
     
     
     func testSingleSurrogate() {
         
-        let character = UTF32Char(0xD83D)
+        let character: UInt32 = 0xD83D
         
         XCTAssertEqual(character.unicodeName, "<lead surrogate-D83D>")
         XCTAssertEqual(character.blockName, "High Surrogates")
@@ -56,8 +56,8 @@ final class CharacterInfoTests: XCTestCase {
         let bundleURL = Bundle.main.url(forResource: language, withExtension: "lproj")!
         let bundle = Bundle(url: bundleURL)!
         
-        for blockName in UTF32Char.blockNameTable.values {
-            let sanitizedBlockName = UTF32Char.appleUnicodeBlockName(for: blockName)
+        for blockName in UInt32.blockNameTable.values {
+            let sanitizedBlockName = UInt32.appleUnicodeBlockName(for: blockName)
             let localizedBlockName = sanitizedBlockName.localized(tableName: "Unicode", bundle: bundle)
             
             XCTAssertNotEqual(localizedBlockName, blockName)

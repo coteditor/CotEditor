@@ -23,8 +23,6 @@
 //  limitations under the License.
 //
 
-import typealias Darwin.MacTypes.UTF32Char
-
 extension Unicode.Scalar {
     
     /// alternate picture caracter for invisible control character
@@ -44,7 +42,7 @@ extension Unicode.Scalar {
 
 
 
-extension UTF32Char {
+extension UInt32 {
     
     /// unicode name if receiver is a control character
     var controlCharacterName: String? {

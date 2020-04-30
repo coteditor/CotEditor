@@ -1,5 +1,5 @@
 //
-//  UTF32Char+BlockName.swift
+//  UInt32+BlockName.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,9 +23,7 @@
 //  limitations under the License.
 //
 
-import typealias Darwin.MacTypes.UTF32Char
-
-extension UTF32Char {
+extension UInt32 {
     
     static let blockNameTable: [CountableClosedRange<Self>: String] = [
         0x0000...0x007F: "Basic Latin",

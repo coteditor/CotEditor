@@ -23,9 +23,6 @@
 //  limitations under the License.
 //
 
-import typealias Darwin.MacTypes.UTF32Char
-import class Foundation.Bundle
-
 extension Unicode.Scalar {
     
     /// code point string in format like `U+000F`
@@ -55,14 +52,14 @@ extension Unicode.Scalar {
     /// Unicode name
     var name: String? {
         
-        return UTF32Char(self.value).unicodeName
+        return self.value.unicodeName
     }
     
     
     /// Unicode block name
     var blockName: String? {
         
-        return UTF32Char(self.value).blockName
+        return self.value.blockName
     }
     
     
@@ -71,7 +68,7 @@ extension Unicode.Scalar {
         
         guard let blockName = self.blockName else { return nil }
         
-        return UTF32Char.appleUnicodeBlockName(for: blockName).localized(tableName: "Unicode")
+        return UInt32.appleUnicodeBlockName(for: blockName).localized(tableName: "Unicode")
     }
     
 }
@@ -80,9 +77,9 @@ extension Unicode.Scalar {
 
 // MARK: -
 
-// implement Unicode functions at UTF32Char level in order to cover single surrogate characters that are not allowed by Unicode.Scalar
+// implement Unicode functions at UInt32 level in order to cover single surrogate characters that are not allowed by Unicode.Scalar
 
-extension UTF32Char {
+extension UInt32 {
     
     /// get Unicode name
     var unicodeName: String? {
@@ -116,7 +113,7 @@ extension UTF32Char {
     /// Unicode block name
     var blockName: String? {
         
-        return UTF32Char.blockNameTable.first { $0.key.contains(self) }?.value
+        return UInt32.blockNameTable.first { $0.key.contains(self) }?.value
     }
     
     
