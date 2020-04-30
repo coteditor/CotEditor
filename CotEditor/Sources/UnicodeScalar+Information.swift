@@ -71,7 +71,7 @@ extension UnicodeScalar {
         
         guard let blockName = self.blockName else { return nil }
         
-        return sanitize(blockName: blockName).localized(tableName: "Unicode")
+        return UTF32Char.appleUnicodeBlockName(for: blockName).localized(tableName: "Unicode")
     }
     
 }
@@ -119,36 +119,18 @@ extension UTF32Char {
         return UTF32Char.blockNameTable.first { $0.key.contains(self) }?.value
     }
     
-}
-
-
-
-// MARK: - Block Name Sanitizing
-
-/// sanitize block name for localization
-private func sanitize(blockName: String) -> String {
     
-    // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-    //    Otherwise, we cannot localize block names correctly. (2015-11)
-    
-    return blockName
-        .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-        .replacingOccurrences(of: "Mathematical", with: "Math")
-        .replacingOccurrences(of: "Supplement", with: "Supp.")
-        .replacingOccurrences(of: "Description", with: "Desc.")
-}
-
-
-/// check which block names will be lozalized (only for test use)
-private func testUnicodeBlockNameLocalization(for language: String = "ja") {
-    
-    let bundleURL = Bundle.main.url(forResource: language, withExtension: "lproj")!
-    let bundle = Bundle(url: bundleURL)
-    
-    for blockName in UTF32Char.blockNameTable.values {
-        let sanitizedBlockName = sanitize(blockName: blockName)
-        let localizedBlockName = bundle?.localizedString(forKey: sanitizedBlockName, value: nil, table: "Unicode")
+    /// sanitize block name for localization
+    static func appleUnicodeBlockName(for blockName: String) -> String {
         
-        print((localizedBlockName == blockName) ? "⚠️" : "  ", sanitizedBlockName, localizedBlockName!, separator: "\t")
+        // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
+        //    Otherwise, we cannot localize block names correctly. (2015-11)
+        
+        return blockName
+            .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
+            .replacingOccurrences(of: "Mathematical", with: "Math")
+            .replacingOccurrences(of: "Supplement", with: "Supp.")
+            .replacingOccurrences(of: "Description", with: "Desc.")
     }
+    
 }

@@ -27,7 +27,7 @@ import typealias Darwin.MacTypes.UTF32Char
 
 extension UTF32Char {
     
-    static let blockNameTable: [CountableClosedRange<UTF32Char>: String] = [
+    static let blockNameTable: [CountableClosedRange<Self>: String] = [
         0x0000...0x007F: "Basic Latin",
         0x0080...0x00FF: "Latin-1 Supplement",
         0x0100...0x017F: "Latin Extended-A",
