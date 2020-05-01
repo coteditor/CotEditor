@@ -52,7 +52,9 @@ extension Unicode.Scalar {
     /// Unicode name
     var name: String? {
         
-        return self.value.unicodeName
+        return self.properties.nameAlias
+            ?? self.properties.name
+            ?? self.controlCharacterName  // get control character name from special table
     }
     
     
@@ -89,17 +91,7 @@ extension UTF32.CodeUnit {
     /// get Unicode name
     var unicodeName: String? {
         
-        let scalar = Unicode.Scalar(self)
-        
-        // get Unicode name from property
-        if let properties = scalar?.properties,
-           let name = properties.nameAlias ?? properties.name
-        {
-            return name
-        }
-        
-        // get control character name from special table
-        if let name = scalar?.controlCharacterName {
+        if let name = Unicode.Scalar(self)?.name {
             return name
         }
         
