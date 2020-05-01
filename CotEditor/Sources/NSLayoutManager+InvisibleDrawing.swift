@@ -63,7 +63,7 @@ extension InvisibleDrawing {
         let baselineOffset = (textContainer.layoutOrientation == .vertical)
             ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
             : baselineOffset
-        var pathCache: [Unicode.UTF16.CodeUnit: CGPath] = [:]
+        var pathCache: [UTF16.CodeUnit: CGPath] = [:]
         
         // setup drawing parameters
         NSGraphicsContext.saveGraphicsState()

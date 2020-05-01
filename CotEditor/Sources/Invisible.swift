@@ -36,7 +36,7 @@ enum Invisible {
     case otherControl  // Unicode Category Cc and U+200B
     
     
-    init?(codeUnit: Unicode.UTF16.CodeUnit) {
+    init?(codeUnit: UTF16.CodeUnit) {
         
         // > NSGlyphGenerator generates NSControlGlyph for all characters
         // > in the Unicode General Category C* and U200B (ZERO WIDTH SPACE).
