@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2019 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -52,7 +52,7 @@
 "Brahmi" = "Brahmi";
 "Enclosed Alphanumerics" = "Alfanumerici inclusi";
 "Linear B Syllabary" = "Sillabario lineare B";
-"Arabic Math Alphabetic Symbols" = "Simboli matematici dell’alfabeto arabo";
+"Arabic Mathematical Alphabetic Symbols" = "Simboli matematici dell’alfabeto arabo";
 "Ugaritic" = "Ugaritico";
 "Bamum Supplement" = "Integrazione Bamum";
 "Alphabetic Presentation Forms" = "Presentazioni alfabetiche";
@@ -151,7 +151,7 @@
 "Optical Character Recognition" = "Riconosc. caratteri (OCR)";
 "Hangul Jamo Extended-A" = "Hangul Jamo esteso-A";
 "Geometric Shapes Extended" = "Forme geometriche estese";
-"Supplemental Math Operators" = "Operatori matematici suppl.";
+"Supplemental Mathematical Operators" = "Operatori matematici suppl.";
 "Common Indic Number Forms" = "Formati numerici Common Indic";
 "Enclosed Alphanumeric Supplement" = "Supplemento alfanumerico incluso";
 "Kaithi" = "Kaithi";
@@ -165,9 +165,9 @@
 "CJK Unified Ideographs Ext. D" = "Ideogrammi unificati CJK Est. D";
 "Caucasian Albanian" = "Albanese caucasico";
 "Tifinagh" = "Tifinagh";
-"Miscellaneous Symbols And Pictographs" = "Simboli e pittogrammi vari";
+"Miscellaneous Symbols and Pictographs" = "Simboli e pittogrammi vari";
 "Meetei Mayek Extensions" = "Estensioni Meetei Mayek";
-"Miscellaneous Math Symbols-B" = "Simboli matematici vari-B";
+"Miscellaneous Mathematical Symbols-B" = "Simboli matematici vari-B";
 "Mahajani" = "Mahajani";
 "Yi Radicals" = "Radicali Yi";
 "Lydian" = "Lydian";
@@ -183,7 +183,7 @@
 "Letterlike Symbols" = "Simboli alfabetici";
 "Sinhala" = "Sinhala";
 "Supplemental Punctuation" = "Integrazione punteggiatura";
-"Math Alphanumeric Symbols" = "Simboli matematici alfanumerici";
+"Mathematical Alphanumeric Symbols" = "Simboli matematici alfanumerici";
 "Cypriot Syllabary" = "Sillabario cipriota";
 "Gurmukhi" = "Gurmukhi";
 "Gothic" = "Gotico";
@@ -200,7 +200,7 @@
 "Runic" = "Runico";
 "Enclosed CJK Letters and Months" = "Lettere e mesi CJK inclusi";
 "Byzantine Musical Symbols" = "Simboli musicali bizantini";
-"N'Ko" = "N'ko";  // ’ -> '
+"NKo" = "N'ko";
 "CJK Strokes" = "Tratti CJK";
 "Latin Extended-E" = "Latino Esteso E";
 "Miscellaneous Symbols" = "Simboli vari";
@@ -283,7 +283,7 @@
 "Cherokee Supplement" = "Cherokee Supplement";
 "Miscellaneous Symbols and Arrows" = "Simboli e frecce vari";
 "Old North Arabian" = "Arabo antico settentrionale";
-"Transport And Map Symbols" = "Simboli trasporto e mappe";
+"Transport and Map Symbols" = "Simboli trasporto e mappe";
 "Lao" = "Lao";
 "Multani" = "Multani";
 "Hangul Jamo Extended-B" = "Hangul Jamo esteso-B";
@@ -299,7 +299,7 @@
 "Oriya" = "Oriya";
 "Latin Extended Additional" = "Latino esteso supplementare";
 "Georgian" = "Georgiano";
-"Miscellaneous Math Symbols-A" = "Simboli matematici vari-A";
+"Miscellaneous Mathematical Symbols-A" = "Simboli matematici vari-A";
 "Combining Half Marks" = "Combinazione mezzi segni";
 "Counting Rod Numerals" = "Conto con numerazione rod";
 "Ahom" = "Ahom";
@@ -307,4 +307,54 @@
 "Tai Xuan Jing Symbols" = "Simboli Tai Xuan Jing";
 "Kana Supplement" = "Integrazione Kana";
 "Supplementary Private Use Area-A" = "Area ad uso privato supplementare-A";
-"High Private Use Surrogates" = "High Private Use Surrogates";  // FIXME: not in list
+
+
+// The following blocks are (mostly newly added to Unicode and therefore) not in the glosseries.
+"Syriac Supplement" = "Syriac Supplement";
+"Cyrillic Extended-C" = "Cirillico esteso-C";
+"High Private Use Surrogates" = "High Private Use Surrogates";
+"Georgian Extended" = "Georgian Extended";
+"Osage" = "Osage";
+"Hanifi Rohingya" = "Hanifi Rohingya";
+"Yezidi" = "Yezidi";
+"Old Sogdian" = "Old Sogdian";
+"Sogdian" = "Sogdian";
+"Chorasmian" = "Chorasmian";
+"Elymaic" = "Elymaic";
+"Newa" = "Newa";
+"Mongolian Supplement" = "Mongolian Supplement";
+"Dogra" = "Dogra";
+"Dives Akuru" = "Dives Akuru";
+"Nandinagari" = "Nandinagari";
+"Zanabazar Square" = "Zanabazar Square";
+"Soyombo" = "Soyombo";
+"Bhaiksuki" = "Bhaiksuki";
+"Marchen" = "Marchen";
+"Masaram Gondi" = "Masaram Gondi";
+"Gunjala Gondi" = "Gunjala Gondi";
+"Makasar" = "Makasar";
+"Lisu Supplement" = "Lisu Supplement";
+"Tamil Supplement" = "Tamil Supplement";
+"Egyptian Hieroglyph Format Controls" = "Egyptian Hieroglyph Format Controls";
+"Medefaidrin" = "Medefaidrin";
+"Ideographic Symbols and Punctuation" = "Ideographic Symbols and Punctuation";
+"Tangut" = "Tangut";
+"Tangut Components" = "Tangut Components";
+"Khitan Small Script" = "Khitan Small Script";
+"Tangut Supplement" = "Tangut Supplement";
+"Kana Extended-A" = "Kana Extended-A";
+"Small Kana Extension" = "Small Kana Extension";
+"Nushu" = "Nushu";
+"Mayan Numerals" = "Mayan Numerals";
+"Glagolitic Supplement" = "Glagolitic Supplement";
+"Nyiakeng Puachue Hmong" = "Nyiakeng Puachue Hmong";
+"Wancho" = "Wancho";
+"Adlam" = "Adlam";
+"Indic Siyaq Numbers" = "Indic Siyaq Numbers";
+"Ottoman Siyaq Numbers" = "Ottoman Siyaq Numbers";
+
+"Chess Symbols" = "Chess Symbols";
+"Symbols and Pictographs Extended-A" = "Symbols and Pictographs Extended-A";
+"Symbols for Legacy Computing" = "Symbols for Legacy Computing";
+"CJK Unified Ideographs Ext. F" = "Ideogrammi unificati CJK Est. F";
+"CJK Unified Ideographs Ext. G" = "Ideogrammi unificati CJK Est. G";

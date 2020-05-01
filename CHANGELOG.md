@@ -16,6 +16,7 @@ Change Log
 - Adjust the text baseline to draw characters vertically center in lines.
 - Optimize the performance of “Replace All” with a large number of matches.
 - Improve the performance when pasting a huge text.
+- Update Unicode block table to the latest Unicode 13.0.0.
 - Duplicate lines more intelligently.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
 - Adjust the visible area after unwrapping lines in RTL text mode.

@@ -31,14 +31,6 @@ final class CharacterInfoTests: XCTestCase {
     
     // MARK: UTF32.CodeUnit Extension Tests
     
-    func testBlockNameTable() {
-        
-        // check comprehensiveness of block name table
-        let keys = UTF32.CodeUnit.blockNameTable.keys.sorted { $0.lowerBound < $1.lowerBound }
-        XCTAssertEqual(zip(keys, keys.dropFirst()).count(where: { $0.0.upperBound + 1 != $0.1.lowerBound }), 20)
-    }
-    
-    
     func testSingleSurrogate() {
         
         let character: UTF32.CodeUnit = 0xD83D

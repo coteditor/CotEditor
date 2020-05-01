@@ -127,7 +127,6 @@ extension UTF32.CodeUnit {
         
         return blockName
             .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-            .replacingOccurrences(of: "Mathematical", with: "Math")
             .replacingOccurrences(of: "Supplement", with: "Supp.")
             .replacingOccurrences(of: "Description", with: "Desc.")
     }
