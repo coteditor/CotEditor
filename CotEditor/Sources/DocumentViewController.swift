@@ -284,10 +284,11 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
-                item.toolTip = self.canActivateShowInvisibles
+                let canActivateShowInvisibles = UserDefaults.standard.showsInvisible.isEmpty
+                item.toolTip = canActivateShowInvisibles
                     ? "Show or hide invisible characters in document".localized
                     : "To show invisible characters, set them in Preferences".localized
-                return self.canActivateShowInvisibles
+                return canActivateShowInvisibles
             
             case #selector(toggleAntialias):
                 (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
@@ -847,18 +848,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     
     // MARK: Private Methods
-    
-    /// Whether at least one of invisible characters is enabled in the preferences currently.
-    private var canActivateShowInvisibles: Bool {
-        
-        let defaults = UserDefaults.standard
-        return (defaults[.showInvisibleNewLine] ||
-            defaults[.showInvisibleTab] ||
-            defaults[.showInvisibleSpace] ||
-            defaults[.showInvisibleWhitespaces] ||
-            defaults[.showInvisibleControl])
-    }
-    
     
     /// Invalidate the current syntax highlight.
     ///
