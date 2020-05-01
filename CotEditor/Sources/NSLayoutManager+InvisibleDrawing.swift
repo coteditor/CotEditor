@@ -255,10 +255,9 @@ private extension Invisible {
                 return path
             
             case .fullwidthSpace:
-                let length = min(size.width, size.height)
-                let radius = 0.1 * size.width
+                let length = 0.95 * min(size.width, size.height)
+                let radius = 0.1 * length
                 let rect = CGRect(x: (size.width - length) / 2, y: (size.height - length) / 2, width: length, height: length)
-                    .insetBy(dx: 0.05 * length, dy: 0.05 * length)
                 return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
             
             case .otherWhitespace:
