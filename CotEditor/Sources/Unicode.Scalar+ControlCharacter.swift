@@ -29,7 +29,7 @@ extension Unicode.Scalar {
     var pictureRepresentation: Unicode.Scalar? {
         
         switch self.value {
-            case 0x0000...0x0020:  // C0
+            case 0x0000...0x0020:  // C0 + SPACE
                 return Unicode.Scalar(self.value + 0x2400)  // shift 0x2400 to Unicode control pictures
             case 0x007F:  // DELETE
                 return Unicode.Scalar(0x2421)  // SYMBOL FOR DELETE character
@@ -76,8 +76,8 @@ extension Unicode.Scalar {
             case 0x001D: return "GROUP SEPARATOR"
             case 0x001E: return "RECORD SEPARATOR"
             case 0x001F: return "UNIT SEPARATOR"
-            // The following two are actually not in range of C0 but often included in actual fact.
-            case 0x0020: return "SPACE"
+            
+            // DELETE
             case 0x007F: return "DELETE"
             
             // C1
