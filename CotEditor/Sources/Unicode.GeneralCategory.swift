@@ -178,7 +178,7 @@ extension Unicode.GeneralCategory {
             
             @unknown default:
                 assertionFailure()
-                return "(UNKNOWN)"
+                return "?"
         }
     }
     
