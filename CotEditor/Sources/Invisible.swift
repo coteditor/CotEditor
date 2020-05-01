@@ -32,7 +32,7 @@ enum Invisible {
     case space
     case noBreakSpace
     case fullwidthSpace
-    case otherSpaceSeparator  // Unicode Category Zs (excl. U+1680)
+    case otherWhitespace  // Unicode Category Zs (excl. U+1680)
     case otherControl  // Unicode Category Cc and U+200B
     
     
@@ -57,7 +57,7 @@ enum Invisible {
                 self = .fullwidthSpace
             case 0x2000...0x200A,  // (Zs) various width spaces, such as THREE-PER-EM SPACE
                  0x205F:  // MEDIUM MATHEMATICAL SPACE (Zs)
-                self = .otherSpaceSeparator
+                self = .otherWhitespace
             case 0x0000...0x001F, 0x007F...0x009F,  // C0 and C1 (Cc)
                  0x200B,  // ZERO WIDTH SPACE (Cf)
                  0x200C,  // ZERO WIDTH NON-JOINER (Cf)
@@ -80,7 +80,7 @@ enum Invisible {
             case .space: return "·"
             case .noBreakSpace: return "·̂"
             case .fullwidthSpace: return "□"
-            case .otherSpaceSeparator: return "="
+            case .otherWhitespace: return "="
             case .otherControl: return "�"
         }
     }
@@ -101,7 +101,7 @@ extension Invisible: CaseIterable {
             case .space: return .showInvisibleSpace
             case .noBreakSpace: return .showInvisibleWhitespaces
             case .fullwidthSpace: return .showInvisibleWhitespaces
-            case .otherSpaceSeparator: return .showInvisibleWhitespaces
+            case .otherWhitespace: return .showInvisibleWhitespaces
             case .otherControl: return .showInvisibleControl
         }
     }

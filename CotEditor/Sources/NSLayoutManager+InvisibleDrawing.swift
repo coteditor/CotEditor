@@ -266,7 +266,7 @@ private extension Invisible {
                     .insetBy(dx: 0.05 * length, dy: 0.05 * length)
                 return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
             
-            case .otherSpaceSeparator:
+            case .otherWhitespace:
                 let path = CGMutablePath()
                 path.addLines(between: [
                     CGPoint(x: 0.2 * size.width, y: 0.3 * size.height),
