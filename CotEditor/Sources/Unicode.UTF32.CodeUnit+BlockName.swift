@@ -1,5 +1,5 @@
 //
-//  UInt32+BlockName.swift
+//  Unicode.UTF32.CodeUnit+BlockName.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-extension UInt32 {
+extension Unicode.UTF32.CodeUnit {
     
     static let blockNameTable: [CountableClosedRange<Self>: String] = [
         0x0000...0x007F: "Basic Latin",

@@ -68,7 +68,7 @@ extension Unicode.Scalar {
         
         guard let blockName = self.blockName else { return nil }
         
-        return UInt32.appleUnicodeBlockName(for: blockName).localized(tableName: "Unicode")
+        return UTF32.CodeUnit.appleUnicodeBlockName(for: blockName).localized(tableName: "Unicode")
     }
     
 }
@@ -77,9 +77,9 @@ extension Unicode.Scalar {
 
 // MARK: -
 
-// implement Unicode functions at UInt32 level in order to cover single surrogate characters that are not allowed by Unicode.Scalar
+// implement Unicode functions at UTF32.CodeUnit level in order to cover single surrogate characters that are not allowed by Unicode.Scalar
 
-extension UInt32 {
+extension UTF32.CodeUnit {
     
     /// get Unicode name
     var unicodeName: String? {
@@ -115,7 +115,7 @@ extension UInt32 {
     /// Unicode block name
     var blockName: String? {
         
-        return UInt32.blockNameTable.first { $0.key.contains(self) }?.value
+        return UTF32.CodeUnit.blockNameTable.first { $0.key.contains(self) }?.value
     }
     
     

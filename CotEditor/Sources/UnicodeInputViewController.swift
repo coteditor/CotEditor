@@ -98,7 +98,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
         
         guard
             let input = (obj.object as? NSTextField)?.stringValue,
-            let longChar = UInt32(codePoint: input)
+            let longChar = UTF32.CodeUnit(codePoint: input)
             else { return }
         
         self.unicodeName = longChar.unicodeName
@@ -136,7 +136,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
 
 // MARK: Private Methods
 
-private extension UInt32 {
+private extension UTF32.CodeUnit {
     
     /// initialize from a possible Unicode code point representation like `U+1F600`, `1f600`, `0x1F600` and so on.
     init?(codePoint: String) {
