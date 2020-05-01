@@ -66,9 +66,14 @@ extension Unicode.Scalar {
     /// Localized and sanitized unicode block name
     var localizedBlockName: String? {
         
-        guard let blockName = self.blockName else { return nil }
+        // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
+        //    Otherwise, we cannot localize block names correctly. (2015-11)
         
-        return UTF32.CodeUnit.appleUnicodeBlockName(for: blockName).localized(tableName: "Unicode")
+        return self.blockName?
+            .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
+            .replacingOccurrences(of: "Supplement", with: "Supp.")
+            .replacingOccurrences(of: "Description", with: "Desc.")
+            .localized(tableName: "Unicode")
     }
     
 }
@@ -109,26 +114,6 @@ extension UTF32.CodeUnit {
         }
         
         return nil
-    }
-    
-    
-    /// Unicode block name
-    var blockName: String? {
-        
-        return UTF32.CodeUnit.blockNameTable.first { $0.key.contains(self) }?.value
-    }
-    
-    
-    /// sanitize block name for localization
-    static func appleUnicodeBlockName(for blockName: String) -> String {
-        
-        // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
-        //    Otherwise, we cannot localize block names correctly. (2015-11)
-        
-        return blockName
-            .replacingOccurrences(of: " ([A-Z])$", with: "-$1", options: .regularExpression)
-            .replacingOccurrences(of: "Supplement", with: "Supp.")
-            .replacingOccurrences(of: "Description", with: "Desc.")
     }
     
 }

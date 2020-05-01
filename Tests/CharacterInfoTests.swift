@@ -42,21 +42,6 @@ final class CharacterInfoTests: XCTestCase {
     }
     
     
-    func testUnicodeBlockNameLocalization() {
-        
-        let language = "ja"
-        let bundleURL = Bundle.main.url(forResource: language, withExtension: "lproj")!
-        let bundle = Bundle(url: bundleURL)!
-        
-        for blockName in UTF32.CodeUnit.blockNameTable.values {
-            let sanitizedBlockName = UTF32.CodeUnit.appleUnicodeBlockName(for: blockName)
-            let localizedBlockName = sanitizedBlockName.localized(tableName: "Unicode", bundle: bundle)
-            
-            XCTAssertNotEqual(localizedBlockName, blockName)
-        }
-    }
-    
-    
     // MARK: - UnicodeCharacter Tests
     
     func testSingleChar() {

@@ -29,315 +29,320 @@ extension Unicode.UTF32.CodeUnit {
     ///
     /// Based on Unicode 13.0.0 (2019-07-10)
     /// cf. <http://www.unicode.org/Public/UNIDATA/Blocks.txt>
-    static let blockNameTable: [CountableClosedRange<Self>: String] = [
-        0x0000...0x007F: "Basic Latin",
-        0x0080...0x00FF: "Latin-1 Supplement",
-        0x0100...0x017F: "Latin Extended-A",
-        0x0180...0x024F: "Latin Extended-B",
-        0x0250...0x02AF: "IPA Extensions",
-        0x02B0...0x02FF: "Spacing Modifier Letters",
-        0x0300...0x036F: "Combining Diacritical Marks",
-        0x0370...0x03FF: "Greek and Coptic",
-        0x0400...0x04FF: "Cyrillic",
-        0x0500...0x052F: "Cyrillic Supplement",
-        0x0530...0x058F: "Armenian",
-        0x0590...0x05FF: "Hebrew",
-        0x0600...0x06FF: "Arabic",
-        0x0700...0x074F: "Syriac",
-        0x0750...0x077F: "Arabic Supplement",
-        0x0780...0x07BF: "Thaana",
-        0x07C0...0x07FF: "NKo",
-        0x0800...0x083F: "Samaritan",
-        0x0840...0x085F: "Mandaic",
-        0x0860...0x086F: "Syriac Supplement",
-        0x08A0...0x08FF: "Arabic Extended-A",
-        0x0900...0x097F: "Devanagari",
-        0x0980...0x09FF: "Bengali",
-        0x0A00...0x0A7F: "Gurmukhi",
-        0x0A80...0x0AFF: "Gujarati",
-        0x0B00...0x0B7F: "Oriya",
-        0x0B80...0x0BFF: "Tamil",
-        0x0C00...0x0C7F: "Telugu",
-        0x0C80...0x0CFF: "Kannada",
-        0x0D00...0x0D7F: "Malayalam",
-        0x0D80...0x0DFF: "Sinhala",
-        0x0E00...0x0E7F: "Thai",
-        0x0E80...0x0EFF: "Lao",
-        0x0F00...0x0FFF: "Tibetan",
-        0x1000...0x109F: "Myanmar",
-        0x10A0...0x10FF: "Georgian",
-        0x1100...0x11FF: "Hangul Jamo",
-        0x1200...0x137F: "Ethiopic",
-        0x1380...0x139F: "Ethiopic Supplement",
-        0x13A0...0x13FF: "Cherokee",
-        0x1400...0x167F: "Unified Canadian Aboriginal Syllabics",
-        0x1680...0x169F: "Ogham",
-        0x16A0...0x16FF: "Runic",
-        0x1700...0x171F: "Tagalog",
-        0x1720...0x173F: "Hanunoo",
-        0x1740...0x175F: "Buhid",
-        0x1760...0x177F: "Tagbanwa",
-        0x1780...0x17FF: "Khmer",
-        0x1800...0x18AF: "Mongolian",
-        0x18B0...0x18FF: "Unified Canadian Aboriginal Syllabics Extended",
-        0x1900...0x194F: "Limbu",
-        0x1950...0x197F: "Tai Le",
-        0x1980...0x19DF: "New Tai Lue",
-        0x19E0...0x19FF: "Khmer Symbols",
-        0x1A00...0x1A1F: "Buginese",
-        0x1A20...0x1AAF: "Tai Tham",
-        0x1AB0...0x1AFF: "Combining Diacritical Marks Extended",
-        0x1B00...0x1B7F: "Balinese",
-        0x1B80...0x1BBF: "Sundanese",
-        0x1BC0...0x1BFF: "Batak",
-        0x1C00...0x1C4F: "Lepcha",
-        0x1C50...0x1C7F: "Ol Chiki",
-        0x1C80...0x1C8F: "Cyrillic Extended-C",
-        0x1C90...0x1CBF: "Georgian Extended",
-        0x1CC0...0x1CCF: "Sundanese Supplement",
-        0x1CD0...0x1CFF: "Vedic Extensions",
-        0x1D00...0x1D7F: "Phonetic Extensions",
-        0x1D80...0x1DBF: "Phonetic Extensions Supplement",
-        0x1DC0...0x1DFF: "Combining Diacritical Marks Supplement",
-        0x1E00...0x1EFF: "Latin Extended Additional",
-        0x1F00...0x1FFF: "Greek Extended",
-        0x2000...0x206F: "General Punctuation",
-        0x2070...0x209F: "Superscripts and Subscripts",
-        0x20A0...0x20CF: "Currency Symbols",
-        0x20D0...0x20FF: "Combining Diacritical Marks for Symbols",
-        0x2100...0x214F: "Letterlike Symbols",
-        0x2150...0x218F: "Number Forms",
-        0x2190...0x21FF: "Arrows",
-        0x2200...0x22FF: "Mathematical Operators",
-        0x2300...0x23FF: "Miscellaneous Technical",
-        0x2400...0x243F: "Control Pictures",
-        0x2440...0x245F: "Optical Character Recognition",
-        0x2460...0x24FF: "Enclosed Alphanumerics",
-        0x2500...0x257F: "Box Drawing",
-        0x2580...0x259F: "Block Elements",
-        0x25A0...0x25FF: "Geometric Shapes",
-        0x2600...0x26FF: "Miscellaneous Symbols",
-        0x2700...0x27BF: "Dingbats",
-        0x27C0...0x27EF: "Miscellaneous Mathematical Symbols-A",
-        0x27F0...0x27FF: "Supplemental Arrows-A",
-        0x2800...0x28FF: "Braille Patterns",
-        0x2900...0x297F: "Supplemental Arrows-B",
-        0x2980...0x29FF: "Miscellaneous Mathematical Symbols-B",
-        0x2A00...0x2AFF: "Supplemental Mathematical Operators",
-        0x2B00...0x2BFF: "Miscellaneous Symbols and Arrows",
-        0x2C00...0x2C5F: "Glagolitic",
-        0x2C60...0x2C7F: "Latin Extended-C",
-        0x2C80...0x2CFF: "Coptic",
-        0x2D00...0x2D2F: "Georgian Supplement",
-        0x2D30...0x2D7F: "Tifinagh",
-        0x2D80...0x2DDF: "Ethiopic Extended",
-        0x2DE0...0x2DFF: "Cyrillic Extended-A",
-        0x2E00...0x2E7F: "Supplemental Punctuation",
-        0x2E80...0x2EFF: "CJK Radicals Supplement",
-        0x2F00...0x2FDF: "Kangxi Radicals",
-        0x2FF0...0x2FFF: "Ideographic Description Characters",
-        0x3000...0x303F: "CJK Symbols and Punctuation",
-        0x3040...0x309F: "Hiragana",
-        0x30A0...0x30FF: "Katakana",
-        0x3100...0x312F: "Bopomofo",
-        0x3130...0x318F: "Hangul Compatibility Jamo",
-        0x3190...0x319F: "Kanbun",
-        0x31A0...0x31BF: "Bopomofo Extended",
-        0x31C0...0x31EF: "CJK Strokes",
-        0x31F0...0x31FF: "Katakana Phonetic Extensions",
-        0x3200...0x32FF: "Enclosed CJK Letters and Months",
-        0x3300...0x33FF: "CJK Compatibility",
-        0x3400...0x4DBF: "CJK Unified Ideographs Extension A",
-        0x4DC0...0x4DFF: "Yijing Hexagram Symbols",
-        0x4E00...0x9FFF: "CJK Unified Ideographs",
-        0xA000...0xA48F: "Yi Syllables",
-        0xA490...0xA4CF: "Yi Radicals",
-        0xA4D0...0xA4FF: "Lisu",
-        0xA500...0xA63F: "Vai",
-        0xA640...0xA69F: "Cyrillic Extended-B",
-        0xA6A0...0xA6FF: "Bamum",
-        0xA700...0xA71F: "Modifier Tone Letters",
-        0xA720...0xA7FF: "Latin Extended-D",
-        0xA800...0xA82F: "Syloti Nagri",
-        0xA830...0xA83F: "Common Indic Number Forms",
-        0xA840...0xA87F: "Phags-pa",
-        0xA880...0xA8DF: "Saurashtra",
-        0xA8E0...0xA8FF: "Devanagari Extended",
-        0xA900...0xA92F: "Kayah Li",
-        0xA930...0xA95F: "Rejang",
-        0xA960...0xA97F: "Hangul Jamo Extended-A",
-        0xA980...0xA9DF: "Javanese",
-        0xA9E0...0xA9FF: "Myanmar Extended-B",
-        0xAA00...0xAA5F: "Cham",
-        0xAA60...0xAA7F: "Myanmar Extended-A",
-        0xAA80...0xAADF: "Tai Viet",
-        0xAAE0...0xAAFF: "Meetei Mayek Extensions",
-        0xAB00...0xAB2F: "Ethiopic Extended-A",
-        0xAB30...0xAB6F: "Latin Extended-E",
-        0xAB70...0xABBF: "Cherokee Supplement",
-        0xABC0...0xABFF: "Meetei Mayek",
-        0xAC00...0xD7AF: "Hangul Syllables",
-        0xD7B0...0xD7FF: "Hangul Jamo Extended-B",
-        0xD800...0xDB7F: "High Surrogates",
-        0xDB80...0xDBFF: "High Private Use Surrogates",
-        0xDC00...0xDFFF: "Low Surrogates",
-        0xE000...0xF8FF: "Private Use Area",
-        0xF900...0xFAFF: "CJK Compatibility Ideographs",
-        0xFB00...0xFB4F: "Alphabetic Presentation Forms",
-        0xFB50...0xFDFF: "Arabic Presentation Forms-A",
-        0xFE00...0xFE0F: "Variation Selectors",
-        0xFE10...0xFE1F: "Vertical Forms",
-        0xFE20...0xFE2F: "Combining Half Marks",
-        0xFE30...0xFE4F: "CJK Compatibility Forms",
-        0xFE50...0xFE6F: "Small Form Variants",
-        0xFE70...0xFEFF: "Arabic Presentation Forms-B",
-        0xFF00...0xFFEF: "Halfwidth and Fullwidth Forms",
-        0xFFF0...0xFFFF: "Specials",
-        0x10000...0x1007F: "Linear B Syllabary",
-        0x10080...0x100FF: "Linear B Ideograms",
-        0x10100...0x1013F: "Aegean Numbers",
-        0x10140...0x1018F: "Ancient Greek Numbers",
-        0x10190...0x101CF: "Ancient Symbols",
-        0x101D0...0x101FF: "Phaistos Disc",
-        0x10280...0x1029F: "Lycian",
-        0x102A0...0x102DF: "Carian",
-        0x102E0...0x102FF: "Coptic Epact Numbers",
-        0x10300...0x1032F: "Old Italic",
-        0x10330...0x1034F: "Gothic",
-        0x10350...0x1037F: "Old Permic",
-        0x10380...0x1039F: "Ugaritic",
-        0x103A0...0x103DF: "Old Persian",
-        0x10400...0x1044F: "Deseret",
-        0x10450...0x1047F: "Shavian",
-        0x10480...0x104AF: "Osmanya",
-        0x104B0...0x104FF: "Osage",
-        0x10500...0x1052F: "Elbasan",
-        0x10530...0x1056F: "Caucasian Albanian",
-        0x10600...0x1077F: "Linear A",
-        0x10800...0x1083F: "Cypriot Syllabary",
-        0x10840...0x1085F: "Imperial Aramaic",
-        0x10860...0x1087F: "Palmyrene",
-        0x10880...0x108AF: "Nabataean",
-        0x108E0...0x108FF: "Hatran",
-        0x10900...0x1091F: "Phoenician",
-        0x10920...0x1093F: "Lydian",
-        0x10980...0x1099F: "Meroitic Hieroglyphs",
-        0x109A0...0x109FF: "Meroitic Cursive",
-        0x10A00...0x10A5F: "Kharoshthi",
-        0x10A60...0x10A7F: "Old South Arabian",
-        0x10A80...0x10A9F: "Old North Arabian",
-        0x10AC0...0x10AFF: "Manichaean",
-        0x10B00...0x10B3F: "Avestan",
-        0x10B40...0x10B5F: "Inscriptional Parthian",
-        0x10B60...0x10B7F: "Inscriptional Pahlavi",
-        0x10B80...0x10BAF: "Psalter Pahlavi",
-        0x10C00...0x10C4F: "Old Turkic",
-        0x10C80...0x10CFF: "Old Hungarian",
-        0x10D00...0x10D3F: "Hanifi Rohingya",
-        0x10E60...0x10E7F: "Rumi Numeral Symbols",
-        0x10E80...0x10EBF: "Yezidi",
-        0x10F00...0x10F2F: "Old Sogdian",
-        0x10F30...0x10F6F: "Sogdian",
-        0x10FB0...0x10FDF: "Chorasmian",
-        0x10FE0...0x10FFF: "Elymaic",
-        0x11000...0x1107F: "Brahmi",
-        0x11080...0x110CF: "Kaithi",
-        0x110D0...0x110FF: "Sora Sompeng",
-        0x11100...0x1114F: "Chakma",
-        0x11150...0x1117F: "Mahajani",
-        0x11180...0x111DF: "Sharada",
-        0x111E0...0x111FF: "Sinhala Archaic Numbers",
-        0x11200...0x1124F: "Khojki",
-        0x11280...0x112AF: "Multani",
-        0x112B0...0x112FF: "Khudawadi",
-        0x11300...0x1137F: "Grantha",
-        0x11400...0x1147F: "Newa",
-        0x11480...0x114DF: "Tirhuta",
-        0x11580...0x115FF: "Siddham",
-        0x11600...0x1165F: "Modi",
-        0x11660...0x1167F: "Mongolian Supplement",
-        0x11680...0x116CF: "Takri",
-        0x11700...0x1173F: "Ahom",
-        0x11800...0x1184F: "Dogra",
-        0x118A0...0x118FF: "Warang Citi",
-        0x11900...0x1195F: "Dives Akuru",
-        0x119A0...0x119FF: "Nandinagari",
-        0x11A00...0x11A4F: "Zanabazar Square",
-        0x11A50...0x11AAF: "Soyombo",
-        0x11AC0...0x11AFF: "Pau Cin Hau",
-        0x11C00...0x11C6F: "Bhaiksuki",
-        0x11C70...0x11CBF: "Marchen",
-        0x11D00...0x11D5F: "Masaram Gondi",
-        0x11D60...0x11DAF: "Gunjala Gondi",
-        0x11EE0...0x11EFF: "Makasar",
-        0x11FB0...0x11FBF: "Lisu Supplement",
-        0x11FC0...0x11FFF: "Tamil Supplement",
-        0x12000...0x123FF: "Cuneiform",
-        0x12400...0x1247F: "Cuneiform Numbers and Punctuation",
-        0x12480...0x1254F: "Early Dynastic Cuneiform",
-        0x13000...0x1342F: "Egyptian Hieroglyphs",
-        0x13430...0x1343F: "Egyptian Hieroglyph Format Controls",
-        0x14400...0x1467F: "Anatolian Hieroglyphs",
-        0x16800...0x16A3F: "Bamum Supplement",
-        0x16A40...0x16A6F: "Mro",
-        0x16AD0...0x16AFF: "Bassa Vah",
-        0x16B00...0x16B8F: "Pahawh Hmong",
-        0x16E40...0x16E9F: "Medefaidrin",
-        0x16F00...0x16F9F: "Miao",
-        0x16FE0...0x16FFF: "Ideographic Symbols and Punctuation",
-        0x17000...0x187FF: "Tangut",
-        0x18800...0x18AFF: "Tangut Components",
-        0x18B00...0x18CFF: "Khitan Small Script",
-        0x18D00...0x18D8F: "Tangut Supplement",
-        0x1B000...0x1B0FF: "Kana Supplement",
-        0x1B100...0x1B12F: "Kana Extended-A",
-        0x1B130...0x1B16F: "Small Kana Extension",
-        0x1B170...0x1B2FF: "Nushu",
-        0x1BC00...0x1BC9F: "Duployan",
-        0x1BCA0...0x1BCAF: "Shorthand Format Controls",
-        0x1D000...0x1D0FF: "Byzantine Musical Symbols",
-        0x1D100...0x1D1FF: "Musical Symbols",
-        0x1D200...0x1D24F: "Ancient Greek Musical Notation",
-        0x1D2E0...0x1D2FF: "Mayan Numerals",
-        0x1D300...0x1D35F: "Tai Xuan Jing Symbols",
-        0x1D360...0x1D37F: "Counting Rod Numerals",
-        0x1D400...0x1D7FF: "Mathematical Alphanumeric Symbols",
-        0x1D800...0x1DAAF: "Sutton SignWriting",
-        0x1E000...0x1E02F: "Glagolitic Supplement",
-        0x1E100...0x1E14F: "Nyiakeng Puachue Hmong",
-        0x1E2C0...0x1E2FF: "Wancho",
-        0x1E800...0x1E8DF: "Mende Kikakui",
-        0x1E900...0x1E95F: "Adlam",
-        0x1EC70...0x1ECBF: "Indic Siyaq Numbers",
-        0x1ED00...0x1ED4F: "Ottoman Siyaq Numbers",
-        0x1EE00...0x1EEFF: "Arabic Mathematical Alphabetic Symbols",
-        0x1F000...0x1F02F: "Mahjong Tiles",
-        0x1F030...0x1F09F: "Domino Tiles",
-        0x1F0A0...0x1F0FF: "Playing Cards",
-        0x1F100...0x1F1FF: "Enclosed Alphanumeric Supplement",
-        0x1F200...0x1F2FF: "Enclosed Ideographic Supplement",
-        0x1F300...0x1F5FF: "Miscellaneous Symbols and Pictographs",
-        0x1F600...0x1F64F: "Emoticons",
-        0x1F650...0x1F67F: "Ornamental Dingbats",
-        0x1F680...0x1F6FF: "Transport and Map Symbols",
-        0x1F700...0x1F77F: "Alchemical Symbols",
-        0x1F780...0x1F7FF: "Geometric Shapes Extended",
-        0x1F800...0x1F8FF: "Supplemental Arrows-C",
-        0x1F900...0x1F9FF: "Supplemental Symbols and Pictographs",
-        0x1FA00...0x1FA6F: "Chess Symbols",
-        0x1FA70...0x1FAFF: "Symbols and Pictographs Extended-A",
-        0x1FB00...0x1FBFF: "Symbols for Legacy Computing",
-        0x20000...0x2A6DF: "CJK Unified Ideographs Extension B",
-        0x2A700...0x2B73F: "CJK Unified Ideographs Extension C",
-        0x2B740...0x2B81F: "CJK Unified Ideographs Extension D",
-        0x2B820...0x2CEAF: "CJK Unified Ideographs Extension E",
-        0x2CEB0...0x2EBEF: "CJK Unified Ideographs Extension F",
-        0x2F800...0x2FA1F: "CJK Compatibility Ideographs Supplement",
-        0x30000...0x3134F: "CJK Unified Ideographs Extension G",
-        0xE0000...0xE007F: "Tags",
-        0xE0100...0xE01EF: "Variation Selectors Supplement",
-        0xF0000...0xFFFFF: "Supplementary Private Use Area-A",
-        0x100000...0x10FFFF: "Supplementary Private Use Area-B",
-    ]
+    var blockName: String? {
+        
+        switch self {
+            case 0x0000...0x007F: return "Basic Latin"
+            case 0x0080...0x00FF: return "Latin-1 Supplement"
+            case 0x0100...0x017F: return "Latin Extended-A"
+            case 0x0180...0x024F: return "Latin Extended-B"
+            case 0x0250...0x02AF: return "IPA Extensions"
+            case 0x02B0...0x02FF: return "Spacing Modifier Letters"
+            case 0x0300...0x036F: return "Combining Diacritical Marks"
+            case 0x0370...0x03FF: return "Greek and Coptic"
+            case 0x0400...0x04FF: return "Cyrillic"
+            case 0x0500...0x052F: return "Cyrillic Supplement"
+            case 0x0530...0x058F: return "Armenian"
+            case 0x0590...0x05FF: return "Hebrew"
+            case 0x0600...0x06FF: return "Arabic"
+            case 0x0700...0x074F: return "Syriac"
+            case 0x0750...0x077F: return "Arabic Supplement"
+            case 0x0780...0x07BF: return "Thaana"
+            case 0x07C0...0x07FF: return "NKo"
+            case 0x0800...0x083F: return "Samaritan"
+            case 0x0840...0x085F: return "Mandaic"
+            case 0x0860...0x086F: return "Syriac Supplement"
+            case 0x08A0...0x08FF: return "Arabic Extended-A"
+            case 0x0900...0x097F: return "Devanagari"
+            case 0x0980...0x09FF: return "Bengali"
+            case 0x0A00...0x0A7F: return "Gurmukhi"
+            case 0x0A80...0x0AFF: return "Gujarati"
+            case 0x0B00...0x0B7F: return "Oriya"
+            case 0x0B80...0x0BFF: return "Tamil"
+            case 0x0C00...0x0C7F: return "Telugu"
+            case 0x0C80...0x0CFF: return "Kannada"
+            case 0x0D00...0x0D7F: return "Malayalam"
+            case 0x0D80...0x0DFF: return "Sinhala"
+            case 0x0E00...0x0E7F: return "Thai"
+            case 0x0E80...0x0EFF: return "Lao"
+            case 0x0F00...0x0FFF: return "Tibetan"
+            case 0x1000...0x109F: return "Myanmar"
+            case 0x10A0...0x10FF: return "Georgian"
+            case 0x1100...0x11FF: return "Hangul Jamo"
+            case 0x1200...0x137F: return "Ethiopic"
+            case 0x1380...0x139F: return "Ethiopic Supplement"
+            case 0x13A0...0x13FF: return "Cherokee"
+            case 0x1400...0x167F: return "Unified Canadian Aboriginal Syllabics"
+            case 0x1680...0x169F: return "Ogham"
+            case 0x16A0...0x16FF: return "Runic"
+            case 0x1700...0x171F: return "Tagalog"
+            case 0x1720...0x173F: return "Hanunoo"
+            case 0x1740...0x175F: return "Buhid"
+            case 0x1760...0x177F: return "Tagbanwa"
+            case 0x1780...0x17FF: return "Khmer"
+            case 0x1800...0x18AF: return "Mongolian"
+            case 0x18B0...0x18FF: return "Unified Canadian Aboriginal Syllabics Extended"
+            case 0x1900...0x194F: return "Limbu"
+            case 0x1950...0x197F: return "Tai Le"
+            case 0x1980...0x19DF: return "New Tai Lue"
+            case 0x19E0...0x19FF: return "Khmer Symbols"
+            case 0x1A00...0x1A1F: return "Buginese"
+            case 0x1A20...0x1AAF: return "Tai Tham"
+            case 0x1AB0...0x1AFF: return "Combining Diacritical Marks Extended"
+            case 0x1B00...0x1B7F: return "Balinese"
+            case 0x1B80...0x1BBF: return "Sundanese"
+            case 0x1BC0...0x1BFF: return "Batak"
+            case 0x1C00...0x1C4F: return "Lepcha"
+            case 0x1C50...0x1C7F: return "Ol Chiki"
+            case 0x1C80...0x1C8F: return "Cyrillic Extended-C"
+            case 0x1C90...0x1CBF: return "Georgian Extended"
+            case 0x1CC0...0x1CCF: return "Sundanese Supplement"
+            case 0x1CD0...0x1CFF: return "Vedic Extensions"
+            case 0x1D00...0x1D7F: return "Phonetic Extensions"
+            case 0x1D80...0x1DBF: return "Phonetic Extensions Supplement"
+            case 0x1DC0...0x1DFF: return "Combining Diacritical Marks Supplement"
+            case 0x1E00...0x1EFF: return "Latin Extended Additional"
+            case 0x1F00...0x1FFF: return "Greek Extended"
+            case 0x2000...0x206F: return "General Punctuation"
+            case 0x2070...0x209F: return "Superscripts and Subscripts"
+            case 0x20A0...0x20CF: return "Currency Symbols"
+            case 0x20D0...0x20FF: return "Combining Diacritical Marks for Symbols"
+            case 0x2100...0x214F: return "Letterlike Symbols"
+            case 0x2150...0x218F: return "Number Forms"
+            case 0x2190...0x21FF: return "Arrows"
+            case 0x2200...0x22FF: return "Mathematical Operators"
+            case 0x2300...0x23FF: return "Miscellaneous Technical"
+            case 0x2400...0x243F: return "Control Pictures"
+            case 0x2440...0x245F: return "Optical Character Recognition"
+            case 0x2460...0x24FF: return "Enclosed Alphanumerics"
+            case 0x2500...0x257F: return "Box Drawing"
+            case 0x2580...0x259F: return "Block Elements"
+            case 0x25A0...0x25FF: return "Geometric Shapes"
+            case 0x2600...0x26FF: return "Miscellaneous Symbols"
+            case 0x2700...0x27BF: return "Dingbats"
+            case 0x27C0...0x27EF: return "Miscellaneous Mathematical Symbols-A"
+            case 0x27F0...0x27FF: return "Supplemental Arrows-A"
+            case 0x2800...0x28FF: return "Braille Patterns"
+            case 0x2900...0x297F: return "Supplemental Arrows-B"
+            case 0x2980...0x29FF: return "Miscellaneous Mathematical Symbols-B"
+            case 0x2A00...0x2AFF: return "Supplemental Mathematical Operators"
+            case 0x2B00...0x2BFF: return "Miscellaneous Symbols and Arrows"
+            case 0x2C00...0x2C5F: return "Glagolitic"
+            case 0x2C60...0x2C7F: return "Latin Extended-C"
+            case 0x2C80...0x2CFF: return "Coptic"
+            case 0x2D00...0x2D2F: return "Georgian Supplement"
+            case 0x2D30...0x2D7F: return "Tifinagh"
+            case 0x2D80...0x2DDF: return "Ethiopic Extended"
+            case 0x2DE0...0x2DFF: return "Cyrillic Extended-A"
+            case 0x2E00...0x2E7F: return "Supplemental Punctuation"
+            case 0x2E80...0x2EFF: return "CJK Radicals Supplement"
+            case 0x2F00...0x2FDF: return "Kangxi Radicals"
+            case 0x2FF0...0x2FFF: return "Ideographic Description Characters"
+            case 0x3000...0x303F: return "CJK Symbols and Punctuation"
+            case 0x3040...0x309F: return "Hiragana"
+            case 0x30A0...0x30FF: return "Katakana"
+            case 0x3100...0x312F: return "Bopomofo"
+            case 0x3130...0x318F: return "Hangul Compatibility Jamo"
+            case 0x3190...0x319F: return "Kanbun"
+            case 0x31A0...0x31BF: return "Bopomofo Extended"
+            case 0x31C0...0x31EF: return "CJK Strokes"
+            case 0x31F0...0x31FF: return "Katakana Phonetic Extensions"
+            case 0x3200...0x32FF: return "Enclosed CJK Letters and Months"
+            case 0x3300...0x33FF: return "CJK Compatibility"
+            case 0x3400...0x4DBF: return "CJK Unified Ideographs Extension A"
+            case 0x4DC0...0x4DFF: return "Yijing Hexagram Symbols"
+            case 0x4E00...0x9FFF: return "CJK Unified Ideographs"
+            case 0xA000...0xA48F: return "Yi Syllables"
+            case 0xA490...0xA4CF: return "Yi Radicals"
+            case 0xA4D0...0xA4FF: return "Lisu"
+            case 0xA500...0xA63F: return "Vai"
+            case 0xA640...0xA69F: return "Cyrillic Extended-B"
+            case 0xA6A0...0xA6FF: return "Bamum"
+            case 0xA700...0xA71F: return "Modifier Tone Letters"
+            case 0xA720...0xA7FF: return "Latin Extended-D"
+            case 0xA800...0xA82F: return "Syloti Nagri"
+            case 0xA830...0xA83F: return "Common Indic Number Forms"
+            case 0xA840...0xA87F: return "Phags-pa"
+            case 0xA880...0xA8DF: return "Saurashtra"
+            case 0xA8E0...0xA8FF: return "Devanagari Extended"
+            case 0xA900...0xA92F: return "Kayah Li"
+            case 0xA930...0xA95F: return "Rejang"
+            case 0xA960...0xA97F: return "Hangul Jamo Extended-A"
+            case 0xA980...0xA9DF: return "Javanese"
+            case 0xA9E0...0xA9FF: return "Myanmar Extended-B"
+            case 0xAA00...0xAA5F: return "Cham"
+            case 0xAA60...0xAA7F: return "Myanmar Extended-A"
+            case 0xAA80...0xAADF: return "Tai Viet"
+            case 0xAAE0...0xAAFF: return "Meetei Mayek Extensions"
+            case 0xAB00...0xAB2F: return "Ethiopic Extended-A"
+            case 0xAB30...0xAB6F: return "Latin Extended-E"
+            case 0xAB70...0xABBF: return "Cherokee Supplement"
+            case 0xABC0...0xABFF: return "Meetei Mayek"
+            case 0xAC00...0xD7AF: return "Hangul Syllables"
+            case 0xD7B0...0xD7FF: return "Hangul Jamo Extended-B"
+            case 0xD800...0xDB7F: return "High Surrogates"
+            case 0xDB80...0xDBFF: return "High Private Use Surrogates"
+            case 0xDC00...0xDFFF: return "Low Surrogates"
+            case 0xE000...0xF8FF: return "Private Use Area"
+            case 0xF900...0xFAFF: return "CJK Compatibility Ideographs"
+            case 0xFB00...0xFB4F: return "Alphabetic Presentation Forms"
+            case 0xFB50...0xFDFF: return "Arabic Presentation Forms-A"
+            case 0xFE00...0xFE0F: return "Variation Selectors"
+            case 0xFE10...0xFE1F: return "Vertical Forms"
+            case 0xFE20...0xFE2F: return "Combining Half Marks"
+            case 0xFE30...0xFE4F: return "CJK Compatibility Forms"
+            case 0xFE50...0xFE6F: return "Small Form Variants"
+            case 0xFE70...0xFEFF: return "Arabic Presentation Forms-B"
+            case 0xFF00...0xFFEF: return "Halfwidth and Fullwidth Forms"
+            case 0xFFF0...0xFFFF: return "Specials"
+            case 0x10000...0x1007F: return "Linear B Syllabary"
+            case 0x10080...0x100FF: return "Linear B Ideograms"
+            case 0x10100...0x1013F: return "Aegean Numbers"
+            case 0x10140...0x1018F: return "Ancient Greek Numbers"
+            case 0x10190...0x101CF: return "Ancient Symbols"
+            case 0x101D0...0x101FF: return "Phaistos Disc"
+            case 0x10280...0x1029F: return "Lycian"
+            case 0x102A0...0x102DF: return "Carian"
+            case 0x102E0...0x102FF: return "Coptic Epact Numbers"
+            case 0x10300...0x1032F: return "Old Italic"
+            case 0x10330...0x1034F: return "Gothic"
+            case 0x10350...0x1037F: return "Old Permic"
+            case 0x10380...0x1039F: return "Ugaritic"
+            case 0x103A0...0x103DF: return "Old Persian"
+            case 0x10400...0x1044F: return "Deseret"
+            case 0x10450...0x1047F: return "Shavian"
+            case 0x10480...0x104AF: return "Osmanya"
+            case 0x104B0...0x104FF: return "Osage"
+            case 0x10500...0x1052F: return "Elbasan"
+            case 0x10530...0x1056F: return "Caucasian Albanian"
+            case 0x10600...0x1077F: return "Linear A"
+            case 0x10800...0x1083F: return "Cypriot Syllabary"
+            case 0x10840...0x1085F: return "Imperial Aramaic"
+            case 0x10860...0x1087F: return "Palmyrene"
+            case 0x10880...0x108AF: return "Nabataean"
+            case 0x108E0...0x108FF: return "Hatran"
+            case 0x10900...0x1091F: return "Phoenician"
+            case 0x10920...0x1093F: return "Lydian"
+            case 0x10980...0x1099F: return "Meroitic Hieroglyphs"
+            case 0x109A0...0x109FF: return "Meroitic Cursive"
+            case 0x10A00...0x10A5F: return "Kharoshthi"
+            case 0x10A60...0x10A7F: return "Old South Arabian"
+            case 0x10A80...0x10A9F: return "Old North Arabian"
+            case 0x10AC0...0x10AFF: return "Manichaean"
+            case 0x10B00...0x10B3F: return "Avestan"
+            case 0x10B40...0x10B5F: return "Inscriptional Parthian"
+            case 0x10B60...0x10B7F: return "Inscriptional Pahlavi"
+            case 0x10B80...0x10BAF: return "Psalter Pahlavi"
+            case 0x10C00...0x10C4F: return "Old Turkic"
+            case 0x10C80...0x10CFF: return "Old Hungarian"
+            case 0x10D00...0x10D3F: return "Hanifi Rohingya"
+            case 0x10E60...0x10E7F: return "Rumi Numeral Symbols"
+            case 0x10E80...0x10EBF: return "Yezidi"
+            case 0x10F00...0x10F2F: return "Old Sogdian"
+            case 0x10F30...0x10F6F: return "Sogdian"
+            case 0x10FB0...0x10FDF: return "Chorasmian"
+            case 0x10FE0...0x10FFF: return "Elymaic"
+            case 0x11000...0x1107F: return "Brahmi"
+            case 0x11080...0x110CF: return "Kaithi"
+            case 0x110D0...0x110FF: return "Sora Sompeng"
+            case 0x11100...0x1114F: return "Chakma"
+            case 0x11150...0x1117F: return "Mahajani"
+            case 0x11180...0x111DF: return "Sharada"
+            case 0x111E0...0x111FF: return "Sinhala Archaic Numbers"
+            case 0x11200...0x1124F: return "Khojki"
+            case 0x11280...0x112AF: return "Multani"
+            case 0x112B0...0x112FF: return "Khudawadi"
+            case 0x11300...0x1137F: return "Grantha"
+            case 0x11400...0x1147F: return "Newa"
+            case 0x11480...0x114DF: return "Tirhuta"
+            case 0x11580...0x115FF: return "Siddham"
+            case 0x11600...0x1165F: return "Modi"
+            case 0x11660...0x1167F: return "Mongolian Supplement"
+            case 0x11680...0x116CF: return "Takri"
+            case 0x11700...0x1173F: return "Ahom"
+            case 0x11800...0x1184F: return "Dogra"
+            case 0x118A0...0x118FF: return "Warang Citi"
+            case 0x11900...0x1195F: return "Dives Akuru"
+            case 0x119A0...0x119FF: return "Nandinagari"
+            case 0x11A00...0x11A4F: return "Zanabazar Square"
+            case 0x11A50...0x11AAF: return "Soyombo"
+            case 0x11AC0...0x11AFF: return "Pau Cin Hau"
+            case 0x11C00...0x11C6F: return "Bhaiksuki"
+            case 0x11C70...0x11CBF: return "Marchen"
+            case 0x11D00...0x11D5F: return "Masaram Gondi"
+            case 0x11D60...0x11DAF: return "Gunjala Gondi"
+            case 0x11EE0...0x11EFF: return "Makasar"
+            case 0x11FB0...0x11FBF: return "Lisu Supplement"
+            case 0x11FC0...0x11FFF: return "Tamil Supplement"
+            case 0x12000...0x123FF: return "Cuneiform"
+            case 0x12400...0x1247F: return "Cuneiform Numbers and Punctuation"
+            case 0x12480...0x1254F: return "Early Dynastic Cuneiform"
+            case 0x13000...0x1342F: return "Egyptian Hieroglyphs"
+            case 0x13430...0x1343F: return "Egyptian Hieroglyph Format Controls"
+            case 0x14400...0x1467F: return "Anatolian Hieroglyphs"
+            case 0x16800...0x16A3F: return "Bamum Supplement"
+            case 0x16A40...0x16A6F: return "Mro"
+            case 0x16AD0...0x16AFF: return "Bassa Vah"
+            case 0x16B00...0x16B8F: return "Pahawh Hmong"
+            case 0x16E40...0x16E9F: return "Medefaidrin"
+            case 0x16F00...0x16F9F: return "Miao"
+            case 0x16FE0...0x16FFF: return "Ideographic Symbols and Punctuation"
+            case 0x17000...0x187FF: return "Tangut"
+            case 0x18800...0x18AFF: return "Tangut Components"
+            case 0x18B00...0x18CFF: return "Khitan Small Script"
+            case 0x18D00...0x18D8F: return "Tangut Supplement"
+            case 0x1B000...0x1B0FF: return "Kana Supplement"
+            case 0x1B100...0x1B12F: return "Kana Extended-A"
+            case 0x1B130...0x1B16F: return "Small Kana Extension"
+            case 0x1B170...0x1B2FF: return "Nushu"
+            case 0x1BC00...0x1BC9F: return "Duployan"
+            case 0x1BCA0...0x1BCAF: return "Shorthand Format Controls"
+            case 0x1D000...0x1D0FF: return "Byzantine Musical Symbols"
+            case 0x1D100...0x1D1FF: return "Musical Symbols"
+            case 0x1D200...0x1D24F: return "Ancient Greek Musical Notation"
+            case 0x1D2E0...0x1D2FF: return "Mayan Numerals"
+            case 0x1D300...0x1D35F: return "Tai Xuan Jing Symbols"
+            case 0x1D360...0x1D37F: return "Counting Rod Numerals"
+            case 0x1D400...0x1D7FF: return "Mathematical Alphanumeric Symbols"
+            case 0x1D800...0x1DAAF: return "Sutton SignWriting"
+            case 0x1E000...0x1E02F: return "Glagolitic Supplement"
+            case 0x1E100...0x1E14F: return "Nyiakeng Puachue Hmong"
+            case 0x1E2C0...0x1E2FF: return "Wancho"
+            case 0x1E800...0x1E8DF: return "Mende Kikakui"
+            case 0x1E900...0x1E95F: return "Adlam"
+            case 0x1EC70...0x1ECBF: return "Indic Siyaq Numbers"
+            case 0x1ED00...0x1ED4F: return "Ottoman Siyaq Numbers"
+            case 0x1EE00...0x1EEFF: return "Arabic Mathematical Alphabetic Symbols"
+            case 0x1F000...0x1F02F: return "Mahjong Tiles"
+            case 0x1F030...0x1F09F: return "Domino Tiles"
+            case 0x1F0A0...0x1F0FF: return "Playing Cards"
+            case 0x1F100...0x1F1FF: return "Enclosed Alphanumeric Supplement"
+            case 0x1F200...0x1F2FF: return "Enclosed Ideographic Supplement"
+            case 0x1F300...0x1F5FF: return "Miscellaneous Symbols and Pictographs"
+            case 0x1F600...0x1F64F: return "Emoticons"
+            case 0x1F650...0x1F67F: return "Ornamental Dingbats"
+            case 0x1F680...0x1F6FF: return "Transport and Map Symbols"
+            case 0x1F700...0x1F77F: return "Alchemical Symbols"
+            case 0x1F780...0x1F7FF: return "Geometric Shapes Extended"
+            case 0x1F800...0x1F8FF: return "Supplemental Arrows-C"
+            case 0x1F900...0x1F9FF: return "Supplemental Symbols and Pictographs"
+            case 0x1FA00...0x1FA6F: return "Chess Symbols"
+            case 0x1FA70...0x1FAFF: return "Symbols and Pictographs Extended-A"
+            case 0x1FB00...0x1FBFF: return "Symbols for Legacy Computing"
+            case 0x20000...0x2A6DF: return "CJK Unified Ideographs Extension B"
+            case 0x2A700...0x2B73F: return "CJK Unified Ideographs Extension C"
+            case 0x2B740...0x2B81F: return "CJK Unified Ideographs Extension D"
+            case 0x2B820...0x2CEAF: return "CJK Unified Ideographs Extension E"
+            case 0x2CEB0...0x2EBEF: return "CJK Unified Ideographs Extension F"
+            case 0x2F800...0x2FA1F: return "CJK Compatibility Ideographs Supplement"
+            case 0x30000...0x3134F: return "CJK Unified Ideographs Extension G"
+            case 0xE0000...0xE007F: return "Tags"
+            case 0xE0100...0xE01EF: return "Variation Selectors Supplement"
+            case 0xF0000...0xFFFFF: return "Supplementary Private Use Area-A"
+            case 0x100000...0x10FFFF: return "Supplementary Private Use Area-B"
+            
+            default: return nil
+        }
+    }
     
 }
