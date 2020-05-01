@@ -26,12 +26,7 @@
  
  */
 
-
 "<a letter consisting of %d characters>" = "<包含有 %d 个字符>";
-
-// placeholder for invalid values
-"No Block" = "无 Block";
-"No Category" = "未分类";
 
 // Variation selectors
 "Emoji Style" = "表情文字格式";

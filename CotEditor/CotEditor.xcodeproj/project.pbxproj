@@ -905,6 +905,12 @@
 		2A12C7FB1D1813080069C60B /* EncodingTableCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingTableCellView.swift; sourceTree = "<group>"; };
 		2A12C7FE1D1843B50069C60B /* SeparatorTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorTextField.swift; sourceTree = "<group>"; };
 		2A1311D52127DCE1001D52C5 /* NSTextView+CurrentLineHighlighting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTextView+CurrentLineHighlighting.swift"; sourceTree = "<group>"; };
+		2A15688A245C107B0055CD85 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
+		2A15688C245C107E0055CD85 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CharacterPopover.strings"; sourceTree = "<group>"; };
+		2A15688E245C10800055CD85 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
+		2A156890245C10840055CD85 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
+		2A156892245C10860055CD85 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
+		2A156894245C10880055CD85 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/CharacterPopover.strings; sourceTree = "<group>"; };
 		2A1679E51D3CE07100E8261D /* Document.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
 		2A17A3121D2D16F1001DD717 /* WindowContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowContentViewController.swift; sourceTree = "<group>"; };
 		2A17A3151D2D4319001DD717 /* DocumentWindow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentWindow.swift; sourceTree = "<group>"; };
@@ -3831,6 +3837,12 @@
 			isa = PBXVariantGroup;
 			children = (
 				2ABC828321A9486A008F9229 /* Base */,
+				2A15688A245C107B0055CD85 /* ja */,
+				2A15688C245C107E0055CD85 /* zh-Hans */,
+				2A15688E245C10800055CD85 /* de */,
+				2A156890245C10840055CD85 /* it */,
+				2A156892245C10860055CD85 /* pt */,
+				2A156894245C10880055CD85 /* fr */,
 			);
 			name = CharacterPopover.storyboard;
 			sourceTree = "<group>";

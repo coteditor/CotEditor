@@ -25,12 +25,7 @@
  
  */
 
-
 "<a letter consisting of %d characters>" = "<%d字から成る文字>";
-
-// placeholder for invalid values
-"No Block" = "ブロックなし";
-"No Category" = "カテゴリなし";
 
 // Variation selectors
 "Emoji Style" = "絵文字スタイル";

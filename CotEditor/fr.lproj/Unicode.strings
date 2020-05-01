@@ -25,12 +25,7 @@
  
  */
 
-
 "<a letter consisting of %d characters>" = "<un symbole constitué de %d caractères>";
-
-// placeholder for invalid values
-"No Block" = "Pas de bloc";
-"No Category" = "Pas de catégorie";
 
 // Variation selectors
 "Emoji Style" = "Style d'Emoji";
