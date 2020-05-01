@@ -25,10 +25,11 @@
 
 extension Unicode.Scalar {
     
-    // presentation selectors
-    static let textSequence = Unicode.Scalar(0xFE0E)!
-    static let emojiSequence = Unicode.Scalar(0xFE0F)!
-    
+    enum EmojiVariationSelector {
+        
+        static let text = Unicode.Scalar(0xFE0E)!
+        static let emoji = Unicode.Scalar(0xFE0F)!
+    }
     
     enum SkinToneModifier {
         
@@ -80,9 +81,9 @@ struct CharacterInfo {
             guard unicodes.count == 2, let lastUnicode = unicodes.last else { return nil }
             
             switch lastUnicode {
-                case Unicode.Scalar.emojiSequence:
+                case Unicode.Scalar.EmojiVariationSelector.emoji:
                     return "Emoji Style"
-                case Unicode.Scalar.textSequence:
+                case Unicode.Scalar.EmojiVariationSelector.text:
                     return "Text Style"
                 case Unicode.Scalar.SkinToneModifier.type12:
                     return "Skin Tone I-II"
