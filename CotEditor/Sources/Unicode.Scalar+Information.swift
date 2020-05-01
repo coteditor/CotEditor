@@ -25,14 +25,14 @@
 
 extension Unicode.Scalar {
     
-    /// code point string in format like `U+000F`
+    /// Code point string in format like `U+000F`.
     var codePoint: String {
         
         return String(format: "U+%04tX", self.value)
     }
     
     
-    /// code point pair in UTF-16 surrogate pair
+    /// Code point pair in UTF-16 surrogate pair.
     var surrogateCodePoints: [String]? {
         
         guard self.isSurrogatePair else { return nil }
@@ -42,14 +42,14 @@ extension Unicode.Scalar {
     }
     
     
-    /// if character becomes a surrogate pair in UTF-16
+    /// Boolean value indicating wheather character becomes a surrogate pair in UTF-16.
     var isSurrogatePair: Bool {
         
         return (UTF16.width(self) == 2)
     }
     
     
-    /// Unicode name
+    /// Unicode name.
     var name: String? {
         
         return self.properties.nameAlias
@@ -58,14 +58,14 @@ extension Unicode.Scalar {
     }
     
     
-    /// Unicode block name
+    /// Unicode block name.
     var blockName: String? {
         
         return self.value.blockName
     }
     
     
-    /// Localized and sanitized unicode block name
+    /// Localized and sanitized unicode block name.
     var localizedBlockName: String? {
         
         // -> This is actually a dirty workaround to make the block name the same as the Apple's block naming rule.
@@ -84,18 +84,18 @@ extension Unicode.Scalar {
 
 // MARK: -
 
-// implement Unicode functions at UTF32.CodeUnit level in order to cover single surrogate characters that are not allowed by Unicode.Scalar
-
 extension UTF32.CodeUnit {
     
-    /// get Unicode name
+    /// Return Unicode name.
+    ///
+    /// Implemented at UTF32.CodeUnit level in order to cover single surrogate characters
+    /// that are not allowed by Unicode.Scalar.
     var unicodeName: String? {
         
         if let name = Unicode.Scalar(self)?.name {
             return name
         }
         
-        // create single surrogate character by ownself
         if let codeUnit = UTF16.CodeUnit(exactly: self) {
             if UTF16.isLeadSurrogate(codeUnit) {
                 return "<lead surrogate-" + String(format: "%04X", self) + ">"
