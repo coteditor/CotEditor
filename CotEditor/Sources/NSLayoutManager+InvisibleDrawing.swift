@@ -246,13 +246,8 @@ private extension Invisible {
                 return path
             
             case .noBreakSpace:
-                let radius = size.height / 15
-                let rect = CGRect(x: size.width / 2, y: size.height / 2, width: 0, height: 0)
                 let path = CGMutablePath()
-                path.addEllipse(in: rect.insetBy(dx: -radius, dy: -radius))
-                // draw a zero size dot to fill in the center
-                path.addEllipse(in: rect)
-                // hat
+                path.addPath(Self.space.path(in: size))
                 path.move(to: CGPoint(x: 0.5 * size.width, y: 0.05 * size.height))
                 path.addLine(to: CGPoint(x: 0.3 * size.width, y: 0.23 * size.height))
                 path.move(to: CGPoint(x: 0.5 * size.width, y: 0.05 * size.height))
