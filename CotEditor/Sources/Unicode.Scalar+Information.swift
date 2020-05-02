@@ -42,7 +42,7 @@ extension Unicode.Scalar {
     }
     
     
-    /// Boolean value indicating wheather character becomes a surrogate pair in UTF-16.
+    /// Boolean value indicating whether character becomes a surrogate pair in UTF-16.
     var isSurrogatePair: Bool {
         
         return (UTF16.width(self) == 2)
