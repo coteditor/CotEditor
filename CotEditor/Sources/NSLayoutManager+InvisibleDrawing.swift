@@ -103,7 +103,7 @@ extension InvisibleDrawing {
                         // for non-zeroAdvancement controls, such as VERTICAL TABULATION
                         glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
                     default:
-                        glyphWidth = self.selectionRectForGlyph(at: glyphIndex, in: textContainer).width
+                        glyphWidth = self.enclosingRectForGlyph(at: glyphIndex, in: textContainer).width
                 }
                 
                 let size = CGSize(width: glyphWidth, height: glyphHeight)
@@ -193,23 +193,23 @@ extension InvisibleDrawing {
 
 private extension NSLayoutManager {
     
-    /// The exact rectangle of a glyph in the quality of selection area drawing.
+    /// The enclosing rectangle of a glyph at the given index.
     ///
     /// - Parameters:
     ///   - glyphIndex: The glyph index for which to return enclosing rectangle.
     ///   - textContainer: The text container in which the glyph is laid out.
-    /// - Returns: The selection rectangle for the glyph at the given index.
-    func selectionRectForGlyph(at glyphIndex: Int, in textContainer: NSTextContainer) -> NSRect {
+    /// - Returns: The enclosing rectangle.
+    func enclosingRectForGlyph(at glyphIndex: Int, in textContainer: NSTextContainer) -> NSRect {
         
         assert(self.isValidGlyphIndex(glyphIndex))
         
         let glyphRange = NSRange(location: glyphIndex, length: 1)
-        var rect: NSRect = .zero
-        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: glyphRange, in: textContainer) { (enclosingRect, _) in
-            rect = enclosingRect
+        var enclosingRect: NSRect = .zero
+        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: .notFound, in: textContainer) { (rect, _) in
+            enclosingRect = rect
         }
         
-        return rect
+        return enclosingRect
     }
     
 }
