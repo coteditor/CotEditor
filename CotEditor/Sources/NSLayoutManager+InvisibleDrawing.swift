@@ -72,8 +72,6 @@ extension InvisibleDrawing {
             NSGraphicsContext.restoreGraphicsState()
         }
         color.set()
-        NSBezierPath.defaultLineWidth = lineWidth
-        NSBezierPath.defaultLineCapStyle = .round
         
         // draw invisibles glyph by glyph
         let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
@@ -107,7 +105,7 @@ extension InvisibleDrawing {
                 }
                 
                 let size = CGSize(width: glyphWidth, height: glyphHeight)
-                path = invisible.path(in: size, isRTL: isRTL)
+                path = invisible.path(in: size, lineWidth: lineWidth, isRTL: isRTL)
                 
                 if cacheableInvisibles.contains(invisible) {
                     pathCache[codeUnit] = path
@@ -119,7 +117,7 @@ extension InvisibleDrawing {
             let symbolOrigin = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset - glyphHeight)
             let transform = AffineTransform(translationByX: symbolOrigin.x, byY: symbolOrigin.y)
             
-            NSBezierPath(path: path, transform: transform).stroke()
+            NSBezierPath(path: path, transform: transform).fill()
         }
     }
     
@@ -197,15 +195,17 @@ private extension Invisible {
     ///
     /// - Parameters:
     ///   - size: The size of bounding box.
+    ///   - lineWidth: The standard line width.
     ///   - isRTL: Whether the path will be used for right-to-left writing direction.
     /// - Returns: The path.
-    func path(in size: CGSize, isRTL: Bool = false) -> CGPath {
+    func path(in size: CGSize, lineWidth: CGFloat, isRTL: Bool = false) -> CGPath {
         
         switch self {
             case .newLine:
                 // -> Do not use `size.width` as new line glyphs actually have no area.
                 let y = 0.4 * size.height
                 let radius = 0.25 * size.height
+                let transform = isRTL ? CGAffineTransform(scaleX: -1, y: 1) : .identity
                 let path = CGMutablePath()
                 // arrow body
                 path.move(to: CGPoint(x: 0.9 * size.height, y: y - radius))
@@ -217,10 +217,7 @@ private extension Invisible {
                 path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius + 0.25 * size.height))
                 path.move(to: CGPoint(x: 0.2 * size.height, y: y + radius))
                 path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius - 0.25 * size.height))
-                if isRTL, let flippedPath = path.copy(using: [CGAffineTransform(scaleX: -1, y: 1)]) {
-                    return flippedPath
-                }
-                return path
+                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0, transform: transform)
             
             case .tab:
                 // -> The width of tab is elastic and even can be (almost) zero.
@@ -230,39 +227,39 @@ private extension Invisible {
                 let transform = isRTL ? CGAffineTransform(scaleX: -1, y: 1).translatedBy(x: -size.width, y: 0) : .identity
                 let path = CGMutablePath()
                 // arrow body
-                path.move(to: endPoint, transform: transform)
-                path.addLine(to: endPoint.offsetBy(dx: -max(size.width - 2 * margin, arrow.width), dy: 0), transform: transform)
+                path.move(to: endPoint)
+                path.addLine(to: endPoint.offsetBy(dx: -max(size.width - 2 * margin, arrow.width), dy: 0))
                 // arrow head
-                path.move(to: endPoint, transform: transform)
-                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height), transform: transform)
-                path.move(to: endPoint, transform: transform)
-                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height), transform: transform)
-                return path
+                path.move(to: endPoint)
+                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height))
+                path.move(to: endPoint)
+                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height))
+                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0, transform: transform)
             
             case .space:
-                let radius = size.height / 15
-                let rect = CGRect(x: size.width / 2, y: size.height / 2, width: 0, height: 0)
-                let path = CGMutablePath()
-                path.addEllipse(in: rect.insetBy(dx: -radius, dy: -radius))
-                // draw a zero size dot to fill in the center
-                path.addEllipse(in: rect)
-                return path
+                let radius = size.height / 15 + lineWidth
+                let rect = CGRect(x: (size.width - radius) / 2, y: (size.height - radius) / 2, width: radius, height: radius)
+                return CGPath(ellipseIn: rect, transform: nil)
             
             case .noBreakSpace:
-                let path = CGMutablePath()
+                let hat = CGMutablePath()
                 let hatCorner = CGPoint(x: 0.5 * size.width, y: 0.05 * size.height)
-                path.move(to: hatCorner)
-                path.addLine(to: hatCorner.offsetBy(dx: -0.15 * size.height, dy: 0.18 * size.height))
-                path.move(to: hatCorner)
-                path.addLine(to: hatCorner.offsetBy(dx: 0.15 * size.height, dy: 0.18 * size.height))
-                path.addPath(Self.space.path(in: size))
+                hat.addLines(between: [
+                    hatCorner.offsetBy(dx: -0.15 * size.height, dy: 0.18 * size.height),
+                    hatCorner,
+                    hatCorner.offsetBy(dx: 0.15 * size.height, dy: 0.18 * size.height),
+                ])
+                let path = CGMutablePath()
+                path.addPath(hat.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0))
+                path.addPath(Self.space.path(in: size, lineWidth: lineWidth))
                 return path
             
             case .fullwidthSpace:
-                let length = 0.95 * min(size.width, size.height)
+                let length = 0.95 * min(size.width, size.height) - lineWidth
                 let radius = 0.1 * length
                 let rect = CGRect(x: (size.width - length) / 2, y: (size.height - length) / 2, width: length, height: length)
                 return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
+                    .copy(strokingWithWidth: lineWidth, lineCap: .butt, lineJoin: .miter, miterLimit: 0)
             
             case .otherWhitespace:
                 let path = CGMutablePath()
@@ -274,7 +271,7 @@ private extension Invisible {
                     CGPoint(x: 0.2 * size.width, y: 0.8 * size.height),
                     CGPoint(x: 0.8 * size.width, y: 0.8 * size.height),
                 ])
-                return path
+                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0)
                 
             case .otherControl:
                 let question = CGMutablePath()  // `?` mark in unit size
@@ -292,7 +289,7 @@ private extension Invisible {
                 let rect = CGRect(origin: .zero, size: size).insetBy(dx: 0.1 * size.width, dy: 0)
                 let radius = 0.1 * size.width
                 path.addRoundedRect(in: rect, cornerWidth: radius, cornerHeight: radius)
-                return path
+                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0)
         }
     }
     
