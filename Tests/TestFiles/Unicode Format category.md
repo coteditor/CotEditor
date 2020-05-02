@@ -20,18 +20,17 @@ last modified: 2020-04-30
 | - | 200D                   |   1 | Zero Width Joiner           | General Punctuation                 |   | リガチャを促進する / 絵文字の糊（ゼロ幅接合子） |
 | Y | 200E..200F, 202A..202E |   9 | (Bidi controls)             | General Punctuation                 |   | 双方向テキスト制御記号 |
 | Y | 2060                   |   1 | Word Joiner                 | General Punctuation                 |   | 前後での改行を禁止する (BOMの代わり) |
-|   | 2061                   |   1 | Function Application        | General Punctuation                 |   | 数学用制御文字 |
-|   | 2062..2064             |   3 | Invisible …                 | General Punctuation                 |   | 数学用制御文字 |
+|   | 2061..2064             |   4 | (invisible operators)       | General Punctuation                 |   | 数学用制御文字 |
 | Y | 2066..2069             |   3 | (Bidi controls)             | General Punctuation                 |   | 双方向テキスト制御記号 |
 | Y | 206A..206F             |   6 | (Bidi controls)             | General Punctuation                 |   | 双方向テキスト制御記号 (deprecated in Unicode 3.0) |
 | Y | FEFF                   |   1 | Zero Width No-Break Space   | Arabic Presentation Forms-B         |   | BOM |
-| Y | FFF9..FFFB             |   3 | Interlinear Annotation …    | Specials                            |   | ルビ制御文字 |
+| Y | FFF9..FFFB             |   3 | Interlinear Annotation …    | Specials[^3]                        |   | ルビ制御文字 |
 | - | 110BD, 110CD           |   2 | Kaithi Number Sign …        | Kaithi                              | 𑂽|  |
 |   | 13430..13438           |   9 | Egyptian Hieroglyph …       | Egyptian Hieroglyph Format Controls |   |  |
 |   | 1BCA0..1BCA3           |   4 | Shorthand Format …          | Shorthand Format Controls           |   | 速記書式制御記号 |
 | - | 1D173..1D17A           |   8 | Musical Symbol …            | Musical Symbols                     |   |  |
-|   | E0001                  |   1 | Language Tag                | Tags[^3]                            |   | (deprecated) |
-| - | E0020..E007F           |  96 | Tag …                       | Tags                                |   | formerly not recommended but now used for flag emojis[^4] |
+|   | E0001                  |   1 | Language Tag                | Tags[^4]                            |   | (deprecated) |
+| - | E0020..E007F           |  96 | Tag …                       | Tags                                |   | formerly not recommended but now used for flag emojis[^5] |
 
 
 ## List of formatting-like characters in other categories (just randomly picked-up)
@@ -45,5 +44,6 @@ last modified: 2020-04-30
 
 [^1]: [Arabic letter mark - Wikipedia](https://en.wikipedia.org/wiki/Arabic_letter_mark)
 [^2]: [General Punctuation (Range: 2000–206F) - Unicode.org](https://unicode.org/charts/PDF/U2000.pdf)
-[^3]: [Tags (Range: E0000–E007F) - Unicode.org](https://unicode.org/charts/PDF/UE0000.pdf)
-[^4]: [Emoji Tag Sequence for Subdivision Flags - emojipedia](https://emojipedia.org/emoji-tag-sequence/)
+[^3]: [Specials (Range: FFF0–FFFF) - Unicode.org](https://unicode.org/charts/PDF/UFFF0.pdf)
+[^4]: [Tags (Range: E0000–E007F) - Unicode.org](https://unicode.org/charts/PDF/UE0000.pdf)
+[^5]: [Emoji Tag Sequence for Subdivision Flags - emojipedia](https://emojipedia.org/emoji-tag-sequence/)
