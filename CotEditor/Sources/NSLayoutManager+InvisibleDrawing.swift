@@ -63,7 +63,7 @@ extension InvisibleDrawing {
         let baselineOffset = (textContainer.layoutOrientation == .vertical)
             ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
             : baselineOffset
-        let cacheableInvisibles: [Invisible] = [.newLine, .fullwidthSpace, .otherControl]
+        let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]
         var pathCache: [UTF16.CodeUnit: CGPath] = [:]
         
         // setup drawing parameters
