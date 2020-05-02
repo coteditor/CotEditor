@@ -110,9 +110,12 @@ extension Invisible: CaseIterable {
 
 extension UserDefaults {
     
-    var showsInvisible: [Invisible] {
+    var showsInvisible: Set<Invisible> {
         
-        return Invisible.allCases.filter { self[$0.visibilityDefaultKey] }
+        let invisibles = Invisible.allCases
+            .filter { self[$0.visibilityDefaultKey] }
+        
+        return Set(invisibles)
     }
     
 }

@@ -45,7 +45,7 @@ extension InvisibleDrawing {
     ///   - baselineOffset: The baseline offset to draw glyphs.
     ///   - color: The color of invisibles.
     ///   - types: The invisible types to draw.
-    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor, types: [Invisible]) {
+    func drawInvisibles(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, baselineOffset: CGFloat, color: NSColor, types: Set<Invisible>) {
         
         guard
             self.showsInvisibles,
