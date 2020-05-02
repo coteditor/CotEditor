@@ -94,18 +94,16 @@ extension InvisibleDrawing {
                 switch invisible {
                     case .newLine:
                         glyphWidth = 0
-                    case .noBreakSpace:
-                        // -> `boundingRect(forGlyphRange:in)` can occasionally not calculate the width of no-break space properly.
-                        glyphWidth = self.textFont.width(of: "\u{00A0}")
                     case .otherControl:
+                        // for non-zeroAdvancement controls, such as VERTICAL TABULATION
                         glyphWidth = self.boundingBoxForControlGlyph(for: self.textFont).width
                     default:
-                        let glyphRange = NSRange(location: glyphIndex, length: 1)
-                        let boundingRect = self.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-                        glyphWidth = boundingRect.width
+                        glyphWidth = self.selectionRectForGlyph(at: glyphIndex, in: textContainer).width
                 }
                 
-                path = invisible.path(in: CGSize(width: glyphWidth, height: glyphHeight), isRTL: isRTL)
+                let size = CGSize(width: glyphWidth, height: glyphHeight)
+                path = invisible.path(in: size, isRTL: isRTL)
+                
                 if invisible != .tab {
                     pathCache[codeUnit] = path
                 }
@@ -187,6 +185,31 @@ extension InvisibleDrawing {
 
 
 // MARK: -
+
+private extension NSLayoutManager {
+    
+    /// The exact rectangle of a glyph in the quality of selection area drawing.
+    ///
+    /// - Parameters:
+    ///   - glyphIndex: The glyph index for which to return enclosing rectangle.
+    ///   - textContainer: The text container in which the glyph is laid out.
+    /// - Returns: The selection rectangle for the glyph at the given index.
+    func selectionRectForGlyph(at glyphIndex: Int, in textContainer: NSTextContainer) -> NSRect {
+        
+        assert(self.isValidGlyphIndex(glyphIndex))
+        
+        let glyphRange = NSRange(location: glyphIndex, length: 1)
+        var rect: NSRect = .zero
+        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: glyphRange, in: textContainer) { (enclosingRect, _) in
+            rect = enclosingRect
+        }
+        
+        return rect
+    }
+    
+}
+
+
 
 private extension Invisible {
     
