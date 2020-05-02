@@ -33,7 +33,7 @@ enum Invisible {
     case noBreakSpace
     case fullwidthSpace
     case otherWhitespace  // Unicode Category Zs (excl. U+1680)
-    case otherControl  // Unicode Category Cc and U+200B
+    case otherControl  // Unicode Category Cc and some of Cf
     
     
     init?(codeUnit: UTF16.CodeUnit) {
@@ -105,6 +105,7 @@ extension Invisible: CaseIterable {
             case .otherControl: return .showInvisibleControl
         }
     }
+    
 }
 
 
