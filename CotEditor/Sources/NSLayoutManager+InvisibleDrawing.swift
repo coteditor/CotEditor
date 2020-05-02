@@ -275,11 +275,12 @@ private extension Invisible {
             
             case .noBreakSpace:
                 let path = CGMutablePath()
+                let hatCorner = CGPoint(x: 0.5 * size.width, y: 0.05 * size.height)
+                path.move(to: hatCorner)
+                path.addLine(to: hatCorner.offsetBy(dx: -0.15 * size.height, dy: 0.18 * size.height))
+                path.move(to: hatCorner)
+                path.addLine(to: hatCorner.offsetBy(dx: 0.15 * size.height, dy: 0.18 * size.height))
                 path.addPath(Self.space.path(in: size))
-                path.move(to: CGPoint(x: 0.5 * size.width, y: 0.05 * size.height))
-                path.addLine(to: CGPoint(x: 0.3 * size.width, y: 0.23 * size.height))
-                path.move(to: CGPoint(x: 0.5 * size.width, y: 0.05 * size.height))
-                path.addLine(to: CGPoint(x: 0.7 * size.width, y: 0.23 * size.height))
                 return path
             
             case .fullwidthSpace:
