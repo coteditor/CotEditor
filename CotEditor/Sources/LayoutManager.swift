@@ -173,8 +173,8 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         // fix the width of whitespaces when the base font is fixed pitch.
         let newProps = UnsafeMutablePointer(mutating: props)
         if self.textFont.isFixedPitch {
-            for index in 0..<glyphRange.length where props[index].contains(.elastic) {
-                newProps[index].remove(.elastic)
+            for index in 0..<glyphRange.length {
+                newProps[index].subtract(.elastic)
             }
         }
         
