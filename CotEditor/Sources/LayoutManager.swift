@@ -168,6 +168,20 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     }
     
     
+    override func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: NSFont, forGlyphRange glyphRange: NSRange) {
+        
+        // fix the width of whitespaces when the base font is fixed pitch.
+        let newProps = UnsafeMutablePointer(mutating: props)
+        if self.textFont.isFixedPitch {
+            for index in 0..<glyphRange.length where props[index].contains(.elastic) {
+                newProps[index].remove(.elastic)
+            }
+        }
+        
+        super.setGlyphs(glyphs, properties: newProps, characterIndexes: charIndexes, font: aFont, forGlyphRange: glyphRange)
+    }
+    
+    
     override func processEditing(for textStorage: NSTextStorage, edited editMask: NSTextStorageEditActions, range newCharRange: NSRange, changeInLength delta: Int, invalidatedRange invalidatedCharRange: NSRange) {
         
         if editMask.contains(.editedCharacters) {
