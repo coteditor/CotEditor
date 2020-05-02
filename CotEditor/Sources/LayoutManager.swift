@@ -122,12 +122,10 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         
         NSGraphicsContext.saveGraphicsState()
         
-        // set anti-alias state on screen drawing
         if NSGraphicsContext.currentContextDrawingToScreen() {
             NSGraphicsContext.current?.shouldAntialias = self.usesAntialias
         }
         
-        // draw invisibles
         if self.showsInvisibles {
             self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset(for: .horizontal), color: self.invisiblesColor, types: UserDefaults.standard.showsInvisible)
         }

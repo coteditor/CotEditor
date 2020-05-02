@@ -37,10 +37,10 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     
     // MARK: Private Properties
     
-    private var lineHeight: CGFloat = 0
-    private var baselineOffset: CGFloat = 0
-    private var invisibleVisibilityObserver: UserDefaultsObservation?
+    private lazy var lineHeight = self.defaultLineHeight(for: self.textFont)
+    private lazy var baselineOffset = self.defaultBaselineOffset(for: self.textFont)
     private lazy var boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: self.textFont)
+    private var invisibleVisibilityObserver: UserDefaultsObservation?
     
     
     
@@ -50,9 +50,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     override init() {
         
         super.init()
-        
-        self.lineHeight = self.defaultLineHeight(for: self.textFont)
-        self.baselineOffset = self.defaultBaselineOffset(for: self.textFont)
         
         self.delegate = self
         
