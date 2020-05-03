@@ -47,6 +47,28 @@ extension NSLayoutManager {
         return range
     }
     
+    
+    /// The enclosing rectangle of a glyph at the given index.
+    ///
+    /// - Parameters:
+    ///   - glyphIndex: The glyph index for which to return enclosing rectangle.
+    ///   - forSelection: Whether obtaining rect in the quality for selection range drawing.
+    ///   - textContainer: The text container in which the glyph is laid out.
+    /// - Returns: The enclosing rectangle.
+    func enclosingRectForGlyph(at glyphIndex: Int, forSelection: Bool = false, in textContainer: NSTextContainer) -> NSRect {
+        
+        assert(self.isValidGlyphIndex(glyphIndex))
+        
+        let glyphRange = NSRange(location: glyphIndex, length: 1)
+        let selectedGlyphRange = forSelection ? glyphRange : .notFound
+        var enclosingRect: NSRect = .zero
+        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: selectedGlyphRange, in: textContainer) { (rect, _) in
+            enclosingRect = rect
+        }
+        
+        return enclosingRect
+    }
+    
 }
 
 

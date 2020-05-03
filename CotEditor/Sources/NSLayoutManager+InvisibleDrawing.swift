@@ -191,31 +191,6 @@ extension InvisibleDrawing {
 
 // MARK: -
 
-private extension NSLayoutManager {
-    
-    /// The enclosing rectangle of a glyph at the given index.
-    ///
-    /// - Parameters:
-    ///   - glyphIndex: The glyph index for which to return enclosing rectangle.
-    ///   - textContainer: The text container in which the glyph is laid out.
-    /// - Returns: The enclosing rectangle.
-    func enclosingRectForGlyph(at glyphIndex: Int, in textContainer: NSTextContainer) -> NSRect {
-        
-        assert(self.isValidGlyphIndex(glyphIndex))
-        
-        let glyphRange = NSRange(location: glyphIndex, length: 1)
-        var enclosingRect: NSRect = .zero
-        self.enumerateEnclosingRects(forGlyphRange: glyphRange, withinSelectedGlyphRange: .notFound, in: textContainer) { (rect, _) in
-            enclosingRect = rect
-        }
-        
-        return enclosingRect
-    }
-    
-}
-
-
-
 private extension Invisible {
     
     /// Return the path to draw as alternative symbol.
