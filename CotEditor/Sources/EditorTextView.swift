@@ -1232,6 +1232,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard textStorage.length > 0 else { return }
         
         textStorage.addAttributes(self.typingAttributes, range: textStorage.range)
+        self.setNeedsDisplay(self.visibleRect)
     }
     
     
