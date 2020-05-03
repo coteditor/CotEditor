@@ -16,7 +16,7 @@ Change Log
 - Adjust the text baseline to draw characters vertically center in lines.
 - Optimize the performance of “Replace All” with a large number of matches.
 - Improve the performance when pasting a huge text.
-- Update Unicode block table to the latest Unicode 13.0.0.
+- Update the Unicode block table to the latest Unicode 13.0.0.
 - Duplicate lines more intelligently.
 - Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.
 - Adjust the visible area after unwrapping lines in RTL text mode.
@@ -42,7 +42,7 @@ Change Log
 - Fix an issue where the current line highlight did not update properly after changing some settings.
 - Fix an issue in the find panel's input fields where invisible control characters were drawn in the normal text color under specific conditions.
 - Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.
-- Fix an issue in the editor where previous drawing could remain in a blank space after chaning a display setting of the editor.
+- Fix an issue in the editor where the previous drawing could remain in a blank space after changing a display setting of the editor.
 
 
 
