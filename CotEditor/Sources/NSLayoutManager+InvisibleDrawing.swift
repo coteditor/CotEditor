@@ -282,14 +282,21 @@ private extension Invisible {
                 question.addCurve(to: CGPoint(x: 0.5, y: 0.75), control1: CGPoint(x: 0.48, y: 0.56), control2: CGPoint(x: 0.5, y: 0.72))
                 question.move(to: CGPoint(x: 0.5, y: 0.99))
                 question.addLine(to: CGPoint(x: 0.5, y: 1.0))
+                let transform = CGAffineTransform(translationX: 0.25 * size.width, y: 0.12 * size.height)
+                    .scaledBy(x: 0.5 * size.width, y: 0.76 * size.height)
+                let scaledQuestion = question.copy(using: [transform])!
                 let path = CGMutablePath()
-                let transform = CGAffineTransform(translationX: 0.3 * size.width, y: 0.2 * size.height)
-                    .scaledBy(x: 0.4 * size.width, y: 0.6 * size.height)
-                path.addPath(question, transform: transform)
-                let rect = CGRect(origin: .zero, size: size).insetBy(dx: 0.1 * size.width, dy: 0)
-                let radius = 0.1 * size.width
-                path.addRoundedRect(in: rect, cornerWidth: radius, cornerHeight: radius)
-                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0)
+                path.addLines(between: [
+                    CGPoint(x: 0.5 * size.width, y: -0.15 * size.height),
+                    CGPoint(x: 0.9 * size.width, y: 0.15 * size.height),
+                    CGPoint(x: 0.9 * size.width, y: 0.85 * size.height),
+                    CGPoint(x: 0.5 * size.width, y: 1.15 * size.height),
+                    CGPoint(x: 0.1 * size.width, y: 0.85 * size.height),
+                    CGPoint(x: 0.1 * size.width, y: 0.15 * size.height),
+                ])
+                path.closeSubpath()
+                path.addPath(scaledQuestion.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0))
+                return path
         }
     }
     
