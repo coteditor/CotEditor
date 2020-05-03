@@ -25,7 +25,7 @@
 
 cd ../Frameworks
 
-derivedData=$(mktemp -d "$TMPDIR/Sparkle.XXXXXX")
+derivedData=$(mktemp -d "${TMPDIR}Sparkle.XXXXXX")
 
 # build Sparkle
 echo "📦 Building Sparkle"
@@ -40,7 +40,7 @@ items=(
     'Sparkle.framework'
 )
 for item in ${items[@]}; do
-    file="${derivedData}/Build/Products/Release/${item}*"
+    file="${derivedData}/Build/Products/Release/${item}"
     echo "🚛 Copying ${item}..."
-    cp -r ${file} Build/
+    cp -R ${file}* Build/
 done
