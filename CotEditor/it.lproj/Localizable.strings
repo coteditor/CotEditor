@@ -197,7 +197,7 @@
 // Summary item names
 "Color" = "Colore";
 "Line Number" = "Numero riga";
-"Invisible Characters" = "Caratteri invisibili";
+"Invisibles" = "Caratteri invisibili";
 "Print Header" = "Stampa intestazione";
 "Primary Header" = "Intestazione primaria";
 "Primary Header Alignment" = "Allineamento intestazione primaria";
@@ -216,7 +216,6 @@
 "Same as Document’s Setting" = "Come da documento";
 "Black and White" = "Bianco e nero";
 "Print" = "Stampa";
-"Print All" = "Stampa tutto";
 "Syntax Name" = "Nome sintassi";
 "Document Name" = "Nome documento";
 "File Path" = "Percorso file";
@@ -281,14 +280,14 @@
 "Show Status Bar" = "Mostra barra di stato";
 "Hide Navigation Bar" = "Nascondi barra di navigazione";
 "Show Navigation Bar" = "Mostra barra di navigazione";
-"Hide Invisible Characters" = "Nascondi caratteri invisibili";
-"Show Invisible Characters" = "Mostra caratteri invisibili";
+"Hide Invisibles" = "Nascondi caratteri invisibili";
+"Show Invisibles" = "Mostra caratteri invisibili";
 "Hide Page Guide" = "Nascondi guida pagina";
 "Show Page Guide" = "Mostra guida pagina";
 "Unwrap Lines" = "Rimuovi a capo automatico";
 "Wrap Lines" = "A capo automatico";
 
-// Tooltip for "Show Invisible Characters" menu item
+// Tooltip for "Show Invisibles" menu item
 "Show or hide invisible characters in document" = "Mostra o nascondi i caratteri invisibili nel documento";
 "To show invisible characters, set them in Preferences" = "Per visualizzare i caratteri invisibili, impostarli nelle Preferenze";
 
@@ -350,7 +349,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "La modifica verrà applicata al prossimo avvio.";
+"The change will be applied first on the next launch." = "La modifica verrà applicata al prossimo avvio.";
 "Do you want to restart CotEditor now?" = "Si desidera riavviare CotEditor adesso?";
 "Restart Now" = "Riavvia ora";
 "Later" = "Più tardi";

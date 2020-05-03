@@ -13,8 +13,11 @@ jobs:
         xcodebuild -version
         swift --version
     - uses: actions/checkout@v1
+    - name: Select Xcode version
+      run: sudo xcode-select -s '/Applications/Xcode_11.4.app/Contents/Developer'
     - name: Checkout submodules
-      run: git submodule update --init
+      run: |
+        git submodule update --init
     - name: Lint Swift
       run: |
         brew install swiftlint
@@ -27,4 +30,4 @@ jobs:
       run: |
         cd SyntaxMapBuilder
         swift build
-        swift test
+        swift test 2>&1 | xcpretty -c

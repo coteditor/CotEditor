@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSRegularExpression
 
 extension String {
     
@@ -46,7 +46,7 @@ extension String {
             .reduce(into: self.lowercased()) { (string, range) in
                 let index = string.index(before: range.upperBound)
                 
-                string.replaceSubrange(range, with: string[workaround: index].uppercased())
+                string.replaceSubrange(range, with: string[index].uppercased())
             }
     }
     
@@ -59,7 +59,7 @@ extension String {
             .reduce(into: self) { (string, range) in
                 let index = string.index(before: range.upperBound)
                 
-                string.replaceSubrange(range, with: string[workaround: index].uppercased())
+                string.replaceSubrange(range, with: string[index].uppercased())
             }
     }
     
@@ -71,7 +71,7 @@ extension String {
         
         return (try! NSRegularExpression(pattern: pattern))
             .matches(in: self, range: self.nsRange)
-            .map { $0.range }
+            .map(\.range)
             .map { String.Index(utf16Offset: $0.lowerBound, in: self)..<String.Index(utf16Offset: $0.upperBound, in: self) }
     }
     

@@ -34,11 +34,13 @@ final class CharacterPopoverController: NSViewController {
     @objc private dynamic var glyph: String?
     @objc private dynamic var unicodeName: String?
     @objc private dynamic var unicodeBlockName: String?
+    @objc private dynamic var unicodeCategoryName: String?
     @objc private dynamic var unicode: String = ""
     
     @objc private dynamic var characterColor: NSColor = .labelColor
     
     @IBOutlet private weak var unicodeBlockNameField: NSTextField?
+    @IBOutlet private weak var unicodeCategoryNameField: NSTextField?
     
     
     
@@ -57,6 +59,7 @@ final class CharacterPopoverController: NSViewController {
         // remove group name field if not exists
         if self.unicodeBlockName == nil {
             self.unicodeBlockNameField!.removeFromSuperviewWithoutNeedingDisplay()
+            self.unicodeCategoryNameField!.removeFromSuperviewWithoutNeedingDisplay()
         }
     }
     
@@ -74,6 +77,13 @@ final class CharacterPopoverController: NSViewController {
         self.glyph = info.pictureString ?? info.string
         self.unicodeName = info.localizedDescription
         self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
+        self.unicodeCategoryName = {
+            guard !info.isComplex,
+                let category = unicodes.first?.properties.generalCategory
+                else { return nil }
+            
+            return "\(category.longName) (\(category.shortName))"
+        }()
         
         // build Unicode code point string
         let codePoints: [String] = unicodes.map { unicode in
@@ -150,8 +160,8 @@ extension CharacterPopoverController: NSPopoverDelegate {
         }
         
         // close popover when the window of the parent editor is closed
-        // -> Otherwise, a zombie window appears again when click somewhere after closing the window,
-        //    as NSPopover seems to retain the parent window somehow (2020 macOS 10.15).
+        // -> Otherwise, a zombie window appears again when clicking somewhere after closing the window,
+        //    as NSPopover seems to retain the parent window somehow. (2020 macOS 10.15)
         self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSWindow.willCloseNotification, object: parentWindow, queue: .main) { [weak popover] _ in
             popover?.close()
         }

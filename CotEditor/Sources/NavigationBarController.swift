@@ -130,7 +130,17 @@ final class NavigationBarController: NSViewController {
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }
-        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] _ in
+        self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] (notification) in
+            // avoid updating outline item selection before finishing outline parse
+            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+            guard
+                let textView = notification.object as? NSTextView,
+                !textView.hasMarkedText(),
+                let textStorage = textView.textStorage,
+                !textStorage.editedMask.contains(.editedCharacters)
+                else { return }
+            
             self?.invalidateOutlineMenuSelection()
         }
         
@@ -241,7 +251,7 @@ final class NavigationBarController: NSViewController {
         
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.tabStops = []
-        paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.spaceWidth
+        paragraphStyle.defaultTabInterval = 2.0 * self.outlineMenu!.menu!.font.width(of: " ")
         paragraphStyle.lineBreakMode = .byTruncatingMiddle
         paragraphStyle.tighteningFactorForTruncation = 0  // don't tighten
         
@@ -284,12 +294,14 @@ final class NavigationBarController: NSViewController {
         for outlineItem in self.outlineItems {
             switch outlineItem.title {
                 case .separator:
-                    menu.addItem(.separator())
+                    // add dummy item to avoid merging sequential separators into a single separator
+                    if menu.items.last?.isSeparatorItem == true {
+                        let menuItem = NSMenuItem()
+                        menuItem.view = NSView()
+                        menu.addItem(menuItem)
+                    }
                     
-                    // add a dummy item to avoid merging series separators to a single separator
-                    let menuItem = NSMenuItem()
-                    menuItem.view = NSView()
-                    menu.addItem(menuItem)
+                    menu.addItem(.separator())
                 
                 default:
                     let menuItem = NSMenuItem()

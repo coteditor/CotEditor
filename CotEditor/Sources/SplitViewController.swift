@@ -95,11 +95,11 @@ final class SplitViewController: NSSplitViewController {
         
         guard let textView = notification.object as? EditorTextView else { return }
         
-        guard let viewController = {
-            self.children.lazy
-                .compactMap { $0 as? EditorViewController }
-                .first { $0.textView == textView }
-            }() else { return }
+        guard
+            let viewController = self.children.lazy
+                .compactMap({ $0 as? EditorViewController })
+                .first(where: { $0.textView == textView })
+            else { return }
         
         self.focusedChild = viewController
     }

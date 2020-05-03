@@ -28,7 +28,7 @@ import Cocoa
 extension NSTextView {
     
     /// character just before the given range
-    func character(before range: NSRange) -> UnicodeScalar? {
+    func character(before range: NSRange) -> Unicode.Scalar? {
         
         guard range.lowerBound > 0 else { return nil }
         
@@ -39,7 +39,7 @@ extension NSTextView {
     
     
     /// character just after the given range
-    func character(after range: NSRange) -> UnicodeScalar? {
+    func character(after range: NSRange) -> Unicode.Scalar? {
         
         let index = String.UnicodeScalarIndex(utf16Offset: range.upperBound, in: self.string)
         

@@ -133,10 +133,4 @@ final class SidebarViewController: NSTabViewController {
         }
     }
     
-    
-    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
-        
-        super.tabView(tabView, didSelect: tabViewItem)
-    }
-    
 }

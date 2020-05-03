@@ -28,12 +28,26 @@ import Foundation
 protocol LineRangeCacheable: AnyObject {
     
     var string: NSString { get }
-    var lineStartIndexes: IndexSet { get set }
-    var firstLineUncoundedIndex: Int { get set }
+    var lineRangeCache: LineRangeCache { get set }
     
-    // This method must be invoked every time when the receiver's `.string` is updated.
-    func invalidateLineRanges(from index: Int)
+    /// Invalidate the line range cache.
+    ///
+    /// This method must be invoked every time when the receiver's `.string` is updated.
+    ///
+    /// - Parameters:
+    ///   - newRange: The range in the final string that was edited.
+    ///   - delta: The length delta for the editing changes.
+    func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int)
 }
+
+
+struct LineRangeCache {
+    
+    fileprivate var lineStartIndexes = IndexSet()
+    fileprivate var parsedIndexes = IndexSet()
+    fileprivate var firstUncoundedIndex = 0
+}
+
 
 
 extension LineRangeCacheable {
@@ -48,16 +62,16 @@ extension LineRangeCacheable {
         
         assert(index <= self.string.length)
         
-        self.ensureLineRanges(upTo: index)
+        self.ensureLineRanges(upTo: index - 1)
         
-        return self.lineStartIndexes.count(in: 0...index) + 1
+        return self.lineRangeCache.lineStartIndexes.count(in: 0...index) + 1
     }
     
     
     /// Return the range of the line touched by the given index.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
-    /// there is a large perormance disadbantage when just a single line range is needed.
+    /// there is a large performance disadbantage when just a single line range is needed.
     ///
     /// - Parameter index: The index of character for finding the line range.
     /// - Returns: The characer range of the line.
@@ -67,8 +81,8 @@ extension LineRangeCacheable {
         
         self.ensureLineRanges(upTo: index)
         
-        let lowerBound = self.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
-        let upperBound = self.lineStartIndexes.integerGreaterThan(index) ?? self.string.length
+        let lowerBound = self.lineRangeCache.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
+        let upperBound = self.lineRangeCache.lineStartIndexes.integerGreaterThan(index) ?? self.string.length
         
         return NSRange(location: lowerBound, length: upperBound - lowerBound)
     }
@@ -77,7 +91,7 @@ extension LineRangeCacheable {
     /// Return the index of the first character of the line touched by the given index.
     ///
     /// Because this method count up all the line ranges up to the given index when not cached yet,
-    /// there is a large perormance disadbantage when just a single line start index is needed.
+    /// there is a large performance disadbantage when just a single line start index is needed.
     ///
     /// - Parameter index: The index of character for finding the line start.
     /// - Returns: The character index of the nearest line start.
@@ -85,9 +99,9 @@ extension LineRangeCacheable {
         
         assert(index <= self.string.length)
         
-        self.ensureLineRanges(upTo: index)
+        self.ensureLineRanges(upTo: index - 1)
         
-        return self.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
+        return self.lineRangeCache.lineStartIndexes.integerLessThanOrEqualTo(index) ?? 0
     }
     
     
@@ -95,11 +109,12 @@ extension LineRangeCacheable {
     ///
     /// This method must be invoked every time when the receiver's `.string` is updated.
     ///
-    /// - Parameter index: The first character index where modificated.
-    func invalidateLineRanges(from index: Int) {
+    /// - Parameters:
+    ///   - newRange: The range in the final string that was edited.
+    ///   - delta: The length delta for the editing changes.
+    func invalidateLineRanges(in newRange: NSRange, changeInLength delta: Int) {
         
-        self.lineStartIndexes.remove(integersIn: (index + 1)..<Int.max)
-        self.firstLineUncoundedIndex = self.lineStartIndexes.last ?? 0
+        self.lineRangeCache.invalidate(in: newRange, changeInLength: delta)
     }
     
     
@@ -112,23 +127,59 @@ extension LineRangeCacheable {
     private func ensureLineRanges(upTo endIndex: Int) {
         
         assert(endIndex <= self.string.length)
-        assert(!self.lineStartIndexes.contains(self.firstLineUncoundedIndex + 1))
         
-        guard endIndex >= self.firstLineUncoundedIndex else { return }
+        guard endIndex >= self.lineRangeCache.firstUncoundedIndex else { return }
         
         let string = self.string
         
         guard string.length > 0 else { return }
         
-        var index = self.firstLineUncoundedIndex
-        while index <= min(endIndex, string.length - 1) {
+        let invalidIndexes = IndexSet(integersIn: 0...endIndex).subtracting(self.lineRangeCache.parsedIndexes)
+        let lowerParseBound = self.lineRangeCache.firstUncoundedIndex
+        let upperPasreBound = invalidIndexes.last ?? lowerParseBound
+        
+        var index = lowerParseBound
+        while index <= min(upperPasreBound, string.length - 1) {
             string.getLineStart(nil, end: &index, contentsEnd: nil, for: NSRange(location: index, length: 0))
             
             guard index != string.length || string.character(at: index - 1).isNewline else { break }
             
-            self.lineStartIndexes.insert(index)
+            self.lineRangeCache.lineStartIndexes.insert(index)
         }
-        self.firstLineUncoundedIndex = index
+        self.lineRangeCache.parsedIndexes.insert(integersIn: lowerParseBound..<index)
+        self.lineRangeCache.invalidateFirstUncoundedIndex()
+    }
+    
+}
+
+
+private extension LineRangeCache {
+    
+    /// Invalidate the cache.
+    ///
+    /// - Parameters:
+    ///   - newRange: The range in the final string that was edited.
+    ///   - delta: The length delta for the editing changes.
+    mutating func invalidate(in newRange: NSRange, changeInLength delta: Int) {
+        
+        self.parsedIndexes.shift(startingAt: max(newRange.lowerBound - delta, 0), by: delta)
+        self.parsedIndexes.remove(integersIn: newRange.lowerBound..<newRange.upperBound)
+        
+        self.lineStartIndexes.shift(startingAt: max(newRange.lowerBound + 1 - delta, 0), by: delta)
+        self.lineStartIndexes.remove(integersIn: (newRange.lowerBound + 1)..<(newRange.upperBound + 1))
+        
+        self.invalidateFirstUncoundedIndex()
+    }
+    
+    
+    /// Update the first uncounted index.
+    mutating func invalidateFirstUncoundedIndex() {
+        
+        let upperParsedIndexesBound = self.parsedIndexes.last.flatMap { $0 + 1 } ?? 0
+        let invalidIndexes = IndexSet(integersIn: 0..<upperParsedIndexesBound).subtracting(self.parsedIndexes)
+        let firstInvalidIndex = invalidIndexes.first ?? upperParsedIndexesBound
+        
+        self.firstUncoundedIndex = self.lineStartIndexes.integerLessThanOrEqualTo(firstInvalidIndex) ?? 0
     }
     
 }

@@ -58,7 +58,7 @@ enum RegularExpressionSyntaxType {
         var ranges = self.patterns(for: mode)
             .map { try! NSRegularExpression(pattern: $0) }
             .flatMap { $0.matches(in: string, range: string.nsRange) }
-            .map { $0.range }
+            .map(\.range)
         
         if self == .character, case .search = mode {
             ranges += string.ranges(bracePair: BracePair("[", "]"))

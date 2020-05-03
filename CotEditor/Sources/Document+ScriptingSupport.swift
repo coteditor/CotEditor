@@ -327,7 +327,7 @@ extension Document {
             }
             
             self.selectedRange = foundRange
-            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument
+            self.selection.contents = replacedString  // TextSelection's `setContents:` accepts also String for its argument.
             
             return 1
         }
@@ -342,7 +342,7 @@ extension Document {
     
     
     /// return sting in the specified range
-    func handleString(_ command: NSScriptCommand) -> String? {
+    @objc func handleString(_ command: NSScriptCommand) -> String? {
         
         guard
             let arguments = command.evaluatedArguments,

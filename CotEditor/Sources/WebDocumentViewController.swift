@@ -45,7 +45,7 @@ final class WebDocumentViewController: NSViewController {
         super.viewDidLoad()
         
         // hide Sparkle if not used
-        #if APPSTORE
+        #if !SPARKLE
             let source = "document.querySelector('.Sparkle').style.display='none'"
             let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
 

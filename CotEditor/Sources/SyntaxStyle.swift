@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -28,24 +28,28 @@ import Foundation
 
 struct HighlightDefinition: Equatable {
     
-    var beginString: String
+    enum `Error`: Swift.Error {
+        
+        case invalidFormat
+    }
+    
+    
+    var beginString: String = ""
     var endString: String?
-    var isRegularExpression: Bool
-    var ignoreCase: Bool
+    var isRegularExpression: Bool = false
+    var ignoreCase: Bool = false
     
     var description: String?
     
     
     
-    init?(dictionary: [String: Any]) {
+    init(dictionary: [String: Any]) throws {
         
-        guard let beginString = dictionary[SyntaxDefinitionKey.beginString.rawValue] as? String else { return nil }
+        guard let beginString = dictionary[SyntaxDefinitionKey.beginString.rawValue] as? String else { throw Error.invalidFormat }
         
         self.beginString = beginString
         if let endString = dictionary[SyntaxDefinitionKey.endString.rawValue] as? String, !endString.isEmpty {
             self.endString = endString
-        } else {
-            self.endString = nil
         }
         self.isRegularExpression = (dictionary[SyntaxDefinitionKey.regularExpression.rawValue] as? Bool) ?? false
         self.ignoreCase = (dictionary[SyntaxDefinitionKey.ignoreCase.rawValue] as? Bool) ?? false
@@ -58,6 +62,8 @@ extension HighlightDefinition {
     
     /// create a regex type definition from simple words by considering non-word characters around words
     init(words: [String], ignoreCase: Bool) {
+        
+        assert(!words.isEmpty)
         
         let escapedWords = words.sorted().reversed().map { NSRegularExpression.escapedPattern(for: $0) }  // reverse to precede longer word
         let rawBoundary = String(Set(words.joined() + "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_").sorted())
@@ -77,12 +83,18 @@ extension HighlightDefinition {
 
 struct OutlineDefinition: Equatable {
     
-    var pattern: String
-    var template: String
-    var ignoreCase: Bool
-    var bold: Bool
-    var italic: Bool
-    var underline: Bool
+    enum `Error`: Swift.Error {
+        
+        case invalidFormat
+    }
+    
+    
+    var pattern: String = ""
+    var template: String = ""
+    var ignoreCase: Bool = false
+    var bold: Bool = false
+    var italic: Bool = false
+    var underline: Bool = false
     
     var description: String?
     
@@ -100,9 +112,9 @@ struct OutlineDefinition: Equatable {
     
     
     
-    init?(dictionary: [String: Any]) {
+    init(dictionary: [String: Any]) throws {
         
-        guard let pattern = dictionary[CodingKeys.pattern.rawValue] as? String else { return nil }
+        guard let pattern = dictionary[CodingKeys.pattern.rawValue] as? String else { throw Error.invalidFormat }
         
         self.pattern = pattern
         self.template = dictionary[CodingKeys.template.rawValue] as? String ?? ""
@@ -185,7 +197,7 @@ struct SyntaxStyle {
         let definitionDictionary: [SyntaxType: [HighlightDefinition]] = SyntaxType.allCases.reduce(into: [:]) { (dict, type) in
             guard let wordDicts = dictionary[type.rawValue] as? [[String: Any]] else { return }
             
-            let definitions = wordDicts.compactMap { HighlightDefinition(dictionary: $0) }
+            let definitions = wordDicts.compactMap { try? HighlightDefinition(dictionary: $0) }
             
             guard !definitions.isEmpty else { return }
             
@@ -261,7 +273,7 @@ struct SyntaxStyle {
         
         // parse outline definitions
         self.outlineDefinitions = (dictionary[SyntaxKey.outlineMenu.rawValue] as? [[String: Any]])?.lazy
-            .compactMap { OutlineDefinition(dictionary: $0) } ?? []
+            .compactMap { try? OutlineDefinition(dictionary: $0) } ?? []
     }
     
     

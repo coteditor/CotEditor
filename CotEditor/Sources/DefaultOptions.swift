@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2019 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSObjCRuntime
 
 enum NoDocumentOnLaunchBehavior: Int {
     
@@ -72,23 +72,13 @@ enum AppearanceMode: Int {
 }
 
 
-@objc enum PrintLineNmuberMode: Int, DefaultInitializable {
+@objc enum PrintVisibilityMode: Int, DefaultInitializable {
     
     static let defaultValue: Self = .no
     
     case no
     case sameAsDocument
     case yes
-}
-
-
-@objc enum PrintInvisiblesMode: Int, DefaultInitializable {
-    
-    static let defaultValue: Self = .no
-    
-    case no
-    case sameAsDocument
-    case all
 }
 
 

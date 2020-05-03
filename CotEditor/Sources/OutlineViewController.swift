@@ -108,8 +108,8 @@ final class OutlineViewController: NSViewController {
         self.invalidateCurrentLocation()
         
         // make sure the last observer is invalidated before a new one is set to the property.
-        //   -> Although the previous observer must be invalidated in `viewDidDisappear()`,
-        //      it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
+        // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
+        //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }
@@ -120,6 +120,15 @@ final class OutlineViewController: NSViewController {
                 else { return assertionFailure() }
             
             guard textView.window == self.view.window else { return }
+            
+            // avoid updating outline item selection before finishing outline parse
+            // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
+            //    You can ignore text selection change at this time point as the outline selection will be updated when the parse finished.
+            guard
+                !textView.hasMarkedText(),
+                let textStorage = textView.textStorage,
+                !textStorage.editedMask.contains(.editedCharacters)
+                else { return }
             
             self.invalidateCurrentLocation(textView: textView)
         }
@@ -252,7 +261,7 @@ final class OutlineViewController: NSViewController {
             else { return outlineView.deselectAll(nil) }
         
         self.isOwnSelectionChange = true
-        outlineView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        outlineView.selectRowIndexes([row], byExtendingSelection: false)
         outlineView.scrollRowToVisible(row)
     }
     

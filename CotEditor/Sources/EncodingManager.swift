@@ -57,8 +57,8 @@ final class EncodingManager: NSObject {
         
         super.init()
         
-        // UserDefaults.standard[.encodingList] can be empty if the user's list contains negative values.
-        //   -> It seems to be possible if the setting was made long time ago (2018-01 CotEditor 3.3.0)
+        // -> UserDefaults.standard[.encodingList] can be empty if the user's list contains negative values.
+        //    It seems to be possible if the setting was made a long time ago. (2018-01 CotEditor 3.3.0)
         if UserDefaults.standard[.encodingList].isEmpty {
             self.sanitizeEncodingListSetting()
         }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ extension NSTextView {
         guard !strings.isEmpty, let textStorage = self.textStorage else { return false }
         
         // register redo for text selection
-        // -> Prefer using `rangesForUserTextChange` to save also multi-insertion points
+        // -> Prefer using `rangesForUserTextChange` to save also multi-insertion points.
         self.setSelectedRangesWithUndo(self.rangesForUserTextChange ?? self.selectedRanges)
         
         // tell textEditor about beginning of the text processing
@@ -95,7 +95,7 @@ extension NSTextView {
         self.didChangeText()
         
         // apply new selection ranges
-        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges as! [NSRange])
+        self.setSelectedRangesWithUndo(selectedRanges ?? self.selectedRanges.map(\.rangeValue))
         
         return true
     }
@@ -134,7 +134,7 @@ extension NSTextView {
         assert(Thread.isMainThread)
         
         let ranges = self.string.rangesOfTrailingWhitespace(ignoresEmptyLines: ignoresEmptyLines)
-        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
+        let editingRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
         // exclude editing lines if needed
         let replacementRanges: [NSRange] = keepingEditingPoint
@@ -146,7 +146,9 @@ extension NSTextView {
         let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         // calculate selectedRanges after deletion
-        let removedIndexes = replacementRanges.reduce(into: IndexSet()) { $0.insert(integersIn: $1.lowerBound..<$1.upperBound) }
+        let removedIndexes = replacementRanges
+            .compactMap { Range($0) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         let selectedRanges: [NSRange] = editingRanges.map { range in
             let location = range.location - removedIndexes.count { $0 < range.location }
             let length = range.length - removedIndexes.count { range.contains($0) }
@@ -189,7 +191,7 @@ extension String {
         let pattern = ignoresEmptyLines ? "(?<!^|[ \\t])[ \\t]+$" : "[ \\t]+$"
         let regex = try! NSRegularExpression(pattern: pattern, options: .anchorsMatchLines)
         
-        return regex.matches(in: self, range: self.nsRange).map { $0.range }
+        return regex.matches(in: self, range: self.nsRange).map(\.range)
     }
     
 }

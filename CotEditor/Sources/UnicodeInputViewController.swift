@@ -98,18 +98,15 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
         
         guard
             let input = (obj.object as? NSTextField)?.stringValue,
-            let longChar = UInt32(codePoint: input)
+            let longChar = UTF32.CodeUnit(codePoint: input)
             else { return }
         
         self.unicodeName = longChar.unicodeName
         
-        guard let scalar = UnicodeScalar(longChar) else { return }
+        guard let scalar = Unicode.Scalar(longChar) else { return }
         
         self.isValid = true
-        
-        // -> Workaround that Swift 5 omits U+FEFF at the beginning. (2019-06 macOS 10.14)
-        //    cf. https://bugs.swift.org/browse/SR-10896
-        self.characterString = (scalar == UnicodeScalar("\u{feff}")) ? "\u{feff}\u{feff}" : String(scalar)
+        self.characterString = String(scalar)
     }
     
     
@@ -139,7 +136,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
 
 // MARK: Private Methods
 
-private extension UInt32 {
+private extension UTF32.CodeUnit {
     
     /// initialize from a possible Unicode code point representation like `U+1F600`, `1f600`, `0x1F600` and so on.
     init?(codePoint: String) {

@@ -243,8 +243,8 @@
 /* Class = "NSMenuItem"; title = "Auto-Expand Tabs"; ObjectID = "hsG-8k-OKX"; */
 "hsG-8k-OKX.title" = "Expandir Tabulações Automaticamente";
 
-/* Class = "NSMenuItem"; title = "Show Invisible Characters"; ObjectID = "788"; */
-"788.title" = "Mostrar Caracteres Invisíveis";
+/* Class = "NSMenuItem"; title = "Show Invisibles"; ObjectID = "788"; */
+"788.title" = "Mostrar Invisíveis";
 
 /* Class = "NSMenuItem"; title = "Writing Direction"; ObjectID = "mEh-BD-ZlV"; */
 "mEh-BD-ZlV.title" = "Direção da Escrita";

@@ -137,7 +137,7 @@ extension Commenting {
         
         guard !items.isEmpty else { return }
         
-        let newStrings = items.map { $0.string }
+        let newStrings = items.map(\.string)
         let replacementRanges = items.map { NSRange(location: $0.location, length: 0) }
         let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges)
             .map { $0.rangeValue.inserted(items: items) }
@@ -220,7 +220,7 @@ extension Commenting {
     private func commentingRanges(fromLineHead: Bool) -> [NSRange] {
         
         return (self.rangesForUserTextChange ?? self.selectedRanges)
-            .map { $0.rangeValue }
+            .map(\.rangeValue)
             .map { fromLineHead ? self.string.lineContentsRange(for: $0) : $0 }
             .unique
     }
@@ -247,23 +247,23 @@ extension NSRange {
         
         var location = items
             .prefix { $0.location < self.lowerBound }  //  || ($0.location == self.lowerBound && $0.forward)
-            .map { ($0.string as NSString).length }
+            .map(\.string.length)
             .reduce(self.location, +)
         var length = items
             .filter { self.lowerBound < $0.location && $0.location < self.upperBound }
-            .map { ($0.string as NSString).length }
+            .map(\.string.length)
             .reduce(self.length, +)
         
         // adjust edge insertions depending on the selection state
         if self.isEmpty {
             location += items
                 .filter { $0.location == self.lowerBound && $0.forward }
-                .map { ($0.string as NSString).length }
+                .map(\.string.length)
                 .reduce(0, +)
         } else {
             length += items
                 .filter { $0.location == self.lowerBound && $0.forward || $0.location == self.upperBound && !$0.forward }
-                .map { ($0.string as NSString).length }
+                .map(\.string.length)
                 .reduce(0, +)
         }
         
@@ -277,7 +277,9 @@ extension NSRange {
     /// - Returns: A new range that the receiver moved.
     func deleted(ranges: [NSRange]) -> NSRange {
         
-        let indices = ranges.reduce(into: IndexSet()) { $0.insert(integersIn: Range($1)!) }
+        let indices = ranges
+            .compactMap { Range($0) }
+            .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         
         let location = self.location - indices.count(in: ..<self.lowerBound)
         let length = self.length - indices.count(in: Range(self)!)
@@ -303,7 +305,7 @@ extension String {
         let regex = try! NSRegularExpression(pattern: "^", options: [.anchorsMatchLines])
         
         return ranges.flatMap { regex.matches(in: self, range: $0) }
-            .map { $0.range.location }
+            .map(\.range.location)
             .unique
             .map { NSRange.InsertionItem(string: delimiter + spacer, location: $0, forward: true) }
     }

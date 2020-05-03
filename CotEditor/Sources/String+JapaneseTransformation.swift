@@ -31,10 +31,10 @@ extension StringProtocol {
     var fullWidthRoman: String {
         
         return self.unicodeScalars
-            .map { scalar -> UnicodeScalar in
-                guard UnicodeScalar.fullWidthAvailableRange.contains(scalar) else { return scalar }
+            .map { scalar -> Unicode.Scalar in
+                guard Unicode.Scalar.fullWidthAvailableRange.contains(scalar) else { return scalar }
                 
-                return UnicodeScalar(scalar.value + UnicodeScalar.characterWidthDistance)!
+                return Unicode.Scalar(scalar.value + Unicode.Scalar.characterWidthDistance)!
             }
             .reduce(into: "") { (string, scalar) in
                 string.unicodeScalars.append(scalar)
@@ -46,10 +46,10 @@ extension StringProtocol {
     var halfWidthRoman: String {
         
         return self.unicodeScalars
-            .map { scalar -> UnicodeScalar in
-                guard UnicodeScalar.fullWidthRange.contains(scalar) else { return scalar }
+            .map { scalar -> Unicode.Scalar in
+                guard Unicode.Scalar.fullWidthRange.contains(scalar) else { return scalar }
                 
-                return UnicodeScalar(scalar.value - UnicodeScalar.characterWidthDistance)!
+                return Unicode.Scalar(scalar.value - Unicode.Scalar.characterWidthDistance)!
             }
             .reduce(into: "") { (string, scalar) in
                 string.unicodeScalars.append(scalar)
@@ -62,10 +62,10 @@ extension StringProtocol {
 
 // MARK: - Private Extensions
 
-private extension UnicodeScalar {
+private extension Unicode.Scalar {
     
-    static let fullWidthRange = UnicodeScalar("！")...UnicodeScalar("～")
-    static let fullWidthAvailableRange = UnicodeScalar("!")...UnicodeScalar("~")
+    static let fullWidthRange = Self("！")...Self("～")
+    static let fullWidthAvailableRange = Self("!")...Self("~")
     
-    static let characterWidthDistance = UnicodeScalar.fullWidthRange.lowerBound.value - UnicodeScalar.fullWidthAvailableRange.lowerBound.value
+    static let characterWidthDistance = Self.fullWidthRange.lowerBound.value - Self.fullWidthAvailableRange.lowerBound.value
 }

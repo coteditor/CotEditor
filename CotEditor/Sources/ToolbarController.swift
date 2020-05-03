@@ -123,7 +123,7 @@ final class ToolbarController: NSObject {
         self.buildSyntaxPopupButton()
         
         // setup Share toolbar item
-        // -> Share button action must be called on mouseDown.
+        // -> The Share button action must be called on `mouseDown`.
         (self.shareToolbarItem!.view as! NSButton).sendAction(on: .leftMouseDown)
         self.shareToolbarItem!.menuFormRepresentation = NSDocumentController.shared.standardShareMenuItem()
         

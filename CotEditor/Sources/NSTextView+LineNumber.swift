@@ -62,11 +62,11 @@ extension NSTextView {
             else { return assertionFailure() }
         
         let string = self.string as NSString
-        let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map { $0.rangeValue }
+        let selectedRanges = (self.rangesForUserTextChange ?? self.selectedRanges).map(\.rangeValue)
         
         // get glyph range of which line number should be drawn
         // -> Requires additionalLayout to obtain glyphRange for markedText. (2018-12 macOS 10.14 SDK)
-        let layoutRect = rect.offset(by: -self.textContainerOrigin)
+        let layoutRect = rect.offset(by: -self.textContainerInset)
         let glyphRangeToDraw = layoutManager.glyphRange(forBoundingRect: layoutRect, in: textContainer)
         
         // count up lines until the interested area
@@ -79,8 +79,10 @@ extension NSTextView {
             let characterIndex = layoutManager.characterIndexForGlyph(at: glyphIndex)
             let lineRange = self.lineRange(at: characterIndex)
             let lineGlyphRange = layoutManager.glyphRange(forCharacterRange: lineRange, actualCharacterRange: nil)
-            let isSelected = selectedRanges.contains { $0.intersection(lineRange) != nil }
-                || (lineRange.upperBound == string.length && layoutManager.extraLineFragmentRect.isEmpty)
+            let isSelected = selectedRanges.contains { $0.intersects(lineRange) }
+                || (lineRange.upperBound == string.length &&
+                    lineRange.upperBound == selectedRanges.last?.upperBound &&
+                    layoutManager.extraLineFragmentRect.isEmpty)
             glyphIndex = lineGlyphRange.upperBound
             
             var wrappedLineGlyphIndex = max(lineGlyphRange.location, glyphRangeToDraw.lowerBound)
@@ -96,19 +98,16 @@ extension NSTextView {
             lineNumber += 1
         }
         
-        guard includingExtraLine else { return }
-        
-        let extraLineRect = layoutManager.extraLineFragmentRect
-        
         guard
-            !extraLineRect.isEmpty,
-            (layoutRect.minY...layoutRect.maxY).overlaps(extraLineRect.minY...extraLineRect.maxY)
+            includingExtraLine,
+            (!layoutManager.isValidGlyphIndex(glyphRangeToDraw.upperBound) || lineNumber == 1),
+            layoutManager.extraLineFragmentTextContainer != nil
             else { return }
         
         let lastLineNumber = (lineNumber > 1) ? lineNumber : self.lineNumber(at: string.length)
         let isSelected = (selectedRanges.last?.location == string.length)
         
-        body(.new(lastLineNumber, isSelected), extraLineRect)
+        body(.new(lastLineNumber, isSelected), layoutManager.extraLineFragmentRect)
     }
     
     

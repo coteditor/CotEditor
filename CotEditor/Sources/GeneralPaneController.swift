@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2015-2018 1024jp
+//  © 2015-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -45,10 +45,10 @@ final class GeneralPaneController: NSViewController {
         
         super.viewDidLoad()
         
-        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults(.value)
+        self.selectionInstanceHighlightDelayField?.bindNullPlaceholderToUserDefaults()
         
         // remove updater options if no Sparkle provided
-        #if APPSTORE
+        #if !SPARKLE
             for subview in self.view.subviews where subview.tag < 0 {
                 subview.removeFromSuperview()
             }
@@ -111,7 +111,7 @@ final class GeneralPaneController: NSViewController {
     private func askRelaunch(for defaultKey: DefaultKey<Bool>) {
         
         let alert = NSAlert()
-        alert.messageText = "The change will be applied first at the next launch.".localized
+        alert.messageText = "The change will be applied first on the next launch.".localized
         alert.informativeText = "Do you want to restart CotEditor now?".localized
         alert.addButton(withTitle: "Restart Now".localized)
         alert.addButton(withTitle: "Later".localized)
@@ -143,7 +143,8 @@ private extension NSApplication {
     /// relaunch application itself with delay
     func relaunch(delay: TimeInterval = 0) {
         
-        let command = String(format: "sleep %f; open \"%@\"", delay, Bundle.main.bundlePath)
+        let escapedPath = Bundle.main.bundlePath.replacingOccurrences(of: "\"", with: "\\\"")
+        let command = String(format: "sleep %f; open \"%@\"", delay, escapedPath)
         
         let process = Process()
         process.launchPath = "/bin/sh"

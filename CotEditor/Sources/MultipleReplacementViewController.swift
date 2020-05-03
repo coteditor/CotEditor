@@ -160,9 +160,10 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     
     /// commit unsaved changes
+    @discardableResult
     override func commitEditing() -> Bool {
         
-        super.commitEditing()
+        guard super.commitEditing() else { return false }
         
         self.endEditing()
         self.updateNotificationTask.fireNow()

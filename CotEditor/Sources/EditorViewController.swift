@@ -81,7 +81,7 @@ final class EditorViewController: NSSplitViewController {
     /// Avoid showing draggable cursor.
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        // -> must call super's delegate method anyway.
+        // -> Super's delegate method must be called anyway.
         super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
         
         return .zero

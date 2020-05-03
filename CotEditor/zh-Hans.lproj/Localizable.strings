@@ -176,7 +176,7 @@
 
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
-"Invisibles" = "不可见字符";
+"Invisibles" = "不可见元素";
 "Wrap Lines" = "换行";
 
 // Touch bar item labels -Text View
@@ -197,7 +197,7 @@
 // Summary item names
 "Color" = "颜色";
 "Line Number" = "行号";
-"Invisible Characters" = "不可见字符";
+"Invisibles" = "不可见元素";
 "Print Header" = "打印页眉";
 "Primary Header" = "主页眉";
 "Primary Header Alignment" = "主页眉对齐";
@@ -216,7 +216,6 @@
 "Same as Document’s Setting" = "同文档设置一致";
 "Black and White" = "黑白";
 "Print" = "打印";
-"Print All" = "全部打印";
 "Syntax Name" = "语法名";
 "Document Name" = "文档名";
 "File Path" = "文件路径";
@@ -281,16 +280,16 @@
 "Show Status Bar" = "显示状态栏";
 "Hide Navigation Bar" = "隐藏导航栏";
 "Show Navigation Bar" = "显示导航栏";
-"Hide Invisible Characters" = "隐藏不可见字符";
-"Show Invisible Characters" = "显示不可见字符";
+"Hide Invisibles" = "隐藏不可见元素";
+"Show Invisibles" = "显示不可见元素";
 "Hide Page Guide" = "隐藏页面指示";
 "Show Page Guide" = "显示页面指示";
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 
-// Tooltip for "Show Invisible Characters" menu item
-"Show or hide invisible characters in document" = "显示或隐藏文档中的不可见字符";
-"To show invisible characters, set them in Preferences" = "要显示不可见字符，请在偏好设置中进行设定";
+// Tooltip for "Show Invisibles" menu item
+"Show or hide invisible characters in document" = "显示或隐藏文档中的不可见元素";
+"To show invisible characters, set them in Preferences" = "要显示不可见元素，请在偏好设置中进行设定";
 
 
 
@@ -350,7 +349,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "变更将在下次启动时生效。";
+"The change will be applied first on the next launch." = "变更将在下次启动时生效。";
 "Do you want to restart CotEditor now?" = "现在就重启 CotEditor 吗？";
 "Restart Now" = "现在重启";
 "Later" = "稍后";

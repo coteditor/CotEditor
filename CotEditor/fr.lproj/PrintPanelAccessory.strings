@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -42,13 +42,13 @@
 "418.title" = "Imprimer";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Invisibles :";
+"718.title" = "Caractères invisibles :";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "Identique aux paramètres du document";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "Ne pas imprimer";
-/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "426"; */
-"426.title" = "Tout imprimer";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
+"426.title" = "Imprimer";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */

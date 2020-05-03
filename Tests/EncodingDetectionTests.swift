@@ -29,7 +29,7 @@ import XCTest
 
 final class EncodingDetectionTests: XCTestCase {
     
-    private(set) lazy var bundle = Bundle(for: type(of: self))
+    private lazy var bundle = Bundle(for: type(of: self))
     
     
     func testUTF8BOM() throws {

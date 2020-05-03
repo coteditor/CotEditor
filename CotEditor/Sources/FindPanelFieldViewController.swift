@@ -275,7 +275,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         self.applyResult(message: nil, textField: self.findResultField!, textView: self.findTextView!)
         
-        // -> specify the object to remove osberver to avoid removing the windowWillClose notification (via delegate) from find panel itself.
+        // -> Specify the object to remove observer to avoid removing the windowWillClose notification (via delegate) from the find panel itself.
         self.removeCurrentTargetObservers()
     }
     

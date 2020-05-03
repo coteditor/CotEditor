@@ -197,7 +197,7 @@
 // Summary item names
 "Color" = "カラー";
 "Line Number" = "行番号";
-"Invisible Characters" = "不可視文字";
+"Invisibles" = "不可視文字";
 "Print Header" = "ヘッダをプリント";
 "Primary Header" = "主ヘッダ";
 "Primary Header Alignment" = "主ヘッダの位置";
@@ -216,7 +216,6 @@
 "Same as Document’s Setting" = "書類の設定と同じ";
 "Black and White" = "白黒";
 "Print" = "プリント";
-"Print All" = "すべてプリント";
 "Syntax Name" = "シンタックス名";
 "Document Name" = "書類名";
 "File Path" = "ファイルパス";
@@ -281,14 +280,14 @@
 "Show Status Bar" = "ステータスバーを表示";
 "Hide Navigation Bar" = "ナビゲーションバーを非表示";
 "Show Navigation Bar" = "ナビゲーションバーを表示";
-"Hide Invisible Characters" = "不可視文字を非表示";
-"Show Invisible Characters" = "不可視文字を表示";
+"Hide Invisibles" = "不可視文字を非表示";
+"Show Invisibles" = "不可視文字を表示";
 "Hide Page Guide" = "ページガイドを非表示";
 "Show Page Guide" = "ページガイドを表示";
 "Unwrap Lines" = "行を折り返さない";
 "Wrap Lines" = "行を折り返す";
 
-// Tooltip for "Show Invisible Characters" menu item
+// Tooltip for "Show Invisibles" menu item
 "Show or hide invisible characters in document" = "書類中の不可視文字を表示/非表示";
 "To show invisible characters, set them in Preferences" = "不可視文字を表示させるには、環境設定を変更してください";
 
@@ -350,7 +349,7 @@
 
 // General pane
 // Autosave setting update alert
-"The change will be applied first at the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
+"The change will be applied first on the next launch." = "この変更は次回アプリケーション起動時に適用されます。";
 "Do you want to restart CotEditor now?" = "CotEditorを今すぐ再起動しますか?";
 "Restart Now" = "今すぐ再起動";
 "Later" = "あとで";

@@ -31,11 +31,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     
     // MARK: Private Properties
     
-    @objc private dynamic let invisibleSpaces: [String] = Invisible.space.candidates
-    @objc private dynamic let invisibleTabs: [String] = Invisible.tab.candidates
-    @objc private dynamic let invisibleNewLines: [String] = Invisible.newLine.candidates
-    @objc private dynamic let invisibleFullWidthSpaces: [String] = Invisible.fullwidthSpace.candidates
-    
     private var themeNames = [String]()
     private var themeViewController: ThemeViewController?
     @objc private dynamic var isBundled = false
@@ -71,7 +66,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeNames = ThemeManager.shared.settingNames
         
         // set initial value as field's placeholder
-        self.lineHeightField?.bindNullPlaceholderToUserDefaults(.value)
+        self.lineHeightField?.bindNullPlaceholderToUserDefaults()
         
         // remove appearance controls on macOS 10.13 or earlier
         if NSAppKitVersion.current <= .macOS10_13 {
@@ -114,7 +109,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe theme list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupThemeList), name: didUpdateSettingListNotification, object: ThemeManager.shared)
@@ -288,10 +283,10 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     // ThemeViewControllerDelegate
     
     /// theme did update
-    func didUpdate(theme: ThemeManager.ThemeDictionary) {
+    func didUpdate(theme: Theme) {
         
         do {
-            try ThemeManager.shared.save(settingDictionary: theme, name: self.selectedThemeName)
+            try ThemeManager.shared.save(setting: theme, name: self.selectedThemeName)
         } catch {
             print(error.localizedDescription)
         }
@@ -306,7 +301,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         guard notification.object as? NSTableView == self.themeTableView else { return }
         
         let themeName = self.selectedThemeName
-        let themeDict = ThemeManager.shared.settingDictionary(name: themeName)
+        let theme = ThemeManager.shared.setting(name: themeName)
         let isBundled = ThemeManager.shared.isBundledSetting(name: themeName)
         
         // update default theme setting
@@ -329,7 +324,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
             }
         }
         
-        self.themeViewController?.theme = themeDict
+        self.themeViewController?.theme = theme
         self.themeViewController?.isBundled = isBundled
         self.themeViewController?.view.setAccessibilityLabel(themeName)
         
@@ -445,7 +440,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         try? ThemeManager.shared.createUntitledSetting { themeName in
             let row = ThemeManager.shared.settingNames.firstIndex(of: themeName) ?? 0
             
-            tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            tableView.selectRowIndexes([row], byExtendingSelection: false)
         }
     }
     
@@ -579,7 +574,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private func themeDidUpdate(_ notification: Notification) {
         
         guard
-            let bundledTheme = ThemeManager.shared.settingDictionary(name: self.selectedThemeName),
+            let bundledTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
             let newTheme = self.themeViewController?.theme else { return }
         
         if bundledTheme == newTheme {
@@ -653,7 +648,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         self.themeTableView?.reloadData()
         
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
     
     
@@ -663,7 +658,7 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         let themeName = ThemeManager.shared.userDefaultSettingName
         let row = self.themeNames.firstIndex(of: themeName) ?? 0
         
-        self.themeTableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.themeTableView?.selectRowIndexes([row], byExtendingSelection: false)
     }
     
 }

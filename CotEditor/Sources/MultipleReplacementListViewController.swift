@@ -68,7 +68,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
             
             return row
         }()
-        self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+        self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         
         // observe replacement setting list change
         NotificationCenter.default.addObserver(self, selector: #selector(setupList), name: didUpdateSettingListNotification, object: ReplacementManager.shared)
@@ -149,7 +149,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         try? ReplacementManager.shared.createUntitledSetting { (settingName: String) in
             let row = ReplacementManager.shared.settingNames.firstIndex(of: settingName) ?? 0
             
-            tableView.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            tableView.selectRowIndexes([row], byExtendingSelection: false)
         }
     }
     
@@ -328,7 +328,7 @@ final class MultipleReplacementListViewController: NSViewController, NSMenuItemV
         if let settingName = settingName,
             let row = self.settingNames.firstIndex(of: settingName)
         {
-            self.tableView?.selectRowIndexes(IndexSet(integer: row), byExtendingSelection: false)
+            self.tableView?.selectRowIndexes([row], byExtendingSelection: false)
         }
     }
     
@@ -430,7 +430,7 @@ extension MultipleReplacementListViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         
         // save the unsaved change before the selection changes
-        _ = self.mainViewController?.commitEditing()
+        self.mainViewController?.commitEditing()
         
         return true
     }

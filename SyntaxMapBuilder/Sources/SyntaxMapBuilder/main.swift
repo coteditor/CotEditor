@@ -48,7 +48,7 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
     
     // build syntaxMap from syntax style files
     let decoder = YAMLDecoder()
-    let syntaxMap: [String: [String: [String]]] = try urls.reduce(into: .init()) { (map, url) in
+    let syntaxMap: [String: [String: [String]]] = try urls.reduce(into: [:]) { (map, url) in
         let styleName = url.deletingPathExtension().lastPathComponent
         let yaml = try String(contentsOf: url)
         let style = try decoder.decode(SyntaxStyle.self, from: yaml)
@@ -58,7 +58,7 @@ private func buildSyntaxMap(directoryPath: String) throws -> String {
             "filenames": style.filenames,
             "interpreters": style.interpreters,
             ]
-            .mapValues { $0?.map { $0.keyString } ?? [] }
+            .mapValues { $0?.map(\.keyString) ?? [] }
     }
     
     // encode syntaxMap to JSON style

@@ -58,10 +58,8 @@ extension Bundle {
     /// Is the running app a pre-release version?
     var isPrerelease: Bool {
         
-        let digitSet = CharacterSet(charactersIn: "0123456789.")
-        
-        // pre-release version contains non-digit letter
-        return (self.shortVersion.rangeOfCharacter(from: digitSet.inverted) != nil)
+        // -> Pre-release versions contain non-digit letter.
+        return (self.shortVersion.range(of: "[^0-9.]", options: .regularExpression) != nil)
     }
     
 }

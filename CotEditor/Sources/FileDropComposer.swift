@@ -142,7 +142,7 @@ final class FileDropComposer {
             .replacingOccurrences(of: Token.directory.token, with: droppedFileURL.deletingLastPathComponent().lastPathComponent)
         
         // get image dimension if needed
-        //   -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
+        // -> Use NSImageRep because NSImage's `size` returns a DPI applied size.
         if template.contains(Token.imageWidth.token) || template.contains(Token.imageHeight.token) {
             var imageRep: NSImageRep?
             NSFileCoordinator().coordinate(readingItemAt: droppedFileURL, options: [.withoutChanges, .resolvesSymbolicLink], error: nil) { (newURL: URL) in

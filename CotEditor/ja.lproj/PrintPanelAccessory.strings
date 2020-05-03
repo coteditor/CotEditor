@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -47,8 +47,8 @@
 "427.title" = "書類の設定と同じ";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "プリントしない";
-/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "426"; */
-"426.title" = "すべてプリント";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
+"426.title" = "プリント";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */

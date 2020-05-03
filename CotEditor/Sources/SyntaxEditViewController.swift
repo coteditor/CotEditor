@@ -89,7 +89,7 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         
         if let destinationController = segue.destinationController as? NSTabViewController {
             self.tabViewController = destinationController
-            self.menuTitles = destinationController.tabViewItems.map { $0.label.localized }
+            self.menuTitles = destinationController.tabViewItems.map(\.label.localized)
             destinationController.children.forEach { $0.representedObject = self.style }
         }
     }
@@ -213,16 +213,15 @@ final class SyntaxEditViewController: NSViewController, NSTextFieldDelegate, NST
         guard SyntaxStyleValidator.validate(self.style as! SyntaxManager.StyleDictionary).isEmpty else {
             // show "Validation" pane
             let index = self.tabViewController!.tabViewItems.firstIndex { ($0.identifier as? String) == "validation" }!
-            self.menuTableView?.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+            self.menuTableView?.selectRowIndexes([index], byExtendingSelection: false)
             NSSound.beep()
             return
         }
         
         // NSMutableDictonary to StyleDictionary
-        let style = self.style
-        var styleDictionary = SyntaxManager.StyleDictionary()
-        for case let (key as String, value) in style {
-            styleDictionary[key] = value
+        let styleDictionary: SyntaxManager.StyleDictionary = self.style.reduce(into: [:]) { (dictionary, item) in
+            guard let key = item.key as? String else { return assertionFailure() }
+            dictionary[key] = item.value
         }
         
         let oldName: String? = {

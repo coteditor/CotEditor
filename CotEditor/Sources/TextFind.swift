@@ -136,7 +136,7 @@ final class TextFind {
             
             case .regularExpression(let options, _):
                 // replace `\v` with `\u000b`
-                //   -> Because NSRegularExpression cannot handle `\v` correctly. (2017-07 on macOS 10.12)
+                // -> Because NSRegularExpression cannot handle `\v` correctly. (2017-07 on macOS 10.12)
                 //   cf. https://github.com/coteditor/CotEditor/issues/713
                 let sanitizedFindString: String = findString.contains("\\v")
                     ? findString.replacingOccurrences(of: "(?<!\\\\)\\\\v", with: "\\\\u000b", options: .regularExpression)
@@ -338,16 +338,16 @@ final class TextFind {
                 length = scopeRange.length
             } else {
                 // build replacementString
-                var replacedString = (self.string as NSString).substring(with: scopeRange) as NSString
+                let replacedString = NSMutableString(string: (self.string as NSString).substring(with: scopeRange))
                 for item in items.reversed() {
                     block(.replacementProgress, &ioStop)
                     if ioStop { return }
                     
                     // -> Do not convert to Range<Index>. It can fail when the range is smaller than String.Character.
                     let substringRange = item.range.shifted(offset: -scopeRange.location)
-                    replacedString = replacedString.replacingCharacters(in: substringRange, with: item.string) as NSString
+                    replacedString.replaceCharacters(in: substringRange, with: item.string)
                 }
-                replacementItems.append(ReplacementItem(string: replacedString as String, range: scopeRange))
+                replacementItems.append(ReplacementItem(string: replacedString.copy() as! String, range: scopeRange))
                 length = replacedString.length
             }
             

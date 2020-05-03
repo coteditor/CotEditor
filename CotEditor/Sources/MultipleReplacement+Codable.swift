@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2017-2018 1024jp
+//  © 2017-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -42,12 +42,12 @@ extension MultipleReplacement.Replacement: Codable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.init(findString: try container.decode(String.self, forKey: .findString),
-                  replacementString: try container.decode(String.self, forKey: .replacementString),
-                  usesRegularExpression: try container.decodeIfPresent(Bool.self, forKey: .usesRegularExpression) ?? false,
-                  ignoresCase: try container.decodeIfPresent(Bool.self, forKey: .ignoresCase) ?? false,
-                  description: try container.decodeIfPresent(String.self, forKey: .description),
-                  isEnabled: try container.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true)
+        self.findString = try container.decode(String.self, forKey: .findString)
+        self.replacementString = try container.decode(String.self, forKey: .replacementString)
+        self.usesRegularExpression = try container.decodeIfPresent(Bool.self, forKey: .usesRegularExpression) ?? false
+        self.ignoresCase = try container.decodeIfPresent(Bool.self, forKey: .ignoresCase) ?? false
+        self.description = try container.decodeIfPresent(String.self, forKey: .description)
+        self.isEnabled = try container.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true
     }
     
     

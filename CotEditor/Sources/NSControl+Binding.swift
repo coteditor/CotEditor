@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,8 +27,10 @@ import AppKit
 
 extension NSControl {
     
-    /// bind receiver's nullPlaceholder with initial value of correspondent UserDefaults key
-    func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName) {
+    /// Bind receiver's nullPlaceholder with initial value of correspondent UserDefaults key.
+    ///
+    /// - Parameter binding: The target property of the receiver to bind.
+    func bindNullPlaceholderToUserDefaults(_ binding: NSBindingName = .value) {
         
         guard
             let bindingInfo = self.infoForBinding(binding),

@@ -23,20 +23,21 @@
 //  limitations under the License.
 //
 
-extension UnicodeScalar {
+extension Unicode.Scalar {
     
-    // variant selectors
-    static let textSequence = UnicodeScalar(0xFE0E)!
-    static let emojiSequence = UnicodeScalar(0xFE0F)!
-    
+    enum EmojiVariationSelector {
+        
+        static let text = Unicode.Scalar(0xFE0E)!
+        static let emoji = Unicode.Scalar(0xFE0F)!
+    }
     
     enum SkinToneModifier {
         
-        static let type12 = UnicodeScalar(0x1F3FB)!  // 🏻 Light
-        static let type3 = UnicodeScalar(0x1F3FC)!  // 🏼 Medium Light
-        static let type4 = UnicodeScalar(0x1F3FD)!  // 🏽 Medium
-        static let type5 = UnicodeScalar(0x1F3FE)!  // 🏾 Medium Dark
-        static let type6 = UnicodeScalar(0x1F3FF)!  // 🏿 Dark
+        static let type12 = Unicode.Scalar(0x1F3FB)!  // 🏻 Light
+        static let type3 = Unicode.Scalar(0x1F3FC)!  // 🏼 Medium Light
+        static let type4 = Unicode.Scalar(0x1F3FD)!  // 🏽 Medium
+        static let type5 = Unicode.Scalar(0x1F3FE)!  // 🏾 Medium Dark
+        static let type6 = Unicode.Scalar(0x1F3FF)!  // 🏿 Dark
     }
     
 }
@@ -80,19 +81,19 @@ struct CharacterInfo {
             guard unicodes.count == 2, let lastUnicode = unicodes.last else { return nil }
             
             switch lastUnicode {
-                case UnicodeScalar.emojiSequence:
+                case Unicode.Scalar.EmojiVariationSelector.emoji:
                     return "Emoji Style"
-                case UnicodeScalar.textSequence:
+                case Unicode.Scalar.EmojiVariationSelector.text:
                     return "Text Style"
-                case UnicodeScalar.SkinToneModifier.type12:
+                case Unicode.Scalar.SkinToneModifier.type12:
                     return "Skin Tone I-II"
-                case UnicodeScalar.SkinToneModifier.type3:
+                case Unicode.Scalar.SkinToneModifier.type3:
                     return "Skin Tone III"
-                case UnicodeScalar.SkinToneModifier.type4:
+                case Unicode.Scalar.SkinToneModifier.type4:
                     return "Skin Tone IV"
-                case UnicodeScalar.SkinToneModifier.type5:
+                case Unicode.Scalar.SkinToneModifier.type5:
                     return "Skin Tone V"
-                case UnicodeScalar.SkinToneModifier.type6:
+                case Unicode.Scalar.SkinToneModifier.type6:
                     return "Skin Tone VI"
                 case let unicode where unicode.properties.isVariationSelector:
                     return "Variant"

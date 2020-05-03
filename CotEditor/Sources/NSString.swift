@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSString
 
 extension String {
     
@@ -63,6 +63,14 @@ extension NSRange {
         return self.lowerBound <= index && index <= self.upperBound
     }
     
+    
+    /// Return a boolean indicating whether the specified range intersects the receiver’s range.
+    ///
+    /// - Parameter other: The other range.
+    func intersects(_ other: NSRange) -> Bool {
+        
+        return self.intersection(other) != nil
+    }
     
     
     /// Check if the two ranges overlap or touch each other.

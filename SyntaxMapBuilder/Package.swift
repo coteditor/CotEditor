@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -16,5 +16,8 @@ let package = Package(
     targets: [
         .target(name: "SyntaxMapBuilder", dependencies: ["Yams"]),
         .testTarget(name: "SyntaxMapBuilderTests", dependencies: ["SyntaxMapBuilder"]),
+    ],
+    swiftLanguageVersions: [
+        .v5,
     ]
 )

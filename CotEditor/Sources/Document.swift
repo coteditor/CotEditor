@@ -26,12 +26,6 @@
 
 import Cocoa
 
-private let uniqueFileIDLength = 13
-
-
-
-// MARK: -
-
 final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     
     // MARK: Notification Names
@@ -41,7 +35,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     static let didChangeSyntaxStyleNotification = Notification.Name("DocumentDidChangeSyntaxStyle")
     
     
-    // MARK: Structs
+    // MARK: Enums
     
     private enum SerializationKey {
         
@@ -82,7 +76,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     private var isExternalUpdateAlertShown = false
     private var fileData: Data?
     private var shouldSaveXattr = true
-    private var autosaveIdentifier: String
+    private var autosaveIdentifier: String = UUID().uuidString
     @objc private dynamic var isExecutable = false  // bind in save panel accessory view
     
     private var lastSavedData: Data?  // temporal data used only within saving process
@@ -95,9 +89,6 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     override init() {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        
-        let uuid = UUID().uuidString
-        self.autosaveIdentifier = String(uuid.prefix(uniqueFileIDLength))
         
         let encoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInNew])
         self.encoding = String.availableStringEncodings.contains(encoding) ? encoding : .utf8
@@ -248,14 +239,14 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         assert(Thread.isMainThread)
         
         // once force-close all sheets
-        //   -> Presented errors will be displayed again after the revert automatically (since OS X 10.10).
+        // -> Presented errors will be displayed again after the revert automatically. (since OS X 10.10)
         self.windowForSheet?.sheets.forEach { $0.close() }
         
         // store current selections
         let lastString = self.textStorage.string
         let editorStates = self.textStorage.layoutManagers
-            .compactMap { $0.textViewForBeginningOfSelection }
-            .map { (textView: $0, ranges: $0.selectedRanges as! [NSRange]) }
+            .compactMap(\.textViewForBeginningOfSelection)
+            .map { (textView: $0, ranges: $0.selectedRanges.map(\.rangeValue)) }
         
         try super.revert(toContentsOf: url, ofType: typeName)
         
@@ -266,7 +257,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.applyContentToWindow()
         
         // select previous ranges again
-        // -> Taking performance issue into consideration,
+        // -> Taking performance issues into consideration,
         //    the selection ranges will be adjusted only when the content size is enough small;
         //    otherwise, just cut extra ranges off.
         let string = self.textStorage.string
@@ -341,7 +332,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         }
         
         // standardize line endings to LF
-        // -> Line endings replacemement by other text modifications is processed in
+        // -> Line endings replacement by other text modifications is processed in
         //    `EditorTextViewController.textView(_:shouldChangeTextInRange:replacementString:)`.
         let string = file.string.replacingLineEndings(with: .lf)
         
@@ -351,9 +342,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // determine syntax style (only on the first file open)
         if self.windowForSheet == nil {
-            // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
-            let fileName = url.lastPathComponent.immutable
-            let styleName = SyntaxManager.shared.settingName(documentFileName: fileName, content: string)
+            let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent, content: string)
             self.setSyntaxStyle(name: styleName, isInitial: true)
         }
     }
@@ -400,7 +389,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let trimsWhitespaceOnlyLines = UserDefaults.standard[.trimsWhitespaceOnlyLines]
             let keepsEditingPoint = saveOperation.isAutoSaving
             let textView = self.textStorage.layoutManagers.lazy
-                .compactMap { $0.textViewForBeginningOfSelection }
+                .compactMap(\.textViewForBeginningOfSelection)
                 .first { !keepsEditingPoint || $0.window?.firstResponder == $0 }
             
             textView?.trimTrailingWhitespace(ignoresEmptyLines: !trimsWhitespaceOnlyLines,
@@ -412,9 +401,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             layoutManager.textViewForBeginningOfSelection?.breakUndoCoalescing()
         }
         
-        // modify place to create backup file
-        //   -> save backup file always in `~/Library/Autosaved Information/` directory
-        //      (The default backup URL is the same directory as the fileURL.)
+        // modify place to create backup file to save backup file always in `~/Library/Autosaved Information/` directory.
+        // -> The default backup URL is the same directory as the fileURL.
         let newURL: URL = {
             guard
                 saveOperation == .autosaveElsewhereOperation,
@@ -425,8 +413,9 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             let baseFileName = fileURL.deletingPathExtension().lastPathComponent
                 .replacingOccurrences(of: ".", with: "", options: .anchored)  // avoid file to be hidden
             
-            // append a unique string to avoid overwriting another backup file with the same file name.
-            let fileName = baseFileName + " (" + self.autosaveIdentifier + ")"
+            // append an unique string to avoid overwriting another backup file with the same file name.
+            let maxIdentifierLength = Int(NAME_MAX) - (baseFileName.length + " ().".length + fileURL.pathExtension.length)
+            let fileName = baseFileName + " (" + self.autosaveIdentifier.prefix(maxIdentifierLength) + ")"
             
             return autosaveDirectoryURL.appendingPathComponent(fileName).appendingPathExtension(fileURL.pathExtension)
         }()
@@ -442,9 +431,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
             
             // apply syntax style that is inferred from the file name or the shebang
             if saveOperation == .saveAsOperation {
-                // -> `.immutable` is a workaround for NSPathStore2 bug (2019-10 Xcode 11.1)
-                let fileName = url.lastPathComponent.immutable
-                if let styleName = SyntaxManager.shared.settingName(documentFileName: fileName)
+                if let styleName = SyntaxManager.shared.settingName(documentFileName: url.lastPathComponent)
                     ?? SyntaxManager.shared.settingName(documentContent: self.string)
                     // -> Due to the async-saving, self.string can be changed from the actual saved contents.
                     //    But we don't care about that.
@@ -630,7 +617,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         printInfo.dictionary().addEntries(from: printSettings)
         let printOperation = NSPrintOperation(view: printView, printInfo: printInfo)
         printOperation.showsProgressPanel = true
-        // -> This flag looks fancy but needs to disable,
+        // -> This flag looks fancy but needs to disable
         //    since NSTextView seems to cannot print in a background thraed (macOS -10.15).
         printOperation.canSpawnSeparateThread = false
         
@@ -703,7 +690,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
                 guard fileModificationDate != self.fileModificationDate else { return }
                 
                 // check if file contents was changed from the stored file data
-                data = try Data(contentsOf: newURL)
+                data = try Data(contentsOf: newURL, options: [.mappedIfSafe])
             } catch {
                 return assertionFailure(error.localizedDescription)
             }
@@ -715,7 +702,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         guard didChange else {
             // update the document's fileModificationDate for a workaround (2014-03 by 1024jp)
-            // If not, an alert shows up when user saves the file.
+            // -> If not, an alert shows up when user saves the file.
             DispatchQueue.main.async { [weak self] in
                 guard
                     let lastModificationDate = self?.fileModificationDate,
@@ -768,7 +755,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
     func didMakeDocumentForExisitingFile(url: URL) {
         
         // [caution] This method may be called from a background thread due to concurrent-opening.
-        // This method won't be invoked on Resume. (2015-01-26)
+        // -> This method won't be invoked on Resume. (2015-01-26)
         
         ScriptManager.shared.dispatchEvent(documentOpened: self)
     }

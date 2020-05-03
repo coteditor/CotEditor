@@ -55,8 +55,6 @@ extension OutlineItem {
     
     func attributedTitle(for baseFont: NSFont, attributes: [NSAttributedString.Key: Any] = [:]) -> NSAttributedString {
         
-        assert(!self.isSeparator)
-        
         var font = baseFont
         var attributes = attributes
         
@@ -77,7 +75,7 @@ extension OutlineItem {
 }
 
 
-extension Array where Element == OutlineItem {
+extension BidirectionalCollection where Element == OutlineItem {
     
     func indexOfItem(for characterRange: NSRange, allowsSeparator: Bool = true) -> Index? {
         

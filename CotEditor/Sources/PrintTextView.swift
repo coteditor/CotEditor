@@ -26,7 +26,7 @@
 
 import Cocoa
 
-final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDetectable {
+final class PrintTextView: NSTextView, Themable, URLDetectable {
     
     // MARK: Constants
     
@@ -91,7 +91,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         super.init(frame: .zero, textContainer: textContainer)
         
         // specify text container padding
-        // -> If padding is changed while printing, print area can be cropped due to text wrapping
+        // -> If padding is changed while printing, the print area can be cropped due to text wrapping.
         self.textContainer!.lineFragmentPadding = self.lineFragmentPadding
         
         self.maxSize = .infinite
@@ -101,8 +101,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         self.linkTextAttributes = UserDefaults.standard[.autoLinkDetection]
             ? [.underlineStyle: NSUnderlineStyle.single.rawValue]
             : [:]
-        
-        self.layoutManager!.delegate = self
     }
     
     
@@ -165,7 +163,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
             // setup paragraph style
             let paragraphStyle = NSParagraphStyle.default.mutable
             paragraphStyle.tabStops = []
-            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.spaceWidth
+            paragraphStyle.defaultTabInterval = CGFloat(self.tabWidth) * font.width(of: " ")
             paragraphStyle.lineHeightMultiple = self.lineHeight
             self.defaultParagraphStyle = paragraphStyle
             self.textStorage?.addAttribute(.paragraphStyle, value: paragraphStyle, range: self.string.nsRange)
@@ -199,7 +197,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
     override func draw(_ dirtyRect: NSRect) {
         
         // store graphics state to keep line number area drawable
-        //   -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
+        // -> Otherwise, line numbers can be cropped. (2016-03 by 1024jp)
         NSGraphicsContext.saveGraphicsState()
         
         super.draw(dirtyRect)
@@ -244,12 +242,13 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
                 
                 // adjust position to draw
                 let width = CGFloat(numberString.count) * charSize.width
-                var point = NSPoint(x: horizontalOrigin, y: lineRect.maxY - charSize.height)
+                var point = NSPoint(x: horizontalOrigin, y: lineRect.midY)
                 if isVerticalText {
-                    point = NSPoint(x: -point.y - (width + charSize.height) / 2,
+                    point = NSPoint(x: -point.y - width / 2,
                                     y: point.x - charSize.height)
                 } else {
                     point.x -= width  // align right
+                    point.y -= charSize.height / 2
                 }
                 
                 // draw number
@@ -260,15 +259,6 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
                 NSGraphicsContext.restoreGraphicsState()
             }
         }
-    }
-    
-    
-    
-    // MARK: Layout Manager Delegate
-    
-    func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
-        
-        return attrs
     }
     
     
@@ -285,7 +275,7 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         
         // check whether print line numbers
         self.printsLineNumber = {
-            switch PrintLineNmuberMode(settings[.lineNumber] as? Int) {
+            switch PrintVisibilityMode(settings[.lineNumber] as? Int) {
                 case .no:
                     return false
                 case .sameAsDocument:
@@ -300,12 +290,12 @@ final class PrintTextView: NSTextView, NSLayoutManagerDelegate, Themable, URLDet
         
         // check whether print invisibles
         layoutManager.showsInvisibles = {
-            switch PrintInvisiblesMode(settings[.invisibles] as? Int) {
+            switch PrintVisibilityMode(settings[.invisibles] as? Int) {
                 case .no:
                     return false
                 case .sameAsDocument:
                     return self.documentShowsInvisibles
-                case .all:
+                case .yes:
                     return true
             }
         }()

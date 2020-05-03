@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Cocoa
+import AppKit
 
 extension NSImage {
     
@@ -71,7 +71,7 @@ extension NSImage {
     /// - Returns: A tinted image.
     func tinted(color: NSColor) -> Self {
         
-        assert(self.isTemplate, "A image to tint should be a template image.")
+        assert(self.isTemplate, "An image to tint should be a template image.")
         
         return Self(size: self.size, flipped: false) { [unowned self] (dstRect) -> Bool in
             
@@ -99,7 +99,7 @@ extension NSColor {
         
         assert(view.window?.colorSpace != nil)
         
-        let controlTintColor = self.init(for: .blueControlTint)
+        let controlTintColor = NSColor(for: .blueControlTint)
         
         guard
             let window = view.window,

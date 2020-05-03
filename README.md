@@ -1,6 +1,6 @@
 
 CotEditor
-=============================
+==========================
 
 CotEditor is a lightweight plain-text editor for macOS.
 
@@ -13,7 +13,7 @@ CotEditor is a lightweight plain-text editor for macOS.
 
 
 Source Code
------------------------------
+--------------------------
 
 [![Test Status](https://github.com/coteditor/CotEditor/workflows/Test/badge.svg)](https://github.com/coteditor/CotEditor/actions?query=workflow%3ATest)
 [![GitHub release](https://img.shields.io/github/release/coteditor/CotEditor.svg)](https://github.com/coteditor/CotEditor/releases/latest)
@@ -24,26 +24,41 @@ CotEditor is a pure document-based Cocoa application written in Swift.
 ### Development Environment
 
 - macOS 10.15 Catalina
-- Xcode 11.3
-- Swift 5.1
+- Xcode 11.4
+- Swift 5.2
 - Sandbox enabled
 
 
 
 How to Build
------------------------------
+--------------------------
 
-1. `git submodule update --init`
-2. Update frameworks (you can skip this process if you only wanna build).
-    1. `carthage update --platform macOS`
-    2. Build Sparkle's XPCs by running "Sparkle XPCs" scheme in CotEditor.xcworkspace
-3. Open CotEditor.xcworkspace in Xcode.
-4. Build.
+### Build for Ad-hoc usage
+
+For those people who just want to build and play with CotEditor locally.
+
+1. Run following commands to resolve dependencies.
+    - `git submodule update --init`
+1. Open `CotEditor.xcworkspace` in Xcode.
+1. Change to ad-hoc build mode:
+    1. Open `Configurations/CodeSigning.xcconfig`.
+    1. Comment out `#include "CodeSigning-Default.xcconfig"`.
+    1. Uncomment `#include "CodeSigning-AdHoc.xcconfig"`.
+1. Build "CotEditor" scheme in the workspace.
+
+
+### Build for distribution (incl. Sparkle version)
+
+1. Run following commands to resolve dependencies.
+    - `git submodule update --init`
+1. Open `CotEditor.xcworkspace` in Xcode.
+1. Run "Sparkle" scheme in CotEditor.xcworkspace
+1. Build "CotEditor" scheme in the workspace.
 
 
 
 License
------------------------------
+--------------------------
 
 © 2005-2009 nakamuxu,
 © 2011, 2014 usami-k,

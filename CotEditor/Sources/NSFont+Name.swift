@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,10 +29,8 @@ extension NSFont {
     
     enum Name: String {
         
-        case lucidaGrande = "LucidaGrande"
         case menlo = "Menlo"
         case avenirNextCondensed = "AvenirNextCondensed"
-        case hiraginoSans = "HiraginoSans"
     }
     
     
@@ -76,19 +74,12 @@ private extension NSFont.Name {
     private func weightName(of weight: NSFont.Weight) -> String? {
         
         switch self {
-            case .lucidaGrande:
-                switch weight {
-                    case .regular: return ""
-                    case .bold: return "Bold"
-                    default: return nil
-            }
-            
             case .menlo:
                 switch weight {
                     case .regular: return "Regular"
                     case .bold: return "Bold"
                     default: return nil
-            }
+                }
             
             case .avenirNextCondensed:
                 switch weight {
@@ -99,21 +90,7 @@ private extension NSFont.Name {
                     case .bold: return "Bold"
                     case .heavy: return "Heavy"
                     default: return nil
-            }
-            
-            case .hiraginoSans:
-                switch weight {
-                    case .ultraLight: return "W0"
-                    case .thin: return "W1"
-                    case .light: return "W2"
-                    case .regular: return "W3"
-                    case .medium: return "W4"
-                    case .semibold: return "W5"
-                    case .bold: return "W6"
-                    case .heavy: return "W7"
-                    case .black: return "W8"
-                    default: return nil
-            }
+                }
         }
     }
     

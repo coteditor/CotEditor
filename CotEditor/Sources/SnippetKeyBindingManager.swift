@@ -195,7 +195,7 @@ private extension SnippetKeyBindingManager {
             !self.keyBindingSettingFileURL.isReachable
             else { return }
         
-        // -> just abort if failed
+        // -> Just abort if failed.
         try? self.migrate()
     }
     

@@ -59,7 +59,7 @@ final class Console {
 
 // MARK: -
 
-final class ConsoleWindowController: NSWindowController {
+final class ConsolePanelController: NSWindowController {
     
     // MARK: Window Controller Methods
     

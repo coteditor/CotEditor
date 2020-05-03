@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2017 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@
 "952.title" = "不打印";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
 "953.title" = "与文档设置一致";
-/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
-"954.title" = "全部打印";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
+"954.title" = "打印";
 
 
 

@@ -168,7 +168,7 @@ extension SyntaxParser {
         }
         operation.qualityOfService = .utility
         
-        // -> Regarding the outline extraction, just cancel previous operations before pasing the latest string,
+        // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
         //    since user cannot cancel it manually.
         self.outlineParseOperationQueue.cancelAllOperations()
         
@@ -210,9 +210,9 @@ extension SyntaxParser {
         }
         
         // make sure that string is immutable
-        //   -> `string` of NSTextStorage is actually a mutable object
-        //      and it can cause crash when a mutable string is given to NSRegularExpression instance.
-        //      (2016-11, macOS 10.12.1 SDK)
+        // -> `string` of NSTextStorage is actually a mutable object
+        //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
+        //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
         
         return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
@@ -248,28 +248,23 @@ extension SyntaxParser {
         } else {
             // highlight whole visible area if edited point is visible
             highlightRange = self.textStorage.layoutManagers
-                .compactMap { $0.textViewForBeginningOfSelection?.visibleRange }
-                .filter { $0.intersection(highlightRange) != nil }
+                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
+                .filter { $0.intersects(highlightRange) }
                 .reduce(into: highlightRange) { $0.formUnion($1) }
             
             highlightRange = (string as NSString).lineRange(for: highlightRange)
             
-            // expand highlight area if the character just before/after the highlighting area is the same color
+            // expand highlight area if the character just before/after the highlighting area is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
-                var start = highlightRange.lowerBound
-                var end = highlightRange.upperBound
-                
-                if start <= bufferLength {
-                    start = 0
-                } else if let effectiveRange = layoutManager.effectiveRange(of: .foregroundColor, at: start) {
-                    start = effectiveRange.lowerBound
+                if highlightRange.lowerBound <= bufferLength {
+                    highlightRange.location = 0
+                } else if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound) {
+                    highlightRange.location = effectiveRange.lowerBound
                 }
                 
-                if let effectiveRange = layoutManager.effectiveRange(of: .foregroundColor, at: end) {
-                    end = effectiveRange.upperBound
+                if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound) {
+                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
                 }
-                
-                highlightRange = NSRange(start..<end)
             }
         }
         

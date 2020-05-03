@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -43,13 +43,13 @@
 "418.title" = "Stampare";
 
 /* Class = "NSTextFieldCell"; title = "Invisibles:"; ObjectID = "718"; */
-"718.title" = "Invisibili:";
+"718.title" = "Caratteri invisibili:";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "427"; */
 "427.title" = "Come da documento";
 /* Class = "NSMenuItem"; title = "Don’t Print"; ObjectID = "428"; */
 "428.title" = "Non stampare";
-/* Class = "NSMenuItem"; title = "Print all"; ObjectID = "426"; */
-"426.title" = "Stampa tutti";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "426"; */
+"426.title" = "Stampare";
 
 
 /* Class = "NSButtonCell"; title = "Print header"; ObjectID = "708"; */

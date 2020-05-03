@@ -48,8 +48,10 @@ extension MultiCursorEditing {
     /// All ranges to insert for multiple-cursor editing.
     var insertionRanges: [NSRange] {
         
+        let selectedRanges = self.selectedRanges.map(\.rangeValue)
         let insertionRanges = self.insertionLocations.map { NSRange(location: $0, length: 0) }
-        return ((self.selectedRanges as! [NSRange]) + insertionRanges).sorted(\.location)
+        
+        return (selectedRanges + insertionRanges).sorted(\.location)
     }
     
     
@@ -110,7 +112,7 @@ extension MultiCursorEditing {
         guard ranges.count > 1 else { return false }
         
         let deletionRanges: [NSRange] = ranges
-            .map { range in
+            .map { range -> NSRange in
                 guard range.location > 0 else { return range }
                 guard range.isEmpty else { return range }
                 
@@ -119,10 +121,10 @@ extension MultiCursorEditing {
                     let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }
                 
-                return NSRange(location: range.location-1, length: 1)
+                return NSRange(location: range.location - 1, length: 1)
             }
             // remove overlappings
-            .map { Range<Int>($0)! }
+            .compactMap { Range($0) }
             .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
             .rangeView
             .map { NSRange($0) }
@@ -175,7 +177,7 @@ extension MultiCursorEditing {
         
         let ranges = ranges.unique.sorted(\.location)
         let selectionSet = ranges
-            .map { Range<Int>($0)! }
+            .compactMap { Range($0) }
             .reduce(into: IndexSet()) { $0.insert(integersIn: $1) }
         let nonemptyRanges = selectionSet.rangeView
             .map { NSRange($0) }
@@ -184,10 +186,10 @@ extension MultiCursorEditing {
             .filter { !selectionSet.contains(integersIn: ($0.location-1)..<$0.location) }  // -1 to check upper bound
         
         // -> In the proper implementation of NSTextView, `selectionRanges` can have
-        //    either a single empty range, a single nonempty range, or multiple nonempty ranges (macOS 10.14).
+        //    either a single empty range, a single non-empty range, or multiple nonempty ranges. (macOS 10.14)
         let selectedRanges = nonemptyRanges.isEmpty ? [emptyRanges.removeFirst()] : nonemptyRanges
         
-        return (selectedRanges as [NSValue], emptyRanges.map { $0.location })
+        return (selectedRanges as [NSValue], emptyRanges.map(\.location))
     }
     
     
@@ -344,7 +346,7 @@ extension MultiCursorEditing {
         var baseLineRange: NSRange = .notFound
         layoutManager.lineFragmentRect(forGlyphAt: safeBaseIndex, effectiveRange: &baseLineRange, withoutAdditionalLayout: true)
         let rowBounds = glyphRanges
-            .filter { baseLineRange.intersection($0) != nil }
+            .filter { baseLineRange.intersects($0) }
             .map { layoutManager.minimumRowBounds(of: $0, in: textContainer) }
         
         let newRanges = (lineFragmentUsedRects + [newLineRect])

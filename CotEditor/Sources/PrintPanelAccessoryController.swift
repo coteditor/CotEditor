@@ -74,7 +74,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
             guard representedObject != nil else { return }
             
             // -> Property initialization must be done after setting representedObject, namely NSPrintInfo,
-            //    because these values need to be set also to printInfo through the computed settters.
+            //    because these values need to be set also to printInfo through the computed setters.
             assert(representedObject is NSPrintInfo)
             
             let defaults = UserDefaults.standard
@@ -149,7 +149,7 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
         return [
             localizedSummaryItem(name: "Color", description: self.theme),
             localizedSummaryItem(name: "Line Number", description: self.lineNumberMode.description),
-            localizedSummaryItem(name: "Invisible Characters", description: self.invisibleCharsMode.description),
+            localizedSummaryItem(name: "Invisibles", description: self.invisibleCharsMode.description),
             
             localizedSummaryItem(name: "Print Header", description: self.printsHeader ? "On" : "Off"),
             localizedSummaryItem(name: "Primary Header", description: self.primaryHeaderContent.description),
@@ -232,17 +232,17 @@ final class PrintPanelAccessoryController: NSViewController, NSPrintPanelAccesso
     
     
     /// whether draws line number
-    @objc dynamic var lineNumberMode: PrintLineNmuberMode {
+    @objc dynamic var lineNumberMode: PrintVisibilityMode {
         
-        get { PrintLineNmuberMode(self.settingValue(forKey: .lineNumber) as? Int) }
+        get { PrintVisibilityMode(self.settingValue(forKey: .lineNumber) as? Int) }
         set { self.setSettingValue(newValue.rawValue, forKey: .lineNumber) }
     }
     
     
     /// whether draws invisible characters
-    @objc dynamic var invisibleCharsMode: PrintInvisiblesMode {
+    @objc dynamic var invisibleCharsMode: PrintVisibilityMode {
         
-        get { PrintInvisiblesMode(self.settingValue(forKey: .invisibles) as? Int) }
+        get { PrintVisibilityMode(self.settingValue(forKey: .invisibles) as? Int) }
         set { self.setSettingValue(newValue.rawValue, forKey: .invisibles) }
     }
     
@@ -338,7 +338,7 @@ private func localizedSummaryItem(name: String, description: String) -> [NSPrint
 }
 
 
-private extension PrintLineNmuberMode {
+private extension PrintVisibilityMode {
     
     var description: String {
         
@@ -349,22 +349,6 @@ private extension PrintLineNmuberMode {
                 return "Same as Document’s Setting"
             case .yes:
                 return "Print"
-        }
-    }
-}
-
-
-private extension PrintInvisiblesMode {
-    
-    var description: String {
-        
-        switch self {
-            case .no:
-                return "Don’t Print"
-            case .sameAsDocument:
-                return "Same as Document’s Setting"
-            case .all:
-                return "Print All"
         }
     }
 }

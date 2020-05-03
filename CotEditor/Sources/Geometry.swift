@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2018 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -85,10 +85,22 @@ extension CGPoint {
         return self.offsetBy(dx: point.x, dy: point.y)
     }
     
+    
+    func offset(by size: CGSize) -> CGPoint {
+        
+        return self.offsetBy(dx: size.width, dy: size.height)
+    }
+    
 }
 
 
 extension CGSize {
+    
+    static prefix func - (size: Self) -> Self {
+        
+        return Self(width: -size.width, height: -size.height)
+    }
+    
     
     static let unit = CGSize(width: 1, height: 1)
     static let infinite = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
@@ -115,9 +127,21 @@ extension CGRect {
     }
     
     
+    func offset(by size: CGSize) -> CGRect {
+        
+        return self.offsetBy(dx: size.width, dy: size.height)
+    }
+    
+    
     func inset(by point: CGPoint) -> CGRect {
         
         return self.insetBy(dx: point.x, dy: point.y)
+    }
+    
+    
+    func inset(by size: CGSize) -> CGRect {
+        
+        return self.insetBy(dx: size.width, dy: size.height)
     }
     
 }

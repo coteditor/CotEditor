@@ -142,10 +142,10 @@
 "mGD-5P-MDq.paletteLabel" = "换行";  /* Wrap Lines */
 "mGD-5P-MDq.toolTip" = "切换换行";  /* Toggle wrap lines */
 
-/* Class = "NSToolbarItem"; label = "不可见字符"; ObjectID = "xbD-Up-YfQ"; */
-"xbD-Up-YfQ.label" = "不可见字符";  /* Invisibles */
-"xbD-Up-YfQ.paletteLabel" = "不可见字符";  /* Invisibles */
-"xbD-Up-YfQ.toolTip" = "显示或隐藏文本中的不可见字符";  /* Show or hide invisible characters in text */
+/* Class = "NSToolbarItem"; label = "Invisibles"; ObjectID = "xbD-Up-YfQ"; */
+"xbD-Up-YfQ.label" = "不可见元素";  /* Invisibles */
+"xbD-Up-YfQ.paletteLabel" = "不可见元素";  /* Invisibles */
+"xbD-Up-YfQ.toolTip" = "显示或隐藏文本中的不可见元素";  /* Show or hide invisible characters in text */
 
 /* Class = "NSToolbarItem"; ObjectID = "GS6-aA-mgz"; */
 "GS6-aA-mgz.label" = "页面指示";  /* Page Guide */

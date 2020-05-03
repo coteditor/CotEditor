@@ -121,7 +121,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                  #selector(replaceAndFind(_:)),
                  #selector(replaceAll(_:)),
                  #selector(useSelectionForReplace(_:)),  // replacement string accepts empty string
-            #selector(centerSelectionInVisibleArea(_:)):
+                 #selector(centerSelectionInVisibleArea(_:)):
                 return self.client != nil
             
             case #selector(useSelectionForFind(_:)):
@@ -316,8 +316,8 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                 guard !progress.isCancelled else { return }
                 
                 if !replacementItems.isEmpty {
-                    let replacementStrings = replacementItems.map { $0.string }
-                    let replacementRanges = replacementItems.map { $0.range }
+                    let replacementStrings = replacementItems.map(\.string)
+                    let replacementRanges = replacementItems.map(\.range)
                     
                     // apply found strings to the text view
                     textView.replace(with: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges,
@@ -405,7 +405,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         let inSelection = UserDefaults.standard[.findInSelection]
         let textFind: TextFind
         do {
-            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges as! [NSRange])
+            textFind = try TextFind(for: string, findString: self.sanitizedFindString, mode: mode, inSelection: inSelection, selectedRanges: textView.selectedRanges.map(\.rangeValue))
         } catch let error as TextFind.Error {
             switch error {
                 case .regularExpression, .emptyInSelectionSearch:
@@ -487,7 +487,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
         
         textView.isEditable = false
         
-        let highlightColors = NSColor.textHighlighterColors(count: textFind.numberOfCaptureGroups + 1)
+        let highlightColors = NSColor.textHighlighterColor.decomposite(into: textFind.numberOfCaptureGroups + 1)
         let lineCounter = LineCounter(textFind.string as NSString)
         
         // setup progress sheet
@@ -568,7 +568,7 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
                     self.delegate?.textFinder(self, didFinishFindingAll: textFind.findString, results: results, textView: textView)
                 }
                 
-                // -> close also if result view has been shown
+                // close also if result view has been shown
                 if indicator.closesAutomatically || !results.isEmpty {
                     indicator.dismiss(nil)
                     if let panel = self.findPanelController.window, panel.isVisible {
@@ -587,11 +587,10 @@ final class TextFinder: NSResponder, NSMenuItemValidation {
 
 // MARK: -
 
-private class LineCounter: LineRangeCacheable {
+private final class LineCounter: LineRangeCacheable {
     
     let string: NSString
-    var lineStartIndexes = IndexSet()
-    var firstLineUncoundedIndex = 0
+    var lineRangeCache = LineRangeCache()
     
     
     init(_ string: NSString) {

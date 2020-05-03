@@ -66,7 +66,17 @@ final class TextContainer: NSTextContainer {
     
     override var isSimpleRectangularTextContainer: Bool {
         
-        return !self.isHangingIndentEnabled
+        // -> According to the reference, this property should return `false` when `.isHangingIndentEnabled`
+        //    is `true` because of non-uniform line fragment width.
+        //    Yet, only returning `true` enables the non-contiguous layout, and practically, in fact,
+        //    TextKit handles the hanging indent properly even when this flag is true.
+        //    It is therefore significantly advantageous for performance, such as when pasting large text.
+        //    This flag may be really critical if the layout cannot be determined without laying all glyphs out
+        //    from the top until the index where to draw.
+        //    However, by the hanging indent, line fragments can be calculated only from the logical line
+        //    where they belong to and thus are not affected by the previous context.
+        //    (2020-03 macOS 10.15)
+        return true
     }
     
     
@@ -103,6 +113,9 @@ final class TextContainer: NSTextContainer {
         let hangingIndent = CGFloat(self.hangingIndentWidth) * layoutManager.spaceWidth
         let indent = baseIndent + hangingIndent
         
+        // intentionally give up overflown hanging indent
+        guard indent + 2 * layoutManager.spaceWidth < rect.width else { return rect }
+        
         // remove hanging indent space from rect
         rect.size.width -= indent
         rect.origin.x += (baseWritingDirection != .rightToLeft) ? indent : 0
@@ -114,7 +127,7 @@ final class TextContainer: NSTextContainer {
     
     // MARK: Private Methods
     
-    /// invalidate layout in layoutManager
+    /// Let layoutManager invalidate the entire layout.
     private func invalidateLayout() {
         
         guard let layoutManager = self.layoutManager else { return }
@@ -133,13 +146,13 @@ private extension NSString {
     /// The fast way to find the indent charaters at the beginning of the given range.
     ///
     /// - Parameters:
-    ///   - ramge: The UTF1-based character range where the indent is searched.
+    ///   - range: The UTF16-based character range where searching for the indent.
     /// - Returns: The indent part of the string at the beginning of the given range.
     func indentString(in range: Range<Int>) -> String {
         
         let characters: [unichar] = range.lazy
             .map { self.character(at: $0) }
-            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE, HORIONTAL TAB
+            .prefix { $0 == 0x0020 || $0 == 0x0009 }  // SPACE || HORIONTAL TAB
         
         return String(utf16CodeUnits: characters, count: characters.count)
     }

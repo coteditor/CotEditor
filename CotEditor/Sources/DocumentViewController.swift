@@ -199,7 +199,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             let editorViewController = self.editorViewControllers.first!
             self.setup(editorViewController: editorViewController, baseViewController: nil)
             
-            // start parcing syntax highlights and outline menu
+            // start parcing syntax for highlighting and outline menu
             document.syntaxParser.invalidateOutline()
             self.invalidateSyntaxHighlight()
             
@@ -231,7 +231,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// avoid showing draggable cursor
     override func splitView(_ splitView: NSSplitView, effectiveRect proposedEffectiveRect: NSRect, forDrawnRect drawnRect: NSRect, ofDividerAt dividerIndex: Int) -> NSRect {
         
-        // -> must call super's delegate method anyway.
+        // -> Super's delegate method must be called anyway.
         super.splitView(splitView, effectiveRect: proposedEffectiveRect, forDrawnRect: drawnRect, ofDividerAt: dividerIndex)
         
         return .zero
@@ -248,7 +248,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             case #selector(changeTheme):
                 if let item = item as? NSMenuItem {
                     item.state = (self.theme?.name == item.title) ? .on : .off
-            }
+                }
             
             case #selector(toggleNavigationBar):
                 (item as? NSMenuItem)?.title = self.showsNavigationBar
@@ -279,15 +279,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
             case #selector(toggleInvisibleChars):
                 (item as? NSMenuItem)?.title = self.showsInvisibles
-                    ? "Hide Invisible Characters".localized
-                    : "Show Invisible Characters".localized
+                    ? "Hide Invisibles".localized
+                    : "Show Invisibles".localized
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
-                item.toolTip = self.canActivateShowInvisibles
+                let canActivateShowInvisibles = UserDefaults.standard.showsInvisible.isEmpty
+                item.toolTip = canActivateShowInvisibles
                     ? "Show or hide invisible characters in document".localized
                     : "To show invisible characters, set them in Preferences".localized
-                return self.canActivateShowInvisibles
+                return canActivateShowInvisibles
             
             case #selector(toggleAntialias):
                 (item as? StatableItem)?.state = (self.focusedTextView?.usesAntialias ?? false) ? .on : .off
@@ -341,13 +342,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Delegate
     
-    /// text did edit
-    override func textStorageDidProcessEditing(_ notification: Notification) {
+    /// text was edited (invoked right **before** notifying layout managers)
+    func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
         
-        // ignore if only attributes did change or input text is not yet fixed.
+        assert(Thread.isMainThread)
+        
         guard
-            let textStorage = notification.object as? NSTextStorage,
-            textStorage.editedMask.contains(.editedCharacters),
+            editedMask.contains(.editedCharacters),
             self.focusedTextView?.hasMarkedText() != true
             else { return }
         
@@ -357,24 +358,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         // update incompatible characters list
         self.document?.incompatibleCharacterScanner.invalidate()
         
-        // parse syntax
-        if let syntaxParser = self.syntaxParser, syntaxParser.canParse {
-            syntaxParser.invalidateOutline()
-            
-            // perform highlight in the next run loop to give layoutManager time to update temporary attribute
-            let editedRange = textStorage.editedRange
-            DispatchQueue.main.async { [weak self] in
-                if let progress = self?.syntaxHighlightProgress, !progress.isFinished {
-                    // retry syntax highlight if the last highlightAll has not finished yet
-                    progress.cancel()
-                    self?.syntaxHighlightProgress = syntaxParser.highlightAll()
-                    
-                } else {
-                    if let progress = syntaxParser.highlight(around: editedRange) {
-                        self?.presentHighlightIndicator(progress: progress, highlightLength: editedRange.length)
-                    }
-                }
-            }
+        // parse outline
+        self.syntaxParser?.invalidateOutline()
+        
+        // perform highlight parsing in the next run loop to give layoutManagers time to update their values
+        DispatchQueue.main.async { [weak self] in
+            self?.invalidateSyntaxHighlight(in: editedRange)
         }
     }
     
@@ -385,7 +374,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         for viewController in self.editorViewControllers {
             viewController.navigationBarController?.outlineProgress = nil
             viewController.navigationBarController?.outlineItems = outlineItems
-            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it (2008-05-16)
+            // -> The selection update will be done in the `otutlineItems`'s setter above, so you don't need to invoke it. (2008-05-16)
         }
     }
     
@@ -860,43 +849,49 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Private Methods
     
-    /// whether at least one of invisible characters is enabled in the preferences currently
-    private var canActivateShowInvisibles: Bool {
+    /// Invalidate the current syntax highlight.
+    ///
+    /// - Parameter range: The character range to invalidate syntax highlight, or `nil` when entire text is needed to re-highlight.
+    private func invalidateSyntaxHighlight(in range: NSRange? = nil) {
         
-        let defaults = UserDefaults.standard
-        return (defaults[.showInvisibleSpace] ||
-            defaults[.showInvisibleTab] ||
-            defaults[.showInvisibleNewLine] ||
-            defaults[.showInvisibleFullwidthSpace] ||
-            defaults[.showOtherInvisibleChars])
-    }
-    
-    
-    /// re-highlight whole content
-    private func invalidateSyntaxHighlight() {
+        var range = range
         
-        self.syntaxHighlightProgress?.cancel()
-        self.syntaxHighlightProgress = self.syntaxParser?.highlightAll()
+        // retry entire syntax highlight if the last highlightAll has not finished yet
+        if let progress = self.syntaxHighlightProgress, !progress.isFinished, !progress.isCancelled {
+            progress.cancel()
+            self.syntaxHighlightProgress = nil
+            range = nil
+        }
         
-        guard
-            let progress = self.syntaxHighlightProgress,
-            let length = self.textStorage?.length
-            else { return }
+        guard let parser = self.syntaxParser, parser.canParse else { return }
         
-        self.presentHighlightIndicator(progress: progress, highlightLength: length)
-    }
-    
-    
-    /// show highlighting indicator for large string
-    private func presentHighlightIndicator(progress: Progress, highlightLength: Int) {
+        // start parse
+        let progress: Progress?
+        if let range = range {
+            progress = parser.highlight(around: range)
+        } else {
+            progress = parser.highlightAll()
+        }
         
-        // show indicator only for a large update
+        // show indicator for a large update
         let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
+        let highlightLength = range?.length ?? self.textStorage?.length ?? 0
         guard threshold > 0, highlightLength > threshold else { return }
         
+        self.syntaxHighlightProgress = progress
+        if let progress = progress {
+            self.presentHighlightIndicator(progress: progress)
+        }
+    }
+    
+    
+    /// Show syntax highlight progress as sheet.
+    ///
+    /// - Parameter progress: The highlight progress
+    private func presentHighlightIndicator(progress: Progress) {
+        
         guard let window = self.view.window else {
-            assertionFailure("Expected window to be non-nil.")
-            return
+            return assertionFailure("Expected window to be non-nil.")
         }
         
         // display indicator first when window is visible
@@ -998,10 +993,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         assert(Thread.isMainThread)
         
-        guard
-            let theme = ThemeManager.shared.setting(name: name),
-            theme != self.theme
-            else { return }
+        guard let theme = ThemeManager.shared.setting(name: name) else { return }
         
         for viewController in self.editorViewControllers {
             viewController.textView?.theme = theme
@@ -1017,7 +1009,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         guard
             let view = (sender is NSMenuItem) ? (self.view.window?.firstResponder as? NSView) : sender as? NSView,
-            let editorView = sequence(first: view, next: { $0.superview })
+            let editorView = sequence(first: view, next: \.superview)
                 .first(where: { $0.identifier == NSUserInterfaceItemIdentifier("EditorView") })
             else { return nil }
         

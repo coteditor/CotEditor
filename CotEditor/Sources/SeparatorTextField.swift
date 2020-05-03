@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -49,9 +49,9 @@ final class SeparatorTextField: NSTextField {
         
         NSGraphicsContext.saveGraphicsState()
         
-        NSColor.gridColor.setStroke()
-        NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: floor(self.frame.midY) + 0.5),
-                                to: NSPoint(x: dirtyRect.maxX, y: floor(self.frame.midY) + 0.5))
+        let separatorRect = NSRect(x: dirtyRect.minX, y: self.frame.midY, width: dirtyRect.width, height: 1)
+        NSColor.gridColor.setFill()
+        self.centerScanRect(separatorRect).fill()
         
         NSGraphicsContext.restoreGraphicsState()
     }

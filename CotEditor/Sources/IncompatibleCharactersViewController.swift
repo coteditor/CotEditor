@@ -108,7 +108,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         self.incompatibleCharacters = incompatibleCharacters
         self.characterAvailable = !incompatibleCharacters.isEmpty
         
-        let ranges = incompatibleCharacters.map { $0.range }
+        let ranges = incompatibleCharacters.map(\.range)
         
         document.textStorage.clearAllMarkup()
         document.textStorage.markup(ranges: ranges, lineEnding: document.lineEnding)
@@ -131,7 +131,7 @@ final class IncompatibleCharactersViewController: NSViewController, Incompatible
         editor.selectedRange = range
         
         // focus result
-        // -> use textView's `selectedRange` since `range` is incompatible with CRLF
+        // -> Use textView's `selectedRange` since `range` is incompatible with CRLF.
         if let textView = editor.textView {
             textView.scrollRangeToVisible(textView.selectedRange)
             textView.showFindIndicator(for: textView.selectedRange)

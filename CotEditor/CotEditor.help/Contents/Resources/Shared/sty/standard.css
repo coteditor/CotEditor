@@ -127,7 +127,7 @@ pre.source {
 }
 
 ul {
-	list-style-type: disc;
+	list-style-type: circle;
 }
 
 li {
@@ -151,6 +151,9 @@ ol + ul {
 ul.topicbox {
 	background-color: white;
 	border: 1px dotted #999;
+}
+table ul li {
+	margin-bottom: 0.2em;
 }
 
 #cf {
@@ -300,6 +303,9 @@ span.keyword {
 }
 span.string {
 	color: hsl(0, 0%, 50%);
+}
+span.invisible {
+	color: -apple-system-secondary-label;
 }
 
 /* dark mode */

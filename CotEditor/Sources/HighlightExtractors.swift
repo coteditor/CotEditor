@@ -123,7 +123,7 @@ private struct RegularExpressionExtractor: HighlightExtractable {
     func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
         return self.regex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
-            .map { $0.range }
+            .map(\.range)
     }
     
 }
@@ -151,7 +151,7 @@ private struct BeginEndRegularExpressionExtractor: HighlightExtractable {
     func ranges(in string: String, range: NSRange, using block: (_ stop: inout Bool) -> Void) -> [NSRange] {
         
         return self.beginRegex.matches(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds], range: range, using: block)
-            .map { $0.range }
+            .map(\.range)
             .compactMap { beginRange in
                 let endRange = self.endRegex.rangeOfFirstMatch(in: string, options: [.withTransparentBounds, .withoutAnchoringBounds],
                                                                range: NSRange(beginRange.upperBound..<range.upperBound))

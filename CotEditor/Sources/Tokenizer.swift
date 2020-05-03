@@ -23,7 +23,7 @@
 //  limitations under the License.
 //
 
-import Foundation
+import Foundation.NSRegularExpression
 
 protocol TokenRepresentable: CaseIterable {
     
@@ -52,7 +52,7 @@ extension TokenRepresentable where Self: RawRepresentable, Self.RawValue == Stri
     
     static var tokenizer: Tokenizer {
         
-        return Tokenizer(tokens: Self.allCases.map({ $0.rawValue }), prefix: Self.prefix, suffix: Self.suffix)
+        return Tokenizer(tokens: Self.allCases.map(\.rawValue), prefix: Self.prefix, suffix: Self.suffix)
     }
     
 }

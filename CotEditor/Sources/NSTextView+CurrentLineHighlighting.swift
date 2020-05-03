@@ -52,7 +52,7 @@ extension CurrentLineHighlighting {
         
         color.setFill()
         for rect in self.lineHighLightRects where rect.intersects(dirtyRect) {
-            rect.fill()
+            self.centerScanRect(rect).fill()
         }
         
         NSGraphicsContext.restoreGraphicsState()
@@ -68,7 +68,7 @@ extension CurrentLineHighlighting {
     private func calcurateLineHighLightRects() -> [NSRect] {
         
         return self.rangesForUserTextChange?
-            .map { $0.rangeValue }
+            .map(\.rangeValue)
             .map { (self.string as NSString).lineContentsRange(for: $0) }
             .unique
             .map { self.lineRect(for: $0) }
@@ -87,14 +87,9 @@ extension CurrentLineHighlighting {
             let layoutManager = self.layoutManager
             else { assertionFailure(); return .zero }
         
-        let rect = layoutManager.lineFragmentsRect(for: range)
-        
-        return NSRect(x: 0,
-                      y: rect.minY,
-                      width: textContainer.size.width,
-                      height: rect.height)
+        return layoutManager.lineFragmentsRect(for: range)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
-            .offset(by: self.textContainerOrigin)
+            .offset(by: self.textContainerInset)
     }
     
 }
@@ -113,11 +108,11 @@ private extension NSLayoutManager {
         let glyphRange = self.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
         let safeLowerIndex = self.isValidGlyphIndex(glyphRange.lowerBound) ? glyphRange.lowerBound : glyphRange.lowerBound - 1
         var effectiveRange: NSRange = .notFound
-        let lowerRect = self.lineFragmentRect(forGlyphAt: safeLowerIndex, effectiveRange: &effectiveRange, withoutAdditionalLayout: true)
+        let lowerRect = self.lineFragmentRect(forGlyphAt: safeLowerIndex, effectiveRange: &effectiveRange)
         
         guard !effectiveRange.contains(glyphRange.upperBound) else { return lowerRect }
         
-        let upperRect = self.lineFragmentRect(forGlyphAt: glyphRange.upperBound - 1, effectiveRange: nil, withoutAdditionalLayout: true)
+        let upperRect = self.lineFragmentRect(forGlyphAt: glyphRange.upperBound - 1, effectiveRange: nil)
         
         return lowerRect.union(upperRect)
     }

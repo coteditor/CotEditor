@@ -25,13 +25,22 @@
 
 import Cocoa
 
-final class FindPanelLayoutManager: NSLayoutManager {
+final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, InvisibleDrawing {
+    
+    // MARK: Invisible Drawing Properties
+    
+    let textFont: NSFont = .systemFont(ofSize: 0)
+    var showsInvisibles: Bool = false
+    var showsControls: Bool = false
+    var invisiblesDefaultsObservers: [UserDefaultsObservation] = []
+    
     
     // MARK: Private Properties
     
-    private let font = NSFont.systemFont(ofSize: 0)
-    private var lineHeight: CGFloat = 0
-    private var baselineOffset: CGFloat = 0
+    private lazy var lineHeight = self.defaultLineHeight(for: self.textFont)
+    private lazy var baselineOffset = self.defaultBaselineOffset(for: self.textFont)
+    private lazy var boundingBoxForControlGlyph = self.boundingBoxForControlGlyph(for: self.textFont)
+    private var invisibleVisibilityObserver: UserDefaultsObservation?
     
     
     
@@ -42,10 +51,12 @@ final class FindPanelLayoutManager: NSLayoutManager {
         
         super.init()
         
-        self.lineHeight = self.defaultLineHeight(for: self.font)
-        self.baselineOffset = self.defaultBaselineOffset(for: self.font)
-        
         self.delegate = self
+        
+        self.invisibleVisibilityObserver = UserDefaults.standard.observe(key: .showInvisibles, options: [.initial, .new]) { [weak self] (change) in
+            self?.showsInvisibles = change.new!
+            self?.invalidateInvisibleDisplay()
+        }
     }
     
     
@@ -55,109 +66,28 @@ final class FindPanelLayoutManager: NSLayoutManager {
     }
     
     
+    deinit {
+        self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+        self.invisibleVisibilityObserver?.invalidate()
+    }
+    
+    
     
     // MARK: Layout Manager Methods
     
     /// draw invisible characters
     override func drawGlyphs(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint) {
         
-        if UserDefaults.standard[.showInvisibles] {
-            let string = self.textStorage?.string ?? ""
-            
-            let color = NSColor.tertiaryLabelColor
-            
-            let font = self.font
-            let fullWidthFont = NSFont(named: .hiraginoSans, size: font.pointSize) ?? font
-            
-            let attributes: [NSAttributedString.Key: Any] = [
-                .font: font,
-                .foregroundColor: color
-            ]
-            let fullwidthAttributes: [NSAttributedString.Key: Any] = [
-                .font: fullWidthFont,
-                .foregroundColor: color
-            ]
-            
-            let defaults = UserDefaults.standard
-            let showsSpace = defaults[.showInvisibleSpace]
-            let showsTab = defaults[.showInvisibleTab]
-            let showsNewLine = defaults[.showInvisibleNewLine]
-            let showsFullwidthSpace = defaults[.showInvisibleFullwidthSpace]
-            let showsOtherInvisibles = defaults[.showOtherInvisibleChars]
-            
-            let space = NSAttributedString(string: defaults.invisibleSymbol(for: .space), attributes: attributes)
-            let tab = NSAttributedString(string: defaults.invisibleSymbol(for: .tab), attributes: attributes)
-            let newLine = NSAttributedString(string: defaults.invisibleSymbol(for: .newLine), attributes: attributes)
-            let fullwidthSpace = NSAttributedString(string: defaults.invisibleSymbol(for: .fullwidthSpace), attributes: fullwidthAttributes)
-            
-            // draw invisibles glyph by glyph
-            let characterRange = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
-            for charIndex in characterRange.lowerBound..<characterRange.upperBound {
-                let codeUnit = (string as NSString).character(at: charIndex)
-                let invisible = Invisible(codeUnit: codeUnit)
-                
-                let glyphString: NSAttributedString
-                switch invisible {
-                    case .space:
-                        guard showsSpace else { continue }
-                        glyphString = space
-                    
-                    case .tab:
-                        guard showsTab else { continue }
-                        glyphString = tab
-                    
-                    case .newLine:
-                        guard showsNewLine else { continue }
-                        glyphString = newLine
-                    
-                    case .fullwidthSpace:
-                        guard showsFullwidthSpace else { continue }
-                        glyphString = fullwidthSpace
-                    
-                    case .otherControl:
-                        guard showsOtherInvisibles else { continue }
-                        guard
-                            self.textStorage?.attribute(.glyphInfo, at: charIndex, effectiveRange: nil) == nil
-                            else { continue }
-                        
-                        let replaceFont = NSFont(named: .lucidaGrande, size: font.pointSize) ?? NSFont.systemFont(ofSize: font.pointSize)
-                        let glyph = replaceFont.cgFont.getGlyphWithGlyphName(name: "replacement" as CFString)
-                        let controlRange = NSRange(location: charIndex, length: 1)
-                        let baseString = (string as NSString).substring(with: controlRange)
-                        
-                        guard let glyphInfo = NSGlyphInfo(cgGlyph: glyph, for: replaceFont, baseString: baseString) else { assertionFailure(); continue }
-                        
-                        // !!!: The following line can cause crash by binary document.
-                        //      It's actually dangerous and to be detoured to modify textStorage while drawing.
-                        //      (2015-09 by 1024jp)
-                        self.textStorage?.addAttributes([.glyphInfo: glyphInfo,
-                                                         .font: replaceFont,
-                                                         .foregroundColor: color], range: controlRange)
-                        continue
-                    
-                    case .none:
-                        continue
-                }
-                
-                // calculate position to draw glyph
-                let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
-                let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
-                let glyphLocation = self.location(forGlyphAt: glyphIndex)
-                let point = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x)
-                
-                // draw character
-                glyphString.draw(at: point)
-            }
+        if self.showsInvisibles {
+            self.drawInvisibles(forGlyphRange: glyphsToShow, at: origin, baselineOffset: self.baselineOffset, color: .disabledControlTextColor, types: UserDefaults.standard.showsInvisible)
         }
         
         super.drawGlyphs(forGlyphRange: glyphsToShow, at: origin)
     }
     
-}
-
-
-
-extension FindPanelLayoutManager: NSLayoutManagerDelegate {
+    
+    
+    // MARK: Layout Manager Delegate Methods
     
     /// adjust line height to be all the same
     func layoutManager(_ layoutManager: NSLayoutManager, shouldSetLineFragmentRect lineFragmentRect: UnsafeMutablePointer<NSRect>, lineFragmentUsedRect: UnsafeMutablePointer<NSRect>, baselineOffset: UnsafeMutablePointer<CGFloat>, in textContainer: NSTextContainer, forGlyphRange glyphRange: NSRange) -> Bool {
@@ -167,6 +97,20 @@ extension FindPanelLayoutManager: NSLayoutManagerDelegate {
         baselineOffset.pointee = self.baselineOffset
         
         return true
+    }
+    
+    
+    /// treat control characers as whitespace to draw replacement glyphs
+    func layoutManager(_ layoutManager: NSLayoutManager, shouldUse action: NSLayoutManager.ControlCharacterAction, forControlCharacterAt charIndex: Int) -> NSLayoutManager.ControlCharacterAction {
+        
+        return self.showsControlCharacter(at: charIndex, proposedAction: action) ? .whitespace : action
+    }
+    
+    
+    /// make a blank space to draw the replacement glyph in `drawGlyphs(forGlyphRange:at:)` later
+    func layoutManager(_ layoutManager: NSLayoutManager, boundingBoxForControlGlyphAt glyphIndex: Int, for textContainer: NSTextContainer, proposedLineFragment proposedRect: NSRect, glyphPosition: NSPoint, characterIndex charIndex: Int) -> NSRect {
+        
+        return self.boundingBoxForControlGlyph
     }
     
 }

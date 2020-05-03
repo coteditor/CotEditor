@@ -99,11 +99,11 @@ extension StringProtocol where Self.Index == String.Index {
     /// The first line ending type.
     var detectedLineEnding: LineEnding? {
         
-        // We don't use `CharacterSet.newlines` because it contains more characters than we need.
+        // -> We don't use `CharacterSet.newlines` because it contains more characters than we need.
         guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
         
-        // Swift treats "\r\n" also as a single character.
-        let character = self[workaround: range.lowerBound]
+        // -> Swift treats "\r\n" also as a single character.
+        let character = self[range.lowerBound]
         
         return LineEnding(rawValue: character)
     }
@@ -112,9 +112,9 @@ extension StringProtocol where Self.Index == String.Index {
     /// Count characters in the receiver but except all kinds of line endings.
     var countExceptLineEnding: Int {
         
-        // workarond for Swift 5.1 that removes BOM at the beginning (2019-05 Swift 5.1).
+        // workarond for a bug since Swift 5 that removes BOM at the beginning (2019-05 Swift 5.1).
         // cf. https://bugs.swift.org/browse/SR-10896
-        if self.starts(with: "\u{FEFF}") {
+        guard !self.starts(with: "\u{FEFF}") || self.compareCount(with: 16) == .greater else {
             let startIndex = self.index(after: self.startIndex)
             return self[startIndex...].replacingOccurrences(of: LineEnding.regexPattern, with: "", options: .regularExpression).count + 1
         }

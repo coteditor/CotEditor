@@ -63,9 +63,9 @@ final class ShortcutKeyField: NSTextField {
             //     "delete (forword)" key: the key with printed "Delete" where next to the ten key pad.
             switch Int(char.value) {
                 case NSDeleteCharacter:
-                    charsIgnoringModifiers = String(UnicodeScalar(NSBackspaceCharacter)!)
+                    charsIgnoringModifiers = String(Unicode.Scalar(NSBackspaceCharacter)!)
                 case NSDeleteFunctionKey:
-                    charsIgnoringModifiers = String(UnicodeScalar(NSDeleteCharacter)!)
+                    charsIgnoringModifiers = String(Unicode.Scalar(NSDeleteCharacter)!)
                 default: break
             }
             
@@ -75,7 +75,7 @@ final class ShortcutKeyField: NSTextField {
             let modifierMask = event.modifierFlags.subtracting(ignoringMask)
             
             // set input shortcut string to field
-            // -> single NSDeleteCharacter works as delete
+            // -> The single NSDeleteCharacter works as delete.
             let keySpecChars = Shortcut(modifierMask: modifierMask, keyEquivalent: charsIgnoringModifiers).keySpecChars
             self.objectValue = (keySpecChars == "\u{8}") ? nil : keySpecChars
             

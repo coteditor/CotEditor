@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Qki-Cn-AgK">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -663,6 +663,8 @@
                         <outlet property="rtlWritingDirectionButton" destination="dbp-Ze-2O4" id="TVj-8c-4oD"/>
                         <outlet property="tabbingOptionMenu" destination="bjF-G8-yrZ" id="wAy-fz-8OU"/>
                         <outlet property="verticalWritingDirectionButton" destination="wjb-yR-EWC" id="e7U-OD-MkT"/>
+                        <outlet property="windowHeightField" destination="XGK-jf-PNq" id="q9Q-q5-Hn9"/>
+                        <outlet property="windowWidthField" destination="hfv-mJ-E2k" id="8tw-zT-Lw5"/>
                     </connections>
                 </viewController>
                 <customObject id="Vhg-R8-9Sf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

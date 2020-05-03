@@ -149,8 +149,8 @@ extension String {
                 }
             }
             
-            // try ISO-2022-JP by checking existance of typical escape sequences
-            // -> It's not perfect yet works in most cases. (2016-01 by 1024p)
+            // try ISO-2022-JP by checking the existence of typical escape sequences
+            // -> It's not perfect yet works in most cases. (2016-01)
             if data.prefix(maxDetectionLength).contains(0x1B),
                 ISO2022JPEscapeSequences.contains(where: { data.range(of: $0) != nil }),
                 let string = String(data: data, encoding: .iso2022JP)
@@ -218,11 +218,11 @@ extension String {
         // convert IANA CharSet name to CFStringEncoding
         let cfEncoding: CFStringEncoding = {
             // pick user's preferred one for "Shift_JIS"
-            //   -> CFStringConvertIANACharSetNameToEncoding() converts "SHIFT_JIS" to .shiftJIS regardless of the letter case.
-            //      Although this behavior is theoretically correct since IANA is case insensitive,
-            //      we treat them with case by respecting user's priority.
-            //      FYI: CFStringConvertEncodingToIANACharSetName() converts .shiftJIS and .shiftJIS_X0213
-            //           to "shift_jis" and "Shift_JIS" respectively.
+            // -> CFStringConvertIANACharSetNameToEncoding() converts "SHIFT_JIS" to .shiftJIS regardless of the letter case.
+            //    Although this behavior is theoretically correct since IANA is case insensitive,
+            //    we treat them with care by respecting the user's priority.
+            //    FYI: CFStringConvertEncodingToIANACharSetName() converts .shiftJIS and .shiftJIS_X0213
+            //         to "shift_jis" and "Shift_JIS" respectively.
             if ianaCharSetName.uppercased() == "SHIFT_JIS", let cfEncoding = suggestedCFEncodings.first(where: { $0 == .shiftJIS || $0 == .shiftJIS_X0213 }) {
                 return cfEncoding
             }

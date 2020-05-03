@@ -31,17 +31,26 @@ final class StringExtensionsTests: XCTestCase {
     
     /// Test if the U+FEFF omitting bug on Swift 5 still exists.
     ///
-    /// cf. <https://bugs.swift.org/browse/SR-10896>
+    /// - Bug: <https://bugs.swift.org/browse/SR-10896>
     func testFEFF() {
         
         let bom = "\u{feff}"
         
+        // -> Some of these test cases must fail if the bug fixed.
         XCTAssertEqual(bom.count, 1)
-        XCTAssertEqual((bom + "abc").count, 4)
-        XCTAssertEqual(NSString(string: bom).length, 0)
-        XCTAssertEqual(NSString(string: bom + bom).length, 1)
-        XCTAssertEqual(NSString(string: bom + "abc").length, 3)
-        XCTAssertEqual(NSString(string: "a" + bom + "bc").length, 4)
+        XCTAssertEqual(("\(bom)abc").count, 4)
+        XCTAssertEqual(NSString(string: bom).length, 0)  // correct: 1
+        XCTAssertEqual(NSString(string: "\(bom)\(bom)").length, 1)  // correct: 2
+        XCTAssertEqual(NSString(string: "\(bom)abc").length, 3)  // correct: 4
+        XCTAssertEqual(NSString(string: "a\(bom)bc").length, 4)
+        
+        let string = "\(bom)abc"
+        XCTAssertNotEqual(string.immutable, string)  // -> This test must fail if the bug fixed.
+        
+        // Implicit NSString cast is fixed.
+        // -> However, still crashes when `string.immutable.enumerateSubstrings(in:)`
+        let middleIndex = string.index(string.startIndex, offsetBy: 2)
+        string.enumerateSubstrings(in: middleIndex..<string.endIndex, options: .byLines) { (_, _, _, _) in }
     }
     
     
@@ -98,13 +107,11 @@ final class StringExtensionsTests: XCTestCase {
         
         let testString = "a\nb c\n\n"
         XCTAssertEqual(testString.numberOfLines, 4)
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0), includingLastLineEnding: true), 0)   // ""
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1), includingLastLineEnding: true), 1)   // "a"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includingLastLineEnding: true), 2)   // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2), includingLastLineEnding: false), 1)  // "a\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6), includingLastLineEnding: true), 3)   // "a\nb c\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7), includingLastLineEnding: true), 4)   // "a\nb c\n\n"
-        XCTAssertEqual(testString.numberOfLines(in: NSRange(2..<4), includingLastLineEnding: false), 1)  // "b c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<0)), 0)   // ""
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<1)), 1)   // "a"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<2)), 2)   // "a\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<6)), 3)   // "a\nb c\n"
+        XCTAssertEqual(testString.numberOfLines(in: NSRange(0..<7)), 4)   // "a\nb c\n\n"
         
         XCTAssertEqual(testString.lineNumber(at: 0), 1)
         XCTAssertEqual(testString.lineNumber(at: 1), 1)
@@ -121,10 +128,10 @@ final class StringExtensionsTests: XCTestCase {
         XCTAssertEqual(nsString.lineNumber(at: 6), testString.lineNumber(at: 6))
         XCTAssertEqual(nsString.lineNumber(at: 7), testString.lineNumber(at: 7))
         
-        XCTAssertEqual("\u{FEFF}".numberOfLines(in: NSRange(0..<1), includingLastLineEnding: false), 1)  // "\u{FEFF}"
-        XCTAssertEqual("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
-        XCTAssertEqual("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
-        XCTAssertEqual("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5), includingLastLineEnding: false), 2)  // "\u{FEFF}\nb"
+        XCTAssertEqual("\u{FEFF}".numberOfLines(in: NSRange(0..<1)), 1)  // "\u{FEFF}"
+        XCTAssertEqual("\u{FEFF}\nb".numberOfLines(in: NSRange(0..<3)), 2)  // "\u{FEFF}\nb"
+        XCTAssertEqual("a\u{FEFF}\nb".numberOfLines(in: NSRange(1..<4)), 2)  // "\u{FEFF}\nb"
+        XCTAssertEqual("a\u{FEFF}\u{FEFF}\nb".numberOfLines(in: NSRange(1..<5)), 2)  // "\u{FEFF}\nb"
         
         XCTAssertEqual("a\u{FEFF}\nb".numberOfLines, 2)
         XCTAssertEqual("\u{FEFF}\nb".numberOfLines, 2)

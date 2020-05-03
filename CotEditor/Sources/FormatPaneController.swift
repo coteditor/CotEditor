@@ -450,7 +450,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         }
         
         // select menu item for the current setting manually although Cocoa-Bindings are used on these menus
-        //   -> Because items were actually added after Cocoa-Binding selected the item.
+        // -> Because items were actually added after Cocoa-Binding selected the item.
         let inOpenEncoding = UserDefaults.standard[.encodingInOpen]
         let inNewEncoding = UserDefaults.standard[.encodingInNew]
         self.inOpenEncodingMenu?.selectItem(withTag: Int(inOpenEncoding))
@@ -458,7 +458,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
         if Int(inNewEncoding) == utf8Int {
             let UTF8WithBomIndex = inNewMenu.indexOfItem(withRepresentedObject: isUTF8WithBOMFlag)
             let index = UserDefaults.standard[.saveUTF8BOM] ? UTF8WithBomIndex : UTF8WithBomIndex - 1
-            // -> The normal "UTF-8" is just above "UTF-8 with BOM".
+            // -> The normal "UTF-8" locates just above "UTF-8 with BOM".
             
             self.inNewEncodingMenu?.selectItem(at: index)
         } else {
@@ -493,7 +493,7 @@ final class FormatPaneController: NSViewController, NSMenuItemValidation, NSTabl
             popup.addItems(withTitles: styleNames)
             
             // select menu item for the current setting manually although Cocoa-Bindings are used on this menu
-            //   -> Because items were actually added after Cocoa-Binding selected the item.
+            // -> Because items were actually added after Cocoa-Binding selected the item.
             let defaultStyle = UserDefaults.standard[.syntaxStyle]!
             let selectedStyle = styleNames.contains(defaultStyle) ? defaultStyle : BundledStyleName.none
             

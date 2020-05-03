@@ -33,7 +33,6 @@ final class LineNumberView: NSView {
         
         let fontSize: CGFloat
         let charWidth: CGFloat
-        let ascent: CGFloat
         let wrappedMarkGlyph: CGGlyph
         let digitGlyphs: [CGGlyph]
         let padding: CGFloat
@@ -49,8 +48,7 @@ final class LineNumberView: NSView {
             self.scale = scale
             
             // calculate font size for number
-            self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).round(interval: 0.5)
-            self.ascent = scale * textFont.ascender
+            self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).rounded(interval: 0.5)
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
@@ -102,6 +100,8 @@ final class LineNumberView: NSView {
         case normal = 0.75
         case bold = 0.9
         case stroke = 0.2
+        
+        static let highContrastCoefficient: CGFloat = 0.5
     }
     
     
@@ -226,16 +226,18 @@ final class LineNumberView: NSView {
         dirtyRect.fill()
         
         // draw divider (1px)
-        self.textColor(.stroke).setStroke()
+        let dividerRect: NSRect
         switch self.orientation {
             case .horizontal:
-                NSBezierPath.strokeLine(from: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.maxY),
-                                        to: NSPoint(x: self.bounds.maxX - 0.5, y: dirtyRect.minY))
+                dividerRect = NSRect(x: self.bounds.maxX - 1, y: dirtyRect.minY,
+                                     width: 1, height: dirtyRect.height)
             case .vertical:
-                NSBezierPath.strokeLine(from: NSPoint(x: dirtyRect.minX, y: self.bounds.minY + 0.5),
-                                        to: NSPoint(x: dirtyRect.maxX, y: self.bounds.minY + 0.5))
+                dividerRect = NSRect(x: dirtyRect.minX, y: self.bounds.minY,
+                                     width: dirtyRect.width, height: 1)
             @unknown default: fatalError()
         }
+        self.foregroundColor(.stroke).setFill()
+        dividerRect.fill()
         
         NSGraphicsContext.restoreGraphicsState()
         
@@ -257,16 +259,17 @@ final class LineNumberView: NSView {
     }
     
     
-    /// return text color considering current accesibility setting
-    private func textColor(_ strength: ColorStrength = .normal) -> NSColor {
+    /// return foreground color by considering the current accesibility setting
+    private func foregroundColor(_ strength: ColorStrength = .normal) -> NSColor {
         
         let textColor = self.textView?.textColor ?? .textColor
+        let fraction = NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? strength.rawValue + ColorStrength.highContrastCoefficient
+            : strength.rawValue
         
-        if NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast, strength != .stroke {
-            return textColor
-        }
+        guard fraction < 1 else { return textColor }
         
-        return self.backgroundColor.blended(withFraction: strength.rawValue, of: textColor) ?? textColor
+        return self.backgroundColor.blended(withFraction: fraction, of: textColor) ?? textColor
     }
     
     
@@ -289,6 +292,7 @@ final class LineNumberView: NSView {
         guard
             let drawingInfo = self.drawingInfo,
             let textView = self.textView,
+            let layoutManager = textView.layoutManager as? LayoutManager,
             let context = NSGraphicsContext.current?.cgContext
             else { return assertionFailure() }
         
@@ -296,15 +300,16 @@ final class LineNumberView: NSView {
         
         context.setFont(Self.lineNumberFont)
         context.setFontSize(drawingInfo.fontSize)
-        context.setFillColor(self.textColor().cgColor)
-        context.setStrokeColor(self.textColor(.stroke).cgColor)
+        context.setFillColor(self.foregroundColor().cgColor)
+        context.setStrokeColor(self.foregroundColor(.stroke).cgColor)
         
         let isVerticalText = textView.layoutOrientation == .vertical
         let scale = textView.scale
         
         // adjust drawing coordinate
         let relativePoint = self.convert(NSPoint.zero, from: textView)
-        let lineBase = (scale * textView.textContainerOrigin.y) + drawingInfo.ascent
+        let baselineOffset = layoutManager.baselineOffset(for: textView.layoutOrientation)
+        let lineBase = scale * (textView.textContainerOrigin.y + baselineOffset)
         switch textView.layoutOrientation {
             case .horizontal:
                 context.translateBy(x: self.thickness, y: relativePoint.y - lineBase)
@@ -337,12 +342,12 @@ final class LineNumberView: NSView {
                         
                         // draw
                         if isSelected {
-                            context.setFillColor(self.textColor(.bold).cgColor)
+                            context.setFillColor(self.foregroundColor(.bold).cgColor)
                             context.setFont(Self.boldLineNumberFont)
                         }
                         context.showGlyphs(glyphs, at: positions)
                         if isSelected {
-                            context.setFillColor(self.textColor().cgColor)
+                            context.setFillColor(self.foregroundColor().cgColor)
                             context.setFont(Self.lineNumberFont)
                         }
                     }
@@ -351,7 +356,7 @@ final class LineNumberView: NSView {
                     if isVerticalText {
                         let rect = CGRect(x: round(y) + 0.5, y: 1, width: 0, height: drawingInfo.tickLength)
                         context.stroke(rect, width: 1)
-                }
+                    }
                 
                 case .wrapped:
                     // draw wrapped mark (-)
@@ -378,7 +383,7 @@ final class LineNumberView: NSView {
         if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
             drawingInfo = lastDrawingInfo
         } else {
-            // -> update drawing info only when needed
+            // update drawing info only when needed
             drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
             self.drawingInfo = drawingInfo
         }
@@ -500,7 +505,7 @@ private extension Int {
 
 private extension FloatingPoint {
     
-    func round(interval: Self) -> Self {
+    func rounded(interval: Self) -> Self {
         
         return (self / interval).rounded() * interval
     }
@@ -533,7 +538,7 @@ extension LineNumberView {
         let point = window.convertPoint(toScreen: event.locationInWindow)
         let index = textView.characterIndex(for: point)
         
-        let selectedRanges = textView.selectedRanges.map { $0.rangeValue }
+        let selectedRanges = textView.selectedRanges.map(\.rangeValue)
         
         // repeat while dragging
         self.draggingTimer = .scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(selectLines),

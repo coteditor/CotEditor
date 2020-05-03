@@ -25,12 +25,29 @@
 
 import Foundation
 
+// MARK: Sort
+
+struct StringComparisonOptions: OptionSet {
+    
+    let rawValue: Int
+    
+    static let localized       = StringComparisonOptions(rawValue: 1 << 0)
+    static let caseInsensitive = StringComparisonOptions(rawValue: 1 << 1)
+}
+
+
 extension MutableCollection where Self: RandomAccessCollection, Element == String {
     
-    /// Sort the collection in place, using `String.localizedCaseInsensitiveCompare` as the comparison between elements.
-    mutating func localizedCaseInsensitiveSort() {
+    /// Sort the collection in place, using the string value that the given key path refers as the comparison between elements.
+    ///
+    /// - Parameters:
+    ///   - keyPath: The key path to the string to compare.
+    ///   - options: The storategy to compare strings.
+    mutating func sort(_ keyPath: KeyPath<Element, String> = \Element.self, options: StringComparisonOptions) {
         
-        self.sort { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        let compare = compareFunction(options: options)
+        
+        self.sort { compare($0[keyPath: keyPath], $1[keyPath: keyPath]) == .orderedAscending }
     }
     
 }
@@ -38,14 +55,36 @@ extension MutableCollection where Self: RandomAccessCollection, Element == Strin
 
 extension Sequence where Element == String {
     
-    /// Return the elements of the sequence, sorted using `String.localizedCaseInsensitiveCompare` as the comparison between elements.
+    /// Return the elements of the sequence, sorted using the string value that the given key path refers with the desired string comparison storategy.
     ///
+    /// - Parameters:
+    ///   - keyPath: The key path to the string to compare.
+    ///   - options: The storategy to compare strings.
     /// - Returns: A sorted array of the sequence’s elements.
-    func localizedCaseInsensitiveSorted() -> [Element] {
+    func sorted(_ keyPath: KeyPath<Element, String> = \Element.self, options: StringComparisonOptions) -> [Element] {
         
-        return self.sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
+        let compare = compareFunction(options: options)
+        
+        return self.sorted { compare($0[keyPath: keyPath], $1[keyPath: keyPath]) == .orderedAscending }
     }
     
+}
+
+
+private func compareFunction(options: StringComparisonOptions) -> (String, String) -> ComparisonResult {
+    
+    switch options {
+        case [.localized, .caseInsensitive]:
+            return { $0.localizedCaseInsensitiveCompare($1) }
+        case [.localized]:
+            return { $0.localizedCompare($1) }
+        case [.caseInsensitive]:
+            return { $0.caseInsensitiveCompare($1) }
+        case []:
+            return { $0.compare($1) }
+        default:
+            fatalError()
+    }
 }
 
 

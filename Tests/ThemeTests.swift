@@ -27,12 +27,12 @@
 import XCTest
 @testable import CotEditor
 
-private let themeDirectoryName = "Themes"
-
 
 final class ThemeTests: XCTestCase {
     
-    private(set) lazy var bundle = Bundle(for: type(of: self))
+    private let themeDirectoryName = "Themes"
+    
+    private lazy var bundle = Bundle(for: type(of: self))
     
     
     func testDefaultTheme() throws {
@@ -75,7 +75,7 @@ final class ThemeTests: XCTestCase {
         for case let url as URL in enumerator {
             guard DocumentType.theme.extensions.contains(url.pathExtension) else { continue }
             
-            _ = try Theme(contentsOf: url)
+            _ = try Theme.theme(contentsOf: url)
         }
     }
     
@@ -89,7 +89,7 @@ private extension ThemeTests {
         
         let url = self.bundle.url(forResource: name, withExtension: DocumentType.theme.extensions[0], subdirectory: themeDirectoryName)
         
-        return try Theme(contentsOf: url!)
+        return try Theme.theme(contentsOf: url!)
     }
     
 }

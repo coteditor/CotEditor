@@ -1,0 +1,153 @@
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="keywords" content="invisible characters, invisibles, control characters, space, tab, line ending"/>
+	<link rel="start" href="../CotEditorHelp.html"/>
+	<link rel="index" href="../xpgs/xall.html"/>
+	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
+	<title>Displaying invisible characters</title>
+</head>
+
+<body>
+<nav><ul>
+	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
+</ul></nav>
+
+
+<h1>Displaying invisible characters</h1>
+
+<p>The Invisible Characters feature allows you to draw invisible characters, such as special characters for formatting, in a document with alternative symbols so that you can find where they are.</p>
+
+
+<h2>Toggling visibility of invisible characters</h2>
+
+<h3>Temporary changing the current document </h3>
+
+<p>You can toggle the visibility of invisible characters in the current document by performing one of the following:</p>
+
+<ul>
+	<li>Choose “Show/Hide Invisible Characters” from the Format menu at the top of your screen.</li>
+	<li>Select “Invisibles” button in the window toolbar (The “Invisibles” button can be added by customizing toolbar).</li>
+</ul>
+
+<p>The change here doesn’t override the CotEditor's default setting.</p>
+
+
+<h3>Default setting</h3>
+
+<p>You can change the default setting of the invisible visibility in the Preferences' <a href="pref_appearance.html">Appearance</a> pane by selecting “Show invisible character” checkbox.</p>
+
+
+<h3>Printing invisible characters on print</h3>
+
+<p>You can set whether printing also invisible characters on print in the Preferences' <a href="pref_print.html">Print</a> pane for the default setting, or in the print dialog for an individual document.</p>
+
+
+
+<h2>Types of invisible characters</h2>
+
+<p>In the Preferences' <a href="pref_appearance.html">Appearance</a> pane, you can set which types of invisible characters are shown when the invisible character display is enabled. The types correspond to the following characters:</p>
+
+<table>
+	<style>
+		ul { list-style-type: none; padding-left: 0; }
+	</style>
+	
+	<colgroup>
+		<col/>
+		<col/>
+		<col style="width:19em"/>
+		<col/>
+	</colgroup>
+	
+	<thead>
+		<tr><th>Label</th><th><abbr title="Symbol">Sym.</abbr></th><th>Characters (code point)</th><th>Description</th></tr>
+	</thead>
+	
+	<tbody>
+		<tr>
+			<th>Line ending</th>
+			<td><span class="invisible">↩</span></td>
+			<td><ul>
+				<li>U+000A <small>(LINE FEED)</small></li>
+				<li>U+000D <small>(CARRIAGE RETURN)</small></li>
+			</ul></td>
+			<td>The control characters indicating line break. The CRLF type line ending (combination of <code>U+000D</code> and <code>U+000A</code>) is also drawn as a single character.</td>
+		</tr>
+		
+		<tr>
+			<th>Tab</th>
+			<td><span class="invisible">→</span></td>
+			<td><ul>
+				<li>U+0009 <small>(HORIZONTAL TABULATION)</small></li>
+			</ul></td>
+			<td>A kind of whitespace characters with a flexible width sending the next character to a certain position. In coding, it is often used for indentation.</td>
+		</tr>
+		
+		<tr>
+			<th>Space</th>
+			<td><span class="invisible">·</span></td>
+			<td><ul>
+				<li>U+0020 <small>(SPACE)</small></li>
+			</ul></td>
+			<td>The sandard space character.</td>
+		</tr>
+		
+		<tr>
+			<th rowspan="3">Other<br/>whitespaces</th>
+			<td><span class="invisible">·̂</span></td>
+			<td><ul>
+				<li>U+00A0 <small>(NO-BREAK SPACE)</small></li>
+				<li>U+2007 <small>(FIGURE SPACE)</small></li>
+				<li>U+202F <small>(NARROW NO-BREAK SPACE)</small></li>
+			</ul></td>
+			<td>The space characters avoiding breaking the line before/after it.</td>
+		</tr>
+		
+		<tr>
+			<td><span class="invisible">□</span></td>
+			<td><ul>
+				<li>U+3000 <small>(IDEOGRAPHIC SPACE)</small></li>
+			</ul></td>
+			<td>A kind of space characters commonly used in Japanese writing. As known as full-width space.</td>
+		</tr>
+		
+		<tr>
+			<td><span class="invisible">=</span></td>
+			<td><ul>
+				<li>U+2000..U+200A <small>(various spaces)</small></li>
+				<li>U+205F <small>(MEDIUM MATHEMATICAL SPACE)</small></li>
+			</ul></td>
+			<td>Whitespace characters in various widths and uses. They correspond to all of the remaining whitespace characters in Unicode category Zs (space separator).</td>
+		</tr>
+		
+		<tr>
+			<th>Other<br/>control characters</th>
+			<td><span class="invisible">�</span></td>
+			<td><ul>
+				<li>U+0000..U+001F <small>(C0)</small></li>
+				<li>U+007F <small>(DELETE)</small></li>
+				<li>U+0080..U+009F <small>(C1)</small></li>
+				<li>U+200B <small>(ZERO WIDTH SPACE)</small></li>
+				<li>U+200C <small>(ZERO WIDTH NON-JOINER)</small></li>
+				<li>U+2060 <small>(WORD JOINER)</small></li>
+				<li>U+FEFF <small>(ZERO WIDTH NO-BREAK SPACE)</small></li>
+				<li>U+061C, U+200E..U+200F, U+202A..U+202E, U+2066..U+206F <small>(bidi-text controls)</small></li>
+				<li>U+FFF9..U+FFFB <small>(interlinear annotations)</small></li>
+			</ul></td>
+			<td>Special characters that are not printed as a normal character but used for controlling or formatting documents. They correspond to all of Unicode category Cc (control) and some of Cf (format).</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<section id="cf">
+<h2>See also</h2>
+<ul>
+	<li><a href="../pgs/pref_appearance.html">Appearance preferences</a></li>
+</ul>
+</section>
+
+</body>
+</html>

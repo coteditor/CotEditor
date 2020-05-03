@@ -1201,10 +1201,6 @@
 	</dict>
 	<key>OSAScriptingDefinition</key>
 	<string>$(PRODUCT_NAME).sdef</string>
-	<key>SUEnableJavaScript</key>
-	<true/>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>

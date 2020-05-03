@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -34,6 +34,8 @@ final class WindowPaneController: NSViewController {
     @IBOutlet private weak var tabbingOptionMenu: NSMenu?
     
     @IBOutlet private weak var pageGuideColumnField: NSTextField?
+    @IBOutlet private weak var windowWidthField: NSTextField?
+    @IBOutlet private weak var windowHeightField: NSTextField?
     @IBOutlet private weak var overscrollField: NSTextField?
     @IBOutlet private weak var editorOpacityField: NSTextField?
     
@@ -53,9 +55,11 @@ final class WindowPaneController: NSViewController {
         super.viewDidLoad()
         
         // set initial values as fields' placeholder
-        self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults(.value)
-        self.overscrollField?.bindNullPlaceholderToUserDefaults(.value)
-        self.editorOpacityField?.bindNullPlaceholderToUserDefaults(.value)
+        self.pageGuideColumnField?.bindNullPlaceholderToUserDefaults()
+        self.windowWidthField?.bindNullPlaceholderToUserDefaults()
+        self.windowHeightField?.bindNullPlaceholderToUserDefaults()
+        self.overscrollField?.bindNullPlaceholderToUserDefaults()
+        self.editorOpacityField?.bindNullPlaceholderToUserDefaults()
     }
     
     

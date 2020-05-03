@@ -76,7 +76,7 @@ final class CollectionTests: XCTestCase {
     
     func testSorting() {
         
-        for _ in (0..<10) {
+        for _ in 0..<10 {
             var array: [Int] = (0..<10).map { _ in .random(in: 0..<100) }
             let sorted = array.sorted { $0 < $1 }
             

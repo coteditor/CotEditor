@@ -39,8 +39,6 @@ final class ThemeManager: SettingFileManaging {
     
     typealias Setting = Theme
     
-    typealias ThemeDictionary = [String: NSMutableDictionary]  // use NSMutableDictionary for KVO
-    
     
     // MARK: Public Properties
     
@@ -66,9 +64,8 @@ final class ThemeManager: SettingFileManaging {
         
         // cache bundled setting names
         self.bundledSettingNames = Bundle.main.urls(forResourcesWithExtension: self.filePathExtension, subdirectory: Self.directoryName)!
-            .filter { !$0.lastPathComponent.hasPrefix("_") }
             .map { self.settingName(from: $0) }
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
         
         // cache user setting names
         self.checkUserSettings()
@@ -107,28 +104,21 @@ final class ThemeManager: SettingFileManaging {
     }
     
     
-    /// load theme dict in which objects are property list ready.
-    func settingDictionary(name: String) -> ThemeDictionary? {
-        
-        guard let themeURL = self.urlForUsedSetting(name: name) else { return nil }
-        
-        return try? self.loadSettingDictionary(at: themeURL)
-    }
-    
-    
     /// save setting file
-    func save(settingDictionary: ThemeDictionary, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
+    func save(setting: Setting, name: String, completionHandler: @escaping (() -> Void) = {}) throws {
         
         // create directory to save in user domain if not yet exist
         try self.prepareUserSettingDirectory()
         
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        
+        let data = try encoder.encode(setting)
         let fileURL = self.preparedURLForUserSetting(name: name)
-        let data = try JSONSerialization.data(withJSONObject: settingDictionary, options: .prettyPrinted)
         
         try data.write(to: fileURL, options: .atomic)
         
-        // invalidate current cache
-        self.cachedSettings[name] = nil
+        self.cachedSettings[name] = setting
         
         self.updateCache { [weak self] in
             self?.notifySettingUpdate(oldName: name, newName: name)
@@ -141,10 +131,9 @@ final class ThemeManager: SettingFileManaging {
     /// create a new untitled setting
     func createUntitledSetting(completionHandler: @escaping ((_ settingName: String) -> Void) = { _ in }) throws {
         
-        // append number suffix if "Untitled" already exists
         let name = self.savableSettingName(for: "Untitled".localized)
         
-        try self.save(settingDictionary: self.blankSettingDictionary, name: name) {
+        try self.save(setting: Setting(), name: name) {
             completionHandler(name)
         }
     }
@@ -186,7 +175,7 @@ final class ThemeManager: SettingFileManaging {
     /// load setting from the file at given URL
     func loadSetting(at fileURL: URL) throws -> Setting {
         
-        return try Theme(contentsOf: fileURL)
+        return try Theme.theme(contentsOf: fileURL)
     }
     
     
@@ -196,7 +185,7 @@ final class ThemeManager: SettingFileManaging {
         // get user setting names if exists
         let userSettingNames = self.userSettingFileURLs
             .map { self.settingName(from: $0) }
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
         
         self.settingNames = (self.bundledSettingNames + userSettingNames).unique
         
@@ -218,7 +207,7 @@ final class ThemeManager: SettingFileManaging {
         switch UserDefaults.standard[.documentAppearance] {
             case .default:
                 guard #available(macOS 10.14, *) else { return false }
-                // -> NSApperance.current doesn't return the latest apperance when the system appearance
+                // -> NSApperance.current doesn't return the latest appearance when the system appearance
                 //    was changed after the app launch (macOS 10.14).
                 return NSApp.effectiveAppearance.isDark
             case .light:
@@ -226,32 +215,6 @@ final class ThemeManager: SettingFileManaging {
             case .dark:
                 return true
         }
-    }
-    
-    
-    /// Load ThemeDictionary from a file at the URL.
-    ///
-    /// - Parameter fileURL: URL to a setting file.
-    /// - Throws: `CocoaError`
-    private func loadSettingDictionary(at fileURL: URL) throws -> ThemeDictionary {
-        
-        let data = try Data(contentsOf: fileURL)
-        let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
-        
-        guard let themeDictionry = json as? ThemeDictionary else {
-            throw CocoaError.error(.fileReadCorruptFile, url: fileURL)
-        }
-        
-        return themeDictionry
-    }
-    
-    
-    /// plain setting to be based on when creating a new one
-    private var blankSettingDictionary: ThemeDictionary {
-        
-        let url = self.urlForBundledSetting(name: "_Plain")!
-        
-        return try! self.loadSettingDictionary(at: url)
     }
     
 }

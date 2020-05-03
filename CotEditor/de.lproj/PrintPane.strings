@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2017 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@
 "952.title" = "Nicht drucken";
 /* Class = "NSMenuItem"; title = "Same as Document’s Setting"; ObjectID = "953"; */
 "953.title" = "Wie Dokument";
-/* Class = "NSMenuItem"; title = "Print All"; ObjectID = "954"; */
-"954.title" = "Alles drucken";
+/* Class = "NSMenuItem"; title = "Print"; ObjectID = "954"; */
+"954.title" = "Drucken";
 
 
 

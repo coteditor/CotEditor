@@ -87,9 +87,12 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     
     /// return a new set with the elements that are common to both this set and the given sequence.
-    func intersection<S: Sequence>(_ other: S) -> OrderedSet<Element> where S.Element == Element {
+    func intersection<S: Sequence>(_ other: S) -> Self where S.Element == Element {
         
-        return OrderedSet(self.elements.filter { other.contains($0) })
+        var set = OrderedSet()
+        set.elements = self.elements.filter { other.contains($0) }
+        
+        return set
     }
     
     
@@ -131,18 +134,20 @@ struct OrderedSet<Element: Hashable>: RandomAccessCollection {
     
     
     /// remove the the element at the position from the set.
-    mutating func remove(at index: Index) {
+    @discardableResult
+    mutating func remove(at index: Index) -> Element {
         
-        self.elements.remove(at: index)
+        return self.elements.remove(at: index)
     }
     
     
     /// remove the specified element from the set.
-    mutating func remove(_ element: Element) {
+    @discardableResult
+    mutating func remove(_ element: Element) -> Element? {
         
-        guard let index = self.firstIndex(of: element) else { return }
+        guard let index = self.firstIndex(of: element) else { return nil }
         
-        self.remove(at: index)
+        return self.remove(at: index)
     }
     
 }

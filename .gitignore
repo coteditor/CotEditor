@@ -10,6 +10,5 @@ default.profraw
 # Swift Package Manager
 .build/
 
-# Carthage
-Carthage/Checkouts
-Carthage/DerivedData
+# Submodules
+Frameworks/Build

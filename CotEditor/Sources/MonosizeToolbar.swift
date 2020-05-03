@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -54,9 +54,9 @@ final class MonosizeToolbar: NSToolbar {
         
         super.awakeFromNib()
         
-        // This is really dirty way but works.
-        //   -> It actually doesn't matter if "Use Small Size" menu item cannot be removed.
-        //      What really matter is crash, or any other unwanted side effects. So, be careful.
+        // -> This is really dirty way but works.
+        //    It actually doesn't matter if "Use Small Size" menu item cannot be removed.
+        //    What really matters is crashing, or any other unwanted side effects. So, be careful.
         // cf. https://forums.developer.apple.com/thread/21887
         if
             let contextMenu = self.window?.contentView?.superview?.menu,
@@ -115,7 +115,7 @@ private extension NSView {
     /// find all subviews recursively
     private var descendants: [NSView] {
         
-        return self.subviews + self.subviews.flatMap { $0.descendants }
+        return self.subviews + self.subviews.flatMap(\.descendants)
     }
     
 }

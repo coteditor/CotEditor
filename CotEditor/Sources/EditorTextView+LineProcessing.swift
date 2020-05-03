@@ -134,7 +134,7 @@ extension EditorTextView {
             ? self.string.startIndex
             : String.Index(utf16Offset: self.selectedRange.location, in: self.string)
         let lineRange = self.string.lineContentsRange(at: location)
-        viewController.sampleLine = String(self.string[workaround: lineRange])
+        viewController.sampleLine = String(self.string[lineRange])
         viewController.sampleFontName = self.font?.fontName
         
         viewController.completionHandler = { [weak self] (pattern, options) in
@@ -182,7 +182,7 @@ extension EditorTextView {
 
 // MARK: -
 
-private extension String {
+extension String {
     
     typealias EditingInfo = (strings: [String], ranges: [NSRange], selectedRanges: [NSRange]?)
     
@@ -228,6 +228,7 @@ private extension String {
                 }
             }
         }
+        selectedRanges = selectedRanges.unique.sorted(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -276,6 +277,7 @@ private extension String {
                 }
             }
         }
+        selectedRanges = selectedRanges.unique.sorted(\.location)
         
         let replacementString = string.substring(with: replacementRange)
         
@@ -295,7 +297,7 @@ private extension String {
         let newString = string
             .substring(with: lineRange)
             .components(separatedBy: .newlines)
-            .localizedCaseInsensitiveSorted()
+            .sorted(options: [.localized, .caseInsensitive])
             .joined(separator: "\n")
         
         return (strings: [newString], ranges: [lineRange], selectedRanges: [lineRange])
@@ -325,33 +327,27 @@ private extension String {
     func deleteDuplicateLine(in ranges: [NSRange]) -> EditingInfo? {
         
         let string = self as NSString
-        var replacementStrings = [String]()
-        var replacementRanges = [NSRange]()
-        var uniqueLines = OrderedSet<String>()
-        var processedCount = 0
+        let lineContentRanges = ranges
+            .map { string.lineRange(for: $0) }
+            .flatMap { self.lineContentsRanges(for: $0) }
+            .unique
+            .sorted(\.location)
         
-        // collect duplicate lines
-        for range in ranges {
-            let lineRange = string.lineContentsRange(for: range)
-            let targetString = string.substring(with: lineRange)
-            let lines = targetString.components(separatedBy: .newlines)
+        var replacementRanges = [NSRange]()
+        var uniqueLines = [String]()
+        for lineContentRange in lineContentRanges {
+            let line = string.substring(with: lineContentRange)
             
-            // filter duplicate lines
-            uniqueLines.append(contentsOf: lines)
-            
-            let targetLinesRange: Range<Int> = processedCount..<uniqueLines.count
-            processedCount += targetLinesRange.count
-            
-            // do nothing if no duplicate line exists
-            guard targetLinesRange.count != lines.count else { continue }
-            
-            let replacementString = uniqueLines[targetLinesRange].joined(separator: "\n")
-            
-            replacementStrings.append(replacementString)
-            replacementRanges.append(lineRange)
+            if uniqueLines.contains(line) {
+                replacementRanges.append(string.lineRange(for: lineContentRange))
+            } else {
+                uniqueLines.append(line)
+            }
         }
         
-        guard processedCount > 0 else { return nil }
+        guard !replacementRanges.isEmpty else { return nil }
+        
+        let replacementStrings = [String](repeating: "", count: replacementRanges.count)
         
         return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: nil)
     }
@@ -365,8 +361,22 @@ private extension String {
         var replacementRanges = [NSRange]()
         var selectedRanges = [NSRange]()
         
-        for range in ranges {
-            let lineRange = string.lineRange(for: range)
+        // group the ranges sharing the same lines
+        let rangeGroups: [[NSRange]] = ranges.sorted(\.location)
+            .reduce(into: []) { (groups, range) in
+                if let last = groups.last?.last,
+                    string.lineRange(for: last).intersects(string.lineRange(for: range))
+                {
+                    groups[groups.count - 1].append(range)
+                } else {
+                    groups.append([range])
+                }
+            }
+        
+        var offset = 0
+        for group in rangeGroups {
+            let unionRange = group.reduce(into: group[0]) { $0.formUnion($1) }
+            let lineRange = string.lineRange(for: unionRange)
             let replacementRange = NSRange(location: lineRange.location, length: 0)
             var lineString = string.substring(with: lineRange)
             
@@ -375,12 +385,13 @@ private extension String {
                 lineString += "\n"
             }
             
-            let offset = (replacementStrings + [lineString]).map { ($0 as NSString).length }.reduce(0, +)
-            let selectedRange = range.shifted(offset: offset)
-            
             replacementStrings.append(lineString)
             replacementRanges.append(replacementRange)
-            selectedRanges.append(selectedRange)
+            
+            offset += lineString.length
+            for range in group {
+                selectedRanges.append(range.shifted(offset: offset))
+            }
         }
         
         return (strings: replacementStrings, ranges: replacementRanges, selectedRanges: selectedRanges)
@@ -395,12 +406,13 @@ private extension String {
         let lineRanges = (self as NSString).lineRanges(for: ranges)
         let replacementStrings = [String](repeating: "", count: lineRanges.count)
         
-        var selectedRanges = [NSRange]()
+        var selectedRanges: [NSRange] = []
         var offset = 0
         for range in lineRanges {
             selectedRanges.append(NSRange(location: range.location + offset, length: 0))
             offset -= range.length
         }
+        selectedRanges = selectedRanges.unique.sorted(\.location)
         
         return (strings: replacementStrings, ranges: lineRanges, selectedRanges: selectedRanges)
     }

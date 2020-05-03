@@ -194,7 +194,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
         item.shortcut = shortcut
         textField.objectValue = shortcut.description
         self.saveSettings()
-        self.outlineView?.reloadData(forRowIndexes: IndexSet(integer: row), columnIndexes: IndexSet(integer: column))
+        self.outlineView?.reloadData(forRowIndexes: [row], columnIndexes: [column])
     }
     
     
@@ -253,7 +253,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
 // MARK: -
 
 /// model object for NSArrayController
-final private class SnippetItem: NSObject {
+private final class SnippetItem: NSObject {
     
     @objc dynamic var text: String
     
@@ -302,7 +302,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     /// save current settings
     fileprivate override func saveSettings() {
         
-        let snippets = self.snippets.map { $0.text }
+        let snippets = self.snippets.map(\.text)
         
         SnippetKeyBindingManager.shared.saveSnippets(snippets)
         

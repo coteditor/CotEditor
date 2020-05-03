@@ -61,7 +61,7 @@ final class DefinitionTableViewDelegate: NSObject, NSTableViewDelegate {
     @IBAction func didCheckboxClicked(_ checkbox: NSButton) {
         
         // find tableView
-        let superview = sequence(first: checkbox, next: { $0.superview }).first { $0 is NSTableView }
+        let superview = sequence(first: checkbox, next: \.superview).first { $0 is NSTableView }
         
         guard
             let tableView = superview as? NSTableView,

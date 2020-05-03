@@ -89,9 +89,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // wake text finder up
         _ = TextFinder.shared
         
-        // register transformers
-        ValueTransformer.setValueTransformer(HexColorTransformer(), forName: HexColorTransformer.name)
-        
         super.init()
     }
     
@@ -130,7 +127,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     // MARK: Application Delegate
     
-    #if !APPSTORE
+    #if SPARKLE
     /// setup Sparkle framework
     func applicationWillFinishLaunching(_ notification: Notification) {
         
@@ -157,7 +154,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationWillTerminate(_ notification: Notification) {
         
         // store the latest version
-        //   -> The bundle version (build number) must be Int.
+        // -> The bundle version (build number) must be Int.
         let thisVersion = Bundle.main.bundleVersion
         let isLatest: Bool = {
             guard
@@ -301,7 +298,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let creditsURL = Bundle.main.url(forResource: "Credits", withExtension: "html")!
         var html = try! String(contentsOf: creditsURL)
         
-        #if APPSTORE  // Remove Sparkle from 3rd party code list
+        #if !SPARKLE  // Remove Sparkle from 3rd party code list
         if let range = html.range(of: "Sparkle") {
             html.replaceSubrange(html.lineRange(for: range), with: "")
         }
