@@ -68,9 +68,6 @@ extension InvisibleDrawing {
         
         // setup drawing parameters
         NSGraphicsContext.saveGraphicsState()
-        defer {
-            NSGraphicsContext.restoreGraphicsState()
-        }
         color.set()
         
         // draw invisibles glyph by glyph
@@ -119,6 +116,8 @@ extension InvisibleDrawing {
             
             NSBezierPath(path: path, transform: transform).fill()
         }
+        
+        NSGraphicsContext.restoreGraphicsState()
     }
     
     
@@ -208,16 +207,14 @@ private extension Invisible {
                 let transform = isRTL ? CGAffineTransform(scaleX: -1, y: 1) : .identity
                 let path = CGMutablePath()
                 // arrow body
-                path.move(to: CGPoint(x: 0.9 * size.height, y: y - radius))
                 path.addArc(center: CGPoint(x: 0.9 * size.height, y: y),
                             radius: radius, startAngle: -.pi / 2, endAngle: .pi / 2, clockwise: false)
                 path.addLine(to: CGPoint(x: 0.2 * size.height, y: y + radius))
                 // arrow head
-                path.move(to: CGPoint(x: 0.2 * size.height, y: y + radius))
-                path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius + 0.25 * size.height))
-                path.move(to: CGPoint(x: 0.2 * size.height, y: y + radius))
-                path.addLine(to: CGPoint(x: 0.5 * size.height, y: y + radius - 0.25 * size.height))
-                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0, transform: transform)
+                path.addLines(between: [CGPoint(x: 0.5 * size.height, y: y + radius + 0.25 * size.height),
+                                        CGPoint(x: 0.2 * size.height, y: y + radius),
+                                        CGPoint(x: 0.5 * size.height, y: y + radius - 0.25 * size.height)])
+                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, transform: transform)
             
             case .tab:
                 // -> The width of tab is elastic and even can be (almost) zero.
@@ -227,35 +224,31 @@ private extension Invisible {
                 let transform = isRTL ? CGAffineTransform(scaleX: -1, y: 1).translatedBy(x: -size.width, y: 0) : .identity
                 let path = CGMutablePath()
                 // arrow body
-                path.move(to: endPoint)
-                path.addLine(to: endPoint.offsetBy(dx: -max(size.width - 2 * margin, arrow.width), dy: 0))
+                path.addLines(between: [endPoint, endPoint.offsetBy(dx: -max(size.width - 2 * margin, arrow.width))])
                 // arrow head
-                path.move(to: endPoint)
-                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height))
-                path.move(to: endPoint)
-                path.addLine(to: endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height))
-                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0, transform: transform)
+                path.addLines(between: [endPoint.offsetBy(dx: -arrow.width, dy: +arrow.height),
+                                        endPoint,
+                                        endPoint.offsetBy(dx: -arrow.width, dy: -arrow.height)])
+                return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, transform: transform)
             
             case .space:
-                let radius = size.height / 15 + lineWidth
+                let radius = size.height / 10 + lineWidth
                 let rect = CGRect(x: (size.width - radius) / 2, y: (size.height - radius) / 2, width: radius, height: radius)
                 return CGPath(ellipseIn: rect, transform: nil)
             
             case .noBreakSpace:
                 let hat = CGMutablePath()
                 let hatCorner = CGPoint(x: 0.5 * size.width, y: 0.05 * size.height)
-                hat.addLines(between: [
-                    hatCorner.offsetBy(dx: -0.15 * size.height, dy: 0.18 * size.height),
-                    hatCorner,
-                    hatCorner.offsetBy(dx: 0.15 * size.height, dy: 0.18 * size.height),
-                ])
+                hat.addLines(between: [hatCorner.offsetBy(dx: -0.15 * size.height, dy: 0.18 * size.height),
+                                       hatCorner,
+                                       hatCorner.offsetBy(dx: 0.15 * size.height, dy: 0.18 * size.height)])
                 let path = CGMutablePath()
                 path.addPath(hat.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0))
                 path.addPath(Self.space.path(in: size, lineWidth: lineWidth))
                 return path
             
             case .fullwidthSpace:
-                let length = 0.95 * min(size.width, size.height) - lineWidth
+                let length = min(0.95 * size.width, size.height) - lineWidth
                 let radius = 0.1 * length
                 let rect = CGRect(x: (size.width - length) / 2, y: (size.height - length) / 2, width: length, height: length)
                 return CGPath(roundedRect: rect, cornerWidth: radius, cornerHeight: radius, transform: nil)
@@ -263,16 +256,12 @@ private extension Invisible {
             
             case .otherWhitespace:
                 let path = CGMutablePath()
-                path.addLines(between: [
-                    CGPoint(x: 0.2 * size.width, y: 0.3 * size.height),
-                    CGPoint(x: 0.8 * size.width, y: 0.3 * size.height),
-                ])
-                path.addLines(between: [
-                    CGPoint(x: 0.2 * size.width, y: 0.8 * size.height),
-                    CGPoint(x: 0.8 * size.width, y: 0.8 * size.height),
-                ])
+                path.addLines(between: [CGPoint(x: 0.2 * size.width, y: 0.3 * size.height),
+                                        CGPoint(x: 0.8 * size.width, y: 0.3 * size.height)])
+                path.addLines(between: [CGPoint(x: 0.2 * size.width, y: 0.8 * size.height),
+                                        CGPoint(x: 0.8 * size.width, y: 0.8 * size.height)])
                 return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0)
-                
+            
             case .otherControl:
                 let question = CGMutablePath()  // `?` mark in unit size
                 question.move(to: CGPoint(x: 0, y: 0.25))
@@ -285,17 +274,16 @@ private extension Invisible {
                 let transform = CGAffineTransform(translationX: 0.25 * size.width, y: 0.12 * size.height)
                     .scaledBy(x: 0.5 * size.width, y: 0.76 * size.height)
                 let scaledQuestion = question.copy(using: [transform])!
+                    .copy(strokingWithWidth: 0.15 * size.width, lineCap: .round, lineJoin: .miter, miterLimit: 0)
                 let path = CGMutablePath()
-                path.addLines(between: [
-                    CGPoint(x: 0.5 * size.width, y: -0.15 * size.height),
-                    CGPoint(x: 0.9 * size.width, y: 0.15 * size.height),
-                    CGPoint(x: 0.9 * size.width, y: 0.85 * size.height),
-                    CGPoint(x: 0.5 * size.width, y: 1.15 * size.height),
-                    CGPoint(x: 0.1 * size.width, y: 0.85 * size.height),
-                    CGPoint(x: 0.1 * size.width, y: 0.15 * size.height),
-                ])
+                path.addPath(scaledQuestion)
+                path.addLines(between: [CGPoint(x: 0.5 * size.width, y: -0.15 * size.height),
+                                        CGPoint(x: 0.9 * size.width, y: 0.15 * size.height),
+                                        CGPoint(x: 0.9 * size.width, y: 0.85 * size.height),
+                                        CGPoint(x: 0.5 * size.width, y: 1.15 * size.height),
+                                        CGPoint(x: 0.1 * size.width, y: 0.85 * size.height),
+                                        CGPoint(x: 0.1 * size.width, y: 0.15 * size.height)])
                 path.closeSubpath()
-                path.addPath(scaledQuestion.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .miter, miterLimit: 0))
                 return path
         }
     }
