@@ -265,8 +265,8 @@ extension NSLayoutManager {
             NSBezierPath.defaultLineWidth = 0.5
             NSBezierPath.stroke(rect)
             
+            NSBezierPath.defaultLineWidth = 0.25
             for offset in offsetsHandler(textContainer, glyphRange) {
-                NSBezierPath.defaultLineWidth = 0.25
                 NSBezierPath.strokeLine(from: NSPoint(x: rect.minX, y: rect.minY + offset),
                                         to: NSPoint(x: rect.maxX, y: rect.minY + offset))
             }

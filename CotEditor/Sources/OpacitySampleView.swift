@@ -51,7 +51,7 @@ final class OpacitySampleView: NSView {
         NSColor.gridColor.setStroke()
         basePath.stroke()
         
-        // draw rectangle
+        // draw triangle
         let insideFrame = self.bounds.insetBy(dx: 2, dy: 2)
         let path = NSBezierPath()
         path.move(to: insideFrame.origin)
