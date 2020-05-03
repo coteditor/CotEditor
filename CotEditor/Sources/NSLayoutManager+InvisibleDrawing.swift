@@ -64,7 +64,7 @@ extension InvisibleDrawing {
             ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
             : baselineOffset
         let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]
-        var pathCache: [UTF16.CodeUnit: CGPath] = [:]
+        var pathCache: [UTF16.CodeUnit: NSBezierPath] = [:]
         
         // setup drawing parameters
         NSGraphicsContext.saveGraphicsState()
@@ -82,7 +82,7 @@ extension InvisibleDrawing {
             
             let glyphIndex = self.glyphIndexForCharacter(at: charIndex)
             
-            let path: CGPath
+            let path: NSBezierPath
             if let cache = pathCache[codeUnit] {
                 path = cache
             } else {
@@ -102,7 +102,8 @@ extension InvisibleDrawing {
                 }
                 
                 let size = CGSize(width: glyphWidth, height: glyphHeight)
-                path = invisible.path(in: size, lineWidth: lineWidth, isRTL: isRTL)
+                let cgPath = invisible.path(in: size, lineWidth: lineWidth, isRTL: isRTL)
+                path = NSBezierPath(path: cgPath)
                 
                 if cacheableInvisibles.contains(invisible) {
                     pathCache[codeUnit] = path
@@ -112,9 +113,10 @@ extension InvisibleDrawing {
             let lineOrigin = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: nil, withoutAdditionalLayout: true).origin
             let glyphLocation = self.location(forGlyphAt: glyphIndex)
             let symbolOrigin = lineOrigin.offset(by: origin).offsetBy(dx: glyphLocation.x, dy: baselineOffset - glyphHeight)
-            let transform = AffineTransform(translationByX: symbolOrigin.x, byY: symbolOrigin.y)
             
-            NSBezierPath(path: path, transform: transform).fill()
+            path.transform(using: .init(translationByX: symbolOrigin.x, byY: symbolOrigin.y))
+            path.fill()
+            path.transform(using: .init(translationByX: -symbolOrigin.x, byY: -symbolOrigin.y))
         }
         
         NSGraphicsContext.restoreGraphicsState()
