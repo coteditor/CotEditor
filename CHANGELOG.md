@@ -2,6 +2,14 @@
 Change Log
 ==========================
 
+3.9.0-beta.2 (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta] Fix an issue where the visibility of invisibles of opened documents cannot be enabled.
+
+
 3.9.0-beta (411)
 --------------------------
 
