@@ -306,6 +306,7 @@ span.string {
 }
 span.invisible {
 	color: -apple-system-secondary-label;
+	font-family: monospace;
 }
 
 /* dark mode */
