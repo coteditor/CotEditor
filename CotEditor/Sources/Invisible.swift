@@ -80,7 +80,7 @@ enum Invisible {
             case .space: return "·"
             case .noBreakSpace: return "·̂"
             case .fullwidthSpace: return "□"
-            case .otherWhitespace: return "="
+            case .otherWhitespace: return "⹀"
             case .otherControl: return "�"
         }
     }
