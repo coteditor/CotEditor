@@ -863,7 +863,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             range = nil
         }
         
-        guard let parser = self.syntaxParser, parser.canParse else { return }
+        guard let parser = self.syntaxParser else { return }
         
         // start parse
         let progress: Progress?
