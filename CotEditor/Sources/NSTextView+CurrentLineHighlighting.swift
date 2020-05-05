@@ -89,7 +89,7 @@ extension CurrentLineHighlighting {
         
         return layoutManager.lineFragmentsRect(for: range)
             .insetBy(dx: textContainer.lineFragmentPadding, dy: 0)
-            .offset(by: self.textContainerInset)
+            .offset(by: self.textContainerOrigin)
     }
     
 }
