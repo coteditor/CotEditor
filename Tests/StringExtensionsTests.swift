@@ -163,8 +163,8 @@ final class StringExtensionsTests: XCTestCase {
         
         let testString = "犬 イヌ いぬ Ｉｎｕ Dog 123 １２３"
         
-        XCTAssertEqual(testString.fullWidthRoman, "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
-        XCTAssertEqual(testString.halfWidthRoman, "犬 イヌ いぬ Inu Dog 123 123")
+        XCTAssertEqual(testString.fullwidthRoman(reverse: false), "犬 イヌ いぬ Ｉｎｕ Ｄｏｇ １２３ １２３")
+        XCTAssertEqual(testString.fullwidthRoman(reverse: true), "犬 イヌ いぬ Inu Dog 123 123")
     }
     
     
