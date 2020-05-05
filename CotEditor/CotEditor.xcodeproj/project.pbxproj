@@ -2027,6 +2027,7 @@
 		2A476CAF1D09CA640088E37A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 				2A89847C1C3CE1CE006290FF /* Syntax */,
 				2AA14CFA1FA47E9000EAF586 /* Script */,
 				2AC6BFCF21D00A8500FF325C /* Regex Parser */,
@@ -2043,7 +2044,6 @@
 				2A1893A91FFF422D00AD244F /* LineSort.swift */,
 				2A86C47A20371DBE00B9357C /* FilePermissions.swift */,
 				2AF9B23D208E24D50057DD21 /* Metadata.swift */,
-				2AA2E00D1BFDD3AE0087BDD6 /* Character */,
 			);
 			name = Models;
 			sourceTree = "<group>";
