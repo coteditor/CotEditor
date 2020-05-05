@@ -127,17 +127,17 @@ final class EncodingDetectionTests: XCTestCase {
         XCTAssertTrue(didCatchError, "String+Encoding didn't throw error.")
         XCTAssertNil(string)
         XCTAssertNil(encoding)
-        XCTAssertFalse(data.starts(with: UTF8.bom))
+        XCTAssertFalse(data.starts(with: Unicode.BOM.utf8.sequence))
     }
     
     
     func testUTF8BOMData() throws {
         
         let withBOMData = try self.dataForFileName("UTF-8 BOM")
-        XCTAssertTrue(withBOMData.starts(with: UTF8.bom))
+        XCTAssertTrue(withBOMData.starts(with: Unicode.BOM.utf8.sequence))
         
         let data = try self.dataForFileName("UTF-8")
-        XCTAssertFalse(data.starts(with: UTF8.bom))
+        XCTAssertFalse(data.starts(with: Unicode.BOM.utf8.sequence))
     }
     
     
