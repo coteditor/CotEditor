@@ -144,23 +144,19 @@ final class EncodingDetectionTests: XCTestCase {
     func testEncodingDeclarationScan() {
         
         let string = "<meta charset=\"Shift_JIS\"/>"
-        let utf8Int = UInt32(CFStringBuiltInEncodings.UTF8.rawValue)
-        let shiftJISInt = UInt32(CFStringEncodings.shiftJIS.rawValue)
-        let shiftJISX0213Int = UInt32(CFStringEncodings.shiftJIS_X0213.rawValue)
+        let utf8 = CFStringBuiltInEncodings.UTF8.rawValue
+        let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
+        let shiftJISX0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
         
-        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16,
-                                                    suggestedCFEncodings: [utf8Int, shiftJISInt, shiftJISX0213Int]))
+        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16, suggestedCFEncodings: [utf8, shiftJIS, shiftJISX0213]))
         
-        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128,
-                                                      suggestedCFEncodings: [utf8Int, shiftJISInt, shiftJISX0213Int]),
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJIS, shiftJISX0213]),
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS))
         
-        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128,
-                                                      suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213))
         
-        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128,
-                                                                           suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
+        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
                        .utf8)
     }
     
