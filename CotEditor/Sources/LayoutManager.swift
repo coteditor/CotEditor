@@ -212,7 +212,9 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
             case .vertical:
                 return self.lineHeight / 2
             default:
-                return (self.lineHeight + self.defaultBaselineOffset) / 2
+                // remove the space above to make glyphs visually center
+                let diff = self.textFont.ascender - self.textFont.capHeight
+                return (self.lineHeight + self.defaultBaselineOffset - diff) / 2
         }
     }
     
