@@ -78,6 +78,7 @@ struct DefaultSettings {
         .showInvisibleSpace: false,
         .showInvisibleWhitespaces: true,
         .showInvisibleControl: false,
+        .showIndentGuides: false,
         .documentAppearance: AppearanceMode.default.rawValue,
         .theme: "Dendrobates",
         

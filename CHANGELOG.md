@@ -5,6 +5,11 @@ Change Log
 3.9.0-beta.2 (unreleased)
 --------------------------
 
+### New Features
+
+- Add option to draw indent guides.
+
+
 ### Improvements
 
 - [beta] Adjust vertical character position in line.
