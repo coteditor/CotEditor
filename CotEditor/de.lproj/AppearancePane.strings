@@ -68,6 +68,8 @@
 "Bf2-rS-2zu.title" = "Andere Leerräumen";
 /* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Andere Steuerzeichen";
+/* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
+"csp-Hi-hb1.title" = "Einzugshilfslinien anzeigen";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Erscheinungsbild:";

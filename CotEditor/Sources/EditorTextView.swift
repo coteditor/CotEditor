@@ -142,6 +142,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         let layoutManager = LayoutManager()
         layoutManager.allowsNonContiguousLayout = true
+        layoutManager.tabWidth = self.tabWidth
         self.textContainer!.replaceLayoutManager(layoutManager)
         
         // set layout values (wraps lines)
@@ -1162,6 +1163,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         didSet {
             tabWidth = max(tabWidth, 0)
+            (self.layoutManager as? LayoutManager)?.tabWidth = tabWidth
             
             guard tabWidth != oldValue else { return }
             

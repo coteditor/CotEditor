@@ -79,6 +79,7 @@ extension DefaultKeys {
     static let showInvisibleSpace = DefaultKey<Bool>("showInvisibleSpace")
     static let showInvisibleWhitespaces = DefaultKey<Bool>("showInvisibleWhitespaces")
     static let showInvisibleControl = DefaultKey<Bool>("showOtherInvisibleChars")
+    static let showIndentGuides = DefaultKey<Bool>("showIndentGuides")
     static let documentAppearance = DefaultKey<AppearanceMode>("appearance")
     static let theme = DefaultKey<String>("defaultTheme")
     
