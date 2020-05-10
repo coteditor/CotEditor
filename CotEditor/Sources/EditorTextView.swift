@@ -1191,7 +1191,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var showsPageGuide = false {
         
         didSet {
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
         }
     }
     
@@ -1685,7 +1685,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     }
                 
                 case .pageGuideColumn:
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
                 
                 case .overscrollRate:
                     self.invalidateOverscrollRate()
