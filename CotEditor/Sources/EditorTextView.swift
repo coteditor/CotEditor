@@ -1110,11 +1110,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             if !self.wrapsLines {
                 self.textContainer?.size = self.infiniteSize
             }
-            
-            // redraw page guide after changing writing direction
-            if self.showsPageGuide {
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            }
         }
     }
     
