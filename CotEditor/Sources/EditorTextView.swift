@@ -60,7 +60,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var needsUpdateLineHighlight = true  { didSet { self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true) } }
+    var needsUpdateLineHighlight = true {
+        
+        didSet {
+            // remove previous highlights
+            (self.lineHighLightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
+        }
+    }
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
@@ -1700,7 +1706,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     self.centerSelectionInVisibleArea(self)  // reset visible area
                 
                 case .highlightCurrentLine:
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
                 
                 case .highlightSelectionInstance:
                     if !(new as! Bool) {
