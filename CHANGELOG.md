@@ -2,7 +2,7 @@
 Change Log
 ==========================
 
-3.9.0-beta.2 (unreleased)
+3.9.0-beta.2 (413)
 --------------------------
 
 ### New Features
@@ -12,17 +12,17 @@ Change Log
 
 ### Improvements
 
-- [beta] Adjust vertical character position in line.
+- [beta] Adjust the vertical character position in line.
 
 
 ### Fixes
 
 - [beta] Fix an issue where the current line highlight wrongly shifted when the overscrolling is set.
-- [beta] Fix an issue where line numbers at the bottm part were hidden when the overscrolling is set.
-- [beta] Fix an issue where syntax highlight was ocasionally not updated when the text is edited.
+- [beta] Fix an issue where line numbers at the bottom part were hidden when the overscrolling is set.
+- [beta] Fix an issue where syntax highlight was occasionally not updated when the text is edited.
 - [beta] Fix an issue where the current syntax highlight was not removed when selecting style “None.”
 - [beta] Fix an issue where the visibility of invisibles of opened documents cannot be changed.
-- [beta] Fix an issue where the previous current line highligts could remain.
+- [beta] Fix an issue where the previous current line highlights could remain.
 - [beta] Fix an issue where the previous page guide could remain after changing the page guide visibility.
 
 
@@ -990,7 +990,7 @@ no change.
 - Fix an issue where theme was not applied to document print when the print theme setting is “Same as Document's Setting”.
 - Fix an issue where “Copy as Rich Text” command lost the style information when paste to some specific applications, such as Pages.
 - [beta] Fix an issue where theme color was not applied to document print.
-- [beta] Fix an issue where the editable area in editors are ocasionally set wrong after zooming on macOS 10.14 Mojave.
+- [beta] Fix an issue where the editable area in editors are occasionally set wrong after zooming on macOS 10.14 Mojave.
 
 
 
@@ -1032,7 +1032,7 @@ no change.
 ### Known Issues
 
 - [Mojave] The title bar color is not correctly updated when the system appearance is changed.
-- [Mojave] The editable area in editors are ocasionally set wrong after zooming.
+- [Mojave] The editable area in editors are occasionally set wrong after zooming.
 
 
 
