@@ -127,40 +127,36 @@ final class EncodingDetectionTests: XCTestCase {
         XCTAssertTrue(didCatchError, "String+Encoding didn't throw error.")
         XCTAssertNil(string)
         XCTAssertNil(encoding)
-        XCTAssertFalse(data.starts(with: UTF8.bom))
+        XCTAssertFalse(data.starts(with: Unicode.BOM.utf8.sequence))
     }
     
     
     func testUTF8BOMData() throws {
         
         let withBOMData = try self.dataForFileName("UTF-8 BOM")
-        XCTAssertTrue(withBOMData.starts(with: UTF8.bom))
+        XCTAssertTrue(withBOMData.starts(with: Unicode.BOM.utf8.sequence))
         
         let data = try self.dataForFileName("UTF-8")
-        XCTAssertFalse(data.starts(with: UTF8.bom))
+        XCTAssertFalse(data.starts(with: Unicode.BOM.utf8.sequence))
     }
     
     
     func testEncodingDeclarationScan() {
         
         let string = "<meta charset=\"Shift_JIS\"/>"
-        let utf8Int = UInt32(CFStringBuiltInEncodings.UTF8.rawValue)
-        let shiftJISInt = UInt32(CFStringEncodings.shiftJIS.rawValue)
-        let shiftJISX0213Int = UInt32(CFStringEncodings.shiftJIS_X0213.rawValue)
+        let utf8 = CFStringBuiltInEncodings.UTF8.rawValue
+        let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
+        let shiftJISX0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
         
-        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16,
-                                                    suggestedCFEncodings: [utf8Int, shiftJISInt, shiftJISX0213Int]))
+        XCTAssertNil(string.scanEncodingDeclaration(upTo: 16, suggestedCFEncodings: [utf8, shiftJIS, shiftJISX0213]))
         
-        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128,
-                                                      suggestedCFEncodings: [utf8Int, shiftJISInt, shiftJISX0213Int]),
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJIS, shiftJISX0213]),
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS))
         
-        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128,
-                                                      suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
+        XCTAssertEqual(string.scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
                        String.Encoding(cfEncodings: CFStringEncodings.shiftJIS_X0213))
         
-        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128,
-                                                                           suggestedCFEncodings: [utf8Int, shiftJISX0213Int, shiftJISInt]),
+        XCTAssertEqual("<meta charset=\"utf-8\"/>".scanEncodingDeclaration(upTo: 128, suggestedCFEncodings: [utf8, shiftJISX0213, shiftJIS]),
                        .utf8)
     }
     
@@ -174,6 +170,31 @@ final class EncodingDetectionTests: XCTestCase {
         XCTAssertEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)), .shiftJIS)
         XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)), .shiftJIS)
         XCTAssertNotEqual(String.Encoding(cfEncoding: CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)), .shiftJIS)
+    }
+    
+    
+    /// Make sure the behaviors around Shift-JIS.
+    func testShiftJIS() {
+        
+        let shiftJIS = CFStringEncoding(CFStringEncodings.shiftJIS.rawValue)
+        let shiftJIS_X0213 = CFStringEncoding(CFStringEncodings.shiftJIS_X0213.rawValue)
+        let dosJapanese = CFStringEncoding(CFStringEncodings.dosJapanese.rawValue)
+        
+        // IANA charset name conversion
+        // CFStringEcoding -> IANA charset name
+        XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS) as String, "shift_jis")
+        XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(shiftJIS_X0213) as String, "Shift_JIS")
+        XCTAssertEqual(CFStringConvertEncodingToIANACharSetName(dosJapanese) as String, "cp932")
+        // IANA charset name -> CFStringEcoding
+        XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("SHIFT_JIS" as CFString), shiftJIS)
+        XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString), shiftJIS)
+        XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("cp932" as CFString), dosJapanese)
+        XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("sjis" as CFString), dosJapanese)
+        XCTAssertEqual(CFStringConvertIANACharSetNameToEncoding("shiftjis" as CFString), dosJapanese)
+        XCTAssertNotEqual(CFStringConvertIANACharSetNameToEncoding("shift_jis" as CFString), shiftJIS_X0213)
+        
+        // `String.Encoding.shiftJIS` is "Japanese (Windows, DOS)."
+        XCTAssertEqual(CFStringConvertNSStringEncodingToEncoding(String.Encoding.shiftJIS.rawValue), dosJapanese)
     }
     
     

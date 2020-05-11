@@ -284,7 +284,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 (item as? StatableToolbarItem)?.state = self.showsInvisibles ? .on : .off
                 
                 // disable if item cannot be enabled
-                let canActivateShowInvisibles = UserDefaults.standard.showsInvisible.isEmpty
+                let canActivateShowInvisibles = !UserDefaults.standard.showsInvisible.isEmpty
                 item.toolTip = canActivateShowInvisibles
                     ? "Show or hide invisible characters in document".localized
                     : "To show invisible characters, set them in Preferences".localized
@@ -863,7 +863,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             range = nil
         }
         
-        guard let parser = self.syntaxParser, parser.canParse else { return }
+        guard let parser = self.syntaxParser else { return }
         
         // start parse
         let progress: Progress?

@@ -96,7 +96,7 @@ struct DocumentFile {
         self.attributes = attributes
         self.string = content
         self.encoding = encoding
-        self.hasUTF8BOM = (encoding == .utf8) && data.starts(with: UTF8.bom)
+        self.hasUTF8BOM = (encoding == .utf8) && data.starts(with: Unicode.BOM.utf8.sequence)
         self.lineEnding = content.detectedLineEnding
     }
     

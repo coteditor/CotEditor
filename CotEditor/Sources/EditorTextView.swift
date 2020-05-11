@@ -60,7 +60,13 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var blockCommentDelimiters: Pair<String>?
     var syntaxCompletionWords: [String] = []
     
-    var needsUpdateLineHighlight = true  { didSet { self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true) } }
+    var needsUpdateLineHighlight = true {
+        
+        didSet {
+            // remove previous highlights
+            (self.lineHighLightRects + [self.visibleRect]).forEach { self.setNeedsDisplay($0, avoidAdditionalLayout: true) }
+        }
+    }
     var lineHighLightRects: [NSRect] = []
     private(set) var lineHighLightColor: NSColor?
     
@@ -142,6 +148,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         let layoutManager = LayoutManager()
         layoutManager.allowsNonContiguousLayout = true
+        layoutManager.tabWidth = self.tabWidth
         self.textContainer!.replaceLayoutManager(layoutManager)
         
         // set layout values (wraps lines)
@@ -1103,11 +1110,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             if !self.wrapsLines {
                 self.textContainer?.size = self.infiniteSize
             }
-            
-            // redraw page guide after changing writing direction
-            if self.showsPageGuide {
-                self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
-            }
         }
     }
     
@@ -1162,6 +1164,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         didSet {
             tabWidth = max(tabWidth, 0)
+            (self.layoutManager as? LayoutManager)?.tabWidth = tabWidth
             
             guard tabWidth != oldValue else { return }
             
@@ -1188,7 +1191,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     var showsPageGuide = false {
         
         didSet {
-            self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+            self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
         }
     }
     
@@ -1682,7 +1685,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     }
                 
                 case .pageGuideColumn:
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
                 
                 case .overscrollRate:
                     self.invalidateOverscrollRate()
@@ -1698,7 +1701,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                     self.centerSelectionInVisibleArea(self)  // reset visible area
                 
                 case .highlightCurrentLine:
-                    self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
+                    self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
                 
                 case .highlightSelectionInstance:
                     if !(new as! Bool) {

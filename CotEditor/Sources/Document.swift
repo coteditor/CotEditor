@@ -370,7 +370,7 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         
         // add UTF-8 BOM if needed
         if needsUTF8BOM {
-            data.insert(contentsOf: UTF8.bom, at: 0)
+            data.insert(contentsOf: Unicode.BOM.utf8.sequence, at: 0)
         }
         
         // keep to swap later with `fileData`, but only when succeed

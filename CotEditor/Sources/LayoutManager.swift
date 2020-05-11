@@ -67,6 +67,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     }
     
     var invisiblesColor: NSColor = .disabledControlTextColor
+    var tabWidth = 0
     
     private(set) var spaceWidth: CGFloat = 0
     
@@ -77,6 +78,8 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     private var defaultBaselineOffset: CGFloat = 0
     private var boundingBoxForControlGlyph: NSRect = .zero
     
+    private var indentGuideObserver: UserDefaultsObservation?
+    
     
     
     // MARK: -
@@ -85,6 +88,11 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     override init() {
         
         super.init()
+        
+        self.indentGuideObserver = UserDefaults.standard.observe(key: .showIndentGuides) { [weak self] _ in
+            guard let self = self, self.showsInvisibles else { return }
+            self.invalidateDisplay(forCharacterRange: self.attributedString().range)
+        }
         
         self.delegate = self
     }
@@ -98,6 +106,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     
     deinit {
         self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
+        self.indentGuideObserver?.invalidate()
     }
     
     
@@ -124,6 +133,10 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
         
         if NSGraphicsContext.currentContextDrawingToScreen() {
             NSGraphicsContext.current?.shouldAntialias = self.usesAntialias
+        }
+        
+        if UserDefaults.standard[.showIndentGuides] {
+            self.drawIndentGuides(forGlyphRange: glyphsToShow, at: origin, color: self.invisiblesColor, tabWidth: self.tabWidth)
         }
         
         if self.showsInvisibles {
@@ -212,7 +225,9 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
             case .vertical:
                 return self.lineHeight / 2
             default:
-                return (self.lineHeight + self.defaultBaselineOffset) / 2
+                // remove the space above to make glyphs visually center
+                let diff = self.textFont.ascender - self.textFont.capHeight
+                return (self.lineHeight + self.defaultBaselineOffset - diff) / 2
         }
     }
     
@@ -274,6 +289,96 @@ extension LayoutManager: NSLayoutManagerDelegate {
     func layoutManager(_ layoutManager: NSLayoutManager, shouldUseTemporaryAttributes attrs: [NSAttributedString.Key: Any] = [:], forDrawingToScreen toScreen: Bool, atCharacterIndex charIndex: Int, effectiveRange effectiveCharRange: NSRangePointer?) -> [NSAttributedString.Key: Any]? {
         
         return attrs
+    }
+    
+}
+
+
+
+// MARK: Private Extension
+
+private extension NSLayoutManager {
+    
+    /// Draw indent guides at every given indent width.
+    ///
+    /// - Parameters:
+    ///   - glyphsToShow: The range of glyphs that are drawn.
+    ///   - origin: The position of the text container in the coordinate system of the currently focused view.
+    ///   - color: The color of guides.
+    ///   - tabWidth: The number of spaces for an indent.
+    func drawIndentGuides(forGlyphRange glyphsToShow: NSRange, at origin: NSPoint, color: NSColor, tabWidth: Int) {
+        
+        guard tabWidth > 0 else { return assertionFailure() }
+        
+        // calculate characterRange to seek
+        let string = self.attributedString().string as NSString
+        let charactersToShow = self.characterRange(forGlyphRange: glyphsToShow, actualGlyphRange: nil)
+        let lineStartIndex = string.lineStartIndex(at: charactersToShow.location)
+        let characterRange = NSRange(location: lineStartIndex, length: charactersToShow.upperBound - lineStartIndex)
+        
+        // find indent indexes
+        var indentIndexes: [(lineRange: NSRange, indexes: [Int])] = []
+        string.enumerateSubstrings(in: characterRange, options: [.byLines, .substringNotRequired]) { (_, range, _, _) in
+            var indexes: [Int] = []
+            var spaceCount = 0
+            loop: for characterIndex in range.lowerBound..<range.upperBound {
+                let isIndentLevel = spaceCount.isMultiple(of: tabWidth) && spaceCount > 0
+                
+                switch string.character(at: characterIndex) {
+                    case 0x0020:  // space
+                        spaceCount += 1
+                    case 0x0009:  // tab
+                        spaceCount += tabWidth - (spaceCount % tabWidth)
+                    default:
+                        break loop
+                }
+                
+                if isIndentLevel {
+                    indexes.append(characterIndex)
+                }
+            }
+            
+            guard !indexes.isEmpty else { return }
+            
+            indentIndexes.append((range, indexes))
+        }
+        
+        guard !indentIndexes.isEmpty else { return }
+        
+        NSGraphicsContext.saveGraphicsState()
+        
+        color.set()
+        let lineWidth: CGFloat = 0.5
+        
+        // draw guides logical line by logical line
+        for (lineRange, indexes) in indentIndexes {
+            // calculate vertical area to draw lines
+            let glyphIndex = self.glyphIndexForCharacter(at: lineRange.location)
+            var effectiveRange: NSRange = .notFound
+            let lineFragment = self.lineFragmentRect(forGlyphAt: glyphIndex, effectiveRange: &effectiveRange)
+            let guideLength: CGFloat = {
+                guard !effectiveRange.contains(lineRange.upperBound - 1) else { return lineFragment.height }
+                
+                let lastGlyphIndex = self.glyphIndexForCharacter(at: lineRange.upperBound - 1)
+                let lastLineFragment = self.lineFragmentRect(forGlyphAt: lastGlyphIndex, effectiveRange: nil)
+                
+                // check whether hanging indent is enabled
+                guard lastLineFragment.minX != lineFragment.minX else { return lineFragment.height }
+                
+                return lastLineFragment.maxY - lineFragment.minY
+            }()
+            let guideRect = NSRect(x: lineFragment.minX, y: lineFragment.minY, width: lineWidth, height: guideLength).offset(by: origin)
+            
+            // draw lines
+            for index in indexes {
+                let glyphIndex = self.glyphIndexForCharacter(at: index)
+                let glyphLocation = self.location(forGlyphAt: glyphIndex)
+                
+                guideRect.offsetBy(dx: glyphLocation.x, dy: 0).fill()
+            }
+        }
+        
+        NSGraphicsContext.restoreGraphicsState()
     }
     
 }

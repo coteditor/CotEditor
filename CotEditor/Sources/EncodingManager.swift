@@ -124,7 +124,7 @@ final class EncodingManager: NSObject {
             
             // add "UTF-8 with BOM" item just after the normal UTF-8
             if item.tag == UTF8Tag {
-                let bomItem = NSMenuItem(title: String.localizedNameOfUTF8EncodingWithBOM,
+                let bomItem = NSMenuItem(title: String.localizedName(of: .utf8, withUTF8BOM: true),
                                          action: #selector(EncodingHolder.changeEncoding),
                                          keyEquivalent: "")
                 bomItem.tag = -UTF8Tag  // negative value is sign for "with BOM"

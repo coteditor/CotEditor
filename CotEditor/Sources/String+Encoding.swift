@@ -26,23 +26,43 @@
 
 import Foundation
 
-extension UTF8 {
+extension Unicode {
     
-    static let bom: [UInt8] = [0xEF, 0xBB, 0xBF]
-}
-
-
-private extension UTF16 {
-    
-    static let beBom: [UInt8] = [0xFE, 0xFF]
-    static let leBom: [UInt8] = [0xFF, 0xFE]
-}
-
-
-private extension UTF32 {
-    
-    static let beBom: [UInt8] = [0x00, 0x00, 0xFE, 0xFF]
-    static let leBom: [UInt8] = [0xFF, 0xFE, 0x00, 0x00]
+    /// Byte order mark.
+    enum BOM: CaseIterable {
+        
+        case utf8
+        case utf32BigEndian
+        case utf32LittleEndian
+        case utf16BigEndian
+        case utf16LittleEndian
+        
+        
+        var sequence: [UInt8] {
+            
+            switch self {
+                case .utf8: return [0xEF, 0xBB, 0xBF]
+                case .utf32BigEndian: return [0x00, 0x00, 0xFE, 0xFF]
+                case .utf32LittleEndian: return [0xFF, 0xFE, 0x00, 0x00]
+                case .utf16BigEndian: return [0xFE, 0xFF]
+                case .utf16LittleEndian: return [0xFF, 0xFE]
+            }
+        }
+        
+        
+        var encoding: String.Encoding {
+            
+            switch self {
+                case .utf8:
+                    return .utf8
+                case .utf32BigEndian, .utf32LittleEndian:
+                    return .utf32
+                case .utf16BigEndian, .utf16LittleEndian:
+                    return .utf16
+            }
+        }
+        
+    }
 }
 
 
@@ -112,8 +132,9 @@ extension String {
     /// cf. <https://bugs.swift.org/browse/SR-10173>
     init?(bomCapableData data: Data, encoding: String.Encoding) {
         
-        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: UTF8.bom))
-        let bomFreeData = hasUTF8WithBOM ? data[UTF8.bom.count...] : data
+        let bom = Unicode.BOM.utf8.sequence
+        let hasUTF8WithBOM = (encoding == .utf8 && data.starts(with: bom))
+        let bomFreeData = hasUTF8WithBOM ? data[bom.count...] : data
         
         self.init(data: bomFreeData, encoding: encoding)
     }
@@ -123,46 +144,31 @@ extension String {
     init(data: Data, suggestedCFEncodings: [CFStringEncoding], usedEncoding: inout String.Encoding?) throws {
         
         // detect encoding from so-called "magic numbers"
-        if !data.isEmpty {
-            // check UTF-8 BOM
-            if data.starts(with: UTF8.bom) {
-                if let string = String(bomCapableData: data, encoding: .utf8) {
-                    usedEncoding = .utf8
-                    self = string
-                    return
-                }
-                
-            // check UTF-32 BOM
-            } else if data.starts(with: UTF32.beBom) || data.starts(with: UTF32.leBom) {
-                if let string = String(data: data, encoding: .utf32) {
-                    usedEncoding = .utf32
-                    self = string
-                    return
-                }
-                
-            // check UTF-16 BOM
-            } else if data.starts(with: UTF16.beBom) || data.starts(with: UTF16.leBom) {
-                if let string = String(data: data, encoding: .utf16) {
-                    usedEncoding = .utf16
-                    self = string
-                    return
-                }
-            }
+        // check Unicode's BOM
+        for bom in Unicode.BOM.allCases {
+            guard
+                data.starts(with: bom.sequence),
+                let string = String(bomCapableData: data, encoding: bom.encoding)
+                else { continue }
             
-            // try ISO-2022-JP by checking the existence of typical escape sequences
-            // -> It's not perfect yet works in most cases. (2016-01)
-            if data.prefix(maxDetectionLength).contains(0x1B),
-                ISO2022JPEscapeSequences.contains(where: { data.range(of: $0) != nil }),
-                let string = String(data: data, encoding: .iso2022JP)
-            {
-                usedEncoding = .iso2022JP
-                self = string
-                return
-            }
+            usedEncoding = bom.encoding
+            self = string
+            return
+        }
+        
+        // try ISO-2022-JP by checking the existence of typical escape sequences
+        // -> It's not perfect yet works in most cases. (2016-01)
+        if data.prefix(maxDetectionLength).contains(0x1B),
+            ISO2022JPEscapeSequences.contains(where: { data.range(of: $0) != nil }),
+            let string = String(data: data, encoding: .iso2022JP)
+        {
+            usedEncoding = .iso2022JP
+            self = string
+            return
         }
         
         // try encodings in order from the top of the encoding list
-        for cfEncoding: CFStringEncoding in suggestedCFEncodings {
+        for cfEncoding in suggestedCFEncodings {
             let encoding = String.Encoding(cfEncoding: cfEncoding)
             
             if let string = String(data: data, encoding: encoding) {
@@ -179,22 +185,21 @@ extension String {
     
     // MARK: Public Methods
     
-    /// human-readable encoding name considering UTF-8 BOM
+    /// Human-readable encoding name by taking UTF-8 BOM into consideration.
+    ///
+    /// The `withUTF8BOM` flag is just ignored when the given `encoding` is other than UTF-8.
+    ///
+    /// - Parameters:
+    ///   - encoding: The string encoding.
+    ///   - withUTF8BOM: True when needing to attach " with BOM" to the name if the encoding is .utf8.
+    /// - Returns: A localized string value.
     static func localizedName(of encoding: String.Encoding, withUTF8BOM: Bool) -> String {
         
-        if encoding == .utf8, withUTF8BOM {
-            return self.localizedNameOfUTF8EncodingWithBOM
-        }
+        let localizedName = self.localizedName(of: encoding)
         
-        return self.localizedName(of: encoding)
-    }
-    
-    
-    /// human-readable encoding name for UTF-8 with BOM
-    static var localizedNameOfUTF8EncodingWithBOM: String {
-        
-        return String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"),
-                      String.localizedName(of: .utf8))
+        return (encoding == .utf8 && withUTF8BOM)
+            ? String(format: "%@ with BOM".localized(comment: "Unicode (UTF-8) with BOM"), localizedName)
+            : localizedName
     }
     
     

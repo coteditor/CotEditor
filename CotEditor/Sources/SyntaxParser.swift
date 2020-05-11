@@ -196,6 +196,11 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
+        guard !self.style.isNone else {
+            self.textStorage.apply(highlights: [:], range: self.textStorage.range)
+            return nil
+        }
+        
         let wholeRange = self.textStorage.range
         
         // use cache if the content of the whole document is the same as the last
@@ -257,9 +262,10 @@ extension SyntaxParser {
             // expand highlight area if the character just before/after the highlighting area is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
                 if highlightRange.lowerBound <= bufferLength {
-                    highlightRange.location = 0
+                    highlightRange = NSRange(location: 0, length: highlightRange.upperBound)
                 } else if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound) {
-                    highlightRange.location = effectiveRange.lowerBound
+                    highlightRange = NSRange(location: effectiveRange.lowerBound,
+                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
                 }
                 
                 if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound) {
@@ -280,7 +286,7 @@ extension SyntaxParser {
         
         assert(Thread.isMainThread)
         
-        guard !highlightRange.isEmpty else { return nil }
+        guard !highlightRange.isEmpty, !self.style.isNone else { return nil }
         
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {

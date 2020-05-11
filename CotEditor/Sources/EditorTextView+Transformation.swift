@@ -75,7 +75,7 @@ extension EditorTextView {
     @IBAction func exchangeFullwidthRoman(_ sender: Any?) {
         
         self.transformSelection(actionName: "To Full-width Roman".localized) {
-            $0.fullWidthRoman
+            $0.fullwidthRoman()
         }
     }
     
@@ -84,7 +84,7 @@ extension EditorTextView {
     @IBAction func exchangeHalfwidthRoman(_ sender: Any?) {
         
         self.transformSelection(actionName: "To Half-width Roman".localized) {
-            $0.halfWidthRoman
+            $0.fullwidthRoman(reverse: true)
         }
     }
     
