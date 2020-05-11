@@ -262,9 +262,10 @@ extension SyntaxParser {
             // expand highlight area if the character just before/after the highlighting area is the same syntax type
             if let layoutManager = self.textStorage.layoutManagers.first {
                 if highlightRange.lowerBound <= bufferLength {
-                    highlightRange.location = 0
+                    highlightRange = NSRange(location: 0, length: highlightRange.upperBound)
                 } else if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound) {
-                    highlightRange.location = effectiveRange.lowerBound
+                    highlightRange = NSRange(location: effectiveRange.lowerBound,
+                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
                 }
                 
                 if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound) {
