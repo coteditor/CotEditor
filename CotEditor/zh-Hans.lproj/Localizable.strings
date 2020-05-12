@@ -284,6 +284,8 @@
 "Show Invisibles" = "显示不可见元素";
 "Hide Page Guide" = "隐藏页面指示";
 "Show Page Guide" = "显示页面指示";
+"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 

@@ -571,6 +571,12 @@ Gw
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="366"/>
+                                        <menuItem title="Show Indent Guides" id="Qqu-pI-Xz6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleIndentGuides:" target="Ady-hI-5gd" id="Sbg-ca-Seo"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Show Page Guide" id="749">
                                             <connections>
                                                 <action selector="togglePageGuide:" target="Ady-hI-5gd" id="PpX-vI-RUr"/>

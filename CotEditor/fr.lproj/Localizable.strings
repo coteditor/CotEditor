@@ -282,6 +282,8 @@
 "Show Invisibles" = "Afficher les caractères invisibles";
 "Hide Page Guide" = "Masquer le guide de page";
 "Show Page Guide" = "Afficher le guide de page";
+"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
 "Unwrap Lines" = "Ne pas renvoyer à la ligne";
 "Wrap Lines" = "Renvoyer à la ligne";
 

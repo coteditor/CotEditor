@@ -284,6 +284,8 @@
 "Show Invisibles" = "不可視文字を表示";
 "Hide Page Guide" = "ページガイドを非表示";
 "Show Page Guide" = "ページガイドを表示";
+"Hide Indent Guides" = "インデントガイドを非表示";
+"Show Indent Guides" = "インデントガイドを表示";
 "Unwrap Lines" = "行を折り返さない";
 "Wrap Lines" = "行を折り返す";
 

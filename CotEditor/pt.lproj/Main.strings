@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018-2019 CotEditor Project
+// © 2018-2020 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -306,6 +306,8 @@
 /* Class = "NSMenuItem"; title = "Show Status Bar"; ObjectID = "325"; */
 "325.title" = "Mostrar Barra de Estado";
 
+/* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
+"Qqu-pI-Xz6.title" = "Show Indent Guides";  // FIXME: added
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "Mostrar Guia da Página";
 

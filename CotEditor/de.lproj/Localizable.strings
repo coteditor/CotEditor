@@ -283,6 +283,8 @@
 "Show Invisibles" = "Steuerzeichen einblenden";
 "Hide Page Guide" = "Seitenhilfslinie ausblenden";
 "Show Page Guide" = "Seitenhilfslinie einblenden";
+"Hide Indent Guides" = "Einzugshilfslinien ausblenden";
+"Show Indent Guides" = "Einzugshilfslinien einblenden";
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
 
