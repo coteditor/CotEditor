@@ -105,7 +105,6 @@ struct DefaultSettings {
         .lineEndCharCode: 0,
         .encodingList: DefaultSettings.encodings.map { UInt($0) },
         .encodingInNew: String.Encoding.utf8.rawValue,
-        .encodingInOpen: String.Encoding.autoDetection.rawValue,
         .saveUTF8BOM: false,
         .referToEncodingTag: true,
         .enableSyntaxHighlight: true,

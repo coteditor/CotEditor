@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2018 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,12 +39,12 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Codifica testo di default:";
 
-/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
-"3277.title" = "Apertura file:";
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Priority of encodings:";  // FIXME: changed
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Modifica lista…";
-/* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
-"3280.title" = "Riferirsi alla dichiarazione di codifica";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Riferirsi alla dichiarazione di codifica";  // FIXME: added "in document"
 
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */

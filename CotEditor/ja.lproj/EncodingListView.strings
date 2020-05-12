@@ -29,7 +29,7 @@
 "3395.title" = "ドラッグしてエンコーディングを並び替えてください。";
 
 /* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
-"3394.title" = "このリストは自動認識やメニューで使われます。\n自動認識では、上にあるものから順に判別します。";
+"3394.title" = "このリストは自動認識やメニューで使われます。\n自動認識では、上にあるものから順に試します。";
 
 /* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
 "3392.title" = "区切り線を追加";

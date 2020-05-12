@@ -374,12 +374,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか?";
-"The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
-"Change to “%@”" = "“%@”へ変更";
-"Revert to “Auto-Detect”" = "“自動認識”へ戻す";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製...";
 "Export “%@”…" = "“%@”を書き出し...";

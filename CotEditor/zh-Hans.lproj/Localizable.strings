@@ -374,12 +374,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "确定要变更至“%@”吗？";
-"The default “Auto-Detect” is recommended for most cases." = "在绝大多数情况下，推荐使用默认的“自动检测”。";
-"Change to “%@”" = "“变更至%@”";
-"Revert to “Auto-Detect”" = "还原回“自动检测”";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";

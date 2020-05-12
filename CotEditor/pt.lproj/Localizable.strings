@@ -374,12 +374,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "Tem certeza de que deseja alterar para “%@”?";
-"The default “Auto-Detect” is recommended for most cases." = "O padrão “Detectar Automaticamente” é recomendado para a maioria dos casos.";
-"Change to “%@”" = "Alterar para “%@”";
-"Revert to “Auto-Detect”" = "Reverter para “Detectar Automaticamente”";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "Duplicar “%@”…";
 "Export “%@”…" = "Exportar “%@”…";
