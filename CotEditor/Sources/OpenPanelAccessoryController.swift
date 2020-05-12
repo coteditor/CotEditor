@@ -91,7 +91,7 @@ final class OpenPanelAccessoryController: NSViewController {
         menu.addItem(.separator())
         
         if #available(macOS 10.14, *) {
-            menu.items = EncodingManager.shared.createEncodingMenuItems()
+            menu.items += EncodingManager.shared.createEncodingMenuItems()
         } else {
             let items = EncodingManager.shared.createEncodingMenuItems()
             for item in items {

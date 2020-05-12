@@ -14,6 +14,11 @@ Change Log
 - [beta] Make the indent guide drawing pixel-perfect.
 
 
+### Fixes
+
+- Fix an issue where the item “Auto-Detection” was missing from the encoding selections in the open panel.
+
+
 
 3.9.0-beta.2 (413)
 --------------------------
