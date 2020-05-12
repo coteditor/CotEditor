@@ -177,6 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可視文字";
+"Indent Guides" = "インデントガイド";
 "Wrap Lines" = "行を折り返す";
 
 // Touch bar item labels -Text View

@@ -176,6 +176,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Steuerzeichen";
+"Indent Guides" = "Einzugshilfslinien";
 "Wrap Lines" = "Zeilen umbrechen";
 
 // Touch bar item labels -Text View

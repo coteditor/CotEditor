@@ -177,6 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisibili";
+"Indent Guides" = "Indent Guides";  // FIXME: added
 "Wrap Lines" = "Aapo automatico";
 
 // Touch bar item labels -Text View
