@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -150,6 +150,11 @@
 "GS6-aA-mgz.label" = "Guide de page";  /* Page Guide */
 "GS6-aA-mgz.paletteLabel" = "Guide de page";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Afficher / Masquer la ligne du guide de page";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "95y-zI-oqM"; */
+"95y-zI-oqM.label" = "Indent Guides";  /* Indent Guides */  // FIXME: added
+"95y-zI-oqM.paletteLabel" = "Indent Guides";  /* Indent Guides */  // FIXME: added
+"95y-zI-oqM.toolTip" = "Show or hide indent guide lines";  /* Show or hide indent guide lines */  // FIXME: added
 
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "Opacité";  /* Opacity */

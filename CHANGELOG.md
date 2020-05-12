@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [beta] Add a menu item in the View menu to toggle visibility of indent guides in the current document.
+- [beta] Add menu item and toolbar item to toggle visibility of indent guides in the current document.
 - [beta] Adjust the vertical position of the line ending symbol.
 - [beta] Make the indent guide drawing pixel-perfect.
 

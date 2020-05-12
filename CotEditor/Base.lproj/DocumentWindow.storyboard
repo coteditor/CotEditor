@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="0UB-Lz-R6c">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -327,6 +327,21 @@
                                     </button>
                                     <connections>
                                         <action selector="togglePageGuide:" target="klO-m3-n5X" id="JBo-f2-NdY"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="8CF23DD8-48D3-4B72-B68F-BFBE72ECB2F7" label="Indent Guides" paletteLabel="Indent Guides" toolTip="Show or hide indent guide lines" image="IndentGuides_On" id="95y-zI-oqM" customClass="StatableToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <size key="minSize" width="43" height="25"/>
+                                    <size key="maxSize" width="44" height="28"/>
+                                    <button key="view" verticalHuggingPriority="750" id="2x1-0o-IGi">
+                                        <rect key="frame" x="18" y="14" width="44" height="28"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" image="IndentGuides_On" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f91-dw-2lq">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                    <connections>
+                                        <action selector="toggleIndentGuides:" target="klO-m3-n5X" id="rjO-m8-FCu"/>
                                     </connections>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="CC5204DD-E523-4929-B3CE-697DB1E53CF0" label="Opacity" paletteLabel="Opacity" toolTip="Change editor’s opacity" image="Opacity" id="LYl-ty-usA" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
@@ -817,6 +832,7 @@
         <image name="DocumentTemplate" width="15" height="15"/>
         <image name="Emoji" width="20" height="18"/>
         <image name="FontsTemplate" width="18" height="18"/>
+        <image name="IndentGuides_On" width="16" height="18"/>
         <image name="Inspector" width="18" height="18"/>
         <image name="Invisibles_On" width="17" height="18"/>
         <image name="LockedTemplate" width="16" height="16"/>

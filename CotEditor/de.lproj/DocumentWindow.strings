@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2019 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -150,6 +150,11 @@
 "GS6-aA-mgz.label" = "Seitenhilfslinie";  /* Page Guide */
 "GS6-aA-mgz.paletteLabel" = "Seitenhilfslinie";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Seitenhilfslinie ein-/ausblenden";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "95y-zI-oqM"; */
+"95y-zI-oqM.label" = "Einzugshilfslinien";  /* Indent Guides */
+"95y-zI-oqM.paletteLabel" = "Einzugshilfslinien";  /* Indent Guides */
+"95y-zI-oqM.toolTip" = "Einzugshilfslinien ein-/ausblenden";  /* Show or hide indent guide lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "Deckkraft";  /* Opacity */
