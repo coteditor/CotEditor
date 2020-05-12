@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.9.0-beta.3 (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Adjust the vertical position of line ending symbol.
+
+
+
 3.9.0-beta.2 (413)
 --------------------------
 
