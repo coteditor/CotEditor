@@ -63,6 +63,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.showsNavigationBar = defaults[.showNavigationBar]
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
+        self.showsIndentGuides = defaults[.showIndentGuides]
         
         // set writing direction
         switch defaults[.writingDirection] {
@@ -104,6 +105,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [weak self] change in
                 self?.showsPageGuide = change.new!
             },
+            UserDefaults.standard.observe(key: .showIndentGuides, options: [.new]) { [weak self] change in
+                self?.showsIndentGuides = change.new!
+            },
             UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [weak self] change in
                 self?.wrapsLines = change.new!
             },
@@ -132,6 +136,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         return super.restorableStateKeyPaths + [
             #keyPath(showsLineNumber),
             #keyPath(showsPageGuide),
+            #keyPath(showsIndentGuides),
             #keyPath(showsInvisibles),
             #keyPath(wrapsLines),
             #keyPath(verticalLayoutOrientation),
@@ -270,6 +275,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                     ? "Hide Page Guide".localized
                     : "Show Page Guide".localized
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
+            
+            case #selector(toggleIndentGuides):
+                (item as? NSMenuItem)?.title = self.showsIndentGuides
+                    ? "Hide Indent Guides".localized
+                    : "Show Indent Guides".localized
+                (item as? StatableToolbarItem)?.state = self.showsIndentGuides ? .on : .off
             
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
@@ -517,6 +528,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// visibility of indent guides in text view
+    @objc var showsIndentGuides = false {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.showsIndentGuides = showsIndentGuides
+            }
+        }
+    }
+    
+    
     /// visibility of invisible characters
     @objc var showsInvisibles = false {
         
@@ -654,6 +676,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     @IBAction func togglePageGuide(_ sender: Any?) {
         
         self.showsPageGuide.toggle()
+    }
+    
+    
+    /// toggle if shows indent guides in text view
+    @IBAction func toggleIndentGuides(_ sender: Any?) {
+        
+        self.showsIndentGuides.toggle()
     }
     
     
@@ -942,6 +971,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
         editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
         editorViewController.textView?.showsPageGuide = self.showsPageGuide
+        editorViewController.textView?.showsIndentGuides = self.showsIndentGuides
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         

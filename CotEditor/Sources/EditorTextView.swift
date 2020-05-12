@@ -185,6 +185,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.font = font
         layoutManager.textFont = font
         layoutManager.usesAntialias = defaults[.shouldAntialias]
+        layoutManager.showsIndentGuides = defaults[.showIndentGuides]
         
         self.ligature = defaults[.ligature] ? .standard : .none
         self.invalidateDefaultParagraphStyle()
@@ -1196,6 +1197,20 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
+    /// whether draws indent guides
+    var showsIndentGuides: Bool {
+        
+        get {
+            return (self.layoutManager as? LayoutManager)?.showsIndentGuides ?? true
+        }
+        
+        set {
+            (self.layoutManager as? LayoutManager)?.showsIndentGuides = newValue
+            self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
+        }
+    }
+    
+    
     /// whether text is antialiased
     var usesAntialias: Bool {
         
@@ -1627,6 +1642,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             .checkSpellingAsType,
             .autoLinkDetection,
             .pageGuideColumn,
+            .showIndentGuides,
             .overscrollRate,
             .tabWidth,
             .fontName,
@@ -1686,6 +1702,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 
                 case .pageGuideColumn:
                     self.setNeedsDisplay(self.frame, avoidAdditionalLayout: true)
+                
+                case .showIndentGuides:
+                    self.showsIndentGuides = new as! Bool
                 
                 case .overscrollRate:
                     self.invalidateOverscrollRate()

@@ -67,6 +67,8 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     }
     
     var invisiblesColor: NSColor = .disabledControlTextColor
+    
+    var showsIndentGuides = false
     var tabWidth = 0
     
     private(set) var spaceWidth: CGFloat = 0
@@ -135,7 +137,7 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
             NSGraphicsContext.current?.shouldAntialias = self.usesAntialias
         }
         
-        if UserDefaults.standard[.showIndentGuides] {
+        if self.showsIndentGuides {
             self.drawIndentGuides(forGlyphRange: glyphsToShow, at: origin, color: self.invisiblesColor, tabWidth: self.tabWidth)
         }
         
