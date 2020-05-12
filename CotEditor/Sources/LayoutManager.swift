@@ -349,6 +349,7 @@ private extension NSLayoutManager {
         
         color.set()
         let lineWidth: CGFloat = 0.5
+        let scaleFactor = NSGraphicsContext.current?.cgContext.ctm.a ?? 1
         
         // draw guides logical line by logical line
         for (lineRange, indexes) in indentIndexes {
@@ -367,18 +368,35 @@ private extension NSLayoutManager {
                 
                 return lastLineFragment.maxY - lineFragment.minY
             }()
-            let guideRect = NSRect(x: lineFragment.minX, y: lineFragment.minY, width: lineWidth, height: guideLength).offset(by: origin)
+            let guideSize = NSSize(width: lineWidth, height: guideLength)
             
             // draw lines
             for index in indexes {
                 let glyphIndex = self.glyphIndexForCharacter(at: index)
                 let glyphLocation = self.location(forGlyphAt: glyphIndex)
+                let guideOrigin = lineFragment.origin.offset(by: origin).offsetBy(dx: glyphLocation.x).aligned(scale: scaleFactor)
+                let guideRect = NSRect(origin: guideOrigin, size: guideSize)
                 
-                guideRect.offsetBy(dx: glyphLocation.x, dy: 0).fill()
+                guideRect.fill()
             }
         }
         
         NSGraphicsContext.restoreGraphicsState()
+    }
+    
+}
+
+
+private extension CGPoint {
+    
+    /// Make the point pixel-perfect with the desired scale.
+    ///
+    /// - Parameter scale: The scale factor in which the receiver to be pixel-perfect.
+    /// - Returns: An adjusted point.
+    func aligned(scale: CGFloat = 1) -> Self {
+        
+        return Self(x: round(self.x * scale) / scale,
+                    y: round(self.y * scale) / scale)
     }
     
 }

@@ -7,7 +7,8 @@ Change Log
 
 ### Improvements
 
-- [beta] Adjust the vertical position of line ending symbol.
+- [beta] Adjust the vertical position of the line ending symbol.
+- [beta] Make the indent guide drawing pixel-perfect.
 
 
 
