@@ -367,7 +367,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
                         let primaryAttrString = NSAttributedString(string: primaryString, attributes: self.headerFooterAttributes(for: primaryAlignment))
                         let secondaryAttrString = NSAttributedString(string: secondaryString, attributes: self.headerFooterAttributes(for: secondaryAlignment))
                         
-                        return primaryAttrString + NSAttributedString(string: "\n") + secondaryAttrString
+                        return primaryAttrString + .newLine + secondaryAttrString
             }
         }
     }
