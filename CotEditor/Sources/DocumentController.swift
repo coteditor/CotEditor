@@ -203,7 +203,7 @@ final class DocumentController: NSDocumentController {
     }
     
     
-    /// return enability of actions
+    /// return availability of actions
     override func validateUserInterfaceItem(_ item: NSValidatedUserInterfaceItem) -> Bool {
         
         switch item.action {

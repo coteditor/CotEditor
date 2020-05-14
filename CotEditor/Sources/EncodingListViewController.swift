@@ -37,7 +37,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
             self.canRestore = (encodings != UserDefaults.standard.registeredValue(for: .encodingList))
         }
     }
-    @objc private dynamic var canRestore = false  // enability of "Restore Default" button
+    @objc private dynamic var canRestore = false  // availability of "Restore Default" button
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var deleteSeparatorButton: NSButton?
@@ -81,7 +81,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     /// update UI just after selected rows are changed
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        // update enability of "Delete Separator" button
+        // update availability of "Delete Separator" button
         self.deleteSeparatorButton?.isEnabled = self.tableView!.selectedRowIndexes
             .contains { self.encodings[$0] == kCFStringEncodingInvalidId }
     }
