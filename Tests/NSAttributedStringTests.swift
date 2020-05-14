@@ -72,7 +72,7 @@ final class NSAttributedStringTests: XCTestCase {
         XCTAssertFalse(spaceJoined is NSMutableAttributedString)
         XCTAssertEqual(spaceJoined.string, "foo bar buz")
         XCTAssertEqual(spaceJoined.attribute(.toolTip, at: 0, effectiveRange: nil) as? String, "moof")
-        XCTAssertEqual(spaceJoined.attribute(.toolTip, at: 3, effectiveRange: nil) as? String, space.string)
+        XCTAssertEqual(spaceJoined.attribute(.toolTip, at: 3, effectiveRange: nil) as? String, "space")
         XCTAssertNil(spaceJoined.attribute(.toolTip, at: 4, effectiveRange: nil))
         
         let empty: [NSAttributedString] = []
