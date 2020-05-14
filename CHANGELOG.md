@@ -19,7 +19,7 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the item “Auto-Detection” was missing from the encoding selections in the open panel.
+- Fix an issue where the item “Automatic” (ex. Auto-Detection) was missing from the encoding selections in the open panel.
 - Fix some texts were not localized.
 
 
