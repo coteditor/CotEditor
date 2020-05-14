@@ -109,6 +109,10 @@ article+article {
 	border-top: 1px solid -apple-system-separator;
 }
 
+p:lang(ja) {
+	text-indent: 1em;
+}
+
 ol,
 ul,
 pre {
