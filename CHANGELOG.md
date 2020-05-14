@@ -10,7 +10,7 @@ Change Log
 - Remove the text encoding setting for opened documents; instead, the encoding is always detected automatically when opening an existing file.
 - Improve the encodings list edit view.
 - Adjust the width of toolbar items.
-- Update help contents.
+- Update help content.
 - [trivial] Rename “Auto-Detect,” the feature detecting the file encoding automatically, to “Automatic.”
 - [trivial] Update some labels in the Format pane.
 - [beta] Add menu item, toolbar item, and Touch Bar item to toggle visibility of indent guides in the current document.
@@ -20,9 +20,9 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the item “Automatic” (ex. Auto-Detect) was missing from the encoding selections in the open panel.
+- Fix an issue where the item “Automatic” (ex. Auto-Detect) was missing in the encoding selections in the open panel.
 - Fix an issue with multiple cursors where extra characters were deleted when performing forward delete.
-- Fix an issue with multiple cursors where just single UTF-16 character was deleted instead of the whole character when the character to delete consists of multiple UTF-16 characters.
+- Fix an issue with multiple cursors where just a single UTF-16 character was deleted instead of the whole character when the character to delete consists of multiple UTF-16 characters.
 - Fix missing localization.
 
 
