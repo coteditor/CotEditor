@@ -19,7 +19,7 @@
 
 <h1>Format preferences</h1>
 
-<p>You can set the default format such as font type or file encoding for new documents.</p>
+<p>You can set the default format such as font type or text encoding for new documents.</p>
 
 <dl>
 	<dt>Line Endings</dt>
@@ -37,22 +37,18 @@
 	<dd>You can set text encoding for your document.</dd>
 	<dd><dl>
 		<dt>Default text encoding</dt>
-		<dd>You can set the default character encoding used when creating a new document.</dd>
+		<dd>You can set the default text encoding used when creating a new document.</dd>
 		
-		<dt>Opening files</dt>
-		<dd>You can set the default character encoding used when opening an existing file. Auto-Detect will do fine for most cases.</dd>
+		<dt>Priority of encodings</dt>
+		<dd>You can customize the priority of encodings and the policy of encoding detection when opening an existing file.</dd>
 		<dd><dl>
-			<dt>Refer to encoding declaration</dt>
-			<dd>When this option is selected, CotEditor respects the encoding declaration written in your document.<br />
-			CotEditor can detect <code>charset=</code>, <code>encoding=</code>, <code>@charset</code>, <code>encoding:</code>, and <code>coding:</code> (in order of precedence).<br />
-			See <a href="../pgs/about_autodetect_charset.html">Using encoding declarations for auto-detection</a> for more details.</dd>
-			<dd><ul>
-				<li>In the case you've selected anything other than Auto-Detect for “When opening a file,” if CotEditor opened a file with a different encoding from the one used to create the file, you need to manually make CotEditor reinterpret it.</li>
-			</ul></dd>
+			<dt>Edit List</dt>
+			<dd>You can customize the order of encodings that appear in the File Encoding submenu of the Format menu and the File Encoding drop-down list on the toolbar. This order is also used for encoding detection. CotEditor tries each encoding from the top of the list. See <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a> for details.</dd>
+			
+			<dt>Refer to encoding declaration in document</dt>
+			<dd>When this option is selected, CotEditor respects the encoding declaration written in the document. See <a href="../pgs/about_autodetect_charset.html">Using encoding declarations for auto-detection</a> for details.</dd>
 		</dl></dd>
 		
-		<dt>Edit List</dt>
-		<dd>You can customize the order of encodings that appear in the File Encoding submenu of the Format menu and the File Encoding drop-down list on the toolbar. This order is also used for encoding auto-detection and CotEditor tries each encoding from the top of the list. See <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a> for more details.</dd>
 	</dl></dd>
 </dl>
 
