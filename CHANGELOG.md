@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Remove the text encoding setting for opened documents; instead, the auto-detection is always performed when opening an existing file.
+- Remove the text encoding setting for opened documents; instead, the auto-detection (renamed to “Automatic”) is always performed when opening an existing file.
 - Improve the encodings list edit view.
 - Adjust the width of toolbar items.
 - Update help contents.

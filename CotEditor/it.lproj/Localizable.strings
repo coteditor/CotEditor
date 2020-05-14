@@ -120,7 +120,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "Rilevamento automatico";
+"Automatic" = "Automatica";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Il file “%@” non sembra essere di testo.";

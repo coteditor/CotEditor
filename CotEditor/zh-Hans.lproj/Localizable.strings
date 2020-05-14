@@ -120,7 +120,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "自动检测";
+"Automatic" = "自动";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
