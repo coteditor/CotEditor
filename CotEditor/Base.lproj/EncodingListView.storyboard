@@ -11,17 +11,17 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="JC2-8h-XKM" customClass="EncodingListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" id="yF2-dV-tho">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="327"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="316"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP8-0O-9z3">
-                                <rect key="frame" x="20" y="61" width="284" height="186"/>
+                                <rect key="frame" x="20" y="61" width="284" height="175"/>
                                 <clipView key="contentView" id="0qH-ED-MMi">
-                                    <rect key="frame" x="1" y="1" width="282" height="184"/>
+                                    <rect key="frame" x="1" y="1" width="282" height="173"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="sEh-f6-spz">
-                                            <rect key="frame" x="0.0" y="0.0" width="282" height="184"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="282" height="173"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -118,7 +118,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uwq-dp-HCe">
-                                <rect key="frame" x="307" y="223" width="118" height="27"/>
+                                <rect key="frame" x="307" y="212" width="118" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" id="UBd-i0-3Pw"/>
                                 </constraints>
@@ -131,7 +131,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5od-lM-Mgb">
-                                <rect key="frame" x="307" y="195" width="118" height="27"/>
+                                <rect key="frame" x="307" y="184" width="118" height="27"/>
                                 <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3393">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="message" size="11"/>
@@ -141,7 +141,7 @@ DQ
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz">
-                                <rect key="frame" x="18" y="255" width="404" height="28"/>
+                                <rect key="frame" x="18" y="244" width="404" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
                                     <font key="font" metaFont="message" size="11"/>
                                     <string key="title">This list is for Auto-Detect and the file encoding menu.
@@ -151,7 +151,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-CV-ACG">
-                                <rect key="frame" x="18" y="291" width="226" height="16"/>
+                                <rect key="frame" x="18" y="280" width="226" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Drag encodings to change the order." id="3395">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -159,7 +159,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQS-x1-ISf">
-                                <rect key="frame" x="14" y="13" width="142" height="32"/>
+                                <rect key="frame" x="47" y="13" width="142" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="130" id="V5n-Ja-2mA"/>
                                 </constraints>
@@ -174,14 +174,24 @@ Auto-Detect tries these encodings from the top of the list.</string>
                                     <action selector="revertDefaultEncodings:" target="JC2-8h-XKM" id="C9P-M5-tIm"/>
                                 </connections>
                             </button>
+                            <button identifier="howto_customize_encoding_order" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EEv-qX-Wiv">
+                                <rect key="frame" x="18" y="16" width="25" height="25"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gsR-2b-fW3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="openHelpAnchor:" target="Fyr-Bn-fM9" id="DJg-fe-Oec"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4Ji-oF-2Xz" firstAttribute="top" secondItem="4bX-CV-ACG" secondAttribute="bottom" constant="8" symbolic="YES" id="0eW-DG-nod"/>
                             <constraint firstAttribute="trailing" secondItem="eZH-EP-XJr" secondAttribute="trailing" constant="20" symbolic="YES" id="32m-o1-j27"/>
                             <constraint firstItem="LP8-0O-9z3" firstAttribute="top" secondItem="4Ji-oF-2Xz" secondAttribute="bottom" constant="8" symbolic="YES" id="3I7-EQ-L3f"/>
                             <constraint firstItem="uwq-dp-HCe" firstAttribute="width" secondItem="5od-lM-Mgb" secondAttribute="width" id="42Q-xi-dPT"/>
+                            <constraint firstAttribute="bottom" secondItem="EEv-qX-Wiv" secondAttribute="bottom" constant="20" symbolic="YES" id="7p1-fb-KzH"/>
                             <constraint firstItem="4bX-CV-ACG" firstAttribute="top" secondItem="yF2-dV-tho" secondAttribute="top" constant="20" symbolic="YES" id="BnC-er-DdV"/>
-                            <constraint firstItem="eQS-x1-ISf" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="Ebp-aM-VMp"/>
                             <constraint firstItem="5od-lM-Mgb" firstAttribute="leading" secondItem="LP8-0O-9z3" secondAttribute="trailing" constant="8" symbolic="YES" id="EqP-OB-KYz"/>
                             <constraint firstAttribute="trailing" secondItem="4Ji-oF-2Xz" secondAttribute="trailing" constant="20" symbolic="YES" id="KDN-Uz-uqk"/>
                             <constraint firstItem="4bX-CV-ACG" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="Pkk-ag-zdK"/>
@@ -193,7 +203,9 @@ Auto-Detect tries these encodings from the top of the list.</string>
                             <constraint firstItem="aiv-GS-dcz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eQS-x1-ISf" secondAttribute="trailing" constant="12" symbolic="YES" id="hCD-Zg-tVW"/>
                             <constraint firstItem="LP8-0O-9z3" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="hRd-0O-Sgy"/>
                             <constraint firstItem="uwq-dp-HCe" firstAttribute="leading" secondItem="LP8-0O-9z3" secondAttribute="trailing" constant="8" symbolic="YES" id="jtm-vp-vHK"/>
+                            <constraint firstItem="eQS-x1-ISf" firstAttribute="leading" secondItem="EEv-qX-Wiv" secondAttribute="trailing" constant="12" symbolic="YES" id="kVe-Rn-oo2"/>
                             <constraint firstItem="eZH-EP-XJr" firstAttribute="leading" secondItem="aiv-GS-dcz" secondAttribute="trailing" constant="12" symbolic="YES" id="kmd-zh-jl4"/>
+                            <constraint firstItem="EEv-qX-Wiv" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="lM1-uo-UGq"/>
                             <constraint firstItem="eZH-EP-XJr" firstAttribute="leading" secondItem="aiv-GS-dcz" secondAttribute="trailing" constant="12" symbolic="YES" id="nNz-c9-gcS"/>
                             <constraint firstAttribute="bottom" secondItem="aiv-GS-dcz" secondAttribute="bottom" constant="20" symbolic="YES" id="nO7-eW-7EA"/>
                             <constraint firstItem="uwq-dp-HCe" firstAttribute="top" secondItem="4Ji-oF-2Xz" secondAttribute="bottom" constant="8" symbolic="YES" id="oQZ-Jc-KZY"/>
