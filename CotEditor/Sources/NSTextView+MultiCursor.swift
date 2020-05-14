@@ -104,7 +104,7 @@ extension MultiCursorEditing {
     
     /// Remove characters at all insertionRanges when there is more than one to delete.
     ///
-    /// - Parameter forward:Perform the forward delete when the flag raised; otherwise, delete backward.
+    /// - Parameter forward: Perform the forward delete when the flag raised; otherwise, delete backward.
     /// - Returns: Whether the deletion succeed.
     func multipleDelete(forward: Bool = false) -> Bool {
         
