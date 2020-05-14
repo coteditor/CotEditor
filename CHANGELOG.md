@@ -11,6 +11,7 @@ Change Log
 - Improve the encodings list edit view.
 - Adjust the width of toolbar items.
 - Update help contents.
+- [trivial] Update some labels in the Format pane.
 - [beta] Add menu item, toolbar item, and Touch Bar item to toggle visibility of indent guides in the current document.
 - [beta] Adjust the vertical position of the line ending symbol.
 - [beta] Make the indent guide drawing pixel-perfect.
