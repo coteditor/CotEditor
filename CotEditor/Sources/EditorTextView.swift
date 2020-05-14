@@ -654,7 +654,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard self.isEditable else { return super.deleteBackward(sender) }
         
-        if self.multipleDeleteBackward() { return }
+        if self.multipleDelete() { return }
         
         // delete tab
         if self.isAutomaticTabExpansionEnabled,
