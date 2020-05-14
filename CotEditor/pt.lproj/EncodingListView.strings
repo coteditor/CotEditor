@@ -24,16 +24,16 @@
 // limitations under the License.
 //
 
-/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
-"3395.title" = "Arraste codificações para alterar a ordem.";
-
-/* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
-"3394.title" = "Esta lista é usada na Detecção Automática e no menu de codificação do arquivo conforme a ordem abaixo.";
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order:"; ObjectID = "3395"; */
+"3395.title" = "Arraste codificações para alterar a ordem:";
 
 /* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
 "3392.title" = "Adicionar Separador";
 /* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
 "3393.title" = "Apagar Separador";
+
+/* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
+"3394.title" = "Esta lista é usada na Detecção Automática e no menu de codificação do arquivo conforme a ordem abaixo.";  // FIXME: updated
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Restaurar Padrões";
