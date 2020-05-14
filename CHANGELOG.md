@@ -7,10 +7,11 @@ Change Log
 
 ### Improvements
 
-- Remove the text encoding setting for opened documents; instead, the auto-detection (renamed to “Automatic”) is always performed when opening an existing file.
+- Remove the text encoding setting for opened documents; instead, the encoding is always detected automatically when opening an existing file.
 - Improve the encodings list edit view.
 - Adjust the width of toolbar items.
 - Update help contents.
+- [trivial] Rename “Auto-Detect,” the feature detecting the file encoding automatically, to “Automatic.”
 - [trivial] Update some labels in the Format pane.
 - [beta] Add menu item, toolbar item, and Touch Bar item to toggle visibility of indent guides in the current document.
 - [beta] Adjust the vertical position of the line ending symbol.
@@ -19,8 +20,8 @@ Change Log
 
 ### Fixes
 
-- Fix an issue where the item “Automatic” (ex. Auto-Detection) was missing from the encoding selections in the open panel.
-- Fix some texts were not localized.
+- Fix an issue where the item “Automatic” (ex. Auto-Detect) was missing from the encoding selections in the open panel.
+- Fix missing localization.
 
 
 
