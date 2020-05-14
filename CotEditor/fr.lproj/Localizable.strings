@@ -66,8 +66,8 @@
 "Open as Text File" = "Ouvrir en tant que fichier texte";
 "A new theme named “%@” has been successfully installed." = "Un nouveau thème nommé ”%@” a été installé avec succès.";
 
-// Window title of bug report
-"Bug Report" = "Rapport de bug";
+// Window title of issue report
+"Issue Report" = "Rapport de bug";  // FIXME: bug -> issue
 
 
 

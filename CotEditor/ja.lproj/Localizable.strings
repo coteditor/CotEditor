@@ -67,8 +67,8 @@
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
-// Window title of bug report
-"Bug Report" = "不具合レポート";
+// Window title of issue report
+"Issue Report" = "不具合レポート";
 
 
 

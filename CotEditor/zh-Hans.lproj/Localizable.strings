@@ -67,8 +67,8 @@
 "Open as Text File" = "以文本方式打开";
 "A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
 
-// Window title of bug report
-"Bug Report" = "错误报告";
+// Window title of issue report
+"Issue Report" = "错误报告";  // FIXME: bug -> issue
 
 
 
