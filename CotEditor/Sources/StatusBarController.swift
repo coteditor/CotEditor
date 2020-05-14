@@ -238,8 +238,7 @@ private extension NSColor {
     
     @available(macOS 10.15, *)
     static let statusBarLabelColor = NSColor(name: "statusBarLabelColor") { appearance in
-        
-        appearance.isDark ? NSColor.secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
+        appearance.isDark ? .secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
     }
     
     
@@ -247,10 +246,10 @@ private extension NSColor {
     static func statusBarLabelColor(appearance: NSAppearance) -> NSColor {
         
         guard #available(macOS 10.15, *) else {
-            return appearance.isDark ? Self.secondaryLabelColor : Self.labelColor.withAlphaComponent(0.6)
+            return appearance.isDark ? .secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
         }
         
-        return NSColor.statusBarLabelColor
+        return .statusBarLabelColor
     }
     
 }

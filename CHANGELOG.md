@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Remove the text encoding setting for opened documents; instead, the auto-detection is always performed when opening an existing file.
+- Improve the encodings list edit view.
 - Adjust the width of toolbar items.
 - [beta] Add menu item, toolbar item, and Touch Bar item to toggle visibility of indent guides in the current document.
 - [beta] Adjust the vertical position of the line ending symbol.

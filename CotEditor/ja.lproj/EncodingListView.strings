@@ -36,9 +36,6 @@
 /* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
 "3393.title" = "区切り線を削除";
 
-/* Class = "NSTextFieldCell"; title = "“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”."; ObjectID = "jXZ-7k-86F"; */
-"jXZ-7k-86F.title" = "“Unicode（UTF-8）BOM付き”は“Unicode（UTF-8）”の次に自動的に追加されます。";
-
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "デフォルトに戻す";
 /* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "3390"; */

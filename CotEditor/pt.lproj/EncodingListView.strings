@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2020 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -34,9 +34,6 @@
 "3392.title" = "Adicionar Separador";
 /* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
 "3393.title" = "Apagar Separador";
-
-/* Class = "NSTextFieldCell"; title = "“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”."; ObjectID = "jXZ-7k-86F"; */
-"jXZ-7k-86F.title" = "“Unicode (UTF-8) com BOM” será adicionado automaticamente logo após “Unicode (UTF-8)”.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Restaurar Padrões";

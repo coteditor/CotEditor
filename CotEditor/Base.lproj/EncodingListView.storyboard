@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JC2-8h-XKM">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="JC2-8h-XKM">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,26 +10,25 @@
         <scene sceneID="VZ0-zu-Toz">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="JC2-8h-XKM" customClass="EncodingListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="yF2-dV-tho">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="367"/>
+                    <view key="view" misplaced="YES" id="yF2-dV-tho">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="327"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP8-0O-9z3">
-                                <rect key="frame" x="20" y="97" width="284" height="190"/>
+                                <rect key="frame" x="20" y="61" width="284" height="186"/>
                                 <clipView key="contentView" id="0qH-ED-MMi">
-                                    <rect key="frame" x="1" y="1" width="282" height="188"/>
+                                    <rect key="frame" x="1" y="1" width="282" height="184"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="sEh-f6-spz">
-                                            <rect key="frame" x="0.0" y="0.0" width="282" height="188"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" viewBased="YES" id="sEh-f6-spz">
+                                            <rect key="frame" x="0.0" y="0.0" width="282" height="184"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn editable="NO" width="279" minWidth="40" maxWidth="1000" id="49c-uK-4Wa">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.33333299" alpha="1" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -46,7 +45,7 @@
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="A53-Gb-bA3" customClass="SeparatorTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="4" y="0.0" width="271" height="16"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="Yzo-ia-Vea">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" truncatesLastVisibleLine="YES" sendsActionOnEndEditing="YES" title="ENCODING NAME" id="Yzo-ia-Vea">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -119,32 +118,32 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uwq-dp-HCe">
-                                <rect key="frame" x="307" y="263" width="118" height="27"/>
+                                <rect key="frame" x="307" y="223" width="118" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="108" id="UBd-i0-3Pw"/>
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Add Separator" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" inset="2" id="3392">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="addSeparator:" target="JC2-8h-XKM" id="zSd-ad-XXJ"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5od-lM-Mgb">
-                                <rect key="frame" x="307" y="235" width="118" height="27"/>
+                                <rect key="frame" x="307" y="195" width="118" height="27"/>
                                 <buttonCell key="cell" type="push" title="Delete Separator" bezelStyle="rounded" alignment="center" controlSize="small" enabled="NO" borderStyle="border" inset="2" id="3393">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="deleteSeparator:" target="JC2-8h-XKM" id="fL3-Qg-c5n"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4Ji-oF-2Xz">
-                                <rect key="frame" x="18" y="295" width="404" height="28"/>
+                                <rect key="frame" x="18" y="255" width="404" height="28"/>
                                 <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="3394">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <string key="title">This list is for Auto-Detect and the file encoding menu.
 Auto-Detect tries these encodings from the top of the list.</string>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -152,7 +151,7 @@ Auto-Detect tries these encodings from the top of the list.</string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="4bX-CV-ACG">
-                                <rect key="frame" x="18" y="331" width="226" height="16"/>
+                                <rect key="frame" x="18" y="291" width="226" height="16"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Drag encodings to change the order." id="3395">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -175,14 +174,6 @@ Auto-Detect tries these encodings from the top of the list.</string>
                                     <action selector="revertDefaultEncodings:" target="JC2-8h-XKM" id="C9P-M5-tIm"/>
                                 </connections>
                             </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EvH-HI-yPD">
-                                <rect key="frame" x="18" y="61" width="404" height="28"/>
-                                <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" title="“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”." id="jXZ-7k-86F">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4Ji-oF-2Xz" firstAttribute="top" secondItem="4bX-CV-ACG" secondAttribute="bottom" constant="8" symbolic="YES" id="0eW-DG-nod"/>
@@ -192,15 +183,12 @@ Auto-Detect tries these encodings from the top of the list.</string>
                             <constraint firstItem="4bX-CV-ACG" firstAttribute="top" secondItem="yF2-dV-tho" secondAttribute="top" constant="20" symbolic="YES" id="BnC-er-DdV"/>
                             <constraint firstItem="eQS-x1-ISf" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="Ebp-aM-VMp"/>
                             <constraint firstItem="5od-lM-Mgb" firstAttribute="leading" secondItem="LP8-0O-9z3" secondAttribute="trailing" constant="8" symbolic="YES" id="EqP-OB-KYz"/>
-                            <constraint firstAttribute="trailing" secondItem="EvH-HI-yPD" secondAttribute="trailing" constant="20" symbolic="YES" id="HSQ-ra-0iJ"/>
                             <constraint firstAttribute="trailing" secondItem="4Ji-oF-2Xz" secondAttribute="trailing" constant="20" symbolic="YES" id="KDN-Uz-uqk"/>
-                            <constraint firstItem="EvH-HI-yPD" firstAttribute="top" secondItem="LP8-0O-9z3" secondAttribute="bottom" constant="8" symbolic="YES" id="O7B-nw-WJ7"/>
-                            <constraint firstItem="EvH-HI-yPD" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="OhI-xx-6Mq"/>
-                            <constraint firstItem="eQS-x1-ISf" firstAttribute="top" secondItem="EvH-HI-yPD" secondAttribute="bottom" constant="20" symbolic="YES" id="PYb-ez-Uoc"/>
                             <constraint firstItem="4bX-CV-ACG" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="Pkk-ag-zdK"/>
                             <constraint firstItem="4Ji-oF-2Xz" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="RZX-lb-I43"/>
                             <constraint firstAttribute="bottom" secondItem="eZH-EP-XJr" secondAttribute="bottom" constant="20" symbolic="YES" id="SgC-Ld-7c5"/>
                             <constraint firstAttribute="trailing" secondItem="5od-lM-Mgb" secondAttribute="trailing" constant="20" symbolic="YES" id="TOQ-HA-R6w"/>
+                            <constraint firstItem="aiv-GS-dcz" firstAttribute="top" secondItem="LP8-0O-9z3" secondAttribute="bottom" constant="20" symbolic="YES" id="YeC-pk-RtD"/>
                             <constraint firstAttribute="trailing" secondItem="uwq-dp-HCe" secondAttribute="trailing" constant="20" symbolic="YES" id="aX1-ex-hVs"/>
                             <constraint firstItem="aiv-GS-dcz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="eQS-x1-ISf" secondAttribute="trailing" constant="12" symbolic="YES" id="hCD-Zg-tVW"/>
                             <constraint firstItem="LP8-0O-9z3" firstAttribute="leading" secondItem="yF2-dV-tho" secondAttribute="leading" constant="20" symbolic="YES" id="hRd-0O-Sgy"/>

@@ -20,12 +20,13 @@
 <p>To set the priority of encoding auto-detection:</p>
 <ol>
 	<li>Choose CotEditor &gt; Preferences.</li>
-	<li>Click Format.</li>
-	<li>In the File Encoding section, click Edit Encoding List.</li>
-	<li>Move up the encodings you use frequently, and place UTF-16 right under them.<br />
-	(As UTF-16 is able to encode most characters, you need to put it <strong>at the bottom of often-used encodings</strong>.)</li>
+	<li>Select the Format pane.</li>
+	<li>In the “priority of encodings” section, click the “Edit List” button.</li>
+	<li>Move up the encodings you use frequently.<br />
+	(Here, we recommend placing UTF-16 <strong>after</strong> other often-used encodings, as UTF-16 can encode most characters.)</li>
 </ol>
 <p>Though you can change the order of encodings, you cannot delete them. Just move down the encodings you don't use.</p>
+<p>Besides, “Unicode (UTF-8)” and “Unicode (UTF-8) with BOM” are always handled as a set. Because the BOM (byte order mark) will be taken into account when trying encoding data into UTF-8, there is no effect on the detection precision that the order of these two encodings are fixed.</p>
 
 
 <section id="cf">
