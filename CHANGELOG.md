@@ -23,6 +23,7 @@ Change Log
 - Fix an issue where the item “Automatic” (ex. Auto-Detect) was missing in the encoding selections in the open panel.
 - Fix an issue with multiple cursors where extra characters were deleted when performing forward delete.
 - Fix an issue with multiple cursors where just a single UTF-16 character was deleted instead of the whole character when the character to delete consists of multiple UTF-16 characters.
+- Fix an issue with AppleScript/JXA where the `line range` command selected a wrong range when the line endings of the document are CRLF.
 - Fix missing localization.
 
 

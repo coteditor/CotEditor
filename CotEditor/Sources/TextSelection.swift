@@ -179,8 +179,7 @@ final class TextSelection: NSObject {
                     return
             }
             
-            // you can ignore actuall line ending type and directly comunicate with textView, as this handle just lines
-            guard let string = self.textView?.string else { return }
+            guard let string = self.document?.string else { return }
             
             guard let range = string.rangeForLine(in: fuzzyRange) else { return }
             
