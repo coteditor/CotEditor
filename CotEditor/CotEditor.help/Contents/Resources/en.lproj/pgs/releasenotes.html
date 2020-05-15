@@ -34,7 +34,7 @@
 
 <ul>
 	<li>Rewrite the invisible character drawing feature to draw alternative symbols more properly under various environments.</li>
-	<li>Add option to draw indent guides.</li>
+	<li>Add an option to draw indent guides.</li>
 	<li>Display Unicode's general category in the character info popover.</li>
 </ul>
 </section>
@@ -47,10 +47,16 @@
 	<li>Adjust the text baseline to draw characters vertically center in lines.</li>
 	<li>Optimize the performance of “Replace All” with a large number of matches.</li>
 	<li>Improve the performance when pasting a huge text.</li>
+	<li>Remove the text encoding option for opened documents; instead, the encoding is always detected automatically when opening an existing file.</li>
 	<li>Update the Unicode block table to the latest Unicode 13.0.0.</li>
 	<li>Duplicate lines more intelligently.</li>
+	<li>Improve the encodings list edit view.</li>
+	<li>Adjust the width of toolbar items.</li>
 	<li>Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.</li>
 	<li>Adjust the visible area after unwrapping lines in RTL text mode.</li>
+	<li>Update help content.</li>
+	<li><span class="trivial">trivial</span>: Rename “Auto-Detect,” the option detecting the file encoding automatically, to “Automatic.”</li>
+	<li><span class="trivial">trivial</span>: Update some labels in the Format pane.</li>
 	<li><span class="trivial">trivial</span>: Display default values as the input field's placeholder for window size setting when empty.</li>
 	<li><span class="trivial">trivial</span>: Make the identifier for document autosaving longer.</li>
 	<li><span class="trivial">dev</span>: Update the build environment to Xcode 11.4 (Swift 5.2).</li>
@@ -66,18 +72,24 @@
 
 <ul>
 	<li>Fix an issue where the application crashed when a hanging indent depth becomes larger than the editor area.</li>
+	<li>Fix an issue where the item “Automatic” (ex. Auto-Detect) was missing in the encoding selections in the open panel.</li>
+	<li>Fix an issue with multiple cursors where extra characters were deleted when performing forward delete with selection.</li>
+	<li>Fix an issue with multiple cursors where just a single UTF-16 character was deleted instead of the whole character when the character to delete consists of multiple UTF-16 characters.</li>
 	<li>Fix an issue where the outline menu could select the wrong item while typing.</li>
 	<li>Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.</li>
 	<li>Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.</li>
-	<li>Fix an issue in the line number view where the line number of the selected line was not bolded under a specific condition.</li>
+	<li>Fix an issue in the line number view where the line number of the current line was not bolded under a specific condition.</li>
 	<li>Fix an issue in scripting with AppleScript/JXA where the application crashed by performing <code>string in ...</code> command.</li>
 	<li>Fix an issue in scripting with AppleScript/JXA where the contents of a document can rarely be overwritten with the contents of another document window under very specific conditions.</li>
+	<li>Fix an issue with scripting with AppleScript/JXA where the <code>line range</code> command selected a wrong range when the line endings of the document are CRLF.</li>
+	<li>Fix an issue with scripting with AppleScript/JXA where selecting a single line by specifying a single integer argument to <code>line range</code> did not work.</li>
 	<li>Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical.</li>
 	<li>Fix an issue in the RTL text mode where the page guide disappeared when lines are unwrapped.</li>
 	<li>Fix an issue where the current line highlight did not update properly after changing some settings.</li>
 	<li>Fix an issue in the find panel's input fields where invisible control characters were drawn in the normal text color under specific conditions.</li>
 	<li>Fix an issue where the print font name in the Print pane was drawn in black even in the dark mode.</li>
 	<li>Fix an issue in the editor where the previous drawing could remain in a blank space after changing a display setting of the editor.</li>
+	<li>Fix missing localization.</li>
 </ul>
 </section>
 </article>
