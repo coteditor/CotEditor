@@ -154,36 +154,32 @@ final class TextSelection: NSObject {
     
     
     /// line range (location and length) of the selection (list type)
-    @objc var lineRange: Any? {
+    @objc var lineRange: [Int]? {
         
         get {
-            guard
-                let selectedRange = self.document?.selectedRange,
-                let string = self.document?.string else { return nil }
+            guard let document = self.document else { return nil }
             
-            let startLine = string.lineNumber(at: selectedRange.location)
-            let endLine = string.lineNumber(at: selectedRange.upperBound)
+            let selectedRange = document.selectedRange
+            let string = document.string
             
-            return [startLine,
-                    endLine - startLine + 1]
+            let start = string.lineNumber(at: selectedRange.lowerBound)
+            let end = string.lineNumber(at: selectedRange.upperBound)
+            
+            return [start, end - start + 1]
         }
         
         set {
-            let fuzzyRange: FuzzyRange
-            switch newValue {
-                case let number as Int:
-                    fuzzyRange = FuzzyRange(location: number, length: 1)
-                case let range as [Int] where range.count == 2:
-                    fuzzyRange = FuzzyRange(location: range[0], length: range[1])
-                default:
-                    return
-            }
+            guard
+                let lineRange = newValue,
+                (1...2).contains(lineRange.count),
+                let document = self.document
+                else { return }
             
-            guard let string = self.document?.string else { return }
+            let fuzzyRange = FuzzyRange(location: lineRange[0], length: lineRange[safe: 1] ?? 1)
             
-            guard let range = string.rangeForLine(in: fuzzyRange) else { return }
+            guard let range = document.string.rangeForLine(in: fuzzyRange) else { return }
             
-            self.document?.selectedRange = range
+            document.selectedRange = range
         }
     }
     
