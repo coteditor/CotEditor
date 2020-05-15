@@ -26,6 +26,7 @@ Change Log
 - Fix an issue with AppleScript/JXA where the `line range` command selected a wrong range when the line endings of the document are CRLF.
 - Fix an issue with AppleScript/JXA where selecting a single line by specifying a single integer argument to `line range` did not work.
 - Fix missing localization.
+- [beta] Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical and overscrolling is enabled.
 
 
 

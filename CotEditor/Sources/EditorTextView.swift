@@ -1509,8 +1509,9 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard diff != 0 else { return }
         
+        let heightPath = (self.layoutOrientation == .vertical) ? \NSSize.width : \NSSize.height
         self.textContainerInset.height = height
-        self.frame.size.height += 2 * diff
+        self.frame.size[keyPath: heightPath] += 2 * diff
         
         // invoke `setToFit()` but only when needed to avoid heavy calculation by large document
         // -> `setToFit()` is required to remove the extra height of the frame that contains a blank margin already
