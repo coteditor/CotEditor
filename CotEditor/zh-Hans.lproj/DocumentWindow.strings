@@ -87,13 +87,10 @@
 /* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
 "lad-Dh-atP.ibShadowedToolTips[0]" = "从左到右";  // "Left to Right"
 "lad-Dh-atP.ibShadowedToolTips[1]" = "从右到左";  // "Right to Left"
-"lad-Dh-atP.ibShadowedToolTips[2]" = "竖直";  // "Vertical"
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "Tul-RE-xpJ"; */
 "Tul-RE-xpJ.title" = "从左到右";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "7iT-zZ-mIj"; */
 "7iT-zZ-mIj.title" = "从右到左";
-/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
-"5v4-ft-RRo.title" = "竖直";
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
 "1cW-FV-40L.label" = "文字方向";  /* Text Orientation */

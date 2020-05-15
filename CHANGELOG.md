@@ -10,6 +10,7 @@ Change Log
 - Remove the text encoding option for opened documents; instead, the encoding is always detected automatically when opening an existing file.
 - Improve the encodings list edit view.
 - Adjust the width of toolbar items.
+- Remove “vertical orientation” from the selections of the Writing Direction toolbar button.
 - Update help content.
 - [trivial] Rename “Auto-Detect,” the option detecting the file encoding automatically, to “Automatic.”
 - [trivial] Update some labels in the Format pane.

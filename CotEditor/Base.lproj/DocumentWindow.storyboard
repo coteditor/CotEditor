@@ -180,14 +180,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="530A2BF7-340F-401E-8980-9B3CE8087ABA" label="Writing Direction" paletteLabel="Writing Direction" toolTip="Change writing direction" sizingBehavior="auto" id="1zL-0E-fZd" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="5xG-tN-u7n">
-                                        <rect key="frame" x="0.0" y="14" width="110" height="23"/>
+                                        <rect key="frame" x="10" y="14" width="76" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="texturedSquare" trackingMode="selectOne" id="lad-Dh-atP">
                                             <font key="font" metaFont="system"/>
                                             <segments>
                                                 <segment image="WritingDirectionLTRTemplate" width="34" selected="YES"/>
                                                 <segment toolTip="Right to Left" image="WritingDirectionRTLTemplate" width="34" tag="1"/>
-                                                <segment toolTip="Vertical" image="WritingDirectionVerticalTemplate" width="34" tag="2"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>

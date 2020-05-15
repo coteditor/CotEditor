@@ -327,13 +327,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 return !self.verticalLayoutOrientation
             
             case #selector(changeWritingDirection):
-                let tag: Int = {
-                    switch (self.verticalLayoutOrientation, self.writingDirection) {
-                        case (true, _): return 2
-                        case (false, .rightToLeft): return 1
-                        default: return 0
-                    }
-                }()
+                let tag: Int = (self.writingDirection == .rightToLeft) ? 1 : 0
                 (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
             
             case #selector(changeOrientation):
@@ -785,11 +779,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             case 1:
                 self.makeLayoutOrientationHorizontal(nil)
                 self.makeWritingDirectionRightToLeft(nil)
-            case 2:
-                self.makeWritingDirectionLeftToRight(nil)
-                self.makeLayoutOrientationVertical(nil)
             default:
-                assertionFailure("Segmented writing direction button must have 3 segments only.")
+                assertionFailure("Segmented writing direction button must have 2 segments only.")
         }
     }
     
