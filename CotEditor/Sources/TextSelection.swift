@@ -172,14 +172,15 @@ final class TextSelection: NSObject {
             guard
                 let lineRange = newValue,
                 (1...2).contains(lineRange.count),
-                let document = self.document
+                // directly communicate with textView as you can skip line ending conversion for this command.
+                let textView = self.document?.textView
                 else { return }
             
             let fuzzyRange = FuzzyRange(location: lineRange[0], length: lineRange[safe: 1] ?? 1)
             
-            guard let range = document.string.rangeForLine(in: fuzzyRange) else { return }
+            guard let range = textView.string.rangeForLine(in: fuzzyRange) else { return }
             
-            document.selectedRange = range
+            textView.selectedRange = range
         }
     }
     
