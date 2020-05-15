@@ -53,11 +53,19 @@ final class FileDropPaneController: NSViewController, NSTableViewDelegate, NSTex
         
         // setup variable menu
         if let menu = self.variableInsertionMenu?.menu {
-            menu.addItems(for: FileDropComposer.Token.pathTokens, target: self.formatTextView)
+            for token in FileDropComposer.Token.pathTokens {
+                menu.addItem(token.insertionMenuItem(target: self.formatTextView))
+            }
+            
             menu.addItem(.separator())
-            menu.addItems(for: FileDropComposer.Token.textTokens, target: self.formatTextView)
+            for token in FileDropComposer.Token.textTokens {
+                menu.addItem(token.insertionMenuItem(target: self.formatTextView))
+            }
+            
             menu.addItem(.separator())
-            menu.addItems(for: FileDropComposer.Token.imageTokens, target: self.formatTextView)
+            for token in FileDropComposer.Token.imageTokens {
+                menu.addItem(token.insertionMenuItem(target: self.formatTextView))
+            }
         }
     }
     
