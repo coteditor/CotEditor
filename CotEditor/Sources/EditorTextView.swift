@@ -1349,8 +1349,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             let selectedRect = self.boundingRect(for: self.selectedRange)
             else { return }
         
-        let popoverController = CharacterPopoverController.instantiate(storyboard: "CharacterPopover")
-        popoverController.setup(characterInfo: characterInfo)
+        let popoverController = CharacterPopoverController.instantiate(for: characterInfo)
         
         let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
         popoverController.showPopover(relativeTo: positioningRect, of: self)
