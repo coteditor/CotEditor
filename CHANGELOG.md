@@ -2,6 +2,13 @@
 Change Log
 ==========================
 
+3.9.0-beta.4 (unreleased)
+--------------------------
+
+- No change (yet).
+
+
+
 3.9.0-beta.3 (415)
 --------------------------
 
@@ -54,6 +61,7 @@ Change Log
 - [beta] Fix an issue where the visibility of invisibles of opened documents cannot be changed.
 - [beta] Fix an issue where the previous current line highlights could remain.
 - [beta] Fix an issue where the previous page guide could remain after changing the page guide visibility.
+
 
 
 3.9.0-beta (411)
