@@ -112,17 +112,19 @@ final class CharacterPopoverController: NSViewController {
         }()
         
         // build Unicode code point string
+        let isMultiple = unicodes.count > 1
         let codePoints: [String] = unicodes.map { unicode in
             var codePoint = unicode.codePoint
             
-            if let surrogates = unicode.surrogateCodePoints {
+            if !isMultiple, let surrogates = unicode.surrogateCodePoints {
                 codePoint += " (" + surrogates.joined(separator: " ") + ")"
             }
             
             // append Unicode name
-            if unicodes.count > 1, let name = unicode.name {
+            if isMultiple, let name = unicode.name {
                 codePoint += "\t" + name
             }
+            
             return codePoint
         }
         

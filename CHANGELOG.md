@@ -5,7 +5,9 @@ Change Log
 3.9.0-beta.4 (unreleased)
 --------------------------
 
-- No change (yet).
+### Improvements
+
+- [trivial] Omit surrogate pair code points in the character inspector if the chraracter consists of multiple Unicode characters.
 
 
 
