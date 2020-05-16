@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,19 +25,16 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
-"3395.title" = "Faîtes glisser les encodages pour changer l'ordre.";
-
-/* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
-"3394.title" = "Cette liste est utilisée pour la détection automatique et pour le menu Encodage.\n La détection automatique essaie ces encodages un par un, à partir du haut de la liste.";
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order:"; ObjectID = "3395"; */
+"3395.title" = "Faîtes glisser les encodages pour changer l'ordre :";
 
 /* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
 "3392.title" = "Ajouter un séparateur";
 /* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
 "3393.title" = "Supprimer le séparateur";
 
-/* Class = "NSTextFieldCell"; title = "“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”."; ObjectID = "jXZ-7k-86F"; */
-"jXZ-7k-86F.title" = "“Unicode（UTF-8）avec BOM” sera automatiquement ajouté juste après “Unicode（UTF-8)”.";
+/* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
+"3394.title" = "Cette liste est utilisée pour la détection automatique et pour le menu Encodage.\n La détection automatique essaie ces encodages un par un, à partir du haut de la liste.";  // FIXME: updated
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Restaurer les paramètres par défaut";

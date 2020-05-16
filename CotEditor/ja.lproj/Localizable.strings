@@ -67,8 +67,8 @@
 "Open as Text File" = "テキストファイルとして開く";
 "A new theme named “%@” has been successfully installed." = "新しいテーマ“%@”がインストールされました。";
 
-// Window title of bug report
-"Bug Report" = "不具合レポート";
+// Window title of issue report
+"Issue Report" = "不具合レポート";
 
 
 
@@ -120,7 +120,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "自動認識";
+"Automatic" = "自動";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "ファイル“%@”はテキストデータではないようです。";
@@ -177,6 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可視文字";
+"Indent Guides" = "インデントガイド";
 "Wrap Lines" = "行を折り返す";
 
 // Touch bar item labels -Text View
@@ -267,6 +268,7 @@
 "Text" = "テキスト";
 "Copy as Rich Text" = "リッチテキストとしてコピー";
 "Select All" = "すべてを選択";
+"Straighten Quotes" = "引用符をまっすぐにする";
 
 
 
@@ -284,6 +286,8 @@
 "Show Invisibles" = "不可視文字を表示";
 "Hide Page Guide" = "ページガイドを非表示";
 "Show Page Guide" = "ページガイドを表示";
+"Hide Indent Guides" = "インデントガイドを非表示";
+"Show Indent Guides" = "インデントガイドを表示";
 "Unwrap Lines" = "行を折り返さない";
 "Wrap Lines" = "行を折り返す";
 
@@ -371,12 +375,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "本当に“%@”へ変更しますか?";
-"The default “Auto-Detect” is recommended for most cases." = "ほとんどの場合、デフォルトの“自動認識”が推奨されます。";
-"Change to “%@”" = "“%@”へ変更";
-"Revert to “Auto-Detect”" = "“自動認識”へ戻す";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "“%@”を複製...";
 "Export “%@”…" = "“%@”を書き出し...";

@@ -17,7 +17,7 @@
 
 <h1>Characters aren't displayed correctly</h1>
 
-<p>Characters can be garbled if CotEditor fails to detect the file's encoding correctly. In such cases, change the character encoding as described below:</p>
+<p>Characters can be garbled if CotEditor fails to detect the file's text encoding correctly. In such cases, change the text encoding as described below:</p>
 <ol>
 	<li>Choose Format &gt; File Encoding, and select an encoding from the list.</li>
 	<li>When a dialog appears, click Reinterpret.</li>
@@ -33,10 +33,10 @@
 	<dd>Converts the text from the current encoding to the new one.</dd>
 </dl>
 <ul>
-	<li>You can also use the “File Encoding” toolbar item to change the character encoding.</li>
+	<li>You can also use the “File Encoding” toolbar item to change the text encoding.</li>
 	<li>Changing the priority of auto-detection may help to reduce the occurrences of garbled characters.<br />
 	=&gt; <a href="../pgs/howto_customize_encoding_order.html">Setting the priority of encoding auto-detection</a></li>
-	<li>If you select “Refer to encoding declaration” in the Format preferences pane, in-document encoding declarations such as “<code>charset=</code>”, “<code>encoding=</code>”, “<code>@charset</code>”, “<code>encoding:</code>” or “<code>coding:</code>” will take precedence when CotEditor auto-detects the character encoding.<br />
+	<li>If you enable “Refer to encoding declaration in document” in the Format preferences pane, in-document encoding declarations, such as “<code>encoding=</code>” or “<code>@charset</code>,” will take precedence when CotEditor detects the text encoding.<br />
 	=&gt; <a href="../pgs/about_autodetect_charset.html">Using encoding declarations for auto-detection</a></li>
 </ul>
 

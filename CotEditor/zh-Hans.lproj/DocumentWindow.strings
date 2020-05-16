@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2019 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -87,13 +87,10 @@
 /* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
 "lad-Dh-atP.ibShadowedToolTips[0]" = "从左到右";  // "Left to Right"
 "lad-Dh-atP.ibShadowedToolTips[1]" = "从右到左";  // "Right to Left"
-"lad-Dh-atP.ibShadowedToolTips[2]" = "竖直";  // "Vertical"
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "Tul-RE-xpJ"; */
 "Tul-RE-xpJ.title" = "从左到右";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "7iT-zZ-mIj"; */
 "7iT-zZ-mIj.title" = "从右到左";
-/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
-"5v4-ft-RRo.title" = "竖直";
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
 "1cW-FV-40L.label" = "文字方向";  /* Text Orientation */
@@ -151,6 +148,11 @@
 "GS6-aA-mgz.label" = "页面指示";  /* Page Guide */
 "GS6-aA-mgz.paletteLabel" = "页面指示";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "显示或隐藏页面指示";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "95y-zI-oqM"; */
+"95y-zI-oqM.label" = "Indent Guides";  /* Indent Guides */  // FIXME: added
+"95y-zI-oqM.paletteLabel" = "Indent Guides";  /* Indent Guides */  // FIXME: added
+"95y-zI-oqM.toolTip" = "Show or hide indent guide lines";  /* Show or hide indent guide lines */  // FIXME: added
 
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "透明度";  /* Opacity */

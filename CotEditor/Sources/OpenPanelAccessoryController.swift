@@ -85,13 +85,13 @@ final class OpenPanelAccessoryController: NSViewController {
         
         menu.removeAllItems()
         
-        let autoDetectItem = NSMenuItem(title: "Auto-Detect".localized, action: nil, keyEquivalent: "")
+        let autoDetectItem = NSMenuItem(title: "Automatic".localized, action: nil, keyEquivalent: "")
         autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         menu.addItem(autoDetectItem)
         menu.addItem(.separator())
         
         if #available(macOS 10.14, *) {
-            menu.items = EncodingManager.shared.createEncodingMenuItems()
+            menu.items += EncodingManager.shared.createEncodingMenuItems()
         } else {
             let items = EncodingManager.shared.createEncodingMenuItems()
             for item in items {

@@ -99,12 +99,8 @@ final class Document: NSDocument, AdditionalDocumentPreparing, EncodingHolder {
         self.syntaxParser = SyntaxParser(textStorage: self.textStorage)
         self.syntaxParser.style = SyntaxManager.shared.setting(name: UserDefaults.standard[.syntaxStyle]!) ?? SyntaxStyle()
         
-        // use the encoding user selected in open panel, if exists
-        if let accessorySelectedEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding {
-            self.readingEncoding = accessorySelectedEncoding
-        } else {
-            self.readingEncoding = String.Encoding(rawValue: UserDefaults.standard[.encodingInOpen])
-        }
+        // use the encoding selected by the user in the open panel, if exists
+        self.readingEncoding = (DocumentController.shared as! DocumentController).accessorySelectedEncoding ?? .autoDetection
         
         super.init()
         

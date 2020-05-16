@@ -66,8 +66,8 @@
 "Open as Text File" = "Als Textdatei öffnen";
 "A new theme named “%@” has been successfully installed." = "Ein neues Thema mit dem Namen „%@“ wurde erfolgreich installiert.";
 
-// Window title of bug report
-"Bug Report" = "Fehlerbericht";
+// Window title of issue report
+"Issue Report" = "Fehlerbericht";
 
 
 
@@ -119,7 +119,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "Automatisch erkennen";
+"Automatic" = "Automatisch";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
@@ -176,6 +176,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Steuerzeichen";
+"Indent Guides" = "Einzugshilfslinien";
 "Wrap Lines" = "Zeilen umbrechen";
 
 // Touch bar item labels -Text View
@@ -266,6 +267,7 @@
 "Text" = "Text";
 "Copy as Rich Text" = "Als formatierten Text kopieren";
 "Select All" = "Alles auswählen";
+"Straighten Quotes" = "Anführungszeichen glätten";
 
 
 
@@ -283,6 +285,8 @@
 "Show Invisibles" = "Steuerzeichen einblenden";
 "Hide Page Guide" = "Seitenhilfslinie ausblenden";
 "Show Page Guide" = "Seitenhilfslinie einblenden";
+"Hide Indent Guides" = "Einzugshilfslinien ausblenden";
+"Show Indent Guides" = "Einzugshilfslinien einblenden";
 "Unwrap Lines" = "Zeilen nicht umbrechen";
 "Wrap Lines" = "Zeilen umbrechen";
 
@@ -370,12 +374,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "Möchtest du wirklich zu „%@“ wechseln?";
-"The default “Auto-Detect” is recommended for most cases." = "Die automatische Erkennung wird für die meisten Fälle empfohlen.";
-"Change to “%@”" = "Zu „%@“ wechseln";
-"Revert to “Auto-Detect”" = "Auf „Autom. erkennen“ zurücksetzen";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "„%@“ duplizieren …";
 "Export “%@”…" = "„%@“ exportieren …";

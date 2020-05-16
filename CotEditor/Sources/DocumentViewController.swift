@@ -63,6 +63,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         self.showsNavigationBar = defaults[.showNavigationBar]
         self.wrapsLines = defaults[.wrapLines]
         self.showsPageGuide = defaults[.showPageGuide]
+        self.showsIndentGuides = defaults[.showIndentGuides]
         
         // set writing direction
         switch defaults[.writingDirection] {
@@ -104,6 +105,9 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             UserDefaults.standard.observe(key: .showPageGuide, options: [.new]) { [weak self] change in
                 self?.showsPageGuide = change.new!
             },
+            UserDefaults.standard.observe(key: .showIndentGuides, options: [.new]) { [weak self] change in
+                self?.showsIndentGuides = change.new!
+            },
             UserDefaults.standard.observe(key: .wrapLines, options: [.new]) { [weak self] change in
                 self?.wrapsLines = change.new!
             },
@@ -132,6 +136,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         return super.restorableStateKeyPaths + [
             #keyPath(showsLineNumber),
             #keyPath(showsPageGuide),
+            #keyPath(showsIndentGuides),
             #keyPath(showsInvisibles),
             #keyPath(wrapsLines),
             #keyPath(verticalLayoutOrientation),
@@ -271,6 +276,12 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                     : "Show Page Guide".localized
                 (item as? StatableToolbarItem)?.state = self.showsPageGuide ? .on : .off
             
+            case #selector(toggleIndentGuides):
+                (item as? NSMenuItem)?.title = self.showsIndentGuides
+                    ? "Hide Indent Guides".localized
+                    : "Show Indent Guides".localized
+                (item as? StatableToolbarItem)?.state = self.showsIndentGuides ? .on : .off
+            
             case #selector(toggleLineWrap):
                 (item as? NSMenuItem)?.title = self.wrapsLines
                     ? "Unwrap Lines".localized
@@ -316,13 +327,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
                 return !self.verticalLayoutOrientation
             
             case #selector(changeWritingDirection):
-                let tag: Int = {
-                    switch (self.verticalLayoutOrientation, self.writingDirection) {
-                        case (true, _): return 2
-                        case (false, .rightToLeft): return 1
-                        default: return 0
-                    }
-                }()
+                let tag: Int = (self.writingDirection == .rightToLeft) ? 1 : 0
                 (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
             
             case #selector(changeOrientation):
@@ -517,6 +522,17 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// visibility of indent guides in text view
+    @objc var showsIndentGuides = false {
+        
+        didSet {
+            for viewController in self.editorViewControllers {
+                viewController.textView?.showsIndentGuides = showsIndentGuides
+            }
+        }
+    }
+    
+    
     /// visibility of invisible characters
     @objc var showsInvisibles = false {
         
@@ -657,6 +673,13 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     }
     
     
+    /// toggle if shows indent guides in text view
+    @IBAction func toggleIndentGuides(_ sender: Any?) {
+        
+        self.showsIndentGuides.toggle()
+    }
+    
+    
     /// toggle if lines wrap at window edge
     @IBAction func toggleLineWrap(_ sender: Any?) {
         
@@ -756,11 +779,8 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             case 1:
                 self.makeLayoutOrientationHorizontal(nil)
                 self.makeWritingDirectionRightToLeft(nil)
-            case 2:
-                self.makeWritingDirectionLeftToRight(nil)
-                self.makeLayoutOrientationVertical(nil)
             default:
-                assertionFailure("Segmented writing direction button must have 3 segments only.")
+                assertionFailure("Segmented writing direction button must have 2 segments only.")
         }
     }
     
@@ -942,6 +962,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         editorViewController.textView?.showsInvisibles = self.showsInvisibles
         editorViewController.textView?.setLayoutOrientation(self.verticalLayoutOrientation ? .vertical : .horizontal)
         editorViewController.textView?.showsPageGuide = self.showsPageGuide
+        editorViewController.textView?.showsIndentGuides = self.showsIndentGuides
         editorViewController.showsNavigationBar = self.showsNavigationBar
         editorViewController.showsLineNumber = self.showsLineNumber  // need to be set after setting text orientation
         
@@ -951,6 +972,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // copy textView states
         if let baseTextView = baseViewController?.textView, let textView = editorViewController.textView {
+            textView.typingAttributes = baseTextView.typingAttributes
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth

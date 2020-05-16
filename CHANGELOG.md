@@ -2,12 +2,42 @@
 Change Log
 ==========================
 
+3.9.0-beta.3 (415)
+--------------------------
+
+### Improvements
+
+- Remove the text encoding option for opened documents; instead, the encoding is always detected automatically when opening an existing file.
+- Improve the encodings list edit view.
+- Adjust the width of toolbar items.
+- Remove “vertical orientation” from the selections of the Writing Direction toolbar button.
+- Update help content.
+- [trivial] Rename “Auto-Detect,” the option detecting the file encoding automatically, to “Automatic.”
+- [trivial] Update some labels in the Format pane.
+- [beta] Add menu item, toolbar item, and Touch Bar item to toggle visibility of indent guides in the current document.
+- [beta] Adjust the vertical position of the line ending symbol.
+- [beta] Make the indent guide drawing pixel-perfect.
+
+
+### Fixes
+
+- Fix an issue where the item “Automatic” (ex. Auto-Detect) was missing in the encoding selections in the open panel.
+- Fix an issue with multiple cursors where extra characters were deleted when performing forward delete with selection.
+- Fix an issue with multiple cursors where just a single UTF-16 character was deleted instead of the whole character when the character to delete consists of multiple UTF-16 characters.
+- Fix an issue with scripting with AppleScript/JXA where the `line range` command selected a wrong range when the line endings of the document are CRLF.
+- Fix an issue with scripting with AppleScript/JXA where selecting a single line by specifying a single integer argument to `line range` did not work.
+- Fix an issue where the theme color was not applied to the color of typed text in split view.
+- Fix missing localization.
+- [beta] Fix an issue in the editor where lines were initially wrapped at the wrong position when the text orientation is vertical and overscrolling is enabled.
+
+
+
 3.9.0-beta.2 (413)
 --------------------------
 
 ### New Features
 
-- Add option to draw indent guides.
+- Add an option to draw indent guides.
 
 
 ### Improvements

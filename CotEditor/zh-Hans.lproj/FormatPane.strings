@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -39,12 +39,12 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "默认文本编码：";
 
-/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
-"3277.title" = "打开文件：";
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Priority of encodings:";  // FIXME: changed
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "编辑列表…";
-/* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
-"3280.title" = "参考编码声明";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "参考编码声明";  // FIXME: added "in document"
 
 
 
@@ -56,8 +56,8 @@
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "默认语法样式：";
 
-/* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "已安装的语法样式：";
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "已安装的语法样式：";  // FIXME: changed (installed -> available)
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "该样式已被自定义。";

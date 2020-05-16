@@ -60,7 +60,7 @@
 		<dd>The current selection. (selection-object)</dd>
 
 		<dt><code>encoding</code></dt>
-		<dd>The encoding name of the document. (Unicode text)</dd>
+		<dd>The text encoding name of the document. (Unicode text)</dd>
 
 		<dt><code>IANA charset</code></dt>
 		<dd>The IANA charset name of the document. (Unicode text, e.g.<code>Shift_JIS</code>, <code>EUC-JP</code>)</dd>
@@ -265,7 +265,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">convert</code></dt>
-	<dd>Converts the character encoding of the document.</dd>
+	<dd>Converts the text encoding of the document.</dd>
 	<dd><dl class="subtree">
 		<dt><code>to</code> (Unicode text)</dt>
 		<dd>The new encoding.</dd>
@@ -281,7 +281,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <figure>
 	<pre class="source"><code class="AppleScript">convert front document to &quot;Unicode (UTF-8)&quot; without lossy</code></pre>
-	<figcaption>Converts the character encoding of the frontmost window to UTF-8, returns the result.</figcaption>
+	<figcaption>Converts the text encoding of the frontmost window to UTF-8, returns the result.</figcaption>
 </figure>
 </section>
 
@@ -291,7 +291,7 @@ For example, when not using the <code>wrap</code> or <code>backwards</code> opti
 
 <dl class="tree">
 	<dt><code class="command">reinterpret</code></dt>
-	<dd>Reinterpret the document with the specified encoding.</dd>
+	<dd>Reinterpret the document with the specified text encoding.</dd>
 	<dd><dl class="subtree">
 		<dt><code>as</code> (Unicode text)</dt>
 		<dd>The encoding for reinterpreting.</dd>

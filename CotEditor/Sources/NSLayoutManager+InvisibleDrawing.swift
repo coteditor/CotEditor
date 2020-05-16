@@ -204,7 +204,7 @@ private extension Invisible {
         switch self {
             case .newLine:
                 // -> Do not use `size.width` as new line glyphs actually have no area.
-                let y = 0.4 * size.height
+                let y = 0.5 * size.height
                 let radius = 0.25 * size.height
                 let transform = isRTL ? CGAffineTransform(scaleX: -1, y: 1) : .identity
                 let path = CGMutablePath()

@@ -102,10 +102,11 @@ extension MultiCursorEditing {
     }
     
     
-    /// Remove backward at all insertionRanges when there is more than one to delete.
+    /// Remove characters at all insertionRanges when there is more than one to delete.
     ///
+    /// - Parameter forward: Perform the forward delete when the flag raised; otherwise, delete backward.
     /// - Returns: Whether the deletion succeed.
-    func multipleDeleteBackward() -> Bool {
+    func multipleDelete(forward: Bool = false) -> Bool {
         
         let ranges = self.insertionRanges
         
@@ -116,12 +117,15 @@ extension MultiCursorEditing {
                 guard range.location > 0 else { return range }
                 guard range.isEmpty else { return range }
                 
-                if let self = self as? Indenting,
+                if !forward,
+                    let self = self as? Indenting,
                     self.isAutomaticTabExpansionEnabled,
                     let indentRange = self.string.rangeForSoftTabDeletion(in: range, tabWidth: self.tabWidth)
                 { return indentRange }
                 
-                return NSRange(location: range.location - 1, length: 1)
+                let location = forward ? range.location : range.location - 1
+                
+                return (self.string as NSString).rangeOfComposedCharacterSequence(at: location)
             }
             // remove overlappings
             .compactMap { Range($0) }

@@ -67,8 +67,8 @@
 "Open as Text File" = "Abrir como Arquivo de Texto";
 "A new theme named “%@” has been successfully installed." = "Um novo tema chamado “%@” foi instalado com êxito.";
 
-// Window title of bug report
-"Bug Report" = "Relatório de Erro";
+// Window title of issue report
+"Issue Report" = "Relatório de Erro";  // FIXME: bug -> issue
 
 
 
@@ -120,7 +120,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "Detectar Automaticamente";
+"Automatic" = "Automático";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "O arquivo “%@” não parece ser de dados de texto.";
@@ -177,6 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisíveis";
+"Indent Guides" = "Indent Guides";  // FIXME: added
 "Wrap Lines" = "Ajustar Linhas";
 
 // Touch bar item labels -Text View
@@ -267,6 +268,7 @@
 "Text" = "Texto";
 "Copy as Rich Text" = "Copiar como Texto com Formatação";
 "Select All" = "Selecionar Tudo";
+"Straighten Quotes" = "Straighten Quotes";
 
 
 
@@ -284,6 +286,8 @@
 "Show Invisibles" = "Mostrar Invisíveis";
 "Hide Page Guide" = "Ocultar Guia da Página";
 "Show Page Guide" = "Mostrar Guia da Página";
+"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
 "Unwrap Lines" = "Desajustar Linhas";
 "Wrap Lines" = "Ajustar Linhas";
 
@@ -371,12 +375,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "Tem certeza de que deseja alterar para “%@”?";
-"The default “Auto-Detect” is recommended for most cases." = "O padrão “Detectar Automaticamente” é recomendado para a maioria dos casos.";
-"Change to “%@”" = "Alterar para “%@”";
-"Revert to “Auto-Detect”" = "Reverter para “Detectar Automaticamente”";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "Duplicar “%@”…";
 "Export “%@”…" = "Exportar “%@”…";

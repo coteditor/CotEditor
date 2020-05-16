@@ -169,33 +169,35 @@ final class StatusBarController: NSViewController {
         
         let defaults = UserDefaults.standard
         let labelColor = NSColor.statusBarLabelColor(appearance: self.view.effectiveAppearance)
-        let status = NSMutableAttributedString()
+        var status: [NSAttributedString] = []
         
         if defaults[.showStatusBarLines] {
-            status.appendFormattedState(value: info.lines, label: (string: "Lines", color: labelColor))
+            status.append(.formatted(label: "Lines", color: labelColor) + .formatted(state: info.lines))
         }
         if defaults[.showStatusBarChars] {
-            status.appendFormattedState(value: info.chars, label: (string: "Characters", color: labelColor))
+            status.append(.formatted(label: "Characters", color: labelColor) + .formatted(state: info.chars))
         }
         if defaults[.showStatusBarWords] {
-            status.appendFormattedState(value: info.words, label: (string: "Words", color: labelColor))
+            status.append(.formatted(label: "Words", color: labelColor) + .formatted(state: info.words))
         }
         if defaults[.showStatusBarLocation] {
-            status.appendFormattedState(value: info.location, label: (string: "Location", color: labelColor))
+            status.append(.formatted(label: "Location", color: labelColor) + .formatted(state: info.location))
         }
         if defaults[.showStatusBarLine] {
-            status.appendFormattedState(value: info.line, label: (string: "Line", color: labelColor))
+            status.append(.formatted(label: "Line", color: labelColor) + .formatted(state: info.line))
         }
         if defaults[.showStatusBarColumn] {
-            status.appendFormattedState(value: info.column, label: (string: "Column", color: labelColor))
+            status.append(.formatted(label: "Column", color: labelColor) + .formatted(state: info.column))
         }
+        
+        let attrStatus = status.joined(separator: .init(string: "   ")).mutable
         
         // truncate tail
         let paragraphStyle = NSParagraphStyle.default.mutable
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        status.addAttribute(.paragraphStyle, value: paragraphStyle, range: status.range)
+        attrStatus.addAttribute(.paragraphStyle, value: paragraphStyle, range: attrStatus.range)
         
-        self.editorStatus = status
+        self.editorStatus = attrStatus
     }
     
     
@@ -210,20 +212,19 @@ final class StatusBarController: NSViewController {
             else { return }
         
         let defaults = UserDefaults.standard
-        let status = NSMutableAttributedString()
+        var status: [NSAttributedString] = []
         
         if defaults[.showStatusBarEncoding] {
-            status.appendFormattedState(value: info.mode.encoding, label: nil)
+            status.append(.formatted(state: info.mode.encoding))
         }
         if defaults[.showStatusBarLineEndings] {
-            status.appendFormattedState(value: info.mode.lineEndings, label: nil)
+            status.append(.formatted(state: info.mode.lineEndings))
         }
         if defaults[.showStatusBarFileSize] {
-            let fileSize = self.byteCountFormatter.string(for: info.file.fileSize)
-            status.appendFormattedState(value: fileSize, label: nil)
+            status.append(.formatted(state: self.byteCountFormatter.string(for: info.file.fileSize)))
         }
         
-        self.documentStatus = status
+        self.documentStatus = status.joined(separator: .init(string: "   "))
         self.showsReadOnly = info.file.isReadOnly
     }
     
@@ -237,8 +238,7 @@ private extension NSColor {
     
     @available(macOS 10.15, *)
     static let statusBarLabelColor = NSColor(name: "statusBarLabelColor") { appearance in
-        
-        appearance.isDark ? NSColor.secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
+        appearance.isDark ? .secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
     }
     
     
@@ -246,40 +246,32 @@ private extension NSColor {
     static func statusBarLabelColor(appearance: NSAppearance) -> NSColor {
         
         guard #available(macOS 10.15, *) else {
-            return appearance.isDark ? Self.secondaryLabelColor : Self.labelColor.withAlphaComponent(0.6)
+            return appearance.isDark ? .secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
         }
         
-        return NSColor.statusBarLabelColor
+        return .statusBarLabelColor
     }
     
 }
 
 
-private extension NSMutableAttributedString {
+private extension NSAttributedString {
     
-    /// append formatted state
-    func appendFormattedState(value: String?, label: (string: String, color: NSColor)?) {
+    /// Formatted state for status bar.
+    static func formatted(state: String?) -> Self {
         
-        if !self.string.isEmpty {
-            self.append(NSAttributedString(string: "   "))
+        if let state = state {
+            return Self(string: state)
+        } else {
+            return Self(string: "-", attributes: [.foregroundColor: NSColor.disabledControlTextColor])
         }
+    }
+    
+    
+    /// Formatted label for status bar.
+    static func formatted(label: String, color: NSColor) -> Self {
         
-        if let label = label {
-            let attrLabel = NSAttributedString(string: (label.string + ": ").localized,
-                                               attributes: [.foregroundColor: label.color])
-            self.append(attrLabel)
-        }
-        
-        let attrValue: NSAttributedString = {
-            if let value = value {
-                return NSAttributedString(string: value)
-            } else {
-                return NSAttributedString(string: "-",
-                                          attributes: [.foregroundColor: NSColor.disabledControlTextColor])
-            }
-        }()
-        
-        self.append(attrValue)
+        return Self(string: (label + ": ").localized, attributes: [.foregroundColor: color])
     }
     
 }

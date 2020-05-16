@@ -17,9 +17,9 @@
 
 <h1>文字化けする</h1>
 
-<p>文字化けは、ファイルの文字エンコーディングをCotEditorが正しく認識できなかった場合に発生します。次の手順で文字エンコーディングを変更してください。</p>
+<p>文字化けは、ファイルのテキストエンコーディングをCotEditorが正しく認識できなかった場合に発生します。次の手順でエンコーディングを変更してください。</p>
 <ol>
-	<li>「フォーマット」メニューの「エンコーディング」を開き、適切な文字エンコーディングを選択します。</li>
+	<li>「フォーマット」メニューの「エンコーディング」を開き、適切なエンコーディングを選択します。</li>
 	<li>「再解釈」をクリックします。</li>
 </ol>
 <p><img src="../gfx/encodingWindow@2x.png" width="555" alt=""/></p>
@@ -33,10 +33,10 @@
 	<dd>現在のテキストを指定されたエンコーディングに変換します。</dd>
 </dl>
 <ul>
-	<li>文字エンコーディングの変更は、ツールバーの「エンコーディング」からも行うことができます。</li>
-	<li>自動認識する際の文字エンコーディングの認識順序を調整することで、文字化けが発生する頻度をより少なくできます。<br />
-	=&gt; <a href="../pgs/howto_customize_encoding_order.html">文字エンコードの認識順序を調整する</a></li>
-	<li>自動認識する際、環境設定で「エンコーディング指定タグを参照する」がオンになっていると、書類中にある「<code>charset</code>=」「<code>encoding=</code>」「<code>@charset</code>」「<code>encoding:</code>」「<code>coding:</code>」タグに記述されているエンコーディングが優先されます。<br />
+	<li>エンコーディングの変更は、ツールバーの「エンコーディング」からも行うことができます。</li>
+	<li>自動認識する際のエンコーディングの認識順序を調整することで、文字化けが発生する頻度をより少なくできます。<br />
+	=&gt; <a href="../pgs/howto_customize_encoding_order.html">テキストエンコーディングの認識順序を調整する</a></li>
+	<li>エンコーディングの自動認識では、環境設定で「書類のエンコーディング宣言を参照する」が有効になっていると、書類中にある<code>encoding=</code>, <code>@charset</code>などの宣言として記述されているエンコーディングが優先されます。<br />
 	=&gt; <a href="../pgs/about_autodetect_charset.html">エンコーディング宣言による自動認識</a></li>
 </ul>
 
@@ -44,7 +44,7 @@
 <section id="cf">
 <h2>関連項目</h2>
 <ul>
-	<li><a href="../pgs/howto_customize_encoding_order.html">文字エンコードの認識順序を調整する</a></li>
+	<li><a href="../pgs/howto_customize_encoding_order.html">テキストエンコーディングの認識順序を調整する</a></li>
 	<li><a href="../pgs/about_autodetect_charset.html">エンコーディング宣言による自動認識</a></li>
 	<li><a href="../pgs/about_shiftjis.html">Shift JIS系のエンコーディングの違い</a></li>
 </ul>

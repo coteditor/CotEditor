@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,19 +26,16 @@
  
  */
 
-/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order."; ObjectID = "3395"; */
-"3395.title" = "Trascinare le codifiche per modificarne l’ordine.";
-
-/* Class = "NSTextFieldCell"; title = "This list is for Auto-Detect and the file encoding menu.\nAuto-Detect tries these encodings from the top of the list."; ObjectID = "3394"; */
-"3394.title" = "Questo elenco riguarda il Rilevamento Automatico ed il menu della codifica del file. \nIl Rilevamento Automatico proverà le codifiche in cima all’elenco.";
+/* Class = "NSTextFieldCell"; title = "Drag encodings to change the order:"; ObjectID = "3395"; */
+"3395.title" = "Trascinare le codifiche per modificarne l’ordine:";
 
 /* Class = "NSButtonCell"; title = "Add Separator"; ObjectID = "3392"; */
 "3392.title" = "Aggiungi separatore";
 /* Class = "NSButtonCell"; title = "Delete Separator"; ObjectID = "3393"; */
 "3393.title" = "Elimina separatore";
 
-/* Class = "NSTextFieldCell"; title = "“Unicode (UTF-8) with BOM” will be automatically added to just after the normal “Unicode (UTF-8)”."; ObjectID = "jXZ-7k-86F"; */
-"jXZ-7k-86F.title" = "“Unicode (UTF-8) con BOM” sarà aggiunto automaticamente subito dopo il normale “Unicode (UTF-8)”.";
+/* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
+"3394.title" = "Questo elenco riguarda il Rilevamento Automatico ed il menu della codifica del file.";  // FIXME: updated
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Ripristina default";

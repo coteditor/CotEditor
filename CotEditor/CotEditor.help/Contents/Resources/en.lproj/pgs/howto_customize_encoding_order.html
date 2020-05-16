@@ -2,36 +2,40 @@
 
 <head>
 	<meta charset="UTF-8"/>
-	<meta name="keywords" content="charanter encoding"/>
+	<meta name="keywords" content="text encoding, detection"/>
 	<link rel="start" href="../CotEditorHelp.html"/>
 	<link rel="index" href="../xpgs/xall.html"/>
 	<link rel="stylesheet" href="../../Shared/sty/standard.css"/>
-	<title>Setting the priority of encoding auto-detection</title>
+	<title>Setting the priority of encoding detection</title>
 </head>
 
 <body>
+<a name="howto_customize_encoding_order"></a>
+
 <nav><ul>
 	<li><a href="../CotEditorHelp.html">CotEditor Help</a></li>
 </ul></nav>
 
 
-<h1>Setting the priority of encoding auto-detection</h1>
+<h1>Setting the priority of encoding detection</h1>
 
-<p>To set the priority of encoding auto-detection:</p>
+<p>To change the priority of encoding detection on file opening:</p>
 <ol>
 	<li>Choose CotEditor &gt; Preferences.</li>
-	<li>Click Format.</li>
-	<li>In the File Encoding section, click Edit Encoding List.</li>
-	<li>Move up the encodings you use frequently, and place UTF-16 right under them.<br />
-	(As UTF-16 is able to encode most characters, you need to put it <strong>at the bottom of often-used encodings</strong>.)</li>
+	<li>Select the Format pane.</li>
+	<li>In the “priority of encodings” section, click the “Edit List” button.</li>
+	<li>Move up the encodings you use frequently.<br />
+	(Here, we recommend placing UTF-16 <strong>after</strong> other often-used encodings, as UTF-16 can encode most characters.)</li>
 </ol>
 <p>Though you can change the order of encodings, you cannot delete them. Just move down the encodings you don't use.</p>
+<p>Besides, “Unicode (UTF-8)” and “Unicode (UTF-8) with BOM” are always handled as a set. Because the BOM (byte order mark) will be taken into account when trying encoding data into UTF-8, there is no effect on the detection precision that the order of these two encodings are fixed.</p>
 
 
 <section id="cf">
 <h2>See also</h2>
 <ul>
 	<li><a href="../pgs/about_shiftjis.html">What is the difference between the four kinds of Shift JIS?</a></li>
+	<li><a href="../pgs/pref_format.html">Format preferences</a></li> 
 </ul>
 </section>
 

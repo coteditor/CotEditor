@@ -41,7 +41,7 @@ extension NSTextView {
         // avoid invoking heavy-duty `range(for:)` as possible
         guard
             let layoutManager = self.layoutManager,
-            let dirtyRange = self.range(for: dirtyRect, withoutAdditionalLayout: true),
+            let dirtyRange = self.range(for: dirtyRect),
             layoutManager.hasTemporaryAttribute(.roundedBackgroundColor, in: dirtyRange)
             else { return }
         

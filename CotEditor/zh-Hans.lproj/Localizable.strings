@@ -67,8 +67,8 @@
 "Open as Text File" = "以文本方式打开";
 "A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
 
-// Window title of bug report
-"Bug Report" = "错误报告";
+// Window title of issue report
+"Issue Report" = "错误报告";  // FIXME: bug -> issue
 
 
 
@@ -120,7 +120,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "自动检测";
+"Automatic" = "自动";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
@@ -177,6 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可见元素";
+"Indent Guides" = "Indent Guides";  // FIXME: added
 "Wrap Lines" = "换行";
 
 // Touch bar item labels -Text View
@@ -267,6 +268,7 @@
 "Text" = "文本";
 "Copy as Rich Text" = "以富文本拷贝";
 "Select All" = "全部选择";
+"Straighten Quotes" = "直引号";
 
 
 
@@ -284,6 +286,8 @@
 "Show Invisibles" = "显示不可见元素";
 "Hide Page Guide" = "隐藏页面指示";
 "Show Page Guide" = "显示页面指示";
+"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 
@@ -371,12 +375,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "确定要变更至“%@”吗？";
-"The default “Auto-Detect” is recommended for most cases." = "在绝大多数情况下，推荐使用默认的“自动检测”。";
-"Change to “%@”" = "“变更至%@”";
-"Revert to “Auto-Detect”" = "还原回“自动检测”";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "拷贝“%@”…";
 "Export “%@”…" = "导出“%@”…";

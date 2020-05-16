@@ -9,7 +9,7 @@
 //  ---------------------------------------------------------------------------
 //
 //  © 2004-2007 nakamuxu
-//  © 2014-2018 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
             self.canRestore = (encodings != UserDefaults.standard.registeredValue(for: .encodingList))
         }
     }
-    @objc private dynamic var canRestore = false  // enability of "Restore Default" button
+    @objc private dynamic var canRestore = false  // availability of "Restore Default" button
     
     @IBOutlet private weak var tableView: NSTableView?
     @IBOutlet private weak var deleteSeparatorButton: NSButton?
@@ -62,34 +62,28 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         guard let textField = (rowView.view(atColumn: 0) as? NSTableCellView)?.textField else { return }
         
-        let cfEncoding = CFStringEncoding(self.encodings[row])
+        let encoding = self.encodings[row]
         
-        // separator
-        if cfEncoding == kCFStringEncodingInvalidId {
-            textField.stringValue = String.separator
-            return
+        switch encoding {
+            case kCFStringEncodingInvalidId:
+                textField.stringValue = .separator
+            
+            case .utf8:
+                textField.attributedStringValue = [encoding.attributedName(),
+                                                   encoding.attributedName(withUTF8BOM: true)].joined(separator: .newLine)
+            
+            default:
+                textField.attributedStringValue = encoding.attributedName()
         }
-        
-        // styled encoding name
-        let encoding = String.Encoding(cfEncoding: cfEncoding)
-        let encodingName = String.localizedName(of: encoding)
-        let attrEncodingName = NSAttributedString(string: encodingName)
-        
-        let ianaName = (CFStringConvertEncodingToIANACharSetName(cfEncoding) as String?) ?? "-"
-        let attrIanaName = NSAttributedString(string: " : " + ianaName,
-                                              attributes: [.foregroundColor: NSColor.disabledControlTextColor])
-        
-        textField.attributedStringValue = attrEncodingName + attrIanaName
     }
     
     
     /// update UI just after selected rows are changed
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        // update enability of "Delete Separator" button
-        self.deleteSeparatorButton?.isEnabled = self.tableView!.selectedRowIndexes.contains { index in
-            self.encodings[index] == kCFStringEncodingInvalidId
-        }
+        // update availability of "Delete Separator" button
+        self.deleteSeparatorButton?.isEnabled = self.tableView!.selectedRowIndexes
+            .contains { self.encodings[$0] == kCFStringEncodingInvalidId }
     }
     
     
@@ -110,7 +104,6 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     @IBAction func revertDefaultEncodings(_ sender: Any?) {
         
         self.encodings = UserDefaults.standard.registeredValue(for: .encodingList)
-        self.tableView?.reloadData()
     }
     
     
@@ -142,7 +135,7 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
         
         let indexes = IndexSet(integer: rowIndex)
         
-        NSAnimationContext.runAnimationGroup({ context in
+        NSAnimationContext.runAnimationGroup({ _ in
             // update UI
             tableView.insertRows(at: indexes, withAnimation: .effectGap)
         }, completionHandler: { [weak self] in
@@ -158,20 +151,51 @@ final class EncodingListViewController: NSViewController, NSTableViewDelegate {
     private func deleteSeparators(at rowIndexes: IndexSet) {
         
         // pick only separators up
-        let toDeleteIndexes = rowIndexes.filteredIndexSet { index in
-            self.encodings[index] == kCFStringEncodingInvalidId
-        }
+        let toDeleteIndexes = rowIndexes.filteredIndexSet { self.encodings[$0] == kCFStringEncodingInvalidId }
         
         guard !toDeleteIndexes.isEmpty else { return }
         guard let tableView = self.tableView else { return assertionFailure() }
         
-        NSAnimationContext.runAnimationGroup({ context in
+        NSAnimationContext.runAnimationGroup({ _ in
             // update UI
             tableView.removeRows(at: toDeleteIndexes, withAnimation: [.slideUp, .effectFade])
         }, completionHandler: { [weak self] in
             // update data
             self?.encodings.remove(in: toDeleteIndexes)
         })
+    }
+    
+}
+
+
+
+// MARK: - Private Extensions
+
+private extension CFStringEncoding {
+    
+    static let utf8: CFStringEncoding = CFStringBuiltInEncodings.UTF8.rawValue
+    
+    
+    /// Return encoding name with style.
+    ///
+    /// This funciton is designed __only for__ the encoding list table.
+    ///
+    /// - Parameter withUTF8BOM: True when needing to attach " with BOM" to the name if the encoding is .utf8.
+    /// - Returns: A styled encoding name.
+    func attributedName(withUTF8BOM: Bool = false) -> NSAttributedString {
+        
+        assert(!withUTF8BOM || self == .utf8)
+        
+        // styled encoding name
+        let encoding = String.Encoding(cfEncoding: self)
+        let encodingName = String.localizedName(of: encoding, withUTF8BOM: withUTF8BOM)
+        let attrEncodingName = NSAttributedString(string: encodingName)
+        
+        let ianaName = (CFStringConvertEncodingToIANACharSetName(self) as String?) ?? "-"
+        let attrIanaName = NSAttributedString(string: " : " + ianaName,
+                                              attributes: [.foregroundColor: NSColor.disabledControlTextColor])
+        
+        return attrEncodingName + attrIanaName
     }
     
 }

@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2019 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -86,13 +86,10 @@
 /* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
 "lad-Dh-atP.ibShadowedToolTips[0]" = "左から右";  // "Left to Right"
 "lad-Dh-atP.ibShadowedToolTips[1]" = "右から左";  // "Right to Left"
-"lad-Dh-atP.ibShadowedToolTips[2]" = "縦書き";  // "Vertical"
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "Tul-RE-xpJ"; */
 "Tul-RE-xpJ.title" = "左から右";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "7iT-zZ-mIj"; */
 "7iT-zZ-mIj.title" = "右から左";
-/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
-"5v4-ft-RRo.title" = "縦書き";
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
 "1cW-FV-40L.label" = "横書き/縦書き";  /* Text Orientation */
@@ -150,6 +147,11 @@
 "GS6-aA-mgz.label" = "ページガイド";  /* Page Guide */
 "GS6-aA-mgz.paletteLabel" = "ページガイド";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "ページガイドを表示/非表示";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "95y-zI-oqM"; */
+"95y-zI-oqM.label" = "インデントガイド";  /* Indent Guides */
+"95y-zI-oqM.paletteLabel" = "インデントガイド";  /* Indent Guides */
+"95y-zI-oqM.toolTip" = "インデントガイドを表示/非表示";  /* Show or hide indent guide lines */
 
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "不透明度";  /* Opacity */

@@ -66,8 +66,8 @@
 "Open as Text File" = "Ouvrir en tant que fichier texte";
 "A new theme named “%@” has been successfully installed." = "Un nouveau thème nommé ”%@” a été installé avec succès.";
 
-// Window title of bug report
-"Bug Report" = "Rapport de bug";
+// Window title of issue report
+"Issue Report" = "Rapport de bug";  // FIXME: bug -> issue
 
 
 
@@ -118,7 +118,7 @@
 
 /* MARK: Document Controller */
 // File open accessory's menu item title
-"Auto-Detect" = "Détecter automatiquement";
+"Automatic" = "Automatique";
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Le fichier “%@” ne semble pas être dans un format textuel.";
@@ -175,6 +175,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Caractères invisibles";
+"Indent Guides" = "Indent Guides";  // FIXME: added
 "Wrap Lines" = "Renvoyer à la ligne";
 
 // Touch bar item labels -Text View
@@ -265,6 +266,7 @@
 "Text" = "Texte";
 "Copy as Rich Text" = "Copier en tant que texte riche";
 "Select All" = "Tout sélectionner";
+"Straighten Quotes" = "Redresser les guillemets";
 
 
 
@@ -282,6 +284,8 @@
 "Show Invisibles" = "Afficher les caractères invisibles";
 "Hide Page Guide" = "Masquer le guide de page";
 "Show Page Guide" = "Afficher le guide de page";
+"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
 "Unwrap Lines" = "Ne pas renvoyer à la ligne";
 "Wrap Lines" = "Renvoyer à la ligne";
 
@@ -369,12 +373,6 @@
 
 
 // Format pane
-// Encoding menu alert
-"Are you sure you want to change to “%@”?" = "Êtes-vous sûr de vouloir passer en “%@”?";
-"The default “Auto-Detect” is recommended for most cases." = "Le réglage par défaut “Détection automatique” est recommandé pour la plupart des situations.";
-"Change to “%@”" = "Changer en “%@”";
-"Revert to “Auto-Detect”" = "Revenir à “Détecter automatiquement”";
-
 // Installed syntax styles action menu items
 "Duplicate “%@”…" = "Duplication de “%@”…";
 "Export “%@”…" = "Export de “%@”…";

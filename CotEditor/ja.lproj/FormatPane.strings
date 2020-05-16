@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2014-2018 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Default line endings:"; ObjectID = "3273"; */
-"3273.title" = "改行コード:";
+"3273.title" = "デフォルト改行コード:";
 /* Class = "NSMenuItem"; title = "macOS / Unix (LF)"; ObjectID = "15"; */
 "15.title" = "macOS / Unix (LF)";
 /* Class = "NSMenuItem"; title = "Classic Mac OS (CR)"; ObjectID = "14"; */
@@ -36,14 +36,14 @@
 
 
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
-"3278.title" = "エンコーディング:";
+"3278.title" = "デフォルトエンコーディング:";
 
-/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
-"3277.title" = "ファイルを開くとき:";
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "エンコーディングの優先順位:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "リストを編集...";
-/* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
-"3280.title" = "エンコーディング宣言を参照";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "書類のエンコーディング宣言を参照";
 
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
@@ -54,8 +54,8 @@
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "デフォルトスタイル:";
 
-/* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "インストール済みスタイル:";
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "利用可能なスタイル:";
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "このスタイルはカスタマイズされています。";

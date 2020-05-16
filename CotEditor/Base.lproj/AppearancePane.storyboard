@@ -482,13 +482,12 @@
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="inR-04-6SZ">
                                 <rect key="frame" x="103" y="381" width="141" height="18"/>
-                                <buttonCell key="cell" type="check" title="Show indent guides" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="csp-Hi-hb1">
+                                <buttonCell key="cell" type="check" title="Show indent guides" bezelStyle="regularSquare" imagePosition="left" inset="2" id="csp-Hi-hb1">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="IE5-39-jAY" name="value" keyPath="values.showIndentGuides" id="Ee0-MW-84l"/>
-                                    <binding destination="IE5-39-jAY" name="enabled" keyPath="values.showInvisibles" id="QFO-Ec-F0W"/>
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXi-ss-fox">

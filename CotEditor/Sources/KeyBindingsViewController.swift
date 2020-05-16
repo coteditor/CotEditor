@@ -285,7 +285,9 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         self.snippets = SnippetKeyBindingManager.shared.snippets.map { SnippetItem($0) }
         
         // setup variable menu
-        self.variableInsertionMenu!.menu!.addItems(for: Snippet.Variable.allCases, target: self.formatTextView)
+        for token in Snippet.Variable.allCases {
+            self.variableInsertionMenu!.menu!.addItem(token.insertionMenuItem(target: self.formatTextView))
+        }
     }
     
     

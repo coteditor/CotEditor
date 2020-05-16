@@ -9,7 +9,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2015-2018 1024jp
+ © 2015-2020 1024jp
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,12 +38,12 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Standard-Codierung:";
 
-/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
-"3277.title" = "Beim Öffnen:";
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Priorität der Codierung:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Liste bearbeiten …";
-/* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
-"3280.title" = "Codierungsdeklaration nachsehen";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Codierungsdeklaration im Dokument nachsehen";
 
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
@@ -54,8 +54,8 @@
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Standard-Syntaxstil:";
 
-/* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "Installierte Syntaxstile:";
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Verfügbare Syntaxstile:";
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "Dieser Stil ist modifiziert.";

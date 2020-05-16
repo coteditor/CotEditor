@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016-2019 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -87,13 +87,10 @@
 /* Class = "NSSegmentedCell"; ObjectID = "lad-Dh-atP"; */
 "lad-Dh-atP.ibShadowedToolTips[0]" = "Da sinistra a destra";  // "Left to Right"
 "lad-Dh-atP.ibShadowedToolTips[1]" = "Da destra a sinistra";  // "Right to Left"
-"lad-Dh-atP.ibShadowedToolTips[2]" = "Verticale";  // "Vertical"
 /* Class = "NSMenuItem"; title = "Left to Right"; ObjectID = "Tul-RE-xpJ"; */
 "Tul-RE-xpJ.title" = "Da sinistra a destra";
 /* Class = "NSMenuItem"; title = "Right to Left"; ObjectID = "7iT-zZ-mIj"; */
 "7iT-zZ-mIj.title" = "Da destra a sinistra";
-/* Class = "NSMenuItem"; title = "Vertical"; ObjectID = "5v4-ft-RRo"; */
-"5v4-ft-RRo.title" = "Verticale";
 
 /* Class = "NSToolbarItem"; ObjectID = "1cW-FV-40L"; */
 "1cW-FV-40L.label" = "Orientamento";  /* Text Orientation */
@@ -151,6 +148,11 @@
 "GS6-aA-mgz.label" = "Guida della pagina";  /* Page Guide */
 "GS6-aA-mgz.paletteLabel" = "Guida della pagina";  /* Page Guide */
 "GS6-aA-mgz.toolTip" = "Mostra/Nascondi la guida della pagina";  /* Show or hide page guide line */
+
+/* Class = "NSToolbarItem"; ObjectID = "95y-zI-oqM"; */
+"95y-zI-oqM.label" = "Indent Guides";  /* Indent Guides */  // FIXME: added
+"95y-zI-oqM.paletteLabel" = "Indent Guides";  /* Indent Guides */  // FIXME: added
+"95y-zI-oqM.toolTip" = "Show or hide indent guide lines";  /* Show or hide indent guide lines */  // FIXME: added
 
 /* Class = "NSToolbarItem"; ObjectID = "LYl-ty-usA"; */
 "LYl-ty-usA.label" = "Opacità";  /* Opacity */

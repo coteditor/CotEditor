@@ -554,8 +554,7 @@ extension EditorTextView {
         
         guard self.hasMultipleInsertions else { return super.deleteForward(sender) }
         
-        self.moveForwardAndModifySelection(sender)
-        self.deleteBackward(sender)
+        guard self.multipleDelete(forward: true) else { return super.deleteForward(sender) }
     }
     
     

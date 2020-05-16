@@ -262,7 +262,6 @@
 		2A5DCE501D185F1B00D5D74C /* CharacterField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE4E1D185F1B00D5D74C /* CharacterField.swift */; };
 		2A5DCE861D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */; };
 		2A5DCE871D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE851D1888D800D5D74C /* SyntaxMappingConflictsViewController.swift */; };
-		2A5DCE891D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */; };
 		2A5DCE8A1D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5DCE881D18FFDB00D5D74C /* EncodingListViewController.swift */; };
 		2A5E4D7C1A44F0D50072013F /* ServicesMenu.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2A5E4D7A1A44F0D50072013F /* ServicesMenu.strings */; };
 		2A5EDDBB241B649C00A07810 /* moof.textClipping in Resources */ = {isa = PBXBuildFile; fileRef = 2A5EDDBA241B649C00A07810 /* moof.textClipping */; };
@@ -673,6 +672,7 @@
 		2AE7A8DA20450FE600830830 /* OutlineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE7A8D820450FE600830830 /* OutlineViewController.swift */; };
 		2AEAA8232096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
 		2AEAA8242096380C001A175C /* HighlightExtractors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEAA8222096380C001A175C /* HighlightExtractors.swift */; };
+		2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */; };
 		2AEC48331E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC48341E641E4F00FB0F89 /* Snippet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC48321E641E4F00FB0F89 /* Snippet.swift */; };
 		2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */; };
@@ -1407,6 +1407,7 @@
 		2AE7A8E22045205D00830830 /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/OutlineView.strings; sourceTree = "<group>"; };
 		2AE7A8E42045205E00830830 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/OutlineView.strings; sourceTree = "<group>"; };
 		2AEAA8222096380C001A175C /* HighlightExtractors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightExtractors.swift; sourceTree = "<group>"; };
+		2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTests.swift; sourceTree = "<group>"; };
 		2AEC48321E641E4F00FB0F89 /* Snippet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snippet.swift; sourceTree = "<group>"; };
 		2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditorTextView.swift; sourceTree = "<group>"; };
 		2AED466F1E425CD200751C45 /* TextFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFind.swift; sourceTree = "<group>"; };
@@ -2214,6 +2215,7 @@
 				2A476CAD1D09C8C80088E37A /* URLExtensionsTests.swift */,
 				2A476CB01D09D0500088E37A /* FontExtensionTests.swift */,
 				2AF0C1271D3DA6F800B6FCB6 /* FourCharCodeTests.swift */,
+				2AEBD259246BB4C200EC97A3 /* NSAttributedStringTests.swift */,
 				2A643BB2245172EB00B2AD54 /* NSBezierPathTests.swift */,
 				2A89160B2394B87100AC13EE /* NSLayoutManagerTests.swift */,
 			);
@@ -3086,6 +3088,7 @@
 				2A4D69291D40032300FBBD0B /* EncodingDetectionTests.swift in Sources */,
 				2A1125C123F180FF006A1DB2 /* LineRangeCacheableTests.swift in Sources */,
 				2A8EF014241F0A8A001BDBC0 /* StringLineProcessingTests.swift in Sources */,
+				2AEBD25A246BB4C200EC97A3 /* NSAttributedStringTests.swift in Sources */,
 				2A7135831CFFDC6600ADA555 /* FilePermissionTests.swift in Sources */,
 				2A9C370E1D672A1F00774BA4 /* BracePairTests.swift in Sources */,
 				2ABEFB6A23DC0CA0008769F4 /* EditorInfoCountOperationTests.swift in Sources */,
@@ -3168,7 +3171,6 @@
 				2A6FD9D11D38933100A59784 /* EditorTextViewController.swift in Sources */,
 				2AA45A4B1D2E871900A1A401 /* EditorViewController.swift in Sources */,
 				2A78BFAD1D1B138D00A583D2 /* EditPaneController.swift in Sources */,
-				2A5DCE891D18FFDB00D5D74C /* EncodingListViewController.swift in Sources */,
 				2A4257A71D22E0660086DAAD /* EncodingManager.swift in Sources */,
 				2A12C7FC1D1813080069C60B /* EncodingTableCellView.swift in Sources */,
 				2A4682B21D2F6B580005410E /* FileDropComposer.swift in Sources */,
@@ -4146,10 +4148,10 @@
 			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 413;
+				CURRENT_PROJECT_VERSION = 415;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = "3.9.0-beta.2";
+				MARKETING_VERSION = "3.9.0-beta.3";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4160,10 +4162,10 @@
 			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 413;
+				CURRENT_PROJECT_VERSION = 415;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = "3.9.0-beta.2";
+				MARKETING_VERSION = "3.9.0-beta.3";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4222,14 +4224,14 @@
 			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 413;
+				CURRENT_PROJECT_VERSION = 415;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
-				MARKETING_VERSION = "3.9.0-beta.2";
+				MARKETING_VERSION = "3.9.0-beta.3";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -4241,14 +4243,14 @@
 			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 413;
+				CURRENT_PROJECT_VERSION = 415;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
-				MARKETING_VERSION = "3.9.0-beta.2";
+				MARKETING_VERSION = "3.9.0-beta.3";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;

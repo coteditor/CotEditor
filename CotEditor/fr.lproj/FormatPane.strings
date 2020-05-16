@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -38,12 +38,12 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Encodage par défaut :";
 
-/* Class = "NSTextFieldCell"; title = "Opening files:"; ObjectID = "3277"; */
-"3277.title" = "Ouverture des fichiers :";
+/* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
+"3277.title" = "Priority of encodings:";  // FIXME: changed
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Editer la liste…";
-/* Class = "NSButtonCell"; title = "Refer to encoding declaration"; ObjectID = "3280"; */
-"3280.title" = "Se référer à la déclaration d'encodage";
+/* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
+"3280.title" = "Se référer à la déclaration d'encodage";  // FIXME: added "in document"
 
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
@@ -54,8 +54,8 @@
 /* Class = "NSTextFieldCell"; title = "Default syntax style:"; ObjectID = "3329"; */
 "3329.title" = "Syntaxes par défaut :";
 
-/* Class = "NSTextFieldCell"; title = "Installed syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "Syntaxes installées :";
+/* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
+"vlw-Tc-sLl.title" = "Syntaxes installées :";  // FIXME: changed (installed -> available)
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "Cette syntaxe est personnalisée.";
