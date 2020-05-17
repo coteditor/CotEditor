@@ -2,6 +2,21 @@
 Change Log
 ==========================
 
+3.9.0-beta.4 (417)
+--------------------------
+
+### Improvements
+
+- [trivial] Omit surrogate pair code points in the character inspector if the chraracter consists of multiple Unicode characters.
+
+
+### Fixes
+
+- [beta.3] Fix an issue where the encoding list view was not shown.
+- [beta.3] Fix an issue where the theme color was still not applied to the color of typed text in split view under some conditions.
+
+
+
 3.9.0-beta.3 (415)
 --------------------------
 
@@ -54,6 +69,7 @@ Change Log
 - [beta] Fix an issue where the visibility of invisibles of opened documents cannot be changed.
 - [beta] Fix an issue where the previous current line highlights could remain.
 - [beta] Fix an issue where the previous page guide could remain after changing the page guide visibility.
+
 
 
 3.9.0-beta (411)

@@ -1349,8 +1349,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             let selectedRect = self.boundingRect(for: self.selectedRange)
             else { return }
         
-        let popoverController = CharacterPopoverController.instantiate(storyboard: "CharacterPopover")
-        popoverController.setup(characterInfo: characterInfo)
+        let popoverController = CharacterPopoverController.instantiate(for: characterInfo)
         
         let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
         popoverController.showPopover(relativeTo: positioningRect, of: self)
@@ -1397,6 +1396,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if theme.text.color != self.textColor {
             self.textColor = theme.text.color
         }
+        // -> But, even in that case, you need to set typingAttribute anyway... (macOS 10.15)
+        self.typingAttributes[.foregroundColor] = theme.text.color
         
         self.backgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color

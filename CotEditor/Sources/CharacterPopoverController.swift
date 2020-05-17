@@ -39,71 +39,32 @@ final class CharacterPopoverController: NSViewController {
     
     @objc private dynamic var characterColor: NSColor = .labelColor
     
-    @IBOutlet private weak var unicodeBlockNameField: NSTextField?
-    @IBOutlet private weak var unicodeCategoryNameField: NSTextField?
-    
     
     
     // MARK: -
     // MARK: Lifecycle
+    
+    /// Instantinate proper view controller for the given character info.
+    ///
+    /// - Parameter info: The CharacterInfo instance to display.
+    static func instantiate(for info: CharacterInfo) -> Self {
+        
+        let identifier: NSStoryboard.SceneIdentifier? = info.isComplex ? "ComplexCharacterPopoverController" : nil
+        
+        let instance = self.instantiate(storyboard: "CharacterPopover", identifier: identifier)
+        instance.setup(characterInfo: info)
+        
+        return instance
+    }
+    
     
     deinit {
         self.removeObservation()
     }
     
     
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        
-        // remove group name field if not exists
-        if self.unicodeBlockName == nil {
-            self.unicodeBlockNameField!.removeFromSuperviewWithoutNeedingDisplay()
-            self.unicodeCategoryNameField!.removeFromSuperviewWithoutNeedingDisplay()
-        }
-    }
-    
-    
     
     // MARK: Public Methods
-    
-    /// Initialize view with character info.
-    ///
-    /// - Parameter info: The CharacterInfo instance to display.
-    func setup(characterInfo info: CharacterInfo) {
-        
-        let unicodes = info.string.unicodeScalars
-        
-        self.glyph = info.pictureString ?? info.string
-        self.unicodeName = info.localizedDescription
-        self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
-        self.unicodeCategoryName = {
-            guard !info.isComplex,
-                let category = unicodes.first?.properties.generalCategory
-                else { return nil }
-            
-            return "\(category.longName) (\(category.shortName))"
-        }()
-        
-        // build Unicode code point string
-        let codePoints: [String] = unicodes.map { unicode in
-            var codePoint = unicode.codePoint
-            
-            if let surrogates = unicode.surrogateCodePoints {
-                codePoint += " (" + surrogates.joined(separator: " ") + ")"
-            }
-            
-            // append Unicode name
-            if unicodes.count > 1, let name = unicode.name {
-                codePoint += "\t" + name
-            }
-            return codePoint
-        }
-        
-        self.unicode = codePoints.joined(separator: "\n")
-        self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
-    }
-    
     
     /// Show the popover anchored to the specified view.
     ///
@@ -132,6 +93,47 @@ final class CharacterPopoverController: NSViewController {
     
     // MARK: Private Methods
     
+    /// Initialize view with character info.
+    ///
+    /// - Parameter info: The CharacterInfo instance to display.
+    private func setup(characterInfo info: CharacterInfo) {
+        
+        let unicodes = info.string.unicodeScalars
+        
+        self.glyph = info.pictureString ?? info.string
+        self.unicodeName = info.localizedDescription
+        self.unicodeBlockName = info.isComplex ? nil : unicodes.first?.localizedBlockName
+        self.unicodeCategoryName = {
+            guard !info.isComplex,
+                let category = unicodes.first?.properties.generalCategory
+                else { return nil }
+            
+            return "\(category.longName) (\(category.shortName))"
+        }()
+        
+        // build Unicode code point string
+        let isMultiple = unicodes.count > 1
+        let codePoints: [String] = unicodes.map { unicode in
+            var codePoint = unicode.codePoint
+            
+            if !isMultiple, let surrogates = unicode.surrogateCodePoints {
+                codePoint += " (" + surrogates.joined(separator: " ") + ")"
+            }
+            
+            // append Unicode name
+            if isMultiple, let name = unicode.name {
+                codePoint += "\t" + name
+            }
+            
+            return codePoint
+        }
+        
+        self.unicode = codePoints.joined(separator: "\n")
+        self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
+    }
+    
+    
+    /// Remove `.closingCueObserver` if exists.
     private func removeObservation() {
         
         guard let observer = self.closingCueObserver else { return }
