@@ -12,7 +12,9 @@ Change Log
 
 ### Fixes
 
+- [beta.3] Fix an issue where the encoding list view was not shown.
 - [beta.3] Fix an issue where the theme color was still not applied to the color of typed text in split view under some conditions.
+
 
 
 3.9.0-beta.3 (415)
