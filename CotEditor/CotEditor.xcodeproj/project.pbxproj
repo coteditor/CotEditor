@@ -4150,7 +4150,7 @@
 			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 416;
+				CURRENT_PROJECT_VERSION = 417;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "3.9.0-beta.4";
@@ -4164,7 +4164,7 @@
 			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 416;
+				CURRENT_PROJECT_VERSION = 417;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
 				MARKETING_VERSION = "3.9.0-beta.4";
@@ -4226,7 +4226,7 @@
 			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 416;
+				CURRENT_PROJECT_VERSION = 417;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4245,7 +4245,7 @@
 			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 416;
+				CURRENT_PROJECT_VERSION = 417;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
