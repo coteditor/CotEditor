@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.9.0-rc (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta.3] Adjust the width of toolbar items.
+
+
+
 3.9.0-beta.4 (417)
 --------------------------
 
