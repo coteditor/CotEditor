@@ -1396,6 +1396,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         if theme.text.color != self.textColor {
             self.textColor = theme.text.color
         }
+        // -> But, even in that case, you need to set typingAttribute anyway... (macOS 10.15)
+        self.typingAttributes[.foregroundColor] = theme.text.color
         
         self.backgroundColor = theme.background.color
         self.enclosingScrollView?.backgroundColor = theme.background.color

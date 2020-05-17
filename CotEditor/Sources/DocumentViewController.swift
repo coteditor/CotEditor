@@ -972,7 +972,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         
         // copy textView states
         if let baseTextView = baseViewController?.textView, let textView = editorViewController.textView {
-            textView.typingAttributes = baseTextView.typingAttributes
             textView.font = baseTextView.font
             textView.theme = baseTextView.theme
             textView.tabWidth = baseTextView.tabWidth
