@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [beta.3] Improve reflecting the state of the Writing Direction toolbar button.
 - [beta.3] Adjust the width of toolbar items.
 
 
