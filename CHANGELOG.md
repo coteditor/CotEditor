@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- [trivial] Omit surrogate pair code points in the character inspector if the chraracter consists of multiple Unicode characters.
+- [trivial] Omit surrogate pair code points in the character inspector if the character consists of multiple Unicode characters.
 
 
 ### Fixes
