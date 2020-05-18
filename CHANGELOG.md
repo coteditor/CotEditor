@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.9.0-rc (unreleased)
+--------------------------
+
+### Fixes
+
+- [beta.4] Fix an issue where the font of font character in the character inspector was wrongly applied.
+
+
+
 3.9.0-beta.4 (417)
 --------------------------
 
