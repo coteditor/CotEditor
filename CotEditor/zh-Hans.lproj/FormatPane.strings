@@ -40,11 +40,11 @@
 "3278.title" = "默认文本编码：";
 
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
-"3277.title" = "Priority of encodings:";  // FIXME: changed
+"3277.title" = "编码优先级：";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "编辑列表…";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
-"3280.title" = "参考编码声明";  // FIXME: added "in document"
+"3280.title" = "参考文档中的编码声明";
 
 
 
@@ -57,7 +57,7 @@
 "3329.title" = "默认语法样式：";
 
 /* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "已安装的语法样式：";  // FIXME: changed (installed -> available)
+"vlw-Tc-sLl.title" = "可用的语法样式：";
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "该样式已被自定义。";

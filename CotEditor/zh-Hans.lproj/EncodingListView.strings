@@ -35,7 +35,7 @@
 "3393.title" = "删除分隔线";
 
 /* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
-"3394.title" = "这个列表是为编码菜单中的自动检测准备的。\n自动检测将自上而下尝试匹配该列表中的编码。";  // FIXME: updated
+"3394.title" = "这个列表是为编码菜单中的自动检测准备的。\n通过检测，较高的项目将获得较高的优先级";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "恢复默认";
