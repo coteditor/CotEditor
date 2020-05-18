@@ -5,6 +5,11 @@ Change Log
 3.9.0-rc (unreleased)
 --------------------------
 
+### Improvements
+
+- Adjust the drawing position of the zoomed character in the character inspector.
+
+
 ### Fixes
 
 - [beta.4] Fix an issue where the font of font character in the character inspector was wrongly applied.
