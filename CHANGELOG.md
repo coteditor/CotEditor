@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue where the application hung up by extending the selection with shortcut `⌥⇧→` when the character to select is a national flag emoji.
 - [beta.4] Fix an issue where the font of font character in the character inspector was wrongly applied.
 
 
