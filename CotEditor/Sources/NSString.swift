@@ -189,7 +189,7 @@ extension NSString {
         var contentsEnd = 0
         self.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, for: range)
         
-        return NSRange(start..<contentsEnd)
+        return NSRange(location: start, length: contentsEnd - start)
     }
     
     
