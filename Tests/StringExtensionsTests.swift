@@ -168,6 +168,24 @@ final class StringExtensionsTests: XCTestCase {
     }
     
     
+    func testBeforeAfterIndex() {
+        
+        XCTAssertEqual(("00" as NSString).index(before: 0), 0)
+        XCTAssertEqual(("00" as NSString).index(before: 1), 0)
+        XCTAssertEqual(("00" as NSString).index(before: 2), 1)
+        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 1), 0)
+        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 2), 1)
+        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 5), 1)
+        XCTAssertEqual(("0🇦🇦00" as NSString).index(before: 6), 5)
+        
+        XCTAssertEqual(("00" as NSString).index(after: 0), 1)
+        XCTAssertEqual(("00" as NSString).index(after: 1), 2)
+        XCTAssertEqual(("00" as NSString).index(after: 2), 2)
+        XCTAssertEqual(("0🇦🇦0" as NSString).index(after: 0), 1)
+        XCTAssertEqual(("0🇦🇦0" as NSString).index(after: 1), 5)
+    }
+    
+    
     func testLineRange() {
         
         let string = "foo\n\rbar\n\r"

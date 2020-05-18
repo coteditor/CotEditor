@@ -33,14 +33,10 @@ final class CharacterField: NSTextField {
     /// required size
     override var intrinsicContentSize: NSSize {
         
-        return self.attributedStringValue.pathBounds.integral.size
-    }
-    
-    
-    /// disable flipping
-    override var isFlipped: Bool {
+        let pathSize = self.attributedStringValue.pathBounds.integral.size
         
-        return false
+        return NSSize(width: pathSize.width,
+                      height: max(pathSize.height, self.attributedStringValue.size().height))
     }
     
 }
@@ -54,23 +50,32 @@ final class CharacterFieldCell: NSTextFieldCell {
     /// draw inside of field with CoreText
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        #if DEBUG
-            NSColor.orange.set()
-            cellFrame.frame()
-        #endif
-        
         guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
         
+        NSGraphicsContext.saveGraphicsState()
+        
         let line = CTLineCreateWithAttributedString(self.attributedStringValue as CFAttributedString)
-        let bounds = self.attributedStringValue.pathBounds.integral
+        let pathBounds = self.attributedStringValue.pathBounds.integral
         
-        context.saveGState()
+        // avoid flipping drawing when popover detached
+        if controlView.isFlipped {
+            context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
+        }
+        context.textPosition = CGPoint(x: (cellFrame.width - pathBounds.width) / 2 - pathBounds.minX,
+                                       y: (cellFrame.height - pathBounds.height) / 2 + pathBounds.maxY)
         
-        context.textMatrix = CGAffineTransform(scaleX: 1.0, y: 1.0)  // avoid flipping drawing when popover detached
-        context.textPosition = CGPoint(x: (cellFrame.width - bounds.width) / 2, y: -bounds.minY)
         CTLineDraw(line, context)
         
-        context.restoreGState()
+        #if DEBUG
+        NSColor.tertiaryLabelColor.set()
+        cellFrame.frame(withWidth: 0.5)
+        NSRect(x: (cellFrame.width - pathBounds.width) / 2,
+               y: (cellFrame.height - pathBounds.height) / 2,
+               width: pathBounds.width,
+               height: pathBounds.height).frame()
+        #endif
+        
+        NSGraphicsContext.restoreGraphicsState()
     }
     
 }
@@ -83,7 +88,7 @@ private extension NSAttributedString {
         
         let line = CTLineCreateWithAttributedString(self as CFAttributedString)
         
-        return CTLineGetBoundsWithOptions(line, [.useGlyphPathBounds, .excludeTypographicLeading])
+        return CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
     }
     
 }

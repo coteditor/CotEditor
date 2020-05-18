@@ -43,7 +43,7 @@
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="cvP-MD-1SF">
                                 <rect key="frame" x="80" y="66" width="188" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="CJK UNIFIED IDEOGRAPH-86D9" id="H6i-fn-bnL">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -111,17 +111,17 @@
         <scene sceneID="3GD-yh-zx1">
             <objects>
                 <viewController storyboardIdentifier="ComplexCharacterPopoverController" id="xIw-tZ-Edo" userLabel="Complex Character Popover Controller" customClass="CharacterPopoverController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="C5A-eu-4cN">
-                        <rect key="frame" x="0.0" y="0.0" width="299" height="104"/>
+                    <view key="view" id="C5A-eu-4cN">
+                        <rect key="frame" x="0.0" y="0.0" width="299" height="97"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" setsMaxLayoutWidthAtFirstLayout="YES" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8ov-lp-Gau" customClass="CharacterField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="8" y="10" width="68" height="84"/>
+                                <rect key="frame" x="8" y="16" width="68" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="64" id="Moq-dM-efC"/>
                                 </constraints>
                                 <textFieldCell key="cell" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="🏴‍☠️" id="bo5-qy-Mxx" customClass="CharacterFieldCell" customModule="CotEditor" customModuleProvider="target">
-                                    <font key="font" size="64" name="AppleColorEmoji"/>
+                                    <font key="font" size="64" name="TimesNewRomanPSMT"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -131,7 +131,7 @@
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="ftY-8E-4A9">
-                                <rect key="frame" x="80" y="19" width="211" height="56"/>
+                                <rect key="frame" x="80" y="12" width="211" height="56"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" id="5Me-uZ-yWJ">
                                     <font key="font" metaFont="controlContent" size="11"/>
                                     <string key="title">U+1F3F4	WAVING BLACK FLAG
@@ -146,9 +146,9 @@ U+FE0F	VARIATION SELECTOR-16</string>
                                 </connections>
                             </textField>
                             <textField horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" allowsCharacterPickerTouchBarItem="YES" preferredMaxLayoutWidth="400" translatesAutoresizingMaskIntoConstraints="NO" id="wRg-HE-Idw">
-                                <rect key="frame" x="80" y="79" width="211" height="15"/>
+                                <rect key="frame" x="80" y="72" width="211" height="15"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="&lt;a letter consisting of 4 characters&gt;" id="Lgx-oR-Ctv">
-                                    <font key="font" metaFont="label" size="12"/>
+                                    <font key="font" metaFont="controlContent"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -173,7 +173,7 @@ U+FE0F	VARIATION SELECTOR-16</string>
                 </viewController>
                 <customObject id="kHd-LC-PBB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="189" y="305"/>
+            <point key="canvasLocation" x="151" y="302"/>
         </scene>
     </scenes>
 </document>

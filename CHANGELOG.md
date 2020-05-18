@@ -7,8 +7,15 @@ Change Log
 
 ### Improvements
 
+- Adjust the drawing position of the zoomed character in the character inspector.
 - [beta.3] Improve reflecting the state of the Writing Direction toolbar button.
 - [beta.3] Adjust the width of toolbar items.
+
+
+### Fixes
+
+- Fix an issue where the application hung up by extending the selection with shortcut `⌥⇧→` when the character to select is a national flag emoji.
+- [beta.4] Fix an issue where the font of font character in the character inspector was wrongly applied.
 
 
 

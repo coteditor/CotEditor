@@ -120,9 +120,7 @@ extension NSString {
         
         guard location > 0 else { return 0 }
         
-        let range = NSRange(location: location - 1, length: 0)
-        
-        return self.rangeOfComposedCharacterSequences(for: range).lowerBound
+        return self.rangeOfComposedCharacterSequence(at: location - 1).lowerBound
     }
     
     
@@ -136,9 +134,7 @@ extension NSString {
         
         guard location < self.length else { return self.length }
         
-        let range = NSRange(location: location + 1, length: 0)
-        
-        return self.rangeOfComposedCharacterSequences(for: range).lowerBound
+        return self.rangeOfComposedCharacterSequence(at: location).upperBound
     }
     
     
@@ -193,7 +189,7 @@ extension NSString {
         var contentsEnd = 0
         self.getLineStart(&start, end: nil, contentsEnd: &contentsEnd, for: range)
         
-        return NSRange(start..<contentsEnd)
+        return NSRange(location: start, length: contentsEnd - start)
     }
     
     
