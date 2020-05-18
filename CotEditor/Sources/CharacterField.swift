@@ -33,7 +33,10 @@ final class CharacterField: NSTextField {
     /// required size
     override var intrinsicContentSize: NSSize {
         
-        return self.attributedStringValue.pathBounds.integral.size
+        let pathSize = self.attributedStringValue.pathBounds.integral.size
+        
+        return NSSize(width: pathSize.width,
+                      height: max(pathSize.height, self.attributedStringValue.size().height))
     }
     
 }
@@ -85,7 +88,7 @@ private extension NSAttributedString {
         
         let line = CTLineCreateWithAttributedString(self as CFAttributedString)
         
-        return CTLineGetBoundsWithOptions(line, [.useGlyphPathBounds, .excludeTypographicLeading, .excludeTypographicShifts])
+        return CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
     }
     
 }
