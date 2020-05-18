@@ -309,7 +309,7 @@
 "325.title" = "显示状态栏";
 
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Show Indent Guides";  // FIXME: added
+"Qqu-pI-Xz6.title" = "显示缩进指示";
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "显示页面指示";
 

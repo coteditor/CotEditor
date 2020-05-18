@@ -68,7 +68,7 @@
 "A new theme named “%@” has been successfully installed." = "新主题“%@”安装完成";
 
 // Window title of issue report
-"Issue Report" = "错误报告";  // FIXME: bug -> issue
+"Issue Report" = "问题报告";
 
 
 
@@ -177,7 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "不可见元素";
-"Indent Guides" = "Indent Guides";  // FIXME: added
+"Indent Guides" = "缩进指示";
 "Wrap Lines" = "换行";
 
 // Touch bar item labels -Text View
@@ -286,8 +286,8 @@
 "Show Invisibles" = "显示不可见元素";
 "Hide Page Guide" = "隐藏页面指示";
 "Show Page Guide" = "显示页面指示";
-"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
-"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Hide Indent Guides" = "隐藏缩进指示";
+"Show Indent Guides" = "显示缩进指示";
 "Unwrap Lines" = "不换行";
 "Wrap Lines" = "换行";
 
@@ -328,7 +328,7 @@
 "Coloring text…" = "文本着色中...";
 "Please wait for a while." = "请稍等片刻...";
 "Extracting %@…" = "%@ 解压中...";
-"Preparing coloring…" = "Preparing coloring…";  // FIXME: added
+"Preparing coloring…" = "准备着色中...";
 "Applying colors to text" = "在文本上使用颜色";
 "keywords" = "关键字";
 "commands" = "命令";
