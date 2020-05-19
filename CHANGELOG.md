@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Adjust the drawing position of the zoomed character in the character inspector.
+- [trivial] Adjust the drawing position of the zoomed character in the character inspector.
 - [beta.3] Improve reflecting the state of the Writing Direction toolbar button.
 - [beta.3] Adjust the width of toolbar items.
 
@@ -15,7 +15,7 @@ Change Log
 ### Fixes
 
 - Fix an issue where the application hung up by extending the selection with shortcut `⌥⇧→` when the character to select is a national flag emoji.
-- Fix an issue in the find panel where a regular expression pattern for Unicode code point was not highlighted properly when the hex contains uppercase letters.
+- Fix an issue  in the find panel's input fields where a regular expression pattern for Unicode code point was not highlighted properly when the hex contains uppercase letters.
 - [beta.4] Fix an issue where the font of the object character in the character inspector was wrongly applied.
 
 
