@@ -137,7 +137,7 @@
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Inserisci simbolo Yen";
 /* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Inserisci in Unicode Esadecimale…";  // FIXME: [updated] hex -> code point
+"tWx-pj-3PL.title" = "Inserisci in Punto di Codice Unicode…";
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Grammatica e ortografia";
@@ -309,7 +309,7 @@
 "325.title" = "Mostra barra di stato";
 
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Show Indent Guides";  // FIXME: added
+"Qqu-pI-Xz6.title" = "Mostra guide per l’indentazione";
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "Mostra guida pagina";
 
