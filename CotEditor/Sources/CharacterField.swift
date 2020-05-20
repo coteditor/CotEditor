@@ -50,15 +50,15 @@ final class CharacterFieldCell: NSTextFieldCell {
         
         let bounds = self.attributedStringValue.bounds
         let pathBounds = self.attributedStringValue.pathBounds
-        let midOrigin = cellFrame.mid.offset(by: -pathBounds.size.scaled(to: 0.5))
-        let drawingPoint = midOrigin.offsetBy(dx: -pathBounds.minX, dy: pathBounds.maxY - bounds.maxY)
+        let centeringRect = NSRect(origin: cellFrame.mid, size: .zero).inset(by: -pathBounds.size.scaled(to: 0.5))
+        let drawingPoint = centeringRect.origin.offsetBy(dx: -pathBounds.minX, dy: pathBounds.maxY - bounds.maxY)
         
         self.attributedStringValue.draw(at: drawingPoint)
         
         #if DEBUG
         NSColor.tertiaryLabelColor.set()
         cellFrame.frame(withWidth: 0.5)
-        NSRect(origin: midOrigin, size: pathBounds.size).frame(withWidth: 0.5)
+        centeringRect.frame(withWidth: 0.5)
         #endif
     }
     
