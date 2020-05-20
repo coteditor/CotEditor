@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - [trivial] Adjust the drawing position of the zoomed character in the character inspector.
+- [dev] Update the build environment to Xcode 11.5.
 - [beta.3] Improve reflecting the state of the Writing Direction toolbar button.
 - [beta.3] Adjust the width of toolbar items.
 
