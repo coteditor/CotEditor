@@ -16,6 +16,7 @@ Change Log
 
 - Fix an issue where the application hung up by extending the selection with shortcut `⌥⇧→` when the character to select is a national flag emoji.
 - Fix an issue in the find panel's input fields where a regular expression pattern for Unicode code point was not highlighted properly when the hex contains uppercase letters.
+- Fix the help button in the advanced find options view.
 - [beta.4] Fix an issue where the font of the object character in the character inspector was wrongly applied.
 
 
