@@ -502,7 +502,7 @@
 "“%@” includes the Command key." = "“%@” inclue la touche Commande.";
 "Please choose another key." = "Veuillez choisir une autre touche.";
 "Single type is invalid for a shortcut." = "Un raccourci clavier ne peut pas être composé que d'une seule touche.";
-"Please combine with another keys." = "Veuillez combiner avec d'autres touches.";
+"Please combine with other keys." = "Veuillez combiner avec d'autres touches.";
 
 
 
@@ -529,14 +529,14 @@
 
 // Script file error recovery suggestions
 "Check the script file." = "Vérifiez le fichier de script.";
-"Check permission of the script file." = "Vérifiez les permissions du fichier de script.";
+"Check the permission of the script file." = "Vérifiez les permissions du fichier de script.";
 
 
 
 /* MARK: FileDropComposer */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "Le chemin absolu du fichier déposé.";
-"The relative path between dropped file and the document." = "Le chemin relatif du fichier déposé par rapport au document.";
+"The relative path between the dropped file and the document." = "Le chemin relatif du fichier déposé par rapport au document.";
 "The dropped file’s name including extension (if exists)." = "Le nom du fichier déposé avec l'extension (si présente).";
 "The dropped file’s name without extension." = "Le nom du fichier déposé sans l'extension.";
 "The dropped file’s extension." = "L'extension du fichier déposé.";

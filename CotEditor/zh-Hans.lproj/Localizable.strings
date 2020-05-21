@@ -504,7 +504,7 @@
 "“%@” includes the Command key." = "“%@”包含了 Command 键。";
 "Please choose another key." = "请选择其他按键。";
 "Single type is invalid for a shortcut." = "单独的按键类型不能被用作快捷键。";
-"Please combine with another keys." = "请与其他键组合使用。";
+"Please combine with other keys." = "请与其他键组合使用。";
 
 
 
@@ -531,14 +531,14 @@
 
 // Script file error recovery suggestions
 "Check the script file." = "请确认脚本文件。";
-"Check permission of the script file." = "请确认脚本文件的权限。";
+"Check the permission of the script file." = "请确认脚本文件的权限。";
 
 
 
 /* MARK: FileDropComposer */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "拖拽的文件绝对路径";
-"The relative path between dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
+"The relative path between the dropped file and the document." = "拖拽的文件与编辑中文档的相对路径";
 "The dropped file’s name including extension (if exists)." = "拖拽的文件的文件名以及扩展名（如果存在）";
 "The dropped file’s name without extension." = "不带扩展名的文件名";
 "The dropped file’s extension." = "拖拽的文件的扩展名";

@@ -59,7 +59,7 @@ struct InvalidKeySpecCharactersError: LocalizedError {
     
     var recoverySuggestion: String? {
         
-        return "Please combine with another keys.".localized
+        return "Please combine with other keys.".localized
     }
     
 }
