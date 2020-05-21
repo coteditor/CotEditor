@@ -134,8 +134,8 @@
 "631.title" = "Inserir Barra Invertida";
 /* Class = "NSMenuItem"; title = "Input Yen Mark"; ObjectID = "633"; */
 "633.title" = "Inserir Sinal de Iene";
-/* Class = "NSMenuItem"; title = "Input Char in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
-"tWx-pj-3PL.title" = "Inserir Caractere em Unicode Hexadecimal…";  // FIXME: [updated] hex -> code point
+/* Class = "NSMenuItem"; title = "Input in Unicode Code Point…"; ObjectID = "tWx-pj-3PL"; */
+"tWx-pj-3PL.title" = "Inserir no ponto de código Unicode…";  // FIXME: machine-translated (native check required)
 
 /* Class = "NSMenuItem"; title = "Spelling and Grammar"; ObjectID = "2QI-XD-7pJ"; */
 "2QI-XD-7pJ.title" = "Ortografia e Gramática";
@@ -159,7 +159,7 @@
 /* Class = "NSMenuItem"; title = "Replace Quotes"; ObjectID = "7NX-1r-Wq7"; */
 "7NX-1r-Wq7.title" = "Substituir Aspas";
 /* Class = "NSMenuItem"; title = "Straighten Quotes"; ObjectID = "9gl-1h-Yit"; */
-"9gl-1h-Yit.title" = "Straighten Quotes";  // FIXME: added
+"9gl-1h-Yit.title" = "Endireitar Citações";  // FIXME: machine-translated (native check required)
 /* Class = "NSMenuItem"; title = "Replace Dashes"; ObjectID = "hMS-qd-BCS"; */
 "hMS-qd-BCS.title" = "Substituir Hifens";
 /* Class = "NSMenuItem"; title = "Replace Text"; ObjectID = "ue7-85-H8l"; */
@@ -307,7 +307,7 @@
 "325.title" = "Mostrar Barra de Estado";
 
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Show Indent Guides";  // FIXME: added
+"Qqu-pI-Xz6.title" = "Mostrar Guias de Recuo";
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "Mostrar Guia da Página";
 

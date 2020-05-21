@@ -68,7 +68,7 @@
 "A new theme named “%@” has been successfully installed." = "Um novo tema chamado “%@” foi instalado com êxito.";
 
 // Window title of issue report
-"Issue Report" = "Relatório de Erro";  // FIXME: bug -> issue
+"Issue Report" = "Relatório de Problema";
 
 
 
@@ -177,7 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisíveis";
-"Indent Guides" = "Indent Guides";  // FIXME: added
+"Indent Guides" = "Guias de Recuo";
 "Wrap Lines" = "Ajustar Linhas";
 
 // Touch bar item labels -Text View
@@ -286,8 +286,8 @@
 "Show Invisibles" = "Mostrar Invisíveis";
 "Hide Page Guide" = "Ocultar Guia da Página";
 "Show Page Guide" = "Mostrar Guia da Página";
-"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
-"Show Indent Guides" = "Show Indent Guides";  // FIXME: added
+"Hide Indent Guides" = "Ocultar Guias de Recuo";
+"Show Indent Guides" = "Mostrar Guias de Recuo";
 "Unwrap Lines" = "Desajustar Linhas";
 "Wrap Lines" = "Ajustar Linhas";
 
@@ -328,7 +328,7 @@
 "Coloring text…" = "Colorindo texto…";
 "Please wait for a while." = "Aguarde um momento.";
 "Extracting %@…" = "Extraindo %@…";
-"Preparing coloring…" = "Preparing coloring…";  // FIXME: added
+"Preparing coloring…" = "Preparando a coloração…";  // FIXME: machine-translated (native check required)
 "Applying colors to text" = "Aplicando cores ao texto";
 "keywords" = "palavras-chave";
 "commands" = "comandos";

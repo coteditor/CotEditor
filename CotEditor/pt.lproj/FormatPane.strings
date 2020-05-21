@@ -36,11 +36,11 @@
 /* Class = "NSTextFieldCell"; title = "Default text encoding:"; ObjectID = "3278"; */
 "3278.title" = "Codificação padrão:";
 /* Class = "NSTextFieldCell"; title = "Priority of encodings:"; ObjectID = "3277"; */
-"3277.title" = "Priority of encodings:";  // FIXME: changed
+"3277.title" = "Prioridade de codificações:";
 /* Class = "NSButtonCell"; title = "Edit List…"; ObjectID = "3275"; */
 "3275.title" = "Editar Lista…";
 /* Class = "NSButtonCell"; title = "Refer to encoding declaration in document"; ObjectID = "3280"; */
-"3280.title" = "Consultar declaração da codificação";  // FIXME: added "in document"
+"3280.title" = "Consultar declaração da codificação no documento";
 
 
 /* Class = "NSButtonCell"; title = "Enable syntax highlighting"; ObjectID = "3326"; */
@@ -52,7 +52,7 @@
 "3329.title" = "Estilo de sintaxe padrão:";
 
 /* Class = "NSTextFieldCell"; title = "Available syntax styles:"; ObjectID = "vlw-Tc-sLl"; */
-"vlw-Tc-sLl.title" = "Estilos de sintaxe instalados:";  // FIXME: changed (installed -> available)
+"vlw-Tc-sLl.title" = "Estilos de sintaxe disponíveis:";
 
 /* Class = "NSView"; ibShadowedToolTip = "This style is customized."; ObjectID = "cbJ-XK-bnG"; */
 "cbJ-XK-bnG.ibShadowedToolTip" = "Este estilo foi personalizado.";
