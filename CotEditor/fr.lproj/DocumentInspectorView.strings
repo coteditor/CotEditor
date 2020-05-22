@@ -9,7 +9,7 @@
  Localized by Aurélien Roy
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2015-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -32,12 +32,12 @@
 "hgp-Cc-KHJ.title" = "Crée le";
 /* Class = "NSTextFieldCell"; title = "Modified"; ObjectID = "BtZ-Pl-H7s"; */
 "BtZ-Pl-H7s.title" = "Modifié le";
-/* Class = "NSTextFieldCell"; title = "File Size"; ObjectID = "uZa-Q9-nHs"; */
+/* Class = "NSTextFieldCell"; title = "Size"; ObjectID = "uZa-Q9-nHs"; */
 "uZa-Q9-nHs.title" = "Taille";
 /* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "AjV-U0-lC7"; */
 "AjV-U0-lC7.title" = "Propriétaire";
-/* Class = "NSTextFieldCell"; title = "Permission"; ObjectID = "N0Y-nO-k3L"; */
-"N0Y-nO-k3L.title" = "Permission";
+/* Class = "NSTextFieldCell"; title = "Permissions"; ObjectID = "N0Y-nO-k3L"; */
+"N0Y-nO-k3L.title" = "Permissions";
 /* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
 "zwU-xo-iZu.title" = "Chemin complet";
 

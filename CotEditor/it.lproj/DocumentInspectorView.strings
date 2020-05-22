@@ -10,7 +10,7 @@
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -33,11 +33,11 @@
 "hgp-Cc-KHJ.title" = "Creato";
 /* Class = "NSTextFieldCell"; title = "Modified"; ObjectID = "BtZ-Pl-H7s"; */
 "BtZ-Pl-H7s.title" = "Modificato";
-/* Class = "NSTextFieldCell"; title = "File Size"; ObjectID = "uZa-Q9-nHs"; */
+/* Class = "NSTextFieldCell"; title = "Size"; ObjectID = "uZa-Q9-nHs"; */
 "uZa-Q9-nHs.title" = "Dimensioni";
 /* Class = "NSTextFieldCell"; title = "Owner"; ObjectID = "AjV-U0-lC7"; */
 "AjV-U0-lC7.title" = "Proprietario";
-/* Class = "NSTextFieldCell"; title = "Permission"; ObjectID = "N0Y-nO-k3L"; */
+/* Class = "NSTextFieldCell"; title = "Permissions"; ObjectID = "N0Y-nO-k3L"; */
 "N0Y-nO-k3L.title" = "Permessi";
 /* Class = "NSTextFieldCell"; title = "Full Path"; ObjectID = "zwU-xo-iZu"; */
 "zwU-xo-iZu.title" = "Percorso";
