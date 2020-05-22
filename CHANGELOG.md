@@ -11,6 +11,7 @@ Change Log
 - [dev] Update the build environment to Xcode 11.5.
 - [beta.3] Improve reflecting the state of the Writing Direction toolbar button.
 - [beta.3] Adjust the width of toolbar items.
+- [beta] Add missing localizations for Simplified Chinese, Italien, and (a part of) Portuguese.
 
 
 ### Fixes
