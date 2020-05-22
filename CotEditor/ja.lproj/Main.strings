@@ -53,9 +53,9 @@
 "131.title" = "サービス";
 
 /* Class = "NSMenuItem"; title = "Hide CotEditor"; ObjectID = "134"; */
-"134.title" = "CotEditorを隠す";
+"134.title" = "CotEditorを非表示";
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "145"; */
-"145.title" = "ほかを隠す";
+"145.title" = "ほかを非表示";
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "150"; */
 "150.title" = "すべてを表示";
 
