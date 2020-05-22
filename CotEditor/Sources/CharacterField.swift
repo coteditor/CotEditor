@@ -38,11 +38,25 @@ final class CharacterField: NSTextField {
                       height: max(pathBounds.height, bounds.height))
     }
     
+    
+    #if DEBUG
+    override func mouseDown(with event: NSEvent) {
+        
+        super.mouseDown(with: event)
+        
+        (self.cell as! CharacterFieldCell).drawsGuide.toggle()
+        self.needsDisplay = true
+    }
+    #endif
+    
 }
 
 
 
 final class CharacterFieldCell: NSTextFieldCell {
+    
+    fileprivate var drawsGuide = false
+    
     
     // MARK: Text Field Cell Methods
     
@@ -55,11 +69,10 @@ final class CharacterFieldCell: NSTextFieldCell {
         
         self.attributedStringValue.draw(at: drawingPoint)
         
-        #if DEBUG
-        NSColor.tertiaryLabelColor.set()
-        cellFrame.frame(withWidth: 0.5)
-        centeringRect.frame(withWidth: 0.5)
-        #endif
+        if self.drawsGuide {
+            cellFrame.frame(withWidth: 0.2)
+            centeringRect.frame(withWidth: 0.2)
+        }
     }
     
 }
