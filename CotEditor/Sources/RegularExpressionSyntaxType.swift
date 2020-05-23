@@ -92,10 +92,10 @@ enum RegularExpressionSyntaxType {
                             escapeIgnorer + "\\\\" + "c[a-z]",  // \cX (control)
                             escapeIgnorer + "\\\\" + "N\\{[a-zA-Z0-9 ]+\\}",  // \N{UNICODE CHARACTER NAME}
                             escapeIgnorer + "\\\\" + "[pP]\\{[a-zA-Z0-9 ]+\\}",  // \p{UNICODE PROPERTY NAME}
-                            escapeIgnorer + "\\\\" + "u[0-9a-f]{4}",  // \uhhhh (h: hex)
-                            escapeIgnorer + "\\\\" + "U[0-9a-f]{8}",  // \Uhhhhhhhh (h: hex)
-                            escapeIgnorer + "\\\\" + "x\\{[0-9a-f]{1,6}\\}",  // \x{hhhh} (h: hex)
-                            escapeIgnorer + "\\\\" + "x[0-9a-f]{2}",  // \xhh (h: hex)
+                            escapeIgnorer + "\\\\" + "u[0-9a-fA-F]{4}",  // \uhhhh (h: hex)
+                            escapeIgnorer + "\\\\" + "U[0-9a-fA-F]{8}",  // \Uhhhhhhhh (h: hex)
+                            escapeIgnorer + "\\\\" + "x\\{[0-9a-fA-F]{1,6}\\}",  // \x{hhhh} (h: hex)
+                            escapeIgnorer + "\\\\" + "x[0-9a-fA-F]{2}",  // \xhh (h: hex)
                             escapeIgnorer + "\\\\" + "0[0-7]{1,3}",  // \0ooo (o: octal)
                     ]
                     case .backReference:

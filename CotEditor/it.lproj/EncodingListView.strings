@@ -35,7 +35,7 @@
 "3393.title" = "Elimina separatore";
 
 /* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
-"3394.title" = "Questo elenco riguarda il Rilevamento Automatico ed il menu della codifica del file.";  // FIXME: updated
+"3394.title" = "Questo è l’ordine del menu delle codifiche rilevate all’apertura del file. Le codifiche elencate in cima hanno una maggiore priorità.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Ripristina default";

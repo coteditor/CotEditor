@@ -24,20 +24,30 @@
 //
 
 import Cocoa
-import CoreText
 
 final class CharacterField: NSTextField {
     
     // MARK: Text Field Methods
     
-    /// required size
     override var intrinsicContentSize: NSSize {
         
-        let pathSize = self.attributedStringValue.pathBounds.integral.size
+        let bounds = self.attributedStringValue.bounds
+        let pathBounds = self.attributedStringValue.pathBounds
         
-        return NSSize(width: pathSize.width,
-                      height: max(pathSize.height, self.attributedStringValue.size().height))
+        return NSSize(width: pathBounds.width,
+                      height: max(pathBounds.height, bounds.height))
     }
+    
+    
+    #if DEBUG
+    override func mouseDown(with event: NSEvent) {
+        
+        super.mouseDown(with: event)
+        
+        (self.cell as! CharacterFieldCell).drawsGuide.toggle()
+        self.needsDisplay = true
+    }
+    #endif
     
 }
 
@@ -45,37 +55,24 @@ final class CharacterField: NSTextField {
 
 final class CharacterFieldCell: NSTextFieldCell {
     
+    fileprivate var drawsGuide = false
+    
+    
     // MARK: Text Field Cell Methods
     
-    /// draw inside of field with CoreText
     override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
         
-        guard let context = NSGraphicsContext.current?.cgContext else { return assertionFailure() }
+        let bounds = self.attributedStringValue.bounds
+        let pathBounds = self.attributedStringValue.pathBounds
+        let centeringRect = NSRect(origin: cellFrame.mid, size: .zero).inset(by: -pathBounds.size.scaled(to: 0.5))
+        let drawingPoint = centeringRect.origin.offsetBy(dx: -pathBounds.minX, dy: pathBounds.maxY - bounds.maxY)
         
-        NSGraphicsContext.saveGraphicsState()
+        self.attributedStringValue.draw(at: drawingPoint)
         
-        let line = CTLineCreateWithAttributedString(self.attributedStringValue as CFAttributedString)
-        let pathBounds = self.attributedStringValue.pathBounds.integral
-        
-        // avoid flipping drawing when popover detached
-        if controlView.isFlipped {
-            context.textMatrix = CGAffineTransform(scaleX: 1.0, y: -1.0)
+        if self.drawsGuide {
+            cellFrame.frame(withWidth: 0.2)
+            centeringRect.frame(withWidth: 0.2)
         }
-        context.textPosition = CGPoint(x: (cellFrame.width - pathBounds.width) / 2 - pathBounds.minX,
-                                       y: (cellFrame.height - pathBounds.height) / 2 + pathBounds.maxY)
-        
-        CTLineDraw(line, context)
-        
-        #if DEBUG
-        NSColor.tertiaryLabelColor.set()
-        cellFrame.frame(withWidth: 0.5)
-        NSRect(x: (cellFrame.width - pathBounds.width) / 2,
-               y: (cellFrame.height - pathBounds.height) / 2,
-               width: pathBounds.width,
-               height: pathBounds.height).frame()
-        #endif
-        
-        NSGraphicsContext.restoreGraphicsState()
     }
     
 }
@@ -84,11 +81,6 @@ final class CharacterFieldCell: NSTextFieldCell {
 
 private extension NSAttributedString {
     
-    var pathBounds: NSRect {
-        
-        let line = CTLineCreateWithAttributedString(self as CFAttributedString)
-        
-        return CTLineGetBoundsWithOptions(line, .useGlyphPathBounds)
-    }
-    
+    var bounds: NSRect { self.boundingRect(with: .infinite, context: nil) }
+    var pathBounds: NSRect { self.boundingRect(with: .infinite, options: .usesDeviceMetrics, context: nil) }
 }

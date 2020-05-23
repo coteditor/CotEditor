@@ -324,15 +324,18 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
             
             case #selector(makeWritingDirectionRightToLeft):
                 (item as? StatableItem)?.state = (self.writingDirection == .rightToLeft) ? .on : .off
-                return !self.verticalLayoutOrientation
             
             case #selector(changeWritingDirection):
-                let tag: Int = (self.writingDirection == .rightToLeft) ? 1 : 0
-                (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
+                (item as? SegmentedToolbarItem)?.segmentedControl?.selectedSegment = {
+                    switch self.writingDirection {
+                        case _ where self.verticalLayoutOrientation: return -1
+                        case .rightToLeft: return 1
+                        default: return 0
+                    }
+                }()
             
             case #selector(changeOrientation):
-                let tag = self.verticalLayoutOrientation ? 1 : 0
-                (item as? SegmentedToolbarItem)?.segmentedControl?.selectSegment(withTag: tag)
+                (item as? SegmentedToolbarItem)?.segmentedControl?.selectedSegment = self.verticalLayoutOrientation ? 1 : 0
             
             case #selector(closeSplitTextView):
                 return (self.splitViewController?.splitViewItems.count ?? 0) > 1

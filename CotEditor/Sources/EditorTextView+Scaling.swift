@@ -89,7 +89,7 @@ extension EditorTextView {
             case 1:
                 self.biggerFont(sender)
             default:
-                assertionFailure("Segmented text size button must have 3 segments only.")
+                assertionFailure("Segmented text size button must have 2 segments only.")
         }
     }
     

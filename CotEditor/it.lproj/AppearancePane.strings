@@ -66,11 +66,11 @@
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Spazio";
 /* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
-"Bf2-rS-2zu.title" = "Other whitespaces";  // FIXME: newly added
+"Bf2-rS-2zu.title" = "Altri spazi vuoti";
 /* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Altri caratteri invisibili";  // FIXME: changed (invisible -> control)
+"sxg-F3-ely.title" = "Altri caratteri di controllo";
 /* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
-"csp-Hi-hb1.title" = "Show indent guides";  // TODO: added
+"csp-Hi-hb1.title" = "Mostra guide per l’indentazione";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Aspetto:";

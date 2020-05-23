@@ -69,7 +69,7 @@
 /* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
 "sxg-F3-ely.title" = "Autres Invisibles";  // FIXME: changed (invisible -> control)
 /* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
-"csp-Hi-hb1.title" = "Show indent guides";  // TODO: added
+"csp-Hi-hb1.title" = "Show indent guides";  // FIXME: added
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Mode d’apparence :";

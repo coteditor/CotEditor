@@ -504,7 +504,7 @@
 "“%@” includes the Command key." = "“%@”はコマンドキーを含んでいます。";
 "Please choose another key." = "別のキーを選んでください。";
 "Single type is invalid for a shortcut." = "単体のキーはショートカットに登録できません。";
-"Please combine with another keys." = "別のキーと組み合わせてください。";
+"Please combine with other keys." = "別のキーと組み合わせてください。";
 
 
 
@@ -531,14 +531,14 @@
 
 // Script file error recovery suggestions
 "Check the script file." = "スクリプトファイルを確認してください。";
-"Check permission of the script file." = "スクリプトファイルのアクセス権を確認してください。";
+"Check the permission of the script file." = "スクリプトファイルのアクセス権を確認してください。";
 
 
 
 /* MARK: FileDropComposer */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "ドロップ元ファイルの絶対パス";
-"The relative path between dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
+"The relative path between the dropped file and the document." = "ドロップ先ファイルからドロップ元ファイルへの相対パス";
 "The dropped file’s name including extension (if exists)." = "ドロップ元ファイルの拡張子を含むファイル名";
 "The dropped file’s name without extension." = "ドロップ元ファイルの名前から拡張子を削除した文字列";
 "The dropped file’s extension." = "ドロップ元ファイルの拡張子";

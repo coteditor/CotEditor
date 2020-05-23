@@ -93,7 +93,7 @@ struct ScriptFileError: LocalizedError {
         
         switch self.kind {
             case .permission:
-                return "Check permission of the script file.".localized
+                return "Check the permission of the script file.".localized
             default:
                 return "Check the script file.".localized
         }

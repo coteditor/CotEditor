@@ -96,7 +96,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="kY9-3e-rsd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <menu key="menu" id="iVj-97-fkw">
                                                 <items>
                                                     <menuItem title="LF" toolTip="Unix / macOS" id="YT7-vd-3ih">
@@ -127,7 +127,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="uGq-td-kFd">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <menu key="menu" id="lUg-i7-92G"/>
                                         </popUpButtonCell>
                                     </popUpButton>
@@ -140,7 +140,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="hb4-gd-uwc">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu" size="11"/>
+                                            <font key="font" metaFont="message" size="11"/>
                                             <menu key="menu" autoenablesItems="NO" id="plp-5x-eBz"/>
                                         </popUpButtonCell>
                                     </popUpButton>
@@ -161,13 +161,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="70B46C03-6CE7-4C61-A77B-001526E7BC49" label="Text Size" paletteLabel="Text Size" toolTip="Change text size" sizingBehavior="auto" id="ucH-DE-qQ1" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="StP-1v-4g4">
-                                        <rect key="frame" x="0.0" y="14" width="75" height="24"/>
+                                        <rect key="frame" x="0.0" y="14" width="71" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="separated" trackingMode="momentary" id="mkm-Gk-q7f">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Decrease text size" image="TextSizeSmallerTemplate" width="34"/>
-                                                <segment toolTip="Increase text size" image="TextSizeLargerTemplate" width="34" tag="1"/>
+                                                <segment toolTip="Decrease text size" image="TextSizeSmallerTemplate" width="32"/>
+                                                <segment toolTip="Increase text size" image="TextSizeLargerTemplate" width="32" tag="1"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -180,13 +180,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="530A2BF7-340F-401E-8980-9B3CE8087ABA" label="Writing Direction" paletteLabel="Writing Direction" toolTip="Change writing direction" sizingBehavior="auto" id="1zL-0E-fZd" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="5xG-tN-u7n">
-                                        <rect key="frame" x="10" y="14" width="76" height="24"/>
+                                        <rect key="frame" x="17" y="14" width="63" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="texturedSquare" trackingMode="selectOne" id="lad-Dh-atP">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment image="WritingDirectionLTRTemplate" width="34" selected="YES"/>
-                                                <segment toolTip="Right to Left" image="WritingDirectionRTLTemplate" width="34" tag="1"/>
+                                                <segment image="WritingDirectionLTRTemplate" width="28" selected="YES"/>
+                                                <segment toolTip="Right to Left" image="WritingDirectionRTLTemplate" width="28" tag="1"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -199,13 +199,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="D6340D2C-900C-4440-AE3B-0DB7D864D6F2" label="Text Orientation" paletteLabel="Text Orientation" toolTip="Toggle text orientation" sizingBehavior="auto" id="1cW-FV-40L" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="fMu-nq-0Xk">
-                                        <rect key="frame" x="8" y="14" width="75" height="23"/>
+                                        <rect key="frame" x="14" y="14" width="63" height="23"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="texturedSquare" trackingMode="selectOne" id="rCh-26-3Xy">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Horizontal" image="WritingDirectionLTRTemplate" width="34" selected="YES"/>
-                                                <segment toolTip="Vertical" image="WritingDirectionVerticalTemplate" width="34" tag="1"/>
+                                                <segment toolTip="Horizontal" image="WritingDirectionLTRTemplate" width="28" selected="YES"/>
+                                                <segment toolTip="Vertical" image="WritingDirectionVerticalTemplate" width="28" tag="1"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -218,13 +218,13 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="5E72786F-FD84-41EC-B90C-7C1985E7C38C" label="Indent" paletteLabel="Indent" toolTip="Indent selection" sizingBehavior="auto" id="FZC-Iu-jGT" customClass="SegmentedToolbarItem" customModule="CotEditor" customModuleProvider="target">
                                     <segmentedControl key="view" verticalHuggingPriority="750" id="0Lf-NK-AwN">
-                                        <rect key="frame" x="0.0" y="14" width="75" height="24"/>
+                                        <rect key="frame" x="0.0" y="14" width="71" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fillEqually" style="separated" trackingMode="momentary" id="X5g-Bw-O4v">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Shift lines to left" image="ShiftLeft" width="34"/>
-                                                <segment toolTip="Shift lines to right" image="ShiftRight" width="34"/>
+                                                <segment toolTip="Shift lines to left" image="ShiftLeft" width="32"/>
+                                                <segment toolTip="Shift lines to right" image="ShiftRight" width="32"/>
                                             </segments>
                                         </segmentedCell>
                                         <connections>
@@ -255,8 +255,8 @@
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedSquare" trackingMode="momentary" id="zn9-Cf-SiH" customClass="DropdownSegmentedControlCell" customModule="CotEditor" customModuleProvider="target">
                                             <font key="font" metaFont="system"/>
                                             <segments>
-                                                <segment toolTip="Toggle tab auto-expansion" image="TabStyle_On" width="32"/>
-                                                <segment toolTip="Change tab width" width="13">
+                                                <segment toolTip="Toggle tab auto-expansion" image="TabStyle_On" width="30"/>
+                                                <segment toolTip="Change tab width" width="15">
                                                     <nil key="label"/>
                                                 </segment>
                                             </segments>
@@ -739,7 +739,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
-                                    <font key="font" metaFont="menu" size="11"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -750,7 +750,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA">
                                 <rect key="frame" x="559" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="t1c-ZE-w5H">
-                                    <font key="font" metaFont="menu" size="11"/>
+                                    <font key="font" metaFont="message" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

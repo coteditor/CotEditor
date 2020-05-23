@@ -719,10 +719,6 @@
 		2AFE848722AE71130001C4ED /* TextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFE848522AE71130001C4ED /* TextContainer.swift */; };
 		2AFECF5A2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
 		2AFECF5B2171C0E60065A7DE /* Bundle+AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFECF592171C0E60065A7DE /* Bundle+AppInfo.swift */; };
-		5454B92F243C8257009275BC /* UI-Tests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92B243C8257009275BC /* UI-Tests.xcconfig */; };
-		5454B930243C8257009275BC /* Tests.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92C243C8257009275BC /* Tests.xcconfig */; };
-		5454B931243C8257009275BC /* CotEditor-Sparkle.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */; };
-		5454B932243C8257009275BC /* CotEditor.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5454B92E243C8257009275BC /* CotEditor.xcconfig */; };
 		6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 6C6DAE3D13833C0E007F2326 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
@@ -2555,7 +2551,6 @@
 				2AE73ECD2035223100D8903B /* Credits.css in Resources */,
 				2A80C6691CEE540F00AA664D /* Acknowledgments.html in Resources */,
 				2AE73EC9203520E100D8903B /* Acknowledgments.css in Resources */,
-				5454B930243C8257009275BC /* Tests.xcconfig in Resources */,
 				2A6F0D5D1B5500E100C2D03C /* ReportTemplate.md in Resources */,
 				2A6F0D801B5500E100C2D03C /* Localizable.strings in Resources */,
 				2A6F0D691B5500E100C2D03C /* InfoPlist.strings in Resources */,
@@ -2575,7 +2570,6 @@
 				2ACDE2972406B9C000FC31EC /* EditPane.storyboard in Resources */,
 				2ACDE2982406B9C000FC31EC /* EncodingListView.storyboard in Resources */,
 				2ACDE2992406B9C000FC31EC /* FileDropPane.storyboard in Resources */,
-				5454B932243C8257009275BC /* CotEditor.xcconfig in Resources */,
 				2ACDE29A2406B9C000FC31EC /* FindPanel.storyboard in Resources */,
 				2ACDE29B2406B9C000FC31EC /* FindPreferencesView.storyboard in Resources */,
 				2ACDE29C2406B9C000FC31EC /* FormatPane.storyboard in Resources */,
@@ -2591,7 +2585,6 @@
 				2ACDE2A62406B9C000FC31EC /* PatternSortView.storyboard in Resources */,
 				2ACDE2A72406B9C000FC31EC /* PrintPane.storyboard in Resources */,
 				2ACDE2A82406B9C000FC31EC /* PrintPanelAccessory.storyboard in Resources */,
-				5454B931243C8257009275BC /* CotEditor-Sparkle.xcconfig in Resources */,
 				2ACDE2A92406B9C000FC31EC /* PreferencesWindow.storyboard in Resources */,
 				2ACDE2AA2406B9C000FC31EC /* ProgressView.storyboard in Resources */,
 				2ACDE2AB2406B9C000FC31EC /* RegexReferenceView.storyboard in Resources */,
@@ -2607,7 +2600,6 @@
 				2ACDE2B52406B9C000FC31EC /* SyntaxValidationView.storyboard in Resources */,
 				2ACDE2B62406B9C000FC31EC /* UnicodePanel.storyboard in Resources */,
 				2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */,
-				5454B92F243C8257009275BC /* UI-Tests.xcconfig in Resources */,
 				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4150,10 +4142,10 @@
 			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 417;
+				CURRENT_PROJECT_VERSION = 419;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = "3.9.0-beta.4";
+				MARKETING_VERSION = "3.9.0-rc";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4164,10 +4156,10 @@
 			baseConfigurationReference = 5454B92E243C8257009275BC /* CotEditor.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 417;
+				CURRENT_PROJECT_VERSION = 419;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = Info.plist;
-				MARKETING_VERSION = "3.9.0-beta.4";
+				MARKETING_VERSION = "3.9.0-rc";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coteditor.$(PRODUCT_NAME)";
 				PRODUCT_NAME = CotEditor;
 			};
@@ -4226,14 +4218,14 @@
 			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 417;
+				CURRENT_PROJECT_VERSION = 419;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
-				MARKETING_VERSION = "3.9.0-beta.4";
+				MARKETING_VERSION = "3.9.0-rc";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;
@@ -4245,14 +4237,14 @@
 			baseConfigurationReference = 5454B92D243C8257009275BC /* CotEditor-Sparkle.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 417;
+				CURRENT_PROJECT_VERSION = 419;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/../Frameworks/Build",
 				);
 				INFOPLIST_FILE = "Info-Sparkle.plist";
-				MARKETING_VERSION = "3.9.0-beta.4";
+				MARKETING_VERSION = "3.9.0-rc";
 				OTHER_SWIFT_FLAGS = "$(inherited) -D SPARKLE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.coteditor.CotEditor;
 				PRODUCT_NAME = CotEditor;

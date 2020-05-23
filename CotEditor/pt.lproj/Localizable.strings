@@ -68,7 +68,7 @@
 "A new theme named “%@” has been successfully installed." = "Um novo tema chamado “%@” foi instalado com êxito.";
 
 // Window title of issue report
-"Issue Report" = "Relatório de Erro";  // FIXME: bug -> issue
+"Issue Report" = "Relatório de Problema";
 
 
 
@@ -177,7 +177,7 @@
 /* MARK: Touch Bar */
 // Touch bar item labels -Document View
 "Invisibles" = "Invisíveis";
-"Indent Guides" = "Indent Guides";  // FIXME: added
+"Indent Guides" = "Guias de Recuo";
 "Wrap Lines" = "Ajustar Linhas";
 
 // Touch bar item labels -Text View
@@ -286,8 +286,8 @@
 "Show Invisibles" = "Mostrar Invisíveis";
 "Hide Page Guide" = "Ocultar Guia da Página";
 "Show Page Guide" = "Mostrar Guia da Página";
-"Hide Indent Guides" = "Hide Indent Guides";  // FIXME: added
-"Show Indent Guides" = "Hide Indent Guides";  // FIXME: added
+"Hide Indent Guides" = "Ocultar Guias de Recuo";
+"Show Indent Guides" = "Mostrar Guias de Recuo";
 "Unwrap Lines" = "Desajustar Linhas";
 "Wrap Lines" = "Ajustar Linhas";
 
@@ -328,7 +328,7 @@
 "Coloring text…" = "Colorindo texto…";
 "Please wait for a while." = "Aguarde um momento.";
 "Extracting %@…" = "Extraindo %@…";
-"Preparing coloring…" = "Preparing coloring…";  // FIXME: added
+"Preparing coloring…" = "Preparando a coloração…";  // FIXME: machine-translated (native check required)
 "Applying colors to text" = "Aplicando cores ao texto";
 "keywords" = "palavras-chave";
 "commands" = "comandos";
@@ -497,7 +497,7 @@
 "“%@” includes the Command key." = "“%@” inclui a tecla Comando.";
 "Please choose another key." = "Escolha outra tecla.";
 "Single type is invalid for a shortcut." = "Não é possível usar uma única tecla como atalho.";
-"Please combine with another keys." = "Combine-a com outra tecla.";
+"Please combine with other keys." = "Combine-a com outra tecla.";
 
 
 
@@ -524,14 +524,14 @@
 
 // Script file error recovery suggestions
 "Check the script file." = "Verifique o arquivo de script.";
-"Check permission of the script file." = "Verifique as permissões do arquivo de script.";
+"Check the permission of the script file." = "Verifique as permissões do arquivo de script.";
 
 
 
 /* MARK: FileDropComposer */
 // Descriptions about variables in the file drop feature
 "The dropped file absolute path." = "O caminho absoluto do arquivo solto.";
-"The relative path between dropped file and the document." = "O caminho relativo entre o arquivo solto e o documento.";
+"The relative path between the dropped file and the document." = "O caminho relativo entre o arquivo solto e o documento.";
 "The dropped file’s name including extension (if exists)." = "O nome do arquivo solto, incluindo a extensão (se houver).";
 "The dropped file’s name without extension." = "O nome do arquivo solto, sem a extensão.";
 "The dropped file’s extension." = "A extensão do arquivo solto.";

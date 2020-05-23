@@ -363,7 +363,7 @@ final class LineNumberView: NSView {
                     if !isVerticalText {
                         let position = CGPoint(x: -drawingInfo.padding - drawingInfo.charWidth, y: y)
                         context.showGlyphs([drawingInfo.wrappedMarkGlyph], at: [position])
-                }
+                    }
             }
         }
         
