@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="ysq-gL-jur">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="ysq-gL-jur">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -11,17 +11,17 @@
             <objects>
                 <viewController id="ysq-gL-jur" customClass="ColorCodePanelController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="c22-O7-iKe">
-                        <rect key="frame" x="0.0" y="0.0" width="220" height="75"/>
+                        <rect key="frame" x="0.0" y="0.0" width="220" height="71"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5nu-Uj-uIv">
                                 <rect key="frame" x="7" y="13" width="128" height="22"/>
-                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="E6C-h6-CQ2">
+                                <popUpButtonCell key="cell" type="push" title="Hex" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="vF1-in-Dlv" id="E6C-h6-CQ2">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                     <menu key="menu" id="C4D-sY-kfX">
                                         <items>
-                                            <menuItem title="Hex" tag="1" id="vF1-in-Dlv"/>
+                                            <menuItem title="Hex" state="on" tag="1" id="vF1-in-Dlv"/>
                                             <menuItem title="Hex (short)" tag="2" id="wEc-KD-y7s"/>
                                             <menuItem isSeparatorItem="YES" id="AxS-WW-dBr"/>
                                             <menuItem title="CSS RGB" tag="3" id="6bH-jm-mNR"/>
@@ -44,15 +44,15 @@
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Insert" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HMC-PY-Ngy">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="menu" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="insertCodeToDocument:" target="ysq-gL-jur" id="UfI-er-Ngf"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EOP-Td-d5F">
-                                <rect key="frame" x="10" y="42" width="200" height="25"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" focusRingType="none" alignment="center" title="#ffffff" drawsBackground="YES" id="MFc-gP-VZL">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EOP-Td-d5F">
+                                <rect key="frame" x="10" y="42" width="200" height="21"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" alignment="center" title="#ffffff" drawsBackground="YES" id="MFc-gP-VZL">
                                     <font key="font" size="14" name="Menlo-Regular"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
