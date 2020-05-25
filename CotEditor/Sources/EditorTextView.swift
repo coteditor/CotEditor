@@ -1131,7 +1131,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 return !self.selectedRange.isEmpty
             
             case #selector(showSelectionInfo):
-                return (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
+                return !self.hasMultipleInsertions &&
+                    (self.string as NSString).substring(with: self.selectedRange).compareCount(with: 1) == .equal
             
             case #selector(toggleComment):
                 if let menuItem = item as? NSMenuItem {
@@ -1344,16 +1345,14 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             selectedString = selectedString.replacingLineEndings(with: documentLineEnding)
         }
         
-        guard
-            let characterInfo = try? CharacterInfo(string: selectedString),
-            let selectedRect = self.boundingRect(for: self.selectedRange)
-            else { return }
+        guard let characterInfo = try? CharacterInfo(string: selectedString) else { return }
         
         let popoverController = CharacterPopoverController.instantiate(for: characterInfo)
+        let positioningRect = self.boundingRect(for: self.selectedRange)?.insetBy(dx: -4, dy: -4) ?? .zero
         
-        let positioningRect = self.convertToLayer(selectedRect).offsetBy(dx: 0, dy: -4)
-        popoverController.showPopover(relativeTo: positioningRect, of: self)
+        self.scrollRangeToVisible(self.selectedRange)
         self.showFindIndicator(for: self.selectedRange)
+        popoverController.showPopover(relativeTo: positioningRect, of: self)
     }
     
     

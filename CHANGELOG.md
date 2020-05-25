@@ -9,6 +9,10 @@ Change Log
 
 - [beta] Add missing localizations for French.
 
+### Fixes
+
+- Fix an issue in the character inspector where the inspector was not shown when the target character is hidden due to scroll.
+
 
 
 3.9.0-rc (419)
