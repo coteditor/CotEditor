@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.9.0 (unreleased)
+--------------------------
+
+### Improvements
+
+- [beta] Add missing localizations for French.
+
+
+
 3.9.0-rc (419)
 --------------------------
 

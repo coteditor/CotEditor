@@ -34,7 +34,7 @@
 "3393.title" = "Supprimer le séparateur";
 
 /* Class = "NSTextFieldCell"; title = "This order is for the encoding menu and the encoding detection on file opening. By the detection, the higher items are more prioritized."; ObjectID = "3394"; */
-"3394.title" = "Cette liste est utilisée pour la détection automatique et pour le menu Encodage.\n La détection automatique essaie ces encodages un par un, à partir du haut de la liste.";  // FIXME: updated
+"3394.title" = "Cet ordre est utilisé par le menu Encodage et par la détection de l'encodage à l'ouverture d'un fichier. Pour la détection, les encodages en haut de liste sont prioritaires.";
 
 /* Class = "NSButtonCell"; title = "Restore Defaults"; ObjectID = "3396"; */
 "3396.title" = "Restaurer les paramètres par défaut";
