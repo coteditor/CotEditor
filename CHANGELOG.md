@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- [trivial] Remove the snippet keybindings setting migration from CotEdtiror 2.x format and earlier.
 - [beta] Add missing localizations for French.
 
 ### Fixes

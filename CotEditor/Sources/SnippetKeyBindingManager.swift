@@ -51,8 +51,6 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         self.defaultSnippets = UserDefaults.standard.registeredValue(for: .insertCustomTextArray)
         
         super.init()
-        
-        self.migrateIfNeeded()
     }
     
     
@@ -175,58 +173,6 @@ final class SnippetKeyBindingManager: KeyBindingManager {
         guard let numberRange = result?.range(at: 1) else { return nil }
         
         return Int((selectorString as NSString).substring(with: numberRange))
-    }
-    
-}
-
-
-
-// MARK: Migration
-
-private extension SnippetKeyBindingManager {
-    
-    /// migrate snippet settings if needed
-    func migrateIfNeeded() {
-        
-        guard
-            let lastVersionString = UserDefaults.standard[.lastVersion],
-            let lastVersion = Int(lastVersionString),
-            lastVersion < AppVersion.version3_0,
-            !self.keyBindingSettingFileURL.isReachable
-            else { return }
-        
-        // -> Just abort if failed.
-        try? self.migrate()
-    }
-    
-    
-    /// migrate snippet shortcuts file to CotEditor 3 format (2016-09)
-    private func migrate() throws {
-        
-        let legacySettingsURL = self.userSettingDirectoryURL.appendingPathComponent("TextKeyBindings.plist")
-        
-        guard legacySettingsURL.isReachable else { return }
-        
-        let legacyData = try Data(contentsOf: legacySettingsURL)
-        let keyBindings = try self.keyBindings(migratingFrom: legacyData)
-        let data = try PropertyListEncoder().encode(keyBindings.sorted())
-        
-        
-        // save new format file
-        try data.write(to: self.keyBindingSettingFileURL, options: .atomic)
-    }
-    
-    
-    /// load legacy format (<= CotEditor 2) key bindings setting
-    private func keyBindings(migratingFrom data: Data) throws -> [KeyBinding] {
-        
-        let plist = try PropertyListDecoder().decode([String: String].self, from: data)
-        
-        guard !plist.isEmpty else { throw CocoaError(.propertyListReadCorrupt) }
-        
-        let keyBindings = plist.map { KeyBinding(action: Selector($0.value), shortcut: Shortcut(keySpecChars: $0.key)) }
-        
-        return Set(keyBindings).sorted()
     }
     
 }
