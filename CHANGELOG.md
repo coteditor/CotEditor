@@ -11,6 +11,7 @@ Change Log
 - [trivial] Remove the snippet keybindings setting migration from CotEdtiror 2.x format and earlier.
 - [beta] Add missing localizations for French.
 
+
 ### Fixes
 
 - Fix an issue in the character inspector where the inspector was not shown when the target character is hidden due to scroll.
@@ -114,7 +115,7 @@ Change Log
 ### New Features
 
 - Rewrite the invisible character drawing feature to draw alternative symbols more properly under various environments.
-- Display Unicode's general category in the character info popover.
+- Display Unicode's general category in the character inspector.
 
 
 ### Improvements
