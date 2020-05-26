@@ -129,7 +129,7 @@ struct DefaultSettings {
              FileDropComposer.SettingKey.formatString: "url(\"<<<RELATIVE-PATH>>>\")"],
         ],
         
-        .insertCustomTextArray: ["<br />\n", "", "", "", "", "", "", "", "", "", "",
+        .insertCustomTextArray: ["", "", "", "", "", "", "", "", "", "", "",
                                  "", "", "", "", "", "", "", "", "", "",
                                  "", "", "", "", "", "", "", "", "", ""],
         

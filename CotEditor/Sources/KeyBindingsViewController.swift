@@ -304,9 +304,7 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
     /// save current settings
     fileprivate override func saveSettings() {
         
-        let snippets = self.snippets.map(\.text)
-        
-        SnippetKeyBindingManager.shared.saveSnippets(snippets)
+        SnippetKeyBindingManager.shared.snippets = self.snippets.map(\.text)
         
         super.saveSettings()
     }

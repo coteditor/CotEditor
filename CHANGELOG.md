@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Remove the default value of the snippet keybindings, that inserts `<br />` with `⇧↩`.
 - [trivial] Remove the snippet keybindings setting migration from CotEdtiror 2.x format and earlier.
 - [beta] Add missing localizations for French.
 
