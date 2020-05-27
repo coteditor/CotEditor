@@ -65,11 +65,11 @@
 /* Class = "NSButtonCell"; title = "Space"; ObjectID = "gcF-OM-SV0"; */
 "gcF-OM-SV0.title" = "Espace";
 /* Class = "NSButtonCell"; title = "Other whitespaces"; ObjectID = "Bf2-rS-2zu"; */
-"Bf2-rS-2zu.title" = "Other whitespaces";  // FIXME: newly added
+"Bf2-rS-2zu.title" = "Autres blancs";
 /* Class = "NSButtonCell"; title = "Other control characters"; ObjectID = "sxg-F3-ely"; */
-"sxg-F3-ely.title" = "Autres Invisibles";  // FIXME: changed (invisible -> control)
+"sxg-F3-ely.title" = "Autres caractères de contrôle";
 /* Class = "NSButtonCell"; title = "Show indent guides"; ObjectID = "csp-Hi-hb1"; */
-"csp-Hi-hb1.title" = "Show indent guides";  // FIXME: added
+"csp-Hi-hb1.title" = "Afficher les guides d'indentation";
 
 /* Class = "NSTextFieldCell"; title = "Appearance:"; ObjectID = "6KG-3a-ZuU"; */
 "6KG-3a-ZuU.title" = "Mode d’apparence :";

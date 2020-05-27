@@ -25,7 +25,7 @@
 <article>
 <header>
 	<h1>CotEditor 3.9.0</h1>
-	<p>release: <time>2020-05</time></p>
+	<p>release: <time>2020-05-27</time></p>
 </header>
 
 
@@ -35,7 +35,7 @@
 <ul>
 	<li>Rewrite the <a href="../pgs/howto_display_invisibles.html">invisible character drawing feature</a> to draw alternative symbols more properly under various environments.</li>
 	<li>Add an option to draw indent guides.</li>
-	<li>Display Unicode's general category in the character info popover.</li>
+	<li>Display Unicode's general category in the character inspector.</li>
 </ul>
 </section>
 
@@ -55,12 +55,14 @@
 	<li>Remove “vertical orientation” from the selections of the Writing Direction toolbar button.</li>
 	<li>Make borders of line number views and opacity sample tips more distinct in the high-contrast mode.</li>
 	<li>Adjust the visible area after unwrapping lines in RTL text mode.</li>
+	<li>Remove the default value of the snippet keybindings, that inserts <code>&lt;br /&gt;</code> with <kbd>⇧↩</kbd>.</li>
 	<li>Update help content.</li>
 	<li><span class="trivial">trivial</span>: Rename “Auto-Detect,” the option detecting the file encoding automatically, to “Automatic.”</li>
 	<li><span class="trivial">trivial</span>: Omit surrogate pair code points in the character inspector if the character consists of multiple Unicode characters.</li>
 	<li><span class="trivial">trivial</span>: Adjust the drawing position of the zoomed character in the character inspector.</li>
 	<li><span class="trivial">trivial</span>: Update some labels in the Format pane.</li>
 	<li><span class="trivial">trivial</span>: Display default values as the input field's placeholder for window size setting when empty.</li>
+	<li><span class="trivial">trivial</span>: Remove the snippet keybindings setting migration from CotEdtiror 2.x format and earlier.</li>
 	<li><span class="trivial">trivial</span>: Make the identifier for document autosaving longer.</li>
 	<li><span class="trivial">dev</span>: Update the build environment to Xcode 11.5 (Swift 5.2).</li>
 	<li><span class="trivial">dev</span>: Replace YAML.framework with Yams.</li>
@@ -82,6 +84,7 @@
 	<li>Fix an issue where the outline menu could select the wrong item while typing.</li>
 	<li>Fix an issue where the line numbers could be shifted when printing vertical text orientation documents.</li>
 	<li>Fix an issue where line endings could remain when deleting duplicate lines with multiple selections.</li>
+	<li>Fix an issue in the character inspector where the inspector was not shown when the target character is hidden due to scroll.</li>
 	<li>Fix an issue in the line number view where the line number of the current line was not bolded under a specific condition.</li>
 	<li>Fix an issue in scripting with AppleScript/JXA where the application crashed by performing <code>string in ...</code> command.</li>
 	<li>Fix an issue in scripting with AppleScript/JXA where the contents of a document can rarely be overwritten with the contents of another document window under very specific conditions.</li>

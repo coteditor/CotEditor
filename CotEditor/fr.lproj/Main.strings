@@ -308,7 +308,7 @@
 "325.title" = "Afficher la barre d'état";
 
 /* Class = "NSMenuItem"; title = "Show Indent Guides"; ObjectID = "Qqu-pI-Xz6"; */
-"Qqu-pI-Xz6.title" = "Show Indent Guides";  // FIXME: added
+"Qqu-pI-Xz6.title" = "Afficher les guides d'indentation";
 /* Class = "NSMenuItem"; title = "Show Page Guide"; ObjectID = "749"; */
 "749.title" = "Afficher le guide de page";
 
