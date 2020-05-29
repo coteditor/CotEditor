@@ -41,7 +41,7 @@ class KeyBindingsViewController: NSViewController, NSOutlineViewDataSource, NSOu
     @objc private dynamic var warningMessage: String?  // for binding
     @objc private dynamic var isRestoreble: Bool = false  // for binding
     
-    @IBOutlet private weak var outlineView: NSOutlineView?
+    @IBOutlet fileprivate weak var outlineView: NSOutlineView?
     
     
     
@@ -287,6 +287,16 @@ final class SnippetKeyBindingsViewController: KeyBindingsViewController, NSTextV
         // setup variable menu
         for token in Snippet.Variable.allCases {
             self.variableInsertionMenu!.menu!.addItem(token.insertionMenuItem(target: self.formatTextView))
+        }
+    }
+    
+    
+    override func viewWillAppear() {
+        
+        super.viewWillAppear()
+        
+        if let outlineView = self.outlineView, outlineView.selectedRow == -1 {
+            outlineView.selectRowIndexes([0], byExtendingSelection: false)
         }
     }
     

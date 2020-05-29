@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.9.1 (unreleased)
+--------------------------
+
+### Improvements
+
+- [trivial] Avoid selecting no item in the sinppet setting table.
+
+
+
 3.9.0 (421)
 --------------------------
 
