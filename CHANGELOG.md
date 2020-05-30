@@ -10,6 +10,11 @@ Change Log
 - [trivial] Avoid selecting no item in the sinppet setting table.
 
 
+### Fixes
+
+- Fix an issue in the find panel fields that carriage retturns (CR) were not drawn as line endings but conrol characters.
+
+
 
 3.9.0 (421)
 --------------------------
