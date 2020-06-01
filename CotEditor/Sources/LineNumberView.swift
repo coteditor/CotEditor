@@ -38,14 +38,8 @@ final class LineNumberView: NSView {
         let padding: CGFloat
         let tickLength: CGFloat
         
-        private let textFont: NSFont
-        private let scale: CGFloat
-        
         
         init(textFont: NSFont, scale: CGFloat) {
-            
-            self.textFont = textFont
-            self.scale = scale
             
             // calculate font size for number
             self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).rounded(interval: 0.5)
@@ -63,12 +57,6 @@ final class LineNumberView: NSView {
             self.tickLength = ceil(self.charWidth)
         }
         
-        
-        func isSameSource(textFont: NSFont, scale: CGFloat) -> Bool {
-            
-            return (self.textFont == textFont) && (self.scale == scale)
-        }
-        
     }
     
     
@@ -78,7 +66,7 @@ final class LineNumberView: NSView {
         
         didSet {
             if !self.isHiddenOrHasHiddenAncestor {
-                self.invalidateDrawingInfoAndThickness()
+                self.invalidateThickness()
                 self.invalidateIntrinsicContentSize()
             }
         }
@@ -116,6 +104,7 @@ final class LineNumberView: NSView {
     private var frameObserver: NSObjectProtocol?
     private var scrollObserver: NSObjectProtocol?
     private var colorObserver: NSKeyValueObservation?
+    private var fontObserver: NSKeyValueObservation?
     private var scaleObserver: NSKeyValueObservation?
     
     private weak var draggingTimer: Timer?
@@ -126,6 +115,7 @@ final class LineNumberView: NSView {
             guard let textView = textView else { return }
             
             self.observeTextView(textView)
+            self.invalidateDrawingInfo()
         }
     }
     
@@ -204,15 +194,6 @@ final class LineNumberView: NSView {
         self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
             self?.needsDisplay = true
         }
-    }
-    
-    
-    /// prepare line number drawing
-    override func viewWillDraw() {
-        
-        super.viewWillDraw()
-        
-        self.invalidateDrawingInfoAndThickness()
     }
     
     
@@ -371,22 +352,25 @@ final class LineNumberView: NSView {
     }
     
     
-    /// update parameters related to drawing and layout based on textView's status
-    private func invalidateDrawingInfoAndThickness() {
+    /// Update parameters related to drawing and layout based on textView's status.
+    private func invalidateDrawingInfo() {
         
         guard
-            let textFont = self.textView?.font,
-            let scale = self.textView?.scale
+            let textView = self.textView,
+            let textFont = textView.font
             else { return assertionFailure() }
         
-        let drawingInfo: DrawingInfo
-        if let lastDrawingInfo = self.drawingInfo, lastDrawingInfo.isSameSource(textFont: textFont, scale: scale) {
-            drawingInfo = lastDrawingInfo
-        } else {
-            // update drawing info only when needed
-            drawingInfo = DrawingInfo(textFont: textFont, scale: scale)
-            self.drawingInfo = drawingInfo
-        }
+        self.drawingInfo = DrawingInfo(textFont: textFont, scale: textView.scale)
+        
+        self.invalidateThickness()
+        self.needsDisplay = true
+    }
+    
+    
+    /// Update receiver's thickness based on drawingInfo and textView's status.
+    private func invalidateThickness() {
+        
+        guard let drawingInfo = self.drawingInfo else { return assertionFailure() }
         
         // adjust thickness
         let thickness: CGFloat = {
@@ -395,16 +379,19 @@ final class LineNumberView: NSView {
                     let requiredNumberOfDigits = max(self.numberOfLines.numberOfDigits, self.minNumberOfDigits)
                     let thickness = CGFloat(requiredNumberOfDigits) * drawingInfo.charWidth + 2 * drawingInfo.padding
                     return max(ceil(thickness), self.minVerticalThickness)
+                
                 case .vertical:
                     let thickness = drawingInfo.fontSize + 2.5 * drawingInfo.tickLength
                     return max(ceil(thickness), self.minHorizontalThickness)
+                
                 @unknown default: fatalError()
             }
         }()
-        if thickness != self.thickness {
-            self.thickness = thickness
-            self.invalidateIntrinsicContentSize()
-        }
+        
+        guard thickness != self.thickness else { return }
+        
+        self.thickness = thickness
+        self.invalidateIntrinsicContentSize()
     }
     
     
@@ -412,6 +399,10 @@ final class LineNumberView: NSView {
     private func observeTextView(_ textView: NSTextView) {
         
         self.textObserver = NotificationCenter.default.addObserver(forName: NSText.didChangeNotification, object: textView, queue: .main) { [weak self] _ in
+            // -> The digit of the line numbers affect thickness.
+            if self?.orientation == .horizontal {
+                self?.invalidateThickness()
+            }
             self?.needsDisplay = true
         }
         
@@ -432,9 +423,14 @@ final class LineNumberView: NSView {
             self?.needsDisplay = true
         }
         
+        self.fontObserver?.invalidate()
+        self.fontObserver = textView.observe(\.font) { [weak self] (_, _)  in
+            self?.invalidateDrawingInfo()
+        }
+        
         self.scaleObserver?.invalidate()
         self.scaleObserver = textView.observe(\.scale) { [weak self] (_, _)  in
-            self?.needsDisplay = true
+            self?.invalidateDrawingInfo()
         }
     }
     
@@ -472,6 +468,9 @@ final class LineNumberView: NSView {
         
         self.colorObserver?.invalidate()
         self.colorObserver = nil
+        
+        self.fontObserver?.invalidate()
+        self.fontObserver = nil
         
         self.scaleObserver?.invalidate()
         self.scaleObserver = nil

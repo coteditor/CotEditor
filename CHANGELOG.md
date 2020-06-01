@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix text flickering while pinch-zoom.
 - Fix an issue in the find panel fields that carriage retturns (CR) were not drawn as line endings but conrol characters.
 - Fix an issue under macOS 10.14 that the text in the About panel was black even in the Dark Mode.
 
