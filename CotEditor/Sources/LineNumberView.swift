@@ -39,10 +39,10 @@ final class LineNumberView: NSView {
         let tickLength: CGFloat
         
         
-        init(textFont: NSFont, scale: CGFloat) {
+        init(fontSize: CGFloat, scale: CGFloat) {
             
             // calculate font size for number
-            self.fontSize = (scale * LineNumberView.fontSizeFactor * textFont.pointSize).rounded(interval: 0.5)
+            self.fontSize = (scale * LineNumberView.fontSizeFactor * fontSize).rounded(interval: 0.5)
             
             // prepare glyphs
             let font = CTFontCreateWithGraphicsFont(LineNumberView.lineNumberFont, self.fontSize, nil, nil)
@@ -360,7 +360,7 @@ final class LineNumberView: NSView {
             let textFont = textView.font
             else { return assertionFailure() }
         
-        self.drawingInfo = DrawingInfo(textFont: textFont, scale: textView.scale)
+        self.drawingInfo = DrawingInfo(fontSize: textFont.pointSize, scale: textView.scale)
         
         self.invalidateThickness()
         self.needsDisplay = true
@@ -372,7 +372,6 @@ final class LineNumberView: NSView {
         
         guard let drawingInfo = self.drawingInfo else { return assertionFailure() }
         
-        // adjust thickness
         let thickness: CGFloat = {
             switch self.orientation {
                 case .horizontal:
