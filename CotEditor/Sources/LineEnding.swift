@@ -89,7 +89,6 @@ enum LineEnding: Character {
 
 private extension LineEnding {
     
-    static let characterSet = CharacterSet(charactersIn: "\n\r\u{2028}\u{2029}")
     static let regexPattern = "\\r\\n|[\\n\\r\\u2028\\u2029]"
 }
 
@@ -99,8 +98,7 @@ extension StringProtocol where Self.Index == String.Index {
     /// The first line ending type.
     var detectedLineEnding: LineEnding? {
         
-        // -> We don't use `CharacterSet.newlines` because it contains more characters than we need.
-        guard let range = self.rangeOfCharacter(from: LineEnding.characterSet) else { return nil }
+        guard let range = self.range(of: LineEnding.regexPattern, options: .regularExpression) else { return nil }
         
         // -> Swift treats "\r\n" also as a single character.
         let character = self[range.lowerBound]
