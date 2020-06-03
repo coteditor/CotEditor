@@ -62,12 +62,7 @@ extension NSTextView {
             else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        var boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        
-        // adjust size if the substring of the given range is single vertical tab character.
-        if range.length == 1, (self.string as NSString).character(at: range.location) == 0x000B {
-            boundingRect.size.width = boundingRect.height / 2
-        }
+        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         
         return boundingRect.offset(by: self.textContainerOrigin)
     }
