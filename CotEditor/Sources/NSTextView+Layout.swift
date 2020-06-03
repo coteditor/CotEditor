@@ -129,7 +129,8 @@ extension NSTextView {
             }
             
             // reset minimum size for unwrap mode
-            self.minSize = self.visibleRect.size
+            let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
+            self.minSize = visibleRect.size
             
             // update view size
             // -> For in the case by scaling-down when the view becomes bigger than text content width
