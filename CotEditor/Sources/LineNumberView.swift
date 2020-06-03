@@ -25,7 +25,7 @@
 //
 
 import Cocoa
-import CoreText
+import CoreText.CTFont
 
 final class LineNumberView: NSView {
     
