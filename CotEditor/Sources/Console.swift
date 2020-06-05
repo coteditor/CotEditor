@@ -98,9 +98,10 @@ final class ConsoleViewController: NSViewController {
         return paragraphStyle
     }()
     
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+    private let dateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.timeZone = .current
+        formatter.formatOptions = [.withFullDate, .withTime, .withDashSeparatorInDate, .withSpaceBetweenDateAndTime, .withColonSeparatorInTime]
         return formatter
     }()
     
