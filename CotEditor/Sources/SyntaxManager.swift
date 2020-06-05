@@ -456,6 +456,9 @@ private extension SyntaxManager.StyleDictionary {
                 return NSMutableDictionary(dictionary: dictionary.mapValues(convertToCocoaBindable))
             case let array as [Any]:
                 return NSMutableArray(array: array.map(convertToCocoaBindable))
+            case let date as Date:
+                return ISO8601DateFormatter.string(from: date, timeZone: .current,
+                                                   formatOptions: [.withFullDate, .withDashSeparatorInDate])
             default:
                 return item
         }

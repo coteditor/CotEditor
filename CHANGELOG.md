@@ -12,6 +12,7 @@ Change Log
 
 ### Fixes
 
+- Fix an issue in the syntax style editor that saving existing syntax styles failed.
 - Fix text flickering while pinch-zoom.
 - Fix an issue in the editor where the bottom part of the editor became occasionally not responsive when the editor is zoomed-out.
 - Fix an issue in the find panel fields that carriage retturns (CR) were not drawn as line endings but conrol characters.
