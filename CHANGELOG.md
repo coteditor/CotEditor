@@ -12,10 +12,11 @@ Change Log
 
 ### Fixes
 
-- Fix an issue in the syntax style editor that saving existing syntax styles failed.
+- Fix an issue in the syntax style editing that saving existing syntax styles failed.
 - Fix text flickering while pinch-zoom.
 - Fix an issue in the editor where the bottom part of the editor became occasionally not responsive when the editor is zoomed-out.
 - Fix an issue in the find panel fields that carriage retturns (CR) were not drawn as line endings but conrol characters.
+- Fix an issue in the syntax style editing that reverting a modified bundled style through the style editor did not remove the existing user file.
 - Fix an issue under macOS 10.14 that the text in the About panel was black even in the Dark Mode.
 
 

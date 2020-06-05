@@ -188,9 +188,6 @@ final class SyntaxManager: SettingFileManaging {
             (settingDictionary[key.rawValue] as? NSMutableArray)?.sort(using: [keyStringSort])
         }
         
-        // convert NSObject-based collections to Swift.Array/Dictionary
-        let settingDictionary = settingDictionary.yamlEncodable
-        
         // save
         let saveURL = self.preparedURLForUserSetting(name: name)
         
@@ -207,7 +204,7 @@ final class SyntaxManager: SettingFileManaging {
             }
         } else {
             // save file to user domain
-            let yamlString = try Yams.dump(object: settingDictionary)
+            let yamlString = try Yams.dump(object: settingDictionary.yamlEncodable)
             try yamlString.write(to: saveURL, atomically: true, encoding: .utf8)
         }
         
@@ -371,7 +368,7 @@ final class SyntaxManager: SettingFileManaging {
         
         guard let bundledStyle = self.bundledSettingDictionary(name: name) else { return false }
         
-        return NSDictionary(dictionary: style).isEqual(to: bundledStyle)
+        return style == bundledStyle
     }
     
 }
@@ -461,6 +458,50 @@ private extension SyntaxManager.StyleDictionary {
                                                    formatOptions: [.withFullDate, .withDashSeparatorInDate])
             default:
                 return item
+        }
+    }
+    
+}
+
+
+
+// MARK: - Equitability Support
+
+private extension SyntaxManager.StyleDictionary {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool  {
+        
+        return areEqual(lhs, rhs)
+    }
+    
+    
+    // MARK: Private Methods
+    
+    private static func areEqual(_ lhs: Any, _ rhs: Any) -> Bool {
+        
+        switch (lhs, rhs) {
+            case let (lhs, rhs) as ([Any], [Any]):
+                guard lhs.count == rhs.count else { return false }
+                
+                // check elements equitability by ignoring the order
+                var rhs = rhs
+                for lhsValue in lhs {
+                    guard let rhsIndex = rhs.firstIndex(where: { areEqual(lhsValue, $0) }) else { return false }
+                    rhs.remove(at: rhsIndex)
+                }
+                return true
+            
+            case let (lhs, rhs) as ([AnyHashable: Any], [AnyHashable: Any]):
+                guard lhs.count == rhs.count else { return false }
+                
+                return lhs.allSatisfy { (key, lhsValue) -> Bool in
+                    guard let rhsValue = rhs[key] else { return false }
+                    
+                    return areEqual(lhsValue, rhsValue)
+            }
+            
+            default:
+                return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
         }
     }
     
