@@ -469,7 +469,7 @@ private extension SyntaxManager.StyleDictionary {
 
 private extension SyntaxManager.StyleDictionary {
     
-    static func == (lhs: Self, rhs: Self) -> Bool  {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         
         return areEqual(lhs, rhs)
     }
@@ -477,9 +477,21 @@ private extension SyntaxManager.StyleDictionary {
     
     // MARK: Private Methods
     
+    /// Check the equitability recursively.
+    ///
+    /// This comparison is designed and valid only for StyleDictionary.
     private static func areEqual(_ lhs: Any, _ rhs: Any) -> Bool {
         
         switch (lhs, rhs) {
+            case let (lhs, rhs) as (Dictionary, Dictionary):
+                guard lhs.count == rhs.count else { return false }
+                
+                return lhs.allSatisfy { (key, lhsValue) -> Bool in
+                    guard let rhsValue = rhs[key] else { return false }
+                    
+                    return areEqual(lhsValue, rhsValue)
+                }
+            
             case let (lhs, rhs) as ([Any], [Any]):
                 guard lhs.count == rhs.count else { return false }
                 
@@ -490,15 +502,6 @@ private extension SyntaxManager.StyleDictionary {
                     rhs.remove(at: rhsIndex)
                 }
                 return true
-            
-            case let (lhs, rhs) as ([AnyHashable: Any], [AnyHashable: Any]):
-                guard lhs.count == rhs.count else { return false }
-                
-                return lhs.allSatisfy { (key, lhsValue) -> Bool in
-                    guard let rhsValue = rhs[key] else { return false }
-                    
-                    return areEqual(lhsValue, rhsValue)
-            }
             
             default:
                 return type(of: lhs) == type(of: rhs) && String(describing: lhs) == String(describing: rhs)
