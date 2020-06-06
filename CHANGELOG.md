@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Increase the size of the invisible space symbol.
 - [trivial] Avoid selecting no item in the sinppet setting table.
 
 
