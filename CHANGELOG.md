@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Adjust the position of invisible symbols in vertical text orientation.
 - [trivial] Avoid selecting no item in the sinppet setting table.
 
 
