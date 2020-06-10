@@ -68,18 +68,6 @@ final class DocumentWindow: NSWindow {
     // MARK: -
     // MARK: Lifecycle
     
-    override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing bufferingType: NSWindow.BackingStoreType, defer flag: Bool) {
-        
-        super.init(contentRect: contentRect, styleMask: style, backing: bufferingType, defer: flag)
-        
-        self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
-            guard let self = self, !self.isOpaque else { return }
-            
-            self.invalidateTitlebarOpacity()
-        }
-    }
-    
-    
     deinit {
         self.appearanceObserver?.invalidate()
     }
@@ -104,6 +92,15 @@ final class DocumentWindow: NSWindow {
             guard isOpaque != oldValue else { return }
             
             self.invalidateTitlebarOpacity()
+            
+            if isOpaque {
+                self.appearanceObserver?.invalidate()
+                self.appearanceObserver = nil
+            } else if self.appearanceObserver == nil {
+                self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
+                    self?.invalidateTitlebarOpacity()
+                }
+            }
             
             NotificationCenter.default.post(name: DocumentWindow.didChangeOpacityNotification, object: self)
         }

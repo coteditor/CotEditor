@@ -60,9 +60,6 @@ extension InvisibleDrawing {
         let isRTL = textContainer.textView?.baseWritingDirection == .rightToLeft
         let glyphHeight = self.textFont.capHeight
         let lineWidth = self.textFont.pointSize * (1 + self.textFont.weight.rawValue) / 12
-        let baselineOffset = (textContainer.layoutOrientation == .vertical)
-            ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
-            : baselineOffset
         let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]
         var pathCache: [UTF16.CodeUnit: NSBezierPath] = [:]
         

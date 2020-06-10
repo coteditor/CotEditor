@@ -46,11 +46,10 @@ extension NSColor {
         
         let currentAppearance = NSAppearance.current
         NSAppearance.current = appearance
-        defer {
-            NSAppearance.current = currentAppearance
-        }
+        let cgColor = self.cgColor
+        NSAppearance.current = currentAppearance
         
-        return self.cgColor
+        return cgColor
     }
     
     
