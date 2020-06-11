@@ -387,7 +387,9 @@ private extension NSTextStorage {
                 layoutManager.removeTemporaryAttribute(.syntaxType, forCharacterRange: highlightRange)
                 
                 for type in SyntaxType.allCases {
-                    guard let ranges = highlights[type], !ranges.isEmpty else { continue }
+                    guard
+                        let ranges = highlights[type]?.compactMap({ $0.intersection(highlightRange) }),
+                        !ranges.isEmpty else { continue }
                     
                     for range in ranges {
                         layoutManager.addTemporaryAttribute(.syntaxType, value: type, forCharacterRange: range)
