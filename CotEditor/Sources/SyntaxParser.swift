@@ -189,7 +189,7 @@ extension SyntaxParser {
     ///
     /// - Parameter completionHandler: The block to execute when the process completes.
     /// - Returns: The progress of the async highlight task if performed.
-    func highlightAll(forcesParsing: Bool = false, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         assert(Thread.isMainThread)
         
