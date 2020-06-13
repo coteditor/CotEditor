@@ -60,9 +60,6 @@ extension InvisibleDrawing {
         let isRTL = textContainer.textView?.baseWritingDirection == .rightToLeft
         let glyphHeight = self.textFont.capHeight
         let lineWidth = self.textFont.pointSize * (1 + self.textFont.weight.rawValue) / 12
-        let baselineOffset = (textContainer.layoutOrientation == .vertical)
-            ? baselineOffset - (self.textFont.ascender - self.textFont.capHeight) / 2  // adjust to center symbols
-            : baselineOffset
         let cacheableInvisibles: Set<Invisible> = [.newLine, .fullwidthSpace, .otherControl]
         var pathCache: [UTF16.CodeUnit: NSBezierPath] = [:]
         
@@ -234,7 +231,7 @@ private extension Invisible {
                 return path.copy(strokingWithWidth: lineWidth, lineCap: .round, lineJoin: .round, miterLimit: 0, transform: transform)
             
             case .space:
-                let radius = size.height / 10 + lineWidth
+                let radius = 0.15 * size.height + lineWidth
                 let rect = CGRect(x: (size.width - radius) / 2, y: (size.height - radius) / 2, width: radius, height: radius)
                 return CGPath(ellipseIn: rect, transform: nil)
             

@@ -2,6 +2,27 @@
 Change Log
 ==========================
 
+3.9.1 (423)
+--------------------------
+
+### Improvements
+
+- Increase the size of the invisible space symbol.
+- Adjust the position of invisible symbols in vertical text orientation.
+- [trivial] Avoid selecting no item in the snippet setting table.
+
+
+### Fixes
+
+- Fix an issue in the syntax style editing that saving existing syntax styles failed.
+- Fix text flickering while pinch-zoom.
+- Fix an issue in the editor where the bottom part of the editor became occasionally not responsive when the editor is zoomed-out.
+- Fix an issue in the find panel fields that carriage returns (CR) were not drawn as line endings but control characters.
+- Fix an issue in the syntax style editing that reverting a modified bundled style through the style editor did not remove the existing user file.
+- Fix an issue under macOS 10.14 that the text in the About panel was black even in the Dark Mode.
+
+
+
 3.9.0 (421)
 --------------------------
 

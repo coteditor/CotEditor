@@ -62,12 +62,7 @@ extension NSTextView {
             else { return nil }
         
         let glyphRange = layoutManager.glyphRange(forCharacterRange: range, actualCharacterRange: nil)
-        var boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
-        
-        // adjust size if the substring of the given range is single vertical tab character.
-        if range.length == 1, (self.string as NSString).character(at: range.location) == 0x000B {
-            boundingRect.size.width = boundingRect.height / 2
-        }
+        let boundingRect = layoutManager.boundingRect(forGlyphRange: glyphRange, in: textContainer)
         
         return boundingRect.offset(by: self.textContainerOrigin)
     }
@@ -129,7 +124,8 @@ extension NSTextView {
             }
             
             // reset minimum size for unwrap mode
-            self.minSize = self.visibleRect.size
+            let visibleRect = self.enclosingScrollView?.documentVisibleRect ?? self.visibleRect
+            self.minSize = visibleRect.size
             
             // update view size
             // -> For in the case by scaling-down when the view becomes bigger than text content width

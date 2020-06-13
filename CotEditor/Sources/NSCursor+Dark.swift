@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -27,9 +27,9 @@ import AppKit.NSCursor
 
 extension NSCursor {
     
-    /// i-beam for dark background
-    static var lightIBeam = NSCursor(image: #imageLiteral(resourceName: "LightIBeam"), hotSpot: NSCursor.iBeam.hotSpot)
+    /// I-beam for dark background.
+    static let lightIBeam = NSCursor(image: #imageLiteral(resourceName: "LightIBeam"), hotSpot: NSCursor.iBeam.hotSpot)
     
-    /// i-beam for vertical text orientation and dark background
-    static var lightIBeamCursorForVerticalLayout = NSCursor(image: #imageLiteral(resourceName: "LightIBeamCursorForVerticalLayout"), hotSpot: NSCursor.iBeamCursorForVerticalLayout.hotSpot)
+    /// I-beam for vertical text orientation and dark background.
+    static let lightIBeamCursorForVerticalLayout = NSCursor(image: #imageLiteral(resourceName: "LightIBeamCursorForVerticalLayout"), hotSpot: NSCursor.iBeamCursorForVerticalLayout.hotSpot)
 }

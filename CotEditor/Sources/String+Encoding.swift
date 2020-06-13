@@ -263,22 +263,24 @@ extension Data {
     /// decode `com.apple.TextEncoding` extended file attribute to encoding
     var decodingXattrEncoding: String.Encoding? {
         
-        guard let string = String(data: self, encoding: .utf8) else { return nil }
+        guard let string = String(data: self, encoding: .ascii) else { return nil }
         
         let components = string.components(separatedBy: ";")
-        let cfEncoding: UInt32? = {
-            if let cfEncodingNumber = components[safe: 1] {
-                return UInt32(cfEncodingNumber)
-            }
-            if let ianaCharSetName = components[safe: 0] {
-                return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
-            }
-            return nil
-        }()
         
-        guard let unwrappedCFEncoding = cfEncoding, cfEncoding != kCFStringEncodingInvalidId else { return nil }
+        guard
+            let cfEncoding: CFStringEncoding = {
+                if let cfEncodingNumber = components[safe: 1] {
+                    return UInt32(cfEncodingNumber)
+                }
+                if let ianaCharSetName = components[safe: 0] {
+                    return CFStringConvertIANACharSetNameToEncoding(ianaCharSetName as CFString)
+                }
+                return nil
+            }(),
+            cfEncoding != kCFStringEncodingInvalidId
+            else { return nil }
         
-        return String.Encoding(cfEncoding: CFStringEncoding(unwrappedCFEncoding))
+        return String.Encoding(cfEncoding: cfEncoding)
     }
     
 }
@@ -297,7 +299,7 @@ extension String.Encoding {
         
         let string = String(format: "%@;%u", ianaCharSetName as String, cfEncoding)
         
-        return string.data(using: .utf8)
+        return string.data(using: .ascii)
     }
     
 }

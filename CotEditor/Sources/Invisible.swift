@@ -43,7 +43,8 @@ enum Invisible {
         //   cf. https://developer.apple.com/documentation/appkit/nscontrolglyph
         
         switch codeUnit {
-            case 0x000A:  // LINE FEED (Cc) a.k.a. \n
+            case 0x000A,  // LINE FEED (Cc) a.k.a. \n
+                 0x000D:  // CARRIAGE RETURN (Cc)
                 self = .newLine
             case 0x0009:  // HORIZONTAL TABULATION (Cc) a.k.a. \t
                 self = .tab
