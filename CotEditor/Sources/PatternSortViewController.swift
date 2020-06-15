@@ -29,14 +29,15 @@ final class PatternSortViewController: NSViewController, SortPatternViewControll
     
     // MARK: Public Properties
     
+    var sampleLine: String?
+    @objc dynamic var sampleFontName: String?
+    
     var completionHandler: ((_ pattern: SortPattern, _ options: SortOptions) -> Void)?
     
     
     // MARK: Private Properties
     
     @objc dynamic private var sortOptions = SortOptions()
-    @objc dynamic var sampleLine: String?
-    @objc dynamic var sampleFontName: String?
     
     @IBOutlet private weak var sampleLineField: NSTextField?
     

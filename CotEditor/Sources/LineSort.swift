@@ -106,6 +106,8 @@ final class CSVSortPattern: NSObject, SortPattern {
     
     func sortKey(for line: String) -> String? {
         
+        assert(self.column > 0)
+        
         let delimiter = self.delimiter.isEmpty ? "," : self.delimiter.unescaped
         let index = self.column - 1  // column number is 1-based
         
@@ -115,6 +117,8 @@ final class CSVSortPattern: NSObject, SortPattern {
     
     
     func range(for line: String) -> Range<String.Index>? {
+        
+        assert(self.column > 0)
         
         let delimiter = self.delimiter.isEmpty ? "," : self.delimiter.unescaped
         let components = line.components(separatedBy: delimiter)
