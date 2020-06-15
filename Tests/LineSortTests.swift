@@ -101,6 +101,11 @@ final class LineSortTests: XCTestCase {
         let pattern = CSVSortPattern()
         pattern.column = 2
         XCTAssertEqual(pattern.range(for: csvString), Range(NSRange(8..<15), in: csvString))
+        
+        let tsvString = "a\tb"
+        pattern.column = 1
+        XCTAssertEqual(pattern.sortKey(for: tsvString), tsvString)
+        XCTAssertEqual(NSRange(pattern.range(for: tsvString)!, in: tsvString), NSRange(0..<3))
     }
     
 }

@@ -5,7 +5,9 @@ Change Log
 3.9.2 (unreleased)
 --------------------------
 
-- No change yet.
+### Fixes
+
+- Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 
 
 
