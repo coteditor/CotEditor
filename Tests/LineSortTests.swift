@@ -48,10 +48,12 @@ final class LineSortTests: XCTestCase {
             """
         
         XCTAssertEqual(pattern.sort(self.lines), result)
+        XCTAssertEqual(pattern.sort(""), "")
+        XCTAssertNoThrow(try pattern.validate())
     }
     
     
-    func testRegexSort() {
+    func testRegexSort() throws {
         
         let pattern = RegularExpressionSortPattern()
         pattern.searchPattern = ", ([0-9]),"
@@ -67,6 +69,15 @@ final class LineSortTests: XCTestCase {
         pattern.usesCaptureGroup = true
         pattern.group = 1
         XCTAssertEqual(pattern.sort(self.lines), result)
+        XCTAssertEqual(pattern.sort(""), "")
+        XCTAssertNoThrow(try pattern.validate())
+        
+        pattern.searchPattern = "\\"
+        XCTAssertThrowsError(try pattern.validate())
+        
+        pattern.searchPattern = "(a)(b)c"
+        try pattern.validate()
+        XCTAssertEqual(pattern.numberOfCaptureGroups, 2)
     }
     
     
@@ -85,6 +96,34 @@ final class LineSortTests: XCTestCase {
             """
         
         XCTAssertEqual(pattern.sort(self.lines, options: options), result)
+        XCTAssertEqual(pattern.sort(""), "")
+        XCTAssertNoThrow(try pattern.validate())
+    }
+    
+    
+    func testNumericSorts() {
+        
+        let pattern = EntireLineSortPattern()
+        let numbers = """
+            3
+            12
+            1
+            """
+        
+        let options = SortOptions()
+        
+        options.numeric = false
+        XCTAssertEqual(pattern.sort(numbers, options: options), "1\n12\n3")
+        
+        options.numeric = true
+        XCTAssertEqual(pattern.sort(numbers, options: options), "1\n3\n12")
+        
+        options.decending = true
+        XCTAssertEqual(pattern.sort(numbers, options: options), "12\n3\n1")
+        
+        options.decending = false
+        options.keepsFirstLine = true
+        XCTAssertEqual(pattern.sort(numbers, options: options), "3\n1\n12")
     }
     
     
