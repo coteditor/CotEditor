@@ -221,11 +221,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         assert(replacements.count == rowIndexes.count)
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { target in
-            target.removeReplacements(at: rowIndexes)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Insert Rule".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { target in
+                target.removeReplacements(at: rowIndexes)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Insert Rule".localized)
+            }
         }
         
         // update data
@@ -247,11 +249,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     private func removeReplacements(at rowIndexes: IndexSet) {
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-            target.insertReplacements(replacements, at: rowIndexes)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Delete Rules".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
+                target.insertReplacements(replacements, at: rowIndexes)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Delete Rules".localized)
+            }
         }
         
         // update view
@@ -277,11 +281,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         assert(replacements.count == rowIndexes.count)
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-            target.updateReplacements(replacements, at: rowIndexes)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Edit Rule".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
+                target.updateReplacements(replacements, at: rowIndexes)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Edit Rule".localized)
+            }
         }
         
         // update data
