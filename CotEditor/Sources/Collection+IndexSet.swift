@@ -52,7 +52,7 @@ extension RangeReplaceableCollection where Index == Int {
         
         assert(elements.count == indexes.count)
         
-        for (index, element) in zip(indexes, elements).reversed() {
+        for (index, element) in zip(indexes, elements) {
             self.insert(element, at: index)
         }
     }

@@ -316,11 +316,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         assert(sourceRows.count == destinationRows.count)
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { target in
-            target.moveReplacements(from: destinationRows, to: sourceRows)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Move Rules".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { target in
+                target.moveReplacements(from: destinationRows, to: sourceRows)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Move Rules".localized)
+            }
         }
         
         // update data
@@ -330,9 +332,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         // update view
         if let tableView = self.tableView {
+            tableView.beginUpdates()
             tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])
             tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
             tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+            tableView.endUpdates()
         }
         
         // notify modification
