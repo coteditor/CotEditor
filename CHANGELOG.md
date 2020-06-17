@@ -9,6 +9,7 @@ Change Log
 
 - Fix an issue in the multiple replacement definition editing where the result order was broken or even the application crashed when reordering multiple rules at once.
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
+- Fix the feedback animation when dragging and dropping items in a table.
 
 
 
