@@ -54,6 +54,14 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     // MARK: -
     // MARK: View Controller Methods
     
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.tableView?.setDraggingSourceOperationMask([.delete], forLocal: false)
+    }
+    
+    
     /// reset previous search result
     override func viewDidDisappear() {
         
@@ -260,7 +268,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         // update view
         if let tableView = self.tableView {
-            tableView.removeRows(at: rowIndexes, withAnimation: .effectGap)
+            tableView.removeRows(at: rowIndexes, withAnimation: [.slideUp, .effectFade])
         }
         
         // update data
@@ -563,6 +571,24 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
         self.moveReplacements(from: sourceRows, to: destinationRows)
         
         return true
+    }
+    
+    
+    /// items are dropped somewhere
+    func tableView(_ tableView: NSTableView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
+        
+        switch operation {
+            case .delete:  // ended at the Trash
+                guard
+                    let data = session.draggingPasteboard.data(forType: .rows),
+                    let rows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
+                    else { return }
+                
+                self.removeReplacements(at: rows)
+            
+            default:
+                break
+        }
     }
     
 }

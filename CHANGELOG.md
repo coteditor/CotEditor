@@ -5,6 +5,11 @@ Change Log
 3.9.2 (unreleased)
 --------------------------
 
+### Improvements
+
+- [trivial] Delete multiple replacement rules by dropping items into the Trash.
+
+
 ### Fixes
 
 - Fix an issue in the multiple replacement definition editing where the result order was broken or even the application crashed when reordering multiple rules at once.
