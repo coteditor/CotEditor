@@ -297,7 +297,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         // update view
         if let tableView = self.tableView {
-            let allColumnIndexes = IndexSet(integersIn: 0..<tableView.numberOfColumns)
+            let allColumnIndexes = IndexSet(0..<tableView.numberOfColumns)
             tableView.reloadData(forRowIndexes: rowIndexes, columnIndexes: allColumnIndexes)
         }
         
