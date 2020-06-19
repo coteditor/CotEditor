@@ -307,7 +307,8 @@ final class DocumentController: NSDocumentController {
                            kUTTypeZipArchive,
                            kUTTypeBzip2Archive]
         if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }),
-            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics)  // SVG is plain-text (except SVGZ)
+            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics),  // SVG is plain-text (except SVGZ)
+            url.pathExtension == "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
         {
             throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)
         }
