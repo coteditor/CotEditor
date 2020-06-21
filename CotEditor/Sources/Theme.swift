@@ -259,7 +259,7 @@ extension Theme.SelectionStyle: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(self.color.colorCode(type: .hex), forKey: .color)
-        try container.encode(true, forKey: .usesSystemSetting)
+        try container.encode(self.usesSystemSetting, forKey: .usesSystemSetting)
     }
     
 }
