@@ -1115,6 +1115,17 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     }
     
     
+    override func updateFontPanel() {
+        
+        // update by own to avoid sending textColor to NSColorPanel
+        // -> This method is even invoked when the receiver becomes the first responder or updated just textColor/typingAttributes.
+        
+        guard let font = self.font else { return }
+        
+        NSFontManager.shared.setSelectedFont(font, isMultiple: false)
+    }
+    
+    
     
     // MARK: Protocol
     
@@ -1388,29 +1399,21 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         guard let theme = self.theme else { return }
         
-        (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
-        
-        // set textColor only when really required
-        // to avoid returning textColor to NSColorPanel (especially for theme editor). (macOS 10.14)
-        if theme.text.color != self.textColor {
-            self.textColor = theme.text.color
-        }
-        // -> But, even in that case, you need to set typingAttribute anyway... (macOS 10.15)
-        self.typingAttributes[.foregroundColor] = theme.text.color
-        
+        self.textColor = theme.text.color
         self.backgroundColor = theme.background.color
-        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.lineHighLightColor = self.isOpaque
             ? theme.lineHighlight.color
             : theme.lineHighlight.color.withAlphaComponent(0.7)
         self.insertionPointColor = (self.cursorType == .block)
             ? theme.insertionPoint.color.withAlphaComponent(0.5)
             : theme.insertionPoint.color
-        self.selectedTextAttributes = [.backgroundColor: theme.selection.usesSystemSetting ? .selectedTextBackgroundColor : theme.selection.color]
-        
+        self.selectedTextAttributes[.backgroundColor] = theme.selection.usesSystemSetting
+            ? .selectedTextBackgroundColor
+            : theme.selection.color
         (self.layoutManager as? LayoutManager)?.invisiblesColor = theme.invisibles.color
         
-        // set scroller color considering background color
+        (self.window as? DocumentWindow)?.contentBackgroundColor = theme.background.color
+        self.enclosingScrollView?.backgroundColor = theme.background.color
         self.enclosingScrollView?.scrollerKnobStyle = theme.isDarkTheme ? .light : .default
         
         self.setNeedsDisplay(self.visibleRect, avoidAdditionalLayout: true)
