@@ -19,6 +19,7 @@ Change Log
 - Fix an issue in theme editing that the editing color was occasionally forcibly updated in the editor's text color when an editor has the focus.
 - Fix an issue in theme editing that the crashed when setting one of the system's developer colors.
 - Fix an issue in theme editing that the opiton “use system color” for the selection color could not disable.
+- Fix an issue in theme editing that the values in the theme editor were not updated when the bundled theme currently edited is restored.
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 - Fix the feedback animation when dragging and dropping items in a table.
 

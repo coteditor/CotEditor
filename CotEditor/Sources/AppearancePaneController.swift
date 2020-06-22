@@ -574,12 +574,11 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @objc private func themeDidUpdate(_ notification: Notification) {
         
         guard
-            let bundledTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
-            let newTheme = self.themeViewController?.theme else { return }
+            let latestTheme = ThemeManager.shared.setting(name: self.selectedThemeName),
+            latestTheme.name == self.themeViewController?.theme?.name
+            else { return }
         
-        if bundledTheme == newTheme {
-            self.themeViewController?.theme = bundledTheme
-        }
+        self.themeViewController?.theme = latestTheme
     }
     
     

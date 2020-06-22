@@ -40,8 +40,8 @@ final class ThemeViewController: NSViewController {
         
         didSet {
             // add metadata beforehand for KVO by NSObjectController
-            if self.theme?.metadata == nil {
-                self.theme?.metadata = Metadata()
+            if theme?.metadata == nil {
+                theme?.metadata = Metadata()
             }
         }
     }
@@ -88,7 +88,7 @@ final class ThemeViewController: NSViewController {
         if let observer = self.themeObserver {
             NotificationCenter.default.removeObserver(observer)
         }
-        self.themeObserver = NotificationCenter.default.addObserver(forName: Theme.didChangeNotification, object: nil, queue: .main) { [weak self] (notification) in
+        self.themeObserver = NotificationCenter.default.addObserver(forName: Theme.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
             self?.notifyUpdate()
         }
     }
@@ -130,18 +130,6 @@ final class ThemeViewController: NSViewController {
         }
         
         super.dismiss(viewController)
-    }
-    
-    
-    
-    // MARK: Action Messages
-    
-    /// apply system highlight color to color well
-    @IBAction func applySystemSelectionColor(_ button: NSButton) {
-        
-        guard button.state == .on else { return }
-        
-        self.theme?.selection.color = .selectedTextBackgroundColor
     }
     
     
