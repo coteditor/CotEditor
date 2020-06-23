@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Suppress showing a dialog when opening a file with the “.ts” file extension as it may not be a MPEG-2 Transport Stream file but a TypeScript file.
+- [trivial] Adjust the layout of some views for the upcoming macOS. 
 - [trivial] Delete multiple replacement rules by dropping items into the Trash.
 
 
