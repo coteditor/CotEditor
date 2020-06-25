@@ -8,7 +8,6 @@ Change Log
 ### Improvements
 
 - Suppress showing a dialog when opening a file with the “.ts” file extension as it may not be a MPEG-2 Transport Stream file but a TypeScript file.
-- [trivial] Adjust the layout of some views for the upcoming macOS. 
 - [trivial] Delete multiple replacement rules by dropping items into the Trash.
 
 
@@ -22,6 +21,7 @@ Change Log
 - Fix an issue in theme editing that the values in the theme editor were not updated when the bundled theme currently edited is restored.
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 - Fix the feedback animation when dragging and dropping items in a table.
+- [trivial] Fix some layout corruptions under macOS 11 Big Sur (beta).
 
 
 
