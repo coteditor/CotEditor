@@ -35,8 +35,8 @@ final class OpacitySampleView: NSView {
     
     // MARK: Private Properties
     
-    private let cornerRadius: CGFloat = 2
-    private let padding: CGFloat = 2
+    private let cornerRadius: CGFloat = 4
+    private let padding: CGFloat = 3
     
     
     
