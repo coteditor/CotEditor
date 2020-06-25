@@ -580,7 +580,6 @@
                             <constraint firstItem="IcH-In-axb" firstAttribute="leading" secondItem="FYd-hb-j4K" secondAttribute="trailing" constant="-1" id="rrZ-n9-BmQ"/>
                             <constraint firstItem="FYd-hb-j4K" firstAttribute="width" secondItem="Ka6-Bf-yVl" secondAttribute="width" id="rzL-rI-jbT"/>
                             <constraint firstItem="xAb-JZ-6Pr" firstAttribute="top" secondItem="5XW-Ju-Ix5" secondAttribute="bottom" constant="11" id="sZu-vt-PKd"/>
-                            <constraint firstItem="nMR-L3-OOw" firstAttribute="top" secondItem="inR-04-6SZ" secondAttribute="bottom" priority="750" constant="20" id="t2g-VR-KOa"/>
                             <constraint firstItem="Yzg-b2-Ep1" firstAttribute="firstBaseline" secondItem="Cq3-kO-Ned" secondAttribute="firstBaseline" id="tPn-AF-h8F"/>
                             <constraint firstItem="5XW-Ju-Ix5" firstAttribute="top" secondItem="I9r-vj-2gy" secondAttribute="bottom" constant="14" id="u6T-CW-T9E"/>
                             <constraint firstItem="XWT-pS-k8a" firstAttribute="leading" secondItem="5XW-Ju-Ix5" secondAttribute="trailing" constant="4" id="uO5-Lj-nOJ"/>
@@ -596,7 +595,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="appearanceLabelField" destination="rE0-DL-xRG" id="0cf-e6-hm6"/>
                         <outlet property="barCursorButton" destination="Yzg-b2-Ep1" id="RZ7-ZY-imd"/>
                         <outlet property="blockCursorButton" destination="c80-NU-o7Z" id="oMA-jt-a5K"/>
                         <outlet property="darkAppearanceButton" destination="sbW-46-DFB" id="4e1-Vl-q7O"/>

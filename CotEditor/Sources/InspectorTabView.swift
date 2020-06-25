@@ -86,7 +86,7 @@ final class InspectorTabView: NSTabView {
         NSGraphicsContext.saveGraphicsState()
         
         // draw background
-        if #available(macOS 10.14, *), self.drawsBackground {
+        if self.drawsBackground {
             NSColor.windowBackgroundColor.setFill()
             dirtyRect.fill()
             

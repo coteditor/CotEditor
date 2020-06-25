@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2016-2019 1024jp
+//  © 2016-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -82,33 +82,6 @@ extension NSImage {
             
             return true
         }
-    }
-    
-}
-
-
-
-extension NSColor {
-    
-    /// Provide a color similar (as possible) to one used for template images in highlighted buttons
-    /// by taking window state into consideration.
-    ///
-    /// - Parameter view: The view the returned color will be drawn to.
-    /// - Returns: A color for highlight.
-    static func accentColor(for view: NSView) -> NSColor {
-        
-        assert(view.window?.colorSpace != nil)
-        
-        let controlTintColor = NSColor(for: .blueControlTint)
-        
-        guard
-            let window = view.window,
-            let color = controlTintColor.usingColorSpace(window.colorSpace ?? .deviceRGB)
-            else { return controlTintColor }
-        
-        return window.isKeyWindow
-            ? NSColor(deviceHue: color.hueComponent, saturation: 1, brightness: 1, alpha: 1)
-            : color
     }
     
 }

@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2019 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -89,15 +89,7 @@ final class OpenPanelAccessoryController: NSViewController {
         autoDetectItem.tag = Int(String.Encoding.autoDetection.rawValue)
         menu.addItem(autoDetectItem)
         menu.addItem(.separator())
-        
-        if #available(macOS 10.14, *) {
-            menu.items += EncodingManager.shared.createEncodingMenuItems()
-        } else {
-            let items = EncodingManager.shared.createEncodingMenuItems()
-            for item in items {
-                menu.addItem(item)
-            }
-        }
+        menu.items += EncodingManager.shared.createEncodingMenuItems()
         
         self.selectedEncoding = .autoDetection
     }

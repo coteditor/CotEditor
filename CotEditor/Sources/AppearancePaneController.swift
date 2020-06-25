@@ -42,7 +42,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
     @IBOutlet private weak var thickBarCursorButton: NSButton?
     @IBOutlet private weak var blockCursorButton: NSButton?
     
-    @IBOutlet private weak var appearanceLabelField: NSTextField?
     @IBOutlet private weak var defaultAppearanceButton: NSButton?
     @IBOutlet private weak var lightAppearanceButton: NSButton?
     @IBOutlet private weak var darkAppearanceButton: NSButton?
@@ -67,14 +66,6 @@ final class AppearancePaneController: NSViewController, NSMenuItemValidation, NS
         
         // set initial value as field's placeholder
         self.lineHeightField?.bindNullPlaceholderToUserDefaults()
-        
-        // remove appearance controls on macOS 10.13 or earlier
-        if NSAppKitVersion.current <= .macOS10_13 {
-            self.appearanceLabelField?.removeFromSuperview()
-            self.defaultAppearanceButton?.removeFromSuperview()
-            self.lightAppearanceButton?.removeFromSuperview()
-            self.darkAppearanceButton?.removeFromSuperview()
-        }
     }
     
     

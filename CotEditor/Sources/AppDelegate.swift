@@ -305,7 +305,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
         
         // backward compatibility for macOS 10.14 that does not support `-apple-system*` colors (macOS 10.15)
-        if NSAppKitVersion.current < .macOS10_15, #available(macOS 10.14, *), NSApp.effectiveAppearance.isDark {
+        if NSAppKitVersion.current < .macOS10_15, NSApp.effectiveAppearance.isDark {
             html = html.replacingOccurrences(of: "<body>", with: "<body style=\"color: hsla(0,0%,100%,.85)\">")
             html = html.replacingOccurrences(of: "<h2>", with: "<h2 style=\"color: hsla(0,0%,100%,.55)\">")
         }

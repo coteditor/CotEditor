@@ -52,7 +52,6 @@ final class TokenTextView: NSTextView {
     }
     
     
-    @available(macOS 10.14, *)
     override func viewDidChangeEffectiveAppearance() {
         
         super.viewDidChangeEffectiveAppearance()

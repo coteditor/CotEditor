@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018 1024jp
+//  © 2018-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,19 +29,11 @@ extension NSAppearance {
     
     var isDark: Bool {
         
-        if self.name == .vibrantDark { return true }
-        
-        guard #available(macOS 10.14, *) else { return false }
-        
         return self.bestMatch(from: [.aqua, .darkAqua]) == .darkAqua
     }
     
     
     var isHighContrast: Bool {
-        
-        guard #available(macOS 10.14, *) else {
-            return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
-        }
         
         switch self.name {
             case .accessibilityHighContrastAqua,

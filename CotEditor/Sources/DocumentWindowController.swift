@@ -66,17 +66,15 @@ final class DocumentWindowController: NSWindowController {
         }
         
         // observe appearance setting change
-        if #available(macOS 10.14, *) {
-            self.appearanceModeObserver?.invalidate()
-            self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: .initial) { [weak self] _ in
-                self?.window?.appearance = {
-                    switch UserDefaults.standard[.documentAppearance] {
-                        case .default: return nil
-                        case .light:   return NSAppearance(named: .aqua)
-                        case .dark:    return NSAppearance(named: .darkAqua)
-                    }
-                }()
-            }
+        self.appearanceModeObserver?.invalidate()
+        self.appearanceModeObserver = UserDefaults.standard.observe(key: .documentAppearance, options: .initial) { [weak self] _ in
+            self?.window?.appearance = {
+                switch UserDefaults.standard[.documentAppearance] {
+                    case .default: return nil
+                    case .light:   return NSAppearance(named: .aqua)
+                    case .dark:    return NSAppearance(named: .darkAqua)
+                }
+            }()
         }
     }
     

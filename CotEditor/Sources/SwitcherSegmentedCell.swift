@@ -51,13 +51,7 @@ final class SwitcherSegmentedCell: NSSegmentedCell {
                 else { fatalError("No selected icon template for inspector tab view was found.") }
             
             // tint icon
-            let tintColor: NSColor
-            if #available(macOS 10.14, *) {
-                tintColor = .controlAccentColor
-            } else {
-                tintColor = .accentColor(for: controlView)
-            }
-            let tintedIcon = selectedIcon.tinted(color: tintColor)
+            let tintedIcon = selectedIcon.tinted(color: .controlAccentColor)
             
             // calculate area to draw
             var imageRect = self.imageRect(forBounds: frame)
