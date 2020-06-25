@@ -33,6 +33,12 @@ final class OpacitySampleView: NSView {
     @IBInspectable private var opacity: CGFloat = 0.5
     
     
+    // MARK: Private Properties
+    
+    private let cornerRadius: CGFloat = 2
+    private let padding: CGFloat = 2
+    
+    
     
     // MARK: -
     // MARK: View Methods
@@ -44,7 +50,9 @@ final class OpacitySampleView: NSView {
         // draw bezel
         let baseFrame = self.bounds.insetBy(dx: NSBezierPath.defaultLineWidth / 2,
                                             dy: NSBezierPath.defaultLineWidth / 2)
-        let basePath = NSBezierPath(roundedRect: baseFrame, xRadius: 2, yRadius: 2)
+        let basePath = NSBezierPath(roundedRect: baseFrame,
+                                    xRadius: self.cornerRadius,
+                                    yRadius: self.cornerRadius)
         
         NSColor.controlBackgroundColor.setFill()
         basePath.fill()
@@ -52,12 +60,17 @@ final class OpacitySampleView: NSView {
         basePath.stroke()
         
         // draw triangle
-        let insideFrame = self.bounds.insetBy(dx: 2, dy: 2)
+        let innerFrame = self.bounds.insetBy(dx: self.padding, dy: self.padding)
         let path = NSBezierPath()
-        path.move(to: insideFrame.origin)
-        path.line(to: NSPoint(x: insideFrame.minX, y: insideFrame.maxY))
-        path.line(to: NSPoint(x: insideFrame.maxX, y: insideFrame.maxY))
+        path.move(to: innerFrame.origin)
+        path.line(to: NSPoint(x: innerFrame.minX, y: innerFrame.maxY))
+        path.line(to: NSPoint(x: innerFrame.maxX, y: innerFrame.maxY))
         path.close()
+        
+        let innerRadius = max(self.cornerRadius - self.padding, 0)
+        let clip = NSBezierPath(roundedRect: innerFrame, xRadius: innerRadius, yRadius: innerRadius)
+        path.append(clip)
+        path.setClip()
         
         NSColor.labelColor.withAlphaComponent(1 - self.opacity).setFill()
         path.fill()
