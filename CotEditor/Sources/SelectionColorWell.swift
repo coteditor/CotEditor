@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2018-2020 1024jp
+//  © 2018 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -29,13 +29,23 @@ final class SelectionColorWell: NSColorWell {
     
     // MARK: Color Well Methods
     
-    override var isEnabled: Bool {
+    override func viewWillDraw() {
         
-        didSet {
-            if !isEnabled {
-                self.color = .selectedTextBackgroundColor
-            }
-        }
+        super.viewWillDraw()
+        
+        self.invalidateColor()
+    }
+    
+    
+    
+    // MARK: Private Methods
+    
+    /// apply system selection color if disabled
+    private func invalidateColor() {
+        
+        guard !self.isEnabled else { return }
+        
+        self.color = .selectedTextBackgroundColor
     }
     
 }
