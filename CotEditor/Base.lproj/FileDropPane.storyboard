@@ -299,7 +299,7 @@
                                     <rect key="frame" x="244" y="1" width="15" height="133"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="c3e-u6-nJD">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="c3e-u6-nJD">
                                     <rect key="frame" x="0.0" y="0.0" width="518" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>

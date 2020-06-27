@@ -725,7 +725,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="19"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <imageView hidden="YES" toolTip="This document is read only." horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-K8-Jwk">
+                            <imageView hidden="YES" toolTip="This document is read only." wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-K8-Jwk">
                                 <rect key="frame" x="8" y="2" width="16" height="16"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LockedTemplate" id="cqb-1I-reA"/>
                                 <connections>
@@ -736,7 +736,7 @@
                                     </binding>
                                 </connections>
                             </imageView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
+                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
                                 <rect key="frame" x="34" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="menu" size="11"/>
@@ -747,7 +747,7 @@
                                     <binding destination="NBJ-8W-V9X" name="value" keyPath="editorStatus" id="YJ0-hw-afY"/>
                                 </connections>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA">
+                            <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA">
                                 <rect key="frame" x="559" y="3" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="menu" size="11"/>

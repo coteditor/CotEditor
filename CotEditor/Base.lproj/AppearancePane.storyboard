@@ -145,7 +145,7 @@
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Czd-4t-kEc">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="q5s-Pc-w3C">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="q5s-Pc-w3C">
                                     <rect key="frame" x="0.0" y="0.0" width="158" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
