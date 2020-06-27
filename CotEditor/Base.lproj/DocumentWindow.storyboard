@@ -119,10 +119,8 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="806A37E9-83DB-4B6B-B90D-CABEAE582D79" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" id="VL4-m8-9uC" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="150" height="25"/>
-                                    <size key="maxSize" width="150" height="28"/>
-                                    <popUpButton key="view" verticalHuggingPriority="750" id="nMw-zO-d1x">
+                                <toolbarItem implicitItemIdentifier="806A37E9-83DB-4B6B-B90D-CABEAE582D79" label="File Encoding" paletteLabel="File Encoding" toolTip="Change file encoding" sizingBehavior="auto" id="VL4-m8-9uC" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="nMw-zO-d1x" customClass="ToolbarPopUpButton" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="14" width="150" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="uGq-td-kFd">
@@ -130,12 +128,15 @@
                                             <font key="font" metaFont="menu" size="11"/>
                                             <menu key="menu" id="lUg-i7-92G"/>
                                         </popUpButtonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="preferredWidth">
+                                                <real key="value" value="150"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
-                                    <size key="minSize" width="100" height="25"/>
-                                    <size key="maxSize" width="110" height="28"/>
-                                    <popUpButton key="view" verticalHuggingPriority="750" id="RTF-Xf-Dgz">
+                                <toolbarItem implicitItemIdentifier="B616AE88-EC2F-48EB-8098-8A12F994F9B8" label="Syntax Style" paletteLabel="Syntax Style" toolTip="Change syntax style" sizingBehavior="auto" id="rHo-eU-O5x" customClass="PopUpToolbarItem" customModule="CotEditor" customModuleProvider="target">
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="RTF-Xf-Dgz" customClass="ToolbarPopUpButton" customModule="CotEditor" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="14" width="110" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" autoenablesItems="NO" id="hb4-gd-uwc">
@@ -143,6 +144,11 @@
                                             <font key="font" metaFont="menu" size="11"/>
                                             <menu key="menu" autoenablesItems="NO" id="plp-5x-eBz"/>
                                         </popUpButtonCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="preferredWidth">
+                                                <real key="value" value="110"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </popUpButton>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="C851D6EB-6F7D-4E1C-816F-3A47FCD18293" label="Inspector" paletteLabel="Inspector" image="Inspector" sizingBehavior="auto" id="uXf-pD-u6A" customClass="ControlToolbarItem" customModule="CotEditor" customModuleProvider="target">
