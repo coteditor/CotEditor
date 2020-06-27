@@ -9,6 +9,7 @@ Change Log
 
 - Suppress showing a dialog when opening a file with the “.ts” file extension as it may not be a MPEG-2 Transport Stream file but a TypeScript file.
 - [trivial] Delete multiple replacement rules by dropping items into the Trash.
+- [trivial] Update the add/remove button in the multiple replacement window.
 
 
 ### Fixes

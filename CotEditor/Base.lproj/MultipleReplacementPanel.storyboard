@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="QqU-9e-YIW">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -31,26 +31,25 @@
         <scene sceneID="7ic-e2-LjN">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="uzB-9o-Idl" customClass="MultipleReplacementViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="8CD-v6-nsP">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="300"/>
+                    <view key="view" misplaced="YES" id="8CD-v6-nsP">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="276"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Jd-Pz-IbU">
-                                <rect key="frame" x="20" y="99" width="390" height="151"/>
+                                <rect key="frame" x="20" y="100" width="390" height="126"/>
                                 <clipView key="contentView" id="It6-1v-E9G">
-                                    <rect key="frame" x="1" y="0.0" width="388" height="150"/>
+                                    <rect key="frame" x="1" y="0.0" width="388" height="125"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" usesAutomaticRowHeights="YES" headerView="PHz-PV-X13" viewBased="YES" id="gnf-Yi-u37">
-                                            <rect key="frame" x="0.0" y="0.0" width="388" height="127"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="388" height="102"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn identifier="isEnabled" editable="NO" width="20" minWidth="20" maxWidth="20" headerToolTip="Enable" id="KTe-1r-oHM">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -69,7 +68,7 @@
                                                                     <rect key="frame" x="-1" y="-3" width="21" height="23"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" state="on" inset="2" id="P46-am-sIg">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="ui9-r1-Q3A"/>
@@ -88,7 +87,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="findString" editable="NO" width="110" minWidth="40" maxWidth="1000" id="zee-UW-TVR">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Find">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -113,7 +111,7 @@
                                                                 </imageView>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="34g-xE-Dei" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="16"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="dog" id="dIq-un-bYZ">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -145,7 +143,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="replacementString" editable="NO" width="110" minWidth="40" maxWidth="1000" id="nRC-aM-NZ2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Replace With">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -162,7 +159,7 @@
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-LW-TDg" customClass="RegexTextField" customModule="CotEditor" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="16"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="cow" id="DD9-M3-I3n">
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingMiddle" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="cow" id="DD9-M3-I3n">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -192,7 +189,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="usesRegularExpression" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Regular Expression" id="VtR-Qz-MBf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="RE">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -211,7 +207,7 @@
                                                                     <rect key="frame" x="-1" y="-3" width="29" height="23"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" controlSize="small" inset="2" id="8bJ-6A-O0R">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Yay-nw-NRV"/>
@@ -230,7 +226,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="ignoresCase" editable="NO" width="28" minWidth="28" maxWidth="28" headerToolTip="Ignore Cases" id="d3o-yf-jB4">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="IC">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -249,7 +244,7 @@
                                                                     <rect key="frame" x="-1" y="-3" width="29" height="23"/>
                                                                     <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" controlSize="small" inset="2" id="0a8-wL-sx5">
                                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                        <font key="font" metaFont="smallSystem"/>
+                                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="didEditTableCell:" target="uzB-9o-Idl" id="Esl-ow-Q2p"/>
@@ -268,7 +263,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="description" width="74" minWidth="10" maxWidth="1000" id="Rhy-iE-CIC">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Description">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     </tableHeaderCell>
@@ -332,31 +326,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Mv-wi-Ogp">
-                                <rect key="frame" x="43" y="69" width="24" height="23"/>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" controlSize="mini" borderStyle="border" inset="2" id="N2T-Q9-mhV">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="miniSystem"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="remove:" target="uzB-9o-Idl" id="VsZ-if-Ppz"/>
-                                    <binding destination="uzB-9o-Idl" name="enabled" keyPath="canRemove" id="6Hc-Nt-33F"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rgJ-1f-1Af">
-                                <rect key="frame" x="20" y="69" width="24" height="23"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="83P-nc-XjC"/>
-                                    <constraint firstAttribute="width" constant="24" id="XQt-xL-esI"/>
-                                </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" inset="2" id="336-yK-joh">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="add:" target="uzB-9o-Idl" id="N6C-ID-dAo"/>
-                                </connections>
-                            </button>
                             <button toolTip="Set advanced options" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i8z-Xa-PxI">
                                 <rect key="frame" x="366" y="63" width="50" height="32"/>
                                 <constraints>
@@ -385,7 +354,7 @@
                                 <rect key="frame" x="130" y="21" width="84" height="18"/>
                                 <buttonCell key="cell" type="check" title="In Selection" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="4lm-Fu-Fcf">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="JZj-f6-1IH" name="value" keyPath="values.findInSelection" id="c8X-YI-cKO"/>
@@ -398,7 +367,7 @@
                                 <rect key="frame" x="20" y="19" width="18" height="19"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XZH-Sq-MEz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="openHelpAnchor:" target="4B0-TX-5FP" id="Rt0-s9-mJn"/>
@@ -407,7 +376,7 @@
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="dhM-uH-4uq">
                                 <rect key="frame" x="215" y="74" width="151" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Invalid rules will be skipped." id="gRf-KM-GZo">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -437,7 +406,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8Tz-Kb-8Ck">
                                 <rect key="frame" x="67" y="23" width="60" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="5 replaced" id="HU0-YI-OIX">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -456,85 +425,95 @@
                                 </connections>
                             </button>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XGd-UY-MQC">
-                                <rect key="frame" x="18" y="258" width="394" height="32"/>
+                                <rect key="frame" x="18" y="234" width="394" height="32"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Perform replacement using these rules in succession from the top down:" id="5Ey-vx-5Sm">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ipw-p6-L9Z">
+                                <rect key="frame" x="19.5" y="69" width="55" height="23"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="texturedRounded" trackingMode="momentary" id="HY7-ji-LGa">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment image="NSAddTemplate" width="24"/>
+                                        <segment image="NSRemoveTemplate" width="24" enabled="NO" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="addRemove:" target="uzB-9o-Idl" id="PIc-gZ-7ZU"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="8Mv-wi-Ogp" firstAttribute="width" secondItem="rgJ-1f-1Af" secondAttribute="width" id="3lN-G3-5Vs"/>
+                            <constraint firstItem="Ipw-p6-L9Z" firstAttribute="top" secondItem="4Jd-Pz-IbU" secondAttribute="bottom" constant="8" symbolic="YES" id="2hj-oG-Ukd"/>
                             <constraint firstItem="gG4-IL-p7b" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" id="5Ei-Es-dKQ"/>
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="leading" secondItem="6DU-wH-q4e" secondAttribute="trailing" constant="4" id="5cg-Rm-27o"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="baseline" secondItem="pfM-xk-MrN" secondAttribute="baseline" id="8kF-cK-yp4"/>
-                            <constraint firstItem="6DU-wH-q4e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Mv-wi-Ogp" secondAttribute="trailing" constant="8" symbolic="YES" id="APG-lW-dal"/>
+                            <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="Ipw-p6-L9Z" secondAttribute="centerY" id="9ec-vr-SjY"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="top" secondItem="XGd-UY-MQC" secondAttribute="bottom" constant="8" symbolic="YES" id="BKV-rQ-5gb"/>
                             <constraint firstAttribute="trailing" secondItem="gG4-IL-p7b" secondAttribute="trailing" id="BPc-bU-6Wd"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="top" secondItem="gG4-IL-p7b" secondAttribute="bottom" constant="12" id="CGp-TQ-Zx0"/>
                             <constraint firstAttribute="trailing" secondItem="4Jd-Pz-IbU" secondAttribute="trailing" constant="20" symbolic="YES" id="DVc-ev-msh"/>
-                            <constraint firstItem="8Mv-wi-Ogp" firstAttribute="top" secondItem="4Jd-Pz-IbU" secondAttribute="bottom" constant="8" symbolic="YES" id="Goj-jm-MeO"/>
-                            <constraint firstItem="i8z-Xa-PxI" firstAttribute="top" secondItem="8Mv-wi-Ogp" secondAttribute="top" id="HRA-sv-ldz"/>
                             <constraint firstAttribute="bottom" secondItem="Nth-za-4Ad" secondAttribute="bottom" constant="20" symbolic="YES" id="J3G-NA-A0t"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="baseline" secondItem="8Tz-Kb-8Ck" secondAttribute="baseline" id="Ksn-wJ-ooQ"/>
                             <constraint firstItem="gG4-IL-p7b" firstAttribute="top" secondItem="i8z-Xa-PxI" secondAttribute="bottom" constant="16" id="PEK-lx-dKG"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="leading" secondItem="dhM-uH-4uq" secondAttribute="trailing" constant="8" symbolic="YES" id="QxA-b3-G2c"/>
                             <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="dhM-uH-4uq" secondAttribute="centerY" id="R9B-jR-XRA"/>
+                            <constraint firstItem="i8z-Xa-PxI" firstAttribute="centerY" secondItem="Ipw-p6-L9Z" secondAttribute="centerY" id="RnP-LS-DBl"/>
                             <constraint firstAttribute="bottom" secondItem="99C-Bz-ySi" secondAttribute="bottom" constant="20" symbolic="YES" id="SCv-dU-orQ"/>
                             <constraint firstAttribute="trailing" secondItem="i8z-Xa-PxI" secondAttribute="trailing" constant="20" symbolic="YES" id="Tgu-H3-Sr5"/>
-                            <constraint firstItem="8Mv-wi-Ogp" firstAttribute="height" secondItem="rgJ-1f-1Af" secondAttribute="height" id="UuW-EI-01r"/>
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" secondItem="8Tz-Kb-8Ck" secondAttribute="trailing" constant="8" symbolic="YES" id="WyX-Fp-Ueg"/>
                             <constraint firstItem="4Jd-Pz-IbU" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="ZSu-w6-KSf"/>
                             <constraint firstAttribute="bottom" secondItem="QdJ-Fc-QBG" secondAttribute="bottom" constant="20" symbolic="YES" id="Zhf-F2-dja"/>
-                            <constraint firstItem="8Mv-wi-Ogp" firstAttribute="centerY" secondItem="rgJ-1f-1Af" secondAttribute="centerY" id="b83-cI-bu8"/>
                             <constraint firstItem="XGd-UY-MQC" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="cv8-rl-RNM"/>
-                            <constraint firstItem="rgJ-1f-1Af" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="fii-Rc-xFB"/>
                             <constraint firstItem="QdJ-Fc-QBG" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="kUl-yd-UmO"/>
                             <constraint firstAttribute="trailing" secondItem="Nth-za-4Ad" secondAttribute="trailing" constant="20" symbolic="YES" id="ldS-e8-eGW"/>
+                            <constraint firstItem="6DU-wH-q4e" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ipw-p6-L9Z" secondAttribute="trailing" constant="8" symbolic="YES" id="lzZ-ao-hD4"/>
                             <constraint firstItem="dhM-uH-4uq" firstAttribute="centerY" secondItem="6DU-wH-q4e" secondAttribute="centerY" constant="1" id="njv-rv-rJ2"/>
                             <constraint firstItem="XGd-UY-MQC" firstAttribute="top" secondItem="8CD-v6-nsP" secondAttribute="top" constant="10" id="q77-Ef-hVd"/>
                             <constraint firstItem="8Tz-Kb-8Ck" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QdJ-Fc-QBG" secondAttribute="trailing" constant="12" symbolic="YES" id="rVa-RU-h6f"/>
                             <constraint firstItem="Nth-za-4Ad" firstAttribute="leading" secondItem="99C-Bz-ySi" secondAttribute="trailing" constant="12" symbolic="YES" id="tBY-XH-H8L"/>
                             <constraint firstItem="99C-Bz-ySi" firstAttribute="leading" secondItem="pfM-xk-MrN" secondAttribute="trailing" constant="8" symbolic="YES" id="tnN-Ie-Jtb"/>
-                            <constraint firstItem="8Mv-wi-Ogp" firstAttribute="leading" secondItem="rgJ-1f-1Af" secondAttribute="trailing" constant="-1" id="vxs-6T-UOb"/>
+                            <constraint firstItem="Ipw-p6-L9Z" firstAttribute="leading" secondItem="8CD-v6-nsP" secondAttribute="leading" constant="20" symbolic="YES" id="v6A-VU-Cxb"/>
                             <constraint firstItem="pfM-xk-MrN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QdJ-Fc-QBG" secondAttribute="trailing" constant="12" symbolic="YES" id="wbr-RJ-Msd"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XGd-UY-MQC" secondAttribute="trailing" constant="20" symbolic="YES" id="xss-j9-fGs"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addRemoveButton" destination="Ipw-p6-L9Z" id="ZEK-GV-S0X"/>
                         <outlet property="tableView" destination="gnf-Yi-u37" id="WCJ-yG-4AA"/>
                     </connections>
                 </viewController>
                 <customObject id="4B0-TX-5FP" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="JZj-f6-1IH"/>
             </objects>
-            <point key="canvasLocation" x="234" y="734"/>
+            <point key="canvasLocation" x="233" y="722"/>
         </scene>
         <!--Multiple Replacement List View Controller-->
         <scene sceneID="tHa-Ef-d3P">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="y8N-kI-aI7" customClass="MultipleReplacementListViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" blendingMode="behindWindow" material="sidebar" state="followsWindowActiveState" id="sT1-Cd-M1e">
-                        <rect key="frame" x="0.0" y="0.0" width="110" height="300"/>
+                    <visualEffectView key="view" misplaced="YES" blendingMode="behindWindow" material="sidebar" state="followsWindowActiveState" id="sT1-Cd-M1e">
+                        <rect key="frame" x="0.0" y="0.0" width="110" height="299"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNv-4N-kRH">
-                                <rect key="frame" x="0.0" y="23" width="110" height="277"/>
+                                <rect key="frame" x="0.0" y="46" width="110" height="275"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="fvK-do-Kwl">
-                                    <rect key="frame" x="0.0" y="0.0" width="110" height="277"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="110" height="275"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
-                                            <rect key="frame" x="0.0" y="0.0" width="110" height="277"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnSelection="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="XJK-Ch-OtB">
+                                            <rect key="frame" x="0.0" y="0.0" width="110" height="275"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="107" minWidth="40" maxWidth="1000" id="L6B-oJ-FMt">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -597,7 +576,7 @@
                                 </scroller>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tHD-Pj-dFD">
-                                <rect key="frame" x="2" y="2" width="24" height="21"/>
+                                <rect key="frame" x="2" y="25" width="24" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="AAD-Tr-DF1"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="U5t-Wj-CoE"/>
@@ -611,7 +590,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oJQ-xc-kGh">
-                                <rect key="frame" x="26" y="2" width="24" height="21"/>
+                                <rect key="frame" x="26" y="25" width="24" height="21"/>
                                 <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="1Gb-qg-hPR">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -621,13 +600,13 @@
                                 </connections>
                             </button>
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="O7q-NN-KLS">
-                                <rect key="frame" x="68" y="4" width="38" height="18"/>
+                                <rect key="frame" x="68" y="27" width="38" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="SjX-xT-GVD"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="bevel" title="Action" bezelStyle="rounded" imagePosition="only" alignment="left" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="3mW-VX-9wW" id="IwC-Jx-M4D">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" id="5JP-FI-8cb">
                                         <items>
                                             <menuItem title="Action" image="NSActionTemplate" hidden="YES" id="3mW-VX-9wW">
@@ -783,7 +762,7 @@
                                 <rect key="frame" x="17" y="71" width="170" height="18"/>
                                 <buttonCell key="cell" type="check" title="Dot matches line separators" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="ECw-cb-2hw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.regexIsSingleline" id="MWM-iV-d2m"/>
@@ -793,7 +772,7 @@
                                 <rect key="frame" x="17" y="35" width="180" height="18"/>
                                 <buttonCell key="cell" type="check" title="Use Unicode word boundaries" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="8PD-6z-H5u">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.regexUsesUnicodeBoundaries" id="CHw-aC-eQS"/>
@@ -803,7 +782,7 @@
                                 <rect key="frame" x="17" y="155" width="179" height="18"/>
                                 <buttonCell key="cell" type="check" title="Distinguish characters strictly" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="tv3-0Q-m6B">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.textIsLiteralSearch" id="ERm-ef-a45"/>
@@ -813,7 +792,7 @@
                                 <rect key="frame" x="17" y="119" width="150" height="18"/>
                                 <buttonCell key="cell" type="check" title="Ignore width differences" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="lVk-We-BSj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.textIgnoresWidth" id="6jW-qf-juG"/>
@@ -823,7 +802,7 @@
                                 <rect key="frame" x="17" y="53" width="129" height="18"/>
                                 <buttonCell key="cell" type="check" title="Anchors match lines" bezelStyle="regularSquare" imagePosition="left" controlSize="small" state="on" inset="2" id="MJB-08-ddn">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.regexIsMultiline" id="y0C-OF-4KJ"/>
@@ -849,7 +828,7 @@
                                 <rect key="frame" x="17" y="137" width="136" height="18"/>
                                 <buttonCell key="cell" type="check" title="Ignore diacritic marks" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="WWu-mC-MCz">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.textIgnoresDiacriticMarks" id="VLR-JT-2t5"/>
@@ -859,7 +838,7 @@
                                 <rect key="frame" x="17" y="17" width="177" height="18"/>
                                 <buttonCell key="cell" type="check" title="Unescape replacement string" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="1sB-Qy-Kw8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.regexUnescapesReplacementString" id="RUY-Sp-ovr"/>
@@ -877,7 +856,7 @@
                                 <rect key="frame" x="17" y="173" width="143" height="18"/>
                                 <buttonCell key="cell" type="check" title="Match only whole word" bezelStyle="regularSquare" imagePosition="left" controlSize="small" inset="2" id="u12-3x-Oy6">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                 </buttonCell>
                                 <connections>
                                     <binding destination="SKd-Jw-BKV" name="value" keyPath="selection.textMatchesFullWord" id="tZa-zg-QCK"/>

@@ -43,11 +43,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     private var definition = MultipleReplacement()
     private lazy var updateNotificationTask = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
     
-    @objc private dynamic var canRemove: Bool = false
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
     
     @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
     
     
     
@@ -102,6 +102,16 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     
     
     // MARK: Actions
+    
+    @IBAction func addRemove(_ sender: NSSegmentedControl) {
+        
+        switch sender.selectedSegment {
+            case 0: self.add(sender)
+            case 1: self.remove(sender)
+            default: preconditionFailure()
+        }
+    }
+    
     
     /// add a new replacement rule at the end
     @IBAction func add(_ sender: Any?) {
@@ -196,6 +206,8 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         if setting.replacements.isEmpty {
             self.add(self)
         }
+        
+        self.invalidateRemoveButton()
     }
     
     
@@ -206,6 +218,14 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     private func notifyUpdate() {
         
         self.delegate?.didUpdate(setting: self.definition)
+    }
+    
+    
+    /// validate the availability of the remove button.
+    private func invalidateRemoveButton() {
+        
+        let canRemove = self.tableView?.selectedRowIndexes.isEmpty == false
+        self.addRemoveButton?.setEnabled(canRemove, forSegment: 1)
     }
     
     
@@ -379,10 +399,7 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
     /// selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let tableView = self.tableView else { return }
-        
-        // update
-        self.canRemove = tableView.selectedRow >= 0
+        self.invalidateRemoveButton()
     }
     
     
