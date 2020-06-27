@@ -56,6 +56,10 @@ final class StatusBarController: NSViewController {
         
         self.byteCountFormatter.isAdaptive = false
         
+        if NSAppKitVersion.current >= .macOS11 {
+            (self.view as? NSVisualEffectView)?.material = .titlebar
+        }
+        
         // set accessibility
         self.view.setAccessibilityElement(true)
         self.view.setAccessibilityRole(.group)

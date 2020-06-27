@@ -28,4 +28,5 @@ import struct AppKit.NSAppKitVersion
 extension NSAppKitVersion {
     
     static var macOS10_15 = NSAppKitVersion(rawValue: 1894)
+    static var macOS11 = NSAppKitVersion(rawValue: 1997)
 }
