@@ -721,7 +721,7 @@
         <scene sceneID="uT8-5A-k2A">
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <visualEffectView key="view" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" id="JZo-9i-3gf">
+                    <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="headerView" state="followsWindowActiveState" id="JZo-9i-3gf">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="19"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
