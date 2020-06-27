@@ -22,6 +22,7 @@ Change Log
 - Fix an issue in theme editing that the values in the theme editor were not updated when the bundled theme currently edited is restored.
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 - Fix the feedback animation when dragging and dropping items in a table.
+- [trivial] Fix an issue that the the menus in toolbar expended unwantedly after customizing toolbar.
 - [trivial] Fix some layout corruptions under macOS 11 Big Sur (beta).
 
 
