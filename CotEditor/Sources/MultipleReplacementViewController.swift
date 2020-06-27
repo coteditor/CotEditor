@@ -100,6 +100,19 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
+    /// commit unsaved changes
+    @discardableResult
+    override func commitEditing() -> Bool {
+        
+        guard super.commitEditing() else { return false }
+        
+        self.endEditing()
+        self.updateNotificationTask.fireNow()
+        
+        return true
+    }
+    
+    
     
     // MARK: Actions
     
@@ -118,17 +131,18 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         self.endEditing()
         
-        let lastRow = self.definition.replacements.endIndex
-        let indexes = IndexSet(integer: lastRow)
-        let replacements = [MultipleReplacement.Replacement](repeating: .init(), count: indexes.count)
+        guard let tableView = self.tableView else { return assertionFailure() }
         
-        self.insertReplacements(replacements, at: indexes)
+        let row = tableView.selectedRowIndexes.last.flatMap { $0 + 1 } ?? self.definition.replacements.endIndex
+        let replacements = [MultipleReplacement.Replacement()]
+        
+        self.insertReplacements(replacements, at: [row])
         
         // start editing automatically
-        let tableView = self.tableView!
         let column = tableView.column(withIdentifier: .findString)
-        tableView.scrollRowToVisible(lastRow)
-        tableView.editColumn(column, row: lastRow, with: nil, select: true)
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        tableView.scrollRowToVisible(row)
+        tableView.editColumn(column, row: row, with: nil, select: true)
     }
     
     
@@ -137,7 +151,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         self.endEditing()
         
-        let rowIndexes = self.tableView!.selectedRowIndexes
+        guard let tableView = self.tableView else { return assertionFailure() }
+        
+        let rowIndexes = tableView.selectedRowIndexes
         
         self.removeReplacements(at: rowIndexes)
         
@@ -174,19 +190,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
             
             self?.resultMessage = resultMessage
         }
-    }
-    
-    
-    /// commit unsaved changes
-    @discardableResult
-    override func commitEditing() -> Bool {
-        
-        guard super.commitEditing() else { return false }
-        
-        self.endEditing()
-        self.updateNotificationTask.fireNow()
-        
-        return true
     }
     
     
