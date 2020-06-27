@@ -8,7 +8,7 @@ Change Log
 ### Improvements
 
 - Suppress showing a dialog when opening a file with the “.ts” file extension as it may not be a MPEG-2 Transport Stream file but a TypeScript file.
-- Improve the style and behavior the add/remove rule button in the multiple replacement window.
+- Improve the style and behavior of the add/remove rule button in the multiple replacement window.
 - [trivial] Delete multiple replacement rules by dropping items into the Trash.
 
 
@@ -18,11 +18,11 @@ Change Log
 - Fix an issue in the editor that the cursor skipped the space just after the word when moving the cursor to the next word boundary with `⌥⇧→` or `⌥→` shortcut.
 - Fix an issue in theme editing that the editing color was occasionally forcibly updated in the editor's text color when an editor has the focus.
 - Fix an issue in theme editing that the crashed when setting one of the system's developer colors.
-- Fix an issue in theme editing that the opiton “use system color” for the selection color could not disable.
+- Fix an issue in theme editing that the option “use system color” for the selection color could not disable.
 - Fix an issue in theme editing that the values in the theme editor were not updated when the bundled theme currently edited is restored.
 - Fix an issue in the dialog for the pattern line sort that the sample line could indicate a wrong sort key scope when the sort key type is “column.”
 - Fix the feedback animation when dragging and dropping items in a table.
-- [trivial] Fix an issue that the the menus in toolbar expended unwantedly after customizing toolbar.
+- [trivial] Fix an issue that the menus in toolbar expended unwantedly after customizing toolbar.
 - [trivial] Fix some layout corruptions under macOS 11 Big Sur (beta).
 
 
