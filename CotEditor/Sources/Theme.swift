@@ -138,14 +138,24 @@ final class Theme: NSObject {
     /// Is background color dark?
     var isDarkTheme: Bool {
         
-        return self.background.color.lightnessComponent < self.text.color.lightnessComponent
+        guard
+            let textColor = self.text.color.usingColorSpace(.genericRGB),
+            let backgroundColor = self.background.color.usingColorSpace(.genericRGB)
+            else { return false }
+        
+        return backgroundColor.lightnessComponent < textColor.lightnessComponent
     }
     
     
     /// selection color for inactive text view
     var secondarySelectionColor: NSColor? {
         
-        return self.selection.usesSystemSetting ? nil : NSColor(calibratedWhite: self.selection.color.lightnessComponent, alpha: 1.0)
+        guard
+            !self.selection.usesSystemSetting,
+            let color = self.selection.color.usingColorSpace(.genericRGB)
+            else { return nil }
+        
+        return NSColor(calibratedWhite: color.lightnessComponent, alpha: 1.0)
     }
     
     
@@ -223,9 +233,11 @@ extension Theme.Style: Codable {
     
     func encode(to encoder: Encoder) throws {
         
+        guard let color = self.color.usingColorSpace(.genericRGB) else { throw CocoaError(.coderInvalidValue) }
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(self.color.colorCode(type: .hex), forKey: .color)
+        try container.encode(color.colorCode(type: .hex), forKey: .color)
     }
     
 }
@@ -256,10 +268,12 @@ extension Theme.SelectionStyle: Codable {
     
     func encode(to encoder: Encoder) throws {
         
+        guard let color = self.color.usingColorSpace(.genericRGB) else { throw CocoaError(.coderInvalidValue) }
+        
         var container = encoder.container(keyedBy: CodingKeys.self)
         
-        try container.encode(self.color.colorCode(type: .hex), forKey: .color)
-        try container.encode(true, forKey: .usesSystemSetting)
+        try container.encode(color.colorCode(type: .hex), forKey: .color)
+        try container.encode(self.usesSystemSetting, forKey: .usesSystemSetting)
     }
     
 }

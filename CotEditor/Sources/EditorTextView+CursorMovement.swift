@@ -659,7 +659,8 @@ private extension NSAttributedString {
         guard (isForward && location < self.length) || (!isForward && location > 0) else { return location }
         
         let rawNextIndex = self.nextWord(from: location, forward: isForward)
-        let characterRange = (self.string as NSString).rangeOfComposedCharacterSequence(at: rawNextIndex)
+        let lastCharacterIndex = isForward ? max(rawNextIndex - 1, 0) : rawNextIndex
+        let characterRange = (self.string as NSString).rangeOfComposedCharacterSequence(at: lastCharacterIndex)
         let nextIndex = isForward ? characterRange.upperBound : characterRange.lowerBound
         
         let options: NSString.CompareOptions = isForward ? [.literal] : [.literal, .backwards]

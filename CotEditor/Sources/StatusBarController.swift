@@ -32,9 +32,6 @@ final class StatusBarController: NSViewController {
     private var defaultsObservers: [UserDefaultsObservation] = []
     private let byteCountFormatter = ByteCountFormatter()
     
-    @available(macOS, deprecated: 10.15)
-    private var appearanceObserver: NSKeyValueObservation?
-    
     @objc private dynamic var editorStatus: NSAttributedString?
     @objc private dynamic var documentStatus: NSAttributedString?
     @objc private dynamic var showsReadOnly = false
@@ -46,7 +43,6 @@ final class StatusBarController: NSViewController {
     
     deinit {
         self.defaultsObservers.forEach { $0.invalidate() }
-        self.appearanceObserver?.invalidate()
     }
     
     
@@ -59,6 +55,10 @@ final class StatusBarController: NSViewController {
         super.viewDidLoad()
         
         self.byteCountFormatter.isAdaptive = false
+        
+        if NSAppKitVersion.current >= .macOS11 {
+            (self.view as? NSVisualEffectView)?.material = .titlebar
+        }
         
         // set accessibility
         self.view.setAccessibilityElement(true)
@@ -99,13 +99,6 @@ final class StatusBarController: NSViewController {
         self.defaultsObservers += UserDefaults.standard.observe(keys: documentDefaultKeys) { [weak self] (_, _) in
             self?.updateDocumentStatus()
         }
-        
-        if NSAppKitVersion.current < .macOS10_15 {
-            self.appearanceObserver?.invalidate()
-            self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (_, _) in
-                self?.updateEditorStatus()
-            }
-        }
     }
     
     
@@ -118,9 +111,6 @@ final class StatusBarController: NSViewController {
         
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = []
-        
-        self.appearanceObserver?.invalidate()
-        self.appearanceObserver = nil
     }
     
     
@@ -168,26 +158,25 @@ final class StatusBarController: NSViewController {
             else { return }
         
         let defaults = UserDefaults.standard
-        let labelColor = NSColor.statusBarLabelColor(appearance: self.view.effectiveAppearance)
         var status: [NSAttributedString] = []
         
         if defaults[.showStatusBarLines] {
-            status.append(.formatted(label: "Lines", color: labelColor) + .formatted(state: info.lines))
+            status.append(.formatted(label: "Lines") + .formatted(state: info.lines))
         }
         if defaults[.showStatusBarChars] {
-            status.append(.formatted(label: "Characters", color: labelColor) + .formatted(state: info.chars))
+            status.append(.formatted(label: "Characters") + .formatted(state: info.chars))
         }
         if defaults[.showStatusBarWords] {
-            status.append(.formatted(label: "Words", color: labelColor) + .formatted(state: info.words))
+            status.append(.formatted(label: "Words") + .formatted(state: info.words))
         }
         if defaults[.showStatusBarLocation] {
-            status.append(.formatted(label: "Location", color: labelColor) + .formatted(state: info.location))
+            status.append(.formatted(label: "Location") + .formatted(state: info.location))
         }
         if defaults[.showStatusBarLine] {
-            status.append(.formatted(label: "Line", color: labelColor) + .formatted(state: info.line))
+            status.append(.formatted(label: "Line") + .formatted(state: info.line))
         }
         if defaults[.showStatusBarColumn] {
-            status.append(.formatted(label: "Column", color: labelColor) + .formatted(state: info.column))
+            status.append(.formatted(label: "Column") + .formatted(state: info.column))
         }
         
         let attrStatus = status.joined(separator: .init(string: "   ")).mutable
@@ -234,27 +223,6 @@ final class StatusBarController: NSViewController {
 
 // MARK: -
 
-private extension NSColor {
-    
-    @available(macOS 10.15, *)
-    static let statusBarLabelColor = NSColor(name: "statusBarLabelColor") { appearance in
-        appearance.isDark ? .secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
-    }
-    
-    
-    @available(macOS, deprecated: 10.15, renamed: "statusBarLabelColor")
-    static func statusBarLabelColor(appearance: NSAppearance) -> NSColor {
-        
-        guard #available(macOS 10.15, *) else {
-            return appearance.isDark ? .secondaryLabelColor : NSColor.labelColor.withAlphaComponent(0.6)
-        }
-        
-        return .statusBarLabelColor
-    }
-    
-}
-
-
 private extension NSAttributedString {
     
     /// Formatted state for status bar.
@@ -269,9 +237,9 @@ private extension NSAttributedString {
     
     
     /// Formatted label for status bar.
-    static func formatted(label: String, color: NSColor) -> Self {
+    static func formatted(label: String) -> Self {
         
-        return Self(string: (label + ": ").localized, attributes: [.foregroundColor: color])
+        return Self(string: (label + ": ").localized, attributes: [.foregroundColor: NSColor.secondaryLabelColor])
     }
     
 }

@@ -123,7 +123,7 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "Die Datei „%@” entspricht keiner Textdatei.";
-"The file is %@.\n\nDo you really want to open the file?" = "Die Datei ist %@.\n\nMöchtest du die Datei wirklich öffnen?";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "Die Datei scheint %@ zu sein.\n\nMöchtest du die Datei wirklich öffnen?";  // FIXME: is -> appears to be
 
 // Large file alert
 "The file “%@” has a size of %@." = "Die Datei „%@“ hat eine Größe von %@.";

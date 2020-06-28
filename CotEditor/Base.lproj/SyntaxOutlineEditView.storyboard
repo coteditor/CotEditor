@@ -163,7 +163,7 @@
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="qyD-sq-hcJ">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="Ekv-v1-FdT">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="Ekv-v1-FdT">
                                     <rect key="frame" x="0.0" y="0.0" width="432" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>

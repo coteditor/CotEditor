@@ -1,14 +1,14 @@
 //
-//  NSAppKitVersion.swift
+//  ToolbarPopUpButton.swift
 //
 //  CotEditor
 //  https://coteditor.com
 //
-//  Created by 1024jp on 2019-11-17.
+//  Created by 1024jp on 2020-06-27.
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2019-2020 1024jp
+//  © 2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -23,10 +23,21 @@
 //  limitations under the License.
 //
 
-import struct AppKit.NSAppKitVersion
+import AppKit
 
-extension NSAppKitVersion {
+final class ToolbarPopUpButton: NSPopUpButton {
     
-    static var macOS10_15 = NSAppKitVersion(rawValue: 1894)
-    static var macOS11 = NSAppKitVersion(rawValue: 1997)
+    // MARK: Inspectable Properties
+    
+    @IBInspectable private var preferredWidth: CGFloat = NSView.noIntrinsicMetric
+    
+    
+    
+    // MARK: View Methods
+    
+    override var intrinsicContentSize: NSSize {
+        
+        return NSSize(width: self.preferredWidth, height: NSView.noIntrinsicMetric)
+    }
+    
 }

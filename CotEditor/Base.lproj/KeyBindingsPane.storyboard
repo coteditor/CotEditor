@@ -207,7 +207,7 @@
                                     <rect key="frame" x="447" y="23" width="16" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="UTT-Uw-P7a">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="UTT-Uw-P7a">
                                     <rect key="frame" x="0.0" y="0.0" width="472" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
@@ -1185,7 +1185,7 @@
                                     <rect key="frame" x="414" y="17" width="15" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="4UU-j5-2K9">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="4UU-j5-2K9">
                                     <rect key="frame" x="0.0" y="0.0" width="472" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>

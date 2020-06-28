@@ -124,7 +124,7 @@
 
 // Binary file alert
 "The file “%@” doesn’t appear to be text data." = "文件 “%@” 不是文本数据";
-"The file is %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";
+"The file appears to be %@.\n\nDo you really want to open the file?" = "文件 %@.\n\n确定要打开该文件？";  // FIXME: is -> appears to be
 
 // Large file alert
 "The file “%@” has a size of %@." = "“%@”文件尺寸为 %@。";

@@ -88,13 +88,17 @@ final class DraggableArrayController: NSArrayController, NSTableViewDataSource {
         // update
         NSAnimationContext.runAnimationGroup({ context in
             // update UI
-            tableView.removeRows(at: sourceRows, withAnimation: .effectFade)
+            tableView.beginUpdates()
+            tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])
             tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
-            tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+            tableView.endUpdates()
         }, completionHandler: {
             // update data
             self.remove(atArrangedObjectIndexes: sourceRows)
             self.insert(contentsOf: draggingItems, atArrangedObjectIndexes: destinationRows)
+            
+            // update UI
+            tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
         })
         
         return true

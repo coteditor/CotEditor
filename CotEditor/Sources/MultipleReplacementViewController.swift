@@ -43,16 +43,24 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     private var definition = MultipleReplacement()
     private lazy var updateNotificationTask = Debouncer(delay: .seconds(1)) { [weak self] in self?.notifyUpdate() }
     
-    @objc private dynamic var canRemove: Bool = false
     @objc private dynamic var hasInvalidSetting = false
     @objc private dynamic var resultMessage: String?
     
     @IBOutlet private weak var tableView: NSTableView?
+    @IBOutlet private weak var addRemoveButton: NSSegmentedControl?
     
     
     
     // MARK: -
     // MARK: View Controller Methods
+    
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+        
+        self.tableView?.setDraggingSourceOperationMask([.delete], forLocal: false)
+    }
+    
     
     /// reset previous search result
     override func viewDidDisappear() {
@@ -92,25 +100,49 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
+    /// commit unsaved changes
+    @discardableResult
+    override func commitEditing() -> Bool {
+        
+        guard super.commitEditing() else { return false }
+        
+        self.endEditing()
+        self.updateNotificationTask.fireNow()
+        
+        return true
+    }
+    
+    
     
     // MARK: Actions
+    
+    @IBAction func addRemove(_ sender: NSSegmentedControl) {
+        
+        switch sender.selectedSegment {
+            case 0: self.add(sender)
+            case 1: self.remove(sender)
+            default: preconditionFailure()
+        }
+    }
+    
     
     /// add a new replacement rule at the end
     @IBAction func add(_ sender: Any?) {
         
         self.endEditing()
         
-        let lastRow = self.definition.replacements.endIndex
-        let indexes = IndexSet(integer: lastRow)
-        let replacements = [MultipleReplacement.Replacement](repeating: .init(), count: indexes.count)
+        guard let tableView = self.tableView else { return assertionFailure() }
         
-        self.insertReplacements(replacements, at: indexes)
+        let row = tableView.selectedRowIndexes.last.flatMap { $0 + 1 } ?? self.definition.replacements.endIndex
+        let replacements = [MultipleReplacement.Replacement()]
+        
+        self.insertReplacements(replacements, at: [row])
         
         // start editing automatically
-        let tableView = self.tableView!
         let column = tableView.column(withIdentifier: .findString)
-        tableView.scrollRowToVisible(lastRow)
-        tableView.editColumn(column, row: lastRow, with: nil, select: true)
+        tableView.selectRowIndexes([row], byExtendingSelection: false)
+        tableView.scrollRowToVisible(row)
+        tableView.editColumn(column, row: row, with: nil, select: true)
     }
     
     
@@ -119,7 +151,9 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         self.endEditing()
         
-        let rowIndexes = self.tableView!.selectedRowIndexes
+        guard let tableView = self.tableView else { return assertionFailure() }
+        
+        let rowIndexes = tableView.selectedRowIndexes
         
         self.removeReplacements(at: rowIndexes)
         
@@ -159,19 +193,6 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     }
     
     
-    /// commit unsaved changes
-    @discardableResult
-    override func commitEditing() -> Bool {
-        
-        guard super.commitEditing() else { return false }
-        
-        self.endEditing()
-        self.updateNotificationTask.fireNow()
-        
-        return true
-    }
-    
-    
     
     // MARK: Public Methods
     
@@ -188,6 +209,8 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         if setting.replacements.isEmpty {
             self.add(self)
         }
+        
+        self.invalidateRemoveButton()
     }
     
     
@@ -198,6 +221,14 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     private func notifyUpdate() {
         
         self.delegate?.didUpdate(setting: self.definition)
+    }
+    
+    
+    /// validate the availability of the remove button.
+    private func invalidateRemoveButton() {
+        
+        let canRemove = self.tableView?.selectedRowIndexes.isEmpty == false
+        self.addRemoveButton?.setEnabled(canRemove, forSegment: 1)
     }
     
     
@@ -221,11 +252,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         assert(replacements.count == rowIndexes.count)
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { target in
-            target.removeReplacements(at: rowIndexes)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Insert Rule".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { target in
+                target.removeReplacements(at: rowIndexes)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Insert Rule".localized)
+            }
         }
         
         // update data
@@ -247,16 +280,18 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
     private func removeReplacements(at rowIndexes: IndexSet) {
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-            target.insertReplacements(replacements, at: rowIndexes)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Delete Rules".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
+                target.insertReplacements(replacements, at: rowIndexes)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Delete Rules".localized)
+            }
         }
         
         // update view
         if let tableView = self.tableView {
-            tableView.removeRows(at: rowIndexes, withAnimation: .effectGap)
+            tableView.removeRows(at: rowIndexes, withAnimation: [.slideUp, .effectFade])
         }
         
         // update data
@@ -277,11 +312,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         assert(replacements.count == rowIndexes.count)
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
-            target.updateReplacements(replacements, at: rowIndexes)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Edit Rule".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { [replacements = self.definition.replacements.elements(at: rowIndexes)] target in
+                target.updateReplacements(replacements, at: rowIndexes)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Edit Rule".localized)
+            }
         }
         
         // update data
@@ -291,7 +328,7 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         // update view
         if let tableView = self.tableView {
-            let allColumnIndexes = IndexSet(integersIn: 0..<tableView.numberOfColumns)
+            let allColumnIndexes = IndexSet(0..<tableView.numberOfColumns)
             tableView.reloadData(forRowIndexes: rowIndexes, columnIndexes: allColumnIndexes)
         }
         
@@ -310,11 +347,13 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         assert(sourceRows.count == destinationRows.count)
         
         // register undo
-        self.undoManager?.registerUndo(withTarget: self) { target in
-            target.moveReplacements(from: destinationRows, to: sourceRows)
-        }
-        if self.undoManager?.isUndoing == false {
-            self.undoManager?.setActionName("Move Rules".localized)
+        if let undoManager = self.undoManager {
+            undoManager.registerUndo(withTarget: self) { target in
+                target.moveReplacements(from: destinationRows, to: sourceRows)
+            }
+            if !undoManager.isUndoing {
+                undoManager.setActionName("Move Rules".localized)
+            }
         }
         
         // update data
@@ -324,9 +363,11 @@ final class MultipleReplacementViewController: NSViewController, MultipleReplace
         
         // update view
         if let tableView = self.tableView {
+            tableView.beginUpdates()
             tableView.removeRows(at: sourceRows, withAnimation: [.effectFade, .slideDown])
             tableView.insertRows(at: destinationRows, withAnimation: .effectGap)
             tableView.selectRowIndexes(destinationRows, byExtendingSelection: false)
+            tableView.endUpdates()
         }
         
         // notify modification
@@ -361,10 +402,7 @@ extension MultipleReplacementViewController: NSTableViewDelegate {
     /// selection did change
     func tableViewSelectionDidChange(_ notification: Notification) {
         
-        guard let tableView = self.tableView else { return }
-        
-        // update
-        self.canRemove = tableView.selectedRow >= 0
+        self.invalidateRemoveButton()
     }
     
     
@@ -553,6 +591,24 @@ extension MultipleReplacementViewController: NSTableViewDataSource {
         self.moveReplacements(from: sourceRows, to: destinationRows)
         
         return true
+    }
+    
+    
+    /// items are dropped somewhere
+    func tableView(_ tableView: NSTableView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
+        
+        switch operation {
+            case .delete:  // ended at the Trash
+                guard
+                    let data = session.draggingPasteboard.data(forType: .rows),
+                    let rows = try? NSKeyedUnarchiver.unarchivedObject(ofClass: NSIndexSet.self, from: data) as IndexSet?
+                    else { return }
+                
+                self.removeReplacements(at: rows)
+            
+            default:
+                break
+        }
     }
     
 }

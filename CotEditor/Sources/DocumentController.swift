@@ -307,7 +307,8 @@ final class DocumentController: NSDocumentController {
                            kUTTypeZipArchive,
                            kUTTypeBzip2Archive]
         if binaryTypes.contains(where: { UTTypeConformsTo(cfTypeName, $0) }),
-            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics)  // SVG is plain-text (except SVGZ)
+            !UTTypeEqual(cfTypeName, kUTTypeScalableVectorGraphics),  // SVG is plain-text (except SVGZ)
+            url.pathExtension != "ts"  // "ts" extension conflicts between MPEG-2 streamclip file and TypeScript
         {
             throw DocumentReadError(kind: .binaryFile(type: typeName), url: url)
         }
@@ -360,7 +361,7 @@ private struct DocumentReadError: LocalizedError, RecoverableError {
         switch self.kind {
             case .binaryFile(let type):
                 let localizedTypeName = (UTTypeCopyDescription(type as CFString)?.takeRetainedValue() as String?) ?? "unknown file type"
-                return String(format: "The file is %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
+                return String(format: "The file appears to be %@.\n\nDo you really want to open the file?".localized, localizedTypeName)
             
             case .tooLarge:
                 return "Opening such a large file can make the application slow or unresponsive.\n\nDo you really want to open the file?".localized
