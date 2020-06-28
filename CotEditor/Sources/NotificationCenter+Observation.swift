@@ -62,15 +62,16 @@ final class NotificationObservation {
     }
     
     
+    
     // MARK: Public Methods
     
     func invalidate() {
         
+        guard let observer = self.observer else { return }
+        
         assert(self.notificationCenter != nil)
         
-        if let observer = self.observer {
-            self.notificationCenter?.removeObserver(observer)
-        }
+        self.notificationCenter?.removeObserver(observer)
         self.observer = nil
     }
     
