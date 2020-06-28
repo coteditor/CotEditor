@@ -27,7 +27,18 @@ import Foundation
 
 extension NotificationCenter {
     
-    func addObserver(forName name: NSNotification.Name?, object obj: Any?, queue: OperationQueue?, using block: @escaping (Notification) -> Void) -> NotificationObservation {
+    /// Add an entry to the notification center's dispatch table that includes a notification queue and a block to add to the queue, and an optional notification name and sender.
+    ///
+    /// You don't need to remove the token from tne notification center on its deallocation. See the reference of the NotificationCener's version `.addObserver(forName:object:queue:using) -> NSObjectProcotol` for details.
+    ///
+    /// - Parameters:
+    ///   - name: The name of the notification for which to register the observer.
+    ///   - obj: The object whose notifications the observer wants to receive; that is, only notifications sent by this sender are delivered to the observer.
+    ///   - queue: The operation queue to which block should be added. If you pass `nil`, the block is run synchronously on the posting thread.
+    ///   - block: The block to be executed when the notification is received.
+    ///   - notification: The notification.
+    /// - Returns: A wrapper of the token object to act as the observer.
+    func addObserver(forName name: NSNotification.Name?, object obj: Any? = nil, queue: OperationQueue? = nil, using block: @escaping (_ notification: Notification) -> Void) -> NotificationObservation {
         
         let observer: NSObjectProtocol = self.addObserver(forName: name, object: obj, queue: queue, using: block)
         

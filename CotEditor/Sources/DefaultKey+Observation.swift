@@ -29,7 +29,7 @@ extension UserDefaults {
     
     /// Register the observer object to observe UserDefaults value change.
     ///
-    /// You don't need to invalidate an observer in its `deinit` method.
+    /// You don't need to invalidate the observer in its `deinit` method.
     ///
     /// - Parameters:
     ///   - key: The typed UserDefaults key to obseve the change of its value.
