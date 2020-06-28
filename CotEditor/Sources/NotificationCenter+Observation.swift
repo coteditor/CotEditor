@@ -66,6 +66,8 @@ final class NotificationObservation {
     
     func invalidate() {
         
+        assert(self.notificationCenter != nil)
+        
         if let observer = self.observer {
             self.notificationCenter?.removeObserver(observer)
         }
