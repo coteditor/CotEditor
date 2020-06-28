@@ -106,12 +106,6 @@ final class LayoutManager: NSLayoutManager, InvisibleDrawing, ValidationIgnorabl
     }
     
     
-    deinit {
-        self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
-        self.indentGuideObserver?.invalidate()
-    }
-    
-    
     
     // MARK: Layout Manager Methods
     

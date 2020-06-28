@@ -52,7 +52,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     deinit {
         self.scrollerStyleObserver?.invalidate()
-        self.defaultsObservers.forEach { $0.invalidate() }
     }
     
     

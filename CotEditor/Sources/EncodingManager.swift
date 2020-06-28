@@ -69,11 +69,6 @@ final class EncodingManager: NSObject {
     }
     
     
-    deinit {
-        self.encodingListObserver?.invalidate()
-    }
-    
-    
     
     // MARK: Public Methods
     

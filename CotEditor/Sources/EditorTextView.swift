@@ -198,7 +198,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     deinit {
         self.insertionPointTimer?.cancel()
         self.urlDetectionQueue.cancelAllOperations()
-        self.defaultsObservers.forEach { $0.invalidate() }
         
         if let observer = self.windowOpacityObserver {
             NotificationCenter.default.removeObserver(observer)

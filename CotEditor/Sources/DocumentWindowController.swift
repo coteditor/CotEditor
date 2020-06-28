@@ -38,15 +38,6 @@ final class DocumentWindowController: NSWindowController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.windowAlphaObserver?.invalidate()
-        self.appearanceModeObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: Window Controller Methods
     
     /// prepare window

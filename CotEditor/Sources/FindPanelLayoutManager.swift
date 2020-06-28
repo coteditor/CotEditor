@@ -66,12 +66,6 @@ final class FindPanelLayoutManager: NSLayoutManager, NSLayoutManagerDelegate, In
     }
     
     
-    deinit {
-        self.invisiblesDefaultsObservers.forEach { $0.invalidate() }
-        self.invisibleVisibilityObserver?.invalidate()
-    }
-    
-    
     
     // MARK: Layout Manager Methods
     

@@ -69,8 +69,6 @@ final class OutlineViewController: NSViewController {
         if let observer = self.selectionObserver {
             NotificationCenter.default.removeObserver(observer)
         }
-        
-        self.fontSizeObserver?.invalidate()
     }
     
     
