@@ -46,9 +46,9 @@ final class OutlineViewController: NSViewController {
         }
     }
     
-    private var documentObserver: NSObjectProtocol?
-    private var syntaxStyleObserver: NSObjectProtocol?
-    private var selectionObserver: NSObjectProtocol?
+    private var documentObserver: NotificationObservation?
+    private var syntaxStyleObserver: NotificationObservation?
+    private var selectionObserver: NotificationObservation?
     private var fontSizeObserver: UserDefaultsObservation?
     private var isOwnSelectionChange = false
     
@@ -58,19 +58,6 @@ final class OutlineViewController: NSViewController {
     
     // MARK: -
     // MARK: Lifecycle
-    
-    deinit {
-        if let observer = self.documentObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-        if let observer = self.syntaxStyleObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-        if let observer = self.selectionObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
     
     override var representedObject: Any? {
         
@@ -108,9 +95,7 @@ final class OutlineViewController: NSViewController {
         // make sure the last observer is invalidated before a new one is set to the property.
         // -> Although the previous observer must be invalidated in `viewDidDisappear()`,
         //    it can remain somehow and, consequently, cause a crash. (2018-05 macOS 10.13)
-        if let observer = self.selectionObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.selectionObserver?.invalidate()
         self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: nil, queue: .main) { [weak self] (notification) in
             guard
                 let self = self,
@@ -143,10 +128,8 @@ final class OutlineViewController: NSViewController {
         
         super.viewDidDisappear()
         
-        if let observer = self.selectionObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.selectionObserver = nil
-        }
+        self.selectionObserver?.invalidate()
+        self.selectionObserver = nil
         
         self.fontSizeObserver?.invalidate()
         self.fontSizeObserver = nil
@@ -208,10 +191,8 @@ final class OutlineViewController: NSViewController {
     /// Update document observation for syntax style
     private func observeDocument() {
         
-        if let observer = self.documentObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.documentObserver = nil
-        }
+        self.documentObserver?.invalidate()
+        self.documentObserver = nil
         
         guard let document = self.document else { return assertionFailure() }
         
@@ -227,10 +208,8 @@ final class OutlineViewController: NSViewController {
     /// Update syntax style observation for outline menus
     private func observeSyntaxStyle() {
         
-        if let observer = self.syntaxStyleObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.syntaxStyleObserver = nil
-        }
+        self.syntaxStyleObserver?.invalidate()
+        self.syntaxStyleObserver = nil
         
         guard let syntaxParser = self.document?.syntaxParser else { return assertionFailure() }
         

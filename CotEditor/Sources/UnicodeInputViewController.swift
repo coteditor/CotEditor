@@ -42,7 +42,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     
     // MARK: Private Properties
     
-    private var windowObserver: NSObjectProtocol?
+    private var windowObserver: NotificationObservation?
     
     @objc private dynamic var codePoint: String?
     @objc private dynamic var isValid = false
@@ -53,20 +53,11 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        if let observer = self.windowObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
-    
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
-        if let observer = self.windowObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.windowObserver?.invalidate()
         self.windowObserver = NotificationCenter.default.addObserver(forName: NSWindow.didResignMainNotification, object: nil, queue: .main) { [unowned self] _ in
             guard NSDocumentController.shared.documents.count <= 1 else { return }  // The 1 is the document now resigning.
             
@@ -79,10 +70,8 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
         
         super.viewDidDisappear()
         
-        if let observer = self.windowObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.windowObserver = nil
-        }
+        self.windowObserver?.invalidate()
+        self.windowObserver = nil
     }
     
     

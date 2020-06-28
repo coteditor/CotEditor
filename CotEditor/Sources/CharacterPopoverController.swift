@@ -29,7 +29,7 @@ final class CharacterPopoverController: NSViewController {
     
     // MARK: Private Properties
     
-    private var closingCueObserver: NSObjectProtocol?
+    private var closingCueObserver: NotificationObservation?
     
     @objc private dynamic var glyph: String?
     @objc private dynamic var unicodeName: String?
@@ -58,11 +58,6 @@ final class CharacterPopoverController: NSViewController {
     }
     
     
-    deinit {
-        self.removeObservation()
-    }
-    
-    
     
     // MARK: Public Methods
     
@@ -83,6 +78,7 @@ final class CharacterPopoverController: NSViewController {
         
         // auto-close popover if selection is changed
         if let textView = parentView as? NSTextView {
+            self.closingCueObserver?.invalidate()
             self.closingCueObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak popover] _ in
                 popover?.performClose(nil)
             }
@@ -132,16 +128,6 @@ final class CharacterPopoverController: NSViewController {
         self.characterColor = (info.pictureString != nil) ? .tertiaryLabelColor : .labelColor
     }
     
-    
-    /// Remove `.closingCueObserver` if exists.
-    private func removeObservation() {
-        
-        guard let observer = self.closingCueObserver else { return }
-        
-        NotificationCenter.default.removeObserver(observer)
-        self.closingCueObserver = nil
-    }
-    
 }
 
 
@@ -154,7 +140,8 @@ extension CharacterPopoverController: NSPopoverDelegate {
     func popoverShouldDetach(_ popover: NSPopover) -> Bool {
         
         // remove selection change observer
-        self.removeObservation()
+        self.closingCueObserver?.invalidate()
+        self.closingCueObserver = nil
         
         guard let parentWindow = popover.contentViewController?.view.window?.parent else {
             assertionFailure("Failed obtaining the parent window for character info popover.")

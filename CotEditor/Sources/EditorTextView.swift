@@ -110,7 +110,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
-    private var windowOpacityObserver: NSObjectProtocol?
+    private var windowOpacityObserver: NotificationObservation?
     
     
     
@@ -198,10 +198,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     deinit {
         self.insertionPointTimer?.cancel()
         self.urlDetectionQueue.cancelAllOperations()
-        
-        if let observer = self.windowOpacityObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
     }
     
     
@@ -272,10 +268,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.viewWillMove(toWindow: window)
         
         // remove observation before the observed object is deallocated
-        if let observer = self.windowOpacityObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.windowOpacityObserver = nil
-        }
+        self.windowOpacityObserver?.invalidate()
+        self.windowOpacityObserver = nil
     }
     
     
@@ -292,6 +286,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
+        self.windowOpacityObserver?.invalidate()
         self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] (notification) in
             guard let window = notification.object as? NSWindow else { return assertionFailure() }
             
