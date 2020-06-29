@@ -41,6 +41,7 @@ final class ScriptManager: NSObject, NSFilePresenter {
     private var scriptHandlersTable: [ScriptingEventType: [Script]] = [:]
     
     private lazy var menuBuildingTask = Debouncer(delay: .milliseconds(200)) { [weak self] in self?.buildScriptMenu() }
+    private var applicationObserver: NotificationObservation?
     
     
     
@@ -97,11 +98,9 @@ final class ScriptManager: NSObject, NSFilePresenter {
             self.menuBuildingTask.schedule()
             
         } else {
-            weak var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
-                if let observer = observer {
-                    NotificationCenter.default.removeObserver(observer)
-                }
+            self.applicationObserver?.invalidate()
+            self.applicationObserver = NotificationCenter.default.addObserver(forName: NSApplication.didBecomeActiveNotification, object: NSApp, queue: .main) { [weak self] _ in
+                self?.applicationObserver?.invalidate()
                 self?.menuBuildingTask.perform()
             }
         }
