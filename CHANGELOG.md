@@ -5,7 +5,9 @@ Change Log
 3.9.3 (unreleased)
 --------------------------
 
-- no change (yet).
+### Improvements
+
+- [trivial] Tweak some UI styles.
 
 
 
