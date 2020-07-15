@@ -1608,16 +1608,30 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
                 .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
             else { return }
         
+        let maxCount = UserDefaults.standard[.maximumSelectionInstanceHighlightCount]
         let substring = (self.string as NSString).substring(with: self.selectedRange)
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let matches = regex.matches(in: self.string, range: self.string.nsRange)
         
-        guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
+        var ranges: [NSRange] = []
+        regex.enumerateMatches(in: self.string, range: self.string.nsRange) { (match, _, stop) in
+            guard let range = match?.range else { return }
+            
+            ranges.append(range)
+            
+            if ranges.count >= maxCount {
+                stop.pointee = true
+            }
+        }
         
-        matches
-            .map(\.range)
-            .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
+        guard
+            ranges.count < maxCount,
+            let layoutManager = self.layoutManager
+            else { return }
+        
+        for range in ranges {
+            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
+        }
     }
     
     
