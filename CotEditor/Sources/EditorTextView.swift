@@ -1604,7 +1604,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.insertionLocations.isEmpty,
             self.selectedRanges.count == 1,
             !self.selectedRange.isEmpty,
-            (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
+            (try! NSRegularExpression(pattern: "\\A\\b\\w.*\\w\\b\\z"))
                 .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
             else { return }
         

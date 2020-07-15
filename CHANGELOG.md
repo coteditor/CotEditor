@@ -9,6 +9,10 @@ Change Log
 
 - [trivial] Tweak some UI styles.
 
+### Fixes
+
+- Fix an issue in the instant highlighting that the highlight shape spread wrongly when the selected text included line breaks.
+
 
 
 3.9.2 (425)
