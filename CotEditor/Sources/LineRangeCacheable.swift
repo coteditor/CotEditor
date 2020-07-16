@@ -135,7 +135,7 @@ extension LineRangeCacheable {
         guard string.length > 0 else { return }
         
         let lowerParseBound = self.lineRangeCache.firstUncoundedIndex
-        let upperPasreBound: Int = self.lineRangeCache.parsedIndexes.contains(endIndex)
+        let upperPasreBound = self.lineRangeCache.parsedIndexes.contains(endIndex)
             ? self.lineRangeCache.parsedIndexes.rangeView(of: lowerParseBound...endIndex).last?.first ?? endIndex
             : endIndex
         
