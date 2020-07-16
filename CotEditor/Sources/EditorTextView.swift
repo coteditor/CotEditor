@@ -434,9 +434,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// text did change
     override func didChangeText() {
         
-        super.didChangeText()
-        
+        // invalidate before running the layout processes
         self.invalidateNonContiguousLayout()
+        
+        super.didChangeText()
         
         self.needsUpdateLineHighlight = true
         

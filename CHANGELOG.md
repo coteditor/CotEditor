@@ -7,7 +7,9 @@ Change Log
 
 ### Improvements
 
+- Optimize the performance of text layout when pasting a relatively large amount of text.
 - [trivial] Tweak some UI styles.
+
 
 ### Fixes
 
