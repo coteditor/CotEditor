@@ -135,7 +135,9 @@ extension LineRangeCacheable {
         guard string.length > 0 else { return }
         
         let lowerParseBound = self.lineRangeCache.firstUncoundedIndex
-        let upperPasreBound = IndexSet(lowerParseBound...endIndex).subtracting(self.lineRangeCache.parsedIndexes).last ?? lowerParseBound
+        let upperPasreBound: Int = self.lineRangeCache.parsedIndexes.contains(endIndex)
+            ? self.lineRangeCache.parsedIndexes.rangeView(of: lowerParseBound...endIndex).last?.first ?? endIndex
+            : endIndex
         
         var index = lowerParseBound
         while index <= min(upperPasreBound, string.length - 1) {
@@ -174,7 +176,7 @@ private extension LineRangeCache {
     /// Update the first uncounted index.
     mutating func invalidateFirstUncoundedIndex() {
         
-        let firstInvalidIndex = (self.parsedIndexes.first == 0)
+        let firstInvalidIndex = self.parsedIndexes.contains(0)
             ? self.parsedIndexes.rangeView.first?.last.flatMap { $0 + 1 } ?? 0
             : 0
         
