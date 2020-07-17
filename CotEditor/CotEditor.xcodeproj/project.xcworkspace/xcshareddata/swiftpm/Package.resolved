@@ -1,24 +1,6 @@
 {
   "object": {
     "pins": [
-      {
-        "package": "DifferenceKit",
-        "repositoryURL": "https://github.com/ra1028/DifferenceKit/",
-        "state": {
-          "branch": null,
-          "revision": "14c66681e12a38b81045f44c6c29724a0d4b0e72",
-          "version": "1.1.5"
-        }
-      },
-      {
-        "package": "ColorCode",
-        "repositoryURL": "https://github.com/1024jp/WFColorCode.git",
-        "state": {
-          "branch": null,
-          "revision": "925a3c44b3e7a9af47f29921466928a1f11fd8b4",
-          "version": "2.6.0"
-        }
-      }
     ]
   },
   "version": 1
