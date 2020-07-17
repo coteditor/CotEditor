@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Optimize the performance of text layout when pasting a relatively large amount of text.
+- Update JSON syntax style.
 - [trivial] Tweak some UI styles.
 
 
