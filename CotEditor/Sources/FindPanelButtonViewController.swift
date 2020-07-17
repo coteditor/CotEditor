@@ -8,7 +8,7 @@
 //
 //  ---------------------------------------------------------------------------
 //
-//  © 2014-2019 1024jp
+//  © 2014-2020 1024jp
 //
 //  Licensed under the Apache License, Version 2.0 (the "License");
 //  you may not use this file except in compliance with the License.
@@ -36,14 +36,6 @@ final class FindPanelButtonViewController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.findNextAfterReplaceObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI

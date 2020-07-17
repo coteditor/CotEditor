@@ -2,6 +2,23 @@
 Change Log
 ==========================
 
+3.9.3 (427)
+--------------------------
+
+### Improvements
+
+- Significantly optimize the performance of text layout especially when pasting a relatively large amount of text.
+- [trivial] Tweak some UI styles.
+- [dev] Update Yams from 2.0.0 to 3.0.1.
+
+
+### Fixes
+
+- Fix an issue in the highlighting instances of selected text that the highlight shape spread wrongly when the selected text included line breaks.
+- Fix an issue in the syntax style editing that some keywords that can be parsed as a YAML object, such as `true` or `null`, were not stored as a string.
+
+
+
 3.9.2 (425)
 --------------------------
 

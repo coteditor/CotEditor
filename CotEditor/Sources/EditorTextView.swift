@@ -110,7 +110,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     private lazy var completionTask = Debouncer { [weak self] in self?.performCompletion() }
     
     private var defaultsObservers: [UserDefaultsObservation] = []
-    private var windowOpacityObserver: NSObjectProtocol?
+    private var windowOpacityObserver: NotificationObservation?
     
     
     
@@ -198,11 +198,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     deinit {
         self.insertionPointTimer?.cancel()
         self.urlDetectionQueue.cancelAllOperations()
-        self.defaultsObservers.forEach { $0.invalidate() }
-        
-        if let observer = self.windowOpacityObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
     }
     
     
@@ -273,10 +268,8 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         super.viewWillMove(toWindow: window)
         
         // remove observation before the observed object is deallocated
-        if let observer = self.windowOpacityObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.windowOpacityObserver = nil
-        }
+        self.windowOpacityObserver?.invalidate()
+        self.windowOpacityObserver = nil
     }
     
     
@@ -293,6 +286,7 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         
         // apply window opacity
         self.didChangeWindowOpacity(to: window.isOpaque)
+        self.windowOpacityObserver?.invalidate()
         self.windowOpacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] (notification) in
             guard let window = notification.object as? NSWindow else { return assertionFailure() }
             
@@ -440,9 +434,10 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
     /// text did change
     override func didChangeText() {
         
-        super.didChangeText()
-        
+        // invalidate before running the layout processes
         self.invalidateNonContiguousLayout()
+        
+        super.didChangeText()
         
         self.needsUpdateLineHighlight = true
         
@@ -1610,20 +1605,34 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
             self.insertionLocations.isEmpty,
             self.selectedRanges.count == 1,
             !self.selectedRange.isEmpty,
-            (try! NSRegularExpression(pattern: "^\\b\\w.*\\w\\b$"))
+            (try! NSRegularExpression(pattern: "\\A\\b\\w.*\\w\\b\\z"))
                 .firstMatch(in: self.string, options: [.withTransparentBounds], range: self.selectedRange) != nil
             else { return }
         
+        let maxCount = UserDefaults.standard[.maximumSelectionInstanceHighlightCount]
         let substring = (self.string as NSString).substring(with: self.selectedRange)
         let pattern = "\\b" + NSRegularExpression.escapedPattern(for: substring) + "\\b"
         let regex = try! NSRegularExpression(pattern: pattern)
-        let matches = regex.matches(in: self.string, range: self.string.nsRange)
         
-        guard matches.count < UserDefaults.standard[.maximumSelectionInstanceHighlightCount] else { return }
+        var ranges: [NSRange] = []
+        regex.enumerateMatches(in: self.string, range: self.string.nsRange) { (match, _, stop) in
+            guard let range = match?.range else { return }
+            
+            ranges.append(range)
+            
+            if ranges.count >= maxCount {
+                stop.pointee = true
+            }
+        }
         
-        matches
-            .map(\.range)
-            .forEach { self.layoutManager?.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: $0) }
+        guard
+            ranges.count < maxCount,
+            let layoutManager = self.layoutManager
+            else { return }
+        
+        for range in ranges {
+            layoutManager.addTemporaryAttribute(.roundedBackgroundColor, value: self.instanceHighlightColor, forCharacterRange: range)
+        }
     }
     
     

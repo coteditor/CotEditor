@@ -24,6 +24,37 @@
 
 <article>
 <header>
+	<h1>CotEditor 3.9.3</h1>
+	<p>release: <time>2020-07-18</time></p>
+</header>
+
+
+<section>
+<h2>Improvements</h2>
+
+<ul>
+	<li>Significantly optimize the performance of text layout especially when pasting a relatively large amount of text.</li>
+	<li>Update JSON syntax style.</li>
+	<li><span class="trivial">trivial</span>: Tweak some UI styles.</li>
+	<li><span class="trivial">dev</span>: Update Yams from 2.0.0 to 3.0.1.</li>
+</ul>
+</section>
+
+
+<section>
+<h2>Fixes</h2>
+
+<ul>
+	<li>Fix an issue in the highlighting instances of selected text that the highlight shape spread wrongly when the selected text included line breaks.</li>
+	<li>Fix an issue in the syntax style editing that some keywords that can be parsed as a YAML object, such as <code>true</code> or <code>null</code>, were not stored as a string.</li>
+</ul>
+</section>
+</article>
+
+
+
+<article>
+<header>
 	<h1>CotEditor 3.9.2</h1>
 	<p>release: <time>2020-06-28</time></p>
 </header>

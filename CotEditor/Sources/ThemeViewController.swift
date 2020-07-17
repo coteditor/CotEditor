@@ -54,19 +54,12 @@ final class ThemeViewController: NSViewController {
     // MARK: Private Properties
     
     private var storedMetadata: Metadata?
-    private var themeObserver: NSObjectProtocol?
+    private var themeObserver: NotificationObservation?
     
     
     
     // MARK: -
     // MARK: Lifecycle
-    
-    deinit {
-        if let observer = self.themeObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
-    }
-    
     
     override func viewDidLoad() {
         
@@ -85,9 +78,7 @@ final class ThemeViewController: NSViewController {
         
         super.viewWillAppear()
         
-        if let observer = self.themeObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.themeObserver?.invalidate()
         self.themeObserver = NotificationCenter.default.addObserver(forName: Theme.didChangeNotification, object: nil, queue: .main) { [weak self] _ in
             self?.notifyUpdate()
         }
@@ -101,9 +92,8 @@ final class ThemeViewController: NSViewController {
         
         self.endEditing()
         
-        if let observer = self.themeObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.themeObserver?.invalidate()
+        self.themeObserver = nil
     }
     
     

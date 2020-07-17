@@ -61,7 +61,7 @@ final class NavigationBarController: NSViewController {
     // MARK: Private Properties
     
     private var orientationObserver: NSKeyValueObservation?
-    private var selectionObserver: NSObjectProtocol?
+    private var selectionObserver: NotificationObservation?
     
     private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
         guard
@@ -89,10 +89,6 @@ final class NavigationBarController: NSViewController {
     
     deinit {
         self.orientationObserver?.invalidate()
-        
-        if let observer = self.selectionObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
     }
     
     
@@ -127,9 +123,7 @@ final class NavigationBarController: NSViewController {
             self?.updateTextOrientation(to: textView.layoutOrientation)
         }
         
-        if let observer = self.selectionObserver {
-            NotificationCenter.default.removeObserver(observer)
-        }
+        self.selectionObserver?.invalidate()
         self.selectionObserver = NotificationCenter.default.addObserver(forName: NSTextView.didChangeSelectionNotification, object: textView, queue: .main) { [weak self] (notification) in
             // avoid updating outline item selection before finishing outline parse
             // -> Otherwise, a wrong item can be selected because of using the outdated outline ranges.
@@ -155,10 +149,8 @@ final class NavigationBarController: NSViewController {
         self.orientationObserver?.invalidate()
         self.orientationObserver = nil
         
-        if let observer = self.selectionObserver {
-            NotificationCenter.default.removeObserver(observer)
-            self.selectionObserver = nil
-        }
+        self.selectionObserver?.invalidate()
+        self.selectionObserver = nil
     }
     
     

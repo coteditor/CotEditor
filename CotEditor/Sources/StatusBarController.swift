@@ -39,14 +39,6 @@ final class StatusBarController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.defaultsObservers.forEach { $0.invalidate() }
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup
