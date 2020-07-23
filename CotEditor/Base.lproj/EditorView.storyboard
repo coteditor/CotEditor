@@ -89,7 +89,7 @@
                             <popUpButton hidden="YES" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uo6-wO-fJZ">
                                 <rect key="frame" x="51" y="-2" width="300" height="19"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="EMV-iW-vsD"/>
+                                    <constraint firstAttribute="width" priority="499" constant="300" id="EMV-iW-vsD"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Noe-z9-zXZ" customClass="OutlineMenuButtonCell" customModule="CotEditor" customModuleProvider="target">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

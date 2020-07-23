@@ -7,6 +7,7 @@ Change Log
 
 ### Improvements
 
+- Make the document window's minimum size smaller.
 - [dev] Update the build environment to Xcode 11.6.
 
 
