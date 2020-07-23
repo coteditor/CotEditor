@@ -437,7 +437,7 @@ final class LineNumberView: NSView {
     private func removeTextViewObservers() {
         
         assert(self.textView != nil)
-        assert(self.textView?.enclosingScrollView?.contentView != nil)
+        assert(self.textView?.enclosingScrollView?.contentView != nil || self.scrollObserver == nil)
         
         self.textObserver?.invalidate()
         self.textObserver = nil
