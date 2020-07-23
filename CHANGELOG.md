@@ -2,6 +2,15 @@
 Change Log
 ==========================
 
+3.9.4 (unreleased)
+--------------------------
+
+### Improvements
+
+- [dev] Update the build environment to Xcode 11.6.
+
+
+
 3.9.3 (427)
 --------------------------
 
