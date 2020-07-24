@@ -315,7 +315,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         
         // perform syntax highlight
         weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
-        _ = self.syntaxParser.highlightAll {
+        _ = self.syntaxParser.highlight() {
             DispatchQueue.main.async {
                 guard let controller = controller, controller.isViewShown else { return }
                 

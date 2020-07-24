@@ -185,31 +185,75 @@ extension SyntaxParser {
 
 extension SyntaxParser {
     
-    /// Update whole syntax highlights.
+    /// Update highlights around passed-in range.
     ///
-    /// - Parameter completionHandler: The block to execute when the process completes.
+    /// - Parameters:
+    ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
+    ///   - completionHandler: The block to execute when the process completes without cancellation.
     /// - Returns: The progress of the async highlight task if performed.
-    func highlightAll(completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    func highlight(around editedRange: NSRange? = nil, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         assert(Thread.isMainThread)
         
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        guard !self.style.isNone else {
-            self.textStorage.apply(highlights: [:], range: self.textStorage.range)
+        let wholeRange = self.textStorage.range
+        let editedRange = editedRange ?? wholeRange
+        
+        // in case that wholeRange length is changed from editedRange
+        guard editedRange.upperBound <= wholeRange.upperBound else {
+            assertionFailure("Invalid range is passed in to \(#function)")
             return nil
         }
         
-        let wholeRange = self.textStorage.range
+        guard !self.style.isNone else {
+            self.textStorage.apply(highlights: [:], range: editedRange)
+            completionHandler()
+            return nil
+        }
+        
+        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
+        var highlightRange = editedRange
+        
+        // highlight whole if string is enough short
+        if wholeRange.length <= bufferLength {
+            highlightRange = wholeRange
+            
+        } else if highlightRange != wholeRange {
+            // highlight whole visible area if edited point is visible
+            highlightRange = self.textStorage.layoutManagers
+                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
+                .filter { $0.intersects(highlightRange) }
+                .reduce(into: highlightRange) { $0.formUnion($1) }
+            
+            highlightRange = (self.textStorage.string as NSString).lineRange(for: highlightRange)
+            
+            // expand highlight area if the character just before/after the highlighting area is the same syntax type
+            if let layoutManager = self.textStorage.layoutManagers.first {
+                if highlightRange.lowerBound > 0,
+                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound)
+                {
+                    highlightRange = NSRange(location: effectiveRange.lowerBound,
+                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
+                }
+                
+                if highlightRange.upperBound < wholeRange.upperBound,
+                    let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound)
+                {
+                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
+                }
+            }
+        }
         
         // use cache if the content of the whole document is the same as the last
         if
+            highlightRange == wholeRange,
             let cache = self.highlightCache,
             cache.styleName == self.style.name,
             cache.string == self.textStorage.string
         {
-            self.textStorage.apply(highlights: cache.highlights, range: wholeRange)
+            self.textStorage.apply(highlights: cache.highlights, range: highlightRange)
             completionHandler()
             return nil
         }
@@ -219,60 +263,6 @@ extension SyntaxParser {
         //    and it can cause crash when a mutable string is given to NSRegularExpression instance.
         //    (2016-11, macOS 10.12.1 SDK)
         let string = self.textStorage.string.immutable
-        
-        return self.highlight(string: string, range: wholeRange, completionHandler: completionHandler)
-    }
-    
-    
-    /// Update highlights around passed-in range.
-    ///
-    /// - Parameter editedRange: The character range that was edited.
-    /// - Returns: The progress of the async highlight task if performed.
-    func highlight(around editedRange: NSRange) -> Progress? {
-        
-        assert(Thread.isMainThread)
-        
-        guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
-        guard !self.textStorage.string.isEmpty else { return nil }
-        
-        let wholeRange = self.textStorage.range
-        
-        // in case that wholeRange length is changed from editedRange
-        guard editedRange.upperBound <= wholeRange.upperBound else { return nil }
-        
-        // make sure that string is immutable (see `highlightAll()` for details)
-        let string = self.textStorage.string.immutable
-        
-        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
-        var highlightRange = editedRange
-        
-        // highlight whole if string is enough short
-        if wholeRange.length <= bufferLength {
-            highlightRange = wholeRange
-            
-        } else {
-            // highlight whole visible area if edited point is visible
-            highlightRange = self.textStorage.layoutManagers
-                .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
-                .filter { $0.intersects(highlightRange) }
-                .reduce(into: highlightRange) { $0.formUnion($1) }
-            
-            highlightRange = (string as NSString).lineRange(for: highlightRange)
-            
-            // expand highlight area if the character just before/after the highlighting area is the same syntax type
-            if let layoutManager = self.textStorage.layoutManagers.first {
-                if highlightRange.lowerBound <= bufferLength {
-                    highlightRange = NSRange(location: 0, length: highlightRange.upperBound)
-                } else if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.lowerBound) {
-                    highlightRange = NSRange(location: effectiveRange.lowerBound,
-                                             length: highlightRange.upperBound - effectiveRange.lowerBound)
-                }
-                
-                if let effectiveRange = layoutManager.effectiveRange(of: .syntaxType, at: highlightRange.upperBound) {
-                    highlightRange.length = effectiveRange.upperBound - highlightRange.location
-                }
-            }
-        }
         
         return self.highlight(string: string, range: highlightRange)
     }

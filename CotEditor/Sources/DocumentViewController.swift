@@ -881,12 +881,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         guard let parser = self.syntaxParser else { return }
         
         // start parse
-        let progress: Progress?
-        if let range = range {
-            progress = parser.highlight(around: range)
-        } else {
-            progress = parser.highlightAll()
-        }
+        let progress = parser.highlight(around: range)
         
         // show indicator for a large update
         let threshold = UserDefaults.standard[.showColoringIndicatorTextLength]
