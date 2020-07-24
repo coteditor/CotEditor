@@ -147,7 +147,6 @@ final class SyntaxHighlightParseOperation: Operation, ProgressReporting {
             }
             
             highlights[syntaxType] = atomicRanges.value
-            childProgress.completedUnitCount = childProgress.totalUnitCount
         }
         
         guard !self.isCancelled else { return [:] }
