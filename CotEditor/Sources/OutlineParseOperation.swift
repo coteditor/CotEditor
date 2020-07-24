@@ -48,7 +48,7 @@ final class OutlineParseOperation: Operation, ProgressReporting {
     required init(extractors: [OutlineExtractor], string: String, range parseRange: NSRange) {
         
         assert(parseRange.location != NSNotFound)
-        assert(!(string is NSMutableString))
+        assert(!(string as NSString).className.contains("MutableString"))
         
         self.extractors = extractors
         self.string = string
