@@ -285,6 +285,7 @@ extension SyntaxParser {
     private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
         
         assert(Thread.isMainThread)
+        assert(!(string is NSMutableString))
         
         guard !highlightRange.isEmpty, !self.style.isNone else { return nil }
         

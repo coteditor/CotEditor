@@ -98,7 +98,7 @@ final class EditorInfoCountOperation: Operation {
     init(string: String, lineEnding: LineEnding, selectedRange: Range<String.Index>, requiredInfo: EditorInfoTypes = .all, countsLineEnding: Bool, countsWholeText: Bool) {
         
         assert(selectedRange.upperBound <= string.endIndex)
-        assert((string as AnyObject).className != "NSBigMutableString")
+        assert(!(string is NSMutableString))
         
         self.string = string
         self.lineEnding = lineEnding
