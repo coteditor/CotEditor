@@ -198,34 +198,27 @@ extension SyntaxParser {
         guard UserDefaults.standard[.enableSyntaxHighlight] else { return nil }
         guard !self.textStorage.string.isEmpty else { return nil }
         
-        let wholeRange = self.textStorage.range
-        let editedRange = editedRange ?? wholeRange
-        
         // in case that wholeRange length is changed from editedRange
-        guard editedRange.upperBound <= wholeRange.upperBound else {
+        guard editedRange.flatMap({ $0.upperBound > self.textStorage.length }) != true else {
             assertionFailure("Invalid range is passed in to \(#function)")
             return nil
         }
         
-        guard !self.style.isNone else {
-            self.textStorage.apply(highlights: [:], range: editedRange)
-            completionHandler()
-            return nil
-        }
-        
-        let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
-        var highlightRange = editedRange
-        
-        // highlight whole if string is enough short
-        if wholeRange.length <= bufferLength {
-            highlightRange = wholeRange
+        let wholeRange = self.textStorage.range
+        let highlightRange: NSRange = {
+            guard let editedRange = editedRange, editedRange != wholeRange else { return wholeRange }
             
-        } else if highlightRange != wholeRange {
+            // highlight whole if string is enough short
+            let bufferLength = UserDefaults.standard[.coloringRangeBufferLength]
+            if wholeRange.length <= bufferLength {
+                return wholeRange
+            }
+            
             // highlight whole visible area if edited point is visible
-            highlightRange = self.textStorage.layoutManagers
+            var highlightRange = self.textStorage.layoutManagers
                 .compactMap(\.textViewForBeginningOfSelection?.visibleRange)
-                .filter { $0.intersects(highlightRange) }
-                .reduce(into: highlightRange) { $0.formUnion($1) }
+                .filter { $0.intersects(editedRange) }
+                .reduce(into: editedRange) { $0.formUnion($1) }
             
             highlightRange = (self.textStorage.string as NSString).lineRange(for: highlightRange)
             
@@ -244,6 +237,21 @@ extension SyntaxParser {
                     highlightRange.length = effectiveRange.upperBound - highlightRange.location
                 }
             }
+            
+            if highlightRange.upperBound < bufferLength {
+                return NSRange(location: 0, length: highlightRange.upperBound)
+            }
+            
+            return highlightRange
+        }()
+        
+        guard !highlightRange.isEmpty else { return nil }
+        
+        // just clear current highlight and return if no coloring needs
+        guard self.style.hasHighlightDefinition else {
+            self.textStorage.apply(highlights: [:], range: highlightRange)
+            completionHandler()
+            return nil
         }
         
         // use cache if the content of the whole document is the same as the last
@@ -272,22 +280,12 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress {
         
         assert(Thread.isMainThread)
         assert(!(string as NSString).className.contains("MutableString"))
-        
-        guard !highlightRange.isEmpty, !self.style.isNone else { return nil }
-        
-        // just clear current highlight and return if no coloring needs
-        guard self.style.hasHighlightDefinition else {
-            self.textStorage.apply(highlights: [:], range: highlightRange)
-            completionHandler()
-            return nil
-        }
-        
-        let wholeRange = string.nsRange
-        let styleName = self.style.name
+        assert(!highlightRange.isEmpty)
+        assert(!self.style.isNone)
         
         let definition = SyntaxHighlightParseOperation.ParseDefinition(extractors: self.style.highlightExtractors,
                                                                        pairedQuoteTypes: self.style.pairedQuoteTypes,
@@ -311,24 +309,23 @@ extension SyntaxParser {
             }
         }
         
-        operation.completionBlock = { [weak self, weak operation] in
+        operation.completionBlock = { [weak self, weak operation, styleName = self.style.name] in
             guard
-                let operation = operation,
-                let highlights = operation.highlights,
-                !operation.isCancelled
+                let highlights = operation?.highlights,
+                let progress = operation?.progress,
+                !progress.isCancelled
                 else {
                     if let observer = modificationObserver {
                         NotificationCenter.default.removeObserver(observer)
                     }
-                    return completionHandler()
+                    return
                 }
             
-            DispatchQueue.main.async { [weak self, progress = operation.progress] in
+            DispatchQueue.main.async {
                 defer {
                     if let observer = modificationObserver {
                         NotificationCenter.default.removeObserver(observer)
                     }
-                    completionHandler()
                 }
                 
                 guard !isModified.value else {
@@ -337,13 +334,15 @@ extension SyntaxParser {
                 }
                 
                 // cache result if whole text was parsed
-                if highlightRange == wholeRange {
+                if highlightRange == string.nsRange {
                     self?.highlightCache = Cache(styleName: styleName, string: string, highlights: highlights)
                 }
                 
                 self?.textStorage.apply(highlights: highlights, range: highlightRange)
                 
                 progress.completedUnitCount += 1
+                
+                completionHandler()
             }
         }
         
