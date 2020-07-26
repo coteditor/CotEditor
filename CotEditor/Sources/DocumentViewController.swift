@@ -352,23 +352,16 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     /// text was edited (invoked right **before** notifying layout managers)
     func textStorage(_ textStorage: NSTextStorage, didProcessEditing editedMask: NSTextStorageEditActions, range editedRange: NSRange, changeInLength delta: Int) {
         
-        assert(Thread.isMainThread)
-        
         guard
             editedMask.contains(.editedCharacters),
             self.focusedTextView?.hasMarkedText() != true
             else { return }
         
-        // update editor information
         self.document?.analyzer.invalidateEditorInfo()
-        
-        // update incompatible characters list
         self.document?.incompatibleCharacterScanner.invalidate()
-        
-        // parse outline
         self.syntaxParser?.invalidateOutline()
         
-        // perform highlight parsing in the next run loop to give layoutManagers time to update their values
+        // -> Perform in the next run loop to give layoutManagers time to update their values.
         DispatchQueue.main.async { [weak self] in
             self?.invalidateSyntaxHighlight(in: editedRange)
         }
