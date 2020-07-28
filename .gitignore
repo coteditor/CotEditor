@@ -8,7 +8,8 @@ xcuserdata/
 default.profraw
 
 # Swift Package Manager
-.build/
+.build
+.swiftpm
 
 # Submodules
 Frameworks/Build
