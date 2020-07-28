@@ -1,15 +1,15 @@
 /*
  
- UnicodePanel.strings (French)
+ UnicodeInputView.strings (Japanese)
  
  CotEditor
  https://coteditor.com
  
- Created by Aurélien Roy on 2019-04-26.
- Localized by Aurélien Roy
+ Created by 1024jp on 2014-11-04.
+ 
  ------------------------------------------------------------------------------
  
- © 2015-2019 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,11 +25,5 @@
  
  */
 
-/* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Entrée Unicode";
-
-/* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "Entrée";
-
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "rz0-Df-N9T"; */
-"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "Code invalide";
+"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "無効なコード";

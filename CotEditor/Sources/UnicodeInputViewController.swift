@@ -25,109 +25,65 @@
 
 import Cocoa
 
-@objc protocol UnicodeInputReceiver: AnyObject {
-    
-    func insertUnicodeCharacter(_ sender: UnicodeInputViewController)
-}
-
-
-final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
+final class UnicodeInputViewController: NSViewController {
     
     // MARK: Public Properties
     
-    static let sharedPanel = NSWindowController.instantiate(storyboard: "UnicodePanel")
-    
-    @objc private(set) dynamic var characterString: String?
+    weak var clientTextView: NSTextView?
     
     
     // MARK: Private Properties
     
-    private var windowObserver: NotificationObservation?
+    private var character: Character?
     
-    @objc private dynamic var codePoint: String?
-    @objc private dynamic var isValid = false
+    @objc private dynamic var codePoint: String = ""  { didSet { self.validateCodePoint() } }
+    
+    @objc private dynamic var pictureString: String?
     @objc private dynamic var unicodeName: String?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
+    // MARK: Action Messages
     
-    override func viewWillAppear() {
-        
-        super.viewWillAppear()
-        
-        self.windowObserver?.invalidate()
-        self.windowObserver = NotificationCenter.default.addObserver(forName: NSWindow.didResignMainNotification, object: nil, queue: .main) { [unowned self] _ in
-            guard NSDocumentController.shared.documents.count <= 1 else { return }  // The 1 is the document now resigning.
-            
-            self.view.window?.performClose(self)
-        }
-    }
-    
-    
-    override func viewDidDisappear() {
-        
-        super.viewDidDisappear()
-        
-        self.windowObserver?.invalidate()
-        self.windowObserver = nil
-    }
-    
-    
-    
-    // MARK: Delegate
-    
-    /// text in text field was changed
-    func controlTextDidChange(_ obj: Notification) {
-        
-        self.isValid = false
-        self.unicodeName = nil
-        self.characterString = nil
-        
-        guard
-            let input = (obj.object as? NSTextField)?.stringValue,
-            let longChar = UTF32.CodeUnit(codePoint: input)
-            else { return }
-        
-        self.unicodeName = longChar.unicodeName
-        
-        guard let scalar = Unicode.Scalar(longChar) else { return }
-        
-        self.isValid = true
-        self.characterString = String(scalar)
-    }
-    
-    
-    
-    // MARK: Action Message
-    
-    /// input unicode character to the frontmost document
+    /// Input Unicode character to the parent text view.
     @IBAction func insertToDocument(_ sender: Any?) {
         
-        guard self.characterString?.isEmpty == false else { return }
+        guard
+            let character = self.character,
+            let textView = self.clientTextView
+            else { return NSSound.beep() }
         
-        guard let receiver = NSApp.target(forAction: #selector(UnicodeInputReceiver.insertUnicodeCharacter)) as? UnicodeInputReceiver else {
-            return NSSound.beep()
-        }
-        
-        receiver.insertUnicodeCharacter(self)
+        textView.insertText(String(character), replacementRange: .notFound)
         
         self.codePoint = ""
-        self.isValid = false
-        self.unicodeName = nil
-        self.characterString = nil
     }
     
+    
+    
+    // MARK: Private Methods
+    
+    private func validateCodePoint() {
+        
+        let longChar = UTF32.CodeUnit(codePoint: self.codePoint)
+        
+        self.character = longChar
+            .flatMap { Unicode.Scalar($0) }
+            .map { Character($0) }
+        
+        self.pictureString = (self.character?.isNewline == true) ? " " : self.character.map { String($0) }
+        self.unicodeName = longChar?.unicodeName
+    }
+
 }
 
 
 
-// MARK: Private Methods
+// MARK: Private Extensions
 
 private extension UTF32.CodeUnit {
     
-    /// initialize from a possible Unicode code point representation like `U+1F600`, `1f600`, `0x1F600` and so on.
+    /// Initialize from a possible Unicode code point representation, such as `U+1F600`, `1f600`, and `0x1F600`.
     init?(codePoint: String) {
         
         guard let range = codePoint.range(of: "(?<=^(U\\+|0x|\\\\u)?)[0-9a-f]{1,5}$",

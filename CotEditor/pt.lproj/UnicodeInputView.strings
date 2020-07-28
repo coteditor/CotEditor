@@ -1,5 +1,5 @@
 //
-// UnicodePanel.strings (Portuguese)
+// UnicodeInputView.strings (Portuguese)
 // 
 // CotEditor
 // https://coteditor.com
@@ -9,7 +9,7 @@
 // 
 // ------------------------------------------------------------------------------
 // 
-// © 2018 CotEditor Project
+// © 2018-2020 CotEditor Project
 // 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -23,12 +23,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 //
-
-/* Class = "NSWindow"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Inserir Unicode";
-
-/* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "Inserir";
 
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "3kK-Ug-bH8"; */
 "3kK-Ug-bH8.ibShadowedIsNilPlaceholder" = "Código inválido";

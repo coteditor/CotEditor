@@ -148,6 +148,22 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     }
     
     
+    /// show Unicode input view
+    @IBAction func showUnicodeInputPanel(_ sender: Any?) {
+        
+        guard let textView = self.textView else { return assertionFailure() }
+        
+        let inputViewController = UnicodeInputViewController.instantiate(storyboard: "UnicodeInputView")
+        inputViewController.clientTextView = textView
+        
+        let positioningRect = textView.boundingRect(for: textView.selectedRange)?.insetBy(dx: -1, dy: -1) ?? .zero
+        let edge: NSRectEdge = (textView.layoutOrientation == .vertical) ? .maxX : .minY
+        
+        textView.scrollRangeToVisible(textView.selectedRange)
+        self.present(inputViewController, asPopoverRelativeTo: positioningRect, of: textView, preferredEdge: edge, behavior: .transient)
+    }
+    
+    
     
     // MARK: Public Methods
     

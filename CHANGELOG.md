@@ -5,7 +5,9 @@ Change Log
 3.10.0 (unreleased)
 --------------------------
 
-- not changed (yet).
+### Improvements
+
+- Change the UI of the Unicode code point input to display the input field just above the insertion point.
 
 
 

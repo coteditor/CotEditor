@@ -1,5 +1,5 @@
 //
-//  EditorTextView+Accessories.swift
+//  EditorTextView+ColorCode.swift
 //
 //  CotEditor
 //  https://coteditor.com
@@ -24,35 +24,6 @@
 //
 
 import Cocoa
-
-extension EditorTextView: UnicodeInputReceiver {
-    
-    // MARK: Action Messages
-    
-    /// show Unicode input panel
-    @IBAction func showUnicodeInputPanel(_ sender: Any?) {
-        
-        UnicodeInputViewController.sharedPanel.showWindow(self)
-    }
-    
-    
-    
-    // MARK: Protocol
-    
-    /// insert an Unicode character from Unicode input panel
-    @IBAction func insertUnicodeCharacter(_ sender: UnicodeInputViewController) {
-        
-        guard
-            let character = sender.characterString,
-            let ranges = self.rangesForUserTextChange as? [NSRange]
-            else { return }
-        
-        self.insertText(character, replacementRanges: ranges)
-    }
-    
-}
-
-
 
 extension EditorTextView: ColorCodeReceiver {
     
