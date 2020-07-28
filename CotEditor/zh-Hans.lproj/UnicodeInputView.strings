@@ -1,16 +1,16 @@
 /*
  
- UnicodePanel.strings (Italian)
+ UnicodeInputView.strings (Simplified Chinese)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2016-09-28.
- Localized by Agostino Maiello
+ Created by 1024jp on 2014-12-12.
+ Localized by onevcat
  
  ------------------------------------------------------------------------------
  
- © 2016 CotEditor Project
+ © 2014-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -27,10 +27,10 @@
  */
 
 /* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Inserisci Unicode";
+"Y41-ro-Xeo.title" = "输入 Unicode";
 
 /* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "Inserisci";
+"rfS-Rp-Al4.title" = "输入";
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "rz0-Df-N9T"; */
-"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "Codice non valido";
+"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "无效的代码";

@@ -35,7 +35,7 @@ final class UnicodeInputViewController: NSViewController, NSTextFieldDelegate {
     
     // MARK: Public Properties
     
-    static let sharedPanel = NSWindowController.instantiate(storyboard: "UnicodePanel")
+    static let sharedPanel = NSWindowController.instantiate(storyboard: "UnicodeInputView")
     
     @objc private(set) dynamic var characterString: String?
     

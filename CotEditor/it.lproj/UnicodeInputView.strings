@@ -1,15 +1,16 @@
 /*
  
- UnicodePanel.strings (German)
+ UnicodeInputView.strings (Italian)
  
  CotEditor
  https://coteditor.com
  
- Created by 1024jp on 2015-08-19.
+ Created by 1024jp on 2016-09-28.
+ Localized by Agostino Maiello
  
  ------------------------------------------------------------------------------
  
- © 2015 1024jp
+ © 2016-2020 CotEditor Project
  
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -26,10 +27,10 @@
  */
 
 /* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Unicode eingeben";
+"Y41-ro-Xeo.title" = "Inserisci Unicode";
 
 /* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "Eingeben";
+"rfS-Rp-Al4.title" = "Inserisci";
 
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "rz0-Df-N9T"; */
-"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "Ungültiger Code";
+"rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "Codice non valido";

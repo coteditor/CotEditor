@@ -601,7 +601,7 @@
 		2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2243321A7D78400F6201F /* SyntaxOutlineEditView.storyboard */; };
 		2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AB2244821A7DB9B00F6201F /* SyntaxTermsEditView.storyboard */; };
 		2ACDE2B52406B9C000FC31EC /* SyntaxValidationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */; };
-		2ACDE2B62406B9C000FC31EC /* UnicodePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodePanel.storyboard */; };
+		2ACDE2B62406B9C000FC31EC /* UnicodeInputView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */; };
 		2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A97849D2034561B00482647 /* WebDocumentWindow.storyboard */; };
 		2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A10D1031E7088B00027192A /* WindowPane.storyboard */; };
 		2ACFE5871D2037800005233A /* DetachablePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACFE5861D2037800005233A /* DetachablePopoverViewController.swift */; };
@@ -628,7 +628,7 @@
 		2AD7B9B01D3E832E00E5D6D7 /* DocumentAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */; };
 		2AD8D74A2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
 		2AD8D74B2064AD83000BEFDB /* NumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AD8D7492064AD83000BEFDB /* NumberTextField.swift */; };
-		2AD940DC21A46B100076A28C /* UnicodePanel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodePanel.storyboard */; };
+		2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */; };
 		2AD940E721A47C4B0076A28C /* GoToLineView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */; };
 		2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2AD940EE21A7CBF50076A28C /* SyntaxValidationView.storyboard */; };
 		2ADA15EE21C5073D00C6608B /* Collection+IndexSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADA15ED21C5073D00C6608B /* Collection+IndexSet.swift */; };
@@ -840,7 +840,7 @@
 		0D51D58A2274EAE400A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/EncodingListView.strings; sourceTree = "<group>"; };
 		0D51D58B2274EAE500A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/SyntaxMappingConflictsView.strings; sourceTree = "<group>"; };
 		0D51D58C2274EAE600A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ConsolePanel.strings; sourceTree = "<group>"; };
-		0D51D58D2274EAE700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
+		0D51D58D2274EAE700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
 		0D51D58E2274EAE700A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/ColorCodePanelAccessory.strings; sourceTree = "<group>"; };
 		0D51D58F2274EE6F00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0D51D5902274EF3F00A5D747 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1343,12 +1343,12 @@
 		2AD69B871D3E4FCD00FBD998 /* Editable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editable.swift; sourceTree = "<group>"; };
 		2AD7B9AE1D3E832E00E5D6D7 /* DocumentAnalyzer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentAnalyzer.swift; sourceTree = "<group>"; };
 		2AD8D7492064AD83000BEFDB /* NumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextField.swift; sourceTree = "<group>"; };
-		2AD940DB21A46B100076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UnicodePanel.storyboard; sourceTree = "<group>"; };
-		2AD940DE21A46FC70076A28C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
-		2AD940DF21A46FC90076A28C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodePanel.strings"; sourceTree = "<group>"; };
-		2AD940E021A46FCA0076A28C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
-		2AD940E121A46FCC0076A28C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
-		2AD940E221A46FCD0076A28C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodePanel.strings; sourceTree = "<group>"; };
+		2AD940DB21A46B100076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/UnicodeInputView.storyboard; sourceTree = "<group>"; };
+		2AD940DE21A46FC70076A28C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
+		2AD940DF21A46FC90076A28C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/UnicodeInputView.strings"; sourceTree = "<group>"; };
+		2AD940E021A46FCA0076A28C /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
+		2AD940E121A46FCC0076A28C /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
+		2AD940E221A46FCD0076A28C /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/UnicodeInputView.strings; sourceTree = "<group>"; };
 		2AD940E621A47C4B0076A28C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/GoToLineView.storyboard; sourceTree = "<group>"; };
 		2AD940E921A47DD50076A28C /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/GoToLineView.strings; sourceTree = "<group>"; };
 		2AD940EA21A47DD60076A28C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GoToLineView.strings"; sourceTree = "<group>"; };
@@ -1585,7 +1585,6 @@
 			isa = PBXGroup;
 			children = (
 				2ADD0AE121800E2F00F78732 /* ConsolePanel.storyboard */,
-				2AD940DA21A46B100076A28C /* UnicodePanel.storyboard */,
 				2ACA0CA321A3BFB700723073 /* ColorCodePanelAccessory.storyboard */,
 			);
 			name = Panels;
@@ -2084,6 +2083,7 @@
 				2AE12E061E7DDF0700681F72 /* CustomSurroundStringViewController.swift */,
 				2A25C52720F06BE80003AE1A /* CustomTabWidthViewController.swift */,
 				2AF073F31D34076A00770BA6 /* CharacterPopoverController.swift */,
+				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
 				2A5D13121D1EE8FF00D38E6A /* HUDController.swift */,
 			);
 			name = "Accessory Views";
@@ -2178,6 +2178,7 @@
 				2AE12E091E7DDF5100681F72 /* CustomSurroundStringView.storyboard */,
 				2A25C51920F068FD0003AE1A /* CustomTabWidthView.storyboard */,
 				2ABC828221A9486A008F9229 /* CharacterPopover.storyboard */,
+				2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */,
 				2ABC828621A950AC008F9229 /* HUDView.storyboard */,
 			);
 			name = "Document Accessories";
@@ -2328,7 +2329,6 @@
 			isa = PBXGroup;
 			children = (
 				2A5D13091D1ED10400D38E6A /* Console.swift */,
-				2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */,
 				2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */,
 			);
 			name = Panels;
@@ -2605,7 +2605,7 @@
 				2ACDE2B32406B9C000FC31EC /* SyntaxOutlineEditView.storyboard in Resources */,
 				2ACDE2B42406B9C000FC31EC /* SyntaxTermsEditView.storyboard in Resources */,
 				2ACDE2B52406B9C000FC31EC /* SyntaxValidationView.storyboard in Resources */,
-				2ACDE2B62406B9C000FC31EC /* UnicodePanel.storyboard in Resources */,
+				2ACDE2B62406B9C000FC31EC /* UnicodeInputView.storyboard in Resources */,
 				2ACDE2B72406B9C000FC31EC /* WebDocumentWindow.storyboard in Resources */,
 				2ACDE2B82406B9C000FC31EC /* WindowPane.storyboard in Resources */,
 			);
@@ -2684,7 +2684,7 @@
 				2AB2243521A7D78400F6201F /* SyntaxOutlineEditView.storyboard in Resources */,
 				2AB2244A21A7DB9B00F6201F /* SyntaxTermsEditView.storyboard in Resources */,
 				2AD940F021A7CBF50076A28C /* SyntaxValidationView.storyboard in Resources */,
-				2AD940DC21A46B100076A28C /* UnicodePanel.storyboard in Resources */,
+				2AD940DC21A46B100076A28C /* UnicodeInputView.storyboard in Resources */,
 				2A97849F2034561B00482647 /* WebDocumentWindow.storyboard in Resources */,
 				2A10D1001E7088B00027192A /* WindowPane.storyboard in Resources */,
 				6C6DAE3E13833C0E007F2326 /* dsa_pub.pem in Resources */,
@@ -3973,7 +3973,7 @@
 			name = ColorCodePanelAccessory.storyboard;
 			sourceTree = "<group>";
 		};
-		2AD940DA21A46B100076A28C /* UnicodePanel.storyboard */ = {
+		2AD940DA21A46B100076A28C /* UnicodeInputView.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				2AD940DB21A46B100076A28C /* Base */,
@@ -3984,7 +3984,7 @@
 				2AD940E221A46FCD0076A28C /* pt */,
 				0D51D58D2274EAE700A5D747 /* fr */,
 			);
-			name = UnicodePanel.storyboard;
+			name = UnicodeInputView.storyboard;
 			sourceTree = "<group>";
 		};
 		2AD940E521A47C4B0076A28C /* GoToLineView.storyboard */ = {
