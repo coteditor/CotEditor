@@ -179,8 +179,8 @@
 		2A4257B11D22FD490086DAAD /* ColorCodePanelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */; };
 		2A4257B61D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */; };
 		2A4257B71D23153B0086DAAD /* UnicodeInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */; };
-		2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */; };
-		2A4257BA1D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */; };
+		2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */; };
+		2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */; };
 		2A4257BC1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A4257BD1D239F850086DAAD /* Invisible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4257BB1D239F850086DAAD /* Invisible.swift */; };
 		2A44321C219AC1F8008A0A6B /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A44321B219AC1F8008A0A6B /* PreferencesTabViewController.swift */; };
@@ -996,7 +996,7 @@
 		2A4257A61D22E0660086DAAD /* EncodingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncodingManager.swift; sourceTree = "<group>"; };
 		2A4257AF1D22FD490086DAAD /* ColorCodePanelController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorCodePanelController.swift; sourceTree = "<group>"; };
 		2A4257B51D23153B0086DAAD /* UnicodeInputViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnicodeInputViewController.swift; sourceTree = "<group>"; };
-		2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+Accessories.swift"; sourceTree = "<group>"; };
+		2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EditorTextView+ColorCode.swift"; sourceTree = "<group>"; };
 		2A4257BB1D239F850086DAAD /* Invisible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invisible.swift; sourceTree = "<group>"; };
 		2A44321B219AC1F8008A0A6B /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		2A44321F219AC235008A0A6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/PreferencesWindow.storyboard; sourceTree = "<group>"; };
@@ -1952,12 +1952,12 @@
 				2AEC69C31D41A1BE0089F96F /* EditorTextView.swift */,
 				2A6C8E3121E1187A003966ED /* EditorTextView+CursorMovement.swift */,
 				2A9082E81D32539A00228F50 /* EditorTextView+Scaling.swift */,
-				2A4257B81D2392A40086DAAD /* EditorTextView+Accessories.swift */,
 				2A6FD9D71D38C94100A59784 /* EditorTextView+Indenting.swift */,
 				2A6FD9E91D3A819500A59784 /* EditorTextView+Commenting.swift */,
 				2A4CCBB31D45173000294067 /* EditorTextView+LineProcessing.swift */,
 				2AE12DFF1E7DDB1B00681F72 /* EditorTextView+SurroundSelection.swift */,
 				2A9BF3C31D382BB100E3D3E2 /* EditorTextView+Transformation.swift */,
+				2A4257B81D2392A40086DAAD /* EditorTextView+ColorCode.swift */,
 				2A41EC191DC4AD4A00F0C236 /* EditorTextView+TouchBar.swift */,
 				2A1856041D47E7FE008FA79E /* NSTextView+TextReplacement.swift */,
 				2AE73F42203E753C00D8903B /* NSTextView+Selection.swift */,
@@ -2856,7 +2856,7 @@
 				2AF45E1F1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
 				2AE52F191D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2AEC69C51D41A1BE0089F96F /* EditorTextView.swift in Sources */,
-				2A4257BA1D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
+				2A4257BA1D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
 				2A6FD9EB1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
 				2A6C8E3321E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */,
 				2A6FD9DA1D38F93100A59784 /* EditorTextView+Indenting.swift in Sources */,
@@ -3160,7 +3160,7 @@
 				2AF45E1E1E6C0D920030CD60 /* EditorInfoCountOperation.swift in Sources */,
 				2AE52F181D17468B00D60A32 /* EditorSplitView.swift in Sources */,
 				2AEC69C41D41A1BE0089F96F /* EditorTextView.swift in Sources */,
-				2A4257B91D2392A40086DAAD /* EditorTextView+Accessories.swift in Sources */,
+				2A4257B91D2392A40086DAAD /* EditorTextView+ColorCode.swift in Sources */,
 				2A6FD9EA1D3A819500A59784 /* EditorTextView+Commenting.swift in Sources */,
 				2A6C8E3221E1187A003966ED /* EditorTextView+CursorMovement.swift in Sources */,
 				2A6FD9DB1D38F93300A59784 /* EditorTextView+Indenting.swift in Sources */,

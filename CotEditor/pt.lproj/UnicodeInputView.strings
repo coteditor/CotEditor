@@ -24,11 +24,5 @@
 // limitations under the License.
 //
 
-/* Class = "NSWindow"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Inserir Unicode";
-
-/* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "Inserir";
-
 /* Class = "CocoaBindingsConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "3kK-Ug-bH8"; */
 "3kK-Ug-bH8.ibShadowedIsNilPlaceholder" = "Código inválido";

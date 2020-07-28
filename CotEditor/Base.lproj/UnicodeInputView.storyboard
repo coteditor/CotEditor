@@ -1,41 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="jtI-qv-f72">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="ji2-JM-Vdo">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Window Controller-->
-        <scene sceneID="cRZ-Qq-9lE">
-            <objects>
-                <windowController showSeguePresentationStyle="single" id="jtI-qv-f72" sceneMemberID="viewController">
-                    <window key="window" title="Input Unicode" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Y41-ro-Xeo" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES"/>
-                        <rect key="contentRect" x="425" y="461" width="240" height="78"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
-                        <connections>
-                            <outlet property="delegate" destination="jtI-qv-f72" id="GiV-yt-lhX"/>
-                        </connections>
-                    </window>
-                    <connections>
-                        <segue destination="ji2-JM-Vdo" kind="relationship" relationship="window.shadowedContentViewController" id="KTL-VZ-ANI"/>
-                    </connections>
-                </windowController>
-                <customObject id="hPA-we-G1Q" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="16" y="-51"/>
-        </scene>
         <!--Unicode Input View Controller-->
         <scene sceneID="fep-5m-UsX">
             <objects>
-                <viewController id="ji2-JM-Vdo" customClass="UnicodeInputViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="ji2-JM-Vdo" customClass="UnicodeInputViewController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="UK1-Ps-MXL">
-                        <rect key="frame" x="0.0" y="0.0" width="240" height="78"/>
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="79"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f8R-Cb-l8t">
-                                <rect key="frame" x="20" y="20" width="112" height="22"/>
+                                <rect key="frame" x="10" y="10" width="160" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" borderStyle="bezel" placeholderString="U+1F600" drawsBackground="YES" usesSingleLineMode="YES" id="I9d-jJ-Vcw">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -45,6 +25,7 @@
                                     </allowedInputSourceLocales>
                                 </textFieldCell>
                                 <connections>
+                                    <action selector="insertToDocument:" target="ji2-JM-Vdo" id="08K-sw-xVy"/>
                                     <binding destination="ji2-JM-Vdo" name="value" keyPath="codePoint" id="ar8-Ee-obn">
                                         <dictionary key="options">
                                             <bool key="NSContinuouslyUpdatesValue" value="YES"/>
@@ -52,39 +33,16 @@
                                             <bool key="NSValidatesImmediately" value="YES"/>
                                         </dictionary>
                                     </binding>
-                                    <outlet property="delegate" destination="ji2-JM-Vdo" id="DV9-Is-f25"/>
                                 </connections>
                             </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XMZ-mt-nQW">
-                                <rect key="frame" x="134" y="13" width="92" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="5fD-V3-MI2"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Input" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rfS-Rp-Al4">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="insertToDocument:" target="ji2-JM-Vdo" id="NAH-fj-7Xp"/>
-                                    <binding destination="ji2-JM-Vdo" name="enabled" keyPath="isValid" id="tD0-o7-O8Y"/>
-                                </connections>
-                            </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="OdU-hC-y1u">
-                                <rect key="frame" x="45" y="50" width="90" height="14"/>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="OdU-hC-y1u">
+                                <rect key="frame" x="50" y="47" width="90" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" selectable="YES" sendsActionOnEndEditing="YES" title="GRINNING FACE" id="V4O-fd-2lB">
-                                    <font key="font" metaFont="smallSystem"/>
+                                    <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="ji2-JM-Vdo" name="hidden" keyPath="codePoint" id="Hej-Fw-IzW">
-                                        <dictionary key="options">
-                                            <string key="NSValueTransformerName">NSIsNil</string>
-                                        </dictionary>
-                                    </binding>
                                     <binding destination="ji2-JM-Vdo" name="value" keyPath="unicodeName" id="rz0-Df-N9T">
                                         <dictionary key="options">
                                             <string key="NSNullPlaceholder">Invalid code</string>
@@ -93,14 +51,17 @@ DQ
                                 </connections>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wGa-dz-KoG">
-                                <rect key="frame" x="18" y="49" width="23" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="😀" id="aZZ-AV-vPj">
-                                    <font key="font" metaFont="system"/>
+                                <rect key="frame" x="8" y="39" width="38" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="us3-Ef-pXc"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="😀" id="aZZ-AV-vPj">
+                                    <font key="font" metaFont="system" size="26"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                                 <connections>
-                                    <binding destination="ji2-JM-Vdo" name="value" keyPath="characterString" id="oTs-Z2-SKS">
+                                    <binding destination="ji2-JM-Vdo" name="value" keyPath="pictureString" id="M9N-Kb-So8">
                                         <dictionary key="options">
                                             <string key="NSNullPlaceholder">⬚</string>
                                         </dictionary>
@@ -109,23 +70,23 @@ DQ
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="f8R-Cb-l8t" firstAttribute="top" secondItem="OdU-hC-y1u" secondAttribute="bottom" constant="8" symbolic="YES" id="0Co-NL-zrt"/>
-                            <constraint firstAttribute="trailing" secondItem="XMZ-mt-nQW" secondAttribute="trailing" constant="20" symbolic="YES" id="2gg-KH-THv"/>
+                            <constraint firstItem="f8R-Cb-l8t" firstAttribute="top" relation="greaterThanOrEqual" secondItem="OdU-hC-y1u" secondAttribute="bottom" constant="8" symbolic="YES" id="0Co-NL-zrt"/>
+                            <constraint firstItem="f8R-Cb-l8t" firstAttribute="top" secondItem="wGa-dz-KoG" secondAttribute="bottom" priority="750" constant="8" symbolic="YES" id="2qf-u5-5CL"/>
                             <constraint firstItem="OdU-hC-y1u" firstAttribute="leading" secondItem="wGa-dz-KoG" secondAttribute="trailing" constant="8" symbolic="YES" id="5w4-Dx-Rpu"/>
-                            <constraint firstItem="XMZ-mt-nQW" firstAttribute="leading" secondItem="f8R-Cb-l8t" secondAttribute="trailing" constant="8" symbolic="YES" id="DR4-wp-B13"/>
-                            <constraint firstItem="wGa-dz-KoG" firstAttribute="leading" secondItem="UK1-Ps-MXL" secondAttribute="leading" constant="20" symbolic="YES" id="PS7-RN-6Pp"/>
-                            <constraint firstItem="f8R-Cb-l8t" firstAttribute="leading" secondItem="UK1-Ps-MXL" secondAttribute="leading" constant="20" symbolic="YES" id="cci-jJ-cQ9"/>
-                            <constraint firstItem="XMZ-mt-nQW" firstAttribute="baseline" secondItem="f8R-Cb-l8t" secondAttribute="baseline" id="l0B-SM-Cxo"/>
-                            <constraint firstAttribute="bottom" secondItem="XMZ-mt-nQW" secondAttribute="bottom" constant="20" symbolic="YES" id="oQ1-vK-w5X"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OdU-hC-y1u" secondAttribute="trailing" constant="20" symbolic="YES" id="uZO-vf-wV8"/>
-                            <constraint firstItem="OdU-hC-y1u" firstAttribute="top" secondItem="UK1-Ps-MXL" secondAttribute="top" constant="14" id="xPc-Vr-jf2"/>
-                            <constraint firstItem="OdU-hC-y1u" firstAttribute="centerY" secondItem="wGa-dz-KoG" secondAttribute="centerY" id="xkY-0H-vOL"/>
+                            <constraint firstAttribute="bottom" secondItem="f8R-Cb-l8t" secondAttribute="bottom" constant="10" id="6S9-b3-FuY"/>
+                            <constraint firstAttribute="trailing" secondItem="f8R-Cb-l8t" secondAttribute="trailing" constant="10" id="L2g-3g-jZI"/>
+                            <constraint firstItem="wGa-dz-KoG" firstAttribute="top" secondItem="UK1-Ps-MXL" secondAttribute="top" constant="10" id="L9T-V6-MkD"/>
+                            <constraint firstItem="wGa-dz-KoG" firstAttribute="leading" secondItem="UK1-Ps-MXL" secondAttribute="leading" constant="10" id="PS7-RN-6Pp"/>
+                            <constraint firstItem="f8R-Cb-l8t" firstAttribute="leading" secondItem="UK1-Ps-MXL" secondAttribute="leading" constant="10" id="cci-jJ-cQ9"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OdU-hC-y1u" secondAttribute="trailing" constant="10" id="uZO-vf-wV8"/>
+                            <constraint firstItem="OdU-hC-y1u" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UK1-Ps-MXL" secondAttribute="top" constant="10" id="xPc-Vr-jf2"/>
+                            <constraint firstItem="OdU-hC-y1u" firstAttribute="centerY" secondItem="wGa-dz-KoG" secondAttribute="centerY" priority="750" id="xkY-0H-vOL"/>
                         </constraints>
                     </view>
                 </viewController>
                 <customObject id="WqI-1Z-eaJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="326" y="-51"/>
+            <point key="canvasLocation" x="176" y="-76.5"/>
         </scene>
     </scenes>
 </document>

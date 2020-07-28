@@ -25,11 +25,5 @@
  
  */
 
-/* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Unicodeを入力";
-
-/* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "入力";
-
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "rz0-Df-N9T"; */
 "rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "無効なコード";

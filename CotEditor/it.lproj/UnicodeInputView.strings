@@ -26,11 +26,5 @@
  
  */
 
-/* Class = "NSPanel"; title = "Input Unicode"; ObjectID = "Y41-ro-Xeo"; */
-"Y41-ro-Xeo.title" = "Inserisci Unicode";
-
-/* Class = "NSButtonCell"; title = "Input"; ObjectID = "rfS-Rp-Al4"; */
-"rfS-Rp-Al4.title" = "Inserisci";
-
 /* Class = "BindingConnection"; ibShadowedIsNilPlaceholder = "Invalid code"; ObjectID = "rz0-Df-N9T"; */
 "rz0-Df-N9T.ibShadowedIsNilPlaceholder" = "Codice non valido";
