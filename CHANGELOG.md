@@ -8,6 +8,7 @@ Change Log
 ### Improvements
 
 - Change the system requirement to __macOS 10.14 Mojave and later__.
+- Update the application icon.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 
 
