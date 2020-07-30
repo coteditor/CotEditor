@@ -189,9 +189,8 @@ extension SyntaxParser {
     ///
     /// - Parameters:
     ///   - editedRange: The character range that was edited, or highlight whole range if `nil` is passed in.
-    ///   - completionHandler: The block to execute when the process completes without cancellation.
     /// - Returns: The progress of the async highlight task if performed.
-    func highlight(around editedRange: NSRange? = nil, completionHandler: @escaping (() -> Void) = {}) -> Progress? {
+    func highlight(around editedRange: NSRange? = nil) -> Progress? {
         
         assert(Thread.isMainThread)
         
@@ -250,7 +249,6 @@ extension SyntaxParser {
         // just clear current highlight and return if no coloring needs
         guard self.style.hasHighlightDefinition else {
             self.textStorage.apply(highlights: [:], range: highlightRange)
-            completionHandler()
             return nil
         }
         
@@ -262,7 +260,6 @@ extension SyntaxParser {
             cache.string == self.textStorage.string
         {
             self.textStorage.apply(highlights: cache.highlights, range: highlightRange)
-            completionHandler()
             return nil
         }
         
@@ -280,7 +277,7 @@ extension SyntaxParser {
     // MARK: Private Methods
     
     /// perform highlighting
-    private func highlight(string: String, range highlightRange: NSRange, completionHandler: @escaping (() -> Void) = {}) -> Progress {
+    private func highlight(string: String, range highlightRange: NSRange) -> Progress {
         
         assert(Thread.isMainThread)
         assert(!(string as NSString).className.contains("MutableString"))
@@ -341,8 +338,6 @@ extension SyntaxParser {
                 self?.textStorage.apply(highlights: highlights, range: highlightRange)
                 
                 progress.completedUnitCount += 1
-                
-                completionHandler()
             }
         }
         

@@ -62,6 +62,8 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private let dateFormatter: DateFormatter
     private var lastPaperContentSize: NSSize = .zero
     
+    private var asyncHighlightObserver: NSKeyValueObservation?
+    
     
     
     // MARK: -
@@ -113,6 +115,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     deinit {
         self.layoutManager?.delegate = nil
         self.urlDetectionQueue.cancelAllOperations()
+        self.asyncHighlightObserver?.invalidate()
     }
     
     
@@ -314,12 +317,19 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
         // perform syntax highlight
-        weak var controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
-        _ = self.syntaxParser.highlight() {
-            DispatchQueue.main.async {
-                guard let controller = controller, controller.isViewShown else { return }
+        self.asyncHighlightObserver?.invalidate()
+        let progress = self.syntaxParser.highlight()
+        
+        // asynchronously trigger preview preview if needed
+        if
+            let progress = progress,
+            let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
+        {
+            self.asyncHighlightObserver = progress.observe(\.isFinished) { [weak self, weak controller] (progress, _) in
+                guard progress.isFinished else { return }
                 
-                controller.needsUpdatePreview = true
+                self?.asyncHighlightObserver?.invalidate()
+                controller?.needsUpdatePreview = true
             }
         }
     }
