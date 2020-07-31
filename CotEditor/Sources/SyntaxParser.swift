@@ -66,13 +66,9 @@ final class SyntaxParser {
     private(set) var outlineItems: [OutlineItem] = [] {
         
         didSet {
-            // inform about outline items update
-            DispatchQueue.main.async { [weak self, items = outlineItems] in
-                guard let self = self else { return assertionFailure() }
-                
-                self.delegate?.syntaxParser(self, didParseOutline: items)
-                NotificationCenter.default.post(name: SyntaxParser.didUpdateOutlineNotification, object: self)
-            }
+            assert(Thread.isMainThread)
+            self.delegate?.syntaxParser(self, didParseOutline: outlineItems)
+            NotificationCenter.default.post(name: SyntaxParser.didUpdateOutlineNotification, object: self)
         }
     }
     
@@ -133,12 +129,9 @@ extension SyntaxParser {
     /// Parse outline with delay.
     func invalidateOutline() {
         
-        guard
-            self.canParse,
-            !self.style.outlineExtractors.isEmpty
-            else {
-                self.outlineItems = []
-                return
+        guard self.canParse, !self.style.outlineExtractors.isEmpty else {
+            self.outlineItems = []
+            return
         }
         
         self.outlineUpdateTask.schedule()
@@ -160,18 +153,18 @@ extension SyntaxParser {
         let operation = OutlineParseOperation(extractors: self.style.outlineExtractors,
                                               string: self.textStorage.string.immutable,
                                               range: wholeRange)
-        
+        operation.qualityOfService = .utility
         operation.completionBlock = { [weak self, weak operation] in
             guard let operation = operation, !operation.isCancelled else { return }
             
-            self?.outlineItems = operation.results
+            DispatchQueue.main.async {
+                self?.outlineItems = operation.results
+            }
         }
-        operation.qualityOfService = .utility
         
         // -> Regarding the outline extraction, just cancel previous operations before parsing the latest string,
         //    since user cannot cancel it manually.
         self.outlineParseOperationQueue.cancelAllOperations()
-        
         self.outlineParseOperationQueue.addOperation(operation)
         
         self.delegate?.syntaxParser(self, didStartParsingOutline: operation.progress)
