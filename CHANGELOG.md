@@ -11,6 +11,7 @@ Change Log
 - Update the UI appearance for Big Sur.
     - Update the application icon.
     - Update the line number view style.
+    - Make status bar thicker.
 - Change the UI of the Unicode code point input to display the input field just above the insertion point.
 
 

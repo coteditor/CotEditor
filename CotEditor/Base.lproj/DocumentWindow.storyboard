@@ -728,11 +728,11 @@
             <objects>
                 <viewController showSeguePresentationStyle="single" id="NBJ-8W-V9X" customClass="StatusBarController" customModule="CotEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <visualEffectView key="view" wantsLayer="YES" blendingMode="withinWindow" material="headerView" state="followsWindowActiveState" id="JZo-9i-3gf">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="19"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="21"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <imageView hidden="YES" toolTip="This document is read only." wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hXt-K8-Jwk">
-                                <rect key="frame" x="8" y="2" width="16" height="16"/>
+                                <rect key="frame" x="8" y="3" width="16" height="16"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LockedTemplate" id="cqb-1I-reA"/>
                                 <connections>
                                     <binding destination="NBJ-8W-V9X" name="hidden" keyPath="showsReadOnly" id="iVM-Xs-p6B">
@@ -743,7 +743,7 @@
                                 </connections>
                             </imageView>
                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v28-4g-3Pc" customClass="NumberTextField" customModule="CotEditor" customModuleProvider="target">
-                                <rect key="frame" x="34" y="3" width="33" height="14"/>
+                                <rect key="frame" x="34" y="4" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="0nP-0Q-Mgz">
                                     <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -754,7 +754,7 @@
                                 </connections>
                             </textField>
                             <textField wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EJU-9e-uCA">
-                                <rect key="frame" x="559" y="3" width="33" height="14"/>
+                                <rect key="frame" x="559" y="4" width="33" height="14"/>
                                 <textFieldCell key="cell" controlSize="small" lineBreakMode="truncatingTail" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="t1c-ZE-w5H">
                                     <font key="font" metaFont="controlContent" size="11"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
