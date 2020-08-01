@@ -339,10 +339,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// open OSAScript dictionary in Script Editor
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
         
-        let appURL = Bundle.main.bundleURL
+        guard #available(macOS 10.15, *) else {
+            NSWorkspace.shared.open([Bundle.main.bundleURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
+                                    additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+            return
+        }
         
-        NSWorkspace.shared.open([appURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
-                                additionalEventParamDescriptor: nil, launchIdentifiers: nil)
+        guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.ScriptEditor) else { return }
+        
+        let appURL = Bundle.main.bundleURL
+        let configuration = NSWorkspace.OpenConfiguration()
+        
+        NSWorkspace.shared.open([appURL], withApplicationAt: scriptEditorURL, configuration: configuration)
     }
     
     
