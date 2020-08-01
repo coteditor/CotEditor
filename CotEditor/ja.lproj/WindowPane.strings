@@ -26,16 +26,16 @@
  */
 
 /* Class = "NSTextFieldCell"; title = "Prefer tabs:"; ObjectID = "8zu-3V-Obg"; */
-"8zu-3V-Obg.title" = "タブで開く:";
+"8zu-3V-Obg.title" = "タブを優先:";
 
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "システム設定に従う";
-/* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
-"OJs-2q-bg5.title" = "常に";  // The same as the popup menu selection in the System Preferences > "Dock"
+/* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
+"o1f-vR-aFm.title" = "しない";  // The same as the popup menu selection in the System Preferences > "Dock"
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "自動";
-/* Class = "NSMenuItem"; title = "Manually"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "手動";  // The same as the popup menu selection in the System Preferences > "Dock"
+/* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
+"OJs-2q-bg5.title" = "常に";  // The same as the popup menu selection in the System Preferences > "Dock"
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */

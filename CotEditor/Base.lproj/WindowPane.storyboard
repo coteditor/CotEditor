@@ -189,11 +189,11 @@
                                         <items>
                                             <menuItem title="Respect System Setting" state="on" tag="-1" id="Guj-Kc-zf2"/>
                                             <menuItem isSeparatorItem="YES" tag="-2" id="c3r-th-44M"/>
-                                            <menuItem title="Always" tag="1" id="OJs-2q-bg5"/>
+                                            <menuItem title="Never" id="o1f-vR-aFm"/>
                                             <menuItem title="Automatically" tag="2" id="10Z-Xd-CLV">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Manually" id="o1f-vR-aFm"/>
+                                            <menuItem title="Always" tag="1" id="OJs-2q-bg5"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>

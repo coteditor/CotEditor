@@ -29,12 +29,12 @@
 
 /* Class = "NSMenuItem"; title = "Respect System Setting"; ObjectID = "Guj-Kc-zf2"; */
 "Guj-Kc-zf2.title" = "Respeitar Ajustes do Sistema";
-/* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
-"OJs-2q-bg5.title" = "Sempre";  // The same as the popup menu selection in the System Preferences > "Dock"
+/* Class = "NSMenuItem"; title = "Never"; ObjectID = "o1f-vR-aFm"; */
+"o1f-vR-aFm.title" = "Nunca";  // The same as the popup menu selection in the System Preferences > "Dock"
 /* Class = "NSMenuItem"; title = "Automatically"; ObjectID = "10Z-Xd-CLV"; */
 "10Z-Xd-CLV.title" = "Automaticamente";
-/* Class = "NSMenuItem"; title = "Manually"; ObjectID = "o1f-vR-aFm"; */
-"o1f-vR-aFm.title" = "Manualmente";  // The same as the popup menu selection in the System Preferences > "Dock"
+/* Class = "NSMenuItem"; title = "Always"; ObjectID = "OJs-2q-bg5"; */
+"OJs-2q-bg5.title" = "Sempre";  // The same as the popup menu selection in the System Preferences > "Dock"
 
 
 /* Class = "NSTextFieldCell"; title = "Show:"; ObjectID = "iw9-Ba-eD2"; */
