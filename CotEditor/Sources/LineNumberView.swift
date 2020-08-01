@@ -81,15 +81,16 @@ final class LineNumberView: NSView {
     
     private static let fontSizeFactor: CGFloat = 0.9
     private static let lineNumberFont: CGFont = NSFont.lineNumberFont().cgFont
-    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
+    private static let boldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .medium).cgFont
+    private static let highContrastBoldLineNumberFont: CGFont = NSFont.lineNumberFont(weight: .semibold).cgFont
     
     private enum ColorStrength: CGFloat {
         
-        case normal = 0.75
-        case bold = 0.9
+        case normal = 0.5
+        case bold = 1.0
         case stroke = 0.2
         
-        static let highContrastCoefficient: CGFloat = 0.5
+        static let highContrastCoefficient: CGFloat = 0.4
     }
     
     
@@ -171,23 +172,14 @@ final class LineNumberView: NSView {
             self.removeTextViewObservers()
         }
         
-        self.opacityObserver?.invalidate()
-        self.opacityObserver = nil
-    }
-    
-    
-    /// observe window opacity change
-    override func viewDidMoveToWindow() {
-        
-        super.viewDidMoveToWindow()
-        
-        // ignore when detached
-        guard let window = self.window else { return }
-        
         // perform redraw on window opacity change
         self.opacityObserver?.invalidate()
-        self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
-            self?.needsDisplay = true
+        if let window = newWindow {
+            self.opacityObserver = NotificationCenter.default.addObserver(forName: DocumentWindow.didChangeOpacityNotification, object: window, queue: .main) { [weak self] _ in
+                self?.needsDisplay = true
+            }
+        } else {
+            self.opacityObserver = nil
         }
     }
     
@@ -195,27 +187,15 @@ final class LineNumberView: NSView {
     /// draw background
     override func draw(_ dirtyRect: NSRect) {
         
-        NSGraphicsContext.saveGraphicsState()
-        
         // fill background
-        self.backgroundColor.setFill()
-        dirtyRect.fill()
-        
-        // draw divider (1px)
-        let dividerRect: NSRect
-        switch self.orientation {
-            case .horizontal:
-                dividerRect = NSRect(x: self.bounds.maxX - 1, y: dirtyRect.minY,
-                                     width: 1, height: dirtyRect.height)
-            case .vertical:
-                dividerRect = NSRect(x: dirtyRect.minX, y: self.bounds.minY,
-                                     width: dirtyRect.width, height: 1)
-            @unknown default: fatalError()
+        if self.isOpaque {
+            NSGraphicsContext.saveGraphicsState()
+            
+            self.backgroundColor.setFill()
+            dirtyRect.fill()
+            
+            NSGraphicsContext.restoreGraphicsState()
         }
-        self.foregroundColor(.stroke).setFill()
-        dividerRect.fill()
-        
-        NSGraphicsContext.restoreGraphicsState()
         
         self.drawNumbers(in: dirtyRect)
     }
@@ -245,22 +225,23 @@ final class LineNumberView: NSView {
         
         guard fraction < 1 else { return textColor }
         
-        return self.backgroundColor.blended(withFraction: fraction, of: textColor) ?? textColor
+        return textColor.blended(withFraction: 1 - fraction, of: backgroundColor) ?? textColor
     }
     
     
     /// return background color to fill
     private var backgroundColor: NSColor {
         
-        let isDarkBackground = (self.textView as? Themable)?.theme?.isDarkTheme ?? false
-        
-        if self.isOpaque, let color = self.textView?.backgroundColor {
-            return (isDarkBackground ? color.highlight(withLevel: 0.08) : color.shadow(withLevel: 0.06)) ?? color
-        } else {
-            return isDarkBackground ? NSColor.white.withAlphaComponent(0.08) : NSColor.black.withAlphaComponent(0.06)
-        }
+        return self.textView?.backgroundColor ?? .textBackgroundColor
     }
     
+    
+    /// return line number font for selected lines by considering the current accesibility setting
+    private var boldLineNumberFont: CGFont {
+        return NSWorkspace.shared.accessibilityDisplayShouldIncreaseContrast
+            ? Self.highContrastBoldLineNumberFont
+            : Self.boldLineNumberFont
+    }
     
     /// draw line numbers
     private func drawNumbers(in rect: NSRect) {
@@ -319,7 +300,7 @@ final class LineNumberView: NSView {
                         // draw
                         if isSelected {
                             context.setFillColor(self.foregroundColor(.bold).cgColor)
-                            context.setFont(Self.boldLineNumberFont)
+                            context.setFont(self.boldLineNumberFont)
                         }
                         context.showGlyphs(glyphs, at: positions)
                         if isSelected {
