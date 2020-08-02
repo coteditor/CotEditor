@@ -27,9 +27,6 @@ import AppKit.NSCursor
 
 extension NSCursor {
     
-    /// I-beam for dark background.
-    static let lightIBeam = NSCursor(image: #imageLiteral(resourceName: "LightIBeam"), hotSpot: NSCursor.iBeam.hotSpot)
-    
     /// I-beam for vertical text orientation and dark background.
     static let lightIBeamCursorForVerticalLayout = NSCursor(image: #imageLiteral(resourceName: "LightIBeamCursorForVerticalLayout"), hotSpot: NSCursor.iBeamCursorForVerticalLayout.hotSpot)
 }

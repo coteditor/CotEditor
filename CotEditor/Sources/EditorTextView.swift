@@ -1476,10 +1476,6 @@ final class EditorTextView: NSTextView, Themable, CurrentLineHighlighting, URLDe
         guard self.theme?.isDarkTheme == true else { return }
         
         switch NSCursor.current {
-            case .iBeam where NSAppKitVersion.current <= .macOS10_13:
-                // -> The i-beam is enough findable with dark background since Mojave.
-                NSCursor.lightIBeam.set()
-            
             case .iBeamCursorForVerticalLayout:
                 NSCursor.lightIBeamCursorForVerticalLayout.set()
             
