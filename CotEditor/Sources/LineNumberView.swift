@@ -100,13 +100,7 @@ final class LineNumberView: NSView {
     private var thickness: CGFloat = 32
     
     private var opacityObserver: AnyCancellable?
-    private var textObserver: AnyCancellable?
-    private var selectionObserver: AnyCancellable?
-    private var frameObserver: AnyCancellable?
-    private var scrollObserver: AnyCancellable?
-    private var colorObserver: AnyCancellable?
-    private var fontObserver: AnyCancellable?
-    private var scaleObserver: AnyCancellable?
+    private var textViewSubscriptions: Set<AnyCancellable> = []
     
     private weak var draggingTimer: Timer?
     
@@ -167,7 +161,9 @@ final class LineNumberView: NSView {
         
         // remove observations before all observed objects are deallocated
         if newWindow == nil {
-            self.removeTextViewObservers()
+            assert(self.textView?.enclosingScrollView?.contentView != nil)
+            
+            self.textViewSubscriptions.removeAll()
         }
         
         // perform redraw on window opacity change
@@ -371,8 +367,11 @@ final class LineNumberView: NSView {
     /// observe textView's update to update line number drawing
     private func observeTextView(_ textView: NSTextView) {
         
-        self.textObserver?.cancel()
-        self.textObserver = NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
+        assert(textView.enclosingScrollView?.contentView != nil)
+        
+        self.textViewSubscriptions.removeAll()
+        
+        NotificationCenter.default.publisher(for: NSText.didChangeNotification, object: textView)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 // -> The digit of the line numbers affect thickness.
@@ -381,71 +380,43 @@ final class LineNumberView: NSView {
                 }
                 self?.needsDisplay = true
             }
+            .store(in: &self.textViewSubscriptions)
         
-        self.selectionObserver?.cancel()
-        self.selectionObserver = NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
+        NotificationCenter.default.publisher(for: EditorTextView.didLiveChangeSelectionNotification, object: textView)
             .sink { [weak self] _ in
                 self?.needsDisplay = true
             }
+            .store(in: &self.textViewSubscriptions)
         
-        self.frameObserver?.cancel()
-        self.frameObserver = NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
+        NotificationCenter.default.publisher(for: NSView.frameDidChangeNotification, object: textView)
             .sink { [weak self] _ in
                 self?.needsDisplay = true
             }
+            .store(in: &self.textViewSubscriptions)
         
-        self.scrollObserver?.cancel()
-        self.scrollObserver = NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
+        NotificationCenter.default.publisher(for: NSView.boundsDidChangeNotification, object: textView.enclosingScrollView?.contentView)
             .sink { [weak self] _ in
                 self?.needsDisplay = true
             }
+            .store(in: &self.textViewSubscriptions)
         
-        self.colorObserver?.cancel()
-        self.colorObserver = textView.publisher(for: \.backgroundColor)
-            .sink { [weak self] _  in
+        textView.publisher(for: \.backgroundColor)
+            .sink { [weak self] _ in
                 self?.needsDisplay = true
             }
+            .store(in: &self.textViewSubscriptions)
         
-        self.fontObserver?.cancel()
-        self.fontObserver = textView.publisher(for: \.font)
-            .sink { [weak self] _  in
+        textView.publisher(for: \.font)
+            .sink { [weak self] _ in
                 self?.invalidateDrawingInfo()
             }
+            .store(in: &self.textViewSubscriptions)
         
-        self.scaleObserver?.cancel()
-        self.scaleObserver = textView.publisher(for: \.scale)
-            .sink { [weak self] _  in
+        textView.publisher(for: \.scale)
+            .sink { [weak self] _ in
                 self?.invalidateDrawingInfo()
             }
-    }
-    
-    
-    /// remove observers observing textView
-    private func removeTextViewObservers() {
-        
-        assert(self.textView != nil)
-        assert(self.textView?.enclosingScrollView?.contentView != nil || self.scrollObserver == nil)
-        
-        self.textObserver?.cancel()
-        self.textObserver = nil
-        
-        self.selectionObserver?.cancel()
-        self.selectionObserver = nil
-        
-        self.frameObserver?.cancel()
-        self.frameObserver = nil
-        
-        self.scrollObserver?.cancel()
-        self.scrollObserver = nil
-        
-        self.colorObserver?.cancel()
-        self.colorObserver = nil
-        
-        self.fontObserver?.cancel()
-        self.fontObserver = nil
-        
-        self.scaleObserver?.cancel()
-        self.scaleObserver = nil
+            .store(in: &self.textViewSubscriptions)
     }
     
 }
