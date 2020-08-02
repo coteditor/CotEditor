@@ -102,15 +102,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
                 item.slider.minValue = Double(textView.enclosingScrollView?.minMagnification ?? 0.2)
                 item.minimumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "SmallTextSizeTemplate"))
                 item.maximumValueAccessory = NSSliderAccessory(image: #imageLiteral(resourceName: "LargeTextSizeTemplate"))
-                
-                if #available(macOS 10.15, *) {
-                    item.maximumSliderWidth = 300
-                } else {
-                    let constraints = NSLayoutConstraint.constraints(withVisualFormat: "[slider(300)]",
-                                                                     metrics: nil,
-                                                                     views: ["slider": item.slider])
-                    NSLayoutConstraint.activate(constraints)
-                }
+                item.maximumSliderWidth = 300
                 
                 return item
             

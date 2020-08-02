@@ -304,12 +304,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
         #endif
         
-        // backward compatibility for macOS 10.14 that does not support `-apple-system*` colors (macOS 10.15)
-        if NSAppKitVersion.current < .macOS10_15, NSApp.effectiveAppearance.isDark {
-            html = html.replacingOccurrences(of: "<body>", with: "<body style=\"color: hsla(0,0%,100%,.85)\">")
-            html = html.replacingOccurrences(of: "<h2>", with: "<h2 style=\"color: hsla(0,0%,100%,.55)\">")
-        }
-        
         let attrString = NSAttributedString(html: html.data(using: .utf8)!, baseURL: creditsURL, documentAttributes: nil)!
         NSApplication.shared.orderFrontStandardAboutPanel(options: [.credits: attrString])
     }
@@ -338,12 +332,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     
     /// open OSAScript dictionary in Script Editor
     @IBAction func openAppleScriptDictionary(_ sender: Any?) {
-        
-        guard #available(macOS 10.15, *) else {
-            NSWorkspace.shared.open([Bundle.main.bundleURL], withAppBundleIdentifier: BundleIdentifier.ScriptEditor,
-                                    additionalEventParamDescriptor: nil, launchIdentifiers: nil)
-            return
-        }
         
         guard let scriptEditorURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: BundleIdentifier.ScriptEditor) else { return }
         
