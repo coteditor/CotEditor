@@ -7,7 +7,7 @@ Change Log
 
 ### Improvements
 
-- Change the system requirement to __macOS 10.14 Mojave and later__.
+- Change the system requirement to __macOS 10.15 Catalina and later__.
 - Update the UI appearance for Big Sur.
     - Update the application icon.
     - Update the line number view style.
