@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private let maximumNumberOfSplitEditors = 8
@@ -33,7 +34,7 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: Private Properties
     
-    private var appearanceObserver: NSKeyValueObservation?
+    private var appearanceObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
     private weak var syntaxHighlightProgress: Progress?
     
@@ -44,11 +45,6 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
     
     // MARK: -
     // MARK: Split View Controller Methods
-    
-    deinit {
-        self.appearanceObserver?.invalidate()
-    }
-    
     
     override func viewDidLoad() {
         
@@ -113,19 +109,20 @@ final class DocumentViewController: NSSplitViewController, SyntaxParserDelegate,
         ]
         
         // observe appearance change for theme toggle
-        self.appearanceObserver?.invalidate()
-        self.appearanceObserver = self.view.observe(\.effectiveAppearance) { [weak self] (view, _) in
-            guard
-                let self = self,
-                !UserDefaults.standard[.pinsThemeAppearance],
-                view.window != nil,
-                let currentThemeName = self.theme?.name,
-                let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: view.effectiveAppearance.isDark),
-                currentThemeName != themeName
-                else { return }
-            
-            self.setTheme(name: themeName)
-        }
+        self.appearanceObserver?.cancel()
+        self.appearanceObserver = self.view.publisher(for: \.effectiveAppearance)
+            .sink { [weak self] (appearance) in
+                guard
+                    let self = self,
+                    !UserDefaults.standard[.pinsThemeAppearance],
+                    self.view.window != nil,
+                    let currentThemeName = self.theme?.name,
+                    let themeName = ThemeManager.shared.equivalentSettingName(to: currentThemeName, forDark: appearance.isDark),
+                    currentThemeName != themeName
+                    else { return }
+                
+                self.setTheme(name: themeName)
+            }
     }
     
     

@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class EditorTextViewController: NSViewController, NSTextViewDelegate {
@@ -35,7 +36,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     
     // MARK: Private Properties
     
-    private var orientationObserver: NSKeyValueObservation?
+    private var orientationObserver: AnyCancellable?
     
     @IBOutlet private weak var lineNumberView: LineNumberView?
     
@@ -44,30 +45,26 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
     // MARK: -
     // MARK: Lifecycle
     
-    deinit {
-        self.orientationObserver?.invalidate()
-    }
-    
-    
     override func viewWillAppear() {
         
         super.viewWillAppear()
         
         // observe text orientation for line number view
-        self.orientationObserver?.invalidate()
-        self.orientationObserver = self.textView!.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-            guard let self = self else { return assertionFailure() }
-            
-            self.stackView?.orientation = {
-                switch textView.layoutOrientation {
-                    case .horizontal: return .horizontal
-                    case .vertical: return .vertical
-                    @unknown default: fatalError()
-                }
-            }()
-            
-            self.lineNumberView?.orientation = textView.layoutOrientation
-        }
+        self.orientationObserver?.cancel()
+        self.orientationObserver = self.textView!.publisher(for: \.layoutOrientation, options: .initial)
+            .sink { [weak self] (orientation) in
+                guard let self = self else { return assertionFailure() }
+                
+                self.stackView?.orientation = {
+                    switch orientation {
+                        case .horizontal: return .horizontal
+                        case .vertical: return .vertical
+                        @unknown default: fatalError()
+                    }
+                }()
+                
+                self.lineNumberView?.orientation = orientation
+            }
     }
     
     
@@ -75,7 +72,7 @@ final class EditorTextViewController: NSViewController, NSTextViewDelegate {
         
         super.viewDidDisappear()
         
-        self.orientationObserver?.invalidate()
+        self.orientationObserver?.cancel()
         self.orientationObserver = nil
     }
     

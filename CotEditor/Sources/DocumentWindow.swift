@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class DocumentWindow: NSWindow {
@@ -61,19 +62,11 @@ final class DocumentWindow: NSWindow {
     
     // MARK: Private Properties
     
-    private var appearanceObserver: NSKeyValueObservation?
+    private var appearanceObserver: AnyCancellable?
     
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.appearanceObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: Window Methods
     
     /// keys to be restored from the last session
@@ -94,12 +87,13 @@ final class DocumentWindow: NSWindow {
             self.invalidateTitlebarOpacity()
             
             if isOpaque {
-                self.appearanceObserver?.invalidate()
+                self.appearanceObserver?.cancel()
                 self.appearanceObserver = nil
             } else if self.appearanceObserver == nil {
-                self.appearanceObserver = self.observe(\.effectiveAppearance) { [weak self] (_, _) in
-                    self?.invalidateTitlebarOpacity()
-                }
+                self.appearanceObserver = self.publisher(for: \.effectiveAppearance)
+                    .sink { [weak self] _ in
+                        self?.invalidateTitlebarOpacity()
+                    }
             }
             
             NotificationCenter.default.post(name: DocumentWindow.didChangeOpacityNotification, object: self)

@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class ProgressViewController: NSViewController {
@@ -37,8 +38,8 @@ final class ProgressViewController: NSViewController {
     @objc private dynamic var progress: Progress?
     @objc private dynamic var message: String = ""
     
-    private var finishObserver: NSKeyValueObservation?
-    private var cancelObserver: NSKeyValueObservation?
+    private var finishObserver: AnyCancellable?
+    private var cancelObserver: AnyCancellable?
     private var updateTimer: DispatchSourceTimer?
     
     @IBOutlet private weak var indicator: NSProgressIndicator?
@@ -51,8 +52,6 @@ final class ProgressViewController: NSViewController {
     // MARK: Lifecycle
     
     deinit {
-        self.finishObserver?.invalidate()
-        self.cancelObserver?.invalidate()
         self.updateTimer?.cancel()
     }
     
@@ -108,23 +107,17 @@ final class ProgressViewController: NSViewController {
         self.progress = progress
         self.message = message
         
-        self.finishObserver?.invalidate()
-        self.finishObserver = progress.observe(\.isFinished, options: .initial) { [weak self] (progress, _) in
-            guard progress.isFinished else { return }
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.done()
-            }
-        }
+        self.finishObserver?.cancel()
+        self.finishObserver = progress.publisher(for: \.isFinished, options: .initial)
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.done() }
         
-        self.cancelObserver?.invalidate()
-        self.cancelObserver = progress.observe(\.isCancelled, options: .initial) { [weak self] (progress, _) in
-            guard progress.isCancelled else { return }
-            
-            DispatchQueue.main.async { [weak self] in
-                self?.dismiss(nil)
-            }
-        }
+        self.cancelObserver?.cancel()
+        self.cancelObserver = progress.publisher(for: \.isCancelled, options: .initial)
+            .filter { $0 }
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.dismiss(nil) }
     }
     
     

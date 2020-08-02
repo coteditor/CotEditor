@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 private extension NSTouchBarItem.Identifier {
@@ -38,7 +39,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     // MARK: Private Properties
     
     private weak var textView: NSTextView?
-    private var scaleObserver: NSKeyValueObservation!
+    private var scaleObserver: AnyCancellable!
     
     
     
@@ -57,15 +58,13 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
         self.defaultItemIdentifiers = forPressAndHold ? [.textSizeSlider] : [.textSizeActual, .textSizeSlider]
         
         // observe scale for slider
-        self.scaleObserver = textView.observe(\.scale, options: .new) { [unowned self] (_, change) in
-            guard self.isVisible else { return }
-            guard
-                let item = self.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem,
-                let scale = change.newValue
-                else { return assertionFailure() }
-            
-            item.doubleValue = Double(scale)
-        }
+        self.scaleObserver = textView.publisher(for: \.scale)
+            .sink { [weak self] (scale) in
+                guard self?.isVisible == true else { return }
+                guard let item = self?.item(forIdentifier: .textSizeSlider) as? NSSliderTouchBarItem else { return assertionFailure() }
+                
+                item.doubleValue = Double(scale)
+            }
     }
     
     
@@ -76,7 +75,7 @@ final class TextSizeTouchBar: NSTouchBar, NSTouchBarDelegate, NSUserInterfaceVal
     
     
     deinit {
-        self.scaleObserver.invalidate()
+        self.scaleObserver.cancel()
     }
     
     

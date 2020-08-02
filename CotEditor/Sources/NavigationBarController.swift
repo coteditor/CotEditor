@@ -61,7 +61,7 @@ final class NavigationBarController: NSViewController {
     
     // MARK: Private Properties
     
-    private var orientationObserver: NSKeyValueObservation?
+    private var orientationObserver: AnyCancellable?
     private var selectionObserver: AnyCancellable?
     
     private lazy var indicatorTask = Debouncer(delay: .milliseconds(200)) { [weak self] in
@@ -86,14 +86,6 @@ final class NavigationBarController: NSViewController {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.orientationObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     override func viewDidLoad() {
@@ -120,9 +112,10 @@ final class NavigationBarController: NSViewController {
         
         guard let textView = self.textView else { return assertionFailure() }
         
-        self.orientationObserver = textView.observe(\.layoutOrientation, options: .initial) { [weak self] (textView, _) in
-            self?.updateTextOrientation(to: textView.layoutOrientation)
-        }
+        self.orientationObserver = textView.publisher(for: \.layoutOrientation, options: .initial)
+            .sink { [weak self] (orientation) in
+                self?.updateTextOrientation(to: orientation)
+            }
         
         self.selectionObserver?.cancel()
         self.selectionObserver = NotificationCenter.default.publisher(for: NSTextView.didChangeSelectionNotification, object: textView)
@@ -149,7 +142,7 @@ final class NavigationBarController: NSViewController {
         
         super.viewDidDisappear()
         
-        self.orientationObserver?.invalidate()
+        self.orientationObserver?.cancel()
         self.orientationObserver = nil
         
         self.selectionObserver?.cancel()

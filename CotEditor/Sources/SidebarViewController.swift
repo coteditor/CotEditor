@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 protocol TabViewControllerDelegate: AnyObject {
@@ -49,7 +50,7 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: Private Properties
     
-    private var frameObserver: NSKeyValueObservation?
+    private var frameObserver: AnyCancellable?
     
     @IBOutlet private weak var documentInspectorTabViewItem: NSTabViewItem?
     @IBOutlet private weak var outlineTabViewItem: NSTabViewItem?
@@ -59,11 +60,6 @@ final class SidebarViewController: NSTabViewController {
     
     // MARK: -
     // MARK: Lifecycle
-    
-    deinit {
-        self.frameObserver?.invalidate()
-    }
-    
     
     /// prepare tabs
     override func viewDidLoad() {
@@ -83,10 +79,11 @@ final class SidebarViewController: NSTabViewController {
             // apply also to .tabView that is the only child of .view
             self.view.layoutSubtreeIfNeeded()
         }
-        self.frameObserver?.invalidate()
-        self.frameObserver = self.view.observe(\.frame) { (view, _) in
-            UserDefaults.standard[.sidebarWidth] = view.frame.width
-        }
+        self.frameObserver?.cancel()
+        self.frameObserver = self.view.publisher(for: \.frame)
+            .sink { (frame) in
+                UserDefaults.standard[.sidebarWidth] = frame.width
+            }
         
         // set accessibility
         self.view.setAccessibilityElement(true)

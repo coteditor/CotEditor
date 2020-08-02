@@ -24,6 +24,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class PrintTextView: NSTextView, Themable, URLDetectable {
@@ -62,7 +63,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     private let dateFormatter: DateFormatter
     private var lastPaperContentSize: NSSize = .zero
     
-    private var asyncHighlightObserver: NSKeyValueObservation?
+    private var asyncHighlightObserver: AnyCancellable?
     
     
     
@@ -115,7 +116,6 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
     deinit {
         self.layoutManager?.delegate = nil
         self.urlDetectionQueue.cancelAllOperations()
-        self.asyncHighlightObserver?.invalidate()
     }
     
     
@@ -317,7 +317,7 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
         layoutManager.invisiblesColor = theme?.invisibles.color ?? .disabledControlTextColor
         
         // perform syntax highlight
-        self.asyncHighlightObserver?.invalidate()
+        self.asyncHighlightObserver?.cancel()
         let progress = self.syntaxParser.highlight()
         
         // asynchronously trigger preview update if needed
@@ -325,12 +325,13 @@ final class PrintTextView: NSTextView, Themable, URLDetectable {
             let progress = progress,
             let controller = NSPrintOperation.current?.printPanel.accessoryControllers.first as? PrintPanelAccessoryController
         {
-            self.asyncHighlightObserver = progress.observe(\.isFinished) { [weak self, weak controller] (progress, _) in
-                guard progress.isFinished else { return }
-                
-                self?.asyncHighlightObserver?.invalidate()
-                controller?.needsUpdatePreview = true
-            }
+            self.asyncHighlightObserver = progress.publisher(for: \.isFinished)
+                .filter { $0 }
+                .sink { [weak self, weak controller] _ in
+                    self?.asyncHighlightObserver?.cancel()
+                    self?.asyncHighlightObserver = nil
+                    controller?.needsUpdatePreview = true
+                }
         }
     }
     

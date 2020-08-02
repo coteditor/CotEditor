@@ -23,6 +23,7 @@
 //  limitations under the License.
 //
 
+import Combine
 import Cocoa
 
 final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
@@ -33,7 +34,7 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     private weak var currentResultMessageTarget: NSLayoutManager?  // grab layoutManager instead of NSTextView to use weak reference
     
-    private var scrollerStyleObserver: NSKeyValueObservation?
+    private var scrollerStyleObserver: AnyCancellable?
     private var defaultsObservers: [UserDefaultsObservation] = []
     
     @IBOutlet private weak var findTextView: RegexFindPanelTextView?
@@ -48,14 +49,6 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
     
     
     // MARK: -
-    // MARK: Lifecycle
-    
-    deinit {
-        self.scrollerStyleObserver?.invalidate()
-    }
-    
-    
-    
     // MARK: View Controller Methods
     
     /// setup UI
@@ -65,16 +58,17 @@ final class FindPanelFieldViewController: NSViewController, NSTextViewDelegate {
         
         // adjust clear button position according to the visiblity of scroller area
         let scroller = self.findTextView?.enclosingScrollView?.verticalScroller
-        self.scrollerStyleObserver?.invalidate()
-        self.scrollerStyleObserver = scroller?.observe(\.scrollerStyle, options: .initial) { [weak self] (scroller, _) in
-            var inset: CGFloat = 5
-            if scroller.scrollerStyle == .legacy {
-                inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
+        self.scrollerStyleObserver?.cancel()
+        self.scrollerStyleObserver = scroller?.publisher(for: \.scrollerStyle, options: .initial)
+            .sink { [weak self] (scrollerStyle) in
+                var inset: CGFloat = 5
+                if scrollerStyle == .legacy, let scroller = scroller {
+                    inset += NSScroller.scrollerWidth(for: scroller.controlSize, scrollerStyle: scroller.scrollerStyle)
+                }
+                
+                self?.findClearButtonConstraint?.constant = -inset
+                self?.replacementClearButtonConstraint?.constant = -inset
             }
-            
-            self?.findClearButtonConstraint?.constant = -inset
-            self?.replacementClearButtonConstraint?.constant = -inset
-        }
         
         self.defaultsObservers.forEach { $0.invalidate() }
         self.defaultsObservers = [

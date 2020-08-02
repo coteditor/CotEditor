@@ -104,9 +104,9 @@ final class LineNumberView: NSView {
     private var selectionObserver: AnyCancellable?
     private var frameObserver: AnyCancellable?
     private var scrollObserver: AnyCancellable?
-    private var colorObserver: NSKeyValueObservation?
-    private var fontObserver: NSKeyValueObservation?
-    private var scaleObserver: NSKeyValueObservation?
+    private var colorObserver: AnyCancellable?
+    private var fontObserver: AnyCancellable?
+    private var scaleObserver: AnyCancellable?
     
     private weak var draggingTimer: Timer?
     
@@ -126,8 +126,6 @@ final class LineNumberView: NSView {
     // MARK: Lifecycle
     
     deinit {
-        self.removeTextViewObservers()
-        
         self.draggingTimer?.invalidate()
     }
     
@@ -402,20 +400,23 @@ final class LineNumberView: NSView {
                 self?.needsDisplay = true
             }
         
-        self.colorObserver?.invalidate()
-        self.colorObserver = textView.observe(\.backgroundColor) { [weak self] (_, _)  in
-            self?.needsDisplay = true
-        }
+        self.colorObserver?.cancel()
+        self.colorObserver = textView.publisher(for: \.backgroundColor)
+            .sink { [weak self] _  in
+                self?.needsDisplay = true
+            }
         
-        self.fontObserver?.invalidate()
-        self.fontObserver = textView.observe(\.font) { [weak self] (_, _)  in
-            self?.invalidateDrawingInfo()
-        }
+        self.fontObserver?.cancel()
+        self.fontObserver = textView.publisher(for: \.font)
+            .sink { [weak self] _  in
+                self?.invalidateDrawingInfo()
+            }
         
-        self.scaleObserver?.invalidate()
-        self.scaleObserver = textView.observe(\.scale) { [weak self] (_, _)  in
-            self?.invalidateDrawingInfo()
-        }
+        self.scaleObserver?.cancel()
+        self.scaleObserver = textView.publisher(for: \.scale)
+            .sink { [weak self] _  in
+                self?.invalidateDrawingInfo()
+            }
     }
     
     
@@ -437,13 +438,13 @@ final class LineNumberView: NSView {
         self.scrollObserver?.cancel()
         self.scrollObserver = nil
         
-        self.colorObserver?.invalidate()
+        self.colorObserver?.cancel()
         self.colorObserver = nil
         
-        self.fontObserver?.invalidate()
+        self.fontObserver?.cancel()
         self.fontObserver = nil
         
-        self.scaleObserver?.invalidate()
+        self.scaleObserver?.cancel()
         self.scaleObserver = nil
     }
     
